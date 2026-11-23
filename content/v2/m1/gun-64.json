@@ -60,6 +60,10 @@
     {
      "de": "Meine Schicht ist um … zu Ende.",
      "tr": "Vardiyam saat …'de bitiyor."
+    },
+    {
+     "de": "Hast du auch großen Hunger? – Ja, großen Hunger!",
+     "tr": "Sen de çok aç mısın? – Evet, çok açım!"
     }
    ],
    "gorev_cumleleri": [
@@ -170,6 +174,10 @@
     {
      "de": "… liegt unter dem Tisch.",
      "tr": "… masanın altında."
+    },
+    {
+     "de": "Was gibt es heute? – Heute gibt es …",
+     "tr": "Bugün ne var? – Bugün … var."
     }
    ],
    "dersten_sonra": true,
@@ -226,12 +234,12 @@
     },
     {
      "kart": "lx:salzig",
-     "de": "Das Salz steht auf dem Tisch, aber das Fleisch ist schon salzig.",
-     "tr": "Tuz masada, ama et zaten tuzlu.",
+     "de": "Das Gemüse ist gut, aber das Fleisch ist zu salzig.",
+     "tr": "Sebze iyi, ama et fazla tuzlu.",
      "accepted": [
-      "Das Salz steht auf dem Tisch, aber das Fleisch ist schon salzig.",
-      "Das Salz ist auf dem Tisch, aber das Fleisch ist schon salzig.",
-      "Das Salz steht auf dem Tisch. Aber das Fleisch ist schon salzig."
+      "Das Gemüse ist gut, aber das Fleisch ist zu salzig.",
+      "Das Gemüse ist gut. Aber das Fleisch ist zu salzig.",
+      "Das Gemüse ist gut, aber das Fleisch ist heute zu salzig."
      ]
     }
    ],
@@ -321,12 +329,12 @@
     },
     {
      "kart": "lx:Gabel",
-     "de": "Die Gabeln sind im Regal neben den Löffeln.",
-     "tr": "Çatallar rafta, kaşıkların yanında.",
+     "de": "Die Gabeln sind im Regal neben der Tür.",
+     "tr": "Çatallar kapının yanındaki rafta.",
      "accepted": [
-      "Die Gabeln sind im Regal neben den Löffeln.",
-      "Die Gabeln liegen im Regal neben den Löffeln.",
-      "Die Gabeln sind im Regal, neben den Löffeln."
+      "Die Gabeln sind im Regal neben der Tür.",
+      "Die Gabeln liegen im Regal neben der Tür.",
+      "Im Regal neben der Tür sind die Gabeln."
      ]
     }
    ],
@@ -594,14 +602,14 @@
     "cevapla": {
      "id": "m1:64:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Derya sana soruyor: Tuz nerede? Tuz masada, ekmeğin yanında.",
-     "prompt_de": "Wo ist das Salz?",
+     "situation_tr": "Derya sana soruyor: Ekmek nerede? Ekmek masada, kahvenin yanında.",
+     "prompt_de": "Wo ist das Brot?",
      "accepted": [
-      "Das Salz steht auf dem Tisch, neben dem Brot.",
-      "Es steht auf dem Tisch neben dem Brot.",
-      "Auf dem Tisch, neben dem Brot.",
-      "Das Salz ist auf dem Tisch neben dem Brot.",
-      "Da, auf dem Tisch neben dem Brot."
+      "Das Brot liegt auf dem Tisch, neben dem Kaffee.",
+      "Es liegt auf dem Tisch neben dem Kaffee.",
+      "Auf dem Tisch, neben dem Kaffee.",
+      "Das Brot ist auf dem Tisch neben dem Kaffee.",
+      "Da, auf dem Tisch neben dem Kaffee."
      ],
      "why_tr": "Nerede sorusuna **auf dem Tisch** dersin: masada."
     }
@@ -775,7 +783,7 @@
       "id": "m1:64:a1:c1",
       "k": "guided_response",
       "situation_tr": "Derya'ya kısa bir mesajla cevap ver: Tamam, kahveyi pencerenin yanındaki yerine koyuyorsun.",
-      "prompt_de": "Bringst du mir einen Kaffee?",
+      "prompt_de": "Kannst du mir einen Kaffee bringen?",
       "accepted": [
        "Ja, klar! Ich stelle den Kaffee auf deinen Platz am Fenster.",
        "Klar, ich stelle ihn auf deinen Platz am Fenster.",
@@ -1047,8 +1055,8 @@
   "dugumler": [
    {
     "id": "n1",
-    "de": "Mahlzeit! Ist der Platz hier noch frei?",
-    "tr": "İyi öğlenler! Buradaki yer boş mu?",
+    "de": "Hallo! Ist der Platz hier noch frei?",
+    "tr": "Merhaba! Buradaki yer boş mu?",
     "secenekler": [
      {
       "de": "Ja, klar! Der Platz neben mir ist frei.",
@@ -1056,7 +1064,7 @@
       "accepted": [
        "Ja, klar! Der Platz neben mir ist frei.",
        "Ja, der Platz neben mir ist frei.",
-       "Mahlzeit! Ja, der Platz ist frei."
+       "Hallo! Ja, der Platz ist frei."
       ],
       "sonraki": "n2",
       "uygun": true,
@@ -1140,8 +1148,8 @@
    },
    {
     "id": "n4",
-    "de": "Oh, ich habe keine Gabel. Wo sind die Gabeln?",
-    "tr": "Aa, çatalım yok. Çatallar nerede?",
+    "de": "Jetzt habe ich keine Gabel. Wo sind die Gabeln?",
+    "tr": "Şimdi de çatalım yok. Çatallar nerede?",
     "secenekler": [
      {
       "de": "Die Gabeln sind im Regal, neben den Tassen.",
@@ -1224,8 +1232,8 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Kantinin kapısındaki not",
-  "metin_de": "Liebe Kolleginnen und Kollegen! Die Kantine ist von elf bis zwei Uhr offen. Die Speisekarte für die Woche steht neben der Tür. Löffel und Gabeln liegen im Regal neben den Tassen. Bitte stellen Sie Ihre Tasse nach der Pause in das Regal neben der Tür. Das Salz steht auf jedem Tisch.",
-  "metin_tr": "Sevgili çalışma arkadaşlarımız! Kantin on birden ikiye kadar açık. Haftalık yemek listesi kapının yanında duruyor. Kaşıklar ve çatallar fincanların yanındaki rafta. Lütfen moladan sonra fincanınızı kapının yanındaki rafa koyun. Tuz her masada var.",
+  "metin_de": "Liebe Kolleginnen und Kollegen! Die Kantine ist von elf bis zwei Uhr offen. Die Speisekarte für die Woche steht neben der Tür. Löffel und Gabeln liegen im Regal neben den Tassen. Bitte stellen Sie Ihre Tasse nach der Pause in das Regal neben der Tür. Brot steht auf jedem Tisch.",
+  "metin_tr": "Sevgili çalışma arkadaşlarımız! Kantin on birden ikiye kadar açık. Haftalık yemek listesi kapının yanında duruyor. Kaşıklar ve çatallar fincanların yanındaki rafta. Lütfen moladan sonra fincanınızı kapının yanındaki rafa koyun. Her masada ekmek var.",
   "sorular": [
    {
     "id": "m1:64:o1",

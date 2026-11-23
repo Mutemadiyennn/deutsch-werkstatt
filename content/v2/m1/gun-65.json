@@ -65,12 +65,12 @@
    "gorev_cumleleri": [
     {
      "kart": "lx:Drucker",
-     "de": "Das Papier liegt im Schrank unter dem Drucker.",
-     "tr": "Kâğıt yazıcının altındaki dolapta.",
+     "de": "Der Schlüssel liegt im Schrank unter dem Drucker.",
+     "tr": "Anahtar yazıcının altındaki dolapta.",
      "accepted": [
-      "Das Papier liegt im Schrank unter dem Drucker.",
-      "Das Papier ist im Schrank unter dem Drucker.",
-      "Im Schrank unter dem Drucker liegt das Papier."
+      "Der Schlüssel liegt im Schrank unter dem Drucker.",
+      "Der Schlüssel ist im Schrank unter dem Drucker.",
+      "Im Schrank unter dem Drucker liegt der Schlüssel."
      ]
     },
     {
@@ -152,6 +152,10 @@
     {
      "de": "Ich freue mich auf … – Freust du dich auch? – Wir freuen uns.",
      "tr": "…'i dört gözle bekliyorum. – Sen de seviniyor musun? – Seviniyoruz."
+    },
+    {
+     "de": "Sie freut sich über …",
+     "tr": "O …'e seviniyor."
     }
    ],
    "dersten_sonra": true,
@@ -168,12 +172,12 @@
     },
     {
      "kart": "lx:Fitnessstudio",
-     "de": "Ich treffe Basti am Abend im Fitnessstudio.",
-     "tr": "Akşam Basti'yle spor salonunda buluşuyorum.",
+     "de": "Ich bin am Abend mit Basti im Fitnessstudio.",
+     "tr": "Akşam Basti'yle spor salonundayım.",
      "accepted": [
-      "Ich treffe Basti am Abend im Fitnessstudio.",
-      "Am Abend treffe ich Basti im Fitnessstudio.",
-      "Ich treffe Basti heute Abend im Fitnessstudio."
+      "Ich bin am Abend mit Basti im Fitnessstudio.",
+      "Am Abend bin ich mit Basti im Fitnessstudio.",
+      "Ich bin heute Abend mit Basti im Fitnessstudio."
      ]
     },
     {
@@ -198,12 +202,12 @@
     },
     {
      "kart": "lx:Verein",
-     "de": "Tobi spielt am Mittwoch im Verein Fußball.",
-     "tr": "Tobi çarşamba günü kulüpte futbol oynuyor.",
+     "de": "Tobi ist am Mittwoch immer im Verein.",
+     "tr": "Tobi çarşambaları hep kulüpte.",
      "accepted": [
-      "Tobi spielt am Mittwoch im Verein Fußball.",
-      "Am Mittwoch spielt Tobi im Verein Fußball.",
-      "Tobi spielt am Mittwoch Fußball im Verein."
+      "Tobi ist am Mittwoch immer im Verein.",
+      "Am Mittwoch ist Tobi immer im Verein.",
+      "Tobi ist immer am Mittwoch im Verein."
      ]
     },
     {
@@ -304,8 +308,12 @@
      "tr": "Sayaç …'de."
     },
     {
-     "de": "Ich mache ein Foto vom … und schicke es an …",
-     "tr": "…'in fotoğrafını çekip …'e gönderiyorum."
+     "de": "Ich mache ein Foto vom … und schicke es an Herrn …",
+     "tr": "…'in fotoğrafını çekip … Bey'e gönderiyorum."
+    },
+    {
+     "de": "Dann frage ich … – Ich frage sie.",
+     "tr": "O zaman …'e sorarım. – Ona sorarım."
     }
    ],
    "dersten_sonra": true,
@@ -600,8 +608,8 @@
     "cevapla": {
      "id": "m1:65:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Basti sana da soruyor: Sonra yüzme havuzuna gidiyor musun? Hayır, eve gidiyorsun, akşam maçı izliyorsun.",
-     "prompt_de": "Und du? Gehst du später ins Schwimmbad?",
+     "situation_tr": "Basti sana da soruyor: Bugün yüzme havuzuna gidiyor musun? Hayır, eve gidiyorsun, akşam maçı izliyorsun.",
+     "prompt_de": "Und du? Gehst du heute noch ins Schwimmbad?",
      "accepted": [
       "Nein, ich gehe nach Hause. Am Abend sehe ich das Spiel.",
       "Heute nicht. Ich gehe nach Hause und sehe das Spiel.",
@@ -1113,8 +1121,8 @@
    },
    {
     "id": "n3",
-    "de": "Hm. Der Wasserzähler ist im Bad. Der Mann muss in Ihre Wohnung.",
-    "tr": "Hmm. Su sayacı banyoda. Adamın dairenize girmesi gerek.",
+    "de": "Der Zähler für Wasser ist im Bad. Der Mann muss in Ihre Wohnung.",
+    "tr": "Su sayacı banyoda. Adamın dairenize girmesi gerek.",
     "secenekler": [
      {
       "de": "Geht es auch am Freitag? Am Freitag bin ich am Nachmittag zu Hause.",
@@ -1281,12 +1289,12 @@
     "id": "m1:65:o5",
     "k": "guided_response",
     "situation_tr": "Frau Brandl merdivende soruyor: Su sayacın nerede? Senin sayacın banyoda.",
-    "prompt_de": "Wo ist denn Ihr Wasserzähler?",
+    "prompt_de": "Wo ist denn Ihr Zähler für Wasser?",
     "accepted": [
-     "Mein Wasserzähler ist im Bad.",
+     "Mein Zähler ist im Bad.",
      "Im Bad.",
      "Er ist im Bad.",
-     "Der Wasserzähler ist bei mir im Bad.",
+     "Der Zähler ist bei mir im Bad.",
      "Mein Zähler ist im Bad, Frau Brandl."
     ],
     "why_tr": "Nerede: **im Bad**. **in dem Bad** kısalıp **im Bad** olur."
@@ -1384,11 +1392,11 @@
    {
     "id": "m1:65:s8",
     "k": "tr_de",
-    "tr": "Kâğıt yazıcının altında.",
+    "tr": "Anahtar yazıcının altında.",
     "accepted": [
-     "Das Papier liegt unter dem Drucker.",
-     "Das Papier ist unter dem Drucker.",
-     "Unter dem Drucker liegt das Papier."
+     "Der Schlüssel liegt unter dem Drucker.",
+     "Der Schlüssel ist unter dem Drucker.",
+     "Unter dem Drucker liegt der Schlüssel."
     ],
     "why_tr": "Nerede: **unter dem Drucker**."
    },

@@ -63,12 +63,12 @@
    "gorev_cumleleri": [
     {
      "kart": "lx:Angst",
-     "de": "Ich habe ein bisschen Angst vor dem Anruf.",
-     "tr": "Bu telefon görüşmesinden biraz korkuyorum.",
+     "de": "Ich habe ein bisschen Angst vor dem Telefon.",
+     "tr": "Telefondan biraz korkuyorum.",
      "accepted": [
-      "Ich habe ein bisschen Angst vor dem Anruf.",
-      "Vor dem Anruf habe ich ein bisschen Angst.",
-      "Ich habe ein bisschen Angst vor diesem Anruf."
+      "Ich habe ein bisschen Angst vor dem Telefon.",
+      "Vor dem Telefon habe ich ein bisschen Angst.",
+      "Ich habe ein bisschen Angst vor dem Telefon, Derya."
      ]
     },
     {
@@ -147,6 +147,10 @@
     {
      "de": "Ist das wahr? – …, nicht wahr?",
      "tr": "Bu doğru mu? – …, değil mi?"
+    },
+    {
+     "de": "Papier kommt in die neue Mülltonne.",
+     "tr": "Kâğıt yeni çöp bidonuna atılır."
     }
    ],
    "dersten_sonra": true,
@@ -731,7 +735,7 @@
       "id": "m1:68:a1:c1",
       "k": "guided_response",
       "situation_tr": "Adamı geri arıyorsun. Adını söyledin. Saat beş sana uyuyor, o saatte evdesin.",
-      "prompt_de": "Ah, hallo! Passt es Ihnen gegen fünf?",
+      "prompt_de": "Hallo! Passt es Ihnen gegen fünf?",
       "accepted": [
        "Ja, gegen fünf passt gut. Ich bin zu Hause.",
        "Ja, das geht. Gegen fünf bin ich zu Hause.",
@@ -1001,7 +1005,7 @@
  "prova": {
   "id": "m1:68:p1",
   "title_tr": "Herr Pichler: bisikletin merdivende",
-  "durum_tr": "Cuma akşamı. Bisikletini merdivende bırakmışsın, kapının önünde de karton kutular var. Herr Pichler geliyor. Pazartesi altı buçuğa kadar işteysin.",
+  "durum_tr": "Cuma akşamı. Bisikletini merdivende bırakmışsın, kapının önünde de eski kâğıtlar var. Herr Pichler geliyor. Pazartesi altı buçuğa kadar işteysin.",
   "karsi": "ch:pichler",
   "baslangic": "n1",
   "dugumler": [
@@ -1069,27 +1073,27 @@
    },
    {
     "id": "n3",
-    "de": "Gut. Und die Kartons vor Ihrer Tür? Die müssen auch weg.",
-    "tr": "Tamam. Peki kapınızın önündeki kartonlar? Onlar da kalkmalı.",
+    "de": "Gut. Und das Papier vor Ihrer Tür? Das muss auch weg.",
+    "tr": "Tamam. Peki kapınızın önündeki kâğıtlar? Onlar da kalkmalı.",
     "secenekler": [
      {
-      "de": "Wohin kommen die Kartons? In die Mülltonne?",
-      "tr": "Kartonlar nereye atılıyor? Çöp bidonuna mı?",
+      "de": "Wohin kommt das Papier? In die Mülltonne?",
+      "tr": "Kâğıt nereye atılıyor? Çöp bidonuna mı?",
       "accepted": [
-       "Wohin kommen die Kartons? In die Mülltonne?",
-       "Wohin kommen die Kartons? In die Mülltonne im Hof?",
-       "Und wohin kommen die Kartons?"
+       "Wohin kommt das Papier? In die Mülltonne?",
+       "Wohin kommt das Papier? In die neue Mülltonne?",
+       "Und wohin kommt das Papier?"
       ],
       "sonraki": "n4",
       "uygun": true,
       "geri_bildirim_tr": "İyi soru. Bilmiyorsan sor."
      },
      {
-      "de": "Die Kartons stelle ich neben die Mülltonne.",
-      "tr": "Kartonları çöp bidonunun yanına koyuyorum.",
+      "de": "Das Papier lege ich neben die Mülltonne.",
+      "tr": "Kâğıtları çöp bidonunun yanına koyuyorum.",
       "accepted": [
-       "Die Kartons stelle ich neben die Mülltonne.",
-       "Ich stelle die Kartons neben die Mülltonne.",
+       "Das Papier lege ich neben die Mülltonne.",
+       "Ich lege das Papier neben die Mülltonne.",
        "Neben die Mülltonne, okay?"
       ],
       "sonraki": "n3",
@@ -1100,8 +1104,8 @@
    },
    {
     "id": "n4",
-    "de": "Papier kommt in die neue Tonne. Die ist ab Montag im Hof.",
-    "tr": "Kâğıt yeni bidona atılıyor. O, pazartesiden itibaren avluda.",
+    "de": "Das Papier kommt in die neue Mülltonne. Die steht ab Montag hinter dem Haus.",
+    "tr": "Kâğıt yeni bidona atılıyor. O, pazartesiden itibaren apartmanın arkasında.",
     "secenekler": [
      {
       "de": "Könnten Sie mir die neue Mülltonne am Montag zeigen?",
@@ -1131,8 +1135,8 @@
    },
    {
     "id": "n5",
-    "de": "Ja, gut. Am Montag gegen sechs bin ich im Hof.",
-    "tr": "Peki, olur. Pazartesi altı gibi avludayım.",
+    "de": "Ja, gut. Am Montag gegen sechs bin ich hinter dem Haus.",
+    "tr": "Peki, olur. Pazartesi altı gibi apartmanın arkasındayım.",
     "secenekler": [
      {
       "de": "Gegen sechs schaffe ich es leider nicht. Geht es um sieben?",
@@ -1191,8 +1195,8 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Merdivendeki duyuru",
-  "metin_de": "Liebe Nachbarinnen und Nachbarn! Ab Montag gibt es im Hof eine neue Mülltonne für Papier. Ich stelle die Mülltonnen jetzt am Dienstag vor das Haus, nicht mehr am Mittwoch. Bitte stellen Sie keinen Müll neben die Tonnen. Fahrräder dürfen nicht im Treppenhaus stehen. Im Keller ist genug Platz. Am Samstag putze ich das Treppenhaus. Bitte stellen Sie keine Schuhe mehr vor die Tür. Vielen Dank! Josef Pichler, Hausmeister",
-  "metin_tr": "Sevgili komşular! Pazartesiden itibaren avluda kâğıt için yeni bir çöp bidonu var. Çöp bidonlarını artık çarşamba değil, salı günü apartmanın önüne koyuyorum. Lütfen bidonların yanına çöp koymayın. Bisikletler merdivende duramaz. Bodrumda yeterince yer var. Cumartesi merdiveni temizliyorum. Lütfen artık kapının önüne ayakkabı koymayın. Çok teşekkürler! Josef Pichler, apartman görevlisi",
+  "metin_de": "Liebe Nachbarinnen und Nachbarn! Ab Montag gibt es hinter dem Haus eine neue Mülltonne für Papier. Ich stelle die Mülltonnen jetzt am Dienstag vor das Haus, nicht mehr am Mittwoch. Bitte stellen Sie keinen Müll neben die Tonnen. Fahrräder dürfen nicht im Treppenhaus stehen. Im Keller ist genug Platz. Am Samstag putze ich das Treppenhaus. Bitte stellen Sie keine Schuhe mehr vor die Tür. Vielen Dank! Josef Pichler, Hausmeister",
+  "metin_tr": "Sevgili komşular! Pazartesiden itibaren apartmanın arkasında kâğıt için yeni bir çöp bidonu var. Çöp bidonlarını artık çarşamba değil, salı günü apartmanın önüne koyuyorum. Lütfen bidonların yanına çöp koymayın. Bisikletler merdivende duramaz. Bodrumda yeterince yer var. Cumartesi merdiveni temizliyorum. Lütfen artık kapının önüne ayakkabı koymayın. Çok teşekkürler! Josef Pichler, apartman görevlisi",
   "sorular": [
    {
     "id": "m1:68:o1",
@@ -1259,11 +1263,11 @@
     "situation_tr": "Frau Brandl merdivende soruyor: Kâğıt nereye atılıyor? Duyuruya göre cevap ver.",
     "prompt_de": "Wohin kommt jetzt das Papier?",
     "accepted": [
-     "Das Papier kommt in die neue Mülltonne im Hof.",
-     "In die neue Mülltonne im Hof.",
-     "Es kommt in die neue Tonne im Hof.",
+     "Das Papier kommt in die neue Mülltonne hinter dem Haus.",
+     "In die neue Mülltonne hinter dem Haus.",
+     "Es kommt in die neue Mülltonne hinter dem Haus.",
      "Ab Montag kommt das Papier in die neue Mülltonne.",
-     "Papier kommt jetzt in die neue Mülltonne im Hof."
+     "Papier kommt jetzt in die neue Mülltonne hinter dem Haus."
     ],
     "why_tr": "Nereye: **in die neue Mülltonne**. Bidon **die Mülltonne**, bu yüzden **in die**."
    }
@@ -1275,13 +1279,13 @@
    {
     "id": "m1:68:s1",
     "k": "listen_and_respond",
-    "audio_de": "Der Müll muss in die Mülltonne im Hof.",
+    "audio_de": "Der Müll muss in die Mülltonne hinter dem Haus.",
     "speed": "normal",
     "situation_tr": "Duyduğunu yaz.",
     "accepted": [
-     "Der Müll muss in die Mülltonne im Hof.",
+     "Der Müll muss in die Mülltonne hinter dem Haus.",
      "der müll muss in die mülltonne im hof",
-     "Der Müll muss in die Mülltonne im Hof"
+     "Der Müll muss in die Mülltonne hinter dem Haus"
     ],
     "why_tr": "**muss**: gerekiyor. Nereye: **in die Mülltonne**."
    },
@@ -1401,8 +1405,8 @@
    {
     "id": "m1:68:s11",
     "k": "guided_response",
-    "situation_tr": "Günün provası. Herr Pichler pazartesi altı gibi avluda olacağını söylüyor. O saatte işteysin. Söyle ve yediyi sor.",
-    "prompt_de": "Am Montag gegen sechs bin ich im Hof, okay?",
+    "situation_tr": "Günün provası. Herr Pichler pazartesi altı gibi apartmanın arkasında olacağını söylüyor. O saatte işteysin. Söyle ve yediyi sor.",
+    "prompt_de": "Am Montag gegen sechs bin ich hinter dem Haus, okay?",
     "accepted": [
      "Gegen sechs bin ich leider noch im Büro. Geht es um sieben?",
      "Um sechs schaffe ich das leider nicht. Geht es auch um sieben?",

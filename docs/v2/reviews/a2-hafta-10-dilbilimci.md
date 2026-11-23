@@ -220,6 +220,41 @@ Denetimler (3. tur sonu): dikiş `İhlal: 0`; val.sh yalnız üç izinli sınıf
 
 **İÇ-8 kararı uygulandı (4. küçük tur):** Suppe, Fisch, Tablett, Teller, Schublade, Stadtwerken, SMS, Messern haftanın bütün Almanca metinlerinden çıktı (dinleme satırları dahil; dikte, soru, seçenek, çeviri ve kabuller birlikte güncellendi): 64'te yemek Fleisch ve Gemüse, Derya'nın isteği Kaffee, Tablett → Tasse, Teller → Tassen, Messern → Löffeln; 65 ve 67'de "von der Firma"; 67'de Schublade → Schrank (yazmada kahve "ins Regal"); 69'da "Ich schicke Ihnen am Mittwoch eine Nachricht." Dikiş `İhlal: 0`, val.sh üç sınıf, content:validate iki sınıf, aynı cümle yok. "Emin olamadıklarım" listesi böylece kapandı.
 
+## Hafta kapısı (5. tur)
+
+Kaynak: `docs/v2/reviews/a2-hafta-10-kapi.md` (`kapi10.sh` ile yeniden üretildi). **Sonuç: GEÇTİ.**
+
+| Ölçüt | Önce | Sonra |
+|---|---:|---:|
+| Öğretilmeden istenen, kesin | 38 | 0 |
+| Öğretilmeden istenen, sınırda | 19 | 0 |
+| Anlaşılmayan karşı soru | 30 | 0 |
+| Hafta sonu testi | %83 (10/12) | %100 (12/12) |
+| Görülmemiş durum | 1/4 | 7/7 |
+| Sınanmayan can_do | 64, 65, 67 | yok |
+
+Denetimler: dikiş `İhlal: 0`; val.sh yalnız üç izinli sınıf; content:validate yalnız iki şema sınıfı; hafta içi tekrar eden cümle yok (üç bilinçli eşleşme dışında).
+
+**Değişen cümleler (öğretilmemiş sözcük çıktı):**
+- 64: "Das Salz steht auf dem Tisch, aber …" → "Das Gemüse ist gut, aber das Fleisch ist zu salzig."; "… neben den Löffeln" → "Die Gabeln sind im Regal neben der Tür."; sahne cevabı "Wo ist das Salz?" → "Wo ist das Brot?" (masada, kahvenin yanında); okuma "Brot steht auf jedem Tisch."
+- 65: Papier → Schlüssel ("Der Schlüssel liegt im Schrank unter dem Drucker.", sınav s8 de); "Ich treffe Basti …" → "Ich bin am Abend mit Basti im Fitnessstudio."; "Tobi spielt … Fußball." → "Tobi ist am Mittwoch immer im Verein."; okuma cevabı "Mein Zähler ist im Bad."
+- 66: "… neben den Büchern" → "… neben der Lampe"; "Ich hole ihn." → "Ich bringe ihn."
+- 67: Garderobe → "in den Schrank gehängt" (görev, sahne satırı ve usta dikte, sınav s1, soru seçeneği "Dolapta"); Brille → Handy; Kellerschlüssel → "Schlüssel für den Keller"; sahne cevabında model "Sehr gut, danke! Vielen Dank für die Hilfe!" (fühle biçimleri kabulde).
+- 68: "Angst vor dem Anruf" → "vor dem Telefon"; provada Kartons → Papier; "im Hof" → "hinter dem Haus" (prova, okuma, sınav s1 ve s11).
+- 69: "Nein danke, ich schreibe es auf." → "Nein, danke. Ich habe den Termin im Handy."; yazma kapanışı "Viele Grüße" → "Vielen Dank!".
+- 70: sınav s9 "… putzt eine Firma den Keller." → "… kommt eine Firma in den Keller."
+- Test t02 "in den Hof" → "hinter das Haus". Görülmemiş g3: Tonnen ve Papiertonne → Mülltonnen, "Mülltonne für Papier".
+
+**Karşı tarafın replikleri (öğretilmiş sözcüklerle; ünlemler çıktı):** 64 "Kannst du mir einen Kaffee bringen?", provada "Hallo! Ist der Platz hier noch frei?" ve "Jetzt habe ich keine Gabel."; 65 "Gehst du heute noch ins Schwimmbad?", "Der Zähler für Wasser ist im Bad." ("Hm" çıktı), "Wo ist denn Ihr Zähler für Wasser?"; 66 "Aha" çıktı, "Und jetzt die Klingel: …"; 67 "Und wie ist die Wohnung? Gut?", "Haben Sie eine Frage?", "… an die Wand neben der Tür gehängt."; 68 "Hallo! Passt es Ihnen gegen fünf?", "Und das Papier vor Ihrer Tür? Das muss auch weg.", "Das Papier kommt in die neue Mülltonne. Die steht ab Montag hinter dem Haus."; 69 "Guten Tag, hier ist Luka.", "Hm" çıktı; görülmemiş g1 "Praxis Dr. Winter, guten Tag?", g4 "hier ist Frau Sommer".
+
+**Gösterilen biçimler (yeni kalıp satırları, 13):** 64 h1 "Hast du auch großen Hunger? – Ja, großen Hunger!"; 64 h2 "Was gibt es heute? – Heute gibt es …"; 65 h2 "Sie freut sich über …"; 65 h3 "Dann frage ich … – Ich frage sie." ve "… schicke es an Herrn …"; 66 h2 "Der Wasserhahn tropft."; 67 h1 "… – Ich sorge für …" ve "Leute aus der ganzen Welt"; 67 h3 "Wie fühlst du dich?"; 68 h2 "Papier kommt in die neue Mülltonne."; 69 h1 "Geht es an einem anderen Tag?"; 69 h2 "Ich setze mich ans Fenster. – Setz dich doch!"; 70 h1 "Das hat nicht gepasst." Dil noktası tablosuna satır eklenmedi.
+
+**Yeni görülmemiş durumlar:** g5 (cd:m1:64, başka bir firmanın kantini, Herr Castillo kaşıkları soruyor), g6 (cd:m1:65, otobüste Frau Novak hafta sonunu soruyor), g7 (cd:m1:67, otelde Herr Demir, anahtarı nereye koyduğunu sor). Her birinde 5 kabul.
+
+**Kalan sınırda: yok.**
+
+**Bu turun getirdikleri (okur ve örneklem bu satırları görmedi):** 13 kalıp satırının Türkçesi, g5–g7'nin `durum_tr` ve `why_tr` metinleri, g1 ve g4'ün yeni adları, 64 ve 67 cevap görevlerinin yeni durum ve açıklama metinleri, yukarıdaki değişen cümlelerin çevirileri. On bir halkada kalıp sayısı 3'e çıktı (11 yeni satır, 2 genişletilmiş satır). 68 h2 kalıbı Papier sözcüğünü öğretiyor (sözlükte kart değil): kalıcı çözüm lex'te eşdizim.
+
 ## Sonuç
 
 **ONAY.** Dil, okur ve örneklem geri dönüşleri kapandı. Baş geliştiricide kalan: B4 (dikte, kod ya da satır bölme), B3 (67 başlığı a2-kesin.json'da); B2, B6, B7 takip.
