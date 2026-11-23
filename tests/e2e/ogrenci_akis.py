@@ -491,7 +491,9 @@ def akis_adim(pg):
 
 # ---------------------------------------------------------------- medya
 def medya_adim(pg):
-    h = pg.evaluate("location.hash"); mid = __import__("urllib.parse").parse.unquote(h.split("/")[-1])
+    # #/m1/<gün>/<kayıt>[/1|/2]: akışta ses turu eki (PM-097 md. 1) kimlik değildir (inceleme #207 P1-3)
+    h = pg.evaluate("location.hash"); p_ = h.split("/"); p_ = p_[:-1] if len(p_) > 3 and p_[-1] in ("1", "2") else p_
+    mid = __import__("urllib.parse").parse.unquote(p_[-1])
     m = medya_bul(mid)
     DURUM["yer"] = "medya:" + mid
     pg.wait_for_timeout(300)

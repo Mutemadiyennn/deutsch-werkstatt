@@ -80,7 +80,7 @@ export function dilNoktasiMetni(n: unknown): string[] {
 }
 
 /** bilinmeyenler()'in kendi içinde örttüğü konumlar (aynı kurallar: halkanın kalıpları, biten derslerin kalıpları, bilinen kartların çok sözcüklü başlıkları) */
-function icOrtu(d: KumeDizini, tt: readonly string[], k: Bilinen): Set<number> {
+export function icOrtu(d: KumeDizini, tt: readonly string[], k: Bilinen): Set<number> {
   const kart = new Set(k.kart); for (const id of k.biten) for (const x of d.dersler.get(id)?.kart ?? []) kart.add(x);
   const duz: (readonly string[])[] = [...(k.kaliplar ?? [])];
   for (const id of k.biten) duz.push(...(d.dersler.get(id)?.kaliplar ?? []));
@@ -145,7 +145,7 @@ export function acikEsdizimler(l: Pick<Lexeme, "de" | "art" | "forms" | "colloca
     .sort((a, b) => b.p - a.p || a.k - b.k).slice(0, 3).map((x) => x.c.de);
 }
 /** Gösterilmiş kalıplar: bilinen kartların açık eşdizimleri + biten temel derslerin çok sözcüklü `exp.parcalar`ı */
-function gosterilenKaliplar(d: KumeDizini, kartlar: Iterable<string>, biten: Iterable<string>, dersler?: ReadonlyMap<string, TemelDers>): string[][] {
+export function gosterilenKaliplar(d: KumeDizini, kartlar: Iterable<string>, biten: Iterable<string>, dersler?: ReadonlyMap<string, TemelDers>): string[][] {
   const r: string[][] = [];
   for (const id of kartlar) { const l = d.kartlar.get(id); if (l) for (const c of acikEsdizimler(l)) r.push(...kalipSecenekleri(c).filter((x) => x.length > 1)); }
   for (const id of biten) for (const t of dersler?.get(id)?.teach ?? []) {

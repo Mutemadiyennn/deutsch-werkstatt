@@ -15,6 +15,7 @@
  * Halkasız gün akış günü değildir: `planGun` null döner, çağıran eski düzene düşer (AK-5).
  */
 import POLICY from "../policy.json" with { type: "json" };
+import { ikinciTurVar } from "./medya.ts";
 import { bilinmeyenler, kalipOrtu, kartsizMi, kalipSecenekleri, toks, YUVA, type Bilinen, type Drill, type Gun, type Halka, type KumeDizini, type LearnerItem, type Lexeme, type TemelDers } from "@dw/shared";
 
 export type Kip = "gor" | "duy" | "kur" | "soyle";
@@ -48,6 +49,8 @@ export type DurakTuru = "isinma" | "ses" | "halka" | "dil" | "video" | "prova" |
 export interface Durak {
   id: string; tur: DurakTuru; seans: number; title_tr: string; tahmini_dk: number; adimlar: Adim[];
   eski_anahtar?: string; neden: string; parca?: 1 | 2;
+  /** ses durağının turu (PM-097 md. 1): "ilk" başta (dinle + anlama), "ikinci" son halkadan sonra, provadan önce (dikte, gölge, cevapla) */
+  ses_turu?: "ilk" | "ikinci";
   /** tahmini süre `durak_dk` üst sınırını aşıyor (yalnız rapor; K1 cihaz ölçümüne kadar) */
   asim?: true;
 }
@@ -602,7 +605,10 @@ class Planlayici {
     const sabit = (tur: DurakTuru, id: string, title: string, dkk: number, eski: string | undefined, n: string): Durak => ({ id, tur, seans: 0, title_tr: title, tahmini_dk: dkk, adimlar: [], ...(eski ? { eski_anahtar: eski } : {}), neden: n });
     const duraklar: Durak[] = [];
     if (isinma.length) duraklar.push({ ...sabit("isinma", `m1:${gun.day}:isinma`, "Isınma", dk(isinma), undefined, "dünden kalanlar: kısa tekrar"), adimlar: isinma });
-    if (gun.sesler.length) duraklar.push(sabit("ses", `m1:${gun.day}:ses`, "Sesler", pol.sabit_dk.ses, undefined, "önce duy: kelimelerden önce sesleri ayırt et"));
+    if (gun.sesler.length) duraklar.push({ ...sabit("ses", `m1:${gun.day}:ses`, "Sesler", pol.sabit_dk.ses, undefined, "önce duy: kelimelerden önce sesleri ayırt et"), ses_turu: "ilk" });
+    // PM-097 md. 1: sesin üretim basamakları (dikte, gölge, "Sen ne derdin?") günün kartları bilinince: son halkadan sonra, provadan önce
+    const ses2: Durak | null = halkalar.length && gun.sesler.some((s) => ikinciTurVar(s))
+      ? { ...sabit("ses", `m1:${gun.day}:ses2`, "Sesler · ikinci tur", pol.sabit_dk.ses, undefined, "şimdi bildiğin kelimelerle: yaz, tekrar et, cevap ver"), ses_turu: "ikinci" } : null;
     const v = pol.video;
     const ara: Record<number, Durak[]> = {
       1: gun.video ? [sabit("video", `video:${gun.video.id}`, "Video", Math.max(v.min_dk, Math.min(v.max_dk, Math.round((gun.video.sure_sn * v.kat) / 60))), `m1:medya:${gun.video.id}`, "gerçek insanlar konuşuyor")] : [],
@@ -610,8 +616,11 @@ class Planlayici {
       4: gun.okuma_yazma ? [sabit("okuma", `okuma:${gun.day}`, "Okuma ve yazma", pol.sabit_dk.okuma, `m1:okuma:${gun.day}`, "oku, sonra kısa yaz")] : []
     };
     const bekleyen: Durak[] = [];
+    // ikinci tur varsa prova ona kadar bekler (sıra: … son halka · ses ikinci tur · prova …)
+    const provaBekler = ses2 ? (ara[3] ?? []).splice(0) : [];
     halkalar.forEach((h, hi) => {
       duraklar.push(h, ...(sonra.get(hi) ?? []));
+      if (ses2 && hi === halkalar.length - 1) duraklar.push(ses2, ...provaBekler.splice(0));
       bekleyen.push(...(ara[hi] ?? []));
       // sabit duraklar halkadan sonra; az halkalı günde sona kalır
       if (hi < halkalar.length - 1) duraklar.push(...bekleyen.splice(0));

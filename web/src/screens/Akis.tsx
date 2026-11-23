@@ -24,6 +24,7 @@ import { ErrorPanel, Loading } from "../ui/components.tsx";
 import type { Adim, Durak } from "../core/akis.ts";
 import { durakGecisi, halkaOzeti, ilerle, seansDurumu, simdiki, type AkisKaydi } from "../core/akisKayit.ts";
 import { ESLESTIR_EN_AZ, resimSecenekleri } from "../core/halkaTur.ts";
+import { ikinciTurVar, ilerlemeAnahtari } from "../core/medya.ts";
 import { ResimSec } from "../ui/soru/ResimdenSec.tsx";
 import { Eslestir } from "../ui/soru/Eslestir.tsx";
 import { ActionBar } from "../ui/kit.tsx";
@@ -256,13 +257,21 @@ export function AkisEkrani({ day }: { day: number }) {
         const kisi = { name: profile.displayName, address: profile.address };
         const bittiMi = async (k: string) => { const m = await getMeta<{ bitti?: unknown; ilkBitti?: unknown }>(k); return !!(m && (m.bitti || m.ilkBitti)); };
         const sesler = gun.sesler.map((x) => x.id);
-        const sesBitti = new Set<string>(); for (const id of sesler) if (await bittiMi(`m1:medya:${id}`)) sesBitti.add(id);
+        const sesBitti = new Set<string>(), sesBitti1 = new Set<string>(), sesBitti2 = new Set<string>();
+        for (const id of sesler) { if (await bittiMi(`m1:medya:${id}`)) sesBitti.add(id); if (await bittiMi(ilerlemeAnahtari(id, "ilk"))) sesBitti1.add(id); if (await bittiMi(ilerlemeAnahtari(id, "ikinci"))) sesBitti2.add(id); }
         const hedef = (d: Durak): DurakHedef | null => {
           if (d.tur === "prova") return { href: `#/prova/${day}`, anahtarlar: [`m1:prova:${day}`] };
           if (d.tur === "okuma") return { href: `#/okuma/${day}`, anahtarlar: [`m1:okuma:${day}`] };
           if (d.tur === "video" && gun.video) return { href: `#/m1/${day}/${encodeURIComponent(gun.video.id)}`, anahtarlar: [`m1:medya:${gun.video.id}`] };
-          // ses durağı günün bütün seslerini kapsar; sıradaki bitmemiş sese gider (inceleme #184 P1-3)
-          if (d.tur === "ses" && sesler.length) { const s1 = sesler.find((x) => !sesBitti.has(x)) ?? sesler[0]!; return { href: `#/m1/${day}/${encodeURIComponent(s1)}`, anahtarlar: sesler.map((x) => `m1:medya:${x}`) }; }
+          // ses durağı günün bütün seslerini kapsar; sıradaki bitmemiş sese gider (inceleme #184 P1-3). İki tur (PM-097 md. 1):
+          // ilk tur bütün sesler (/1), ikinci tur yalnız üretim basamağı olanlar (/2); turların ilerlemesi ayrı anahtarda
+          if (d.tur === "ses" && sesler.length) {
+            const t = d.ses_turu === "ikinci" ? "ikinci" : d.ses_turu === "ilk" ? "ilk" : undefined;
+            const ids = t === "ikinci" ? gun.sesler.filter((s) => ikinciTurVar(s)).map((s) => s.id) : sesler;
+            const bitti = t === "ikinci" ? sesBitti2 : t === "ilk" ? sesBitti1 : sesBitti;
+            const s1 = ids.find((x) => !bitti.has(x)) ?? ids[0]!; const ek = t === "ikinci" ? "/2" : t === "ilk" ? "/1" : "";
+            return { href: `#/m1/${day}/${encodeURIComponent(s1)}${ek}`, anahtarlar: ids.map((x) => ilerlemeAnahtari(x, t)) };
+          }
           return null;
         };
         // dönüş: şimdiki adım bir durak geçişiyse ve o ekran bitmişse akış kendiliğinden ilerler (AK-6)
