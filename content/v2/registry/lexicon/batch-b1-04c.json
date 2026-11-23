@@ -1,7 +1,10 @@
 {
   "batch": "b1-04c",
   "review": {
-    "status": "draft"
+    "status": "draft",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "docs/v2/reviews/lexicon-b1-04.md"
   },
   "items": [
     {
@@ -39,13 +42,13 @@
         {
           "id": "lx:Gruß:1",
           "de": "Am Ende der E-Mail schreibe ich: Mit freundlichen Grüßen.",
-          "tr": "E-postanın sonuna 'Saygılarımla' yazıyorum.",
+          "tr": "E-postanın sonuna «Saygılarımla» yazıyorum.",
           "layer": "hd"
         },
         {
           "id": "lx:Gruß:2",
           "de": "An Kollegen schreibe ich lieber „Viele Grüße“.",
-          "tr": "İş arkadaşlarıma 'Selamlar' yazmayı tercih ederim.",
+          "tr": "İş arkadaşlarıma «Selamlar» yazmayı tercih ederim.",
           "layer": "hd"
         },
         {
@@ -57,14 +60,14 @@
         {
           "id": "lx:Gruß:4",
           "de": "– Wie beende ich die E-Mail an Herrn Wimmer? – Mit „Mit freundlichen Grüßen“ und Ihrem Namen.",
-          "tr": "– Herr Wimmer'e yazdığım e-postayı nasıl bitireyim? – 'Saygılarımla' ve adınızla.",
+          "tr": "– Herr Wimmer'e yazdığım e-postayı nasıl bitireyim? – «Saygılarımla» ve adınızla.",
           "layer": "hd",
           "dialog": true
         },
         {
           "id": "lx:Gruß:5",
-          "de": "– Viele Grüße von Frau Brandl! – Oh, danke! Grüß sie zurück!",
-          "tr": "– Frau Brandl'dan selam var! – Aa, teşekkürler! Sen de ona selam söyle!",
+          "de": "– Viele Grüße von Frau Brandl! – Oh, danke! Schöne Grüße zurück!",
+          "tr": "– Frau Brandl'dan selam var! – Aa, teşekkürler! Benden de selam söyle!",
           "layer": "alltag",
           "dialog": true
         }
@@ -86,13 +89,13 @@
         {
           "de": "Am Ende der E-Mail schreibe ich: Mit freundlichen ___.",
           "answer": "Grüßen",
-          "tr": "E-postanın sonuna 'Saygılarımla' yazıyorum.",
+          "tr": "E-postanın sonuna «Saygılarımla» yazıyorum.",
           "hint_tr": "**Mit freundlichen** ile **Grüßen** gelir."
         },
         {
           "de": "An Kollegen schreibe ich lieber „Viele ___“.",
           "answer": "Grüße",
-          "tr": "İş arkadaşlarıma 'Selamlar' yazmayı tercih ederim.",
+          "tr": "İş arkadaşlarıma «Selamlar» yazmayı tercih ederim.",
           "hint_tr": "Selamlar: **Viele Grüße**."
         },
         {
@@ -118,7 +121,10 @@
         "praesens3": "beantwortet",
         "praeteritum": "beantwortete",
         "perfekt": "hat beantwortet",
-        "aux": "haben"
+        "aux": "haben",
+        "case": [
+          "akk"
+        ]
       },
       "collocations": [
         {
@@ -178,7 +184,7 @@
         {
           "id": "lx:beantworten:6",
           "de": "– Hast du die Mail vom Chef schon beantwortet? – Nee, mach ich gleich.",
-          "tr": "– Şefin e-postasını yanıtladın mı? – Yok, hemen yapıyorum.",
+          "tr": "– Şefin e-postasını yanıtladın mı? – Yok, birazdan yaparım.",
           "layer": "alltag",
           "dialog": true
         }
@@ -194,7 +200,7 @@
         "anlam_tr": "Bir soruya, e-postaya ya da mektuba yanıt vermek.",
         "ne_zaman_tr": "Gelen bir e-postaya yazarken ya da yanıt beklediğini söylerken.",
         "parcalar": [],
-        "ipucu_tr": "**die Frage beantworten** ya da **auf die Frage antworten**: **auf** yalnız **antworten** ile gelir."
+        "ipucu_tr": "**beantworten** hep neyi yanıtladığınla gelir: **die Frage**, **die E-Mail**."
       },
       "forms": [
         {
@@ -226,20 +232,20 @@
     {
       "id": "lx:sachlich",
       "de": "sachlich",
-      "tr": "objektif, konuya bağlı",
+      "tr": "ölçülü, konuya odaklı",
       "pos": "adj",
       "collocations": [
         {
           "de": "sachlich bleiben",
-          "tr": "objektif kalmak"
+          "tr": "ölçülü kalmak"
         },
         {
           "de": "kurz und sachlich schreiben",
-          "tr": "kısa ve objektif yazmak"
+          "tr": "kısa ve konuya odaklı yazmak"
         },
         {
           "de": "ein sachlicher Ton",
-          "tr": "objektif bir üslup"
+          "tr": "ölçülü bir üslup"
         }
       ],
       "patterns": [
@@ -248,45 +254,45 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "Türkçe resmî yazılardaki uzun nezaket sözlerini birebir çevirmek Almancada garip durur. **kurz und sachlich** yazmak kabalık sayılmaz.",
-        "Kızgın olsan bile şikâyet e-postasında **Das ist eine Frechheit!** gibi bir cümle işini zorlaştırır. **sachlich** kal: **Bitte prüfen Sie das noch einmal.**"
+        "**sachlich** yazmak soğuk ya da kaba olmak değildir. Bir e-posta **freundlich und sachlich** olabilir.",
+        "Ölçülü bir üslup derken **ein sachlich Ton** yanlış. Doğrusu **ein sachlicher Ton**."
       ],
       "examples": [
         {
           "id": "lx:sachlich:1",
           "de": "In einer E-Mail an das Amt schreibe ich kurz und sachlich.",
-          "tr": "Daireye e-posta yazarken kısa ve objektif yazarım.",
+          "tr": "Daireye e-posta yazarken kısa ve konuya odaklı yazarım.",
           "layer": "hd"
         },
         {
           "id": "lx:sachlich:2",
           "de": "Auch wenn Sie sich ärgern: Bleiben Sie bitte sachlich.",
-          "tr": "Kızsanız bile lütfen objektif kalın.",
+          "tr": "Kızsanız bile lütfen ölçülü kalın.",
           "layer": "hd"
         },
         {
           "id": "lx:sachlich:3",
           "de": "Der Ton der E-Mail ist freundlich und sachlich.",
-          "tr": "E-postanın üslubu nazik ve objektif.",
+          "tr": "E-postanın üslubu nazik ve ölçülü.",
           "layer": "hd"
         },
         {
           "id": "lx:sachlich:4",
           "de": "Schreib's lieber sachlich, sonst gibt's nur Ärger.",
-          "tr": "Objektif yazsan daha iyi, yoksa sadece tatsızlık çıkar.",
+          "tr": "Ölçülü yazsan daha iyi, yoksa sadece tatsızlık çıkar.",
           "layer": "alltag"
         },
         {
           "id": "lx:sachlich:5",
           "de": "– Ist meine E-Mail so in Ordnung? – Ja, sie ist sachlich und höflich, das passt.",
-          "tr": "– E-postam böyle olur mu? – Evet, objektif ve kibar, uygun.",
+          "tr": "– E-postam böyle olur mu? – Evet, ölçülü ve kibar, uygun.",
           "layer": "hd",
           "dialog": true
         },
         {
           "id": "lx:sachlich:6",
           "de": "– Ich bin so sauer auf den Vermieter! – Versteh ich, aber schreib ihm trotzdem sachlich.",
-          "tr": "– Ev sahibine çok kızgınım! – Anlıyorum, ama yine de ona sakin ve objektif yaz.",
+          "tr": "– Ev sahibine çok kızgınım! – Anlıyorum, ama yine de ona ölçülü yaz.",
           "layer": "alltag",
           "dialog": true
         }
@@ -307,26 +313,26 @@
         {
           "de": "In einer E-Mail an das Amt schreibe ich kurz und ___.",
           "answer": "sachlich",
-          "tr": "Daireye e-posta yazarken kısa ve objektif yazarım.",
-          "hint_tr": "Objektif: **sachlich**."
+          "tr": "Daireye e-posta yazarken kısa ve konuya odaklı yazarım.",
+          "hint_tr": "Konuya odaklı: **sachlich**."
         },
         {
           "de": "Auch wenn Sie sich ärgern: Bleiben Sie bitte ___.",
           "answer": "sachlich",
-          "tr": "Kızsanız bile lütfen objektif kalın.",
-          "hint_tr": "Objektif kalmak: **sachlich bleiben**."
+          "tr": "Kızsanız bile lütfen ölçülü kalın.",
+          "hint_tr": "Ölçülü kalmak: **sachlich bleiben**."
         },
         {
           "de": "Schreib's lieber ___, sonst gibt's nur Ärger.",
           "answer": "sachlich",
-          "tr": "Objektif yazsan daha iyi, yoksa sadece tatsızlık çıkar.",
-          "hint_tr": "Objektif: **sachlich**."
+          "tr": "Ölçülü yazsan daha iyi, yoksa sadece tatsızlık çıkar.",
+          "hint_tr": "Ölçülü: **sachlich**."
         },
         {
           "de": "Ja, sie ist ___ und höflich, das passt.",
           "answer": "sachlich",
-          "tr": "Evet, objektif ve kibar, uygun.",
-          "hint_tr": "Objektif: **sachlich**."
+          "tr": "Evet, ölçülü ve kibar, uygun.",
+          "hint_tr": "Ölçülü: **sachlich**."
         }
       ]
     }

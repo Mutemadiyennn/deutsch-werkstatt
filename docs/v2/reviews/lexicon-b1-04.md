@@ -156,3 +156,22 @@ Yalnız geri dönen 4 alan değişti (hepsi b1-04b).
 | lx:Kenntnis | mistakes_tr[0] | Türkçede bilgi hem haber hem bildiğin şeydir. Bir dilde, bir işte bildiklerin için **Informationen** değil **Kenntnisse** denir. | Eski not "beceri" diyordu; beceri komşu kart lx:Fähigkeit'ın karşılığı. |
 
 **Unwetter** kartın notlarında yanlış diye geçmiyor (makinede bakıldı). `npm run content:validate` → 0 hata. `review` iki dosyada `draft`.
+
+## 04c incelemesi (2026-11-23)
+
+Girdi: `content/v2/registry/lexicon/batch-b1-04c.json` (3 kart, 34. hafta yedekleri: lx:Gruß, lx:beantworten, lx:sachlich; 17 örnek, 12 boşluk, 9 eşdizim, 6 not). Aynı tam tur ölçütleri. **Karar: ONAY** (aşağıdaki düzeltmelerle); 3 kartın 3'üne dokunuldu, 30 alan (18'i lx:sachlich'teki karşılık değişimi).
+
+| Kart | Alan | Önce → Sonra | Gerekçe |
+|---|---|---|---|
+| lx:sachlich | `tr`, 3 eşdizim, 6 örnek, 4 boşluk çevirisi ve ipucu | objektif → **ölçülü, konuya odaklı** (üslup ve kalmak için "ölçülü", **kurz und sachlich** için "kısa ve konuya odaklı") | "objektif" yabancı kökenli ve yanlış anlam (tarafsız); sözcük duyguya kapılmadan, konudan sapmadan yazmayı anlatıyor. Doğrulayıcının takıldığı "nesnel" de aynı yanlış anlamdı. |
+| lx:sachlich | not 1, not 2 | uzun nezaket sözlerini çevirmek garip durur · **Das ist eine Frechheit!** işini zorlaştırır → **sachlich** yazmak soğuk ya da kaba olmak değildir. Bir e-posta **freundlich und sachlich** olabilir. · **ein sachlich Ton** yanlış. Doğrusu **ein sachlicher Ton**. | İki not da yazışma öğüdüydü; kartın sözcüğünü anlatmıyor, hata göstermiyordu. |
+| lx:beantworten | ipucu | notun tekrarı (**auf** yalnız **antworten** ile) → **beantworten** hep neyi yanıtladığınla gelir: **die Frage**, **die E-Mail**. | İpucu not 1'i yineliyordu. |
+| lx:beantworten | ö6 çeviri · `verb.case` | hemen yapıyorum → birazdan yaparım (**mach ich gleich**) · `akk` eklendi | |
+| lx:Gruß | ö5 | **Grüß sie zurück!** → **Schöne Grüße zurück!** (Benden de selam söyle!) | Eski söz Almancada yerleşik değil; yenisi kartın sözcüğünü de kullanıyor. |
+| lx:Gruß | ö1, ö2, ö4, boşluk 1–2 çevirisi | tek tırnak → « » | Partinin geri kalanıyla aynı; tırnak içinde yalnız Türkçe var. |
+
+**lx:beantworten ↔ lx:antworten ↔ lx:Antwort.** Üç kart tutarlı: lx:antworten **auf die Nachricht antworten** ve **mir antworten** öğretiyor, lx:Antwort **Antwort auf Ihre E-Mail**, lx:beantworten **die Frage beantworten** (edatsız). Not 1 tam bu ayrımı gösteriyor (**auf die Frage beantworten** yanlış), iki doğru biçimi de veriyor. Karşılıklar da ayrı: cevap vermek / yanıtlamak. Boşluklarda **antworten** kabul edilmiyor; doğru, çünkü edatsız cümlede yanlış olur.
+
+Denetlenenler: **der Gruß, die Grüße**, **Mit freundlichen Grüßen**, **Viele / Schöne Grüße an, von**; **beantwortet, beantwortete, hat beantwortet**. Sayılan her kalıp bir örnekte geçiyor. Açıklamalarda dilbilgisi terimi, `=`, `;`, `…`, 14 kelimeyi aşan cümle yok. `also_ok`: 12 boşlukta girdi yok, makine taraması boş; eksik doğru cevap aramasında eklenecek sözcük çıkmadı (öbür adaylar çeviriyle çelişiyor). WORLD: Derya, Herr Wimmer, Frau Brandl, Frau Schneider uyumlu. Bairisch, olgu iddiası, sabit cinsiyet, sonraki haftaya gönderme yok; ö5'teki **höflich** artık A2 kartı.
+
+Küçük not: lx:Gruß not 2 "sonda **-n** gelir" diyor; terim yok, bırakıldı. `npm run content:validate` → 0 hata. `review` üç dosyada `draft`.
