@@ -448,7 +448,8 @@ function DilNoktasiAdimi({ n, onBitti }: { n: DilNoktasiVeri; onBitti: () => voi
       <div class="kicker icerik" style={{ color: "var(--accent)" }}>Dil noktası</div>
       <h2 style={{ margin: 0 }}>{n.h_tr}</h2>
       <p style={{ margin: 0 }} data-test="dil-noktasi-aciklama"><Rich text={n.tr} /></p>
-      {n.table && n.table.rows.length > 0 && <AkisTablo sutunlar={n.table.head} satirlar={n.table.rows} />}
+      {/* "örnek" sütunu tam cümle: satırın altında tam genişlikte (dört sütun telefona sığmıyordu; 29. gün dikey dilimi) */}
+      {n.table && n.table.rows.length > 0 && <AkisTablo sutunlar={n.table.head} satirlar={n.table.rows} alt={ornekSutunu(n.table.head)} dar />}
       {n.ex.length > 0 && <section class="card stack" style={{ gap: 6 }} data-test="dil-noktasi-ornekler">
         {n.ex.map((o) => <div class="row" data-test="dil-noktasi-ornek" style={{ flexWrap: "nowrap", gap: 10, alignItems: "center" }}><span class="grow"><b lang="de">{o.de}</b><br /><span class="small muted">{o.tr}</span></span><ListenButton text={o.de} small slowToggle={false} /></div>)}
       </section>}
@@ -495,20 +496,28 @@ function HalkaSonu({ ozet, lex, sonraki, seans, devam, mola }: { ozet: ReturnTyp
  * Dil noktası tablosu (PM 7059008858 md. 1): 4 sütundan genişse sabit sütunlar + seçilen tek sütun; üstte sütun seçici.
  * Telefonda yatay kaydırma gerekmez; başlıklar ve "Türkçe" sütunu Türkçe, öteki hücreler Almanca.
  */
-function AkisTablo({ sutunlar, satirlar }: { sutunlar: string[]; satirlar: string[][] }) {
-  const bol = tabloBol(sutunlar);
+function AkisTablo({ sutunlar, satirlar, alt, dar }: { sutunlar: string[]; satirlar: string[][]; /** dil noktası: başlık satır kırar, hücre boşluğu dar */ dar?: boolean; /** bu sütun (dil noktasının "örnek" cümlesi) satırın altında tam genişlikte */ alt?: number }) {
+  const ana = sutunlar.map((_, i) => i).filter((i) => i !== alt);
+  const bol0 = tabloBol(ana.map((i) => sutunlar[i]!));
+  const bol = bol0 && { sabit: bol0.sabit.map((i) => ana[i]!), secilebilir: bol0.secilebilir.map((i) => ana[i]!) };
   const [sec, setSec] = useState(bol?.secilebilir[0] ?? -1);
-  const goster = bol ? [...bol.sabit, sec] : sutunlar.map((_, i) => i);
+  const goster = bol ? [...bol.sabit, sec] : ana;
   return (
     <>
       {bol && <div class="row akis-tablo-sec" role="group" aria-label="Sütun seç" data-test="akis-tablo-sec">
         {bol.secilebilir.map((i) => <button type="button" lang="de" class={`chip${i === sec ? " on" : ""}`} aria-pressed={i === sec} data-sutun={i} onClick={() => setSec(i)}>{sutunlar[i]}</button>)}
       </div>}
-      <table class="akis-tablo-t" data-test="akis-tablo-t"><thead><tr>{goster.map((i) => <th lang={bol && !bol.sabit.includes(i) ? "de" : undefined}>{sutunlar[i]}</th>)}</tr></thead>
-        <tbody>{satirlar.map((r) => <tr>{goster.map((i) => <td lang={hucreDili(sutunlar[i] ?? "")}>{r[i]}</td>)}</tr>)}</tbody></table>
+      <table class={`akis-tablo-t${dar ? " dar" : ""}`} data-test="akis-tablo-t"><thead><tr>{goster.map((i) => <th lang={bol && !bol.sabit.includes(i) ? "de" : undefined}>{sutunlar[i]}</th>)}</tr></thead>
+        <tbody>{satirlar.map((r) => alt !== undefined && r[alt]
+          ? <><tr class="ust">{goster.map((i) => <td lang={hucreDili(sutunlar[i] ?? "")}>{r[i]}</td>)}</tr>
+              <tr class="alt"><td colSpan={goster.length} lang="de" data-test="akis-tablo-ornek">{r[alt]}</td></tr></>
+          : <tr>{goster.map((i) => <td lang={hucreDili(sutunlar[i] ?? "")}>{r[i]}</td>)}</tr>)}</tbody></table>
     </>
   );
 }
+
+/** dil noktası tablosunun örnek cümle sütunu ("örnek", "örnek cevap", "örnek (Wo?)"); yoksa undefined */
+export const ornekSutunu = (head: readonly string[]) => { const i = head.findIndex((h) => /^örnek/i.test(h.trim())); return i < 0 ? undefined : i; };
 
 /** "veya, ya da, değil mi" → "veya"; parantezli açıklama atılır */
 export const ilkAnlam = (tr: string) => tr.split(/[,;/]|\s\(/)[0]!.trim() || tr.trim();
