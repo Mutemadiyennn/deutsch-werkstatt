@@ -32,7 +32,18 @@ const P: Record<string, string> = {
   saat: "M12 3a9 9 0 1 0 9 9|M12 7v5l3 2",
   yol: "M5 20c4-1 2-7 7-8s4-6 7-8|M3.5 20a1.5 1.5 0 1 0 3 0 1.5 1.5 0 1 0-3 0|M17.5 4a1.5 1.5 0 1 0 3 0 1.5 1.5 0 1 0-3 0",
   koy: "M3 21h18|M5 21V10l7-5 7 5v11|M10 21v-6h4v6",
-  ben: "M8 8a4 4 0 1 0 8 0 4 4 0 1 0-8 0|M4 21c1-4 4-6 8-6s7 2 8 6"
+  ben: "M8 8a4 4 0 1 0 8 0 4 4 0 1 0-8 0|M4 21c1-4 4-6 8-6s7 2 8 6",
+  // Köy'ün mekân simgeleri (design/TARGET3.html)
+  tel: "M9 2h6a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3z|M11 18h2",
+  filiz: "M12 22V12|M12 12c0-4 3-7 7-7 0 4-3 7-7 7z|M12 14c0-3-2-5-6-5 0 3 2 5 6 5z",
+  film: "M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z|M10 9l5 3-5 3z",
+  radyo: "M7 14a5 5 0 1 0 10 0 5 5 0 1 0-10 0|M5 7l14-4|M12 14h.01",
+  kalem: "M14 6l4 4-9 9H5v-4z",
+  kitap: "M4 5h7v14H4z|M13 5h7v14h-7z",
+  pazar: "M4 21V9l8-5 8 5v12|M9 13h6|M9 17h6",
+  kafe: "M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z|M17 11h2a2 2 0 0 1 0 4h-2",
+  sahne: "M4 4h16v6H4z|M6 10v10|M18 10v10|M4 20h16",
+  gazete: "M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z|M7 8h10|M7 12h10|M7 16h6"
 };
 export type IconName = keyof typeof P | "play";
 

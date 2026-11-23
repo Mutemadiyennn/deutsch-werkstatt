@@ -4,10 +4,12 @@ import { useContext } from "preact/hooks";
 import type { Assessment, ContentIndex, Profile } from "@dw/shared";
 import type { AuthUser } from "./services/auth.ts";
 import type { Api } from "./services/api.ts";
+import { mekanMi, type MekanId } from "./core/koy.ts";
 
 export type Route =
   | { name: "today" }
   | { name: "koy" }
+  | { name: "mekan"; id: MekanId }
   | { name: "domain"; id: string }
   | { name: "scenario"; id: string }
   | { name: "section"; id: string; section: string }
@@ -40,7 +42,7 @@ export function parseHash(h: string): Route {
   switch (p[0]) {
     // Hedef 3 sekmeleri (PM-084 md. 3): Bugün · Yol · Köy · Ben. Eski adresler (learn, progress, profile) yeni yerlerini açar;
     // adres çubuğunu `yeniAdres` düzeltir.
-    case "koy": return { name: "koy" };
+    case "koy": return mekanMi(p[1]) ? { name: "mekan", id: p[1] } : { name: "koy" };
     case "ben": return p[1] === "ayarlar" ? { name: "profile" } : { name: "ben" };
     case "learn": return p[1] ? { name: "domain", id: p[1] } : { name: "koy" };
     case "scenario": return p[2] ? { name: "section", id: p[1]!, section: p[2] } : { name: "scenario", id: p[1] || "" };

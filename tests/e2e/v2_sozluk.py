@@ -25,8 +25,8 @@ def main():
     with sync_playwright() as p:
         b, ctx = launch(p); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-        pg.goto(base + "#/koy"); pg.click("[data-test=sozluk-ac]"); pg.wait_for_selector("[data-test=sozluk-q]")
-        check("#/sozluk" in pg.url, "Köy sekmesinden Sözlük açılıyor")
+        pg.goto(base + "#/koy"); pg.click("[data-mekan=kutuphane]"); pg.click("[data-test=sozluk-ac]"); pg.wait_for_selector("[data-test=sozluk-q]")
+        check("#/sozluk" in pg.url, "Köy → Kütüphane → Sözlük: iki dokunuş")
         ara(pg, "Termin")
         ilk = pg.locator("[data-test=sozluk-satir]").first.inner_text()
         check("Termin" in ilk and "randevu" in ilk.lower(), f"Almanca arama: ilk sonuç 'Termin' ({ilk!r})")
