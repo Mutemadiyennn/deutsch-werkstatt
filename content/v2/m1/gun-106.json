@@ -1,0 +1,1682 @@
+{
+ "schema": 1,
+ "id": "m1:gun:106",
+ "day": 106,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Dilek ve tercih: Ich würde gern ausschlafen",
+ "goal_tr": "Ne yapmak istediğini ve neyi tercih ettiğini würde gern / würde lieber ile söylersin. Merdivendeki arızayı Herr Pichler'in telesekreterine bildirirsin.",
+ "can_do": {
+  "id": "cd:m1:106",
+  "tr": "Ne yapmak istediğimi würde gern ile söylerim; bir arızayı telefonda bildiririm."
+ },
+ "unit": "u:a2:telefon-4",
+ "arm": "telefon",
+ "place": "pl:haus",
+ "characters": [
+  "ch:pichler",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "yazar-ajan",
+  "at": "2026-11-23",
+  "notes": "Radyo ve sokak röportajı kurgusal (Radio Wendlfing). Bairisch yok; 'Grüß Gott' WORLD §5 kaynaklı."
+ },
+ "dersler": [
+  "gr:a2-08:t1"
+ ],
+ "yeni_kartlar": [
+  "lx:damals",
+  "lx:Licht",
+  "lx:wunderbar",
+  "lx:Körper",
+  "lx:Rest",
+  "lx:erreichen",
+  "lx:irgendwo",
+  "lx:genauso",
+  "lx:gucken"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:106:h1",
+   "title_tr": "Pazartesi akşamı: merdivende ışık yok",
+   "kartlar": [
+    "lx:Licht",
+    "lx:erreichen",
+    "lx:irgendwo",
+    "lx:gucken",
+    "lx:damals"
+   ],
+   "kaliplar": [
+    {
+     "de": "Grüß Gott! – Guten Abend!",
+     "tr": "İyi günler! (Bavyera'da yaygın selam) – İyi akşamlar!"
+    },
+    {
+     "de": "Im Treppenhaus ist kein Licht. – Das Licht geht nicht. – Es ist ganz dunkel.",
+     "tr": "Merdivende ışık yok. – Işık yanmıyor. – Her yer karanlık."
+    },
+    {
+     "de": "Ich kann Herrn Pichler nicht erreichen. – Ich habe ihn angerufen. – Ich habe ihn nicht erreicht.",
+     "tr": "Herr Pichler'e ulaşamıyorum. – Onu aradım. – Ona ulaşamadım."
+    },
+    {
+     "de": "Wie kann ich Sie erreichen? – Sie erreichen mich morgen.",
+     "tr": "Size nasıl ulaşabilirim? – Bana yarın ulaşırsınız."
+    },
+    {
+     "de": "Ich spreche auf den Anrufbeantworter. – Bitte rufen Sie mich zurück.",
+     "tr": "Telesekretere mesaj bırakıyorum. – Lütfen beni geri arayın."
+    },
+    {
+     "de": "irgendwo hier – irgendwo im Keller – irgendwo in der Tasche",
+     "tr": "buralarda bir yerde – bodrumda bir yerde – çantada bir yerde"
+    },
+    {
+     "de": "Guck mal! – Ich gucke mal. – Wir gucken einen Film. – Ich habe einen Film geguckt.",
+     "tr": "Baksana! – Bir bakayım. – Film izliyoruz. – Film izledim."
+    },
+    {
+     "de": "Damals war alles anders. – Damals hatte ich noch kein Handy.",
+     "tr": "O zamanlar her şey farklıydı. – O zamanlar daha cep telefonum yoktu."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Licht",
+     "de": "Im Treppenhaus ist kein Licht.",
+     "tr": "Merdivende ışık yok.",
+     "accepted": [
+      "Im Treppenhaus ist kein Licht.",
+      "Im Treppenhaus ist kein Licht mehr.",
+      "Es ist kein Licht im Treppenhaus."
+     ]
+    },
+    {
+     "kart": "lx:Licht",
+     "de": "Das Licht im Treppenhaus geht seit gestern nicht.",
+     "tr": "Merdivenin ışığı dünden beri yanmıyor.",
+     "accepted": [
+      "Das Licht im Treppenhaus geht seit gestern nicht.",
+      "Seit gestern geht das Licht im Treppenhaus nicht.",
+      "Das Licht im Treppenhaus geht seit gestern nicht mehr."
+     ]
+    },
+    {
+     "kart": "lx:erreichen",
+     "de": "Ich kann Herrn Pichler nicht erreichen.",
+     "tr": "Herr Pichler'e ulaşamıyorum.",
+     "accepted": [
+      "Ich kann Herrn Pichler nicht erreichen.",
+      "Ich kann Herrn Pichler leider nicht erreichen.",
+      "Herrn Pichler kann ich nicht erreichen."
+     ]
+    },
+    {
+     "kart": "lx:erreichen",
+     "de": "Wie kann ich Sie morgen erreichen?",
+     "tr": "Size yarın nasıl ulaşabilirim?",
+     "accepted": [
+      "Wie kann ich Sie morgen erreichen?",
+      "Wie kann ich Sie erreichen?",
+      "Wann kann ich Sie morgen erreichen?"
+     ]
+    },
+    {
+     "kart": "lx:irgendwo",
+     "de": "Mein Schlüssel ist irgendwo in der Tasche.",
+     "tr": "Anahtarım çantada bir yerde.",
+     "accepted": [
+      "Mein Schlüssel ist irgendwo in der Tasche.",
+      "Der Schlüssel ist irgendwo in der Tasche.",
+      "Mein Schlüssel ist bestimmt irgendwo in der Tasche."
+     ]
+    },
+    {
+     "kart": "lx:irgendwo",
+     "de": "Ich habe irgendwo im Keller eine Lampe.",
+     "tr": "Bodrumda bir yerde bir lambam var.",
+     "accepted": [
+      "Ich habe irgendwo im Keller eine Lampe.",
+      "Irgendwo im Keller habe ich eine Lampe.",
+      "Im Keller habe ich irgendwo eine Lampe."
+     ]
+    },
+    {
+     "kart": "lx:gucken",
+     "de": "Guck mal, im Treppenhaus ist kein Licht!",
+     "tr": "Baksana, merdivende ışık yok!",
+     "accepted": [
+      "Guck mal, im Treppenhaus ist kein Licht!",
+      "Guck mal! Im Treppenhaus ist kein Licht.",
+      "Guck mal, im Treppenhaus ist kein Licht mehr!"
+     ]
+    },
+    {
+     "kart": "lx:gucken",
+     "de": "Ich gucke mal im Keller.",
+     "tr": "Bodrumda bir bakayım.",
+     "accepted": [
+      "Ich gucke mal im Keller.",
+      "Ich gucke mal schnell im Keller.",
+      "Im Keller gucke ich mal."
+     ]
+    },
+    {
+     "kart": "lx:damals",
+     "de": "Damals war alles anders.",
+     "tr": "O zamanlar her şey farklıydı.",
+     "accepted": [
+      "Damals war alles anders.",
+      "Damals war alles ganz anders.",
+      "Alles war damals anders."
+     ]
+    },
+    {
+     "kart": "lx:damals",
+     "de": "Damals hatte ich noch kein Handy.",
+     "tr": "O zamanlar daha cep telefonum yoktu.",
+     "accepted": [
+      "Damals hatte ich noch kein Handy.",
+      "Damals hatte ich kein Handy.",
+      "Damals hatte ich noch kein Telefon."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Pazartesi akşamı. Eve geliyorsun; apartmanın merdiveni karanlık. Alt kattan bir komşu telefonunun ışığıyla iniyor.",
+    "satirlar": [
+     {
+      "r": "ein Nachbar",
+      "de": "Guten Abend! Guck mal, im Treppenhaus ist kein Licht.",
+      "tr": "İyi akşamlar! Baksanıza, merdivende ışık yok."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, das Licht geht nicht. Ich rufe Herrn Pichler an.",
+      "tr": "Evet, ışık yanmıyor. Herr Pichler'i arıyorum."
+     },
+     {
+      "r": "ein Nachbar",
+      "de": "Ich habe ihn angerufen. Ich kann ihn nicht erreichen.",
+      "tr": "Onu aradım. Ona ulaşamıyorum."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich spreche auf den Anrufbeantworter.",
+      "tr": "Telesekretere mesaj bırakıyorum."
+     }
+    ],
+    "soru": {
+     "q_tr": "Komşu Herr Pichler'e ulaşabildi mi?",
+     "opts": [
+      "Hayır, ulaşamadı",
+      "Evet, Herr Pichler hemen geliyor",
+      "Komşu onu hiç aramadı"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:106:h2",
+   "title_tr": "Hafta sonu dilekleri: Ich würde gern …",
+   "kartlar": [
+    "lx:wunderbar",
+    "lx:Körper",
+    "lx:Rest",
+    "lx:genauso"
+   ],
+   "kaliplar": [
+    {
+     "de": "ich würde – du würdest – er/sie würde – wir würden – ihr würdet – sie/Sie würden",
+     "tr": "yapardım – yapardın – yapardı – yapardık – yapardınız – yaparlardı / yapardınız"
+    },
+    {
+     "de": "Ich würde gern … – Ich würde lieber … – Was würdest du gern machen?",
+     "tr": "… yapmak isterdim. – … yapmayı tercih ederdim. – Ne yapmak isterdin?"
+    },
+    {
+     "de": "Wir würden gern … – Würdet ihr gern …? – Würdest du gern …? – … würde ich gern … – Ich würde auch gern …",
+     "tr": "… yapmak isterdik. – … yapmak ister miydiniz? – … yapmak ister miydin? – … yapmak isterdim. – Ben de … yapmak isterdim."
+    },
+    {
+     "de": "Das ist wunderbar! – Wunderbar!",
+     "tr": "Bu harika! – Harika!"
+    },
+    {
+     "de": "Mein Körper braucht Ruhe. – Ich tue etwas für meinen Körper.",
+     "tr": "Vücudumun dinlenmeye ihtiyacı var. – Vücudum için bir şey yapıyorum."
+    },
+    {
+     "de": "der Rest vom Kuchen – der Rest der Woche – Der Rest ist für dich.",
+     "tr": "pastanın kalanı – haftanın geri kalanı – Kalanı senin."
+    },
+    {
+     "de": "Mir geht es genauso. – genauso wie gestern",
+     "tr": "Ben de aynı durumdayım. – tıpkı dün gibi"
+    },
+    {
+     "de": "Am Sonntag soll das Wetter schön sein. – Am Samstag regnet es.",
+     "tr": "Pazar günü havanın güzel olacağı söyleniyor. – Cumartesi yağmur yağıyor."
+    },
+    {
+     "de": "Du klingst müde. – Das klingt gut.",
+     "tr": "Sesin yorgun geliyor. – Kulağa hoş geliyor."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:wunderbar",
+     "de": "Am Sonntag soll das Wetter wunderbar sein.",
+     "tr": "Pazar günü havanın harika olacağı söyleniyor.",
+     "accepted": [
+      "Am Sonntag soll das Wetter wunderbar sein.",
+      "Das Wetter soll am Sonntag wunderbar sein.",
+      "Am Sonntag soll das Wetter wieder wunderbar sein."
+     ]
+    },
+    {
+     "kart": "lx:wunderbar",
+     "de": "Wir würden gern wandern, das Wetter ist wunderbar.",
+     "tr": "Doğa yürüyüşü yapmak isterdik, hava harika.",
+     "accepted": [
+      "Wir würden gern wandern, das Wetter ist wunderbar.",
+      "Wir würden gern wandern. Das Wetter ist wunderbar.",
+      "Das Wetter ist wunderbar, wir würden gern wandern."
+     ]
+    },
+    {
+     "kart": "lx:Körper",
+     "de": "Mein Körper braucht Ruhe.",
+     "tr": "Vücudumun dinlenmeye ihtiyacı var.",
+     "accepted": [
+      "Mein Körper braucht Ruhe.",
+      "Mein Körper braucht jetzt Ruhe.",
+      "Mein Körper braucht ein bisschen Ruhe."
+     ]
+    },
+    {
+     "kart": "lx:Körper",
+     "de": "Ich würde gern mehr für meinen Körper tun.",
+     "tr": "Vücudum için daha çok şey yapmak isterdim.",
+     "accepted": [
+      "Ich würde gern mehr für meinen Körper tun.",
+      "Ich würde gern etwas mehr für meinen Körper tun.",
+      "Für meinen Körper würde ich gern mehr tun."
+     ]
+    },
+    {
+     "kart": "lx:Rest",
+     "de": "Den Rest vom Kuchen würde ich gern morgen essen.",
+     "tr": "Pastanın kalanını yarın yemek isterdim.",
+     "accepted": [
+      "Den Rest vom Kuchen würde ich gern morgen essen.",
+      "Morgen würde ich gern den Rest vom Kuchen essen.",
+      "Den Rest vom Kuchen würde ich lieber morgen essen."
+     ]
+    },
+    {
+     "kart": "lx:Rest",
+     "de": "Würdet ihr gern den Rest vom Kuchen essen?",
+     "tr": "Pastanın kalanını yemek ister miydiniz?",
+     "accepted": [
+      "Würdet ihr gern den Rest vom Kuchen essen?",
+      "Würdet ihr gern den Rest essen?",
+      "Würdet ihr gern den Rest vom Kuchen haben?"
+     ]
+    },
+    {
+     "kart": "lx:genauso",
+     "de": "Mir geht es genauso, ich würde auch gern ausschlafen.",
+     "tr": "Ben de aynı durumdayım, ben de doya doya uyumak isterdim.",
+     "accepted": [
+      "Mir geht es genauso, ich würde auch gern ausschlafen.",
+      "Mir geht es genauso. Ich würde auch gern ausschlafen.",
+      "Mir geht es genauso, ich würde auch gern mal ausschlafen."
+     ]
+    },
+    {
+     "kart": "lx:genauso",
+     "de": "Ich würde es genauso machen.",
+     "tr": "Ben de tam öyle yapardım.",
+     "accepted": [
+      "Ich würde es genauso machen.",
+      "Ich würde das genauso machen.",
+      "Ich würde es auch genauso machen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Akşam evdesin. Ioana arıyor; o da çok yorgun.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Ich bin so müde. Am Samstag würde ich gern ausschlafen.",
+      "tr": "Çok yorgunum. Cumartesi doya doya uyumak isterdim."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Mir geht es genauso. Mein Körper braucht Ruhe.",
+      "tr": "Ben de aynı durumdayım. Vücudumun dinlenmeye ihtiyacı var."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Und am Sonntag? Würdest du gern wandern? Das Wetter soll wunderbar sein.",
+      "tr": "Peki pazar? Doğa yürüyüşü yapmak ister miydin? Havanın harika olacağı söyleniyor."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich würde lieber zu Hause bleiben und einen Film gucken.",
+      "tr": "Ben evde kalıp film izlemeyi tercih ederdim."
+     }
+    ],
+    "soru": {
+     "q_tr": "Pazar günü ne yapmayı tercih ederdin?",
+     "opts": [
+      "Evde kalıp film izlemeyi",
+      "Ioana ile yürüyüşe çıkmayı",
+      "Bütün gün çalışmayı"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:106:v1",
+  "title_tr": "Pazartesi: karanlık merdiven ve Ioana'nın hafta sonu dilekleri",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "eine Nachbarin",
+    "sahne_tr": "Pazartesi akşamı, saat sekiz. Apartmanın kapısını açıyorsun. Merdiven karanlık. Bir komşu telefonunun ışığıyla aşağı iniyor.",
+    "de": "Guten Abend! Guck mal, das Licht im Treppenhaus geht nicht.",
+    "tr": "İyi akşamlar! Baksanıza, merdivenin ışığı yanmıyor."
+   },
+   {
+    "id": "s2",
+    "speaker": "eine Nachbarin",
+    "sahne_tr": "Komşu telefonun ışığını merdivene tutuyor.",
+    "de": "Seit gestern ist es hier ganz dunkel.",
+    "tr": "Dünden beri burası tamamen karanlık."
+   },
+   {
+    "id": "s3",
+    "speaker": "eine Nachbarin",
+    "sahne_tr": "Komşu başını sallıyor.",
+    "de": "Ich habe Herrn Pichler angerufen, aber ich kann ihn nicht erreichen.",
+    "tr": "Herr Pichler'i aradım ama ona ulaşamıyorum."
+   },
+   {
+    "id": "s4",
+    "speaker": "eine Nachbarin",
+    "sahne_tr": "Komşu omuz silkiyor.",
+    "de": "Er ist bestimmt irgendwo im Haus. Oder er ist nicht zu Hause.",
+    "tr": "Kesin evin bir yerindedir. Ya da evde değildir."
+   },
+   {
+    "id": "s5",
+    "speaker": "eine Nachbarin",
+    "sahne_tr": "Komşu gülümsüyor.",
+    "de": "Damals war das Licht hier auch oft kaputt.",
+    "tr": "O zamanlar da buradaki ışık sık sık bozuluyordu."
+   },
+   {
+    "id": "s6",
+    "speaker": "eine Nachbarin",
+    "sahne_tr": "Komşu sana dönüyor.",
+    "de": "Können Sie ihn auch mal anrufen? Vielleicht erreichen Sie ihn.",
+    "tr": "Siz de onu bir arar mısınız? Belki siz ulaşırsınız."
+   },
+   {
+    "id": "s7",
+    "speaker": "eine Nachbarin",
+    "sahne_tr": "Komşu çantasını karıştırıyor.",
+    "de": "Ich habe irgendwo eine Lampe für Sie. Moment, ich gucke mal.",
+    "tr": "Bir yerde size bir lamba vardı. Bir dakika, bir bakayım."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Saat dokuz. Evdesin, telefonun çalıyor: Ioana.",
+    "de": "Hallo! Du klingst müde. Alles okay?",
+    "tr": "Merhaba! Sesin yorgun geliyor. Her şey yolunda mı?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Sen merdivendeki ışığı ve Herr Pichler'i anlatıyorsun.",
+    "de": "Das Licht im Treppenhaus geht nicht? Das ist blöd.",
+    "tr": "Merdivenin ışığı mı yanmıyor? Bu can sıkıcı."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana esniyor.",
+    "de": "Ich bin auch total müde. Ich würde am Samstag gern ausschlafen.",
+    "tr": "Ben de çok yorgunum. Cumartesi doya doya uyumak isterdim."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana'nın sesi canlanıyor.",
+    "de": "Und am Sonntag soll das Wetter wunderbar sein. Ich würde gern wandern.",
+    "tr": "Pazar günü de havanın harika olacağı söyleniyor. Doğa yürüyüşü yapmak isterdim."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana bekliyor.",
+    "de": "Was würdest du gern machen? Würdest du mitkommen?",
+    "tr": "Sen ne yapmak isterdin? Benimle gelir miydin?"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Sen evde kalmayı tercih ettiğini söylüyorsun. Ioana gülüyor.",
+    "de": "Du würdest lieber zu Hause bleiben? Okay, kein Problem.",
+    "tr": "Evde kalmayı mı tercih ederdin? Tamam, sorun değil."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu bölümde ne oluyor?",
+     "opts": [
+      "Merdivenin ışığı yanmıyor; komşu Herr Pichler'e ulaşamıyor",
+      "Komşu yeni bir lamba alıyor",
+      "Herr Pichler ışığı tamir ediyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s3"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Merdiven ne zamandan beri karanlık?",
+      "opts": [
+       "Dünden beri",
+       "Bu sabahtan beri",
+       "Bir haftadan beri"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Komşu Herr Pichler hakkında ne düşünüyor?",
+      "opts": [
+       "Evin bir yerinde ya da evde değil",
+       "Tatilde",
+       "Hasta"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Komşu senden ne istiyor?",
+      "opts": [
+       "Senin de Herr Pichler'i aramanı",
+       "Lambayı tamir etmeni",
+       "Bodruma inmeni"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s3",
+      "seviye": "kolay",
+      "q_tr": "Kimin adını duydun?",
+      "opts": [
+       "Pichler",
+       "Wimmer",
+       "Brandl"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s2",
+      "seviye": "orta",
+      "de": "Seit gestern ist es hier ganz ___.",
+      "accepted": [
+       "dunkel",
+       "Dunkel",
+       "dunkel."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s6",
+      "seviye": "zor",
+      "banka": [
+       "Vielleicht",
+       "erreichen",
+       "Sie",
+       "ihn",
+       "kann",
+       "heute"
+      ],
+      "accepted": [
+       "Vielleicht erreichen Sie ihn.",
+       "vielleicht erreichen sie ihn",
+       "Vielleicht erreichen Sie ihn"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Oder er ist nicht zu Hause.",
+       "oder er ist nicht zu hause",
+       "Oder er ist nicht zu Hause"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Bu bölümde ne olduğunu Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Im Treppenhaus ist kein Licht. Die Nachbarin kann Herrn Pichler nicht erreichen.",
+      "zorunlu": [
+       "Licht",
+       "erreichen"
+      ]
+     }
+    ],
+    "golge": [
+     "s1",
+     "s6"
+    ],
+    "cevapla": {
+     "id": "m1:106:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Komşu senden Herr Pichler'i aramanı istiyor. Evet de; onu hemen arayacaksın.",
+     "prompt_de": "Können Sie ihn auch mal anrufen?",
+     "accepted": [
+      "Ja, ich rufe Herrn Pichler gleich an.",
+      "Ja, klar. Ich rufe ihn sofort an.",
+      "Ja, gern. Ich rufe ihn gleich an.",
+      "Ja, ich rufe ihn jetzt an.",
+      "Klar, ich rufe Herrn Pichler sofort an."
+     ],
+     "why_tr": "**anrufen** ayrılır: **Ich rufe ihn … an.** **an** en sona gider."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Ioana ne anlatıyor?",
+     "opts": [
+      "Yorgun; cumartesi uyumak, pazar yürüyüş yapmak isterdi",
+      "Hafta sonu çalışmak zorunda",
+      "Merdiven ışığını tamir etmek istiyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s10",
+      "s11"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Ioana cumartesi ne yapmak isterdi?",
+      "opts": [
+       "Doya doya uyumak",
+       "Yürüyüş yapmak",
+       "Film izlemek"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Pazar günü hava nasıl olacakmış?",
+      "opts": [
+       "Harika",
+       "Yağmurlu",
+       "Çok soğuk"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Sen pazar günü ne yapmayı tercih ederdin?",
+      "opts": [
+       "Evde kalmayı",
+       "Ioana ile yürüyüşe çıkmayı",
+       "İşe gitmeyi"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s13"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s10",
+      "seviye": "kolay",
+      "q_tr": "Hangi günü duydun?",
+      "opts": [
+       "Samstag",
+       "Montag",
+       "Freitag"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s8",
+      "seviye": "orta",
+      "de": "Hallo! Du klingst ___. Alles okay?",
+      "accepted": [
+       "müde",
+       "Müde",
+       "müde."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s12",
+      "seviye": "zor",
+      "banka": [
+       "Würdest",
+       "du",
+       "mitkommen",
+       "würdet",
+       "gehen"
+      ],
+      "accepted": [
+       "Würdest du mitkommen?",
+       "würdest du mitkommen",
+       "Würdest du mitkommen"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Ich bin auch total müde.",
+       "ich bin auch total müde",
+       "Ich bin auch total müde"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Ioana'nın hafta sonu dileklerini Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Ioana würde am Samstag gern ausschlafen. Am Sonntag würde sie gern wandern.",
+      "zorunlu": [
+       "würde",
+       "gern"
+      ]
+     }
+    ],
+    "golge": [
+     "s10",
+     "s12"
+    ],
+    "cevapla": {
+     "id": "m1:106:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Ioana ne yapmak istediğini soruyor. Cumartesi doya doya uyumak, pazar evde kalmak isterdin.",
+     "prompt_de": "Was würdest du gern machen?",
+     "accepted": [
+      "Ich würde am Samstag gern ausschlafen. Am Sonntag würde ich gern zu Hause bleiben.",
+      "Ich würde gern ausschlafen und dann zu Hause bleiben.",
+      "Am Samstag würde ich gern ausschlafen. Und am Sonntag würde ich lieber zu Hause bleiben.",
+      "Ich würde gern ausschlafen. Am Sonntag würde ich lieber zu Hause bleiben.",
+      "Ich würde am Wochenende gern ausschlafen und zu Hause bleiben."
+     ],
+     "why_tr": "Dilek: **Ich würde gern** + mastar. **würde** ikinci yerde, mastar (**ausschlafen**, **bleiben**) en sonda."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:106:a1",
+   "tur": "anons",
+   "title_tr": "Herr Pichler'in telesekreteri",
+   "ortam_tr": "Karanlık merdivendesin. Herr Pichler'i arıyorsun; telefonu kimse açmıyor, telesekreter çalıyor.",
+   "speaker": "ch:pichler",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, hier ist der Anrufbeantworter von Pichler, Hausmeister.",
+     "tr": "İyi günler, burası apartman görevlisi Pichler'in telesekreteri."
+    },
+    {
+     "id": "c2",
+     "de": "Ich bin gerade nicht da. Ich bin morgen ab sieben Uhr wieder da.",
+     "tr": "Şu an burada değilim. Yarın saat yediden itibaren yine buradayım."
+    },
+    {
+     "id": "c3",
+     "de": "Ist es dringend? Wasser im Keller oder keine Heizung?",
+     "tr": "Acil mi? Bodrumda su mu var, kalorifer mi çalışmıyor?"
+    },
+    {
+     "id": "c4",
+     "de": "Dann rufen Sie bitte die Nummer unten an der Tür an.",
+     "tr": "O zaman lütfen aşağıda kapıdaki numarayı arayın."
+    },
+    {
+     "id": "c5",
+     "de": "Sonst sagen Sie bitte Ihren Namen, Ihre Wohnung und das Problem.",
+     "tr": "Yoksa lütfen adınızı, dairenizi ve sorunu söyleyin."
+    },
+    {
+     "id": "c6",
+     "de": "Bitte sprechen Sie langsam. Ich rufe Sie zurück.",
+     "tr": "Lütfen yavaş konuşun. Sizi geri ararım."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Telesekreter ne söylüyor?",
+      "opts": [
+       "Herr Pichler şu an yok; acil durumda kapıdaki numarayı ara, yoksa adını, daireni ve sorunu söyle",
+       "Herr Pichler tatilde, bir hafta yok",
+       "Bu numara artık kullanılmıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Herr Pichler ne zaman yine orada olacak?",
+       "opts": [
+        "Yarın saat yediden itibaren",
+        "Bu gece saat onda",
+        "Pazartesi öğlen"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Acil durumda ne yapmalısın?",
+       "opts": [
+        "Kapıdaki numarayı aramalısın",
+        "Herr Pichler'in kapısını çalmalısın",
+        "Yarın sabah beklemelisin"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3",
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Mesajda neleri söylemelisin?",
+       "opts": [
+        "Adını, daireni ve sorunu",
+        "Yalnızca telefon numaranı",
+        "Doğum tarihini"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi saati duydun?",
+       "opts": [
+        "sieben",
+        "acht",
+        "elf"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Ist es ___? Wasser im Keller oder keine Heizung?",
+       "accepted": [
+        "dringend",
+        "Dringend",
+        "dringend."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Bitte",
+        "sprechen",
+        "Sie",
+        "langsam",
+        "spreche",
+        "schnell"
+       ],
+       "accepted": [
+        "Bitte sprechen Sie langsam.",
+        "bitte sprechen sie langsam",
+        "Bitte sprechen Sie langsam"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c6",
+       "seviye": "usta",
+       "accepted": [
+        "Ich rufe Sie zurück.",
+        "ich rufe sie zurück",
+        "Ich rufe Sie zurück"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Telesekreterdeki iki bilgiyi Almanca yaz.",
+       "ornek_de": "Herr Pichler ist gerade nicht da. Ich soll meinen Namen, meine Wohnung und das Problem sagen.",
+       "zorunlu": [
+        "Problem",
+        "Namen"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:106:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Bip sesinden sonra kısa bir mesaj bırak: selam ver, adını söyle, merdivende ışık olmadığını söyle, geri aranmak iste.",
+      "prompt_de": "Bitte sprechen Sie jetzt.",
+      "accepted": [
+       "Grüß Gott, Herr Pichler. Hier ist {name}. Im Treppenhaus ist kein Licht. Bitte rufen Sie mich zurück.",
+       "Guten Abend, Herr Pichler, hier ist {name}. Das Licht im Treppenhaus geht nicht. Bitte rufen Sie mich zurück.",
+       "Grüß Gott, hier ist {name}. Im Treppenhaus ist kein Licht. Bitte rufen Sie zurück.",
+       "Guten Abend. Hier ist {name}. Das Licht im Treppenhaus geht seit gestern nicht. Bitte rufen Sie mich zurück.",
+       "Grüß Gott, Herr Pichler! Hier ist {name}. Im Treppenhaus ist es ganz dunkel, das Licht geht nicht. Bitte rufen Sie mich zurück."
+      ],
+      "why_tr": "Sıra: selam, kim olduğun (**Hier ist …**), sorun, rica (**Bitte rufen Sie mich zurück.**). **zurück** en sona gider.",
+      "accepted_adsiz": [
+       "Grüß Gott, Herr Pichler. Im Treppenhaus ist kein Licht. Bitte rufen Sie mich zurück.",
+       "Guten Abend, Herr Pichler. Das Licht im Treppenhaus geht nicht. Bitte rufen Sie mich zurück.",
+       "Grüß Gott. Im Treppenhaus ist kein Licht. Bitte rufen Sie zurück.",
+       "Guten Abend. Das Licht im Treppenhaus geht seit gestern nicht. Bitte rufen Sie mich zurück.",
+       "Grüß Gott, Herr Pichler! Im Treppenhaus ist es ganz dunkel, das Licht geht nicht. Bitte rufen Sie mich zurück."
+      ]
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:106:a1:e1",
+    "k": "pick",
+    "q_tr": "Senin sorunun merdiven ışığı. Ne yapmalısın?",
+    "opts": [
+     "Adını, daireni ve sorunu söyleyen bir mesaj bırak",
+     "Hemen kapıdaki acil numarayı ara",
+     "Telefonu kapat ve hiçbir şey söyleme"
+    ],
+    "ans": 0,
+    "why_tr": "Işık acil değil: acil olan su ve kalorifer. Öbür her şey için Herr Pichler adını, daireni ve sorunu istiyor.",
+    "kanit": [
+     "c3",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:106:a2",
+   "tur": "radyo",
+   "title_tr": "Radyo: hafta sonu havası ve dinleyicilerin dilekleri",
+   "ortam_tr": "Pazartesi gecesi mutfaktasın. Radyoda hafta sonu hava durumu ve kısa bir sokak röportajı var.",
+   "speaker": "Radio Wendlfing",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Abend, hier ist Radio Wendlfing mit dem Wetter für das Wochenende.",
+     "tr": "İyi akşamlar, Radyo Wendlfing'desiniz, hafta sonu hava durumuyla."
+    },
+    {
+     "id": "c2",
+     "de": "Am Samstag regnet es, und es ist kalt.",
+     "tr": "Cumartesi yağmur yağıyor, hava soğuk."
+    },
+    {
+     "id": "c3",
+     "de": "Am Sonntag scheint die Sonne, und es ist warm.",
+     "tr": "Pazar günü güneş açıyor, hava ılık."
+    },
+    {
+     "id": "c4",
+     "de": "Und Sie? Was würden Sie am Wochenende gern machen?",
+     "tr": "Ya siz? Hafta sonu ne yapmak isterdiniz?"
+    },
+    {
+     "id": "c5",
+     "de": "Eine Frau aus Wendlfing sagt: Ich würde am Samstag gern ausschlafen.",
+     "tr": "Wendlfing'den bir kadın diyor ki: Cumartesi doya doya uyumak isterdim."
+    },
+    {
+     "id": "c6",
+     "de": "Und am Sonntag würde ich gern mit meinem Hund wandern.",
+     "tr": "Pazar günü de köpeğimle doğa yürüyüşü yapmak isterdim."
+    },
+    {
+     "id": "c7",
+     "de": "Ein Mann sagt: Ich würde lieber den ganzen Tag auf dem Sofa liegen.",
+     "tr": "Bir adam diyor ki: Ben bütün gün kanepede yatmayı tercih ederdim."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyoda ne anlatılıyor?",
+      "opts": [
+       "Hafta sonu havası ve insanların hafta sonu ne yapmak istediği",
+       "Şehirdeki bir trafik kazası",
+       "Yeni bir spor salonu"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Cumartesi hava nasıl?",
+       "opts": [
+        "Yağmurlu ve soğuk",
+        "Güneşli ve sıcak",
+        "Karlı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kadın pazar günü ne yapmak isterdi?",
+       "opts": [
+        "Köpeğiyle yürüyüş yapmak",
+        "Doya doya uyumak",
+        "Kanepede yatmak"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c6"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Adam ne yapmayı tercih ederdi?",
+       "opts": [
+        "Bütün gün kanepede yatmayı",
+        "Köpeğiyle yürümeyi",
+        "Radyo dinlemeyi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c7"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "Samstag",
+        "Montag",
+        "Dienstag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Am Samstag regnet es, und es ist ___.",
+       "accepted": [
+        "kalt",
+        "Kalt",
+        "kalt."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Und",
+        "am",
+        "Sonntag",
+        "würde",
+        "ich",
+        "gern",
+        "mit",
+        "meinem",
+        "Hund",
+        "wandern",
+        "würden",
+        "heute"
+       ],
+       "accepted": [
+        "Und am Sonntag würde ich gern mit meinem Hund wandern.",
+        "und am sonntag würde ich gern mit meinem hund wandern",
+        "Und am Sonntag würde ich gern mit meinem Hund wandern"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Was würden Sie am Wochenende gern machen?",
+        "was würden sie am wochenende gern machen",
+        "Was würden Sie am Wochenende gern machen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kadının ve adamın dileklerini Almanca iki kısa cümleyle yaz.",
+       "ornek_de": "Die Frau würde gern ausschlafen und wandern. Der Mann würde lieber auf dem Sofa liegen.",
+       "zorunlu": [
+        "würde",
+        "lieber"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c7"
+     ],
+     "cevapla": {
+      "id": "m1:106:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Radyo sana da soruyor. Cumartesi doya doya uyumak, pazar günü de doğa yürüyüşü yapmak isterdin.",
+      "prompt_de": "Und Sie? Was würden Sie am Wochenende gern machen?",
+      "accepted": [
+       "Ich würde am Samstag gern ausschlafen. Am Sonntag würde ich gern wandern.",
+       "Am Samstag würde ich gern ausschlafen, und am Sonntag würde ich gern wandern.",
+       "Ich würde gern ausschlafen und am Sonntag wandern.",
+       "Ich würde am Samstag gern ausschlafen und am Sonntag wandern.",
+       "Am Samstag würde ich gern ausschlafen. Und am Sonntag würde ich gern wandern gehen."
+      ],
+      "why_tr": "**würde** ikinci yerde, mastar en sonda: **Am Sonntag würde ich gern wandern.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:106:a2:e1",
+    "k": "pick",
+    "q_tr": "Ioana pazar günü doğa yürüyüşü yapmak istiyor. Hangi gün daha iyi?",
+    "opts": [
+     "Pazar, çünkü güneş açıyor",
+     "Cumartesi, çünkü yağmur yağıyor",
+     "İki gün de aynı"
+    ],
+    "ans": 0,
+    "why_tr": "Radyo cumartesi yağmur ve soğuk, pazar güneş diyor: yürüyüş için pazar daha iyi.",
+    "kanit": [
+     "c2",
+     "c3"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:106:g1",
+   "de": "Licht",
+   "dogru_img": "light bulb glowing in a dark staircase",
+   "celdirici_img": [
+    "glass of water on a table",
+    "window with curtains",
+    "door key on a hook"
+   ]
+  },
+  {
+   "id": "m1:106:g2",
+   "de": "Treppenhaus",
+   "dogru_img": "staircase in an apartment building",
+   "celdirici_img": [
+    "kitchen with a fridge",
+    "bus stop on a street",
+    "office with desks"
+   ]
+  },
+  {
+   "id": "m1:106:g3",
+   "de": "Anrufbeantworter",
+   "dogru_img": "old telephone answering machine with a red light",
+   "celdirici_img": [
+    "television on a shelf",
+    "radio in a kitchen",
+    "laptop on a desk"
+   ]
+  },
+  {
+   "id": "m1:106:g4",
+   "de": "ausschlafen",
+   "dogru_img": "person sleeping late in bed with sun through the window",
+   "celdirici_img": [
+    "person running in a park",
+    "person cooking breakfast",
+    "person waiting at a train station"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:106:p1",
+  "title_tr": "Herr Pichler'in telesekreterine mesaj bırak",
+  "durum_tr": "Pazartesi akşamı. Merdivenin ışığı dünden beri yanmıyor. Herr Pichler'i arıyorsun; telesekreter açılıyor. Mesajını bırak. Bir saat sonra Herr Pichler seni geri arıyor.",
+  "karsi": "ch:pichler",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Grüß Gott, hier ist der Anrufbeantworter von Pichler. Bitte sagen Sie Ihren Namen, Ihre Wohnung und das Problem.",
+    "tr": "İyi günler, burası Pichler'in telesekreteri. Lütfen adınızı, dairenizi ve sorunu söyleyin.",
+    "secenekler": [
+     {
+      "de": "Grüß Gott, Herr Pichler. Hier ist {name}. Im Treppenhaus ist kein Licht. Bitte rufen Sie mich zurück.",
+      "tr": "İyi günler Herr Pichler. Ben {name}. Merdivende ışık yok. Lütfen beni geri arayın.",
+      "accepted": [
+       "Grüß Gott, Herr Pichler. Hier ist {name}. Im Treppenhaus ist kein Licht. Bitte rufen Sie mich zurück.",
+       "Guten Abend, Herr Pichler. Hier ist {name}. Das Licht im Treppenhaus geht nicht. Bitte rufen Sie mich zurück.",
+       "Grüß Gott, hier ist {name}. Im Treppenhaus ist kein Licht. Bitte rufen Sie zurück.",
+       "Grüß Gott, Herr Pichler. Hier ist {name}. Das Licht im Treppenhaus geht seit gestern nicht. Bitte rufen Sie mich zurück."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: kim olduğun, sorun ve rica. Kısa ve açık bir mesaj.",
+      "de_adsiz": "Grüß Gott, Herr Pichler. Im Treppenhaus ist kein Licht. Bitte rufen Sie mich zurück.",
+      "tr_adsiz": "İyi günler Herr Pichler. Merdivende ışık yok. Lütfen beni geri arayın.",
+      "accepted_adsiz": [
+       "Grüß Gott, Herr Pichler. Im Treppenhaus ist kein Licht. Bitte rufen Sie mich zurück.",
+       "Guten Abend, Herr Pichler. Das Licht im Treppenhaus geht nicht. Bitte rufen Sie mich zurück.",
+       "Grüß Gott. Im Treppenhaus ist kein Licht. Bitte rufen Sie zurück.",
+       "Grüß Gott, Herr Pichler. Das Licht im Treppenhaus geht seit gestern nicht. Bitte rufen Sie mich zurück."
+      ]
+     },
+     {
+      "de": "Guten Abend. Hier ist {name}. Das Licht im Treppenhaus geht seit gestern nicht. Es ist ganz dunkel.",
+      "tr": "İyi akşamlar. Ben {name}. Merdivenin ışığı dünden beri yanmıyor. Her yer karanlık.",
+      "accepted": [
+       "Guten Abend. Hier ist {name}. Das Licht im Treppenhaus geht seit gestern nicht. Es ist ganz dunkel.",
+       "Guten Abend, hier ist {name}. Das Licht im Treppenhaus geht seit gestern nicht.",
+       "Guten Abend. Hier ist {name}. Seit gestern geht das Licht im Treppenhaus nicht. Es ist ganz dunkel."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: **seit gestern** ile ne zamandan beri olduğunu da söyledin.",
+      "de_adsiz": "Guten Abend. Das Licht im Treppenhaus geht seit gestern nicht. Es ist ganz dunkel.",
+      "tr_adsiz": "İyi akşamlar. Merdivenin ışığı dünden beri yanmıyor. Her yer karanlık.",
+      "accepted_adsiz": [
+       "Guten Abend. Das Licht im Treppenhaus geht seit gestern nicht. Es ist ganz dunkel.",
+       "Guten Abend. Das Licht im Treppenhaus geht seit gestern nicht.",
+       "Guten Abend. Seit gestern geht das Licht im Treppenhaus nicht. Es ist ganz dunkel."
+      ]
+     },
+     {
+      "de": "Hallo? Hallo? Herr Pichler?",
+      "tr": "(mesaj yok) Alo? Alo? Herr Pichler?",
+      "accepted": [
+       "Hallo? Hallo? Herr Pichler?",
+       "Hallo? Herr Pichler?",
+       "Hallo, hallo?"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu bir telesekreter: kimse cevap vermez. Adını ve sorunu söyle: **Im Treppenhaus ist kein Licht.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Pichler hier. Sie haben mir auf den Anrufbeantworter gesprochen? Das Licht im Treppenhaus?",
+    "tr": "Ben Pichler. Telesekreterime mesaj bırakmışsınız? Merdivenin ışığı mı?",
+    "secenekler": [
+     {
+      "de": "Ja, genau. Das Licht geht seit gestern nicht.",
+      "tr": "Evet, aynen. Işık dünden beri yanmıyor.",
+      "accepted": [
+       "Ja, genau. Das Licht geht seit gestern nicht.",
+       "Ja, genau. Seit gestern geht das Licht nicht.",
+       "Ja, das Licht im Treppenhaus geht seit gestern nicht.",
+       "Genau, Herr Pichler. Das Licht geht seit gestern nicht."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: onayladın (**genau**) ve ne zamandan beri olduğunu söyledin."
+     },
+     {
+      "de": "Ja. Im Treppenhaus ist es ganz dunkel.",
+      "tr": "Evet. Merdiven tamamen karanlık.",
+      "accepted": [
+       "Ja. Im Treppenhaus ist es ganz dunkel.",
+       "Ja, im Treppenhaus ist es ganz dunkel.",
+       "Ja, es ist ganz dunkel im Treppenhaus."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Açık ve kısa."
+     },
+     {
+      "de": "Ich würde gern ausschlafen.",
+      "tr": "(konu dışı) Doya doya uyumak isterdim.",
+      "accepted": [
+       "Ich würde gern ausschlafen.",
+       "Ich würde gern schlafen.",
+       "Ich würde lieber schlafen."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Doğru cümle, ama Herr Pichler ışığı soruyor. **Ja, das Licht geht seit gestern nicht.** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Seit gestern? Das geht so nicht. Ich komme morgen früh um sieben. Passt das?",
+    "tr": "Dünden beri mi? Bu böyle olmaz. Yarın sabah yedide geliyorum. Uyar mı?",
+    "secenekler": [
+     {
+      "de": "Ja, das passt. Danke, Herr Pichler!",
+      "tr": "Evet, uyar. Teşekkürler Herr Pichler!",
+      "accepted": [
+       "Ja, das passt. Danke, Herr Pichler!",
+       "Ja, das passt gut. Danke!",
+       "Ja, sieben Uhr passt. Danke, Herr Pichler!",
+       "Das passt. Vielen Dank, Herr Pichler!"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar ve kısa bir kabul."
+     },
+     {
+      "de": "Um sieben bin ich schon im Büro. Aber Sie haben einen Schlüssel, oder?",
+      "tr": "Yedide ben ofiste olurum. Ama sizde anahtar var, değil mi?",
+      "accepted": [
+       "Um sieben bin ich schon im Büro. Aber Sie haben einen Schlüssel, oder?",
+       "Um sieben bin ich schon im Büro. Sie haben doch einen Schlüssel, oder?",
+       "Um sieben bin ich nicht da. Aber Sie haben einen Schlüssel, oder?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: sorun değil, çünkü merdiven ortak alan; Herr Pichler'in anahtarı var."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gut. Und bitte gehen Sie heute im Treppenhaus langsam. Gute Nacht.",
+    "tr": "Peki. Bugün merdivende lütfen yavaş yürüyün. İyi geceler.",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Telesekretere kısa ve açık bir mesaj bıraktın: kim olduğun, sorun ve rica. Herr Pichler geri aradı; ne zamandan beri olduğunu söyledin ve bir saat ayarladınız. Telefon korkusuna karşı küçük ama gerçek bir adım."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Apartman panosundaki not",
+  "metin_de": "Liebe Nachbarn, das Licht im Treppenhaus geht seit Sonntag nicht. Ein Techniker kommt am Dienstag um zehn Uhr. Bis dann ist es im Treppenhaus am Abend dunkel. Bitte gehen Sie langsam! Sie erreichen mich morgen ab sieben Uhr. Meine Nummer ist unten an der Tür. Josef Pichler, Hausmeister",
+  "metin_tr": "Sevgili komşular, merdivenin ışığı pazardan beri yanmıyor. Salı günü saat onda bir teknisyen geliyor. O zamana kadar merdiven akşamları karanlık. Lütfen yavaş yürüyün! Bana yarın saat yediden itibaren ulaşabilirsiniz. Numaram aşağıda kapıda. Josef Pichler, apartman görevlisi",
+  "sorular": [
+   {
+    "id": "m1:106:o1",
+    "kind": "gist",
+    "q_tr": "Bu not ne hakkında?",
+    "opts": [
+     "Merdiven ışığı bozuk; salı bir teknisyen geliyor",
+     "Salı günü su kesiliyor",
+     "Herr Pichler tatile gidiyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     1
+    ]
+   },
+   {
+    "id": "m1:106:o2",
+    "kind": "detail",
+    "q_tr": "Teknisyen ne zaman geliyor?",
+    "opts": [
+     "Salı saat onda",
+     "Pazar akşamı",
+     "Yarın saat yedide"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:106:o3",
+    "kind": "detail",
+    "q_tr": "Işık ne zamandan beri yanmıyor?",
+    "opts": [
+     "Pazardan beri",
+     "Salıdan beri",
+     "Bir aydan beri"
+    ],
+    "ans": 0,
+    "kanit": [
+     0
+    ]
+   },
+   {
+    "id": "m1:106:o4",
+    "kind": "detail",
+    "q_tr": "Herr Pichler'in numarası nerede?",
+    "opts": [
+     "Aşağıda kapıda",
+     "Bodrumda",
+     "Notta yok"
+    ],
+    "ans": 0,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:106:o5",
+    "k": "guided_response",
+    "situation_tr": "Komşun soruyor: teknisyen ne zaman geliyor? Notta okuduğunu söyle.",
+    "prompt_de": "Wann kommt der Techniker?",
+    "accepted": [
+     "Der Techniker kommt am Dienstag um zehn Uhr.",
+     "Am Dienstag um zehn Uhr.",
+     "Am Dienstag um zehn.",
+     "Er kommt am Dienstag um zehn Uhr.",
+     "Der Techniker kommt am Dienstag, um zehn Uhr."
+    ],
+    "why_tr": "Gün ve saat: **am Dienstag um zehn Uhr**."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Ioana'ya kısa bir mesaj yaz: Hafta sonu ne yapmak isterdin (**würde gern**)? Neyi tercih ederdin (**würde lieber**)? Neden?",
+   "ornek_de": "Hallo Ioana! Ich würde am Samstag gern ausschlafen. Am Sonntag würde ich lieber zu Hause bleiben. Mein Körper braucht Ruhe. Bis bald!",
+   "zorunlu": [
+    "würde",
+    "gern"
+   ],
+   "accepted_kaliplar": [
+    "Hallo …!",
+    "Ich würde am ___ gern …",
+    "Am ___ würde ich lieber …",
+    "Mein Körper braucht Ruhe.",
+    "Bis bald!"
+   ],
+   "kontrol_tr": [
+    "**würde** ikinci yerde mi?",
+    "Mastar (**ausschlafen**, **bleiben**) cümlenin sonunda mı?",
+    "Dilek için **gern**, tercih için **lieber** kullandın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:106:s",
+  "maddeler": [
+   {
+    "id": "m1:106:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Im Treppenhaus ist kein Licht.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Im Treppenhaus ist kein Licht.",
+     "im treppenhaus ist kein licht",
+     "Im Treppenhaus ist kein Licht"
+    ],
+    "why_tr": "**Licht** büyük harfle başlar: isim. **kein Licht**: ışık yok."
+   },
+   {
+    "id": "m1:106:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Ich kann Herrn Pichler nicht erreichen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich kann Herrn Pichler nicht erreichen.",
+     "ich kann herrn pichler nicht erreichen",
+     "Ich kann Herrn Pichler nicht erreichen"
+    ],
+    "why_tr": "**Herrn**: aranan, ulaşılan kişi olunca **Herr** değil **Herrn**. **erreichen** en sonda."
+   },
+   {
+    "id": "m1:106:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Mir geht es genauso.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Mir geht es genauso.",
+     "mir geht es genauso",
+     "Mir geht es genauso"
+    ],
+    "why_tr": "**genauso** tek kelime yazılır."
+   },
+   {
+    "id": "m1:106:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ich würde am Samstag gern ausschlafen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich würde am Samstag gern ausschlafen.",
+     "ich würde am samstag gern ausschlafen",
+     "Ich würde am Samstag gern ausschlafen"
+    ],
+    "why_tr": "**würde** ikinci yerde, **ausschlafen** en sonda."
+   },
+   {
+    "id": "m1:106:s5",
+    "k": "tr_de",
+    "tr": "Bodrumda bir yerde bir lambam var.",
+    "accepted": [
+     "Ich habe irgendwo im Keller eine Lampe.",
+     "Irgendwo im Keller habe ich eine Lampe.",
+     "Im Keller habe ich irgendwo eine Lampe."
+    ],
+    "why_tr": "**irgendwo**: bir yerde. Fiil (**habe**) ikinci yerde."
+   },
+   {
+    "id": "m1:106:s6",
+    "k": "tr_de",
+    "tr": "Ne yapmak isterdin?",
+    "accepted": [
+     "Was würdest du gern machen?",
+     "Was würdest du gern tun?",
+     "Was würdest du denn gern machen?"
+    ],
+    "why_tr": "**du** ile **würdest** olur; **machen** en sonda."
+   },
+   {
+    "id": "m1:106:s7",
+    "k": "tr_de",
+    "tr": "Evde kalmayı tercih ederdim.",
+    "accepted": [
+     "Ich würde lieber zu Hause bleiben.",
+     "Ich würde lieber daheim bleiben.",
+     "Lieber würde ich zu Hause bleiben."
+    ],
+    "why_tr": "Tercih: **würde lieber** + mastar."
+   },
+   {
+    "id": "m1:106:s8",
+    "k": "tr_de",
+    "tr": "O zamanlar her şey farklıydı.",
+    "accepted": [
+     "Damals war alles anders.",
+     "Damals war alles ganz anders.",
+     "Alles war damals anders."
+    ],
+    "why_tr": "**damals**: o zamanlar. Geçmiş: **war**."
+   },
+   {
+    "id": "m1:106:s9",
+    "k": "guided_response",
+    "situation_tr": "Ioana soruyor. Pazar günü doğa yürüyüşü yapmak isterdin.",
+    "prompt_de": "Was würdest du am Sonntag gern machen?",
+    "accepted": [
+     "Am Sonntag würde ich gern wandern.",
+     "Ich würde am Sonntag gern wandern.",
+     "Ich würde gern wandern.",
+     "Am Sonntag würde ich gern wandern gehen.",
+     "Ich würde am Sonntag gern wandern gehen."
+    ],
+    "why_tr": "**würde** ikinci yerde, **wandern** en sonda."
+   },
+   {
+    "id": "m1:106:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Sie haben mir auf den Anrufbeantworter gesprochen?",
+    "speed": "normal",
+    "situation_tr": "Herr Pichler geri arıyor. Evet de; merdivenin ışığı dünden beri yanmıyor.",
+    "accepted": [
+     "Ja, genau. Das Licht im Treppenhaus geht seit gestern nicht.",
+     "Ja. Das Licht geht seit gestern nicht.",
+     "Ja, im Treppenhaus ist seit gestern kein Licht.",
+     "Ja, genau. Seit gestern geht das Licht im Treppenhaus nicht.",
+     "Ja. Im Treppenhaus ist kein Licht, seit gestern."
+    ],
+    "why_tr": "Ne zamandan beri: **seit gestern**. Sorun: **Das Licht geht nicht.**"
+   },
+   {
+    "id": "m1:106:s11",
+    "k": "guided_response",
+    "situation_tr": "Herr Pichler'in telesekreterine mesaj bırak: selam, adın, merdivende ışık yok, geri aranmak istiyorsun.",
+    "prompt_de": "Bitte sagen Sie Ihren Namen und das Problem.",
+    "accepted": [
+     "Grüß Gott, Herr Pichler. Hier ist {name}. Im Treppenhaus ist kein Licht. Bitte rufen Sie mich zurück.",
+     "Guten Abend, hier ist {name}. Das Licht im Treppenhaus geht nicht. Bitte rufen Sie mich zurück.",
+     "Grüß Gott, hier ist {name}. Im Treppenhaus ist kein Licht. Bitte rufen Sie zurück.",
+     "Guten Abend, Herr Pichler. Hier ist {name}. Seit gestern geht das Licht im Treppenhaus nicht. Bitte rufen Sie mich zurück.",
+     "Grüß Gott! Hier ist {name}. Das Licht im Treppenhaus geht seit gestern nicht. Bitte rufen Sie mich zurück."
+    ],
+    "why_tr": "Kim, ne sorun, ne istiyorsun: **Hier ist … – Im Treppenhaus ist kein Licht. – Bitte rufen Sie mich zurück.**",
+    "accepted_adsiz": [
+     "Grüß Gott, Herr Pichler. Im Treppenhaus ist kein Licht. Bitte rufen Sie mich zurück.",
+     "Guten Abend. Das Licht im Treppenhaus geht nicht. Bitte rufen Sie mich zurück.",
+     "Grüß Gott. Im Treppenhaus ist kein Licht. Bitte rufen Sie zurück.",
+     "Guten Abend, Herr Pichler. Seit gestern geht das Licht im Treppenhaus nicht. Bitte rufen Sie mich zurück.",
+     "Grüß Gott! Das Licht im Treppenhaus geht seit gestern nicht. Bitte rufen Sie mich zurück."
+    ]
+   }
+  ],
+  "sesli": [
+   "m1:106:s9",
+   "m1:106:s10"
+  ],
+  "dikte": [
+   "m1:106:s1",
+   "m1:106:s2",
+   "m1:106:s3",
+   "m1:106:s4"
+  ]
+ }
+}
