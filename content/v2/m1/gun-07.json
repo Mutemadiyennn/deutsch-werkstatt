@@ -86,6 +86,583 @@
   "lx:arbeiten",
   "lx:müde"
  ],
+ "halkalar": [
+  {
+   "id": "m1:07:h1",
+   "title_tr": "Kendimi anlatıyorum: kimim, nasılım",
+   "kartlar": [
+    "lx:sein",
+    "lx:müde",
+    "lx:Fieber",
+    "lx:arbeiten",
+    "lx:sagen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Was sagt …? – … sagt: …",
+     "tr": "… ne diyor? – … diyor ki: …"
+    },
+    {
+     "de": "Ich bin müde. – Ich bin krank.",
+     "tr": "Yorgunum. – Hastayım."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:sein",
+     "de": "Ich bin {name}. Meine Adresse ist Brunnengasse sieben.",
+     "de_adsiz": "Meine Adresse ist Brunnengasse sieben.",
+     "tr": "Ben {name}. Adresim Brunnengasse yedi.",
+     "tr_adsiz": "Adresim Brunnengasse yedi.",
+     "accepted": [
+      "Ich bin {name}. Meine Adresse ist Brunnengasse sieben.",
+      "Ich heiße {name}. Meine Adresse ist Brunnengasse sieben.",
+      "Ich bin {name}. Ich wohne in der Brunnengasse, in Nummer sieben.",
+      "Hier ist {name}. Meine Adresse ist Brunnengasse sieben.",
+      "Ich bin {name}. Ich wohne in der Brunnengasse sieben."
+     ],
+     "accepted_adsiz": [
+      "Meine Adresse ist Brunnengasse sieben.",
+      "Ich wohne in der Brunnengasse, in Nummer sieben.",
+      "Meine Adresse ist Brunnengasse Nummer sieben.",
+      "Ich wohne in der Brunnengasse sieben."
+     ]
+    },
+    {
+     "kart": "lx:sein",
+     "de": "Sind Sie heute da, Frau Schneider?",
+     "tr": "Bugün burada mısınız Schneider Hanım?",
+     "accepted": [
+      "Sind Sie heute da, Frau Schneider?",
+      "Frau Schneider, sind Sie heute da?",
+      "Sind Sie heute da?"
+     ]
+    },
+    {
+     "kart": "lx:müde",
+     "de": "Sind Sie müde, Herr Wimmer?",
+     "tr": "Yorgun musunuz Wimmer Bey?",
+     "accepted": [
+      "Sind Sie müde, Herr Wimmer?",
+      "Herr Wimmer, sind Sie müde?",
+      "Sind Sie müde?"
+     ]
+    },
+    {
+     "kart": "lx:müde",
+     "de": "Ich bin am Abend oft müde.",
+     "tr": "Ben akşam sık sık yorgun oluyorum.",
+     "accepted": [
+      "Ich bin am Abend oft müde.",
+      "Ich bin oft am Abend müde.",
+      "Ich bin oft müde am Abend."
+     ]
+    },
+    {
+     "kart": "lx:Fieber",
+     "de": "Ich habe Fieber, Frau Huber.",
+     "tr": "Ateşim var Huber Hanım.",
+     "accepted": [
+      "Ich habe Fieber, Frau Huber.",
+      "Frau Huber, ich habe Fieber.",
+      "Ich habe Fieber."
+     ]
+    },
+    {
+     "kart": "lx:Fieber",
+     "de": "Haben Sie Fieber, Herr Pichler?",
+     "tr": "Ateşiniz var mı Pichler Bey?",
+     "accepted": [
+      "Haben Sie Fieber, Herr Pichler?",
+      "Herr Pichler, haben Sie Fieber?",
+      "Sie haben Fieber, Herr Pichler?"
+     ]
+    },
+    {
+     "kart": "lx:arbeiten",
+     "de": "Arbeiten Sie am Sonntag, Frau Stadler?",
+     "tr": "Pazar günü çalışıyor musunuz Stadler Hanım?",
+     "accepted": [
+      "Arbeiten Sie am Sonntag, Frau Stadler?",
+      "Frau Stadler, arbeiten Sie am Sonntag?",
+      "Arbeiten Sie am Sonntag?"
+     ]
+    },
+    {
+     "kart": "lx:arbeiten",
+     "de": "Heute arbeiten? Ich habe Fieber!",
+     "tr": "Bugün çalışmak mı? Ateşim var!",
+     "accepted": [
+      "Heute arbeiten? Ich habe Fieber!",
+      "Arbeiten? Heute? Ich habe Fieber!",
+      "Heute arbeiten? Nein, ich habe Fieber!"
+     ]
+    },
+    {
+     "kart": "lx:sagen",
+     "de": "Was sagt Frau Huber?",
+     "tr": "Huber Hanım ne diyor?",
+     "accepted": [
+      "Was sagt Frau Huber?",
+      "Was sagt denn Frau Huber?",
+      "Frau Huber sagt was?"
+     ]
+    },
+    {
+     "kart": "lx:sagen",
+     "de": "Herr Wimmer sagt: Am Freitag um zehn.",
+     "tr": "Wimmer Bey diyor ki: Cuma günü saat onda.",
+     "accepted": [
+      "Herr Wimmer sagt: Am Freitag um zehn.",
+      "Herr Wimmer sagt: Am Freitag um zehn Uhr.",
+      "Am Freitag um zehn, sagt Herr Wimmer."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "İş yeri, sabah. Derya'nın masası boş. Derya'nın sesli mesajını dinledin. Wimmer Bey soruyor.",
+    "satirlar": [
+     {
+      "r": "ch:wimmer",
+      "de": "Wo ist Frau Aksoy heute?",
+      "tr": "Aksoy Hanım bugün nerede?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Derya sagt: Ich habe Fieber. Bis Montag!",
+      "tr": "Derya diyor ki: Ateşim var. Pazartesi görüşürüz!"
+     },
+     {
+      "r": "ch:wimmer",
+      "de": "Fieber? Dann ist Frau Aksoy bis Montag nicht da.",
+      "tr": "Ateş mi? O zaman Aksoy Hanım pazartesiye kadar burada değil."
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya ne zaman yine işte?",
+     "opts": [
+      "Yarın",
+      "Cuma günü",
+      "Pazartesi günü",
+      "Salı günü"
+     ],
+     "ans": 2
+    }
+   }
+  },
+  {
+   "id": "m1:07:h2",
+   "title_tr": "Doktora gitmem gerekiyor: randevu istiyorum",
+   "kartlar": [
+    "lx:müssen",
+    "lx:Hausarzt",
+    "lx:möchten",
+    "lx:warten"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich muss … – Muss ich …?",
+     "tr": "…-mem gerekiyor. – …-mem gerekiyor mu?"
+    },
+    {
+     "de": "Ich möchte … – Möchten Sie …?",
+     "tr": "… istiyorum. – … ister misiniz?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:müssen",
+     "de": "Wie oft muss ich kommen?",
+     "tr": "Ne sıklıkla gelmem gerekiyor?",
+     "accepted": [
+      "Wie oft muss ich kommen?",
+      "Wie oft muss ich denn kommen?",
+      "Wie oft muss ich kommen, bitte?"
+     ]
+    },
+    {
+     "kart": "lx:müssen",
+     "de": "Ich muss heute zum Arzt.",
+     "tr": "Bugün doktora gitmem gerekiyor.",
+     "accepted": [
+      "Ich muss heute zum Arzt.",
+      "Heute muss ich zum Arzt.",
+      "Ich muss heute zum Arzt gehen.",
+      "Heute muss ich zum Arzt gehen."
+     ]
+    },
+    {
+     "kart": "lx:Hausarzt",
+     "de": "Mein Hausarzt ist Dr. Weber.",
+     "tr": "Aile hekimim Dr. Weber.",
+     "accepted": [
+      "Mein Hausarzt ist Dr. Weber.",
+      "Dr. Weber ist mein Hausarzt.",
+      "Mein Hausarzt heißt Dr. Weber."
+     ]
+    },
+    {
+     "kart": "lx:Hausarzt",
+     "de": "Wie heißt Ihr Hausarzt, Frau Brandl?",
+     "tr": "Aile hekiminizin adı ne Brandl Hanım?",
+     "accepted": [
+      "Wie heißt Ihr Hausarzt, Frau Brandl?",
+      "Frau Brandl, wie heißt Ihr Hausarzt?",
+      "Wie heißt denn Ihr Hausarzt, Frau Brandl?"
+     ]
+    },
+    {
+     "kart": "lx:möchten",
+     "de": "Ich möchte am zweiten Dezember kommen.",
+     "tr": "İki aralıkta gelmek istiyorum.",
+     "accepted": [
+      "Ich möchte am zweiten Dezember kommen.",
+      "Ich möchte am zweiten Dezember kommen, bitte.",
+      "Ich möchte bitte am zweiten Dezember kommen."
+     ]
+    },
+    {
+     "kart": "lx:möchten",
+     "de": "Ich möchte nicht bis Freitag warten.",
+     "tr": "Cumaya kadar beklemek istemiyorum.",
+     "accepted": [
+      "Ich möchte nicht bis Freitag warten.",
+      "Ich möchte bis Freitag nicht warten.",
+      "Ich möchte nicht bis Freitag warten, bitte."
+     ]
+    },
+    {
+     "kart": "lx:warten",
+     "de": "Warum muss ich warten, Frau Huber?",
+     "tr": "Neden beklemem gerekiyor Huber Hanım?",
+     "accepted": [
+      "Warum muss ich warten, Frau Huber?",
+      "Frau Huber, warum muss ich warten?",
+      "Warum muss ich denn warten, Frau Huber?"
+     ]
+    },
+    {
+     "kart": "lx:warten",
+     "de": "Sie müssen bis halb neun warten.",
+     "tr": "Sekiz buçuğa kadar beklemeniz gerekiyor.",
+     "accepted": [
+      "Sie müssen bis halb neun warten.",
+      "Bis halb neun müssen Sie warten.",
+      "Sie müssen bis acht Uhr dreißig warten."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Ateşin var. Muayenehaneyi arıyorsun.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Guten Tag, Praxis Dr. Weber!",
+      "tr": "İyi günler, Dr. Weber muayenehanesi!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Hier ist {name}. Ich habe Fieber und ich möchte einen Termin.",
+      "de_adsiz": "Guten Tag. Ich habe Fieber und ich möchte einen Termin.",
+      "tr": "Ben {name}. Ateşim var ve bir randevu istiyorum.",
+      "tr_adsiz": "İyi günler. Ateşim var ve bir randevu istiyorum."
+     },
+     {
+      "r": "ch:huber",
+      "de": "Fieber? Dann kommen Sie heute bis elf.",
+      "tr": "Ateş mi? O zaman bugün saat on bire kadar gelin."
+     }
+    ],
+    "soru": {
+     "q_tr": "Huber Hanım ne diyor?",
+     "opts": [
+      "Bugün saat on bire kadar gel",
+      "Yarın saat on birde gel",
+      "Pazartesiye kadar bekle",
+      "Bir saat sonra yine ara"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:07:h3",
+   "title_tr": "Anlamıyorum: tekrar eder misiniz?",
+   "kartlar": [
+    "lx:können",
+    "lx:verstehen",
+    "lx:wiederholen",
+    "lx:sprechen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich verstehe nicht. – Können Sie das wiederholen? – Sprechen Sie bitte langsam!",
+     "tr": "Anlamıyorum. – Bunu tekrar edebilir misiniz? – Lütfen yavaş konuşun!"
+    },
+    {
+     "de": "Ich kann … – Kann ich …?",
+     "tr": "…-ebilirim. – …-ebilir miyim?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:können",
+     "de": "Ich kann am Dritten nicht kommen.",
+     "tr": "Ayın üçünde gelemem.",
+     "accepted": [
+      "Ich kann am Dritten nicht kommen.",
+      "Am Dritten kann ich nicht kommen.",
+      "Ich kann nicht am Dritten kommen."
+     ]
+    },
+    {
+     "kart": "lx:können",
+     "de": "Kann ich morgen um acht kommen?",
+     "tr": "Yarın saat sekizde gelebilir miyim?",
+     "accepted": [
+      "Kann ich morgen um acht kommen?",
+      "Kann ich morgen um acht Uhr kommen?",
+      "Morgen um acht, kann ich kommen?"
+     ]
+    },
+    {
+     "kart": "lx:verstehen",
+     "de": "Ich verstehe nicht, Frau Huber.",
+     "tr": "Anlamıyorum Huber Hanım.",
+     "accepted": [
+      "Ich verstehe nicht, Frau Huber.",
+      "Frau Huber, ich verstehe nicht.",
+      "Ich verstehe das nicht, Frau Huber."
+     ]
+    },
+    {
+     "kart": "lx:verstehen",
+     "de": "Ich verstehe nicht. Am Dritten oder am Vierten?",
+     "tr": "Anlamıyorum. Ayın üçünde mi, dördünde mi?",
+     "accepted": [
+      "Ich verstehe nicht. Am Dritten oder am Vierten?",
+      "Ich verstehe das nicht. Am Dritten oder am Vierten?",
+      "Am Dritten oder am Vierten? Ich verstehe nicht."
+     ]
+    },
+    {
+     "kart": "lx:wiederholen",
+     "de": "Können Sie die Telefonnummer wiederholen?",
+     "tr": "Telefon numarasını tekrar edebilir misiniz?",
+     "accepted": [
+      "Können Sie die Telefonnummer wiederholen?",
+      "Können Sie bitte die Telefonnummer wiederholen?",
+      "Die Telefonnummer, können Sie das wiederholen?"
+     ]
+    },
+    {
+     "kart": "lx:wiederholen",
+     "de": "Am Vierten? Können Sie das Datum wiederholen?",
+     "tr": "Ayın dördünde mi? Tarihi tekrar edebilir misiniz?",
+     "accepted": [
+      "Am Vierten? Können Sie das Datum wiederholen?",
+      "Am Vierten? Können Sie bitte das Datum wiederholen?",
+      "Am Vierten? Können Sie das wiederholen, das Datum?"
+     ]
+    },
+    {
+     "kart": "lx:sprechen",
+     "de": "Kann ich bitte Dr. Weber sprechen?",
+     "tr": "Dr. Weber'le konuşabilir miyim lütfen?",
+     "accepted": [
+      "Kann ich bitte Dr. Weber sprechen?",
+      "Kann ich bitte mit Dr. Weber sprechen?",
+      "Kann ich Dr. Weber sprechen, bitte?",
+      "Kann ich mit Dr. Weber sprechen, bitte?"
+     ]
+    },
+    {
+     "kart": "lx:sprechen",
+     "de": "Ich möchte Frau Huber sprechen.",
+     "tr": "Huber Hanım'la konuşmak istiyorum.",
+     "accepted": [
+      "Ich möchte Frau Huber sprechen.",
+      "Ich möchte bitte Frau Huber sprechen.",
+      "Ich möchte mit Frau Huber sprechen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Huber Hanım randevu veriyor, çok hızlı konuşuyor.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Am vierten Dezember um Viertel nach zehn, passt das?",
+      "tr": "Dört aralıkta saat onu çeyrek geçe, uyar mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Wie bitte? Ich verstehe nicht. Können Sie das wiederholen?",
+      "tr": "Efendim? Anlamıyorum. Bunu tekrar edebilir misiniz?"
+     },
+     {
+      "r": "ch:huber",
+      "de": "Am Vierten. Um Viertel nach zehn.",
+      "tr": "Ayın dördünde. Saat onu çeyrek geçe."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Gut, danke! Bis Freitag!",
+      "tr": "Tamam, teşekkürler! Cuma görüşürüz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Randevun ne zaman?",
+     "opts": [
+      "Perşembe 10:15",
+      "Cuma 9:45",
+      "Cuma 10:15",
+      "Cuma 10:45"
+     ],
+     "ans": 2
+    }
+   }
+  },
+  {
+   "id": "m1:07:h4",
+   "title_tr": "Yiyebilir miyim? Yiyelim mi?",
+   "kartlar": [
+    "lx:essen",
+    "lx:dürfen",
+    "lx:sollen",
+    "lx:wollen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Darf ich …? – Soll ich …?",
+     "tr": "…-ebilir miyim? (izin isterken) – …-eyim mi?"
+    },
+    {
+     "de": "Wollen wir …?",
+     "tr": "…-elim mi?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:essen",
+     "de": "Essen Sie Käse, Frau Brandl?",
+     "tr": "Peynir yer misiniz Brandl Hanım?",
+     "accepted": [
+      "Essen Sie Käse, Frau Brandl?",
+      "Frau Brandl, essen Sie Käse?",
+      "Sie essen Käse, Frau Brandl?"
+     ]
+    },
+    {
+     "kart": "lx:essen",
+     "de": "Was möchten Sie essen?",
+     "tr": "Ne yemek istersiniz?",
+     "accepted": [
+      "Was möchten Sie essen?",
+      "Was möchten Sie denn essen?",
+      "Was möchten Sie heute essen?"
+     ]
+    },
+    {
+     "kart": "lx:dürfen",
+     "de": "Darf ich heute essen, Herr Dr. Weber?",
+     "tr": "Bugün yemek yiyebilir miyim Dr. Weber?",
+     "accepted": [
+      "Darf ich heute essen, Herr Dr. Weber?",
+      "Herr Dr. Weber, darf ich heute essen?",
+      "Darf ich heute essen, Dr. Weber?",
+      "Kann ich heute essen, Herr Dr. Weber?",
+      "Kann ich heute essen, Dr. Weber?"
+     ]
+    },
+    {
+     "kart": "lx:dürfen",
+     "de": "Darf ich am Montag wieder arbeiten?",
+     "tr": "Pazartesi günü yine çalışabilir miyim?",
+     "accepted": [
+      "Darf ich am Montag wieder arbeiten?",
+      "Am Montag, darf ich wieder arbeiten?",
+      "Kann ich am Montag wieder arbeiten?"
+     ]
+    },
+    {
+     "kart": "lx:sollen",
+     "de": "Soll ich am Freitag kommen?",
+     "tr": "Cuma günü geleyim mi?",
+     "accepted": [
+      "Soll ich am Freitag kommen?",
+      "Soll ich Freitag kommen?",
+      "Am Freitag, soll ich kommen?"
+     ]
+    },
+    {
+     "kart": "lx:sollen",
+     "de": "Soll ich warten, Frau Huber?",
+     "tr": "Bekleyeyim mi Huber Hanım?",
+     "accepted": [
+      "Soll ich warten, Frau Huber?",
+      "Frau Huber, soll ich warten?",
+      "Soll ich warten?"
+     ]
+    },
+    {
+     "kart": "lx:wollen",
+     "de": "Wollen wir heute Abend essen?",
+     "tr": "Bu akşam yemek yiyelim mi?",
+     "accepted": [
+      "Wollen wir heute Abend essen?",
+      "Heute Abend, wollen wir essen?",
+      "Wollen wir heute am Abend essen?"
+     ]
+    },
+    {
+     "kart": "lx:wollen",
+     "de": "Wohin wollen wir gehen, Tobi?",
+     "tr": "Nereye gidelim Tobi?",
+     "accepted": [
+      "Wohin wollen wir gehen, Tobi?",
+      "Tobi, wohin wollen wir gehen?",
+      "Wohin wollen wir denn gehen, Tobi?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Mola. Tobi akşam için plan yapıyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Wollen wir heute Abend essen gehen?",
+      "tr": "Bu akşam yemeğe gidelim mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Heute nicht, ich bin müde. Am Freitag?",
+      "tr": "Bugün olmaz, yorgunum. Cuma günü?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Freitag geht! Um halb acht?",
+      "tr": "Cuma olur! Yedi buçukta?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Um halb acht? Ja, gern!",
+      "tr": "Yedi buçukta mı? Evet, memnuniyetle!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi'yle ne zaman yemeğe gidiyorsun?",
+     "opts": [
+      "Bugün 19:30",
+      "Cuma 19:30",
+      "Cuma 20:30",
+      "Cuma 18:30"
+     ],
+     "ans": 1
+    }
+   }
+  }
+ ],
  "sahne": {
   "id": "m1:07:v1",
   "title_tr": "Telefonla nasıl randevu alınır?",
@@ -345,6 +922,7 @@
       "seviye": "gercek",
       "gorev_tr": "Muayenehaneyi arayınca söyleyeceğin ilk iki cümleyi Almanca yaz: adın ve isteğin.",
       "ornek_de": "Hier ist {name}. Ich möchte einen Termin machen.",
+      "ornek_de_adsiz": "Guten Tag, ist das die Praxis Dr. Weber? Ich möchte einen Termin machen.",
       "zorunlu": [
        "ist",
        "einen Termin"
@@ -611,6 +1189,50 @@
        "Grüß Gott, ich hätte gern einen Termin.",
        "Grüß Gott, ich möchte einen Termin."
       ],
+      "accepted_adsiz": [
+       "Guten Tag. Ich möchte einen Termin machen.",
+       "Ich möchte einen Termin machen.",
+       "Ich möchte einen Termin.",
+       "Ich brauche einen Termin.",
+       "Ich hätte gern einen Termin.",
+       "Ich hätte gerne einen Termin.",
+       "Ich möchte gern einen Termin machen.",
+       "Ich möchte gerne einen Termin machen.",
+       "Einen Termin, bitte.",
+       "Ich möchte bitte einen Termin machen.",
+       "Kann ich einen Termin machen?",
+       "Ich habe Fieber. Ich möchte einen Termin machen.",
+       "Ich bin krank. Ich möchte einen Termin machen.",
+       "Ich habe Fieber. Ich brauche einen Termin.",
+       "Guten Tag. Ich möchte einen Termin.",
+       "Guten Tag. Ich brauche einen Termin.",
+       "Guten Tag. Ich hätte gern einen Termin.",
+       "Guten Tag. Ich hätte gerne einen Termin.",
+       "Guten Tag. Ich möchte gern einen Termin machen.",
+       "Guten Tag. Ich möchte gerne einen Termin machen.",
+       "Hallo. Ich möchte einen Termin machen.",
+       "Hallo. Ich möchte einen Termin.",
+       "Hallo. Ich brauche einen Termin.",
+       "Hallo. Ich hätte gern einen Termin.",
+       "Hallo. Ich hätte gerne einen Termin.",
+       "Hallo. Ich möchte gern einen Termin machen.",
+       "Hallo. Ich möchte gerne einen Termin machen.",
+       "Grüß Gott. Ich möchte einen Termin machen.",
+       "Grüß Gott. Ich möchte einen Termin.",
+       "Grüß Gott. Ich brauche einen Termin.",
+       "Grüß Gott. Ich hätte gern einen Termin.",
+       "Grüß Gott. Ich hätte gerne einen Termin.",
+       "Grüß Gott. Ich möchte gern einen Termin machen.",
+       "Grüß Gott. Ich möchte gerne einen Termin machen.",
+       "Guten Tag, ich möchte einen Termin machen.",
+       "Guten Tag, ich brauche einen Termin.",
+       "Guten Tag, ich hätte gern einen Termin.",
+       "Guten Tag, ich möchte einen Termin.",
+       "Grüß Gott, ich möchte einen Termin machen.",
+       "Grüß Gott, ich brauche einen Termin.",
+       "Grüß Gott, ich hätte gern einen Termin.",
+       "Grüß Gott, ich möchte einen Termin."
+      ],
       "why_tr": "Kibarca istemek için **Ich möchte** de: **Ich möchte einen Termin machen.** (Randevu almak istiyorum.)"
      }
     }
@@ -778,9 +1400,8 @@
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Ofiste Derya için ne söyleyeceğini Almanca bir iki kısa cümleyle yaz.",
-       "ornek_de": "Sie ist krank. Sie kann morgen nicht arbeiten.",
+       "ornek_de": "Sie hat Fieber. Sie kann morgen nicht arbeiten.",
        "zorunlu": [
-        "krank",
         "nicht arbeiten"
        ]
       }
@@ -884,8 +1505,8 @@
   },
   {
    "id": "m1:07:g6",
-   "de": "anrufen",
-   "dogru_img": "person making a phone call",
+   "de": "sprechen",
+   "dogru_img": "two people talking face to face",
    "celdirici_img": [
     "person writing a letter",
     "person taking a photo",
@@ -907,7 +1528,9 @@
     "secenekler": [
      {
       "de": "Guten Tag, hier ist {name}.",
+      "de_adsiz": "Guten Tag.",
       "tr": "İyi günler, ben {name}.",
+      "tr_adsiz": "İyi günler.",
       "accepted": [
        "Guten Tag, hier ist {name}.",
        "Hallo, hier ist {name}.",
@@ -922,13 +1545,24 @@
        "Guten Tag, Frau Huber, hier ist {name}.",
        "Guten Tag, Frau Huber. Hier ist {name}."
       ],
+      "accepted_adsiz": [
+       "Guten Tag.",
+       "Hallo.",
+       "Grüß Gott.",
+       "Guten Tag, Frau Huber.",
+       "Guten Morgen.",
+       "Grüß Gott, Frau Huber.",
+       "Hallo, Frau Huber."
+      ],
       "sonraki": "n2",
       "uygun": true,
       "geri_bildirim_tr": "Güzel. Telefonda önce adını söyledin."
      },
      {
       "de": "Guten Tag, hier ist {name}. Ich möchte einen Termin machen.",
+      "de_adsiz": "Guten Tag. Ich möchte einen Termin machen.",
       "tr": "İyi günler, ben {name}. Randevu almak istiyorum.",
+      "tr_adsiz": "İyi günler. Randevu almak istiyorum.",
       "accepted": [
        "Guten Tag, hier ist {name}. Ich möchte einen Termin machen.",
        "Guten Tag, hier ist {name}. Ich möchte einen Termin.",
@@ -986,6 +1620,36 @@
        "Mein Name ist {name}. Ich hätte gerne einen Termin.",
        "Mein Name ist {name}. Ich möchte gern einen Termin machen.",
        "Mein Name ist {name}. Ich möchte gerne einen Termin machen."
+      ],
+      "accepted_adsiz": [
+       "Guten Tag. Ich möchte einen Termin machen.",
+       "Guten Tag. Ich möchte einen Termin.",
+       "Guten Tag. Ich brauche einen Termin.",
+       "Guten Tag. Ich hätte gern einen Termin.",
+       "Guten Tag. Ich hätte gerne einen Termin.",
+       "Guten Tag. Ich möchte gern einen Termin machen.",
+       "Guten Tag. Ich möchte gerne einen Termin machen.",
+       "Hallo. Ich möchte einen Termin machen.",
+       "Hallo. Ich möchte einen Termin.",
+       "Hallo. Ich brauche einen Termin.",
+       "Hallo. Ich hätte gern einen Termin.",
+       "Hallo. Ich hätte gerne einen Termin.",
+       "Hallo. Ich möchte gern einen Termin machen.",
+       "Hallo. Ich möchte gerne einen Termin machen.",
+       "Grüß Gott. Ich möchte einen Termin machen.",
+       "Grüß Gott. Ich möchte einen Termin.",
+       "Grüß Gott. Ich brauche einen Termin.",
+       "Grüß Gott. Ich hätte gern einen Termin.",
+       "Grüß Gott. Ich hätte gerne einen Termin.",
+       "Grüß Gott. Ich möchte gern einen Termin machen.",
+       "Grüß Gott. Ich möchte gerne einen Termin machen.",
+       "Ich möchte einen Termin machen.",
+       "Ich möchte einen Termin.",
+       "Ich brauche einen Termin.",
+       "Ich hätte gern einen Termin.",
+       "Ich hätte gerne einen Termin.",
+       "Ich möchte gern einen Termin machen.",
+       "Ich möchte gerne einen Termin machen."
       ],
       "sonraki": "n3",
       "uygun": true,
@@ -1717,8 +2381,8 @@
    {
     "id": "m1:07:s10",
     "k": "guided_response",
-    "situation_tr": "Derya bu akşam birlikte yemek yemeyi öneriyor. Yorgunsun. Hayır de ve yorgun olduğunu söyle.",
-    "prompt_de": "Wollen wir heute Abend zusammen essen?",
+    "situation_tr": "Derya bu akşam yemeğe çıkmayı öneriyor. Yorgunsun. Hayır de ve yorgun olduğunu söyle.",
+    "prompt_de": "Wollen wir heute Abend essen gehen?",
     "accepted": [
      "Nein, danke. Ich bin müde.",
      "Leider nicht, ich bin müde.",
@@ -2676,6 +3340,308 @@
      "Guten Tag, ich bin {name}. Am Donnerstag kann ich leider nicht. Ich möchte am Samstag einen Termin.",
      "Grüß Gott, ich bin {name}. Am Donnerstag kann ich leider nicht. Ich möchte am Samstag einen Termin.",
      "Ich bin {name}. Am Donnerstag kann ich leider nicht. Ich möchte am Samstag einen Termin."
+    ],
+    "accepted_adsiz": [
+     "Hallo Luka. Kann ich am Samstag kommen?",
+     "Hallo Luka. Ich kann am Donnerstag nicht kommen. Geht Samstag?",
+     "Guten Tag. Kann ich am Samstag kommen?",
+     "Hallo Luka. Geht Samstag?",
+     "Kann ich am Samstag kommen?",
+     "Hallo. Kann ich am Samstag kommen?",
+     "Grüß Gott. Kann ich am Samstag kommen?",
+     "Hallo Luka. Ich kann am Donnerstag nicht kommen. Kann ich am Samstag kommen?",
+     "Hallo. Ich kann am Donnerstag nicht kommen. Kann ich am Samstag kommen?",
+     "Guten Tag. Ich kann am Donnerstag nicht kommen. Kann ich am Samstag kommen?",
+     "Grüß Gott. Ich kann am Donnerstag nicht kommen. Kann ich am Samstag kommen?",
+     "Ich kann am Donnerstag nicht kommen. Kann ich am Samstag kommen?",
+     "Hallo Luka. Ich kann am Donnerstag leider nicht kommen. Kann ich am Samstag kommen?",
+     "Hallo. Ich kann am Donnerstag leider nicht kommen. Kann ich am Samstag kommen?",
+     "Guten Tag. Ich kann am Donnerstag leider nicht kommen. Kann ich am Samstag kommen?",
+     "Grüß Gott. Ich kann am Donnerstag leider nicht kommen. Kann ich am Samstag kommen?",
+     "Ich kann am Donnerstag leider nicht kommen. Kann ich am Samstag kommen?",
+     "Hallo Luka. Am Donnerstag kann ich nicht kommen. Kann ich am Samstag kommen?",
+     "Hallo. Am Donnerstag kann ich nicht kommen. Kann ich am Samstag kommen?",
+     "Guten Tag. Am Donnerstag kann ich nicht kommen. Kann ich am Samstag kommen?",
+     "Grüß Gott. Am Donnerstag kann ich nicht kommen. Kann ich am Samstag kommen?",
+     "Am Donnerstag kann ich nicht kommen. Kann ich am Samstag kommen?",
+     "Hallo Luka. Ich kann am Donnerstag nicht. Kann ich am Samstag kommen?",
+     "Hallo. Ich kann am Donnerstag nicht. Kann ich am Samstag kommen?",
+     "Guten Tag. Ich kann am Donnerstag nicht. Kann ich am Samstag kommen?",
+     "Grüß Gott. Ich kann am Donnerstag nicht. Kann ich am Samstag kommen?",
+     "Ich kann am Donnerstag nicht. Kann ich am Samstag kommen?",
+     "Hallo Luka. Am Donnerstag kann ich leider nicht. Kann ich am Samstag kommen?",
+     "Hallo. Am Donnerstag kann ich leider nicht. Kann ich am Samstag kommen?",
+     "Guten Tag. Am Donnerstag kann ich leider nicht. Kann ich am Samstag kommen?",
+     "Grüß Gott. Am Donnerstag kann ich leider nicht. Kann ich am Samstag kommen?",
+     "Am Donnerstag kann ich leider nicht. Kann ich am Samstag kommen?",
+     "Hallo. Geht Samstag?",
+     "Guten Tag. Geht Samstag?",
+     "Grüß Gott. Geht Samstag?",
+     "Geht Samstag?",
+     "Hallo. Ich kann am Donnerstag nicht kommen. Geht Samstag?",
+     "Guten Tag. Ich kann am Donnerstag nicht kommen. Geht Samstag?",
+     "Grüß Gott. Ich kann am Donnerstag nicht kommen. Geht Samstag?",
+     "Ich kann am Donnerstag nicht kommen. Geht Samstag?",
+     "Hallo Luka. Ich kann am Donnerstag leider nicht kommen. Geht Samstag?",
+     "Hallo. Ich kann am Donnerstag leider nicht kommen. Geht Samstag?",
+     "Guten Tag. Ich kann am Donnerstag leider nicht kommen. Geht Samstag?",
+     "Grüß Gott. Ich kann am Donnerstag leider nicht kommen. Geht Samstag?",
+     "Ich kann am Donnerstag leider nicht kommen. Geht Samstag?",
+     "Hallo Luka. Am Donnerstag kann ich nicht kommen. Geht Samstag?",
+     "Hallo. Am Donnerstag kann ich nicht kommen. Geht Samstag?",
+     "Guten Tag. Am Donnerstag kann ich nicht kommen. Geht Samstag?",
+     "Grüß Gott. Am Donnerstag kann ich nicht kommen. Geht Samstag?",
+     "Am Donnerstag kann ich nicht kommen. Geht Samstag?",
+     "Hallo Luka. Ich kann am Donnerstag nicht. Geht Samstag?",
+     "Hallo. Ich kann am Donnerstag nicht. Geht Samstag?",
+     "Guten Tag. Ich kann am Donnerstag nicht. Geht Samstag?",
+     "Grüß Gott. Ich kann am Donnerstag nicht. Geht Samstag?",
+     "Ich kann am Donnerstag nicht. Geht Samstag?",
+     "Hallo Luka. Am Donnerstag kann ich leider nicht. Geht Samstag?",
+     "Hallo. Am Donnerstag kann ich leider nicht. Geht Samstag?",
+     "Guten Tag. Am Donnerstag kann ich leider nicht. Geht Samstag?",
+     "Grüß Gott. Am Donnerstag kann ich leider nicht. Geht Samstag?",
+     "Am Donnerstag kann ich leider nicht. Geht Samstag?",
+     "Hallo Luka. Geht es am Samstag?",
+     "Hallo. Geht es am Samstag?",
+     "Guten Tag. Geht es am Samstag?",
+     "Grüß Gott. Geht es am Samstag?",
+     "Geht es am Samstag?",
+     "Hallo Luka. Ich kann am Donnerstag nicht kommen. Geht es am Samstag?",
+     "Hallo. Ich kann am Donnerstag nicht kommen. Geht es am Samstag?",
+     "Guten Tag. Ich kann am Donnerstag nicht kommen. Geht es am Samstag?",
+     "Grüß Gott. Ich kann am Donnerstag nicht kommen. Geht es am Samstag?",
+     "Ich kann am Donnerstag nicht kommen. Geht es am Samstag?",
+     "Hallo Luka. Ich kann am Donnerstag leider nicht kommen. Geht es am Samstag?",
+     "Hallo. Ich kann am Donnerstag leider nicht kommen. Geht es am Samstag?",
+     "Guten Tag. Ich kann am Donnerstag leider nicht kommen. Geht es am Samstag?",
+     "Grüß Gott. Ich kann am Donnerstag leider nicht kommen. Geht es am Samstag?",
+     "Ich kann am Donnerstag leider nicht kommen. Geht es am Samstag?",
+     "Hallo Luka. Am Donnerstag kann ich nicht kommen. Geht es am Samstag?",
+     "Hallo. Am Donnerstag kann ich nicht kommen. Geht es am Samstag?",
+     "Guten Tag. Am Donnerstag kann ich nicht kommen. Geht es am Samstag?",
+     "Grüß Gott. Am Donnerstag kann ich nicht kommen. Geht es am Samstag?",
+     "Am Donnerstag kann ich nicht kommen. Geht es am Samstag?",
+     "Hallo Luka. Ich kann am Donnerstag nicht. Geht es am Samstag?",
+     "Hallo. Ich kann am Donnerstag nicht. Geht es am Samstag?",
+     "Guten Tag. Ich kann am Donnerstag nicht. Geht es am Samstag?",
+     "Grüß Gott. Ich kann am Donnerstag nicht. Geht es am Samstag?",
+     "Ich kann am Donnerstag nicht. Geht es am Samstag?",
+     "Hallo Luka. Am Donnerstag kann ich leider nicht. Geht es am Samstag?",
+     "Hallo. Am Donnerstag kann ich leider nicht. Geht es am Samstag?",
+     "Guten Tag. Am Donnerstag kann ich leider nicht. Geht es am Samstag?",
+     "Grüß Gott. Am Donnerstag kann ich leider nicht. Geht es am Samstag?",
+     "Am Donnerstag kann ich leider nicht. Geht es am Samstag?",
+     "Hallo Luka. Kann ich Samstag kommen?",
+     "Hallo. Kann ich Samstag kommen?",
+     "Guten Tag. Kann ich Samstag kommen?",
+     "Grüß Gott. Kann ich Samstag kommen?",
+     "Kann ich Samstag kommen?",
+     "Hallo Luka. Ich kann am Donnerstag nicht kommen. Kann ich Samstag kommen?",
+     "Hallo. Ich kann am Donnerstag nicht kommen. Kann ich Samstag kommen?",
+     "Guten Tag. Ich kann am Donnerstag nicht kommen. Kann ich Samstag kommen?",
+     "Grüß Gott. Ich kann am Donnerstag nicht kommen. Kann ich Samstag kommen?",
+     "Ich kann am Donnerstag nicht kommen. Kann ich Samstag kommen?",
+     "Hallo Luka. Ich kann am Donnerstag leider nicht kommen. Kann ich Samstag kommen?",
+     "Hallo. Ich kann am Donnerstag leider nicht kommen. Kann ich Samstag kommen?",
+     "Guten Tag. Ich kann am Donnerstag leider nicht kommen. Kann ich Samstag kommen?",
+     "Grüß Gott. Ich kann am Donnerstag leider nicht kommen. Kann ich Samstag kommen?",
+     "Ich kann am Donnerstag leider nicht kommen. Kann ich Samstag kommen?",
+     "Hallo Luka. Am Donnerstag kann ich nicht kommen. Kann ich Samstag kommen?",
+     "Hallo. Am Donnerstag kann ich nicht kommen. Kann ich Samstag kommen?",
+     "Guten Tag. Am Donnerstag kann ich nicht kommen. Kann ich Samstag kommen?",
+     "Grüß Gott. Am Donnerstag kann ich nicht kommen. Kann ich Samstag kommen?",
+     "Am Donnerstag kann ich nicht kommen. Kann ich Samstag kommen?",
+     "Hallo Luka. Ich kann am Donnerstag nicht. Kann ich Samstag kommen?",
+     "Hallo. Ich kann am Donnerstag nicht. Kann ich Samstag kommen?",
+     "Guten Tag. Ich kann am Donnerstag nicht. Kann ich Samstag kommen?",
+     "Grüß Gott. Ich kann am Donnerstag nicht. Kann ich Samstag kommen?",
+     "Ich kann am Donnerstag nicht. Kann ich Samstag kommen?",
+     "Hallo Luka. Am Donnerstag kann ich leider nicht. Kann ich Samstag kommen?",
+     "Hallo. Am Donnerstag kann ich leider nicht. Kann ich Samstag kommen?",
+     "Guten Tag. Am Donnerstag kann ich leider nicht. Kann ich Samstag kommen?",
+     "Grüß Gott. Am Donnerstag kann ich leider nicht. Kann ich Samstag kommen?",
+     "Am Donnerstag kann ich leider nicht. Kann ich Samstag kommen?",
+     "Hallo Luka. Passt Samstag?",
+     "Hallo. Passt Samstag?",
+     "Guten Tag. Passt Samstag?",
+     "Grüß Gott. Passt Samstag?",
+     "Passt Samstag?",
+     "Hallo Luka. Ich kann am Donnerstag nicht kommen. Passt Samstag?",
+     "Hallo. Ich kann am Donnerstag nicht kommen. Passt Samstag?",
+     "Guten Tag. Ich kann am Donnerstag nicht kommen. Passt Samstag?",
+     "Grüß Gott. Ich kann am Donnerstag nicht kommen. Passt Samstag?",
+     "Ich kann am Donnerstag nicht kommen. Passt Samstag?",
+     "Hallo Luka. Ich kann am Donnerstag leider nicht kommen. Passt Samstag?",
+     "Hallo. Ich kann am Donnerstag leider nicht kommen. Passt Samstag?",
+     "Guten Tag. Ich kann am Donnerstag leider nicht kommen. Passt Samstag?",
+     "Grüß Gott. Ich kann am Donnerstag leider nicht kommen. Passt Samstag?",
+     "Ich kann am Donnerstag leider nicht kommen. Passt Samstag?",
+     "Hallo Luka. Am Donnerstag kann ich nicht kommen. Passt Samstag?",
+     "Hallo. Am Donnerstag kann ich nicht kommen. Passt Samstag?",
+     "Guten Tag. Am Donnerstag kann ich nicht kommen. Passt Samstag?",
+     "Grüß Gott. Am Donnerstag kann ich nicht kommen. Passt Samstag?",
+     "Am Donnerstag kann ich nicht kommen. Passt Samstag?",
+     "Hallo Luka. Ich kann am Donnerstag nicht. Passt Samstag?",
+     "Hallo. Ich kann am Donnerstag nicht. Passt Samstag?",
+     "Guten Tag. Ich kann am Donnerstag nicht. Passt Samstag?",
+     "Grüß Gott. Ich kann am Donnerstag nicht. Passt Samstag?",
+     "Ich kann am Donnerstag nicht. Passt Samstag?",
+     "Hallo Luka. Am Donnerstag kann ich leider nicht. Passt Samstag?",
+     "Hallo. Am Donnerstag kann ich leider nicht. Passt Samstag?",
+     "Guten Tag. Am Donnerstag kann ich leider nicht. Passt Samstag?",
+     "Grüß Gott. Am Donnerstag kann ich leider nicht. Passt Samstag?",
+     "Am Donnerstag kann ich leider nicht. Passt Samstag?",
+     "Hallo Luka. Geht auch Samstag?",
+     "Hallo. Geht auch Samstag?",
+     "Guten Tag. Geht auch Samstag?",
+     "Grüß Gott. Geht auch Samstag?",
+     "Geht auch Samstag?",
+     "Hallo Luka. Ich kann am Donnerstag nicht kommen. Geht auch Samstag?",
+     "Hallo. Ich kann am Donnerstag nicht kommen. Geht auch Samstag?",
+     "Guten Tag. Ich kann am Donnerstag nicht kommen. Geht auch Samstag?",
+     "Grüß Gott. Ich kann am Donnerstag nicht kommen. Geht auch Samstag?",
+     "Ich kann am Donnerstag nicht kommen. Geht auch Samstag?",
+     "Hallo Luka. Ich kann am Donnerstag leider nicht kommen. Geht auch Samstag?",
+     "Hallo. Ich kann am Donnerstag leider nicht kommen. Geht auch Samstag?",
+     "Guten Tag. Ich kann am Donnerstag leider nicht kommen. Geht auch Samstag?",
+     "Grüß Gott. Ich kann am Donnerstag leider nicht kommen. Geht auch Samstag?",
+     "Ich kann am Donnerstag leider nicht kommen. Geht auch Samstag?",
+     "Hallo Luka. Am Donnerstag kann ich nicht kommen. Geht auch Samstag?",
+     "Hallo. Am Donnerstag kann ich nicht kommen. Geht auch Samstag?",
+     "Guten Tag. Am Donnerstag kann ich nicht kommen. Geht auch Samstag?",
+     "Grüß Gott. Am Donnerstag kann ich nicht kommen. Geht auch Samstag?",
+     "Am Donnerstag kann ich nicht kommen. Geht auch Samstag?",
+     "Hallo Luka. Ich kann am Donnerstag nicht. Geht auch Samstag?",
+     "Hallo. Ich kann am Donnerstag nicht. Geht auch Samstag?",
+     "Guten Tag. Ich kann am Donnerstag nicht. Geht auch Samstag?",
+     "Grüß Gott. Ich kann am Donnerstag nicht. Geht auch Samstag?",
+     "Ich kann am Donnerstag nicht. Geht auch Samstag?",
+     "Hallo Luka. Am Donnerstag kann ich leider nicht. Geht auch Samstag?",
+     "Hallo. Am Donnerstag kann ich leider nicht. Geht auch Samstag?",
+     "Guten Tag. Am Donnerstag kann ich leider nicht. Geht auch Samstag?",
+     "Grüß Gott. Am Donnerstag kann ich leider nicht. Geht auch Samstag?",
+     "Am Donnerstag kann ich leider nicht. Geht auch Samstag?",
+     "Hallo Luka. Kann ich am Samstag einen Termin haben?",
+     "Hallo. Kann ich am Samstag einen Termin haben?",
+     "Guten Tag. Kann ich am Samstag einen Termin haben?",
+     "Grüß Gott. Kann ich am Samstag einen Termin haben?",
+     "Kann ich am Samstag einen Termin haben?",
+     "Hallo Luka. Ich kann am Donnerstag nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Hallo. Ich kann am Donnerstag nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Guten Tag. Ich kann am Donnerstag nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Grüß Gott. Ich kann am Donnerstag nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Ich kann am Donnerstag nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Hallo Luka. Ich kann am Donnerstag leider nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Hallo. Ich kann am Donnerstag leider nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Guten Tag. Ich kann am Donnerstag leider nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Grüß Gott. Ich kann am Donnerstag leider nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Ich kann am Donnerstag leider nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Hallo Luka. Am Donnerstag kann ich nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Hallo. Am Donnerstag kann ich nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Guten Tag. Am Donnerstag kann ich nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Grüß Gott. Am Donnerstag kann ich nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Am Donnerstag kann ich nicht kommen. Kann ich am Samstag einen Termin haben?",
+     "Hallo Luka. Ich kann am Donnerstag nicht. Kann ich am Samstag einen Termin haben?",
+     "Hallo. Ich kann am Donnerstag nicht. Kann ich am Samstag einen Termin haben?",
+     "Guten Tag. Ich kann am Donnerstag nicht. Kann ich am Samstag einen Termin haben?",
+     "Grüß Gott. Ich kann am Donnerstag nicht. Kann ich am Samstag einen Termin haben?",
+     "Ich kann am Donnerstag nicht. Kann ich am Samstag einen Termin haben?",
+     "Hallo Luka. Am Donnerstag kann ich leider nicht. Kann ich am Samstag einen Termin haben?",
+     "Hallo. Am Donnerstag kann ich leider nicht. Kann ich am Samstag einen Termin haben?",
+     "Guten Tag. Am Donnerstag kann ich leider nicht. Kann ich am Samstag einen Termin haben?",
+     "Grüß Gott. Am Donnerstag kann ich leider nicht. Kann ich am Samstag einen Termin haben?",
+     "Am Donnerstag kann ich leider nicht. Kann ich am Samstag einen Termin haben?",
+     "Hallo Luka. Darf ich am Samstag kommen?",
+     "Hallo. Darf ich am Samstag kommen?",
+     "Guten Tag. Darf ich am Samstag kommen?",
+     "Grüß Gott. Darf ich am Samstag kommen?",
+     "Darf ich am Samstag kommen?",
+     "Hallo Luka. Ich kann am Donnerstag nicht kommen. Darf ich am Samstag kommen?",
+     "Hallo. Ich kann am Donnerstag nicht kommen. Darf ich am Samstag kommen?",
+     "Guten Tag. Ich kann am Donnerstag nicht kommen. Darf ich am Samstag kommen?",
+     "Grüß Gott. Ich kann am Donnerstag nicht kommen. Darf ich am Samstag kommen?",
+     "Ich kann am Donnerstag nicht kommen. Darf ich am Samstag kommen?",
+     "Hallo Luka. Ich kann am Donnerstag leider nicht kommen. Darf ich am Samstag kommen?",
+     "Hallo. Ich kann am Donnerstag leider nicht kommen. Darf ich am Samstag kommen?",
+     "Guten Tag. Ich kann am Donnerstag leider nicht kommen. Darf ich am Samstag kommen?",
+     "Grüß Gott. Ich kann am Donnerstag leider nicht kommen. Darf ich am Samstag kommen?",
+     "Ich kann am Donnerstag leider nicht kommen. Darf ich am Samstag kommen?",
+     "Hallo Luka. Am Donnerstag kann ich nicht kommen. Darf ich am Samstag kommen?",
+     "Hallo. Am Donnerstag kann ich nicht kommen. Darf ich am Samstag kommen?",
+     "Guten Tag. Am Donnerstag kann ich nicht kommen. Darf ich am Samstag kommen?",
+     "Grüß Gott. Am Donnerstag kann ich nicht kommen. Darf ich am Samstag kommen?",
+     "Am Donnerstag kann ich nicht kommen. Darf ich am Samstag kommen?",
+     "Hallo Luka. Ich kann am Donnerstag nicht. Darf ich am Samstag kommen?",
+     "Hallo. Ich kann am Donnerstag nicht. Darf ich am Samstag kommen?",
+     "Guten Tag. Ich kann am Donnerstag nicht. Darf ich am Samstag kommen?",
+     "Grüß Gott. Ich kann am Donnerstag nicht. Darf ich am Samstag kommen?",
+     "Ich kann am Donnerstag nicht. Darf ich am Samstag kommen?",
+     "Hallo Luka. Am Donnerstag kann ich leider nicht. Darf ich am Samstag kommen?",
+     "Hallo. Am Donnerstag kann ich leider nicht. Darf ich am Samstag kommen?",
+     "Guten Tag. Am Donnerstag kann ich leider nicht. Darf ich am Samstag kommen?",
+     "Grüß Gott. Am Donnerstag kann ich leider nicht. Darf ich am Samstag kommen?",
+     "Am Donnerstag kann ich leider nicht. Darf ich am Samstag kommen?",
+     "Hallo Luka. Ich möchte am Samstag kommen.",
+     "Hallo. Ich möchte am Samstag kommen.",
+     "Guten Tag. Ich möchte am Samstag kommen.",
+     "Grüß Gott. Ich möchte am Samstag kommen.",
+     "Ich möchte am Samstag kommen.",
+     "Hallo Luka. Ich kann am Donnerstag nicht kommen. Ich möchte am Samstag kommen.",
+     "Hallo. Ich kann am Donnerstag nicht kommen. Ich möchte am Samstag kommen.",
+     "Guten Tag. Ich kann am Donnerstag nicht kommen. Ich möchte am Samstag kommen.",
+     "Grüß Gott. Ich kann am Donnerstag nicht kommen. Ich möchte am Samstag kommen.",
+     "Ich kann am Donnerstag nicht kommen. Ich möchte am Samstag kommen.",
+     "Hallo Luka. Ich kann am Donnerstag leider nicht kommen. Ich möchte am Samstag kommen.",
+     "Hallo. Ich kann am Donnerstag leider nicht kommen. Ich möchte am Samstag kommen.",
+     "Guten Tag. Ich kann am Donnerstag leider nicht kommen. Ich möchte am Samstag kommen.",
+     "Grüß Gott. Ich kann am Donnerstag leider nicht kommen. Ich möchte am Samstag kommen.",
+     "Ich kann am Donnerstag leider nicht kommen. Ich möchte am Samstag kommen.",
+     "Hallo Luka. Am Donnerstag kann ich nicht kommen. Ich möchte am Samstag kommen.",
+     "Hallo. Am Donnerstag kann ich nicht kommen. Ich möchte am Samstag kommen.",
+     "Guten Tag. Am Donnerstag kann ich nicht kommen. Ich möchte am Samstag kommen.",
+     "Grüß Gott. Am Donnerstag kann ich nicht kommen. Ich möchte am Samstag kommen.",
+     "Am Donnerstag kann ich nicht kommen. Ich möchte am Samstag kommen.",
+     "Hallo Luka. Ich kann am Donnerstag nicht. Ich möchte am Samstag kommen.",
+     "Hallo. Ich kann am Donnerstag nicht. Ich möchte am Samstag kommen.",
+     "Guten Tag. Ich kann am Donnerstag nicht. Ich möchte am Samstag kommen.",
+     "Grüß Gott. Ich kann am Donnerstag nicht. Ich möchte am Samstag kommen.",
+     "Ich kann am Donnerstag nicht. Ich möchte am Samstag kommen.",
+     "Hallo Luka. Am Donnerstag kann ich leider nicht. Ich möchte am Samstag kommen.",
+     "Hallo. Am Donnerstag kann ich leider nicht. Ich möchte am Samstag kommen.",
+     "Guten Tag. Am Donnerstag kann ich leider nicht. Ich möchte am Samstag kommen.",
+     "Grüß Gott. Am Donnerstag kann ich leider nicht. Ich möchte am Samstag kommen.",
+     "Am Donnerstag kann ich leider nicht. Ich möchte am Samstag kommen.",
+     "Hallo Luka. Ich möchte am Samstag einen Termin.",
+     "Hallo. Ich möchte am Samstag einen Termin.",
+     "Guten Tag. Ich möchte am Samstag einen Termin.",
+     "Grüß Gott. Ich möchte am Samstag einen Termin.",
+     "Ich möchte am Samstag einen Termin.",
+     "Hallo Luka. Ich kann am Donnerstag nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Hallo. Ich kann am Donnerstag nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Guten Tag. Ich kann am Donnerstag nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Grüß Gott. Ich kann am Donnerstag nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Ich kann am Donnerstag nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Hallo Luka. Ich kann am Donnerstag leider nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Hallo. Ich kann am Donnerstag leider nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Guten Tag. Ich kann am Donnerstag leider nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Grüß Gott. Ich kann am Donnerstag leider nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Ich kann am Donnerstag leider nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Hallo Luka. Am Donnerstag kann ich nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Hallo. Am Donnerstag kann ich nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Guten Tag. Am Donnerstag kann ich nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Grüß Gott. Am Donnerstag kann ich nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Am Donnerstag kann ich nicht kommen. Ich möchte am Samstag einen Termin.",
+     "Hallo Luka. Ich kann am Donnerstag nicht. Ich möchte am Samstag einen Termin.",
+     "Hallo. Ich kann am Donnerstag nicht. Ich möchte am Samstag einen Termin.",
+     "Guten Tag. Ich kann am Donnerstag nicht. Ich möchte am Samstag einen Termin.",
+     "Grüß Gott. Ich kann am Donnerstag nicht. Ich möchte am Samstag einen Termin.",
+     "Ich kann am Donnerstag nicht. Ich möchte am Samstag einen Termin.",
+     "Hallo Luka. Am Donnerstag kann ich leider nicht. Ich möchte am Samstag einen Termin.",
+     "Hallo. Am Donnerstag kann ich leider nicht. Ich möchte am Samstag einen Termin.",
+     "Guten Tag. Am Donnerstag kann ich leider nicht. Ich möchte am Samstag einen Termin.",
+     "Grüß Gott. Am Donnerstag kann ich leider nicht. Ich möchte am Samstag einen Termin.",
+     "Am Donnerstag kann ich leider nicht. Ich möchte am Samstag einen Termin."
     ],
     "why_tr": "Cumartesi gelebilir miyim derken **Kann ich am Samstag kommen?** dersin."
    }

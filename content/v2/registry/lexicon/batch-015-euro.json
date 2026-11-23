@@ -1,0 +1,288 @@
+{
+ "batch": "015",
+ "review": {
+  "status": "reviewed",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-20",
+  "notes": "Dilbilimci incelemesi tamam (lx:Euro, lx:Cent): docs/v2/reviews/halka/gun-04-dilbilimci.md, kart bölümü. Okur (OD-9.4) geçince \"reviewed\" yapılır; doğrulayıcı okursuz \"reviewed\" kabul etmiyor. Okur: docs/v2/reviews/okur/halka-gun-04-05.md (1. tur 3 geri, 2. tur 0).",
+  "okur": "passed",
+  "okur_at": "2026-11-20"
+ },
+ "items": [
+  {
+   "id": "lx:Euro",
+   "de": "Euro",
+   "tr": "avro",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Euros",
+   "img": "euro coins and banknotes",
+   "collocations": [
+    {
+     "de": "drei Euro fünfzig",
+     "tr": "üç avro elli"
+    },
+    {
+     "de": "Das macht zehn Euro.",
+     "tr": "Toplam on avro."
+    },
+    {
+     "de": "Das kostet einen Euro.",
+     "tr": "Bu bir avro."
+    },
+    {
+     "de": "zwei Euro das Kilo",
+     "tr": "kilosu iki avro"
+    }
+   ],
+   "patterns": [
+    "pt:wie-viel-kostet",
+    "pt:ich-habe"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Üç avro derken **drei Euros** yanlış. Doğrusu **drei Euro**. Sayıdan sonra **Euro** değişmez.",
+    "Kasada **zwei Euro und fünfzig Cent** pek denmez. Kısaca **zwei Euro fünfzig** denir.",
+    "**Euro** Almancada **oyro** gibi okunur, **avro** ya da **yuro** diye değil."
+   ],
+   "examples": [
+    {
+     "id": "lx:Euro:1",
+     "de": "Das Brot kostet drei Euro siebzig.",
+     "tr": "Ekmek üç avro yetmiş.",
+     "layer": "hd",
+     "img": "loaf of bread with price tag"
+    },
+    {
+     "id": "lx:Euro:2",
+     "de": "Ein Kilo Äpfel kostet zwei Euro neunzig.",
+     "tr": "Bir kilo elma iki avro doksan.",
+     "layer": "hd",
+     "img": "apples at market stall with price sign"
+    },
+    {
+     "id": "lx:Euro:3",
+     "de": "Ich hab nur noch zehn Euro.",
+     "tr": "Sadece on avrom kaldı.",
+     "layer": "alltag",
+     "img": "ten euro banknote in wallet"
+    },
+    {
+     "id": "lx:Euro:4",
+     "de": "– Wie viel kostet der Käse? – Vier Euro zwanzig.",
+     "tr": "– Peynir ne kadar? – Dört avro yirmi.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "cheese at market stall"
+    },
+    {
+     "id": "lx:Euro:5",
+     "de": "– Das macht sechs Euro vierzig. – Mit Karte, bitte.",
+     "tr": "– Toplam altı avro kırk. – Kartla, lütfen.",
+     "layer": "hd",
+     "dialog": true,
+     "img": "paying by card at bakery counter"
+    },
+    {
+     "id": "lx:Euro:6",
+     "de": "Zwei Semmeln und ein Brot kosten vier Euro achtzig.",
+     "tr": "İki küçük ekmek ve bir ekmek dört avro seksen.",
+     "layer": "hd",
+     "img": "bread rolls and bread on bakery counter"
+    }
+   ],
+   "level": "A1",
+   "tier": "K1",
+   "freqRank": 2570,
+   "domains": [
+    "einkaufen",
+    "essen",
+    "bank"
+   ],
+   "exp": {
+    "anlam_tr": "Almanya'da kullanılan para birimini söyler.",
+    "ne_zaman_tr": "Fiyat sorarken, fiyat söylerken ve öderken.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Das Brot kostet drei ___ siebzig.",
+     "answer": "Euro",
+     "tr": "Ekmek üç avro yetmiş.",
+     "hint_tr": "Fiyatta önce **Euro** gelir, sonra sent: **drei Euro siebzig**."
+    },
+    {
+     "de": "Das macht zehn ___, bitte.",
+     "answer": "Euro",
+     "tr": "Toplam on avro, lütfen.",
+     "hint_tr": "Sayıdan sonra **Euro** değişmez: **zehn Euro**."
+    },
+    {
+     "de": "Ich habe nur zwanzig ___.",
+     "answer": "Euro",
+     "tr": "Sadece yirmi avrom var.",
+     "hint_tr": "Yirmi avro derken **zwanzig Euro** denir, sonuna **s** gelmez."
+    },
+    {
+     "de": "Ich zahle fünf ___.",
+     "answer": "Euro",
+     "tr": "Beş avro ödüyorum.",
+     "hint_tr": "Sayıdan sonra **Euro** değişmez: **fünf Euro**."
+    },
+    {
+     "de": "Eine Semmel kostet sechzig Cent, zehn Semmeln kosten sechs ___.",
+     "answer": "Euro",
+     "tr": "Bir küçük ekmek altmış sent, on küçük ekmek altı avro.",
+     "hint_tr": "Altı avro derken **sechs Euro** denir."
+    },
+    {
+     "de": "Wie viel kostet das Kilo? – Zwei ___ neunzig.",
+     "answer": "Euro",
+     "tr": "Kilosu ne kadar? – İki avro doksan.",
+     "hint_tr": "İki avro doksan derken **zwei Euro neunzig** denir."
+    }
+   ],
+   "unit": "u:m1:04",
+   "can_do": [
+    "cd:m1:04"
+   ],
+   "arm": "pazar",
+   "place": "pl:marktplatz"
+  },
+  {
+   "id": "lx:Cent",
+   "de": "Cent",
+   "tr": "sent",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Cent",
+   "img": "euro cent coins",
+   "collocations": [
+    {
+     "de": "fünfzig Cent",
+     "tr": "elli sent"
+    },
+    {
+     "de": "nur zehn Cent",
+     "tr": "sadece on sent"
+    },
+    {
+     "de": "hundert Cent",
+     "tr": "yüz sent"
+    }
+   ],
+   "patterns": [
+    "pt:wie-viel-kostet",
+    "pt:ja-nein-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Elli sent derken **fünfzig Cents** yanlış. Doğrusu **fünfzig Cent**.",
+    "Etikette 0,50 € yazıyorsa **null Euro fünfzig** denmez. **Fünfzig Cent** denir.",
+    "Bir avro elli derken **Cent** genelde söylenmez. Kısaca **ein Euro fünfzig** denir."
+   ],
+   "examples": [
+    {
+     "id": "lx:Cent:1",
+     "de": "Eine Semmel kostet sechzig Cent.",
+     "tr": "Bir küçük ekmek altmış sent.",
+     "layer": "hd",
+     "img": "bread rolls in bakery basket"
+    },
+    {
+     "id": "lx:Cent:2",
+     "de": "Hundert Cent sind ein Euro.",
+     "tr": "Yüz sent bir avro eder.",
+     "layer": "hd",
+     "img": "euro coins on table"
+    },
+    {
+     "id": "lx:Cent:3",
+     "de": "Hast du mal zwanzig Cent?",
+     "tr": "Yirmi sentin var mı?",
+     "layer": "alltag",
+     "img": "coins in open hand"
+    },
+    {
+     "id": "lx:Cent:4",
+     "de": "– Das macht zwei Euro zehn. – Moment, die zehn Cent hab ich.",
+     "tr": "– Toplam iki avro on. – Bir saniye, on sent bende var.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "coins on bakery counter"
+    },
+    {
+     "id": "lx:Cent:5",
+     "de": "– Wie viel kostet die Tüte? – Nur zehn Cent.",
+     "tr": "– Poşet ne kadar? – Sadece on sent.",
+     "layer": "hd",
+     "dialog": true,
+     "img": "paper bag at checkout"
+    },
+    {
+     "id": "lx:Cent:6",
+     "de": "Frau Brandl zahlt die achtzig Cent bar.",
+     "tr": "Brandl Hanım seksen senti nakit ödüyor.",
+     "layer": "hd",
+     "img": "elderly woman paying with coins"
+    }
+   ],
+   "level": "A1",
+   "tier": "K1",
+   "freqRank": 1868,
+   "domains": [
+    "einkaufen",
+    "essen"
+   ],
+   "exp": {
+    "anlam_tr": "Avronun yüzde birini söyler.",
+    "ne_zaman_tr": "Küçük fiyatlarda ve bozuk para öderken.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Eine Semmel kostet sechzig ___.",
+     "answer": "Cent",
+     "tr": "Bir küçük ekmek altmış sent.",
+     "hint_tr": "Sayıdan sonra **Cent** aynı kalır: **sechzig Cent**."
+    },
+    {
+     "de": "Hundert ___ sind ein Euro.",
+     "answer": "Cent",
+     "tr": "Yüz sent bir avro eder.",
+     "hint_tr": "Yüz sent derken **hundert Cent** denir."
+    },
+    {
+     "de": "Die Tüte kostet zehn ___.",
+     "answer": "Cent",
+     "tr": "Poşet on sent.",
+     "hint_tr": "On sent derken **zehn Cent** denir, sonuna **s** gelmez."
+    },
+    {
+     "de": "Ein Apfel kostet fünfzig ___.",
+     "answer": "Cent",
+     "tr": "Bir elma elli sent.",
+     "hint_tr": "Elli sent derken **fünfzig Cent** denir."
+    },
+    {
+     "de": "Ein Euro hat ___ Cent.",
+     "answer": "hundert",
+     "tr": "Bir avroda yüz sent var.",
+     "hint_tr": "Bir avroda **hundert Cent** var."
+    },
+    {
+     "de": "Hast du mal zwanzig ___?",
+     "answer": "Cent",
+     "tr": "Yirmi sentin var mı?",
+     "hint_tr": "Yirmi sent derken **zwanzig Cent** denir."
+    }
+   ],
+   "unit": "u:m1:04",
+   "can_do": [
+    "cd:m1:04"
+   ],
+   "arm": "pazar",
+   "place": "pl:marktplatz"
+  }
+ ]
+}
