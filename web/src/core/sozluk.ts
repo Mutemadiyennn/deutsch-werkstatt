@@ -31,6 +31,12 @@ const duz = (s?: string) => s?.replace(/\*\*/g, "").trim() || undefined;
 /** Yer tutucusuz ifadeler (yer tutucu: ___, …, [Name], {name}, "+ isim") */
 const ifadeMi = (de: string) => !/_{2,}|…|\.\.\.|\[|\{|\+/.test(de);
 const parcala = (s: string) => norm(s).split(" ").filter(Boolean);
+/**
+ * İşlev sözcükleri: yalnız bunlardan oluşan iki kelimelik kalıp ("ich nicht = ben değil") cümlede kalıp sayılmaz; "Das Wort kenne
+ * ich nicht" içinde yanlış eşleşir (inceleme #249 P1-1). Normalleştirilmiş biçimler (norm: ü → ue).
+ */
+const ISLEV = new Set("ich du er sie es wir ihr man nicht kein keine und oder aber denn das der die den dem des ein eine einen einem einer ist bin bist sind war hat habe hast haben zu im in an am auf mit von vom zum zur fuer bei ja nein so wie was wo nur auch noch schon mal bitte da hier dann jetzt sehr gut mir dir mich dich uns euch ihn ihm".split(" "));
+const kalipMi = (t: string[]) => t.length >= 3 || (t.length === 2 && t.some((w) => !ISLEV.has(w)));
 function adayEkle(a: Aday[], de: string | undefined, tr: string | undefined, o: Partial<Aday> = {}) {
   if (!de || !tr || !ifadeMi(de)) return;
   const t = parcala(temiz(de));
@@ -42,7 +48,8 @@ function ekAdaylar(ek: YerelEk): Aday[] {
   for (const c of ek.chunks ?? []) {
     const not = duz(c.exp?.ne_zaman_tr);
     adayEkle(a, c.layers.hd, c.tr, { not });
-    adayEkle(a, c.layers.alltag, c.tr, { not: duz(c.alltag_exp?.ne_zaman_tr) ?? not });
+    // gündelik biçimin kendi anlamı varsa o (inceleme #249 P2)
+    adayEkle(a, c.layers.alltag, duz(c.alltag_exp?.anlam_tr) ?? c.tr, { not: duz(c.alltag_exp?.ne_zaman_tr) ?? not });
     if (c.layers.bair?.status === "verified") adayEkle(a, c.layers.bair.text, c.tr, { not: duz(c.layers.bair.note_tr) ?? not });
   }
   for (const p of ek.patterns ?? []) for (const x of p.examples) adayEkle(a, x.de, x.tr);
@@ -99,12 +106,12 @@ export function yerelAcikla(metin: string, lex: Lexeme[], ek: YerelEk = {}): Yer
   const kapali = new Array<boolean>(tok.length).fill(false);
   const bulunan: { i: number; x: Aday }[] = [];
   // sıralama kararlı: aynı uzunlukta iletişim kalıbı karttan önce gelir
-  for (const x of [...ekA, ...kartAdaylar(lex)].filter((y) => y.t.length >= 2 && y.t.length <= tok.length).sort((p, q) => q.t.length - p.t.length)) {
+  for (const x of [...ekA, ...kartAdaylar(lex)].filter((y) => kalipMi(y.t) && y.t.length <= tok.length).sort((p, q) => q.t.length - p.t.length)) {
     for (let i = 0; i + x.t.length <= tok.length; i++) {
       if (x.t.every((w, j) => tok[i + j] === w && !kapali[i + j])) {
+        // her geçiş kapanır (aynı kalıp ikinci kez geçerse kelime kelime bölünmez); listede bir kez
         for (let j = 0; j < x.t.length; j++) kapali[i + j] = true;
         if (!bulunan.some((b) => norm(b.x.de) === norm(x.de))) bulunan.push({ i, x });
-        break;
       }
     }
   }

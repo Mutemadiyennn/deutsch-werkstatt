@@ -200,6 +200,9 @@ function Build({ it, onAnswer }: { it: Extract<AssessItem, { skill: "building" }
   );
 }
 
+/** Denetlenemeyen cevabın notu (öğrenci dili; inceleme #249 P2) */
+const KONTROL_YOK = "Bu soru sonuca sayılmıyor; senin cevabın da doğru olabilir.";
+
 function Speak({ it, onAnswer }: { it: Extract<AssessItem, { skill: "speaking" }>; onAnswer: OnAnswer }) {
   const { api } = useApp();
   const [typed, setTyped] = useState("");
@@ -214,7 +217,11 @@ function Speak({ it, onAnswer }: { it: Extract<AssessItem, { skill: "speaking" }
     if (j.ok) return onAnswer({ ...base(it), correct: true, given: j.heard, mode }, { ok: true, right: j.best, tr: it.tr });
     // hazır listede olmayan ama doğru olabilecek cevap: sunucudaki öğretmene sorulur (en fazla ~12 sn); sunucu yoksa kural sonucu geçerli
     // sağlayıcı kapalıysa ya da devre kesici açıksa sorulmaz (inceleme #123 P1-1; diğer yapay zekâ yüzeyleriyle aynı kapı)
-    if (aiState(api).available && j.heard) {
+    // devre kesici açık (yapay zekâ az önce art arda düştü): geçici kesinti, cevap yanlış sayılmaz (inceleme #249 P1-2).
+    // Sağlayıcı hiç yoksa (yapay zekâsız sürüm) kuralların kararı geçerlidir.
+    const st = aiState(api);
+    if (!st.available && st.openUntil && j.heard) return onAnswer({ ...base(it), correct: false, unchecked: true, given: j.heard, mode }, { ok: false, unchecked: true, right: it.de, tr: it.tr, note: KONTROL_YOK });
+    if (st.available && j.heard) {
       setState("checking");
       try {
         const r = await ai(api, "equiv_check", { prompt_tr: it.tr, expected: variants, answer: j.heard });
@@ -223,7 +230,7 @@ function Speak({ it, onAnswer }: { it: Extract<AssessItem, { skill: "speaking" }
       } catch {
         setState("idle");
         // yapay zekâ denetimi düştü: cevap "yanlış" sayılmaz, puana girmez (ANA-E devri 7090637496 takip; PM-112 A.3)
-        return onAnswer({ ...base(it), correct: false, unchecked: true, given: j.heard, mode }, { ok: false, unchecked: true, right: it.de, tr: it.tr, note: "Bu madde sonuca katılmıyor; seninki de doğru olabilir." });
+        return onAnswer({ ...base(it), correct: false, unchecked: true, given: j.heard, mode }, { ok: false, unchecked: true, right: it.de, tr: it.tr, note: KONTROL_YOK });
       }
     }
     onAnswer({ ...base(it), correct: false, given: j.heard, mode }, { ok: false, right: it.de, tr: it.tr, note: heard ? `Duyulan: „${j.heard}“` : undefined });

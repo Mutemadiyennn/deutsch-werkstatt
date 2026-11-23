@@ -296,7 +296,7 @@ def tespit_denetim(ctx):
     ad = "equiv_check/tespit-500"; srv = Sunucu("equiv_check", "500")
     pg = sayfa(ctx, srv)
     pg.goto(f"http://127.0.0.1:{PORT}/#/assess"); pg.wait_for_selector("[data-test=assess-begin]"); pg.click("[data-test=assess-begin]")
-    bulunan = None
+    bulunan = None; hepsi = []
     for _ in range(60):
         pg.wait_for_selector("[data-test=feedback], button.opt[data-opt], [data-chip], [data-test=answer], [data-test=overall]")
         if pg.locator("[data-test=overall]").count(): break
@@ -306,15 +306,18 @@ def tespit_denetim(ctx):
                 pg.fill("[data-test=answer]", "Ich habe einen Termin"); pg.locator("form button[type=submit]").click()
             else: pg.click("[data-test=dunno]")
             pg.wait_for_selector("[data-test=feedback]", timeout=15000)
-            if konusma and bulunan is None:
+            if konusma:
                 f = pg.locator("[data-test=feedback]")
-                bulunan = (f.inner_text(), f.get_attribute("class") or "")
+                hepsi.append(f.inner_text())
+                if bulunan is None: bulunan = (f.inner_text(), f.get_attribute("class") or "")
         pg.click("[data-test=next]")
     check(bulunan is not None, f"{ad}: konuşma maddesine gelindi")
     if bulunan:
         t, sinif = bulunan
-        check("kontrol edemedim" in t and "olmadı" not in t and " bad" not in f" {sinif}" and "sonuca katılmıyor" in t, f"{ad}: 'Bunu şu an kontrol edemedim' (bilgi, yanlış değil): {t.splitlines()[0][:60]!r}")
+        check("kontrol edemedim" in t and "olmadı" not in t and " bad" not in f" {sinif}" and "sonuca sayılmıyor" in t, f"{ad}: 'Bunu şu an kontrol edemedim' (bilgi, yanlış değil): {t.splitlines()[0][:60]!r}")
         check(not re.search(r"sunucu|hata kodu|geçersiz", t, re.I), f"{ad}: teknik söz yok")
+    # 3. hatada devre kesici açılır; sonraki konuşma maddeleri de "yanlış" sayılmaz (inceleme #249 P1-2)
+    check(len(hepsi) >= 4 and all("kontrol edemedim" in x and "olmadı" not in x for x in hepsi), f"{ad}: devre kesici açıkken de bütün konuşma cevapları denetlenemedi sayıldı ({len(hepsi)} madde)")
     pg.close()
 
 def main():

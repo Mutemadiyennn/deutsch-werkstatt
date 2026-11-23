@@ -29,6 +29,10 @@ describe("seviye tespiti", () => {
     // A1'de denetlenen tek cevap doğru: A2 konuşma maddeleri kapanmaz
     const a2 = items.find((i) => i.skill === "speaking" && i.level === "A2");
     if (a2) expect(nextItem(items.filter((i) => i.skill === "speaking"), ans)?.level).toBe("A2");
+    // kesinti bütün A1 konuşma cevaplarını denetlenemez yaptıysa: seviye ölçülemedi, tahmin "A1 öncesi"ne düşmez (inceleme #249 P1-2)
+    const sp2 = items.filter((i) => i.skill === "speaking");
+    const hepsi = sp2.map((it) => (it.level === "A1" ? { ...answer(it, false), unchecked: true } : answer(it, true)));
+    expect(score(items, hepsi).results.find((x) => x.skill === "speaking")!.estimate).not.toBe("below-A1");
     const vp = items.find((i) => i.skill === "vocab_passive")!;
     expect(applyAssessment(new Map(), [{ ...answer(vp, false), unchecked: true }])).toEqual([]);
   });

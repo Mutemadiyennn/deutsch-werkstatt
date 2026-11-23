@@ -28,7 +28,7 @@ export type ApiError = z.infer<typeof ApiError>;
 /** Öğrenci dili (PM finali #218): "sunucu", "hata kodu", "geçersiz istek" gibi teknik söz yok; istemci metni buradan alır */
 export const ERROR_TR: Record<ErrorCode, { message_tr: string; retryable: boolean; status: number }> = {
   unauthenticated: { message_tr: "Oturumun sona ermiş. Lütfen yeniden giriş yap.", retryable: false, status: 401 },
-  forbidden: { message_tr: "Bu hesapla yapay zekâ özellikleri açık değil.", retryable: false, status: 403 },
+  forbidden: { message_tr: "Bu özellik bu hesapla şu an kullanılamıyor.", retryable: false, status: 403 },
   quota_user: { message_tr: "Bugünkü yapay zekâ hakkın doldu. Yapay zekâsız alıştırmalarla devam edebilirsin.", retryable: false, status: 429 },
   quota_upstream: { message_tr: "Yapay zekânın ücretsiz kullanım payı doldu. Biraz sonra ya da yarın tekrar dene; şimdilik uygulamanın kendi kuralları geçerli.", retryable: true, status: 429 },
   upstream_busy: { message_tr: "Yapay zekâ şu an çok yoğun (senin hakkınla ilgisi yok). Birazdan tekrar dene.", retryable: true, status: 503 },

@@ -88,7 +88,9 @@ export function score(items: AssessItem[], answers: AssessAnswer[]): { results: 
     // sorulmayan (uyarlama ile atlanan) üst seviye maddeleri yanlış sayılır
     for (const it of items.filter((i) => i.skill === skill)) if (!answers.some((a) => a.itemId === it.id)) byLevel[it.level].total++;
     let est: Level | "below-A1" = "below-A1";
-    for (const l of LEVELS) { const b = byLevel[l]; if (b.total && b.correct / b.total >= 0.6) est = l; else break; }
+    // bir seviyenin bütün cevapları denetlenemediyse o seviye ölçülemedi: tahmini kesmez, atlanır (inceleme #249 P1-2)
+    const olculemedi = (l: Level) => !byLevel[l].total && answers.some((a) => a.skill === skill && a.level === l && a.unchecked);
+    for (const l of LEVELS) { const b = byLevel[l]; if (olculemedi(l)) continue; if (b.total && b.correct / b.total >= 0.6) est = l; else break; }
     const total = LEVELS.reduce((s, l) => s + byLevel[l].total, 0);
     const correct = LEVELS.reduce((s, l) => s + byLevel[l].correct, 0);
     results.push({ skill, correct, total, byLevel, estimate: est, confidence: total >= 9 ? "high" : total >= 6 ? "medium" : "low" });
