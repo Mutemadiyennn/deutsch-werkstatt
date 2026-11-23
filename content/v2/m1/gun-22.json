@@ -1,0 +1,1929 @@
+{
+ "schema": 1,
+ "id": "m1:gun:22",
+ "day": 22,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Evdeki eşyalar: Wo ist der Schlüssel? Er ist hier",
+ "goal_tr": "Kaybolan bir eşyanın nerede olduğunu er, sie ya da es ile söylersin.",
+ "can_do": {
+  "id": "cd:m1:22",
+  "tr": "Bir eşyanın nerede olduğunu sorar, er, sie, es ile cevap veririm."
+ },
+ "unit": "u:m1:22",
+ "arm": "pazar",
+ "place": "pl:haus",
+ "characters": [
+  "ch:popescu",
+  "ch:brandl"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:Montag",
+   "lx:Freitag",
+   "lx:Samstag",
+   "lx:Sonntag",
+   "lx:heute",
+   "lx:morgen",
+   "lx:hallo",
+   "lx:danke",
+   "lx:bitte",
+   "lx:ja",
+   "lx:nein",
+   "lx:Frau",
+   "lx:geschlossen",
+   "lx:haben",
+   "lx:kommen",
+   "lx:vier",
+   "lx:fünf",
+   "lx:Nummer",
+   "lx:offen",
+   "lx:neu",
+   "lx:Karte",
+   "lx:Brot",
+   "lx:noch",
+   "lx:Abend",
+   "lx:Termin",
+   "lx:leider",
+   "lx:wieder",
+   "lx:da",
+   "lx:gern",
+   "lx:dann",
+   "lx:wo",
+   "lx:was",
+   "lx:Telefonnummer",
+   "lx:sehr",
+   "lx:sein",
+   "lx:möchten",
+   "lx:essen",
+   "lx:sagen",
+   "lx:müde",
+   "lx:gleich",
+   "lx:gut",
+   "lx:immer",
+   "lx:jetzt",
+   "lx:Küche",
+   "lx:Kuchen",
+   "lx:hier",
+   "lx:bringen",
+   "lx:meinen",
+   "lx:schlimm",
+   "lx:Firma",
+   "lx:einladen",
+   "lx:kaputt",
+   "lx:zu#2",
+   "lx:so",
+   "lx:Kurs",
+   "lx:tun",
+   "lx:auch",
+   "lx:geben",
+   "lx:krank",
+   "lx:wehtun",
+   "lx:Jacke",
+   "lx:Schrank",
+   "lx:Ausweis",
+   "lx:einkaufen",
+   "lx:Fahrrad",
+   "lx:zurückrufen",
+   "lx:zurück",
+   "lx:vielleicht",
+   "lx:mögen#2",
+   "lx:wirklich",
+   "lx:weg",
+   "lx:Weg",
+   "lx:schön",
+   "lx:klein"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-04.md"
+ },
+ "dersler": [
+  "gr:a1-04:t2"
+ ],
+ "yeni_kartlar": [
+  "lx:Einladung",
+  "lx:Zahl",
+  "lx:Tasse",
+  "lx:Husten",
+  "lx:absagen",
+  "lx:zurückgeben",
+  "lx:backen",
+  "lx:Tablette",
+  "lx:aufschreiben",
+  "lx:Feierabend",
+  "lx:Bauch",
+  "lx:aufräumen",
+  "lx:Führerschein",
+  "lx:Rezept",
+  "lx:Amt",
+  "lx:Unterschrift",
+  "lx:Werkstatt",
+  "lx:Mensch",
+  "lx:suchen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:22:h1",
+   "title_tr": "Reçete nerede?",
+   "kartlar": [
+    "lx:suchen",
+    "lx:Rezept",
+    "lx:Tablette",
+    "lx:Husten",
+    "lx:Mensch"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich suche … – Was suchst du?",
+     "tr": "…'i arıyorum – Ne arıyorsun?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:suchen",
+     "de": "Ich suche das Rezept.",
+     "tr": "Reçeteyi arıyorum.",
+     "accepted": [
+      "Ich suche das Rezept.",
+      "Ich suche das Rezept, Ioana.",
+      "Das Rezept suche ich."
+     ]
+    },
+    {
+     "kart": "lx:suchen",
+     "de": "Was suchst du, Ioana?",
+     "tr": "Ne arıyorsun Ioana?",
+     "accepted": [
+      "Was suchst du, Ioana?",
+      "Ioana, was suchst du?",
+      "Was suchst du denn, Ioana?"
+     ]
+    },
+    {
+     "kart": "lx:Rezept",
+     "de": "Das Rezept von Dr. Weber ist weg!",
+     "tr": "Dr. Weber'in reçetesi kayıp!",
+     "accepted": [
+      "Das Rezept von Dr. Weber ist weg!",
+      "Das Rezept von Dr. Weber ist weg.",
+      "Mensch, das Rezept von Dr. Weber ist weg!"
+     ]
+    },
+    {
+     "kart": "lx:Rezept",
+     "de": "Ist das Rezept in der Küche?",
+     "tr": "Reçete mutfakta mı?",
+     "accepted": [
+      "Ist das Rezept in der Küche?",
+      "Ist das Rezept vielleicht in der Küche?",
+      "Das Rezept, ist das in der Küche?"
+     ]
+    },
+    {
+     "kart": "lx:Tablette",
+     "de": "Hast du eine Tablette?",
+     "tr": "Bir hapın var mı?",
+     "accepted": [
+      "Hast du eine Tablette?",
+      "Hast du vielleicht eine Tablette?",
+      "Hast du bitte eine Tablette?"
+     ]
+    },
+    {
+     "kart": "lx:Tablette",
+     "de": "Eine Tablette am Abend, bitte.",
+     "tr": "Akşam bir hap, lütfen.",
+     "accepted": [
+      "Eine Tablette am Abend, bitte.",
+      "Bitte eine Tablette am Abend.",
+      "Am Abend eine Tablette, bitte."
+     ]
+    },
+    {
+     "kart": "lx:Husten",
+     "de": "Ich habe noch Husten.",
+     "tr": "Hâlâ öksürüğüm var.",
+     "accepted": [
+      "Ich habe noch Husten.",
+      "Ich habe immer noch Husten.",
+      "Ich habe noch ein bisschen Husten."
+     ]
+    },
+    {
+     "kart": "lx:Husten",
+     "de": "Der Husten ist schlimm.",
+     "tr": "Öksürük kötü.",
+     "accepted": [
+      "Der Husten ist schlimm.",
+      "Der Husten ist sehr schlimm.",
+      "Der Husten ist wirklich schlimm."
+     ]
+    },
+    {
+     "kart": "lx:Mensch",
+     "de": "Mensch, wo ist das Rezept?",
+     "tr": "Of be, reçete nerede?",
+     "accepted": [
+      "Mensch, wo ist das Rezept?",
+      "Mensch! Wo ist das Rezept?",
+      "Mensch, wo ist denn das Rezept?"
+     ]
+    },
+    {
+     "kart": "lx:Mensch",
+     "de": "Mensch, bin ich müde!",
+     "tr": "Of, ne kadar yorgunum!",
+     "accepted": [
+      "Mensch, bin ich müde!",
+      "Mensch, ich bin müde!",
+      "Mensch, ich bin so müde!"
+     ]
+    },
+    {
+     "kart": "lx:Rezept",
+     "de": "Das Rezept? Es ist nicht hier, es ist weg!",
+     "tr": "Reçete mi? Burada değil, kayıp!",
+     "accepted": [
+      "Das Rezept? Es ist nicht hier, es ist weg!",
+      "Das Rezept ist nicht hier, es ist weg!",
+      "Das Rezept? Nicht hier, es ist weg!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Akşam, senin dairen. Ioana kurstan sonra uğruyor, sen bir şey arıyorsun.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Was suchst du denn?",
+      "tr": "Ne arıyorsun ki?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Das Rezept von Dr. Weber. Ich habe noch Husten.",
+      "tr": "Dr. Weber'in reçetesini. Hâlâ öksürüğüm var."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Mensch! Ist es in der Küche?",
+      "tr": "Of be! Mutfakta mı?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Sen ne arıyorsun?",
+     "opts": [
+      "Reçeteyi",
+      "Bir fincanı",
+      "Ehliyetini"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:22:h2",
+   "title_tr": "er, sie, es: Nerede?",
+   "kartlar": [
+    "lx:Einladung",
+    "lx:Tasse",
+    "lx:Führerschein",
+    "lx:Unterschrift",
+    "lx:Zahl"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "Wo ist der …? – Er ist hier.",
+     "tr": "… nerede? – Burada. (der ile giden eşya)"
+    },
+    {
+     "de": "Wo ist die …? – Sie ist da.",
+     "tr": "… nerede? – Orada. (die ile giden eşya)"
+    },
+    {
+     "de": "Wo ist das …? – Es ist weg.",
+     "tr": "… nerede? – Kayıp. (das ile giden eşya)"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Einladung",
+     "de": "Die Einladung? Sie ist für Freitag.",
+     "tr": "Davetiye mi? Cuma için.",
+     "accepted": [
+      "Die Einladung? Sie ist für Freitag.",
+      "Die Einladung ist für Freitag.",
+      "Die Einladung? Die ist für Freitag."
+     ]
+    },
+    {
+     "kart": "lx:Einladung",
+     "de": "Wo ist die Einladung? Ist sie weg?",
+     "tr": "Davetiye nerede? Kayıp mı?",
+     "accepted": [
+      "Wo ist die Einladung? Ist sie weg?",
+      "Wo ist denn die Einladung? Ist sie weg?",
+      "Die Einladung, wo ist sie? Ist sie weg?"
+     ]
+    },
+    {
+     "kart": "lx:Tasse",
+     "de": "Wo ist meine Tasse? Ist sie in der Küche?",
+     "tr": "Fincanım nerede? Mutfakta mı?",
+     "accepted": [
+      "Wo ist meine Tasse? Ist sie in der Küche?",
+      "Wo ist meine Tasse? Ist sie vielleicht in der Küche?",
+      "Meine Tasse, wo ist sie? In der Küche?"
+     ]
+    },
+    {
+     "kart": "lx:Tasse",
+     "de": "Die Tasse ist von Frau Brandl. Sie ist schön.",
+     "tr": "Fincan Brandl Hanım'ın. Güzel.",
+     "accepted": [
+      "Die Tasse ist von Frau Brandl. Sie ist schön.",
+      "Die Tasse ist von Frau Brandl. Sie ist sehr schön.",
+      "Die Tasse ist von Frau Brandl, sie ist schön."
+     ]
+    },
+    {
+     "kart": "lx:Führerschein",
+     "de": "Mein Führerschein ist weg!",
+     "tr": "Ehliyetim kayıp!",
+     "accepted": [
+      "Mein Führerschein ist weg!",
+      "Mein Führerschein ist weg.",
+      "Mensch, mein Führerschein ist weg!"
+     ]
+    },
+    {
+     "kart": "lx:Führerschein",
+     "de": "Der Führerschein? Er ist in der Jacke.",
+     "tr": "Ehliyet mi? Ceketin içinde.",
+     "accepted": [
+      "Der Führerschein? Er ist in der Jacke.",
+      "Der Führerschein ist in der Jacke.",
+      "Der Führerschein? Der ist in der Jacke."
+     ]
+    },
+    {
+     "kart": "lx:Unterschrift",
+     "de": "Die Unterschrift? Sie ist hier, auf der Karte.",
+     "tr": "İmza mı? Burada, kartın üstünde.",
+     "accepted": [
+      "Die Unterschrift? Sie ist hier, auf der Karte.",
+      "Die Unterschrift ist hier, auf der Karte.",
+      "Die Unterschrift? Sie ist hier auf der Karte."
+     ]
+    },
+    {
+     "kart": "lx:Unterschrift",
+     "de": "Ist das deine Unterschrift?",
+     "tr": "Bu senin imzan mı?",
+     "accepted": [
+      "Ist das deine Unterschrift?",
+      "Ist das hier deine Unterschrift?",
+      "Das ist deine Unterschrift?"
+     ]
+    },
+    {
+     "kart": "lx:Zahl",
+     "de": "Die Zahl auf dem Rezept? Sie ist sehr klein.",
+     "tr": "Reçetedeki sayı mı? Çok küçük.",
+     "accepted": [
+      "Die Zahl auf dem Rezept? Sie ist sehr klein.",
+      "Die Zahl auf dem Rezept ist sehr klein.",
+      "Die Zahl auf dem Rezept? Sie ist so klein."
+     ]
+    },
+    {
+     "kart": "lx:Zahl",
+     "de": "Welche Zahl ist das?",
+     "tr": "Bu hangi sayı?",
+     "accepted": [
+      "Welche Zahl ist das?",
+      "Welche Zahl ist das hier?",
+      "Was ist das für eine Zahl?"
+     ]
+    },
+    {
+     "kart": "lx:Führerschein",
+     "de": "Mein Führerschein? Er ist hier!",
+     "tr": "Ehliyetim mi? Burada!",
+     "accepted": [
+      "Mein Führerschein? Er ist hier!",
+      "Mein Führerschein? Hier ist er!",
+      "Der Führerschein? Er ist hier!"
+     ]
+    },
+    {
+     "kart": "lx:Tasse",
+     "de": "Meine Tasse? Da ist sie!",
+     "tr": "Fincanım mı? İşte orada!",
+     "accepted": [
+      "Meine Tasse? Da ist sie!",
+      "Meine Tasse? Sie ist da!",
+      "Die Tasse? Da ist sie!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Mutfak masası. Ioana bir kartı kaldırıyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Ist das deine Einladung?",
+      "tr": "Bu senin davetiyen mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja! Sie ist von der Firma, für Freitag.",
+      "tr": "Evet! Şirketten, cuma için."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Und die Tasse da? Ist sie auch von der Firma?",
+      "tr": "Peki şu fincan? O da mı şirketten?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nein, sie ist von Frau Brandl.",
+      "tr": "Hayır, Brandl Hanım'ın."
+     }
+    ],
+    "soru": {
+     "q_tr": "Fincan kimin?",
+     "opts": [
+      "Brandl Hanım'ın",
+      "Şirketin",
+      "Ioana'nın"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:22:h3",
+   "title_tr": "Topla, geri ver, not et",
+   "kartlar": [
+    "lx:aufräumen",
+    "lx:zurückgeben",
+    "lx:absagen",
+    "lx:aufschreiben",
+    "lx:Amt"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "Ich räume … auf. – Ich gebe … zurück. – Gibst du … zurück?",
+     "tr": "…'i topluyorum. – …'i geri veriyorum. – …'i geri verir misin?"
+    },
+    {
+     "de": "Ich sage … ab. – Ich schreibe … auf.",
+     "tr": "…'i iptal ediyorum. – …'i not ediyorum."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:aufräumen",
+     "de": "Die Küche? Ich räume sie heute auf.",
+     "tr": "Mutfak mı? Onu bugün topluyorum.",
+     "accepted": [
+      "Die Küche? Ich räume sie heute auf.",
+      "Die Küche räume ich heute auf.",
+      "Die Küche? Die räume ich heute auf."
+     ]
+    },
+    {
+     "kart": "lx:aufräumen",
+     "de": "Nach dem Kurs räume ich auf.",
+     "tr": "Kurstan sonra toparlıyorum.",
+     "accepted": [
+      "Nach dem Kurs räume ich auf.",
+      "Ich räume nach dem Kurs auf.",
+      "Nach dem Kurs räume ich dann auf."
+     ]
+    },
+    {
+     "kart": "lx:zurückgeben",
+     "de": "Die Tasse? Ich gebe sie Frau Brandl zurück.",
+     "tr": "Fincan mı? Onu Brandl Hanım'a geri veriyorum.",
+     "accepted": [
+      "Die Tasse? Ich gebe sie Frau Brandl zurück.",
+      "Die Tasse gebe ich Frau Brandl zurück.",
+      "Die Tasse? Die gebe ich Frau Brandl zurück."
+     ]
+    },
+    {
+     "kart": "lx:zurückgeben",
+     "de": "Morgen gebe ich das Fahrrad zurück.",
+     "tr": "Yarın bisikleti geri veriyorum.",
+     "accepted": [
+      "Morgen gebe ich das Fahrrad zurück.",
+      "Ich gebe das Fahrrad morgen zurück.",
+      "Das Fahrrad gebe ich morgen zurück."
+     ]
+    },
+    {
+     "kart": "lx:absagen",
+     "de": "Ich sage den Termin am Freitag ab.",
+     "tr": "Cuma günkü randevuyu iptal ediyorum.",
+     "accepted": [
+      "Ich sage den Termin am Freitag ab.",
+      "Den Termin am Freitag sage ich ab.",
+      "Ich sage den Termin für Freitag ab."
+     ]
+    },
+    {
+     "kart": "lx:absagen",
+     "de": "Ich sage für morgen ab, ich bin krank.",
+     "tr": "Yarın için iptal ediyorum, hastayım.",
+     "accepted": [
+      "Ich sage für morgen ab, ich bin krank.",
+      "Ich bin krank, ich sage für morgen ab.",
+      "Ich sage für morgen ab. Ich bin krank."
+     ]
+    },
+    {
+     "kart": "lx:aufschreiben",
+     "de": "Ich schreibe die Telefonnummer auf.",
+     "tr": "Telefon numarasını not ediyorum.",
+     "accepted": [
+      "Ich schreibe die Telefonnummer auf.",
+      "Die Telefonnummer schreibe ich auf.",
+      "Ich schreibe mir die Telefonnummer auf."
+     ]
+    },
+    {
+     "kart": "lx:aufschreiben",
+     "de": "Die Zahl? Ich schreibe sie auf.",
+     "tr": "Sayı mı? Onu not ediyorum.",
+     "accepted": [
+      "Die Zahl? Ich schreibe sie auf.",
+      "Die Zahl schreibe ich auf.",
+      "Die Zahl? Die schreibe ich auf."
+     ]
+    },
+    {
+     "kart": "lx:Amt",
+     "de": "Das Amt ist heute geschlossen.",
+     "tr": "Resmî daire bugün kapalı.",
+     "accepted": [
+      "Das Amt ist heute geschlossen.",
+      "Heute ist das Amt geschlossen.",
+      "Das Amt ist heute zu."
+     ]
+    },
+    {
+     "kart": "lx:Amt",
+     "de": "Das Amt? Es ist am Bahnhof.",
+     "tr": "Resmî daire mi? İstasyonun orada.",
+     "accepted": [
+      "Das Amt? Es ist am Bahnhof.",
+      "Das Amt ist am Bahnhof.",
+      "Das Amt? Das ist am Bahnhof."
+     ]
+    },
+    {
+     "kart": "lx:zurückgeben",
+     "de": "Gibst du mir die Tasse zurück?",
+     "tr": "Fincanı bana geri verir misin?",
+     "accepted": [
+      "Gibst du mir die Tasse zurück?",
+      "Gibst du mir bitte die Tasse zurück?",
+      "Gibst du mir meine Tasse zurück?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Merdiven boşluğu. Brandl Hanım kapısının önünde.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Haben Sie meine Tasse noch?",
+      "tr": "Fincanım hâlâ sizde mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja! Ich gebe sie morgen zurück. Heute räume ich auf.",
+      "tr": "Evet! Yarın geri veriyorum. Bugün ortalığı topluyorum."
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Gut, dann bis morgen!",
+      "tr": "İyi, o zaman yarın görüşürüz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Fincanı ne zaman geri veriyorsun?",
+     "opts": [
+      "Yarın",
+      "Bugün",
+      "Cuma günü"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:22:h4",
+   "title_tr": "İş çıkışı, karın, fırın, tamirhane",
+   "kartlar": [
+    "lx:Feierabend",
+    "lx:Bauch",
+    "lx:backen",
+    "lx:Werkstatt"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich backe … – Sie backt …",
+     "tr": "… pişiriyorum – … pişiriyor"
+    },
+    {
+     "de": "… tut weh.",
+     "tr": "… ağrıyor."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Feierabend",
+     "de": "Heute habe ich um fünf Feierabend.",
+     "tr": "Bugün işim saat beşte bitiyor.",
+     "accepted": [
+      "Heute habe ich um fünf Feierabend.",
+      "Ich habe heute um fünf Feierabend.",
+      "Um fünf habe ich heute Feierabend."
+     ]
+    },
+    {
+     "kart": "lx:Feierabend",
+     "de": "Feierabend! Jetzt räume ich auf.",
+     "tr": "İş bitti! Şimdi ortalığı topluyorum.",
+     "accepted": [
+      "Feierabend! Jetzt räume ich auf.",
+      "Feierabend! Jetzt räume ich die Küche auf.",
+      "Jetzt ist Feierabend! Ich räume auf."
+     ]
+    },
+    {
+     "kart": "lx:Bauch",
+     "de": "Mein Bauch tut weh.",
+     "tr": "Karnım ağrıyor.",
+     "accepted": [
+      "Mein Bauch tut weh.",
+      "Mein Bauch tut so weh.",
+      "Der Bauch tut weh."
+     ]
+    },
+    {
+     "kart": "lx:Bauch",
+     "de": "Der Bauch ist wieder gut.",
+     "tr": "Karnım yine iyi.",
+     "accepted": [
+      "Der Bauch ist wieder gut.",
+      "Mein Bauch ist wieder gut.",
+      "Der Bauch tut nicht mehr weh."
+     ]
+    },
+    {
+     "kart": "lx:backen",
+     "de": "Backen wir am Samstag einen Kuchen?",
+     "tr": "Cumartesi pasta yapalım mı?",
+     "accepted": [
+      "Backen wir am Samstag einen Kuchen?",
+      "Backen wir am Samstag Kuchen?",
+      "Am Samstag backen wir einen Kuchen?"
+     ]
+    },
+    {
+     "kart": "lx:backen",
+     "de": "Frau Brandl backt am Sonntag einen Kuchen.",
+     "tr": "Brandl Hanım pazar günü pasta yapıyor.",
+     "accepted": [
+      "Frau Brandl backt am Sonntag einen Kuchen.",
+      "Am Sonntag backt Frau Brandl einen Kuchen.",
+      "Frau Brandl backt am Sonntag Kuchen.",
+      "Frau Brandl bäckt am Sonntag einen Kuchen."
+     ]
+    },
+    {
+     "kart": "lx:Werkstatt",
+     "de": "Mein Fahrrad? Es ist in der Werkstatt.",
+     "tr": "Bisikletim mi? Tamirhanede.",
+     "accepted": [
+      "Mein Fahrrad? Es ist in der Werkstatt.",
+      "Mein Fahrrad ist in der Werkstatt.",
+      "Das Fahrrad? Es ist in der Werkstatt."
+     ]
+    },
+    {
+     "kart": "lx:Werkstatt",
+     "de": "Die Werkstatt ist ab Montag offen.",
+     "tr": "Tamirhane pazartesiden itibaren açık.",
+     "accepted": [
+      "Die Werkstatt ist ab Montag offen.",
+      "Ab Montag ist die Werkstatt offen.",
+      "Ab Montag hat die Werkstatt offen."
+     ]
+    },
+    {
+     "kart": "lx:backen",
+     "de": "Ich backe Brot, sie backt einen Kuchen.",
+     "tr": "Ben ekmek yapıyorum, o pasta yapıyor.",
+     "accepted": [
+      "Ich backe Brot, sie backt einen Kuchen.",
+      "Ich backe Brot und sie backt einen Kuchen.",
+      "Sie backt einen Kuchen, ich backe Brot."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "İş çıkışı, kapının önünde Ioana ile karşılaşıyorsun.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Hallo! Feierabend? Wo ist dein Fahrrad?",
+      "tr": "Merhaba! İş bitti mi? Bisikletin nerede?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Es ist in der Werkstatt. Es ist kaputt.",
+      "tr": "Tamirhanede. Bozuk."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Ich backe heute einen Kuchen. Kommst du?",
+      "tr": "Ben bugün pasta yapıyorum. Gelir misin?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Bisiklet nerede?",
+     "opts": [
+      "Tamirhanede",
+      "Mutfakta",
+      "Ioana'da"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:22:v1",
+  "title_tr": "Ehliyet nerede?",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Senin mutfağın. Ioana sana uğramış, çantasını masaya boşaltıyor, telaşlı.",
+    "de": "Mensch! Wo ist mein Führerschein?",
+    "tr": "Of be! Ehliyetim nerede?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Kapı aralık. Frau Brandl başını içeri uzatıyor.",
+    "de": "Hallo! Was suchen Sie denn?",
+    "tr": "Merhaba! Ne arıyorsunuz?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana iki elini açıyor.",
+    "de": "Meinen Führerschein. Er ist weg!",
+    "tr": "Ehliyetimi. Kayıp!"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl sandalyedeki ceketi gösteriyor.",
+    "de": "Ist er in der Jacke?",
+    "tr": "Ceketin içinde mi?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana ceketin ceplerine bakıyor, başını sallıyor.",
+    "de": "Nein, da ist er nicht.",
+    "tr": "Hayır, orada değil."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl mutfak masasına yaklaşıyor.",
+    "de": "Und in der Küche? Da ist eine Tasse und eine Karte.",
+    "tr": "Peki mutfakta? Orada bir fincan ve bir kart var."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana kartı alıp gösteriyor.",
+    "de": "Die Karte? Das ist eine Einladung.",
+    "tr": "Kart mı? O bir davetiye."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl merakla gülümsüyor.",
+    "de": "Eine Einladung? Schön!",
+    "tr": "Davetiye mi? Ne güzel!"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana kartı bırakıp yine çantasına dönüyor.",
+    "de": "Ja, für Freitag. Aber wo ist der Führerschein?",
+    "tr": "Evet, cuma için. Ama ehliyet nerede?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl katlanmış bir kâğıt kaldırıyor.",
+    "de": "Und das hier? Ist das ein Rezept?",
+    "tr": "Peki bu? Bu bir reçete mi?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana kâğıda bakıyor.",
+    "de": "Ja, das Rezept von Dr. Weber.",
+    "tr": "Evet, Dr. Weber'in reçetesi."
+   },
+   {
+    "id": "s11b",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana boğazını tutuyor.",
+    "de": "Es ist für die Tabletten.",
+    "tr": "Haplar için."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl fincanı gösteriyor: hemen yanında küçük pembe bir kart duruyor.",
+    "de": "Da! Hier ist er! Bei der Tasse!",
+    "tr": "İşte! Burada! Fincanın yanında!"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana ehliyeti alıp göğsüne bastırıyor.",
+    "de": "Mein Führerschein! Danke, Frau Brandl!",
+    "tr": "Ehliyetim! Teşekkürler Brandl Hanım!"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl gülerek fincanı gösteriyor.",
+    "de": "Gern. Und die Tasse? Sie ist von mir!",
+    "tr": "Rica ederim. Peki fincan? O benim!"
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana utanarak gülüyor, fincanı yıkamak için alıyor.",
+    "de": "Ja, klar! Ich gebe sie gleich zurück.",
+    "tr": "Evet, tabii! Hemen geri veriyorum."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s11b",
+     "s12",
+     "s13",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Ioana ne arıyor?",
+     "opts": [
+      "Ehliyetini",
+      "Reçeteyi",
+      "Bir fincanı"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s3"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Ehliyet nerede çıkıyor?",
+      "opts": [
+       "Fincanın yanında",
+       "Ceketin içinde",
+       "Reçetenin içinde"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s12"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Fincan kimin?",
+      "opts": [
+       "Brandl Hanım'ın",
+       "Ioana'nın",
+       "Dr. Weber'in"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s14"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s3",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "weg",
+       "hier",
+       "da"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s4",
+      "seviye": "orta",
+      "de": "Ist ___ in der Jacke?",
+      "accepted": [
+       "er",
+       "Er",
+       "er."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s11b",
+      "seviye": "zor",
+      "banka": [
+       "Es",
+       "ist",
+       "für",
+       "die",
+       "Tabletten",
+       "Er",
+       "Sie"
+      ],
+      "accepted": [
+       "Es ist für die Tabletten.",
+       "es ist für die tabletten",
+       "Es ist für die Tabletten"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s7",
+      "seviye": "usta",
+      "accepted": [
+       "Die Karte? Das ist eine Einladung.",
+       "die karte das ist eine einladung",
+       "Die Karte, das ist eine Einladung."
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Ehliyet ve fincan için Almanca iki kısa cümle yaz.",
+      "ornek_de": "Der Führerschein ist bei der Tasse. Sie ist von Frau Brandl.",
+      "zorunlu": [
+       "Führerschein",
+       "Tasse"
+      ]
+     }
+    ],
+    "golge": [
+     "s1",
+     "s15"
+    ],
+    "cevapla": {
+     "id": "m1:22:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Ioana senin reçeteni de soruyor. Senin reçeten dolapta.",
+     "prompt_de": "Und wo ist dein Rezept?",
+     "accepted": [
+      "Es ist im Schrank.",
+      "Im Schrank.",
+      "Mein Rezept ist im Schrank.",
+      "Das Rezept ist im Schrank.",
+      "Es ist da, im Schrank.",
+      "Das ist im Schrank.",
+      "Es ist hier im Schrank."
+     ],
+     "why_tr": "**das Rezept** için **es** dersin: **Es ist im Schrank**."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:22:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Ioana'dan sesli mesaj",
+   "ortam_tr": "Akşam telefonuna Ioana'dan bir mesaj gelmiş. Dün sendeydi.",
+   "speaker": "ch:popescu",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Ioana!",
+     "tr": "Merhaba, ben Ioana!"
+    },
+    {
+     "id": "c2",
+     "de": "Ich suche meine Einladung für Freitag.",
+     "tr": "Cuma için davetiyemi arıyorum."
+    },
+    {
+     "id": "c3",
+     "de": "Ist sie bei dir?",
+     "tr": "Sende mi?"
+    },
+    {
+     "id": "c4",
+     "de": "Sie ist vielleicht in der Küche, auf dem Schrank.",
+     "tr": "Belki mutfakta, dolabın üstündedir."
+    },
+    {
+     "id": "c5",
+     "de": "Danke, bis morgen!",
+     "tr": "Teşekkürler, yarın görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Ioana neden arıyor?",
+      "opts": [
+       "Davetiyesini arıyor",
+       "Seni pastaya çağırıyor",
+       "Ehliyetini arıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Davetiye hangi gün için?",
+       "opts": [
+        "Cuma",
+        "Pazar",
+        "Yarın"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ioana'ya göre davetiye nerede olabilir?",
+       "opts": [
+        "Mutfakta, dolabın üstünde",
+        "Ceketin içinde",
+        "Dolapta"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Einladung",
+        "Tasse",
+        "Rezept"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Ist ___ bei dir?",
+       "accepted": [
+        "sie",
+        "Sie",
+        "sie."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Sie",
+        "ist",
+        "vielleicht",
+        "in",
+        "der",
+        "Küche",
+        "auf",
+        "dem",
+        "Schrank",
+        "Er",
+        "es"
+       ],
+       "accepted": [
+        "Sie ist vielleicht in der Küche, auf dem Schrank.",
+        "sie ist vielleicht in der küche auf dem schrank",
+        "Sie ist vielleicht in der Küche auf dem Schrank."
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Ich suche meine Einladung für Freitag.",
+        "ich suche meine einladung für freitag",
+        "Ich suche meine Einladung für Freitag"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Ioana'nın mesajını Almanca bir kısa cümleyle özetle.",
+       "ornek_de": "Ioana sucht die Einladung für Freitag.",
+       "zorunlu": [
+        "Einladung"
+       ]
+      }
+     ],
+     "golge": [
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:22:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana'yı arıyorsun. Davetiye sende, mutfakta.",
+      "prompt_de": "Und? Ist meine Einladung bei dir?",
+      "accepted": [
+       "Ja, sie ist hier, in der Küche.",
+       "Ja, sie ist in der Küche.",
+       "Ja, sie ist hier.",
+       "Ja! Sie ist in der Küche, auf dem Schrank.",
+       "Ja, die Einladung ist hier, in der Küche.",
+       "Ja, sie ist bei mir in der Küche.",
+       "Ja, hier ist sie."
+      ],
+      "why_tr": "**die Einladung** için **sie** dersin: **Sie ist hier**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:22:a1:e1",
+    "k": "pick",
+    "q_tr": "Mesajdan sonra ne yapmalısın?",
+    "opts": [
+     "Mutfağa bak, davetiyeyi bul ve Ioana'ya haber ver.",
+     "Ioana'ya pasta götür.",
+     "Cuma günkü daveti iptal et."
+    ],
+    "ans": 0,
+    "why_tr": "Ioana davetiyesini arıyor. Belki senin mutfağında.",
+    "kanit": [
+     "c2",
+     "c3",
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:22:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Brandl Hanım'dan sesli mesaj",
+   "ortam_tr": "Alt kattaki komşun Brandl Hanım telefonuna mesaj bırakmış.",
+   "speaker": "ch:brandl",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Rosa Brandl.",
+     "tr": "Merhaba, ben Rosa Brandl."
+    },
+    {
+     "id": "c2",
+     "de": "Haben Sie meine Tasse noch?",
+     "tr": "Fincanım hâlâ sizde mi?"
+    },
+    {
+     "id": "c3",
+     "de": "Bitte geben Sie sie morgen zurück.",
+     "tr": "Lütfen yarın geri verin."
+    },
+    {
+     "id": "c4",
+     "de": "Ich backe morgen einen Kuchen.",
+     "tr": "Yarın bir pasta yapıyorum."
+    },
+    {
+     "id": "c5",
+     "de": "Kommen Sie doch um vier zum Kuchen!",
+     "tr": "Saat dörtte pastaya gelin!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Brandl Hanım ne istiyor?",
+      "opts": [
+       "Fincanını geri istiyor ve seni pastaya çağırıyor",
+       "Pasta için para istiyor",
+       "Mutfağını toplamanı istiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Fincanı ne zaman geri vermelisin?",
+       "opts": [
+        "Yarın",
+        "Bugün",
+        "Pazar günü"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Pasta için saat kaçta gitmelisin?",
+       "opts": [
+        "Saat dörtte",
+        "Saat ikide",
+        "Saat beşte"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Tasse",
+        "Karte",
+        "Jacke"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Bitte geben Sie ___ morgen zurück.",
+       "accepted": [
+        "sie",
+        "Sie",
+        "sie."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "backe",
+        "morgen",
+        "einen",
+        "Kuchen",
+        "backt",
+        "ein"
+       ],
+       "accepted": [
+        "Ich backe morgen einen Kuchen.",
+        "ich backe morgen einen kuchen",
+        "Ich backe morgen einen Kuchen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Kommen Sie doch um vier zum Kuchen!",
+        "kommen sie doch um vier zum kuchen",
+        "Kommen Sie doch um vier zum Kuchen."
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Brandl Hanım'ın mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Frau Brandl möchte ihre Tasse. Morgen backt sie einen Kuchen.",
+       "zorunlu": [
+        "Tasse",
+        "Kuchen"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:22:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Brandl Hanım'la merdivende karşılaşıyorsun. Fincanı yarın geri vereceksin.",
+      "prompt_de": "Und meine Tasse?",
+      "accepted": [
+       "Ich gebe sie morgen zurück.",
+       "Morgen gebe ich sie zurück.",
+       "Ich gebe sie Ihnen morgen zurück.",
+       "Ich gebe Ihnen die Tasse morgen zurück.",
+       "Die Tasse gebe ich morgen zurück.",
+       "Morgen, um vier!",
+       "Ich bringe sie morgen."
+      ],
+      "why_tr": "**die Tasse** için **sie** dersin. **zurück** cümlenin sonuna gider."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:22:a2:e1",
+    "k": "pick",
+    "q_tr": "Mesajdan sonra ne yapmalısın?",
+    "opts": [
+     "Yarın saat dörtte fincanı alıp Brandl Hanım'a git.",
+     "Bugün akşam Brandl Hanım'a pasta götür.",
+     "Fincanı Ioana'ya ver."
+    ],
+    "ans": 0,
+    "why_tr": "Brandl Hanım fincanı yarın istiyor ve seni saat dörtte pastaya çağırıyor.",
+    "kanit": [
+     "c3",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:22:g1",
+   "de": "die Tasse",
+   "dogru_img": "single coffee cup on a kitchen table",
+   "celdirici_img": [
+    "glass bottle on a kitchen table",
+    "plate with bread on a kitchen table",
+    "kitchen knife on a kitchen table"
+   ]
+  },
+  {
+   "id": "m1:22:g2",
+   "de": "die Tablette",
+   "dogru_img": "a few white pills on an open palm",
+   "celdirici_img": [
+    "a few coins on an open palm",
+    "a few sweets on an open palm",
+    "a key on an open palm"
+   ]
+  },
+  {
+   "id": "m1:22:g3",
+   "de": "der Führerschein",
+   "dogru_img": "European driving licence card with photo, car symbol",
+   "celdirici_img": [
+    "bank card",
+    "bus ticket",
+    "business card"
+   ]
+  },
+  {
+   "id": "m1:22:g4",
+   "de": "das Rezept",
+   "dogru_img": "doctor's prescription form with stamp, next to a medicine box",
+   "celdirici_img": [
+    "shop receipt",
+    "birthday card",
+    "page of a calendar"
+   ]
+  },
+  {
+   "id": "m1:22:g5",
+   "de": "die Einladung",
+   "dogru_img": "printed invitation card for a Christmas party with date and time",
+   "celdirici_img": [
+    "shopping list on paper",
+    "bus ticket",
+    "doctor's prescription"
+   ]
+  },
+  {
+   "id": "m1:22:g6",
+   "de": "die Unterschrift",
+   "dogru_img": "close-up of a handwritten signature at the bottom of a form",
+   "celdirici_img": [
+    "close-up of printed numbers on a form",
+    "close-up of a stamp on a form",
+    "close-up of an empty form"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:22:p1",
+  "title_tr": "Ioana ile reçeteyi arıyorsun",
+  "durum_tr": "Ioana sana uğradı. Dr. Weber'in reçetesini bulamıyorsun. Ioana yardım ediyor ve eşyaları soruyor.",
+  "karsi": "ch:popescu",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Hallo! Ich bin da. Was suchst du denn?",
+    "tr": "Merhaba! Geldim. Ne arıyorsun?",
+    "secenekler": [
+     {
+      "de": "Das Rezept von Dr. Weber. Es ist weg!",
+      "tr": "Dr. Weber'in reçetesini. Kayıp!",
+      "accepted": [
+       "Das Rezept von Dr. Weber. Es ist weg!",
+       "Das Rezept. Es ist weg!",
+       "Ich suche das Rezept von Dr. Weber. Es ist weg!",
+       "Das Rezept von Dr. Weber, es ist weg.",
+       "Mein Rezept. Es ist weg!"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **das Rezept** için **es** dedin."
+     },
+     {
+      "de": "Ich suche den Rezept.",
+      "tr": "Reçeteyi arıyorum. (yanlış)",
+      "accepted": [
+       "Ich suche den Rezept.",
+       "Den Rezept.",
+       "Ich suche der Rezept."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "**Rezept** kelimesi **das** ile gider: **das Rezept**."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Ist es in der Küche?",
+    "tr": "Mutfakta mı?",
+    "secenekler": [
+     {
+      "de": "Nein, da ist es nicht.",
+      "tr": "Hayır, orada değil.",
+      "accepted": [
+       "Nein, da ist es nicht.",
+       "Nein, es ist nicht in der Küche.",
+       "Nein, in der Küche ist es nicht.",
+       "Nein, da nicht."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Reçete için yine **es** dedin."
+     },
+     {
+      "de": "Nein, da ist er nicht.",
+      "tr": "Hayır, orada değil. (yanlış)",
+      "accepted": [
+       "Nein, da ist er nicht.",
+       "Nein, er ist nicht in der Küche.",
+       "Nein, da ist sie nicht."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "**das Rezept** için **es** dersin, **er** değil."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Hier ist eine Karte. Ist das deine Einladung?",
+    "tr": "Burada bir kart var. Bu senin davetiyen mi?",
+    "secenekler": [
+     {
+      "de": "Ja, das ist die Einladung von der Firma.",
+      "tr": "Evet, bu şirketin davetiyesi.",
+      "accepted": [
+       "Ja, das ist die Einladung von der Firma.",
+       "Ja, das ist meine Einladung von der Firma.",
+       "Ja, die Einladung von der Firma.",
+       "Ja, das ist die Einladung."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Evet. Kimden geldiğini de söyledin."
+     },
+     {
+      "de": "Ja, sie ist von der Firma.",
+      "tr": "Evet, şirketten.",
+      "accepted": [
+       "Ja, sie ist von der Firma.",
+       "Ja, sie ist von der Firma, für Freitag.",
+       "Ja, die ist von der Firma."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **die Einladung** için **sie** dedin."
+     },
+     {
+      "de": "Ja, er ist von der Firma.",
+      "tr": "Evet, şirketten. (yanlış)",
+      "accepted": [
+       "Ja, er ist von der Firma.",
+       "Ja, es ist von der Firma.",
+       "Er ist von der Firma."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "**die Einladung** için **sie** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Und hier, in der Jacke! Ist das das Rezept?",
+    "tr": "Peki burada, ceketin içinde! Bu reçete mi?",
+    "secenekler": [
+     {
+      "de": "Ja! Da ist es! Danke!",
+      "tr": "Evet! İşte orada! Teşekkürler!",
+      "accepted": [
+       "Ja! Da ist es! Danke!",
+       "Ja, da ist es! Danke!",
+       "Ja! Hier ist es! Danke!",
+       "Ja, das ist es! Danke!",
+       "Da ist es! Danke, Ioana!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Reçeteyi buldun ve **es** dedin."
+     },
+     {
+      "de": "Ja! Da ist sie!",
+      "tr": "Evet! İşte orada! (yanlış)",
+      "accepted": [
+       "Ja! Da ist sie!",
+       "Da ist sie!",
+       "Ja! Da ist er!"
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Reçete **das Rezept**. Bu yüzden **Da ist es** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Gut! Und der Kuchen? Wo ist er?",
+    "tr": "İyi! Peki pasta? Nerede?",
+    "secenekler": [
+     {
+      "de": "Er ist in der Küche, im Schrank.",
+      "tr": "Mutfakta, dolapta.",
+      "accepted": [
+       "Er ist in der Küche, im Schrank.",
+       "Er ist im Schrank, in der Küche.",
+       "In der Küche, im Schrank.",
+       "Der Kuchen ist in der Küche, im Schrank.",
+       "Er ist in der Küche im Schrank."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **der Kuchen** için **er** dedin."
+     },
+     {
+      "de": "Es ist in der Küche.",
+      "tr": "Mutfakta. (yanlış)",
+      "accepted": [
+       "Es ist in der Küche.",
+       "Sie ist in der Küche.",
+       "Es ist im Schrank."
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "**der Kuchen** için **er** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Danke! Dann essen wir jetzt Kuchen!",
+    "tr": "Teşekkürler! O zaman şimdi pasta yiyoruz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Ioana'nın sorularına cevap verdin. Her eşya için doğru kelimeyi seçtin: **er**, **sie**, **es**."
+ },
+ "okuma_yazma": {
+  "tur": "yazma",
+  "title_tr": "Ioana'nın notu",
+  "metin_de": "Hallo {name}! Danke für den Abend! Die Tasse von Frau Brandl ist in der Küche. Gibst du sie morgen zurück? Dein Rezept ist im Schrank, bei den Tabletten. Bis morgen, Ioana!",
+  "metin_tr": "Merhaba {name}! Akşam için teşekkürler! Brandl Hanım'ın fincanı mutfakta. Yarın geri verir misin? Reçeten dolapta, hapların yanında. Yarın görüşürüz, Ioana!",
+  "sorular": [
+   {
+    "id": "m1:22:o1",
+    "kind": "detail",
+    "q_tr": "Brandl Hanım'ın fincanı nerede?",
+    "opts": [
+     "Mutfakta",
+     "Dolapta",
+     "Ioana'da"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:22:o2",
+    "kind": "detail",
+    "q_tr": "Fincanı yarın kim geri verecek?",
+    "opts": [
+     "Sen",
+     "Ioana",
+     "Brandl Hanım"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:22:o3",
+    "kind": "detail",
+    "q_tr": "Reçete nerede?",
+    "opts": [
+     "Dolapta, hapların yanında",
+     "Mutfak masasında",
+     "Ceketin içinde"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Ioana'ya kısa bir not yaz. Ehliyet dolapta, davetiye fincanın yanında, haplar ceketin içinde. **er** ve **sie** kullan.",
+   "ornek_de": "Hallo Ioana! Der Führerschein? Er ist im Schrank. Die Einladung? Sie ist bei der Tasse. Die Tabletten sind in der Jacke. Danke!",
+   "zorunlu": [
+    "Führerschein",
+    "Einladung"
+   ],
+   "accepted_kaliplar": [
+    "Hallo ___!",
+    "Hallo ___,",
+    "Der Führerschein? Er ist ___.",
+    "Der Führerschein ist ___.",
+    "Er ist ___.",
+    "Die Einladung? Sie ist ___.",
+    "Die Einladung ist ___.",
+    "Sie ist ___.",
+    "Die Tabletten sind ___.",
+    "Die Tabletten? Sie sind ___.",
+    "Sie sind ___.",
+    "Danke!",
+    "Bis morgen!",
+    "Bis ___!"
+   ],
+   "kontrol_tr": [
+    "Ehliyet için **er** yazdın mı?",
+    "Davetiye için **sie** yazdın mı?",
+    "Üç eşyanın da yerini yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:22:s",
+  "maddeler": [
+   {
+    "id": "m1:22:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Die Tasse ist in der Küche.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Tasse ist in der Küche.",
+     "die tasse ist in der küche",
+     "Die Tasse ist in der Küche"
+    ],
+    "why_tr": "**die Tasse** fincan demektir."
+   },
+   {
+    "id": "m1:22:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Ich suche meinen Führerschein.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich suche meinen Führerschein.",
+     "ich suche meinen führerschein",
+     "Ich suche meinen Führerschein"
+    ],
+    "why_tr": "**Ich suche** arıyorum demektir."
+   },
+   {
+    "id": "m1:22:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Das Amt ist am Montag geschlossen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Amt ist am Montag geschlossen.",
+     "das amt ist am montag geschlossen",
+     "Das Amt ist am Montag geschlossen"
+    ],
+    "why_tr": "**das Amt** resmî daire demektir."
+   },
+   {
+    "id": "m1:22:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ioana backt heute Brot.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ioana backt heute Brot.",
+     "ioana backt heute brot",
+     "Ioana backt heute Brot"
+    ],
+    "why_tr": "**backt** fırında pişiriyor demektir."
+   },
+   {
+    "id": "m1:22:s5",
+    "k": "tr_de",
+    "tr": "Reçete nerede? Mutfakta mı?",
+    "accepted": [
+     "Wo ist das Rezept? Ist es in der Küche?",
+     "Wo ist das Rezept? Ist das in der Küche?",
+     "Wo ist das Rezept? In der Küche?",
+     "Wo ist denn das Rezept? Ist es in der Küche?"
+    ],
+    "why_tr": "**das Rezept** için soruda da **es** gelir: **Ist es in der Küche?**"
+   },
+   {
+    "id": "m1:22:s6",
+    "k": "tr_de",
+    "tr": "Bisiklet tamirhanede.",
+    "accepted": [
+     "Das Fahrrad ist in der Werkstatt.",
+     "Mein Fahrrad ist in der Werkstatt.",
+     "Das Fahrrad ist jetzt in der Werkstatt.",
+     "Es ist in der Werkstatt."
+    ],
+    "why_tr": "Tamirhanede derken **in der Werkstatt** dersin."
+   },
+   {
+    "id": "m1:22:s7",
+    "k": "tr_de",
+    "tr": "Randevuyu iptal ediyorum.",
+    "accepted": [
+     "Ich sage den Termin ab.",
+     "Den Termin sage ich ab.",
+     "Ich sage meinen Termin ab.",
+     "Ich sage den Termin leider ab."
+    ],
+    "why_tr": "**absagen** cümlede ikiye ayrılır: **Ich sage den Termin ab**."
+   },
+   {
+    "id": "m1:22:s8",
+    "k": "tr_de",
+    "tr": "Numarayı not ediyorum.",
+    "accepted": [
+     "Ich schreibe die Nummer auf.",
+     "Die Nummer schreibe ich auf.",
+     "Ich schreibe mir die Nummer auf.",
+     "Ich schreibe jetzt die Nummer auf."
+    ],
+    "why_tr": "**aufschreiben** cümlede ikiye ayrılır: **Ich schreibe die Nummer auf**."
+   },
+   {
+    "id": "m1:22:s9",
+    "k": "guided_response",
+    "situation_tr": "Ioana fincanını soruyor. Fincan mutfakta.",
+    "prompt_de": "Wo ist meine Tasse?",
+    "accepted": [
+     "Sie ist in der Küche.",
+     "In der Küche.",
+     "Deine Tasse ist in der Küche.",
+     "Die Tasse ist in der Küche.",
+     "Sie ist da, in der Küche.",
+     "Die ist in der Küche.",
+     "Sie ist hier in der Küche."
+    ],
+    "why_tr": "**die Tasse** için **sie** dersin."
+   },
+   {
+    "id": "m1:22:s10",
+    "k": "guided_response",
+    "situation_tr": "Brandl Hanım fincanını soruyor. Yarın geri veriyorsun.",
+    "prompt_de": "Haben Sie meine Tasse noch?",
+    "accepted": [
+     "Ja, ich gebe sie morgen zurück.",
+     "Ja, morgen gebe ich sie zurück.",
+     "Ja, ich gebe sie Ihnen morgen zurück.",
+     "Ja, sie ist hier. Ich gebe sie morgen zurück.",
+     "Ja, die Tasse gebe ich morgen zurück.",
+     "Ja, ich gebe Ihnen die Tasse morgen zurück."
+    ],
+    "why_tr": "**zurückgeben** ikiye ayrılır: **Ich gebe sie morgen zurück**."
+   },
+   {
+    "id": "m1:22:s11",
+    "k": "guided_response",
+    "situation_tr": "Ioana ehliyeti ve davetiyeyi soruyor. Ehliyet ceketin içinde, davetiye dolapta. İkisini de er ve sie ile söyle.",
+    "prompt_de": "Wo ist der Führerschein? Und die Einladung?",
+    "accepted": [
+     "Er ist in der Jacke, und sie ist im Schrank.",
+     "Er ist in der Jacke. Sie ist im Schrank.",
+     "Er ist in der Jacke, sie im Schrank.",
+     "Er ist in der Jacke, und die Einladung? Sie ist im Schrank.",
+     "Er ist in der Jacke und sie ist im Schrank.",
+     "In der Jacke ist er. Und sie ist im Schrank.",
+     "Der Führerschein? Er ist in der Jacke. Die Einladung? Sie ist im Schrank."
+    ],
+    "why_tr": "**der Führerschein** için **er**, **die Einladung** için **sie** dersin."
+   }
+  ],
+  "sesli": [
+   "m1:22:s9",
+   "m1:22:s10"
+  ],
+  "dikte": [
+   "m1:22:s1",
+   "m1:22:s2",
+   "m1:22:s3",
+   "m1:22:s4"
+  ]
+ }
+}
