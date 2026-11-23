@@ -331,3 +331,15 @@ Kapsam: yazarın hafta kapısı için yaptığı değişiklikler (`yazar-notlari
 Sonuç: 7 bulgu, 7 düzeltme (4 maddede; +24 kabul, 2 kabul düzeltildi, 1 karşı taraf cümlesi ve 1 durum metni yeniden yazıldı). KAPANDI.
 
 KARAR: ONAY
+
+## Bütünleştirme fark turu (İÇ-10)
+
+Kapsam: `657d7501` (45. gün `a1` gölgesi c3, c4 → c4, c5). İncelenen değişiklik: 1. Tarih: 2026-11-23.
+
+- Yeni gölge cümleleri: **Für die Impfung machen Sie bitte einen Termin.**, **Wir haben von Montag bis Samstag geöffnet.** İkisi de doğru, kişi adı yok, sesli tekrar için uygun uzunlukta.
+- Ana fikir (kanıt c2, c3), ayrıntı soruları (c4, c5) ve dikte maddeleri (c5, c3, c4, c1) değişmedi; kanıtlar yerinde.
+- Bütünleşik ağacın kopyasında hafta kapısı 7. hafta GEÇTİ, dikiş 45. gün 0 ihlal.
+
+Bulgu yok, dosyaya dokunulmadı. Hata oranı 0/1.
+
+KARAR: ONAY
