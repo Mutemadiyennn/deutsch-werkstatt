@@ -114,7 +114,7 @@ def main():
                     pg.evaluate("""async () => { const v = (await (await fetch('content/current.json')).json()).version;
                       const g = await (await fetch('content/' + v + '/m1/gun-' + String(GUN_).padStart(2, '0') + '.json')).json();
                       const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
-                      await new Promise((ok) => { const t = d.transaction('meta', 'readwrite'); for (const x of g.sesler) t.objectStore('meta').put({ key: 'm1:medya:' + x.id, value: { bitti: new Date().toISOString() } }); t.oncomplete = ok; }); d.close(); }""")
+                      await new Promise((ok) => { const t = d.transaction('meta', 'readwrite'); for (const x of g.sesler) for (const ek of [':1', ':2']) t.objectStore('meta').put({ key: 'm1:medya:' + x.id + ek, value: { bitti: new Date().toISOString() } }); t.oncomplete = ok; }); d.close(); }""")
                     pg.reload(); pg.wait_for_selector("[data-test=akis]", timeout=20000); continue
                 if pg.locator("[data-test=halka-sonu]").count(): pg.click("[data-test=halka-sonu-devam]"); pg.wait_for_timeout(150); continue
                 if adim_gec(pg) is None: break
@@ -130,18 +130,28 @@ def main():
         check(k and k["ilkDurak"] == "ses" and k["halka"] == 1, f"plan kuruldu ve saklandı; ilk durak ses, sonra halka ({k})")
         check(pg.locator("[data-test=akis-durak-gecis]").count() == 1 and pg.locator("[data-tab=today]").count() == 0, "adımsız durak: tek geçiş adımı; sekme çubuğu yok")
         hedef = pg.get_attribute("[data-test=akis-durak-gecis]", "data-hedef") or ""
-        check(hedef.startswith(f"#/m1/{GUN}/") and pg.locator("[data-test=akis-durak-basla]").count() == 1, f"ses durağı var olan medya ekranına gider ({hedef})")
+        check(hedef.startswith(f"#/m1/{GUN}/") and hedef.endswith("/1") and pg.locator("[data-test=akis-durak-basla]").count() == 1, f"ses durağı (ilk tur, PM-097 md. 1) var olan medya ekranına gider ({hedef})")
         # dönüş (AK-6): medya ekranı bitmiş sayılınca akış yeniden açılışta kendiliğinden ilerler
         # ses durağı günün BÜTÜN sesleri bitince biter (inceleme #184 P1-3): önce biri, sonra hepsi
         sesler = pg.evaluate("""async () => { const v = (await (await fetch('content/current.json')).json()).version;
           const g = await (await fetch('content/' + v + '/m1/gun-' + String(GUN_).padStart(2, '0') + '.json')).json(); return g.sesler.map((x) => x.id); }""")
         yaz = """async (ks) => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
           await new Promise((ok) => { const t = d.transaction('meta', 'readwrite'); for (const k of ks) t.objectStore('meta').put({ key: k, value: { bitti: new Date().toISOString() } }); t.oncomplete = ok; }); d.close(); }"""
-        pg.evaluate(yaz, ["m1:medya:" + sesler[0]]); pg.reload(); pg.wait_for_selector("[data-test=akis]", timeout=20000)
+        if "--tam" in sys.argv:
+            pg.goto(base + hedef); pg.wait_for_selector("[data-test=medya]", timeout=20000)
+            check(pg.locator("[data-test=adim-dinle]").count() == 1, "ses ilk tur: baştan sona dinle ile başlar")
+            pg.goto(base + f"#/akis/{GUN}"); pg.wait_for_selector("[data-test=akis]", timeout=20000)
+        pg.evaluate(yaz, ["m1:medya:" + sesler[0] + ":1"]); pg.reload(); pg.wait_for_selector("[data-test=akis]", timeout=20000)
         if len(sesler) > 1:
             h2 = pg.get_attribute("[data-test=akis-durak-gecis]", "data-hedef") or ""
             check(pg.locator("[data-test=akis-durak-gecis]").count() == 1 and h2 != hedef, f"biri bitince durak sürer, sıradaki sese gider ({hedef} → {h2})")
-        pg.evaluate(yaz, ["m1:medya:" + x for x in sesler])
+        pg.evaluate(yaz, ["m1:medya:" + x + ":1" for x in sesler])
+        # PM-097 md. 1: sesin ikinci turu yalnız üretim basamaklarıyla açılır (dinleme yok); ilk tur yalnız dinleme + anlama
+        if "--tam" in sys.argv:
+            pg.goto(base + f"#/m1/{GUN}/{sesler[0]}/2"); pg.wait_for_selector("[data-test=medya]", timeout=20000); pg.wait_for_timeout(400)
+            uretim = pg.locator("[data-test=adim-golge], [data-test=adim-cevapla], [data-test^=dikte-]").count()
+            check(pg.locator("[data-test=adim-dinle]").count() == 0 and pg.locator("[data-test=adim-soru]").count() == 0, f"ses ikinci tur: dinleme ve anlama sorusu yok (üretim basamağı {uretim})")
+            pg.goto(base + f"#/akis/{GUN}")
         pg.reload(); pg.wait_for_selector("[data-test=akis]", timeout=20000)
         # yeni kelime (TARGET3b 2)
         pg.wait_for_selector("[data-test=akis-tanit]")
