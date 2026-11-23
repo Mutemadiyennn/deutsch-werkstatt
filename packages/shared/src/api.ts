@@ -40,6 +40,21 @@ export const ERROR_TR: Record<ErrorCode, { message_tr: string; retryable: boolea
 };
 
 /* ---------- Yapay zekâ görev kaydı ---------- */
+/** PM-086 md. 1: "nerede gördün?" (isteğe bağlı tek dokunuş) */
+export const KelimeBaglam = z.enum(["is", "doktor", "market", "mektup", "sokak"]);
+export type KelimeBaglam = z.infer<typeof KelimeBaglam>;
+/** PM-086 md. 3: yapay zekâ kartının bir anlam adayı (Bairisch alanı yok: uydurma lehçe yok, md. 6) */
+export const KelimeAday = z.object({
+  de: z.string().trim().min(1).max(60),
+  artikel: z.enum(["der", "die", "das"]).nullable(),
+  cogul: z.string().trim().max(60).nullable(),
+  tur: z.enum(["isim", "fiil", "sifat", "zarf", "ifade", "diger"]),
+  tr: z.string().trim().min(1).max(80),
+  duzey: z.enum(["hochdeutsch", "alltag"]),
+  ornekler: z.array(z.object({ de: z.string().trim().min(1).max(120), tr: z.string().trim().min(1).max(160) })).max(3)
+});
+export type KelimeAday = z.infer<typeof KelimeAday>;
+
 export const AiTasks = {
   /** Kural tabanlı eşleşmeyen bir cevabın beklenen cevaplarla anlamca ve dilbilgisi açısından eşdeğer olup olmadığı */
   equiv_check: {
@@ -100,6 +115,31 @@ export const AiTasks = {
       summary_tr: z.string().max(500)
     }),
     tier: "default" as const
+  },
+  /**
+   * PM-086 "Kendi kelimem": öğrencinin yazdığı tek kelime (Türkçe ya da Almanca) sözlükte yoksa kart. Worker ikinci gözle
+   * (`kelime_denet`) denetler ve geçmeyen alanı atar; istemciye yalnız denetlenmiş kart döner (worker/src/ai/kelimeKart.ts).
+   * Giden: yazılan kelime, isteğe bağlı bağlam etiketi, kimliksiz bilinen sözcük listesi. Ad ve hesap bilgisi gitmez.
+   */
+  kelime_kart: {
+    input: z.object({
+      giris: z.string().trim().min(1).max(60),
+      dil: z.enum(["de", "tr", "bilinmiyor"]).default("bilinmiyor"),
+      baglam: KelimeBaglam.optional(),
+      seviye: z.enum(["A1", "A2", "B1"]).default("A1"),
+      /** öğrencinin bildiği sözcükler (lemma, kimliksiz); örnek cümlelerin dayanağı (PM-086 md. 4) */
+      bilinen: z.array(z.string().trim().min(1).max(40)).max(400).default([])
+    }),
+    output: z.object({ adaylar: z.array(KelimeAday).max(3) }),
+    tier: "default" as const
+  },
+  /** PM-086 md. 5: kelime kartının ikinci gözü (ayrı çağrı). Aday başına alan alan geçti/kaldı */
+  kelime_denet: {
+    input: z.object({ giris: z.string().trim().min(1).max(60), adaylar: z.array(KelimeAday).min(1).max(3) }),
+    output: z.object({
+      adaylar: z.array(z.object({ de_ok: z.boolean(), tr_ok: z.boolean(), artikel_ok: z.boolean(), cogul_ok: z.boolean(), ornek_ok: z.array(z.boolean()).max(3) })).max(3)
+    }),
+    tier: "quick" as const
   }
 } as const;
 export type AiTaskName = keyof typeof AiTasks;

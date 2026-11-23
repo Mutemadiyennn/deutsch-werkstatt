@@ -45,7 +45,7 @@ export function mapStatus(status: number): HttpError {
 }
 
 /** Tek çağrı: JSON çıktı ister; metni döndürür */
-export async function generateJSON(env: Env, model: string, system: string, user: string, timeoutMs: number, schema?: object): Promise<string> {
+export async function generateJSON(env: Env, model: string, system: string, user: string, timeoutMs: number, schema?: object, _maxTokens?: number): Promise<string> {
   try {
     return await generateOnce(env, model, system, user, timeoutMs, schema);
   } catch (e) {

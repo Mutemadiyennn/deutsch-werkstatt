@@ -22,7 +22,8 @@ export function neurons(model: string, inTok: number, outTok: number): number {
 }
 
 /** Tek çağrı: sistem + kullanıcı iletisi, JSON çıktı. Şema desteklenmezse bir kez şemasız dener. Döner: metin */
-export async function generateWA(env: Env, model: string, system: string, user: string, timeoutMs: number, schema?: object): Promise<string> {
+/** `maxTokens`: görev çıktısı varsayılan sınıra sığmıyorsa (kelime kartı, PM-086) policy'deki görev değeri */
+export async function generateWA(env: Env, model: string, system: string, user: string, timeoutMs: number, schema?: object, maxTokens: number = WA.max_tokens): Promise<string> {
   if (!env.AI) throw new HttpError("not_configured", "AI binding");
   const u = await neuronUsage(env);
   // KV oku-yaz atomik değil: eşzamanlı çağrılar sayacı geride bırakabilir; tavanın %10'u pay olarak ayrılır
@@ -33,7 +34,7 @@ export async function generateWA(env: Env, model: string, system: string, user: 
     const sure = new Promise<never>((_, rej) => { t = setTimeout(() => rej(new HttpError("timeout")), timeoutMs); });
     try {
       return await Promise.race([
-        env.AI!.run(model, { messages, max_tokens: WA.max_tokens, temperature: 0.4, ...(withSchema && schema ? { response_format: { type: "json_schema", json_schema: schema } } : {}) }),
+        env.AI!.run(model, { messages, max_tokens: maxTokens, temperature: 0.4, ...(withSchema && schema ? { response_format: { type: "json_schema", json_schema: schema } } : {}) }),
         sure
       ]);
     } finally { clearTimeout(t); }
@@ -45,7 +46,7 @@ export async function generateWA(env: Env, model: string, system: string, user: 
     return /\b4006\b|neurons?\b|free allocation|daily free/i.test(m) ? new HttpError("quota_upstream", "workers-ai free allocation") : new HttpError("upstream_busy", m.slice(0, 120));
   };
   // zaman aşımında model arkada sürebilir: sayaç üst tahminle yazılır (çıkış = max_tokens), tavan yumuşamaz (inceleme #125 P1-2)
-  const tahminYaz = async () => { await env.QUOTA.put(nKey(u.day), String(u.used + neurons(model, Math.ceil((system.length + user.length) / 4), WA.max_tokens)), { expirationTtl: 3 * 86400 }); };
+  const tahminYaz = async () => { await env.QUOTA.put(nKey(u.day), String(u.used + neurons(model, Math.ceil((system.length + user.length) / 4), maxTokens)), { expirationTtl: 3 * 86400 }); };
   let r: { response?: unknown; usage?: { prompt_tokens?: number; completion_tokens?: number } };
   try {
     r = await once(!!schema);

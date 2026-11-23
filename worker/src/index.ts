@@ -2,7 +2,7 @@
  * Deutsch Werkstatt API (Cloudflare Worker).
  *   GET  /v1/health   — kimlik gerekmez; yalnızca yapılandırma durumu (gizli değer döndürmez)
  *   GET  /v1/usage    — günlük yapay zekâ kullanımı
- *   POST /v1/ai/run   — { task, vars } → { task, output, model, ms }
+ *   POST /v1/ai/run   — { task, vars } → { task, output, model, ms } (kelime_kart: üretim + ikinci göz, ai/kelimeKart.ts)
  *   GET  /v1/ai/selftest — kimliksiz canlı öz-sınama (PM-087 A); yalnız geçti/kaldı + ms + model (ai/selftest.ts)
  *   GET  /v1/pixabay  — MEDYA aracı: yalnız RAF_ARAC_JETONU ile (pixabay.ts)
  */
@@ -11,6 +11,7 @@ import { authenticate } from "./auth.ts";
 import { HttpError, corsHeaders, errorResponse, json } from "./http.ts";
 import { aiUsage, takeAi } from "./quota.ts";
 import { runTask } from "./ai/tasks.ts";
+import { kartHakki, kelimeKart, noronPayi } from "./ai/kelimeKart.ts";
 import { ozSinamaUc, OzSinamaDO } from "./ai/selftest.ts";
 import { searchPhotos } from "./photos.ts";
 import { aracJetonu, pixabayAra } from "./pixabay.ts";
@@ -56,9 +57,13 @@ export async function handle(req: Request, env: Env): Promise<Response> {
       // İnceleme #41 P1-3: sağlayıcı kapalıysa kota sayacına hiç yazılmaz
       const prov = (env.AI_PROVIDER || "none").trim();
       if (!(prov === "gemini" || (prov === "workers-ai" && env.AI))) throw new HttpError("not_configured", "ai_disabled");
+      // PM-086: kelime kartı üretim + ikinci göz tek istekte; önce ortak nöron payı, sonra günlük kart hakkı (kelimeKart.ts)
+      const kart = p.data.task === "kelime_kart";
+      if (kart) await noronPayi(env);
       await takeAi(env, u.uid);
+      if (kart) await kartHakki(env, u.uid);
       const t0 = Date.now();
-      const r = await runTask(env, p.data.task, p.data.vars);
+      const r = kart ? await kelimeKart(env, p.data.vars) : await runTask(env, p.data.task, p.data.vars);
       return json({ task: p.data.task, output: r.output, model: r.model, ms: Date.now() - t0 }, 200, cors);
     }
     return json({ error: { code: "invalid_request", message_tr: "Bulunamadı.", retryable: false } }, 404, cors);
