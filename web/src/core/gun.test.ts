@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { Gun } from "@dw/shared";
-import { akisAcik, gunAdimlari, yol, siradaki, xpEkle, seri, XP_BOS } from "./gun.ts";
+import { akisAcik, akisGunleriOku, bayrakli, gunAdimlari, yol, siradaki, xpEkle, seri, XP_BOS } from "./gun.ts";
 
 const g1 = Gun.parse(JSON.parse(readFileSync(join(import.meta.dirname, "../../../content/tools/fixtures/m1/gun-01.json"), "utf8")));
 const g2 = { ...g1, id: "m1:gun:02", day: 2, title_tr: "İkinci gün" } as Gun;
@@ -84,6 +84,37 @@ describe("AKIS pilot bayrağı (AK-6, 4b)", () => {
     expect(akisAcik(g, eski, [1])).toBe(false);
     expect(gunAdimlari(g, eski, {}, [1]).adimlar[0]!.href).toBe("#/garden/1");
     expect(akisAcik(g, { ...eski, akisBasladi: new Set([1]) }, [1])).toBe(true);
+  });
+  it('"hepsi": halkası olan her gün akışla açılır, halkasız gün eski düzende; bozuk bayrak değeri akışı açmaz (PM-090 md. 3)', () => {
+    const g8 = { ...g1, day: 8, halkalar: [halka] } as typeof g1;
+    expect(akisAcik(g8, bos(), "hepsi")).toBe(true);
+    expect(akisAcik(g8, bos(), [1])).toBe(false);
+    expect(akisAcik({ ...g1, day: 8 } as typeof g1, bos(), "hepsi")).toBe(false);
+    expect(gunAdimlari(g8, bos(), {}, "hepsi").adimlar[0]!.href).toBe("#/akis/8");
+    // eski düzenle başlanmış gün "hepsi"de de eski düzenle biter
+    expect(akisAcik(g8, { ...bos(), bahceBitti: new Set([8]) }, "hepsi")).toBe(false);
+    expect(bayrakli(3, "hepsi")).toBe(true);
+    expect(bayrakli(3, [1, 2])).toBe(false);
+    expect(akisGunleriOku("hepsi")).toBe("hepsi");
+    expect(akisGunleriOku([1, 2])).toEqual([1, 2]);
+    for (const bozuk of [null, undefined, "tum", 1, [1, "2"], { gunler: [1] }]) expect(akisGunleriOku(bozuk)).toBeNull();
+  });
+  it("politika dosyasındaki bayrak geçerli bir değer (dizi ya da \"hepsi\")", async () => {
+    const P = (await import("../policy.json", { with: { type: "json" } })).default as { akis: { gunler: unknown } };
+    expect(akisGunleriOku(P.akis.gunler)).not.toBeNull();
+  });
+  it("akış günü bitmeden BAŞLA akışa döner, Bahçe bitmiş olsa da; Yol düğümleri kendi ekranında (öğrenci simülasyonu P1-1)", () => {
+    const g = { ...g1, halkalar: [halka] } as typeof g1;
+    const ilr = { ...bos(), bahceBitti: new Set([1]), akisBasladi: new Set([1]) };
+    const basliklar = Object.fromEntries(g1.dersler.map((d) => [d, "Ders"]));
+    const d = gunAdimlari(g, ilr, basliklar, [1]);
+    const s = siradaki(d)!;
+    expect(s.tur).not.toBe("bahce"); expect(s.href).toBe("#/akis/1");
+    expect(d.adimlar.filter((x) => x.tur !== "bahce").every((x) => !x.href.startsWith("#/akis"))).toBe(true);
+    // gün bitince (akış gün anahtarı) BAŞLA yok; bayraksız günde eski davranış
+    const biten = gunAdimlari(g, { ...ilr, gunBitti: new Set([1]) }, basliklar, [1]);
+    expect(biten.bitti).toBe(true); expect(biten.akis).toBeUndefined();
+    expect(siradaki(gunAdimlari(g, ilr, basliklar, []))!.href.startsWith("#/akis")).toBe(false);
   });
 });
 
