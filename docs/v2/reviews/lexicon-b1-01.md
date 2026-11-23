@@ -79,3 +79,38 @@
 ## Sonuç
 
 **Dil incelemesi KAPANDI (ONAY).** Açık kalan üç madde B'de; `reviewed` için okur kapısı bekleniyor.
+
+## Okur düzeltmeleri (2026-11-23)
+
+Okur raporu: `docs/v2/reviews/okur/lexicon-b1-01.md`, 28 GERİ (23 kart). Yalnızca geri dönen alanlar değişti. Eşdizimlerde `…` somut bir örnekle dolduruldu; gereken yerde Almancası da aynı biçime getirildi. `review.status` `draft` kaldı. `content:validate` 0 hata.
+
+| Kimlik | Alan | Yeni metin |
+|---|---|---|
+| lx:Ansicht | collocations[1] | şu görüşte olmak |
+| lx:sinnvoll | collocations[2] | Es ist sinnvoll, früh zu kommen. · Erken gelmek mantıklı. |
+| lx:Hauptsache | collocations[3] | Die Hauptsache ist, dass es klappt. · Önemli olan işin olması. |
+| lx:kritisieren | collocations[1] | Viele kritisieren, dass es zu teuer ist. · Birçok kişi fazla pahalı olmasını eleştiriyor. |
+| lx:Bericht | collocations[2] | ein Bericht über das Wetter · hava durumu hakkında bir haber |
+| lx:Überschrift | collocations[3] | başlığın altında |
+| lx:aktuell | collocations[3] | Aktuell habe ich keine Zeit. · Şu an vaktim yok. |
+| lx:Einwohner | collocations[2] | Wie viele Einwohner hat die Stadt? · Şehrin nüfusu ne kadar? |
+| lx:stattfinden | collocations[2] | Wann findet der Kurs statt? · Kurs ne zaman yapılıyor? |
+| lx:Studie | collocations[2] | Eine Studie zeigt, dass wir zu wenig schlafen. · Bir araştırma çok az uyuduğumuzu gösteriyor. |
+| lx:insgesamt | collocations[1] | Das macht insgesamt 20 Euro. · Toplam 20 avro ediyor. |
+| lx:Experte | collocations[0] | Experten sagen, dass die Preise steigen. · Uzmanlar fiyatların artacağını söylüyor. |
+| lx:Experte | collocations[2] | ein Experte für Computer · bilgisayar uzmanı |
+| lx:sinnvoll | mistakes_tr[1] | Mantıklı bir fikir derken **eine sinnvoll Idee** yanlış. Doğrusu **eine sinnvolle Idee.** **Idee** önünde sona **e** eklenir. |
+| lx:Bericht | mistakes_tr[1] | **die Bericht** yanlış. Doğrusu **der Bericht.** |
+| lx:Ereignis | mistakes_tr[1] | Birden çok olay için **die Ereignisse** denir, sonda iki **s** yazılır. |
+| lx:Vorfall | mistakes_tr[1] | Birden çok olay için **die Vorfälle** denir, **a** harfi **ä** olur. |
+| lx:Unwetter | mistakes_tr[1] | **die Unwetter** tek bir fırtına için yanlış. Doğrusu **das Unwetter**, tıpkı **das Wetter** gibi. |
+| lx:aktuell | forms[0].hint_tr | **die Nachrichten** önünde **aktuellen** olur. |
+| lx:Einwohner | forms[0].hint_tr | Nüfus derken **Einwohner** denir. Birden çok kişi için de **Einwohner** denir. |
+| lx:aufnehmen | forms[3].hint_tr | **können** varsa **aufnehmen** sona bütün olarak gelir. |
+| lx:nachsehen | forms[1].hint_tr | **können** varsa **nachsehen** sona bütün olarak gelir. |
+| lx:ausstellen | forms[0].hint_tr | **können** varsa **ausstellen** sona bütün olarak gelir. |
+| lx:abwarten | forms[1].hint_tr | **müssen** varsa **abwarten** sona bütün olarak gelir. |
+| lx:angeblich | exp.ipucu_tr | Türkçedeki geliyormuş, gitmiş gibi sözlerle aynı işi görür. |
+| lx:Wirkung | exp.ipucu_tr | İlaç etki ediyor derken **Das Medikament wirkt** denir. |
+| lx:zurzeit | exp.ipucu_tr | **Zurzeit** başta olunca hemen arkasından **ist** ya da **habe** gelir. |
+| lx:möglichst | exp.anlam_tr | Bir şeyin olabildiğince erken, hızlı ya da çok olmasını istediğini söyler. |
