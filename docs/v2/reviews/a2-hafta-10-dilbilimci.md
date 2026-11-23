@@ -260,3 +260,22 @@ Denetimler: dikiş `İhlal: 0`; val.sh yalnız üç izinli sınıf; content:vali
 ## Sonuç
 
 **ONAY.** Dil, okur ve örneklem geri dönüşleri kapandı. Baş geliştiricide kalan: B4 (dikte, kod ya da satır bölme), B3 (67 başlığı a2-kesin.json'da); B2, B6, B7 takip.
+
+## Fark turu (İÇ-18, 23.11)
+
+Kapsam: yalnız PM-103 md. 3 düzeltme farkı (64–70 ve hafta-sonu-testi-10). Denetlenen: **55 değişen birim** (17 yeni kalıp satırı, 24 sahne/replik/seçenek satırı, 6 görev/sınav maddesi, 2 dinleme cümlesi ve dikte bankaları, 1 okuma metni, 1 test kabulü, soru seçenekleri).
+
+**Bulgular ve düzeltmeler (3, hepsi Türkçe/bağlam; Almanca hata yok):**
+1. 66 h3 `ortam_tr`: "Saat sekiz." → "Akşam saat sekiz." Gerekçe: Pichler'in "Grüß Gott"u "İyi akşamlar" diye çevrili; saat belirsizdi. Aynı gün s1'de Pichler akşam iş başında, akşam tutarlı. 67 s1 ve prova n1 "İyi akşamlar": ortam akşam, değişmedi.
+2. 68 h1 kalıp "Ich mache es am …": tr "…'de yaparım." → "… günü yaparım." Gerekçe: günde "am Montag" ile kullanılıyor; "Pazartesi'de yaparım" Türkçede doğal değil.
+3. 69 a1 ayrıntı sorusu (kanıt c3): "Ne getirmelisin?" → "Neyi unutmamalısın?" Gerekçe: c3 artık "Vergessen Sie bitte Ihre Versichertenkarte nicht." Soru cümleyle birebir örtüşmeli. Seçenekler aynı kaldı.
+
+**Doğrulananlar:** "Wohin kommt der Kuchen?" (Brandl pasta getiriyor; kabullerde er/ihn/stellen uyumlu); "Heute kommt Ihr Name an die Klingel. Wie steht er im Mietvertrag?" doğal, `er` = Name; "Vergessen Sie bitte … nicht." ve "Bleiben Sie bitte am Telefon." ("hattan ayrılmayın") doğal; 70 kayıt sorusu ("beklemeni") hâlâ doğru. 69 okuma metnindeki "Bitte bringen Sie … mit." üretim cümlesi değil, kaldı. Grüß Gott kalıp satırının Türkçesi doğru, dilbilgisi terimi yok; sahnelerde saate göre "İyi günler" ya da "İyi akşamlar" kalıpla çelişmiyor. Üretim maddelerinde accepted ≥3, ilk öğe `de` ile aynı (64 n3, 66 G1/n6, 67 n2/n3, 70 G1/n4, t09 why_tr ile uyumlu). Dikte ve "Duyduğunu yaz" (66 s1) kabulleri yalnız büyük harf ve noktalamayla ayrılıyor; bunlar yazıya geçirme maddesi, öteki maddelerle aynı düzen, hata sayılmadı. Bairisch satırı eklenmedi. Kişisel bilgi yok; öğrenci satırlarında sabit ad yok.
+
+**Kalan şüphe (engel değil):** 69 s2 "…, grüß Gott?" / "iyi günler?" telefon açılışında yükselen ton olarak eskiden beri var; dokunulmadı.
+
+Denetim (wt-i, `kos.sh 10 64 70`): 64–70 için validate HATA satırı yok, dikiş satırı yok, hafta kapısı **GEÇTİ** (öğretilmeden istenen 0, test %100, görülmemiş 7/7). Aynı üç düzeltme wt-10 ve wt-i'de yapıldı.
+
+Hata oranı: 3/55.
+
+ONAY
