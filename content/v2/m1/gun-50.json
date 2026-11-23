@@ -205,12 +205,12 @@
         "de": "Praxis Dr. Weber, Sie sprechen mit Frau Huber.",
         "tr": "Dr. Weber muayenehanesi, Huber Hanım ile görüşüyorsunuz.",
         "secenekler": [
-          { "de": "Guten Tag, hier ist {name}. Es geht um meinen Termin.", "tr": "İyi günler, ben {name}. Randevum için arıyorum.",
-            "accepted": ["Guten Tag, hier ist {name}. Es geht um meinen Termin.", "Guten Tag, {name} hier. Es geht um meinen Termin.", "Guten Tag, mein Name ist {name}. Es geht um meinen Termin.", "Guten Tag, hier ist {name}. Es geht um den Termin am Donnerstag.", "Guten Tag, hier ist {name}. Es geht um meinen Termin am Donnerstag.", "Hallo, hier ist {name}. Es geht um meinen Termin.", "Guten Tag, {name} hier. Es geht um den Termin am Donnerstag.", "Hier ist {name}. Es geht um meinen Termin.", "Guten Tag, Frau Huber, hier ist {name}. Es geht um meinen Termin.", "Guten Tag, hier ist {name}. Es geht um den Termin.", "Guten Tag, mein Name ist {name}. Es geht um den Termin am Donnerstag.", "Hallo, hier ist {name}. Es geht um den Termin am Donnerstag."],
+          { "de": "Guten Tag, hier ist {name}. Es geht um den Termin am Donnerstag.", "tr": "İyi günler, ben {name}. Perşembe günkü randevu için arıyorum.",
+            "accepted": ["Guten Tag, hier ist {name}. Es geht um den Termin am Donnerstag.", "Guten Tag, {name} hier. Es geht um meinen Termin.", "Guten Tag, mein Name ist {name}. Es geht um meinen Termin.", "Guten Tag, hier ist {name}. Es geht um meinen Termin.", "Guten Tag, hier ist {name}. Es geht um meinen Termin am Donnerstag.", "Hallo, hier ist {name}. Es geht um meinen Termin.", "Guten Tag, {name} hier. Es geht um den Termin am Donnerstag.", "Hier ist {name}. Es geht um meinen Termin.", "Guten Tag, Frau Huber, hier ist {name}. Es geht um meinen Termin.", "Guten Tag, hier ist {name}. Es geht um den Termin.", "Guten Tag, mein Name ist {name}. Es geht um den Termin am Donnerstag.", "Hallo, hier ist {name}. Es geht um den Termin am Donnerstag."],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Çok iyi. Adını ve neden aradığını hemen söyledin." },
           { "de": "Hallo, {name} hier. Mein Termin am Donnerstag?", "tr": "Merhaba, ben {name}. Perşembe randevum?",
             "accepted": ["Hallo, {name} hier. Mein Termin am Donnerstag?", "Hallo, hier ist {name}. Mein Termin am Donnerstag?", "Hallo, ich bin {name}. Mein Termin am Donnerstag?"],
-            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Anlaşılır. **Es geht um meinen Termin** daha tam bir cümle." },
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Anlaşılır. **Es geht um den Termin** daha tam bir cümle." },
           { "de": "Freitag geht nicht!", "tr": "Cuma olmaz!",
             "accepted": ["Freitag geht nicht!", "Am Freitag geht es nicht!", "Freitag nicht!"],
             "sonraki": "n1b", "uygun": false, "geri_bildirim_tr": "Frau Huber henüz kim olduğunu bilmiyor. Önce adını söyle." }
@@ -254,9 +254,9 @@
         "de": "Freitag ist leider voll. Montag um halb fünf?",
         "tr": "Cuma maalesef dolu. Pazartesi dört buçukta?",
         "secenekler": [
-          { "de": "Wie bitte? Können Sie das wiederholen?", "tr": "Efendim? Tekrar edebilir misiniz?",
-            "accepted": ["Wie bitte? Können Sie das wiederholen?", "Können Sie das bitte wiederholen?", "Wie bitte? Nochmal, bitte.", "Entschuldigung, können Sie das wiederholen?", "Wie bitte?", "Können Sie das wiederholen?", "Wie bitte? Können Sie das bitte wiederholen?", "Noch einmal, bitte."],
-            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Doğru hamle. Emin değilsen tekrar ettirmek ayıp değil." },
+          { "de": "Wie bitte? Montag um wie viel Uhr?", "tr": "Efendim? Pazartesi saat kaçta?",
+            "accepted": ["Wie bitte? Montag um wie viel Uhr?", "Montag um wie viel Uhr, bitte?", "Entschuldigung, um wie viel Uhr?", "Wie bitte? Können Sie das wiederholen?", "Können Sie das bitte wiederholen?", "Wie bitte? Nochmal, bitte.", "Entschuldigung, können Sie das wiederholen?", "Wie bitte?", "Können Sie das wiederholen?", "Wie bitte? Können Sie das bitte wiederholen?", "Noch einmal, bitte."],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Doğru hamle. Kaçırdığın yeri, yani saati sordun." },
           { "de": "Montag um halb fünf geht.", "tr": "Pazartesi dört buçuk olur.",
             "accepted": ["Montag um halb fünf geht.", "Ja, Montag um halb fünf geht.", "Montag um halb fünf passt.", "Ja, am Montag um halb fünf geht es.", "Montag um halb fünf geht gut.", "Ja, Montag um halb fünf ist gut.", "Montag um halb fünf? Das geht."],
             "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Günü ve saati tekrar ettin. Yanlış anlama kalmadı." },
@@ -309,8 +309,8 @@
   "gun_sinavi": {
     "id": "m1:50:s",
     "maddeler": [
-      { "id": "m1:50:s1", "k": "listen_and_respond", "audio_de": "Können Sie den Namen bitte buchstabieren?", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
-        "accepted": ["Können Sie den Namen bitte buchstabieren?", "können sie den namen bitte buchstabieren", "Koennen Sie den Namen bitte buchstabieren?"], "why_tr": "**buchstabieren** harf harf söylemek demektir." },
+      { "id": "m1:50:s1", "k": "listen_and_respond", "audio_de": "Können Sie die Adresse bitte buchstabieren?", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Können Sie die Adresse bitte buchstabieren?", "können sie die adresse bitte buchstabieren", "Koennen Sie die Adresse bitte buchstabieren?"], "why_tr": "**buchstabieren** harf harf söylemek demektir." },
       { "id": "m1:50:s2", "k": "listen_and_respond", "audio_de": "Der Teppich ist für den Flur.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
         "accepted": ["Der Teppich ist für den Flur.", "der teppich ist für den flur", "Der Teppich ist fuer den Flur."], "why_tr": "**der Teppich** halı, **der Flur** koridor demektir." },
       { "id": "m1:50:s3", "k": "listen_and_respond", "audio_de": "Ich rufe morgen um zehn zurück.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
