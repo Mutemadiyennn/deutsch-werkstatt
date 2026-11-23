@@ -153,7 +153,7 @@
           "k": "guided_response",
           "situation_tr": "Huber Hanım sana da soruyor. Resim hakkında kendi fikrini söyle.",
           "prompt_de": "Und Ihnen? Wie gefällt Ihnen das Bild?",
-          "accepted": ["Es gefällt mir nicht so gut.", "Das Bild gefällt mir nicht.", "Es gefällt mir gut.", "Mir gefällt das Bild gut.", "Das Bild ist interessant."],
+          "accepted": ["Es gefällt mir nicht so gut.", "Das Bild gefällt mir nicht.", "Es gefällt mir gut.", "Mir gefällt das Bild gut.", "Das Bild ist interessant.", "Es gefällt mir.", "Es gefällt mir nicht.", "Das Bild gefällt mir.", "Das Bild gefällt mir gut.", "Das gefällt mir.", "Das gefällt mir nicht.", "Das gefällt mir gut.", "Mir gefällt es."],
           "why_tr": "Fikrini **Es gefällt mir** ya da **Es gefällt mir nicht** ile söylersin. Beğenen kişi **mir** olur."
         }
       }
@@ -197,7 +197,7 @@
             "k": "guided_response",
             "situation_tr": "Derya'yı geri arıyorsun. Pazar günü geleceğini söyle.",
             "prompt_de": "Ja? Derya hier.",
-            "accepted": ["Hallo, Derya! Ich komme am Sonntag.", "Hallo! Ja, ich komme am Sonntag zum See.", "Hallo Derya, am Sonntag komme ich.", "Ja, am Sonntag komme ich.", "Hallo Derya! Sonntag passt mir."],
+            "accepted": ["Hallo, Derya! Ich komme am Sonntag.", "Hallo! Ja, ich komme am Sonntag zum See.", "Hallo Derya, am Sonntag komme ich.", "Ja, am Sonntag komme ich.", "Hallo Derya! Sonntag passt mir.", "Hallo Derya, hier ist {name}. Ich komme am Sonntag.", "Hier ist {name}. Ich komme am Sonntag.", "Ich komme am Sonntag.", "Hallo Derya! Ich komme am Sonntag zum See.", "Hallo Derya, hier ist {name}. Ich komme am Sonntag zum See.", "Hallo Derya! Ja, ich komme am Sonntag.", "Hallo Derya, hier ist {name}. Ja, ich komme am Sonntag.", "Hallo Derya! Am Sonntag komme ich zum See."],
             "why_tr": "Günü **am Sonntag** ile söylersin: **Ich komme am Sonntag**."
           }
         }
@@ -239,7 +239,7 @@
             "k": "guided_response",
             "situation_tr": "Ioana pazartesi o restorana gitmek istiyor. Pazartesi kapalı olduğunu söyle.",
             "prompt_de": "Gehen wir am Montag ins Restaurant am See?",
-            "accepted": ["Nein, am Montag ist es geschlossen.", "Nein, am Montag ist das Restaurant geschlossen.", "Am Montag geht nicht, es ist geschlossen.", "Leider nicht, am Montag ist es geschlossen.", "Nein, es ist am Montag geschlossen."],
+            "accepted": ["Nein, am Montag ist es geschlossen.", "Nein, am Montag ist das Restaurant geschlossen.", "Leider nicht, am Montag ist es geschlossen.", "Nein, es ist am Montag geschlossen.", "Am Montag geht es nicht, es ist geschlossen.", "Montag geht nicht, es ist geschlossen.", "Am Montag ist es geschlossen.", "Am Montag ist das Restaurant geschlossen.", "Nein, das Restaurant ist am Montag geschlossen.", "Das Restaurant ist am Montag geschlossen.", "Nein, am Montag ist das Restaurant zu.", "Nein, am Montag ist es zu."],
             "why_tr": "Kapalı derken **geschlossen** dersin, günü de **am Montag** ile söylersin."
           }
         }
@@ -268,13 +268,13 @@
         "tr": "Merhaba! Geldin işte! Bu benim dairem.",
         "secenekler": [
           { "de": "Hallo, Ioana! Die Wohnung ist schön!", "tr": "Merhaba Ioana! Daire güzel!",
-            "accepted": ["Hallo, Ioana! Die Wohnung ist schön!", "Hallo Ioana! Deine Wohnung ist schön!", "Hallo! Schön, die Wohnung!", "Hallo, Ioana! Die Wohnung ist toll!"],
+            "accepted": ["Hallo, Ioana! Die Wohnung ist schön!", "Hallo Ioana! Deine Wohnung ist schön!", "Hallo! Schön, die Wohnung!", "Hallo, Ioana! Die Wohnung ist toll!", "Hallo! Die Wohnung ist schön!", "Hallo Ioana! Die Wohnung ist sehr schön!", "Hallo! Deine Wohnung ist schön!", "Hallo Ioana! Deine Wohnung ist sehr schön!", "Hallo! Deine Wohnung ist toll!", "Hallo Ioana! Deine Wohnung ist toll!", "Hallo! Die Wohnung ist toll!", "Hallo Ioana! Schön hier!"],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Selam verdin ve hemen güzel bir söz söyledin." },
           { "de": "Hallo! Deine Wohnung gefällt mir gut!", "tr": "Merhaba! Daireni çok beğendim!",
-            "accepted": ["Hallo! Deine Wohnung gefällt mir gut!", "Hallo! Die Wohnung gefällt mir!", "Hallo, Ioana! Mir gefällt deine Wohnung!"],
+            "accepted": ["Hallo! Deine Wohnung gefällt mir gut!", "Hallo! Die Wohnung gefällt mir!", "Hallo, Ioana! Mir gefällt deine Wohnung!", "Hallo Ioana! Deine Wohnung gefällt mir!", "Hallo! Deine Wohnung gefällt mir!", "Hallo Ioana! Die Wohnung gefällt mir gut!", "Hallo! Die Wohnung gefällt mir gut!", "Hallo! Mir gefällt deine Wohnung!", "Hallo! Mir gefällt die Wohnung!", "Hallo Ioana! Mir gefällt die Wohnung!", "Hallo Ioana! Deine Wohnung gefällt mir sehr gut!"],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Beğendiğini **gefällt mir** ile söyledin. Tam günün kalıbı." },
           { "de": "Klein.", "tr": "Küçük.",
-            "accepted": ["Klein.", "Die Wohnung ist klein.", "Sehr klein."],
+            "accepted": ["Klein.", "Die Wohnung ist klein.", "Sehr klein.", "Sie ist klein.", "Die Wohnung ist sehr klein.", "Deine Wohnung ist klein.", "Sie ist sehr klein.", "Die ist klein.", "Zu klein.", "Die Wohnung ist zu klein.", "Deine Wohnung ist sehr klein."],
             "sonraki": "n1", "uygun": false, "geri_bildirim_tr": "Arkadaşın evini ilk kez gösteriyor. Önce güzel bir şey söyle." }
         ]
       },
@@ -284,10 +284,10 @@
         "tr": "Sağ ol! Peki mutfak? Onu nasıl buldun?",
         "secenekler": [
           { "de": "Die Küche ist hell. Sie gefällt mir.", "tr": "Mutfak aydınlık. Hoşuma gidiyor.",
-            "accepted": ["Die Küche ist hell. Sie gefällt mir.", "Die Küche gefällt mir. Sie ist hell.", "Sie ist hell und gefällt mir.", "Die Küche ist hell, sie gefällt mir gut."],
+            "accepted": ["Die Küche ist hell. Sie gefällt mir.", "Die Küche gefällt mir. Sie ist hell.", "Sie ist hell und gefällt mir.", "Die Küche ist hell, sie gefällt mir gut.", "Sie ist hell. Sie gefällt mir.", "Sie gefällt mir. Sie ist hell.", "Sie gefällt mir gut. Sie ist hell.", "Die Küche gefällt mir gut. Sie ist hell.", "Die Küche ist hell und gefällt mir.", "Die Küche ist hell und gefällt mir gut.", "Die Küche ist hell. Das gefällt mir.", "Sie ist hell. Das gefällt mir."],
             "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Neden beğendiğini de söyledin. Çok doğal." },
           { "de": "Weiß und hell! Klasse!", "tr": "Beyaz ve aydınlık! Harika!",
-            "accepted": ["Weiß und hell! Klasse!", "Klasse! Weiß und hell!", "Weiß und hell, Klasse!"],
+            "accepted": ["Weiß und hell! Klasse!", "Klasse! Weiß und hell!", "Weiß und hell, Klasse!", "Klasse! Die Küche ist weiß und hell!", "Die Küche ist weiß und hell. Klasse!", "Klasse!", "Hell und weiß! Klasse!", "Klasse! Hell und weiß!", "Sie ist weiß und hell. Klasse!", "Klasse! Sie ist weiß und hell.", "Klasse! Sie ist so hell!"],
             "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Kısa ama sıcak. **Klasse** arkadaşlar arasında çok duyulur." }
         ]
       },
@@ -297,10 +297,10 @@
         "tr": "Peki resim? Bu annemden.",
         "secenekler": [
           { "de": "Ach, interessant! Das gefällt mir.", "tr": "Aa, ilginç! Bu hoşuma gidiyor.",
-            "accepted": ["Ach, interessant! Das gefällt mir.", "Interessant! Das Bild gefällt mir.", "Ach, das Bild gefällt mir!", "Interessant! Es gefällt mir gut."],
+            "accepted": ["Ach, interessant! Das gefällt mir.", "Interessant! Das Bild gefällt mir.", "Ach, das Bild gefällt mir!", "Interessant! Es gefällt mir gut.", "Ach, interessant! Es gefällt mir.", "Das gefällt mir.", "Es gefällt mir.", "Es gefällt mir gut.", "Das Bild gefällt mir gut.", "Das gefällt mir gut.", "Ach, von deiner Mutter! Das gefällt mir.", "Von deiner Mutter? Interessant! Das gefällt mir."],
             "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Hem ilgini gösterdin hem beğendiğini söyledin." },
           { "de": "Schön! Wie gefällt es dir?", "tr": "Güzel! Sen nasıl buluyorsun?",
-            "accepted": ["Schön! Wie gefällt es dir?", "Schön! Und dir? Gefällt es dir?", "Schön. Gefällt dir das Bild?"],
+            "accepted": ["Schön! Wie gefällt es dir?", "Schön! Und dir? Gefällt es dir?", "Schön. Gefällt dir das Bild?", "Schön! Und wie gefällt es dir?", "Schön! Gefällt es dir?", "Schön! Wie gefällt dir das Bild?", "Schön! Und dir? Wie gefällt es dir?", "Schön. Gefällt es dir auch?", "Schön! Und wie gefällt dir das Bild?", "Das ist schön! Wie gefällt es dir?", "Es ist schön! Wie gefällt es dir?"],
             "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Soruyu ona geri sordun. Sohbet böyle sürer." }
         ]
       },
@@ -310,13 +310,13 @@
         "tr": "Bak, bir ceket. Bana olmuyor. İster misin?",
         "secenekler": [
           { "de": "Danke! Steht sie mir?", "tr": "Sağ ol! Bana yakışıyor mu?",
-            "accepted": ["Danke! Steht sie mir?", "Danke! Steht mir die Jacke?", "Danke! Steht sie mir gut?"],
+            "accepted": ["Danke! Steht sie mir?", "Danke! Steht mir die Jacke?", "Danke! Steht sie mir gut?", "Steht sie mir?", "Steht sie mir gut?", "Steht mir die Jacke?", "Danke! Steht mir die Jacke gut?", "Steht mir die Jacke gut?", "Danke, Ioana! Steht sie mir?", "Danke! Und steht sie mir?", "Danke! Steht sie mir denn?"],
             "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Yakışıp yakışmadığını **steht** ile sordun." },
           { "de": "Ach, danke! Die Jacke passt mir gut.", "tr": "Aa, sağ ol! Ceket bana iyi oldu.",
-            "accepted": ["Ach, danke! Die Jacke passt mir gut.", "Danke! Sie passt mir.", "Danke, die Jacke passt mir!"],
+            "accepted": ["Ach, danke! Die Jacke passt mir gut.", "Danke! Sie passt mir.", "Danke, die Jacke passt mir!", "Die Jacke passt mir gut.", "Sie passt mir.", "Sie passt mir gut.", "Die Jacke passt mir.", "Danke, Ioana! Die Jacke passt mir gut.", "Danke! Mir passt sie.", "Danke! Mir passt die Jacke.", "Danke! Sie passt."],
             "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Beden için **passt** dedin. Doğru kelime." },
           { "de": "Nein. Weiß gefällt mir nicht.", "tr": "Hayır. Beyazı sevmiyorum.",
-            "accepted": ["Nein. Weiß gefällt mir nicht.", "Nein, Weiß gefällt mir nicht.", "Nein danke, Weiß gefällt mir nicht."],
+            "accepted": ["Nein. Weiß gefällt mir nicht.", "Nein, Weiß gefällt mir nicht.", "Nein danke, Weiß gefällt mir nicht.", "Weiß gefällt mir nicht.", "Nein, sie gefällt mir nicht.", "Nein. Die Jacke gefällt mir nicht.", "Nein, Weiß steht mir nicht.", "Sie gefällt mir nicht.", "Die Jacke gefällt mir nicht.", "Nein. Mir gefällt Weiß nicht.", "Nein, die gefällt mir nicht."],
             "sonraki": "n4", "uygun": false, "geri_bildirim_tr": "Cümle doğru ama hediye eden arkadaşına sert duyulur. Önce teşekkür et." }
         ]
       },
@@ -326,7 +326,7 @@
         "tr": "Evet, sana yakışıyor! Beyaz sana çok uygun.",
         "secenekler": [
           { "de": "Danke, Ioana! Das ist so lieb von dir.", "tr": "Teşekkürler Ioana! Çok tatlısın.",
-            "accepted": ["Danke, Ioana! Das ist so lieb von dir.", "Danke! Das ist lieb von dir.", "Danke schön, Ioana! Das ist lieb."],
+            "accepted": ["Danke, Ioana! Das ist so lieb von dir.", "Danke! Das ist lieb von dir.", "Danke schön, Ioana! Das ist lieb.", "Danke! Das ist so lieb von dir.", "Danke, Ioana! Das ist lieb von dir.", "Das ist lieb von dir.", "Das ist so lieb von dir.", "Vielen Dank, Ioana! Das ist lieb von dir.", "Danke, Ioana! Das ist sehr lieb von dir.", "Danke! Das ist sehr lieb von dir.", "Danke, Ioana! Das ist so lieb."],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Sıcak bir teşekkür. Arkadaşa **lieb von dir** denir." }
         ]
       },
@@ -345,7 +345,7 @@
       { "id": "m1:47:o3", "kind": "detail", "q_tr": "Ioana neyi pek beğenmiyor?", "opts": ["Kanepeyi", "Mutfağı", "Banyoyu"], "ans": 0, "kanit": [4] },
       { "id": "m1:47:o4", "kind": "detail", "q_tr": "Ioana'nın dairesi nerede?", "opts": ["İstasyonun yanında", "Göl kenarında", "Muayenehanenin karşısında"], "ans": 0, "kanit": [6] },
       { "id": "m1:47:o5", "k": "guided_response", "situation_tr": "Cumartesi saat üç sana uyuyor. Ioana'ya cevap ver.", "prompt_de": "Kommst du am Samstag um drei?",
-        "accepted": ["Ja, Samstag um drei passt mir!", "Ja, ich komme am Samstag um drei.", "Ja, um drei passt mir gut.", "Klar, ich komme!", "Ja, das passt mir."],
+        "accepted": ["Ja, Samstag um drei passt mir!", "Ja, ich komme am Samstag um drei.", "Ja, um drei passt mir gut.", "Klar, ich komme!", "Ja, das passt mir.", "Ja, Samstag um drei passt.", "Ja, am Samstag um drei passt es mir.", "Ja, ich komme.", "Ja, ich komme am Samstag.", "Ja, ich komme um drei.", "Ja, das passt.", "Ja, das passt mir gut.", "Ja, Samstag um drei passt mir gut."],
         "why_tr": "Uyduğunu **passt mir** ile söylersin: **Samstag um drei passt mir**." }
     ]
   },
@@ -361,19 +361,19 @@
       { "id": "m1:47:s4", "k": "listen_and_respond", "audio_de": "Wie gefällt Ihnen die Insel?", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
         "accepted": ["Wie gefällt Ihnen die Insel?", "wie gefällt ihnen die insel", "Wie gefällt Ihnen die Insel"], "why_tr": "Resmî konuşurken **Ihnen** dersin." },
       { "id": "m1:47:s5", "k": "tr_de", "tr": "Göl hoşuma gidiyor, deniz değil.",
-        "accepted": ["Der See gefällt mir, das Meer nicht.", "Mir gefällt der See, nicht das Meer.", "Der See gefällt mir, aber das Meer nicht."], "why_tr": "Beğenilen şey başta, beğenen kişi **mir** olarak gelir." },
+        "accepted": ["Der See gefällt mir, das Meer nicht.", "Mir gefällt der See, nicht das Meer.", "Der See gefällt mir, aber das Meer nicht.", "Mir gefällt der See, das Meer nicht.", "Der See gefällt mir, nicht das Meer.", "Mir gefällt der See, aber das Meer nicht.", "Mir gefällt der See, aber nicht das Meer.", "Der See gefällt mir, aber nicht das Meer.", "Der See gefällt mir, das Meer gefällt mir nicht.", "Der See gefällt mir, aber das Meer gefällt mir nicht.", "Mir gefällt der See, das Meer gefällt mir nicht."], "why_tr": "Beğenilen şey başta, beğenen kişi **mir** olarak gelir." },
       { "id": "m1:47:s6", "k": "tr_de", "tr": "Pantolon sana yakışıyor.",
-        "accepted": ["Die Hose steht dir gut.", "Die Hose steht dir.", "Dir steht die Hose gut."], "why_tr": "Yakışmak **stehen** ile söylenir, kişi **dir** olur." },
+        "accepted": ["Die Hose steht dir gut.", "Die Hose steht dir.", "Dir steht die Hose gut.", "Dir steht die Hose."], "why_tr": "Yakışmak **stehen** ile söylenir, kişi **dir** olur." },
       { "id": "m1:47:s7", "k": "tr_de", "tr": "Palto bana olmuyor. Çok küçük.",
-        "accepted": ["Der Mantel passt mir nicht. Er ist zu klein.", "Der Mantel passt mir nicht, er ist zu klein.", "Der Mantel ist zu klein. Er passt mir nicht."], "why_tr": "Beden uymayınca **passt mir nicht** dersin." },
+        "accepted": ["Der Mantel passt mir nicht. Er ist zu klein.", "Der Mantel passt mir nicht, er ist zu klein.", "Der Mantel ist zu klein. Er passt mir nicht.", "Der Mantel passt mir nicht. Zu klein.", "Der Mantel passt nicht. Er ist zu klein.", "Der Mantel passt mir nicht. Er ist mir zu klein.", "Mir passt der Mantel nicht. Er ist zu klein.", "Der Mantel passt mir nicht. Der ist zu klein.", "Der Mantel passt mir nicht. Er ist sehr klein."], "why_tr": "Beden uymayınca **passt mir nicht** dersin." },
       { "id": "m1:47:s8", "k": "tr_de", "tr": "Otel onun (erkek) hoşuna gitmiyor.",
         "accepted": ["Das Hotel gefällt ihm nicht.", "Ihm gefällt das Hotel nicht.", "Nein, das Hotel gefällt ihm nicht."], "why_tr": "Erkek için ona **ihm** olur: **gefällt ihm**." },
       { "id": "m1:47:s9", "k": "guided_response", "situation_tr": "Ioana yeni kazağını gösteriyor ve soruyor. Yakıştığını söyle.", "prompt_de": "Steht mir der Pullover?",
-        "accepted": ["Ja, er steht dir gut!", "Ja, der Pullover steht dir gut.", "Ja, er steht dir super!", "Ja! Der Pullover steht dir."], "why_tr": "Ona cevap verirken **mir** yerine **dir** dersin: **steht dir gut**." },
+        "accepted": ["Ja, er steht dir gut!", "Ja, der Pullover steht dir gut.", "Ja, er steht dir super!", "Ja! Der Pullover steht dir.", "Ja, er steht dir.", "Ja, der steht dir gut.", "Ja, der Pullover steht dir super.", "Ja, er steht dir sehr gut.", "Ja, der Pullover steht dir sehr gut.", "Ja, der steht dir.", "Ja, er steht dir gut, Ioana.", "Klar, er steht dir gut."], "why_tr": "Ona cevap verirken **mir** yerine **dir** dersin: **steht dir gut**." },
       { "id": "m1:47:s10", "k": "guided_response", "situation_tr": "Huber Hanım bekleme odasındaki resmi soruyor. Beğendiğini söyle.", "prompt_de": "Wie gefällt Ihnen das Bild?",
-        "accepted": ["Es gefällt mir gut.", "Das Bild gefällt mir gut.", "Gut, es gefällt mir.", "Es ist schön. Es gefällt mir.", "Mir gefällt das Bild gut."], "why_tr": "Soru **Ihnen** ile gelir, sen **mir** ile cevap verirsin." },
+        "accepted": ["Es gefällt mir gut.", "Das Bild gefällt mir gut.", "Gut, es gefällt mir.", "Es ist schön. Es gefällt mir.", "Mir gefällt das Bild gut.", "Es gefällt mir.", "Das Bild gefällt mir.", "Das gefällt mir.", "Das gefällt mir gut.", "Mir gefällt es gut.", "Mir gefällt es.", "Mir gefällt das Bild.", "Es gefällt mir sehr gut."], "why_tr": "Soru **Ihnen** ile gelir, sen **mir** ile cevap verirsin." },
       { "id": "m1:47:s11", "k": "guided_response", "situation_tr": "Ioana'nın yeni dairesindesin. Daireyi beğendiğini ve mutfağı da sevdiğini söyle.", "prompt_de": "Na, wie gefällt dir die Wohnung?",
-        "accepted": ["Sie gefällt mir gut! Die Küche ist schön.", "Die Wohnung gefällt mir. Die Küche auch.", "Gut! Die Küche gefällt mir.", "Sie gefällt mir. Die Küche ist toll.", "Die Wohnung gefällt mir gut. Die Küche ist auch schön."], "why_tr": "Daireyi **sie** ile tekrar etmeden söylersin: **Sie gefällt mir**." }
+        "accepted": ["Sie gefällt mir gut! Die Küche ist schön.", "Die Wohnung gefällt mir. Die Küche auch.", "Gut! Die Küche gefällt mir.", "Sie gefällt mir. Die Küche ist toll.", "Die Wohnung gefällt mir gut. Die Küche ist auch schön.", "Sie gefällt mir gut. Die Küche gefällt mir auch.", "Die Wohnung gefällt mir gut. Die Küche gefällt mir auch.", "Sie gefällt mir. Die Küche gefällt mir auch.", "Sie gefällt mir gut. Die Küche auch.", "Sie gefällt mir. Die Küche auch.", "Die Wohnung gefällt mir gut. Die Küche auch.", "Die Wohnung gefällt mir. Die Küche gefällt mir auch.", "Sie gefällt mir gut, und die Küche gefällt mir auch."], "why_tr": "Daireyi **sie** ile tekrar etmeden söylersin: **Sie gefällt mir**." }
     ],
     "sesli": ["m1:47:s9", "m1:47:s10"],
     "dikte": ["m1:47:s1", "m1:47:s2", "m1:47:s3", "m1:47:s4"]

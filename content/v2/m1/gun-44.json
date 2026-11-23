@@ -176,7 +176,7 @@
           "k": "guided_response",
           "situation_tr": "Brandl Hanım soruyor: bekleme odasında telefonla konuşabilir mi? Yasak olduğunu söyle.",
           "prompt_de": "Darf man im Wartezimmer telefonieren?",
-          "accepted": ["Nein, im Wartezimmer darf man nicht telefonieren.", "Nein, das darf man nicht.", "Nein, hier darf man nicht telefonieren.", "Nein, Frau Brandl, das darf man nicht.", "Nein, aber draußen darf man telefonieren."],
+          "accepted": ["Nein, im Wartezimmer darf man nicht telefonieren.", "Nein, das darf man nicht.", "Nein, hier darf man nicht telefonieren.", "Nein, Frau Brandl, das darf man nicht.", "Nein, aber draußen darf man telefonieren.", "Nein, das darf man hier nicht.", "Nein, man darf im Wartezimmer nicht telefonieren.", "Nein, man darf hier nicht telefonieren.", "Nein, das darf man im Wartezimmer nicht.", "Nein, telefonieren darf man hier nicht.", "Nein, telefonieren darf man im Wartezimmer nicht.", "Nein, das dürfen Sie nicht.", "Nein, Sie dürfen hier nicht telefonieren."],
           "why_tr": "Yasak için **darf man nicht** dersin, **muss nicht** ise yalnızca gerek yok demektir."
         }
       }
@@ -218,7 +218,7 @@
             "k": "guided_response",
             "situation_tr": "Basti soruyor: su almam gerekiyor mu? Gerekmediğini söyle.",
             "prompt_de": "Muss ich Wasser kaufen?",
-            "accepted": ["Nein, du musst kein Wasser kaufen.", "Nein, das musst du nicht.", "Nein, Wasser haben sie hier.", "Nein, du musst nicht.", "Nein, du musst kein Wasser kaufen, Basti."],
+            "accepted": ["Nein, du musst kein Wasser kaufen.", "Nein, das musst du nicht.", "Nein, Wasser haben sie hier.", "Nein, du musst nicht.", "Nein, du musst kein Wasser kaufen, Basti.", "Nein, musst du nicht.", "Du musst kein Wasser kaufen.", "Nein, das musst du nicht, Basti.", "Nein, du musst kein Wasser kaufen. Wasser haben sie hier.", "Nein, sie haben hier Wasser.", "Nein, du musst kein Wasser kaufen. Sie haben hier Wasser.", "Nein, Basti, du musst kein Wasser kaufen.", "Nein, Wasser musst du nicht kaufen."],
             "why_tr": "Gerek yoksa **musst kein** ya da **musst nicht** dersin."
           }
         }
@@ -261,7 +261,7 @@
             "k": "guided_response",
             "situation_tr": "Tobi yarın sabah seni kahvaltıya çağırıyor. Randevudan önce yemek yiyemeyeceğini söyle.",
             "prompt_de": "Frühstücken wir morgen zusammen?",
-            "accepted": ["Nein, ich darf vor dem Termin nichts essen.", "Morgen nicht, ich darf nichts essen.", "Leider nicht. Ich darf morgen nichts essen.", "Nein, ich habe einen Termin beim Arzt. Ich darf nichts essen.", "Nein, ich darf vor dem Arzt nichts essen."],
+            "accepted": ["Nein, ich darf vor dem Termin nichts essen.", "Morgen nicht, ich darf nichts essen.", "Leider nicht. Ich darf morgen nichts essen.", "Nein, ich habe einen Termin beim Arzt. Ich darf nichts essen.", "Nein, ich darf vor dem Arzt nichts essen.", "Nein, ich darf nichts essen.", "Nein, ich darf morgen nichts essen.", "Leider nicht. Ich darf vor dem Termin nichts essen.", "Nein, morgen darf ich nichts essen.", "Nein, vor dem Termin darf ich nichts essen.", "Morgen nicht. Ich darf vor dem Termin nichts essen.", "Ich darf vor dem Termin nichts essen.", "Nein, ich darf morgen vor dem Termin nichts essen."],
             "why_tr": "Yasak olduğu için **Ich darf nichts essen** dersin."
           }
         }
@@ -288,13 +288,13 @@
         "tr": "Günaydın! Size nasıl yardımcı olabilirim?",
         "secenekler": [
           { "de": "Guten Morgen! Ich möchte einen Termin bei Dr. Weber, bitte.", "tr": "Günaydın! Dr. Weber'den bir randevu rica ediyorum.",
-            "accepted": ["Guten Morgen! Ich möchte einen Termin bei Dr. Weber, bitte.", "Guten Morgen! Ich möchte bitte einen Termin bei Dr. Weber.", "Ich möchte einen Termin, bitte.", "Guten Morgen, ich hätte gern einen Termin."],
+            "accepted": ["Guten Morgen! Ich möchte einen Termin bei Dr. Weber, bitte.", "Guten Morgen! Ich möchte bitte einen Termin bei Dr. Weber.", "Ich möchte einen Termin, bitte.", "Guten Morgen, ich hätte gern einen Termin.", "Guten Morgen! Ich möchte einen Termin bei Dr. Weber.", "Guten Morgen! Ich möchte einen Termin, bitte.", "Guten Morgen! Ich möchte einen Termin.", "Ich möchte einen Termin bei Dr. Weber, bitte.", "Ich möchte einen Termin bei Dr. Weber.", "Guten Morgen, Frau Huber! Ich möchte einen Termin bei Dr. Weber.", "Guten Morgen! Ich hätte gern einen Termin bei Dr. Weber.", "Ich hätte gern einen Termin bei Dr. Weber."],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Kibar bir istek: **Ich möchte**." },
           { "de": "Guten Morgen! Mir tut seit Montag der Rücken weh. Ich möchte zu Dr. Weber.", "tr": "Günaydın! Pazartesiden beri sırtım ağrıyor. Dr. Weber'e görünmek istiyorum.",
-            "accepted": ["Guten Morgen! Mir tut seit Montag der Rücken weh. Ich möchte zu Dr. Weber.", "Mir tut seit Montag der Rücken weh. Ich möchte zu Dr. Weber, bitte.", "Guten Morgen, ich habe seit Montag Rückenschmerzen. Ich möchte zu Dr. Weber."],
+            "accepted": ["Guten Morgen! Mir tut seit Montag der Rücken weh. Ich möchte zu Dr. Weber.", "Mir tut seit Montag der Rücken weh. Ich möchte zu Dr. Weber, bitte.", "Guten Morgen, ich habe seit Montag Rückenschmerzen. Ich möchte zu Dr. Weber.", "Guten Morgen! Mein Rücken tut seit Montag weh. Ich möchte zu Dr. Weber.", "Guten Morgen! Mir tut der Rücken weh. Ich möchte zu Dr. Weber.", "Mir tut der Rücken weh. Ich möchte zu Dr. Weber.", "Guten Morgen! Mir tut seit Montag der Rücken weh. Ich möchte einen Termin bei Dr. Weber.", "Guten Morgen! Mir tut der Rücken weh. Ich möchte einen Termin.", "Guten Morgen! Mir tut seit Montag der Rücken weh. Ich möchte einen Termin.", "Guten Morgen! Ich habe Rückenschmerzen. Ich möchte zu Dr. Weber.", "Guten Morgen! Ich habe Rückenschmerzen. Ich möchte einen Termin bei Dr. Weber."],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Çok iyi. Hem sorunu hem isteğini söyledin." },
           { "de": "Ich will sofort zum Doktor!", "tr": "Hemen doktora gitmek istiyorum!",
-            "accepted": ["Ich will sofort zum Doktor!", "Ich will einen Termin!", "Ich will jetzt zum Arzt!"],
+            "accepted": ["Ich will sofort zum Doktor!", "Ich will einen Termin!", "Ich will jetzt zum Arzt!", "Ich will zum Arzt!", "Ich will zum Doktor!", "Ich will sofort einen Termin!", "Ich will zu Dr. Weber!", "Ich will sofort zu Dr. Weber!", "Ich will sofort zum Arzt!", "Ich will jetzt einen Termin!", "Ich will jetzt zum Doktor!"],
             "sonraki": "n1", "uygun": false, "geri_bildirim_tr": "**Ich will** burada sert ve kaba duyulur. Kibar istek için **Ich möchte** de." }
         ]
       },
@@ -304,20 +304,20 @@
         "tr": "Bugün çok kalabalık. Bir saat beklemeniz gerekiyor.",
         "secenekler": [
           { "de": "Okay. Muss ich im Wartezimmer warten?", "tr": "Tamam. Bekleme odasında mı beklemem gerekiyor?",
-            "accepted": ["Okay. Muss ich im Wartezimmer warten?", "Muss ich hier im Wartezimmer warten?", "Gut. Muss ich hier warten?"],
+            "accepted": ["Okay. Muss ich im Wartezimmer warten?", "Muss ich hier im Wartezimmer warten?", "Gut. Muss ich hier warten?", "Okay. Muss ich hier warten?", "Kein Problem. Muss ich im Wartezimmer warten?", "Eine Stunde? Okay. Muss ich im Wartezimmer warten?", "Okay. Und muss ich im Wartezimmer warten?", "Kein Problem. Muss ich hier warten?", "Okay. Muss ich im Wartezimmer warten, Frau Huber?", "Eine Stunde? Muss ich im Wartezimmer warten?", "Eine Stunde? Muss ich hier warten?"],
             "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Kuralı **Muss ich …?** ile sordun." },
           { "de": "Eine Stunde? Ich möchte lieber morgen kommen.", "tr": "Bir saat mi? Yarın gelmeyi tercih ederim.",
-            "accepted": ["Eine Stunde? Ich möchte lieber morgen kommen.", "Ich möchte lieber morgen kommen.", "Eine Stunde? Dann lieber morgen."],
+            "accepted": ["Eine Stunde? Ich möchte lieber morgen kommen.", "Ich möchte lieber morgen kommen.", "Eine Stunde? Dann lieber morgen.", "Ich komme lieber morgen.", "Eine Stunde? Ich komme lieber morgen.", "Dann komme ich lieber morgen.", "Dann möchte ich lieber morgen kommen.", "Eine Stunde? Dann komme ich lieber morgen.", "Lieber morgen.", "Eine Stunde? Lieber morgen.", "Kann ich lieber morgen kommen?"],
             "sonraki": "n2b", "uygun": true, "geri_bildirim_tr": "**lieber** ile tercihini kibarca söyledin." }
         ]
       },
       {
         "id": "n2b",
-        "de": "Morgen um acht Uhr geht.",
+        "de": "Morgen um acht Uhr geht es.",
         "tr": "Yarın saat sekiz olur.",
         "secenekler": [
           { "de": "Gut, morgen um acht. Danke!", "tr": "Tamam, yarın saat sekizde. Teşekkürler!",
-            "accepted": ["Gut, morgen um acht. Danke!", "Morgen um acht passt. Danke!", "Okay, morgen um acht Uhr. Danke schön!"],
+            "accepted": ["Gut, morgen um acht. Danke!", "Morgen um acht passt. Danke!", "Okay, morgen um acht Uhr. Danke schön!", "Gut, morgen um acht Uhr. Danke!", "Morgen um acht. Danke!", "Morgen um acht Uhr passt. Danke!", "Morgen um acht ist gut. Danke!", "Gut, morgen um acht.", "Um acht passt. Danke!", "Okay, morgen um acht Uhr. Danke, Frau Huber!", "Morgen um acht Uhr. Danke!"],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Saati tekrar ettin, yanlış anlaşılma kalmadı." }
         ]
       },
@@ -327,10 +327,10 @@
         "tr": "Hayır, gerekmiyor. Dışarıda da bekleyebilirsiniz.",
         "secenekler": [
           { "de": "Super. Darf ich draußen telefonieren?", "tr": "Süper. Dışarıda telefonla konuşabilir miyim?",
-            "accepted": ["Super. Darf ich draußen telefonieren?", "Darf ich draußen telefonieren?", "Gut. Darf man draußen telefonieren?"],
+            "accepted": ["Super. Darf ich draußen telefonieren?", "Darf ich draußen telefonieren?", "Gut. Darf man draußen telefonieren?", "Darf man draußen telefonieren?", "Und darf ich draußen telefonieren?", "Darf ich draußen auch telefonieren?", "Super. Darf ich da telefonieren?", "Darf ich da draußen telefonieren?", "Super. Und darf man draußen telefonieren?", "Super. Darf ich draußen telefonieren, Frau Huber?", "Super. Darf ich dann draußen telefonieren?"],
             "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "İzni **Darf ich …?** ile sordun." },
           { "de": "Okay, danke. Ich möchte hier warten.", "tr": "Tamam, teşekkürler. Burada beklemek istiyorum.",
-            "accepted": ["Okay, danke. Ich möchte hier warten.", "Danke, ich möchte hier warten.", "Gut, ich warte hier."],
+            "accepted": ["Okay, danke. Ich möchte hier warten.", "Danke, ich möchte hier warten.", "Gut, ich warte hier.", "Okay, danke. Ich warte hier.", "Ich warte hier.", "Ich möchte hier warten.", "Danke, ich warte lieber hier.", "Ich möchte lieber hier warten.", "Danke, ich warte im Wartezimmer.", "Ich warte im Wartezimmer.", "Danke, aber ich warte hier."],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Kısa ve kibar." }
         ]
       },
@@ -340,7 +340,7 @@
         "tr": "Evet, dışarıda telefonla konuşabilirsiniz. Bekleme odasında olmaz.",
         "secenekler": [
           { "de": "Alles klar. Danke, Frau Huber!", "tr": "Anlaşıldı. Teşekkürler Huber Hanım!",
-            "accepted": ["Alles klar. Danke, Frau Huber!", "Alles klar, danke!", "Okay, danke schön, Frau Huber!"],
+            "accepted": ["Alles klar. Danke, Frau Huber!", "Alles klar, danke!", "Okay, danke schön, Frau Huber!", "Danke, Frau Huber!", "Okay, danke!", "Danke!", "Alles klar. Vielen Dank, Frau Huber!", "Alles klar. Danke schön!", "Vielen Dank!", "Alles klar.", "Alles klar, Frau Huber."],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Kuralı anladığını gösterdin." }
         ]
       },
@@ -359,7 +359,7 @@
       { "id": "m1:44:o3", "kind": "detail", "q_tr": "Numara alman gerekiyor mu?", "opts": ["Hayır, gerekmiyor", "Evet, gerekiyor", "Yalnız sabah"], "ans": 0, "kanit": [4] },
       { "id": "m1:44:o4", "kind": "detail", "q_tr": "Ateşin varsa ne yapmalısın?", "opts": ["Hemen kayıt masasında söylemelisin", "Eve gitmelisin", "Sessizce beklemelisin"], "ans": 0, "kanit": [6, 7] },
       { "id": "m1:44:o5", "k": "guided_response", "situation_tr": "Yanındaki hasta soruyor: burada bir şey yiyebilir miyim? Yasak olduğunu söyle.", "prompt_de": "Darf ich hier etwas essen?",
-        "accepted": ["Nein, hier darf man nicht essen.", "Nein, essen darf man hier nicht.", "Nein, leider nicht. Aber Wasser trinken dürfen Sie.", "Nein, das darf man hier nicht.", "Leider nicht. Hier darf man nicht essen."],
+        "accepted": ["Nein, hier darf man nicht essen.", "Nein, essen darf man hier nicht.", "Nein, leider nicht. Aber Wasser trinken dürfen Sie.", "Nein, das darf man hier nicht.", "Leider nicht. Hier darf man nicht essen.", "Nein, man darf hier nicht essen.", "Nein, das dürfen Sie nicht.", "Nein, Sie dürfen hier nicht essen.", "Nein, hier dürfen Sie nicht essen.", "Nein, im Wartezimmer darf man nicht essen.", "Nein, man darf im Wartezimmer nicht essen.", "Nein, essen dürfen Sie hier nicht.", "Nein, das darf man nicht."],
         "why_tr": "Yasak için **darf man nicht** dersin." }
     ]
   },
@@ -375,19 +375,19 @@
       { "id": "m1:44:s4", "k": "listen_and_respond", "audio_de": "Das Training ist am Freitag.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
         "accepted": ["Das Training ist am Freitag.", "das training ist am freitag", "Das Training ist am Freitag"], "why_tr": "Gün için **am Freitag** dersin." },
       { "id": "m1:44:s5", "k": "tr_de", "tr": "Bekleme odasında yemek yemek yasak.",
-        "accepted": ["Im Wartezimmer darf man nicht essen.", "Man darf im Wartezimmer nicht essen.", "Essen darf man im Wartezimmer nicht."], "why_tr": "Yasak için **darf man nicht** dersin." },
+        "accepted": ["Im Wartezimmer darf man nicht essen.", "Man darf im Wartezimmer nicht essen.", "Essen darf man im Wartezimmer nicht.", "Im Wartezimmer darf man nichts essen.", "Man darf nicht im Wartezimmer essen.", "Im Wartezimmer dürfen Sie nicht essen.", "Essen ist im Wartezimmer verboten.", "Im Wartezimmer ist Essen verboten."], "why_tr": "Yasak için **darf man nicht** dersin." },
       { "id": "m1:44:s6", "k": "tr_de", "tr": "Kilo vermeniz gerekmiyor.",
         "accepted": ["Sie müssen nicht abnehmen.", "Sie müssen wirklich nicht abnehmen.", "Abnehmen müssen Sie nicht."], "why_tr": "Gerek yoksa **müssen nicht** dersin, yasak değildir." },
       { "id": "m1:44:s7", "k": "tr_de", "tr": "Bir kahve sipariş etmek istiyorum.",
-        "accepted": ["Ich möchte einen Kaffee bestellen.", "Ich möchte bitte einen Kaffee bestellen.", "Ich möchte gern einen Kaffee bestellen."], "why_tr": "Kibar istek **Ich möchte** ile başlar, **bestellen** sona gelir." },
+        "accepted": ["Ich möchte einen Kaffee bestellen.", "Ich möchte bitte einen Kaffee bestellen.", "Ich möchte gern einen Kaffee bestellen.", "Ich möchte gerne einen Kaffee bestellen.", "Ich will einen Kaffee bestellen."], "why_tr": "Kibar istek **Ich möchte** ile başlar, **bestellen** sona gelir." },
       { "id": "m1:44:s8", "k": "tr_de", "tr": "Bir isteğim var.",
-        "accepted": ["Ich habe einen Wunsch.", "Ich habe da einen Wunsch.", "Ich habe noch einen Wunsch."], "why_tr": "İstek **Wunsch** demektir." },
+        "accepted": ["Ich habe einen Wunsch.", "Ich habe da einen Wunsch.", "Ich habe noch einen Wunsch.", "Ich hätte einen Wunsch.", "Ich habe eine Bitte."], "why_tr": "İstek **Wunsch** demektir." },
       { "id": "m1:44:s9", "k": "guided_response", "situation_tr": "Kafede garson soruyor. Kibarca bir su iste.", "prompt_de": "Was möchten Sie?",
-        "accepted": ["Ich möchte ein Wasser, bitte.", "Ein Wasser, bitte.", "Ich möchte bitte ein Wasser.", "Ich hätte gern ein Wasser.", "Ein Wasser, bitte. Danke."], "why_tr": "Kibar istek için **Ich möchte** dersin, **Ich will** sert duyulur." },
+        "accepted": ["Ich möchte ein Wasser, bitte.", "Ein Wasser, bitte.", "Ich möchte bitte ein Wasser.", "Ich hätte gern ein Wasser.", "Ein Wasser, bitte. Danke.", "Ich möchte ein Wasser.", "Ich möchte gern ein Wasser.", "Ich hätte gerne ein Wasser.", "Ich möchte gerne ein Wasser.", "Bitte ein Wasser.", "Für mich ein Wasser, bitte.", "Ich nehme ein Wasser, bitte.", "Ich nehme ein Wasser."], "why_tr": "Kibar istek için **Ich möchte** dersin, **Ich will** sert duyulur." },
       { "id": "m1:44:s10", "k": "guided_response", "situation_tr": "Doktor soruyor: antrenmandan sonra neren ağrıyor? Bacakların ağrıyor.", "prompt_de": "Was tut Ihnen nach dem Training weh?",
-        "accepted": ["Nach dem Training tun mir die Beine weh.", "Die Beine tun mir weh.", "Mir tun die Beine weh.", "Meine Beine tun weh."], "why_tr": "Ağrıyan yer birden çoksa **tun** dersin: **Mir tun die Beine weh**." },
+        "accepted": ["Nach dem Training tun mir die Beine weh.", "Die Beine tun mir weh.", "Mir tun die Beine weh.", "Meine Beine tun weh.", "Mir tun nach dem Training die Beine weh.", "Die Beine tun mir nach dem Training weh.", "Meine Beine tun nach dem Training weh.", "Nach dem Training tun meine Beine weh.", "Die Beine.", "Meine Beine.", "Mir tun die Beine weh, Herr Doktor.", "Die Beine tun weh."], "why_tr": "Ağrıyan yer birden çoksa **tun** dersin: **Mir tun die Beine weh**." },
       { "id": "m1:44:s11", "k": "guided_response", "situation_tr": "Bekleme odasındasın. Huber Hanım'a telefonla konuşup konuşamayacağını sor.", "prompt_de": "Bitte nehmen Sie Platz.",
-        "accepted": ["Darf ich hier telefonieren?", "Entschuldigung, darf ich hier telefonieren?", "Darf man im Wartezimmer telefonieren?", "Darf ich im Wartezimmer telefonieren?", "Darf ich kurz telefonieren?"], "why_tr": "İzin sorarken **Darf ich …?** dersin." }
+        "accepted": ["Darf ich hier telefonieren?", "Entschuldigung, darf ich hier telefonieren?", "Darf man im Wartezimmer telefonieren?", "Darf ich im Wartezimmer telefonieren?", "Darf ich kurz telefonieren?", "Darf ich hier telefonieren, Frau Huber?", "Frau Huber, darf ich hier telefonieren?", "Darf ich telefonieren?", "Darf man hier telefonieren?", "Darf ich im Wartezimmer telefonieren, Frau Huber?", "Frau Huber, darf ich im Wartezimmer telefonieren?", "Kann ich hier telefonieren?", "Darf ich hier kurz telefonieren?"], "why_tr": "İzin sorarken **Darf ich …?** dersin." }
     ],
     "sesli": ["m1:44:s9", "m1:44:s10"],
     "dikte": ["m1:44:s1", "m1:44:s2", "m1:44:s3", "m1:44:s4"]

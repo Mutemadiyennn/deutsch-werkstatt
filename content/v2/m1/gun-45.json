@@ -154,7 +154,7 @@
           "k": "guided_response",
           "situation_tr": "Tobi soruyor: Ioana bugün antrenmana geliyor mu? Doktorun ne dediğini aktar.",
           "prompt_de": "Kommt Ioana heute zum Training?",
-          "accepted": ["Nein, sie soll heute kein Training machen.", "Nein. Sie soll heute kein Training machen.", "Nein, der Arzt sagt, sie soll kein Training machen.", "Nein, sie darf heute kein Training machen.", "Nein, sie soll heute kein Training machen. Sie hatte eine Impfung."],
+          "accepted": ["Nein, sie soll heute kein Training machen.", "Nein. Sie soll heute kein Training machen.", "Nein, der Arzt sagt, sie soll kein Training machen.", "Nein, sie darf heute kein Training machen.", "Nein, sie soll heute kein Training machen. Sie hatte eine Impfung.", "Nein, sie soll kein Training machen.", "Sie soll heute kein Training machen.", "Nein, der Arzt sagt, sie soll heute kein Training machen.", "Nein, sie kommt nicht. Sie soll heute kein Training machen.", "Nein, Ioana soll heute kein Training machen.", "Nein, heute nicht. Sie soll kein Training machen.", "Nein, heute soll sie kein Training machen.", "Nein, sie darf kein Training machen."],
           "why_tr": "Doktorun sözünü aktarırken **Sie soll …** dersin."
         }
       }
@@ -197,7 +197,7 @@
             "k": "guided_response",
             "situation_tr": "Ioana soruyor: eczanede aşı olabilir miyim? Randevu alması gerektiğini söyle.",
             "prompt_de": "Kann ich in der Apotheke eine Impfung bekommen?",
-            "accepted": ["Ja, aber du musst einen Termin machen.", "Ja, aber nur mit Termin.", "Ja, du musst vorher einen Termin machen.", "Ja, mach einen Termin.", "Ja, aber du sollst einen Termin machen."],
+            "accepted": ["Ja, aber du musst einen Termin machen.", "Ja, aber nur mit Termin.", "Ja, du musst vorher einen Termin machen.", "Ja, mach einen Termin.", "Ja, aber du sollst einen Termin machen.", "Du musst einen Termin machen.", "Ja, aber du brauchst einen Termin.", "Ja, du brauchst einen Termin.", "Ja, mit Termin.", "Ja, aber mach einen Termin.", "Ja, aber du musst vorher einen Termin machen.", "Ja, du sollst einen Termin machen.", "Ja, aber du musst für die Impfung einen Termin machen."],
             "why_tr": "Gerekeni **du musst** ile söylersin: **Du musst einen Termin machen**."
           }
         }
@@ -240,7 +240,7 @@
             "k": "guided_response",
             "situation_tr": "Brandl Hanım'ı geri arıyorsun. Bugün eczaneye gideceğini söyle.",
             "prompt_de": "Brandl?",
-            "accepted": ["Hallo Frau Brandl, hier ist {name}. Ich gehe heute in die Apotheke.", "Hier ist {name}. Ich hole die Tropfen heute.", "Hallo, hier ist {name}. Kein Problem, ich gehe heute in die Apotheke.", "Frau Brandl, hier ist {name}. Ich bringe Ihnen heute die Tropfen.", "Hallo Frau Brandl! Ich hole Ihre Tropfen, kein Problem."],
+            "accepted": ["Hallo Frau Brandl, hier ist {name}. Ich gehe heute in die Apotheke.", "Hier ist {name}. Ich hole die Tropfen heute.", "Hallo, hier ist {name}. Kein Problem, ich gehe heute in die Apotheke.", "Frau Brandl, hier ist {name}. Ich bringe Ihnen heute die Tropfen.", "Hier ist {name}. Ich gehe heute in die Apotheke.", "Guten Tag, Frau Brandl, hier ist {name}. Ich gehe heute in die Apotheke.", "Hallo Frau Brandl, hier ist {name}. Ich hole heute die Tropfen.", "Hier ist {name}. Ich hole heute die Tropfen.", "Hier ist {name}. Ich hole heute Ihre Tropfen.", "Hallo Frau Brandl, hier ist {name}. Ich hole heute Ihre Tropfen.", "Hallo Frau Brandl, hier ist {name}. Ich hole Ihre Tropfen heute.", "Hallo Frau Brandl, hier ist {name}. Ich gehe heute in die Apotheke und hole die Tropfen.", "Hier ist {name}. Ich gehe heute in die Apotheke und hole Ihre Tropfen.", "Hallo Frau Brandl, {name} hier. Ich gehe heute in die Apotheke.", "Frau Brandl, hier ist {name}. Ich gehe heute in die Apotheke.", "Hallo Frau Brandl, hier ist {name}. Heute gehe ich in die Apotheke."],
             "why_tr": "Önce adını, sonra ne yapacağını söyle: **Ich gehe in die Apotheke**."
           }
         }
@@ -268,13 +268,13 @@
         "tr": "Merhaba, buyurun?",
         "secenekler": [
           { "de": "Guten Tag! Hier ist ein Rezept für Frau Brandl.", "tr": "İyi günler! Brandl Hanım için bir reçete.",
-            "accepted": ["Guten Tag! Hier ist ein Rezept für Frau Brandl.", "Guten Tag, hier ist das Rezept für Frau Brandl.", "Hallo! Ich habe hier ein Rezept für Frau Brandl.", "Grüß Gott! Hier ist ein Rezept für Frau Brandl."],
+            "accepted": ["Guten Tag! Hier ist ein Rezept für Frau Brandl.", "Guten Tag, hier ist das Rezept für Frau Brandl.", "Hallo! Ich habe hier ein Rezept für Frau Brandl.", "Grüß Gott! Hier ist ein Rezept für Frau Brandl.", "Guten Tag! Ich habe ein Rezept für Frau Brandl.", "Guten Tag! Ich habe hier ein Rezept für Frau Brandl.", "Hallo! Hier ist ein Rezept für Frau Brandl.", "Hallo! Ich habe ein Rezept für Frau Brandl.", "Guten Tag! Hier ist das Rezept von Frau Brandl.", "Hallo! Hier ist das Rezept für Frau Brandl.", "Guten Tag! Das ist ein Rezept für Frau Brandl.", "Hallo! Das ist ein Rezept für Frau Brandl."],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Selam verdin ve reçeteyi kimin için getirdiğini söyledin." },
           { "de": "Ich möchte die Tropfen für Frau Brandl, bitte.", "tr": "Brandl Hanım'ın damlasını istiyorum, lütfen.",
-            "accepted": ["Ich möchte die Tropfen für Frau Brandl, bitte.", "Die Tropfen für Frau Brandl, bitte.", "Ich möchte bitte die Tropfen für Frau Brandl."],
+            "accepted": ["Ich möchte die Tropfen für Frau Brandl, bitte.", "Die Tropfen für Frau Brandl, bitte.", "Ich möchte bitte die Tropfen für Frau Brandl.", "Guten Tag! Ich möchte die Tropfen für Frau Brandl, bitte.", "Guten Tag! Ich möchte die Tropfen für Frau Brandl.", "Ich möchte die Tropfen für Frau Brandl.", "Guten Tag! Die Tropfen für Frau Brandl, bitte.", "Ich möchte Tropfen für Frau Brandl, bitte.", "Ich hätte gern die Tropfen für Frau Brandl.", "Guten Tag! Ich hätte gern die Tropfen für Frau Brandl.", "Ich möchte die Tropfen von Frau Brandl, bitte."],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Kibar bir istek. Reçeteyi eczacıya vermeyi de unutma." },
           { "de": "Ich will Tropfen!", "tr": "Damla istiyorum!",
-            "accepted": ["Ich will Tropfen!", "Ich will die Tropfen!", "Tropfen, schnell!"],
+            "accepted": ["Ich will Tropfen!", "Ich will die Tropfen!", "Tropfen, schnell!", "Ich will die Tropfen für Frau Brandl!", "Ich will Tropfen für Frau Brandl!", "Tropfen!", "Die Tropfen!", "Ich will die Tropfen, schnell!", "Die Tropfen, schnell!", "Ich will sofort die Tropfen!", "Ich will meine Tropfen!"],
             "sonraki": "n1", "uygun": false, "geri_bildirim_tr": "**Ich will** burada sert duyulur. **Ich möchte …, bitte** de." }
         ]
       },
@@ -284,10 +284,10 @@
         "tr": "Göz damlası mı? Buyurun.",
         "secenekler": [
           { "de": "Danke. Wie oft soll sie die Tropfen nehmen?", "tr": "Teşekkürler. Damlayı ne sıklıkla alması gerekiyor?",
-            "accepted": ["Danke. Wie oft soll sie die Tropfen nehmen?", "Wie oft soll Frau Brandl die Tropfen nehmen?", "Danke. Wie oft soll sie sie nehmen?", "Danke. Wann soll sie die Tropfen nehmen?"],
+            "accepted": ["Danke. Wie oft soll sie die Tropfen nehmen?", "Wie oft soll Frau Brandl die Tropfen nehmen?", "Danke. Wie oft soll sie sie nehmen?", "Danke. Wann soll sie die Tropfen nehmen?", "Wie oft soll sie die Tropfen nehmen?", "Wie oft soll sie sie nehmen?", "Danke. Wie oft muss sie die Tropfen nehmen?", "Wie oft muss sie die Tropfen nehmen?", "Danke. Wie oft am Tag soll sie die Tropfen nehmen?", "Wie oft am Tag soll sie die Tropfen nehmen?", "Danke. Wie oft soll sie die nehmen?", "Danke. Und wie oft soll sie die Tropfen nehmen?"],
             "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "İlacın kullanımını sormak çok önemli." },
           { "de": "Danke, auf Wiedersehen!", "tr": "Teşekkürler, hoşça kalın!",
-            "accepted": ["Danke, auf Wiedersehen!", "Danke schön, auf Wiedersehen!", "Danke, tschüss!"],
+            "accepted": ["Danke, auf Wiedersehen!", "Danke schön, auf Wiedersehen!", "Danke, tschüss!", "Danke!", "Vielen Dank, auf Wiedersehen!", "Danke schön!", "Vielen Dank!", "Danke schön. Tschüss!"],
             "sonraki": "n2", "uygun": false, "geri_bildirim_tr": "Kullanımı bilmeden gitme. Brandl Hanım soracak. **Wie oft soll sie …?** diye sor." }
         ]
       },
@@ -297,10 +297,10 @@
         "tr": "Günde üç kez iki damla. Sabah, öğlen ve akşam.",
         "secenekler": [
           { "de": "Also: Sie soll dreimal am Tag zwei Tropfen nehmen?", "tr": "Yani günde üç kez iki damla alması gerekiyor?",
-            "accepted": ["Also: Sie soll dreimal am Tag zwei Tropfen nehmen?", "Sie soll dreimal am Tag zwei Tropfen nehmen, richtig?", "Dreimal am Tag zwei Tropfen, richtig?", "Sie soll am Morgen, am Mittag und am Abend zwei Tropfen nehmen?"],
+            "accepted": ["Also: Sie soll dreimal am Tag zwei Tropfen nehmen?", "Sie soll dreimal am Tag zwei Tropfen nehmen, richtig?", "Dreimal am Tag zwei Tropfen, richtig?", "Sie soll am Morgen, am Mittag und am Abend zwei Tropfen nehmen?", "Also dreimal am Tag zwei Tropfen?", "Sie soll also dreimal am Tag zwei Tropfen nehmen?", "Sie soll zwei Tropfen dreimal am Tag nehmen?", "Sie soll dreimal am Tag zwei Tropfen nehmen: am Morgen, am Mittag und am Abend?", "Dreimal am Tag zwei Tropfen. Am Morgen, am Mittag und am Abend.", "Dreimal am Tag zwei Tropfen. Okay.", "Zwei Tropfen, dreimal am Tag?", "Sie soll dreimal am Tag zwei Tropfen nehmen, ja?"],
             "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Talimatı **Sie soll …** ile tekrar ettin. Yanlış anlaşılma kalmadı." },
           { "de": "Zweimal am Tag drei Tropfen?", "tr": "Günde iki kez üç damla mı?",
-            "accepted": ["Zweimal am Tag drei Tropfen?", "Zweimal am Tag, drei Tropfen?", "Also zweimal drei Tropfen?"],
+            "accepted": ["Zweimal am Tag drei Tropfen?", "Zweimal am Tag, drei Tropfen?", "Also zweimal drei Tropfen?", "Zweimal am Tag drei Tropfen, richtig?", "Sie soll zweimal am Tag drei Tropfen nehmen?", "Drei Tropfen, zweimal am Tag?", "Sie soll zweimal am Tag drei Tropfen nehmen, richtig?"],
             "sonraki": "n3b", "uygun": false, "geri_bildirim_tr": "Sayıları karıştırdın. Tekrar ederek sorman iyi oldu, eczacı düzeltiyor." }
         ]
       },
@@ -310,7 +310,7 @@
         "tr": "Hayır: günde üç kez, iki damla.",
         "secenekler": [
           { "de": "Ach so. Dreimal am Tag zwei Tropfen. Danke!", "tr": "Anladım. Günde üç kez iki damla. Teşekkürler!",
-            "accepted": ["Ach so. Dreimal am Tag zwei Tropfen. Danke!", "Ach so, dreimal am Tag zwei Tropfen.", "Ach so. Am Morgen, am Mittag und am Abend zwei Tropfen."],
+            "accepted": ["Ach so. Dreimal am Tag zwei Tropfen. Danke!", "Ach so, dreimal am Tag zwei Tropfen.", "Ach so. Am Morgen, am Mittag und am Abend zwei Tropfen.", "Ach so. Sie soll dreimal am Tag zwei Tropfen nehmen.", "Ach so! Dreimal zwei Tropfen. Danke!", "Ach so. Zwei Tropfen, dreimal am Tag.", "Ach so, Entschuldigung. Dreimal am Tag zwei Tropfen.", "Ach so, dreimal am Tag zwei Tropfen, richtig?", "Alles klar. Dreimal am Tag zwei Tropfen.", "Ach so. Dreimal am Tag zwei Tropfen. Am Morgen, am Mittag und am Abend.", "Ach so, dreimal am Tag. Danke!"],
             "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Toparladın ve doğru sayıyı tekrar ettin." }
         ]
       },
@@ -320,10 +320,10 @@
         "tr": "Evet, böyle doğru.",
         "secenekler": [
           { "de": "Gut. Und darf sie Auto fahren?", "tr": "Tamam. Araba kullanabilir mi?",
-            "accepted": ["Gut. Und darf sie Auto fahren?", "Darf sie Auto fahren?", "Und darf Frau Brandl Auto fahren?"],
+            "accepted": ["Gut. Und darf sie Auto fahren?", "Darf sie Auto fahren?", "Und darf Frau Brandl Auto fahren?", "Und darf sie Auto fahren?", "Darf Frau Brandl Auto fahren?", "Gut. Und darf sie mit den Tropfen Auto fahren?", "Darf sie mit den Tropfen Auto fahren?", "Und darf sie mit den Tropfen Auto fahren?", "Gut. Und darf sie nach den Tropfen Auto fahren?", "Darf sie nach den Tropfen Auto fahren?", "Gut. Darf sie dann Auto fahren?"],
             "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Göz damlasında önemli bir soru. İzni **darf** ile sordun." },
           { "de": "Alles klar. Danke schön!", "tr": "Anlaşıldı. Çok teşekkürler!",
-            "accepted": ["Alles klar. Danke schön!", "Alles klar, danke!", "Okay, danke schön!"],
+            "accepted": ["Alles klar. Danke schön!", "Alles klar, danke!", "Okay, danke schön!", "Danke!", "Vielen Dank!", "Gut. Danke schön!", "Alles klar.", "Alles klar. Danke, auf Wiedersehen!", "Danke schön. Auf Wiedersehen!", "Gut. Danke, auf Wiedersehen!", "Vielen Dank! Auf Wiedersehen."],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Kısa ve kibar." }
         ]
       },
@@ -333,7 +333,7 @@
         "tr": "Damladan sonra lütfen bir saat araba kullanmasın.",
         "secenekler": [
           { "de": "Okay, eine Stunde kein Auto. Danke!", "tr": "Tamam, bir saat araba yok. Teşekkürler!",
-            "accepted": ["Okay, eine Stunde kein Auto. Danke!", "Eine Stunde nicht Auto fahren. Okay, danke!", "Alles klar, eine Stunde kein Auto."],
+            "accepted": ["Okay, eine Stunde kein Auto. Danke!", "Eine Stunde nicht Auto fahren. Okay, danke!", "Alles klar, eine Stunde kein Auto.", "Okay, eine Stunde kein Auto.", "Okay. Eine Stunde nicht Auto fahren. Danke!", "Okay, eine Stunde nicht Auto fahren.", "Okay, sie soll eine Stunde nicht Auto fahren. Danke!", "Sie soll eine Stunde nicht Auto fahren.", "Okay. Sie darf eine Stunde nicht Auto fahren. Danke!", "Sie darf eine Stunde nicht Auto fahren.", "Alles klar. Eine Stunde nicht Auto fahren. Danke!"],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Talimatı kısaca tekrar ettin." }
         ]
       },
@@ -370,19 +370,19 @@
       { "id": "m1:45:s4", "k": "listen_and_respond", "audio_de": "Bitte kommen Sie morgen pünktlich.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
         "accepted": ["Bitte kommen Sie morgen pünktlich.", "bitte kommen sie morgen pünktlich", "Bitte kommen Sie morgen pünktlich"], "why_tr": "Resmî talimatta **kommen** önce, **Sie** hemen sonra gelir." },
       { "id": "m1:45:s5", "k": "tr_de", "tr": "Lütfen burada bekleyin.",
-        "accepted": ["Warten Sie bitte hier.", "Bitte warten Sie hier.", "Warten Sie hier, bitte."], "why_tr": "Resmî talimatta **Warten** önce, **Sie** hemen sonra gelir." },
+        "accepted": ["Warten Sie bitte hier.", "Bitte warten Sie hier.", "Warten Sie hier, bitte.", "Bitte hier warten."], "why_tr": "Resmî talimatta **Warten** önce, **Sie** hemen sonra gelir." },
       { "id": "m1:45:s6", "k": "tr_de", "tr": "Tableti günde iki kez almam gerekiyor, doktor öyle söyledi.",
-        "accepted": ["Ich soll die Tablette zweimal am Tag nehmen.", "Ich soll zweimal am Tag eine Tablette nehmen.", "Der Arzt sagt, ich soll die Tablette zweimal am Tag nehmen."], "why_tr": "Doktorun isteğini aktarırken **Ich soll** dersin, **nehmen** sona gelir." },
+        "accepted": ["Ich soll die Tablette zweimal am Tag nehmen.", "Ich soll zweimal am Tag eine Tablette nehmen.", "Der Arzt sagt, ich soll die Tablette zweimal am Tag nehmen.", "Ich soll zweimal am Tag die Tablette nehmen.", "Der Arzt sagt, ich soll zweimal am Tag eine Tablette nehmen.", "Der Arzt sagt, ich soll zweimal am Tag die Tablette nehmen.", "Ich soll die Tablette zweimal am Tag nehmen, sagt der Arzt.", "Der Doktor sagt, ich soll die Tablette zweimal am Tag nehmen.", "Ich soll die Tablette zweimal am Tag nehmen. Das sagt der Arzt.", "Der Arzt hat gesagt, ich soll die Tablette zweimal am Tag nehmen.", "Ich soll die Tablette zweimal am Tag nehmen. Der Arzt hat das gesagt."], "why_tr": "Doktorun isteğini aktarırken **Ich soll** dersin, **nehmen** sona gelir." },
       { "id": "m1:45:s7", "k": "tr_de", "tr": "Bana bir şey tavsiye edebilir misiniz?",
-        "accepted": ["Können Sie mir etwas empfehlen?", "Können Sie mir bitte etwas empfehlen?", "Was können Sie mir empfehlen?"], "why_tr": "Tavsiye istemek için **empfehlen** kullanılır, sona gelir." },
+        "accepted": ["Können Sie mir etwas empfehlen?", "Können Sie mir bitte etwas empfehlen?", "Was können Sie mir empfehlen?", "Können Sie mir was empfehlen?", "Was empfehlen Sie mir?"], "why_tr": "Tavsiye istemek için **empfehlen** kullanılır, sona gelir." },
       { "id": "m1:45:s8", "k": "tr_de", "tr": "Ne önerirsiniz?",
-        "accepted": ["Was schlagen Sie vor?", "Haben Sie einen Vorschlag?", "Was ist Ihr Vorschlag?"], "why_tr": "**vorschlagen** ikiye ayrılır: **schlagen** önde, **vor** en sonda." },
+        "accepted": ["Was schlagen Sie vor?", "Haben Sie einen Vorschlag?", "Was ist Ihr Vorschlag?", "Was empfehlen Sie?", "Was können Sie empfehlen?", "Was schlagen Sie denn vor?"], "why_tr": "**vorschlagen** ikiye ayrılır: **schlagen** önde, **vor** en sonda." },
       { "id": "m1:45:s9", "k": "guided_response", "situation_tr": "Eczacı talimat veriyor. **Ich soll …** ile tekrar et.", "prompt_de": "Nehmen Sie die Tabletten am Morgen und am Abend.",
-        "accepted": ["Ich soll die Tabletten am Morgen und am Abend nehmen.", "Also am Morgen und am Abend, richtig?", "Ich soll sie am Morgen und am Abend nehmen?", "Am Morgen und am Abend. Okay.", "Ich soll die Tabletten morgens und abends nehmen."], "why_tr": "Talimatı tekrar ederken **Ich soll … nehmen** dersin." },
+        "accepted": ["Ich soll die Tabletten am Morgen und am Abend nehmen.", "Ich soll sie am Morgen und am Abend nehmen?", "Ich soll die Tabletten morgens und abends nehmen.", "Ich soll die Tabletten am Morgen und am Abend nehmen, richtig?", "Ich soll sie am Morgen und am Abend nehmen, richtig?", "Ich soll am Morgen und am Abend die Tabletten nehmen.", "Am Morgen und am Abend. Ich soll die Tabletten am Morgen und am Abend nehmen.", "Ich soll die Tabletten morgens und abends nehmen, richtig?", "Ich soll sie morgens und abends nehmen.", "Ich soll also die Tabletten am Morgen und am Abend nehmen.", "Ich soll die Tabletten also am Morgen und am Abend nehmen."], "why_tr": "Talimatı tekrar ederken **Ich soll … nehmen** dersin." },
       { "id": "m1:45:s10", "k": "guided_response", "situation_tr": "Yoldan geçen biri eczaneyi soruyor. Belediye binasının karşısında olduğunu söyle.", "prompt_de": "Entschuldigung, wo ist die Apotheke?",
-        "accepted": ["Die Apotheke ist gegenüber vom Rathaus.", "Gegenüber vom Rathaus.", "Sie ist gegenüber vom Rathaus.", "Gehen Sie die Straße entlang. Die Apotheke ist gegenüber vom Rathaus.", "Gleich gegenüber vom Rathaus."], "why_tr": "Karşısında derken **gegenüber vom** dersin." },
+        "accepted": ["Die Apotheke ist gegenüber vom Rathaus.", "Gegenüber vom Rathaus.", "Sie ist gegenüber vom Rathaus.", "Gehen Sie die Straße entlang. Die Apotheke ist gegenüber vom Rathaus.", "Gleich gegenüber vom Rathaus.", "Sie ist gleich gegenüber vom Rathaus.", "Die Apotheke ist gleich gegenüber vom Rathaus.", "Die ist gegenüber vom Rathaus.", "Gegenüber vom Rathaus ist die Apotheke.", "Die Apotheke? Sie ist gegenüber vom Rathaus.", "Die Apotheke? Gegenüber vom Rathaus.", "Da, gegenüber vom Rathaus.", "Sie ist da, gegenüber vom Rathaus."], "why_tr": "Karşısında derken **gegenüber vom** dersin." },
       { "id": "m1:45:s11", "k": "guided_response", "situation_tr": "Eczanedesin. Eczacı damlayı veriyor. Ne sıklıkla kullanacağını sor.", "prompt_de": "Hier sind die Tropfen.",
-        "accepted": ["Danke. Wie oft soll ich die Tropfen nehmen?", "Wie oft soll ich die Tropfen nehmen?", "Danke. Wie oft soll ich sie nehmen?", "Und wie oft soll ich die Tropfen nehmen?", "Danke. Wann soll ich die Tropfen nehmen?"], "why_tr": "Kullanımı **Wie oft soll ich …?** ile sorarsın." }
+        "accepted": ["Danke. Wie oft soll ich die Tropfen nehmen?", "Wie oft soll ich die Tropfen nehmen?", "Danke. Wie oft soll ich sie nehmen?", "Und wie oft soll ich die Tropfen nehmen?", "Danke. Wann soll ich die Tropfen nehmen?", "Wie oft soll ich sie nehmen?", "Wie oft muss ich die Tropfen nehmen?", "Wie oft muss ich sie nehmen?", "Wie oft am Tag soll ich die Tropfen nehmen?", "Wie oft soll ich die Tropfen am Tag nehmen?", "Wie oft nehme ich die Tropfen?", "Wie oft soll ich die nehmen?", "Wie oft am Tag?"], "why_tr": "Kullanımı **Wie oft soll ich …?** ile sorarsın." }
     ],
     "sesli": ["m1:45:s9", "m1:45:s10"],
     "dikte": ["m1:45:s1", "m1:45:s2", "m1:45:s3", "m1:45:s4"]

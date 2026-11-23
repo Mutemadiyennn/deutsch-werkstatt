@@ -215,7 +215,7 @@
           "k": "guided_response",
           "situation_tr": "Sıra sende. Dr. Weber sana da soruyor. Başın iki gündür ağrıyor.",
           "prompt_de": "Und Sie? Was fehlt Ihnen?",
-          "accepted": ["Mir tut seit zwei Tagen der Kopf weh.", "Ich habe seit zwei Tagen Kopfschmerzen.", "Mir tut der Kopf weh, seit zwei Tagen.", "Seit zwei Tagen tut mir der Kopf weh.", "Der Kopf tut mir seit zwei Tagen weh.", "Ich habe Kopfschmerzen, seit zwei Tagen."],
+          "accepted": ["Mir tut seit zwei Tagen der Kopf weh.", "Ich habe seit zwei Tagen Kopfschmerzen.", "Mir tut der Kopf weh, seit zwei Tagen.", "Seit zwei Tagen tut mir der Kopf weh.", "Der Kopf tut mir seit zwei Tagen weh.", "Ich habe Kopfschmerzen, seit zwei Tagen.", "Mein Kopf tut seit zwei Tagen weh.", "Mir tut der Kopf seit zwei Tagen weh.", "Der Kopf tut seit zwei Tagen weh.", "Seit zwei Tagen tut mein Kopf weh.", "Mein Kopf tut weh, seit zwei Tagen.", "Seit zwei Tagen tut der Kopf weh.", "Ich habe schon seit zwei Tagen Kopfschmerzen.", "Mir tut schon seit zwei Tagen der Kopf weh."],
           "why_tr": "Ağrıyı **Mir tut der Kopf weh** ile, ne zamandan beri olduğunu **seit** ile söylersin."
         }
       }
@@ -258,7 +258,7 @@
             "k": "guided_response",
             "situation_tr": "Komşun soruyor: muayenehane öğleden sonra açık mı? Kapalı olduğunu söyle.",
             "prompt_de": "Ist die Praxis am Nachmittag offen?",
-            "accepted": ["Nein, am Nachmittag ist die Praxis geschlossen.", "Nein, am Nachmittag ist sie geschlossen.", "Nein, sie ist am Nachmittag geschlossen.", "Nein, die Praxis ist am Nachmittag geschlossen.", "Nein, die Praxis ist nur bis zwölf Uhr offen."],
+            "accepted": ["Nein, am Nachmittag ist die Praxis geschlossen.", "Nein, am Nachmittag ist sie geschlossen.", "Nein, sie ist am Nachmittag geschlossen.", "Nein, die Praxis ist am Nachmittag geschlossen.", "Nein, die Praxis ist nur bis zwölf Uhr offen.", "Nein, sie ist geschlossen.", "Nein, die Praxis ist geschlossen.", "Nein, am Nachmittag ist die Praxis zu.", "Nein, sie ist am Nachmittag zu.", "Nein, am Nachmittag ist die Praxis nicht offen.", "Nein, die Praxis ist am Nachmittag nicht offen.", "Nein, sie ist am Nachmittag nicht offen.", "Am Nachmittag ist die Praxis geschlossen."],
             "why_tr": "Kapalı derken **geschlossen** dersin."
           }
         }
@@ -301,7 +301,7 @@
             "k": "guided_response",
             "situation_tr": "Huber Hanım'ı geri arıyorsun. Saat on birde geleceğini ve iş yeri için rapor istediğini söyle.",
             "prompt_de": "Praxis Dr. Weber, Huber, guten Tag?",
-            "accepted": ["Hier ist {name}. Ich komme um elf Uhr. Ich möchte auch ein Attest.", "Guten Tag, hier ist {name}. Um elf Uhr geht. Und ich möchte ein Attest.", "Hier ist {name}. Elf Uhr passt. Ich brauche auch ein Attest.", "Guten Tag, {name} hier. Ich komme um elf. Ich möchte ein Attest für die Firma.", "Hier ist {name}. Ich komme um elf Uhr, und ich brauche ein Attest."],
+            "accepted": ["Hier ist {name}. Ich komme um elf Uhr. Ich möchte auch ein Attest.", "Hier ist {name}. Elf Uhr passt. Ich brauche auch ein Attest.", "Guten Tag, {name} hier. Ich komme um elf. Ich möchte ein Attest für die Firma.", "Hier ist {name}. Ich komme um elf Uhr, und ich brauche ein Attest.", "Guten Tag, hier ist {name}. Um elf Uhr geht es. Und ich möchte ein Attest.", "Guten Tag, hier ist {name}. Ich komme um elf Uhr. Ich möchte auch ein Attest.", "Hier ist {name}. Ich komme um elf Uhr. Ich möchte ein Attest.", "Guten Tag, hier ist {name}. Ich komme um elf Uhr. Ich möchte ein Attest.", "Hier ist {name}. Ich komme um elf Uhr. Ich möchte ein Attest für die Firma.", "Guten Tag, hier ist {name}. Ich komme um elf Uhr. Ich möchte ein Attest für die Firma.", "Hier ist {name}. Ich komme um elf Uhr. Ich brauche ein Attest für die Firma.", "Guten Tag, hier ist {name}. Ich komme um elf Uhr. Ich brauche ein Attest für die Firma.", "Hier ist {name}. Ich komme um elf Uhr. Ich brauche ein Attest.", "Guten Tag, hier ist {name}. Ich komme um elf Uhr. Ich brauche ein Attest.", "Guten Tag, hier ist {name}. Ich komme um elf. Ich möchte ein Attest für die Firma.", "Guten Tag, Frau Huber, hier ist {name}. Ich komme um elf Uhr. Ich möchte ein Attest für die Firma."],
             "why_tr": "Önce adını ve saati söyle, raporu **Ich möchte ein Attest** diyerek iste."
           }
         }
@@ -329,13 +329,13 @@
         "tr": "İyi günler! Neyiniz var?",
         "secenekler": [
           { "de": "Guten Tag! Ich habe Kopfschmerzen.", "tr": "İyi günler! Başım ağrıyor.",
-            "accepted": ["Guten Tag! Ich habe Kopfschmerzen.", "Ich habe Kopfschmerzen.", "Guten Tag! Mir tut der Kopf weh.", "Guten Tag, Herr Doktor. Ich habe Kopfschmerzen.", "Guten Tag, mir tut der Kopf weh."],
+            "accepted": ["Guten Tag! Ich habe Kopfschmerzen.", "Ich habe Kopfschmerzen.", "Guten Tag! Mir tut der Kopf weh.", "Guten Tag, Herr Doktor. Ich habe Kopfschmerzen.", "Guten Tag, mir tut der Kopf weh.", "Guten Tag, Herr Doktor. Mir tut der Kopf weh.", "Mir tut der Kopf weh.", "Guten Tag! Mein Kopf tut weh.", "Mein Kopf tut weh.", "Guten Tag, Herr Doktor! Mein Kopf tut weh.", "Der Kopf tut mir weh.", "Guten Tag! Der Kopf tut mir weh.", "Guten Tag, Herr Doktor! Mir tut der Kopf so weh."],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Selam verdin ve neyin ağrıdığını tam cümleyle söyledin." },
           { "de": "Guten Tag! Mir tut seit gestern der Kopf weh.", "tr": "İyi günler! Dünden beri başım ağrıyor.",
-            "accepted": ["Guten Tag! Mir tut seit gestern der Kopf weh.", "Mir tut seit gestern der Kopf weh.", "Guten Tag! Ich habe seit gestern Kopfschmerzen.", "Seit gestern tut mir der Kopf weh."],
+            "accepted": ["Guten Tag! Mir tut seit gestern der Kopf weh.", "Mir tut seit gestern der Kopf weh.", "Guten Tag! Ich habe seit gestern Kopfschmerzen.", "Seit gestern tut mir der Kopf weh.", "Ich habe seit gestern Kopfschmerzen.", "Guten Tag! Seit gestern tut mir der Kopf weh.", "Guten Tag, Herr Doktor. Mir tut seit gestern der Kopf weh.", "Guten Tag, Herr Doktor. Ich habe seit gestern Kopfschmerzen.", "Mein Kopf tut seit gestern weh.", "Guten Tag! Mein Kopf tut seit gestern weh.", "Mir tut der Kopf weh, seit gestern.", "Guten Tag! Mir tut der Kopf weh, seit gestern."],
             "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Çok iyi. Ne zamandan beri olduğunu da hemen söyledin." },
           { "de": "Kopf!", "tr": "Baş!",
-            "accepted": ["Kopf!", "Kopf.", "Der Kopf!"],
+            "accepted": ["Kopf!", "Kopf.", "Der Kopf!", "Kopfschmerzen.", "Mein Kopf."],
             "sonraki": "n1", "uygun": false, "geri_bildirim_tr": "Tek kelime yetmez. **Mir tut der Kopf weh** diye tam cümle kur." }
         ]
       },
@@ -345,10 +345,10 @@
         "tr": "Başınız ne zamandan beri ağrıyor?",
         "secenekler": [
           { "de": "Seit gestern Abend, Herr Doktor.", "tr": "Dün akşamdan beri doktor bey.",
-            "accepted": ["Seit gestern Abend, Herr Doktor.", "Seit gestern Abend.", "Seit gestern.", "Der Kopf tut seit gestern weh."],
+            "accepted": ["Seit gestern Abend, Herr Doktor.", "Seit gestern Abend.", "Seit gestern.", "Der Kopf tut seit gestern weh.", "Seit gestern, Herr Doktor.", "Seit gestern Abend tut er weh.", "Er tut seit gestern weh.", "Er tut seit gestern Abend weh.", "Mir tut der Kopf seit gestern weh.", "Mir tut der Kopf seit gestern Abend weh.", "Der Kopf tut seit gestern Abend weh.", "Seit gestern tut mir der Kopf weh."],
             "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Başlangıcı **seit** ile söyledin." },
           { "de": "Gestern.", "tr": "Dün.",
-            "accepted": ["Gestern.", "Gestern Abend.", "Das war gestern."],
+            "accepted": ["Gestern.", "Gestern Abend.", "Das war gestern.", "Gestern, Herr Doktor.", "Gestern Abend, Herr Doktor.", "Gestern war das."],
             "sonraki": "n2", "uygun": false, "geri_bildirim_tr": "Doktor ne zamandan beri diye soruyor. **Seit gestern** de." }
         ]
       },
@@ -358,10 +358,10 @@
         "tr": "Ateşiniz de var mı?",
         "secenekler": [
           { "de": "Nein, aber mir ist kalt.", "tr": "Hayır, ama üşüyorum.",
-            "accepted": ["Nein, aber mir ist kalt.", "Nein, kein Fieber. Aber mir ist kalt.", "Nein. Aber mir ist immer kalt."],
+            "accepted": ["Nein, aber mir ist kalt.", "Nein, kein Fieber. Aber mir ist kalt.", "Nein. Aber mir ist immer kalt.", "Nein, ich habe kein Fieber. Aber mir ist kalt.", "Nein. Mir ist aber kalt.", "Nein, aber mir ist so kalt.", "Nein, Herr Doktor. Aber mir ist kalt.", "Nein, mir ist kalt.", "Kein Fieber, aber mir ist kalt.", "Nein, Fieber habe ich nicht. Aber mir ist kalt.", "Nein, kein Fieber. Mir ist kalt."],
             "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Cevap verdin ve bir şey daha ekledin. Doktor için önemli." },
           { "de": "Ja, ein bisschen.", "tr": "Evet, biraz.",
-            "accepted": ["Ja, ein bisschen.", "Ja, ein bisschen Fieber.", "Ich glaube, ja. Ein bisschen."],
+            "accepted": ["Ja, ein bisschen.", "Ja, ein bisschen Fieber.", "Ich glaube, ja. Ein bisschen.", "Ja, ich habe ein bisschen Fieber.", "Ja, ich habe Fieber.", "Ja, ein bisschen, Herr Doktor.", "Ja, ich habe auch Fieber.", "Ja, auch ein bisschen Fieber.", "Ja, ich habe auch ein bisschen Fieber.", "Ich glaube, ja.", "Ja, ich glaube."],
             "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Kısa ve açık." }
         ]
       },
@@ -371,10 +371,10 @@
         "tr": "Bir alerjiniz var mı?",
         "secenekler": [
           { "de": "Nein, keine Allergie.", "tr": "Hayır, alerjim yok.",
-            "accepted": ["Nein, keine Allergie.", "Nein, ich habe keine Allergie.", "Nein, ich habe keine."],
+            "accepted": ["Nein, keine Allergie.", "Nein, ich habe keine Allergie.", "Nein, ich habe keine.", "Nein, keine.", "Nein, ich habe keine Allergie, Herr Doktor.", "Nein, keine Allergie, Herr Doktor.", "Ich habe keine Allergie.", "Keine Allergie.", "Nein, ich habe keine Allergien.", "Nein, keine Allergien.", "Ich habe keine Allergien."],
             "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Olumsuz cevapta **keine** dersin." },
           { "de": "Ja, gegen Äpfel.", "tr": "Evet, elmaya.",
-            "accepted": ["Ja, gegen Äpfel.", "Ja, ich habe eine Allergie gegen Äpfel.", "Ja, eine Allergie gegen Äpfel."],
+            "accepted": ["Ja, gegen Äpfel.", "Ja, ich habe eine Allergie gegen Äpfel.", "Ja, eine Allergie gegen Äpfel.", "Ja, gegen Äpfel habe ich eine Allergie.", "Ja, gegen Äpfel, Herr Doktor.", "Ja, ich habe eine. Gegen Äpfel.", "Ja, eine. Gegen Äpfel."],
             "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Neye alerjin olduğunu **gegen** ile söyledin." }
         ]
       },
@@ -384,13 +384,13 @@
         "tr": "Kötü bir şey değil. Cumaya kadar evde kalın ve bol sıvı için.",
         "secenekler": [
           { "de": "Okay. Und ein Attest für die Firma, bitte.", "tr": "Tamam. Bir de iş yeri için rapor, lütfen.",
-            "accepted": ["Okay. Und ein Attest für die Firma, bitte.", "Okay. Ich möchte ein Attest für die Firma.", "Gut. Und ich möchte ein Attest, bitte.", "Okay. Kann ich ein Attest haben?"],
+            "accepted": ["Okay. Und ein Attest für die Firma, bitte.", "Okay. Ich möchte ein Attest für die Firma.", "Gut. Und ich möchte ein Attest, bitte.", "Okay. Kann ich ein Attest haben?", "Okay. Ich brauche ein Attest für die Firma.", "Okay. Und ich brauche ein Attest für die Firma.", "Ein Attest für die Firma, bitte.", "Okay. Kann ich ein Attest für die Firma haben?", "Kann ich bitte ein Attest haben?", "Kann ich ein Attest für die Firma bekommen?", "Okay. Bekomme ich ein Attest?", "Okay. Bekomme ich ein Attest für die Firma?"],
             "sonraki": "n6", "uygun": true, "geri_bildirim_tr": "İş yerin için raporu unutmadın." },
           { "de": "Okay. Danke, Herr Doktor.", "tr": "Tamam. Teşekkürler doktor bey.",
-            "accepted": ["Okay. Danke, Herr Doktor.", "Gut, danke.", "Danke schön, Herr Doktor."],
+            "accepted": ["Okay. Danke, Herr Doktor.", "Gut, danke.", "Danke schön, Herr Doktor.", "Okay, danke.", "Danke.", "Vielen Dank, Herr Doktor.", "Okay. Vielen Dank.", "Alles klar. Danke, Herr Doktor.", "Gut. Danke, Herr Doktor.", "Okay. Danke schön.", "Gut, vielen Dank."],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Kibar bir kapanış. Şefin rapor isterse onu da sorabilirdin." },
           { "de": "Bis Freitag? Nein, ich muss arbeiten!", "tr": "Cumaya kadar mı? Hayır, çalışmam lazım!",
-            "accepted": ["Bis Freitag? Nein, ich muss arbeiten!", "Nein, ich muss arbeiten.", "Ich muss aber arbeiten!"],
+            "accepted": ["Bis Freitag? Nein, ich muss arbeiten!", "Nein, ich muss arbeiten.", "Ich muss aber arbeiten!", "Bis Freitag? Ich muss arbeiten!", "Aber ich muss arbeiten!", "Ich muss arbeiten.", "Bis Freitag? Aber ich muss arbeiten!", "Nein, das geht nicht. Ich muss arbeiten.", "Das geht nicht. Ich muss arbeiten.", "Bis Freitag? Das geht nicht. Ich muss arbeiten.", "Nein, ich muss morgen arbeiten."],
             "sonraki": "n5b", "uygun": false, "geri_bildirim_tr": "Hastayken çalışmak zorunda değilsin. Doktordan iş yeri için rapor iste." }
         ]
       },
@@ -400,7 +400,7 @@
         "tr": "Hastasınız. İş yeri için rapor alıyorsunuz.",
         "secenekler": [
           { "de": "Ach so. Danke, das ist gut.", "tr": "Anladım. Teşekkürler, bu iyi.",
-            "accepted": ["Ach so. Danke, das ist gut.", "Ach so, danke.", "Okay, danke schön."],
+            "accepted": ["Ach so. Danke, das ist gut.", "Ach so, danke.", "Okay, danke schön.", "Ach so. Danke, Herr Doktor.", "Okay, danke.", "Ach so! Vielen Dank.", "Gut, danke.", "Ach so. Das ist gut. Danke.", "Danke.", "Vielen Dank, Herr Doktor.", "Ach so. Das ist gut."],
             "sonraki": "n6", "uygun": true, "geri_bildirim_tr": "Toparladın." }
         ]
       },
@@ -410,7 +410,7 @@
         "tr": "Elbette. Raporu Huber Hanım'dan alırsınız.",
         "secenekler": [
           { "de": "Danke schön! Auf Wiedersehen.", "tr": "Çok teşekkürler! Hoşça kalın.",
-            "accepted": ["Danke schön! Auf Wiedersehen.", "Danke! Auf Wiedersehen.", "Vielen Dank! Auf Wiedersehen."],
+            "accepted": ["Danke schön! Auf Wiedersehen.", "Danke! Auf Wiedersehen.", "Vielen Dank! Auf Wiedersehen.", "Danke, Herr Doktor! Auf Wiedersehen.", "Danke schön, Herr Doktor! Auf Wiedersehen.", "Vielen Dank, Herr Doktor! Auf Wiedersehen.", "Danke! Auf Wiedersehen, Herr Doktor.", "Danke und auf Wiedersehen!", "Auf Wiedersehen, Herr Doktor. Danke!", "Danke schön! Auf Wiedersehen, Herr Doktor.", "Vielen Dank! Auf Wiedersehen, Herr Doktor."],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Teşekkür edip vedalaştın." }
         ]
       },
@@ -429,7 +429,7 @@
       { "id": "m1:43:o3", "kind": "detail", "q_tr": "Tobi'nin ne zamandan beri ateşi var?", "opts": ["Dünden beri", "Pazartesiden beri", "İki gündür"], "ans": 0, "kanit": [2] },
       { "id": "m1:43:o4", "kind": "detail", "q_tr": "Tobi senden ne istiyor?", "opts": ["Şefe haber vermeni", "Ona ilaç getirmeni", "Doktoru aramanı"], "ans": 0, "kanit": [5] },
       { "id": "m1:43:o5", "k": "guided_response", "situation_tr": "Şefin Wimmer Bey soruyor: Tobi nerede? Tobi'nin hasta olduğunu ve evde kaldığını söyle.", "prompt_de": "Wo ist Tobi denn?",
-        "accepted": ["Tobi ist krank. Er bleibt heute zu Hause.", "Tobi ist krank und bleibt zu Hause.", "Er ist krank. Er hat Fieber und bleibt zu Hause.", "Tobi ist heute krank, er bleibt zu Hause.", "Tobi ist krank. Er hat Fieber."],
+        "accepted": ["Tobi ist krank. Er bleibt heute zu Hause.", "Tobi ist krank und bleibt zu Hause.", "Er ist krank. Er hat Fieber und bleibt zu Hause.", "Tobi ist heute krank, er bleibt zu Hause.", "Tobi ist krank. Er bleibt zu Hause.", "Er ist krank. Er bleibt heute zu Hause.", "Er ist krank. Er bleibt zu Hause.", "Er ist krank und bleibt zu Hause.", "Tobi ist krank und bleibt heute zu Hause.", "Er ist krank und bleibt heute zu Hause.", "Tobi ist krank. Er ist zu Hause.", "Er ist krank. Er ist zu Hause.", "Er ist zu Hause. Er ist krank.", "Tobi ist zu Hause. Er ist krank.", "Tobi bleibt heute zu Hause. Er ist krank.", "Er bleibt heute zu Hause. Er ist krank."],
         "why_tr": "Başka biri için **er bleibt** dersin, kendin için **ich bleibe**." }
     ]
   },
@@ -445,19 +445,19 @@
       { "id": "m1:43:s4", "k": "listen_and_respond", "audio_de": "Der Krankenwagen kommt gleich.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
         "accepted": ["Der Krankenwagen kommt gleich.", "der krankenwagen kommt gleich", "Der Krankenwagen kommt gleich"], "why_tr": "**gleich** birazdan demektir." },
       { "id": "m1:43:s5", "k": "tr_de", "tr": "Karnım ağrıyor.",
-        "accepted": ["Mir tut der Bauch weh.", "Ich habe Bauchschmerzen.", "Der Bauch tut mir weh.", "Mein Bauch tut weh."], "why_tr": "Ağrıyan yeri **Mir tut der Bauch weh** kalıbıyla söylersin." },
+        "accepted": ["Mir tut der Bauch weh.", "Ich habe Bauchschmerzen.", "Der Bauch tut mir weh.", "Mein Bauch tut weh.", "Mein Bauch tut mir weh."], "why_tr": "Ağrıyan yeri **Mir tut der Bauch weh** kalıbıyla söylersin." },
       { "id": "m1:43:s6", "k": "tr_de", "tr": "İki gündür başım dönüyor.",
-        "accepted": ["Mir ist seit zwei Tagen schwindelig.", "Seit zwei Tagen ist mir schwindelig.", "Mir ist schon seit zwei Tagen schwindelig."], "why_tr": "Baş dönmesi için **Mir ist schwindelig** dersin, süreyi **seit zwei Tagen** ile eklersin." },
+        "accepted": ["Mir ist seit zwei Tagen schwindelig.", "Seit zwei Tagen ist mir schwindelig.", "Mir ist schon seit zwei Tagen schwindelig.", "Mir ist schwindelig seit zwei Tagen.", "Schon seit zwei Tagen ist mir schwindelig."], "why_tr": "Baş dönmesi için **Mir ist schwindelig** dersin, süreyi **seit zwei Tagen** ile eklersin." },
       { "id": "m1:43:s7", "k": "tr_de", "tr": "Acil servis nerede?",
-        "accepted": ["Wo ist die Notaufnahme?", "Wo ist hier die Notaufnahme?", "Entschuldigung, wo ist die Notaufnahme?"], "why_tr": "Acil servis **Notaufnahme** demektir." },
+        "accepted": ["Wo ist die Notaufnahme?", "Wo ist hier die Notaufnahme?", "Entschuldigung, wo ist die Notaufnahme?", "Wo ist bitte die Notaufnahme?", "Wo ist denn die Notaufnahme?", "Wo finde ich die Notaufnahme?", "Wo ist die Notaufnahme hier?"], "why_tr": "Acil servis **Notaufnahme** demektir." },
       { "id": "m1:43:s8", "k": "tr_de", "tr": "Bir alerjim var.",
         "accepted": ["Ich habe eine Allergie.", "Ich habe Allergien.", "Ich habe eine Allergie, ja."], "why_tr": "**Ich habe eine Allergie** dersin." },
       { "id": "m1:43:s9", "k": "guided_response", "situation_tr": "Brandl Hanım'ın başı dönüyor. Ona üşüyüp üşümediğini sor.", "prompt_de": "Ach, mir ist heute so schwindelig.",
-        "accepted": ["Ist Ihnen auch kalt, Frau Brandl?", "Ist Ihnen kalt?", "Frau Brandl, ist Ihnen kalt?", "Ist Ihnen auch kalt?"], "why_tr": "Brandl Hanım'a **Ist Ihnen kalt?** diye sorarsın." },
+        "accepted": ["Ist Ihnen auch kalt, Frau Brandl?", "Ist Ihnen kalt?", "Frau Brandl, ist Ihnen kalt?", "Ist Ihnen auch kalt?", "Ist Ihnen kalt, Frau Brandl?", "Frau Brandl, ist Ihnen auch kalt?", "Und ist Ihnen kalt?", "Und ist Ihnen auch kalt?", "Ist Ihnen denn kalt?", "Ist Ihnen denn auch kalt?", "Ist Ihnen heute auch kalt?", "Und ist Ihnen auch kalt, Frau Brandl?"], "why_tr": "Brandl Hanım'a **Ist Ihnen kalt?** diye sorarsın." },
       { "id": "m1:43:s10", "k": "guided_response", "situation_tr": "Huber Hanım seni bekleme odasına gönderiyor. Ne kadar bekleyeceğini sor.", "prompt_de": "Bitte warten Sie im Wartezimmer.",
-        "accepted": ["Wie lange muss ich warten?", "Okay. Wie lange muss ich warten?", "Danke. Wie lange muss ich warten?", "Wie lange muss ich im Wartezimmer warten?", "Wie lange dauert es?"], "why_tr": "Süreyi **Wie lange** ile sorarsın, **warten** sona gelir." },
+        "accepted": ["Wie lange muss ich warten?", "Okay. Wie lange muss ich warten?", "Danke. Wie lange muss ich warten?", "Wie lange muss ich im Wartezimmer warten?", "Wie lange dauert es?", "Wie lange muss ich denn warten?", "Wie lange muss ich bitte warten?", "Wie lange dauert das?", "Wie lange muss ich warten, Frau Huber?", "Und wie lange muss ich warten?", "Muss ich lange warten?", "Wie lange dauert es denn?", "Wie lange muss ich da warten?"], "why_tr": "Süreyi **Wie lange** ile sorarsın, **warten** sona gelir." },
       { "id": "m1:43:s11", "k": "guided_response", "situation_tr": "Dr. Weber soruyor: Neyiniz var? Pazartesiden beri boğazın ağrıyor.", "prompt_de": "Guten Tag. Was fehlt Ihnen heute?",
-        "accepted": ["Mir tut seit Montag der Hals weh.", "Ich habe seit Montag Halsschmerzen.", "Seit Montag tut mir der Hals weh.", "Der Hals tut mir seit Montag weh.", "Mir tut der Hals weh, seit Montag."], "why_tr": "Ağrıyan yeri **Mir tut der Hals weh** ile, süreyi **seit Montag** ile söylersin." }
+        "accepted": ["Mir tut seit Montag der Hals weh.", "Ich habe seit Montag Halsschmerzen.", "Seit Montag tut mir der Hals weh.", "Der Hals tut mir seit Montag weh.", "Mir tut der Hals weh, seit Montag.", "Mein Hals tut seit Montag weh.", "Mir tut der Hals seit Montag weh.", "Der Hals tut seit Montag weh.", "Seit Montag tut mein Hals weh.", "Mein Hals tut weh, seit Montag.", "Seit Montag tut der Hals weh.", "Ich habe Halsschmerzen, seit Montag.", "Guten Tag. Mir tut seit Montag der Hals weh."], "why_tr": "Ağrıyan yeri **Mir tut der Hals weh** ile, süreyi **seit Montag** ile söylersin." }
     ],
     "sesli": ["m1:43:s9", "m1:43:s10"],
     "dikte": ["m1:43:s1", "m1:43:s2", "m1:43:s3", "m1:43:s4"]

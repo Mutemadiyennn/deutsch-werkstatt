@@ -178,7 +178,7 @@
           "k": "guided_response",
           "situation_tr": "Huber Hanım soruyor: Brandl Hanım'ın adresi ne? Aynı apartmanda oturuyorsunuz: Brunnengasse 7.",
           "prompt_de": "Und wie ist ihre Adresse?",
-          "accepted": ["Ihre Adresse ist Brunnengasse sieben.", "Brunnengasse sieben.", "Sie wohnt in der Brunnengasse sieben.", "Ihre Adresse ist Brunnengasse 7.", "Sie wohnt in der Brunnengasse sieben, wie ich."],
+          "accepted": ["Ihre Adresse ist Brunnengasse sieben.", "Brunnengasse sieben.", "Sie wohnt in der Brunnengasse sieben.", "Ihre Adresse ist Brunnengasse 7.", "Sie wohnt in der Brunnengasse sieben, wie ich.", "Ihre Adresse ist Brunnengasse sieben, wie meine.", "Ihre Adresse ist die Brunnengasse sieben.", "Die Adresse ist Brunnengasse sieben.", "Sie wohnt Brunnengasse sieben.", "Brunnengasse sieben, Frau Huber.", "Brunnengasse sieben in Wendlfing.", "Ihre Adresse ist Brunnengasse sieben in Wendlfing.", "Ihre Adresse? Brunnengasse sieben."],
           "why_tr": "Bir kadının adresini söylerken **ihre Adresse** dersin."
         }
       }
@@ -221,7 +221,7 @@
             "k": "guided_response",
             "situation_tr": "Ioana da taşınıyor ve soruyor. Formu randevudan önce doldurması gerektiğini söyle.",
             "prompt_de": "Was soll ich machen?",
-            "accepted": ["Du sollst das Formular vor dem Termin ausfüllen.", "Füll das Formular vor dem Termin aus.", "Du musst das Formular vor dem Termin ausfüllen.", "Du sollst das Formular ausfüllen und unterschreiben.", "Das Formular vor dem Termin ausfüllen, und den Ausweis mitbringen."],
+            "accepted": ["Du sollst das Formular vor dem Termin ausfüllen.", "Füll das Formular vor dem Termin aus.", "Du musst das Formular vor dem Termin ausfüllen.", "Das Formular vor dem Termin ausfüllen, und den Ausweis mitbringen.", "Du sollst vor dem Termin das Formular ausfüllen.", "Du musst vor dem Termin das Formular ausfüllen.", "Füll bitte das Formular vor dem Termin aus.", "Füll das Formular bitte vor dem Termin aus.", "Du sollst das Formular vor dem Termin ausfüllen und unterschreiben.", "Du musst das Formular vor dem Termin ausfüllen und unterschreiben.", "Füll vor dem Termin das Formular aus.", "Das Formular vor dem Termin ausfüllen."],
             "why_tr": "Duyduğun talimatı aktarırken **du sollst** dersin."
           }
         }
@@ -264,7 +264,7 @@
             "k": "guided_response",
             "situation_tr": "Ioana'yı geri arıyorsun. Cumartesi saat dokuzda geleceğini söyle.",
             "prompt_de": "Ja, hallo?",
-            "accepted": ["Hallo Ioana, hier ist {name}. Ich komme am Samstag um neun.", "Hallo Ioana! Am Samstag um neun komme ich.", "Hier ist {name}. Ich helfe am Samstag, um neun Uhr.", "Hallo Ioana, ja, ich komme am Samstag um neun Uhr.", "Hallo Ioana, kein Problem, ich komme am Samstag um neun."],
+            "accepted": ["Hallo Ioana, hier ist {name}. Ich komme am Samstag um neun.", "Hallo Ioana! Am Samstag um neun komme ich.", "Hier ist {name}. Ich helfe am Samstag, um neun Uhr.", "Hallo Ioana, ja, ich komme am Samstag um neun Uhr.", "Hallo Ioana, kein Problem, ich komme am Samstag um neun.", "Hallo Ioana, hier ist {name}. Ich komme am Samstag um neun Uhr.", "Hier ist {name}. Ich komme am Samstag um neun.", "Hier ist {name}. Ich komme am Samstag um neun Uhr.", "Hallo Ioana! Ich komme am Samstag um neun.", "Hallo Ioana! Ich komme am Samstag um neun Uhr.", "Hallo Ioana, {name} hier. Ich komme am Samstag um neun.", "Hallo Ioana, hier ist {name}. Am Samstag um neun komme ich.", "Hallo Ioana, hier ist {name}. Ich kann am Samstag helfen. Ich komme um neun.", "Hallo Ioana, hier ist {name}. Ich kann am Samstag um neun kommen.", "Hallo Ioana, hier ist {name}. Ich kann am Samstag um neun helfen.", "Hallo Ioana, hier ist {name}. Klar, ich komme am Samstag um neun.", "Hallo Ioana, hier ist {name}. Ich helfe am Samstag um neun."],
             "why_tr": "Önce adını söyle, sonra günü ve saati: **am Samstag um neun**."
           }
         }
@@ -291,10 +291,10 @@
         "tr": "Formu Brandl Hanım için mi dolduruyorsunuz? Güzel. Onun adı ne?",
         "secenekler": [
           { "de": "Ihr Vorname ist Rosa.", "tr": "Onun adı Rosa.",
-            "accepted": ["Ihr Vorname ist Rosa.", "Rosa.", "Sie heißt Rosa.", "Ihr Vorname ist Rosa, R-O-S-A."],
+            "accepted": ["Ihr Vorname ist Rosa.", "Rosa.", "Sie heißt Rosa.", "Ihr Vorname ist Rosa, R-O-S-A.", "Ihr Name ist Rosa.", "Sie heißt Rosa Brandl.", "Ihr Vorname ist Rosa, Frau Huber.", "Rosa ist ihr Vorname.", "Ja, für Frau Brandl. Ihr Vorname ist Rosa.", "Ihr Vorname? Rosa.", "Rosa. Sie heißt Rosa Brandl.", "Der Vorname ist Rosa."],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Bir kadının adı için **ihr Vorname** dedin." },
           { "de": "Mein Vorname ist Rosa.", "tr": "Benim adım Rosa.",
-            "accepted": ["Mein Vorname ist Rosa.", "Ich heiße Rosa.", "Mein Name ist Rosa."],
+            "accepted": ["Mein Vorname ist Rosa.", "Ich heiße Rosa.", "Mein Name ist Rosa.", "Ich bin Rosa.", "Mein Name ist Rosa Brandl.", "Ich heiße Rosa Brandl.", "Mein Vorname ist Rosa, Frau Huber."],
             "sonraki": "n1", "uygun": false, "geri_bildirim_tr": "**Mein** benim demek. Brandl Hanım için **Ihr Vorname ist …** dersin." }
         ]
       },
@@ -304,10 +304,10 @@
         "tr": "Peki doğum tarihi?",
         "secenekler": [
           { "de": "Ihr Geburtsdatum ist der zweite Mai.", "tr": "Doğum tarihi iki mayıs.",
-            "accepted": ["Ihr Geburtsdatum ist der zweite Mai.", "Der zweite Mai.", "Am zweiten Mai.", "Sie hat am zweiten Mai Geburtstag."],
+            "accepted": ["Ihr Geburtsdatum ist der zweite Mai.", "Der zweite Mai.", "Am zweiten Mai.", "Sie hat am zweiten Mai Geburtstag.", "Sie ist am zweiten Mai geboren.", "Ihr Geburtstag ist am zweiten Mai.", "Ihr Geburtstag ist der zweite Mai.", "Zweiter Mai.", "Am zweiten Mai, Frau Huber.", "Der zweite Mai, Frau Huber.", "Ihr Geburtsdatum? Der zweite Mai.", "Das ist der zweite Mai."],
             "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Tarihi doğru biçimde verdin." },
           { "de": "Sie ist neunundsiebzig.", "tr": "Yetmiş dokuz yaşında.",
-            "accepted": ["Sie ist neunundsiebzig.", "Neunundsiebzig.", "Sie ist neunundsiebzig Jahre alt."],
+            "accepted": ["Sie ist neunundsiebzig.", "Neunundsiebzig.", "Sie ist neunundsiebzig Jahre alt.", "Neunundsiebzig Jahre.", "Frau Brandl ist neunundsiebzig.", "Sie ist schon neunundsiebzig.", "Neunundsiebzig Jahre alt.", "Frau Brandl ist neunundsiebzig Jahre alt."],
             "sonraki": "n2", "uygun": false, "geri_bildirim_tr": "Huber Hanım yaşını değil, tarihi soruyor. **Ihr Geburtsdatum ist …** de." }
         ]
       },
@@ -317,10 +317,10 @@
         "tr": "Evli mi?",
         "secenekler": [
           { "de": "Nein, sie war verheiratet. Jetzt ist sie allein.", "tr": "Hayır, evliydi. Şimdi yalnız.",
-            "accepted": ["Nein, sie war verheiratet. Jetzt ist sie allein.", "Sie war verheiratet, jetzt ist sie allein.", "Nein. Sie war verheiratet."],
+            "accepted": ["Nein, sie war verheiratet. Jetzt ist sie allein.", "Sie war verheiratet, jetzt ist sie allein.", "Nein. Sie war verheiratet.", "Sie war verheiratet.", "Nein, jetzt nicht. Sie war verheiratet.", "Nein, sie ist allein. Sie war verheiratet.", "Nein, sie war verheiratet, aber jetzt ist sie allein.", "Sie war verheiratet, aber jetzt ist sie allein.", "Nein, nicht mehr. Sie war verheiratet.", "Nein, sie ist nicht mehr verheiratet.", "Nein, sie ist jetzt allein."],
             "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Doğru: evlenmiş, şimdi yalnız." },
           { "de": "Nein, sie ist ledig.", "tr": "Hayır, bekâr.",
-            "accepted": ["Nein, sie ist ledig.", "Sie ist ledig.", "Ledig."],
+            "accepted": ["Nein, sie ist ledig.", "Sie ist ledig.", "Ledig.", "Nein, ledig.", "Nein, sie ist ledig, Frau Huber.", "Sie ist ledig, glaube ich.", "Nein, ich glaube, sie ist ledig."],
             "sonraki": "n3", "uygun": false, "geri_bildirim_tr": "**ledig** hiç evlenmemiş demek. Brandl Hanım evlenmiş: **Sie war verheiratet**." }
         ]
       },
@@ -330,7 +330,7 @@
         "tr": "Peki adresi?",
         "secenekler": [
           { "de": "Ihre Adresse ist Brunnengasse sieben, wie meine.", "tr": "Adresi Brunnengasse 7, benimki gibi.",
-            "accepted": ["Ihre Adresse ist Brunnengasse sieben, wie meine.", "Brunnengasse sieben.", "Sie wohnt in der Brunnengasse sieben.", "Ihre Adresse ist Brunnengasse 7."],
+            "accepted": ["Ihre Adresse ist Brunnengasse sieben, wie meine.", "Brunnengasse sieben.", "Sie wohnt in der Brunnengasse sieben.", "Ihre Adresse ist Brunnengasse 7.", "Ihre Adresse ist die Brunnengasse sieben.", "Die Adresse ist Brunnengasse sieben.", "Sie wohnt Brunnengasse sieben.", "Brunnengasse sieben, Frau Huber.", "Brunnengasse sieben in Wendlfing.", "Ihre Adresse ist Brunnengasse sieben in Wendlfing.", "Ihre Adresse? Brunnengasse sieben.", "Sie wohnt in der Brunnengasse sieben in Wendlfing."],
             "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "**ihre Adresse**: kadının adresi." }
         ]
       },
@@ -340,10 +340,10 @@
         "tr": "Teşekkürler. Brandl Hanım'ın formu imzalaması gerekiyor. Yarın gelebilir mi?",
         "secenekler": [
           { "de": "Nein, sie ist krank. Soll ich das Formular morgen bringen?", "tr": "Hayır, hasta. Formu yarın ben mi getireyim?",
-            "accepted": ["Nein, sie ist krank. Soll ich das Formular morgen bringen?", "Sie ist krank. Soll ich das Formular bringen?", "Nein, sie ist krank. Soll ich es morgen bringen?"],
+            "accepted": ["Nein, sie ist krank. Soll ich das Formular morgen bringen?", "Sie ist krank. Soll ich das Formular bringen?", "Nein, sie ist krank. Soll ich es morgen bringen?", "Nein. Soll ich das Formular morgen bringen?", "Nein, sie ist krank. Soll ich das Formular morgen mitbringen?", "Sie ist krank. Soll ich das Formular morgen bringen?", "Nein, sie ist krank. Soll ich ihr das Formular bringen?", "Nein, leider nicht. Sie ist krank. Soll ich das Formular morgen bringen?", "Nein, Frau Brandl ist krank. Soll ich das Formular morgen bringen?", "Nein, sie ist krank. Soll ich es bringen?", "Nein, sie ist krank. Soll ich es morgen mitbringen?"],
             "sonraki": "n6", "uygun": true, "geri_bildirim_tr": "Çözüm önerdin: **Soll ich …?**" },
           { "de": "Ja, sie kommt morgen um zehn.", "tr": "Evet, yarın saat onda geliyor.",
-            "accepted": ["Ja, sie kommt morgen um zehn.", "Ja, morgen um zehn kommt sie.", "Ja, sie kommt morgen um zehn Uhr."],
+            "accepted": ["Ja, sie kommt morgen um zehn.", "Ja, morgen um zehn kommt sie.", "Ja, sie kommt morgen um zehn Uhr.", "Ja, sie kommt morgen.", "Ja, das geht.", "Ja, morgen um zehn.", "Ja, sie kann morgen kommen.", "Ja, sie kann morgen um zehn kommen.", "Ja, morgen kann sie kommen.", "Ja, morgen um zehn Uhr.", "Ja, das kann sie."],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Kısa ve açık." }
         ]
       },
@@ -353,7 +353,7 @@
         "tr": "Evet, olur. Lütfen yarın getirin.",
         "secenekler": [
           { "de": "Gut. Bis morgen, Frau Huber!", "tr": "Tamam. Yarın görüşürüz Huber Hanım!",
-            "accepted": ["Gut. Bis morgen, Frau Huber!", "Okay, bis morgen!", "Gut, danke. Bis morgen!"],
+            "accepted": ["Gut. Bis morgen, Frau Huber!", "Okay, bis morgen!", "Gut, danke. Bis morgen!", "Bis morgen, Frau Huber!", "Okay, danke. Bis morgen!", "Gut, das mache ich. Bis morgen!", "Okay, das mache ich. Bis morgen!", "Gut. Ich bringe es morgen. Bis morgen!", "Gut, ich bringe es morgen mit. Bis morgen!", "Okay, ich bringe es morgen. Bis morgen, Frau Huber!", "Vielen Dank. Bis morgen!"],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Nazik bir kapanış." }
         ]
       },
@@ -390,19 +390,19 @@
       { "id": "m1:46:s4", "k": "listen_and_respond", "audio_de": "Wie ist seine Telefonnummer?", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
         "accepted": ["Wie ist seine Telefonnummer?", "wie ist seine telefonnummer", "Wie ist seine Telefonnummer"], "why_tr": "Sahibi erkekse **sein** gelir, **Telefonnummer** için **seine** olur." },
       { "id": "m1:46:s5", "k": "tr_de", "tr": "Evli misiniz?",
-        "accepted": ["Sind Sie verheiratet?", "Sind Sie denn verheiratet?", "Sind Sie schon verheiratet?"], "why_tr": "Soruda **Sind Sie** başa gelir." },
+        "accepted": ["Sind Sie verheiratet?", "Sind Sie denn verheiratet?", "Sind Sie schon verheiratet?", "Seid ihr verheiratet?"], "why_tr": "Soruda **Sind Sie** başa gelir." },
       { "id": "m1:46:s6", "k": "tr_de", "tr": "Onun (erkeğin) adresi Brunnengasse 7.",
-        "accepted": ["Seine Adresse ist Brunnengasse sieben.", "Seine Adresse ist Brunnengasse 7.", "Seine Adresse: Brunnengasse sieben."], "why_tr": "Sahibi erkekse **sein** gelir, **Adresse** için **seine** olur." },
+        "accepted": ["Seine Adresse ist Brunnengasse sieben.", "Seine Adresse ist Brunnengasse 7.", "Seine Adresse: Brunnengasse sieben.", "Seine Adresse ist die Brunnengasse sieben."], "why_tr": "Sahibi erkekse **sein** gelir, **Adresse** için **seine** olur." },
       { "id": "m1:46:s7", "k": "tr_de", "tr": "Bir hesap açmak istiyorum.",
-        "accepted": ["Ich möchte ein Konto eröffnen.", "Ich möchte gern ein Konto eröffnen.", "Ich möchte bitte ein Konto eröffnen."], "why_tr": "Hesap açmak **ein Konto eröffnen** olur. **eröffnen** en sona gider." },
+        "accepted": ["Ich möchte ein Konto eröffnen.", "Ich möchte gern ein Konto eröffnen.", "Ich möchte bitte ein Konto eröffnen.", "Ich will ein Konto eröffnen.", "Ich möchte gerne ein Konto eröffnen."], "why_tr": "Hesap açmak **ein Konto eröffnen** olur. **eröffnen** en sona gider." },
       { "id": "m1:46:s8", "k": "tr_de", "tr": "Lütfen formu doldurun.",
-        "accepted": ["Füllen Sie bitte das Formular aus.", "Bitte füllen Sie das Formular aus.", "Füllen Sie das Formular bitte aus."], "why_tr": "Resmî talimatta **Füllen Sie** öne, **aus** en sona gider." },
+        "accepted": ["Füllen Sie bitte das Formular aus.", "Bitte füllen Sie das Formular aus.", "Füllen Sie das Formular bitte aus.", "Füllen Sie das Formular aus, bitte.", "Bitte das Formular ausfüllen."], "why_tr": "Resmî talimatta **Füllen Sie** öne, **aus** en sona gider." },
       { "id": "m1:46:s9", "k": "guided_response", "situation_tr": "Huber Hanım Brandl Hanım'ın nerede büyüdüğünü soruyor. Wendlfing'de büyüdüğünü söyle.", "prompt_de": "Wo ist Frau Brandl aufgewachsen?",
-        "accepted": ["Sie ist in Wendlfing aufgewachsen.", "In Wendlfing.", "Frau Brandl ist in Wendlfing aufgewachsen.", "Sie ist hier in Wendlfing aufgewachsen.", "In Wendlfing, wie Herr Pichler."], "why_tr": "Başkası için **Sie ist in … aufgewachsen** dersin, **aufgewachsen** sona gelir." },
+        "accepted": ["Sie ist in Wendlfing aufgewachsen.", "In Wendlfing.", "Frau Brandl ist in Wendlfing aufgewachsen.", "Sie ist hier in Wendlfing aufgewachsen.", "In Wendlfing, wie Herr Pichler.", "Frau Brandl ist hier in Wendlfing aufgewachsen.", "Hier in Wendlfing.", "Sie ist in Wendlfing aufgewachsen, Frau Huber.", "In Wendlfing, Frau Huber.", "Sie ist in Wendlfing geboren und aufgewachsen.", "Sie ist auch in Wendlfing aufgewachsen.", "Sie ist hier aufgewachsen, in Wendlfing.", "In Wendlfing aufgewachsen."], "why_tr": "Başkası için **Sie ist in … aufgewachsen** dersin, **aufgewachsen** sona gelir." },
       { "id": "m1:46:s10", "k": "guided_response", "situation_tr": "Huber Hanım Brandl Hanım'ın sigorta kartını soruyor. Çantasında olduğunu söyle.", "prompt_de": "Wo ist die Versichertenkarte von Frau Brandl?",
-        "accepted": ["Ihre Karte ist in ihrer Tasche.", "Die Karte ist in ihrer Tasche.", "In ihrer Tasche.", "Ihre Versichertenkarte ist in ihrer Tasche.", "Sie ist in der Tasche."], "why_tr": "Kadının çantası **ihre Tasche**, **in** ile **in ihrer Tasche** olur." },
+        "accepted": ["Ihre Karte ist in ihrer Tasche.", "Die Karte ist in ihrer Tasche.", "In ihrer Tasche.", "Ihre Versichertenkarte ist in ihrer Tasche.", "Sie ist in der Tasche.", "Sie ist in ihrer Tasche.", "Die Versichertenkarte ist in ihrer Tasche.", "Die Karte ist in der Tasche.", "In der Tasche.", "Die Versichertenkarte ist in der Tasche.", "In ihrer Tasche, Frau Huber.", "Die Karte ist in ihrer Tasche, Frau Huber.", "Ihre Versichertenkarte ist in der Tasche."], "why_tr": "Kadının çantası **ihre Tasche**, **in** ile **in ihrer Tasche** olur." },
       { "id": "m1:46:s11", "k": "guided_response", "situation_tr": "Huber Hanım formu dolduruyor. Brandl Hanım'ın adını ve doğum tarihini söyle: Rosa, 2 Mayıs.", "prompt_de": "Wie ist ihr Vorname? Und ihr Geburtsdatum?",
-        "accepted": ["Ihr Vorname ist Rosa. Ihr Geburtsdatum ist der zweite Mai.", "Rosa. Der zweite Mai.", "Ihr Vorname ist Rosa, und sie hat am zweiten Mai Geburtstag.", "Sie heißt Rosa. Ihr Geburtstag ist am zweiten Mai.", "Rosa, und der zweite Mai."], "why_tr": "Bir kadının bilgisini **ihr Vorname**, **ihr Geburtsdatum** ile verirsin." }
+        "accepted": ["Ihr Vorname ist Rosa. Ihr Geburtsdatum ist der zweite Mai.", "Rosa. Der zweite Mai.", "Ihr Vorname ist Rosa, und sie hat am zweiten Mai Geburtstag.", "Sie heißt Rosa. Ihr Geburtstag ist am zweiten Mai.", "Rosa, und der zweite Mai.", "Ihr Vorname ist Rosa und ihr Geburtsdatum ist der zweite Mai.", "Rosa. Am zweiten Mai.", "Rosa, und am zweiten Mai.", "Ihr Vorname ist Rosa. Der zweite Mai.", "Sie heißt Rosa. Ihr Geburtsdatum ist der zweite Mai.", "Sie heißt Rosa. Sie hat am zweiten Mai Geburtstag.", "Ihr Vorname ist Rosa. Sie hat am zweiten Mai Geburtstag.", "Sie heißt Rosa und hat am zweiten Mai Geburtstag."], "why_tr": "Bir kadının bilgisini **ihr Vorname**, **ihr Geburtsdatum** ile verirsin." }
     ],
     "sesli": ["m1:46:s9", "m1:46:s10"],
     "dikte": ["m1:46:s1", "m1:46:s2", "m1:46:s3", "m1:46:s4"]

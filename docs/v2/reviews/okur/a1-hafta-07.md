@@ -618,3 +618,98 @@ Bu ekranda `tr` alanı birkaç cümlelik bir açıklama. Her cümleyi ayrı okud
 - `gorulmemis-07.json` `m1:h07:g3.karsi` alanında **ein Apotheker** Almanca; öğrenciye görünüyorsa Türkçe değil. Kimlik alanı sayıp okumadım.
 
 OKUR: GERİ — 58 madde
+
+---
+
+## 2. tur (yalnız düzeltmeler)
+
+Kapsam: 1. turda GERİ dönen 58 madde ve düzeltmeyi yapanın rapor dışında değiştirdiği üç yer (gün 46 `halkalar[m1:46:h3].kaliplar[1].tr`, gün 48 `okuma_yazma.yazma.kontrol_tr[1]`, `gr:a1-14:t1` `table.head[3]`). Yeni tam okuma yapılmadı. Düzeltilen cümlenin çevresinde yeni bir anlaşılmazlık doğup doğmadığına da bakıldı. Sözcük sayımı 1. turdaki gibi (kalın Almanca sayılır, `…` sayılmaz).
+
+### Sonuç
+
+| | |
+|---|---|
+| Okunan madde | 61 (58 geri dönen + 3 rapor dışı değişiklik) |
+| GEÇTİ | 61 |
+| GERİ | 0 |
+
+### Geri dönen 58 madde
+
+| # | Yer | Yeni metin | Kendi sözlerimle | Karar | Not |
+|---|---|---|---|---|---|
+| 1 | `gun-43` `prova.kapanis_tr` | Doktora neyin ve ne zamandan beri ağrıdığını söyledin. Sorularına cevap verdin ve iş yeri için rapor istedin. | Ağrımı ve süresini söyledim, soruları cevapladım, iş için rapor istedim. | GEÇTİ | 8 + 9 kelime. |
+| 2 | `gun-44` `halkalar[m1:44:h2].kaliplar[2].tr` | …m ağrıyor. – … beri (bunu dün öğrendin) | Bir yerim ağrıyor, bir zamandan beri. Bu kalıbı dün öğrendim. | GEÇTİ | Etiket artık "beri"ye yapışmıyor. |
+| 3 | `gun-45` `goal_tr` | Doktorun ya da eczacının talimatını anlar, **Ich soll …** ile tekrar edersin. İlacın nasıl kullanılacağını sorarsın. | Talimatı anlar, tekrar eder, ilacın kullanımını sorarım. | GEÇTİ | 11 + 4 kelime. |
+| 4 | `gun-45` `halkalar[m1:45:h1].kaliplar[4].tr` | Cadde boyunca gidin. – Orası …in karşısında. | Cadde boyunca git. Aradığın yer bir şeyin karşısında. | GEÇTİ | Tek boşluk kaldı. |
+| 5 | `gun-45` `prova.dugumler[n1].secenekler[1].geri_bildirim_tr` | Kibar bir istek. Reçeteyi eczacıya vermeyi de unutma. | Kibarca istedim. Reçeteyi eczacıya vermeliyim. | GEÇTİ | "Uzatmak" çıktı, tek anlam. |
+| 6 | `gun-45` `prova.kapanis_tr` | Komşun için damlayı aldın ve ne sıklıkla kullanılacağını sordun. Talimatı **Sie soll …** ile tekrar ettin. | Damlayı aldım, kaç kez kullanılacağını sordum, talimatı tekrar ettim. | GEÇTİ | 9 + 6 kelime. |
+| 7 | `gun-45` `okuma_yazma.yazma.gorev_tr` | Brandl Hanım eczane etiketini okuyamıyor. Ona kısa bir not yaz. Damlayı günde kaç kez ve ne zaman alacak? Sonra neyi yapmamalı? | Komşu etiketi okuyamıyor. Ona not yazacağım: kaç kez, ne zaman, sonra ne yapmayacak. | GEÇTİ | Sorular notun içeriği diye tek okumada anlaşılıyor. |
+| 8 | `gun-45` `gun_sinavi.maddeler[m1:45:s4].why_tr` | Resmî talimatta **kommen** önce, **Sie** hemen sonra gelir. | Talimatta önce **kommen**, hemen arkasından **Sie**. | GEÇTİ | Terim yok. |
+| 9 | `gun-45` `…[m1:45:s5].why_tr` | Resmî talimatta **Warten** önce, **Sie** hemen sonra gelir. | Önce **Warten**, sonra **Sie**. | GEÇTİ | |
+| 10 | `gun-45` `…[m1:45:s8].why_tr` | **vorschlagen** ikiye ayrılır: **schlagen** önde, **vor** en sonda. | **vorschlagen** bölünür, **vor** cümlenin sonuna gider. | GEÇTİ | |
+| 11 | `gun-46` `…[m1:46:s4].why_tr` | Sahibi erkekse **sein** gelir, **Telefonnummer** için **seine** olur. | Erkeğinki **sein**, ama **Telefonnummer** ile **seine** derim. | GEÇTİ | Artık yanlış öğretmiyor; s6 ile aynı biçim. |
+| 12 | `gun-46` `…[m1:46:s7].why_tr` | Hesap açmak **ein Konto eröffnen** olur. **eröffnen** en sona gider. | Hesap açmanın Almancası bu, **eröffnen** sona gider. | GEÇTİ | |
+| 13 | `gun-46` `…[m1:46:s8].why_tr` | Resmî talimatta **Füllen Sie** öne, **aus** en sona gider. | **Füllen Sie** başta, **aus** sonda. | GEÇTİ | |
+| 14 | `gun-47` `prova.dugumler[n4].secenekler[1].geri_bildirim_tr` | Beden için **passt** dedin. Doğru kelime. | Beden uyuyor derken doğru kelimeyi seçtim. | GEÇTİ | |
+| 15 | `gun-48` `goal_tr` | Tobi gripli. Ona telefonda öğüt verir, onun için yemek yapmayı önerirsin. **ohne dich** (sensiz) ve **für dich** (senin için) dersin. | Tobi'ye öğüt veririm, yemek yapmayı öneririm, sensiz ve senin için derim. | GEÇTİ | 3 + 9 + 9 kelime. Örnek sözler kalın Almanca, ayaklarında Türkçe; artık cümlenin parçası sanılmıyor. |
+| 16 | `gun-48` `sahne.bolumler[b1].cevapla.why_tr` | Arkadaşa öğütte **Trink**, **Schlaf**, **Bleib** öne gelir. **du** söylenmez. | Arkadaşa öğüt **Trink** gibi başlar, **du** demem. | GEÇTİ | |
+| 17 | `gun-48` `…[m1:48:s5].why_tr` | Arkadaşa öğütte **Bleib** ve **schlaf** öne gelir. | Öğütte **Bleib**, **schlaf** başa gelir. | GEÇTİ | |
+| 18 | `gun-48` `…[m1:48:s9].why_tr` | Öğüt **Nimm**, **Geh** gibi bir kelimeyle başlar: **Nimm eine Tablette!** | Öğüt **Nimm** gibi bir kelimeyle başlar. | GEÇTİ | |
+| 19 | `gun-49` `goal_tr` | Muayeneye geç kalıyorsun. Doktora ağrını anlatır, talimatı **Ich soll …** ile tekrar edersin. Sonra eczanenin mesajından ilacın saatini çıkarırsın. | Geç kalırım, ağrımı anlatırım, talimatı tekrar ederim, eczane mesajından ilacın saatini anlarım. | GEÇTİ | 3 + 9 + 6 kelime. "Çıkarırsın" bağlamda "anlarsın" diye okunuyor. |
+| 20 | `gun-49` `halkalar[m1:49:h1].kaliplar[5].tr` | … alın – … için (içmek) – … kalın | … alın, … için (yani bir şey için değil, içmek), … kalın. | GEÇTİ | Parantez "için"in içmek olduğunu gösteriyor. |
+| 21 | `gun-49` `sahne.bolumler[b1].ana_fikir.opts[0]` | Treni gecikiyor, doktor ona bira ve antrenmanı yasaklıyor | Treni geç kalıyor, doktor bira ve antrenmanı yasaklıyor. | GEÇTİ | Noktalı virgül yok, 9 kelime. Soru "sabahı nasıl geçiyor" olduğu için iki olay tek cevap. |
+| 22 | `gun-49` `sahne.bolumler[b1].cevapla.why_tr` | Ağrıyı **Mein Kopf tut weh** ile söylersin. Süre için **seit zwei Tagen** eklersin. | Ağrıyı bu sözle söylerim, süreyi **seit** ile eklerim. | GEÇTİ | 7 + 6 kelime. |
+| 23 | `gun-49` `sesler[m1:49:a1].eylem.opts[0]` | Trende kal. Muayenehaneyi arayıp geç kalacağını söyle. | Trende kalırım, arayıp geç kalacağımı söylerim. | GEÇTİ | |
+| 24 | `gun-49` `sesler[m1:49:a2].bolumler[b1].ana_fikir.opts[0]` | Tabletlerin geldi, nasıl alacağını söylüyor | Tabletler geldi, nasıl alacağımı söylüyor. | GEÇTİ | |
+| 25 | `gun-49` `sesler[m1:49:a2].eylem.why_tr` | Eczacı **zweimal am Tag** ve **nach dem Essen** diyor. Yani sabah ve akşam, yemekten sonra. | Günde iki kez ve yemekten sonra: sabah ve akşam. | GEÇTİ | 9 + 6 kelime. |
+| 26 | `gun-49` `prova.title_tr` | Muayene: haftanın son konuşması | Haftanın son konuşması doktorda. | GEÇTİ | |
+| 27 | `gun-49` `prova.kapanis_tr` | Geç kaldığın için özür diledin. Doktora neyin ne zamandan beri ağrıdığını anlattın. Talimatı **Ich soll …** ile tekrar ettin. Haftanın son konuşmasını başardın. | Özür diledim, ağrımı anlattım, talimatı tekrar ettim; haftanın son konuşmasını yaptım. | GEÇTİ | En uzun cümle 7 kelime. "Kapı" sözü yok. |
+| 28 | `gun-49` `…[m1:49:s7].why_tr` | **an** en sona gider: **Ich komme nach zehn an**. Beni bekleme, **Warte nicht auf mich** olur. | **an** sonda; "beni bekleme" bu sözle söylenir. | GEÇTİ | Üç bilgiden ikiye indi; 1. turda iki bilgili satırlar GEÇTİ sayıldı (Notlar). |
+| 29 | `gun-49` `…[m1:49:s8].why_tr` | **Ruf ihn an** derken **Ruf** başa, **an** en sona gider. Onun treni **sein Zug** olur. | **Ruf** başta, **an** sonda; onun treni **sein Zug**. | GEÇTİ | 10 + 6 kelime, iki bilgi (28 ile aynı ölçü). |
+| 30 | `hafta-sonu-testi-07` `maddeler[m1:49:t03].why_tr` | **ohne** -sız demektir: **ohne dich** sensiz. **ohne** ile **du** değil **dich** gelir. | **ohne** -sız; sensiz **ohne dich**; **ohne**'dan sonra **dich** derim. | GEÇTİ | Artık yanlış öğretmiyor. İki cümle tek konu (**ohne dich**). |
+| 31 | `hafta-sonu-testi-07` `…[m1:49:t09].why_tr` | Arkadaşa öğütte **Geh** ve **trink** öne gelir. **du** söylenmez. | Öğüt **Geh**, **trink** ile başlar, **du** demem. | GEÇTİ | |
+| 32 | `hafta-sonu-testi-07` `…[m1:49:t10].why_tr` | Resmî talimatta **Nehmen** başta, **Sie** hemen arkasında: **Nehmen Sie …** | **Nehmen** başta, **Sie** arkasında. | GEÇTİ | `…` kalın örnekte boşluk işareti; 1. turdaki gibi kabul. |
+| 33 | `gorulmemis-07` `durumlar[m1:h07:g3].why_tr` | **Also** ile başlar, talimatı soru gibi tekrar edersin: **Also zwei Tropfen?** | **Also** diye başlayıp talimatı soru gibi tekrar ederim. | GEÇTİ | 11 kelime. |
+| 34 | `gorulmemis-07` `durumlar[m1:h07:g4].why_tr` | Pichler Bey'e **Sie** dersin. **Gehen** başa, **Sie** hemen arkasına gelir: **Gehen Sie zum Arzt!** | Pichler Bey'e **Sie** derim, bu yüzden **Gehen Sie** diye başlarım. | GEÇTİ | Terim yok. İki cümle birbirine bağlı (Sie dediğin için bu sıra); 28 ile aynı ölçü. |
+| 35 | `gorulmemis-07` `durumlar[m1:h07:g5].why_tr` | **Meine Adresse ist …** ya da **Ich wohne in …** ile cevap verirsin. | Adresimi bu iki sözden biriyle söylerim. | GEÇTİ | 11 kelime. |
+| 36 | `gr:a1-10:t1` `table.rows[5][0]` | die Füße (birden çok) | Ayaklar, birden çok. | GEÇTİ | |
+| 37 | `gr:a1-09:t2` `tr` 1. cümle (bölündü) | Genel kuralları söylerken **man** kullanılır. **er muss** gibi **man muss** dersin: **Man muss warten**. | Herkes için kural söylerken **man** derim; **er muss** nasılsa **man muss** da öyle. | GEÇTİ | |
+| 38 | `gr:a1-09:t2` `tr` son cümle | **einen Termin** hayır olunca **keinen Termin** olur: **Sie müssen keinen Termin machen**. | Randevu yok derken **einen** yerine **keinen** derim. | GEÇTİ | 12 kelime. "hayır olunca" günlük söz, tek okumada oturdu. |
+| 39 | `gr:a1-09:t3` `tr` 4. cümle | **Ich will** istiyorum demektir, -eceğim demek değildir. | **Ich will** "yapacağım" değil, "istiyorum" demek. | GEÇTİ | Terim çıktı. Bir önceki cümle **wollen** için "plan" dediği için bu uyarının nedeni artık metnin içinde görünüyor. |
+| 40 | `gr:a1-09:t4` `tr` 2. cümle | **Warten** başa gelir, hemen ardından **Sie**, sonra **bitte**: **Warten Sie bitte hier**. | Sıra: **Warten**, **Sie**, **bitte**. | GEÇTİ | |
+| 41 | `gr:a1-09:t4` `tr` 3. cümle | **ausfüllen** ikiye ayrılır, **aus** en sona gider: **Füllen Sie bitte das Formular aus**. | **ausfüllen** bölünür, **aus** sona gider. | GEÇTİ | |
+| 42 | `gr:a1-09:t4` `tr` 4. cümle | **sein** farklıdır: **Seien Sie bitte pünktlich**! | **sein** başka türlü olur: **Seien Sie**. | GEÇTİ | Tablodaki **sein** satırı (Lütfen dakik olun) hangi **sein** olduğunu gösteriyor. |
+| 43 | `gr:a1-09:t4` `table.head[0]` | sözlükte | Kelimenin sözlükteki hâli. | GEÇTİ | |
+| 44 | `gr:a1-10:t2` `tr` 4. cümle | **der** ile gelen şey aranınca, alınınca **sein** yerine **seinen** gelir: **Er sucht seinen Ausweis**. | **der**'li bir şeyi ararken ya da alırken **sein** **seinen** olur. | GEÇTİ | 14 kelime, terim yok. Not: kural yalnız "aranınca, alınınca" diye örneklenmiş; öğrenci bunu yalnız bu iki iş için sanabilir. Karar değil. |
+| 45 | `gr:a1-10:t2` `table.head[1]` | der/das ile gelen şey | **der** ya da **das** ile söylenen şeyler. | GEÇTİ | |
+| 46 | `gr:a1-10:t2` `table.head[2]` | die ile gelen / birden çok | **die** ile söylenen ya da birden çok olan şeyler. | GEÇTİ | |
+| 47 | `gr:a1-13:t4` `tr` 1. cümle | Bazı kelimelerden sonra kişi bana, sana, ona biçiminde gelir: **mir**, **dir**, **ihm**. | Bazı kelimelerle bana, sana, ona derim. | GEÇTİ | 12 kelime. Hangi kelimeler olduğu 3. cümlede (**helfen**, **danken**). |
+| 48 | `gr:a1-13:t4` `table.rows[5][2]` | size (samimi, birden çok kişi) | Samimi olduğum birkaç kişiye "size". | GEÇTİ | |
+| 49 | `gr:a1-13:t5` `h_tr` | Beğenmek, uymak, yakışmak: **gefallen**, **passen**, **stehen** | Beğenmek, uymak, yakışmak. | GEÇTİ | |
+| 50 | `gr:a1-13:t5` `tr` 1. cümle | Bu üç kelimede kişi bana, sana biçimindedir: **Der Rock gefällt mir**. | Bu üç kelimeyle bana, sana derim. | GEÇTİ | |
+| 51 | `gr:a1-13:t5` `tr` 4. cümle | Beğenilen şey birden çoksa **gefällt** de **gefallen** olur: **Die Schuhe gefallen mir**. | Birden çok şey beğenince **gefallen** derim. | GEÇTİ | |
+| 52 | `gr:a1-13:t5` `table.head[0]` | kelime | Kelime sütunu. | GEÇTİ | |
+| 53 | `gr:a1-14:t1` `table.rows[6][3]` | sizi (samimi, birden çok kişi) | Samimi birkaç kişiye "sizi". | GEÇTİ | |
+| 54 | `gr:a1-14:t2` `tr` 2.–3. cümle (bölündü) | **für** ve **ohne** ile **der** yerine **den** gelir. **ein** yerine **einen**, **mein** yerine **meinen** gelir: **für meinen Bruder**. | **für**, **ohne**'dan sonra **der** **den** olur, **ein** **einen** olur. | GEÇTİ | "yerine" ile hangisinin hangisine döndüğü tek okumada belli. |
+| 55 | `gr:a1-14:t2` `tr` 4. cümle | **die**, **das** ve birden çok şey hiç değişmez: **für meine Mutter**. | **die**, **das** ve birden çok olan şey aynı kalır. | GEÇTİ | |
+| 56 | `gr:a1-14:t2` `table.head[0]` | kim, ne? | Kim ya da ne sütunu. | GEÇTİ | |
+| 57 | `gr:a1-14:t2` `table.rows[3][0]` | die Gäste (birden çok) | Misafirler, birden çok. | GEÇTİ | |
+| 58 | `gr:a1-10:t3` `table.head[0]` | sözlükte | Kelimenin sözlükteki hâli. | GEÇTİ | |
+
+### Rapor dışı değişiklikler
+
+| Yer | Yeni metin | Kendi sözlerimle | Karar | Not |
+|---|---|---|---|---|
+| `gun-46` `halkalar[m1:46:h3].kaliplar[1].tr` | Lütfen …i doldurun. – Lütfen … anlatın. | Lütfen şunu doldurun, şunu anlatın. | GEÇTİ | Yanlış "(dünün kalıbı)" etiketi kalktı (1. tur notu). |
+| `gun-48` `okuma_yazma.yazma.kontrol_tr[1]` | Öğütler **Trink**, **Bleib** gibi başlıyor mu, **du** yok mu? | Öğütlerim **Trink** gibi başlıyor mu, içinde **du** var mı diye bakarım. | GEÇTİ | Terim yok, 11 kelime. |
+| `gr:a1-14:t1` `table.head[3]` | Türkçe (kimi?) | Bu sütun "kimi?" sütununun Türkçesi. | GEÇTİ | 1. turdaki karışıklığı (mir satırında "beni") çözüyor. |
+
+### Notlar (karar değil)
+
+- Düzeltmeler hiçbir yere yeni sembol, terim ya da 14 kelimeyi aşan cümle getirmedi.
+- `gr:a1-10:t2` 4. cümle (44) kuralı "aranınca, alınınca" diye iki örnekle söylüyor. Öğrenci kuralın yalnız bu iki iş için geçtiğini sanabilir. Dilbilimcinin bakması iyi olur; okur kararı değil.
+- Gün 49 s7, s8 ve görülmemiş g4'te iki bilgi kaldı. 1. turdaki ölçüyle (iki bilgi GEÇTİ, üç bilgi GERİ) GEÇTİ sayıldı.
+
+Dosya durumu (OD-9.4): 2. turdan sonra bu girdideki dosyaların hiçbirinde okur GERİ'si kalmadı.
+
+OKUR: GEÇTİ

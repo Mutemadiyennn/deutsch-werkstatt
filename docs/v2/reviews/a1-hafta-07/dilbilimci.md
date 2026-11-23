@@ -166,3 +166,80 @@ Bulunan 42 hatanın hepsi düzeltildi ve sınandı; 19 iyileştirme eklendi. Dil
 Hata oranı: 42 / 1017 = %4,1
 
 KARAR: ONAY
+
+## Kabul taraması (dilbilimci-ajan, 2026-11-23)
+
+Tam tur değildir. 8. haftanın örnekleminde çıkan açık (`accepted` listeleri) 7. haftaya örneklemden önce uygulandı. Değişen alan: yalnız `accepted` listeleri. Almanca satır, Türkçe metin, `why_tr`, `ans`, `kanit` ve dikteye dokunulmadı (dokuz dosyada `accepted` dışındaki her şey betikle karşılaştırıldı, birebir aynı).
+
+### Kapsam ve yöntem
+**267 madde:** `cevapla` 21, prova seçeneği 85, gün sınavı 77 (49 üretim + 28 "duyduğunu yaz"), okuma `guided_response` 4, dikte 63, hafta sonu testi 12, görülmemiş 5.
+
+Her üretim maddesi için doğal cevap adayları yazıldı (**2498 aday**) ve `web/src/core/answer.ts` `ruleVerdict` ile sınandı (`{name}` yerine sahte ad). 450'si zaten `correct` çıkıyordu. Provada her aday düğümün bütün seçeneklerine karşı sınandı: eklenen hiçbir cevap başka seçenekle eşleşmiyor (0 çakışma). Dikte ve "duyduğunu yaz" maddelerinde kabul yalnız duyulan cümledir. Bunlar betikle kaynak cümleyle karşılaştırıldı, fark yok, ekleme yok.
+
+K(t): eklenen her cevap doğrulayıcının `ogretilmemis` işlevi ve o günün `taught` kümesiyle sınandı. İki genişletme yaptım, çünkü küme yalnız kartları sayıyor: (1) 43. günden o güne kadarki `kaliplar` metinleri (**geboren**, **dreimal**), (2) maddenin kendi eski kabullerinde ve sorusunda geçen sözcükler (**oft**, **neunundsiebzig**, **tschüss**, **Füll**). Küme dışı kaldığı için eklenmeyen üç aday: **bring … mit**, **Fahr**, **Ärztin**.
+
+### (a) Model cümle ve `why_tr` biçimi: 2 hata
+`accepted[0]` ve `why_tr` biçimlerinde hata yok. İki eski kabulde 8. haftadaki H1 ile aynı kusur vardı (öznesiz **geht**):
+| Yer | Önce | Sonra |
+|---|---|---|
+| 43 a2 `cevapla` | `… Um elf Uhr geht. Und ich möchte ein Attest.` | `… Um elf Uhr geht es. …` (ayrıca `Elf Uhr passt` biçimleri) |
+| 47 a2 `cevapla` | `Am Montag geht nicht, es ist geschlossen.` | `Am Montag geht es nicht, …` ve `Montag geht nicht, …` |
+
+### (c) Görevin istediğini taşımayan kabuller: 10 kabul, 8 madde
+| Yer | Çıkarılan | Görev ne istiyor |
+|---|---|---|
+| 43 o5 | `Tobi ist krank. Er hat Fieber.` | Hasta olduğunu **ve evde kaldığını** söyle. |
+| 45 a2 | `Hallo Frau Brandl! Ich hole Ihre Tropfen, kein Problem.` | Ad yok, **bugün** yok. |
+| 45 s9 | `Also am Morgen und am Abend, richtig?` · `Am Morgen und am Abend. Okay.` | Görev açıkça **Ich soll …** ile tekrar istiyor. |
+| 46 a1 | `Du sollst das Formular ausfüllen und unterschreiben.` | **Randevudan önce** doldurması gerektiğini söyle. |
+| 48 a1 | `… ich rufe den Chef an. Gute Besserung!` | Bir **öğüt** ver. Geçmiş olsun öğüt değil. |
+| 49 a1 | `… Ich bin im Zug, im Tunnel. Ich komme zu spät.` | **On beş dakika** geç kalacağını söyle. |
+| 49 o4 | `Ja, ich komme. Ich darf auch kein Bier trinken.` | Görev açıkça **Ich soll …** istiyor. |
+| görülmemiş g2 | `Nicht so gut. Mir ist schwindelig.` · `… Kann ich kurz warten?` | Başının döndüğünü söyle **ve su iste**. |
+
+Çıkarılan 12 cevabın hiçbiri artık `correct` çıkmıyor (yeniden sınandı, hepsi `ask_ai`).
+
+### (b) Yapay zekâsız ölçüt
+8. haftadaki tablo aynen: dolgu kuralı selamı (`Guten Tag`), hitabı (`Herr Doktor`, `Frau Huber`, `Tobi`), baştaki **Nein** olmadan verilen olumsuz cevabı, `um neun` ile `um neun Uhr` farkını ve kelime sırası değişikliğini tanımıyor. En kısa doğru cevap birkaç maddede hiç kabul edilmiyordu: görülmemiş g1 `Mir tut seit gestern der Rücken weh.`, g4 `Gehen Sie zum Arzt!`, 47 s10 `Es gefällt mir.`, 43 v1 `Mein Kopf tut seit zwei Tagen weh.` Dördü de artık `correct`.
+
+**169 listeye 1234 kabul eklendi, 12 kabul çıkarıldı:**
+| Dosya | Liste | Eklenen | Çıkarılan |
+|---|---|---|---|
+| gun-43 | 24 | 168 | 2 |
+| gun-44 | 19 | 137 | 0 |
+| gun-45 | 21 | 147 | 3 |
+| gun-46 | 20 | 127 | 1 |
+| gun-47 | 21 | 159 | 1 |
+| gun-48 | 21 | 164 | 1 |
+| gun-49 | 29 | 214 | 2 |
+| hafta-sonu-testi-07 | 9 | 58 | 0 |
+| gorulmemis-07 | 5 | 60 | 2 |
+
+En uzun liste 19 (görülmemiş g1). Üretim maddelerinin hepsinde `accepted` ≥ 3.
+
+**Sınır koydum.** Madde başına en çok 8 ekleme (ad + saat + istek gibi birleşimli maddelerde, iki öğüt isteyen maddelerde ve görülmemiş durumlarda 12). Adaylar olasılık sırasıyla yazıldı, en olası olanlar girdi. Sınırın dışında kalan **811 doğru aday** hâlâ `ask_ai` çıkıyor (yapay zekâsız kipte "kontrol edilemedi", yanlış sayılmaz). Gerekçe: dokuz dosya %19 büyüdü (263 bin → 314 bin karakter), tamamı eklenirse listeler 30'u geçiyor ve birleşimler yine bitmiyor. Aday dosyaları ve betikler `…/scratchpad/h7/` altında (`c43.py … c49.py`, `chk.mjs`, `apply7.py`). Sınır `CAP` değişkeniyle kaldırılıp kalanlar tek komutla eklenebilir.
+
+Provada geri bildirimle çelişen aday eklenmedi. Örnekler: geri bildirim "**Darf ich** ile sordun" diyorsa **Kann ich …?** yok, "**lieber** ile" diyorsa **lieber**'siz cevap yok, "**du** söylenmez" diyorsa **Du musst …** yok, "selam verdin" diyorsa selamsız cevap yok.
+
+Bilerek eklenmeyenler: görevin istediği bilgiyi eksik veren cevaplar (saatsiz, tek öğütlü, **Ich soll**'süz), öznesiz **geht**, küme dışı kelimeli biçimler, **Dr.** yerine **Doktor** yazılmış biçimler (aşağıda 2. nokta).
+
+### Sınama
+`SIM=/tmp/claude-0/sim7g OUT=/tmp/claude-0/s7g … sim.sh a1k-h7.json 43 gun-4[3-9].json gorulmemis-07.json`:
+- `→ 12 hata, 261 uyarı`. 12 hatanın hepsi `dersler: gr:… temel pakette yok` (taramadan önce de 12).
+- 43–49 ve görülmemiş için "öğretilmemiş", "bilinmeyen" uyarısı 0.
+- `dikis.out` 43–49 satırları `0 | 0 | 0 | 0 | 0`, taramadan öncekiyle birebir aynı.
+- Uyarı 258 → 261: **üç yeni B7 uyarısı** (gun-47, gun-48, gun-49: "ad yuvası olup adsız biçimi olmayan alan"). Neden: telefonla geri arama maddelerine `hier ist {name}` biçimleri eklendi (47 a1 4, 48 a1 3, 48 prova n1 2 + 2, 49 a1 4, toplam 15 cevap). 43, 45, 46'da aynı uyarı zaten vardı. `_adsiz` alanı benim yazma alanımda değil.
+- `npm run content:validate`: 19 hata, taramadan öncekiyle aynı, hepsi bu dalın eski şemasından (`day ≤ 7`, `dersler` deseni).
+
+### Kalan açık noktalar
+1. **Sınırın dışında kalan 811 aday** (yukarıda). Karar içerik motorunda: sınır kalksın mı, yoksa kök neden kodda mı çözülsün (8. hafta ekindeki öneri: selam ve hitap dolgu sayılsın, `um drei` = `um drei Uhr`).
+2. **Dr. ile Doktor.** `norm` ikisini ayrı sayıyor. `Dr. Weber` geçen kabullerde (44 prova n1, 45 v1, 49 prova n1) **Doktor Weber** yazan öğrenci `ask_ai` alıyor. Listeleri ikiye katlamadım. Öneri: kodda `dr` = `doktor`.
+3. **Üç yeni B7 uyarısı.** İstenmiyorsa 15 `{name}`'li cevap geri alınır. Bence kalmalı: 46 a2'nin `why_tr`'si "Önce adını söyle" diyor, 47–49'da aynı durumda adını söyleyen öğrenci haksız ret alırdı.
+4. **45 s11 `Danke. Wann soll ich die Tropfen nehmen?`** Görev "ne sıklıkla" diyor, cümle "ne zaman" soruyor. Çıkarmadım: çıkarılırsa bütün kabuller **oft** içeriyor ve doğrulayıcı "öğretilmemiş kelime: oft" uyarısı veriyor. **oft** yalnız 45. günün kalıbında (**Wie oft …?**) öğretiliyor, kartı yok. Lex ya da baş geliştirici işi.
+5. **44 prova n2b `Morgen um acht Uhr geht.`** (karşı tarafın satırı) öznesiz **geht**. Gündelikte çok söylenir, (a) ölçütüyle tutarlı olması için **Morgen um acht Uhr geht es.** olmalı. `de` alanı bu görevin yazma alanında değil. Aynı biçimi kabullere eklemedim.
+6. **Yargıya bağlı bırakılan eski kabuller:** 43 a1 `Nein, die Praxis ist nur bis zwölf Uhr offen.` (kapalı demiyor, ima ediyor) · 46 a2'de adsız üç cevap (durum metni ad istemiyor, `why_tr` istiyor) · 45 v1 ve 49 s6'da **darf** (görev "aktar" diyor, **soll** şart koşmuyor) · hafta sonu testi t11 `Ja, ich rufe dich an.` (**heute Abend** soruda geçiyor) · 46 prova n1 `Rosa.` ve n4 `Brunnengasse sieben.` (geri bildirim "**ihr** dedin" diyor) · 49 prova n4 `Also zweimal am Tag eine Tablette und kein Bier?` (geri bildirim "**Ich soll** ile").
+7. 1. turdaki açık noktalar aynen duruyor. `review.status` "draft".
+
+Sonuç: (a) 2 ve (c) 10 hatalı kabul çıkarıldı, (b) haksız ret riski 169 listede azaltıldı. Bu turun hata oranı: (a)/(c) türünden 10 madde / 267 = %3,7.
+
+KARAR: ONAY (örnekleme hazır)
