@@ -241,7 +241,7 @@ def main():
               const dn = [...new Set(a.filter((x) => x.ders && x.ders.oge === 'dil_noktasi').map((x) => x.ders.id))];
               const al = (k) => new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get(k); t.onsuccess = () => ok(t.result ? t.result.value : null); });
               const dnBitti = []; for (const id of dn) dnBitti.push(!!(await al('ders:' + id))); d.close();
-              return { r0: a.some((x) => x.ders && x.ders.id.startsWith('r0:')), dn, dnBitti, gunDersler: m.plan.gevseme.filter((x) => x.kural === 'hata').map((x) => x.yer),
+              return { r0: a.some((x) => x.ders && x.ders.id.startsWith('r0:')), dn, dnBitti, gunDersler: m.plan.gevseme.filter((x) => x.kural === 'hata' && x.yer.startsWith('ders:')).map((x) => x.yer),
                 halkaUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && !x.ders && x.cumle), dersUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && x.ders),
                 kendiniDene: (m.plan.duraklar.find((x) => x.tur === 'gunsonu')?.adimlar ?? []).filter((x) => x.ders && x.ders.id === 'gun_sinavi').length }; }""")
             if plan["r0"]: check("akis-tablo" in govdeler, "dil noktasının tablosu gerçek gövdeyle (PM md. 4)")
