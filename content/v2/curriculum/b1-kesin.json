@@ -14,16 +14,16 @@
   ],
   "grammar": "content/v2/registry/grammar.json",
   "main": "987f6ae2",
-  "a1_kesin": "origin/content/a1-kesin ba3f805 (PR #198)",
-  "a2_kesin": "content/v2/curriculum/a2-kesin.json (PR #201, a009dc0)"
+  "a1_kesin": "origin/content/a1-kesin 6829a3f (PR #198; A1 kümesi ba3f805 ile aynı)",
+  "a2_kesin": "content/v2/curriculum/a2-kesin.json (PR #201, 37a261e; A2 kümesi a009dc0 ile aynı)"
  },
  "kural_tr": [
   "1. Önceden öğretilmiş ya da atanmış: a1-kesin.json ogretilmis_sayilan + gunler ve a2-kesin.json haftalar[].kartlar; takvim kolu ve pasif kartlar hiç atanmaz.",
   "2. Hafta, K1 kısmı: omurganın her k1_aralik grubu için o grubun, sıra aralığındaki, atanmamış kartları; K1 sırasıyla; adet kadar (A1 tablosunun kuralı).",
-  "3. Hafta, K1 dışı kısmı (k1_disi): sözlükte kartı olan, K1 dışı, pasif olmayan, seviyesi B1 olan v1 kartları. Kart, v1 birimine karşılık gelen gr: dersinin haftasına gider (o haftanın ders metninde geçiyorsa öncelik); yer yoksa sonraki boş haftaya. Kalan yuva k1_disi_bekleyen (lex işi; kimlik uydurulmaz).",
+  "3. Hafta, K1 dışı kısmı (k1_disi): sözlükte (v1 dahil) kartı olan, K1 dışı, pasif olmayan, seviyesi B1 olan v1 kartları. Kart, v1 birimine karşılık gelen gr: dersinin haftasına gider (o haftanın ders metninde geçiyorsa öncelik); yer yoksa sonraki boş haftaya. Kalan yuva k1_disi_bekleyen (lex işi; kimlik uydurulmaz).",
   "4. Gün (öneri): haftanın dil noktaları sırasıyla birer güne; kalan ders günleri haftanın birimlerine; 7. gün haftanın sınavı. Günlük adet haftalık toplamın 20/17/16/15/14/13/5 oranında bölünmesi. Kart önce günün başlığında ya da dersinin grammar.json Almanca metninde (başlık, tablo, örnek) geçtiği en erken güne, kalanı K1 sırasıyla.",
   "5. Hafta içi ön koşul: bileşik ya da önekli kart, parçası olan karttan önceki bir güne düşerse parça aynı hafta içinde öne alınır (hafta_ici_takas). Hafta sınırını aşanlar yalnız not (hafta_siniri_notlari).",
-  "6. PM 7088230583 md. 1: hafta ve gün başına üç liste. kartlar = öğretilecek sözlük kartları (dikişin hafta kümesi kuralı yalnız bunlar için); cerceve = işlev sözcükleri (sözlükte card:false ya da pos det/pron/conj/prep/particle/num; yeni_kartlar'a yazılmaz, ama o hafta bir kalıpta ya da dil noktasında gösterilmeden kullanılmaz); sozlukte_yok = kartlar içinde sözlükte (lexicon, lexemes.v2, lexemes.v1) kaydı olmayanlar (lex işi; hat o kartların gününü en sona bırakır). Boşalan yer doldurulmaz: haftanın gerçek kart sayısı kart_sayisi (kartlar + k1_disi_bekleyen), planlanan_yeni üst sınırdır. omurga gunler[].kelime.adet = o günün kartlar + bekleyen sayısı (yuva alanı çerçeve dahil yuva)."
+  "6. PM 7088230583 md. 1: hafta ve gün başına üç liste. kartlar = öğretilecek sözlük kartları (dikişin hafta kümesi kuralı yalnız bunlar için); cerceve = işlev sözcükleri (sözlükte card:false ya da pos det/pron/conj/prep/particle/num; yeni_kartlar'a yazılmaz, ama o hafta bir kalıpta ya da dil noktasında gösterilmeden kullanılmaz); sozlukte_yok = kartlar içinde derin sözlük kaydı (registry/lexicon/batch-*.json) olmayanlar; yalnız lexemes.v1/v2 kaydı olan da sayılır (#198 ölçüsü) (lex işi; hat o kartların gününü en sona bırakır). Boşalan yer doldurulmaz: haftanın gerçek kart sayısı kart_sayisi (kartlar + k1_disi_bekleyen), planlanan_yeni üst sınırdır. omurga gunler[].kelime.adet = o günün kartlar + bekleyen sayısı (yuva alanı çerçeve dahil yuva)."
  ],
  "haftalar": [
   {
@@ -90,7 +90,20 @@
     "lx:ob",
     "lx:bevor"
    ],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Serie",
+    "lx:Roman",
+    "lx:Schauspieler",
+    "lx:Handlung",
+    "lx:Untertitel",
+    "lx:Geschmack",
+    "lx:spannend",
+    "lx:handeln_von",
+    "lx:spielen_in",
+    "lx:meiner_Meinung_nach",
+    "lx:recht_haben",
+    "lx:Dokumentarfilm"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1410,
    "birikimli_fark": 0
@@ -149,7 +162,10 @@
     "lx:bloß",
     "lx:falls"
    ],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Folge",
+    "lx:Krimi"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1450,
    "birikimli_fark": 0
@@ -217,7 +233,19 @@
     "lx:derselbe",
     "lx:außer"
    ],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Ernährung",
+    "lx:sich_ernähren",
+    "lx:Stress",
+    "lx:sich_entspannen",
+    "lx:Schlaf",
+    "lx:Ratschlag",
+    "lx:Treppe",
+    "lx:Bildschirm",
+    "lx:vermeiden",
+    "lx:zunehmen",
+    "lx:ungesund"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1490,
    "birikimli_fark": 0
@@ -343,7 +371,20 @@
     "lx:solange",
     "lx:irgendein"
    ],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Muttersprache",
+    "lx:Fremdsprache",
+    "lx:zweisprachig",
+    "lx:Aussprache",
+    "lx:Wortschatz",
+    "lx:sich_gewöhnen_(an_+_Akk.)",
+    "lx:sich_erinnern_(an_+_Akk.)",
+    "lx:sich_kümmern_(um)",
+    "lx:sich_vorbereiten_(auf)",
+    "lx:achten_(auf)",
+    "lx:teilnehmen_(an_+_Dat.)",
+    "lx:Angst_haben_(vor_+_Dat.)"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1570,
    "birikimli_fark": 0
@@ -401,7 +442,9 @@
    "cerceve": [
     "lx:obwohl"
    ],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:seitdem"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1610,
    "birikimli_fark": 0
@@ -467,7 +510,18 @@
     "lx:enthalten_sein"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Mieter",
+    "lx:Kaltmiete",
+    "lx:Quadratmeter",
+    "lx:Aufzug",
+    "lx:Lärm",
+    "lx:Nachtruhe",
+    "lx:besichtigen",
+    "lx:einziehen",
+    "lx:ausziehen",
+    "lx:enthalten_sein"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1650,
    "birikimli_fark": 0
@@ -520,7 +574,9 @@
     "lx:Hausverwaltung"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Hausverwaltung"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1690,
    "birikimli_fark": 0
@@ -552,7 +608,15 @@
     "lx:hinterlassen"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Anrede",
+    "lx:Bestätigung",
+    "lx:vereinbaren",
+    "lx:verschieben",
+    "lx:bestätigen",
+    "lx:ausrichten",
+    "lx:hinterlassen"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1730,
    "birikimli_fark": 0
@@ -582,7 +646,13 @@
     "lx:Mit_freundlichen_Grüßen"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Betreff",
+    "lx:Anhang",
+    "lx:anbei",
+    "lx:Sehr_geehrte/r_…",
+    "lx:Mit_freundlichen_Grüßen"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1770,
    "birikimli_fark": 0
@@ -622,7 +692,23 @@
     "lx:Praktikant"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Stellenanzeige",
+    "lx:sich_bewerben_(um/bei)",
+    "lx:Anschreiben",
+    "lx:Bewerbungsunterlagen",
+    "lx:Berufserfahrung",
+    "lx:Arbeitgeber",
+    "lx:Vollzeit",
+    "lx:Teilzeit",
+    "lx:Stärke",
+    "lx:einstellen",
+    "lx:einarbeiten",
+    "lx:befristet",
+    "lx:erwünscht",
+    "lx:Pflicht",
+    "lx:Praktikant"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1810,
    "birikimli_fark": 0
@@ -684,7 +770,21 @@
     "lx:Fachmann"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Dienstleistung",
+    "lx:Handwerker",
+    "lx:Reparatur",
+    "lx:Kundendienst",
+    "lx:Kostenvoranschlag",
+    "lx:Ersatzteil",
+    "lx:Gerät",
+    "lx:Schaden",
+    "lx:liefern",
+    "lx:reklamieren",
+    "lx:defekt",
+    "lx:Spülmaschine",
+    "lx:Fachmann"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1890,
    "birikimli_fark": 0
@@ -710,7 +810,9 @@
     "lx:streichen"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:streichen"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1930,
    "birikimli_fark": 0
@@ -744,7 +846,17 @@
     "lx:vermutlich"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Akku",
+    "lx:Ladekabel",
+    "lx:Bedienungsanleitung",
+    "lx:Datei",
+    "lx:Update",
+    "lx:Backup",
+    "lx:speichern",
+    "lx:abstürzen",
+    "lx:vermutlich"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 1970,
    "birikimli_fark": 0
@@ -775,7 +887,14 @@
     "lx:herunterladen"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Passwort",
+    "lx:Taste",
+    "lx:einschalten",
+    "lx:ausschalten",
+    "lx:aufladen",
+    "lx:herunterladen"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 2010,
    "birikimli_fark": 0
@@ -808,7 +927,16 @@
     "lx:schließlich"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Pech",
+    "lx:Zufall",
+    "lx:zufällig",
+    "lx:Erlebnis",
+    "lx:erleben",
+    "lx:Geldbeutel",
+    "lx:Fundbüro",
+    "lx:schließlich"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 2050,
    "birikimli_fark": 0
@@ -865,7 +993,16 @@
     "lx:im_Stich_lassen"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Streit",
+    "lx:Vertrauen",
+    "lx:Missverständnis",
+    "lx:sich_versöhnen",
+    "lx:sich_verlassen_auf",
+    "lx:eifersüchtig",
+    "lx:trotz",
+    "lx:im_Stich_lassen"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 2130,
    "birikimli_fark": 0
@@ -892,7 +1029,10 @@
     "lx:weder_…_noch"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:sowohl_…_als_auch",
+    "lx:weder_…_noch"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 2170,
    "birikimli_fark": 0
@@ -929,7 +1069,20 @@
     "lx:Streik"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:pendeln",
+    "lx:Pendler",
+    "lx:Strecke",
+    "lx:Radweg",
+    "lx:Abgase",
+    "lx:umweltfreundlich",
+    "lx:verbrauchen",
+    "lx:während#2",
+    "lx:entweder_…_oder",
+    "lx:nicht_nur_…_sondern_auch",
+    "lx:doppelt_so_…_wie",
+    "lx:Streik"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 2210,
    "birikimli_fark": 0
@@ -958,7 +1111,12 @@
     "lx:Umweg"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Fahrgemeinschaft",
+    "lx:Vergleich",
+    "lx:gesperrt",
+    "lx:Umweg"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 2250,
    "birikimli_fark": 0
@@ -993,7 +1151,18 @@
     "lx:überzeugen"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Gesellschaft",
+    "lx:Ehrenamt",
+    "lx:ehrenamtlich",
+    "lx:sich_engagieren",
+    "lx:sich_einsetzen",
+    "lx:Umweltschutz",
+    "lx:Bürger",
+    "lx:Bürgerinitiative",
+    "lx:Stadtrat",
+    "lx:überzeugen"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 2290,
    "birikimli_fark": 0
@@ -1023,7 +1192,13 @@
     "lx:einerseits_…_andererseits"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Vorteil",
+    "lx:Nachteil",
+    "lx:Argument",
+    "lx:je_…_desto",
+    "lx:einerseits_…_andererseits"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 2330,
    "birikimli_fark": 0
@@ -1063,7 +1238,23 @@
     "lx:anerkennen_lassen"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Weiterbildung",
+    "lx:Abschluss",
+    "lx:abschließen",
+    "lx:Umschulung",
+    "lx:Anerkennung",
+    "lx:Zertifikat",
+    "lx:Teilnehmer",
+    "lx:Volkshochschule",
+    "lx:Förderung",
+    "lx:berufsbegleitend",
+    "lx:sich_weiterbilden",
+    "lx:durchfallen",
+    "lx:innerhalb",
+    "lx:außerhalb",
+    "lx:anerkennen_lassen"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 2370,
    "birikimli_fark": 0
@@ -1096,7 +1287,16 @@
     "lx:zusammenfassen"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Leitpunkt",
+    "lx:Gegenvorschlag",
+    "lx:Ergebnis",
+    "lx:Teilnahme",
+    "lx:mündlich",
+    "lx:schriftlich",
+    "lx:sich_einigen",
+    "lx:zusammenfassen"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 2410,
    "birikimli_fark": 0
@@ -1124,7 +1324,11 @@
     "lx:einverstanden"
    ],
    "cerceve": [],
-   "sozlukte_yok": [],
+   "sozlukte_yok": [
+    "lx:Aufmerksamkeit",
+    "lx:Heimatland",
+    "lx:einverstanden"
+   ],
    "hafta_ici_takas": [],
    "birikimli": 2420,
    "birikimli_fark": 0
@@ -1181,7 +1385,9 @@
     "lx:damit",
     "lx:ob"
    ],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:spielen_in"
+   ]
   },
   {
    "day": 170,
@@ -1208,7 +1414,11 @@
    "cerceve": [
     "lx:bevor"
    ],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Serie",
+    "lx:Roman",
+    "lx:Schauspieler"
+   ]
   },
   {
    "day": 171,
@@ -1234,7 +1444,11 @@
    "cerceve": [
     "lx:als#2"
    ],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Handlung",
+    "lx:meiner_Meinung_nach",
+    "lx:recht_haben"
+   ]
   },
   {
    "day": 172,
@@ -1257,7 +1471,9 @@
     "lx:Untertitel"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Untertitel"
+   ]
   },
   {
    "day": 173,
@@ -1278,7 +1494,12 @@
     "lx:Dokumentarfilm"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Geschmack",
+    "lx:spannend",
+    "lx:handeln_von",
+    "lx:Dokumentarfilm"
+   ]
   },
   {
    "day": 174,
@@ -1365,7 +1586,10 @@
     "lx:niemals"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Folge",
+    "lx:Krimi"
+   ]
   },
   {
    "day": 178,
@@ -1483,7 +1707,11 @@
     "lx:derselbe",
     "lx:außer"
    ],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:sich_entspannen",
+    "lx:Schlaf",
+    "lx:Treppe"
+   ]
   },
   {
    "day": 184,
@@ -1509,7 +1737,9 @@
     "lx:hierher"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:sich_ernähren"
+   ]
   },
   {
    "day": 185,
@@ -1534,7 +1764,9 @@
     "lx:behalten"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Stress"
+   ]
   },
   {
    "day": 186,
@@ -1557,7 +1789,10 @@
     "lx:Ratschlag"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Ernährung",
+    "lx:Ratschlag"
+   ]
   },
   {
    "day": 187,
@@ -1578,7 +1813,12 @@
     "lx:ungesund"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Bildschirm",
+    "lx:vermeiden",
+    "lx:zunehmen",
+    "lx:ungesund"
+   ]
   },
   {
    "day": 188,
@@ -1777,7 +2017,14 @@
     "lx:Entscheidung"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Aussprache",
+    "lx:sich_gewöhnen_(an_+_Akk.)",
+    "lx:sich_erinnern_(an_+_Akk.)",
+    "lx:sich_kümmern_(um)",
+    "lx:sich_vorbereiten_(auf)",
+    "lx:achten_(auf)"
+   ]
   },
   {
    "day": 198,
@@ -1804,7 +2051,10 @@
    "cerceve": [
     "lx:sobald"
    ],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:teilnehmen_(an_+_Dat.)",
+    "lx:Angst_haben_(vor_+_Dat.)"
+   ]
   },
   {
    "day": 199,
@@ -1876,7 +2126,12 @@
     "lx:Wortschatz"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Muttersprache",
+    "lx:Fremdsprache",
+    "lx:zweisprachig",
+    "lx:Wortschatz"
+   ]
   },
   {
    "day": 202,
@@ -1961,7 +2216,9 @@
     "lx:handeln"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:seitdem"
+   ]
   },
   {
    "day": 206,
@@ -2076,7 +2333,9 @@
     "lx:greifen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:besichtigen"
+   ]
   },
   {
    "day": 212,
@@ -2102,7 +2361,10 @@
     "lx:fort"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Kaltmiete",
+    "lx:enthalten_sein"
+   ]
   },
   {
    "day": 213,
@@ -2148,7 +2410,12 @@
     "lx:Lärm"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Quadratmeter",
+    "lx:Aufzug",
+    "lx:Mieter",
+    "lx:Lärm"
+   ]
   },
   {
    "day": 215,
@@ -2168,7 +2435,11 @@
     "lx:ausziehen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Nachtruhe",
+    "lx:einziehen",
+    "lx:ausziehen"
+   ]
   },
   {
    "day": 216,
@@ -2253,7 +2524,9 @@
     "lx:besorgen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Hausverwaltung"
+   ]
   },
   {
    "day": 220,
@@ -2360,7 +2633,11 @@
     "lx:vereinbaren"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:bestätigen",
+    "lx:Bestätigung",
+    "lx:vereinbaren"
+   ]
   },
   {
    "day": 226,
@@ -2383,7 +2660,12 @@
     "lx:Anrede"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:verschieben",
+    "lx:ausrichten",
+    "lx:hinterlassen",
+    "lx:Anrede"
+   ]
   },
   {
    "day": 227,
@@ -2489,7 +2771,13 @@
     "lx:Mit_freundlichen_Grüßen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Betreff",
+    "lx:Anhang",
+    "lx:anbei",
+    "lx:Sehr_geehrte/r_…",
+    "lx:Mit_freundlichen_Grüßen"
+   ]
   },
   {
    "day": 233,
@@ -2630,7 +2918,16 @@
     "lx:sich_bewerben_(um/bei)"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Bewerbungsunterlagen",
+    "lx:Berufserfahrung",
+    "lx:Vollzeit",
+    "lx:Teilzeit",
+    "lx:befristet",
+    "lx:erwünscht",
+    "lx:Pflicht",
+    "lx:sich_bewerben_(um/bei)"
+   ]
   },
   {
    "day": 241,
@@ -2656,7 +2953,15 @@
     "lx:einarbeiten"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Stärke",
+    "lx:Praktikant",
+    "lx:Stellenanzeige",
+    "lx:Anschreiben",
+    "lx:Arbeitgeber",
+    "lx:einstellen",
+    "lx:einarbeiten"
+   ]
   },
   {
    "day": 242,
@@ -2865,7 +3170,16 @@
     "lx:Schaden"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Reparatur",
+    "lx:Kundendienst",
+    "lx:Gerät",
+    "lx:Dienstleistung",
+    "lx:Handwerker",
+    "lx:Kostenvoranschlag",
+    "lx:Ersatzteil",
+    "lx:Schaden"
+   ]
   },
   {
    "day": 254,
@@ -2889,7 +3203,13 @@
     "lx:defekt"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:liefern",
+    "lx:Spülmaschine",
+    "lx:Fachmann",
+    "lx:reklamieren",
+    "lx:defekt"
+   ]
   },
   {
    "day": 255,
@@ -2991,7 +3311,9 @@
     "lx:streichen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:streichen"
+   ]
   },
   {
    "day": 261,
@@ -3114,7 +3436,14 @@
     "lx:abstürzen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Bedienungsanleitung",
+    "lx:Datei",
+    "lx:Update",
+    "lx:Backup",
+    "lx:speichern",
+    "lx:abstürzen"
+   ]
   },
   {
    "day": 268,
@@ -3135,7 +3464,10 @@
     "lx:vermutlich"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Akku",
+    "lx:vermutlich"
+   ]
   },
   {
    "day": 269,
@@ -3155,7 +3487,9 @@
     "lx:Ladekabel"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Ladekabel"
+   ]
   },
   {
    "day": 270,
@@ -3244,7 +3578,14 @@
     "lx:herunterladen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Passwort",
+    "lx:Taste",
+    "lx:einschalten",
+    "lx:ausschalten",
+    "lx:aufladen",
+    "lx:herunterladen"
+   ]
   },
   {
    "day": 275,
@@ -3367,7 +3708,12 @@
     "lx:Fundbüro"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:erleben",
+    "lx:Erlebnis",
+    "lx:Geldbeutel",
+    "lx:Fundbüro"
+   ]
   },
   {
    "day": 282,
@@ -3387,7 +3733,9 @@
     "lx:schließlich"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:schließlich"
+   ]
   },
   {
    "day": 283,
@@ -3409,7 +3757,11 @@
     "lx:zufällig"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Pech",
+    "lx:Zufall",
+    "lx:zufällig"
+   ]
   },
   {
    "day": 284,
@@ -3633,7 +3985,15 @@
     "lx:im_Stich_lassen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:sich_versöhnen",
+    "lx:sich_verlassen_auf",
+    "lx:Streit",
+    "lx:Vertrauen",
+    "lx:Missverständnis",
+    "lx:eifersüchtig",
+    "lx:im_Stich_lassen"
+   ]
   },
   {
    "day": 297,
@@ -3653,7 +4013,9 @@
     "lx:trotz"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:trotz"
+   ]
   },
   {
    "day": 298,
@@ -3756,7 +4118,10 @@
     "lx:weder_…_noch"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:sowohl_…_als_auch",
+    "lx:weder_…_noch"
+   ]
   },
   {
    "day": 304,
@@ -3863,7 +4228,16 @@
     "lx:verbrauchen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:doppelt_so_…_wie",
+    "lx:pendeln",
+    "lx:Pendler",
+    "lx:Strecke",
+    "lx:Radweg",
+    "lx:Abgase",
+    "lx:umweltfreundlich",
+    "lx:verbrauchen"
+   ]
   },
   {
    "day": 310,
@@ -3885,7 +4259,11 @@
     "lx:Streik"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:entweder_…_oder",
+    "lx:nicht_nur_…_sondern_auch",
+    "lx:Streik"
+   ]
   },
   {
    "day": 311,
@@ -3905,7 +4283,9 @@
     "lx:während#2"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:während#2"
+   ]
   },
   {
    "day": 312,
@@ -3989,7 +4369,9 @@
     "lx:gesperrt"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:gesperrt"
+   ]
   },
   {
    "day": 317,
@@ -4011,7 +4393,11 @@
     "lx:Umweg"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Fahrgemeinschaft",
+    "lx:Vergleich",
+    "lx:Umweg"
+   ]
   },
   {
    "day": 318,
@@ -4118,7 +4504,16 @@
     "lx:Bürger"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:ehrenamtlich",
+    "lx:sich_engagieren",
+    "lx:sich_einsetzen",
+    "lx:Umweltschutz",
+    "lx:Bürgerinitiative",
+    "lx:Gesellschaft",
+    "lx:Ehrenamt",
+    "lx:Bürger"
+   ]
   },
   {
    "day": 324,
@@ -4139,7 +4534,10 @@
     "lx:überzeugen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Stadtrat",
+    "lx:überzeugen"
+   ]
   },
   {
    "day": 325,
@@ -4244,7 +4642,12 @@
     "lx:einerseits_…_andererseits"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Vorteil",
+    "lx:Nachteil",
+    "lx:Argument",
+    "lx:einerseits_…_andererseits"
+   ]
   },
   {
    "day": 331,
@@ -4264,7 +4667,9 @@
     "lx:je_…_desto"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:je_…_desto"
+   ]
   },
   {
    "day": 332,
@@ -4371,7 +4776,16 @@
     "lx:anerkennen_lassen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Teilnehmer",
+    "lx:Volkshochschule",
+    "lx:innerhalb",
+    "lx:außerhalb",
+    "lx:Förderung",
+    "lx:sich_weiterbilden",
+    "lx:durchfallen",
+    "lx:anerkennen_lassen"
+   ]
   },
   {
    "day": 338,
@@ -4391,7 +4805,9 @@
     "lx:abschließen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:abschließen"
+   ]
   },
   {
    "day": 339,
@@ -4452,7 +4868,14 @@
     "lx:berufsbegleitend"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Weiterbildung",
+    "lx:Abschluss",
+    "lx:Umschulung",
+    "lx:Anerkennung",
+    "lx:Zertifikat",
+    "lx:berufsbegleitend"
+   ]
   },
   {
    "day": 342,
@@ -4509,7 +4932,14 @@
     "lx:zusammenfassen"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Leitpunkt",
+    "lx:Gegenvorschlag",
+    "lx:mündlich",
+    "lx:schriftlich",
+    "lx:sich_einigen",
+    "lx:zusammenfassen"
+   ]
   },
   {
    "day": 345,
@@ -4530,7 +4960,10 @@
     "lx:Teilnahme"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Ergebnis",
+    "lx:Teilnahme"
+   ]
   },
   {
    "day": 346,
@@ -4632,7 +5065,9 @@
     "lx:einverstanden"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:einverstanden"
+   ]
   },
   {
    "day": 352,
@@ -4653,7 +5088,10 @@
     "lx:Heimatland"
    ],
    "cerceve": [],
-   "sozlukte_yok": []
+   "sozlukte_yok": [
+    "lx:Aufmerksamkeit",
+    "lx:Heimatland"
+   ]
   },
   {
    "day": 353,
@@ -5055,7 +5493,7 @@
   "onceki_tablolarda_atanmisi_yeniden_atama": 0,
   "k1_ve_sozlukte_olmayan_kimlik": 0,
   "sozlukte_kaydi_olmayan_isaretsiz_kimlik": 0,
-  "sozlukte_yok_isaretli": 0,
+  "sozlukte_yok_isaretli": 180,
   "cerceve_toplam": 15,
   "haftalik_toplam_farki": 0,
   "gun_toplami_hafta_toplamina_esit_olmayan_hafta": 0,
@@ -5071,7 +5509,189 @@
     "lx:nachdenken_(über)",
     "lx:sich_kümmern_um"
    ],
-   "k1_disi_havuzdan_atanan": 180
+   "k1_disi_havuzdan_atanan": 180,
+   "derin_kaydi_olmayan_kimlik": [
+    "lx:Abgase",
+    "lx:Abschluss",
+    "lx:Akku",
+    "lx:Anerkennung",
+    "lx:Angst_haben_(vor_+_Dat.)",
+    "lx:Anhang",
+    "lx:Anrede",
+    "lx:Anschreiben",
+    "lx:Arbeitgeber",
+    "lx:Argument",
+    "lx:Aufmerksamkeit",
+    "lx:Aufzug",
+    "lx:Aussprache",
+    "lx:Backup",
+    "lx:Bedienungsanleitung",
+    "lx:Berufserfahrung",
+    "lx:Bestätigung",
+    "lx:Betreff",
+    "lx:Bewerbungsunterlagen",
+    "lx:Bildschirm",
+    "lx:Bürger",
+    "lx:Bürgerinitiative",
+    "lx:Datei",
+    "lx:Dienstleistung",
+    "lx:Dokumentarfilm",
+    "lx:Ehrenamt",
+    "lx:Ergebnis",
+    "lx:Erlebnis",
+    "lx:Ernährung",
+    "lx:Ersatzteil",
+    "lx:Fachmann",
+    "lx:Fahrgemeinschaft",
+    "lx:Folge",
+    "lx:Fremdsprache",
+    "lx:Fundbüro",
+    "lx:Förderung",
+    "lx:Gegenvorschlag",
+    "lx:Geldbeutel",
+    "lx:Gerät",
+    "lx:Geschmack",
+    "lx:Gesellschaft",
+    "lx:Handlung",
+    "lx:Handwerker",
+    "lx:Hausverwaltung",
+    "lx:Heimatland",
+    "lx:Kaltmiete",
+    "lx:Kostenvoranschlag",
+    "lx:Krimi",
+    "lx:Kundendienst",
+    "lx:Ladekabel",
+    "lx:Leitpunkt",
+    "lx:Lärm",
+    "lx:Mieter",
+    "lx:Missverständnis",
+    "lx:Mit_freundlichen_Grüßen",
+    "lx:Muttersprache",
+    "lx:Nachteil",
+    "lx:Nachtruhe",
+    "lx:Passwort",
+    "lx:Pech",
+    "lx:Pendler",
+    "lx:Pflicht",
+    "lx:Praktikant",
+    "lx:Quadratmeter",
+    "lx:Radweg",
+    "lx:Ratschlag",
+    "lx:Reparatur",
+    "lx:Roman",
+    "lx:Schaden",
+    "lx:Schauspieler",
+    "lx:Schlaf",
+    "lx:Sehr_geehrte/r_…",
+    "lx:Serie",
+    "lx:Spülmaschine",
+    "lx:Stadtrat",
+    "lx:Stellenanzeige",
+    "lx:Strecke",
+    "lx:Streik",
+    "lx:Streit",
+    "lx:Stress",
+    "lx:Stärke",
+    "lx:Taste",
+    "lx:Teilnahme",
+    "lx:Teilnehmer",
+    "lx:Teilzeit",
+    "lx:Treppe",
+    "lx:Umschulung",
+    "lx:Umweg",
+    "lx:Umweltschutz",
+    "lx:Untertitel",
+    "lx:Update",
+    "lx:Vergleich",
+    "lx:Vertrauen",
+    "lx:Volkshochschule",
+    "lx:Vollzeit",
+    "lx:Vorteil",
+    "lx:Weiterbildung",
+    "lx:Wortschatz",
+    "lx:Zertifikat",
+    "lx:Zufall",
+    "lx:abschließen",
+    "lx:abstürzen",
+    "lx:achten_(auf)",
+    "lx:anbei",
+    "lx:anerkennen_lassen",
+    "lx:aufladen",
+    "lx:ausrichten",
+    "lx:ausschalten",
+    "lx:ausziehen",
+    "lx:außerhalb",
+    "lx:befristet",
+    "lx:berufsbegleitend",
+    "lx:besichtigen",
+    "lx:bestätigen",
+    "lx:defekt",
+    "lx:doppelt_so_…_wie",
+    "lx:durchfallen",
+    "lx:ehrenamtlich",
+    "lx:eifersüchtig",
+    "lx:einarbeiten",
+    "lx:einerseits_…_andererseits",
+    "lx:einschalten",
+    "lx:einstellen",
+    "lx:einverstanden",
+    "lx:einziehen",
+    "lx:enthalten_sein",
+    "lx:entweder_…_oder",
+    "lx:erleben",
+    "lx:erwünscht",
+    "lx:gesperrt",
+    "lx:handeln_von",
+    "lx:herunterladen",
+    "lx:hinterlassen",
+    "lx:im_Stich_lassen",
+    "lx:innerhalb",
+    "lx:je_…_desto",
+    "lx:liefern",
+    "lx:meiner_Meinung_nach",
+    "lx:mündlich",
+    "lx:nicht_nur_…_sondern_auch",
+    "lx:pendeln",
+    "lx:recht_haben",
+    "lx:reklamieren",
+    "lx:schließlich",
+    "lx:schriftlich",
+    "lx:seitdem",
+    "lx:sich_bewerben_(um/bei)",
+    "lx:sich_einigen",
+    "lx:sich_einsetzen",
+    "lx:sich_engagieren",
+    "lx:sich_entspannen",
+    "lx:sich_erinnern_(an_+_Akk.)",
+    "lx:sich_ernähren",
+    "lx:sich_gewöhnen_(an_+_Akk.)",
+    "lx:sich_kümmern_(um)",
+    "lx:sich_verlassen_auf",
+    "lx:sich_versöhnen",
+    "lx:sich_vorbereiten_(auf)",
+    "lx:sich_weiterbilden",
+    "lx:sowohl_…_als_auch",
+    "lx:spannend",
+    "lx:speichern",
+    "lx:spielen_in",
+    "lx:streichen",
+    "lx:teilnehmen_(an_+_Dat.)",
+    "lx:trotz",
+    "lx:umweltfreundlich",
+    "lx:ungesund",
+    "lx:verbrauchen",
+    "lx:vereinbaren",
+    "lx:vermeiden",
+    "lx:vermutlich",
+    "lx:verschieben",
+    "lx:weder_…_noch",
+    "lx:während#2",
+    "lx:zufällig",
+    "lx:zunehmen",
+    "lx:zusammenfassen",
+    "lx:zweisprachig",
+    "lx:überzeugen"
+   ]
   }
  }
 }
