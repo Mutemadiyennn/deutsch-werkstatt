@@ -1,0 +1,1417 @@
+{
+ "schema": 1,
+ "id": "m1:gun:39",
+ "day": 39,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Eskiden nasıldı: Ich war, ich hatte",
+ "goal_tr": "Bozuk kaloriferli hafta sonunu anlatır, Frau Brandl'dan eski Wendlfing'i dinler, yılları söylersin.",
+ "can_do": {
+  "id": "cd:m1:39",
+  "tr": "Nasıl olduğunu, neyim olduğunu ve bir yılı söylerim."
+ },
+ "unit": "u:a1:39",
+ "arm": "kafe",
+ "place": "pl:haus",
+ "characters": [
+  "ch:lechner",
+  "ch:brandl",
+  "ch:pichler"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a1-08:t3",
+  "gr:a1-14:t3"
+ ],
+ "yeni_kartlar": [
+  "lx:Heizung",
+  "lx:Waschmaschine",
+  "lx:funktionieren",
+  "lx:Fehler",
+  "lx:laut",
+  "lx:Platz",
+  "lx:dauern",
+  "lx:Zimmer",
+  "lx:Schule"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:39:h1",
+   "title_tr": "Hafta sonu evde: kalorifer bozuktu",
+   "kartlar": [
+    "lx:Heizung",
+    "lx:Waschmaschine",
+    "lx:funktionieren",
+    "lx:Fehler",
+    "lx:laut"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich war … – Du warst … – Wir waren …",
+     "tr": "…ydım – …ydın – …ydık"
+    },
+    {
+     "de": "Ich hatte … – Hattest du …? – Wir hatten …",
+     "tr": "…m vardı – …n var mıydı? – …miz vardı"
+    },
+    {
+     "de": "… war kaputt. – … hat nicht funktioniert.",
+     "tr": "… bozuktu. – … çalışmadı."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Heizung",
+     "de": "Am Sonntag war die Heizung kaputt.",
+     "tr": "Pazar günü kalorifer bozuktu.",
+     "accepted": [
+      "Am Sonntag war die Heizung kaputt.",
+      "Die Heizung war am Sonntag kaputt.",
+      "Am Sonntag war die Heizung kaputt!"
+     ]
+    },
+    {
+     "kart": "lx:Heizung",
+     "de": "Wir hatten am Wochenende keine Heizung.",
+     "tr": "Hafta sonu kaloriferimiz yoktu.",
+     "accepted": [
+      "Wir hatten am Wochenende keine Heizung.",
+      "Am Wochenende hatten wir keine Heizung.",
+      "Wir hatten keine Heizung am Wochenende."
+     ]
+    },
+    {
+     "kart": "lx:Waschmaschine",
+     "de": "Die Waschmaschine war auch kaputt!",
+     "tr": "Çamaşır makinesi de bozuktu!",
+     "accepted": [
+      "Die Waschmaschine war auch kaputt!",
+      "Auch die Waschmaschine war kaputt!",
+      "Die Waschmaschine war auch kaputt."
+     ]
+    },
+    {
+     "kart": "lx:Waschmaschine",
+     "de": "Die Waschmaschine ist von 2008. Sie ist sehr alt.",
+     "tr": "Çamaşır makinesi 2008'den. Çok eski.",
+     "accepted": [
+      "Die Waschmaschine ist von 2008. Sie ist sehr alt.",
+      "Die Waschmaschine ist von 2008, sie ist sehr alt.",
+      "Die Waschmaschine ist von 2008. Sie ist schon sehr alt."
+     ]
+    },
+    {
+     "kart": "lx:funktionieren",
+     "de": "Die Waschmaschine hat nicht funktioniert.",
+     "tr": "Çamaşır makinesi çalışmadı.",
+     "accepted": [
+      "Die Waschmaschine hat nicht funktioniert.",
+      "Die Waschmaschine hat leider nicht funktioniert.",
+      "Leider hat die Waschmaschine nicht funktioniert."
+     ]
+    },
+    {
+     "kart": "lx:funktionieren",
+     "de": "Funktioniert die Heizung jetzt wieder?",
+     "tr": "Kalorifer şimdi yine çalışıyor mu?",
+     "accepted": [
+      "Funktioniert die Heizung jetzt wieder?",
+      "Funktioniert die Heizung wieder?",
+      "Funktioniert jetzt die Heizung wieder?"
+     ]
+    },
+    {
+     "kart": "lx:Fehler",
+     "de": "In der Hausaufgabe hatte ich zwei Fehler.",
+     "tr": "Ödevde iki hatam vardı.",
+     "accepted": [
+      "In der Hausaufgabe hatte ich zwei Fehler.",
+      "Ich hatte zwei Fehler in der Hausaufgabe.",
+      "In der Hausaufgabe hatte ich nur zwei Fehler."
+     ]
+    },
+    {
+     "kart": "lx:Fehler",
+     "de": "Das war nicht dein Fehler, Tobi.",
+     "tr": "Bu senin hatan değildi Tobi.",
+     "accepted": [
+      "Das war nicht dein Fehler, Tobi.",
+      "Tobi, das war nicht dein Fehler.",
+      "Das war doch nicht dein Fehler, Tobi."
+     ]
+    },
+    {
+     "kart": "lx:laut",
+     "de": "Die Nachbarn waren am Samstag sehr laut.",
+     "tr": "Komşular cumartesi çok gürültülüydü.",
+     "accepted": [
+      "Die Nachbarn waren am Samstag sehr laut.",
+      "Am Samstag waren die Nachbarn sehr laut.",
+      "Die Nachbarn waren am Samstag so laut."
+     ]
+    },
+    {
+     "kart": "lx:laut",
+     "de": "Es war so laut, wir sind in die Stadt gegangen.",
+     "tr": "O kadar gürültülüydü ki şehre gittik.",
+     "accepted": [
+      "Es war so laut, wir sind in die Stadt gegangen.",
+      "Es war so laut. Wir sind in die Stadt gegangen.",
+      "Es war sehr laut, wir sind in die Stadt gegangen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Perşembe sabahı mola. Tobi kahvesini alıp yanına oturuyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Du warst am Montag so müde. Was war los?",
+      "tr": "Pazartesi çok yorgundun. Ne oldu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Meine Heizung hat nicht funktioniert.",
+      "tr": "Kaloriferim çalışmadı."
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Echt? Und? Funktioniert sie jetzt wieder?",
+      "tr": "Gerçekten mi? Eee? Şimdi yine çalışıyor mu?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Hafta sonu ne çalışmadı?",
+     "opts": [
+      "Kalorifer",
+      "Telefon",
+      "Otobüs",
+      "Kahve makinesi"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:39:h2",
+   "title_tr": "Frau Brandl anlatıyor: eskiden burada bir okul vardı",
+   "kartlar": [
+    "lx:Platz",
+    "lx:dauern",
+    "lx:Zimmer",
+    "lx:Schule"
+   ],
+   "kaliplar": [
+    {
+     "de": "Im Jahr … war hier … – Früher war hier …",
+     "tr": "… yılında burada … vardı – Eskiden burada … vardı"
+    },
+    {
+     "de": "Wie lange hat das gedauert? – Das hat … gedauert.",
+     "tr": "Ne kadar sürdü? – … sürdü."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Schule",
+     "de": "Im Jahr 1960 war hier eine Schule.",
+     "tr": "1960 yılında burada bir okul vardı.",
+     "accepted": [
+      "Im Jahr 1960 war hier eine Schule.",
+      "1960 war hier eine Schule.",
+      "Hier war im Jahr 1960 eine Schule."
+     ]
+    },
+    {
+     "kart": "lx:Schule",
+     "de": "2008 war die Schule noch neu.",
+     "tr": "2008'de okul daha yeniydi.",
+     "accepted": [
+      "2008 war die Schule noch neu.",
+      "Im Jahr 2008 war die Schule noch neu.",
+      "Die Schule war 2008 noch neu."
+     ]
+    },
+    {
+     "kart": "lx:Zimmer",
+     "de": "1999 hatte die Schule zehn Zimmer.",
+     "tr": "1999'da okulun on odası vardı.",
+     "accepted": [
+      "1999 hatte die Schule zehn Zimmer.",
+      "Im Jahr 1999 hatte die Schule zehn Zimmer.",
+      "Die Schule hatte 1999 zehn Zimmer."
+     ]
+    },
+    {
+     "kart": "lx:Zimmer",
+     "de": "Im Jahr 1985 hatte das Haus nur drei Zimmer.",
+     "tr": "1985 yılında evin sadece üç odası vardı.",
+     "accepted": [
+      "Im Jahr 1985 hatte das Haus nur drei Zimmer.",
+      "1985 hatte das Haus nur drei Zimmer.",
+      "Das Haus hatte 1985 nur drei Zimmer."
+     ]
+    },
+    {
+     "kart": "lx:Platz",
+     "de": "Im Bus war kein Platz, ich bin zu Fuß gegangen.",
+     "tr": "Otobüste yer yoktu, yürüyerek gittim.",
+     "accepted": [
+      "Im Bus war kein Platz, ich bin zu Fuß gegangen.",
+      "Im Bus war kein Platz. Ich bin zu Fuß gegangen.",
+      "Im Bus war kein Platz mehr, ich bin zu Fuß gegangen."
+     ]
+    },
+    {
+     "kart": "lx:Platz",
+     "de": "Ist hier noch ein Platz frei, Frau Brandl?",
+     "tr": "Burada boş bir yer var mı Brandl Hanım?",
+     "accepted": [
+      "Ist hier noch ein Platz frei, Frau Brandl?",
+      "Frau Brandl, ist hier noch ein Platz frei?",
+      "Ist der Platz hier noch frei, Frau Brandl?"
+     ]
+    },
+    {
+     "kart": "lx:dauern",
+     "de": "Im Jahr 2000 hat das mit dem Bus zwei Stunden gedauert.",
+     "tr": "2000 yılında bu otobüsle iki saat sürdü.",
+     "accepted": [
+      "Im Jahr 2000 hat das mit dem Bus zwei Stunden gedauert.",
+      "2000 hat das mit dem Bus zwei Stunden gedauert.",
+      "Im Jahr 2000 hat es mit dem Bus zwei Stunden gedauert."
+     ]
+    },
+    {
+     "kart": "lx:dauern",
+     "de": "Wie lange hat das gedauert?",
+     "tr": "Bu ne kadar sürdü?",
+     "accepted": [
+      "Wie lange hat das gedauert?",
+      "Und wie lange hat das gedauert?",
+      "Wie lange hat es gedauert?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Akşam merdivende. Frau Brandl pencereden sokağa bakıyor.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Im Jahr 1970 war das Haus hier neu.",
+      "tr": "1970 yılında buradaki ev yeniydi."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Wirklich? Und wie war die Straße?",
+      "tr": "Gerçekten mi? Peki sokak nasıldı?"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Ganz klein! Und früher war hier eine Schule.",
+      "tr": "Küçücüktü! Bir de eskiden burada bir okul vardı."
+     }
+    ],
+    "soru": {
+     "q_tr": "Eskiden burada ne vardı?",
+     "opts": [
+      "Bir okul",
+      "Bir fırın",
+      "Bir otopark",
+      "Bir eczane"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:39:v1",
+  "title_tr": "Merdivende: kalorifer yine çalışıyor",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Perşembe akşamı merdiven. Frau Brandl elinde bir fincanla kapısında duruyor.",
+    "de": "Hallo! Funktioniert Ihre Heizung wieder?",
+    "tr": "Merhaba! Kaloriferiniz yine çalışıyor mu?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler alet çantasıyla bodrumdan çıkıyor.",
+    "de": "Ja, jetzt geht alles wieder. Das hat aber lange gedauert!",
+    "tr": "Evet, şimdi her şey yine çalışıyor. Ama uzun sürdü!"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl ellerini ovuşturuyor.",
+    "de": "Danke, Herr Pichler! Am Sonntag war es im Zimmer nicht warm.",
+    "tr": "Teşekkürler Pichler Bey! Pazar günü odada hiç sıcak yoktu."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler duvardaki kaloriferi gösteriyor.",
+    "de": "Ja, das Haus ist alt. Die Heizung ist von 1985.",
+    "tr": "Evet, ev eski. Kalorifer 1985'ten."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl gülüyor.",
+    "de": "Von 1985? Die ist ja noch jung!",
+    "tr": "1985'ten mi? O daha genç!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl eski günleri düşünüyor.",
+    "de": "Im Jahr 1960 hatten wir keine Heizung im Haus.",
+    "tr": "1960 yılında evde kaloriferimiz yoktu."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler şaşırıyor.",
+    "de": "Wirklich? Und was hatten Sie im Winter?",
+    "tr": "Gerçekten mi? Peki kışın ne vardı?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl mutfak kapısını gösteriyor.",
+    "de": "Im Winter waren wir alle in der Küche.",
+    "tr": "Kışın hepimiz mutfaktaydık."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler el sallayıp gidiyor.",
+    "de": "Also, bis bald, Frau Brandl!",
+    "tr": "Peki, görüşürüz Brandl Hanım!"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl sana dönüyor.",
+    "de": "Und Sie? Wie war Ihr Wochenende ohne Heizung?",
+    "tr": "Ya siz? Kaloriferiniz olmadan hafta sonunuz nasıldı?"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Ne konuşuyorlar?",
+     "opts": [
+      "Kaloriferi ve eskiden evin nasıl olduğunu",
+      "Yeni bir daireyi",
+      "Frau Brandl'ın doğum gününü"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s6"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Herr Pichler eve ne diyor?",
+      "opts": [
+       "eski",
+       "yeni",
+       "küçük"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Eskiden kışın herkes neredeydi?",
+      "opts": [
+       "mutfakta",
+       "bahçede",
+       "okulda"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s8"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi yılı duydun?",
+      "opts": [
+       "1985",
+       "1958",
+       "1995"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s2",
+      "seviye": "orta",
+      "de": "Ja, jetzt geht alles wieder. Das hat aber lange ___!",
+      "accepted": [
+       "gedauert",
+       "Gedauert",
+       "gedauert."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s8",
+      "seviye": "zor",
+      "banka": [
+       "Im",
+       "Winter",
+       "waren",
+       "wir",
+       "alle",
+       "in",
+       "der",
+       "Küche",
+       "hatten",
+       "Schule"
+      ],
+      "accepted": [
+       "Im Winter waren wir alle in der Küche.",
+       "im winter waren wir alle in der küche",
+       "Im Winter waren wir alle in der Küche"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s7",
+      "seviye": "usta",
+      "accepted": [
+       "Wirklich? Und was hatten Sie im Winter?",
+       "wirklich und was hatten sie im winter",
+       "Wirklich? Und was hatten Sie im Winter"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Frau Brandl eskiden kışın nasıl yaşıyordu? Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Frau Brandl hatte keine Heizung. Im Winter waren alle in der Küche.",
+      "zorunlu": [
+       "hatte"
+      ]
+     }
+    ],
+    "golge": [
+     "s5",
+     "s8"
+    ],
+    "cevapla": {
+     "id": "m1:39:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Frau Brandl soruyor. Hafta sonu odan sıcak değildi. Söyle.",
+     "prompt_de": "Und wie war Ihr Wochenende?",
+     "accepted": [
+      "Nicht so gut. Im Zimmer war es nicht warm.",
+      "Nicht gut. Es war im Zimmer nicht warm.",
+      "Schlecht! Ich hatte keine Heizung.",
+      "Nicht so schön. Die Heizung war kaputt.",
+      "Es war nicht warm im Zimmer. Ich war nur im Bett."
+     ],
+     "why_tr": "Geçmiş için **war** dersin: **Es war nicht warm.**"
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:39:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Apartman görevlisinden sesli mesaj",
+   "ortam_tr": "Akşam eve geliyorsun. Telefonunda Herr Pichler'den bir mesaj var.",
+   "speaker": "ch:pichler",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Pichler, der Hausmeister.",
+     "tr": "Merhaba, ben Pichler, apartman görevlisi."
+    },
+    {
+     "id": "c2",
+     "de": "Ich war heute um zehn Uhr bei Ihnen, aber die Tür war zu.",
+     "tr": "Bugün saat onda size geldim ama kapı kapalıydı."
+    },
+    {
+     "id": "c3",
+     "de": "Ich komme morgen wieder, um neun Uhr.",
+     "tr": "Yarın tekrar geliyorum, saat dokuzda."
+    },
+    {
+     "id": "c4",
+     "de": "Im Bad muss ich die Lampe reparieren.",
+     "tr": "Banyoda lambayı tamir etmem lazım."
+    },
+    {
+     "id": "c5",
+     "de": "Sind Sie um neun Uhr zu Hause? Danke und bis morgen!",
+     "tr": "Saat dokuzda evde misiniz? Teşekkürler, yarın görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Herr Pichler neden arıyor?",
+      "opts": [
+       "Yarın saat dokuzda yine geliyor",
+       "Kirayı soruyor",
+       "Seni kahveye çağırıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Bugün neden içeri giremedi?",
+       "opts": [
+        "Kapı kapalıydı",
+        "Anahtarı yoktu",
+        "Hastaydı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Neyi tamir edecek?",
+       "opts": [
+        "banyodaki lambayı",
+        "mutfaktaki lambayı",
+        "kapıyı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi sayıyı duydun?",
+       "opts": [
+        "neun",
+        "neunzehn",
+        "zwei"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Im Bad muss ich die ___ reparieren.",
+       "accepted": [
+        "Lampe",
+        "lampe",
+        "Lampe."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "komme",
+        "morgen",
+        "wieder",
+        "um",
+        "neun",
+        "Uhr",
+        "heute",
+        "zehn"
+       ],
+       "accepted": [
+        "Ich komme morgen wieder, um neun Uhr.",
+        "ich komme morgen wieder um neun uhr",
+        "Ich komme morgen wieder, um neun Uhr"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c1",
+       "seviye": "usta",
+       "accepted": [
+        "Hallo, hier ist Pichler, der Hausmeister.",
+        "hallo hier ist pichler der hausmeister",
+        "Hallo, hier ist Pichler, der Hausmeister"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı Almanca iki kısa cümleyle anlat.",
+       "ornek_de": "Herr Pichler kommt morgen um neun Uhr. Er muss im Bad die Lampe reparieren.",
+       "zorunlu": [
+        "neun",
+        "Lampe"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:39:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Herr Pichler'i geri arıyorsun. Yarın saat dokuzda evdesin.",
+      "prompt_de": "Pichler. Sind Sie morgen um neun zu Hause?",
+      "accepted": [
+       "Ja, ich bin um neun Uhr zu Hause.",
+       "Ja, um neun bin ich zu Hause.",
+       "Ja, morgen um neun bin ich da.",
+       "Ja, ich bin morgen um neun zu Hause.",
+       "Ja, kein Problem. Ich bin um neun Uhr da."
+      ],
+      "why_tr": "Kısa ve net: **Ja, ich bin um neun Uhr zu Hause.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:39:a1:e1",
+    "k": "pick",
+    "q_tr": "Mesajdan sonra ne yapmalısın?",
+    "opts": [
+     "Yarın saat dokuzda evde ol.",
+     "Bugün saat onda evde ol.",
+     "Lambayı kendin tamir et."
+    ],
+    "ans": 0,
+    "why_tr": "Herr Pichler yarın saat dokuzda geliyor.",
+    "kanit": [
+     "c3",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:39:a2",
+   "tur": "radyo",
+   "title_tr": "Yerel radyo: Wendlfing eskiden",
+   "ortam_tr": "Sabah kahvaltıda yerel radyoyu dinliyorsun.",
+   "speaker": "die Sprecherin",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen aus Wendlfing!",
+     "tr": "Wendlfing'den günaydın!"
+    },
+    {
+     "id": "c2",
+     "de": "Heute fragen wir: Wie war Wendlfing im Jahr 1985?",
+     "tr": "Bugün soruyoruz: 1985 yılında Wendlfing nasıldı?"
+    },
+    {
+     "id": "c3",
+     "de": "Der Bahnhof war ganz neu.",
+     "tr": "Gar yepyeniydi."
+    },
+    {
+     "id": "c4",
+     "de": "Die Leute sind mit dem Bus in die Stadt gefahren.",
+     "tr": "İnsanlar şehre otobüsle gitti."
+    },
+    {
+     "id": "c5",
+     "de": "Heute fahren sie mit dem Auto.",
+     "tr": "Bugün arabayla gidiyorlar."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne anlatıyor?",
+      "opts": [
+       "Wendlfing'in eskiden nasıl olduğunu",
+       "Bugünkü hava durumunu",
+       "Yeni bir otobüs hattını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "İnsanlar eskiden şehre neyle gidiyordu?",
+       "opts": [
+        "otobüsle",
+        "arabayla",
+        "bisikletle"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Bugün neyle gidiyorlar?",
+       "opts": [
+        "arabayla",
+        "otobüsle",
+        "yürüyerek"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi yılı duydun?",
+       "opts": [
+        "1985",
+        "1958",
+        "1995"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Die Leute sind mit dem ___ in die Stadt gefahren.",
+       "accepted": [
+        "Bus",
+        "bus",
+        "Bus."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Heute",
+        "fahren",
+        "sie",
+        "mit",
+        "dem",
+        "Auto",
+        "Bus",
+        "gestern"
+       ],
+       "accepted": [
+        "Heute fahren sie mit dem Auto.",
+        "heute fahren sie mit dem auto",
+        "Heute fahren sie mit dem Auto"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Der Bahnhof war ganz neu.",
+        "der bahnhof war ganz neu",
+        "Der Bahnhof war ganz neu"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyodan duyduğunu Almanca iki kısa cümleyle anlat.",
+       "ornek_de": "Im Jahr 1985 war der Bahnhof neu. Die Leute sind mit dem Bus gefahren.",
+       "zorunlu": [
+        "1985"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:39:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi soruyor: Gar ne zaman yeniydi? 1985'te.",
+      "prompt_de": "Wann war der Bahnhof neu?",
+      "accepted": [
+       "Im Jahr 1985.",
+       "1985 war der Bahnhof neu.",
+       "Im Jahr 1985 war der Bahnhof neu.",
+       "Der Bahnhof war 1985 neu.",
+       "1985."
+      ],
+      "why_tr": "Yıl söylerken **in** kullanmazsın: **1985** ya da **im Jahr 1985**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:39:a2:e1",
+    "k": "pick",
+    "q_tr": "Derya soruyor: İnsanlar eskiden şehre neyle gidiyordu? Ne dersin?",
+    "opts": [
+     "Otobüsle.",
+     "Arabayla.",
+     "Trenle."
+    ],
+    "ans": 0,
+    "why_tr": "Radyo, insanların eskiden otobüsle gittiğini söylüyor.",
+    "kanit": [
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:39:g1",
+   "de": "Heizung",
+   "dogru_img": "white radiator under a window",
+   "celdirici_img": [
+    "air conditioner on a wall",
+    "electric fan",
+    "fireplace with fire"
+   ]
+  },
+  {
+   "id": "m1:39:g2",
+   "de": "Waschmaschine",
+   "dogru_img": "washing machine in a bathroom",
+   "celdirici_img": [
+    "dishwasher in a kitchen",
+    "fridge in a kitchen",
+    "microwave on a counter"
+   ]
+  },
+  {
+   "id": "m1:39:g3",
+   "de": "Schule",
+   "dogru_img": "old small school building",
+   "celdirici_img": [
+    "town hall building",
+    "train station building",
+    "supermarket building"
+   ]
+  },
+  {
+   "id": "m1:39:g4",
+   "de": "Platz",
+   "dogru_img": "one free seat on a bus",
+   "celdirici_img": [
+    "full bus with standing people",
+    "empty bus stop",
+    "bus driver at the wheel"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:39:p1",
+  "title_tr": "Frau Brandl hafta sonunu soruyor",
+  "durum_tr": "Merdivende Frau Brandl ile karşılaşıyorsun. Hafta sonunun nasıl geçtiğini anlat: ne vardı, ne yoktu.",
+  "karsi": "ch:brandl",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Hallo! Na, wie war Ihr Wochenende?",
+    "tr": "Merhaba! Eee, hafta sonunuz nasıldı?",
+    "secenekler": [
+     {
+      "de": "Nicht so gut. Die Heizung war kaputt.",
+      "tr": "Pek iyi değildi. Kalorifer bozuktu.",
+      "accepted": [
+       "Nicht so gut. Die Heizung war kaputt.",
+       "Nicht gut. Die Heizung war kaputt.",
+       "Nicht so gut, die Heizung war kaputt."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru! Geçmiş için **war** dedin."
+     },
+     {
+      "de": "Es war laut. Die Nachbarn hatten eine Party.",
+      "tr": "Gürültülüydü. Komşuların partisi vardı.",
+      "accepted": [
+       "Es war laut. Die Nachbarn hatten eine Party.",
+       "Es war sehr laut. Die Nachbarn hatten eine Party.",
+       "Laut! Die Nachbarn hatten eine Party."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **hatten** ile onların neyi olduğunu söyledin."
+     },
+     {
+      "de": "Die Heizung ist kaputt.",
+      "tr": "Kalorifer bozuk.",
+      "accepted": [
+       "Die Heizung ist kaputt.",
+       "Die Heizung ist leider kaputt.",
+       "Meine Heizung ist kaputt."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Kalorifer artık çalışıyor. Hafta sonu için **war** de: **Die Heizung war kaputt.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Ja, bei mir auch! Und hatten Sie Wasser?",
+    "tr": "Evet, bende de! Peki suyunuz var mıydı?",
+    "secenekler": [
+     {
+      "de": "Nein, ich hatte kein Wasser.",
+      "tr": "Hayır, suyum yoktu.",
+      "accepted": [
+       "Nein, ich hatte kein Wasser.",
+       "Nein, ich hatte leider kein Wasser.",
+       "Nein. Ich hatte kein Wasser."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Tam doğru. **ich hatte** benim vardı demek."
+     },
+     {
+      "de": "Ja, aber die Waschmaschine war auch kaputt.",
+      "tr": "Evet, ama çamaşır makinesi de bozuktu.",
+      "accepted": [
+       "Ja, aber die Waschmaschine war auch kaputt.",
+       "Ja, aber auch die Waschmaschine war kaputt.",
+       "Ja. Aber die Waschmaschine war auch kaputt."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **war** ile bir sorun daha anlattın."
+     },
+     {
+      "de": "Nein, ich habe kein Wasser.",
+      "tr": "Hayır, suyum yok.",
+      "accepted": [
+       "Nein, ich habe kein Wasser.",
+       "Ich habe kein Wasser.",
+       "Nein, ich habe leider kein Wasser."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu şimdi. Hafta sonu için **ich hatte** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Ach, die Party! Das war sehr laut. Wie lange hat sie gedauert?",
+    "tr": "Ah, o parti! Çok gürültülüydü. Ne kadar sürdü?",
+    "secenekler": [
+     {
+      "de": "Bis zwölf Uhr! Ich war sehr müde.",
+      "tr": "Saat on ikiye kadar! Çok yorgundum.",
+      "accepted": [
+       "Bis zwölf Uhr! Ich war sehr müde.",
+       "Bis zwölf Uhr. Ich war so müde.",
+       "Bis zwölf! Ich war sehr müde."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **Ich war müde** yorgundum demek."
+     },
+     {
+      "de": "Sie hat vier Stunden gedauert.",
+      "tr": "Dört saat sürdü.",
+      "accepted": [
+       "Sie hat vier Stunden gedauert.",
+       "Vier Stunden hat sie gedauert.",
+       "Die Party hat vier Stunden gedauert."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **Sie hat vier Stunden gedauert** dört saat sürdü demek."
+     },
+     {
+      "de": "Die Party ist am Samstag.",
+      "tr": "Parti cumartesi.",
+      "accepted": [
+       "Die Party ist am Samstag.",
+       "Die Party ist Samstag.",
+       "Am Samstag ist die Party."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Frau Brandl süreyi soruyor. **Sie hat vier Stunden gedauert** de."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Ach ja. Im Jahr 1970 war die Straße nicht so laut.",
+    "tr": "Ah evet. 1970'te sokak bu kadar gürültülü değildi.",
+    "secenekler": [
+     {
+      "de": "Wirklich? Was war hier im Jahr 1970?",
+      "tr": "Gerçekten mi? 1970'te burada ne vardı?",
+      "accepted": [
+       "Wirklich? Was war hier im Jahr 1970?",
+       "Wirklich? Was war hier 1970?",
+       "Was war denn hier im Jahr 1970?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi! Yılı doğru söyledin: **neunzehnhundertsiebzig**."
+     },
+     {
+      "de": "Und war hier auch eine Schule?",
+      "tr": "Peki burada bir okul da var mıydı?",
+      "accepted": [
+       "Und war hier auch eine Schule?",
+       "War hier auch eine Schule?",
+       "Und war hier eine Schule?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel bir soru. **war** ile geçmişi sordun."
+     },
+     {
+      "de": "Ja, 1970 ist die Straße laut.",
+      "tr": "Evet, 1970'te sokak gürültülü.",
+      "accepted": [
+       "Ja, 1970 ist die Straße laut.",
+       "1970 ist die Straße laut.",
+       "Ja, im Jahr 1970 ist die Straße laut."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "1970 geçmişte kaldı. **ist** değil, **war** de."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Da war eine kleine Schule. Heute ist da ein Parkplatz. Möchten Sie einen Kaffee?",
+    "tr": "Orada küçük bir okul vardı. Bugün orada bir otopark var. Kahve ister misiniz?",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Geçmişi anlattın: **war**, **hatte**, **gedauert** ve bir yıl."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Apartman panosunda bir not",
+  "metin_de": "Hallo zusammen! Am Samstag und Sonntag hatten wir ein Problem mit der Heizung. Jetzt funktioniert sie wieder. Die Waschmaschine ist leider noch kaputt. Am Montag um zehn Uhr kommt ein Techniker. Danke! Josef Pichler, Hausmeister",
+  "metin_tr": "Herkese merhaba! Cumartesi ve pazar kaloriferde bir sorunumuz vardı. Şimdi yine çalışıyor. Çamaşır makinesi maalesef hâlâ bozuk. Pazartesi saat onda bir teknisyen geliyor. Teşekkürler! Josef Pichler, apartman görevlisi",
+  "sorular": [
+   {
+    "id": "m1:39:o1",
+    "kind": "gist",
+    "q_tr": "Bu not ne hakkında?",
+    "opts": [
+     "Kalorifer ve çamaşır makinesi",
+     "Yeni komşular",
+     "Kira"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     3
+    ]
+   },
+   {
+    "id": "m1:39:o2",
+    "kind": "detail",
+    "q_tr": "Kalorifer şimdi nasıl?",
+    "opts": [
+     "Yine çalışıyor",
+     "Hâlâ bozuk",
+     "Pazartesi tamir edilecek"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:39:o3",
+    "kind": "detail",
+    "q_tr": "Teknisyen ne zaman geliyor?",
+    "opts": [
+     "Pazartesi saat onda",
+     "Pazar saat onda",
+     "Cumartesi saat onda"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:39:o4",
+    "k": "guided_response",
+    "situation_tr": "Bir komşu soruyor. Nota göre cevap ver.",
+    "prompt_de": "Funktioniert die Waschmaschine wieder?",
+    "accepted": [
+     "Nein, sie ist noch kaputt. Am Montag kommt ein Techniker.",
+     "Nein, leider nicht. Am Montag kommt ein Techniker.",
+     "Nein, die Waschmaschine ist noch kaputt.",
+     "Leider nicht. Der Techniker kommt am Montag.",
+     "Nein. Am Montag um zehn kommt ein Techniker."
+    ],
+    "why_tr": "Nottaki cümleyi kullan: **Am Montag kommt ein Techniker.**"
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Komşuna kısa bir mesaj yaz: hafta sonu ne bozuktu, neyin yoktu?",
+   "ornek_de": "Am Wochenende war meine Heizung kaputt. Ich hatte kein Wasser.",
+   "zorunlu": [
+    "war",
+    "hatte"
+   ],
+   "accepted_kaliplar": [
+    "Am ___ war meine ___ kaputt.",
+    "Am ___ war die ___ kaputt.",
+    "Meine ___ war kaputt.",
+    "Die ___ war kaputt.",
+    "Ich hatte kein ___.",
+    "Ich hatte keine ___.",
+    "Wir hatten kein ___.",
+    "Wir hatten keine ___.",
+    "Die ___ hat nicht funktioniert.",
+    "Es war ___.",
+    "Ich war ___."
+   ],
+   "kontrol_tr": [
+    "İki cümle yazdın mı?",
+    "Bir cümlede **war** var mı?",
+    "Bir cümlede **hatte** var mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:39:s",
+  "maddeler": [
+   {
+    "id": "m1:39:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Die Heizung im Büro war auch kaputt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Heizung im Büro war auch kaputt.",
+     "die heizung im büro war auch kaputt",
+     "Die Heizung im Büro war auch kaputt"
+    ],
+    "why_tr": "**war** -dı demek: **war kaputt**, bozuktu."
+   },
+   {
+    "id": "m1:39:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Hattest du am Wochenende Zeit?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Hattest du am Wochenende Zeit?",
+     "hattest du am wochenende zeit",
+     "Hattest du am Wochenende Zeit"
+    ],
+    "why_tr": "**du** ile **hattest** olur."
+   },
+   {
+    "id": "m1:39:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Der Bus war heute sehr spät.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Bus war heute sehr spät.",
+     "der bus war heute sehr spät",
+     "Der Bus war heute sehr spät"
+    ],
+    "why_tr": "**war** -dı demek: **war spät**, geç kaldı."
+   },
+   {
+    "id": "m1:39:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Das hat nur zehn Minuten gedauert.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das hat nur zehn Minuten gedauert.",
+     "das hat nur zehn minuten gedauert",
+     "Das hat nur zehn Minuten gedauert"
+    ],
+    "why_tr": "**gedauert** sürdü demek: **Das hat lange gedauert.**"
+   },
+   {
+    "id": "m1:39:s5",
+    "k": "tr_de",
+    "tr": "Dün çok yorgundum.",
+    "accepted": [
+     "Gestern war ich sehr müde.",
+     "Ich war gestern sehr müde.",
+     "Ich war gestern so müde."
+    ],
+    "why_tr": "Yorgundum: **ich war müde**."
+   },
+   {
+    "id": "m1:39:s6",
+    "k": "tr_de",
+    "tr": "Hafta sonu hiç vaktim yoktu.",
+    "accepted": [
+     "Am Wochenende hatte ich keine Zeit.",
+     "Ich hatte am Wochenende keine Zeit.",
+     "Ich hatte am Wochenende gar keine Zeit."
+    ],
+    "why_tr": "Vaktim yoktu: **ich hatte keine Zeit**."
+   },
+   {
+    "id": "m1:39:s7",
+    "k": "tr_de",
+    "tr": "Kalorifer çalışmadı.",
+    "accepted": [
+     "Die Heizung hat nicht funktioniert.",
+     "Die Heizung hat leider nicht funktioniert.",
+     "Die Heizung funktionierte nicht."
+    ],
+    "why_tr": "**funktionieren** geçmişte **hat funktioniert** olur."
+   },
+   {
+    "id": "m1:39:s8",
+    "k": "tr_de",
+    "tr": "1999'da okul yeniydi.",
+    "accepted": [
+     "1999 war die Schule neu.",
+     "Im Jahr 1999 war die Schule neu.",
+     "Die Schule war 1999 neu."
+    ],
+    "why_tr": "Yılın önüne tek başına **in** gelmez: **1999 war die Schule neu.**"
+   },
+   {
+    "id": "m1:39:s9",
+    "k": "guided_response",
+    "situation_tr": "Tobi soruyor: Pazartesi neden yorgundun? Komşular çok gürültülüydü.",
+    "prompt_de": "Warum warst du am Montag so müde?",
+    "accepted": [
+     "Die Nachbarn waren so laut!",
+     "Die Nachbarn waren sehr laut.",
+     "Meine Nachbarn waren am Sonntag sehr laut.",
+     "Die Nachbarn waren so laut, ich habe nicht geschlafen.",
+     "Es war so laut. Die Nachbarn hatten eine Party."
+    ],
+    "why_tr": "Birden çok kişi için **waren** dersin: **Die Nachbarn waren laut.**"
+   },
+   {
+    "id": "m1:39:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Ist hier noch Platz?",
+    "speed": "normal",
+    "situation_tr": "Otobüste bir kadın soruyor. Yanındaki yer boş.",
+    "accepted": [
+     "Ja, hier ist noch Platz.",
+     "Ja, bitte!",
+     "Ja, der Platz ist frei.",
+     "Ja, hier ist noch ein Platz frei.",
+     "Ja, klar!"
+    ],
+    "why_tr": "Yer boşsa **Ja, hier ist noch Platz.** dersin."
+   },
+   {
+    "id": "m1:39:s11",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl soruyor: hafta sonun nasıldı? İki şey söyle: ne bozuktu, neyin yoktu.",
+    "prompt_de": "Na, und wie war Ihr Wochenende?",
+    "accepted": [
+     "Nicht so gut. Die Heizung war kaputt und ich hatte kein Wasser.",
+     "Die Heizung war kaputt. Ich hatte kein Wasser.",
+     "Nicht gut. Die Waschmaschine war kaputt und ich hatte keine Heizung.",
+     "Schlecht! Ich hatte keine Heizung. Es war nicht warm.",
+     "Die Heizung hat nicht funktioniert. Ich war nur im Bett.",
+     "Die Nachbarn waren laut und die Heizung war kaputt."
+    ],
+    "why_tr": "Bir cümlede **war**, ötekinde **hatte**: ikisi de geçmiş."
+   }
+  ],
+  "sesli": [
+   "m1:39:s9",
+   "m1:39:s10"
+  ],
+  "dikte": [
+   "m1:39:s1",
+   "m1:39:s2",
+   "m1:39:s3",
+   "m1:39:s4"
+  ]
+ }
+}

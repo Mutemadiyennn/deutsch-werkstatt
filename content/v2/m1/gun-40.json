@@ -1,0 +1,1398 @@
+{
+ "schema": 1,
+ "id": "m1:gun:40",
+ "day": 40,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "İki kelimeden bir kelime: Hausarzt",
+ "goal_tr": "Hafta sonu hava durumunu dinler, aile hekimini arar, uzun kelimeleri parçalarına ayırırsın.",
+ "can_do": {
+  "id": "cd:m1:40",
+  "tr": "Birleşik kelimeyi parçalarından anlar, havayı söylerim."
+ },
+ "unit": "u:a1:40",
+ "arm": "kafe",
+ "place": "pl:firma",
+ "characters": [
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:huber"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "dn:kelime-ailesi-1",
+  "gr:a1-06:t4"
+ ],
+ "yeni_kartlar": [
+  "lx:Versichertenkarte",
+  "lx:Telefon",
+  "lx:Sekunde",
+  "lx:Nachricht",
+  "lx:Foto",
+  "lx:süß",
+  "lx:manchmal",
+  "lx:stehen#2"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:40:h1",
+   "title_tr": "Aile hekimini aramak: sigorta kartı ve telefon",
+   "kartlar": [
+    "lx:Versichertenkarte",
+    "lx:Telefon",
+    "lx:Sekunde",
+    "lx:Nachricht"
+   ],
+   "kaliplar": [
+    {
+     "de": "Bringen Sie bitte Ihre … mit. – Ich bringe meine … mit.",
+     "tr": "Lütfen …nızı yanınızda getirin. – …mı yanımda getiriyorum."
+    },
+    {
+     "de": "Eine Sekunde, bitte. – Nur eine Sekunde!",
+     "tr": "Bir saniye, lütfen. – Sadece bir saniye!"
+    },
+    {
+     "de": "Ich habe dir eine Nachricht geschickt. – Die Nachricht ist von …",
+     "tr": "Sana bir mesaj gönderdim. – Mesaj …'den."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Versichertenkarte",
+     "de": "Ich bringe meine Versichertenkarte mit.",
+     "tr": "Sigorta kartımı yanımda getiriyorum.",
+     "accepted": [
+      "Ich bringe meine Versichertenkarte mit.",
+      "Ja, ich bringe meine Versichertenkarte mit.",
+      "Meine Versichertenkarte bringe ich mit."
+     ]
+    },
+    {
+     "kart": "lx:Versichertenkarte",
+     "de": "Meine Versichertenkarte ist zu Hause!",
+     "tr": "Sigorta kartım evde!",
+     "accepted": [
+      "Meine Versichertenkarte ist zu Hause!",
+      "Meine Versichertenkarte ist noch zu Hause!",
+      "Oh nein, meine Versichertenkarte ist zu Hause!"
+     ]
+    },
+    {
+     "kart": "lx:Telefon",
+     "de": "Ioana ist am Telefon: Es regnet!",
+     "tr": "Ioana telefonda: Yağmur yağıyor!",
+     "accepted": [
+      "Ioana ist am Telefon: Es regnet!",
+      "Ioana ist am Telefon. Es regnet!",
+      "Ioana ist am Telefon: Es regnet."
+     ]
+    },
+    {
+     "kart": "lx:Telefon",
+     "de": "Am Wochenende war mein Telefon kaputt.",
+     "tr": "Hafta sonu telefonum bozuktu.",
+     "accepted": [
+      "Am Wochenende war mein Telefon kaputt.",
+      "Mein Telefon war am Wochenende kaputt.",
+      "Am Wochenende war mein Telefon leider kaputt."
+     ]
+    },
+    {
+     "kart": "lx:Sekunde",
+     "de": "Eine Sekunde, wo ist meine Versichertenkarte?",
+     "tr": "Bir saniye, sigorta kartım nerede?",
+     "accepted": [
+      "Eine Sekunde, wo ist meine Versichertenkarte?",
+      "Eine Sekunde! Wo ist meine Versichertenkarte?",
+      "Moment, eine Sekunde, wo ist meine Versichertenkarte?"
+     ]
+    },
+    {
+     "kart": "lx:Sekunde",
+     "de": "Nur eine Sekunde, Frau Huber!",
+     "tr": "Sadece bir saniye Huber Hanım!",
+     "accepted": [
+      "Nur eine Sekunde, Frau Huber!",
+      "Eine Sekunde, Frau Huber!",
+      "Nur eine Sekunde bitte, Frau Huber!"
+     ]
+    },
+    {
+     "kart": "lx:Nachricht",
+     "de": "Ich habe dir die Telefonnummer in einer Nachricht geschickt.",
+     "tr": "Telefon numarasını sana bir mesajla gönderdim.",
+     "accepted": [
+      "Ich habe dir die Telefonnummer in einer Nachricht geschickt.",
+      "Ich habe dir die Telefonnummer in der Nachricht geschickt.",
+      "Die Telefonnummer habe ich dir in einer Nachricht geschickt."
+     ]
+    },
+    {
+     "kart": "lx:Nachricht",
+     "de": "Die Nachricht ist von meinem Hausarzt.",
+     "tr": "Mesaj aile hekimimden.",
+     "accepted": [
+      "Die Nachricht ist von meinem Hausarzt.",
+      "Die Nachricht ist von meinem Hausarzt!",
+      "Das ist eine Nachricht von meinem Hausarzt."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cuma öğlesi. Aile hekiminin muayenehanesini arıyorsun. Frau Huber açıyor.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Praxis Dr. Weber, Huber. Eine Sekunde, bitte.",
+      "tr": "Dr. Weber muayenehanesi, Huber. Bir saniye, lütfen."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Guten Tag! Ich habe heute um drei einen Termin.",
+      "tr": "İyi günler! Bugün saat üçte randevum var."
+     },
+     {
+      "r": "ch:huber",
+      "de": "Gut. Bringen Sie bitte Ihre Versichertenkarte mit.",
+      "tr": "Tamam. Lütfen sigorta kartınızı yanınızda getirin."
+     }
+    ],
+    "soru": {
+     "q_tr": "Frau Huber ne getirmeni istiyor?",
+     "opts": [
+      "Sigorta kartını",
+      "Kimliğini",
+      "Telefonunu",
+      "Bir fotoğraf"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:40:h2",
+   "title_tr": "Molada: fotoğraf ve hava",
+   "kartlar": [
+    "lx:Foto",
+    "lx:süß",
+    "lx:manchmal",
+    "lx:stehen#2"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wie ist das Wetter? – Es regnet. – Es ist warm. – Es sind … Grad.",
+     "tr": "Hava nasıl? – Yağmur yağıyor. – Hava ılık. – Hava … derece."
+    },
+    {
+     "de": "Das Foto ist von … – Auf dem Foto ist …",
+     "tr": "Fotoğraf …'den. – Fotoğrafta … var."
+    },
+    {
+     "de": "Wir stehen an der … – … steht vor der …",
+     "tr": "…'de duruyoruz. – … …'nın önünde duruyor."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Foto",
+     "de": "Das Foto ist vom Sommer 2008. Es war sehr heiß.",
+     "tr": "Fotoğraf 2008 yazından. Hava çok sıcaktı.",
+     "accepted": [
+      "Das Foto ist vom Sommer 2008. Es war sehr heiß.",
+      "Das Foto ist vom Sommer 2008, es war sehr heiß.",
+      "Das Foto ist vom Sommer 2008. Da war es sehr heiß."
+     ]
+    },
+    {
+     "kart": "lx:Foto",
+     "de": "Das Foto ist von 1985. Da war Wendlfing noch klein.",
+     "tr": "Fotoğraf 1985'ten. O zaman Wendlfing daha küçüktü.",
+     "accepted": [
+      "Das Foto ist von 1985. Da war Wendlfing noch klein.",
+      "Das Foto ist von 1985, da war Wendlfing noch klein.",
+      "Das Foto ist von 1985. Wendlfing war da noch klein."
+     ]
+    },
+    {
+     "kart": "lx:süß",
+     "de": "Der Hund auf dem Foto ist so süß!",
+     "tr": "Fotoğraftaki köpek çok tatlı!",
+     "accepted": [
+      "Der Hund auf dem Foto ist so süß!",
+      "Der Hund auf dem Foto ist sehr süß!",
+      "Der Hund auf dem Foto ist so süß."
+     ]
+    },
+    {
+     "kart": "lx:süß",
+     "de": "Der Kaffee ist zu süß!",
+     "tr": "Kahve fazla şekerli!",
+     "accepted": [
+      "Der Kaffee ist zu süß!",
+      "Der Kaffee ist mir zu süß!",
+      "Der Kaffee ist zu süß."
+     ]
+    },
+    {
+     "kart": "lx:manchmal",
+     "de": "Im Herbst regnet es manchmal.",
+     "tr": "Sonbaharda bazen yağmur yağar.",
+     "accepted": [
+      "Im Herbst regnet es manchmal.",
+      "Im Herbst regnet es manchmal!",
+      "Manchmal regnet es im Herbst."
+     ]
+    },
+    {
+     "kart": "lx:manchmal",
+     "de": "Manchmal sind es im Frühling schon zwanzig Grad.",
+     "tr": "İlkbaharda bazen hava yirmi dereceyi bulur.",
+     "accepted": [
+      "Manchmal sind es im Frühling schon zwanzig Grad.",
+      "Im Frühling sind es manchmal schon zwanzig Grad.",
+      "Manchmal sind es im Frühling schon 20 Grad."
+     ]
+    },
+    {
+     "kart": "lx:stehen#2",
+     "de": "Es regnet, und wir stehen an der Haltestelle.",
+     "tr": "Yağmur yağıyor, biz de durakta bekliyoruz.",
+     "accepted": [
+      "Es regnet, und wir stehen an der Haltestelle.",
+      "Es regnet und wir stehen an der Haltestelle.",
+      "Es regnet. Wir stehen an der Haltestelle."
+     ]
+    },
+    {
+     "kart": "lx:stehen#2",
+     "de": "Es ist warm. Wir stehen draußen und trinken Kaffee.",
+     "tr": "Hava ılık. Dışarıda ayakta kahve içiyoruz.",
+     "accepted": [
+      "Es ist warm. Wir stehen draußen und trinken Kaffee.",
+      "Es ist warm, wir stehen draußen und trinken Kaffee.",
+      "Es ist warm. Wir stehen draußen und trinken einen Kaffee."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Mola. Derya telefonundaki bir fotoğrafı gösteriyor.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Hier, das Foto ist vom Sonntag.",
+      "tr": "Bak, fotoğraf pazar gününden."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Wie süß! Ist das der Hund von deinem Onkel?",
+      "tr": "Ne tatlı! Bu amcanın köpeği mi?"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Ja! Und das Wetter war so schön, es waren zwanzig Grad.",
+      "tr": "Evet! Hava da çok güzeldi, yirmi dereceydi."
+     }
+    ],
+    "soru": {
+     "q_tr": "Pazar günü hava nasıldı?",
+     "opts": [
+      "Güzel, yirmi derece",
+      "Yağmurlu",
+      "Çok soğuk",
+      "Rüzgârlı"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:40:v1",
+  "title_tr": "Cuma sabahı: hava durumu ve uzun kelimeler",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Cuma sabahı firmanın mutfağı. Radyo çalıyor, Tobi kahve koyuyor.",
+    "de": "Das Wetter am Wochenende: Es regnet!",
+    "tr": "Hafta sonu hava durumu: Yağmur yağıyor!"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya pencereden dışarı bakıyor.",
+    "de": "Ja, leider. Aber heute ist es noch warm.",
+    "tr": "Evet, maalesef. Ama bugün hava hâlâ ılık."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi omuz silkiyor.",
+    "de": "Und am Samstag will ich Fahrrad fahren!",
+    "tr": "Ben de cumartesi bisiklete binmek istiyorum!"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya sana dönüyor.",
+    "de": "Und du? Du hast heute einen Termin beim Hausarzt, oder?",
+    "tr": "Ya sen? Bugün aile hekiminde randevun var, değil mi?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi parmaklarıyla sayıyor.",
+    "de": "Hausarzt, das sind zwei Wörter: Haus und Arzt!",
+    "tr": "Hausarzt, bunlar iki kelime: ev ve doktor!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülüyor.",
+    "de": "Genau! Und Wochenende ist Woche und Ende.",
+    "tr": "Aynen! Wochenende de hafta ve son."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi bir şey daha buluyor.",
+    "de": "Und Waschmaschine? Waschen und Maschine!",
+    "tr": "Ya Waschmaschine? Yıkamak ve makine!"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya Tobi'ye bir fincan uzatıyor.",
+    "de": "Ach, Tobi! Hier ist dein Kaffee.",
+    "tr": "Ah Tobi! Al, kahven burada."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi sana göz kırpıyor.",
+    "de": "Und hast du deine Versichertenkarte?",
+    "tr": "Peki sigorta kartın yanında mı?"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Ne konuşuyorlar?",
+     "opts": [
+      "Hava durumunu ve iki parçalı kelimeleri",
+      "Yeni bir işi",
+      "Derya'nın partisini"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s5"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Hafta sonu hava nasıl olacak?",
+      "opts": [
+       "yağmurlu",
+       "güneşli",
+       "çok sıcak"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s1"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi cumartesi ne yapmak istiyor?",
+      "opts": [
+       "bisiklete binmek",
+       "film izlemek",
+       "çalışmak"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s3"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s2",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "warm",
+       "Wasser",
+       "wann"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s6",
+      "seviye": "orta",
+      "de": "Genau! Und ___ ist Woche und Ende.",
+      "accepted": [
+       "Wochenende",
+       "wochenende",
+       "Wochenende."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s1",
+      "seviye": "zor",
+      "banka": [
+       "Das",
+       "Wetter",
+       "am",
+       "Wochenende",
+       "Es",
+       "regnet",
+       "Wasser",
+       "heute"
+      ],
+      "accepted": [
+       "Das Wetter am Wochenende: Es regnet!",
+       "das wetter am wochenende es regnet",
+       "Das Wetter am Wochenende: Es regnet"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s5",
+      "seviye": "usta",
+      "accepted": [
+       "Hausarzt, das sind zwei Wörter: Haus und Arzt!",
+       "hausarzt das sind zwei wörter haus und arzt",
+       "Hausarzt, das sind zwei Wörter: Haus und Arzt"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Hafta sonu hava nasıl, bugün nasıl? Almanca iki kısa cümleyle söyle.",
+      "ornek_de": "Heute ist es noch warm. Am Wochenende regnet es.",
+      "zorunlu": [
+       "regnet"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s5"
+    ],
+    "cevapla": {
+     "id": "m1:40:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Tobi sigorta kartını soruyor. Evet, yanında.",
+     "prompt_de": "Hast du deine Versichertenkarte?",
+     "accepted": [
+      "Ja, die Versichertenkarte habe ich.",
+      "Ja, ich habe meine Versichertenkarte.",
+      "Ja, klar! Hier ist sie.",
+      "Ja, sie ist hier.",
+      "Ja, natürlich habe ich sie."
+     ],
+     "why_tr": "**Versichertenkarte** iki parça: sigortalı ve kart."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:40:a1",
+   "tur": "radyo",
+   "title_tr": "Radyoda hava durumu",
+   "ortam_tr": "Sabah firmanın mutfağında radyo çalıyor. Hava durumu başlıyor.",
+   "speaker": "der Sprecher",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Und jetzt das Wetter für Wendlfing.",
+     "tr": "Ve şimdi Wendlfing için hava durumu."
+    },
+    {
+     "id": "c2",
+     "de": "Heute ist es warm und schön.",
+     "tr": "Bugün hava ılık ve güzel."
+    },
+    {
+     "id": "c3",
+     "de": "Am Samstag und am Sonntag ist das Wetter schlecht.",
+     "tr": "Cumartesi ve pazar hava kötü."
+    },
+    {
+     "id": "c4",
+     "de": "Am Montag ist es wieder schön.",
+     "tr": "Pazartesi hava yine güzel."
+    },
+    {
+     "id": "c5",
+     "de": "Aber es ist nicht mehr so warm.",
+     "tr": "Ama artık o kadar ılık değil."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Hafta sonu hava nasıl?",
+      "opts": [
+       "Kötü",
+       "Güneşli ve sıcak",
+       "Çok güzel"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Bugün hava nasıl?",
+       "opts": [
+        "ılık ve güzel",
+        "kötü",
+        "çok sıcak"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Pazartesi hava nasıl?",
+       "opts": [
+        "yine güzel ama daha serin",
+        "yine kötü",
+        "çok sıcak"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4",
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "schlecht",
+        "schnell",
+        "Schule"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Aber es ist nicht mehr so ___.",
+       "accepted": [
+        "warm",
+        "Warm",
+        "warm."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Heute",
+        "ist",
+        "es",
+        "warm",
+        "und",
+        "schön",
+        "Wetter",
+        "schlecht"
+       ],
+       "accepted": [
+        "Heute ist es warm und schön.",
+        "heute ist es warm und schön",
+        "Heute ist es warm und schön"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Am Montag ist es wieder schön.",
+        "am montag ist es wieder schön",
+        "Am Montag ist es wieder schön"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Hava durumunu Tobi'ye Almanca iki kısa cümleyle anlat.",
+       "ornek_de": "Am Wochenende ist das Wetter schlecht. Am Montag ist es wieder schön.",
+       "zorunlu": [
+        "Wetter"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:40:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana telefonda soruyor. Bugün hava güzel, hafta sonu kötü.",
+      "prompt_de": "Wie ist das Wetter in Wendlfing?",
+      "accepted": [
+       "Heute ist es schön. Aber am Wochenende ist das Wetter schlecht.",
+       "Heute ist es warm, aber am Wochenende regnet es.",
+       "Es ist warm. Aber am Samstag ist das Wetter schlecht.",
+       "Heute warm, am Wochenende schlecht.",
+       "Heute ist es schön. Am Samstag und Sonntag regnet es."
+      ],
+      "why_tr": "Hava cümlesi **es** ile kurulur: **Es regnet.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:40:a1:e1",
+    "k": "pick",
+    "q_tr": "Cumartesi dışarıda bir buluşman var. Ne yapmalısın?",
+    "opts": [
+     "Yanına şemsiye ve mont al.",
+     "Şapka ve güneş kremi al.",
+     "Hiçbir şey alma, hava güzel."
+    ],
+    "ans": 0,
+    "why_tr": "Radyo cumartesi ve pazar havanın kötü olacağını söylüyor.",
+    "kanit": [
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:40:a2",
+   "tur": "bekleme-anonsu",
+   "title_tr": "Muayenehanenin bekleme anonsu",
+   "ortam_tr": "Aile hekimini arıyorsun. Hat meşgul, bir bekleme anonsu çalıyor.",
+   "speaker": "ch:huber",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Praxis Dr. Weber, guten Tag.",
+     "tr": "Dr. Weber muayenehanesi, iyi günler."
+    },
+    {
+     "id": "c2",
+     "de": "Wir sind gleich für Sie da.",
+     "tr": "Birazdan sizinle ilgileneceğiz."
+    },
+    {
+     "id": "c3",
+     "de": "Bitte warten Sie einen Moment.",
+     "tr": "Lütfen biraz bekleyin."
+    },
+    {
+     "id": "c4",
+     "de": "Haben Sie heute einen Termin? Bitte bringen Sie Ihre Versichertenkarte mit.",
+     "tr": "Bugün randevunuz var mı? Lütfen sigorta kartınızı getirin."
+    },
+    {
+     "id": "c5",
+     "de": "Die Sprechstunde ist heute bis sechzehn Uhr.",
+     "tr": "Muayene saatleri bugün on altıya kadar."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Ne duyuyorsun?",
+      "opts": [
+       "Muayenehanenin bekleme anonsunu",
+       "Radyoda reklamı",
+       "Bir arkadaşın mesajını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Muayene saatleri bugün kaça kadar?",
+       "opts": [
+        "on altıya kadar",
+        "on ikiye kadar",
+        "on sekize kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ne yapmalısın?",
+       "opts": [
+        "biraz beklemelisin",
+        "sonra tekrar aramalısın",
+        "mesaj yazmalısın"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Moment",
+        "Monat",
+        "Montag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Die Sprechstunde ist heute bis ___ Uhr.",
+       "accepted": [
+        "sechzehn",
+        "Sechzehn",
+        "sechzehn."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Bitte",
+        "warten",
+        "Sie",
+        "einen",
+        "Moment",
+        "eine",
+        "Stunde"
+       ],
+       "accepted": [
+        "Bitte warten Sie einen Moment.",
+        "bitte warten sie einen moment",
+        "Bitte warten Sie einen Moment"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Wir sind gleich für Sie da.",
+        "wir sind gleich für sie da",
+        "Wir sind gleich für Sie da"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Anonsta ne duydun? Almanca iki kısa cümleyle söyle.",
+       "ornek_de": "Ich muss warten. Die Sprechstunde ist bis sechzehn Uhr.",
+       "zorunlu": [
+        "warten"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:40:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Sonunda Frau Huber açıyor. Bugün randevun var, sigorta kartını da getiriyorsun.",
+      "prompt_de": "So, jetzt bin ich da. Was kann ich für Sie tun?",
+      "accepted": [
+       "Ich habe heute einen Termin. Ich bringe meine Versichertenkarte mit.",
+       "Guten Tag! Ich habe heute einen Termin.",
+       "Ich habe heute um drei einen Termin.",
+       "Guten Tag, ich habe heute einen Termin bei Dr. Weber.",
+       "Ich habe heute einen Termin. Die Versichertenkarte habe ich."
+      ],
+      "why_tr": "Önce randevunu söyle: **Ich habe heute einen Termin.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:40:a2:e1",
+    "k": "pick",
+    "q_tr": "Anonstan sonra ne yapmalısın?",
+    "opts": [
+     "Telefonu kapatma, bekle.",
+     "Telefonu kapat, yarın ara.",
+     "Muayenehaneye hemen git."
+    ],
+    "ans": 0,
+    "why_tr": "Anons biraz beklemeni istiyor.",
+    "kanit": [
+     "c2",
+     "c3"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:40:g1",
+   "de": "Versichertenkarte",
+   "dogru_img": "german health insurance card",
+   "celdirici_img": [
+    "credit card",
+    "id card",
+    "bus ticket"
+   ]
+  },
+  {
+   "id": "m1:40:g2",
+   "de": "Foto",
+   "dogru_img": "printed photo of a dog",
+   "celdirici_img": [
+    "painting of a landscape",
+    "postcard",
+    "drawing of a house"
+   ]
+  },
+  {
+   "id": "m1:40:g3",
+   "de": "Telefon",
+   "dogru_img": "landline telephone on a desk",
+   "celdirici_img": [
+    "laptop on a desk",
+    "radio on a shelf",
+    "calculator on a desk"
+   ]
+  },
+  {
+   "id": "m1:40:g4",
+   "de": "Nachricht",
+   "dogru_img": "text message on a smartphone screen",
+   "celdirici_img": [
+    "phone call screen",
+    "calendar on a smartphone",
+    "photo gallery on a smartphone"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:40:p1",
+  "title_tr": "Muayenehaneyi aramak",
+  "durum_tr": "Bugün saat üçte aile hekiminde randevun var. Yağmur yağıyor, otobüs gelmiyor. Frau Huber'i ara.",
+  "karsi": "ch:huber",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Praxis Dr. Weber, Huber, guten Tag?",
+    "tr": "Dr. Weber muayenehanesi, Huber, iyi günler?",
+    "secenekler": [
+     {
+      "de": "Guten Tag, hier ist {name}. Ich habe heute um drei einen Termin.",
+      "tr": "İyi günler, ben {name}. Bugün saat üçte randevum var.",
+      "accepted": [
+       "Guten Tag, hier ist {name}. Ich habe heute um drei einen Termin.",
+       "Guten Tag, hier ist {name}. Ich habe um drei einen Termin.",
+       "Guten Tag, {name} hier. Ich habe heute um drei einen Termin."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Önce adın, sonra randevun.",
+      "de_adsiz": "Guten Tag. Ich habe heute um drei einen Termin.",
+      "tr_adsiz": "İyi günler. Bugün saat üçte randevum var.",
+      "accepted_adsiz": [
+       "Guten Tag. Ich habe heute um drei einen Termin.",
+       "Guten Tag, ich habe um drei einen Termin.",
+       "Guten Tag! Ich habe heute um drei einen Termin."
+      ]
+     },
+     {
+      "de": "Guten Tag! Mein Name ist {name}. Ich habe heute einen Termin.",
+      "tr": "İyi günler! Adım {name}. Bugün randevum var.",
+      "accepted": [
+       "Guten Tag! Mein Name ist {name}. Ich habe heute einen Termin.",
+       "Guten Tag, mein Name ist {name}. Ich habe heute einen Termin.",
+       "Mein Name ist {name}. Ich habe heute einen Termin."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru ve kibar. Adını açıkça söyledin.",
+      "de_adsiz": "Guten Tag! Ich habe heute einen Termin.",
+      "tr_adsiz": "İyi günler! Bugün randevum var.",
+      "accepted_adsiz": [
+       "Guten Tag! Ich habe heute einen Termin.",
+       "Guten Tag, ich habe heute einen Termin.",
+       "Ich habe heute einen Termin."
+      ]
+     },
+     {
+      "de": "Hallo, wie geht's?",
+      "tr": "Selam, nasılsın?",
+      "accepted": [
+       "Hallo, wie geht's?",
+       "Hallo! Wie geht's?",
+       "Hallo, wie geht es?"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Muayenehanede adını ve randevunu söyle: **Ich habe heute einen Termin.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Eine Sekunde, bitte. Ja, um drei. Was gibt's denn?",
+    "tr": "Bir saniye, lütfen. Evet, saat üçte. Ne oldu?",
+    "secenekler": [
+     {
+      "de": "Ich komme zehn Minuten zu spät. Es regnet und der Bus kommt nicht.",
+      "tr": "On dakika geç kalacağım. Yağmur yağıyor, otobüs gelmiyor.",
+      "accepted": [
+       "Ich komme zehn Minuten zu spät. Es regnet und der Bus kommt nicht.",
+       "Ich komme zehn Minuten zu spät. Es regnet, der Bus kommt nicht.",
+       "Es regnet und der Bus kommt nicht. Ich komme zehn Minuten zu spät."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Hem gecikmeyi hem nedenini söyledin."
+     },
+     {
+      "de": "Ist die Versichertenkarte wichtig?",
+      "tr": "Sigorta kartı gerekli mi?",
+      "accepted": [
+       "Ist die Versichertenkarte wichtig?",
+       "Ist meine Versichertenkarte wichtig?",
+       "Brauche ich die Versichertenkarte?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi bir soru. Emin değilsen sormak doğru."
+     },
+     {
+      "de": "Heute habe ich keine Zeit.",
+      "tr": "Bugün vaktim yok.",
+      "accepted": [
+       "Heute habe ich keine Zeit.",
+       "Ich habe heute keine Zeit.",
+       "Keine Zeit."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu kaba ve eksik. Ne istediğini söyle: geç mi kalıyorsun?"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Kein Problem. Und die Versichertenkarte nicht vergessen!",
+    "tr": "Sorun değil. Sigorta kartını da unutmayın!",
+    "secenekler": [
+     {
+      "de": "Ja, die habe ich. Danke!",
+      "tr": "Evet, yanımda. Teşekkürler!",
+      "accepted": [
+       "Ja, die habe ich. Danke!",
+       "Ja, die habe ich, danke!",
+       "Die habe ich. Danke!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve doğal."
+     },
+     {
+      "de": "Alles klar. Ich bringe sie mit.",
+      "tr": "Tamam. Yanımda getiriyorum.",
+      "accepted": [
+       "Alles klar. Ich bringe sie mit.",
+       "Alles klar, ich bringe sie mit.",
+       "Ja, ich bringe sie mit."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **mit** en sona gider."
+     },
+     {
+      "de": "Nein, ich habe kein Telefon.",
+      "tr": "Hayır, telefonum yok.",
+      "accepted": [
+       "Nein, ich habe kein Telefon.",
+       "Ich habe kein Telefon.",
+       "Nein, kein Telefon."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Frau Huber sigorta kartını söylüyor. **Ich bringe sie mit** de."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Ja, bitte. Ohne Versichertenkarte geht es nicht.",
+    "tr": "Evet, lütfen. Sigorta kartı olmadan olmaz.",
+    "secenekler": [
+     {
+      "de": "Gut, danke! Bis um drei.",
+      "tr": "Tamam, teşekkürler! Saat üçte görüşürüz.",
+      "accepted": [
+       "Gut, danke! Bis um drei.",
+       "Gut, danke. Bis um drei!",
+       "Danke! Bis um drei."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel bir kapanış."
+     },
+     {
+      "de": "Ich bringe meine Versichertenkarte mit, danke.",
+      "tr": "Sigorta kartımı getiriyorum, teşekkürler.",
+      "accepted": [
+       "Ich bringe meine Versichertenkarte mit, danke.",
+       "Ich bringe die Versichertenkarte mit, danke.",
+       "Danke, ich bringe meine Versichertenkarte mit."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Tam doğru."
+     },
+     {
+      "de": "Ohne Versichertenkarte?",
+      "tr": "Sigorta kartı olmadan mı?",
+      "accepted": [
+       "Ohne Versichertenkarte?",
+       "Ohne Karte?",
+       "Ohne Versichertenkarte, ja?"
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Frau Huber kartı getirmeni istiyor. **Ich bringe sie mit** de."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Gut. Bis gleich!",
+    "tr": "Tamam. Görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Muayenehaneyi aradın: adını ve randevunu söyledin, **Versichertenkarte** kelimesini kullandın."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Muayenehaneden gelen mesaj",
+  "metin_de": "Praxis Dr. Weber: Ihr Termin ist am Freitag um 15 Uhr. Bitte bringen Sie Ihre Versichertenkarte mit. Haben Sie keine Zeit? Dann rufen Sie bitte an. Danke!",
+  "metin_tr": "Dr. Weber muayenehanesi: Randevunuz cuma günü saat 15'te. Lütfen sigorta kartınızı getirin. Vaktiniz yok mu? O zaman lütfen arayın. Teşekkürler!",
+  "sorular": [
+   {
+    "id": "m1:40:o1",
+    "kind": "gist",
+    "q_tr": "Mesaj ne hakkında?",
+    "opts": [
+     "Bir randevu hakkında",
+     "Bir fatura hakkında",
+     "Bir parti hakkında"
+    ],
+    "ans": 0,
+    "kanit": [
+     0
+    ]
+   },
+   {
+    "id": "m1:40:o2",
+    "kind": "detail",
+    "q_tr": "Randevu saat kaçta?",
+    "opts": [
+     "15'te",
+     "13'te",
+     "16'da"
+    ],
+    "ans": 0,
+    "kanit": [
+     0
+    ]
+   },
+   {
+    "id": "m1:40:o3",
+    "kind": "detail",
+    "q_tr": "Gelemezsen ne yapmalısın?",
+    "opts": [
+     "Muayenehaneyi aramalısın",
+     "Mesaj yazmalısın",
+     "Hiçbir şey"
+    ],
+    "ans": 0,
+    "kanit": [
+     2,
+     3
+    ]
+   },
+   {
+    "id": "m1:40:o4",
+    "k": "guided_response",
+    "situation_tr": "Derya randevunu soruyor. Mesaja göre cevap ver.",
+    "prompt_de": "Wann ist dein Termin beim Hausarzt?",
+    "accepted": [
+     "Am Freitag um fünfzehn Uhr.",
+     "Mein Termin ist am Freitag um fünfzehn Uhr.",
+     "Am Freitag um 15 Uhr.",
+     "Am Freitag, um drei.",
+     "Der Termin ist am Freitag um drei Uhr."
+    ],
+    "why_tr": "Önce gün, sonra saat: **am Freitag um fünfzehn Uhr**."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Ioana hava durumunu soruyor. Ona kısa bir mesaj yaz: bugün hava nasıl, hafta sonu nasıl?",
+   "ornek_de": "Das Wetter ist heute schön. Es ist warm. Am Wochenende regnet es.",
+   "zorunlu": [
+    "Wetter"
+   ],
+   "accepted_kaliplar": [
+    "Das Wetter ist heute ___.",
+    "Das Wetter ist ___.",
+    "Heute ist es ___.",
+    "Es ist ___.",
+    "Am ___ regnet es.",
+    "Heute regnet es.",
+    "Es regnet.",
+    "Es sind ___ Grad.",
+    "Am ___ ist es ___."
+   ],
+   "kontrol_tr": [
+    "**Wetter** kelimesi var mı?",
+    "Hava cümlesi **es** ile mi başlıyor?",
+    "Bugün ve hafta sonu için birer cümle var mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:40:s",
+  "maddeler": [
+   {
+    "id": "m1:40:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Heute regnet es in Wendlfing.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Heute regnet es in Wendlfing.",
+     "heute regnet es in wendlfing",
+     "Heute regnet es in Wendlfing"
+    ],
+    "why_tr": "Hava cümlesi **es** ister: **regnet es**."
+   },
+   {
+    "id": "m1:40:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Die Versichertenkarte ist im Auto.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Versichertenkarte ist im Auto.",
+     "die versichertenkarte ist im auto",
+     "Die Versichertenkarte ist im Auto"
+    ],
+    "why_tr": "**Versichertenkarte** iki parçalı uzun bir kelime."
+   },
+   {
+    "id": "m1:40:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Im Sommer ist es oft heiß.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Im Sommer ist es oft heiß.",
+     "im sommer ist es oft heiß",
+     "Im Sommer ist es oft heiß"
+    ],
+    "why_tr": "Mevsimle **im** gelir: **im Sommer**."
+   },
+   {
+    "id": "m1:40:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ich habe die Nachricht nicht gelesen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich habe die Nachricht nicht gelesen.",
+     "ich habe die nachricht nicht gelesen",
+     "Ich habe die Nachricht nicht gelesen"
+    ],
+    "why_tr": "**Nachricht** mesaj demek."
+   },
+   {
+    "id": "m1:40:s5",
+    "k": "tr_de",
+    "tr": "Bugün hava çok sıcak.",
+    "accepted": [
+     "Heute ist es sehr heiß.",
+     "Es ist heute sehr heiß.",
+     "Heute ist es so heiß!"
+    ],
+    "why_tr": "Türkçede **es** yok, Almancada atlanmaz."
+   },
+   {
+    "id": "m1:40:s6",
+    "k": "tr_de",
+    "tr": "Hava yirmi derece.",
+    "accepted": [
+     "Es sind zwanzig Grad.",
+     "Es sind 20 Grad.",
+     "Heute sind es zwanzig Grad."
+    ],
+    "why_tr": "Derece için **Es sind** dersin."
+   },
+   {
+    "id": "m1:40:s7",
+    "k": "tr_de",
+    "tr": "Bir saniye, lütfen!",
+    "accepted": [
+     "Eine Sekunde, bitte!",
+     "Eine Sekunde bitte!",
+     "Bitte eine Sekunde!"
+    ],
+    "why_tr": "**Eine Sekunde** telefonda çok duyulur."
+   },
+   {
+    "id": "m1:40:s8",
+    "k": "tr_de",
+    "tr": "Fotoğrafta kim var?",
+    "accepted": [
+     "Wer ist auf dem Foto?",
+     "Wer ist das auf dem Foto?",
+     "Wer ist da auf dem Foto?"
+    ],
+    "why_tr": "Fotoğrafta: **auf dem Foto**."
+   },
+   {
+    "id": "m1:40:s9",
+    "k": "guided_response",
+    "situation_tr": "Ioana soruyor. Wendlfing'de bugün yağmur yağıyor.",
+    "prompt_de": "Und wie ist das Wetter bei dir?",
+    "accepted": [
+     "Heute regnet es.",
+     "Es regnet!",
+     "Hier regnet es heute.",
+     "Es regnet und es ist nicht warm.",
+     "Nicht so gut, es regnet."
+    ],
+    "why_tr": "**Es regnet.** Hava cümlesinde **es** hep var."
+   },
+   {
+    "id": "m1:40:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Haben Sie Ihre Versichertenkarte?",
+    "speed": "normal",
+    "situation_tr": "Muayenehanede Frau Huber soruyor. Kartın çantanda, arıyorsun.",
+    "accepted": [
+     "Ja, eine Sekunde, bitte.",
+     "Eine Sekunde, bitte!",
+     "Ja, Moment, eine Sekunde.",
+     "Ja, hier ist sie.",
+     "Ja, nur eine Sekunde."
+    ],
+    "why_tr": "Ararken **Eine Sekunde, bitte** dersin."
+   },
+   {
+    "id": "m1:40:s11",
+    "k": "guided_response",
+    "situation_tr": "Tobi soruyor: bugün hava nasıl, hafta sonu nasıl? İki cümle söyle.",
+    "prompt_de": "Wie ist das Wetter heute? Und am Wochenende?",
+    "accepted": [
+     "Heute ist es warm, aber am Wochenende regnet es.",
+     "Heute ist es sonnig. Am Wochenende regnet es.",
+     "Heute sind es zwanzig Grad. Am Samstag regnet es.",
+     "Es ist heute schön. Am Wochenende regnet es leider.",
+     "Heute ist es heiß. Am Wochenende ist es auch schön.",
+     "Heute regnet es. Am Wochenende ist es wieder warm."
+    ],
+    "why_tr": "Her cümle **es** ile: **Es ist warm.** **Es regnet.**"
+   }
+  ],
+  "sesli": [
+   "m1:40:s9",
+   "m1:40:s10"
+  ],
+  "dikte": [
+   "m1:40:s1",
+   "m1:40:s2",
+   "m1:40:s3",
+   "m1:40:s4"
+  ]
+ }
+}
