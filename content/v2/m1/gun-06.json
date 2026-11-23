@@ -423,8 +423,8 @@
      "tr": "Nerelisin? (kelimesi kelimesine: nereden geliyorsun?) – …'den, …'dan."
     },
     {
-     "de": "Wohin? – In die Praxis. – Zum Arzt.",
-     "tr": "Nereye? – Muayenehaneye. – Doktora."
+     "de": "Wohin? – In die Praxis. – Zum Arzt. – In Zimmer zwei.",
+     "tr": "Nereye? – Muayenehaneye. – Doktora. – 2 numaralı odaya."
     }
    ],
    "gorev_cumleleri": [
@@ -559,6 +559,10 @@
     {
      "de": "… und …",
      "tr": "… ve …"
+    },
+    {
+     "de": "Sind Sie neu hier?",
+     "tr": "Burada yeni misiniz?"
     }
    ],
    "gorev_cumleleri": [
@@ -1262,11 +1266,11 @@
       "id": "m1:06:a1:c1",
       "k": "guided_response",
       "situation_tr": "Bankoya gidiyorsun. Frau Huber adını soruyor. Adını söyle.",
-      "prompt_de": "Wie ist Ihr Name?",
+      "prompt_de": "Wie heißen Sie?",
       "accepted": [
+       "Ich heiße {name}.",
        "Mein Name ist {name}.",
        "{name}.",
-       "Ich heiße {name}.",
        "Ich bin {name}.",
        "Mein Name ist {name}, guten Morgen.",
        "Guten Morgen, mein Name ist {name}.",
