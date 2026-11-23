@@ -104,3 +104,10 @@ Gün ataması planda yazmıyor (132.–136. günlerin yuvaları "bekleyen"). İl
 Dil açısından bulunan bütün hatalar dosyada düzeltildi, doğrulayıcı 0 hata.
 
 Sonuç: KAPALI — okur bekliyor
+
+## Fark turu (İÇ-K3, 2026-11-23; inceleme #246 P2-1, P2-2)
+
+- P2-1 **-in hâli** (ders B1, `gr:b1-08`) gündelik biçime çevrildi, cevaplar aynı: `lx:Öffnungszeiten` eşdizim **der Apotheke** → **von der Apotheke**; ö4 ve b5 **der Post** → **von der Post** (ö4 `alltag`); ö6 ve b4 **des Bürgerbüros** → **vom Bürgerbüro** (ipuçları da). `lx:Zentrum` eşdizim **das Zentrum der Stadt** "şehrin merkezi" → **das Zentrum von Wendlfing** "Wendlfing'in merkezi" (aynı gerekçe; **Stadtzentrum** zaten `also_ok`'ta). Yukarıdaki "Kalan şüpheler" ilk maddesi böylece kapandı.
+- P2-2 `lx:unsicher` 1. hata notu: `Emin değilim derken **Ich bin nicht unsicher** yanlış …` (gerçek hata değil) → `Telefonda kendimden emin değilim derken **Am Telefon bin ich von mir unsicher** yanlış. Türkçedeki **kendimden** Almancaya geçmez. Doğrusu **Am Telefon bin ich unsicher**.` Türkçedeki "kendimden emin" kalıbından gelen gerçek hata; ö2 ile aynı cümle.
+- Değişen Türkçe alanlar (okur için): `lx:unsicher.mistakes_tr[0]`, `lx:Zentrum.collocations[3].tr`; `lx:Öffnungszeiten` b4, b5 `hint_tr` (Türkçe aynı, kalın Almanca değişti).
+- `npm run content:validate`: 0 hata. Sonuç: KAPANDI — okur bekliyor.

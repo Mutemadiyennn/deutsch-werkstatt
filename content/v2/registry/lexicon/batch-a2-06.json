@@ -1483,7 +1483,7 @@
         "lx:Geldautomat"
       ],
       "mistakes_tr": [
-        "Bakiyem derken İngilizce **Balance** deme. Almancası **mein Kontostand**.",
+        "Türkçede **hesap** hem bankadaki hesap hem lokantada ödenen hesaptır. Hesabında ne kadar para var diye sorarken **Rechnung** deme, o ödeyeceğin hesaptır. Doğrusu **Wie ist mein Kontostand?**",
         "Bakiyem ne kadar derken **Wie viel ist mein Kontostand?** pek denmez. Doğrusu **Wie ist mein Kontostand?**"
       ],
       "examples": [
@@ -1515,7 +1515,7 @@
         {
           "id": "lx:Kontostand:5",
           "de": "– Wie ist mein Kontostand? – Sie haben noch 820 Euro auf dem Konto.",
-          "tr": "– Bakiyem ne kadar? – Hesabınızda daha 820 avro var.",
+          "tr": "– Bakiyem ne kadar? – Hesabınızda 820 avro kaldı.",
           "layer": "hd",
           "dialog": true
         },
@@ -1999,7 +1999,7 @@
           "tr": "yardım hattını aramak"
         },
         {
-          "de": "die Nummer der Hotline",
+          "de": "die Nummer von der Hotline",
           "tr": "yardım hattının numarası"
         },
         {
@@ -2033,7 +2033,7 @@
         },
         {
           "id": "lx:Hotline:2",
-          "de": "Die Nummer der Hotline steht auf der Rechnung.",
+          "de": "Die Nummer von der Hotline steht auf der Rechnung.",
           "tr": "Yardım hattının numarası faturada yazıyor.",
           "layer": "hd"
         },
@@ -2083,10 +2083,10 @@
           "hint_tr": "Yardım hattımızı derken **unsere Hotline** denir."
         },
         {
-          "de": "Die Nummer der ___ steht auf der Rechnung.",
+          "de": "Die Nummer von der ___ steht auf der Rechnung.",
           "answer": "Hotline",
           "tr": "Yardım hattının numarası faturada yazıyor.",
-          "hint_tr": "Yardım hattının numarası derken **Die Nummer der Hotline** denir."
+          "hint_tr": "Yardım hattının numarası derken **Die Nummer von der Hotline** denir."
         },
         {
           "de": "Hast du schon die ___ angerufen?",
@@ -2260,7 +2260,7 @@
     {
       "id": "lx:drücken",
       "de": "drücken",
-      "tr": "basmak (tuşa, düğmeye), bastırmak",
+      "tr": "basmak (tuşa, düğmeye), bastırmak, itmek (kapıyı)",
       "pos": "verb",
       "verb": {
         "praesens3": "drückt",
@@ -2271,6 +2271,7 @@
           "akk"
         ]
       },
+      "img": "finger pressing a phone button",
       "collocations": [
         {
           "de": "die Eins drücken",
@@ -2278,11 +2279,11 @@
         },
         {
           "de": "auf den Schalter drücken",
-          "tr": "düğmeye basmak"
+          "tr": "ışık düğmesine basmak"
         },
         {
-          "de": "fest drücken",
-          "tr": "sıkıca bastırmak"
+          "de": "auf die Klingel drücken",
+          "tr": "zile basmak"
         }
       ],
       "patterns": [
@@ -2296,11 +2297,13 @@
         "lx:Auskunft",
         "lx:Hotline",
         "lx:Kundenservice",
-        "lx:Schalter"
+        "lx:Schalter",
+        "lx:Klingel",
+        "lx:ziehen"
       ],
       "mistakes_tr": [
-        "Kapıda **Drücken** yazınca kapıyı çekmek yanlış. **Drücken** burada itmek demektir.",
-        "Bastım derken **Ich bin gedrückt** yanlış. Doğrusu **Ich habe gedrückt**."
+        "Kapıda **Drücken** yazınca kapıyı çekmek yanlış. **Drücken** burada itmek demektir, çekmek **ziehen** olur.",
+        "Bire basın derken **Drücken Sie der Eins** yanlış. Türkçede **bire** dersin, Almancada sayı **die Eins** olarak kalır. Doğrusu **Drücken Sie die Eins**."
       ],
       "examples": [
         {
@@ -2311,8 +2314,8 @@
         },
         {
           "id": "lx:drücken:2",
-          "de": "Bei technischen Fragen drücken Sie bitte die Drei.",
-          "tr": "Teknik sorular için lütfen üçe basın.",
+          "de": "Bei Fragen zur Rechnung drücken Sie bitte die Drei.",
+          "tr": "Faturayla ilgili sorular için lütfen üçe basın.",
           "layer": "hd"
         },
         {
@@ -2353,26 +2356,35 @@
         "anlam_tr": "**drücken** bir tuşa ya da düğmeye basmak, bir yere bastırmaktır.",
         "ne_zaman_tr": "Telefonda bilgi hattını ararken, kapıda ve doktorda.",
         "parcalar": [],
-        "ipucu_tr": "Kapıda **Drücken** yazıyorsa kapıyı itersin."
+        "ipucu_tr": "Telefonda **Drücken Sie die Zwei** duyarsan ikiye basarsın."
       },
       "forms": [
         {
           "de": "Für Deutsch ___ Sie bitte die Eins.",
           "answer": "drücken",
           "tr": "Almanca için lütfen bire basın.",
-          "hint_tr": "Basın derken **drücken Sie** denir."
+          "hint_tr": "Basın derken **drücken Sie** denir.",
+          "also_ok": [
+            "wählen"
+          ]
         },
         {
           "de": "Ich habe schon dreimal die Eins ___.",
           "answer": "gedrückt",
           "tr": "Üç kere bire bastım.",
-          "hint_tr": "Bastım derken **Ich habe gedrückt** denir."
+          "hint_tr": "Bastım derken **Ich habe gedrückt** denir.",
+          "also_ok": [
+            "gewählt"
+          ]
         },
         {
           "de": "Welche Nummer muss ich ___?",
           "answer": "drücken",
           "tr": "Hangi numaraya basmam gerekiyor?",
-          "hint_tr": "**muss** ile sona **drücken** gelir."
+          "hint_tr": "**muss** ile sona **drücken** gelir.",
+          "also_ok": [
+            "wählen"
+          ]
         },
         {
           "de": "Tut es weh, wenn ich hier ___?",

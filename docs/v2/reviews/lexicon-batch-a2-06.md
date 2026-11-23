@@ -73,7 +73,7 @@ Okunan alanlar: kart verisi, 84 eşdizim, 126 örnek, 105 boşluk (`forms`), 42 
 - Eşdizim çevirileri: `lx:rausbringen` (4.), `lx:Kontostand` (4.).
 
 ## Kalan şüpheler (düzeltilmedi)
-- `lx:Dauerauftrag` **einrichten** ve `lx:Kontoauszug` eşdizimindeki **drucken** sözlükte kart değil. **einen Dauerauftrag einrichten** kelimenin asıl eşdizimi, kart onu ipucu ve hata notuyla öğretiyor; bırakıldı. **drucken** aynı haftada öğrenilen **drücken** ile karışabilir; bankadaki makinede yazan söz olduğu için bırakıldı, lex isterse **holen** ile değiştirebilir.
+- `lx:Dauerauftrag` **einrichten** ve `lx:Kontoauszug` eşdizimindeki **drucken** sözlükte kart değil. **einen Dauerauftrag einrichten** kelimenin asıl eşdizimi, kart onu ipucu ve hata notuyla öğretiyor; bırakıldı. **drucken**, ertesi gün (139) öğretilen **drücken** ile karışabilir (bu turda **drücken** kartlı değildi, kart fark turunda eklendi; aşağıya bak); bankadaki makinede yazan söz olduğu için bırakıldı, lex isterse **holen** ile değiştirebilir.
 - `lx:Werktag` ö1, ö4 ve 3. eşdizim **in drei Werktagen** "üç iş günü içinde" diye çevrilmiş. Almancası tam olarak "üç iş günü sonra"; gündelik kullanımda ikisi aynı işi görüyor, bırakıldı.
 - `lx:Schalter` ö1 **zum Schalter drei**: anonslarda **zu Schalter drei** de duyulur; ikisi de doğru.
 - `lx:Menü`: Duden telefon menüsünü ayrı anlam saymıyor (2. anlam ekrandaki seçenek listesi). Telefon hatlarında **Menü** sözü gerçekten duyulur; kart doğru, kaynak dolaylı.
@@ -88,3 +88,30 @@ Sonuç: KAPALI — okur bekliyor
 ## Okur dönüşü (2026-11-23)
 
 Okurun geri çevirdiği 2 alan düzeltildi: `lx:Kundenservice` 1. hata notu (yanlış ile doğru arasında tek fark kaldı: **beim Kundenservices** → **beim Kundenservice**, sondaki **s** açıklanıyor; `lx:Hotline` notuyla çelişmiyor) ve `lx:anziehen` boşluk 5 (`Es ist kalt, ich ___ noch einen Pullover ___.`, giyme eylemi açık; **tragen** ipucuyla çelişmiyor). Doğrulayıcı 0 hata. Sonuç: KAPALI — okur bekliyor
+
+## Fark turu (İÇ-K3, 2026-11-23; inceleme #246 P1-1, P2-1…P2-4)
+
+**Yeni kart `lx:drücken`** (139. gün, `lx:Menü`'den önce; öneri kartı, A1). Okunan: 3 eşdizim, 6 örnek, 4 boşluk, 2 hata notu, `exp`. İleri gönderme yok: **Menü, eingeben, Raute, Stern, Werktag** geçmiyor; kullanılan kartlar 139. günden önce (**Schalter** 138, **Klingel** 66, **Frage** 115, **ziehen** A1-9, **Rechnung** A1-12; **Kundenservice** aynı gün, önce). 139. günün dersi yok, dil noktası şartı boş. 10 düzeltme:
+1. `tr`: `basmak (tuşa, düğmeye), bastırmak` → `…, itmek (kapıyı)`. Hata notu kapıdaki anlamı öğretiyordu, karşılığı yoktu.
+2. `img` eklendi (`finger pressing a phone button`); brif alanı eksikti.
+3. Eşdizim 3: **fest drücken** "sıkıca bastırmak" → **auf die Klingel drücken** "zile basmak". **fest** B1 kartı (ileri gönderme); zil öğrencinin bildiği ve sık kullandığı durum.
+4. Eşdizim 2 çevirisi: `düğmeye basmak` → `ışık düğmesine basmak`. **Schalter** 138. günde "gişe" de öğretildi; anlam açık olsun.
+5. `related`: **lx:Klingel**, **lx:ziehen** eklendi.
+6. `mistakes_tr[1]`: `Bastım derken **Ich bin gedrückt** yanlış …` → `Bire basın derken **Drücken Sie der Eins** yanlış … Doğrusu **Drücken Sie die Eins**.` Eski not Türkçe konuşana özgü değildi; yenisi Türkçedeki "bire basmak" (-e) kalıbından gelen gerçek hata.
+7. `mistakes_tr[0]`: sonuna "çekmek **ziehen** olur" eklendi (A1 `lx:ziehen` kartıyla bağ).
+8. `ö2`: **Bei technischen Fragen …** → **Bei Fragen zur Rechnung drücken Sie bitte die Drei.** / "Faturayla ilgili sorular için lütfen üçe basın." **technisch** kartlı değil.
+9. `exp.ipucu_tr`: hata notunun tekrarıydı (kapı) → `Telefonda **Drücken Sie die Zwei** duyarsan ikiye basarsın, sayının önünde hep **die** durur.` Günün konusu (telefon menüsü) ve 6. düzeltmedeki hatayla bağlı.
+10. `forms` b1, b3 `also_ok: ["wählen"]`, b2 `also_ok: ["gewählt"]`: **Für Deutsch wählen Sie die Eins** / **Welche Nummer muss ich wählen?** doğru ve sık (haksız ret riski). **wählen** B1 kartı; yalnızca kabul ediliyor, öğretilmiyor.
+
+Geçen alanlar: ö1, ö3–ö6, `anlam_tr`, `ne_zaman_tr`, b1–b4 cevap ve ipuçları, `verb` (drückt / drückte / hat gedrückt, haben, akk), `patterns` (imperativ-sie ö1, perfekt-haben ö3, wenn ö5, ob ö6; hepsi gerçekten geçiyor).
+
+**İnceleme P2**
+- P2-1 `lx:Hotline`: **die Nummer der Hotline** → **die Nummer von der Hotline** (eşdizim, ö2, b2 ve ipucu). Cevap (**Hotline**) değişmedi. (`lx:Öffnungszeiten` ve `lx:Zentrum` a2-05'te; o raporun ekine bak.)
+- P2-3 `lx:Kontostand` ö5 Türkçesi: `Hesabınızda daha 820 avro var.` → `Hesabınızda 820 avro kaldı.` (**noch** = kalan). 1. hata notu (**Balance**): İngilizce köprüydü ve Türkçe konuşan "bakiye" der → `Türkçede **hesap** hem bankadaki hesap hem lokantada ödenen hesaptır. Hesabında ne kadar para var diye sorarken **Rechnung** deme, o ödeyeceğin hesaptır. Doğrusu **Wie ist mein Kontostand?**` Türkçedeki tek sözün iki Almanca karşılığından gelen gerçek karışıklık.
+- P2-4 `lx:Kundenservice` 1. hata notu: **bırakıldı**. Not hatayı Türkçedeki "hizmetleri" çoğuluna bağlıyor, İngilizceye değil; yanlış ve doğru arasında tek fark var, okur geçirdi. Gerçek hata olma ihtimali düşük ama yanlış öğretmiyor.
+
+**Değişen Türkçe alanlar (okur için):** `lx:drücken`: `tr`, `collocations[1].tr`, `collocations[2].tr`, `mistakes_tr[0]`, `mistakes_tr[1]`, `examples[1].tr`, `exp.ipucu_tr` (yeni kartın geri kalan Türkçesi de ilk kez okura gidiyor: `exp.anlam_tr`, `exp.ne_zaman_tr`, ö1/ö3–ö6 `tr`, b1–b4 `tr`/`hint_tr`, `collocations[0].tr`); `lx:Hotline`: `forms[1].hint_tr` (Türkçe aynı, kalın Almanca değişti); `lx:Kontostand`: `examples[4].tr`, `mistakes_tr[0]`.
+
+`npm run content:validate`: 0 hata, 154 uyarı (+1: `telefon/proposals.json` "lx:drücken kayıtta zaten var", beklenen). `review` alanına dokunulmadı.
+
+Sonuç: KAPANDI — okur bekliyor (yeni/değişen Türkçe satırlar).
