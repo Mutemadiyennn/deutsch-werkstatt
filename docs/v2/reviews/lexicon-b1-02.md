@@ -124,3 +124,17 @@ Kartta sayılan kalıp hiçbir örnekte ya da boşlukta geçmiyordu. Mümkün ol
 ## Sonuç
 
 **Dil incelemesi KAPANDI (ONAY).** Açık kalan beş madde B'de; `reviewed` için okur kapısı bekleniyor.
+
+## B kararları (baş geliştirici, 2026-11-23) ve uygulanması
+
+Bu bölüm yukarıdaki B maddelerinin yerine geçer. Uygulamadan sonra `npm run content:validate` → **0 hata, 150 uyarı**.
+
+1. **Tobi (EVET, değiştirildi).** İki partide **Tobi** ve **Lechner** artık geçmiyor. WORLD'e göre o haftalarda iş yerinde olan Derya Aksoy ya da adsız iş arkadaşı kullanıldı: lx:Vertretung ö3 (**für Derya**) · lx:Abteilung ö5 (**der Neue**) · lx:tauschen ö2, boşluk 2 (**mit einem Kollegen**), boşluk 4 ve ipucu (**Derya**) · lx:einspringen ö1, boşluk 1 (**für Frau Aksoy**), boşluk 4 (**für Derya**) · lx:freinehmen ö2, boşluk 2 (**Mein Kollege**) · lx:Nachtschicht ö4 (**Herr Lechner** → **Herr Bauer**, WORLD dışı genel ad). Üçüncü kişiler olduğu için öğrencinin cinsiyeti sabitlenmiyor. b1-01a'daki 14 Tobi bu görevin dışında, duruyor.
+2. **Kalıp ölçütü (takip).** "Kartta sayılan her kalıp en az bir örnekte ya da boşlukta geçer" ölçütü LEX.md'de ve doğrulayıcıda yok; bu partide 16 kartta elle düzeltildi. LEX.md'ye eklenmesi baş geliştiricinin takip işi; dosyaya dokunulmadı.
+3. **Kartı olmayan sözcükler (kart açılmadı).**
+   - Değiştirildi: Bewerbung (lx:Absage ö5 → **bekommst du die Wohnung?**) · Vertrag (lx:Zuschlag ö4 → **Ja, bei uns schon.**) · Tabelle (lx:eintragen ö4 → **in dieses Formular**) · Zeile (lx:Abrechnung ö4 → **was genau meinen Sie?**) · lüften (lx:Heizkosten ö4 → **Machen Sie die Fenster nur kurz auf.**) · Mieter (lx:Verbrauch ö4, boşluk 3; lx:Garten ö4 → **alle im Haus**, **jeder im Haus**) · einziehen (lx:nebenan ö4, boşluk 3 → **wer jetzt nebenan wohnt**) · streiten (lx:nebenan ö5 → **die sind schon wieder laut**). Daha önce: anstrengend, knapp, einverstanden, Lohn (A-3).
+   - Bırakıldı (cümlenin ya da eşdizimin zorunlu parçası, hepsi çevirili): Leiter, Hammer (lx:ausleihen) · aushalten (lx:Hitze eşdizimi) · sparen (lx:Heizkosten, lx:Strom eşdizimi) · Stress (lx:abbauen eşdizimi) · Internet (lx:Kundennummer) · Liste, Kalender (lx:eintragen, lx:Warteliste) · Blume (lx:gießen) · Stock, Post, tagsüber, doppelt, Wahnsinn, Betrug, zufällig, genießen, mieten (tek tek örnek ve notlarda).
+4. **`level`.** Dokunulmadı (lx:Garten, lx:Strom B1 olarak duruyor).
+5. **lx:fällig ö4, boşluk 2.** **– Wann ist die Kaution fällig? – Bevor Sie einziehen.** → **– Wann ist die Rechnung fällig? – Das steht unten auf der Rechnung.** Olgu iddiası kalmadı. Örnek artık **bevor** içermediği için `pt:bevor-nachdem` karttan çıkarıldı.
+
+C'deki "lx:Abteilung ö5 (Tobi ...)" notu bu değişiklikle kapandı.
