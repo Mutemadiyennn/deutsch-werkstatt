@@ -7,11 +7,11 @@ import type { Api } from "./services/api.ts";
 
 export type Route =
   | { name: "today" }
-  | { name: "learn" }
+  | { name: "koy" }
   | { name: "domain"; id: string }
   | { name: "scenario"; id: string }
   | { name: "section"; id: string; section: string }
-  | { name: "progress" }
+  | { name: "ben" }
   | { name: "profile" }
   | { name: "assess" }
   | { name: "assessResult"; id?: string }
@@ -35,9 +35,13 @@ export type Route =
 export function parseHash(h: string): Route {
   const p = h.replace(/^#\/?/, "").split("/").map(decodeURIComponent);
   switch (p[0]) {
-    case "learn": return p[1] ? { name: "domain", id: p[1] } : { name: "learn" };
+    // Hedef 3 sekmeleri (PM-084 md. 3): Bugün · Yol · Köy · Ben. Eski adresler (learn, progress, profile) yeni yerlerini açar;
+    // adres çubuğunu `yeniAdres` düzeltir.
+    case "koy": return { name: "koy" };
+    case "ben": return p[1] === "ayarlar" ? { name: "profile" } : { name: "ben" };
+    case "learn": return p[1] ? { name: "domain", id: p[1] } : { name: "koy" };
     case "scenario": return p[2] ? { name: "section", id: p[1]!, section: p[2] } : { name: "scenario", id: p[1] || "" };
-    case "progress": return { name: "progress" };
+    case "progress": return { name: "ben" };
     case "profile": return { name: "profile" };
     case "assess": return p[1] === "result" ? { name: "assessResult", id: p[2] } : { name: "assess" };
     case "onboarding": return { name: "onboarding" };
@@ -58,6 +62,13 @@ export function parseHash(h: string): Route {
     case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2], ...(p[3] === "1" ? { tur: "ilk" as const } : p[3] === "2" ? { tur: "ikinci" as const } : {}) } : { name: "m1day", day: Number(p[1]) || 1 };
     default: return { name: "today" };
   }
+}
+/** Eski sekme adresleri yeni yerlerine yönlenir (PM-084 md. 3.2); yönlenecek bir şey yoksa null. Kayıtlı bağlantı ve
+ *  geri düğmesi kırılmaz: ekran aynı kalır, yalnız adres yenisiyle değişir. */
+const ESKI_ADRES = new Map([["learn", "#/koy"], ["progress", "#/ben"], ["profile", "#/ben/ayarlar"]]);
+export function yeniAdres(h: string): string | null {
+  const p = h.replace(/^#\/?/, "").split("/");
+  return p.length === 1 || (p.length === 2 && p[1] === "") ? ESKI_ADRES.get(p[0]!) ?? null : null;
 }
 export const go = (path: string) => { location.hash = "#/" + path.replace(/^#?\/?/, ""); };
 

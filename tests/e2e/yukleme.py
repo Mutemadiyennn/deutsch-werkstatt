@@ -23,29 +23,33 @@ def main():
         # her hedefin seçicisi yalnızca o ekranda var (önceki ekranda eşleşip sahte geçiş vermesin). Süre sayfanın içinde
         # ölçülür: dokunuştan hedef içeriğin DOM'a girişine (dom) ve çizildiği ilk kareye (kare) kadar; Playwright'ın
         # tıklama hazırlığı ve süreçler arası gecikme sayılmaz
-        TABS = [("learn", "[data-domain]"), ("progress", "[data-test=panel-focus]"), ("profile", "[data-test=goal]"), ("today", "[data-test=next-activity]")]
+        # Hedef 3 sekmeleri (PM-084 md. 3): Köy, Ben, Yol, Bugün. Yol'un haritası Bugün'de de (yalnız bugünle) çizilir; Yol'a özgü
+        # işaret, başlığın hemen altındaki haritadır. Ayarlar artık sekme değil: Ben'deki "Ayarlar" düğmesinden açılır, aynı bütçeyle ölçülür.
+        # her satır: (ad, dokunulan öğe, hedef ekranın işareti, ölçümden önce durulan sekme)
+        TABS = [("koy", "[data-tab=koy]", "[data-domain]", "today"), ("ben", "[data-tab=ben]", "[data-test=panel-focus]", "today"),
+                ("yol", "[data-tab=yol]", ".topbar + [data-test=yol]", "koy"), ("ayarlar", "[data-test=ayarlar-ac]", "[data-test=goal]", "ben"),
+                ("today", "[data-tab=today]", "[data-test=next-activity]", "koy")]
         # Kapı (PM-044.7, D-096): her sekme için 5 geçiş; DOM'a giriş sert sınır (≤300 ms, her geçiş), ilk kare 5 geçişin
         # ORTANCASI ≤300 ms (paylaşılan CI koşucusunda tek en kötü ölçüm kapı olmaz; en kötü değer rapora yazılır)
         def measure(n=5, tabs=TABS):
             out = []
-            for tab, sel in tabs:
-                other = "learn" if tab == "today" else "today"
+            for tab, dugme, sel, other in tabs:
                 for _ in range(n):
-                    pg.click(f"[data-tab={other}]"); pg.wait_for_selector(sel, state="detached"); pg.wait_for_timeout(200)
-                    dom, frame = pg.evaluate("""async ([tab, sel]) => {
+                    pg.click(f"[data-tab={other}]"); pg.wait_for_selector(sel, state="detached"); pg.wait_for_selector(dugme); pg.wait_for_timeout(200)
+                    dom, frame = pg.evaluate("""async ([dugme, sel]) => {
                       const t0 = performance.now(); let dom = 0;
                       const seen = new Promise((r) => { if (document.querySelector(sel)) { dom = performance.now() - t0; return r(); }
                         const mo = new MutationObserver(() => { if (document.querySelector(sel)) { dom = performance.now() - t0; mo.disconnect(); r(); } });
                         mo.observe(document.body, { childList: true, subtree: true }); });
-                      document.querySelector(`[data-tab=${tab}]`).click();
+                      document.querySelector(dugme).click();
                       await seen; await new Promise((r) => requestAnimationFrame(() => r()));
-                      return [dom, performance.now() - t0]; }""", [tab, sel])
+                      return [dom, performance.now() - t0]; }""", [dugme, sel])
                     out.append((tab, dom, frame))
             return out
         res = measure()
         # PM-060.1: 5 ölçümün en iyi 3'ünün ortancası (CI makinesindeki tek seferlik gecikme kapıyı düşürmesin; bütçe aynı 300 ms)
         med = lambda xs: sorted(xs)[:3][1] if len(xs) >= 3 else sorted(xs)[len(xs) // 2]
-        per = {t: [f for tt, _, f in res if tt == t] for t, _ in TABS}
+        per = {t[0]: [f for tt, _, f in res if tt == t[0]] for t in TABS}
         print("    geçişler (dom/kare ms):", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in res))
         print("    ortanca kare (ms):", ", ".join(f"{t} {med(v):.0f} (en kötü {max(v):.0f})" for t, v in per.items()))
         worst_dom = max(d for _, d, _ in res)
