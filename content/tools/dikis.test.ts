@@ -214,7 +214,11 @@ describe("(b, çerçeve) çerçeve sözcüğü gösterilmeden kullanılamaz (PM 
     expect(cer(ckos([g8("Hallo, als Zeit!")], cTablo({ 2: ["lx:als", "lx:als#2"] })), 8)).toHaveLength(1);
   });
   it("1. hafta tablo öncesidir: 2. haftanın çerçevesini gösterilmeden kullanması ihlal değil, satırda not", () => {
-    const r = ckos([kopya()], cTablo({ 2: ["lx:und", "lx:der"] }));
+    // gerçek 1. günün içeriğine bağlı değil (#196 1. günün çerçeve biçimlerini kalıplarda gösterdi): 1. günün ilk halkasına
+    // 2. haftanın gösterilmemiş çerçeve sözcüğüyle bir görev eklenir; denetlenen tek şey 1. haftanın ölçüsü
+    const g = kopya(); const h = halka(g, 0);
+    h.gorev_cumleleri = [...h.gorev_cumleleri, { kart: h.kartlar[0]!, de: "Hallo, seit Montag!", accepted: ["Hallo, seit Montag!"] }];
+    const r = ckos([g], cTablo({ 2: ["lx:seit"] }));
     expect(cer(r, 1)).toEqual([]);
     expect(r.satirlar[0]!.not.join(";")).toMatch(/1\. hafta \(tablo öncesi, sayılmadı\): \d+ çerçeve biçimi/);
   });
