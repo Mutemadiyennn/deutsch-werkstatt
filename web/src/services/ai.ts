@@ -4,7 +4,7 @@
  *  - önbellek zorunlu: equiv_check, explain_tr, say_it_de (IndexedDB)
  *  - hızlı görevlerde 12 sn, konuşmada 30 sn üst sınır; hata kodları Türkçe (shared ERROR_TR)
  */
-import type { AiInput, AiOutput, AiTaskName } from "@dw/shared";
+import { AiTasks, ERROR_TR, type AiInput, type AiOutput, type AiTaskName } from "@dw/shared";
 import { ApiError, type Api } from "./api.ts";
 import { cacheGet, cachePut } from "../data/db.ts";
 
@@ -57,7 +57,11 @@ export async function ai<T extends AiTaskName>(api: Api, task: T, vars: AiInput<
   if (key) { const c = await cacheGet<AiOutput<T>>(key); if (c) return c; }
   const t0 = performance.now();
   try {
-    const out = await api.ai(task, vars, SLOW.includes(task) ? 45_000 : 12_000); // konuşma: toplam bütçe ≤45 sn; 12 sn uyarısı ekranda (çağrı kesilmez)
+    const ham = await api.ai(task, vars, SLOW.includes(task) ? 45_000 : 12_000); // konuşma: toplam bütçe ≤45 sn; 12 sn uyarısı ekranda (çağrı kesilmez)
+    // sunucu şemayı denetler; istemci yine de denetler: şemaya uymayan çıktı ekrana ve önbelleğe girmez (PM-087 A.4)
+    const p = AiTasks[task].output.safeParse(ham);
+    if (!p.success) throw new ApiError("bad_output", ERROR_TR.bad_output.message_tr, true);
+    const out = p.data as AiOutput<T>;
     latencyAdd(task, performance.now() - t0);
     fails = 0;
     if (key) await cachePut(key, out);

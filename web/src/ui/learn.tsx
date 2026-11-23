@@ -92,7 +92,8 @@ export function ExplainBtn({ de, context, onAsked, acik: ilk = false }: { de: st
       {acik && <div class="fb info small stack" style={{ marginTop: 6 }} data-test="explain-out">
         {!lex ? "Sözlük açılıyor…" : yerel ? <YerelCevap a={yerel} /> : !st && <div data-test="yerel-yok">Cihazdaki sözlükte yok.{!aiState(api).available && <> {aiState(api).reason}</>}</div>}
         {lex && !st && aiState(api).available && <button class="btn ghost sm" onClick={sor} data-test="explain-ai">{!yerel ? "Öğretmene sor" : tamCevap ? "Bu cümlede ne demek? Öğretmene sor" : "Cümlenin tamamını öğretmene sor"}</button>}
-        {st && <div>{st.busy && "Açıklanıyor…"}{st.out && <><b>{st.out.tr}</b> — {st.out.note_tr}</>}{st.err && st.err}</div>}
+        {st && <div>{st.busy && "Açıklanıyor…"}{st.out && <><b>{st.out.tr}</b> — {st.out.note_tr}</>}{st.err && <span role="alert" data-test="explain-err">{st.err}</span>}</div>}
+        {st?.err && aiState(api).available && <button class="btn ghost sm" onClick={sor} data-test="explain-retry">Tekrar dene</button>}
         {!ilk && <button class="btn ghost sm" onClick={() => { setAcik(false); setSt(null); }}>Kapat</button>}</div>}
     </span>
   );
