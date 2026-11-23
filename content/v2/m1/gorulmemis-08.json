@@ -4,7 +4,7 @@
   "durumlar": [
     {
       "id": "m1:h08:g1",
-      "can_do": "cd:m1:hafta08",
+      "can_do": "cd:m1:50",
       "durum_tr": "Cumartesi akşamı dört kişi için göl kenarındaki bir restoranda masa ayırtmak istiyorsun. Restoranı arıyorsun, telefonu bir garson açıyor.",
       "karsi": "ein Kellner",
       "yer": "telefon: göl kenarında bir restoran",
@@ -37,7 +37,7 @@
     },
     {
       "id": "m1:h08:g2",
-      "can_do": "cd:m1:hafta08",
+      "can_do": "cd:m1:51",
       "durum_tr": "Süpermarkettesin. Süt arıyorsun ama bulamıyorsun. Bir çalışan yanına geliyor.",
       "karsi": "eine Verkäuferin",
       "yer": "süpermarket",
@@ -61,7 +61,7 @@
     },
     {
       "id": "m1:h08:g3",
-      "can_do": "cd:m1:hafta08",
+      "can_do": "cd:m1:52",
       "durum_tr": "Bir arkadaşının partisindesin. Tanımadığın bir kadın yanına gelip kendini tanıtıyor. Sen de kendini tanıt.",
       "karsi": "eine Frau auf der Party",
       "yer": "bir arkadaşın evinde parti",
@@ -91,7 +91,7 @@
     },
     {
       "id": "m1:h08:g4",
-      "can_do": "cd:m1:hafta08",
+      "can_do": "cd:m1:49",
       "durum_tr": "Spor salonundasın. Antrenmanı yarıda bırakıp oturdun. Basti yanına gelip ne olduğunu soruyor. Sırtının ağrıdığını söyle.",
       "karsi": "ch:kraus",
       "yer": "pl:fitness",
@@ -113,6 +113,54 @@
       ],
       "kalip": "Ich habe Schmerzen im …",
       "why_tr": "Sırtın ağrıyorsa **Ich habe Schmerzen im Rücken** dersin."
+    },
+    {
+      "id": "m1:h08:g5",
+      "can_do": "cd:m1:53",
+      "durum_tr": "Pazartesi akşamı dil kursundasın. Öğretmen herkese hafta sonunu soruyor. Cumartesi bir geziye gidecektin ama gezi iptal oldu, sen de evde kaldın. Bunu anlat.",
+      "karsi": "die Kursleiterin",
+      "yer": "pl:sprachkurs",
+      "prompt_de": "Und Sie? Was haben Sie am Wochenende gemacht?",
+      "accepted": [
+        "Der Ausflug ist ausgefallen. Ich war zu Hause.",
+        "Nicht so gut. Der Ausflug ist ausgefallen. Ich war zu Hause.",
+        "Am Samstag ist der Ausflug ausgefallen. Ich war zu Hause.",
+        "Mein Ausflug ist ausgefallen. Ich war am Wochenende zu Hause.",
+        "Der Ausflug ist leider ausgefallen. Ich war zu Hause.",
+        "Der Ausflug ist ausgefallen. Am Sonntag war ich zu Hause.",
+        "Der Ausflug am Samstag ist ausgefallen. Ich war zu Hause.",
+        "Ich war zu Hause. Der Ausflug ist ausgefallen.",
+        "Leider war ich zu Hause. Der Ausflug ist ausgefallen.",
+        "Na ja. Der Ausflug ist ausgefallen. Ich war zu Hause.",
+        "Der Ausflug ist ausgefallen. Ich war zu Hause und habe Kuchen gegessen.",
+        "Der Ausflug ist ausgefallen."
+      ],
+      "kalip": "… ist ausgefallen. – Ich war …",
+      "why_tr": "İptali **ist ausgefallen** ile, nerede olduğunu **Ich war zu Hause** ile söylersin."
+    },
+    {
+      "id": "m1:h08:g6",
+      "can_do": "cd:m1:54",
+      "durum_tr": "İstasyonun yanındaki bir eczanedesin. Öksürüğün için tablet istedin ama bitmiş. Eczacı yarın geleceğini söylüyor. Tabletleri senin için ayırtmasını iste ve ne zaman alacağını sor.",
+      "karsi": "ein Apotheker",
+      "yer": "istasyonun yanında bir eczane",
+      "prompt_de": "Die Tabletten gegen Husten haben wir leider nicht mehr. Morgen kommen sie wieder.",
+      "accepted": [
+        "Können Sie sie für mich reservieren? Wann soll ich sie nehmen?",
+        "Können Sie die Tabletten für mich reservieren? Und wann soll ich sie nehmen?",
+        "Können Sie die Tabletten reservieren? Wann muss ich sie nehmen?",
+        "Bitte reservieren Sie die Tabletten für mich. Wann soll ich sie nehmen?",
+        "Können Sie sie reservieren? Und wie oft soll ich sie nehmen?",
+        "Können Sie die Tabletten bis morgen reservieren? Wann soll ich sie nehmen?",
+        "Gut, können Sie sie reservieren? Wann nehme ich die Tabletten?",
+        "Okay. Können Sie sie für mich reservieren? Und wann soll ich die Tabletten nehmen?",
+        "Können Sie die Tabletten bitte reservieren? Soll ich sie vor dem Essen nehmen?",
+        "Reservieren Sie sie bitte für mich. Wann soll ich sie nehmen?",
+        "Ich hole sie morgen. Können Sie sie reservieren? Wann soll ich sie nehmen?",
+        "Können Sie mir die Tabletten reservieren? Wann soll ich sie nehmen?"
+      ],
+      "kalip": "Können Sie … reservieren? – Wann soll ich … nehmen?",
+      "why_tr": "Ayırtmayı **Können Sie sie reservieren?** ile istersin, zamanı **Wann soll ich sie nehmen?** ile sorarsın."
     }
   ]
 }
