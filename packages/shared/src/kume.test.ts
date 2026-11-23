@@ -165,5 +165,17 @@ describe("düzenli çekim (PM-097 md. 2)", () => {
     expect(karar("Die Frage ist gut.", "frage", HEPSI)).toBe(null);
     expect(karar("Frage ich ihn?", "frage", HEPSI)).toBe("serbest");               // cümle başında büyük harf ayırt edici değil
     expect(karar("Das ist gut.", "ist", ["3t"], [])).toBe(null);
+describe("cümle başı, tek sözcüklü cümle (ANA-D2 devri takibi: 34. gün \"Arm\")", () => {
+  const AL = [L({ id: "lx:Arm", de: "Arm", pos: "noun", art: "der", pl: "Arme" }), L({ id: "lx:arm", de: "arm", pos: "adj" }), L({ id: "lx:ist", de: "ist", pos: "verb", card: false }), L({ id: "lx:er", de: "er", pos: "pron", card: false })];
+  const ad = kumeDizini(AL, [], null, []);
+  const y = (s: string, kart: string[]) => bilinmeyenYazi(bilinmeyenler(ad, s, { kart: new Set(kart), biten: new Set() }));
+  it("tek sözcük: iki okunuştan biri bilinirse bilinir", () => {
+    expect(y("Arm", ["lx:Arm"])).toEqual([]);
+    expect(y("Arm", ["lx:arm"])).toEqual([]);
+    expect(y("Arm", [])).toEqual(["arm"]);
+  });
+  it("çok sözcüklü cümlede cümle başı küçük harfli okunuş öncelikli (değişmedi)", () => {
+    expect(y("Arm ist er.", ["lx:Arm"])).toEqual(["~arm"]);
+    expect(y("Arm ist er.", ["lx:arm"])).toEqual([]);
   });
 });
