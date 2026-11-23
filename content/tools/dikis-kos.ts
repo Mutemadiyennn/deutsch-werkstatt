@@ -1,6 +1,7 @@
 /**
  * Dikiş denetçisinin komut satırı (PM-090 md. 2.1). Kurallar ve ayrıntı: dikis.ts.
- *   node --experimental-strip-types content/tools/dikis-kos.ts [--tablo <yol>] [--gun N]... [--tum] [--json <çıktı>]
+ *   node --experimental-strip-types content/tools/dikis-kos.ts [--tablo <yol>] [--gun N]... [--tum] [--yarim] [--json <çıktı>]
+ *   --yarim: dosyası eksik haftada eksik kartları not say (yerel ara koşu); KAPI bu bayrakla koşmaz
  * Çıkış: 0 ihlal yok · 1 ihlal var · 2 tablo/omurga yok ya da okunamadı.
  */
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
@@ -20,7 +21,7 @@ const oku = <T>(yol: string, ad: string): T => {
   try { return JSON.parse(readFileSync(yol, "utf8")) as T; } catch (e) { console.error(`HATA: ${ad} okunamadı: ${yol}: ${(e as Error).message}`); process.exit(2); }
 };
 const tablo = oku<KesinTablo>(tabloYol, "tablo");
-if (!Array.isArray(tablo.gunler)) { console.error(`HATA: tablo okunamadı: ${tabloYol}: "gunler" dizisi yok`); process.exit(2); }
+if (!tablo || !Array.isArray(tablo.gunler)) { console.error(`HATA: tablo okunamadı: ${tabloYol}: "gunler" dizisi yok`); process.exit(2); }
 const omurga = oku<Omurga>(join(CDIR, "curriculum/omurga.json"), "omurga");
 
 const mdir = join(CDIR, "m1");
@@ -31,7 +32,7 @@ const c = loadContent();
 const ga = join(ROOT, "docs/v2/reviews/genel-adlar.md");
 const dizin = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, existsSync(ga) ? genelAdlarAyikla(readFileSync(ga, "utf8")) : []);
 
-const r = dikisDenetle({ gunler, tablo, omurga, dizin, dersler: new Map(c.temel.map((t) => [t.data.id, t.data])), sadece, tum: argv.includes("--tum") });
+const r = dikisDenetle({ gunler, tablo, omurga, dizin, dersler: new Map(c.temel.map((t) => [t.data.id, t.data])), sadece, tum: argv.includes("--tum"), yarim: argv.includes("--yarim") });
 console.log(`Dikiş denetçisi (PM-090 md. 2.1) · tablo ${tabloYol.replace(ROOT + "/", "")}`);
 console.log(rapor(r));
 if (jsonYol) writeFileSync(jsonYol, JSON.stringify(r, null, 2));
