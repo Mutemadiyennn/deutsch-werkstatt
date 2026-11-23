@@ -126,3 +126,23 @@ Parti durumu: 378 alanın 377'si GEÇTİ, 1'i GERİ. Dosya hâlâ "reviewed" say
 - GERİ: 0
 
 Okur kapısı (OD-9.3) açısından batch-015 "reviewed" olabilir.
+
+---
+
+## #206 sonrası (2026-11-23): değişen 3 öğrenci alanı
+
+- Girdi: `content/v2/registry/lexicon/batch-015.json`. 4. turla karşılaştırınca öğrenciye görünen alanlarda yalnız bu üç alan değişmiş. Her alan kendi kartıyla birlikte okundu.
+
+| öğe kimliği | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| `lx:Vorgesetzte` | `examples[4].tr` | Arkadaşımın pazartesiden itibaren yeni bir kadın amiri var. | Pazartesiden sonra arkadaşımın amiri yeni bir kadın. | GEÇTİ | Almancası (**Meine Freundin … eine neue Vorgesetzte**) ile örtüşüyor. Kartın öteki alanlarıyla çelişmiyor. |
+| `lx:Lohn` | `examples[4].tr` | İş arkadaşım şefle daha çok ücret hakkında konuşuyor. | İş arkadaşım şefle zam konuşuyor. | GEÇTİ | Eşdizimdeki "daha çok ücret" ile aynı. |
+| `lx:Lohn` | `forms[4].tr` | İş arkadaşım daha çok ücret istiyor. | İş arkadaşım daha fazla para istiyor. | GEÇTİ | Kutunun ipucuyla (**mehr Lohn**) örtüşüyor. |
+
+### #206 sonrası sayıları
+
+- Yeniden okunan: 3
+- GEÇTİ: 3
+- GERİ: 0
+
+Parti durumu: 378 alanın 378'i GEÇTİ. Okur kapısı açısından batch-015 "reviewed" olabilir.

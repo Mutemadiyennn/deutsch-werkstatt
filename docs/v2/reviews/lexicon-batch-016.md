@@ -167,3 +167,11 @@ lx:Haarschnitt hata notu: eski not (kendin kestin sanılır) doğruydu ama başk
 ## Sonuç
 
 **AÇIK** (yalnız okur kapısı). Dil, gerçeklik ve WORLD hataları dosyada kapandı; `content:validate` 0 hata. `reviewed` için kalan tek adım okur kontrolü (OD-9.4).
+
+## İnceleme #206 sonrası (2026-11-23)
+
+- `lx:Haarschnitt.mistakes_tr[0]`: Saçımı kestirdim derken **Ich habe Haarschnitt gemacht** yanlış. Doğrusu **Ich habe einen neuen Haarschnitt**. → Yeni bir saç kesimim var derken **Ich habe neu Haarschnitt** yanlış. Doğrusu **Ich habe einen neuen Haarschnitt**. Burada **einen** düşmez. Gerekçe: Türkçe giriş ile Almanca doğru cümle birbirinin karşılığı değildi (P2). Yeni not aynı anlamı eşliyor, kartın kelimesi notta geçiyor (OD-9.2 md. 4) ve Türkçede olmayan **einen** hatasını gösteriyor.
+- `content:validate`: 0 hata.
+
+**Sonuç: KAPALI** — okur GEÇTİ (2 tur, 909/909), parti reviewed; inceleme #206 sonrası Haarschnitt düzeltmesi. Yukarıdaki "AÇIK" sonucu ilk turun durumudur.
+- Okur 3. tur GERİ (2026-11-23), `lx:Haarschnitt.mistakes_tr[0]`: Yeni bir saç kesimim var derken **Ich habe neu Haarschnitt** yanlış. Doğrusu **Ich habe einen neuen Haarschnitt**. Burada **einen** düşmez. → Yeni bir saç kesimim var derken **Ich habe ein neuer Haarschnitt** yanlış. **habe** gelince **ein neuer** sözü **einen neuen** olur: **Ich habe einen neuen Haarschnitt**. Gerekçe: yanlış ile doğru arasında iki fark vardı, kutu birini açıklıyordu; şimdi tek fark var ve eşdizimdeki **ein neuer Haarschnitt** ile köprü kuruluyor. `content:validate`: 0 hata.

@@ -125,3 +125,33 @@ Karar değiştirmeyen bir not: `lx:Rettungswagen.mistakes_tr[0]` hâlâ "**der R
 - GERİ: 0
 
 Parti durumu: 909 alanın 909'u GEÇTİ. Okur kapısı (OD-9.3) açısından dosya "reviewed" olabilir.
+
+---
+
+## #206 sonrası (2026-11-23): `lx:Haarschnitt.mistakes_tr[0]`
+
+- Girdi: `content/v2/registry/lexicon/batch-016.json`. 2. turla karşılaştırınca öğrenciye görünen alanlarda yalnız bu alan değişmiş. Alan kendi kartıyla birlikte okundu.
+
+| öğe kimliği | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| `lx:Haarschnitt` | `mistakes_tr[0]` | Yeni bir saç kesimim var derken **Ich habe neu Haarschnitt** yanlış. Doğrusu **Ich habe einen neuen Haarschnitt**. Burada **einen** düşmez. | Yeni saç kesimim var derken **einen** koymayı unutmamalıyım. | GERİ | Yanlışla doğru arasında iki fark var: **einen** eklenmiş, **neu** da **neuen** olmuş. Kutu yalnız **einen**'i açıklıyor, **neu** neden **neuen** oluyor söylemiyor. Ayrıca aynı kartın eşdiziminde "yeni bir saç kesimi" **ein neuer Haarschnitt**. Burada aynı söz **einen neuen** çıkıyor; neden değiştiğini anlamadım. |
+
+### #206 sonrası sayıları
+
+- Yeniden okunan: 1
+- GEÇTİ: 0
+- GERİ: 1
+
+GERİ kimliği: `lx:Haarschnitt.mistakes_tr[0]`
+
+Parti durumu: 909 alanın 908'i GEÇTİ, 1'i GERİ. Dosya şu an "reviewed" sayılamaz (OD-9.4).
+
+---
+
+## #206 sonrası, 2. okuma (2026-11-23): `lx:Haarschnitt.mistakes_tr[0]`
+
+| öğe kimliği | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| `lx:Haarschnitt` | `mistakes_tr[0]` | Yeni bir saç kesimim var derken **Ich habe ein neuer Haarschnitt** yanlış. **habe** gelince **ein neuer** sözü **einen neuen** olur: **Ich habe einen neuen Haarschnitt**. | Yeni bir saç kesimi **ein neuer Haarschnitt**; ama **habe** dersem **einen neuen Haarschnitt** olur. | GEÇTİ | Yanlışla doğru arasındaki iki farkı da (**einen**, **neuen**) tek kural açıklıyor. Eşdizimdeki **ein neuer Haarschnitt** ile çelişki kalmadı, değişmenin nedeni yazılı. Kural yalnız **ein neuer** için söylendiği için partideki **habe ich ein Vorstellungsgespräch** ile de çelişmiyor. En uzun cümle 13 kelime. |
+
+Parti durumu: 909 alanın 909'u GEÇTİ, GERİ yok. Okur kapısı (OD-9.3) açısından batch-016 "reviewed" olabilir.
