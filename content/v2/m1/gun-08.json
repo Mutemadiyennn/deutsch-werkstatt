@@ -257,12 +257,12 @@
     },
     {
      "kart": "lx:immer",
-     "de": "Was kostet das Brot? Wie immer drei Euro neunzig?",
-     "tr": "Ekmek ne kadar? Her zamanki gibi üç avro doksan mı?",
+     "de": "Was kostet das Brot? Wie immer drei Euro siebzig?",
+     "tr": "Ekmek ne kadar? Her zamanki gibi üç avro yetmiş mi?",
      "accepted": [
-      "Was kostet das Brot? Wie immer drei Euro neunzig?",
-      "Wie viel kostet das Brot? Wie immer drei Euro neunzig?",
-      "Was kostet das Brot? Drei Euro neunzig, wie immer?"
+      "Was kostet das Brot? Wie immer drei Euro siebzig?",
+      "Wie viel kostet das Brot? Wie immer drei Euro siebzig?",
+      "Was kostet das Brot? Drei Euro siebzig, wie immer?"
      ]
     },
     {
@@ -512,11 +512,11 @@
      "q_tr": "Kasada ne kadar ödüyorsun?",
      "opts": [
       "Üç avro doksan",
-      "Beş avro on",
       "Dört avro kırk",
+      "Beş avro on",
       "Beş avro doksan"
      ],
-     "ans": 1
+     "ans": 2
     }
    }
   }
@@ -654,11 +654,11 @@
       "kind": "detail",
       "q_tr": "Küçük ekmekler ne zaman geliyor?",
       "opts": [
-       "On dakika sonra",
        "Bir saat sonra",
+       "On dakika sonra",
        "Yarın sabah"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "s5"
       ]
@@ -668,10 +668,10 @@
       "q_tr": "Bir küçük ekmek şimdi kaç sent?",
       "opts": [
        "elli",
-       "altmış",
-       "yetmiş"
+       "yetmiş",
+       "altmış"
       ],
-      "ans": 1,
+      "ans": 2,
       "kanit": [
        "s7"
       ]
@@ -697,11 +697,11 @@
       "seviye": "kolay",
       "q_tr": "Hangi kelimeyi duydun?",
       "opts": [
-       "zehn",
        "zwölf",
+       "zehn",
        "zwanzig"
       ],
-      "ans": 0
+      "ans": 1
      },
      {
       "id": "d2",
@@ -833,11 +833,11 @@
       "kind": "gist",
       "q_tr": "Frau Huber neden arıyor?",
       "opts": [
-       "Randevun değişiyor",
        "Muayenehane yarın kapalı",
-       "Bir ilacın hazır"
+       "Bir ilacın hazır",
+       "Randevun değişiyor"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "c2",
        "c4"
@@ -861,11 +861,11 @@
        "kind": "detail",
        "q_tr": "Çarşamba neden olmuyor?",
        "opts": [
-        "Dr. Weber çarşamba orada değil",
         "Frau Huber hasta",
+        "Dr. Weber çarşamba orada değil",
         "Muayenehane taşınıyor"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c3"
        ]
@@ -878,11 +878,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi kelimeyi duydun?",
        "opts": [
-        "halb",
         "Viertel",
-        "acht"
+        "acht",
+        "halb"
        ],
-       "ans": 0
+       "ans": 2
       },
       {
        "id": "d2",
@@ -1031,11 +1031,11 @@
       "kind": "gist",
       "q_tr": "Kayıt sana ne diyor?",
       "opts": [
-       "Bekle, sıra sende değil",
        "Muayenehane bugün kapalı",
+       "Bekle, sıra sende değil",
        "Yarın tekrar ara"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "c3",
        "c6"
@@ -1046,11 +1046,11 @@
        "kind": "detail",
        "q_tr": "Sırada kaçıncısın?",
        "opts": [
-        "dördüncü",
         "ikinci",
-        "onuncu"
+        "onuncu",
+        "dördüncü"
        ],
-       "ans": 0,
+       "ans": 2,
        "kanit": [
         "c3"
        ]
@@ -1076,11 +1076,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi kelimeyi duydun?",
        "opts": [
-        "vier",
         "drei",
+        "vier",
         "zehn"
        ],
-       "ans": 0
+       "ans": 1
       },
       {
        "id": "d2",
@@ -1164,11 +1164,11 @@
     "k": "pick",
     "q_tr": "Saat on bir buçuk. Ne yapmalısın?",
     "opts": [
-     "Hatta bekle, muayenehane hâlâ açık.",
      "Kapat, öğleden sonra yeniden ara.",
-     "Kapat, yarın ara."
+     "Kapat, yarın ara.",
+     "Hatta bekle, muayenehane hâlâ açık."
     ],
-    "ans": 0,
+    "ans": 2,
     "why_tr": "Muayenehane on ikiye kadar açık, öğleden sonra kapalı. Beklemen gerekir.",
     "kanit": [
      "c4",
@@ -1405,7 +1405,7 @@
  },
  "okuma_yazma": {
   "tur": "okuma",
-  "title_tr": "Ioana'dan mesaj",
+  "title_tr": "Derya'dan mesaj",
   "metin_de": "Hallo {name}! Ich bin jetzt im Büro. Die Semmel kostet jetzt sechzig Cent, nicht mehr fünfzig! Echt teuer. Hast du heute Abend Zeit? Ich komme um sechs Uhr. Dann bis heute Abend!",
   "metin_de_adsiz": "Hallo! Ich bin jetzt im Büro. Die Semmel kostet jetzt sechzig Cent, nicht mehr fünfzig! Echt teuer. Hast du heute Abend Zeit? Ich komme um sechs Uhr. Dann bis heute Abend!",
   "metin_tr": "Merhaba {name}! Şu an ofisteyim. Küçük ekmek artık elli değil, altmış sent! Gerçekten pahalı. Bu akşam vaktin var mı? Saat altıda geliyorum. O zaman akşam görüşürüz!",
@@ -1414,7 +1414,7 @@
    {
     "id": "m1:08:o1",
     "kind": "gist",
-    "q_tr": "Ioana sana ne soruyor?",
+    "q_tr": "Derya sana ne soruyor?",
     "opts": [
      "Bu akşam vaktin var mı",
      "Fırın açık mı",
@@ -1442,13 +1442,13 @@
    {
     "id": "m1:08:o3",
     "kind": "detail",
-    "q_tr": "Ioana şu an nerede?",
+    "q_tr": "Derya şu an nerede?",
     "opts": [
-     "ofiste",
      "fırında",
-     "evde"
+     "evde",
+     "ofiste"
     ],
-    "ans": 0,
+    "ans": 2,
     "kanit": [
      1
     ]
@@ -1456,7 +1456,7 @@
    {
     "id": "m1:08:o4",
     "kind": "detail",
-    "q_tr": "Ioana saat kaçta geliyor?",
+    "q_tr": "Derya saat kaçta geliyor?",
     "opts": [
      "altıda",
      "sekizde",
@@ -1470,7 +1470,7 @@
    {
     "id": "m1:08:o5",
     "k": "guided_response",
-    "situation_tr": "Ioana'ya kısa bir cevap yaz. Bu akşam vaktin var.",
+    "situation_tr": "Derya'ya kısa bir cevap yaz. Bu akşam vaktin var.",
     "prompt_de": "Hast du heute Abend Zeit?",
     "accepted": [
      "Ja, ich habe heute Abend Zeit.",

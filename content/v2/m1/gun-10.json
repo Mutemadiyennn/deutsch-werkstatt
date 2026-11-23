@@ -210,11 +210,11 @@
     "soru": {
      "q_tr": "Frau Huber ne zaman randevu veriyor?",
      "opts": [
-      "Yarın saat onda",
       "Bugün saat onda",
-      "Yarın saat ikide"
+      "Yarın saat ikide",
+      "Yarın saat onda"
      ],
-     "ans": 0
+     "ans": 2
     }
    }
   },
@@ -501,11 +501,11 @@
     "soru": {
      "q_tr": "Ioana hangi kelimeyi soruyor?",
      "opts": [
-      "stark",
       "schnell",
+      "stark",
       "kaputt"
      ],
-     "ans": 0
+     "ans": 1
     }
    }
   },
@@ -643,11 +643,11 @@
     "soru": {
      "q_tr": "Ioana sana ne ısmarlıyor?",
      "opts": [
-      "Kek",
       "Ekmek",
-      "Hiçbir şey"
+      "Hiçbir şey",
+      "Kek"
      ],
-     "ans": 0
+     "ans": 2
     }
    }
   }
@@ -768,11 +768,11 @@
       "kind": "detail",
       "q_tr": "Derya'nın sorunu ne?",
       "opts": [
-       "Ayakkabısı yırtık",
        "Başı ağrıyor",
+       "Ayakkabısı yırtık",
        "Telefonu bozuk"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "s4"
       ]
@@ -781,11 +781,11 @@
       "kind": "detail",
       "q_tr": "Derya'yı kim arıyor?",
       "opts": [
-       "Herr Wimmer",
        "Frau Huber",
-       "Ioana"
+       "Ioana",
+       "Herr Wimmer"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s7"
       ]
@@ -811,11 +811,11 @@
       "seviye": "kolay",
       "q_tr": "Hangi kelimeyi duydun?",
       "opts": [
-       "Schuh",
        "Kopf",
+       "Schuh",
        "Brot"
       ],
-      "ans": 0
+      "ans": 1
      },
      {
       "id": "d2",
@@ -940,11 +940,11 @@
       "kind": "gist",
       "q_tr": "Herr Wimmer ne istiyor?",
       "opts": [
-       "Bugün Frau Aksoy'u aramanı",
        "Yarın işe gelmemeni",
-       "Ona bir kek getirmeni"
+       "Ona bir kek getirmeni",
+       "Bugün Frau Aksoy'u aramanı"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "c3"
       ]
@@ -967,11 +967,11 @@
        "kind": "detail",
        "q_tr": "Frau Aksoy saat kaça kadar ofiste?",
        "opts": [
-        "beşe kadar",
         "dokuza kadar",
+        "beşe kadar",
         "altıya kadar"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c4"
        ]
@@ -984,11 +984,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi kelimeyi duydun?",
        "opts": [
-        "neun",
         "neunzehn",
-        "zehn"
+        "zehn",
+        "neun"
        ],
-       "ans": 0
+       "ans": 2
       },
       {
        "id": "d2",
@@ -1135,11 +1135,11 @@
       "kind": "gist",
       "q_tr": "Radyo ne söylüyor?",
       "opts": [
-       "Saati, günü ve Noel pazarının saatlerini",
        "Hava durumunu",
+       "Saati, günü ve Noel pazarının saatlerini",
        "Bir dükkânın indirimini"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "c1",
        "c2",
@@ -1151,11 +1151,11 @@
        "kind": "detail",
        "q_tr": "Bugün ayın kaçı?",
        "opts": [
-        "İki aralık",
         "Bir aralık",
-        "Üç aralık"
+        "Üç aralık",
+        "İki aralık"
        ],
-       "ans": 0,
+       "ans": 2,
        "kanit": [
         "c2"
        ]
@@ -1181,11 +1181,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi kelimeyi duydun?",
        "opts": [
-        "halb",
         "Viertel",
+        "halb",
         "zehn"
        ],
-       "ans": 0
+       "ans": 1
       },
       {
        "id": "d2",
@@ -1264,11 +1264,11 @@
     "k": "pick",
     "q_tr": "Akşam dokuzda Noel pazarına gitmek istiyorsun. Olur mu?",
     "opts": [
-     "Evet, pazar bugün ona kadar açık.",
      "Hayır, pazar dörtte kapanıyor.",
-     "Hayır, pazar bugün kapalı."
+     "Hayır, pazar bugün kapalı.",
+     "Evet, pazar bugün ona kadar açık."
     ],
-    "ans": 0,
+    "ans": 2,
     "why_tr": "Pazar bugün dörtten ona kadar açık. Yalnızca pazartesi kapalı.",
     "kanit": [
      "c3",
@@ -1514,10 +1514,10 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Tobi'den mesaj",
-  "metin_de": "Hallo {name}, hier ist Tobi! Heute Abend Weihnachtsmarkt? Ich lade dich ein! Wir fangen um sechs an. Herr Wimmer kommt nicht, er hat keine Zeit. Kannst du mich um fünf anrufen?",
-  "metin_de_adsiz": "Hallo, hier ist Tobi! Heute Abend Weihnachtsmarkt? Ich lade dich ein! Wir fangen um sechs an. Herr Wimmer kommt nicht, er hat keine Zeit. Kannst du mich um fünf anrufen?",
-  "metin_tr": "Merhaba {name}, ben Tobi! Bu akşam Noel pazarı? Ben ısmarlıyorum! Altıda başlıyoruz. Wimmer Bey gelmiyor, vakti yok. Beni beşte arayabilir misin?",
-  "metin_tr_adsiz": "Merhaba, ben Tobi! Bu akşam Noel pazarı? Ben ısmarlıyorum! Altıda başlıyoruz. Wimmer Bey gelmiyor, vakti yok. Beni beşte arayabilir misin?",
+  "metin_de": "Hallo {name}, hier ist Tobi! Heute Abend Weihnachtsmarkt? Ich lade dich ein! Wir gehen um sechs. Herr Wimmer kommt nicht, er hat keine Zeit. Kannst du mich um fünf anrufen?",
+  "metin_de_adsiz": "Hallo, hier ist Tobi! Heute Abend Weihnachtsmarkt? Ich lade dich ein! Wir gehen um sechs. Herr Wimmer kommt nicht, er hat keine Zeit. Kannst du mich um fünf anrufen?",
+  "metin_tr": "Merhaba {name}, ben Tobi! Bu akşam Noel pazarı? Ben ısmarlıyorum! Altıda gidiyoruz. Wimmer Bey gelmiyor, vakti yok. Beni beşte arayabilir misin?",
+  "metin_tr_adsiz": "Merhaba, ben Tobi! Bu akşam Noel pazarı? Ben ısmarlıyorum! Altıda gidiyoruz. Wimmer Bey gelmiyor, vakti yok. Beni beşte arayabilir misin?",
   "sorular": [
    {
     "id": "m1:10:o1",
@@ -1536,13 +1536,13 @@
    {
     "id": "m1:10:o2",
     "kind": "detail",
-    "q_tr": "Saat kaçta başlıyorsunuz?",
+    "q_tr": "Saat kaçta gidiyorsunuz?",
     "opts": [
-     "altıda",
      "beşte",
+     "altıda",
      "yedide"
     ],
-    "ans": 0,
+    "ans": 1,
     "kanit": [
      3
     ]
@@ -1552,11 +1552,11 @@
     "kind": "detail",
     "q_tr": "Herr Wimmer neden gelmiyor?",
     "opts": [
-     "Vakti yok",
      "Hasta",
-     "Ofiste değil"
+     "Ofiste değil",
+     "Vakti yok"
     ],
-    "ans": 0,
+    "ans": 2,
     "kanit": [
      4
     ]

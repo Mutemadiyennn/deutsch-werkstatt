@@ -186,11 +186,11 @@
     "soru": {
      "q_tr": "Ne kadar para üstü alıyorsun?",
      "opts": [
-      "On sent",
       "Doksan sent",
+      "On sent",
       "Bir avro"
      ],
-     "ans": 0
+     "ans": 1
     }
    }
   },
@@ -323,11 +323,11 @@
     "soru": {
      "q_tr": "Yarın keki kim getiriyor?",
      "opts": [
-      "Tobi",
       "Derya",
-      "Sen"
+      "Sen",
+      "Tobi"
      ],
-     "ans": 0
+     "ans": 2
     }
    }
   },
@@ -598,11 +598,11 @@
     "soru": {
      "q_tr": "Sonunda ne yapıyorsun?",
      "opts": [
-      "Yarın yeniden geliyorsun",
       "Bir saat bekliyorsun",
+      "Yarın yeniden geliyorsun",
       "Numara çekmiyorsun"
      ],
-     "ans": 0
+     "ans": 1
     }
    }
   }
@@ -725,11 +725,11 @@
      "kind": "gist",
      "q_tr": "Mutfakta ne oluyor?",
      "opts": [
-      "Derya bir kek getirmiş, herkes yiyor",
       "Tobi'nin doğum günü kutlanıyor",
-      "Herr Wimmer mutfakta toplantı yapıyor"
+      "Herr Wimmer mutfakta toplantı yapıyor",
+      "Derya bir kek getirmiş, herkes yiyor"
      ],
-     "ans": 0,
+     "ans": 2,
      "kanit": [
       "s1",
       "s5"
@@ -753,11 +753,11 @@
       "kind": "detail",
       "q_tr": "Kek kimden?",
       "opts": [
-       "Derya'dan",
        "Stadler fırınından",
+       "Derya'dan",
        "Herr Wimmer'den"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "s5"
       ]
@@ -766,11 +766,11 @@
       "kind": "detail",
       "q_tr": "Herr Wimmer nerede bekliyor?",
       "opts": [
-       "Ofiste",
        "Mutfakta",
-       "Fırında"
+       "Fırında",
+       "Ofiste"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s9"
       ]
@@ -877,7 +877,7 @@
     {
      "id": "c1",
      "de": "Grüß Gott, hier ist Frau Brandl.",
-     "tr": "Merhaba, ben Brandl."
+     "tr": "İyi günler, ben Brandl."
     },
     {
      "id": "c2",
@@ -920,11 +920,11 @@
       "kind": "gist",
       "q_tr": "Frau Brandl ne istiyor?",
       "opts": [
-       "Seni bu akşam evine çağırıyor",
        "Senden yardım istiyor",
+       "Seni bu akşam evine çağırıyor",
        "Fırının kapalı olduğunu söylüyor"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "c3",
        "c4"
@@ -935,11 +935,11 @@
        "kind": "detail",
        "q_tr": "Saat kaçta?",
        "opts": [
-        "altıda",
         "yedide",
-        "sekizde"
+        "sekizde",
+        "altıda"
        ],
-       "ans": 0,
+       "ans": 2,
        "kanit": [
         "c4"
        ]
@@ -965,11 +965,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi kelimeyi duydun?",
        "opts": [
-        "sechs",
         "sieben",
+        "sechs",
         "acht"
        ],
-       "ans": 0
+       "ans": 1
       },
       {
        "id": "d2",
@@ -1046,11 +1046,11 @@
     "k": "pick",
     "q_tr": "Bu akşam ne yapmalısın?",
     "opts": [
-     "Saat altıda Frau Brandl'ın dairesine git.",
      "Yarın sabah fırına git.",
-     "Saat sekizde Frau Brandl'ı ara."
+     "Saat sekizde Frau Brandl'ı ara.",
+     "Saat altıda Frau Brandl'ın dairesine git."
     ],
-    "ans": 0,
+    "ans": 2,
     "why_tr": "Frau Brandl seni altıda bekliyor. Geç kalmamanı istiyor.",
     "kanit": [
      "c4",
@@ -1129,11 +1129,11 @@
        "kind": "detail",
        "q_tr": "On dokuz numara hangi odaya gidiyor?",
        "opts": [
-        "iki numaralı odaya",
         "dört numaralı odaya",
+        "iki numaralı odaya",
         "on dokuz numaralı odaya"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c2"
        ]
@@ -1142,11 +1142,11 @@
        "kind": "detail",
        "q_tr": "Büro bugün saat kaça kadar açık?",
        "opts": [
-        "on ikiye kadar",
         "sekize kadar",
-        "akşama kadar"
+        "akşama kadar",
+        "on ikiye kadar"
        ],
-       "ans": 0,
+       "ans": 2,
        "kanit": [
         "c3"
        ]
@@ -1244,11 +1244,11 @@
     "k": "pick",
     "q_tr": "Senin numaran yirmi. Ne yapmalısın?",
     "opts": [
-     "Dört numaralı odaya git.",
      "İki numaralı odaya git.",
+     "Dört numaralı odaya git.",
      "Cuma günü yeniden gel."
     ],
-    "ans": 0,
+    "ans": 1,
     "why_tr": "Hoparlör yirmi numarayı dört numaralı odaya çağırıyor.",
     "kanit": [
      "c5"
@@ -1490,11 +1490,11 @@
     "kind": "detail",
     "q_tr": "Ioana'nın neyi var?",
     "opts": [
-     "Başı ağrıyor",
      "Ateşi var",
-     "Hiçbir şeyi yok"
+     "Hiçbir şeyi yok",
+     "Başı ağrıyor"
     ],
-    "ans": 0,
+    "ans": 2,
     "kanit": [
      2
     ]

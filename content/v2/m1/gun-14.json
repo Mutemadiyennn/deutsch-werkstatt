@@ -166,14 +166,14 @@
     },
     {
      "kart": "lx:hören",
-     "de": "Frau Brandl kann nicht mehr so gut hören.",
-     "tr": "Brandl Hanım artık o kadar iyi duyamıyor.",
+     "de": "Die Frau da kann nicht mehr so gut hören.",
+     "tr": "Şuradaki kadın artık o kadar iyi duyamıyor.",
      "accepted": [
-      "Frau Brandl kann nicht mehr so gut hören.",
-      "Frau Brandl kann nicht mehr gut hören.",
-      "Frau Brandl kann nicht mehr so gut hören!",
-      "Frau Brandl kann jetzt nicht mehr so gut hören.",
-      "Frau Brandl hört nicht mehr so gut."
+      "Die Frau da kann nicht mehr so gut hören.",
+      "Die Frau da kann nicht mehr gut hören.",
+      "Die Frau da kann nicht mehr so gut hören!",
+      "Die Frau da hört nicht mehr so gut.",
+      "Die Frau kann nicht mehr so gut hören."
      ]
     },
     {
@@ -259,12 +259,12 @@
     "soru": {
      "q_tr": "Fırında kaç pasta kaldı?",
      "opts": [
-      "Yalnızca bir tane",
       "Hiç yok",
       "Çok var",
+      "Yalnızca bir tane",
       "İki tane"
      ],
-     "ans": 0
+     "ans": 2
     }
    }
   }
@@ -276,7 +276,7 @@
    {
     "id": "s1",
     "speaker": "ch:stadler",
-    "sahne_tr": "Pazar sabahı, Stadler fırını. Frau Brandl içeri giriyor.",
+    "sahne_tr": "Pazar sabahı, Stadler fırını kalabalık ve gürültülü. Frau Brandl içeri giriyor.",
     "de": "Guten Tag, Frau Brandl! Was hätten Sie gern?",
     "tr": "İyi günler Brandl Hanım! Ne arzu edersiniz?"
    },
@@ -347,8 +347,8 @@
     "id": "s11",
     "speaker": "ch:stadler",
     "sahne_tr": "Frau Stadler kasaya bakıyor.",
-    "de": "Das macht sieben Euro achtzig. Noch etwas?",
-    "tr": "Toplam yedi avro seksen. Başka bir şey?"
+    "de": "Das macht neun Euro siebzig. Noch etwas?",
+    "tr": "Toplam dokuz avro yetmiş. Başka bir şey?"
    },
    {
     "id": "s12",
@@ -395,11 +395,11 @@
      "kind": "gist",
      "q_tr": "Frau Brandl fırında ne alıyor?",
      "opts": [
-      "Üç küçük ekmek, bir ekmek ve küçük bir pasta",
       "Yalnızca bir ekmek",
+      "Üç küçük ekmek, bir ekmek ve küçük bir pasta",
       "Büyük pastayı"
      ],
-     "ans": 0,
+     "ans": 1,
      "kanit": [
       "s4",
       "s9",
@@ -411,11 +411,11 @@
       "kind": "detail",
       "q_tr": "Büyük pasta kaç avro?",
       "opts": [
-       "On iki avro elli",
        "Dört avro",
-       "Yedi avro seksen"
+       "Dokuz avro yetmiş",
+       "On iki avro elli"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s7"
       ]
@@ -424,7 +424,7 @@
       "kind": "detail",
       "q_tr": "Frau Brandl toplam ne kadar ödüyor?",
       "opts": [
-       "Yedi avro seksen",
+       "Dokuz avro yetmiş",
        "On iki avro elli",
        "Dört avro"
       ],
@@ -437,11 +437,11 @@
       "kind": "detail",
       "q_tr": "Frau Brandl nasıl ödüyor?",
       "opts": [
-       "Nakit",
        "Kartla",
+       "Nakit",
        "Ödemiyor"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "s12"
       ]
@@ -454,11 +454,11 @@
       "seviye": "kolay",
       "q_tr": "Hangi kelimeyi duydun?",
       "opts": [
-       "zwölf",
        "zwei",
-       "elf"
+       "elf",
+       "zwölf"
       ],
-      "ans": 0
+      "ans": 2
      },
      {
       "id": "d2",
@@ -494,9 +494,9 @@
       "cumle": "s11",
       "seviye": "usta",
       "accepted": [
-       "Das macht sieben Euro achtzig.",
-       "das macht sieben euro achtzig",
-       "Das macht sieben Euro achtzig"
+       "Das macht neun Euro siebzig.",
+       "das macht neun euro siebzig",
+       "Das macht neun Euro siebzig"
       ]
      },
      {
@@ -604,11 +604,11 @@
        "kind": "detail",
        "q_tr": "Kaç küçük ekmek almalısın?",
        "opts": [
-        "On",
         "Üç",
+        "On",
         "İki"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c5"
        ]
@@ -617,11 +617,11 @@
        "kind": "detail",
        "q_tr": "Derya pastayı kaçta alıyor?",
        "opts": [
-        "Sekizde",
         "Altıda",
-        "Onda"
+        "Onda",
+        "Sekizde"
        ],
-       "ans": 0,
+       "ans": 2,
        "kanit": [
         "c3"
        ]
@@ -718,11 +718,11 @@
     "k": "pick",
     "q_tr": "Yarın sabah ne yapmalısın?",
     "opts": [
-     "İşe gitmeden önce fırından on küçük ekmek al.",
      "Pastayı fırından al.",
+     "İşe gitmeden önce fırından on küçük ekmek al.",
      "Derya'yı sekizde ara."
     ],
-    "ans": 0,
+    "ans": 1,
     "why_tr": "Derya on küçük ekmek istiyor. Pastayı kendisi alıyor.",
     "kanit": [
      "c3",
@@ -734,7 +734,7 @@
    "id": "m1:14:a2",
    "tur": "anons",
    "title_tr": "Muayenehanenin telefonu: pazar günü",
-   "ortam_tr": "Pazar günü muayenehaneyi arıyorsun. Bir kayıt çalıyor.",
+   "ortam_tr": "Pazar günü muayenehaneyi arıyorsun. Salı günkü randevunun saatinden emin değilsin. Bir kayıt çalıyor.",
    "speaker": "ch:huber",
    "hizlar": [
     "slow",
@@ -781,11 +781,11 @@
       "kind": "gist",
       "q_tr": "Kayıt ne diyor?",
       "opts": [
-       "Muayenehane bugün kapalı",
        "Doktor tatilde",
-       "Randevun iptal oldu"
+       "Randevun iptal oldu",
+       "Muayenehane bugün kapalı"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "c2"
       ]
@@ -808,11 +808,11 @@
        "kind": "detail",
        "q_tr": "Randevu için ne yapmalısın?",
        "opts": [
-        "Pazartesi aramalısın",
         "Bugün gitmelisin",
+        "Pazartesi aramalısın",
         "Bir mektup yazmalısın"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c4"
        ]
@@ -825,11 +825,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi kelimeyi duydun?",
        "opts": [
-        "Montag",
         "Sonntag",
-        "Freitag"
+        "Freitag",
+        "Montag"
        ],
-       "ans": 0
+       "ans": 2
       },
       {
        "id": "d2",
@@ -888,25 +888,23 @@
      "cevapla": {
       "id": "m1:14:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Pazartesi sabahı muayenehaneyi yine arıyorsun. Frau Huber açıyor. Bugün için randevu iste.",
+      "situation_tr": "Pazartesi sabahı muayenehaneyi yine arıyorsun. Frau Huber açıyor. Salı günkü randevunun saatini sor.",
       "prompt_de": "Praxis Dr. Weber, Huber, guten Tag?",
       "accepted": [
-       "Guten Tag, Frau Huber! Hier ist {name}. Ich hätte gern heute einen Termin.",
-       "Guten Tag, hier ist {name}. Ich hätte gern heute einen Termin.",
-       "Guten Tag! Hier ist {name}. Haben Sie heute einen Termin frei?",
-       "Guten Tag, Frau Huber. Hier ist {name}. Ich möchte heute einen Termin.",
-       "Guten Tag, hier ist {name}. Geht heute ein Termin?",
-       "Guten Tag, Frau Huber! Hier ist {name}. Ich hätte gern einen Termin für heute.",
-       "Guten Tag, hier ist {name}. Ich hätte heute gern einen Termin.",
-       "Guten Tag, hier ist {name}. Ich hätte gerne heute einen Termin."
+       "Guten Tag, Frau Huber! Hier ist {name}. Wann ist mein Termin am Dienstag?",
+       "Guten Tag, hier ist {name}. Wann ist mein Termin am Dienstag?",
+       "Guten Tag! Hier ist {name}. Wann ist mein Termin?",
+       "Guten Tag, Frau Huber. Hier ist {name}. Wann ist am Dienstag mein Termin?",
+       "Guten Tag, hier ist {name}. Ich habe am Dienstag einen Termin. Wann ist der Termin?",
+       "Guten Tag, hier ist {name}. Um wie viel Uhr ist mein Termin am Dienstag?"
       ],
-      "why_tr": "Telefonda önce selam ver. Sonra **Ich hätte gern einen Termin** de.",
+      "why_tr": "Telefonda önce selam ver. Sonra **Wann ist mein Termin?** diye sor.",
       "accepted_adsiz": [
-       "Guten Tag, Frau Huber! Ich hätte gern heute einen Termin.",
-       "Guten Tag! Ich hätte gern einen Termin für heute.",
-       "Guten Tag! Ich hätte heute gern einen Termin.",
-       "Guten Tag! Haben Sie heute einen Termin frei?",
-       "Guten Tag, Frau Huber. Ich möchte heute einen Termin."
+       "Guten Tag, Frau Huber! Wann ist mein Termin am Dienstag?",
+       "Guten Tag! Wann ist mein Termin am Dienstag?",
+       "Guten Tag! Wann ist mein Termin?",
+       "Guten Tag, Frau Huber. Wann ist am Dienstag mein Termin?",
+       "Guten Tag! Ich habe am Dienstag einen Termin. Wann ist der Termin?"
       ]
      }
     }
@@ -914,7 +912,7 @@
    "eylem": {
     "id": "m1:14:a2:e1",
     "k": "pick",
-    "q_tr": "Pazar günü randevu istiyorsun. Ne yapmalısın?",
+    "q_tr": "Randevunun saatini sormak istiyorsun. Ne yapmalısın?",
     "opts": [
      "Pazartesi sekizden sonra ara.",
      "Hemen muayenehaneye git.",
@@ -1072,17 +1070,18 @@
    },
    {
     "id": "n3",
-    "de": "Der Kuchen hier kostet zwölf Euro. Der da nur vier Euro.",
-    "tr": "Buradaki pasta on iki avro. Şuradaki yalnızca dört avro.",
+    "de": "Der Kuchen hier kostet zwölf Euro fünfzig. Der da nur vier Euro.",
+    "tr": "Buradaki pasta on iki avro elli. Şuradaki yalnızca dört avro.",
     "secenekler": [
      {
-      "de": "Zwölf Euro? Das ist zu teuer. Ich hätte gern den Kuchen für vier Euro.",
-      "tr": "On iki avro mu? Bu fazla pahalı. Dört avroluk pastayı rica ediyorum.",
+      "de": "Zwölf Euro fünfzig? Das ist zu teuer. Ich hätte gern den Kuchen für vier Euro.",
+      "tr": "On iki avro elli mi? Bu fazla pahalı. Dört avroluk pastayı rica ediyorum.",
       "accepted": [
-       "Zwölf Euro? Das ist zu teuer. Ich hätte gern den Kuchen für vier Euro.",
-       "Zwölf Euro ist zu teuer. Ich hätte gern den Kuchen für vier Euro.",
+       "Zwölf Euro fünfzig? Das ist zu teuer. Ich hätte gern den Kuchen für vier Euro.",
+       "Zwölf fünfzig? Das ist zu teuer. Ich hätte gern den Kuchen für vier Euro.",
+       "Zwölf Euro fünfzig ist zu teuer. Ich hätte gern den Kuchen für vier Euro.",
        "Das ist zu teuer. Ich hätte gerne den Kuchen für vier Euro.",
-       "Zwölf Euro? Zu teuer! Den Kuchen für vier Euro, bitte."
+       "Zwölf Euro fünfzig? Zu teuer! Den Kuchen für vier Euro, bitte."
       ],
       "sonraki": "n4",
       "uygun": true,
@@ -1118,8 +1117,8 @@
    },
    {
     "id": "n4",
-    "de": "Das macht sieben Euro achtzig. Bar oder mit Karte?",
-    "tr": "Toplam yedi avro seksen. Nakit mi, kartla mı?",
+    "de": "Das macht neun Euro zehn. Bar oder mit Karte?",
+    "tr": "Toplam dokuz avro on. Nakit mi, kartla mı?",
     "secenekler": [
      {
       "de": "Bar, bitte. Hier sind zehn Euro.",
@@ -1164,8 +1163,8 @@
    },
    {
     "id": "n4b",
-    "de": "Sieben Euro achtzig! Bar oder mit Karte?",
-    "tr": "Yedi avro seksen! Nakit mi, kartla mı?",
+    "de": "Neun Euro zehn! Bar oder mit Karte?",
+    "tr": "Dokuz avro on! Nakit mi, kartla mı?",
     "secenekler": [
      {
       "de": "Ach so! Bar, bitte.",
@@ -1240,19 +1239,19 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Fırının kapısındaki not",
-  "metin_de": "Heute ist Sonntag. Wir haben von acht bis elf Uhr offen. Eine Semmel kostet sechzig Cent. Ein Brot kostet drei Euro neunzig. Der Kuchen kostet heute nur zehn Euro. Kuchen gibt es nur bis zehn Uhr.",
-  "metin_tr": "Bugün pazar. Sekizden on bire kadar açığız. Bir küçük ekmek altmış sent. Bir ekmek üç avro doksan. Pasta bugün yalnızca on avro. Pasta yalnızca saat ona kadar var.",
+  "metin_de": "Heute ist Sonntag. Wir haben von acht bis elf Uhr offen. Eine Semmel kostet sechzig Cent. Ein Brot kostet drei Euro neunzig. Ein Kuchen kostet heute nur vier Euro. Kuchen gibt es nur bis zehn Uhr.",
+  "metin_tr": "Bugün pazar. Sekizden on bire kadar açığız. Bir küçük ekmek altmış sent. Bir ekmek üç avro doksan. Bir pasta bugün yalnızca dört avro. Pasta yalnızca saat ona kadar var.",
   "sorular": [
    {
     "id": "m1:14:o1",
     "kind": "gist",
     "q_tr": "Bu not ne hakkında?",
     "opts": [
-     "Fırının pazar saatleri ve fiyatları",
      "Yeni bir kurs",
+     "Fırının pazar saatleri ve fiyatları",
      "Muayenehanenin saatleri"
     ],
-    "ans": 0,
+    "ans": 1,
     "kanit": [
      1,
      2
@@ -1263,11 +1262,11 @@
     "kind": "detail",
     "q_tr": "Bir küçük ekmek ne kadar?",
     "opts": [
-     "Altmış sent",
      "Bir avro",
-     "Yirmi sent"
+     "Yirmi sent",
+     "Altmış sent"
     ],
-    "ans": 0,
+    "ans": 2,
     "kanit": [
      2
     ]
@@ -1277,9 +1276,9 @@
     "kind": "detail",
     "q_tr": "Pasta bugün ne kadar?",
     "opts": [
-     "On avro",
+     "Dört avro",
      "On iki avro",
-     "Dört avro"
+     "On avro"
     ],
     "ans": 0,
     "kanit": [
@@ -1291,11 +1290,11 @@
     "kind": "detail",
     "q_tr": "Pasta saat kaça kadar var?",
     "opts": [
-     "Saat ona kadar",
      "Saat on bire kadar",
+     "Saat ona kadar",
      "Akşama kadar"
     ],
-    "ans": 0,
+    "ans": 1,
     "kanit": [
      5
     ]

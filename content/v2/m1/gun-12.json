@@ -18,9 +18,7 @@
   "ch:aksoy",
   "ch:lechner",
   "ch:huber",
-  "ch:kraus",
-  "ch:brandl",
-  "ch:wimmer"
+  "ch:popescu"
  ],
  "requires": {
   "kelimeler": [],
@@ -148,6 +146,18 @@
      ]
     },
     {
+     "kart": "lx:zu#2",
+     "de": "Zehn Flaschen? Das ist zu viel. Ich möchte nur zwei Flaschen.",
+     "tr": "On şişe mi? Bu fazla. Yalnızca iki şişe istiyorum.",
+     "accepted": [
+      "Zehn Flaschen? Das ist zu viel. Ich möchte nur zwei Flaschen.",
+      "Zehn Flaschen? Das ist zu viel. Ich möchte nur zwei.",
+      "Zehn Flaschen sind zu viel. Ich möchte nur zwei Flaschen.",
+      "Zehn Flaschen? Das ist zu viel! Ich möchte nur zwei Flaschen.",
+      "Zehn Flaschen? Das ist zu viel. Ich hätte gern nur zwei Flaschen."
+     ]
+    },
+    {
      "kart": "lx:so",
      "de": "Ach so! Dann hätte ich gern einen Termin am Montag.",
      "tr": "Anladım! O zaman pazartesi için bir randevu rica ediyorum.",
@@ -193,14 +203,26 @@
      ]
     },
     {
-     "kart": "lx:schwimmen",
-     "de": "Hallo Basti! Gehst du morgen schwimmen?",
-     "tr": "Selam Basti! Yarın yüzmeye gidiyor musun?",
+     "kart": "lx:so",
+     "de": "Die Semmeln sind heute nicht so warm.",
+     "tr": "Küçük ekmekler bugün o kadar sıcak değil.",
      "accepted": [
-      "Hallo Basti! Gehst du morgen schwimmen?",
-      "Hallo, Basti! Gehst du morgen schwimmen?",
-      "Hallo Basti, gehst du morgen schwimmen?",
-      "Hallo Basti! Gehst du morgen auch schwimmen?"
+      "Die Semmeln sind heute nicht so warm.",
+      "Heute sind die Semmeln nicht so warm.",
+      "Die Semmeln sind heute nicht so warm!",
+      "Die Semmeln sind nicht so warm heute."
+     ]
+    },
+    {
+     "kart": "lx:schwimmen",
+     "de": "Hallo Ioana! Möchtest du morgen schwimmen gehen?",
+     "tr": "Selam Ioana! Yarın yüzmeye gitmek ister misin?",
+     "accepted": [
+      "Hallo Ioana! Möchtest du morgen schwimmen gehen?",
+      "Hallo, Ioana! Möchtest du morgen schwimmen gehen?",
+      "Hallo Ioana, möchtest du morgen schwimmen gehen?",
+      "Hallo Ioana! Möchtest du morgen schwimmen?",
+      "Hallo Ioana! Möchtest du morgen auch schwimmen gehen?"
      ]
     },
     {
@@ -243,20 +265,20 @@
      },
      {
       "r": "ch:lechner",
-      "de": "Gut. Und morgen? Gehst du mit Basti schwimmen?",
-      "tr": "Peki. Ya yarın? Basti'yle yüzmeye gidiyor musun?"
+      "de": "Gut. Und morgen? Gehst du schwimmen?",
+      "tr": "Peki. Ya yarın? Yüzmeye gidiyor musun?"
      },
      {
       "r": "ogrenci",
-      "de": "Ja, aber um zehn. Um acht ist zu früh!",
-      "tr": "Evet, ama onda. Sekiz fazla erken!"
+      "de": "Ja, aber um elf. Um zehn ist zu früh!",
+      "tr": "Evet, ama on birde. On fazla erken!"
      }
     ],
     "soru": {
      "q_tr": "Yarın kaçta yüzmeye gidiyorsun?",
      "opts": [
+      "On birde",
       "Onda",
-      "Sekizde",
       "Hiç gitmiyorsun",
       "Akşam"
      ],
@@ -407,11 +429,11 @@
      "kind": "gist",
      "q_tr": "Derya fırında ne yapıyor?",
      "opts": [
-      "Firma için pasta sipariş ediyor",
       "Kendine ekmek alıyor",
-      "Fırında çalışmaya başlıyor"
+      "Fırında çalışmaya başlıyor",
+      "Firma için pasta sipariş ediyor"
      ],
-     "ans": 0,
+     "ans": 2,
      "kanit": [
       "s2",
       "s4"
@@ -450,10 +472,10 @@
       "q_tr": "Derya pastayı almaya pazartesi kaçta geliyor?",
       "opts": [
        "Yedide",
-       "Sekizde",
-       "On ikide"
+       "On ikide",
+       "Sekizde"
       ],
-      "ans": 1,
+      "ans": 2,
       "kanit": [
        "s12"
       ]
@@ -552,7 +574,7 @@
    "id": "m1:12:a1",
    "tur": "sesli-mesaj",
    "title_tr": "Muayenehaneden sesli mesaj",
-   "ortam_tr": "Öğlen telefonuna bakıyorsun. Frau Huber bir mesaj bırakmış.",
+   "ortam_tr": "Öğlen telefonuna bakıyorsun. Salı sabahı sekizde randevun var. Frau Huber bir mesaj bırakmış.",
    "speaker": "ch:huber",
    "hizlar": [
     "slow",
@@ -566,13 +588,13 @@
     },
     {
      "id": "c2",
-     "de": "Sie hätten gern einen Termin.",
-     "tr": "Bir randevu istiyorsunuz."
+     "de": "Sie haben am Dienstag um acht einen Termin.",
+     "tr": "Salı günü sekizde randevunuz var."
     },
     {
      "id": "c3",
-     "de": "Am Montag haben wir leider keinen Termin frei.",
-     "tr": "Pazartesi maalesef boş randevumuz yok."
+     "de": "Um acht geht es leider nicht.",
+     "tr": "Sekizde maalesef olmuyor."
     },
     {
      "id": "c4",
@@ -605,11 +627,11 @@
       "kind": "gist",
       "q_tr": "Frau Huber neden arıyor?",
       "opts": [
-       "Randevu için başka bir gün öneriyor",
        "Randevunu iptal ediyor",
+       "Randevunun saatini değiştiriyor",
        "Bir fatura için arıyor"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "c3",
        "c4"
@@ -618,13 +640,13 @@
      "ayrinti": [
       {
        "kind": "detail",
-       "q_tr": "Salı günü randevu saat kaçta?",
+       "q_tr": "Salı günü yeni randevu saat kaçta?",
        "opts": [
-        "Onu çeyrek geçe",
         "On buçukta",
-        "Ona çeyrek kala"
+        "Ona çeyrek kala",
+        "Onu çeyrek geçe"
        ],
-       "ans": 0,
+       "ans": 2,
        "kanit": [
         "c4"
        ]
@@ -650,21 +672,21 @@
        "seviye": "kolay",
        "q_tr": "Hangi kelimeyi duydun?",
        "opts": [
-        "Dienstag",
         "Montag",
+        "Dienstag",
         "Freitag"
        ],
-       "ans": 0
+       "ans": 1
       },
       {
        "id": "d2",
        "cumle": "c3",
        "seviye": "orta",
-       "de": "Am Montag haben wir leider keinen Termin ___.",
+       "de": "Um acht geht es leider ___.",
        "accepted": [
-        "frei",
-        "Frei",
-        "frei."
+        "nicht",
+        "Nicht",
+        "nicht."
        ]
       },
       {
@@ -673,17 +695,20 @@
        "seviye": "zor",
        "banka": [
         "Sie",
-        "hätten",
-        "gern",
+        "haben",
+        "am",
+        "Dienstag",
+        "um",
+        "acht",
         "einen",
         "Termin",
         "eine",
-        "möchten"
+        "hätten"
        ],
        "accepted": [
-        "Sie hätten gern einen Termin.",
-        "sie hätten gern einen termin",
-        "Sie hätten gern einen Termin"
+        "Sie haben am Dienstag um acht einen Termin.",
+        "sie haben am dienstag um acht einen termin",
+        "Sie haben am Dienstag um acht einen Termin"
        ]
       },
       {
@@ -700,7 +725,7 @@
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Mesajı Almanca iki kısa cümleyle özetle.",
-       "ornek_de": "Am Montag ist kein Termin frei. Am Dienstag um Viertel nach zehn geht es.",
+       "ornek_de": "Um acht geht es nicht. Der Termin ist am Dienstag um Viertel nach zehn.",
        "zorunlu": [
         "Dienstag",
         "Termin"
@@ -741,11 +766,11 @@
     "k": "pick",
     "q_tr": "Ne yapmalısın?",
     "opts": [
-     "Saat beşe kadar muayenehaneyi ara.",
      "Pazartesi muayenehaneye git.",
-     "Salı sabahı sekizde ara."
+     "Salı sabahı sekizde muayenehaneye git.",
+     "Saat beşe kadar muayenehaneyi ara."
     ],
-    "ans": 0,
+    "ans": 2,
     "why_tr": "Frau Huber saat beşe kadar aramanı istiyor.",
     "kanit": [
      "c5"
@@ -825,11 +850,11 @@
        "kind": "detail",
        "q_tr": "Pazar günü fırın ne zaman açık?",
        "opts": [
-        "Sekizden on bire kadar",
         "Altıdan on ikiye kadar",
+        "Sekizden on bire kadar",
         "Hiç açık değil"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c4"
        ]
@@ -838,11 +863,11 @@
        "kind": "detail",
        "q_tr": "Pazar için pasta istiyorsan ne zamana kadar gitmelisin?",
        "opts": [
-        "Cumaya kadar",
         "Cumartesiye kadar",
-        "Pazar sabahına kadar"
+        "Pazar sabahına kadar",
+        "Cumaya kadar"
        ],
-       "ans": 0,
+       "ans": 2,
        "kanit": [
         "c5"
        ]
@@ -938,11 +963,11 @@
     "k": "pick",
     "q_tr": "Pazar günü misafirin var, pasta istiyorsun. Ne yapmalısın?",
     "opts": [
-     "Bugün, cuma günü fırına gidip pastayı iste.",
      "Pazar sabahı onda gidip pasta iste.",
+     "Bugün, cuma günü fırına gidip pastayı iste.",
      "Cumartesi akşamı fırını ara."
     ],
-    "ans": 0,
+    "ans": 1,
     "why_tr": "Pazar için pasta isteyen cumaya kadar gelmeli.",
     "kanit": [
      "c5"
@@ -994,52 +1019,41 @@
  ],
  "prova": {
   "id": "m1:12:p1",
-  "title_tr": "Muayenehaneyi arıyorsun: randevu",
-  "durum_tr": "Cuma sabahı. Dr. Weber'den bir randevu istiyorsun. Frau Huber telefonu açıyor. Pazartesi sabah sekiz sana erken.",
-  "karsi": "ch:huber",
+  "title_tr": "Kafede: sipariş ve hesap",
+  "durum_tr": "Cuma öğlen, Stadtplatz'ta bir kafe. Ioana'yla oturuyorsun. Garsonu tanımıyorsun.",
+  "karsi": "ein Kellner",
   "baslangic": "n1",
   "dugumler": [
    {
     "id": "n1",
-    "de": "Praxis Dr. Weber, Huber, guten Tag?",
-    "tr": "Dr. Weber muayenehanesi, Huber, iyi günler?",
+    "de": "Guten Tag! Was hätten Sie gern?",
+    "tr": "İyi günler! Ne arzu edersiniz?",
     "secenekler": [
      {
-      "de": "Guten Tag, hier ist {name}. Ich hätte gern einen Termin.",
-      "de_adsiz": "Guten Tag! Ich hätte gern einen Termin.",
-      "tr": "İyi günler, ben {name}. Bir randevu rica ediyorum.",
-      "tr_adsiz": "İyi günler! Bir randevu rica ediyorum.",
+      "de": "Guten Tag! Wir hätten gern einen Kuchen und zwei Semmeln.",
+      "tr": "İyi günler! Bir pasta ve iki küçük ekmek rica ediyoruz.",
       "accepted": [
-       "Guten Tag, hier ist {name}. Ich hätte gern einen Termin.",
-       "Guten Tag! Hier ist {name}. Ich hätte gern einen Termin.",
-       "Guten Tag, hier ist {name}. Ich hätte gern einen Termin, bitte.",
-       "Guten Tag, hier ist {name}. Ich möchte einen Termin.",
-       "Guten Tag, hier ist {name}. Ich hätte gerne einen Termin.",
-       "Guten Tag, Frau Huber. Hier ist {name}. Ich hätte gern einen Termin."
-      ],
-      "accepted_adsiz": [
-       "Guten Tag! Ich hätte gern einen Termin.",
-       "Guten Tag, Frau Huber. Ich hätte gern einen Termin.",
-       "Guten Tag! Ich hätte gerne einen Termin.",
-       "Guten Tag! Ich möchte einen Termin.",
-       "Guten Tag! Ich hätte gern einen Termin, bitte."
+       "Guten Tag! Wir hätten gern einen Kuchen und zwei Semmeln.",
+       "Guten Tag! Wir hätten gerne einen Kuchen und zwei Semmeln.",
+       "Guten Tag, wir hätten gern einen Kuchen und zwei Semmeln.",
+       "Guten Tag! Wir hätten gern einen Kuchen und zwei Semmeln, bitte."
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Çok iyi. Selam ve kibar istek bir arada."
+      "geri_bildirim_tr": "Çok iyi. Selam verdin ve kibarca istedin."
      },
      {
-      "de": "Guten Tag, Frau Huber. Haben Sie einen Termin frei?",
-      "tr": "İyi günler Huber Hanım. Boş bir randevunuz var mı?",
+      "de": "Guten Tag! Einen Kuchen und zwei Semmeln, bitte.",
+      "tr": "İyi günler! Bir pasta ve iki küçük ekmek, lütfen.",
       "accepted": [
-       "Guten Tag, Frau Huber. Haben Sie einen Termin frei?",
-       "Guten Tag, Frau Huber! Haben Sie einen Termin frei?",
-       "Guten Tag. Haben Sie einen Termin frei?",
-       "Guten Tag, Frau Huber. Haben Sie bitte einen Termin frei?"
+       "Guten Tag! Einen Kuchen und zwei Semmeln, bitte.",
+       "Guten Tag, einen Kuchen und zwei Semmeln, bitte.",
+       "Guten Tag! Wir möchten einen Kuchen und zwei Semmeln.",
+       "Guten Tag! Wir möchten einen Kuchen und zwei Semmeln, bitte."
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Olur. **Haben Sie einen Termin frei?** de kibar bir sorudur."
+      "geri_bildirim_tr": "Olur. **bitte** ile kısa ve kibar bir sipariş."
      },
      {
       "de": "Hallo! Wie geht es dir?",
@@ -1047,135 +1061,112 @@
       "accepted": [
        "Hallo! Wie geht es dir?",
        "Hallo, wie geht es dir?",
-       "Hallo! Wie geht es dir, Frau Huber?",
-       "Hallo Frau Huber, wie geht es dir?"
+       "Hallo! Wie geht es dir denn?",
+       "Hallo! Na, wie geht es dir?"
       ],
       "sonraki": "n1b",
       "uygun": false,
-      "geri_bildirim_tr": "Sekretere **du** denmez. **Guten Tag** de, sonra ne istediğini söyle."
+      "geri_bildirim_tr": "Tanımadığın garsona **du** denmez. **Guten Tag** de, sonra ne istediğini söyle."
      }
     ]
    },
    {
     "id": "n1b",
-    "de": "Äh … gut, danke. Wer ist da, bitte?",
-    "tr": "Ee… iyiyim, teşekkürler. Kim arıyor?",
+    "de": "Äh … gut, danke. Und was hätten Sie gern?",
+    "tr": "Ee… iyiyim, teşekkürler. Peki ne arzu edersiniz?",
     "secenekler": [
      {
-      "de": "Entschuldigung! Hier ist {name}. Ich hätte gern einen Termin.",
-      "de_adsiz": "Entschuldigung! Ich hätte gern einen Termin.",
-      "tr": "Affedersiniz! Ben {name}. Bir randevu rica ediyorum.",
-      "tr_adsiz": "Affedersiniz! Bir randevu rica ediyorum.",
+      "de": "Entschuldigung! Wir hätten gern einen Kuchen und zwei Semmeln.",
+      "tr": "Affedersiniz! Bir pasta ve iki küçük ekmek rica ediyoruz.",
       "accepted": [
-       "Entschuldigung! Hier ist {name}. Ich hätte gern einen Termin.",
-       "Entschuldigung, hier ist {name}. Ich hätte gern einen Termin.",
-       "Entschuldigung! Hier ist {name}. Ich möchte einen Termin.",
-       "Entschuldigung, Frau Huber. Hier ist {name}. Ich hätte gern einen Termin."
-      ],
-      "accepted_adsiz": [
-       "Entschuldigung! Ich hätte gern einen Termin.",
-       "Entschuldigung, Frau Huber. Ich hätte gern einen Termin.",
-       "Entschuldigung! Ich möchte einen Termin.",
-       "Entschuldigung! Ich hätte gerne einen Termin."
+       "Entschuldigung! Wir hätten gern einen Kuchen und zwei Semmeln.",
+       "Entschuldigung, wir hätten gern einen Kuchen und zwei Semmeln.",
+       "Entschuldigung! Wir hätten gerne einen Kuchen und zwei Semmeln.",
+       "Entschuldigung! Einen Kuchen und zwei Semmeln, bitte."
       ],
       "sonraki": "n2",
       "uygun": true,
       "geri_bildirim_tr": "Şimdi oldu: önce özür, sonra kibar istek."
      },
      {
-      "de": "Hier ist {name}. Und wie geht es dir?",
-      "de_adsiz": "Gut, danke. Und wie geht es dir?",
-      "tr": "Ben {name}. Ya sen nasılsın?",
-      "tr_adsiz": "İyiyim, teşekkürler. Ya sen nasılsın?",
+      "de": "Gut! Und wie geht es dir?",
+      "tr": "İyi! Ya sen nasılsın?",
       "accepted": [
-       "Hier ist {name}. Und wie geht es dir?",
-       "Hier ist {name}. Wie geht es dir?",
-       "{name}. Und dir?",
-       "Hier ist {name}. Und dir?"
-      ],
-      "accepted_adsiz": [
-       "Gut, danke. Und wie geht es dir?",
+       "Gut! Und wie geht es dir?",
        "Und wie geht es dir?",
        "Gut. Und dir?",
        "Und dir?"
       ],
       "sonraki": "n1b",
       "uygun": false,
-      "geri_bildirim_tr": "Hâlâ **du** diyorsun. Frau Huber'e **Wie geht es Ihnen?** diye sorarsın."
+      "geri_bildirim_tr": "Hâlâ **du** diyorsun. Garsona **Sie** dersin."
      }
     ]
    },
    {
     "id": "n2",
-    "de": "Gern. Passt es am Montag um acht?",
-    "tr": "Memnuniyetle. Pazartesi sekizde uyar mı?",
+    "de": "Gern. Möchten Sie den Kuchen warm?",
+    "tr": "Memnuniyetle. Pastayı sıcak mı istersiniz?",
     "secenekler": [
      {
-      "de": "Um acht ist zu früh. Geht es um zehn?",
-      "tr": "Sekiz fazla erken. Onda olur mu?",
+      "de": "Ja, gern. Aber bitte nicht zu heiß.",
+      "tr": "Evet, lütfen. Ama fazla sıcak olmasın.",
       "accepted": [
-       "Um acht ist zu früh. Geht es um zehn?",
-       "Um acht? Das ist zu früh. Geht es um zehn?",
-       "Acht Uhr ist zu früh. Geht es um zehn?",
-       "Um acht ist leider zu früh. Geht es um zehn Uhr?"
+       "Ja, gern. Aber bitte nicht zu heiß.",
+       "Ja, gern, aber nicht zu heiß.",
+       "Ja, gerne. Aber bitte nicht zu heiß.",
+       "Ja, bitte. Aber nicht zu heiß."
       ],
       "sonraki": "n3",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel. **zu früh** ile sebebi söyledin, yeni saat önerdin."
+      "geri_bildirim_tr": "Güzel. **zu heiß** fazla sıcak demek."
      },
      {
-      "de": "Ach so, Montag um acht. Ja, das geht.",
-      "tr": "Anladım, pazartesi sekizde. Evet, olur.",
+      "de": "Nein, danke. Nicht warm.",
+      "tr": "Hayır, teşekkürler. Sıcak olmasın.",
       "accepted": [
-       "Ach so, Montag um acht. Ja, das geht.",
-       "Montag um acht? Ja, das geht.",
-       "Ja, Montag um acht geht.",
-       "Ach so. Ja, Montag um acht geht."
+       "Nein, danke. Nicht warm.",
+       "Nein, danke, nicht warm.",
+       "Nein, danke.",
+       "Nein, nicht warm, danke."
       ],
       "sonraki": "n3",
       "uygun": true,
-      "geri_bildirim_tr": "Olur. Sekiz sana erken ama yine de kabul ettin."
+      "geri_bildirim_tr": "Olur. Kısa ve kibar bir cevap."
      },
      {
-      "de": "Ich gehe am Montag schwimmen.",
-      "tr": "Pazartesi yüzmeye gidiyorum.",
+      "de": "Der Kuchen ist so teuer.",
+      "tr": "Pasta çok pahalı.",
       "accepted": [
-       "Ich gehe am Montag schwimmen.",
-       "Am Montag gehe ich schwimmen.",
-       "Montag gehe ich schwimmen.",
-       "Ich gehe Montag schwimmen."
+       "Der Kuchen ist so teuer.",
+       "Der Kuchen ist zu teuer.",
+       "Der Kuchen ist so teuer!",
+       "Das ist so teuer."
       ],
       "sonraki": "n2",
       "uygun": false,
-      "geri_bildirim_tr": "Saat uyuyor mu, söylemedin. **Das geht** ya da **zu früh** de."
+      "geri_bildirim_tr": "Garson pastayı sıcak isteyip istemediğini soruyor. **Ja, gern** ya da **Nein, danke** de."
      }
     ]
    },
    {
     "id": "n3",
-    "de": "Gut, dann am Montag. Wie ist Ihr Nachname, bitte?",
-    "tr": "Peki, o zaman pazartesi. Soyadınız lütfen?",
+    "de": "Gern! So, bitte. Möchten Sie noch etwas?",
+    "tr": "Memnuniyetle! Buyurun. Başka bir şey ister misiniz?",
     "secenekler": [
      {
-      "de": "Mein Nachname ist {name}.",
-      "de_adsiz": "Moment, bitte.",
-      "tr": "Soyadım {name}.",
-      "tr_adsiz": "Bir dakika lütfen.",
+      "de": "Nein, danke. Wir hätten gern die Rechnung.",
+      "tr": "Hayır, teşekkürler. Hesabı rica ediyoruz.",
       "accepted": [
-       "Mein Nachname ist {name}.",
-       "{name}.",
-       "Ich heiße {name}.",
-       "Mein Name ist {name}."
-      ],
-      "accepted_adsiz": [
-       "Moment, bitte.",
-       "Einen Moment, bitte.",
-       "Moment.",
-       "Moment bitte, Frau Huber."
+       "Nein, danke. Wir hätten gern die Rechnung.",
+       "Nein, danke. Wir hätten gerne die Rechnung.",
+       "Nein, danke. Die Rechnung, bitte.",
+       "Nein, danke. Ich hätte gern die Rechnung.",
+       "Nein danke, wir hätten gern die Rechnung."
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Olur. Soyadın sorulunca kısa bir cevap yeter."
+      "geri_bildirim_tr": "Çok iyi. Önce kibarca hayır dedin, sonra hesabı istedin."
      },
      {
       "de": "Wie bitte? Können Sie das wiederholen?",
@@ -1189,69 +1180,96 @@
       "sonraki": "n3",
       "uygun": true,
       "geri_bildirim_tr": "İyi bir yol. Anlamadığında tekrar istemek her zaman doğru."
+     },
+     {
+      "de": "Rechnung!",
+      "tr": "Hesap!",
+      "accepted": [
+       "Rechnung!",
+       "Rechnung.",
+       "Die Rechnung!",
+       "Rechnung, schnell!"
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Tek kelime sert duyulur. **Die Rechnung, bitte** de."
      }
     ]
    },
    {
     "id": "n4",
-    "de": "Danke. Dann bis Montag. Auf Wiederhören!",
-    "tr": "Teşekkürler. O zaman pazartesi görüşürüz. Hoşça kalın!",
+    "de": "Gern. Das macht elf Euro. Bar oder mit Karte?",
+    "tr": "Memnuniyetle. On bir avro tutuyor. Nakit mi, kartla mı?",
     "secenekler": [
      {
-      "de": "Danke, Frau Huber. Auf Wiederhören!",
-      "tr": "Teşekkürler Huber Hanım. Hoşça kalın!",
+      "de": "Mit Karte, bitte.",
+      "tr": "Kartla, lütfen.",
       "accepted": [
-       "Danke, Frau Huber. Auf Wiederhören!",
-       "Danke! Auf Wiederhören!",
-       "Danke, auf Wiederhören!",
-       "Danke und auf Wiederhören, Frau Huber!"
+       "Mit Karte, bitte.",
+       "Mit Karte.",
+       "Ich zahle mit Karte.",
+       "Kann ich mit Karte zahlen?",
+       "Mit Karte bitte."
       ],
       "sonraki": "n5",
       "uygun": true,
-      "geri_bildirim_tr": "Telefonda resmî vedalaşma **Auf Wiederhören** olur."
+      "geri_bildirim_tr": "Doğru. Fiyatı anladın ve nasıl ödeyeceğini söyledin."
+     },
+     {
+      "de": "Bar, bitte. Hier sind zwanzig Euro.",
+      "tr": "Nakit, lütfen. Buyurun yirmi avro.",
+      "accepted": [
+       "Bar, bitte. Hier sind zwanzig Euro.",
+       "Bar. Hier sind zwanzig Euro.",
+       "Ich zahle bar. Hier sind zwanzig Euro.",
+       "Bar, bitte."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Fiyatı anladın ve ödedin."
      },
      {
       "de": "Tschüss!",
       "tr": "Hoşça kal!",
       "accepted": [
        "Tschüss!",
-       "Tschüss, Frau Huber!",
-       "Tschüss! Bis Montag!",
-       "Tschüss, bis Montag!"
+       "Tschüss.",
+       "Danke, tschüss!",
+       "Tschüss, bis morgen!"
       ],
       "sonraki": "n4",
       "uygun": false,
-      "geri_bildirim_tr": "**Tschüss** samimidir. Sekretere telefonda **Auf Wiederhören** de."
+      "geri_bildirim_tr": "Henüz ödemedin. Önce **bar** ya da **mit Karte** de."
      }
     ]
    },
    {
     "id": "n5",
-    "de": "Auf Wiederhören!",
-    "tr": "Hoşça kalın!",
+    "de": "Danke schön! Schönen Tag noch!",
+    "tr": "Çok teşekkürler! İyi günler!",
     "son": true
    }
   ],
-  "kapanis_tr": "Muayenehaneyi aradın, kibarca randevu istedin, saati konuştun ve resmî vedalaştın."
+  "kapanis_tr": "Kafede garsona Sie dedin, kibarca sipariş verdin, hesabı istedin ve ödedin."
  },
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Tobi'den mesaj",
-  "metin_de": "Hallo {name}! Wie geht es dir? Basti und ich gehen morgen um zehn schwimmen. Kommst du mit? Dann gehen wir Kuchen essen. Ich zahle die Rechnung!",
-  "metin_de_adsiz": "Hallo! Wie geht es dir? Basti und ich gehen morgen um zehn schwimmen. Kommst du mit? Dann gehen wir Kuchen essen. Ich zahle die Rechnung!",
-  "metin_tr": "Selam {name}! Nasılsın? Basti'yle ben yarın saat onda yüzmeye gidiyoruz. Sen de geliyor musun? Sonra pasta yemeye gidiyoruz. Hesabı ben ödüyorum!",
-  "metin_tr_adsiz": "Selam! Nasılsın? Basti'yle ben yarın saat onda yüzmeye gidiyoruz. Sen de geliyor musun? Sonra pasta yemeye gidiyoruz. Hesabı ben ödüyorum!",
+  "metin_de": "Hallo {name}! Wie geht es dir? Derya und ich gehen morgen um zehn schwimmen. Kommst du mit? Dann gehen wir Kuchen essen. Ich zahle die Rechnung!",
+  "metin_de_adsiz": "Hallo! Wie geht es dir? Derya und ich gehen morgen um zehn schwimmen. Kommst du mit? Dann gehen wir Kuchen essen. Ich zahle die Rechnung!",
+  "metin_tr": "Selam {name}! Nasılsın? Derya'yla ben yarın saat onda yüzmeye gidiyoruz. Sen de geliyor musun? Sonra pasta yemeye gidiyoruz. Hesabı ben ödüyorum!",
+  "metin_tr_adsiz": "Selam! Nasılsın? Derya'yla ben yarın saat onda yüzmeye gidiyoruz. Sen de geliyor musun? Sonra pasta yemeye gidiyoruz. Hesabı ben ödüyorum!",
   "sorular": [
    {
     "id": "m1:12:o1",
     "kind": "gist",
     "q_tr": "Tobi neden yazıyor?",
     "opts": [
-     "Seni yüzmeye çağırıyor",
      "Hasta olduğunu söylüyor",
-     "İşte bir sorun var"
+     "İşte bir sorun var",
+     "Seni yüzmeye çağırıyor"
     ],
-    "ans": 0,
+    "ans": 2,
     "kanit": [
      2,
      3
@@ -1276,11 +1294,11 @@
     "kind": "detail",
     "q_tr": "Yüzmeden sonra ne yapıyorlar?",
     "opts": [
-     "Pasta yemeye gidiyorlar",
      "Fırına ekmek almaya gidiyorlar",
+     "Pasta yemeye gidiyorlar",
      "Eve gidiyorlar"
     ],
-    "ans": 0,
+    "ans": 1,
     "kanit": [
      4
     ]
@@ -1290,11 +1308,11 @@
     "kind": "detail",
     "q_tr": "Hesabı kim ödüyor?",
     "opts": [
-     "Tobi",
-     "Basti",
-     "Sen"
+     "Derya",
+     "Sen",
+     "Tobi"
     ],
-    "ans": 0,
+    "ans": 2,
     "kanit": [
      5
     ]

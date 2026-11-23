@@ -12,11 +12,9 @@
  },
  "unit": "u:a1:13",
  "arm": "pazar",
- "place": "pl:fitness",
+ "place": "pl:marktplatz",
  "characters": [
-  "ch:kraus",
-  "ch:popescu",
-  "ch:brandl"
+  "ch:popescu"
  ],
  "requires": {
   "kelimeler": [],
@@ -45,7 +43,7 @@
  "halkalar": [
   {
    "id": "m1:13:h1",
-   "title_tr": "Spor salonunda: benim kursum, senin kursun",
+   "title_tr": "Havuzda: benim kursum, senin kursun",
    "kartlar": [
     "lx:Kurs",
     "lx:wissen",
@@ -54,8 +52,8 @@
    ],
    "kaliplar": [
     {
-     "de": "Weißt du …? – Wissen Sie …? – Ich weiß … nicht.",
-     "tr": "… biliyor musun? – … biliyor musunuz? – … bilmiyorum."
+     "de": "Weißt du …? – Wissen Sie …? – Ich weiß … nicht. – Ich hätte gern …",
+     "tr": "… biliyor musun? – … biliyor musunuz? – … bilmiyorum. – … rica ediyorum."
     },
     {
      "de": "Ich hab … – Ich komm … – Ich geh … – Wie geht's?",
@@ -66,13 +64,14 @@
    "gorev_cumleleri": [
     {
      "kart": "lx:Kurs",
-     "de": "Guten Tag! Ich hätte gern einen Kurs am Samstag.",
-     "tr": "İyi günler! Cumartesi için bir kurs rica ediyorum.",
+     "de": "Guten Tag! Ich hätte gern die Rechnung für den Kurs.",
+     "tr": "İyi günler! Kursun faturasını rica ediyorum.",
      "accepted": [
-      "Guten Tag! Ich hätte gern einen Kurs am Samstag.",
-      "Guten Tag, ich hätte gern einen Kurs am Samstag.",
-      "Guten Tag! Ich hätte gerne einen Kurs am Samstag.",
-      "Guten Tag! Ich möchte einen Kurs am Samstag."
+      "Guten Tag! Ich hätte gern die Rechnung für den Kurs.",
+      "Guten Tag, ich hätte gern die Rechnung für den Kurs.",
+      "Guten Tag! Ich hätte gerne die Rechnung für den Kurs.",
+      "Guten Tag! Die Rechnung für den Kurs, bitte.",
+      "Guten Tag! Ich möchte die Rechnung für den Kurs."
      ]
     },
     {
@@ -216,13 +215,13 @@
     },
     {
      "kart": "lx:Mal",
-     "de": "Heute ist mein Kurs zum ersten Mal.",
-     "tr": "Kursum bugün ilk kez yapılıyor.",
+     "de": "Mein Kurs ist heute. Ich komme zum ersten Mal.",
+     "tr": "Kursum bugün. İlk kez geliyorum.",
      "accepted": [
-      "Heute ist mein Kurs zum ersten Mal.",
-      "Mein Kurs ist heute zum ersten Mal.",
-      "Heute ist mein Kurs das erste Mal.",
-      "Heute ist zum ersten Mal mein Kurs."
+      "Mein Kurs ist heute. Ich komme zum ersten Mal.",
+      "Mein Kurs ist heute. Ich komm zum ersten Mal.",
+      "Heute ist mein Kurs. Ich komme zum ersten Mal.",
+      "Mein Kurs ist heute. Ich komme das erste Mal."
      ]
     },
     {
@@ -249,10 +248,10 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Cumartesi sabahı, VilsFit spor salonunun girişi. Basti spor çantasıyla geliyor.",
+    "ortam_tr": "Cumartesi sabahı, yüzme havuzunun girişi. Spor çantalı bir adam sana gülümsüyor.",
     "satirlar": [
      {
-      "r": "ch:kraus",
+      "r": "ein Mann",
       "de": "Hallo! Na, wie geht's? Zum ersten Mal hier?",
       "tr": "Selam! Eee, nasıl gidiyor? İlk kez mi buradasın?"
      },
@@ -262,7 +261,7 @@
       "tr": "Evet, ilk kez. Bugün vaktim var."
      },
      {
-      "r": "ch:kraus",
+      "r": "ein Mann",
       "de": "Mein Kurs ist um zehn. Komm doch mit!",
       "tr": "Benim kursum onda. Sen de gelsene!"
      },
@@ -273,26 +272,26 @@
      }
     ],
     "soru": {
-     "q_tr": "Basti'nin kursu kaçta?",
+     "q_tr": "Adamın kursu kaçta?",
      "opts": [
-      "Onda",
       "Sekizde",
+      "Onda",
       "On ikide",
       "Akşam"
      ],
-     "ans": 0
+     "ans": 1
     }
    }
   }
  ],
  "sahne": {
   "id": "m1:13:v1",
-  "title_tr": "Spor salonunda: Ioana ilk kez burada",
+  "title_tr": "Havuzda: Ioana ilk kez burada",
   "sahneler": [
    {
     "id": "s1",
-    "speaker": "ch:kraus",
-    "sahne_tr": "Cumartesi sabahı, VilsFit'in girişi. Basti, kapıda etrafa bakınan Ioana'yı görüyor.",
+    "speaker": "ein Mann",
+    "sahne_tr": "Cumartesi sabahı, yüzme havuzunun girişi. Spor çantalı bir adam, kapıda etrafa bakınan Ioana'yı görüyor.",
     "de": "Hallo! Wie geht's? Zum ersten Mal hier?",
     "tr": "Selam! Nasıl gidiyor? İlk kez mi buradasın?"
    },
@@ -300,13 +299,13 @@
     "id": "s2",
     "speaker": "ch:popescu",
     "sahne_tr": "Ioana elinde bir broşürle gülümsüyor.",
-    "de": "Ja, das erste Mal. Ich hätte gern einen Kurs.",
-    "tr": "Evet, ilk kez. Bir kurs istiyorum."
+    "de": "Ja, das erste Mal. Ich möchte einen Kurs machen.",
+    "tr": "Evet, ilk kez. Bir kursa gitmek istiyorum."
    },
    {
     "id": "s3",
-    "speaker": "ch:kraus",
-    "sahne_tr": "Basti duvardaki ders listesini gösteriyor.",
+    "speaker": "ein Mann",
+    "sahne_tr": "Adam duvardaki kurs listesini gösteriyor.",
     "de": "Echt? Ich hab um zehn Kurs. Komm doch mit!",
     "tr": "Cidden mi? Benim onda kursum var. Sen de gelsene!"
    },
@@ -319,8 +318,8 @@
    },
    {
     "id": "s5",
-    "speaker": "ch:kraus",
-    "sahne_tr": "Basti gururla başını sallıyor.",
+    "speaker": "ein Mann",
+    "sahne_tr": "Adam gururla başını sallıyor.",
     "de": "Ja, mein Kurs. Immer am Samstag.",
     "tr": "Evet, benim kursum. Her cumartesi."
    },
@@ -333,15 +332,15 @@
    },
    {
     "id": "s7",
-    "speaker": "ch:kraus",
-    "sahne_tr": "Basti omuz silkiyor, tezgâhtaki kadını gösteriyor.",
+    "speaker": "ein Mann",
+    "sahne_tr": "Adam omuz silkiyor, kasadaki kadını gösteriyor.",
     "de": "Das weiß ich nicht. Aber die Frau hier weiß es.",
     "tr": "Onu bilmiyorum. Ama buradaki kadın biliyor."
    },
    {
     "id": "s8",
-    "speaker": "ch:kraus",
-    "sahne_tr": "Basti tezgâhtaki fiyat kartını okuyor.",
+    "speaker": "ein Mann",
+    "sahne_tr": "Adam kasadaki fiyat kartını okuyor.",
     "de": "Ah, hier, auf der Karte: zwanzig Euro im Monat.",
     "tr": "Ha, burada, kartta yazıyor: ayda yirmi avro."
    },
@@ -354,8 +353,8 @@
    },
    {
     "id": "s10",
-    "speaker": "ch:kraus",
-    "sahne_tr": "Basti gülüyor.",
+    "speaker": "ein Mann",
+    "sahne_tr": "Adam gülüyor.",
     "de": "Nichts! Komm einfach um zehn.",
     "tr": "Hiçbir şey! Sadece onda gel."
    },
@@ -368,8 +367,8 @@
    },
    {
     "id": "s12",
-    "speaker": "ch:kraus",
-    "sahne_tr": "Basti havluyu omzuna atıyor.",
+    "speaker": "ein Mann",
+    "sahne_tr": "Adam havluyu omzuna atıyor.",
     "de": "Gern! Ich geh jetzt schwimmen. Bis gleich!",
     "tr": "Rica ederim! Ben şimdi yüzmeye gidiyorum. Birazdan görüşürüz!"
    },
@@ -377,8 +376,8 @@
     "id": "s13",
     "speaker": "ch:popescu",
     "sahne_tr": "Ioana el sallıyor.",
-    "de": "Bis gleich, Basti!",
-    "tr": "Birazdan görüşürüz Basti!"
+    "de": "Bis gleich!",
+    "tr": "Birazdan görüşürüz!"
    }
   ],
   "bolumler": [
@@ -403,9 +402,9 @@
      "kind": "gist",
      "q_tr": "Bu sahnede ne oluyor?",
      "opts": [
-      "Basti, Ioana'yı saat ondaki kursuna çağırıyor",
-      "Ioana, Basti'ye yüzme öğretiyor",
-      "Basti hasta, eve gidiyor"
+      "Bir adam Ioana'yı saat ondaki kursuna çağırıyor",
+      "Ioana adama yüzme öğretiyor",
+      "Adam hasta, eve gidiyor"
      ],
      "ans": 0,
      "kanit": [
@@ -418,11 +417,11 @@
       "kind": "detail",
       "q_tr": "Kurs ayda ne kadar?",
       "opts": [
-       "Yirmi avro",
        "On iki avro",
+       "Yirmi avro",
        "Ücretsiz"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "s8"
       ]
@@ -431,18 +430,18 @@
       "kind": "detail",
       "q_tr": "Ioana saat kaçta geliyor?",
       "opts": [
-       "Onda",
        "On ikide",
-       "Sekizde"
+       "Sekizde",
+       "Onda"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s11"
       ]
      },
      {
       "kind": "detail",
-      "q_tr": "Basti şimdi nereye gidiyor?",
+      "q_tr": "Adam şimdi nereye gidiyor?",
       "opts": [
        "Yüzmeye",
        "Eve",
@@ -461,11 +460,11 @@
       "seviye": "kolay",
       "q_tr": "Hangi kelimeyi duydun?",
       "opts": [
-       "zwanzig",
        "zwölf",
+       "zwanzig",
        "zehn"
       ],
-      "ans": 0
+      "ans": 1
      },
      {
       "id": "d2",
@@ -510,7 +509,7 @@
       "id": "d5",
       "seviye": "gercek",
       "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle özetle.",
-      "ornek_de": "Ioana hätte gern einen Kurs. Der Kurs kostet zwanzig Euro im Monat.",
+      "ornek_de": "Ioana möchte einen Kurs machen. Der Kurs kostet zwanzig Euro im Monat.",
       "zorunlu": [
        "Kurs",
        "zwanzig"
@@ -524,7 +523,7 @@
     "cevapla": {
      "id": "m1:13:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Basti seni de kursa çağırıyor. Saat on sana uyuyor.",
+     "situation_tr": "Adam seni de kursa çağırıyor. Saat on sana uyuyor.",
      "prompt_de": "Und du? Kommst du mit?",
      "accepted": [
       "Ja, gern! Ich komm um zehn.",
@@ -544,7 +543,7 @@
    "id": "m1:13:a1",
    "tur": "sesli-mesaj",
    "title_tr": "Ioana'dan sesli mesaj",
-   "ortam_tr": "Spor salonundan çıkınca telefonuna bakıyorsun. Kurstan arkadaşın Ioana bir mesaj bırakmış.",
+   "ortam_tr": "Havuzdan çıkınca telefonuna bakıyorsun. Kurstan arkadaşın Ioana bir mesaj bırakmış.",
    "speaker": "ch:popescu",
    "hizlar": [
     "slow",
@@ -597,11 +596,11 @@
       "kind": "gist",
       "q_tr": "Ioana neden arıyor?",
       "opts": [
-       "Kurs pazartesi yok, çarşamba var",
        "Ioana hasta",
-       "Kurs tamamen bitti"
+       "Kurs tamamen bitti",
+       "Kurs pazartesi yok, çarşamba var"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "c2",
        "c3"
@@ -625,11 +624,11 @@
        "kind": "detail",
        "q_tr": "Ioana çarşamba günü için ne diyor?",
        "opts": [
-        "Vakti yok",
         "Hasta",
+        "Vakti yok",
         "Geç gelecek"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c5"
        ]
@@ -642,11 +641,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi kelimeyi duydun?",
        "opts": [
-        "Mittwoch",
         "Montag",
-        "Freitag"
+        "Freitag",
+        "Mittwoch"
        ],
-       "ans": 0
+       "ans": 2
       },
       {
        "id": "d2",
@@ -741,8 +740,8 @@
   {
    "id": "m1:13:a2",
    "tur": "anons",
-   "title_tr": "Spor salonunda anons",
-   "ortam_tr": "VilsFit'te hoparlörden bir anons duyuyorsun.",
+   "title_tr": "Havuzda anons",
+   "ortam_tr": "Yüzme havuzunda hoparlörden bir anons duyuyorsun.",
    "hizlar": [
     "slow",
     "normal"
@@ -794,11 +793,11 @@
       "kind": "gist",
       "q_tr": "Anons ne hakkında?",
       "opts": [
+       "Yeni bir havuz",
        "Bugünkü saat değişiklikleri",
-       "Yeni bir spor salonu",
        "Kursların fiyatı"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "c2",
        "c3"
@@ -809,11 +808,11 @@
        "kind": "detail",
        "q_tr": "Saat ondaki kurs bugün kaçta?",
        "opts": [
-        "On buçukta",
         "Onda",
-        "On birde"
+        "On birde",
+        "On buçukta"
        ],
-       "ans": 0,
+       "ans": 2,
        "kanit": [
         "c2"
        ]
@@ -839,11 +838,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi kelimeyi duydun?",
        "opts": [
-        "Sonntag",
         "Samstag",
+        "Sonntag",
         "Montag"
        ],
-       "ans": 0
+       "ans": 1
       },
       {
        "id": "d2",
@@ -904,7 +903,7 @@
      "cevapla": {
       "id": "m1:13:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Basti soruyor: kurs bugün kaçta? Anonsu duydun.",
+      "situation_tr": "Ioana soruyor: kurs bugün kaçta? Anonsu duydun.",
       "prompt_de": "Wann ist der Kurs heute?",
       "accepted": [
        "Heute erst um halb elf.",
@@ -922,11 +921,11 @@
     "k": "pick",
     "q_tr": "Saat ondaki kursa gidecektin. Ne yapmalısın?",
     "opts": [
-     "On buçukta kursta ol.",
      "Onda kursta ol.",
-     "Kursa gitme, eve git."
+     "Kursa gitme, eve git.",
+     "On buçukta kursta ol."
     ],
-    "ans": 0,
+    "ans": 2,
     "why_tr": "Saat ondaki kurs bugün on buçukta başlıyor.",
     "kanit": [
      "c2"
@@ -1031,17 +1030,17 @@
    },
    {
     "id": "n2",
-    "de": "Gut! Du, am Montag ist kein Kurs. Erst am Mittwoch. Weißt du das schon?",
-    "tr": "İyi! Bak, pazartesi kurs yok. Ancak çarşamba. Bunu biliyor muydun?",
+    "de": "Gut! Du, der Kurs am Mittwoch ist erst um acht, nicht um sieben. Weißt du das schon?",
+    "tr": "İyi! Bak, çarşambaki kurs yedide değil, ancak sekizde. Bunu biliyor muydun?",
     "secenekler": [
      {
-      "de": "Nein, das weiß ich nicht. Am Mittwoch um sieben?",
-      "tr": "Hayır, bunu bilmiyorum. Çarşamba yedide mi?",
+      "de": "Nein, das weiß ich nicht. Am Mittwoch um acht?",
+      "tr": "Hayır, bunu bilmiyorum. Çarşamba sekizde mi?",
       "accepted": [
-       "Nein, das weiß ich nicht. Am Mittwoch um sieben?",
-       "Nein, ich weiß das nicht. Am Mittwoch um sieben?",
-       "Nein, das weiß ich nicht. Mittwoch um sieben?",
-       "Nein, das weiß ich nicht! Am Mittwoch um sieben Uhr?"
+       "Nein, das weiß ich nicht. Am Mittwoch um acht?",
+       "Nein, ich weiß das nicht. Am Mittwoch um acht?",
+       "Nein, das weiß ich nicht. Mittwoch um acht?",
+       "Nein, das weiß ich nicht! Am Mittwoch um acht Uhr?"
       ],
       "sonraki": "n3",
       "uygun": true,
@@ -1061,33 +1060,34 @@
       "geri_bildirim_tr": "Olur. **Ach so** yeni öğrendiğin bir şeye cevaptır."
      },
      {
-      "de": "Ich hätte gern einen Kurs.",
-      "tr": "Bir kurs rica ediyorum.",
+      "de": "Ich möchte einen Kurs machen.",
+      "tr": "Bir kursa gitmek istiyorum.",
       "accepted": [
-       "Ich hätte gern einen Kurs.",
-       "Ich hätte gerne einen Kurs.",
+       "Ich möchte einen Kurs machen.",
        "Ich möchte einen Kurs.",
+       "Ich möchte auch einen Kurs machen.",
        "Einen Kurs, bitte."
       ],
       "sonraki": "n2",
       "uygun": false,
-      "geri_bildirim_tr": "Ioana kursun günü değişti diyor. Önce biliyor musun, onu söyle."
+      "geri_bildirim_tr": "Ioana kursun saati değişti diyor. Önce biliyor musun, onu söyle."
      }
     ]
    },
    {
     "id": "n3",
-    "de": "Ja, um sieben. Und wie ist deine Nummer? Ich hab sie nicht.",
-    "tr": "Evet, yedide. Bir de numaran ne? Bende yok.",
+    "de": "Ja, um acht. Und ist das deine Nummer: null eins sieben, drei drei, neun neun?",
+    "tr": "Evet, sekizde. Bir de bu senin numaran mı: sıfır bir yedi, üç üç, dokuz dokuz?",
     "secenekler": [
      {
-      "de": "Meine Nummer ist null eins sieben, drei drei, neun neun.",
-      "tr": "Numaram sıfır bir yedi, üç üç, dokuz dokuz.",
+      "de": "Ja, das ist meine Nummer.",
+      "tr": "Evet, bu benim numaram.",
       "accepted": [
-       "Meine Nummer ist null eins sieben, drei drei, neun neun.",
-       "Meine Nummer: null eins sieben, drei drei, neun neun.",
-       "Meine Nummer ist null eins sieben drei drei neun neun.",
-       "Meine Telefonnummer ist null eins sieben, drei drei, neun neun."
+       "Ja, das ist meine Nummer.",
+       "Ja, das ist meine Nummer!",
+       "Ja, das ist meine.",
+       "Ja, das ist meine Telefonnummer.",
+       "Ja, meine Nummer ist null eins sieben, drei drei, neun neun."
       ],
       "sonraki": "n4",
       "uygun": true,
@@ -1104,36 +1104,36 @@
       ],
       "sonraki": "n3",
       "uygun": true,
-      "geri_bildirim_tr": "Anlamadığında sormak doğru. Şimdi numaranı söyle."
+      "geri_bildirim_tr": "Anlamadığında sormak doğru. Şimdi cevap ver."
      },
      {
-      "de": "Deine Nummer ist null eins sieben.",
-      "tr": "Senin numaran sıfır bir yedi.",
+      "de": "Ja, das ist deine Nummer.",
+      "tr": "Evet, bu senin numaran.",
       "accepted": [
-       "Deine Nummer ist null eins sieben.",
-       "Deine Nummer ist null eins sieben, drei drei.",
-       "Deine Nummer: null eins sieben.",
-       "Deine Telefonnummer ist null eins sieben."
+       "Ja, das ist deine Nummer.",
+       "Ja, das ist deine.",
+       "Ja, deine Nummer.",
+       "Das ist deine Nummer."
       ],
       "sonraki": "n3",
       "uygun": false,
-      "geri_bildirim_tr": "Ioana **senin** numaranı soruyor. Cevaba **Meine Nummer ist** diye başla."
+      "geri_bildirim_tr": "Ioana **senin** numaranı soruyor. **Ja, das ist meine Nummer** de."
      }
     ]
    },
    {
     "id": "n4",
-    "de": "Danke! Ich komm am Mittwoch um sieben. Kommst du?",
-    "tr": "Sağ ol! Ben çarşamba yedide geliyorum. Sen geliyor musun?",
+    "de": "Danke! Um acht hab ich Zeit. Ich komm am Mittwoch. Kommst du?",
+    "tr": "Sağ ol! Sekizde vaktim var. Çarşamba geliyorum. Sen geliyor musun?",
     "secenekler": [
      {
-      "de": "Ja, ich komm um sieben. Bis Mittwoch!",
-      "tr": "Evet, yedide geliyorum. Çarşamba görüşürüz!",
+      "de": "Ja, ich komm um acht. Bis Mittwoch!",
+      "tr": "Evet, sekizde geliyorum. Çarşamba görüşürüz!",
       "accepted": [
-       "Ja, ich komm um sieben. Bis Mittwoch!",
-       "Ja, ich komme um sieben. Bis Mittwoch!",
-       "Ja, klar! Ich komme um sieben. Bis Mittwoch!",
-       "Ja, um sieben. Bis Mittwoch!"
+       "Ja, ich komm um acht. Bis Mittwoch!",
+       "Ja, ich komme um acht. Bis Mittwoch!",
+       "Ja, klar! Ich komme um acht. Bis Mittwoch!",
+       "Ja, um acht. Bis Mittwoch!"
       ],
       "sonraki": "n5",
       "uygun": true,
@@ -1174,22 +1174,22 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Arkadaşına du dedin, kursun gününü öğrendin, numaranı söyledin ve kısa biçimleri anladın."
+  "kapanis_tr": "Arkadaşına du dedin, kursun yeni saatini öğrendin, numaranı doğruladın ve kısa biçimleri anladın."
  },
  "okuma_yazma": {
   "tur": "okuma",
-  "title_tr": "Basti'den mesaj",
-  "metin_de": "Hallo {name}! Wie geht's? Ich hab heute um zehn Kurs. Komm doch mit! Der Kurs kostet zwanzig Euro im Monat. Das erste Mal kostet nichts. Dann geh ich schwimmen.",
-  "metin_de_adsiz": "Hallo! Wie geht's? Ich hab heute um zehn Kurs. Komm doch mit! Der Kurs kostet zwanzig Euro im Monat. Das erste Mal kostet nichts. Dann geh ich schwimmen.",
-  "metin_tr": "Selam {name}! Nasıl gidiyor? Bugün onda kursum var. Sen de gelsene! Kurs ayda yirmi avro. İlk sefer ücretsiz. Sonra yüzmeye gidiyorum.",
-  "metin_tr_adsiz": "Selam! Nasıl gidiyor? Bugün onda kursum var. Sen de gelsene! Kurs ayda yirmi avro. İlk sefer ücretsiz. Sonra yüzmeye gidiyorum.",
+  "title_tr": "Ioana'dan mesaj",
+  "metin_de": "Hallo {name}! Wie geht's? Ich hab am Samstag um zehn Kurs. Komm doch mit! Der Kurs kostet zwanzig Euro im Monat. Das erste Mal kostet nichts. Dann geh ich schwimmen.",
+  "metin_de_adsiz": "Hallo! Wie geht's? Ich hab am Samstag um zehn Kurs. Komm doch mit! Der Kurs kostet zwanzig Euro im Monat. Das erste Mal kostet nichts. Dann geh ich schwimmen.",
+  "metin_tr": "Selam {name}! Nasıl gidiyor? Cumartesi onda kursum var. Sen de gelsene! Kurs ayda yirmi avro. İlk sefer ücretsiz. Sonra yüzmeye gidiyorum.",
+  "metin_tr_adsiz": "Selam! Nasıl gidiyor? Cumartesi onda kursum var. Sen de gelsene! Kurs ayda yirmi avro. İlk sefer ücretsiz. Sonra yüzmeye gidiyorum.",
   "sorular": [
    {
     "id": "m1:13:o1",
     "kind": "gist",
-    "q_tr": "Basti ne istiyor?",
+    "q_tr": "Ioana ne istiyor?",
     "opts": [
-     "Seni saat ondaki kursa çağırıyor",
+     "Seni cumartesi günkü kursa çağırıyor",
      "Senden para istiyor",
      "Yüzme öğrenmek istiyor"
     ],
@@ -1204,11 +1204,11 @@
     "kind": "detail",
     "q_tr": "Kurs ayda kaç avro?",
     "opts": [
-     "Yirmi",
      "On",
+     "Yirmi",
      "Otuz"
     ],
-    "ans": 0,
+    "ans": 1,
     "kanit": [
      4
     ]
@@ -1218,11 +1218,11 @@
     "kind": "detail",
     "q_tr": "İlk sefer ne kadar?",
     "opts": [
-     "Ücretsiz",
      "Yirmi avro",
-     "On avro"
+     "On avro",
+     "Ücretsiz"
     ],
-    "ans": 0,
+    "ans": 2,
     "kanit": [
      5
     ]
@@ -1230,7 +1230,7 @@
    {
     "id": "m1:13:o4",
     "kind": "detail",
-    "q_tr": "Basti kurstan sonra ne yapıyor?",
+    "q_tr": "Ioana kurstan sonra ne yapıyor?",
     "opts": [
      "Yüzmeye gidiyor",
      "Eve gidiyor",
@@ -1243,8 +1243,8 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Basti'ye kısa bir cevap yaz. Geliyorsun. İlk kez geldiğini ve saat onda orada olacağını söyle.",
-   "ornek_de": "Hallo Basti! Ich komme mit. Ich komme zum ersten Mal. Ich bin um zehn da.",
+   "gorev_tr": "Ioana'ya kısa bir cevap yaz. Geliyorsun. Kursa ilk kez geldiğini ve saat onda orada olacağını söyle.",
+   "ornek_de": "Hallo Ioana! Ich komme mit. Ich komme zum ersten Mal. Ich bin um zehn da.",
    "zorunlu": [
     "Mal",
     "zehn"
@@ -1377,7 +1377,7 @@
     "k": "listen_and_respond",
     "audio_de": "Na, wie geht's?",
     "speed": "normal",
-    "situation_tr": "Basti soruyor. İyisin. Ona da sor.",
+    "situation_tr": "Ioana soruyor. İyisin. Ona da sor.",
     "accepted": [
      "Gut, danke! Und dir?",
      "Danke, gut. Und dir?",
@@ -1408,7 +1408,7 @@
    {
     "id": "m1:13:s11",
     "k": "guided_response",
-    "situation_tr": "Spor salonunda Basti bir kart buluyor. Kart senin. Teşekkür et ve onda kursa geleceğini söyle.",
+    "situation_tr": "Havuzda bir adam bir kart buluyor. Kart senin. Teşekkür et ve onda kursa geleceğini söyle.",
     "prompt_de": "Ist das deine Karte?",
     "accepted": [
      "Ja, das ist meine Karte. Danke! Ich komme um zehn.",
