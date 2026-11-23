@@ -74,4 +74,10 @@ du/Sie: Weber, Huber, Wimmer, Brandl, Pichler, Schneider, Stadler Sie; Lechner, 
 - Sayıya katılmayan okur notları (sahne anlatımı ve şıklardaki `;`, kalın işaretsiz Almanca) bırakıldı.
 - Denetim (2. tur sonrası): `kontrol.sh 12 --tam` → 5 bilinen "sözlükte yok" hatası, 381 uyarı, dikiş 78–84 hepsi 0, **İhlal: 0**.
 
+## Okur 2. okuma düzeltmeleri (2 GERİ + 1 not)
+- gun-82 · m1:82:s8 `why_tr` · "Kaybettiğin şey ortada." → "Kaybettiğin şeyi **habe** ile **verloren** arasına koyarsın."
+- gr:a2-07:t4 `tr` · "Kısa biçim hem konuşurken hem yazarken kullanılır." geri kondu; ilk cümleden "Konuşurken" çıktı.
+- gun-79 · yazma `kontrol_tr[2]` · örnek **suchen** → **bringen** (örnek metinde sonda duran kelime).
+- Denetim: `kontrol.sh 12 --tam` → 5 bilinen "sözlükte yok" hatası, dikiş **İhlal: 0**.
+
 KARAR: ONAY
