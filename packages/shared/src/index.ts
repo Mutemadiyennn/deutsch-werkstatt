@@ -6,3 +6,4 @@ export * from "./m1.ts";
 export * from "./adsiz.ts";
 export * from "./kume.ts";
 export * from "./dil.ts";
+export * from "./tespit.ts";

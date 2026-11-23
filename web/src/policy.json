@@ -84,5 +84,28 @@
       "min_dk": 5,
       "max_dk": 9
     }
+  },
+  "seviye_tespiti": {
+    "aciklama": "PM-115: A1 seviye tespiti. `havuz` eşiklerini doğrulayıcı (content/tools/tespit.ts) okur; `karar` eşikleri tespit motorunun (PR 2) A2'ye hazır / A1 tamamlama / baştan kararıdır. Sayılar yalnız burada.",
+    "a1_hafta": 8,
+    "havuz": {
+      "can_do_derin_min": 2,
+      "dil_noktasi_derin_min": 2,
+      "dil_noktasi_cikis_uyari": 4,
+      "tarama_hafta": [
+        2,
+        3
+      ]
+    },
+    "kelime": {
+      "tarama": 6,
+      "derin": 12
+    },
+    "karar": {
+      "a2_genel_min": 0.8,
+      "a2_beceri_min": 0.7,
+      "a2_hafta_min": 0.6,
+      "bastan_genel_max": 0.4
+    }
   }
 }

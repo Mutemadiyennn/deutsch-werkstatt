@@ -3,6 +3,7 @@ import { loadContent, checkRules, ROOT } from "./load.ts";
 import { ogretilmemisBosluklar } from "./bosluk.ts";
 import { medyaDenetle } from "./medya.ts";
 import { halkaDenetle } from "./halka.ts";
+import { tespitYukle } from "./tespit.ts";
 import { genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -23,6 +24,11 @@ if (bos.length) {
   const d = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genel, [...c.grammar, ...c.dn.flatMap((x) => x.data)]);
   const h = halkaDenetle(c.m1, new Map(c.temel.map((t) => [t.data.id, t.data])), d, c.kesin);
   c.errors.push(...h.errors); c.warnings.push(...h.warnings);
+}
+// PM-115 md. 5: A1 seviye tespiti havuzu (dosya yoksa sessiz; biçim content/v2/assess/TESPIT_FORMAT.md)
+{
+  const t = tespitYukle(c.dir ?? join(ROOT, "content/v2"));
+  if (t) { c.errors.push(...t.hata); c.warnings.push(...t.uyari); }
 }
 for (const w of c.warnings) console.log("  uyarı:", w);
 for (const e of c.errors) console.log("  HATA:", e);

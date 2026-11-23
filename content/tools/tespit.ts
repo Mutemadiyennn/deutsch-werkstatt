@@ -1,0 +1,251 @@
+/**
+ * A1 seviye tespiti madde havuzu: çözücü + doğrulayıcı (PM-115 md. 5; biçim `content/v2/assess/TESPIT_FORMAT.md`).
+ *  - `tespitKaynaklari(dir)`: bağlanabilir maddelerin dizini (görülmemiş durum, hafta sonu testi, gün sınavı, deneme) ve A1
+ *    günlerinin özeti (can_do, dersler, sınav günü). Dosyalar HAM okunur: gün şemasına bağımlı değil (eksik hafta, fikstür ağacı).
+ *  - `tespitDenetle(girdi)`: saf; şema + bağ + kapsam kuralları → { hata, uyari, cozulen }.
+ *  - `tespitYukle(dir)`: havuz dosyası yoksa null (main'de sessiz); varsa ikisini birleştirir.
+ * Eşikler `web/src/policy.json` → `seviye_tespiti` (kod sabit yazmaz).
+ */
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+import { TespitHavuzu, CEKIRDEK_BECERI, canDoGun, type HavuzBeceri, type TespitCozulen, type TespitKaynak } from "../../packages/shared/src/tespit.ts";
+import { Drill } from "../../packages/shared/src/content.ts";
+import POLICY from "../../web/src/policy.json" with { type: "json" };
+
+export const TESPIT_DOSYA = "assess/a1-seviye-tespiti.json";
+export type TespitPolitika = typeof POLICY.seviye_tespiti;
+export const TESPIT_POLITIKA: TespitPolitika = POLICY.seviye_tespiti;
+
+/** Bağlanabilir kaynak madde */
+export interface KaynakMadde {
+  id: string;
+  kaynak: Exclude<TespitKaynak, "yeni">;
+  dosya: string;
+  /** kaynağın haftası (görülmemiş: dosyanın haftası; test/gün sınavı: günün haftası; deneme: maddenin `hafta`sı, yoksa null) */
+  hafta: number | null;
+  tur: string;
+  uretim: boolean;
+  /** görülmemiş durumun kendi can_do'su */
+  can_do?: string;
+  /** deneme maddesi: deneme kimliği ve bölümü */
+  deneme?: string;
+  bolum?: string;
+  madde: Record<string, unknown>;
+}
+/** A1 gününün tespitte gereken özeti */
+export interface GunOzet { day: number; level: string; can_do: string | null; dersler: string[]; sinav: boolean }
+export interface TespitGirdi {
+  havuz: unknown;
+  kaynaklar: ReadonlyMap<string, KaynakMadde>;
+  gunler: readonly GunOzet[];
+  denemeler: ReadonlySet<string>;
+  politika?: TespitPolitika;
+}
+export interface TespitSonuc { hata: string[]; uyari: string[]; cozulen: TespitCozulen[] }
+
+const haftaOf = (gun: number) => Math.ceil(gun / 7);
+const nesne = (x: unknown): Record<string, unknown> => (x && typeof x === "object" && !Array.isArray(x) ? (x as Record<string, unknown>) : {});
+const dizi = (x: unknown): unknown[] => (Array.isArray(x) ? x : []);
+const yazi = (x: unknown): string | null => (typeof x === "string" ? x : null);
+
+/** Drill türünün üretim olup olmadığı: seçmeli (`pick`, şıklı `gap`) üretim değildir */
+export function drillUretim(m: Record<string, unknown>): boolean {
+  if (m.k === "pick") return false;
+  if (m.k === "gap") return !(Array.isArray(m.opts) && m.opts.length > 0);
+  return ["order", "transform", "guided_response", "listen_and_respond", "tr_de"].includes(String(m.k));
+}
+const DENEME_URETIM = new Set(["form", "mesaj", "guided_response", "listen_and_respond"]);
+
+/** Beceri ↔ madde türü uyumu (biçim belgesi tablosu). `null` = uyumlu; değilse gerekçe. */
+export function beceriUyumu(beceri: HavuzBeceri, x: Pick<KaynakMadde, "kaynak" | "tur" | "uretim" | "madde">): string | null {
+  const t = x.tur, deneme = x.kaynak === "deneme";
+  const sesli = deneme && t === "pick" && Array.isArray(x.madde.ses);
+  const metinli = deneme && t === "pick" && (typeof x.madde.metin_de === "string" || Array.isArray(x.madde.secenekler_de));
+  const ok: Record<HavuzBeceri, boolean> = {
+    konusma: t === "durum" || t === "guided_response" || t === "listen_and_respond",
+    dinleme: t === "listen_and_respond" || sesli,
+    okuma: metinli,
+    yazma: t === "durum" || ["tr_de", "transform", "order", "guided_response", "form", "mesaj"].includes(t) || (t === "gap" && x.uretim),
+    dil: !deneme || t !== "pick"
+  };
+  return ok[beceri] ? null : `beceri "${beceri}" bu madde türüyle ölçülmez (${x.kaynak}/${t})`;
+}
+
+/* ---------- kaynak dizini (ham okuma) ---------- */
+function jsonOku(f: string, hata: string[], ad: string): unknown {
+  try { return JSON.parse(readFileSync(f, "utf8")); } catch (e) { hata.push(`${ad}: JSON okunamadı (${(e as Error).message})`); return null; }
+}
+
+/** İçerik ağacından bağlanabilir maddeler ve A1 gün özetleri */
+export function tespitKaynaklari(dir: string): { kaynaklar: Map<string, KaynakMadde>; gunler: GunOzet[]; denemeler: Set<string>; hata: string[] } {
+  const kaynaklar = new Map<string, KaynakMadde>(), gunler: GunOzet[] = [], denemeler = new Set<string>(), hata: string[] = [];
+  const ekle = (k: KaynakMadde) => {
+    const once = kaynaklar.get(k.id);
+    if (once) { hata.push(`seviye tespiti: kaynak madde kimliği iki kez: ${k.id} (${once.dosya}, ${k.dosya})`); return; }
+    kaynaklar.set(k.id, k);
+  };
+  const m1 = join(dir, "m1");
+  const m1Dosyalar = existsSync(m1) ? readdirSync(m1).sort() : [];
+  for (const f of m1Dosyalar) {
+    const ad = `m1/${f}`;
+    let m: RegExpExecArray | null;
+    if ((m = /^gun-(\d{2,3})\.json$/.exec(f))) {
+      const g = nesne(jsonOku(join(m1, f), hata, ad));
+      const day = typeof g.day === "number" ? g.day : Number(m[1]);
+      gunler.push({ day, level: String(g.level ?? ""), can_do: yazi(nesne(g.can_do).id), dersler: dizi(g.dersler).filter((x): x is string => typeof x === "string"), sinav: typeof g.sinav === "string" });
+      for (const x of dizi(nesne(g.gun_sinavi).maddeler).map(nesne)) {
+        const id = yazi(x.id); if (!id) continue;
+        ekle({ id, kaynak: "gun_sinavi", dosya: ad, hafta: haftaOf(day), tur: String(x.k), uretim: drillUretim(x), madde: x });
+      }
+    } else if ((m = /^hafta-sonu-testi(?:-(\d{2}))?\.json$/.exec(f))) {
+      const hafta = m[1] ? Number(m[1]) : 1;
+      for (const x of dizi(nesne(jsonOku(join(m1, f), hata, ad)).maddeler).map(nesne)) {
+        const id = yazi(x.id); if (!id) continue;
+        // iki ad aynı haftayı verirse (hafta-sonu-testi.json + -01.json) aynı kimlikler gelir: yeni ad kazanır, eski atlanır
+        if (!m[1] && kaynaklar.get(id)?.kaynak === "hafta_testi") continue;
+        if (m[1] && kaynaklar.get(id)?.dosya === "m1/hafta-sonu-testi.json") kaynaklar.delete(id);
+        ekle({ id, kaynak: "hafta_testi", dosya: ad, hafta, tur: String(x.k), uretim: drillUretim(x), madde: x });
+      }
+    } else if ((m = /^gorulmemis-(\d{2})\.json$/.exec(f))) {
+      const hafta = Number(m[1]);
+      for (const x of dizi(nesne(jsonOku(join(m1, f), hata, ad)).durumlar).map(nesne)) {
+        const id = yazi(x.id); if (!id) continue;
+        ekle({ id, kaynak: "gorulmemis", dosya: ad, hafta, tur: "durum", uretim: true, ...(yazi(x.can_do) ? { can_do: x.can_do as string } : {}), madde: x });
+      }
+    }
+  }
+  const as = join(dir, "assess");
+  for (const f of existsSync(as) ? readdirSync(as).sort() : []) {
+    if (!f.endsWith(".json") || f === "bank.json" || f === "a1-seviye-tespiti.json") continue;
+    const d = nesne(jsonOku(join(as, f), hata, `assess/${f}`));
+    if (!Array.isArray(d.bolumler) || typeof d.id !== "string") continue;
+    denemeler.add(d.id);
+    for (const b of d.bolumler.map(nesne)) for (const k of dizi(b.kisimlar).map(nesne)) for (const x of dizi(k.maddeler).map(nesne)) {
+      const id = yazi(x.id); if (!id) continue;
+      ekle({ id, kaynak: "deneme", dosya: `assess/${f}`, hafta: typeof x.hafta === "number" ? x.hafta : null, tur: String(x.k), uretim: DENEME_URETIM.has(String(x.k)), deneme: d.id, bolum: String(b.id), madde: x });
+    }
+  }
+  return { kaynaklar, gunler: gunler.sort((a, b) => a.day - b.day), denemeler, hata };
+}
+
+/* ---------- kurallar ---------- */
+const AD_YER_TUTUCU = /\{[^}]*\}/;
+
+export function tespitDenetle(g: TespitGirdi): TespitSonuc {
+  const P = g.politika ?? TESPIT_POLITIKA, H = P.havuz;
+  const hata: string[] = [], uyari: string[] = [], cozulen: TespitCozulen[] = [];
+  const r = TespitHavuzu.safeParse(g.havuz);
+  if (!r.success) {
+    for (const i of r.error.issues.slice(0, 25)) hata.push(`${i.path.join(".") || "(kök)"} — ${i.message}`);
+    return { hata, uyari, cozulen };
+  }
+  const h = r.data;
+  // `yeni` gövdesinde şemada olmayan alan (Drill nesneleri fazlalığı sessizce atar)
+  dizi(nesne(g.havuz).maddeler).forEach((ham, i) => {
+    const y = nesne(ham).yeni; if (!y) return;
+    const p = Drill.safeParse(y); if (!p.success) return;
+    for (const k of Object.keys(nesne(y))) if (!(k in p.data)) hata.push(`maddeler.${i}.yeni.${k} — şemada olmayan alan`);
+  });
+
+  const SON_GUN = P.a1_hafta * 7;
+  const a1 = g.gunler.filter((x) => x.level === "A1" && x.day >= 1 && x.day <= SON_GUN);
+  const gunMap = new Map(a1.map((x) => [x.day, x]));
+  const dnHafta = new Map<string, number>();
+  for (const x of a1) for (const d of x.dersler) if (!dnHafta.has(d) || dnHafta.get(d)! > haftaOf(x.day)) dnHafta.set(d, haftaOf(x.day));
+  const kullanilan = new Map<string, string>();
+  const tekil = (id: string, yer: string) => { const o = kullanilan.get(id); if (o) hata.push(`${yer}: ${id} havuzda iki kez (${o})`); else kullanilan.set(id, yer); };
+
+  // çekirdek: dört beceri, maddeler bildirilen denemenin aynı adlı bölümünden
+  if (!g.denemeler.has(h.cekirdek.deneme)) hata.push(`cekirdek.deneme: ${h.cekirdek.deneme} assess/ altında bulunamadı`);
+  for (const b of CEKIRDEK_BECERI) for (const id of h.cekirdek[b]) {
+    const yer = `cekirdek.${b}`; tekil(id, yer);
+    const k = g.kaynaklar.get(id);
+    if (!k) { hata.push(`${yer}: ${id} çözülmedi`); continue; }
+    if (k.kaynak !== "deneme" || k.deneme !== h.cekirdek.deneme) { hata.push(`${yer}: ${id} ${h.cekirdek.deneme} denemesinin maddesi değil`); continue; }
+    if (k.bolum !== b) hata.push(`${yer}: ${id} "${k.bolum}" bölümünden (beklenen "${b}")`);
+  }
+
+  h.maddeler.forEach((m, i) => {
+    const yer = `maddeler.${i}`;
+    let k: Pick<KaynakMadde, "kaynak" | "tur" | "uretim" | "madde" | "hafta" | "can_do">;
+    let id: string;
+    if ("ref" in m) {
+      id = m.ref; tekil(id, yer);
+      const x = g.kaynaklar.get(id);
+      if (!x) { hata.push(`${yer}: ref ${id} çözülmedi (görülmemiş, hafta sonu testi, gün sınavı ya da deneme maddesi değil)`); return; }
+      k = x;
+    } else {
+      id = m.yeni.id; tekil(id, yer);
+      if (g.kaynaklar.has(id)) hata.push(`${yer}: yeni madde kimliği ${id} bir kaynak maddeyle çakışıyor`);
+      const madde = m.yeni as unknown as Record<string, unknown>;
+      k = { kaynak: "yeni", tur: m.yeni.k, uretim: drillUretim(madde), madde, hafta: null };
+      const acc = Array.isArray(madde.accepted) ? madde.accepted : [];
+      if (k.uretim && acc.length < 3) hata.push(`${yer}: ${id} üretim maddesinde accepted ${acc.length} < 3 (D-064)`);
+      if (typeof madde.audio_de === "string" && AD_YER_TUTUCU.test(madde.audio_de)) hata.push(`${yer}: ${id} audio_de ad yer tutucusu taşıyor (ses önceden üretilir)`);
+    }
+    const ad = `${yer} (${id})`;
+    if (k.hafta !== null && k.hafta !== m.hafta) hata.push(`${ad}: hafta ${m.hafta}, kaynağın haftası ${k.hafta}`);
+    // can_do: görülmemiş durumun kendi can_do'su havuzda da bulunur (boşsa ondan alınır)
+    const canDo = m.can_do.length ? [...m.can_do] : k.can_do ? [k.can_do] : [];
+    if (k.can_do && !canDo.includes(k.can_do)) hata.push(`${ad}: kaynağın can_do'su ${k.can_do} listede yok`);
+    for (const cd of canDo) {
+      const gun = canDoGun(cd)!;
+      if (gun < 1 || gun > SON_GUN) { hata.push(`${ad}: ${cd} A1 günü değil (1–${SON_GUN})`); continue; }
+      if (haftaOf(gun) > m.hafta) hata.push(`${ad}: ${cd} ${haftaOf(gun)}. haftada öğretiliyor, madde ${m.hafta}. haftayı ölçüyor (önce öğret, sonra iste)`);
+      const gg = gunMap.get(gun);
+      if (gg && gg.can_do !== cd) hata.push(`${ad}: ${cd} gün dosyasındaki can_do ile aynı değil (${gg.can_do})`);
+    }
+    for (const d of m.dil_noktasi) {
+      const w = dnHafta.get(d);
+      if (w === undefined) { hata.push(`${ad}: dil noktası ${d} bir A1 gününün dersler'inde yok`); continue; }
+      if (w > m.hafta) hata.push(`${ad}: ${d} ${w}. haftada öğretiliyor, madde ${m.hafta}. haftayı ölçüyor (önce öğret, sonra iste)`);
+    }
+    if (!canDo.length && !m.dil_noktasi.length) hata.push(`${ad}: ne can_do ne dil noktası var`);
+    const uy = beceriUyumu(m.beceri, k);
+    if (uy) hata.push(`${ad}: ${uy}`);
+    if (m.asama === "tarama" && !(k.kaynak === "gorulmemis" || k.kaynak === "yeni")) hata.push(`${ad}: tarama maddesi görülmemiş durum ya da yeni madde olmalı (${k.kaynak})`);
+    if (m.asama === "tarama" && !k.uretim) hata.push(`${ad}: tarama maddesi üretim olmalı (${k.tur})`);
+    cozulen.push({ id, kaynak: k.kaynak, tur: k.tur, hafta: m.hafta, asama: m.asama, beceri: m.beceri, can_do: canDo, dil_noktasi: [...m.dil_noktasi], uretim: k.uretim, madde: k.madde });
+  });
+
+  // muaf dil noktaları
+  const muaf = new Set<string>();
+  for (const x of h.muaf_dil_noktasi) { if (!dnHafta.has(x.id)) hata.push(`muaf_dil_noktasi: ${x.id} bir A1 gününün dersler'inde yok`); muaf.add(x.id); }
+  if (muaf.size) uyari.push(`seviye tespiti: ${muaf.size} dil noktası muaf (${[...muaf].join(", ")})`);
+
+  // kapsam: içerikte günü bulunan her A1 haftası
+  const derinUretim = cozulen.filter((x) => x.asama === "derin" && x.uretim);
+  const say = (f: (x: TespitCozulen) => boolean) => derinUretim.filter(f).length;
+  const haftalar = new Set(a1.map((x) => haftaOf(x.day)));
+  const yok = Array.from({ length: P.a1_hafta }, (_, i) => i + 1).filter((w) => !haftalar.has(w));
+  if (yok.length) uyari.push(`seviye tespiti: günü içerikte olmayan A1 haftası ${yok.join(", ")}: kapsam denetlenmedi`);
+  const [tMin, tMax] = H.tarama_hafta as [number, number];
+  for (const w of [...haftalar].sort((a, b) => a - b)) {
+    const gunlerW = a1.filter((x) => haftaOf(x.day) === w);
+    const eksikGun = Array.from({ length: 7 }, (_, i) => (w - 1) * 7 + i + 1).filter((d) => !gunMap.has(d));
+    if (eksikGun.length) uyari.push(`seviye tespiti: ${w}. haftada gün dosyası eksik (${eksikGun.join(", ")}): o günlerin can_do'su denetlenmedi`);
+    const cdEksik = gunlerW.filter((x) => !x.sinav && x.can_do).map((x) => [x.can_do!, say((y) => y.can_do.includes(x.can_do!))] as const).filter(([, n]) => n < H.can_do_derin_min);
+    if (cdEksik.length) hata.push(`seviye tespiti ${w}. hafta: derin üretim maddesi en az ${H.can_do_derin_min} olmalı; eksik can_do: ${cdEksik.map(([c, n]) => `${c} (${n})`).join(", ")}`);
+    const dnW = [...dnHafta].filter(([d, hw]) => hw === w && !muaf.has(d)).map(([d]) => [d, say((y) => y.dil_noktasi.includes(d))] as const);
+    const dnEksik = dnW.filter(([, n]) => n < H.dil_noktasi_derin_min);
+    if (dnEksik.length) hata.push(`seviye tespiti ${w}. hafta: derin üretim maddesi en az ${H.dil_noktasi_derin_min} olmalı; eksik dil noktası: ${dnEksik.map(([d, n]) => `${d} (${n})`).join(", ")}`);
+    const dnAz = dnW.filter(([, n]) => n >= H.dil_noktasi_derin_min && n < H.dil_noktasi_cikis_uyari);
+    if (dnAz.length) uyari.push(`seviye tespiti ${w}. hafta: derin üretim maddesi ${H.dil_noktasi_cikis_uyari} altında olan dil noktası (çıkış yoklamasına yeni madde kalmayabilir): ${dnAz.map(([d, n]) => `${d} (${n})`).join(", ")}`);
+    const tarama = cozulen.filter((x) => x.asama === "tarama" && x.hafta === w);
+    if (tarama.length < tMin || tarama.length > tMax) hata.push(`seviye tespiti ${w}. hafta: tarama maddesi ${tarama.length} (beklenen ${tMin}–${tMax})`);
+    else if (!tarama.some((x) => x.beceri === "konusma" || x.beceri === "yazma")) hata.push(`seviye tespiti ${w}. hafta: tarama maddelerinde konuşma ya da yazma yok`);
+  }
+  return { hata, uyari, cozulen };
+}
+
+/** Havuz dosyası yoksa null (henüz yazılmadı: sessiz); varsa kaynak dizini + kurallar */
+export function tespitYukle(dir: string, politika: TespitPolitika = TESPIT_POLITIKA): TespitSonuc | null {
+  const f = join(dir, TESPIT_DOSYA);
+  if (!existsSync(f)) return null;
+  const hata: string[] = [];
+  const havuz = jsonOku(f, hata, TESPIT_DOSYA);
+  if (havuz === null) return { hata, uyari: [], cozulen: [] };
+  const k = tespitKaynaklari(dir);
+  const r = tespitDenetle({ havuz, kaynaklar: k.kaynaklar, gunler: k.gunler, denemeler: k.denemeler, politika });
+  return { hata: [...k.hata, ...r.hata.map((x) => (x.startsWith("seviye tespiti") ? x : `${TESPIT_DOSYA}: ${x}`))], uyari: r.uyari, cozulen: r.cozulen };
+}

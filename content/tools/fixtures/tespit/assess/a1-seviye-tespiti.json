@@ -1,0 +1,192 @@
+{
+ "schema": 1,
+ "id": "tespit:a1:1",
+ "seviye": "A1",
+ "review": {
+  "status": "draft"
+ },
+ "note_tr": "Fikstür havuzu (content/tools/tespit.test.ts): 1. hafta (1.–2. gün) ve 2. hafta (8. gün).",
+ "cekirdek": {
+  "deneme": "assess:a1-deneme:1",
+  "dinleme": [
+   "a1d:d1:01"
+  ],
+  "okuma": [
+   "a1o:o1:01"
+  ],
+  "yazma": [
+   "a1y:y1:01"
+  ],
+  "konusma": [
+   "a1k:k1:01"
+  ]
+ },
+ "maddeler": [
+  {
+   "yeni": {
+    "id": "tespit:a1:m001",
+    "k": "guided_response",
+    "situation_tr": "Komşun bugünün gününü soruyor.",
+    "prompt_de": "Welcher Tag ist heute?",
+    "accepted": [
+     "Heute ist Montag.",
+     "Montag.",
+     "Heute ist Montag"
+    ]
+   },
+   "hafta": 1,
+   "asama": "tarama",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:01"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m002",
+    "k": "tr_de",
+    "tr": "Haziranda geliyorum.",
+    "accepted": [
+     "Ich komme im Juni.",
+     "Im Juni komme ich.",
+     "ich komme im Juni"
+    ]
+   },
+   "hafta": 1,
+   "asama": "tarama",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:02"
+   ]
+  },
+  {
+   "ref": "m1:01:s1",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:01"
+   ],
+   "dil_noktasi": [
+    "r0:01-tage"
+   ]
+  },
+  {
+   "ref": "m1:01:s2",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "dinleme",
+   "can_do": [
+    "cd:m1:01"
+   ],
+   "dil_noktasi": [
+    "r0:01-tage"
+   ]
+  },
+  {
+   "ref": "m1:07:t01",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "dil",
+   "dil_noktasi": [
+    "r0:01-tage"
+   ]
+  },
+  {
+   "ref": "m1:01:s3",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "dil",
+   "can_do": [
+    "cd:m1:01"
+   ]
+  },
+  {
+   "ref": "m1:02:s1",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:02"
+   ],
+   "dil_noktasi": [
+    "r0:02-monate",
+    "r0:11-praesens"
+   ]
+  },
+  {
+   "ref": "m1:02:s2",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:02"
+   ],
+   "dil_noktasi": [
+    "r0:02-monate",
+    "r0:11-praesens"
+   ]
+  },
+  {
+   "ref": "m1:02:s3",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "dil",
+   "dil_noktasi": [
+    "r0:11-praesens"
+   ]
+  },
+  {
+   "ref": "m1:h02:g1",
+   "hafta": 2,
+   "asama": "tarama",
+   "beceri": "konusma"
+  },
+  {
+   "ref": "m1:h02:g2",
+   "hafta": 2,
+   "asama": "tarama",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:08"
+   ]
+  },
+  {
+   "ref": "m1:h02:g3",
+   "hafta": 2,
+   "asama": "derin",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:08"
+   ],
+   "dil_noktasi": [
+    "dn:kucuk-sozcukler"
+   ]
+  },
+  {
+   "ref": "m1:08:s1",
+   "hafta": 2,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:08"
+   ],
+   "dil_noktasi": [
+    "gr:a1-03:t5",
+    "dn:kucuk-sozcukler"
+   ]
+  },
+  {
+   "ref": "m1:08:s2",
+   "hafta": 2,
+   "asama": "derin",
+   "beceri": "dil",
+   "can_do": [
+    "cd:m1:08"
+   ],
+   "dil_noktasi": [
+    "gr:a1-03:t5"
+   ]
+  }
+ ]
+}
