@@ -272,7 +272,7 @@
      "accepted": [
       "Mein Vater ist Patient bei Dr. Weber.",
       "Mein Vater ist bei Dr. Weber Patient.",
-      "Mein Vater ist schon Patient bei Dr. Weber."
+      "Bei Dr. Weber ist mein Vater Patient."
      ]
     }
    ],
@@ -492,10 +492,10 @@
      },
      {
       "kind": "detail",
-      "q_tr": "Babası ne getirmeli?",
+      "q_tr": "Tobi ne getirmeli?",
       "opts": [
-       "kartını",
-       "kimliğini",
+       "babasının kartını",
+       "babasının kimliğini",
        "bir hediye"
       ],
       "ans": 0,
@@ -660,7 +660,7 @@
        "opts": [
         "17 Aralık perşembe",
         "7 Aralık pazartesi",
-        "16 Aralık çarşamba"
+        "18 Aralık cuma"
        ],
        "ans": 0,
        "kanit": [
@@ -954,15 +954,15 @@
      "cevapla": {
       "id": "m1:21:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Derya'yı geri arıyorsun. Baban hasta, yarın muayenehaneye gidiyor. Teşekkür et.",
+      "situation_tr": "Derya'yı geri arıyorsun. Baban hasta, yarın muayenehaneye gidiyor. İkisini de söyle.",
       "prompt_de": "Hallo? Was ist mit deinem Vater?",
       "accepted": [
        "Ja, er ist krank. Morgen geht er zur Praxis. Danke, Derya!",
        "Ja, mein Vater ist krank. Morgen geht er zur Praxis.",
-       "Ja, leider. Er geht morgen zur Praxis.",
+       "Ja, leider ist er krank. Er geht morgen zur Praxis.",
        "Ja, er ist krank. Er geht morgen zur Praxis. Danke!",
        "Ja, mein Vater ist krank. Er hat morgen einen Termin.",
-       "Ja, er ist krank. Danke, Derya!"
+       "Ja, er ist krank. Morgen geht er zur Praxis."
       ],
       "why_tr": "Önce **Ja** de. Sonra ne zaman muayenehaneye gittiğini söyle."
      }
@@ -1316,7 +1316,7 @@
     "opts": [
      "16 Aralık çarşamba",
      "6 Aralık pazar",
-     "17 Aralık perşembe"
+     "18 Aralık cuma"
     ],
     "ans": 0,
     "kanit": [
@@ -1488,7 +1488,7 @@
    {
     "id": "m1:21:s11",
     "k": "guided_response",
-    "situation_tr": "Huber Hanım randevuyu söylüyor. Gün, tarih ve saati tekrar ederek doğrula.",
+    "situation_tr": "Huber Hanım randevuyu söylüyor. Tekrar ederek doğrula: gün ya da tarih, yanında saat.",
     "prompt_de": "Ihr Termin ist am Montag, dem vierzehnten, um neun.",
     "accepted": [
      "Am Montag, dem vierzehnten, um neun? Danke!",

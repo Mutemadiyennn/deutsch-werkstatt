@@ -199,3 +199,48 @@ Kapsam: `git diff 29bfb77 a9b92db` (gün 15–21, `hafta-sonu-testi-03`, `gorulm
 Sınama (`sina.sh 3`): kalan HATA 0 · İhlal 0 · öğretilmeden istenen 0 · hafta sonu testi 12/12 · görülmemiş 7/7 · sınanmayan can_do yok.
 
 ## KARAR: ONAY
+
+## Örneklem geri dönüşü (23.11)
+Kaynak: `docs/v2/qa/orneklem-ic4-hafta-03.md` (%2,4; 3/125). Üç hatalı madde düzeltildi, aynı hata sınıfları yedi günün tamamında tarandı.
+
+### Hatalı 3 madde
+1. `m1:18:yazma`: randevu **cuma saat dört** → **cumartesi saat on** (görev, örnek, zorunlu kelime **Samstag**).
+2. `m1:h03:g1`: **Wann haben Sie am Samstag offen?** kabulü çıktı; yerine **Hallo, hier ist {name}. Haben Sie am Samstag offen?**
+3. `m1:17:h3` **Am Samstag gehe ich einkaufen.**: **immer** kabulü çıktı; yerine **Samstag gehe ich einkaufen.**
+
+### Sınıf taraması: 18. günün tek saat tablosu
+Tablo: Luka cuma yalnız 9–12, cumartesi 8–12, salıdan itibaren öğleden sonra. Senin randevun: cuma dört istendi, olmadı, **cumartesi saat on**.
+- Sahne s7–s8: **Am Samstag habe ich keine Zeit.** (sonra sana cumartesi öneriliyordu) → **Und am Samstag am Nachmittag?** / **Am Samstag bin ich nur bis zwölf hier.**
+- Sahne `cevapla` (`v1:c1`): durum ve bütün kabuller cuma dört → cumartesi on.
+- `a2`: ortam **randevun var** → **randevu istemiştin**; c3 **Am Freitag bin ich nicht da.** → **nur bis zwölf da**; ana fikir şıkkı, `eylem` şıkları ve gerekçesi buna uyduruldu (**salıdan sonra** → **salıdan itibaren**).
+- Prova: `durum_tr` mesajdan sonra bir kez daha sorduğunu söylüyor; `n3`, `n3b` **nur bis zwei** → **nur bis zwölf**; yanlış seçenek **Um zwölf? Ja, um zwölf geht.**
+- 2. halka sahnesi: **Montag geht** → **Samstag geht** (soru şıkları yeniden sıralandı).
+- Gün sınavı `s10`: cumartesi on olmuyor diyordu → **salı saat on**.
+
+### Sınıf taraması: anlam ekleyen halka kabulleri
+Tek ölçü: kabul edilen cevap söz sırasını ve dolgu sözünü (**denn**, **mal**, **dann**, **hier**, **da**) değiştirebilir; Türkçede olmayan zaman, sınır ya da ekleme (**immer**, **nie**, **nur**, **auch**, **noch**, **heute**, **schon**, **jetzt**, **gleich**) getiremez. **immer noch** (hâlâ), **wieder zurück**, **noch mal** eş anlamlı sayıldı. Derece sözleri (**sehr**, **so**, **ganz**, **wirklich**) bırakıldı; örneklem bunları aynı anlam saydı.
+- 27 kabul daha değiştirildi: 15. gün 1 · 16. gün 5 · 17. gün 8 · 18. gün 1 · 19. gün 6 · 20. gün 5 · 21. gün 1. Örnekler: **Ist das nur der Anrufbeantworter?** → **Das ist der Anrufbeantworter?** · **Das Kind isst nie ein Ei.** → **Ein Ei isst das Kind nicht.** · **Jeder spricht hier nur Deutsch.** → **Jeder redet hier Deutsch.** · **Ich bleibe am Wochenende zu Hause.** (Türkçesi **burada**) → **Hier bleibe ich am Wochenende.**
+
+### Sınıf taraması: başka bölümde doğru olan çeldiriciler
+- 15. gün 4. halka sorusu **bu akşam** diyordu, sahnede Derya bu akşam gelmiyor → **bugün**.
+- 19. gün okuma: Ioana **yarın bisikletle**, Basti **bisikletle**; `a2` ise yarın Ioana evde, Basti'nin bisikleti bozuk. Okuma **Am Freitag** oldu, sorular **cuma günü**.
+- 21. gün: `a1` çeldiricisi **16 Aralık çarşamba** okuma kartının doğru cevabıydı, okumanın çeldiricisi **17 Aralık perşembe** `a1`'in doğru cevabıydı → ikisi de **18 Aralık cuma**.
+
+### Sınıf taraması: eksik cevabı kabul eden listeler
+- 17. gün `a1:c1` (tekrar isteği yoktu), `s10` (**langsam sprechen** tekrar değil), `o5` (neden yoktu): birer kabul değişti.
+- 20. gün `o4`: durum **tarihi ve günü** istiyordu, dört kabulde gün yoktu → durum **Yeni tarihi söyle**. `s9`: **Am vierzehnten Dezember?** iki tarihi sormuyordu → **Am vierzehnten oder am vierten Dezember?**
+- 21. gün `a2:c1`: teşekkür şartı kalktı, eksik iki kabul tamamlandı. `s11`, test `t06`, `gorulmemis-03` g7: durum **gün, tarih ve saat** istiyordu, kabuller gün ya da tarih + saat → durum **gün ya da tarih, yanında saat**.
+- Test `t01`: **günü ve saati tekrar et** diyordu; üç kabul tekrar etmiyordu, değiştirildi.
+
+### P3 notları
+- 19. gün `n5` **Und siehst du?** → **Siehst du?** · 17. gün s6 **eski kimliğini** · 16. gün `a2` gerekçesi **mağaza kapanıyor** · 21. gün sahne sorusu **Tobi ne getirmeli?** (şıklar **babasının kartını** …).
+- Yapılmadı: `t04` sesi (**Wie schreibt man das?** adres söylenmeden). Düzgün biçimi **Straße** ister; kelime tabloda yok.
+
+### Kalanlar (engel değil)
+- 18. günde `a2` ile prova aynı olayı iki kez anlatıyor (cuma olmuyor, cumartesi on). Çelişki kalmadı, ama tekrar duruyor; yazar birini başka bir konuya çevirebilir.
+- U-1 (halka diktesi bütün kabulleri sayıyor) kod işi, baş geliştiricide.
+- Değişen Türkçe satırlar okurdan geçmedi.
+
+Sınama (`sina.sh 3`): kalan HATA 0 · İhlal 0 · öğretilmeden istenen 0 · test 12/12 · görülmemiş 7/7 · sınanmayan can_do yok.
+
+**Sonuç:** 3 hatalı madde + sınıf taramasında 50 yer düzeltildi. Yeni örnekleme hazır.
