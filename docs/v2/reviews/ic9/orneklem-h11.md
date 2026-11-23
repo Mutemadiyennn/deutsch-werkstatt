@@ -127,3 +127,17 @@ Dilbilimcinin tam turundan sonra yeniden yazılan maddeler: `gorulmemis-11` g1, 
   - g1 sorusu: "nach dem Sport" → "nach dem Training" (isteğe bağlı).
 
 KARAR: GERİ (g2: Kartoffeln; g4 ve g5: Tee — öğretilmemiş sözcük isteniyor, K(t) ihlali)
+
+## 3. tur (yalnız Tomaten / ein Wasser / einen Kaffee / nach dem Training düzeltmesi)
+`bilinmeyenler()` 7 durumun `prompt_de` ve bütün `accepted` biçimleri üzerinde koşuldu (77. gün sonu kartları).
+- Kalan işaretlerin çoğu bu haftanın halka kalıplarında ya da dil noktasında gösterilmiş:
+  - `hätte`, `würde`, `würden` (74. gün);
+  - `getrennt` (75. gün kalıbı);
+  - `hatte` ve `Oh!` (75/77 dersinde, dikişten geçmiş);
+  - `stimmt so` (76. gün kalıbı).
+- Öteki sözcükler kart olarak öğretilmiş: `Tomate` 23. gün, `Wasser` 38, `Kaffee` 41, `Training` 45, `sofort` 31, `gleich` 8, `bald` 33, `Zug` 49. **Öğrenciden istenen sözcüklerde bilinmeyen 0.**
+- Öğretilmemiş yan biçimler (yalnız g4'te). İkisi silinince g4'te 4 biçim kalır (≥ 3):
+  - "Ich hätte gern ein Wasser zum Mitnehmen. Ich würde gern gleich zahlen.": `lx:mitnehmen` ancak 108. gün.
+  - "Ich hätte gern ein Wasser. Würden Sie bitte gleich kassieren? Mein Zug kommt.": `kassieren` sözlükte yok, hiçbir yerde gösterilmemiş.
+
+KARAR: GERİ (g4 `accepted`'tan 2 biçim silinsin: "… ein Wasser zum Mitnehmen …" ve "… Würden Sie bitte gleich kassieren? …"; başka değişiklik gerekmez)
