@@ -75,7 +75,14 @@ export interface HaftaSonuc { dogru: number; toplam: number; at: string }
 export async function haftaSonuclari(): Promise<Map<number, HaftaSonuc>> {
   return new Map((await metaPrefix<HaftaSonuc>("m1:hafta:")).filter((x) => x.value && typeof x.value.dogru === "number").map((x) => [Number(x.key.slice("m1:hafta:".length)), x.value!]));
 }
-export async function haftaSonucYaz(hafta: number, dogru: number, toplam: number): Promise<void> {
+/** Son çözüm (inceleme #244 P2-2): yanlış maddeler dahil; düşük sonuçta zayıf cümleler ekran kapansa da geri gelir */
+export interface HaftaSon { dogru: number; toplam: number; yanlis: string[]; at: string }
+export async function haftaSonOku(hafta: number): Promise<HaftaSon | null> {
+  const v = await getMeta<HaftaSon>(`m1:hafta-son:${hafta}`);
+  return v && typeof v.dogru === "number" && Array.isArray(v.yanlis) ? v : null;
+}
+export async function haftaSonucYaz(hafta: number, dogru: number, toplam: number, yanlis: string[] = []): Promise<void> {
+  await setMeta(`m1:hafta-son:${hafta}`, { dogru, toplam, yanlis, at: new Date().toISOString() });
   const eski = await getMeta<HaftaSonuc>(`m1:hafta:${hafta}`);
   if (eski && eski.toplam && eski.dogru / eski.toplam >= dogru / Math.max(1, toplam)) return;
   await setMeta(`m1:hafta:${hafta}`, { dogru, toplam, at: new Date().toISOString() });

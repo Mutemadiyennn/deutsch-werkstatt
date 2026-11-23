@@ -116,6 +116,24 @@ def main():
         shot(pg, f"hafta-testi-dusuk-{sema}", full=False)
         m0 = pg.evaluate(META, "m1:hafta:1")
         check(bool(m0) and m0.get("dogru") == d0["d"], f"düşük sonuç da kaydedilir, öğrenci kilitlenmez ({m0})")
+        # son çözüm cihazda (P2-2): yeniden yüklense de zayıf liste gelir; Yol'daki düşük sonuç satırı sonuca gider
+        pg.goto(base + "#/yol"); pg.reload(); pg.wait_for_selector("[data-test=hafta-1] .hafta-satir-btn", timeout=20000)
+        pg.click("[data-test=hafta-1] .hafta-satir-btn")
+        check(pg.get_attribute("[data-test=hafta-1] [data-test=hafta-testi-1]", "href") == "#/hafta/1/sonuc", "düşük sonuçta Yol'daki test satırı son sonuca gider")
+        pg.click("[data-test=hafta-1] [data-test=hafta-testi-1]"); pg.wait_for_selector("[data-test=hafta-testi-sonuc]", timeout=15000)
+        z2 = pg.evaluate("() => [...document.querySelectorAll('[data-test=zayif-liste] li')].map((x) => 'zayif-' + x.dataset.gun)")
+        check(z2 == zgun, f"yeniden açılınca aynı zayıf cümleler ({z2})")
+        ilk = zgun[0][len("zayif-"):]
+        check(pg.get_attribute(f"[data-test=zayif-tekrar-{ilk}]", "href") == f"#/hafta/1/tekrar/{ilk}", "tek satır yalnız kendi gününün tekrarına gider")
+        pg.click(f"[data-test=zayif-tekrar-{ilk}]"); pg.wait_for_selector("[data-test=hafta-tekrar]", timeout=15000)
+        check(pg.get_attribute("[data-test=hafta-tekrar]", "data-gun") == ilk, "tek satırın tekrarı o günden")
+        check(pg.locator("[data-test=hafta-tekrar] a[href='#/hafta/1/sonuc']").count() >= 1, "tekrarın geri oku sonuca döner, test baştan başlamaz (P2-1)")
+        pg.goto(base + "#/hafta/1/sonuc")
+        pg.wait_for_selector("[data-test=hafta-testi-sonuc]", timeout=15000)
+        # adresle kilitli güne tekrar girilmez (P2-5)
+        pg.goto(base + "#/hafta/2/tekrar/9"); pg.wait_for_selector("[data-test=hafta-tekrar-bos], [data-test=hafta-tekrar]", timeout=15000)
+        check(pg.locator("[data-test=hafta-tekrar-bos]").count() == 1, "#/hafta/2/tekrar/9: kilitli günün tekrarı açılmaz")
+        pg.goto(base + "#/hafta/1/sonuc"); pg.wait_for_selector("[data-test=zayif-tekrar]", timeout=15000)
         href = pg.get_attribute("[data-test=zayif-tekrar]", "href") or ""
         check(href == "#/hafta/1/tekrar/" + ",".join(x[len("zayif-"):] for x in zgun), f"tekrar düğmesi bütün zayıf günlere gider ({href})")
         pg.click("[data-test=zayif-tekrar]"); pg.wait_for_selector("[data-test=hafta-tekrar]", timeout=15000)
@@ -130,7 +148,7 @@ def main():
               f"tekrar turu zayıf günlerin gün sınavından ({t} madde, günler {sorted(gunler_)})")
         check(cumlesiz == 0, "her tekrar maddesinin üstünde günün 'yapabiliyorum' cümlesi")
         shot(pg, f"hafta-tekrar-sonuc-{sema}", full=False)
-        pg.click("[data-test=testi-yeniden]"); pg.wait_for_selector("[data-test=hafta-testi]", timeout=15000)
+        pg.click("[data-test=hafta-tekrar-sonuc] [data-test=testi-yeniden]"); pg.wait_for_selector("[data-test=hafta-testi]", timeout=15000)
         sayac = 0
         while pg.locator("[data-test=hafta-testi]").count() and sayac < 20:
             coz(pg); sayac += 1; pg.wait_for_selector("[data-test=hafta-testi], [data-test=hafta-testi-sonuc]")

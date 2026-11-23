@@ -37,32 +37,41 @@ export function haftaTestleri(m1Kok: string): HaftaTestiPaket {
 /** Beceri eşlemesi için günün gereken alanları */
 export interface BeceriGunu { day: number; can_do: { id: string; tr: string }; yeni_kartlar: string[]; dersler: string[] }
 
-/** Maddenin soru metinleri (anlaşılması gereken) ve beklenen cevap adayları (en az biri kurulabilmeli) */
-function metinler(m: Drill): { soru: string[]; aday: string[] } {
+/** Maddenin beklenen cevapları, kanonik sırayla: seçmede doğru şık boşluğa yerleşir; boşluklu cümlede kabul edilenler yerleşir */
+function cevaplar(m: Drill): string[] {
   const o = m as Record<string, unknown>;
-  const yazi = (x: unknown) => (typeof x === "string" && x.trim() ? [x] : []);
-  const soru = [...yazi(o.audio_de), ...yazi(o.prompt_de), ...yazi(o.from_de)];
   const acc = (Array.isArray(o.accepted) ? o.accepted : []).filter((x): x is string => typeof x === "string").slice(0, 60);
   const de = typeof o.de === "string" ? o.de : "";
-  const aday = /_{3,}/.test(de) ? acc.map((a) => de.replace(/_{3,}/, a)) : acc;
-  return { soru, aday };
+  const bos = /_{3,}/;
+  if (Array.isArray(o.opts) && typeof o.ans === "number" && typeof o.opts[o.ans] === "string") {
+    const dogru = o.opts[o.ans] as string;
+    return [bos.test(de) ? de.replace(bos, dogru) : dogru];
+  }
+  return bos.test(de) ? acc.map((a) => de.replace(bos, a)) : acc;
 }
+
+/** Türetmenin sonucu: madde → gün; `yedek` hiçbir günle bağlanamayıp haftanın son gününe düşen maddeler */
+export interface BeceriSonuc { beceriler: Beceri[]; turetilen: string[]; yedek: string[] }
 
 /**
  * Test maddelerini haftanın "yapabiliyorum" cümlelerine bağlar (#243 PM finali takip a). Önce açık bağ (`can_do` alanı; haftada
- * olmayan kimlik HATA). Yoksa yapay zekâsız türetme: maddenin ilk çözülebildiği gün — o güne kadarki kartlar ve derslerle soru
- * metni bütünüyle bilinir ve kabul adaylarından en az biri kurulabilir (kume.ts `bilinmeyenler`). Hiçbir gün yetmezse haftanın
- * son günü. Önceki haftaların kartları ve dersleri `onceki` ile verilir.
+ * olmayan kimlik HATA). Yoksa yapay zekâsız türetme (inceleme #244 P1-1): maddenin beklenen cevabı (kabul listesinin sırasıyla;
+ * seçmede doğru şık) kendi kart sözcüklerini içeren ilk seçenek alınır; madde, o cevabın kart sözcüklerinin hepsinin tanıtıldığı
+ * İLK güne bağlanır (soru metni değil cevap: test cevabı ister; eşlenemeyen sözcük ve rakam sayılmaz). Hiçbir seçenek bağlanamazsa
+ * haftanın son günü (`yedek`; derleme uyarı yazar). Önceki haftaların kartları ve dersleri `onceki` ile verilir.
  */
-export function beceriEsle(maddeler: Drill[], gunler: BeceriGunu[], d: KumeDizini, bag: Record<string, string> = {}, onceki: { kart: string[]; ders: string[] } = { kart: [], ders: [] }): Beceri[] {
+export function beceriEsle(maddeler: Drill[], gunler: BeceriGunu[], d: KumeDizini, bag: Record<string, string> = {}, onceki: { kart: string[]; ders: string[] } = { kart: [], ders: [] }): BeceriSonuc {
   const sirali = [...gunler].sort((a, b) => a.day - b.day);
-  if (!sirali.length) return [];
+  if (!sirali.length) return { beceriler: [], turetilen: [], yedek: [] };
   const cdGun = new Map(sirali.map((g) => [g.can_do.id, g] as const));
+  const bos = { kart: new Set(onceki.kart), biten: new Set(onceki.ders) };
   const bilgi = sirali.map((_, i) => ({
     kart: new Set([...onceki.kart, ...sirali.slice(0, i + 1).flatMap((g) => g.yeni_kartlar)]),
     biten: new Set([...onceki.ders, ...sirali.slice(0, i + 1).flatMap((g) => g.dersler)])
   }));
+  const eksik = (a: string, k: { kart: Set<string>; biten: Set<string> }) => bilinmeyenler(d, a, k).filter((x) => x.tur !== "eslenemedi").length;
   const gunOf = new Map<string, BeceriGunu>();
+  const turetilen: string[] = [], yedek: string[] = [];
   for (const m of maddeler) {
     const acik = bag[m.id];
     if (acik !== undefined) {
@@ -70,10 +79,38 @@ export function beceriEsle(maddeler: Drill[], gunler: BeceriGunu[], d: KumeDizin
       if (!g) throw new Error(`hafta sonu testi ${m.id}: can_do "${acik}" bu haftanın günlerinde yok (${[...cdGun.keys()].join(", ")})`);
       gunOf.set(m.id, g); continue;
     }
-    const { soru, aday } = metinler(m);
-    const i = bilgi.findIndex((k) => soru.every((q) => !bilinmeyenler(d, q, k).length) && aday.some((a) => !bilinmeyenler(d, a, k).length));
-    gunOf.set(m.id, sirali[i >= 0 ? i : sirali.length - 1]!);
+    turetilen.push(m.id);
+    let gun: BeceriGunu | undefined;
+    for (const a of cevaplar(m)) {
+      if (!eksik(a, bos)) continue;            // bu haftanın kart sözcüğü yok (rakam, ad, önceki hafta): sonraki seçenek
+      const i = bilgi.findIndex((k) => !eksik(a, k));
+      if (i >= 0) { gun = sirali[i]; break; }
+    }
+    if (!gun) { yedek.push(m.id); gun = sirali[sirali.length - 1]!; }
+    gunOf.set(m.id, gun);
   }
-  return sirali.filter((g) => [...gunOf.values()].includes(g))
+  const beceriler = sirali.filter((g) => [...gunOf.values()].includes(g))
     .map((g) => ({ gun: g.day, id: g.can_do.id, tr: g.can_do.tr, maddeler: maddeler.filter((m) => gunOf.get(m.id) === g).map((m) => m.id) }));
+  return { beceriler, turetilen, yedek };
+}
+
+/**
+ * Paketteki bütün haftalara beceri bağı (derleme ve doğrulayıcı aynı yoldan; inceleme #244 P2-4). Önceki haftaların kartları:
+ * gün dosyası varsa `yeni_kartlar`/`dersler`, yoksa kesin tablo. Açık bağ hatası `hatalar`a, türetme bilgisi `uyarilar`a düşer.
+ */
+export function haftaBecerileri(test: HaftaTestiPaket, gunler: BeceriGunu[], kesin: Record<string, { kartlar: string[]; dersler: string[] }>, d: KumeDizini): { paket: HaftaTestiPaket; uyarilar: string[]; hatalar: string[] } {
+  const paket: HaftaTestiPaket = {}, uyarilar: string[] = [], hatalar: string[] = [];
+  for (const [h, t] of Object.entries(test)) {
+    const H = Number(h), ilk = (H - 1) * 7 + 1, son = H * 7;
+    const hGun = gunler.filter((g) => g.day >= ilk && g.day <= son);
+    const onceGun = gunler.filter((g) => g.day < ilk);
+    const onceKesin = Object.entries(kesin).filter(([g]) => Number(g) < ilk && !onceGun.some((x) => x.day === Number(g))).map(([, v]) => v);
+    const onceki = { kart: [...onceGun.flatMap((g) => g.yeni_kartlar), ...onceKesin.flatMap((v) => v.kartlar)], ders: [...onceGun.flatMap((g) => g.dersler), ...onceKesin.flatMap((v) => v.dersler)] };
+    try {
+      const b = beceriEsle(t.maddeler, hGun, d, t.bag, onceki);
+      if (b.turetilen.length) uyarilar.push(`${H}. hafta sonu testi: ${b.turetilen.length} maddede açık can_do yok, gün cevaptan türetildi${b.yedek.length ? `; bağlanamayan (son güne): ${b.yedek.join(", ")}` : ""}`);
+      paket[h] = { id: t.id, maddeler: t.maddeler, beceriler: b.beceriler };
+    } catch (e) { hatalar.push(String((e as Error).message)); paket[h] = { id: t.id, maddeler: t.maddeler, beceriler: [] }; }
+  }
+  return { paket, uyarilar, hatalar };
 }

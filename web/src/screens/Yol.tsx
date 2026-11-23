@@ -14,6 +14,7 @@ import { gunBitisleri, gunBittiYaz, haftaSonuclari, ilerlemeOku, xpOku, type Haf
 import { adimAdi, gunAdimlari, gunOzeti, haftaBitti, haftaOf, haftalara, haftaSonuMu, seri, siradaki, yol, yolGunleri, yuklenecekHafta, type Adim, type GunDurum, type XpKayit } from "../core/gun.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
+import POLICY from "../policy.json" with { type: "json" };
 
 export interface Plan { gunler: (GunDurum & { durum: "bitti" | "simdi" | "kilitli" })[]; simdi: GunDurum | null; sonraki: Adim | null; xp: XpKayit; /** sonraki bir gün dosyası yüklenemedi */ eksik?: boolean;
   /** PR B-3: günler haftalara bölünmüş; `testler` pakette hafta sonu testi olan haftalar, `sonuclar` çözülen testler */
@@ -126,9 +127,11 @@ export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Pla
   const testAcik = (h: number) => plan.testHazir.has(h);
   // çözülmemiş önceki hafta testleri (#243 takip c: yalnız bir önceki hafta değil): şimdiki haftanın başında birer satır
   const bekleyenTest = plan.simdi ? [...plan.testHazir].filter((h) => h < hafta && !plan.sonuclar.has(h)).sort((a, b) => a - b) : [];
+  // en iyi sonuç geçme oranının altındaysa son çözümün sonucuna (zayıf cümleler + tekrar) gider (inceleme #244 P2-2)
+  const testAdresi = (h: number) => { const s = plan.sonuclar.get(h); return s && s.toplam > 0 && s.dogru / s.toplam < POLICY.hafta_testi.gecme_orani ? `#/hafta/${h}/sonuc` : `#/hafta/${h}`; };
   const testDugum = (h: number) => {
     const s = plan.sonuclar.get(h);
-    return <a class="btn sm" href={`#/hafta/${h}`} data-test={`hafta-testi-${h}`}>{s ? `Hafta sonu testi · ${s.dogru}/${s.toplam}` : "Hafta sonu testini çöz"}</a>;
+    return <a class="btn sm" href={testAdresi(h)} data-test={`hafta-testi-${h}`}>{s ? `Hafta sonu testi · ${s.dogru}/${s.toplam}` : "Hafta sonu testini çöz"}</a>;
   };
   // tamam kartı: son hazır gün haftanın son günüyse "N. hafta tamam", değilse "Hazır günlerin hepsi bitti" (md. 1)
   const tamam = !plan.sonraki && !plan.simdi && sonGun && plan.gunler.every((g) => g.bitti);
@@ -191,7 +194,7 @@ export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Pla
               <li class={`dugum-yer ${g.bitti ? "bitti" : "kilitli"} son`} style={{ "--kay": `${KAYMA[sira++ % KAYMA.length]}px` } as Record<string, string>}>
                 {/* hafta sonu (her 7. gün): hafta bitince testi açar (PR B-3 md. 5); test yoksa yalnız simge */}
                 {hs && g.bitti && testAcik(gh)
-                  ? <a class="dugum" href={`#/hafta/${gh}`} data-test={`hafta-sonu-${gh}`} aria-label={`${gh}. hafta sonu testi${plan.sonuclar.get(gh) ? `: ${plan.sonuclar.get(gh)!.dogru}/${plan.sonuclar.get(gh)!.toplam}` : ""}`}><span class="dugum-yuz"><DugumSimge tur={son} /></span>{plan.sonuclar.get(gh) && <span class="dugum-onay" aria-hidden="true"><Icon name="check" size={14} stroke={3} /></span>}</a>
+                  ? <a class="dugum" href={testAdresi(gh)} data-test={`hafta-sonu-${gh}`} aria-label={`${gh}. hafta sonu testi${plan.sonuclar.get(gh) ? `: ${plan.sonuclar.get(gh)!.dogru}/${plan.sonuclar.get(gh)!.toplam}` : ""}`}><span class="dugum-yuz"><DugumSimge tur={son} /></span>{plan.sonuclar.get(gh) && <span class="dugum-onay" aria-hidden="true"><Icon name="check" size={14} stroke={3} /></span>}</a>
                   : <span class="dugum" role="img" aria-label={hs ? `Hafta sonu ${g.bitti ? "tamam" : "kilitli"}` : `Gün sonu ${g.bitti ? "tamam" : "kilitli"}`}><span class="dugum-yuz"><DugumSimge tur={son} /></span></span>}
                 <span class="dugum-ad tiny">{hs ? (plan.sonuclar.get(gh) ? `Hafta sonu · ${plan.sonuclar.get(gh)!.dogru}/${plan.sonuclar.get(gh)!.toplam}` : g.bitti && testAcik(gh) ? "Hafta sonu testi" : "Hafta sonu") : "Gün sonu"}</span>
               </li>

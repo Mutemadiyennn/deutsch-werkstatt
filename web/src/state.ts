@@ -27,6 +27,7 @@ export type Route =
   | { name: "akis"; day: number }
   | { name: "hafta"; hafta: number }
   | { name: "haftaTekrar"; hafta: number; gunler: number[] }
+  | { name: "haftaSonuc"; hafta: number }
   | { name: "ders"; id: string }
   | { name: "prova"; day: number }
   | { name: "okuma"; day: number }
@@ -61,7 +62,7 @@ export function parseHash(h: string): Route {
     case "kalip": return { name: "kalip", id: p[1] || undefined };
     case "akis": return { name: "akis", day: Number(p[1]) || 1 };
     // #/hafta/<H>/tekrar/<g,g,…>: düşük sonuçta zayıf "yapabiliyorum" cümlelerinin tekrarı (#243 takip a)
-    case "hafta": return p[2] === "tekrar" ? { name: "haftaTekrar", hafta: Number(p[1]) || 1, gunler: (p[3] ?? "").split(",").map(Number).filter((n) => Number.isInteger(n) && n > 0) } : { name: "hafta", hafta: Number(p[1]) || 1 };
+    case "hafta": return p[2] === "sonuc" ? { name: "haftaSonuc", hafta: Number(p[1]) || 1 } : p[2] === "tekrar" ? { name: "haftaTekrar", hafta: Number(p[1]) || 1, gunler: (p[3] ?? "").split(",").map(Number).filter((n) => Number.isInteger(n) && n > 0) } : { name: "hafta", hafta: Number(p[1]) || 1 };
     // #/m1/<gün>/<kayıt>[/1|/2]: akışta sesin ilk ya da ikinci turu (PM-097 md. 1); ek yoksa bütün adımlar
     case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2], ...(p[3] === "1" ? { tur: "ilk" as const } : p[3] === "2" ? { tur: "ikinci" as const } : {}) } : { name: "m1day", day: Number(p[1]) || 1 };
     default: return { name: "today" };

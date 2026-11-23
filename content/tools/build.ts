@@ -16,7 +16,7 @@ import { notoDosya, notoSvg } from "./emoji.ts";
 import { tmpdir } from "node:os";
 import { fotoPaketle, type FotoKaydi } from "./medya.ts";
 import { kesinPaketi, type KesinPaket } from "./kesin.ts";
-import { beceriEsle, haftaTestleri, type HaftaTestiPaket } from "./haftaTesti.ts";
+import { haftaBecerileri, haftaTestleri, type HaftaTestiPaket } from "./haftaTesti.ts";
 
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
@@ -75,14 +75,10 @@ try {
   if (process.env.DW_E2E_FIXTURES === "1") for (const [h, t] of Object.entries(haftaTestleri(join(ROOT, "content/tools/fixtures/m1")))) haftaTest[h] ??= t;
   // #243 PM finali takip a: her test maddesi haftanın bir "yapabiliyorum" cümlesine bağlanır (düşük sonuçta zayıf cümleler)
   const dizin = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genelAdlar, [...c.grammar, ...dnNotlar] as never);
-  for (const [h, t] of Object.entries(haftaTest)) {
-    const H = Number(h), ilk = (H - 1) * 7 + 1, son = H * 7;
-    const hGun = days.map((d) => d.data).filter((g) => g.day >= ilk && g.day <= son);
-    const onceGun = days.map((d) => d.data).filter((g) => g.day < ilk);
-    const onceKesin = Object.entries(kesinGunler).filter(([g]) => Number(g) < ilk && !onceGun.some((x) => x.day === Number(g))).map(([, v]) => v);
-    const onceki = { kart: [...onceGun.flatMap((g) => g.yeni_kartlar), ...onceKesin.flatMap((v) => v.kartlar)], ders: [...onceGun.flatMap((g) => g.dersler), ...onceKesin.flatMap((v) => v.dersler)] };
-    haftaTest[h] = { id: t.id, maddeler: t.maddeler, beceriler: beceriEsle(t.maddeler, hGun, dizin, t.bag, onceki) };
-  }
+  const b = haftaBecerileri(haftaTest, days.map((d) => d.data), kesinGunler, dizin);
+  for (const u of b.uyarilar) console.log(`uyarı: ${u}`);
+  if (b.hatalar.length) throw new Error(b.hatalar.join("\n"));
+  haftaTest = b.paket;
 } catch (e) { console.error(String(e)); process.exit(1); }
 
 const payload = {
