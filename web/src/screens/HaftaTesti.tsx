@@ -16,6 +16,7 @@ import { gunBitisleri, haftaSonucYaz } from "../services/ilerleme.ts";
 import { DrillView, type DrillSonuc } from "../ui/drill.tsx";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
 import { ActionBar, ProgressHeader } from "../ui/kit.tsx";
+import POLICY from "../policy.json" with { type: "json" };
 
 function Kilitli({ ust, baslik, metin }: { ust: string; baslik: string; metin: string }) {
   return (
@@ -81,7 +82,7 @@ export function HaftaTestiEkrani({ hafta }: { hafta: number }) {
         <ProgressHeader title={`${hafta}. hafta sonu testi`} back="#/today" ilerleme={{ n: toplam, toplam }} />
         <section class="card stack">
           <h2>{dogru}/{toplam} doğru</h2>
-          <p>{oran >= 0.8 ? `${hafta}. haftanın öğrettiklerini kullanabiliyorsun.` : "Yanlış yaptığın kalıplar Kelime Bahçesi'nde yeniden gelecek. İstersen testi sonra yeniden çözebilirsin."}</p>
+          <p>{oran >= POLICY.hafta_testi.gecme_orani ? `${hafta}. haftanın öğrettiklerini kullanabiliyorsun.` : `Zorlandığın yerleri ${hafta}. haftanın günlerindeki Rehber'den yeniden okuyabilirsin. Testi istediğin zaman yeniden çözebilirsin; en iyi sonucun kalır.`}</p>
         </section>
         <ActionBar><a class="btn primary block" href="#/today" data-test="bugune-don">Bugüne dön</a></ActionBar>
       </div>

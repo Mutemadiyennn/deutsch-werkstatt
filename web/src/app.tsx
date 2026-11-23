@@ -185,21 +185,21 @@ export function App() {
     case "assess": screen = <AssessRun />; break;
     case "assessResult": screen = <AssessResult id={route.id} />; break;
     case "call": screen = <Call id={route.id} />; break;
-    case "garden": screen = route.day ? <GunKapisi day={route.day}><Garden key={route.day} day={route.day} /></GunKapisi> : <Garden key={0} day={route.day} />; break;
+    case "garden": screen = route.day ? <GunKapisi key={location.hash} day={route.day}><Garden key={route.day} day={route.day} /></GunKapisi> : <Garden key={0} day={route.day} />; break;
     case "yol": screen = <YolEkrani />; break;
     case "ders": screen = <DersEkrani key={route.id} id={route.id} />; break;
-    case "prova": screen = <GunKapisi day={route.day}><ProvaEkrani key={route.day} day={route.day} /></GunKapisi>; break;
-    case "okuma": screen = <GunKapisi day={route.day}><OkumaEkrani key={route.day} day={route.day} /></GunKapisi>; break;
+    case "prova": screen = <GunKapisi key={location.hash} day={route.day}><ProvaEkrani key={route.day} day={route.day} /></GunKapisi>; break;
+    case "okuma": screen = <GunKapisi key={location.hash} day={route.day}><OkumaEkrani key={route.day} day={route.day} /></GunKapisi>; break;
     case "sozluk": screen = <SozlukEkrani q={route.q} id={route.id} />; break;
     case "ses": screen = <SesDeneme />; break;
     case "kalip": screen = <KalipEkrani key={route.id ?? "-"} id={route.id} />; break;
-    case "m1day": screen = <GunKapisi day={route.day}><M1Gun day={route.day} /></GunKapisi>; break;
+    case "m1day": screen = <GunKapisi key={location.hash} day={route.day}><M1Gun day={route.day} /></GunKapisi>; break;
     case "rehber": screen = <RehberEkrani day={route.day} />; break;
     case "gorevler": screen = <GorevlerRota />; break;
     case "odak": screen = <OdakEkrani />; break;
-    case "akis": screen = <GunKapisi key={route.day} day={route.day}><AkisRota key={route.day} day={route.day} /></GunKapisi>; break;
+    case "akis": screen = <GunKapisi key={location.hash} day={route.day}><AkisRota key={route.day} day={route.day} /></GunKapisi>; break;
     case "hafta": screen = <HaftaTestiEkrani key={route.hafta} hafta={route.hafta} />; break;
-    case "m1medya": screen = <GunKapisi day={route.day}><MedyaEkrani key={`${route.id}:${route.tur ?? ""}`} day={route.day} id={route.id} tur={route.tur} /></GunKapisi>; break;
+    case "m1medya": screen = <GunKapisi key={location.hash} day={route.day}><MedyaEkrani key={`${route.id}:${route.tur ?? ""}`} day={route.day} id={route.id} tur={route.tur} /></GunKapisi>; break;
     // yalnız e2e: AK-10 3. adımın iki türü, ekran (4. adım) gelene kadar (üretimde bu dal ve modül paketten düşer)
     default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri") ? <HalkaTurRota key={location.hash} /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__dil-noktasi/") ? <DilNoktasiRota key={location.hash} /> : <Today />;
   }

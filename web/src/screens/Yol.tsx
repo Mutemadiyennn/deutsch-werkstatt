@@ -11,13 +11,15 @@ import type { Gun } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadM1Gun } from "../services/content.ts";
 import { gunBitisleri, gunBittiYaz, haftaSonuclari, ilerlemeOku, xpOku, type HaftaSonuc } from "../services/ilerleme.ts";
-import { adimAdi, gunAdimlari, gunOzeti, haftaOf, haftalara, haftaSonuMu, seri, siradaki, yol, yolGunleri, yuklenecekHafta, type Adim, type GunDurum, type XpKayit } from "../core/gun.ts";
+import { adimAdi, gunAdimlari, gunOzeti, haftaBitti, haftaOf, haftalara, haftaSonuMu, seri, siradaki, yol, yolGunleri, yuklenecekHafta, type Adim, type GunDurum, type XpKayit } from "../core/gun.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 
 export interface Plan { gunler: (GunDurum & { durum: "bitti" | "simdi" | "kilitli" })[]; simdi: GunDurum | null; sonraki: Adim | null; xp: XpKayit; /** sonraki bir gün dosyası yüklenemedi */ eksik?: boolean;
   /** PR B-3: günler haftalara bölünmüş; `testler` pakette hafta sonu testi olan haftalar, `sonuclar` çözülen testler */
-  haftalar: { hafta: number; gunler: Plan["gunler"]; durum: "bitti" | "simdi" | "kilitli" }[]; testler: Set<number>; sonuclar: Map<number, HaftaSonuc> }
+  haftalar: { hafta: number; gunler: Plan["gunler"]; durum: "bitti" | "simdi" | "kilitli" }[]; testler: Set<number>; sonuclar: Map<number, HaftaSonuc>;
+  /** testi pakette olan ve paketteki bütün günleri kalıcı olarak bitmiş haftalar (`#/hafta/<H>` ekranıyla aynı kural; eksik dosyalı hafta girmez) */
+  testHazir: Set<number> }
 
 /**
  * Bugün ve Yol ekranlarının ortak verisi: günler + cihazdaki ilerleme + XP (index.m1 boşsa null).
@@ -65,8 +67,9 @@ export function usePlan(): { plan: Plan | null; err: string | null; yok: boolean
       // eksik dosya: o günden sonrası yola girmez (ileri gün atlanmaz); yoksa sonraki haftalar kilitli özet
       const sonra = eksik >= 0 ? [] : days.filter((d) => haftaOf(d) > hafta).map((d) => gunOzeti(d, ozet.get(d)!.title_tr, false));
       const y = yol([...once, ...durumlar, ...sonra]);
-      setPlan({ ...y, sonraki: siradaki(y.simdi), xp, eksik: eksik >= 0, haftalar: haftalara(y.gunler),
-        testler: new Set(Object.keys(index.files.hafta ?? {}).map(Number)), sonuclar });
+      const testler = new Set(Object.keys(index.files.hafta ?? {}).map(Number));
+      setPlan({ ...y, sonraki: siradaki(y.simdi), xp, eksik: eksik >= 0, haftalar: haftalara(y.gunler), testler, sonuclar,
+        testHazir: new Set([...testler].filter((h) => haftaBitti(h, days, bitenler))) });
     })().catch((e) => setErr(String(e?.message || e)));
   }, [index?.version, n]);
   return { plan, err, yok, yenile: () => setN((x) => x + 1) };
@@ -120,7 +123,7 @@ export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Pla
   const [acikHafta, setAcikHafta] = useState<Set<number>>(new Set());
   let sira = 0;
   const simdiGun = plan.simdi?.day;
-  const testAcik = (h: number) => plan.testler.has(h) && (plan.haftalar.find((x) => x.hafta === h)?.durum === "bitti");
+  const testAcik = (h: number) => plan.testHazir.has(h);
   const testDugum = (h: number) => {
     const s = plan.sonuclar.get(h);
     return <a class="btn sm" href={`#/hafta/${h}`} data-test={`hafta-testi-${h}`}>{s ? `Hafta sonu testi · ${s.dogru}/${s.toplam}` : "Hafta sonu testini çöz"}</a>;
@@ -218,6 +221,12 @@ export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Pla
     <div class="stack yol-harita" data-test="yol" data-hafta={hafta} style={{ "--vurgu": haftaRengi(hafta), "--vurgu-acik": haftaAcik(hafta) } as Record<string, string>}>
       <div class="sr-only" data-test="xp-seri"><b data-test="xp">{plan.xp.toplam}</b> XP · {seri(plan.xp) ? <><b data-test="seri">{seri(plan.xp)}</b> gün üst üste</> : "Bugün başla, seri başlasın"}</div>
       {tamamKart}
+      {/* önceki haftanın testi çözülmediyse şimdiki haftanın başında tek satır (inceleme #243 P1-2): 7. gün biter bitmez yol yeni haftaya geçer */}
+      {plan.simdi && hafta > 1 && testAcik(hafta - 1) && !plan.sonuclar.has(hafta - 1) && (
+        <section class="card row hafta-satir" data-test="hafta-testi-hazir" style={{ "--vurgu": haftaRengi(hafta - 1) } as Record<string, string>}>
+          <span class="grow"><b>{hafta - 1 === 1 ? "İlk Hafta" : `${hafta - 1}. hafta`} sonu testi hazır</b></span>
+          <a class="btn sm" href={`#/hafta/${hafta - 1}`} data-test={`hafta-testi-${hafta - 1}`}>Çöz</a>
+        </section>)}
       {yalnizBugun
         ? gosterilen.map(gunBolumu)
         : plan.haftalar.map((h) => (h === simdiki ? h.gunler.map(gunBolumu) : haftaSatiri(h)))}
@@ -236,5 +245,5 @@ export function YolEkrani() {
   if (yok) return <div class="stack"><TopBar title="Yol" /><section class="card"><p>İlk Hafta'nın günleri hazırlanıyor.</p></section></div>;
   if (!plan) return <Loading />;
   const h = haftaOf(plan.simdi?.day ?? plan.gunler[plan.gunler.length - 1]?.day ?? 1);
-  return <div class="stack"><TopBar title={h === 1 ? "İlk Hafta" : `${h}. hafta`} /><YolHarita plan={plan} /></div>;
+  return <div class="stack"><TopBar title={h === 1 ? "İlk Hafta" : "Yol"} /><YolHarita plan={plan} /></div>;
 }

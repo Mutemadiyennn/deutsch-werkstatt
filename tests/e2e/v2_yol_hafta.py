@@ -1,7 +1,7 @@
 """
 Çok haftalı Yol (PR B-3; PR B 7087645415 md. 1–5, PM-108 B md. 2): e2e fikstürü 8. ve 9. günle (content/tools/fixtures/m1).
 1.–7. gün bitmiş öğrenci (ogrenci_devam.tohumla) ile:
-  - Yol: 2. hafta açık ("2. HAFTA · GÜN 8"), 1. hafta tek satır "tamam" (dokununca 7 gün), başlık "2. hafta"; 8. gün şimdi, 9. gün kilitli
+  - Yol: 2. hafta açık ("2. HAFTA · GÜN 8"), 1. hafta tek satır "tamam" (dokununca 7 gün), başlık "Yol"; çözülmemiş 1. hafta testi 2. haftanın başında (Yol + Bugün); 8. gün şimdi, 9. gün kilitli
   - yükleme: Yol açılışında yalnız 2. haftanın gün dosyaları istenir (1.–7. gün dosyası yüklenmez)
   - gün kilidi: 9. gün adresle (#/akis/9, #/garden/9, #/prova/9) açılmaz → "henüz kilitli" + "Bugüne dön"; 8. gün açılır
   - hafta sonu testi (1. hafta): Yol'dan açılır, maddeler sırayla, sonuç ekranı, `m1:hafta:1` yazılır, Yol satırında sonuç
@@ -53,27 +53,30 @@ def main():
             dugum1: !!q('section.yolgun[data-test=gun-1]'), baslik: q('.topbar h1, header h1, h1')?.innerText, hafta: q('[data-test=yol]')?.dataset.hafta }; }""")
         check(y["h1"] == "bitti" and y["h1gun"] == 0 and not y["dugum1"], f"1. hafta tek satır 'tamam', günleri kapalı ({y})")
         check(y["g8"] == "simdi" and y["g9"] == "kilitli" and (y["bant"] or "").upper().startswith("2. HAFTA · GÜN 8"), f"2. hafta açık: 8. gün şimdi, 9. gün kilitli, bant '2. HAFTA · GÜN 8' ({y['bant']})")
-        check(y["hafta"] == "2" and "2. hafta" in (y["baslik"] or ""), f"Yol başlığı ve hafta rengi 2. haftanın ({y['baslik']}, hafta {y['hafta']})")
+        check(y["hafta"] == "2" and (y["baslik"] or "") == "Yol", f"Yol başlığı 'Yol', hafta rengi 2. haftanın ({y['baslik']}, hafta {y['hafta']})")
+        check(pg.locator("[data-test=hafta-testi-hazir] [data-test=hafta-testi-1]").count() == 1, "çözülmemiş 1. hafta testi 2. haftanın başında tek satır (Yol)")
         no_overflow(pg, "çok haftalı Yol")
         shot(pg, f"yol-hafta-2-{sema}", full=False)
         pg.click("[data-test=hafta-1] .hafta-satir-btn")
         n = pg.locator("[data-test=hafta-1-gunler] li").count()
-        check(n == 7 and pg.locator("[data-test=hafta-testi-1]").count() == 1, f"1. hafta satırı dokununca 7 günü ve testi açtı ({n})")
+        check(n == 7 and pg.locator("[data-test=hafta-1] [data-test=hafta-testi-1]").count() == 1, f"1. hafta satırı dokununca 7 günü ve testi açtı ({n})")
         shot(pg, f"yol-hafta-1-acik-{sema}", full=False)
 
         # gün kilidi: 9. gün adresle açılmaz
-        for adres in ("#/akis/9", "#/garden/9", "#/prova/9"):
-            pg.goto(base + adres); pg.wait_for_selector("[data-test=gun-kilitli], [data-test=akis], [data-test=garden], [data-test=prova]", timeout=15000)
+        for adres in ("#/akis/9", "#/garden/9", "#/prova/9", "#/okuma/9", "#/m1/9/x"):
+            pg.goto(base + adres); pg.wait_for_selector("[data-test=gun-kilitli], [data-test=akis], [data-test=garden], [data-test=prova], [data-test=okuma], [data-test=medya]", timeout=15000)
             check(pg.locator("[data-test=gun-kilitli]").count() == 1 and pg.locator("[data-test=bugune-don]").count() == 1, f"{adres}: kilitli gün kapanır, 'Bugüne dön' var")
         shot(pg, f"gun-kilitli-{sema}", full=False)
         pg.goto(base + "#/akis/8"); pg.wait_for_selector("[data-test=akis], [data-test=gun-kilitli]", timeout=20000)
         check(pg.locator("[data-test=akis]").count() == 1, "8. gün (şimdiki) adresle açılır")
+        pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=next-activity]", timeout=15000)
+        check(pg.locator("[data-test=hafta-testi-hazir]").count() == 1, "çözülmemiş 1. hafta testi Bugün'de de tek satır")
 
         # 2. haftanın testi kilitli; 1. haftanın testi baştan sona
         pg.goto(base + "#/hafta/2"); pg.wait_for_selector("[data-test=gun-kilitli], [data-test=hafta-testi]", timeout=15000)
         check(pg.locator("[data-test=gun-kilitli]").count() == 1, "2. hafta bitmeden 2. haftanın testi açılmaz")
         pg.goto(base + "#/yol"); pg.wait_for_selector("[data-test=hafta-1] .hafta-satir-btn")
-        pg.click("[data-test=hafta-1] .hafta-satir-btn"); pg.click("[data-test=hafta-testi-1]")
+        pg.click("[data-test=hafta-1] .hafta-satir-btn"); pg.click("[data-test=hafta-1] [data-test=hafta-testi-1]")
         pg.wait_for_selector("[data-test=hafta-testi]", timeout=15000)
         shot(pg, f"hafta-testi-{sema}", full=False)
         sayac = 0
@@ -91,6 +94,7 @@ def main():
         pg.goto(base + "#/yol"); pg.wait_for_selector("[data-test=hafta-1]")
         t = pg.inner_text("[data-test=hafta-1]")
         check(f"test {r['d']}/{r['t']}" in t, f"Yol'da 1. hafta satırı test sonucunu gösterir ({t!r})")
+        check(pg.locator("[data-test=hafta-testi-hazir]").count() == 0, "çözülen testin satırı kalktı")
         b.close()
     srv.shutdown()
     finish()
