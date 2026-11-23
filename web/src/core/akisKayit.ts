@@ -46,6 +46,8 @@ export function simdiki(k: AkisKaydi): { durak: Durak; adim: Adim; sira: number;
 /** Eski ilerleme anahtarı (AK-6 uyumluluk): son halka → m1:bahce:<g>; dil → ders:<id>; video → m1:medya:<id>; prova/okuma aynen */
 export function eskiAnahtar(plan: GunPlani, d: Durak): string | null {
   // ders, prova, okuma ve medya anahtarlarını kendi ekranları yazar (akış yalnız Bahçe ve gün anahtarını yazar)
+  // istisna: dil noktası durağının (`ders:gr:…`, `ders:dn:…`) kendi ekranı yok; bitişini akış yazar (sonraki günlerin bitenDersler'i)
+  if (d.eski_anahtar && /^ders:(gr|dn):/.test(d.eski_anahtar)) return d.eski_anahtar;
   if (d.eski_anahtar && /^(ders|m1:prova|m1:okuma|m1:medya):/.test(d.eski_anahtar)) return null;
   if (d.eski_anahtar) return d.eski_anahtar;
   if (d.tur === "halka") { const son = [...plan.duraklar].reverse().find((x) => x.tur === "halka"); return son?.id === d.id ? `m1:bahce:${plan.gun}` : null; }
