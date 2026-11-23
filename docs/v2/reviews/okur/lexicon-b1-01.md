@@ -164,3 +164,17 @@ Takip notu (engel değil): 2. turda eski alanlarda yeni bulgu yok.
 - GERİ: 1 (lx:zurzeit exp.ipucu_tr)
 
 GERİ kaldığı için `batch-b1-01b.json` "reviewed" sayılamaz (OD-9.4). `batch-b1-01a.json`'da GERİ kalmadı.
+
+## 3. tur (yalnız doğrulama, PM-079 md. 3)
+
+Girdi: `batch-b1-01b.json`, yalnız lx:zurzeit `exp.ipucu_tr`. Kartın örnekleri ve boşlukları yeni metinle çelişki için okundu.
+
+| kart | alan | yeni açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| lx:zurzeit | exp.ipucu_tr | **Zurzeit** başta olunca **sind** gibi sözcükler arkasından gelir, örneğin **Zurzeit sind alle Leitungen besetzt.** | Zurzeit cümlenin başındaysa sind gibi bir kelime hemen arkasından gelir | GEÇTİ | 14 kelime, sembol ve terim yok. Artık tek kelimeye bağlı kural gibi okunmuyor; kartın **Zurzeit sind** ve **Zurzeit hab ich** örnekleriyle çelişmiyor. |
+
+### 3. tur sonucu
+
+- Okunan: 1 alan · GEÇTİ: 1 · GERİ: 0
+
+`batch-b1-01a.json` ve `batch-b1-01b.json`'da okur GERİ'si kalmadı (OD-9.3 okur katmanı geçti).
