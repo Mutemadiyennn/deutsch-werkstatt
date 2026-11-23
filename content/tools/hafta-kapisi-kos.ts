@@ -4,7 +4,7 @@
  *   --hepsi: gün dosyası olan her hafta (2. hafta ve sonrası; 1. hafta tablo öncesi/eski biçim); KAPI içerik adımı bununla koşar
  *   --m1 <dizin>: gün dosyalarının dizini (varsayılan content/v2/m1; testler içerikten bağımsız fikstür dizini verir, PM-117 A.1)
  * Girdi: content/v2/m1/gun-NN.json (o haftanın 7 günü), hafta-sonu-testi-HH.json, gorulmemis-HH.json, dn-HH.json;
- * curriculum/a1-kesin.json (ya da --tablo), curriculum/omurga.json, sözlük, temel dersler, grammar.json.
+ * curriculum/{a1,a2,b1}-kesin.json birleşimi (ya da --tablo), curriculum/omurga.json, sözlük, temel dersler, grammar.json.
  * Çıkış: 0 geçti · 1 kaldı · 2 girdi yok ya da okunamadı.
  */
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
@@ -12,6 +12,7 @@ import { join, relative } from "node:path";
 import { genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
 import { haftaOf, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
 import { dilNoktasiMetni, haftaKapisi, kapiRaporu } from "./hafta-kapisi.ts";
+import { kesinTabloBirlesik } from "./ktablo.ts";
 import { CDIR, ROOT, loadContent } from "./load.ts";
 
 const argv = process.argv.slice(2);
@@ -19,12 +20,17 @@ const deger = (ad: string) => { const i = argv.indexOf(ad); return i >= 0 ? argv
 const hepsi = argv.includes("--hepsi");
 const tekHafta = Number(deger("--hafta"));
 if (!hepsi && (!Number.isInteger(tekHafta) || tekHafta < 1)) { console.error("HATA: --hafta N ya da --hepsi gerekli (N ≥ 1)"); process.exit(2); }
-const tabloYol = deger("--tablo") ?? join(CDIR, "curriculum/a1-kesin.json");
+const tabloYol = deger("--tablo");
 const oku = <T>(yol: string, ad: string, zorunlu = true): T | undefined => {
   if (!existsSync(yol)) { if (!zorunlu) return undefined; console.error(`HATA: ${ad} yok: ${yol}`); process.exit(2); }
   try { return JSON.parse(readFileSync(yol, "utf8")) as T; } catch (e) { console.error(`HATA: ${ad} okunamadı: ${yol}: ${(e as Error).message}`); process.exit(2); }
 };
-const tablo = oku<KesinTablo>(tabloYol, "tablo")!;
+// --tablo yoksa curriculum/{a1,a2,b1}-kesin.json birleşimi (PM-117 A.3; ktablo.ts kesinTabloBirlesik)
+const tabloHata: string[] = [];
+const birlesik = tabloYol ? undefined : kesinTabloBirlesik(CDIR, tabloHata);
+if (tabloHata.length) { for (const e of tabloHata) console.error(`HATA: ${e}`); process.exit(2); }
+if (birlesik && !birlesik.dosyalar.length) { console.error(`HATA: tablo yok: ${join(CDIR, "curriculum")}/*-kesin.json`); process.exit(2); }
+const tablo = birlesik ? (birlesik.tablo as KesinTablo) : oku<KesinTablo>(tabloYol!, "tablo")!;
 const omurga = oku<Omurga>(join(CDIR, "curriculum/omurga.json"), "omurga")!;
 const mdir = deger("--m1") ?? join(CDIR, "m1");
 if (!existsSync(mdir)) { console.error(`HATA: gün dizini yok: ${mdir}`); process.exit(2); }

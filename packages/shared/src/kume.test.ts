@@ -102,3 +102,14 @@ describe("cümle başı, tek sözcüklü cümle (ANA-D2 devri takibi: 34. gün \
     expect(y("Arm ist er.", ["lx:arm"])).toEqual([]);
   });
 });
+
+describe("sesteş isim ve fiil (PM-117 A.3 ön sınama: lx:Frage ↔ lx:fragen)", () => {
+  it("fiilin kendi çekimi, başlığı aynı yazılan ismin sayısına yenilmez; isim de başlığını korur", () => {
+    const fragen = Lexeme.parse({ id: "lx:fragen", de: "fragen", tr: "sormak", pos: "verb", verb: { praesens3: "fragt" }, forms: [{ de: "Ich ___ dich.", answer: "frage", tr: "x" }] });
+    const frage = Lexeme.parse({ id: "lx:Frage", de: "Frage", art: "die", pl: "Fragen", tr: "soru", pos: "noun", forms: [1, 2, 3].map((i) => ({ de: `Die ___ ${i}.`, answer: "Frage", tr: "x" })) });
+    const d = kumeDizini([fragen, frage], [], null);
+    expect([...d.yuzey.get("lx:fragen")!]).toContain("frage");
+    expect([...d.yuzey.get("lx:Frage")!]).toContain("frage");
+    expect([...d.idx.get("frage")!].sort()).toEqual(["lx:Frage", "lx:fragen"]);
+  });
+});

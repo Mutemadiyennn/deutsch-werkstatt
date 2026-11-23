@@ -167,7 +167,15 @@ export function kumeDizini(lex: readonly Lexeme[], temel: readonly TemelDers[], 
       }
     }
   }
-  for (const [x, m] of sayac) { const en = Math.max(...m.values()); for (const [id, n] of m) if (n === en) { ekle(yuzey, id, x); ekle(idx, x, id); } }
+  // Çoğunluk yalnız ikinci geçiş adayları arasında: sözcük bir kartın başlığı/çoğuluysa (1. geçiş: "Frage") o kart zaten sahibidir,
+  // sayıma girmez; yoksa sesteş fiilin kendi çekimi ("ich frage" → lx:fragen) isimin sayısına yenilir (PM-117 A.3 ön sınama)
+  const ilk = new Map([...yuzey].map(([id, s]) => [id, new Set(s)] as const));
+  for (const [x, m] of sayac) {
+    const aday = [...m].filter(([id]) => !ilk.get(id)?.has(x));
+    if (!aday.length) continue;
+    const en = Math.max(...aday.map(([, n]) => n));
+    for (const [id, n] of aday) if (n === en) { ekle(yuzey, id, x); ekle(idx, x, id); }
+  }
   const cerceve = new Set(lex.filter((l) => l.card === false).map((l) => l.id));
   for (const l of lex) {
     if (!cerceve.has(l.id)) continue;
