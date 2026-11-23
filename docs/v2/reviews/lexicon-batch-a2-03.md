@@ -50,6 +50,7 @@ Okunan alanlar: kart verisi, 120 eşdizim, 180 örnek, 150 boşluk (`forms`), `e
 
 **Ek tur (baş geliştirici kararı, 2026-11-23)**
 - Sıkı WORLD okuması: `lx:Liebe` ö6 ve b4 `Frau Brandl macht ihre Plätzchen mit viel Liebe.` → `Meine Nachbarin macht ihre Plätzchen mit viel Liebe.` (Türkçesi "Komşum kurabiyelerini büyük bir sevgiyle yapıyor."). `lx:föhnen` b5 için istenen `also_ok` **Föhnen** eklenmedi: doğrulayıcı "cevabın kendisini tekrar ediyor" uyarısı verdi (146 → 147); cevap karşılaştırması büyük/küçük harfe duyarsız, ek gereksiz.
+- Okur dönüşü: `lx:vorbeigehen` `ipucu_tr` "**vor dem** değil, **am** gelir" kural gibi okunuyordu, kartın öteki alanları **an der** veriyor → "Önünden geçmek derken **vor** değil **an** gelir: **am Kino vorbei**, **an der Kirche vorbei**." (iki örnek de kartta geçiyor; düzeltme sayısı değişmedi, aynı alanın ikinci hâli).
 
 ## Görev sorularına cevap
 1. **Boşluklar:** 150 boşluğun hepsi tek tek çekildi; yanlış cevap yok (`wäscht`, `wäschst`, `unterhält`, `Unter den Baum`, `gegenüber der`, `am Kino`, `ins Kino`, `zur Post` dahil). Eksik eş cevaplar yukarıda. Aynı cümleden iki boşluk (ör. `lx:Zentimeter` b1 ve b2) farklı kelimeyi soruyor; çakışma yok.
