@@ -84,7 +84,7 @@ Kimlik: ad yalnız `{name}` ile (92 prova n1, 98 prova n1), `_adsiz` biçimleri 
 - Takvim: 22.02.2027 pazartesi, 27.02 cumartesi (Ioana'nın randevusu saat 10, buluşma 9.30), 04.03.2027 perşembe (Karim'in randevusu). Tutarlı.
 
 ## Kalan şüpheler (düzeltilmedi)
-- **Haftalar arası (13 → 14):** 91 provasında öğrenci "pazartesi sabahı" hasta olduğunu bildiriyor. 92'de (pazartesi) ise ofiste, mutfakta Tobi'yle konuşuyor. 93'te Derya'nın „Ich hoffe, du bist wieder gesund“ cümlesi bu hastalığa gönderme, o yüzden bırakıldı. Pazartesinin hangisi olduğuna baş geliştirici karar vermeli. 91'deki "Kulak kapısı" ve "Haftanın kapısı" adları da duruyor (13. haftaya dokunulmadı). 98'de değiştirildi, iki hafta arasında ad farkı var.
+- 91'deki "Kulak kapısı" ve "Haftanın kapısı" adları 13. hafta ağacında başka ajanda. 98'de değiştirildi, iki hafta arasında ad farkı kalabilir.
 - 95: Karim A2 kursunda, ama Jobcenter'da tercüman olarak çalışıyor (h2 kalıbı ve görev cümleleri 1–2). İnandırıcılığı zayıf. İskelette böyle olduğu için bırakıldı.
 - 95 a1: „Sie brauchen einen Dolmetscher? Dann bringen Sie bitte selbst einen mit.“ Yaygın bir uygulama, ama resmî bir sayfayla doğrulanamadı. Kurgu dairenin kuralı olarak kaldı.
 - 96 v1 s4: Veda şarkısına Tobi'nin „So ein dummes Zeug!“ tepkisi şakacı ama biraz sert. İskelette var, bırakıldı.
@@ -94,6 +94,29 @@ Kimlik: ad yalnız `{name}` ile (92 prova n1, 98 prova n1), `_adsiz` biçimleri 
 - 96 a2 c2 „Ihr singt nicht so gut, aber sehr laut.“ Şimdiki zaman genel bir takılma olarak doğal. Orta dikte (`singt`) buna bağlı, bırakıldı.
 - Çizim notlarında (`sahne_tr`, 95 ve 97) `;` duruyor. Öğrenciye gösterilmiyorsa sorun değil.
 - `hafta-sonu-testi-14.json`, `gorulmemis-14.json` ve `dn-14.json` dosyalarında `review` alanı yok. Şema gerektirmiyor, eklenmedi.
+
+## Süreklilik farkı (baş oturum kararı: 91'deki hastalık geçerli)
+Öğrenci pazartesi (92) evde hasta, salı (93) işe dönüyor. 93'te Derya'nın sesli mesajındaki „Ich hoffe, du bist wieder gesund“ artık bu hastalığa doğrudan bağlanıyor, değişmedi. 92'nin dil içeriği, soruları, dikteleri ve kabulleri değişmedi. Yalnız çerçeve değişti: ofis sahneleri artık öğrencinin evden katıldığı görüntülü aramada ya da telefonda geçiyor.
+
+**gun-92**
+- `halkalar[m1:92:h1].title_tr`: "Pazartesi, evde hastasın: Derya'nın otel macerası"
+- `halkalar[m1:92:h1].sahne.ortam_tr`: "Pazartesi sabahı. Hastasın, evdesin. Derya ofisten seni görüntülü arıyor ve otel fotoğraflarını gösteriyor."
+- `halkalar[m1:92:h1].sahne.satirlar[0]` (Derya): „Gute Besserung! Hier, das ist unser Hotel. Und das hier ist das Einzelzimmer.“ / "Geçmiş olsun! Bak, bu bizim otelimiz. Bu da tek kişilik oda."
+- `halkalar[m1:92:h2].title_tr`: "Telefonda Tobi'nin haberi: dağ, nehir, göl"
+- `halkalar[m1:92:h2].sahne.ortam_tr`: "Öğle molası. Tobi seni telefonla arıyor, biraz heyecanlı."
+- `halkalar[m1:92:h2].sahne.satirlar[0]` (Tobi): „Gute Besserung! Ich habe eine Nachricht für dich. Ich ziehe nach Hamburg.“ / "Geçmiş olsun! Sana bir haberim var. Hamburg'a taşınıyorum."
+- `sahne.title_tr`: "Pazartesi, görüntülü arama: otel şikâyeti ve Tobi'nin büyük haberi"
+- `sahne.sahneler[s1].sahne_tr`: "Pazartesi, Firma Kerschbaum, kahve makinesinin önü. Sen evde hastasın. Derya seni görüntülü aramış, telefonu elinde tutuyor. Tobi elinde fincanla Derya'ya dönüyor."
+- `sahne.bolumler[b1].cevapla.situation_tr`: "Akşam Ioana seni arıyor ve Derya'yı soruyor. …" (eski: "Akşam kursta …", hasta öğrenci kursa gitmiyor)
+- `prova.durum_tr`: "Bir iş gezisinde olduğunu düşün. Bir otelde kalıyorsun, akşam odana geldin. …"
+- `title_tr` ve `goal_tr` yere bağlı değil, değişmedi. a2 radyo zaten "Geçen cuma akşamı" (B8).
+
+**gun-93**
+- `halkalar[m1:93:h1].sahne.ortam_tr`: "Salı öğlen ofiste. Bugün yine işe geldin. Tobi masana geliyor, elinde bir mektup."
+- `halkalar[m1:93:h1].sahne.satirlar[0]` (Tobi): „Schön, dass du wieder da bist! Hast du heute nach der Arbeit kurz Zeit? Ich muss zur Bank.“ / "Döndüğüne sevindim! Bugün işten sonra biraz vaktin var mı? Bankaya gitmem lazım."
+- `sesler[m1:93:a1].ortam_tr`: "Pazartesi akşamı, evdesin. Tobi'nin banka kartı çalışmıyor. Tobi seni arıyor ve bankanın kaydını hoparlörden sana da dinletiyor." (eski: Tobi senin telefonundan arıyordu, yani yan yanaydınız)
+
+`Gute Besserung` ve `Schön, dass du wieder da bist` yalnız karşı tarafın repliklerinde, öğrenciden istenmiyor. Denetim yeni sözcük saymadı.
 
 ## Denetim
 `denet.sh 14 wt14` (bütün düzeltmelerden sonra):
