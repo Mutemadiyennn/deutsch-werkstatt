@@ -178,3 +178,14 @@ Girdi: `batch-b1-03c.json`, 5 yedek kart (lx:Zaun, lx:Schatten, lx:Straßenfest 
 - Değişen 9 açıklama alanı (5 not, 3 boşluk ipucu, 1 ne zaman, ayrıca `tr`) ve 03c'nin tamamı okurdan ve örneklemden geçmedi.
 
 `npm run content:validate` → **0 hata, 154 uyarı**.
+
+## 03c okur düzeltmeleri (2026-11-23, okur raporu: `docs/v2/reviews/okur/lexicon-b1-03.md`, 2 GERİ)
+
+Yalnız geri dönen 2 alan değişti. Okur bu alanları yeniden okumadı. `review` `draft`.
+
+| Kart | Alan | Sonra | Neyi çözüyor |
+|---|---|---|---|
+| lx:Schatten | exp.ipucu_tr | Gölgedeysen **im Schatten**, gölgeye geçiyorsan **in den Schatten** denir. | "Oturuyorsan" sözü **sich in den Schatten setzen** notu ve 4. örnekle çelişiyordu; ayrım artık bulunmak ve geçmek üzerinden. |
+| lx:Festnetz | mistakes_tr[0] | Beni sabit hattımdan ara derken **Ruf mich vom Festnetz an** denmez. Doğrusu **Ruf mich auf dem Festnetz an.** | İki durum tek kutudaydı ve kimin hattı olduğu belirsizdi; tek duruma indi. |
+
+`npm run content:validate` → **0 hata, 154 uyarı**.
