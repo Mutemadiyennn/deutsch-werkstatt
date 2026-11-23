@@ -125,3 +125,18 @@ Takip notu (engel değil): 2. turda eski alanlarda yeni bulgu yok.
 - Okunan: 8 alan · GEÇTİ: 8 · GERİ: 0
 
 `batch-b1-02a.json` ve `batch-b1-02b.json`'da okur GERİ'si kalmadı (OD-9.3 okur katmanı geçti).
+
+## 3. tur (yalnız doğrulama, örneklem düzeltmeleri)
+
+Girdi: iki içerik dosyasında yalnız örneklem düzeltmesiyle değişen iki alan. Çelişki için aynı kartın öbür notları da okundu.
+
+| kart | alan | yeni açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| lx:Warteliste | mistakes_tr[1] | **Der Warteliste ist lang** yanlış. Son parça **die Liste** olduğu için **Die Warteliste ist lang** denir. | liste uzun derken başa der değil die gelir, çünkü Liste die | GEÇTİ | 11 kelime, terim yok. Bütün cümle verildiği için aynı kartın doğru **auf der Warteliste** sözüyle karışmıyor. |
+| lx:Nachbarschaft | mistakes_tr[1] | **Der Nachbarschaft ist ruhig** yanlış. Sonu **-schaft** olan kelimelere **die** gelir: **Die Nachbarschaft ist ruhig.** | -schaft ile bitenlerin başına die gelir | GEÇTİ | 11 kelime, terim yok. Kartın doğru **in der Nachbarschaft** sözüyle karışmıyor. |
+
+### 3. tur sonucu
+
+- Okunan: 2 alan · GEÇTİ: 2 · GERİ: 0
+
+`batch-b1-02a.json` ve `batch-b1-02b.json`'da okur GERİ'si yok.

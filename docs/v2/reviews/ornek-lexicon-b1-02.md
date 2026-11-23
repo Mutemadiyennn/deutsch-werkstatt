@@ -210,3 +210,73 @@ H-3'ten sonra 165 `also_ok` girdisinin hepsi iki yönden ve artikel uyumu için 
   3. **der X yanlış** biçimindeki artikel notlarını gözden geçirmek. Aynı dize kartta ya da öbür notta doğru olarak geçiyorsa (**auf der Warteliste**, **in der Nachbarschaft**), yanlış biçim bir cümle içinde gösterilsin. lx:Vertretung notu "erkek de olsa" bağlamıyla anlaşılıyor, kartta **der Vertretung** geçmiyor; dokunmak şart değil.
 - 3. tur için: düzeltilen alanlar tek tek doğrulanır, ayrıca boşluklardan yeni bir örneklem alınır (en az 20 madde, yeni tohum).
 - Okur kapısı geçti (2. tur 8/8). H-5 ile Warteliste notu değişirse yalnız bu iki not okura gider.
+
+## 2. tur (2026-11-23, yalnız doğrulama)
+
+Girdi: dilbilimcinin "Örneklem düzeltmeleri" bölümü (`lexicon-b1-02.md`). Metinler listeden değil, iki içerik dosyasından okundu. Değişen alanlar 1. turun döküm çıktısıyla alan alan karşılaştırıldı: **40 boşluğun `also_ok`'u değişti**, cümle ve çeviri değişmedi. Ayrıca **2 hata notu** değişti (lx:Warteliste ve lx:Nachbarschaft `mistakes_tr[1]`). Başka boşluk ya da not değişmemiş.
+
+### 1. turda bildirilenler (18 alan)
+
+| madde | kart, alan | şimdiki durum | sonuç |
+|---|---|---|---|
+| H-1 | lx:klären forms[2] | erledigt, **geregelt** | kapandı |
+| H-2 | lx:Zuschlag forms[2] | `also_ok` yok (**Löhne** çıktı) | kapandı |
+| H-3 | lx:Personalabteilung forms[1] | `also_ok` yok (**Personalbüro** çıktı) | kapandı |
+| H-4 | lx:grillen forms[2] | `also_ok` yok (**gebraten** çıktı) | kapandı |
+| H-5 | lx:Nachbarschaft mistakes_tr[1] | **Der Nachbarschaft ist ruhig** yanlış … **Die Nachbarschaft ist ruhig.** | kapandı. Yanlış biçim artık cümle içinde; `mistakes_tr[0]` ve örneklerle çelişmiyor |
+| düzeltilmeli | lx:Personalabteilung forms[0], [2], [3] | **Personalbüro** üçünden de çıktı | kapandı |
+| düzeltilmeli | lx:Abrechnung forms[0]–[3] | **Rechnung(en)** çıktı. [0] ve [1]'de **Nebenkostenabrechnung** kaldı (artikel ve anlam uyuyor) | kapandı |
+| düzeltilmeli | lx:Zuschlag forms[3] | Bonus (**Lohn** çıktı) | kapandı |
+| düzeltilmeli | lx:Spätschicht forms[1] | spät, abends, nachmittags (**Nachtschicht** çıktı) | kapandı |
+| düzeltilmeli | lx:grillen forms[1] | `also_ok` yok (**braten** çıktı) | kapandı |
+| düzeltilmeli | lx:Warteliste mistakes_tr[1] | **Der Warteliste ist lang** yanlış … **Die Warteliste ist lang** | kapandı. `mistakes_tr[0]`'daki **auf der Warteliste** ile çelişki kalmadı |
+| düzeltilmeli | lx:klären forms[0], [1] | [0] **regeln** · [1] **geregelt** eklendi; [3]'e de **regeln** eklendi | kapandı |
+
+18/18 kapandı. Sınırdaki 8 maddenin hepsinde işlem yapılmış: 7'si tamamen çıkarıldı. lx:genehmigen'de **erlaubt / erlauben** forms[0] ve [3]'ten çıktı, forms[2]'de (**Wenn der Chef das erlaubt**) kaldı. Bu cümle doğal; kararı yerinde buluyorum.
+
+### Yeni örneklem (değişen boşluklar)
+
+- **Tohum: `20261126`.** Evren değişen 40 boşluk (önce a, sonra b; kart sırası, `forms[]` dizin sırası). Seçim: `random.Random(20261126).sample(range(40), 20)`. 20 madde (%50); 8'i a dosyasından, 12'si b dosyasından.
+- Çıkarmalar ağır bastığı için asıl soru yön (a) oldu: girdi çıkınca doğru ve sık bir cevap reddediliyor mu? Eklenen girdilere yön (b) ile bakıldı (artikel, anlam, not çelişkisi).
+
+| # | kart | boşluk | cevap · `also_ok` | sonuç | not |
+|---|---|---|---|---|---|
+| 1 | lx:Befund | forms[3] | Befund | D | **Bericht** "rapor" demek, çeviri "sonuç"; **der** **Ergebnis**'i eliyor |
+| 2 | lx:klären | forms[1] | geklärt · erledigt, klar, geregelt | D | |
+| 3 | lx:klären | forms[2] | geklärt · erledigt, geregelt | D | |
+| 4 | lx:klären | forms[3] | klären · besprechen, erledigen, regeln | D | |
+| 5 | lx:abbuchen | forms[0] | abgebucht | D | **zu viel berechnet** "fazla ücret yazdınız" demek, çeviri "fazla çektiniz" |
+| 6 | lx:genehmigen | forms[0] | genehmigt · bestätigt | D | |
+| 7 | lx:genehmigen | forms[3] | genehmigen · bestätigen | D | |
+| 8 | lx:Arbeitszeit | forms[1] | Arbeitszeit · Schicht | D | sınırda: **Meine Arbeit ist von acht bis …** konuşmada geçer. Çeviri "çalışma saatim" olduğu için çıkarma savunulabilir |
+| 9 | lx:Zuschlag | forms[2] | Zuschläge | D | **Zulagen** eş anlamlı ama kartı yok ve daha seyrek |
+| 10 | lx:Personalabteilung | forms[0] | Personalabteilung | D | |
+| 11 | lx:Personalabteilung | forms[1] | Personalabteilung | D | |
+| 12 | lx:Personalabteilung | forms[3] | Personalabteilung | D | |
+| 13 | lx:Abrechnung | forms[0] | Abrechnung · Nebenkostenabrechnung | D | **zur** ile uyuyor |
+| 14 | lx:Nachzahlung | forms[0] | Nachzahlung | D | |
+| 15 | lx:Nachzahlung | forms[2] | Nachzahlung | D | |
+| 16 | lx:Guthaben | forms[3] | Guthaben · Geld | D | **Geld aufladen** konuşmada yerleşik |
+| 17 | lx:Warmmiete | forms[1] | Warmmiete | D | aşağıda takip notu |
+| 18 | lx:Warmmiete | forms[3] | Warmmieten | D | |
+| 19 | lx:Heizkosten | forms[1] | Heizkosten | D | **Nebenkosten** yan giderlerin bütünü, çeviri "ısınma giderleri" |
+| 20 | lx:Heizkosten | forms[3] | Heizkosten | D | |
+
+Örneklem dışında kalan 20 değişen boşluk da okundu; yeni bir haksız ret ya da yanlış kabul görmedim.
+
+### Makine taraması (yeniden)
+
+- 1. turdaki betik yeniden koşuldu: 200 boşluk, **131** `also_ok` girdisi (dilbilimcinin sayısıyla aynı).
+- 16 eşleşme çıktı, hepsi açıklama niteliğinde: **Liste**, **Müll**, **Antrag**, **Urlaub**, **sagen**, **spät**, **genommen**. Kartın kendi notuyla gerçek çelişki **0**.
+- `npm run content:validate` → 0 hata, 150 uyarı.
+
+### Takip (engel değil)
+
+- Üst anlamlı cevap ölçütü kartlar arasında artık tek değil. lx:Warmmiete'de **Miete** "kira türleri ayrılıyor" diye çıkarıldı. lx:Resturlaub'da **Urlaub**, lx:Sperrmüll'de **Müll**, lx:Kundennummer'de **Nummer**, lx:Urlaubsantrag'da **Antrag** duruyor. İki karar da savunulabilir. Ama LEX.md'de bir cümleyle yazılmazsa sonraki partilerde yeniden tartışılır. Öneri: "Üst anlam, kartın notu onu ayırmıyorsa kabul edilir."
+- Değişen iki not (lx:Nachbarschaft, lx:Warteliste `mistakes_tr[1]`) okurdan henüz geçmedi (dilbilimcinin durum notuyla aynı).
+
+### 2. tur kararı
+
+- Oran: **0/20 = %0** → **GEÇTİ** (örneklem katmanı).
+- 1. turda bildirilen 18 alan kapandı. Sınırdaki 8 maddede işlem yapılmış.
+- `reviewed` için kalan tek koşul: değişen iki notun okur onayı.
