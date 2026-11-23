@@ -419,7 +419,7 @@ def main():
         print("9c) LS-17.0 mevsim: 30 Kasım'da Öğren'de 'Mevsimin dersi' (3 mini senaryo), mini senaryo 7 bölümle açılıyor")
         import datetime as _dt
         b6, c6 = launch(p); page = new_page(c6); page.clock.install(time=_dt.datetime(2026, 11, 30, 10, 0)); login_onboard(page, PORT); page.wait_for_selector("[data-tab=today]")
-        page.goto(f"http://127.0.0.1:{PORT}/#/learn"); page.wait_for_selector("[data-test=season]")
+        page.goto(f"http://127.0.0.1:{PORT}/#/koy/pazar"); page.wait_for_selector("[data-test=season]")
         n_season = page.locator("[data-test=season] li a").count()
         check(n_season == 3, f"30 Kasım: mevsim kartında 3 mini senaryo ({n_season})")
         page.locator("[data-test=season] li a").first.click(); page.wait_for_selector("[data-section]")
@@ -429,7 +429,7 @@ def main():
             for sec in ["words", "chunks", "build", "drills", "listening", "dialogue", "roleplay"]:
                 page.goto(f"http://127.0.0.1:{PORT}/#/scenario/{mid}/{sec}"); page.wait_for_selector(".pbar h1"); page.wait_for_timeout(250)
                 check(page.locator(".card.err, [role=alert]").count() == 0, f"{mid} · {sec}: hata paneli yok") if sec in ("build", "drills") else None
-        page.clock.set_system_time(_dt.datetime(2026, 7, 1, 10, 0)); page.goto(f"http://127.0.0.1:{PORT}/#/learn"); page.wait_for_selector("[data-test=sozluk-ac]")
+        page.clock.set_system_time(_dt.datetime(2026, 7, 1, 10, 0)); page.goto(f"http://127.0.0.1:{PORT}/#/koy/pazar"); page.wait_for_selector("[data-domain]")
         check(page.locator("[data-test=season]").count() == 0, "Temmuz'da mevsim kartı yok")
         page.goto(f"http://127.0.0.1:{PORT}/#/today"); page.wait_for_selector("[data-test=next-activity]")
         # PM-044.1: mevsim dersi ana yolda değil, Öğren'de mevsim dışında listelenmiyor

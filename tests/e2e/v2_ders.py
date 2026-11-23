@@ -53,7 +53,7 @@ def main():
     with sync_playwright() as p:
         b, ctx = launch(p, color_scheme=arg("--scheme") or "light"); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-        pg.goto(base + "#/learn"); pg.wait_for_selector("[data-test=temel-liste]")
+        pg.goto(base + "#/koy/kutuphane"); pg.wait_for_selector("[data-test=temel-liste]")
         check(pg.locator("[data-test=temel-ders]").count() >= 10, f"temel dersler listede ({pg.locator('[data-test=temel-ders]').count()})")
         # Şölen 1 (inceleme #87 2. tur): cevap anında uçan XP toplamı = kaydedilen XP − adım XP'si (ders sonu 10)
         pg.evaluate("""() => { window.__ucus = 0; window.__kayit = 0; addEventListener('dw:xp-ucus', (e) => { window.__ucus += e.detail.n; });
@@ -111,7 +111,7 @@ def main():
         pg.reload(); pg.wait_for_selector("[data-test=ders-bitti]")
         check(pg.locator("[data-test=kutlama]").count() == 0 and pg.locator("[data-test=ozet-xp]").count() == 0, "bitmiş ders yeniden açılınca kutlama ve XP kutusu yok")
         pg.evaluate("document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts','1.3')")
-        pg.goto(base + "#/learn"); pg.wait_for_selector("[data-test=temel-liste]"); pg.locator("[data-test=temel-ders]").nth(1).click(); pg.wait_for_selector("[data-test=ders-diyalog]")
+        pg.goto(base + "#/koy/kutuphane"); pg.wait_for_selector("[data-test=temel-liste]"); pg.locator("[data-test=temel-ders]").nth(1).click(); pg.wait_for_selector("[data-test=ders-diyalog]")
         pg.evaluate("document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts','1.3')")
         no_overflow(pg, "%130 yazı ders")
         b.close()
