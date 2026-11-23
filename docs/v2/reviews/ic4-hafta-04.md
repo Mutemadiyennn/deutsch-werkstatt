@@ -166,3 +166,43 @@ Aynı hafta içinde Brandl Hanım öğrenciye fincan ödünç veriyor, sesli mes
 
 ## KARAR: ONAY
 Gerekçe: 53 bulgunun tamamı dosyalarda düzeltildi. İki denetimde yalnız PM'in serbest bıraktığı dağıtımdan gelen beklenen satırlar var (3 `TABLO`, 4 (a)); doğrulayıcıda yalnız hat D'nin beklenen şema hataları. Açık kalan on bir madde dil hatası değil: biri PM kararı (1), biri WORLD işi (6), üçü kelime tablosunun sınırı (2, 3, 5), biri ses hattı (4). Gün dosyalarının `review` alanı görev gereği `draft`; okur turu ve örneklem kontrolü sırada.
+
+## Fark doğrulaması (23.11)
+Kapsam: `git diff 1c84763 content/ic4-hafta-04` (gün 22–28, `hafta-sonu-testi-04`, `gorulmemis-04`). Yalnız turumdan sonraki değişikliklere bakıldı (PM-079 md. 3). Düzeltmeler çalışma ağacındaki dosyalarda yapıldı.
+
+### Bulgular ve düzeltmeler (19)
+1. **Almanca değişti, çeviri eski kaldı (7)**: **Ach** satırlardan çıkarılmış, Türkçede **Ah** durmuş.
+   - 22. gün s12 **Da! Hier ist er!**: **Ah! İşte burada!** → **İşte! Burada!**
+   - 22. gün s15 **Ja, klar!**: **Ah evet!** → **Evet, tabii!**
+   - 23. gün s4 **Herr Pichler!**: **Ah, Pichler Bey.** → **Pichler Bey!**
+   - 24. gün s2 **Ja, ich habe Schimmel …**: **Ah, …** → **Evet, …**
+   - 27. gün n2 **Schön!**: **Ah, güzel!** → **Güzel!**
+   - 28. gün s5 **Aber die Musik ist doch schön!**: **Ah, müzik güzel ama!** → **Ama müzik güzel!**
+   - 28. gün s13 **Ja, ja, Herr Pichler!**: **Ah, Pichler Bey!** → **Tamam, tamam, Pichler Bey!**
+2. **Bahnhof = istasyon (2)**: 22. gün **Das Amt? Es ist am Bahnhof.** çevirisi **Garın orada** → **İstasyonun orada**; 26. gün kalıbı **weit vom Bahnhof** çevirisi **gardan uzak** → **istasyondan uzak**.
+3. **23. gün a1 cevapla** (haksız ret): kabul listesinde **vom Nachbarn** yerine **von dem Nachbarn** yazılmış. Gösterilen biçim için doğru, ama gündelik ve asıl doğal biçim **vom**; onu söyleyen reddedilirdi. Üç **vom** varyantı geri eklendi (**von dem** olanlar da duruyor).
+4. **24. gün `goal_tr` ve `can_do.tr` (2)**: **çok pahalı, fazla küçük ya da büyük olmadığını** cümlesinde olumsuzluk üçüne de okunuyor. → **Bir şey için çok pahalı, fazla küçük ya da büyük değil derim.** (hedef satırı aynı kalıpla).
+5. **25. gün v1 cevapla `why_tr`**: **Sie sind billiger** büyük harfle kibar **Sie** gibi okunuyor → **sie sind billiger**.
+6. **27. gün `lx:zusammen`** (D-064): kabul listesinde aynı cümle iki kez (iki ayrı cevap kalmıştı). İkincisi **Gehen wir zusammen ins Rathaus?** oldu.
+7. **gorulmemis-04 kabul listeleri (3)**:
+   - g4: sayı yalnız rakamla (**500**) vardı; **fünfhundert** yazan reddedilirdi. Üç yazılı varyant ve kısa cevap **Das für 500 Euro.** / **Das für fünfhundert Euro.** eklendi.
+   - g6: kalıbın kendisi **Er ist zu klein.** listede yoktu; o, **Nein, zu klein.** ve **Nein, der Schrank ist zu klein.** eklendi.
+   - g7: yalın **Nein, nicht groß, aber hell.** ve iki yakını eklendi.
+8. **Halka başlıkları (2)**: 25. gün h1 (karşılaştırma kalıpları ve **holen**, **laufen** buraya taşındı) → **Hangisi? Bu! Daha ucuz**; 26. gün h2 (**Mädchen**, **Freund** eklendi) → **Sorun var mı? Kız ve arkadaş**.
+
+### Doğru bulunanlar
+- Yeni görülmemiş durumlar g4–g7: istemler dilbilgisi olarak doğru, kalıplar ve gerekçeler doğru (**am billigsten**, **die Jacke → sie**, **der Schrank → er**, **zu klein**, **nicht groß, aber hell**, **im zweiten Stock**).
+- Yeni kalıp satırları: **billiger als … – teurer als …**, **so … wie …**, **Ich hole … – Holst du …?**, **ein Paar Schuhe**, **ein paar …**, **Ach so! – Ach ja!** doğru.
+- Değişen cümleler doğru: **Sie ist vielleicht in der Küche, auf dem Schrank.** (soru, kelime bankası, cevap tutarlı) · **die Jacke auf dem Sofa** · **Ein Paar Schuhe für zehn Euro? Schön!** · **In Ordnung, das dritte ist am billigsten.** · **Dieser Stuhl ist schöner als der da.** · **Wir holen den Stuhl.** · **Gehen wir zusammen zum Rathaus?**
+- Terimsiz açıklamalar (**sıfat**, **çoğul**, **düzensiz** çıktı) anlamı koruyor; `hafta-sonu-testi-04` t02, t07, t08 gerekçeleri doğru.
+
+### Takip notları (engel değil)
+- 23. gün s2 **Es ist von dem Nachbarn.**: doğru ama ağır; doğal biçim **vom**. **vom** 26. günde gösterildiği için yazar açık biçimi seçmiş. Kabul listesi iki biçimi de alıyor.
+- g7 istemi **Und wie ist es bei dir? Ist es groß?**: anlaşılır, ama **es** neyi gösterdiği belirsiz; doğalı **Und deine Wohnung? Ist sie groß?** **Wohnung** 1.–4. haftada kart değil, o yüzden bırakıldı.
+- g6 **Ist er gut?** biraz yapay (**Passt er?** daha doğal); g5'te gerçek soru **Wie sieht sie aus?** olurdu. Kelime tablosu izin vermiyor.
+- **ins** artık hiçbir günde kart ya da kalıp değil (26. günden çıktı, yerine kalıp konmadı). 27. günde yalnız kabul listesinde duruyor. Lex ya da yazar bir kalıp satırı eklemeli.
+- 25. gün kalıbı **lieber = tercihen** (eski satır): doğru ama kitabi; **daha çok severim** anlamı ileride açıklanmalı.
+
+Sınama (`sina.sh 4`): kalan HATA 0 · İhlal 0 · öğretilmeden istenen 0 · hafta sonu testi 12/12 · görülmemiş 7/7 · sınanmayan can_do yok.
+
+## KARAR: ONAY
