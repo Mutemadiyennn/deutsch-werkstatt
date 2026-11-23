@@ -297,7 +297,10 @@ export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: I
     // cümle başında büyük harf ayırt edici değil: küçük harfle gösteren kart varsa o (öncelikli okunuş) bilinmeli; yoksa büyük harfli kart
     const kucuk = asil.o.charAt(0).toLowerCase() + asil.o.slice(1);
     const kucukKart = asil.bas ? kendiKarti(d, t).filter((i) => d.gostAsil.get(i)?.has(kucuk)) : [];
-    if (asil.bas && kucukKart.length) { if (kucukKart.some((i) => kart.has(i))) return; }
+    // tek sözcüklü cümle (resim etiketi "Arm", tek kelimelik cevap) ayırt edici bağlam taşımaz: iki okunuştan biri yeter
+    // (ANA-D2 devri 7089016679 takibi, PM-101 md. 3: 34. gün `gorsel[g5]` "Arm" lx:Arm biliniyorken lx:arm yüzünden "sınırda")
+    if (asil.bas && kucukKart.length && ta.length > 1) { if (kucukKart.some((i) => kart.has(i))) return; }
+    else if (asil.bas && kucukKart.some((i) => kart.has(i))) return;
     else if (bilinenAday.some((i) => d.gostAsil.get(i)?.has(asil.o))) return;
     if ([...aday].some((i) => d.cerceve.has(i)) && [...baslikKarti(d, t)].every((i) => kart.has(i))) return;
     if (bilinenAday.length) out.push({ tur: "bicim", sozcuk: t, adaylar: bilinenAday.sort() });
