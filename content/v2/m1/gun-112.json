@@ -1,0 +1,1442 @@
+{
+ "schema": 1,
+ "id": "m1:gun:112",
+ "day": 112,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Haftanın sınavı: davete cevap vermek",
+ "goal_tr": "Frau Brandl'ın davetini telefonda kibarca reddeder, nedenini söyler ve başka bir gün önerirsin. Ioana'nın sesli mesajında kim, ne zaman, nerede sorularını cevaplarsın.",
+ "can_do": {
+  "id": "cd:m1:112",
+  "tr": "Bir daveti kibarca reddeder, nedenini söyler, başka gün öneririm."
+ },
+ "unit": "u:a2:bag-3",
+ "arm": "telefon",
+ "place": "pl:haus",
+ "characters": [
+  "ch:brandl",
+  "ch:kraus",
+  "ch:popescu",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic17/dilbilimci-h16.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:Augenblick",
+  "lx:Verbindung"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:112:h1",
+   "title_tr": "Pazar: kötü hat, bir an lütfen, kibar ret",
+   "kartlar": [
+    "lx:Augenblick",
+    "lx:Verbindung"
+   ],
+   "kaliplar": [
+    {
+     "de": "Einen Augenblick, bitte! – Im Augenblick habe ich keine Zeit.",
+     "tr": "Bir saniye lütfen! – Şu an vaktim yok."
+    },
+    {
+     "de": "Die Verbindung ist schlecht. – Hörst du mich? – Hören Sie mich? – Ich höre Sie schlecht.",
+     "tr": "Hat kötü. – Beni duyuyor musun? – Beni duyuyor musunuz? – Sizi kötü duyuyorum."
+    },
+    {
+     "de": "Ich rufe Sie gleich zurück. – Ich rufe dich gleich zurück.",
+     "tr": "Sizi hemen geri arıyorum. – Seni hemen geri arıyorum."
+    },
+    {
+     "de": "Das ist sehr nett von Ihnen, aber heute kann ich leider nicht. – Vielleicht ein anderes Mal?",
+     "tr": "Çok naziksiniz ama bugün maalesef olmaz. – Belki başka bir zaman?"
+    },
+    {
+     "de": "Ich bin heute müde. – Ich bin müde vom Fest.",
+     "tr": "Bugün yorgunum. – Şenlikten yorgunum."
+    },
+    {
+     "de": "Ich würde lieber am Mittwoch kommen. – Wie wäre es mit Mittwoch? – Passt Ihnen Mittwoch? – Mittwoch passt mir.",
+     "tr": "Çarşamba gelmeyi tercih ederdim. – Çarşambaya ne dersiniz? – Çarşamba size uyar mı? – Çarşamba bana uyar."
+    },
+    {
+     "de": "Hätten Sie Zeit? – Hättest du Zeit? – Das wäre schön! – Ich hätte am Mittwoch Zeit.",
+     "tr": "Vaktiniz olur mu? – Vaktin olur mu? – Bu güzel olurdu! – Çarşamba vaktim olur."
+    },
+    {
+     "de": "Ich würde gern … – Würdest du gern …? – Wann würden Sie gern kommen? – Du solltest … – Ich sollte … – Sie sollten … – Sollen wir …? – Lass uns …!",
+     "tr": "… isterdim. – … ister miydin? – Ne zaman gelmek istersiniz? – … yapmalısın. – … yapmalıyım. – … yapmalısınız. – … yapalım mı? – Hadi … yapalım!"
+    },
+    {
+     "de": "Ich bringe Blumen mit. – Ich bin gleich da.",
+     "tr": "Çiçek getiriyorum. – Hemen geliyorum."
+    },
+    {
+     "de": "Grüß Gott! – Servus! – Kommst du mit? – Passt das noch? – im Café am Stadtplatz",
+     "tr": "İyi günler! (Bavyera selamı) – Selam! – Geliyor musun? – Hâlâ uygun mu? – Stadtplatz'taki kafede"
+    },
+    {
+     "de": "Ich habe einen Kuchen gemacht. – Gestern waren viele Leute da. – Ich treffe Ioana um drei.",
+     "tr": "Pasta yaptım. – Dün çok insan vardı. – Saat üçte Ioana ile buluşuyorum."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Augenblick",
+     "de": "Einen Augenblick, bitte, ich bin gleich da.",
+     "tr": "Bir saniye lütfen, hemen geliyorum.",
+     "accepted": [
+      "Einen Augenblick, bitte, ich bin gleich da.",
+      "Einen Augenblick bitte, ich bin gleich da!",
+      "Einen Augenblick, bitte. Ich bin gleich da."
+     ]
+    },
+    {
+     "kart": "lx:Augenblick",
+     "de": "Im Augenblick habe ich leider keine Zeit. Wie wäre es mit Mittwoch?",
+     "tr": "Şu an maalesef vaktim yok. Çarşambaya ne dersin?",
+     "accepted": [
+      "Im Augenblick habe ich leider keine Zeit. Wie wäre es mit Mittwoch?",
+      "Im Augenblick habe ich leider keine Zeit, wie wäre es mit Mittwoch?",
+      "Leider habe ich im Augenblick keine Zeit. Wie wäre es mit Mittwoch?"
+     ]
+    },
+    {
+     "kart": "lx:Verbindung",
+     "de": "Die Verbindung ist schlecht. Können Sie das bitte wiederholen?",
+     "tr": "Hat kötü. Bunu lütfen tekrar edebilir misiniz?",
+     "accepted": [
+      "Die Verbindung ist schlecht. Können Sie das bitte wiederholen?",
+      "Die Verbindung ist schlecht, können Sie das bitte wiederholen?",
+      "Entschuldigung, die Verbindung ist schlecht. Können Sie das bitte wiederholen?"
+     ]
+    },
+    {
+     "kart": "lx:Verbindung",
+     "de": "Die Verbindung ist schlecht, ich rufe Sie gleich zurück.",
+     "tr": "Hat kötü, sizi hemen geri arıyorum.",
+     "accepted": [
+      "Die Verbindung ist schlecht, ich rufe Sie gleich zurück.",
+      "Die Verbindung ist schlecht. Ich rufe Sie gleich zurück.",
+      "Die Verbindung ist ganz schlecht, ich rufe Sie gleich zurück."
+     ]
+    },
+    {
+     "kart": "lx:Verbindung",
+     "de": "Hörst du mich? Die Verbindung ist schlecht.",
+     "tr": "Beni duyuyor musun? Hat kötü.",
+     "accepted": [
+      "Hörst du mich? Die Verbindung ist schlecht.",
+      "Hörst du mich? Die Verbindung ist so schlecht.",
+      "Die Verbindung ist schlecht. Hörst du mich?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Pazar sabahı. Basti arıyor, hat çok kötü. Cuma günü bugün için sözleşmiştiniz. Ama sen şenlikten çok yorgunsun.",
+    "satirlar": [
+     {
+      "r": "ch:kraus",
+      "de": "Servus! Hörst du mich? Heute Fitnessstudio, passt das noch?",
+      "tr": "Selam! Beni duyuyor musun? Bugün spor salonu, hâlâ uygun mu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Einen Augenblick, bitte. Die Verbindung ist schlecht.",
+      "tr": "Bir saniye lütfen. Hat kötü."
+     },
+     {
+      "r": "ch:kraus",
+      "de": "Heute, im Fitnessstudio! Hast du Zeit?",
+      "tr": "Bugün, spor salonunda! Vaktin var mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Heute kann ich leider nicht, ich bin müde vom Fest. Wie wäre es mit Mittwoch?",
+      "tr": "Bugün maalesef olmaz, şenlikten yorgunum. Çarşambaya ne dersin?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Basti'ye ne diyorsun?",
+     "opts": [
+      "Bugün olmaz, yorgunsun; çarşambayı öneriyorsun",
+      "Bugün spora geliyorsun",
+      "Hiç gelmeyeceksin"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:112:v1",
+  "title_tr": "Pazar sabahı: Derya'nın tavsiyesi ve Lena'nın daveti",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Pazar sabahı, mutfakta kahve içiyorsun. Derya arıyor.",
+    "de": "Guten Morgen! Gestern war wunderschön, oder?",
+    "tr": "Günaydın! Dün çok güzeldi, değil mi?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Sen 'Evet, saat on birde döndüm' diyorsun.",
+    "de": "Um elf? Ich bin erst um halb zwölf zurückgekommen.",
+    "tr": "On birde mi? Ben ancak on bir buçukta döndüm."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya esniyor.",
+    "de": "Heute bin ich müde. Ich würde gern den ganzen Tag zu Hause bleiben.",
+    "tr": "Bugün yorgunum. Bütün gün evde kalmak isterdim."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Sen Frau Brandl'ın dün merdivende 'Yarın sizi ararım' dediğini söylüyorsun. Derya gülüyor.",
+    "de": "Frau Brandl? Sie klingt sehr nett. Du solltest nicht einfach Nein sagen.",
+    "tr": "Frau Brandl mı? Çok iyi birine benziyor. Öylece 'Hayır' dememelisin."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya açıklıyor.",
+    "de": "Du solltest zuerst Danke sagen, dann leider, und dann einen anderen Tag.",
+    "tr": "Önce teşekkür etmelisin, sonra 'maalesef' demelisin, sonra da başka bir gün söylemelisin."
+   },
+   {
+    "id": "s6",
+    "speaker": "Lena",
+    "sahne_tr": "Hoparlörden Lena'nın sesi geliyor; Derya'nın yanında.",
+    "de": "Hallo! Hier ist auch Lena. Am Samstag gehe ich auf den Markt. Kommt ihr mit?",
+    "tr": "Merhaba! Ben de buradayım, Lena. Cumartesi pazara gidiyorum. Siz de geliyor musunuz?"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya düşünüyor.",
+    "de": "Danke, Lena! Am Samstag kann ich leider nicht, da muss ich bis zwei arbeiten.",
+    "tr": "Teşekkürler Lena! Cumartesi maalesef olmaz, saat ikiye kadar çalışmam lazım."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya devam ediyor.",
+    "de": "Aber am Sonntag hätte ich Zeit. Wie wäre es mit Sonntag?",
+    "tr": "Ama pazar günü vaktim olur. Pazar gününe ne dersin?"
+   },
+   {
+    "id": "s9",
+    "speaker": "Lena",
+    "sahne_tr": "Lena gülüyor.",
+    "de": "Am Sonntag ist kein Markt. Aber wir könnten zusammen frühstücken.",
+    "tr": "Pazar günü pazar yeri kurulmuyor. Ama birlikte kahvaltı yapabiliriz."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya sana dönüyor.",
+    "de": "Gute Idee! Und du? Kommst du am Samstag mit auf den Markt?",
+    "tr": "İyi fikir! Ya sen? Cumartesi pazara geliyor musun?"
+   },
+   {
+    "id": "s11",
+    "speaker": "Lena",
+    "sahne_tr": "Sen cumartesi saat üçte Ioana'yla buluşacağını söylüyorsun. Lena seviniyor.",
+    "de": "Der Markt ist am Vormittag. Um drei bist du frei. Das passt!",
+    "tr": "Pazar yeri öğleden önce. Saat üçte boşsun. Uyar!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Derya ne tavsiye ediyor?",
+     "opts": [
+      "Frau Brandl'a öylece hayır deme: teşekkür et, 'maalesef' de, başka bir gün öner",
+      "Frau Brandl'a hiç cevap verme",
+      "Bugün mutlaka Frau Brandl'a git"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s4",
+      "s5"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Derya dün gece saat kaçta döndü?",
+      "opts": [
+       "On bir buçukta",
+       "On ikide",
+       "Dokuzda"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya bugün ne yapmak isterdi?",
+      "opts": [
+       "Bütün gün evde kalmak",
+       "Pazara gitmek",
+       "Spor yapmak"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s3"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya'ya göre sıra nasıl olmalı?",
+      "opts": [
+       "Teşekkür, 'maalesef', başka gün",
+       "Hayır, teşekkür",
+       "Başka gün, hayır"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s3",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "müde",
+       "krank",
+       "traurig"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s4",
+      "seviye": "orta",
+      "de": "Sie klingt sehr ___.",
+      "accepted": [
+       "nett",
+       "Nett",
+       "nett."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s4",
+      "seviye": "zor",
+      "banka": [
+       "Du",
+       "solltest",
+       "nicht",
+       "einfach",
+       "Nein",
+       "sagen",
+       "solltest",
+       "sollte"
+      ],
+      "accepted": [
+       "Du solltest nicht einfach Nein sagen.",
+       "du solltest nicht einfach nein sagen",
+       "Du solltest nicht einfach Nein sagen"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s3",
+      "seviye": "usta",
+      "accepted": [
+       "Ich würde gern den ganzen Tag zu Hause bleiben.",
+       "ich würde gern den ganzen tag zu hause bleiben",
+       "Ich würde gern den ganzen Tag zu Hause bleiben"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Derya'nın tavsiyesini Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Ich sollte nicht einfach Nein sagen. Ich sollte zuerst Danke sagen.",
+      "zorunlu": [
+       "Nein",
+       "Danke"
+      ]
+     }
+    ],
+    "golge": [
+     "s3",
+     "s5"
+    ],
+    "cevapla": {
+     "id": "m1:112:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya dün gece ne zaman döndüğünü soruyor. On birde otobüsle döndün. Bugün sen de yorgunsun.",
+     "prompt_de": "Wann bist du zurückgekommen?",
+     "accepted": [
+      "Um elf, mit dem Bus. Heute bin ich auch müde.",
+      "Ich bin um elf zurückgekommen. Heute bin ich müde.",
+      "Um elf. Ich bin auch müde vom Fest.",
+      "Mit dem Bus um elf. Heute bin ich müde.",
+      "Ich bin um elf mit dem Bus zurückgekommen."
+     ],
+     "why_tr": "Dün döndün: **Ich bin um elf zurückgekommen.** Kısa da olur: **Um elf.**"
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Derya Lena'nın davetine ne diyor?",
+     "opts": [
+      "Cumartesi olmaz, pazar gününü öneriyor",
+      "Cumartesi pazara geliyor",
+      "Hiç vakti olmadığını söylüyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s7",
+      "s8"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Derya cumartesi neden gelemiyor?",
+      "opts": [
+       "Saat ikiye kadar çalışması lazım",
+       "Bir arkadaşını ziyaret ediyor",
+       "Hasta"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s7"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Lena pazar günü ne öneriyor?",
+      "opts": [
+       "Birlikte kahvaltı",
+       "Pazar yeri",
+       "Sinema"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Pazar yeri ne zaman kuruluyor?",
+      "opts": [
+       "Öğleden önce",
+       "Akşam",
+       "Saat üçte"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s6",
+      "seviye": "kolay",
+      "q_tr": "Hangi günü duydun?",
+      "opts": [
+       "Samstag",
+       "Sonntag",
+       "Freitag"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s8",
+      "seviye": "orta",
+      "de": "Aber am Sonntag hätte ich ___.",
+      "accepted": [
+       "Zeit",
+       "zeit",
+       "Zeit."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s8",
+      "seviye": "zor",
+      "banka": [
+       "Wie",
+       "wäre",
+       "es",
+       "mit",
+       "Sonntag",
+       "Montag",
+       "wird"
+      ],
+      "accepted": [
+       "Wie wäre es mit Sonntag?",
+       "wie wäre es mit sonntag",
+       "Wie wäre es mit Sonntag"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s9",
+      "seviye": "usta",
+      "accepted": [
+       "Aber wir könnten zusammen frühstücken.",
+       "aber wir könnten zusammen frühstücken",
+       "Aber wir könnten zusammen frühstücken"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Derya'nın cevabını Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Am Samstag kann Derya leider nicht. Aber am Sonntag hätte sie Zeit.",
+      "zorunlu": [
+       "leider",
+       "Sonntag"
+      ]
+     }
+    ],
+    "golge": [
+     "s7",
+     "s8"
+    ],
+    "cevapla": {
+     "id": "m1:112:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Lena cumartesi pazara gelip gelmeyeceğini soruyor. Kabul et. Pazar yeri öğleden önce. Saat üçte de Ioana ile buluşuyorsun.",
+     "prompt_de": "Kommst du am Samstag mit auf den Markt?",
+     "accepted": [
+      "Gute Idee! Ich komme mit. Um drei treffe ich Ioana.",
+      "Ja, ich bin dabei! Am Nachmittag treffe ich Ioana.",
+      "Das klingt gut! Ich komme mit auf den Markt.",
+      "Ja, gern! Um drei treffe ich dann Ioana.",
+      "Gute Idee, ich bin dabei!"
+     ],
+     "why_tr": "Kabul: **Gute Idee! Ich komme mit.** Plan: **Um drei treffe ich Ioana.**"
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:112:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Dinleme denemesi: Ioana'nın sesli mesajı",
+   "ortam_tr": "Pazar sabahı erkenden, Derya aramadan önce. Ioana'ya davet mesajı yazmıştın. Şimdi telefonunda ondan bir sesli mesaj var. Dinle: kim geliyor, ne zaman, nerede?",
+   "speaker": "ch:popescu",
+   "hizlar": [
+    "normal",
+    "natural"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Ioana. Danke für deine Nachricht!",
+     "tr": "Merhaba, ben Ioana. Mesajın için teşekkürler!"
+    },
+    {
+     "id": "c2",
+     "de": "Mir geht es schon besser, das Fieber ist weg.",
+     "tr": "Daha iyiyim, ateşim düştü."
+    },
+    {
+     "id": "c3",
+     "de": "Am Freitag kann ich leider nicht, da habe ich einen Termin beim Arzt.",
+     "tr": "Cuma maalesef olmaz, o gün doktordan randevum var."
+    },
+    {
+     "id": "c4",
+     "de": "Aber wie wäre es mit Samstag? Um drei Uhr im Café am Stadtplatz.",
+     "tr": "Ama cumartesiye ne dersin? Saat üçte Stadtplatz'taki kafede."
+    },
+    {
+     "id": "c5",
+     "de": "Derya kommt auch mit, sie hat am Samstag Zeit.",
+     "tr": "Derya da geliyor, cumartesi vakti var."
+    },
+    {
+     "id": "c6",
+     "de": "Ruf mich bitte heute an. Bis bald!",
+     "tr": "Lütfen bugün beni ara. Görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Ioana ne diyor?",
+      "opts": [
+       "Cuma olmaz; cumartesi saat üçte Stadtplatz'taki kafeyi öneriyor",
+       "Cuma geliyor",
+       "Hâlâ hasta, hiç gelemiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Kim geliyor?",
+       "opts": [
+        "Ioana ve Derya",
+        "Yalnızca Ioana",
+        "Ioana ve Basti"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ne zaman?",
+       "opts": [
+        "Cumartesi saat üçte",
+        "Cuma saat üçte",
+        "Cumartesi saat onda"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Nerede?",
+       "opts": [
+        "Stadtplatz'taki kafede",
+        "Ioana'nın evinde",
+        "Pazarda"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ioana cuma neden gelemiyor?",
+       "opts": [
+        "Doktor randevusu var",
+        "Çalışıyor",
+        "Ateşi var"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi saati duydun?",
+       "opts": [
+        "drei",
+        "zwei",
+        "zehn"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Mir geht es schon besser, das ___ ist weg.",
+       "accepted": [
+        "Fieber",
+        "fieber",
+        "Fieber."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Derya",
+        "kommt",
+        "auch",
+        "mit",
+        "sie",
+        "hat",
+        "am",
+        "Samstag",
+        "Zeit",
+        "Basti",
+        "nicht"
+       ],
+       "accepted": [
+        "Derya kommt auch mit, sie hat am Samstag Zeit.",
+        "derya kommt auch mit sie hat am samstag zeit",
+        "Derya kommt auch mit, sie hat am Samstag Zeit"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c6",
+       "seviye": "usta",
+       "accepted": [
+        "Ruf mich bitte heute an.",
+        "ruf mich bitte heute an",
+        "Ruf mich bitte heute an"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı Almanca iki kısa cümleyle özetle: kim, ne zaman, nerede?",
+       "ornek_de": "Am Samstag um drei treffen wir uns im Café. Ioana und Derya kommen.",
+       "zorunlu": [
+        "Samstag",
+        "Café"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:112:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana'yı geri ara. Cumartesi saat üç sana uyuyor. Kafede görüşürsünüz.",
+      "prompt_de": "Wie wäre es mit Samstag? Um drei Uhr im Café?",
+      "accepted": [
+       "Samstag um drei passt mir gut! Bis Samstag im Café.",
+       "Das klingt gut! Samstag um drei im Café passt mir.",
+       "Gute Idee! Ich bin dabei. Bis Samstag um drei!",
+       "Ja, Samstag um drei passt mir. Bis dann!",
+       "Das passt mir! Bis Samstag im Café."
+      ],
+      "why_tr": "Kabul ve tekrar: **Samstag um drei passt mir.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:112:a1:e1",
+    "k": "pick",
+    "q_tr": "Takvimine ne yazmalısın?",
+    "opts": [
+     "Cumartesi 15:00, Stadtplatz'taki kafe, Ioana ve Derya",
+     "Cuma 15:00, kafe, Ioana",
+     "Cumartesi 10:00, pazar, Lena"
+    ],
+    "ans": 0,
+    "why_tr": "Ioana cumartesi saat üçü ve Stadtplatz'taki kafeyi öneriyor. Derya da geliyor: **Derya kommt auch mit.**",
+    "kanit": [
+     "c4",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:112:a2",
+   "tur": "radyo",
+   "title_tr": "Pazar radyosu: şenlikten sonra",
+   "ortam_tr": "Pazar öğleden sonra evdesin. Radyo dünkü şenliği ve haftayı anlatıyor.",
+   "hizlar": [
+    "normal",
+    "natural"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag und einen schönen Sonntag, Wendlfing!",
+     "tr": "İyi günler ve güzel bir pazar dileriz, Wendlfing!"
+    },
+    {
+     "id": "c2",
+     "de": "Gestern waren viele Leute auf dem Starkbierfest. Die Polizei sagt: Alles war ruhig.",
+     "tr": "Dün Starkbierfest'te çok kişi vardı. Polis diyor ki: Her şey sakindi."
+    },
+    {
+     "id": "c3",
+     "de": "Heute ist es auf dem Stadtplatz wieder ruhig.",
+     "tr": "Bugün Stadtplatz yine sakin."
+    },
+    {
+     "id": "c4",
+     "de": "Morgen regnet es den ganzen Tag. Fahren Sie lieber mit dem Bus, nicht mit dem Fahrrad!",
+     "tr": "Yarın bütün gün yağmur yağacak. Bisikletle değil, otobüsle gitseniz iyi olur!"
+    },
+    {
+     "id": "c5",
+     "de": "Am Samstag ist wie immer Markt, von acht bis zwölf Uhr.",
+     "tr": "Cumartesi her zamanki gibi pazar var, sekizden on ikiye kadar."
+    },
+    {
+     "id": "c6",
+     "de": "Und Sie? Wollen Sie hingehen? Dann bis Samstag!",
+     "tr": "Ya siz? Gitmek ister misiniz? O zaman cumartesiye kadar hoşça kalın!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne anlatıyor?",
+      "opts": [
+       "Dünkü şenliğin sakin geçtiğini, yarınki yağmuru ve cumartesi pazarını",
+       "Şenliğin yarın tekrar olacağını",
+       "Otobüslerin çalışmadığını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Polis şenlik için ne diyor?",
+       "opts": [
+        "Her şey sakindi",
+        "Çok sorun vardı",
+        "Şenlik erken bitti"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Yarın hava nasıl?",
+       "opts": [
+        "Bütün gün yağmurlu",
+        "Güneşli",
+        "Karlı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Cumartesi pazar saat kaça kadar?",
+       "opts": [
+        "On ikiye kadar",
+        "On bire kadar",
+        "Akşama kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Fahrrad",
+        "Auto",
+        "Zug"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Heute ist es auf dem Stadtplatz wieder ___.",
+       "accepted": [
+        "ruhig",
+        "Ruhig",
+        "ruhig."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Am",
+        "Samstag",
+        "ist",
+        "wie",
+        "immer",
+        "Markt",
+        "von",
+        "acht",
+        "bis",
+        "zwölf",
+        "Uhr",
+        "Sonntag",
+        "neun"
+       ],
+       "accepted": [
+        "Am Samstag ist wie immer Markt, von acht bis zwölf Uhr.",
+        "am samstag ist wie immer markt von acht bis zwölf uhr",
+        "Am Samstag ist wie immer Markt, von acht bis zwölf Uhr"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Morgen regnet es den ganzen Tag.",
+        "morgen regnet es den ganzen tag",
+        "Morgen regnet es den ganzen Tag"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyonun iki bilgisini Almanca yaz.",
+       "ornek_de": "Morgen regnet es den ganzen Tag. Am Samstag ist von acht bis zwölf Uhr Markt.",
+       "zorunlu": [
+        "regnet",
+        "Markt"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:112:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana mesaj yazıyor: Cumartesi pazara gidelim mi? Kabul et. Ama pazar yeri on ikiye kadar açık, erken gidin.",
+      "prompt_de": "Wollen wir am Samstag auch auf den Markt gehen?",
+      "accepted": [
+       "Gute Idee! Der Markt ist bis zwölf Uhr, wir sollten früh gehen.",
+       "Das klingt gut! Aber der Markt ist nur bis zwölf.",
+       "Ja, gern! Wir sollten um zehn gehen, der Markt ist bis zwölf.",
+       "Gute Idee! Ich bin dabei. Der Markt ist von acht bis zwölf.",
+       "Ja, ich komme mit! Wir sollten früh gehen."
+      ],
+      "why_tr": "Kabul et ve öner: **Wir sollten früh gehen.** Yani erken gitmeliyiz."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:112:a2:e1",
+    "k": "pick",
+    "q_tr": "Yarın işe nasıl gitmelisin?",
+    "opts": [
+     "Otobüsle",
+     "Bisikletle",
+     "Yürüyerek"
+    ],
+    "ans": 0,
+    "why_tr": "Radyo yarın bütün gün yağmur yağacağını söylüyor. Bisiklet değil, otobüs öneriyor: **lieber mit dem Bus**.",
+    "kanit": [
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:112:g1",
+   "de": "Verbindung",
+   "dogru_img": "person on the phone with a bad signal icon on the screen",
+   "celdirici_img": [
+    "person reading a book",
+    "person cooking soup",
+    "person riding a bike"
+   ]
+  },
+  {
+   "id": "m1:112:g2",
+   "de": "Augenblick",
+   "dogru_img": "woman on the phone holding up one finger meaning one moment",
+   "celdirici_img": [
+    "woman waving goodbye",
+    "woman sleeping",
+    "woman running"
+   ]
+  },
+  {
+   "id": "m1:112:g3",
+   "de": "Kuchen",
+   "dogru_img": "homemade cake and coffee cups on a table",
+   "celdirici_img": [
+    "plate of sausages",
+    "bowl of salad",
+    "pizza box"
+   ]
+  },
+  {
+   "id": "m1:112:g4",
+   "de": "Café",
+   "dogru_img": "small cafe on a town square with tables outside",
+   "celdirici_img": [
+    "train station hall",
+    "doctor's waiting room",
+    "supermarket checkout"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:112:p1",
+  "title_tr": "Haftanın provası: Frau Brandl'ın davetini kibarca reddet",
+  "durum_tr": "Pazar öğlen. Frau Brandl arıyor, hat kötü. Seni bugün saat üçte kahve ve pastaya çağırıyor. Bugün gidemiyorsun: şenlikten çok yorgunsun. Kibarca reddet: önce teşekkür et, sonra 'maalesef' ve nedeni, sonra başka bir gün öner. Gün ve saat üzerinde anlaşın.",
+  "karsi": "ch:brandl",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Grüß Gott! Hier ist Brandl. Hören Sie mich? Die Verbindung ist so schlecht.",
+    "tr": "İyi günler! Ben Brandl. Beni duyuyor musunuz? Hat çok kötü.",
+    "secenekler": [
+     {
+      "de": "Grüß Gott, Frau Brandl! Ja, aber die Verbindung ist schlecht. Einen Augenblick, bitte.",
+      "tr": "İyi günler Frau Brandl! Evet, ama hat kötü. Bir saniye lütfen.",
+      "accepted": [
+       "Grüß Gott, Frau Brandl! Ja, aber die Verbindung ist schlecht. Einen Augenblick, bitte.",
+       "Grüß Gott, Frau Brandl! Die Verbindung ist schlecht. Einen Augenblick, bitte.",
+       "Grüß Gott! Ja, ich höre Sie, aber die Verbindung ist schlecht. Einen Augenblick, bitte.",
+       "Grüß Gott, Frau Brandl! Einen Augenblick, bitte, die Verbindung ist schlecht."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: selam, hattın kötü olduğunu söyledin ve **Einen Augenblick, bitte** ile zaman kazandın."
+     },
+     {
+      "de": "Grüß Gott, Frau Brandl! Ich höre Sie schlecht. Können Sie das bitte wiederholen?",
+      "tr": "İyi günler Frau Brandl! Sizi kötü duyuyorum. Lütfen tekrar edebilir misiniz?",
+      "accepted": [
+       "Grüß Gott, Frau Brandl! Ich höre Sie schlecht. Können Sie das bitte wiederholen?",
+       "Grüß Gott! Ich höre Sie schlecht. Können Sie das bitte wiederholen?",
+       "Grüß Gott, Frau Brandl! Ich höre Sie schlecht, können Sie das bitte wiederholen?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: tekrar istemek telefonda en güvenli yol."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Ich habe einen Kuchen gemacht. Hätten Sie heute um drei Zeit? Auf einen Kaffee bei mir?",
+    "tr": "Pasta yaptım. Bugün saat üçte vaktiniz olur mu? Bende bir kahveye?",
+    "secenekler": [
+     {
+      "de": "Das ist sehr nett von Ihnen, aber heute kann ich leider nicht. Ich bin müde vom Fest. Wie wäre es mit Mittwoch?",
+      "tr": "Çok naziksiniz ama bugün maalesef olmaz. Şenlikten yorgunum. Çarşambaya ne dersiniz?",
+      "accepted": [
+       "Das ist sehr nett von Ihnen, aber heute kann ich leider nicht. Ich bin müde vom Fest. Wie wäre es mit Mittwoch?",
+       "Das ist sehr nett, aber heute kann ich leider nicht. Ich bin müde vom Fest. Wie wäre es mit Mittwoch?",
+       "Danke, das ist sehr nett von Ihnen! Aber heute kann ich leider nicht, ich bin sehr müde. Wie wäre es mit Mittwoch?",
+       "Das ist sehr nett von Ihnen, aber heute kann ich leider nicht, ich bin müde. Passt Ihnen Mittwoch?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Üç adımı da yaptın: teşekkür, ret ve neden, başka gün."
+     },
+     {
+      "de": "Danke, Frau Brandl! Heute habe ich leider keine Zeit, ich bin sehr müde. Ich würde lieber am Mittwoch kommen.",
+      "tr": "Teşekkürler Frau Brandl! Bugün maalesef vaktim yok, çok yorgunum. Çarşamba gelmeyi tercih ederdim.",
+      "accepted": [
+       "Danke, Frau Brandl! Heute habe ich leider keine Zeit, ich bin sehr müde. Ich würde lieber am Mittwoch kommen.",
+       "Danke! Heute habe ich leider keine Zeit, ich bin müde. Ich würde lieber am Mittwoch kommen.",
+       "Danke, Frau Brandl! Leider habe ich heute keine Zeit, ich bin müde vom Fest. Ich würde lieber am Mittwoch kommen."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok kibar: teşekkür, **leider** ve neden. Karşı öneri: **Ich würde lieber am Mittwoch kommen.**"
+     },
+     {
+      "de": "Nein, heute nicht.",
+      "tr": "(kaba) Hayır, bugün değil.",
+      "accepted": [
+       "Nein, heute nicht.",
+       "Heute nicht.",
+       "Nein, heute nicht, danke."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu kısa ve sert duruyor. Önce teşekkür et, **leider** de, nedenini ve başka bir gün söyle."
+     },
+     {
+      "de": "Ja, gern! Ich komme um drei.",
+      "tr": "(ret değil) Memnuniyetle! Üçte geliyorum.",
+      "accepted": [
+       "Ja, gern! Ich komme um drei.",
+       "Gern, ich komme um drei.",
+       "Ja, um drei komme ich gern."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Bugün çok yorgunsun ve gidemiyorsun. Burada kibarca reddet ve başka bir gün öner."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Mittwoch? Einen Augenblick. Ja, Mittwoch um drei passt mir gut. Und Ihnen?",
+    "tr": "Çarşamba mı? Bir saniye. Evet, çarşamba üçte bana iyi uyar. Ya size?",
+    "secenekler": [
+     {
+      "de": "Mittwoch um drei passt mir auch. Ich bringe Blumen mit!",
+      "tr": "Çarşamba üç bana da uyar. Çiçek getiririm!",
+      "accepted": [
+       "Mittwoch um drei passt mir auch. Ich bringe Blumen mit!",
+       "Mittwoch um drei passt mir auch, ich bringe Blumen mit.",
+       "Ja, Mittwoch um drei passt mir auch. Ich bringe Blumen mit!",
+       "Mittwoch um drei passt mir auch. Das wäre schön!"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Anlaştınız: gün ve saat tekrar edildi. **Das passt mir auch.**"
+     },
+     {
+      "de": "Um drei kann ich leider nicht, ich arbeite bis fünf. Wie wäre es mit sechs Uhr?",
+      "tr": "Üçte maalesef olmaz, beşe kadar çalışıyorum. Saat altıya ne dersiniz?",
+      "accepted": [
+       "Um drei kann ich leider nicht, ich arbeite bis fünf. Wie wäre es mit sechs Uhr?",
+       "Um drei leider nicht, ich arbeite bis fünf. Wie wäre es mit sechs?",
+       "Leider nicht um drei, ich arbeite bis fünf. Wie wäre es mit sechs Uhr?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Saat için de karşı öneri: **Wie wäre es mit sechs Uhr?**"
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Wunderbar! Dann bis Mittwoch um drei. Und schlafen Sie heute gut!",
+    "tr": "Harika! O zaman çarşamba üçte görüşürüz. Bugün de iyi dinlenin!",
+    "son": true
+   },
+   {
+    "id": "n5",
+    "de": "Um sechs? Das passt mir auch. Wunderbar, dann bis Mittwoch!",
+    "tr": "Altıda mı? O da bana uyar. Harika, o zaman çarşamba görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Haftanın provası tamam: Frau Brandl'ın davetini kibarca reddettin. Önce teşekkür ettin, sonra **leider** ile nedenini söyledin. En sonda başka bir gün önerdin ve saatte anlaştın. Kötü hatta da **Einen Augenblick, bitte** ile yolunu buldun."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Lena'nın grup mesajı",
+  "metin_de": "Hallo zusammen! Gestern war wunderschön, danke für den schönen Tag! Am Samstag gehe ich um zehn auf den Markt. Wer kommt mit? Danach könnten wir zusammen einen Kaffee trinken. Bitte sagt mir bis Freitag Bescheid. Lena",
+  "metin_tr": "Herkese merhaba! Dün çok güzeldi, güzel gün için teşekkürler! Cumartesi saat onda pazara gidiyorum. Kim geliyor? Sonra birlikte kahve içebiliriz. Lütfen cumaya kadar bana haber verin. Lena",
+  "sorular": [
+   {
+    "id": "m1:112:o1",
+    "kind": "gist",
+    "q_tr": "Lena neden yazıyor?",
+    "opts": [
+     "Herkesi cumartesi pazara çağırıyor",
+     "Şenliği iptal ediyor",
+     "Hasta olduğunu söylüyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     2,
+     3
+    ]
+   },
+   {
+    "id": "m1:112:o2",
+    "kind": "detail",
+    "q_tr": "Lena cumartesi saat kaçta pazara gidiyor?",
+    "opts": [
+     "Onda",
+     "Üçte",
+     "Sekizde"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:112:o3",
+    "kind": "detail",
+    "q_tr": "Pazardan sonra ne öneriyor?",
+    "opts": [
+     "Birlikte kahve içmeyi",
+     "Sinemaya gitmeyi",
+     "Spor yapmayı"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:112:o4",
+    "kind": "detail",
+    "q_tr": "Ne zamana kadar cevap vermelisin?",
+    "opts": [
+     "Cumaya kadar",
+     "Bu akşama kadar",
+     "Cumartesi sabahına kadar"
+    ],
+    "ans": 0,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:112:o5",
+    "k": "guided_response",
+    "situation_tr": "Lena'ya yazılı cevap ver: Kabul et. Saat üçte Ioana ile buluşuyorsun. O yüzden kahveye kısa kalabilirsin.",
+    "prompt_de": "Wer kommt mit?",
+    "accepted": [
+     "Gute Idee, ich bin dabei! Um drei treffe ich Ioana.",
+     "Ich komme mit! Aber um drei treffe ich Ioana.",
+     "Das klingt gut! Ich komme um zehn mit. Um drei treffe ich Ioana.",
+     "Ich bin dabei! Der Kaffee danach passt mir, aber um drei treffe ich Ioana.",
+     "Gute Idee! Ich komme mit auf den Markt."
+    ],
+    "why_tr": "Kabul: **Ich bin dabei!** Kısıt: **Um drei treffe ich Ioana.**"
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Haftanı 4 kısa cümleyle yaz. Ne yapmak isterdin? **würde gern** kullan. Birine **solltest** ile tavsiye ver. Birine **Wollen wir** ile bir şey öner. Bir daveti **leider** ile reddet ve başka gün öner.",
+   "ornek_de": "Am Wochenende würde ich gern ausschlafen. Du solltest mehr schlafen, Derya! Wollen wir am Samstag zusammen auf den Markt gehen? Heute kann ich leider nicht, wie wäre es mit Mittwoch?",
+   "zorunlu": [
+    "würde",
+    "leider"
+   ],
+   "accepted_kaliplar": [
+    "Am Wochenende würde ich gern …",
+    "Du solltest …",
+    "Wollen wir am … zusammen … gehen?",
+    "Heute kann ich leider nicht, wie wäre es mit …?"
+   ],
+   "kontrol_tr": [
+    "**würde** ikinci yerde, **ausschlafen** en sonda mı?",
+    "Öneride **Wollen** başta mı?",
+    "Reddederken **leider** ve başka bir gün var mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:112:s",
+  "maddeler": [
+   {
+    "id": "m1:112:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Einen Augenblick, bitte.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Einen Augenblick, bitte.",
+     "einen augenblick bitte",
+     "Einen Augenblick, bitte"
+    ],
+    "why_tr": "**Einen Augenblick, bitte**: bir saniye lütfen. Telefonda zaman kazanırsın."
+   },
+   {
+    "id": "m1:112:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Die Verbindung ist schlecht.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Verbindung ist schlecht.",
+     "die verbindung ist schlecht",
+     "Die Verbindung ist schlecht"
+    ],
+    "why_tr": "**die Verbindung**: telefon hattı, bağlantı."
+   },
+   {
+    "id": "m1:112:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Das klingt gut, aber ich habe leider keine Zeit.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das klingt gut, aber ich habe leider keine Zeit.",
+     "das klingt gut aber ich habe leider keine zeit",
+     "Das klingt gut, aber ich habe leider keine Zeit"
+    ],
+    "why_tr": "Önce sıcak bir söz, sonra **leider** ile ret."
+   },
+   {
+    "id": "m1:112:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ich würde lieber am Mittwoch kommen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich würde lieber am Mittwoch kommen.",
+     "ich würde lieber am mittwoch kommen",
+     "Ich würde lieber am Mittwoch kommen"
+    ],
+    "why_tr": "**würde lieber**: tercih ederdim. **kommen** en sonda."
+   },
+   {
+    "id": "m1:112:s5",
+    "k": "tr_de",
+    "tr": "Cumartesi vaktin olur mu?",
+    "accepted": [
+     "Hättest du am Samstag Zeit?",
+     "Hast du am Samstag Zeit?",
+     "Hättest du Samstag Zeit?"
+    ],
+    "why_tr": "Kibar soru **Hättest** ile başlar: **Hättest du am Samstag Zeit?**"
+   },
+   {
+    "id": "m1:112:s6",
+    "k": "tr_de",
+    "tr": "Daha çok uyumalısın.",
+    "accepted": [
+     "Du solltest mehr schlafen.",
+     "Du solltest ein bisschen mehr schlafen.",
+     "Du solltest mal mehr schlafen."
+    ],
+    "why_tr": "Tavsiye: **solltest** ikinci yerde, **schlafen** en sonda."
+   },
+   {
+    "id": "m1:112:s7",
+    "k": "tr_de",
+    "tr": "Bugün maalesef olmaz, şenlikten yorgunum.",
+    "accepted": [
+     "Heute kann ich leider nicht, ich bin müde vom Fest.",
+     "Leider kann ich heute nicht, ich bin müde vom Fest.",
+     "Heute kann ich leider nicht. Ich bin müde vom Fest."
+    ],
+    "why_tr": "Önce reddet: **leider**. Sonra neden: **Ich bin müde vom Fest.**"
+   },
+   {
+    "id": "m1:112:s8",
+    "k": "tr_de",
+    "tr": "Birlikte yemek yiyelim mi?",
+    "accepted": [
+     "Wollen wir zusammen essen?",
+     "Sollen wir zusammen essen?",
+     "Wollen wir zusammen essen gehen?"
+    ],
+    "why_tr": "Öneri: **Wollen** başta, **essen** sonda."
+   },
+   {
+    "id": "m1:112:s9",
+    "k": "guided_response",
+    "situation_tr": "Basti bugünkü spor buluşmasını soruyor. Kibarca reddet, nedenini söyle, başka bir gün öner.",
+    "prompt_de": "Heute Fitnessstudio, passt das noch?",
+    "accepted": [
+     "Heute kann ich leider nicht, ich bin müde vom Fest. Wie wäre es mit Mittwoch?",
+     "Leider nicht, ich bin sehr müde. Ich würde lieber am Mittwoch kommen.",
+     "Das klingt gut, aber heute kann ich leider nicht. Ich bin müde. Vielleicht am Mittwoch?",
+     "Heute leider nicht, ich bin müde. Wie wäre es mit Mittwoch?",
+     "Leider habe ich heute keine Zeit. Passt dir Mittwoch?"
+    ],
+    "why_tr": "Üç adım: **leider**, neden, başka gün."
+   },
+   {
+    "id": "m1:112:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Am Samstag um drei im Café am Stadtplatz. Derya kommt auch.",
+    "speed": "normal",
+    "situation_tr": "Ioana'nın mesajını dinledin. Derya soruyor: Ne zaman, nerede? Tekrar et.",
+    "accepted": [
+     "Am Samstag um drei, im Café am Stadtplatz.",
+     "Samstag um drei im Café am Stadtplatz. Du kommst auch!",
+     "Am Samstag um drei Uhr, im Café am Stadtplatz.",
+     "Samstag, drei Uhr, Café am Stadtplatz.",
+     "Am Samstag um drei, im Café."
+    ],
+    "why_tr": "İki bilgi: ne zaman (**Samstag um drei**) ve nerede (**im Café am Stadtplatz**)."
+   },
+   {
+    "id": "m1:112:s11",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl seni bugün kahveye çağırıyor. Önce teşekkür et, sonra kibarca reddet ve çarşambayı öner.",
+    "prompt_de": "Hätten Sie heute um drei Zeit? Auf einen Kaffee?",
+    "accepted": [
+     "Das ist sehr nett von Ihnen, aber heute kann ich leider nicht. Wie wäre es mit Mittwoch?",
+     "Danke, Frau Brandl! Heute habe ich leider keine Zeit. Ich würde lieber am Mittwoch kommen.",
+     "Das ist sehr nett, aber heute kann ich leider nicht, ich bin müde. Passt Ihnen Mittwoch?",
+     "Danke! Heute leider nicht. Wie wäre es mit Mittwoch?",
+     "Das ist sehr nett von Ihnen! Leider kann ich heute nicht. Hätten Sie am Mittwoch Zeit?"
+    ],
+    "why_tr": "Üç adım: teşekkür, **leider**, başka gün."
+   }
+  ],
+  "sesli": [
+   "m1:112:s9",
+   "m1:112:s10"
+  ],
+  "dikte": [
+   "m1:112:s1",
+   "m1:112:s2",
+   "m1:112:s3",
+   "m1:112:s4"
+  ]
+ }
+}

@@ -1,0 +1,1665 @@
+{
+ "schema": 1,
+ "id": "m1:gun:108",
+ "day": 108,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Tavsiye vermek: Du solltest mehr schlafen",
+ "goal_tr": "sollte ile tavsiye verir, tavsiyeyi anlarsın. Banyodaki su arızasını Herr Pichler'e telefonda anlatırsın.",
+ "can_do": {
+  "id": "cd:m1:108",
+  "tr": "Birine solltest ya da sollten ile tavsiye veririm. Ev arızasını telefonda anlatırım."
+ },
+ "unit": "u:a2:telefon-4",
+ "arm": "telefon",
+ "place": "pl:haus",
+ "characters": [
+  "ch:pichler",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic17/dilbilimci-h16.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+ },
+ "dersler": [
+  "gr:a2-08:t3"
+ ],
+ "yeni_kartlar": [
+  "lx:mitnehmen",
+  "lx:teilen",
+  "lx:Boden",
+  "lx:Information",
+  "lx:Mund",
+  "lx:Schluss"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:108:h1",
+   "title_tr": "Çarşamba sabahı: banyoda su",
+   "kartlar": [
+    "lx:Boden",
+    "lx:Information",
+    "lx:mitnehmen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Grüß Gott! – Pichler, grüß Gott.",
+     "tr": "İyi günler! (Bavyera selamı) – Pichler, iyi günler."
+    },
+    {
+     "de": "Ich möchte eine Störung melden. – Im Bad ist Wasser auf dem Boden.",
+     "tr": "Bir arıza bildirmek istiyorum. – Banyoda yerde su var."
+    },
+    {
+     "de": "auf dem Boden – auf den Boden – auf dem ganzen Boden – Das Handy ist auf den Boden gefallen.",
+     "tr": "yerde – yere – bütün yerde – Telefon yere düştü."
+    },
+    {
+     "de": "Was ist passiert? – Die Waschmaschine verliert Wasser. – Seit wann? – Seit heute Morgen.",
+     "tr": "Ne oldu? – Çamaşır makinesi su kaçırıyor. – Ne zamandan beri? – Bu sabahtan beri."
+    },
+    {
+     "de": "Danke für die Information! – Ich brauche eine Information. – Haben Sie Informationen?",
+     "tr": "Bilgi için teşekkürler! – Bir bilgiye ihtiyacım var. – Bilginiz var mı?"
+    },
+    {
+     "de": "Ich nehme … mit. – Nehmen Sie … mit. – Kannst du mich mitnehmen? – Ich habe … mitgenommen.",
+     "tr": "… yanıma alıyorum. – … yanınıza alın. – Beni de götürebilir misin? – … yanıma aldım."
+    },
+    {
+     "de": "Wann können Sie kommen? – Ich komme gleich. – Die Tür ist offen.",
+     "tr": "Ne zaman gelebilirsiniz? – Hemen geliyorum. – Kapı açık."
+    },
+    {
+     "de": "Ich schließe den Wasserhahn. – Ich sehe das Wasser. – Ich habe die Waschmaschine gestern benutzt.",
+     "tr": "Musluğu kapatıyorum. – Suyu görüyorum. – Çamaşır makinesini dün kullandım."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Boden",
+     "de": "Im Bad ist Wasser auf dem Boden.",
+     "tr": "Banyoda yerde su var.",
+     "accepted": [
+      "Im Bad ist Wasser auf dem Boden.",
+      "Im Bad ist viel Wasser auf dem Boden.",
+      "Auf dem Boden im Bad ist Wasser."
+     ]
+    },
+    {
+     "kart": "lx:Boden",
+     "de": "Das Wasser ist auf dem ganzen Boden.",
+     "tr": "Su bütün yere yayılmış.",
+     "accepted": [
+      "Das Wasser ist auf dem ganzen Boden.",
+      "Das Wasser ist jetzt auf dem ganzen Boden.",
+      "Auf dem ganzen Boden ist Wasser."
+     ]
+    },
+    {
+     "kart": "lx:Boden",
+     "de": "Mein Handy ist auf den Boden gefallen.",
+     "tr": "Telefonum yere düştü.",
+     "accepted": [
+      "Mein Handy ist auf den Boden gefallen.",
+      "Das Handy ist auf den Boden gefallen.",
+      "Mein Telefon ist auf den Boden gefallen."
+     ]
+    },
+    {
+     "kart": "lx:Information",
+     "de": "Danke für die Information!",
+     "tr": "Bilgi için teşekkürler!",
+     "accepted": [
+      "Danke für die Information!",
+      "Vielen Dank für die Information!",
+      "Danke für die Information."
+     ]
+    },
+    {
+     "kart": "lx:Information",
+     "de": "Ich brauche eine Information: Wann kommt der Techniker?",
+     "tr": "Bir bilgiye ihtiyacım var: Teknisyen ne zaman geliyor?",
+     "accepted": [
+      "Ich brauche eine Information: Wann kommt der Techniker?",
+      "Ich brauche eine Information. Wann kommt der Techniker?",
+      "Ich brauche eine Information: Wann kommt denn der Techniker?"
+     ]
+    },
+    {
+     "kart": "lx:mitnehmen",
+     "de": "Sie müssen den Schlüssel für den Keller mitnehmen.",
+     "tr": "Bodrumun anahtarını yanınıza almanız lazım.",
+     "accepted": [
+      "Sie müssen den Schlüssel für den Keller mitnehmen.",
+      "Sie müssen bitte den Schlüssel für den Keller mitnehmen.",
+      "Den Schlüssel für den Keller müssen Sie mitnehmen."
+     ]
+    },
+    {
+     "kart": "lx:mitnehmen",
+     "de": "Kannst du mich morgen zur Arbeit mitnehmen?",
+     "tr": "Yarın beni işe götürebilir misin?",
+     "accepted": [
+      "Kannst du mich morgen zur Arbeit mitnehmen?",
+      "Kannst du mich morgen mit zur Arbeit nehmen?",
+      "Kannst du mich morgen zur Arbeit mitnehmen, bitte?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Çarşamba sabahı, saat yedi. Banyoya giriyorsun: yerde su var. Herr Pichler'i arıyorsun; bu kez hemen açıyor.",
+    "satirlar": [
+     {
+      "r": "ch:pichler",
+      "de": "Pichler, grüß Gott.",
+      "tr": "Pichler, iyi günler."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Grüß Gott, Herr Pichler. Im Bad ist Wasser auf dem Boden.",
+      "tr": "İyi günler Herr Pichler. Banyoda yerde su var."
+     },
+     {
+      "r": "ch:pichler",
+      "de": "Danke für die Information. Ich komme gleich und nehme alles mit.",
+      "tr": "Bilgi için teşekkürler. Hemen geliyorum, her şeyi yanıma alıyorum."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Danke! Die Tür ist offen.",
+      "tr": "Teşekkürler! Kapı açık."
+     }
+    ],
+    "soru": {
+     "q_tr": "Herr Pichler ne yapacak?",
+     "opts": [
+      "Hemen gelecek",
+      "Yarın bir teknisyen gönderecek",
+      "Akşam geri arayacak"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:108:h2",
+   "title_tr": "Tavsiye vermek: Du solltest …",
+   "kartlar": [
+    "lx:teilen",
+    "lx:Mund",
+    "lx:Schluss"
+   ],
+   "kaliplar": [
+    {
+     "de": "ich sollte – du solltest – er/sie sollte – wir sollten – ihr solltet – sie/Sie sollten",
+     "tr": "-malıyım – -malısın – -malı – -malıyız – -malısınız – -malılar / -malısınız (tavsiye)"
+    },
+    {
+     "de": "Du solltest … – Sie sollten … – Sollte ich …? – An deiner Stelle würde ich …",
+     "tr": "… yapmalısın. – … yapmalısınız. – … yapmalı mıyım? – Senin yerinde olsam … yapardım."
+    },
+    {
+     "de": "Ich weiß. – Das weiß ich nicht. – Ruf mich bitte zurück!",
+     "tr": "Biliyorum. – Bunu bilmiyorum. – Beni lütfen geri ara!"
+    },
+    {
+     "de": "Das mache ich selber. – Das kann ich selber. – Selber schuld!",
+     "tr": "Bunu kendim yaparım. – Bunu kendim yapabilirim. – Kendi suçun!"
+    },
+    {
+     "de": "Wir teilen uns die Arbeit. – den Kuchen teilen – die Rechnung teilen",
+     "tr": "İşi paylaşıyoruz. – pastayı bölüşmek – hesabı bölüşmek"
+    },
+    {
+     "de": "Mein Mund tut weh. – Schmerzen im Mund",
+     "tr": "Ağzım ağrıyor. – ağızda ağrı"
+    },
+    {
+     "de": "Um vier habe ich Schluss. – zum Schluss – Schluss machen",
+     "tr": "Saat dörtte işim bitiyor. – en sonunda – bitirmek, paydos etmek"
+    },
+    {
+     "de": "Ich habe das Licht repariert. – Ich habe mit dem Vermieter gesprochen. – Hier hat ein Mann gewohnt. – Er hat nie etwas gemeldet.",
+     "tr": "Işığı tamir ettim. – Ev sahibiyle konuştum. – Burada bir adam oturuyordu. – Hiçbir şey bildirmedi."
+    },
+    {
+     "de": "Hätten Sie heute Zeit? – Wäre es möglich, heute zu kommen? – eine neue Waschmaschine – die alte Waschmaschine",
+     "tr": "Bugün vaktiniz olur mu? – Bugün gelmeniz mümkün olur mu? – yeni bir çamaşır makinesi – eski çamaşır makinesi"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:teilen",
+     "de": "Wir sollten uns die Arbeit teilen.",
+     "tr": "İşi paylaşmalıyız.",
+     "accepted": [
+      "Wir sollten uns die Arbeit teilen.",
+      "Wir sollten die Arbeit teilen.",
+      "Die Arbeit sollten wir uns teilen."
+     ]
+    },
+    {
+     "kart": "lx:teilen",
+     "de": "Ihr solltet den Kuchen teilen.",
+     "tr": "Pastayı bölüşmelisiniz.",
+     "accepted": [
+      "Ihr solltet den Kuchen teilen.",
+      "Den Kuchen solltet ihr teilen.",
+      "Ihr solltet euch den Kuchen teilen.",
+      "Den Kuchen solltet ihr euch teilen."
+     ]
+    },
+    {
+     "kart": "lx:Mund",
+     "de": "Mein Mund tut weh, ich sollte zum Zahnarzt gehen.",
+     "tr": "Ağzım ağrıyor, dişçiye gitmeliyim.",
+     "accepted": [
+      "Mein Mund tut weh, ich sollte zum Zahnarzt gehen.",
+      "Mein Mund tut weh. Ich sollte zum Zahnarzt gehen.",
+      "Mir tut der Mund weh, ich sollte zum Zahnarzt gehen."
+     ]
+    },
+    {
+     "kart": "lx:Mund",
+     "de": "Mit Schmerzen im Mund solltest du zum Zahnarzt gehen.",
+     "tr": "Ağzında ağrı varsa dişçiye gitmelisin.",
+     "accepted": [
+      "Mit Schmerzen im Mund solltest du zum Zahnarzt gehen.",
+      "Mit Schmerzen im Mund solltest du sofort zum Zahnarzt gehen.",
+      "Du solltest mit Schmerzen im Mund zum Zahnarzt gehen."
+     ]
+    },
+    {
+     "kart": "lx:Schluss",
+     "de": "Du solltest heute früh Schluss machen.",
+     "tr": "Bugün erken bitirmelisin.",
+     "accepted": [
+      "Du solltest heute früh Schluss machen.",
+      "Heute solltest du früh Schluss machen.",
+      "Du solltest heute früher Schluss machen."
+     ]
+    },
+    {
+     "kart": "lx:Schluss",
+     "de": "Wir sollten jetzt Schluss machen, es ist spät.",
+     "tr": "Artık bitirmeliyiz, geç oldu.",
+     "accepted": [
+      "Wir sollten jetzt Schluss machen, es ist spät.",
+      "Wir sollten jetzt Schluss machen. Es ist spät.",
+      "Es ist spät, wir sollten jetzt Schluss machen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Akşam. Derya arıyor; sesi biraz tuhaf.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Mein Mund tut seit gestern weh.",
+      "tr": "Ağzım dünden beri ağrıyor."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Du solltest zum Zahnarzt gehen.",
+      "tr": "Dişçiye gitmelisin."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Ich weiß. Morgen habe ich um vier Schluss.",
+      "tr": "Biliyorum. Yarın saat dörtte işim bitiyor."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Du solltest heute anrufen, nicht erst morgen.",
+      "tr": "Bugün aramalısın, yarını bekleme."
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya'ya ne tavsiye ediyorsun?",
+     "opts": [
+      "Dişçiye gitmesini ve bugün aramasını",
+      "Yarın işe gitmemesini",
+      "Hiçbir şey yapmamasını"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:108:v1",
+  "title_tr": "Çarşamba: çamaşır makinesi su kaçırıyor, Herr Pichler geliyor",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Çarşamba, sabah 7.10. Banyoda yerde su var; çamaşır makinesinin arkasından su geliyor. Herr Pichler'i arıyorsun.",
+    "de": "Pichler, grüß Gott.",
+    "tr": "Pichler, iyi günler."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Sen yerde su olduğunu söylüyorsun. Herr Pichler hemen soruyor.",
+    "de": "Wasser auf dem Boden? Wo genau, im Bad oder in der Küche?",
+    "tr": "Yerde su mu? Tam olarak nerede, banyoda mı mutfakta mı?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Sen 'banyoda, çamaşır makinesi' diyorsun.",
+    "de": "Die Waschmaschine? Seit wann verliert sie Wasser?",
+    "tr": "Çamaşır makinesi mi? Ne zamandan beri su kaçırıyor?"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler hızlı ve kararlı konuşuyor.",
+    "de": "Gut. Sie sollten jetzt sofort den Wasserhahn hinter der Waschmaschine schließen.",
+    "tr": "Peki. Şimdi hemen çamaşır makinesinin arkasındaki musluğu kapatmalısınız."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler bir an susuyor.",
+    "de": "Und bitte benutzen Sie die Waschmaschine heute nicht mehr.",
+    "tr": "Ve lütfen çamaşır makinesini bugün artık kullanmayın."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler telefonu kapatmadan önce:",
+    "de": "Ich komme in zwanzig Minuten. Ich nehme alles mit.",
+    "tr": "Yirmi dakikaya geliyorum. Her şeyi yanıma alıyorum."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Yirmi dakika sonra. Herr Pichler elinde büyük bir çantayla kapında.",
+    "de": "So, wo ist das Problem? Ich sehe das Wasser schon.",
+    "tr": "Evet, sorun nerede? Suyu görüyorum zaten."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Sen bir teknisyen gerekip gerekmediğini soruyorsun. Herr Pichler başını sallıyor.",
+    "de": "Einen Techniker? Nein, das brauchen wir nicht. Das mache ich selber.",
+    "tr": "Teknisyen mi? Hayır, ona gerek yok. Bunu kendim yaparım."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler makinenin arkasına eğiliyor.",
+    "de": "Das Licht im Treppenhaus habe ich gestern auch selber repariert.",
+    "tr": "Merdivenin ışığını da dün kendim tamir ettim."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler doğruluyor, makineye vuruyor.",
+    "de": "Die Waschmaschine ist alt. Sie sollten mit dem Vermieter sprechen.",
+    "tr": "Çamaşır makinesi eski. Ev sahibiyle konuşmalısınız."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler çantasını topluyor.",
+    "de": "Und zum Schluss: Bitte melden Sie so etwas immer sofort.",
+    "tr": "Ve son olarak: Böyle bir şeyi lütfen hep hemen bildirin."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Kapıda homurdanıyor.",
+    "de": "Vor Ihnen hat hier ein Mann gewohnt. Der hat nie etwas gemeldet!",
+    "tr": "Sizden önce burada bir adam oturuyordu. O hiçbir şey bildirmezdi!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Telefonda ne oluyor?",
+     "opts": [
+      "Arızayı anlatıyorsun; Herr Pichler musluğu kapatmanı söylüyor ve geliyor",
+      "Herr Pichler bugün gelemiyor",
+      "Herr Pichler teknisyen gönderiyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s4",
+      "s6"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Herr Pichler önce ne soruyor?",
+      "opts": [
+       "Suyun tam olarak nerede olduğunu",
+       "Adını",
+       "Kapının açık olup olmadığını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Şimdi hemen ne yapmalısın?",
+      "opts": [
+       "Makinenin arkasındaki musluğu kapatmalısın",
+       "Kapıyı açmalısın",
+       "Ev sahibini aramalısın"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Herr Pichler ne zaman geliyor?",
+      "opts": [
+       "Yirmi dakikaya",
+       "Yarın",
+       "Akşam"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s6",
+      "seviye": "kolay",
+      "q_tr": "Kaç dakika?",
+      "opts": [
+       "zwanzig",
+       "zehn",
+       "dreißig"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s2",
+      "seviye": "orta",
+      "de": "Wasser auf dem ___? Wo genau, im Bad oder in der Küche?",
+      "accepted": [
+       "Boden",
+       "boden",
+       "Boden."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s5",
+      "seviye": "zor",
+      "banka": [
+       "Und",
+       "bitte",
+       "benutzen",
+       "Sie",
+       "die",
+       "Waschmaschine",
+       "heute",
+       "nicht",
+       "mehr",
+       "benutzt",
+       "morgen"
+      ],
+      "accepted": [
+       "Und bitte benutzen Sie die Waschmaschine heute nicht mehr.",
+       "und bitte benutzen sie die waschmaschine heute nicht mehr",
+       "Und bitte benutzen Sie die Waschmaschine heute nicht mehr"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s6",
+      "seviye": "usta",
+      "accepted": [
+       "Ich nehme alles mit.",
+       "ich nehme alles mit",
+       "Ich nehme alles mit"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Herr Pichler'in iki tavsiyesini Almanca yaz.",
+      "ornek_de": "Ich sollte den Wasserhahn hinter der Waschmaschine schließen. Ich sollte die Waschmaschine heute nicht mehr benutzen.",
+      "zorunlu": [
+       "sollte",
+       "Wasserhahn"
+      ]
+     }
+    ],
+    "golge": [
+     "s3",
+     "s4"
+    ],
+    "cevapla": {
+     "id": "m1:108:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Herr Pichler ne zamandan beri su kaçırdığını soruyor. Bu sabahtan beri. Su bütün yere yayılmış.",
+     "prompt_de": "Seit wann verliert sie Wasser?",
+     "accepted": [
+      "Seit heute Morgen. Das Wasser ist auf dem ganzen Boden.",
+      "Seit heute Morgen.",
+      "Seit heute Morgen, und das Wasser ist auf dem ganzen Boden.",
+      "Die Waschmaschine verliert seit heute Morgen Wasser.",
+      "Seit heute Morgen. Jetzt ist das Wasser auf dem ganzen Boden."
+     ],
+     "why_tr": "Ne zamandan beri: **seit** ve zaman, örneğin **seit heute Morgen**."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Herr Pichler evde ne yapıyor ve ne söylüyor?",
+     "opts": [
+      "Arızayı kendisi onarıyor; ev sahibiyle konuşmanı ve arızaları hemen bildirmeni tavsiye ediyor",
+      "Teknisyen çağırıyor",
+      "Sana kızıp gidiyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s8",
+      "s10",
+      "s11"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Herr Pichler teknisyen istiyor mu?",
+      "opts": [
+       "Hayır, kendisi yapıyor",
+       "Evet, hemen",
+       "Yarın istiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s8"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Dün ne tamir etti?",
+      "opts": [
+       "Merdivenin ışığını",
+       "Kaloriferi",
+       "Kapıyı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Kiminle konuşmalısın?",
+      "opts": [
+       "Ev sahibiyle",
+       "Derya ile",
+       "Teknisyenle"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s9",
+      "seviye": "kolay",
+      "q_tr": "Ne tamir edildi?",
+      "opts": [
+       "das Licht",
+       "die Tür",
+       "die Heizung"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s8",
+      "seviye": "orta",
+      "de": "Das mache ich ___.",
+      "accepted": [
+       "selber",
+       "Selber",
+       "selber."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s10",
+      "seviye": "zor",
+      "banka": [
+       "Sie",
+       "sollten",
+       "mit",
+       "dem",
+       "Vermieter",
+       "sprechen",
+       "solltet",
+       "Nachbarn"
+      ],
+      "accepted": [
+       "Sie sollten mit dem Vermieter sprechen.",
+       "sie sollten mit dem vermieter sprechen",
+       "Sie sollten mit dem Vermieter sprechen"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Die Waschmaschine ist alt.",
+       "die waschmaschine ist alt",
+       "Die Waschmaschine ist alt"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Herr Pichler'in tavsiyesini Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Die Waschmaschine ist alt. Ich sollte mit dem Vermieter sprechen.",
+      "zorunlu": [
+       "sollte",
+       "Vermieter"
+      ]
+     }
+    ],
+    "golge": [
+     "s8",
+     "s11"
+    ],
+    "cevapla": {
+     "id": "m1:108:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Herr Pichler arızaları hemen bildirmeni istiyor. Teşekkür et. Bir dahaki sefere hemen arayacaksın.",
+     "prompt_de": "Bitte melden Sie so etwas immer sofort.",
+     "accepted": [
+      "Ja, natürlich. Danke, Herr Pichler! Ich rufe Sie dann sofort an.",
+      "Danke, Herr Pichler! Das nächste Mal rufe ich sofort an.",
+      "Ja, das mache ich. Vielen Dank!",
+      "Natürlich, ich rufe Sie sofort an. Danke!",
+      "Danke schön! Ich melde das dann sofort."
+     ],
+     "why_tr": "Söz verirken: **Das mache ich.** ya da **Ich rufe Sie sofort an.**"
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:108:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Herr Pichler'in öğleden sonraki mesajı",
+   "ortam_tr": "Öğleden sonra iştesin. Herr Pichler sana bir sesli mesaj bırakmış; her zamanki gibi hızlı ve kısa konuşuyor.",
+   "speaker": "ch:pichler",
+   "hizlar": [
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, Pichler hier.",
+     "tr": "İyi günler, ben Pichler."
+    },
+    {
+     "id": "c2",
+     "de": "Ich habe mit dem Vermieter gesprochen.",
+     "tr": "Ev sahibiyle konuştum."
+    },
+    {
+     "id": "c3",
+     "de": "Sie bekommen eine neue Waschmaschine, am Freitag um zehn Uhr.",
+     "tr": "Yeni bir çamaşır makinesi alıyorsunuz, cuma saat onda."
+    },
+    {
+     "id": "c4",
+     "de": "Bis Freitag sollten Sie die alte Waschmaschine nicht benutzen.",
+     "tr": "Cumaya kadar eski çamaşır makinesini kullanmamalısınız."
+    },
+    {
+     "id": "c5",
+     "de": "Im Keller ist eine Waschmaschine für alle. Die können Sie benutzen.",
+     "tr": "Bodrumda herkes için bir çamaşır makinesi var. Onu kullanabilirsiniz."
+    },
+    {
+     "id": "c6",
+     "de": "Den Schlüssel für den Keller haben Sie, oder? Bis Freitag.",
+     "tr": "Bodrumun anahtarı sizde var, değil mi? Cumaya görüşürüz."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Herr Pichler ne haber veriyor?",
+      "opts": [
+       "Cuma yeni bir çamaşır makinesi geliyor; o zamana kadar bodrumdaki makineyi kullanabilirsin",
+       "Eski makine tamir edildi",
+       "Ev sahibi makineyi değiştirmek istemiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Herr Pichler kiminle konuştu?",
+       "opts": [
+        "Ev sahibiyle",
+        "Teknisyenle",
+        "Komşuyla"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Yeni makine ne zaman geliyor?",
+       "opts": [
+        "Cuma saat onda",
+        "Yarın sabah",
+        "Pazartesi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Cumaya kadar hangi makineyi kullanabilirsin?",
+       "opts": [
+        "Bodrumdaki ortak makineyi",
+        "Eski makineni",
+        "Komşunun makinesini"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "Freitag",
+        "Montag",
+        "Mittwoch"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Ich habe mit dem ___ gesprochen.",
+       "accepted": [
+        "Vermieter",
+        "vermieter",
+        "Vermieter."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Bis",
+        "Freitag",
+        "sollten",
+        "Sie",
+        "die",
+        "alte",
+        "Waschmaschine",
+        "nicht",
+        "benutzen",
+        "solltet",
+        "neue"
+       ],
+       "accepted": [
+        "Bis Freitag sollten Sie die alte Waschmaschine nicht benutzen.",
+        "bis freitag sollten sie die alte waschmaschine nicht benutzen",
+        "Bis Freitag sollten Sie die alte Waschmaschine nicht benutzen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Im Keller ist eine Waschmaschine für alle.",
+        "im keller ist eine waschmaschine für alle",
+        "Im Keller ist eine Waschmaschine für alle"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Herr Pichler'in mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Am Freitag kommt eine neue Waschmaschine. Bis Freitag sollte ich die Waschmaschine im Keller benutzen.",
+       "zorunlu": [
+        "Freitag",
+        "Keller"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:108:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Herr Pichler'i geri ara. Bilgi için teşekkür et. Cuma saat onda evde değilsin: saat on ikide gelmeleri mümkün olur mu, sor.",
+      "prompt_de": "Pichler, grüß Gott.",
+      "accepted": [
+       "Grüß Gott, Herr Pichler. Danke für die Information! Am Freitag um zehn bin ich nicht da. Wäre es möglich, um zwölf zu kommen?",
+       "Danke für die Information! Wäre es möglich, am Freitag um zwölf zu kommen?",
+       "Grüß Gott! Danke für die Information. Um zehn bin ich nicht zu Hause. Wäre zwölf Uhr möglich?",
+       "Danke für die Information, Herr Pichler. Wäre es möglich, um zwölf Uhr zu kommen? Um zehn bin ich im Büro.",
+       "Grüß Gott, Herr Pichler! Danke für die Information. Wäre es auch um zwölf möglich?"
+      ],
+      "why_tr": "Önce teşekkür et: **Danke für die Information!** Sonra kibarca rica et: **Wäre es möglich, um zwölf zu kommen?**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:108:a1:e1",
+    "k": "pick",
+    "q_tr": "Perşembe çamaşır yıkaman lazım. Ne yapmalısın?",
+    "opts": [
+     "Bodrumdaki ortak makineyi kullanmalısın",
+     "Eski makineni kullanmalısın",
+     "Cumaya kadar hiç yıkamamalısın"
+    ],
+    "ans": 0,
+    "why_tr": "Herr Pichler bodrumda herkes için bir makine olduğunu ve onu kullanabileceğini söylüyor.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:108:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Derya'nın sesli mesajı: ağzı ağrıyor",
+   "ortam_tr": "Akşam evdesin. Derya sana bir sesli mesaj bırakmış; senin fikrini soruyor.",
+   "speaker": "ch:aksoy",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Derya.",
+     "tr": "Merhaba, ben Derya."
+    },
+    {
+     "id": "c2",
+     "de": "Ich habe seit gestern Schmerzen im Mund.",
+     "tr": "Dünden beri ağzımda ağrı var."
+    },
+    {
+     "id": "c3",
+     "de": "Ich kann nicht gut essen, und ich kann nicht gut schlafen.",
+     "tr": "İyi yiyemiyorum, iyi de uyuyamıyorum."
+    },
+    {
+     "id": "c4",
+     "de": "Morgen bin ich bis vier im Büro.",
+     "tr": "Yarın saat dörde kadar ofisteyim."
+    },
+    {
+     "id": "c5",
+     "de": "Sollte ich morgen nach der Arbeit zum Zahnarzt gehen? Oder sollte ich heute anrufen?",
+     "tr": "Yarın işten sonra dişçiye mi gitmeliyim? Yoksa bugün mü aramalıyım?"
+    },
+    {
+     "id": "c6",
+     "de": "Ruf mich bitte zurück. Danke!",
+     "tr": "Lütfen beni geri ara. Teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Derya neden arıyor?",
+      "opts": [
+       "Ne yapması gerektiğini soruyor: dişçiye yarın mı gitmeli, bugün mü aramalı?",
+       "Yarın işe gelmeyecek",
+       "Seni yemeğe çağırıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Derya hangi iki seçeneği soruyor?",
+       "opts": [
+        "Yarın işten sonra dişçiye gitmek ya da bugün aramak",
+        "Bugün işe gitmek ya da evde kalmak",
+        "Doktora ya da eczaneye gitmek"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Derya neleri iyi yapamıyor?",
+       "opts": [
+        "Yemek ve uyumak",
+        "Konuşmak ve yürümek",
+        "Çalışmak"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Derya yarın saat kaça kadar ofiste?",
+       "opts": [
+        "Dörde kadar",
+        "Altıya kadar",
+        "Öğlene kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi saati duydun?",
+       "opts": [
+        "vier",
+        "fünf",
+        "neun"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Ich habe seit gestern Schmerzen im ___.",
+       "accepted": [
+        "Mund",
+        "mund",
+        "Mund."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Morgen",
+        "bin",
+        "ich",
+        "bis",
+        "vier",
+        "im",
+        "Büro",
+        "ist",
+        "heute"
+       ],
+       "accepted": [
+        "Morgen bin ich bis vier im Büro.",
+        "morgen bin ich bis vier im büro",
+        "Morgen bin ich bis vier im Büro"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c6",
+       "seviye": "usta",
+       "accepted": [
+        "Ruf mich bitte zurück.",
+        "ruf mich bitte zurück",
+        "Ruf mich bitte zurück"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Derya'nın sorununu Almanca iki kısa cümleyle anlat.",
+       "ornek_de": "Derya hat seit gestern Schmerzen im Mund. Sie kann nicht gut essen.",
+       "zorunlu": [
+        "Mund",
+        "seit"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:108:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya'yı geri ara ve tavsiye ver: bugün dişçiyi aramalı, yarını beklememeli.",
+      "prompt_de": "Sollte ich heute anrufen?",
+      "accepted": [
+       "Ja, du solltest heute beim Zahnarzt anrufen.",
+       "Ja, du solltest heute anrufen, nicht erst morgen.",
+       "Ja! An deiner Stelle würde ich heute anrufen.",
+       "Du solltest heute anrufen. Schmerzen im Mund sind nicht gut.",
+       "Ja, ruf heute an. Du solltest nicht bis morgen warten."
+      ],
+      "why_tr": "Tavsiye: **Du solltest heute anrufen.** Yani bugün aramalısın. Daha yumuşak: **An deiner Stelle würde ich heute anrufen.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:108:a2:e1",
+    "k": "pick",
+    "q_tr": "Derya senden ne istiyor?",
+    "opts": [
+     "Onu geri araman ve fikrini söylemen",
+     "Onun yerine dişçiyi araman",
+     "Yarın onu dişçiye götürmen"
+    ],
+    "ans": 0,
+    "why_tr": "Derya **Ruf mich bitte zurück** diyor. Onu geri araman ve fikrini söylemen gerekiyor.",
+    "kanit": [
+     "c5",
+     "c6"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:108:g1",
+   "de": "Boden",
+   "dogru_img": "water on a bathroom floor next to a washing machine",
+   "celdirici_img": [
+    "wet window after rain",
+    "glass of water on a table",
+    "swimming pool"
+   ]
+  },
+  {
+   "id": "m1:108:g2",
+   "de": "Wasserhahn",
+   "dogru_img": "hand closing a water tap behind a washing machine",
+   "celdirici_img": [
+    "hand opening a door",
+    "hand switching on a lamp",
+    "hand holding a phone"
+   ]
+  },
+  {
+   "id": "m1:108:g3",
+   "de": "Mund",
+   "dogru_img": "person pointing to their mouth with a painful face",
+   "celdirici_img": [
+    "person holding their head",
+    "person touching their back",
+    "person holding their stomach"
+   ]
+  },
+  {
+   "id": "m1:108:g4",
+   "de": "teilen",
+   "dogru_img": "two friends sharing a cake",
+   "celdirici_img": [
+    "person eating alone",
+    "person paying at a cash desk",
+    "person cooking in a kitchen"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:108:p1",
+  "title_tr": "Herr Pichler'e arızayı telefonda anlat",
+  "durum_tr": "Çarşamba sabahı. Banyoda yerde su var. Çamaşır makinesi bu sabahtan beri su kaçırıyor. Herr Pichler'i ara: sorunu, yeri ve ne zamandan beri olduğunu söyle. Tavsiyesini anla ve ne zaman geleceğini konuş.",
+  "karsi": "ch:pichler",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Pichler, grüß Gott.",
+    "tr": "Pichler, iyi günler.",
+    "secenekler": [
+     {
+      "de": "Grüß Gott, Herr Pichler. Hier ist {name}. Im Bad ist Wasser auf dem Boden.",
+      "tr": "İyi günler Herr Pichler. Ben {name}. Banyoda yerde su var.",
+      "accepted": [
+       "Grüß Gott, Herr Pichler. Hier ist {name}. Im Bad ist Wasser auf dem Boden.",
+       "Grüß Gott, Herr Pichler, hier ist {name}. Im Bad ist Wasser auf dem Boden.",
+       "Grüß Gott! Hier ist {name}. Im Bad ist viel Wasser auf dem Boden.",
+       "Guten Morgen, Herr Pichler. Hier ist {name}. Im Bad ist Wasser auf dem Boden."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: kim olduğun ve sorun, iki kısa cümlede.",
+      "de_adsiz": "Grüß Gott, Herr Pichler. Im Bad ist Wasser auf dem Boden.",
+      "tr_adsiz": "İyi günler Herr Pichler. Banyoda yerde su var.",
+      "accepted_adsiz": [
+       "Grüß Gott, Herr Pichler. Im Bad ist Wasser auf dem Boden.",
+       "Grüß Gott! Im Bad ist viel Wasser auf dem Boden.",
+       "Guten Morgen, Herr Pichler. Im Bad ist Wasser auf dem Boden."
+      ]
+     },
+     {
+      "de": "Guten Morgen, Herr Pichler. Ich möchte eine Störung melden: Die Waschmaschine verliert Wasser.",
+      "tr": "Günaydın Herr Pichler. Bir arıza bildirmek istiyorum: Çamaşır makinesi su kaçırıyor.",
+      "accepted": [
+       "Guten Morgen, Herr Pichler. Ich möchte eine Störung melden: Die Waschmaschine verliert Wasser.",
+       "Guten Morgen, Herr Pichler. Ich möchte eine Störung melden. Die Waschmaschine verliert Wasser.",
+       "Grüß Gott, Herr Pichler. Ich möchte eine Störung melden: Die Waschmaschine verliert Wasser."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: **eine Störung melden** telefonda çok kullanılır."
+     },
+     {
+      "de": "Hallo! Wasser! Schnell!",
+      "tr": "(çok kısa) Alo! Su! Çabuk!",
+      "accepted": [
+       "Hallo! Wasser! Schnell!",
+       "Wasser! Schnell!",
+       "Hallo, Wasser, schnell!"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Herr Pichler panik değil bilgi ister. Söyle: **Im Bad ist Wasser auf dem Boden.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Wo genau? Und seit wann?",
+    "tr": "Tam olarak nerede? Ve ne zamandan beri?",
+    "secenekler": [
+     {
+      "de": "Im Bad. Die Waschmaschine verliert seit heute Morgen Wasser.",
+      "tr": "Banyoda. Çamaşır makinesi bu sabahtan beri su kaçırıyor.",
+      "accepted": [
+       "Im Bad. Die Waschmaschine verliert seit heute Morgen Wasser.",
+       "Im Bad. Seit heute Morgen verliert die Waschmaschine Wasser.",
+       "Im Bad, die Waschmaschine. Seit heute Morgen.",
+       "Im Bad. Die Waschmaschine verliert Wasser, seit heute Morgen."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Tam cevap: yer (**im Bad**), sorun ve zaman (**seit heute Morgen**)."
+     },
+     {
+      "de": "Seit heute Morgen. Das Wasser ist auf dem ganzen Boden im Bad.",
+      "tr": "Bu sabahtan beri. Su banyonun bütün zeminine yayılmış.",
+      "accepted": [
+       "Seit heute Morgen. Das Wasser ist auf dem ganzen Boden im Bad.",
+       "Seit heute Morgen. Das Wasser ist im Bad auf dem ganzen Boden.",
+       "Seit heute Morgen, das Wasser ist auf dem ganzen Boden im Bad."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi: zaman ve yer ikisi de var."
+     },
+     {
+      "de": "Gestern habe ich die Waschmaschine benutzt.",
+      "tr": "(soruya cevap değil) Dün çamaşır makinesini kullandım.",
+      "accepted": [
+       "Gestern habe ich die Waschmaschine benutzt.",
+       "Ich habe gestern die Waschmaschine benutzt.",
+       "Die Waschmaschine habe ich gestern benutzt."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Herr Pichler nerede (**wo**) ve ne zamandan beri (**seit wann**) diye soruyor. Cevap: **Im Bad, seit heute Morgen.**"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Gut. Sie sollten jetzt den Wasserhahn hinter der Waschmaschine schließen.",
+    "tr": "Peki. Şimdi çamaşır makinesinin arkasındaki musluğu kapatmalısınız.",
+    "secenekler": [
+     {
+      "de": "Okay. Ich schließe den Wasserhahn hinter der Waschmaschine.",
+      "tr": "Tamam. Çamaşır makinesinin arkasındaki musluğu kapatıyorum.",
+      "accepted": [
+       "Okay. Ich schließe den Wasserhahn hinter der Waschmaschine.",
+       "Gut, ich schließe den Wasserhahn hinter der Waschmaschine.",
+       "Okay, ich schließe jetzt den Wasserhahn.",
+       "Ja, ich schließe den Wasserhahn hinter der Waschmaschine."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: tavsiyeyi tekrar edip anladığını gösterdin."
+     },
+     {
+      "de": "Entschuldigung, wo genau sollte ich den Wasserhahn schließen?",
+      "tr": "Pardon, musluğu tam olarak nerede kapatmalıyım?",
+      "accepted": [
+       "Entschuldigung, wo genau sollte ich den Wasserhahn schließen?",
+       "Wo genau sollte ich den Wasserhahn schließen?",
+       "Entschuldigung, wo sollte ich den Wasserhahn schließen?"
+      ],
+      "sonraki": "n3b",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: anlamadığını kibarca sordun: **Wo genau sollte ich den Wasserhahn schließen?**"
+     },
+     {
+      "de": "Nein.",
+      "tr": "(kaba) Hayır.",
+      "accepted": [
+       "Nein.",
+       "Nein, danke.",
+       "Nein, nein."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Herr Pichler tavsiye veriyor. Kabul et: **Okay, ich schließe den Wasserhahn.** ya da sor: **Wo genau?**"
+     }
+    ]
+   },
+   {
+    "id": "n3b",
+    "de": "Hinter der Waschmaschine, unten links.",
+    "tr": "Çamaşır makinesinin arkasında, aşağıda solda.",
+    "secenekler": [
+     {
+      "de": "Okay, danke. Ich schließe den Wasserhahn.",
+      "tr": "Tamam, teşekkürler. Musluğu kapatıyorum.",
+      "accepted": [
+       "Okay, danke. Ich schließe den Wasserhahn.",
+       "Danke, ich schließe den Wasserhahn.",
+       "Gut, danke. Ich schließe jetzt den Wasserhahn."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Anladın ve yapıyorsun."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Ich komme in zwanzig Minuten.",
+    "tr": "Yirmi dakikaya geliyorum.",
+    "secenekler": [
+     {
+      "de": "Danke! Wäre es möglich, sofort zu kommen? Das Wasser ist auf dem ganzen Boden.",
+      "tr": "Teşekkürler! Hemen gelmeniz mümkün olur mu? Su bütün yere yayılmış.",
+      "accepted": [
+       "Danke! Wäre es möglich, sofort zu kommen? Das Wasser ist auf dem ganzen Boden.",
+       "Danke! Wäre es möglich, sofort zu kommen?",
+       "Wäre es möglich, sofort zu kommen? Das Wasser ist auf dem ganzen Boden."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar ama net: **Wäre es möglich, sofort zu kommen?**"
+     },
+     {
+      "de": "Danke, Herr Pichler. Die Tür ist offen.",
+      "tr": "Teşekkürler Herr Pichler. Kapı açık.",
+      "accepted": [
+       "Danke, Herr Pichler. Die Tür ist offen.",
+       "Vielen Dank! Die Tür ist offen.",
+       "Danke schön. Die Tür ist offen."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve pratik."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Ich beeile mich. Bis gleich.",
+    "tr": "Acele ediyorum. Birazdan görüşürüz.",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Bir ev arızasını telefonda baştan sona anlattın: sorun, yer, ne zamandan beri. Herr Pichler'in tavsiyesini (**Sie sollten**) anladın. Anlamayınca da sordun."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Kiracılar için bilgi notu",
+  "metin_de": "Information für das ganze Haus: Wasser auf dem Boden? Zuerst sollten Sie den Wasserhahn schließen. Danach sollten Sie sofort den Hausmeister anrufen. Bitte reparieren Sie nichts selber! Den Hausmeister erreichen Sie von sieben bis neunzehn Uhr. Am Abend und am Wochenende rufen Sie bitte die Nummer unten an der Tür an. Josef Pichler, Hausmeister",
+  "metin_tr": "Bütün apartman için bilgi: Yerde su mu var? Önce musluğu kapatmalısınız. Ondan sonra hemen apartman görevlisini aramalısınız. Lütfen hiçbir şeyi kendiniz tamir etmeyin! Apartman görevlisine saat yediden on dokuza kadar ulaşırsınız. Akşamları ve hafta sonu lütfen aşağıda kapıdaki numarayı arayın. Josef Pichler, apartman görevlisi",
+  "sorular": [
+   {
+    "id": "m1:108:o1",
+    "kind": "gist",
+    "q_tr": "Bu not ne anlatıyor?",
+    "opts": [
+     "Yerde su olursa ne yapman gerektiğini",
+     "Çöplerin nereye atılacağını",
+     "Yeni ev sahibini"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     1
+    ]
+   },
+   {
+    "id": "m1:108:o2",
+    "kind": "detail",
+    "q_tr": "Önce ne yapmalısın?",
+    "opts": [
+     "Musluğu kapatmalısın",
+     "Ev sahibini aramalısın",
+     "Bir teknisyen çağırmalısın"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:108:o3",
+    "kind": "detail",
+    "q_tr": "Notta neyi yapmaman isteniyor?",
+    "opts": [
+     "Kendin bir şey tamir etmeni",
+     "Apartman görevlisini aramanı",
+     "Musluğu kapatmanı"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:108:o4",
+    "kind": "detail",
+    "q_tr": "Hafta sonu kimi aramalısın?",
+    "opts": [
+     "Aşağıda kapıdaki numarayı",
+     "Herr Pichler'in cep telefonunu",
+     "Kimseyi; pazartesiyi beklemelisin"
+    ],
+    "ans": 0,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:108:o5",
+    "k": "guided_response",
+    "situation_tr": "Ioana soruyor: Evinde yerde su olursa ne yapmalı? Nota göre tavsiye ver.",
+    "prompt_de": "Was sollte ich bei Wasser auf dem Boden machen?",
+    "accepted": [
+     "Zuerst solltest du den Wasserhahn schließen. Danach solltest du den Hausmeister anrufen.",
+     "Du solltest zuerst den Wasserhahn schließen und dann den Hausmeister anrufen.",
+     "Zuerst solltest du den Wasserhahn schließen.",
+     "Du solltest den Wasserhahn schließen und sofort den Hausmeister anrufen.",
+     "Zuerst den Wasserhahn schließen, danach solltest du den Hausmeister anrufen."
+    ],
+    "why_tr": "Ioana'ya **du** ile tavsiye ver: **Zuerst solltest du den Wasserhahn schließen.** **schließen** en sonda. İkinci adımı **danach** ile söyle."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Derya'ya kısa bir mesaj yaz ve tavsiye ver: dişçiye gitmeli, bugün aramalı. Bir kez **solltest** kullan. Bir kez de **An deiner Stelle würde ich** ile başla. Geçmiş olsun de.",
+   "ornek_de": "Hallo Derya! Du solltest zum Zahnarzt gehen. An deiner Stelle würde ich heute anrufen. Gute Besserung!",
+   "zorunlu": [
+    "solltest",
+    "An deiner Stelle"
+   ],
+   "accepted_kaliplar": [
+    "Hallo …!",
+    "Du solltest ___ gehen.",
+    "An deiner Stelle würde ich ___ anrufen.",
+    "Gute Besserung!"
+   ],
+   "kontrol_tr": [
+    "**du solltest** ile yazdığın cümlede **gehen** en sonda mı?",
+    "**An deiner Stelle würde ich** ile başlayan bir cümle yazdın mı?",
+    "Kibar bir kapanış (**Gute Besserung!**) yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:108:s",
+  "maddeler": [
+   {
+    "id": "m1:108:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Im Bad ist Wasser auf dem Boden.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Im Bad ist Wasser auf dem Boden.",
+     "im bad ist wasser auf dem boden",
+     "Im Bad ist Wasser auf dem Boden"
+    ],
+    "why_tr": "**auf dem Boden**: yerde. **Boden** büyük harfle."
+   },
+   {
+    "id": "m1:108:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Danke für die Information!",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Danke für die Information!",
+     "danke für die information",
+     "Danke für die Information"
+    ],
+    "why_tr": "**Danke für die Information!**: bilgi için teşekkürler. **Information** büyük harfle yazılır."
+   },
+   {
+    "id": "m1:108:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Das mache ich selber.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das mache ich selber.",
+     "das mache ich selber",
+     "Das mache ich selber"
+    ],
+    "why_tr": "**selber**: kendim, kendin, kendisi. Konuşmada çok yaygındır. Yazıda daha çok **selbst** kullanılır."
+   },
+   {
+    "id": "m1:108:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Du solltest zum Zahnarzt gehen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Du solltest zum Zahnarzt gehen.",
+     "du solltest zum zahnarzt gehen",
+     "Du solltest zum Zahnarzt gehen"
+    ],
+    "why_tr": "**du** ile **solltest** olur. **gehen** en sonda."
+   },
+   {
+    "id": "m1:108:s5",
+    "k": "tr_de",
+    "tr": "Lütfen anahtarı yanınıza alın.",
+    "accepted": [
+     "Nehmen Sie bitte den Schlüssel mit.",
+     "Bitte nehmen Sie den Schlüssel mit.",
+     "Nehmen Sie den Schlüssel bitte mit."
+    ],
+    "why_tr": "**mitnehmen** ikiye ayrılır: **Nehmen Sie bitte den Schlüssel mit.** **mit** en sonda."
+   },
+   {
+    "id": "m1:108:s6",
+    "k": "tr_de",
+    "tr": "Daha çok uyumalısın.",
+    "accepted": [
+     "Du solltest mehr schlafen.",
+     "Du solltest viel mehr schlafen.",
+     "Du solltest mehr schlafen!"
+    ],
+    "why_tr": "Tavsiye: **Du solltest mehr schlafen.** **schlafen** en sonda."
+   },
+   {
+    "id": "m1:108:s7",
+    "k": "tr_de",
+    "tr": "İşi paylaşmalıyız.",
+    "accepted": [
+     "Wir sollten uns die Arbeit teilen.",
+     "Wir sollten die Arbeit teilen.",
+     "Die Arbeit sollten wir uns teilen."
+    ],
+    "why_tr": "**wir** ile **sollten** olur. **teilen** en sonda."
+   },
+   {
+    "id": "m1:108:s8",
+    "k": "tr_de",
+    "tr": "Bugün vaktiniz olur mu? (Sie)",
+    "accepted": [
+     "Hätten Sie heute Zeit?",
+     "Hätten Sie heute kurz Zeit?",
+     "Hätten Sie vielleicht heute Zeit?"
+    ],
+    "why_tr": "Dünkü kibar soru: **Hätten Sie Zeit?** Araya **heute** girer."
+   },
+   {
+    "id": "m1:108:s9",
+    "k": "listen_and_respond",
+    "audio_de": "Seit wann verliert die Waschmaschine Wasser?",
+    "speed": "normal",
+    "situation_tr": "Herr Pichler soruyor. Bu sabahtan beri. Su banyoda bütün yere yayılmış.",
+    "accepted": [
+     "Seit heute Morgen. Das Wasser ist auf dem ganzen Boden im Bad.",
+     "Seit heute Morgen.",
+     "Seit heute Morgen, das Wasser ist im Bad auf dem ganzen Boden.",
+     "Die Waschmaschine verliert seit heute Morgen Wasser.",
+     "Seit heute Morgen. Im Bad ist Wasser auf dem ganzen Boden."
+    ],
+    "why_tr": "Zaman: **seit heute Morgen**. Yer: **auf dem Boden im Bad**."
+   },
+   {
+    "id": "m1:108:s10",
+    "k": "guided_response",
+    "situation_tr": "Derya ağzının ağrıdığını söylüyor. Ona tavsiye ver: dişçiye gitmeli.",
+    "prompt_de": "Mein Mund tut weh. Was soll ich machen?",
+    "accepted": [
+     "Du solltest zum Zahnarzt gehen.",
+     "Du solltest sofort zum Zahnarzt gehen.",
+     "An deiner Stelle würde ich zum Zahnarzt gehen.",
+     "Du solltest heute zum Zahnarzt gehen.",
+     "Geh zum Zahnarzt! Du solltest nicht warten."
+    ],
+    "why_tr": "Tavsiye: **Du solltest zum Zahnarzt gehen.** Yani dişçiye gitmelisin."
+   },
+   {
+    "id": "m1:108:s11",
+    "k": "guided_response",
+    "situation_tr": "Herr Pichler'i ara ve kim olduğunu söyle. Banyoda yerde su var, çamaşır makinesi su kaçırıyor. Bugün gelmesi mümkün mü, kibarca sor.",
+    "prompt_de": "Pichler, grüß Gott.",
+    "accepted": [
+     "Grüß Gott, Herr Pichler. Hier ist {name}. Im Bad ist Wasser auf dem Boden. Die Waschmaschine verliert Wasser. Wäre es möglich, heute zu kommen?",
+     "Grüß Gott, hier ist {name}. Die Waschmaschine verliert Wasser, im Bad ist Wasser auf dem Boden. Wäre es möglich, heute zu kommen?",
+     "Guten Morgen, Herr Pichler. Hier ist {name}. Ich möchte eine Störung melden: Die Waschmaschine verliert Wasser. Wäre es möglich, heute zu kommen?",
+     "Grüß Gott! Hier ist {name}. Im Bad ist Wasser auf dem Boden, die Waschmaschine verliert Wasser. Hätten Sie heute Zeit?",
+     "Grüß Gott, Herr Pichler. Hier ist {name}. Im Bad ist Wasser auf dem Boden. Wäre es möglich, heute zu kommen?"
+    ],
+    "why_tr": "Sıra: kim olduğun, sorun, kibar rica. Sorun: **Wasser auf dem Boden**. Rica: **Wäre es möglich, heute zu kommen?**",
+    "accepted_adsiz": [
+     "Grüß Gott, Herr Pichler. Im Bad ist Wasser auf dem Boden. Die Waschmaschine verliert Wasser. Wäre es möglich, heute zu kommen?",
+     "Grüß Gott. Die Waschmaschine verliert Wasser, im Bad ist Wasser auf dem Boden. Wäre es möglich, heute zu kommen?",
+     "Guten Morgen, Herr Pichler. Ich möchte eine Störung melden: Die Waschmaschine verliert Wasser. Wäre es möglich, heute zu kommen?",
+     "Grüß Gott! Im Bad ist Wasser auf dem Boden, die Waschmaschine verliert Wasser. Hätten Sie heute Zeit?",
+     "Grüß Gott, Herr Pichler. Im Bad ist Wasser auf dem Boden. Wäre es möglich, heute zu kommen?"
+    ]
+   }
+  ],
+  "sesli": [
+   "m1:108:s9",
+   "m1:108:s10"
+  ],
+  "dikte": [
+   "m1:108:s1",
+   "m1:108:s2",
+   "m1:108:s3",
+   "m1:108:s4"
+  ]
+ }
+}

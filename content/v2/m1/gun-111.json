@@ -1,0 +1,1502 @@
+{
+ "schema": 1,
+ "id": "m1:gun:111",
+ "day": 111,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Davet etmek, kabul etmek, kibarca reddetmek",
+ "goal_tr": "Starkbierfest'te ne istediğini ve istemediğini söylersin. Sonra Derya'yı ve Ioana'yı gelecek hafta için davet edersin.",
+ "can_do": {
+  "id": "cd:m1:111",
+  "tr": "Festte ne istediğimi ve istemediğimi söylerim. Birini davet ederim."
+ },
+ "unit": "u:a2:bag-3",
+ "arm": "telefon",
+ "place": "pl:marktplatz",
+ "characters": [
+  "ch:aksoy",
+  "ch:kraus"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic17/dilbilimci-h16.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:unterwegs",
+  "lx:packen",
+  "lx:zurückkommen",
+  "lx:Leben",
+  "lx:zählen",
+  "lx:Polizist"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:111:h1",
+   "title_tr": "Yola çıkarken: çanta, yol, dönüş",
+   "kartlar": [
+    "lx:unterwegs",
+    "lx:packen",
+    "lx:zurückkommen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich packe meine Tasche. – Hast du deine Tasche gepackt?",
+     "tr": "Çantamı hazırlıyorum. – Çantanı hazırladın mı?"
+    },
+    {
+     "de": "Ich bin unterwegs. – Bist du schon unterwegs?",
+     "tr": "Yoldayım. – Yola çıktın mı?"
+    },
+    {
+     "de": "Wann kommst du zurück? – Ich komme um elf zurück. – Ich bin um elf zurückgekommen.",
+     "tr": "Ne zaman dönüyorsun? – On birde dönüyorum. – On birde döndüm."
+    },
+    {
+     "de": "Wann fährt der Bus? – Der Bus fährt um zehn.",
+     "tr": "Otobüs ne zaman kalkıyor? – Otobüs onda kalkıyor."
+    },
+    {
+     "de": "Wollen wir aufs Starkbierfest gehen? – aufs Fest – Ich gehe heute aufs Fest.",
+     "tr": "Starkbierfest'e gidelim mi? – şenliğe – Bugün şenliğe gidiyorum."
+    },
+    {
+     "de": "Gute Idee! – Ich bin dabei! – Am Sonntag kann ich leider nicht. – Vielleicht ein anderes Mal?",
+     "tr": "İyi fikir! – Ben varım! – Pazar maalesef olmaz. – Belki başka bir zaman?"
+    },
+    {
+     "de": "Ich nehme eine Jacke mit. – in die Tasche",
+     "tr": "Yanıma bir ceket alıyorum. – çantaya"
+    },
+    {
+     "de": "Bring bitte Wasser mit! – Ich bringe Wasser mit. – Frag doch Lena!",
+     "tr": "Lütfen su getir! – Su getiriyorum. – Lena'ya sorsana!"
+    },
+    {
+     "de": "Hättest du am Freitag Zeit? – Wollen wir ins Café gehen? – Wie wäre es mit Freitag? – Wir könnten ins Kino gehen.",
+     "tr": "Cuma vaktin olur mu? – Kafeye gidelim mi? – Cumaya ne dersin? – Sinemaya gidebiliriz."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:packen",
+     "de": "Ich packe eine Jacke und Wasser in die Tasche.",
+     "tr": "Çantaya bir ceket ve su koyuyorum.",
+     "accepted": [
+      "Ich packe eine Jacke und Wasser in die Tasche.",
+      "Ich packe Wasser und eine Jacke in die Tasche.",
+      "In die Tasche packe ich eine Jacke und Wasser."
+     ]
+    },
+    {
+     "kart": "lx:packen",
+     "de": "Hast du deine Tasche für das Fest gepackt?",
+     "tr": "Şenlik için çantanı hazırladın mı?",
+     "accepted": [
+      "Hast du deine Tasche für das Fest gepackt?",
+      "Hast du die Tasche für das Fest gepackt?",
+      "Hast du für das Fest deine Tasche gepackt?"
+     ]
+    },
+    {
+     "kart": "lx:unterwegs",
+     "de": "Ich bin unterwegs, in zehn Minuten bin ich da.",
+     "tr": "Yoldayım, on dakikaya oradayım.",
+     "accepted": [
+      "Ich bin unterwegs, in zehn Minuten bin ich da.",
+      "Ich bin unterwegs. In zehn Minuten bin ich da.",
+      "Bin unterwegs, in zehn Minuten bin ich da."
+     ]
+    },
+    {
+     "kart": "lx:unterwegs",
+     "de": "Leider bin ich unterwegs. Vielleicht ein anderes Mal?",
+     "tr": "Maalesef yoldayım. Belki başka bir zaman?",
+     "accepted": [
+      "Leider bin ich unterwegs. Vielleicht ein anderes Mal?",
+      "Leider bin ich unterwegs, vielleicht ein anderes Mal?",
+      "Ich bin leider unterwegs. Vielleicht ein anderes Mal?"
+     ]
+    },
+    {
+     "kart": "lx:zurückkommen",
+     "de": "Wann kommst du zurück?",
+     "tr": "Ne zaman dönüyorsun?",
+     "accepted": [
+      "Wann kommst du zurück?",
+      "Und wann kommst du zurück?",
+      "Wann kommst du heute zurück?"
+     ]
+    },
+    {
+     "kart": "lx:zurückkommen",
+     "de": "Am Sonntag kann ich leider nicht. Ich komme erst am Abend zurück.",
+     "tr": "Pazar maalesef olmaz. Ancak akşam dönüyorum.",
+     "accepted": [
+      "Am Sonntag kann ich leider nicht. Ich komme erst am Abend zurück.",
+      "Am Sonntag kann ich leider nicht, ich komme erst am Abend zurück.",
+      "Leider kann ich am Sonntag nicht. Ich komme erst am Abend zurück."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cumartesi, saat iki buçuk, evdesin. Saat üçte Bäckerei Stadler'in önünde buluşacaksınız. Derya telefon ediyor.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Bist du schon unterwegs?",
+      "tr": "Yola çıktın mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nein, ich packe meine Tasche. Ich nehme eine Jacke mit.",
+      "tr": "Hayır, çantamı hazırlıyorum. Yanıma bir ceket alıyorum."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Gut, es ist kalt. Und wann kommst du zurück?",
+      "tr": "İyi, hava soğuk. Peki ne zaman dönüyorsun?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Um elf, mit dem Bus. Bis gleich!",
+      "tr": "On birde, otobüsle. Birazdan görüşürüz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Ne zaman ve nasıl dönüyorsun?",
+     "opts": [
+      "On birde, otobüsle",
+      "Gece yarısı, taksiyle",
+      "Dokuzda, yürüyerek"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:111:h2",
+   "title_tr": "Şenlikte: ne istiyorum, ne istemiyorum",
+   "kartlar": [
+    "lx:Leben",
+    "lx:zählen",
+    "lx:Polizist"
+   ],
+   "kaliplar": [
+    {
+     "de": "Grüß Gott! – Servus! – Was darf's sein?",
+     "tr": "İyi günler! (Bavyera selamı) – Selam! – Ne arzu edersiniz?"
+    },
+    {
+     "de": "Gibt es auch Bier ohne Alkohol? – Ich trinke keinen Alkohol. – Für mich bitte ohne Alkohol.",
+     "tr": "Alkolsüz bira da var mı? (menüde çoğu zaman: alkoholfreies Bier) – Alkol içmiyorum. – Benimki alkolsüz olsun lütfen."
+    },
+    {
+     "de": "Ich fahre heute. – Lena trinkt einen Saft.",
+     "tr": "Bugün arabayı ben kullanıyorum. – Lena meyve suyu içiyor."
+    },
+    {
+     "de": "Ich möchte kein Starkbier. – Ich hätte gern ein Wasser. – Ich nehme einen Saft.",
+     "tr": "Starkbier istemiyorum. – Bir su alayım. – Bir meyve suyu alıyorum."
+    },
+    {
+     "de": "So ist das Leben. – Nie im Leben!",
+     "tr": "Hayat böyle. – Asla! (Hayatta olmaz!)"
+    },
+    {
+     "de": "Ich zähle das Geld. – Ich zähle die Leute an unserem Tisch. – Du kannst auf mich zählen.",
+     "tr": "Parayı sayıyorum. – Masamızdaki insanları sayıyorum. – Bana güvenebilirsin."
+    },
+    {
+     "de": "Da drüben steht ein Polizist. – Wir fragen den Polizisten. – Der Polizist zeigt uns den Weg.",
+     "tr": "Karşıda bir polis memuru duruyor. – Polise soruyoruz. – Polis bize yolu gösteriyor."
+    },
+    {
+     "de": "Wie viel kostet das? – Das macht … Euro.",
+     "tr": "Bu ne kadar? – … euro tutuyor."
+    },
+    {
+     "de": "ein Glas Bier – ein Glas Wasser – eine Breze – zwei Brezen – Würstchen",
+     "tr": "bir bardak bira – bir bardak su – bir Breze – iki Breze – sosis"
+    },
+    {
+     "de": "Ich hole uns etwas zu trinken. – Ich esse kein Fleisch. – kein Fleisch für mich",
+     "tr": "Bize içecek bir şey alıyorum. – Et yemiyorum. – bana et olmasın"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Leben",
+     "de": "Starkbier? Nie im Leben! Gibt es auch Bier ohne Alkohol?",
+     "tr": "Starkbier mi? Asla! Alkolsüz bira da var mı?",
+     "accepted": [
+      "Starkbier? Nie im Leben! Gibt es auch Bier ohne Alkohol?",
+      "Starkbier? Nie im Leben! Gibt es Bier ohne Alkohol?",
+      "Nie im Leben! Gibt es auch Bier ohne Alkohol?",
+      "Starkbier? Nie im Leben! Gibt es auch alkoholfreies Bier?"
+     ]
+    },
+    {
+     "kart": "lx:Leben",
+     "de": "Ioana ist krank, und wir sind hier. So ist das Leben.",
+     "tr": "Ioana hasta, biz buradayız. Hayat böyle.",
+     "accepted": [
+      "Ioana ist krank, und wir sind hier. So ist das Leben.",
+      "Ioana ist krank und wir sind hier. So ist das Leben.",
+      "So ist das Leben: Ioana ist krank, und wir sind hier."
+     ]
+    },
+    {
+     "kart": "lx:zählen",
+     "de": "Ich zähle die Leute an unserem Tisch: Wir sind sechs.",
+     "tr": "Masamızdaki insanları sayıyorum: altı kişiyiz.",
+     "accepted": [
+      "Ich zähle die Leute an unserem Tisch: Wir sind sechs.",
+      "Ich zähle die Leute an unserem Tisch. Wir sind sechs.",
+      "Wir sind sechs, ich zähle die Leute an unserem Tisch."
+     ]
+    },
+    {
+     "kart": "lx:zählen",
+     "de": "Du kannst auf mich zählen. Ich trinke keinen Alkohol und fahre dich nach Hause.",
+     "tr": "Bana güvenebilirsin. Alkol içmiyorum, seni eve bırakırım.",
+     "accepted": [
+      "Du kannst auf mich zählen. Ich trinke keinen Alkohol und fahre dich nach Hause.",
+      "Du kannst auf mich zählen, ich trinke keinen Alkohol und fahre dich nach Hause.",
+      "Du kannst auf mich zählen. Ich trinke keinen Alkohol, ich fahre dich nach Hause."
+     ]
+    },
+    {
+     "kart": "lx:Polizist",
+     "de": "Da drüben steht ein Polizist. Wir fragen den Polizisten.",
+     "tr": "Karşıda bir polis memuru duruyor. Polise soralım.",
+     "accepted": [
+      "Da drüben steht ein Polizist. Wir fragen den Polizisten.",
+      "Da drüben steht ein Polizist, wir fragen den Polizisten.",
+      "Da drüben steht ein Polizist. Wir fragen ihn."
+     ]
+    },
+    {
+     "kart": "lx:Polizist",
+     "de": "Der Polizist zeigt uns den Weg zum Bus.",
+     "tr": "Polis memuru bize otobüsün yolunu gösteriyor.",
+     "accepted": [
+      "Der Polizist zeigt uns den Weg zum Bus.",
+      "Der Polizist zeigt uns den Weg zur Haltestelle.",
+      "Der Polizist zeigt uns den Weg zum Bus, danke!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Stadtplatz'taki Starkbierfest. Uzun masalar, müzik, kalabalık. Bir standın önündesin.",
+    "satirlar": [
+     {
+      "r": "die Bedienung",
+      "de": "Grüß Gott! Was darf's sein?",
+      "tr": "İyi günler! Ne arzu edersiniz?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Grüß Gott! Gibt es auch Bier ohne Alkohol?",
+      "tr": "İyi günler! Alkolsüz bira da var mı?"
+     },
+     {
+      "r": "die Bedienung",
+      "de": "Ja, natürlich. Ein Glas?",
+      "tr": "Evet, tabii. Bir bardak mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, bitte. Ich möchte kein Starkbier, ich trinke keinen Alkohol.",
+      "tr": "Evet, lütfen. Starkbier istemiyorum, alkol içmiyorum."
+     }
+    ],
+    "soru": {
+     "q_tr": "Ne sipariş ediyorsun?",
+     "opts": [
+      "Bir bardak alkolsüz bira",
+      "Bir bardak Starkbier",
+      "Bir meyve suyu"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:111:v1",
+  "title_tr": "Starkbierfest: masada, kalabalıkta, eve dönüş",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Cumartesi öğleden sonra, Stadtplatz. Saat üçte fırının önünde buluşup buraya geldiniz; sen bir an tuvalete gittin. Uzun ahşap masalar, müzik. Dönüşte Derya ve Lena seni görüp el sallıyor.",
+    "de": "Da bist du ja! Komm, hier ist noch Platz.",
+    "tr": "İşte geldin! Gel, burada hâlâ yer var."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya etrafı gösteriyor.",
+    "de": "Das Starkbierfest gibt es in der Fastenzeit, im März.",
+    "tr": "Starkbierfest Fastenzeit'ta, mart ayında olur."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya büyük bir bira bardağını gösteriyor, gülüyor.",
+    "de": "Starkbier ist stark. Viele Leute trinken nur ein Glas.",
+    "tr": "Starkbier serttir. Çoğu kişi yalnızca bir bardak içer."
+   },
+   {
+    "id": "s4",
+    "speaker": "Lena",
+    "sahne_tr": "Lena elindeki bardağı kaldırıyor.",
+    "de": "Ich trinke heute keinen Alkohol. Ich nehme einen Saft.",
+    "tr": "Ben bugün alkol içmiyorum. Bir meyve suyu alıyorum."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya masadakileri sayıyor.",
+    "de": "Ich zähle: Lena, du, ich, Basti und zwei Kollegen. Wir sind sechs!",
+    "tr": "Sayıyorum: Lena, sen, ben, Basti ve iki iş arkadaşı. Altı kişiyiz!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya telefonuna bakıyor, biraz üzülüyor.",
+    "de": "Nur Ioana ist nicht da. So ist das Leben.",
+    "tr": "Bir tek Ioana yok. Hayat böyle."
+   },
+   {
+    "id": "s7",
+    "speaker": "der Polizist",
+    "sahne_tr": "Akşam, saat on olmak üzere. Lena çoktan gitti. Kalabalıkta Derya'yı kaybettin. Karşıdaki polis memuruna otobüsü soruyorsun; o eliyle gösteriyor.",
+    "de": "Der Bus fährt da drüben, hinter dem Rathaus.",
+    "tr": "Otobüs şuradan, belediye binasının arkasından kalkıyor."
+   },
+   {
+    "id": "s8",
+    "speaker": "der Polizist",
+    "sahne_tr": "Polis memuru saatine bakıyor.",
+    "de": "Der Bus um zehn ist voll. Es gibt aber auch einen Bus um halb elf.",
+    "tr": "Saat ondaki otobüs dolu. Ama on buçukta da bir otobüs var."
+   },
+   {
+    "id": "s9",
+    "speaker": "der Polizist",
+    "sahne_tr": "Yerde bir bira gölü var.",
+    "de": "Und vorsichtig, auf dem Boden ist Bier!",
+    "tr": "Bir de dikkat, yerde bira var!"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Telefonun çalıyor: Derya.",
+    "de": "Wo bist du? Bist du schon unterwegs?",
+    "tr": "Neredesin? Yola çıktın mı?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Sen polisin yanında olduğunu söylüyorsun. Derya gülüyor.",
+    "de": "Beim Polizisten? Gut, ich komme auch. Wir nehmen zusammen den Bus.",
+    "tr": "Polisin yanında mı? Tamam, ben de geliyorum. Otobüse birlikte bineriz."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya kalabalığın içinden geliyor.",
+    "de": "Das war ein schöner Abend. Und nächstes Jahr kommt Ioana mit!",
+    "tr": "Güzel bir akşamdı. Seneye Ioana da gelir!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Derya ne anlatıyor?",
+     "opts": [
+      "Starkbierfest Fastenzeit'ta olur; Starkbier serttir, çoğu kişi bir bardak içer",
+      "Şenliğin bu yıl iptal olduğunu",
+      "Ioana'nın birazdan geleceğini"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s3"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Lena bugün ne içiyor?",
+      "opts": [
+       "Meyve suyu",
+       "Starkbier",
+       "Kahve"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Masada kaç kişiler?",
+      "opts": [
+       "Altı",
+       "Dört",
+       "On"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Kim yok?",
+      "opts": [
+       "Ioana",
+       "Basti",
+       "Lena"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Saft",
+       "Wasser",
+       "Kaffee"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s3",
+      "seviye": "orta",
+      "de": "Starkbier ist stark. Viele Leute trinken nur ein ___.",
+      "accepted": [
+       "Glas",
+       "glas",
+       "Glas."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s6",
+      "seviye": "zor",
+      "banka": [
+       "Nur",
+       "Ioana",
+       "ist",
+       "nicht",
+       "da",
+       "alle",
+       "Lena"
+      ],
+      "accepted": [
+       "Nur Ioana ist nicht da.",
+       "nur ioana ist nicht da",
+       "Nur Ioana ist nicht da"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s1",
+      "seviye": "usta",
+      "accepted": [
+       "Da bist du ja! Komm, hier ist noch Platz.",
+       "da bist du ja komm hier ist noch platz",
+       "Da bist du ja! Komm, hier ist noch Platz"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Masada ne olduğunu Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Wir sind sechs am Tisch. Lena trinkt heute einen Saft.",
+      "zorunlu": [
+       "sechs",
+       "Saft"
+      ]
+     }
+    ],
+    "golge": [
+     "s1",
+     "s4"
+    ],
+    "cevapla": {
+     "id": "m1:111:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya sana da bir Starkbier almak istiyor. Teşekkür et ama istemediğini söyle. Alkolsüz bira iste.",
+     "prompt_de": "Möchtest du auch ein Starkbier?",
+     "accepted": [
+      "Nein danke, ich trinke keinen Alkohol. Gibt es auch Bier ohne Alkohol?",
+      "Nein danke. Für mich bitte ein Bier ohne Alkohol.",
+      "Lieber nicht. Ich hätte gern ein Bier ohne Alkohol.",
+      "Nein danke, ich möchte kein Starkbier. Ich nehme ein Bier ohne Alkohol.",
+      "Danke, aber ich trinke keinen Alkohol. Ich nehme einen Saft.",
+      "Nein danke, ich möchte kein Bier. Ich nehme lieber einen Saft.",
+      "Nein danke, ich trinke keinen Alkohol. Gibt es auch alkoholfreies Bier?"
+     ],
+     "why_tr": "İstemediğin şey: **Nein danke, ich möchte kein Starkbier.** İstediğin şey: **Ich hätte gern ein Bier ohne Alkohol.**"
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Polis memuru ne söylüyor?",
+     "opts": [
+      "Otobüs belediye binasının arkasından kalkıyor; ondaki dolu, on buçukta bir tane daha var",
+      "Şenlik bitti, eve yürü",
+      "Otobüs bu gece yok"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s7",
+      "s8"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Otobüs nereden kalkıyor?",
+      "opts": [
+       "Belediye binasının arkasından",
+       "Fırının önünden",
+       "Tren istasyonundan"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s7"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Polis neye dikkat etmeni söylüyor?",
+      "opts": [
+       "Yerdeki biraya",
+       "Bisikletlere",
+       "Çantana"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya ne öneriyor?",
+      "opts": [
+       "Otobüse birlikte binmeyi",
+       "Taksiye binmeyi",
+       "Şenlikte kalmayı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s8",
+      "seviye": "kolay",
+      "q_tr": "Hangi saati duydun?",
+      "opts": [
+       "halb elf",
+       "halb neun",
+       "acht"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s7",
+      "seviye": "orta",
+      "de": "Der Bus fährt da ___, hinter dem Rathaus.",
+      "accepted": [
+       "drüben",
+       "Drüben",
+       "drüben."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s9",
+      "seviye": "zor",
+      "banka": [
+       "Und",
+       "vorsichtig",
+       "auf",
+       "dem",
+       "Boden",
+       "ist",
+       "Bier",
+       "Wasser",
+       "nicht"
+      ],
+      "accepted": [
+       "Und vorsichtig, auf dem Boden ist Bier!",
+       "und vorsichtig auf dem boden ist bier",
+       "Und vorsichtig, auf dem Boden ist Bier"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Wo bist du? Bist du schon unterwegs?",
+       "wo bist du bist du schon unterwegs",
+       "Wo bist du? Bist du schon unterwegs"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Polisin söylediğini Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Der Bus fährt hinter dem Rathaus. Der Bus um zehn ist voll, wir nehmen den Bus um halb elf.",
+      "zorunlu": [
+       "Bus",
+       "halb elf"
+      ]
+     }
+    ],
+    "golge": [
+     "s7",
+     "s11"
+    ],
+    "cevapla": {
+     "id": "m1:111:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Derya telefonda nerede olduğunu soruyor. Polisin yanındasın. On buçuk otobüsüne bineceksin.",
+     "prompt_de": "Wo bist du? Bist du schon unterwegs?",
+     "accepted": [
+      "Ich bin beim Polizisten. Der Bus um zehn ist voll, ich nehme den Bus um halb elf.",
+      "Ich stehe beim Polizisten, da drüben. Wir nehmen den Bus um halb elf.",
+      "Beim Polizisten, hinter dem Rathaus. Der Bus um halb elf, okay?",
+      "Ich bin noch hier, beim Polizisten. Der Bus um zehn ist voll.",
+      "Noch nicht. Ich bin beim Polizisten, der nächste Bus fährt um halb elf."
+     ],
+     "why_tr": "Nerede: **beim Polizisten**. Plan: **den Bus um halb elf nehmen**."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:111:a1",
+   "tur": "anons",
+   "title_tr": "Şenlik anonsu: neyi nerede bulursun?",
+   "ortam_tr": "Starkbierfest'e yeni geldin. Hoparlörden bir anons duyuyorsun. Etraf gürültülü.",
+   "hizlar": [
+    "normal",
+    "natural"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Liebe Gäste, herzlich willkommen beim Starkbierfest in Wendlfing!",
+     "tr": "Değerli konuklar, Wendlfing Starkbierfest'ine hoş geldiniz!"
+    },
+    {
+     "id": "c2",
+     "de": "Bier ohne Alkohol, Saft und Wasser gibt es hinten links.",
+     "tr": "Alkolsüz bira, meyve suyu ve su arkada solda."
+    },
+    {
+     "id": "c3",
+     "de": "Essen gibt es vorne rechts.",
+     "tr": "Yiyecekler önde sağda."
+    },
+    {
+     "id": "c4",
+     "de": "Das Fest ist um zehn Uhr zu Ende.",
+     "tr": "Şenlik saat onda bitiyor."
+    },
+    {
+     "id": "c5",
+     "de": "Die Busse fahren um zehn und um halb elf, hinter dem Rathaus.",
+     "tr": "Otobüsler onda ve on buçukta, belediye binasının arkasından kalkıyor."
+    },
+    {
+     "id": "c6",
+     "de": "Bitte fahren Sie nach dem Starkbier nicht mit dem Auto! Viel Spaß!",
+     "tr": "Lütfen Starkbier'den sonra araba kullanmayın! İyi eğlenceler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Anons ne anlatıyor?",
+      "opts": [
+       "İçecek ve yiyeceğin nerede olduğunu, şenliğin bitişini ve otobüsleri",
+       "Şenliğin iptal olduğunu",
+       "Kayıp bir çocuğu"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Alkolsüz bira nerede?",
+       "opts": [
+        "Arkada solda",
+        "Önde sağda",
+        "Belediye binasının arkasında"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Şenlik saat kaçta bitiyor?",
+       "opts": [
+        "Onda",
+        "On buçukta",
+        "Gece yarısı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Otobüsler nereden kalkıyor?",
+       "opts": [
+        "Belediye binasının arkasından",
+        "Fırının önünden",
+        "Tren istasyonundan"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi yeri duydun?",
+       "opts": [
+        "hinten links",
+        "vorne rechts",
+        "hinten rechts"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Die Busse fahren um zehn und um halb elf, hinter dem ___.",
+       "accepted": [
+        "Rathaus",
+        "rathaus",
+        "Rathaus."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Das",
+        "Fest",
+        "ist",
+        "um",
+        "zehn",
+        "Uhr",
+        "zu",
+        "Ende",
+        "Anfang",
+        "neun"
+       ],
+       "accepted": [
+        "Das Fest ist um zehn Uhr zu Ende.",
+        "das fest ist um zehn uhr zu ende",
+        "Das Fest ist um zehn Uhr zu Ende"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Essen gibt es vorne rechts.",
+        "essen gibt es vorne rechts",
+        "Essen gibt es vorne rechts"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Anonstan iki bilgiyi Almanca yaz.",
+       "ornek_de": "Bier ohne Alkohol gibt es hinten links. Das Fest ist um zehn Uhr zu Ende.",
+       "zorunlu": [
+        "hinten links",
+        "Ende"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:111:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Lena alkolsüz biranın nerede olduğunu soruyor. Anonsu duydun: arkada solda.",
+      "prompt_de": "Wo gibt es Bier ohne Alkohol?",
+      "accepted": [
+       "Hinten links, mit Saft und Wasser.",
+       "Bier ohne Alkohol gibt es hinten links.",
+       "Da hinten links.",
+       "Hinten links, nicht vorne.",
+       "Hinten links. Vorne rechts gibt es Essen."
+      ],
+      "why_tr": "Yer: **hinten links** (arkada solda), **vorne rechts** (önde sağda)."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:111:a1:e1",
+    "k": "pick",
+    "q_tr": "Alkolsüz bir şey istiyorsun. Nereye gitmelisin?",
+    "opts": [
+     "Arkada sola",
+     "Önde sağa",
+     "Belediye binasının arkasına"
+    ],
+    "ans": 0,
+    "why_tr": "Anons alkolsüz biranın, meyve suyunun ve suyun arkada solda olduğunu söylüyor: **hinten links**.",
+    "kanit": [
+     "c2"
+    ]
+   }
+  },
+  {
+   "id": "m1:111:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Derya'nın sesli mesajı: neredeyiz?",
+   "ortam_tr": "Fırının önünde buluşup şenliğe geldiniz. Sen bir an tuvalete gittin; dönüşte kalabalıkta Derya'yı bulamıyorsun. Telefonunda ondan bir sesli mesaj var.",
+   "speaker": "ch:aksoy",
+   "hizlar": [
+    "normal",
+    "natural"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Derya. Wo bist du?",
+     "tr": "Merhaba, ben Derya. Neredesin?"
+    },
+    {
+     "id": "c2",
+     "de": "Wir sitzen ganz hinten rechts, neben der Musik.",
+     "tr": "En arkada sağda, müziğin yanında oturuyoruz."
+    },
+    {
+     "id": "c3",
+     "de": "Lena ist auch da, und Basti kommt gleich.",
+     "tr": "Lena da burada, Basti de birazdan geliyor."
+    },
+    {
+     "id": "c4",
+     "de": "Für dich ist ein Saft da.",
+     "tr": "Senin için bir meyve suyu var."
+    },
+    {
+     "id": "c5",
+     "de": "Möchtest du auch Brezen? Dann bring bitte zwei Brezen mit, von vorne rechts.",
+     "tr": "Breze de ister misin? O zaman lütfen önde sağdan iki Breze getir."
+    },
+    {
+     "id": "c6",
+     "de": "Bis gleich!",
+     "tr": "Birazdan görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Derya ne söylüyor?",
+      "opts": [
+       "Nerede oturduklarını ve senin için meyve suyu olduğunu",
+       "Eve gittiğini",
+       "Seni otobüste beklediğini"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Derya nerede oturuyor?",
+       "opts": [
+        "En arkada sağda, müziğin yanında",
+        "Önde solda",
+        "Belediye binasının önünde"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Masada senin için ne var?",
+       "opts": [
+        "Meyve suyu",
+        "Starkbier",
+        "Su"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Derya ne getirmeni istiyor?",
+       "opts": [
+        "Breze",
+        "Meyve suyu",
+        "Ceket"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Musik",
+        "Bus",
+        "Markt"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Lena ist auch da, und Basti kommt ___.",
+       "accepted": [
+        "gleich",
+        "Gleich",
+        "gleich."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Wir",
+        "sitzen",
+        "ganz",
+        "hinten",
+        "rechts",
+        "neben",
+        "der",
+        "Musik",
+        "links",
+        "vorne"
+       ],
+       "accepted": [
+        "Wir sitzen ganz hinten rechts, neben der Musik.",
+        "wir sitzen ganz hinten rechts neben der musik",
+        "Wir sitzen ganz hinten rechts, neben der Musik"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c1",
+       "seviye": "usta",
+       "accepted": [
+        "Hallo, hier ist Derya. Wo bist du?",
+        "hallo hier ist derya wo bist du",
+        "Hallo, hier ist Derya. Wo bist du"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Derya'nın mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Derya ist ganz hinten rechts, neben der Musik. Ich soll zwei Brezen mitbringen.",
+       "zorunlu": [
+        "hinten rechts",
+        "mitbringen"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:111:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya'ya sesli cevap ver. Teşekkür et. Breze getiriyorsun, birazdan oradasın.",
+      "prompt_de": "Möchtest du auch Brezen?",
+      "accepted": [
+       "Danke, Derya! Ja, ich bringe Brezen mit. Bis gleich!",
+       "Ja, gern! Ich bringe Brezen mit, ich bin gleich da.",
+       "Danke! Ich bringe Brezen mit. Ich komme gleich.",
+       "Danke, Derya! Ich komme gleich. Bis gleich!",
+       "Danke für den Saft! Ich bringe Brezen mit."
+      ],
+      "why_tr": "**mitbringen** ikiye ayrılır: **Ich bringe Brezen mit.** **mit** en sonda."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:111:a2:e1",
+    "k": "pick",
+    "q_tr": "Derya'nın mesajından sonra ne yapmalısın?",
+    "opts": [
+     "Önde sağdan Breze alıp en arkadaki sağ masaya git",
+     "Arkada soldan bira al",
+     "Eve dön"
+    ],
+    "ans": 0,
+    "why_tr": "Derya **bring bitte Brezen mit, vorne rechts** diyor. Breze önde sağda. Kendisi **ganz hinten rechts** oturuyor.",
+    "kanit": [
+     "c2",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:111:g1",
+   "de": "Polizist",
+   "dogru_img": "police officer pointing the way on a crowded town square at night",
+   "celdirici_img": [
+    "firefighter next to a truck",
+    "waiter carrying beer glasses",
+    "bus driver in a bus"
+   ]
+  },
+  {
+   "id": "m1:111:g2",
+   "de": "packen",
+   "dogru_img": "person packing a jacket and a water bottle into a bag",
+   "celdirici_img": [
+    "person cooking pasta",
+    "person reading on a sofa",
+    "person washing a car"
+   ]
+  },
+  {
+   "id": "m1:111:g3",
+   "de": "zählen",
+   "dogru_img": "woman counting people at a long festival table",
+   "celdirici_img": [
+    "woman sleeping on a train",
+    "man painting a wall",
+    "children running in a park"
+   ]
+  },
+  {
+   "id": "m1:111:g4",
+   "de": "unterwegs",
+   "dogru_img": "person walking with a phone at dusk on the way to a festival",
+   "celdirici_img": [
+    "person sleeping in bed",
+    "person sitting at a desk in an office",
+    "person cooking at home"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:111:p1",
+  "title_tr": "Şenlikte: ne istediğini söyle, sonra birini davet et",
+  "durum_tr": "Starkbierfest'tesin. Derya içecek almaya gidiyor ve sana soruyor. Starkbier istemiyorsun, alkol içmiyorsun: alkolsüz bir şey iste. Yemekte de neyi istemediğini söyle. Sonra Derya'yı ve Ioana'yı gelecek hafta için davet et.",
+  "karsi": "ch:aksoy",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Ich hole uns etwas zu trinken. Möchtest du ein Starkbier?",
+    "tr": "Bize içecek alıyorum. Starkbier ister misin?",
+    "secenekler": [
+     {
+      "de": "Nein danke, ich trinke keinen Alkohol. Gibt es auch Bier ohne Alkohol?",
+      "tr": "Hayır teşekkürler, alkol içmiyorum. Alkolsüz bira da var mı?",
+      "accepted": [
+       "Nein danke, ich trinke keinen Alkohol. Gibt es auch Bier ohne Alkohol?",
+       "Nein danke, ich trinke keinen Alkohol. Gibt es Bier ohne Alkohol?",
+       "Danke, aber ich trinke keinen Alkohol. Gibt es auch Bier ohne Alkohol?",
+       "Nein danke. Gibt es auch Bier ohne Alkohol?",
+       "Nein danke, kein Bier für mich. Gibt es auch Saft?",
+       "Nein danke, ich trinke keinen Alkohol. Gibt es auch alkoholfreies Bier?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: neyi istemediğin (**keinen Alkohol**) ve ne istediğin (**Bier ohne Alkohol**) açık."
+     },
+     {
+      "de": "Lieber nicht. Ich hätte gern einen Saft.",
+      "tr": "Ben almayayım. Bir meyve suyu alayım.",
+      "accepted": [
+       "Lieber nicht. Ich hätte gern einen Saft.",
+       "Lieber nicht, ich hätte gern einen Saft.",
+       "Nein danke. Ich hätte gern einen Saft.",
+       "Lieber nicht. Ich nehme einen Saft."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar ret ve isteğin: **Lieber nicht. Ich hätte gern einen Saft.**"
+     },
+     {
+      "de": "Nein.",
+      "tr": "(eksik) Hayır.",
+      "accepted": [
+       "Nein.",
+       "Nein, nein.",
+       "Kein Starkbier."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Ne istemediğini söyledin ama ne istediğini söylemedin. **Ich hätte gern einen Saft.** gibi ekle."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Klar, das gibt es hier. Und zum Essen? Würstchen?",
+    "tr": "Tabii, burada var. Ya yemek? Sosis?",
+    "secenekler": [
+     {
+      "de": "Nein danke, kein Fleisch für mich. Ich nehme lieber eine Breze.",
+      "tr": "Hayır teşekkürler, bana et olmasın. Breze almayı tercih ederim.",
+      "accepted": [
+       "Nein danke, kein Fleisch für mich. Ich nehme lieber eine Breze.",
+       "Kein Fleisch für mich, bitte. Ich nehme lieber eine Breze.",
+       "Nein danke, ich esse kein Fleisch. Lieber eine Breze.",
+       "Für mich kein Fleisch. Ich hätte gern eine Breze."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Neyi istemediğin **kein Fleisch**, tercihin **lieber eine Breze**."
+     },
+     {
+      "de": "Nein danke, ich habe keinen Hunger.",
+      "tr": "Hayır teşekkürler, aç değilim.",
+      "accepted": [
+       "Nein danke, ich habe keinen Hunger.",
+       "Danke, ich habe keinen Hunger.",
+       "Nein danke, ich habe jetzt keinen Hunger."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve kibar: **Nein danke** ve nedeni."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Hier ist alles. Ioana ist leider krank. Das ist traurig.",
+    "tr": "Hepsi burada. Ioana maalesef hasta. Bu üzücü.",
+    "secenekler": [
+     {
+      "de": "Ja. Hättest du am Freitag Zeit? Wollen wir mit Ioana ins Café gehen?",
+      "tr": "Evet. Cuma vaktin olur mu? Ioana ile kafeye gidelim mi?",
+      "accepted": [
+       "Ja. Hättest du am Freitag Zeit? Wollen wir mit Ioana ins Café gehen?",
+       "Hättest du am Freitag Zeit? Wollen wir mit Ioana ins Café gehen?",
+       "Ja, traurig. Hättest du am Freitag Zeit? Wir könnten mit Ioana ins Café gehen.",
+       "Hättest du am Freitag Zeit? Wollen wir zusammen mit Ioana ins Café gehen?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar davet: **Hättest du am Freitag Zeit?** Sonra öneri: **Wollen wir ins Café gehen?**"
+     },
+     {
+      "de": "Wie wäre es mit Freitag? Wir könnten mit Ioana ins Kino gehen.",
+      "tr": "Cumaya ne dersin? Ioana ile sinemaya gidebiliriz.",
+      "accepted": [
+       "Wie wäre es mit Freitag? Wir könnten mit Ioana ins Kino gehen.",
+       "Wie wäre es mit Freitag? Wir könnten zusammen mit Ioana ins Kino gehen.",
+       "Wir könnten am Freitag mit Ioana ins Kino gehen. Wie wäre es?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "İki yumuşak öneri: **Wie wäre es mit Freitag?** ve **Wir könnten ins Kino gehen.**"
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gute Idee! Am Freitag habe ich Zeit. Frag Ioana morgen!",
+    "tr": "İyi fikir! Cuma vaktim var. Yarın Ioana'ya sor!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Şenlikte ne istediğini ve istemediğini söyledin: **keinen Alkohol**, **ohne Alkohol**, **kein Fleisch**. Sonra kibarca davet ettin: **Hättest du am Freitag Zeit?**"
+ },
+ "okuma_yazma": {
+  "tur": "yazma",
+  "title_tr": "Ioana'ya davet mesajı",
+  "sorular": [],
+  "yazma": {
+   "gorev_tr": "Ioana'ya kısa bir davet mesajı yaz. Şenliği bir cümleyle anlat. Sonra onu davet et: hangi gün, saat kaçta, nerede? Geçmiş olsun de.",
+   "ornek_de": "Liebe Ioana, das Fest war wunderschön, aber leider ohne dich. Hättest du am Freitag Zeit? Wollen wir um vier zusammen ins Café am Stadtplatz gehen? Derya kommt auch mit. Gute Besserung!",
+   "zorunlu": [
+    "Hättest du",
+    "Wollen wir"
+   ],
+   "accepted_kaliplar": [
+    "Liebe Ioana, …",
+    "Das Fest war …",
+    "Hättest du am … Zeit?",
+    "Wollen wir um … zusammen … gehen?",
+    "… kommt auch mit.",
+    "Gute Besserung!"
+   ],
+   "kontrol_tr": [
+    "Kibarca sordun mu: **Hättest du am Freitag Zeit?**",
+    "Gün, saat ve yer var mı?",
+    "Öneride **Wollen** başta, **gehen** sonda mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:111:s",
+  "maddeler": [
+   {
+    "id": "m1:111:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich bin unterwegs, bis gleich.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich bin unterwegs, bis gleich.",
+     "ich bin unterwegs bis gleich",
+     "Ich bin unterwegs, bis gleich"
+    ],
+    "why_tr": "**unterwegs**: yolda. **bis gleich**: birazdan görüşürüz."
+   },
+   {
+    "id": "m1:111:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Wir sitzen ganz hinten rechts.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir sitzen ganz hinten rechts.",
+     "wir sitzen ganz hinten rechts",
+     "Wir sitzen ganz hinten rechts"
+    ],
+    "why_tr": "**ganz hinten rechts**: en arkada sağda."
+   },
+   {
+    "id": "m1:111:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Wann kommst du zurück?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wann kommst du zurück?",
+     "wann kommst du zurück",
+     "Wann kommst du zurück"
+    ],
+    "why_tr": "**zurückkommen** ikiye ayrılır: **Wann kommst du zurück?** **zurück** en sonda."
+   },
+   {
+    "id": "m1:111:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Da drüben steht ein Polizist.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Da drüben steht ein Polizist.",
+     "da drüben steht ein polizist",
+     "Da drüben steht ein Polizist"
+    ],
+    "why_tr": "**da drüben**: şurada, karşıda."
+   },
+   {
+    "id": "m1:111:s5",
+    "k": "tr_de",
+    "tr": "Bira istemiyorum, bir meyve suyu alıyorum.",
+    "accepted": [
+     "Ich möchte kein Bier, ich nehme einen Saft.",
+     "Ich möchte kein Bier. Ich nehme einen Saft.",
+     "Kein Bier für mich, ich nehme einen Saft."
+    ],
+    "why_tr": "Bira istemiyorsun: **kein Bier**. İstediğin: **Ich nehme einen Saft.**"
+   },
+   {
+    "id": "m1:111:s6",
+    "k": "tr_de",
+    "tr": "Çantamı hazırlıyorum.",
+    "accepted": [
+     "Ich packe meine Tasche.",
+     "Ich packe jetzt meine Tasche.",
+     "Ich packe gerade meine Tasche."
+    ],
+    "why_tr": "**packen**: çanta hazırlamak. **Ich packe meine Tasche.**"
+   },
+   {
+    "id": "m1:111:s7",
+    "k": "tr_de",
+    "tr": "Bana güvenebilirsin.",
+    "accepted": [
+     "Du kannst auf mich zählen.",
+     "Du kannst auf mich zählen!",
+     "Auf mich kannst du zählen."
+    ],
+    "why_tr": "**auf jemanden zählen**: birine güvenmek."
+   },
+   {
+    "id": "m1:111:s8",
+    "k": "tr_de",
+    "tr": "Saat on birde otobüsle dönüyorum.",
+    "accepted": [
+     "Ich komme um elf mit dem Bus zurück.",
+     "Um elf komme ich mit dem Bus zurück.",
+     "Ich komme mit dem Bus um elf zurück."
+    ],
+    "why_tr": "**zurück** en sona gider: **Ich komme um elf mit dem Bus zurück.**"
+   },
+   {
+    "id": "m1:111:s9",
+    "k": "guided_response",
+    "situation_tr": "Standdaki görevli ne istediğini soruyor. Starkbier istemiyorsun. Alkolsüz bir şey iste.",
+    "prompt_de": "Grüß Gott! Was darf's sein?",
+    "accepted": [
+     "Grüß Gott! Ein Bier ohne Alkohol, bitte. Kein Starkbier.",
+     "Ich hätte gern ein Bier ohne Alkohol, bitte.",
+     "Gibt es auch Bier ohne Alkohol? Dann eins, bitte.",
+     "Für mich bitte ein Bier ohne Alkohol.",
+     "Grüß Gott! Kein Bier für mich, ich hätte gern einen Saft.",
+     "Grüß Gott! Ein alkoholfreies Bier, bitte."
+    ],
+    "why_tr": "İstediğin: **Ich hätte gern ein Bier ohne Alkohol.** İstemediğin: **kein Starkbier**."
+   },
+   {
+    "id": "m1:111:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Hättest du am Sonntag Zeit? Wollen wir ins Kino gehen?",
+    "speed": "normal",
+    "situation_tr": "Lena soruyor. Pazar maalesef olmaz: o gün doya doya uyumak isterdin. Başka bir zaman öner.",
+    "accepted": [
+     "Am Sonntag kann ich leider nicht. Ich würde gern ausschlafen. Vielleicht ein anderes Mal?",
+     "Leider nicht, am Sonntag würde ich gern ausschlafen. Vielleicht ein anderes Mal?",
+     "Am Sonntag kann ich leider nicht. Ich würde lieber am Freitag gehen.",
+     "Leider habe ich am Sonntag keine Zeit. Vielleicht ein anderes Mal?"
+    ],
+    "why_tr": "Ret için **leider** de. Sonra nedenini söyle ya da başka zaman öner: **Vielleicht ein anderes Mal?**"
+   },
+   {
+    "id": "m1:111:s11",
+    "k": "guided_response",
+    "situation_tr": "Ioana'yı telefonda cuma günü kafeye davet et.",
+    "prompt_de": "Hallo, hier ist Ioana!",
+    "accepted": [
+     "Hallo Ioana! Hättest du am Freitag Zeit? Wollen wir ins Café gehen?",
+     "Hallo! Hättest du am Freitag Zeit? Wir könnten ins Café gehen.",
+     "Hallo Ioana! Wie wäre es mit einem Kaffee am Freitag?",
+     "Hallo Ioana, wie geht es dir? Hättest du am Freitag Zeit? Wollen wir zusammen ins Café gehen?",
+     "Hallo! Wollen wir am Freitag zusammen ins Café gehen?"
+    ],
+    "why_tr": "Kibar davet: **Hättest du am Freitag Zeit?** Sonra öneri: **Wollen wir ins Café gehen?**"
+   }
+  ],
+  "sesli": [
+   "m1:111:s9",
+   "m1:111:s10"
+  ],
+  "dikte": [
+   "m1:111:s1",
+   "m1:111:s2",
+   "m1:111:s3",
+   "m1:111:s4"
+  ]
+ }
+}
