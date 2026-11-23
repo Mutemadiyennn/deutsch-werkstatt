@@ -9,20 +9,22 @@
  */
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Rich } from "../ui/rich.tsx";
+import { hucreDili, tabloBol } from "../core/tablo.ts";
 import { bilinmeyenler, kalipOrtu, kalipSecenekleri, kalipToks, kumeDizini, toks, YUVA, type Drill, type Lexeme, type LearnerItem } from "@dw/shared";
-import { loadFoto, loadGenelAdlar, loadIndex, loadLexicon, loadM1Gun, loadTemeller, loadWorld, type FotoKayit } from "../services/content.ts";
+import { loadFoto, loadGenelAdlar, loadResim, loadIndex, loadLexicon, loadM1Gun, loadTemeller, loadWorld, type FotoKayit } from "../services/content.ts";
 import { getMeta, itemsMap, putItems, setMeta } from "../data/db.ts";
 import { review } from "../core/srs.ts";
 import { adimXpVer, bahceTamam, gunBittiYaz, soruXpVer } from "../services/ilerleme.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { useApp } from "../state.ts";
-import { akisGunu, KIP, planGun } from "../core/akis.ts";
+import { akisGunu, GUN_SINAVI, KIP, planGun } from "../core/akis.ts";
 import { akisAnahtar, yeniKayit } from "../core/akisKayit.ts";
 import { ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
 import type { Adim, Durak } from "../core/akis.ts";
 import { durakGecisi, halkaOzeti, ilerle, seansDurumu, simdiki, type AkisKaydi } from "../core/akisKayit.ts";
-import { resimSecenekleri } from "../core/halkaTur.ts";
+import { ESLESTIR_EN_AZ, resimSecenekleri } from "../core/halkaTur.ts";
+import { ikinciTurVar, ilerlemeAnahtari } from "../core/medya.ts";
 import { ResimSec } from "../ui/soru/ResimdenSec.tsx";
 import { Eslestir } from "../ui/soru/Eslestir.tsx";
 import { ActionBar } from "../ui/kit.tsx";
@@ -39,6 +41,8 @@ export interface AkisOynaticiProps {
   kayit: AkisKaydi;
   lex: ReadonlyMap<string, Lexeme>;
   harita: Readonly<Record<string, FotoKayit>>;
+  /** kart → Noto Emoji (PM-081 B) */
+  emojiHarita: Readonly<Record<string, FotoKayit>>;
   /** cümle/kalıp çözümü ve K10 ipucu (ekran kurar) */
   baglam: AkisBaglam;
   /** kayıt değişti (çağıran `akis:<gün>`e yazar); `eski`: biten durağın eski ilerleme anahtarı (AK-6) */
@@ -52,7 +56,7 @@ export interface DurakHedef { href: string; /** hepsi bitince durak biter (ses d
 /** Planın cümlesinden ekranda çözülenler: Türkçe + kabul (halka görev cümleleri → kart örnekleri), kalıbın Türkçesi, K10 ipucu */
 export interface AkisBaglam { gorev: (dersId: string) => string | undefined; hatirlatma: (dersId: string, adimId: string) => { de: string; tr: string }[]; adGerekli: (a: Adim) => boolean; tablo: (dersId: string) => { baslik_tr: string; sutunlar: string[]; satirlar: string[][] } | undefined; kalipOrnek: (kalip: string, d: Durak, adimId: string) => CumleBilgi[]; yakin: (adimId: string, d: Durak) => Yakinlik; teach: (dersId: string, oge: string) => { de: string; tr: string; ipucu?: string } | undefined; hedef: (d: Durak) => DurakHedef | null; cumle: (de: string) => CumleBilgi; sahne: (satirlar: string[]) => SahneVeri | undefined; isaretli: (de: string, adimId: string) => { sozcuk: string; tr?: string }[]; vurgu: (kart: string) => string[]; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void }
 
-export function AkisOynatici({ kayit, lex, harita, baglam, kaydet, cik }: AkisOynaticiProps) {
+export function AkisOynatici({ kayit, lex, harita, emojiHarita, baglam, kaydet, cik }: AkisOynaticiProps) {
   const [neden, setNeden] = useState(false);
   const son = useRef<string | null>(null);
   /** az önce biten halka (halka sonu ekranı; TARGET3b 6) */
@@ -60,7 +64,15 @@ export function AkisOynatici({ kayit, lex, harita, baglam, kaydet, cik }: AkisOy
   const s = simdiki(kayit);
   if (ozet) return <HalkaSonu ozet={halkaOzeti(ozet.kayit, ozet.durak)} lex={lex} sonraki={ozet.kayit.plan.duraklar[ozet.kayit.durak]} seans={seansDurumu(ozet.kayit)}
     devam={() => setOzet(null)} mola={cik} />;
-  if (!s) return <section class="stack" data-test="akis-bitti"><p class="card">Bugünün durakları bitti.</p></section>;
+  // gün bitti: çıkmaz sayfa yok — tek birincil eylem Bugün'e döner; gün sonu özeti (kurduğun cümle, yeni kelimeler) orada (#58 B3)
+  if (!s) return (
+    <section class="stack fade" data-test="akis-bitti">
+      <div class="kicker icerik" style={{ color: "var(--accent)" }}>Gün sonu</div>
+      <h2 style={{ margin: 0 }}>Bugünün durakları bitti</h2>
+      <p class="muted" style={{ margin: 0 }}>Bugün kurduğun cümleyi ve yeni kelimelerini Bugün ekranında görürsün.</p>
+      <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-bugune" onClick={() => { location.hash = "#/today"; }}>Bugün'e dön</button></ActionBar>
+    </section>
+  );
   /** `atla`: adımsız durak "şimdi geç" ile geçildi — o durağın anahtarı yazılmaz (öğrenci sonra yine ulaşır; inceleme #184 P1-2) */
   const bitir = (sonuc: { kart: string; dogru: boolean }[], atla = false) => {
     // çift dokunuşta aynı adım iki kez işlenmez (inceleme #184 P2)
@@ -82,25 +94,31 @@ export function AkisOynatici({ kayit, lex, harita, baglam, kaydet, cik }: AkisOy
         <button class="ikincil-eylem tiny" style={{ flex: "none", whiteSpace: "nowrap" }} data-test="akis-neden" aria-expanded={neden} onClick={() => setNeden((x) => !x)}>Neden bu?</button>
       </header>
       {neden && <p class="small muted" data-test="akis-neden-metin" style={{ margin: 0 }}>{s.adim.neden}</p>}
-      <AdimGovdesi key={s.adim.id} adim={s.adim} durakOf={() => s.durak} lex={lex} harita={harita} baglam={baglam} tohum={`${kayit.plan.tohum}|${s.adim.id}`} bitir={bitir} />
+      <AdimGovdesi key={s.adim.id} adim={s.adim} durakOf={() => s.durak} lex={lex} harita={harita} emojiHarita={emojiHarita} baglam={baglam} tohum={`${kayit.plan.tohum}|${s.adim.id}`} bitir={bitir} />
     </section>
   );
 }
 
-function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adim: Adim; durakOf: (a: Adim) => Durak; lex: ReadonlyMap<string, Lexeme>; harita: Readonly<Record<string, FotoKayit>>; baglam: AkisBaglam; tohum: string; bitir: (s: { kart: string; dogru: boolean }[], atla?: boolean) => void }) {
+function AdimGovdesi({ adim, durakOf, lex, harita, emojiHarita, baglam, tohum, bitir }: { adim: Adim; durakOf: (a: Adim) => Durak; lex: ReadonlyMap<string, Lexeme>; harita: Readonly<Record<string, FotoKayit>>; emojiHarita: Readonly<Record<string, FotoKayit>>; baglam: AkisBaglam; tohum: string; bitir: (s: { kart: string; dogru: boolean }[], atla?: boolean) => void }) {
   // kancalar koşulsuz en üstte (adımsız durağın erken dönüşünden önce)
   const kartlar = adim.kartlar.map((k) => lex.get(k)).filter((x): x is Lexeme => !!x);
   const [gorselYok, setGorselYok] = useState(false);
-  const soru = useMemo(() => (adim.tur === "resimden_sec" && kartlar[0] ? resimSecenekleri(kartlar[0], [...lex.values()], harita, tohum) : null), [adim.id]);
+  // PM 7059008858 md. 5: dörtlü tek üslupta — önce dört fotoğraf, olmazsa dört emoji (karışık dörtlü yok)
+  const resim = useMemo(() => {
+    if (adim.tur !== "resimden_sec" || !kartlar[0]) return null;
+    for (const h of [harita, emojiHarita]) { const q = resimSecenekleri(kartlar[0], [...lex.values()], h, tohum); if (q) return { soru: q, h }; }
+    return null;
+  }, [adim.id]);
+  const soru = resim?.soru ?? null;
   // PM 7055715440 md. 3 (D-122): ad girilmemişse adlı cümle sorulmaz/gösterilmez; `_adsiz` biçimi gelene kadar o madde geçilir (sonuç yazılmaz)
   const adli = baglam.adGerekli(adim);
   useEffect(() => { if (adli) bitir([]); }, [adim.id]);  // atla değil: durağın son adımıysa durak anahtarı yine yazılır (inceleme #186 P2-1)
   if (adli) return null;
   // adımsız durak (ses, video, prova, okuma): var olan ekrana gider, dönüşte akış ilerler (AK-6)
   if (durakGecisi(adim)) return <DurakGecis adim={adim} tur={durakOf(adim).tur} baslik={durakOf(adim).title_tr} dk={durakOf(adim).tahmini_dk} hedef={baglam.hedef(durakOf(adim))} bitir={() => bitir([], true)} />;
-  if (adim.tur === "eslestir" && kartlar.length >= 4) return <Eslestir kartlar={kartlar} tohum={tohum} onBitti={bitir} />;
+  if (adim.tur === "eslestir" && kartlar.length >= ESLESTIR_EN_AZ) return <Eslestir kartlar={kartlar} tohum={tohum} onBitti={bitir} />;
   // görsel gelmezse (çevrimdışı, önbellekte yok) resimden seç o adımda dinle-anlam sorusuna düşer (tek doğru cevap; inceleme #183 P1-2)
-  if (adim.tur === "resimden_sec" && soru && !gorselYok) return <ResimSec soru={soru} lex={lex} harita={harita} onYok={() => setGorselYok(true)} onBitti={(ok) => bitir([{ kart: soru.kart, dogru: ok }])} />;
+  if (adim.tur === "resimden_sec" && soru && !gorselYok) return <ResimSec soru={soru} lex={lex} harita={resim!.h} onYok={() => setGorselYok(true)} onBitti={(ok) => bitir([{ kart: soru.kart, dogru: ok }])} />;
   // dersin alıştırma maddesi (K8 `kaynak: "ders"`): Ders oynatıcısının bileşeniyle, aynı denetimle
   const drill = adim.ders ? baglam.drill(adim.ders.id, adim.ders.oge) : undefined;
   if (drill && adim.tur !== "kalip" && adim.tur !== "tanit") return <div class="akis-soru"><DrillView key={adim.id} d={drill} onDone={(r) => bitir(adim.kartlar.map((kart) => ({ kart, dogru: r !== "wrong" })))} /></div>;
@@ -123,9 +141,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
       <section class="stack fade" data-test="akis-tablo">
         <div class="kicker icerik" style={{ color: "var(--accent)" }}>Dil noktası</div>
         <h2 style={{ margin: 0 }}>{tb.baslik_tr}</h2>
-        <div style={{ overflowX: "auto" }}><table class="akis-tablo-t"><thead><tr>{tb.sutunlar.map((c) => <th>{c}</th>)}</tr></thead>
-          {/* başlıklar ve "Türkçe" sütunu Türkçe; öteki hücreler Almanca (inceleme #186 P1-5) */}
-          <tbody>{tb.satirlar.map((r) => <tr>{r.map((c, i) => <td lang={/^türkçe$/i.test(tb.sutunlar[i] ?? "") ? "tr" : "de"}>{c}</td>)}</tr>)}</tbody></table></div>
+        <AkisTablo sutunlar={tb.sutunlar} satirlar={tb.satirlar} />
         <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={() => bitir([])}>Anladım</button></ActionBar>
       </section>);
   }
@@ -184,7 +200,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
     // akışta çeldirici yalnız halkadan ve bilinenlerden: 3 şık çıkmıyorsa anlam sorusu sorulmaz, kart tanıtımla dinlenir, kanıt yazılmaz (inceleme #186 P1-1)
     const azSik = adim.tur !== "tanit" && tur === "listen_meaning" && meaningOptions(l, hepsiL, () => 0.5, yakin).opts.length < 3;
     const tanit = adim.tur === "tanit" || azSik;
-    return <div class="akis-soru" data-az-sik={azSik ? "1" : undefined}><Question key={adim.id} q={{ lexId: l.id, type: tur, intro: tanit, ex }} l={l} all={hepsiL}
+    return <div class="akis-soru" data-az-sik={azSik ? "1" : undefined}><Question key={adim.id} akis q={{ lexId: l.id, type: tur, intro: tanit, ex }} l={l} all={hepsiL}
       yakin={yakin}
       onTanitimBitti={tanit ? () => bitir(azSik ? [] : [{ kart: l.id, dogru: true }]) : undefined}
       onDone={(r) => bitir([{ kart: l.id, dogru: r.ok }])} /></div>;
@@ -206,12 +222,12 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
  */
 export function AkisEkrani({ day }: { day: number }) {
   const { profile } = useApp();
-  const [v, setV] = useState<{ kayit: AkisKaydi; lex: Map<string, Lexeme>; harita: Record<string, FotoKayit>; items: Map<string, LearnerItem>; baglam: AkisBaglam } | null | "degil">(null);
+  const [v, setV] = useState<{ kayit: AkisKaydi; lex: Map<string, Lexeme>; harita: Record<string, FotoKayit>; emojiHarita: Record<string, FotoKayit>; items: Map<string, LearnerItem>; baglam: AkisBaglam } | null | "degil">(null);
   const [hata, setHata] = useState<string | null>(null);
   useEffect(() => {
     void (async () => {
       try {
-        const [gun, { lexemes }, temel, world, genel, harita, idx] = await Promise.all([loadM1Gun(day), loadLexicon(), loadTemeller(), loadWorld(), loadGenelAdlar(), loadFoto(), loadIndex()]);
+        const [gun, { lexemes }, temel, world, genel, harita, idx, emojiHarita] = await Promise.all([loadM1Gun(day), loadLexicon(), loadTemeller(), loadWorld(), loadGenelAdlar(), loadFoto(), loadIndex(), loadResim()]);
         if (!akisGunu(gun)) { setV("degil"); return; }
         const lex = new Map(lexemes.map((l) => [l.id, l]));
         const ids = [...new Set([...gun.yeni_kartlar, ...lexemes.filter((l) => l.card !== false).map((l) => l.id)])];
@@ -221,7 +237,8 @@ export function AkisEkrani({ day }: { day: number }) {
           const oncekiGunler = idx.m1.filter((g) => g.day < day);
           const oncekiKartlar = new Set(oncekiGunler.flatMap((g) => g.kartlar).filter((k) => items.get(k)?.passive?.fsrs));
           const plan = planGun({ gun, dersler: new Map(temel.map((t) => [t.id, t])), dizin: kumeDizini(lexemes, temel, world, genel), items, oncekiKartlar,
-            bitenDersler: new Set(await oncekiDersler(oncekiGunler.map((g) => g.day))), tohum: `akis:${day}`, simdi: new Date() });
+            bitenDersler: new Set(await oncekiDersler(oncekiGunler.map((g) => g.day))), tohum: `akis:${day}`, simdi: new Date(),
+            gorselli: new Set([...Object.keys(harita), ...Object.keys(emojiHarita)].filter((k) => k.endsWith("#kart")).map((k) => k.slice(0, -"#kart".length))) });
           if (!plan) { setV("degil"); return; }
           kayit = yeniKayit(plan); await setMeta(akisAnahtar(day), kayit);
         }
@@ -240,13 +257,21 @@ export function AkisEkrani({ day }: { day: number }) {
         const kisi = { name: profile.displayName, address: profile.address };
         const bittiMi = async (k: string) => { const m = await getMeta<{ bitti?: unknown; ilkBitti?: unknown }>(k); return !!(m && (m.bitti || m.ilkBitti)); };
         const sesler = gun.sesler.map((x) => x.id);
-        const sesBitti = new Set<string>(); for (const id of sesler) if (await bittiMi(`m1:medya:${id}`)) sesBitti.add(id);
+        const sesBitti = new Set<string>(), sesBitti1 = new Set<string>(), sesBitti2 = new Set<string>();
+        for (const id of sesler) { if (await bittiMi(`m1:medya:${id}`)) sesBitti.add(id); if (await bittiMi(ilerlemeAnahtari(id, "ilk"))) sesBitti1.add(id); if (await bittiMi(ilerlemeAnahtari(id, "ikinci"))) sesBitti2.add(id); }
         const hedef = (d: Durak): DurakHedef | null => {
           if (d.tur === "prova") return { href: `#/prova/${day}`, anahtarlar: [`m1:prova:${day}`] };
           if (d.tur === "okuma") return { href: `#/okuma/${day}`, anahtarlar: [`m1:okuma:${day}`] };
           if (d.tur === "video" && gun.video) return { href: `#/m1/${day}/${encodeURIComponent(gun.video.id)}`, anahtarlar: [`m1:medya:${gun.video.id}`] };
-          // ses durağı günün bütün seslerini kapsar; sıradaki bitmemiş sese gider (inceleme #184 P1-3)
-          if (d.tur === "ses" && sesler.length) { const s1 = sesler.find((x) => !sesBitti.has(x)) ?? sesler[0]!; return { href: `#/m1/${day}/${encodeURIComponent(s1)}`, anahtarlar: sesler.map((x) => `m1:medya:${x}`) }; }
+          // ses durağı günün bütün seslerini kapsar; sıradaki bitmemiş sese gider (inceleme #184 P1-3). İki tur (PM-097 md. 1):
+          // ilk tur bütün sesler (/1), ikinci tur yalnız üretim basamağı olanlar (/2); turların ilerlemesi ayrı anahtarda
+          if (d.tur === "ses" && sesler.length) {
+            const t = d.ses_turu === "ikinci" ? "ikinci" : d.ses_turu === "ilk" ? "ilk" : undefined;
+            const ids = t === "ikinci" ? gun.sesler.filter((s) => ikinciTurVar(s)).map((s) => s.id) : sesler;
+            const bitti = t === "ikinci" ? sesBitti2 : t === "ilk" ? sesBitti1 : sesBitti;
+            const s1 = ids.find((x) => !bitti.has(x)) ?? ids[0]!; const ek = t === "ikinci" ? "/2" : t === "ilk" ? "/1" : "";
+            return { href: `#/m1/${day}/${encodeURIComponent(s1)}${ek}`, anahtarlar: ids.map((x) => ilerlemeAnahtari(x, t)) };
+          }
           return null;
         };
         // dönüş: şimdiki adım bir durak geçişiyse ve o ekran bitmişse akış kendiliğinden ilerler (AK-6)
@@ -285,41 +310,73 @@ export function AkisEkrani({ day }: { day: number }) {
             const durakCumle = new Set(d.adimlar.map((a) => a.cumle).filter((x): x is string => !!x));
             // önce halka görev cümleleri, yoksa planın kendi (kapıdan geçmiş) cümleleri — Türkçesi bilinenler
             const planCumle = sira.map((a) => a.cumle).filter((x): x is string => !!x).map((de) => cumleler.get(de)).filter((x): x is CumleBilgi => !!x && !!x.tr);
-            const tekil = new Map([...gun.halkalar.flatMap((h) => h.gorev_cumleleri).map((g) => ({ de: g.de, tr: g.tr })), ...planCumle.map((g) => ({ de: g.de, tr: g.tr }))].map((g) => [g.de, g]));
+            // son sırada sözlük kartlarının örnek cümleleri: günün havuzunda kapıdan geçen örnek yoksa çerçeve yine örneksiz kalmasın (PM 7059008858 md. 2)
+            const kartOrnek = [...lex.values()].flatMap((l) => (l.examples ?? []).filter((e) => e.de && e.tr).map((e) => ({ de: e.de, tr: e.tr })));
+            const kartCumle = new Set(kartOrnek.map((g) => g.de).filter((de) => !gun.halkalar.some((h) => h.gorev_cumleleri.some((x) => x.de === de))));
+            // planın derslerinin öğretim cümleleri ("Gestern war Montag." r0-01-tage'de): K(t) süzgeci aşağıda aynen işler
+            const dersIds = new Set(sira.map((a) => a.ders?.id).filter((x): x is string => !!x));
+            const dersCumle = temel.filter((t) => dersIds.has(t.id)).flatMap((t) => t.teach).filter((x) => x.de && x.tr).map((x) => ({ de: x.de, tr: x.tr }));
+            // ad yuvalı cümle ("Guten Tag, hier ist {name}." r0-01-tage) öğrencinin adı biliniyorsa adıyla örnek olur; ad bilinen sayılır.
+            // (1. gün öğrenci simülasyonu P1-3)
+            // adsız profilde günün ilk karakterinin adı (dünya adları bilinen kümede; PM 7062986071 md. 2: "Guten Tag, hier ist Tobi." türü)
+            const ad = kisi.name || world?.characters.find((c) => c.id === gun.characters?.[0])?.name.split(" ")[0];
+            const adli = (x: { de: string; tr: string }) => (!x.de.includes("{name}") ? x : ad ? { de: x.de.replace(/\{name\}/g, ad), tr: x.tr.replace(/\{name\}/g, ad) } : null);
+            const adTok = new Set(ad ? toks(ad) : []);
+            const tekil = new Map([...gun.halkalar.flatMap((h) => h.gorev_cumleleri).map((g) => ({ de: g.de, tr: g.tr })), ...planCumle.map((g) => ({ de: g.de, tr: g.tr })), ...dersCumle, ...kartOrnek]
+              .map(adli).filter((g): g is { de: string; tr: string } => !!g).map((g) => [g.de, g]));
             // kalıbın sabit sözcüklerinin hepsi cümlede geçiyorsa örnek; sıra şart değil (devrik sıra kalıbın konusu olabilir: "Im Frühling habe ich …")
             const kapsar = (de: string, kp: string[]) => { const w = new Set(toks(de)); const sb = kp.filter((x) => x !== YUVA); return sb.length > 0 && sb.every((t) => w.has(t)); };
             // örnek o adımda bilinenlerle kurulmuş olmalı: bu kalıp dahil K(t) dışında sözcük 0 (inceleme #186 P1-2)
             const kNow = { kart: kartlarOnce(adimId), biten: bitenD, kaliplar: [...sira.slice(0, Math.max(0, sira.findIndex((a) => a.id === adimId)) + 1).filter((a) => a.tur === "kalip" && a.cumle).flatMap((a) => kalipSecenekleri(a.cumle))] };
-            const aday = [...tekil.values()].filter((g) => !g.de.includes("{name}") && bilinmeyenler(dizin, g.de, kNow).length === 0)
-              .filter((g) => parcalar.some((kp) => kapsar(g.de, kp)) && !parcalar.some((kp) => kp.every((t) => t !== YUVA) && toks(g.de).join(" ") === kp.join(" ")))
-              .sort((a, b) => Number(durakCumle.has(b.de)) - Number(durakCumle.has(a.de)));
             // vurgu: yalnız yuvanın yerine giren sözcük — sabit parçanın bitişik geçtiği yerde yuvanın komşusu ("im …" → "im"den sonraki sözcük)
-            const yuvaSozcuk = (de: string): string[] => {
+            const temiz = (x: string) => x.replace(/^[„“"»«(]+|[.,!?;:„“"»«)]+$/g, "");  // vurgu noktalamasız (inceleme #186 P2-3)
+            const yuvaKp = (de: string, kp: string[]): string[] => {
               const w = de.split(/\s+/), n = w.map((x) => x.replace(/[.,!?;:„“"]/g, "").toLowerCase());
-              for (const kp of parcalar) {
-                const y = kp.indexOf(YUVA); if (y < 0) continue;
-                const once = kp.slice(0, y), sonra = kp.slice(y + 1).filter((t) => t !== YUVA);
-                for (let i = 0; i + once.length <= n.length; i++) {
-                  if (!once.every((t, k) => n[i + k] === t)) continue;
-                  const j = i + once.length; if (j >= w.length) continue;
-                  const temiz = (x: string) => x.replace(/^[„“"»«(]+|[.,!?;:„“"»«)]+$/g, "");  // vurgu noktalamasız (inceleme #186 P2-3)
-                  if (!sonra.length) return [temiz(w[j]!)];
-                  const son = n.indexOf(sonra[0]!, j + 1); if (son > j) return w.slice(j, son).map(temiz);
-                }
+              const y = kp.indexOf(YUVA); if (y < 0) return [];
+              const once = kp.slice(0, y), sonra = kp.slice(y + 1).filter((t) => t !== YUVA);
+              for (let i = 0; i + once.length <= n.length; i++) {
+                if (!once.every((t, k) => n[i + k] === t)) continue;
+                const j = i + once.length; if (j >= w.length) continue;
+                if (!sonra.length) return [temiz(w[j]!)];
+                const son = n.indexOf(sonra[0]!, j + 1); if (son > j) return w.slice(j, son).map(temiz);
               }
               return [];
             };
-            const ornek = aday.slice(0, 2).map((g) => ({ de: g.de, tr: g.tr, accepted: [g.de], vurgu: yuvaSozcuk(g.de) }));
-            // yuvasız tam ifade ("Wir haben November.", "Anfang Mai") ve örnek yoksa: kalıbın kendisi sesli örnek olur
-            if (!ornek.length) for (const x of kalip.split(/\s[–—]\s/)) if (!/…|\{/.test(x)) ornek.push({ de: x, tr: kaliplar.get(x) ?? "", accepted: [x], vurgu: [] });
-            return ornek.slice(0, 2).map((o) => personalizeDeep(o, kisi));
+            // PM 7059008858 md. 2: her çerçeveye kendi örneği. Örnek o adımda bilinenlerle kurulur (inceleme #186 P1-2); tek istisna yuvaya giren
+            // sözcük: K(t) dışında olabilir, altında Türkçesiyle, örnek başına en çok bir tane ve sorulmaz. Bilinenle kurulan örnek önce gelir.
+            const ornek: CumleBilgi[] = [];
+            // çerçevenin kendi sırasıyla geçen cümle önce gelir; başka bir çerçeveye sırasıyla uyan cümle bu çerçeveye örnek olmaz
+            // ("Gestern war … – War gestern …?": soru cümlesi düz çerçeveyi değil soru çerçevesini örnekler; bayrak PR'ı, 1. gün e2e)
+            const sirali = (de: string, kp: string[]) => (kp.includes(YUVA) ? yuvaKp(de, kp).length > 0 : ` ${toks(de).join(" ")} `.includes(` ${kp.join(" ")} `));
+            for (const kp of parcalar) {
+              const tamAyni = (de: string) => kp.every((t) => t !== YUVA) && toks(de).join(" ") === kp.join(" ");
+              const baskasinin = (de: string) => !sirali(de, kp) && parcalar.some((p2) => p2 !== kp && sirali(de, p2));
+              const adaylar = [...tekil.values()].filter((g) => !g.de.includes("{name}") && kapsar(g.de, kp) && !tamAyni(g.de) && !baskasinin(g.de) && !ornek.some((o) => o.de === g.de))
+                .map((g) => {
+                  const yuva = yuvaKp(g.de, kp).map((x) => x.toLowerCase()), bil = bilinmeyenler(dizin, g.de, kNow).filter((b) => !adTok.has(b.sozcuk.toLowerCase()));
+                  const uygun = bil.length === 0 || (bil.length === 1 && yuva.includes(bil[0]!.sozcuk.toLowerCase()));
+                  return { g, bil, uygun, yuva };
+                }).filter((x) => x.uygun)
+                .sort((a, b) => Number(sirali(b.g.de, kp)) - Number(sirali(a.g.de, kp)) || a.bil.length - b.bil.length || Number(durakCumle.has(b.g.de)) - Number(durakCumle.has(a.g.de)) || Number(kartCumle.has(a.g.de)) - Number(kartCumle.has(b.g.de)));
+              const x = adaylar[0];
+              if (x) {
+                const yeni = x.bil[0] ? { sozcuk: x.bil[0].sozcuk, tr: x.bil[0].adaylar?.map((id) => lex.get(id)?.tr).find(Boolean) } : undefined;
+                ornek.push({ de: x.g.de, tr: x.g.tr, accepted: [x.g.de], vurgu: yuvaKp(x.g.de, kp), ...(yeni ? { yeni } : {}) });
+              } else {
+                // örneksiz çerçeve kalmaz: yuvasız tam ifade ("Wir haben November.", "Anfang Mai") kendi sesli örneği olur
+                const ham = kalip.split(/\s[–—]\s/)[parcalar.indexOf(kp)] ?? "";
+                if (ham && !/…|\{/.test(ham)) ornek.push({ de: ham, tr: kaliplar.get(ham) ?? "", accepted: [ham], vurgu: [] });
+              }
+            }
+            return ornek.slice(0, 3).map((o) => personalizeDeep(o, kisi));
           },
           yakin: (adimId, d) => ({ tur: new Set(d.adimlar.flatMap((a) => a.kartlar)), bilinen: kartlarOnce(adimId), yalniz: true }),
           hedef,
           teach: (id, oge) => { const t = temel.find((x) => x.id === id)?.teach.find((x) => x.id === oge); return t && personalizeDeep({ de: t.de, tr: t.tr, ipucu: t.exp?.ipucu_tr }, kisi); },
           // gösterimde ad ve hitap yerleşir (Ders ekranıyla aynı: personalizeDeep); plan ham metinle kurulur (yer tutucu sayılmaz)
           cumle: (de) => personalizeDeep(cumleler.get(de) ?? { de, tr: "", accepted: [de] }, kisi),
-          drill: (id, oge) => { const d = temel.find((t) => t.id === id)?.drills.find((x) => x.id === oge); return d && personalizeDeep(d, kisi); },
+          // gün sonu "kendini dene": günün sınav maddesi (PM 7059008858 md. 4)
+          drill: (id, oge) => { const d = id === GUN_SINAVI ? gun.gun_sinavi?.maddeler.find((x) => x.id === oge) : temel.find((t) => t.id === id)?.drills.find((x) => x.id === oge); return d && personalizeDeep(d, kisi); },
           // kalıbın Türkçesinde yer tutucu çıplak görünmez: {name} yuva "…", {a|b} hitaba göre (inceleme #186 P1-3)
           kalipTr: (de) => personalizeDeep((kaliplar.get(de) ?? "").replace(/\(adın\)|\{name\}/g, "…"), kisi),  // ad yuvası iki satırda da boş (Y-P2-5)
           sahne: (satirlar) => { const h = gun.halkalar.find((x) => x.sahne && x.sahne.satirlar.map((y) => y.de).join("\n") === satirlar.join("\n")); return h?.sahne && personalizeDeep(h.sahne, kisi); },
@@ -330,10 +387,11 @@ export function AkisEkrani({ day }: { day: number }) {
             const kaliplarK = once.filter((a) => a.tur === "kalip" && a.cumle).flatMap((a) => kalipSecenekleri(a.cumle));
             return bilinmeyenler(dizin, de, { kart, biten: bitenD, kaliplar: kaliplarK }).map((u) => ({ sozcuk: u.sozcuk, tr: u.adaylar?.map((x) => lex.get(x)?.tr).find(Boolean) }));
           },
-          ipucu: (w) => { const k = w.toLowerCase(); const tr = cerceve.get(k); return tr && (k10[k] ?? 0) < 2 ? tr : undefined; },
+          // K10 ipucu tek ve kısa anlam: "veya, ya da, değil mi" → "veya" (PM 7055715440 md. 8)
+          ipucu: (w) => { const k = w.toLowerCase(); const tr = cerceve.get(k); return tr && (k10[k] ?? 0) < 2 ? ilkAnlam(tr) : undefined; },
           gordu: (ws) => { for (const w of ws) { const k = w.replace(/[.,!?;:]/g, "").toLowerCase(); if (cerceve.has(k)) k10[k] = (k10[k] ?? 0) + 1; } void setMeta("akis:k10", k10); }
         };
-        setV({ kayit, lex, harita, items, baglam });
+        setV({ kayit, lex, harita, emojiHarita, items, baglam });
       } catch (e) { setHata(e instanceof Error ? e.message : String(e)); }
     })();
   }, [day]);
@@ -366,7 +424,7 @@ export function AkisEkrani({ day }: { day: number }) {
     }
     setV({ ...v, kayit: k });
   };
-  return <AkisOynatici kayit={v.kayit} lex={v.lex} harita={v.harita} baglam={v.baglam} kaydet={(k, e, a) => void kaydet(k, e, a)} cik={() => { location.hash = `#/m1/${day}`; }} />;
+  return <AkisOynatici kayit={v.kayit} lex={v.lex} harita={v.harita} emojiHarita={v.emojiHarita} baglam={v.baglam} kaydet={(k, e, a) => void kaydet(k, e, a)} cik={() => { location.hash = `#/m1/${day}`; }} />;
 }
 
 /** önceki günlerin bitmiş temel dersleri (`ders:<id>` ilerlemesi) */
@@ -385,11 +443,16 @@ function HalkaSonu({ ozet, lex, sonraki, seans, devam, mola }: { ozet: ReturnTyp
       <h1 style={{ textAlign: "center", margin: 0 }}>Halka tamam</h1>
       <p class="small muted" style={{ textAlign: "center", margin: 0 }}>Her nokta bir beceri: gördün, duydun, kurdun, söyledin.</p>
       <section class="card stack" style={{ gap: 0 }} data-test="halka-sonu-liste">
+        {/* dört noktanın adı sütun başlığında (PM 7055715440 md. 12) */}
+        <div class="row" style={{ flexWrap: "nowrap", gap: 8 }} aria-hidden="true" data-test="halka-sonu-basliklar">
+          <span class="grow" />
+          <span class="row" style={{ gap: 0 }}>{["gör", "duy", "kur", "söyle"].map((x) => <span class="kip-hucre tiny muted">{x}</span>)}</span>
+        </div>
         {ozet.map((o) => { const l = lex.get(o.kart); return (
           <div class="row" style={{ flexWrap: "nowrap", alignItems: "center", minHeight: 44, gap: 8 }} data-kart={o.kart}>
             <span class="grow"><b lang="de">{l ? (l.art && l.pos === "noun" ? `${l.art} ${l.de}` : l.de) : o.kart}</b> <span class="small muted">{l?.tr}</span></span>
-            <span class="row" style={{ gap: 4 }} aria-label={`gördün ${o.kip.gor ? "evet" : "henüz değil"}, duydun ${o.kip.duy ? "evet" : "henüz değil"}, kurdun ${o.kip.kur ? "evet" : "henüz değil"}, söyledin ${o.kip.soyle ? "evet" : "henüz değil"}`}>
-              {(["gor", "duy", "kur", "soyle"] as const).map((k) => <i class={`kip-nokta${o.kip[k] ? " dolu" : ""}`} data-kip={k} />)}
+            <span class="row" style={{ gap: 0 }} aria-label={`gördün ${o.kip.gor ? "evet" : "henüz değil"}, duydun ${o.kip.duy ? "evet" : "henüz değil"}, kurdun ${o.kip.kur ? "evet" : "henüz değil"}, söyledin ${o.kip.soyle ? "evet" : "henüz değil"}`}>
+              {(["gor", "duy", "kur", "soyle"] as const).map((k) => <span class="kip-hucre"><i class={`kip-nokta${o.kip[k] ? " dolu" : ""}`} data-kip={k} /></span>)}
             </span>
           </div>); })}
       </section>
@@ -405,6 +468,28 @@ function HalkaSonu({ ozet, lex, sonraki, seans, devam, mola }: { ozet: ReturnTyp
 }
 
 /** Adımsız durak (AK-6): var olan ekrana gider; o ekran bitince (`bitti`/`ilkBitti`) akış dönüşte kendiliğinden ilerler */
+/**
+ * Dil noktası tablosu (PM 7059008858 md. 1): 4 sütundan genişse sabit sütunlar + seçilen tek sütun; üstte sütun seçici.
+ * Telefonda yatay kaydırma gerekmez; başlıklar ve "Türkçe" sütunu Türkçe, öteki hücreler Almanca.
+ */
+function AkisTablo({ sutunlar, satirlar }: { sutunlar: string[]; satirlar: string[][] }) {
+  const bol = tabloBol(sutunlar);
+  const [sec, setSec] = useState(bol?.secilebilir[0] ?? -1);
+  const goster = bol ? [...bol.sabit, sec] : sutunlar.map((_, i) => i);
+  return (
+    <>
+      {bol && <div class="row akis-tablo-sec" role="group" aria-label="Sütun seç" data-test="akis-tablo-sec">
+        {bol.secilebilir.map((i) => <button type="button" lang="de" class={`chip${i === sec ? " on" : ""}`} aria-pressed={i === sec} data-sutun={i} onClick={() => setSec(i)}>{sutunlar[i]}</button>)}
+      </div>}
+      <table class="akis-tablo-t" data-test="akis-tablo-t"><thead><tr>{goster.map((i) => <th lang={bol && !bol.sabit.includes(i) ? "de" : undefined}>{sutunlar[i]}</th>)}</tr></thead>
+        <tbody>{satirlar.map((r) => <tr>{goster.map((i) => <td lang={hucreDili(sutunlar[i] ?? "")}>{r[i]}</td>)}</tr>)}</tbody></table>
+    </>
+  );
+}
+
+/** "veya, ya da, değil mi" → "veya"; parantezli açıklama atılır */
+export const ilkAnlam = (tr: string) => tr.split(/[,;/]|\s\(/)[0]!.trim() || tr.trim();
+
 /** gösterilecek bir şeyi olmayan adım: ekran çizmeden geçer */
 function Gec({ bitir }: { bitir: () => void }) { useEffect(() => { bitir(); }, []); return null; }
 

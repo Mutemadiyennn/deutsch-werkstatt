@@ -94,3 +94,18 @@ describe("eslestir (AK-10 3. adım)", () => {
     expect(d.gosterildi.sort()).toEqual(d.sol.slice(3).sort());
   });
 });
+
+describe("resimden seç: İÇ haritasının 'aynı halkada çıkmasın' notu (inceleme #193 P1-1)", () => {
+  it("ayri listesindeki kart iki yönde çeldirici olmaz", async () => {
+    const { resimSecenekleri } = await import("./halkaTur.ts");
+    const L = (id: string, de: string, tr: string) => ({ id, de, tr, pos: "noun", art: "die", lemma: de, level: "A1", examples: [] }) as never;
+    const frau = L("lx:Frau", "Frau", "kadın"), madchen = L("lx:Mädchen", "Mädchen", "kız"), haus = L("lx:Haus", "Haus", "ev"), brot = L("lx:Brot", "Brot", "ekmek"), auto = L("lx:Auto", "Auto", "araba");
+    const h = { "lx:Frau#kart": { src: "a", ayri: ["Mädchen"] }, "lx:Mädchen#kart": { src: "b" }, "lx:Haus#kart": { src: "c" }, "lx:Brot#kart": { src: "d" }, "lx:Auto#kart": { src: "e" } };
+    for (const t of ["1", "2", "3", "4", "5", "6"]) {
+      const s1 = resimSecenekleri(frau, [madchen, haus, brot, auto], h, t);
+      expect(s1 && s1.secenekler.map((x) => x.kart)).not.toContain("lx:Mädchen");
+      const s2 = resimSecenekleri(madchen, [frau, haus, brot, auto], h, t);
+      expect(s2 && s2.secenekler.map((x) => x.kart)).not.toContain("lx:Frau");
+    }
+  });
+});

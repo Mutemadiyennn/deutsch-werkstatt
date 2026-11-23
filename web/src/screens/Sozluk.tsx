@@ -34,8 +34,8 @@ export function SozlukEkrani({ q: ilk = "", id }: { q?: string; id?: string }) {
   }, []);
   const sonuc = useMemo(() => (lex ? sozlukAra(q, lex) : []), [q, lex]);
   const sec = id && lex ? lex.find((l) => l.id === id) ?? null : null;
-  if (err) return <div class="stack"><TopBar title="Sözlük" back="#/learn" /><ErrorPanel message={err} onRetry={() => location.reload()} /></div>;
-  if (!lex) return <div class="stack"><TopBar title="Sözlük" back="#/learn" /><Loading text="Sözlük açılıyor…" /></div>;
+  if (err) return <div class="stack"><TopBar title="Sözlük" back="#/koy/kutuphane" /><ErrorPanel message={err} onRetry={() => location.reload()} /></div>;
+  if (!lex) return <div class="stack"><TopBar title="Sözlük" back="#/koy/kutuphane" /><Loading text="Sözlük açılıyor…" /></div>;
 
   /** Ekler; kart Bahçe'ye giriyorsa öyle söyler, girmiyorsa (kartsız, pasif, sözlükte yok) yalnızca kişisel liste (inceleme #78 P1-4) */
   const ekle = async (de: string, anlam?: string, l?: Lexeme) => {
@@ -78,7 +78,7 @@ export function SozlukEkrani({ q: ilk = "", id }: { q?: string; id?: string }) {
   const eklendi = bahce.has(kisiselAnahtar(yaz));
   return (
     <div class="stack">
-      <TopBar title="Sözlük" back="#/learn" />
+      <TopBar title="Sözlük" back="#/koy/kutuphane" />
       <form class="card stack" onSubmit={(e) => e.preventDefault()} role="search">
         <input class="input" type="search" value={q} placeholder="Almanca ya da Türkçe yaz…" aria-label="Sözlükte ara" autoFocus autocomplete="off" autocapitalize="off" spellcheck={false}
           onInput={(e) => setQ((e.target as HTMLInputElement).value)} data-test="sozluk-q" />
