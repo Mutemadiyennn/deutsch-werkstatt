@@ -8,7 +8,7 @@
  "goal_tr": "Yeni dairendeki küçük arızaları anlatırsın. Bir şeyi nereye koyduğunu ve nerede durduğunu söylersin.",
  "can_do": {
   "id": "cd:m1:66",
-  "tr": "Bir şeyi nereye koyduğumu ve nerede durduğunu söylerim: Ich lege den Schlüssel auf den Tisch. Der Schlüssel liegt auf dem Tisch."
+  "tr": "Bir şeyi nereye koyduğumu ve nerede durduğunu söylerim."
  },
  "unit": "u:a2:66",
  "arm": "kafe",
@@ -111,7 +111,7 @@
      {
       "r": "ogrenci",
       "de": "Oh, danke! Am Briefkasten steht ja noch kein Name.",
-      "tr": "Aa, teşekkürler! Posta kutusunda daha hiç ad yok."
+      "tr": "Aa, teşekkürler! Posta kutusunda henüz ad yazmıyor."
      },
      {
       "r": "ch:brandl",
@@ -286,7 +286,7 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Saat yedi. Herr Pichler kapıda. Zil için adını yazmak istiyor.",
+    "ortam_tr": "Saat sekiz. Herr Pichler kapıda. Zil için adını yazmak istiyor.",
     "satirlar": [
      {
       "r": "ch:pichler",
@@ -301,7 +301,7 @@
      {
       "r": "ch:pichler",
       "de": "Gut. Und passen Sie auf: Die Lampe da am Fenster kann fallen!",
-      "tr": "Tamam. Bir de dikkat edin: Şuradaki pencerenin yanındaki lamba düşebilir!"
+      "tr": "Tamam. Bir de dikkat edin: Pencerenin yanındaki şu lamba düşebilir!"
      }
     ],
     "soru": {
@@ -318,7 +318,7 @@
  ],
  "sahne": {
   "id": "m1:66:v1",
-  "title_tr": "Kulak kapısı: posta kutularının önünde akşam sohbeti",
+  "title_tr": "Posta kutularının önünde akşam sohbeti",
   "sahneler": [
    {
     "id": "s1",
@@ -339,7 +339,7 @@
     "speaker": "ch:brandl",
     "sahne_tr": "Frau Brandl merakla bakıyor.",
     "de": "Und jetzt? Geht er wieder?",
-    "tr": "Peki şimdi? Yine çalışıyor mu?"
+    "tr": "Peki şimdi? Düzeldi mi?"
    },
    {
     "id": "s4",
@@ -360,7 +360,7 @@
     "speaker": "ch:brandl",
     "sahne_tr": "Frau Brandl parmağını kaldırıyor.",
     "de": "Und morgen kommt doch der Mann für die Zähler, oder?",
-    "tr": "Yarın da sayaç adamı geliyor, değil mi?"
+    "tr": "Yarın da sayaçlar için adam geliyor, değil mi?"
    },
    {
     "id": "s7",
@@ -426,7 +426,7 @@
      "kind": "gist",
      "q_tr": "Frau Brandl ve Herr Pichler neyi konuşuyor?",
      "opts": [
-      "Senin dairendeki işleri ve yarını",
+      "Dairendeki tamir işlerini ve yarını",
       "Kendi tatillerini",
       "Apartmanın yeni kurallarını"
      ],
@@ -439,7 +439,7 @@
     "ayrinti": [
      {
       "kind": "detail",
-      "q_tr": "Sayaç adamı yarın saat kaçta geliyor?",
+      "q_tr": "Sayaçlar için adam yarın saat kaçta geliyor?",
       "opts": [
        "Saat onda",
        "Saat sekizde",
@@ -554,7 +554,7 @@
     "cevapla": {
      "id": "m1:66:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Ertesi sabah Frau Brandl soruyor: Musluk yine çalışıyor mu? Evet, Herr Pichler dün tamir etti.",
+     "situation_tr": "Ertesi sabah Frau Brandl soruyor: Musluk düzeldi mi? Evet, Herr Pichler dün tamir etti.",
      "prompt_de": "Und? Geht Ihr Wasserhahn wieder?",
      "accepted": [
       "Ja, Herr Pichler hat ihn gestern repariert.",
@@ -563,7 +563,7 @@
       "Ja, alles in Ordnung. Herr Pichler hat ihn repariert.",
       "Ja, der Wasserhahn geht wieder."
      ],
-     "why_tr": "Kısa cevap yeter: **Ja, er geht wieder.** Kimin yaptığını da söyle."
+     "why_tr": "Önce **Ja, er geht wieder** de. Sonra kimin tamir ettiğini söyle."
     }
    }
   ]
@@ -757,7 +757,7 @@
      "Ioana'yı otobüste beklemelisin."
     ],
     "ans": 0,
-    "why_tr": "Ioana gelince seni arayacak. Telefonun yanında olmalı.",
+    "why_tr": "Ioana gelince seni arayacak. Telefonun yanında olmalısın.",
     "kanit": [
      "c4"
     ]
@@ -1254,7 +1254,7 @@
    "kontrol_tr": [
     "Neyin bozuk olduğunu yazdın mı?",
     "Nerede olduğunu yazdın mı? Örnek: **im Bad**, **in der Küche**.",
-    "Geçmişi yazdın mı? Örnek: **hat repariert**."
+    "Tamir edildiğini yazdın mı? Örnek: **hat repariert**."
    ]
   }
  },
@@ -1367,7 +1367,8 @@
      "Auf den Tisch, bitte.",
      "Die Post kommt auf den Tisch.",
      "Auf den Tisch im Flur, bitte.",
-     "Sie kommt auf den Tisch, danke."
+     "Sie kommt auf den Tisch, danke.",
+     "Legen Sie sie bitte auf den Tisch."
     ],
     "why_tr": "Nereye sorusu: **auf den Tisch**. Masa **der Tisch**, bu yüzden **den**."
    },

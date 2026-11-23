@@ -5,10 +5,10 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "Nerede, nereye: auf dem Tisch, auf den Tisch",
- "goal_tr": "Kantinede mola verirsin. Bir şeyin nerede olduğunu ve nereye gittiğini söylersin.",
+ "goal_tr": "Kantinde mola verirsin. Bir şeyin nerede olduğunu ve nereye konduğunu söylersin.",
  "can_do": {
   "id": "cd:m1:64",
-  "tr": "Kantinede bir şeyin nerede olduğunu sorar, nereye koyduğumu söylerim."
+  "tr": "Kantinde bir şeyin nerede olduğunu sorar, nereye koyduğumu söylerim."
  },
  "unit": "u:a2:64",
  "arm": "kafe",
@@ -80,7 +80,7 @@
      "accepted": [
       "Hast du noch keinen Hunger? Es ist schon halb eins.",
       "Hast du keinen Hunger? Es ist schon halb eins.",
-      "Hast du noch keinen Hunger? Es ist schon halb ein Uhr."
+      "Hast du noch keinen Hunger? Es ist schon zwölf Uhr dreißig."
      ]
     },
     {
@@ -156,7 +156,7 @@
   },
   {
    "id": "m1:64:h2",
-   "title_tr": "Kantinede: nerede?",
+   "title_tr": "Kantinde: nerede?",
    "kartlar": [
     "lx:Kantine",
     "lx:Speisekarte",
@@ -280,7 +280,7 @@
    "kaliplar": [
     {
      "de": "Wohin kommen die …?",
-     "tr": "… nereye gidiyor?"
+     "tr": "… nereye konuyor?"
     },
     {
      "de": "Ich bringe … in die Küche.",
@@ -312,7 +312,7 @@
     {
      "kart": "lx:Gabel",
      "de": "Wohin kommen die Gabeln? – In das Regal neben der Tür.",
-     "tr": "Çatallar nereye gidiyor? – Kapının yanındaki rafa.",
+     "tr": "Çatallar nereye konuyor? – Kapının yanındaki rafa.",
      "accepted": [
       "Wohin kommen die Gabeln? – In das Regal neben der Tür.",
       "Wohin kommen die Gabeln? – Ins Regal neben der Tür.",
@@ -336,7 +336,7 @@
      {
       "r": "ch:aksoy",
       "de": "Wohin kommen die Teller?",
-      "tr": "Tabaklar nereye gidiyor?"
+      "tr": "Tabaklar nereye konuyor?"
      },
      {
       "r": "ogrenci",
@@ -350,7 +350,7 @@
      }
     ],
     "soru": {
-     "q_tr": "Tabaklar nereye gidiyor?",
+     "q_tr": "Tabaklar nereye konuyor?",
      "opts": [
       "Kapının yanındaki rafa",
       "Mutfağa",
@@ -363,12 +363,12 @@
  ],
  "sahne": {
   "id": "m1:64:v1",
-  "title_tr": "Kulak kapısı: kantinede öğle arası",
+  "title_tr": "Kantinde öğle arası",
   "sahneler": [
    {
     "id": "s1",
     "speaker": "ch:aksoy",
-    "sahne_tr": "Kantine. Derya elinde tepsiyle masaların arasında yürüyor.",
+    "sahne_tr": "Kantin. Derya elinde tepsiyle masaların arasında yürüyor.",
     "de": "Mahlzeit! Wo sitzt ihr heute?",
     "tr": "İyi öğlenler! Bugün nerede oturuyorsunuz?"
    },
@@ -424,7 +424,7 @@
    {
     "id": "s9",
     "speaker": "ch:wimmer",
-    "sahne_tr": "Herr Wimmer masanın yanından geçiyor, eğilip yerden bir şey alıyor.",
+    "sahne_tr": "Herr Wimmer masanın yanından geçiyor, eğilip masanın altına bakıyor.",
     "de": "Guten Appetit! Herr Lechner, ist das Ihr Handy? Es liegt unter dem Tisch.",
     "tr": "Afiyet olsun! Lechner Bey, bu sizin telefonunuz mu? Masanın altında duruyor."
    },
@@ -469,7 +469,7 @@
     ],
     "ana_fikir": {
      "kind": "gist",
-     "q_tr": "Kantinede ne konuşuluyor?",
+     "q_tr": "Kantinde ne konuşuluyor?",
      "opts": [
       "Yemek ve eşyalar nerede",
       "Yeni bir proje",
@@ -514,7 +514,7 @@
       "q_tr": "Tobi saat birde nereye gidecek?",
       "opts": [
        "Herr Wimmer'in odasına",
-       "Kantinine",
+       "Kantine",
        "Eve"
       ],
       "ans": 0,
@@ -540,7 +540,7 @@
       "id": "d2",
       "cumle": "s4",
       "seviye": "orta",
-      "de": "Die Speisekarte steht da, neben der ___.",
+      "de": "Die Speisekarte steht da, neben der ___. Heute gibt es Suppe und Fisch.",
       "accepted": [
        "Tür",
        "tür",
@@ -633,7 +633,7 @@
     {
      "id": "c3",
      "de": "Geht ihr schon in die Kantine?",
-     "tr": "Siz kantine gidiyor musunuz?"
+     "tr": "Siz şimdiden kantine mi gidiyorsunuz?"
     },
     {
      "id": "c4",
@@ -806,8 +806,8 @@
   {
    "id": "m1:64:a2",
    "tur": "anons",
-   "title_tr": "Kantinede anons",
-   "ortam_tr": "Kantinede sıradasın. Hoparlörden bir anons geliyor.",
+   "title_tr": "Kantinde anons",
+   "ortam_tr": "Kantinde sıradasın. Hoparlörden bir anons geliyor.",
    "hizlar": [
     "slow",
     "normal"
@@ -989,7 +989,7 @@
      "Tepsiyi mutfağa götürürüm."
     ],
     "ans": 0,
-    "why_tr": "Anons tepsilerin kapının yanındaki rafa gittiğini söylüyor.",
+    "why_tr": "Anons tepsilerin kapının yanındaki rafa konduğunu söylüyor.",
     "kanit": [
      "c4"
     ]
@@ -1219,13 +1219,13 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Kantinede yer verdin, yemek listesinin ve çatalların nerede olduğunu söyledin. Nerede sorusuna doğru cevap verdin."
+  "kapanis_tr": "Derya'ya yer gösterdin, yemek listesinin ve çatalların nerede olduğunu söyledin. Nerede sorusuna doğru cevap verdin."
  },
  "okuma_yazma": {
   "tur": "okuma",
-  "title_tr": "Kantinenin kapısındaki not",
-  "metin_de": "Liebe Kolleginnen und Kollegen! Die Kantine ist von elf bis zwei Uhr offen. Die Speisekarte für die Woche steht neben der Tür. Löffel und Gabeln liegen im Regal neben den Tellern. Bitte stellen Sie Ihr Tablett nach der Pause in das Regal am Fenster. Das Salz steht auf jedem Tisch.",
-  "metin_tr": "Sevgili çalışma arkadaşlarımız! Kantin on birden ikiye kadar açık. Haftalık yemek listesi kapının yanında duruyor. Kaşıklar ve çatallar tabakların yanındaki rafta. Lütfen moladan sonra tepsinizi pencerenin yanındaki rafa koyun. Tuz her masada var.",
+  "title_tr": "Kantinin kapısındaki not",
+  "metin_de": "Liebe Kolleginnen und Kollegen! Die Kantine ist von elf bis zwei Uhr offen. Die Speisekarte für die Woche steht neben der Tür. Löffel und Gabeln liegen im Regal neben den Tellern. Bitte stellen Sie Ihr Tablett nach der Pause in das Regal neben der Tür. Das Salz steht auf jedem Tisch.",
+  "metin_tr": "Sevgili çalışma arkadaşlarımız! Kantin on birden ikiye kadar açık. Haftalık yemek listesi kapının yanında duruyor. Kaşıklar ve çatallar tabakların yanındaki rafta. Lütfen moladan sonra tepsinizi kapının yanındaki rafa koyun. Tuz her masada var.",
   "sorular": [
    {
     "id": "m1:64:o1",
@@ -1275,8 +1275,8 @@
     "kind": "detail",
     "q_tr": "Tepsini nereye koyarsın?",
     "opts": [
-     "Pencerenin yanındaki rafa",
-     "Kapının yanına",
+     "Kapının yanındaki rafa",
+     "Pencerenin yanına",
      "Masaya"
     ],
     "ans": 0,
@@ -1287,14 +1287,14 @@
    {
     "id": "m1:64:o5",
     "k": "guided_response",
-    "situation_tr": "Tobi soruyor: Tepsim nereye gidiyor? Notta okudun.",
+    "situation_tr": "Tobi soruyor: Tepsim nereye konuyor? Notta okudun.",
     "prompt_de": "Wohin kommt mein Tablett?",
     "accepted": [
-     "In das Regal am Fenster.",
-     "Ins Regal am Fenster.",
-     "Dein Tablett kommt in das Regal am Fenster.",
-     "Es kommt in das Regal am Fenster.",
-     "In das Regal, am Fenster."
+     "In das Regal neben der Tür.",
+     "Ins Regal neben der Tür.",
+     "Dein Tablett kommt in das Regal neben der Tür.",
+     "Es kommt in das Regal neben der Tür.",
+     "In das Regal, neben der Tür."
     ],
     "why_tr": "Nereye sorusu: **in das Regal**. Hareket var, rafa koyuyorsun."
    }
@@ -1340,7 +1340,7 @@
      "meine schicht fängt morgen um sechs an",
      "Meine Schicht fängt morgen um sechs an"
     ],
-    "why_tr": "**fängt** başta, **an** en sonda."
+    "why_tr": "**fängt … an**: başlıyor. **an** en sona gider."
    },
    {
     "id": "m1:64:s4",

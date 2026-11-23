@@ -8,7 +8,7 @@
  "goal_tr": "Bir randevuya gidemeyeceğini söylersin. Başka bir gün istersin. Önerilen gün uymazsa yeni bir gün sorarsın.",
  "can_do": {
   "id": "cd:m1:69",
-  "tr": "Telefonda randevumu iptal eder ya da başka bir güne alırım. Önerilen gün uymazsa yeni bir gün isterim."
+  "tr": "Telefonda randevumu iptal eder ya da başka güne alır, uymazsa yeni gün isterim."
  },
  "unit": "u:a2:69",
  "arm": "telefon",
@@ -58,12 +58,12 @@
    "gorev_cumleleri": [
     {
      "kart": "lx:erinnern",
-     "de": "Die Praxis erinnert mich per SMS an den Termin am Montag.",
-     "tr": "Muayenehane bana pazartesi randevusunu SMS ile hatırlatıyor.",
+     "de": "Könnten Sie mich bitte per SMS an den Termin erinnern?",
+     "tr": "Bana randevuyu lütfen SMS ile hatırlatabilir misiniz?",
      "accepted": [
-      "Die Praxis erinnert mich per SMS an den Termin am Montag.",
-      "Die Praxis erinnert mich mit einer SMS an den Termin am Montag.",
-      "Per SMS erinnert mich die Praxis an den Termin am Montag."
+      "Könnten Sie mich bitte per SMS an den Termin erinnern?",
+      "Könnten Sie mich per SMS an den Termin erinnern?",
+      "Könnten Sie mich bitte mit einer SMS an den Termin erinnern?"
      ]
     },
     {
@@ -109,7 +109,7 @@
     {
      "kart": "lx:wenig",
      "de": "Ich habe wenig Zeit! Wohin habe ich nur meinen Schlüssel gelegt?",
-     "tr": "Çok az vaktim var! Anahtarımı nereye koydum ben?",
+     "tr": "Vaktim az! Anahtarımı nereye koydum ben?",
      "accepted": [
       "Ich habe wenig Zeit! Wohin habe ich nur meinen Schlüssel gelegt?",
       "Ich habe so wenig Zeit! Wohin habe ich nur meinen Schlüssel gelegt?",
@@ -193,7 +193,7 @@
     {
      "kart": "lx:sonst",
      "de": "Haben Sie sonst noch einen Termin am Samstag?",
-     "tr": "Cumartesi başka bir randevunuz var mı?",
+     "tr": "Cumartesi başka boş randevunuz var mı?",
      "accepted": [
       "Haben Sie sonst noch einen Termin am Samstag?",
       "Haben Sie am Samstag sonst noch einen Termin?",
@@ -202,12 +202,12 @@
     },
     {
      "kart": "lx:sonst",
-     "de": "Ich rufe heute noch an, sonst ist der Termin weg.",
-     "tr": "Bugün arıyorum, yoksa randevu gider.",
+     "de": "Man muss heute noch anrufen, sonst ist der Termin weg.",
+     "tr": "Bugün içinde aramak gerekiyor, yoksa randevu gider.",
      "accepted": [
-      "Ich rufe heute noch an, sonst ist der Termin weg.",
-      "Ich rufe heute noch an, sonst ist mein Termin weg.",
-      "Ich rufe noch heute an, sonst ist der Termin weg."
+      "Man muss heute noch anrufen, sonst ist der Termin weg.",
+      "Man muss noch heute anrufen, sonst ist der Termin weg.",
+      "Heute muss man noch anrufen, sonst ist der Termin weg."
      ]
     },
     {
@@ -222,12 +222,12 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Cumartesi öğlen. Tobi arıyor. Akşam lokantada buluşacaktınız.",
+    "ortam_tr": "Cumartesi sabahı. Tobi arıyor. Akşam lokantada buluşacaktınız.",
     "satirlar": [
      {
       "r": "ch:lechner",
-      "de": "Du, heute Abend im Gasthaus geht leider nicht. Meine Schwester hat Geburtstag.",
-      "tr": "Bak, bu akşam lokanta maalesef olmuyor. Kız kardeşimin doğum günü."
+      "de": "Du, heute Abend im Gasthaus geht leider nicht. Ein Freund hat Geburtstag.",
+      "tr": "Bak, bu akşam lokanta maalesef olmuyor. Bir arkadaşımın doğum günü."
      },
      {
       "r": "ogrenci",
@@ -259,12 +259,12 @@
  ],
  "sahne": {
   "id": "m1:69:v1",
-  "title_tr": "Kulak kapısı: kuaförde bir telefon",
+  "title_tr": "Kuaförde bir telefon",
   "sahneler": [
    {
     "id": "s1",
     "speaker": "ch:petrovic",
-    "sahne_tr": "Salon Haarwerk, cumartesi sabahı. İçeri giriyorsun, Luka bir müşterinin saçını kurutuyor.",
+    "sahne_tr": "Salon Haarwerk, cumartesi öğlene doğru. İçeri giriyorsun, Luka bir müşterinin saçını kurutuyor.",
     "de": "Grüß Gott! Setzen Sie sich doch, ich komme gleich.",
     "tr": "İyi günler! Buyurun oturun, hemen geliyorum."
    },
@@ -287,14 +287,14 @@
     "speaker": "ch:petrovic",
     "sahne_tr": "Luka defterine bakıyor.",
     "de": "Ich habe sonst noch am Mittwoch um vier etwas frei.",
-    "tr": "Başka olarak çarşamba saat dörtte bir boşluğum var."
+    "tr": "Bunun dışında çarşamba saat dörtte boş yerim var."
    },
    {
     "id": "s5",
     "speaker": "ch:petrovic",
     "sahne_tr": "Luka sayfayı çeviriyor.",
     "de": "Mittwoch geht auch nicht? Dann halt Donnerstag um fünf.",
-    "tr": "Çarşamba da olmuyor mu? O zaman perşembe beşte."
+    "tr": "Çarşamba da olmuyor mu? O zaman ne yapalım, perşembe beşte."
    },
    {
     "id": "s6",
@@ -315,14 +315,14 @@
     "speaker": "ch:petrovic",
     "sahne_tr": "Luka makası eline alıyor.",
     "de": "Diese Woche habe ich wenig Zeit. Alle wollen vor Fasching noch schnell kommen.",
-    "tr": "Bu hafta az vaktim var. Herkes Fasching'den önce hemen gelmek istiyor."
+    "tr": "Bu hafta az vaktim var. Herkes karnavaldan (Fasching) önce bir an önce gelmek istiyor."
    },
    {
     "id": "s9",
     "speaker": "ch:petrovic",
     "sahne_tr": "Luka gülüyor.",
-    "de": "Das ist halt so im Februar, ne?",
-    "tr": "Şubatta durum hep böyle, değil mi?"
+    "de": "Das ist halt jedes Jahr so, ne?",
+    "tr": "Her yıl böyle işte, değil mi?"
    },
    {
     "id": "s10",
@@ -392,7 +392,7 @@
       "kind": "detail",
       "q_tr": "Luka'nın bu hafta neden az vakti var?",
       "opts": [
-       "Herkes Fasching'den önce gelmek istiyor",
+       "Herkes karnavaldan önce gelmek istiyor",
        "Hasta",
        "Tatile gidiyor"
       ],
@@ -505,7 +505,7 @@
     {
      "id": "c1",
      "de": "Grüß Gott, Praxis Dr. Weber, hier spricht Frau Huber.",
-     "tr": "İyi günler, Dr. Weber muayenehanesi, ben Huber Hanım."
+     "tr": "İyi günler, Dr. Weber muayenehanesi, ben Huber."
     },
     {
      "id": "c2",
@@ -945,7 +945,7 @@
       ],
       "sonraki": "n1",
       "uygun": false,
-      "geri_bildirim_tr": "Luka seni tanımıyor gibi: önce adını ve randevunu söyle."
+      "geri_bildirim_tr": "Luka henüz kim olduğunu bilmiyor. Önce adını ve randevunu söyle."
      }
     ]
    },
@@ -982,8 +982,8 @@
    },
    {
     "id": "n3",
-    "de": "Moment … Mittwoch um sechs habe ich noch etwas frei.",
-    "tr": "Bir saniye … çarşamba altıda bir boşluğum var.",
+    "de": "Moment. Mittwoch um sechs habe ich noch etwas frei.",
+    "tr": "Bir saniye. Çarşamba altıda boş yerim var.",
     "secenekler": [
      {
       "de": "Mittwoch passt mir leider auch nicht. Am Mittwoch lerne ich mit einer Freundin Deutsch.",
@@ -1237,7 +1237,7 @@
      "Kannst du mich morgen an den Termin erinnern?",
      "Erinnerst du mich bitte morgen an den Termin?"
     ],
-    "why_tr": "**jemanden an etwas erinnern**: birine bir şeyi hatırlatmak."
+    "why_tr": "**Erinnerst du mich an den Termin?**: Bana randevuyu hatırlatır mısın?"
    },
    {
     "id": "m1:69:s6",
@@ -1248,7 +1248,7 @@
      "Bitte setzen Sie sich.",
      "Setzen Sie sich doch."
     ],
-    "why_tr": "**Setzen Sie sich**: kibar oturun daveti."
+    "why_tr": "**Setzen Sie sich**: buyurun, oturun."
    },
    {
     "id": "m1:69:s7",
@@ -1270,7 +1270,7 @@
      "Die Jacke habe ich an die Tür gehängt.",
      "Ich habe meine Jacke an die Tür gehängt."
     ],
-    "why_tr": "Asmak geçmişte: **habe gehängt**, **gehängt** en sonda."
+    "why_tr": "Astım: **habe gehängt**. **gehängt** en sonda."
    },
    {
     "id": "m1:69:s9",
@@ -1304,7 +1304,7 @@
    {
     "id": "m1:69:s11",
     "k": "guided_response",
-    "situation_tr": "Günün provası. Frau Huber yeni randevu olarak salı dokuzu öneriyor. Salı da olmuyor. Çarşambayı sor.",
+    "situation_tr": "Frau Huber yeni randevu olarak salı dokuzu öneriyor. Salı da olmuyor. Çarşambayı sor.",
     "prompt_de": "Passt es Ihnen am Dienstag um neun?",
     "accepted": [
      "Dienstag passt mir leider auch nicht. Geht es am Mittwoch?",

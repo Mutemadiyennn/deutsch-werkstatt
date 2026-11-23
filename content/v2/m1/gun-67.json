@@ -8,7 +8,7 @@
  "goal_tr": "Kaybolan bir eşyayı sorarsın. Bir şeyi nereye koyduğunu ve astığını söylersin.",
  "can_do": {
   "id": "cd:m1:67",
-  "tr": "Kaybolan bir eşyayı sorarım ve nereye koyduğumu söylerim: Ich habe ihn in die Schublade gelegt."
+  "tr": "Kaybolan bir eşyayı sorarım ve nereye koyduğumu söylerim."
  },
  "unit": "u:a2:67",
  "arm": "telefon",
@@ -69,7 +69,7 @@
      "accepted": [
       "Wer sorgt am Freitag für den Kaffee?",
       "Wer sorgt am Freitag für Kaffee?",
-      "Am Freitag, wer sorgt für den Kaffee?"
+      "Wer sorgt denn am Freitag für den Kaffee?"
      ]
     },
     {
@@ -99,7 +99,7 @@
      "accepted": [
       "Nach der Arbeit muss ich noch ein paar Dinge machen.",
       "Ich muss nach der Arbeit noch ein paar Dinge machen.",
-      "Nach der Arbeit muss ich noch ein paar Dinge kaufen."
+      "Nach der Arbeit muss ich noch ein paar Sachen machen."
      ]
     },
     {
@@ -225,7 +225,7 @@
     {
      "kart": "lx:rein",
      "de": "Kann ich kurz rein? Ich habe meine Brille auf deinen Tisch gelegt.",
-     "tr": "Kısa bir süre içeri gelebilir miyim? Gözlüğümü senin masana koydum.",
+     "tr": "Bir dakika içeri girebilir miyim? Gözlüğümü senin masana koydum.",
      "accepted": [
       "Kann ich kurz rein? Ich habe meine Brille auf deinen Tisch gelegt.",
       "Kann ich kurz rein? Ich habe die Brille auf deinen Tisch gelegt.",
@@ -248,8 +248,8 @@
      },
      {
       "r": "ogrenci",
-      "de": "Nicht alles. Wohin haben Sie meinen Schlüssel gelegt?",
-      "tr": "Hepsini değil. Anahtarımı nereye koydunuz?"
+      "de": "Nicht alles. Wohin haben Sie meine Brille gelegt?",
+      "tr": "Hepsini değil. Gözlüğümü nereye koydunuz?"
      },
      {
       "r": "ch:brandl",
@@ -258,7 +258,7 @@
      }
     ],
     "soru": {
-     "q_tr": "Anahtar nerede?",
+     "q_tr": "Gözlük nerede?",
      "opts": [
       "Mutfaktaki çekmecede",
       "Askılıkta",
@@ -309,7 +309,7 @@
     {
      "kart": "lx:fühlen",
      "de": "Danke, ich fühle mich gut. Ich habe die Bilder im Flur an die Wand gehängt.",
-     "tr": "Teşekkürler, iyiyim. Koridordaki resimleri duvara astım.",
+     "tr": "Teşekkürler, kendimi iyi hissediyorum. Resimleri koridorda duvara astım.",
      "accepted": [
       "Danke, ich fühle mich gut. Ich habe die Bilder im Flur an die Wand gehängt.",
       "Ich fühle mich gut, danke. Ich habe die Bilder im Flur an die Wand gehängt.",
@@ -318,7 +318,7 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Gece. Frau Brandl'a teşekkür etmek için onu arıyorsun.",
+    "ortam_tr": "Akşam. Frau Brandl'a teşekkür etmek için onu arıyorsun.",
     "satirlar": [
      {
       "r": "ogrenci",
@@ -350,7 +350,7 @@
  ],
  "sahne": {
   "id": "m1:67:v1",
-  "title_tr": "Kulak kapısı: komşular dairende neyi nereye koydu?",
+  "title_tr": "Komşular dairende neyi nereye koydu?",
   "sahneler": [
    {
     "id": "s1",
@@ -761,9 +761,10 @@
        "Ich habe ihn in die Schublade an deinem Tisch gelegt.",
        "Ich habe den Schlüssel gestern in die Schublade an deinem Tisch gelegt.",
        "Der Schlüssel ist in der Schublade an deinem Tisch.",
-       "Ich habe ihn gestern in deine Schublade gelegt."
+       "Ich habe ihn gestern in deine Schublade gelegt.",
+       "Ich habe ihn gestern in die Schublade von deinem Tisch gelegt."
       ],
-      "why_tr": "Geçmişte koymak: **Ich habe ihn gelegt.** Nereye: **in die Schublade**."
+      "why_tr": "Koydum demek için: **Ich habe ihn gelegt.** Nereye: **in die Schublade**."
      }
     }
    ],
@@ -1059,8 +1060,8 @@
    },
    {
     "id": "n2",
-    "de": "Ach, Sie sind es! Der Mann war da, alles in Ordnung. Ist etwas nicht gut?",
-    "tr": "Aa, sizsiniz! Adam geldi, her şey yolunda. Bir şey mi ters gitti?",
+    "de": "Ach, Sie sind es! Der Mann war da, alles in Ordnung. Stimmt etwas nicht?",
+    "tr": "Aa, sizsiniz! Adam geldi, her şey yolunda. Bir sorun mu var?",
     "secenekler": [
      {
       "de": "Alles gut, danke! Nur eine Frage: Wohin haben Sie meinen Kellerschlüssel gelegt?",
@@ -1165,7 +1166,7 @@
       ],
       "sonraki": "n6",
       "uygun": true,
-      "geri_bildirim_tr": "Harika bir kapanış. **Ich freue mich** dün öğrendiğin kalıp."
+      "geri_bildirim_tr": "Harika bir kapanış. **Ich freue mich** önceki günlerden bildiğin kalıp."
      }
     ]
    },
@@ -1180,16 +1181,16 @@
  },
  "okuma_yazma": {
   "tur": "yazma",
-  "title_tr": "Tobi'ye mesaj: anahtar ve kâğıt nerede?",
-  "metin_de": "Hallo! Der Techniker ist da. Wo ist der Schlüssel für den Drucker? Und wo ist das neue Papier? Ich finde beides nicht. Tobi",
-  "metin_tr": "Merhaba! Teknisyen geldi. Yazıcının anahtarı nerede? Yeni kâğıt nerede? İkisini de bulamıyorum. Tobi",
+  "title_tr": "Tobi'ye mesaj: anahtar ve kahve nerede?",
+  "metin_de": "Hallo! Der Techniker ist da. Wo ist der Schlüssel für den Drucker? Und wo ist der Kaffee für heute? Ich finde beides nicht. Tobi",
+  "metin_tr": "Merhaba! Teknisyen geldi. Yazıcının anahtarı nerede? Bugünün kahvesi nerede? İkisini de bulamıyorum. Tobi",
   "sorular": [
    {
     "id": "m1:67:o1",
     "kind": "gist",
     "q_tr": "Tobi ne soruyor?",
     "opts": [
-     "Anahtar ve kâğıt nerede",
+     "Anahtar ve kahve nerede",
      "Teknisyen ne zaman geliyor",
      "Toplantı ne zaman"
     ],
@@ -1215,8 +1216,8 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Tobi'ye kısa bir cevap yaz: Anahtarı çekmeceye koydun, kâğıdı dolaba koydun.",
-   "ornek_de": "Hallo Tobi! Ich habe den Schlüssel in die Schublade gelegt. Das Papier habe ich in den Schrank gestellt.",
+   "gorev_tr": "Tobi'ye kısa bir cevap yaz: Anahtarı çekmeceye koydun, kahveyi dolaba koydun.",
+   "ornek_de": "Hallo Tobi! Ich habe den Schlüssel in die Schublade gelegt. Den Kaffee habe ich in den Schrank gestellt.",
    "zorunlu": [
     "gelegt",
     "gestellt"
@@ -1231,7 +1232,7 @@
    "kontrol_tr": [
     "**habe** ikinci yerde, **gelegt** ya da **gestellt** en sonda mı?",
     "Nereye sorusuna **in die** ya da **in den** kullandın mı?",
-    "Kâğıt dik durur: **gestellt**. Anahtar yatar: **gelegt**. Doğru mu?"
+    "Kahve paketi dik durur: **gestellt**. Anahtar yatar: **gelegt**. Doğru mu?"
    ]
   }
  },
@@ -1299,7 +1300,7 @@
      "Wo hast du meinen Schlüssel hingelegt?",
      "Wohin hast du denn meinen Schlüssel gelegt?"
     ],
-    "why_tr": "Nereye: **wohin**. Geçmiş: **hast gelegt**, **gelegt** en sonda."
+    "why_tr": "Nereye: **wohin**. Koydun: **hast gelegt**. **gelegt** en sonda."
    },
    {
     "id": "m1:67:s6",
@@ -1308,7 +1309,7 @@
     "accepted": [
      "Ich habe das Bild über das Sofa gehängt.",
      "Das Bild habe ich über das Sofa gehängt.",
-     "Ich habe das Bild über das Sofa gehängt, schau!"
+     "Ich habe das Bild übers Sofa gehängt."
     ],
     "why_tr": "Asmak: **gehängt**. Nereye: **über das Sofa**."
    },
@@ -1319,7 +1320,8 @@
     "accepted": [
      "Komm rein, es ist kalt!",
      "Komm doch rein, es ist kalt!",
-     "Komm rein! Es ist kalt."
+     "Komm rein! Es ist kalt.",
+     "Komm herein, es ist kalt!"
     ],
     "why_tr": "**rein**: içeri."
    },
@@ -1366,16 +1368,16 @@
    {
     "id": "m1:67:s11",
     "k": "guided_response",
-    "situation_tr": "Günün provası. Herr Pichler soruyor: Koliyi nereye koydunuz? Onu bodruma koydun.",
-    "prompt_de": "Wohin haben Sie den Karton gestellt?",
+    "situation_tr": "Herr Pichler soruyor: Bisikletinizi nereye koydunuz? Onu bodruma koydun.",
+    "prompt_de": "Wohin haben Sie Ihr Fahrrad gestellt?",
     "accepted": [
-     "Ich habe ihn in den Keller gestellt.",
-     "Ich habe den Karton in den Keller gestellt.",
+     "Ich habe es in den Keller gestellt.",
+     "Ich habe das Fahrrad in den Keller gestellt.",
      "In den Keller, Herr Pichler.",
-     "Den Karton habe ich in den Keller gestellt.",
-     "Den habe ich in den Keller gestellt."
+     "Das Fahrrad habe ich in den Keller gestellt.",
+     "Das habe ich in den Keller gestellt."
     ],
-    "why_tr": "Geçmiş: **habe gestellt**, **gestellt** en sonda. Nereye: **in den Keller**."
+    "why_tr": "Koydum: **habe gestellt**. **gestellt** en sonda. Nereye: **in den Keller**."
    }
   ],
   "sesli": [
