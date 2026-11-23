@@ -194,6 +194,23 @@ describe("(b, çerçeve) çerçeve sözcüğü gösterilmeden kullanılamaz (PM 
     expect(cer(ckos([g8("Hallo, mit Zeit!")], cTablo({ 2: ["lx:mit"] }), { dilNoktalari: dn }), 8)).toHaveLength(1);
     expect(cer(ckos([g8("Hallo, mit Zeit!", { dersten_sonra: true })], cTablo({ 2: ["lx:mit"] }), { dilNoktalari: dn }), 8)).toEqual([]);
   });
+  it("dil noktasının Türkçe metni çerçeve sözcüğünü göstermez (yanlış yeşil yok; inceleme 7088496013 P1-1)", () => {
+    const n = c.grammar.find((x) => /ŞU AN/.test(x.tr));
+    const dn = new Map([[omDers(8)[0]!, dilNoktasiMetni(n ?? { tr: "Bunu ŞU AN söylersin; 'jetzt' dersin." })]]);
+    expect(cer(ckos([g8("Hallo, an Zeit!", { dersten_sonra: true })], cTablo({ 2: ["lx:an"] }), { dilNoktalari: dn }), 8)).toHaveLength(1);
+  });
+  it("metni olmayan dil noktası satırda not; sözlükte olmayan çerçeve kimliği yalın sözcükle denetlenir; kart kimliği tablo hatası", () => {
+    const r = ckos([g8("Hallo, mit Zeit!")], cTablo({ 2: ["lx:mit"] }), { dilNoktalari: new Map() });
+    expect(r.satirlar.find((x) => x.gun === 8)!.not.join(";")).toMatch(/metni olmayan dil noktası \(çerçeve için hiçbir şey göstermez\): .*gr:/);
+    const r2 = ckos([g8("Hallo, zack Zeit!")], cTablo({ 2: ["lx:zack"] }));
+    expect(cer(r2, 8).map((i) => i.mesaj.slice(0, 6))).toEqual(['"zack"']);
+    expect(r2.satirlar.find((x) => x.gun === 8)!.not.join(";")).toContain('tablo çerçevesi: lx:zack sözlükte yok: "zack" sözcüğüyle denetlendi');
+    expect(ckos([sahte(8)], cTablo({ 2: ["lx:Zeit"] })).ihlaller.map((i) => i.mesaj)).toContain("lx:Zeit sözlükte kart (card:false değil); çerçeve listesinde olamaz");
+  });
+  it("çok okunuşlu biçim: okunuşlardan biri listede yoksa denetlenmez (bilinçli)", () => {
+    expect(cer(ckos([g8("Hallo, als Zeit!")], cTablo({ 2: ["lx:als"] })), 8)).toEqual([]);
+    expect(cer(ckos([g8("Hallo, als Zeit!")], cTablo({ 2: ["lx:als", "lx:als#2"] })), 8)).toHaveLength(1);
+  });
   it("önceki haftanın çerçevesi bilinir; sonraki haftanın çerçevesi kırmızı", () => {
     expect(cer(ckos([g8("Hallo, mit Zeit!")], cTablo({ 1: ["lx:mit"] })), 8)).toEqual([]);
     expect(cer(ckos([g8("Hallo, mit Zeit!")], cTablo({ 3: ["lx:mit"] })), 8)).toHaveLength(1);
@@ -273,6 +290,9 @@ describe("biçim ve sağlamlık", () => {
     const r2 = dikisDenetle({ gunler: [{ file: "a/gun-08.json", data: sahte(8) }, { file: "b/gun-08.json", data: sahte(8) }], tablo, omurga, dizin, dersler, yarim: true });
     expect(kural(r2, "bicim", 8).map((i) => i.mesaj)).toEqual(["aynı gün iki dosya: a/gun-08.json, b/gun-08.json (ilki denetlendi)"]);
     expect(r2.satirlar).toHaveLength(1);
+    const r3 = dikisDenetle({ gunler: [{ file: "content/v2/m1/gun-01.json", data: kopya() }, { file: "content/v2/m1/gun-03.json", data: sahte(8) }], tablo, omurga, dizin, dersler, yarim: true, sadece: [1] });
+    expect(r3.ihlaller.filter((i) => i.kural === "bicim")).toEqual([]);
+    expect(r3.satirlar.find((x) => x.gun === 8)!.not).toEqual(['biçim (sayılmadı): dosya adı 3. gün, "day" 8']);
   });
   it("bozuk alan tipleri istisna atmaz", () => {
     const g = sahte(8); g.yeni_kartlar = "lx:Zeit"; g.dersler = null; g.sesler = {}; (g as Record<string, unknown>).requires = 5;
@@ -286,8 +306,16 @@ describe("dil noktası metni", () => {
     const m = dilNoktasiMetni(n);
     expect(m).toContain("Auf Wiedersehen!");
     expect(m).toContain(n.ex[0]!.de);
-    expect(m).toContain("Sie");
-    expect(m.join(" ")).not.toContain("dersin");
+    // tablo satırları bütün olarak (ilk sütun Türkçe durum adı; sözlükte çerçeve biçimi değil), örnekler, tırnaklı Almanca
+    const tirnakli = m.slice(n.table!.rows.flat().length + n.ex.length);
+    expect(tirnakli).toEqual(expect.arrayContaining(["Sie", "du", "Grüß Gott!", "Servus!", "Guten Tag!", "Hallo!", "Wie geht es Ihnen?", "Wie geht's?", "Und Ihnen?", "Und dir?"]));
+    expect(tirnakli.filter((p) => /\p{L}'(da|de|ta|te|dir|dır|ya|ye|yı|yi|nın|nin|ın|in)\b/u.test(p))).toEqual([]);
+  });
+  it("Türkçe ek kesmesi (Bavyera'da, 2+1'dir) tırnak sayılmaz (inceleme 7088496013 P1-1)", () => {
+    expect(dilNoktasiMetni({ tr: "Bavyera'da 'Servus!' dersin; şu an 2+1'dir, 'Wie geht's?' sorulur." })).toEqual(["Servus!", "Wie geht's?"]);
+    // bütün grammar.json: Türkçe'ye özgü harf taşıyan tırnaklı parça yalnız gerçekten Türkçe tırnaklanmış olabilir; ek kesmesi kaymaz
+    const kayma = c.grammar.flatMap((x) => dilNoktasiMetni({ tr: x.tr })).filter((p) => /\p{L}'(da|de|ta|te|dir|dır|ya|ye|yı|yi|nın|nin|ın|in)\b/u.test(p));
+    expect(kayma).toEqual([]);
   });
 });
 

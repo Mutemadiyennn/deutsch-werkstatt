@@ -78,7 +78,33 @@ export function dilNoktasiMetni(n: unknown): string[] {
   const x = nesne(n); const out: string[] = [];
   for (const r of dizi(nesne(x.table).rows)) out.push(...yazilar(r));
   for (const e of dizi(x.ex)) { const d = yazi(nesne(e).de); if (d) out.push(d); }
-  for (const m of String(x.tr ?? "").matchAll(/'([^']+)'|‘([^’]+)’|„([^“”]+)[“”]|“([^”]+)”|"([^"]+)"|»([^«]+)«/g)) out.push(m.slice(1).find(Boolean)!);
+  const tr = String(x.tr ?? ""), tirnak: string[] = [...tekTirnak(tr)];
+  for (const m of tr.matchAll(/‘([^’]+)’|„([^“”]+)[“”]|“([^”]+)”|"([^"]+)"|»([^«]+)«/gu)) tirnak.push(m.slice(1).find(Boolean)!);
+  // Türkçeye özgü harf taşıyan tırnaklı parça Türkçe örnektir (“Regensburg'da geçen dizi”), gösterilen Almanca değil
+  out.push(...tirnak.filter((p) => !/[ıİşŞğĞçÇ]/.test(p)));
+  return out;
+}
+
+/** Türkçe ek (kesmeden sonra): 'fernsehen'de, 'die'dir, Bavyera'da */
+const TR_EK = /^(?:d[aeıiuü]\p{L}*|t[aeıiuü]\p{L}*|y[aeıiuü]\p{L}*|n[ıiuü]n\p{L}*|[ıiuü]n\p{L}*|[ıiuüae]|l[ae]\p{L}*|[ıiuü]m\p{L}*|s[ıiuü]\p{L}*|k[ıi]\p{L}*)(?![\p{L}\d])/u;
+/**
+ * Açıklamadaki tek tırnaklı parçalar (inceleme 7088496013 P1-1). Açılış: önünde harf/rakam olmayan kesme (Bavyera'da, 2+1'dir açılış
+ * değildir). Kapanış: arkasında harf olmayan ya da Türkçe ek gelen ilk kesme ('fernsehen'de → fernsehen); Almanca içteki kesme
+ * (geht's) kapanış değildir.
+ */
+export function tekTirnak(tr: string): string[] {
+  const out: string[] = []; const harf = /[\p{L}\d]/u;
+  for (let i = 0; i < tr.length; i++) {
+    if (tr[i] !== "'" || (i > 0 && harf.test(tr[i - 1]!))) continue;
+    for (let j = i + 1; j < tr.length; j++) {
+      if (tr[j] !== "'") continue;
+      const sonra = tr.slice(j + 1);
+      if (!sonra || !harf.test(sonra[0]!) || TR_EK.test(sonra)) {
+        const p = tr.slice(i + 1, j).trim(); if (p) out.push(p);
+        i = j; break;
+      }
+    }
+  }
   return out;
 }
 
@@ -205,8 +231,15 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
 
   // çerçeve sözcükleri (PM 7088230583 md. 1): kimlik → tablodaki haftası
   const cerceveHafta = new Map<string, number>();
+  const tabloSorun: string[] = [];
   const cerceveKimlik = (x: string): string[] => {
-    if (x.startsWith("lx:")) return [x];
+    if (x.startsWith("lx:")) {
+      const l = g.dizin.kartlar.get(x);
+      // sözlükte yoksa (İÇ-K2 `sozlukte_yok`) yalın başlık sözcüğüyle denetlenir; kart (card:false değil) ise tablo hatası
+      if (!l) { const yalin = x.slice(3).replace(/#\d+$/, "").toLowerCase(); tabloSorun.push(`${x} sözlükte yok: "${yalin}" sözcüğüyle denetlendi`); return [`söz:${yalin}`]; }
+      if (!g.dizin.cerceve.has(x)) ihlaller.push({ gun: 0, kural: "a", yer: "tablo cerceve", mesaj: `${x} sözlükte kart (card:false değil); çerçeve listesinde olamaz` });
+      return [x];
+    }
     const ids = [...(g.dizin.idx.get(x.toLowerCase()) ?? [])].filter((i) => g.dizin.cerceve.has(i));
     return ids.length ? ids : [`söz:${x.toLowerCase()}`];
   };
@@ -214,7 +247,9 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
   /** sözcüğün çerçeve okunuşları: sözlükteki card:false girdileri + tablodaki yalın sözcük */
   const cerceveOkunus = (t: string): string[] => [...[...(g.dizin.idx.get(t) ?? [])].filter((i) => g.dizin.cerceve.has(i)), ...(cerceveHafta.has(`söz:${t}`) ? [`söz:${t}`] : [])];
   const goster = (S: Set<string>, metin: string | undefined) => { for (const t of toks(metin)) for (const id of cerceveOkunus(t)) S.add(id); };
+  const metinsiz = new Set<string>();
   const dersGoster = (S: Set<string>, id: string) => {
+    if (/^(gr|dn):/.test(id) && !g.dilNoktalari?.has(id)) metinsiz.add(id);
     const b = g.dizin.dersler.get(id);
     for (const s of b?.bicim ?? []) goster(S, s);
     for (const kp of b?.kaliplar ?? []) goster(S, kp.filter((x) => x !== YUVA).join(" "));
@@ -237,17 +272,18 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
     const halkalar = dizi(gun.halkalar).map(nesne);
     const satir: GunSatiri = { gun: n, hafta, dosya: file, durum: "denetlendi", sayi: bos(), not: [] };
     satirOf.set(n, satir);
-    for (const m of adUyumsuz.get(n) ?? []) ihlal(satir, "bicim", file, m);
     for (const c of [...halkalar.flatMap(halkaGorevleri), ...halkaDisiGorevler(gun)]) {
       if (!c.uretim) continue;
       const s = sade(c.de); if (s.split(" ").length < 3) continue;
       const l = gorulen.get(s) ?? []; l.push({ hafta, gun: n, yer: c.yer }); gorulen.set(s, l);
     }
-    if (g.sadece?.length && !g.sadece.includes(n)) { satir.durum = "atlandı"; satir.neden = "seçilmedi"; satirlar.push(satir); continue; }
+    const atla = (neden: string) => { satir.durum = "atlandı"; satir.neden = neden; for (const m of adUyumsuz.get(n) ?? []) satir.not.push(`biçim (sayılmadı): ${m}`); satirlar.push(satir); };
+    if (g.sadece?.length && !g.sadece.includes(n)) { atla("seçilmedi"); continue; }
     if (!halkalar.length) {
-      if (n <= 7 && !g.tum) { satir.durum = "atlandı"; satir.neden = "1. hafta, halkasız (eski biçim)"; satirlar.push(satir); continue; }
+      if (n <= 7 && !g.tum) { atla("1. hafta, halkasız (eski biçim)"); continue; }
       if (n > 7) ihlal(satir, "bicim", "halkalar", "halka biçimi yok (8. günden sonra zorunlu)");
     }
+    for (const m of adUyumsuz.get(n) ?? []) ihlal(satir, "bicim", file, m);
     const yeni = yazilar(gun.yeni_kartlar);
 
     // (a) günlük adet ±2 (küme eşitliği hafta düzeyinde, aşağıda)
@@ -309,9 +345,12 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
         if (t === YUVA_AD || ic.has(j) || dis.has(j) || bildirilen.has(t)) return;
         const ok = cerceveOkunus(t); if (!ok.length) return;
         const kisitli = (i: string) => cerceveHafta.has(i) && cerceveHafta.get(i)! >= hafta && !S.has(i);
+        // çok okunuşlu biçim (ihr: lx:ihr / lx:ihr#2): okunuşlardan biri serbestse (listede yok, önceki hafta ya da gösterilmiş)
+        // cümlede o okunuş olabilir; makine anlamı ayırt edemez, kırmızı yalnız bütün okunuşlar kısıtlıyken (bilinçli; yanlış kırmızıdan kaçınır)
         if (!ok.every(kisitli)) return;
-        // sözcüğü başlık olarak gösteren, bilinen gerçek kart varsa kartın sözcüğüdür
-        if ([...(g.dizin.idx.get(t) ?? [])].some((i) => !g.dizin.cerceve.has(i) && k.kart.has(i) && g.dizin.gost.get(i)?.has(t))) return;
+        // sözcüğü başlık olarak gösteren, bilinen gerçek kart (tanıtılmış ya da biten dersin kartı) varsa kartın sözcüğüdür
+        const bilinenKart = new Set(k.kart); for (const id of k.biten) for (const x of g.dizin.dersler.get(id)?.kart ?? []) bilinenKart.add(x);
+        if ([...(g.dizin.idx.get(t) ?? [])].some((i) => !g.dizin.cerceve.has(i) && bilinenKart.has(i) && g.dizin.gost.get(i)?.has(t))) return;
         bildirilen.add(t);
         ihlal(satir, "b", c.yer, `"${t}" çerçeve sözcüğü (${ok.map((i) => `${i} → ${cerceveHafta.get(i)}. hafta`).join("; ")}) kalıpta ya da dil noktasında gösterilmeden kullanılıyor: ${c.de}`);
       });
@@ -334,6 +373,7 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
     if (cerceveVar) for (const x of bugunDers) dersGoster(gunGoster, x);
     for (const c of halkaDisiGorevler(gun)) denetle(c, { kart: kartG, biten: bitenG, kaliplar }, gosG, gunGoster);
     if (ortulen) satir.not.push(`${ortulen} adım gösterilmiş kalıpla (eşdizim/ders parçası) geçti`);
+    if (cerceveVar && metinsiz.size) { satir.not.push(`metni olmayan dil noktası (çerçeve için hiçbir şey göstermez): ${[...metinsiz].sort().join(", ")}`); metinsiz.clear(); }
     satirlar.push(satir);
   }
 
@@ -371,6 +411,7 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
       ihlal(satir, "d", y.yer, `aynı üretim cümlesi ${ilk.hafta}. haftada da var (${ilk.gun}. gün, ${ilk.yer}): ${s}`);
     }
   }
+  if (tabloSorun.length) satirlar.find((s) => s.durum === "denetlendi")?.not.push(`tablo çerçevesi: ${tabloSorun.join("; ")}`);
   if (!satirlar.some((s) => s.durum === "denetlendi")) ihlaller.push({ gun: 0, kural: "bicim", yer: "-", mesaj: "hiç gün denetlenmedi" });
   return { satirlar, ihlaller, toplam: ihlaller.length };
 }
