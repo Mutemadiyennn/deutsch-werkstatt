@@ -5,7 +5,7 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "Haftanın sınavı: doktora şikâyetini anlatmak",
- "goal_tr": "Dr. Weber'in sorularına cevap verip şikâyetini ayrıntılı anlatırsın; hızlı açıklamadan iki talimatı yakalarsın.",
+ "goal_tr": "Dr. Weber'in sorularına cevap verip şikâyetini ayrıntılı anlatırsın. Hızlı açıklamadan iki talimatı yakalarsın.",
  "can_do": {
   "id": "cd:m1:84",
   "tr": "Dr. Weber'in sorularına cevap verip şikâyetimi ayrıntılı anlatırım."
@@ -403,7 +403,7 @@
     "cevapla": {
      "id": "m1:84:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Frau Brandl nasıl olduğunu soruyor. İyisin; doktor ciddi bir şey olmadığını söyledi.",
+     "situation_tr": "Frau Brandl nasıl olduğunu soruyor. İyisin. Doktor ciddi bir şey olmadığını söyledi.",
      "prompt_de": "Und wie geht es Ihnen?",
      "accepted": [
       "Es geht mir gut, danke. Der Arzt sagt, es ist nicht ernst.",
@@ -926,7 +926,7 @@
      "Pazartesiyi bekle"
     ],
     "ans": 0,
-    "why_tr": "Kaza ve hayati tehlikede (ağır yaralanma, nefes darlığı, göğüs ağrısı) 112; ambulans gelir.",
+    "why_tr": "Kazada ve hayati tehlikede 112'yi ararsın. Ambulans gelir. Hayati tehlike: ağır yaralanma, nefes darlığı, göğüs ağrısı.",
     "kanit": [
      "c4"
     ]
@@ -977,8 +977,8 @@
  ],
  "prova": {
   "id": "m1:84:p1",
-  "title_tr": "Kapı provası: Dr. Weber'e yeni şikâyetini anlat",
-  "durum_tr": "Prova: birkaç hafta sonra. Üç gündür sırtının sol tarafı ağrıyor; bodrumda çok çalıştın, ağır şeyler kaldırdın. Bazen başın dönüyor. Ateş yok. Ağrı kesici aldın, pek işe yaramadı. Dr. Weber soruyor.",
+  "title_tr": "Haftanın son provası: Dr. Weber'le",
+  "durum_tr": "Prova: birkaç hafta sonra. Üç gündür sırtının sol tarafı ağrıyor. Bodrumda çok çalıştın, ağır şeyler kaldırdın. Bazen başın dönüyor. Ateş yok. Ağrı kesici aldın, pek işe yaramadı. Dr. Weber soruyor.",
   "karsi": "ch:weber",
   "baslangic": "n1",
   "dugumler": [
@@ -1075,7 +1075,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Önemli bir bilgi; söylemen doğru."
+      "geri_bildirim_tr": "Önemli bir bilgi. Söylemen doğru."
      },
      {
       "de": "Nein, nichts.",
@@ -1184,7 +1184,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Kapı provası tamam: şikâyetini nerede, ne zamandan beri, nasıl olduğuyla anlattın ve talimatları tekrar ettin."
+  "kapanis_tr": "Haftanın son provası tamam. Şikâyetini sırayla anlattın ve talimatları tekrar ettin."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1249,7 +1249,7 @@
      "Ich war krank. Der Arzt sagt, es ist nicht ernst.",
      "Ich war krank, deshalb war ich beim Arzt. Zum Glück ist es nicht ernst."
     ],
-    "why_tr": "**deshalb** sonrası fiil hemen gelir: **deshalb war ich**."
+    "why_tr": "**deshalb**'tan hemen sonra **war** gelir: **deshalb war ich**."
    }
   ],
   "yazma": {
@@ -1285,7 +1285,7 @@
      "ich habe fieber deshalb bleibe ich zu hause",
      "Ich habe Fieber, deshalb bleibe ich zu Hause"
     ],
-    "why_tr": "**deshalb** sonrası fiil hemen gelir."
+    "why_tr": "**deshalb**'tan hemen sonra **bleibe** gelir: **deshalb bleibe ich**."
    },
    {
     "id": "m1:84:s2",
@@ -1346,7 +1346,7 @@
      "Der Hals tut mir weh, deshalb gehe ich zum Arzt.",
      "Ich habe Halsschmerzen, deshalb gehe ich zum Arzt."
     ],
-    "why_tr": "**deshalb gehe ich**: fiil hemen arkadan."
+    "why_tr": "**deshalb**'tan hemen sonra **gehe** gelir: **deshalb gehe ich**."
    },
    {
     "id": "m1:84:s7",
@@ -1357,7 +1357,7 @@
      "Ich habe seit drei Tagen Rückenschmerzen.",
      "Mein Rücken tut seit drei Tagen weh."
     ],
-    "why_tr": "**seit drei Tagen** + şimdiki zaman."
+    "why_tr": "**seit drei Tagen** ile **habe** dersin. Ağrı hâlâ sürüyor."
    },
    {
     "id": "m1:84:s8",
@@ -1368,7 +1368,7 @@
      "Können Sie mir bitte helfen? Rufen Sie einen Rettungswagen!",
      "Können Sie mir helfen? Bitte rufen Sie einen Rettungswagen!"
     ],
-    "why_tr": "**Rufen Sie …!**: kibar ama net talimat."
+    "why_tr": "**Rufen Sie** ile kibar ama net bir talimat verirsin."
    },
    {
     "id": "m1:84:s9",
@@ -1401,7 +1401,7 @@
    {
     "id": "m1:84:s11",
     "k": "guided_response",
-    "situation_tr": "Dr. Weber soruyor. Üç gündür sırtının sol tarafı ağrıyor; bazen başın dönüyor.",
+    "situation_tr": "Dr. Weber soruyor. Üç gündür sırtının sol tarafı ağrıyor. Bazen başın dönüyor.",
     "prompt_de": "Was haben Sie, seit wann, und wo tut es weh?",
     "accepted": [
      "Seit drei Tagen tut mein Rücken auf der linken Seite weh. Manchmal habe ich auch Schwindel.",
