@@ -170,3 +170,32 @@ Bütün kabul cevapları **am fünfzehnten** istiyor, durum yalnız salıyı ver
 
 ## KARAR: ONAY
 Gerekçe: 61 bulgunun tamamı dosyalarda düzeltildi. İki denetim temiz (0 hata, İhlal: 0), doğrulayıcıda yalnız hat D'nin beklenen şema hataları var. Açık kalan dokuz madde dil hatası değil; ikisi PM kararı (2, 7), biri başka dosya (1), biri lex işi (9). Gün dosyalarının `review` alanı görev gereği `draft` bırakıldı; okur turu ve örneklem kontrolü sırada.
+
+## Fark doğrulaması (23.11)
+Kapsam: `git diff 29bfb77 a9b92db` (gün 15–21, `hafta-sonu-testi-03`, `gorulmemis-03`, `grammar.json`). Yalnız turumdan sonraki değişikliklere bakıldı (PM-079 md. 3).
+
+### Bulgular ve düzeltmeler (13)
+1. **15. gün a2 d5** (P1, haksız ret): örnek cümle **am Nachmittag geschlossen** oldu, zorunlu kelime de **Nachmittag** yapıldı. Kayıt **nur am Vormittag offen** diyor; duyduğunu aynen yazan öğrenci reddedilirdi (zorunlu kelimelerin hepsi aranıyor). Zorunlu: **warten**, **Nachmittag** → **warten**, **Freitag**. Örnek cümle kaldı (doğru çıkarım, hafta içi tekrar da yok).
+2. **17. gün 1. halka kalıbı**: **am Bahnhof** çevirisi **garda** → **istasyonda** (ilk turda bütün dosyalarda **istasyon** yapılmıştı; yeni satır eski sözü geri getirdi).
+3. **17. gün s8 `why_tr`**: **Cümlede legen başa, auf en sona gider** yanlış genelleme; ana cevap **Bitte legen Sie nicht auf!** (başta **Bitte**), kabul edilen **Bitte nicht auflegen!** cümlesinde kelime ayrılmıyor → **Legen Sie derken auf en sona gider: Legen Sie nicht auf!**
+4. **gr:a1-12:t4**: **erste, zweite, dritte gibi biçimi kullanırsın** bozuk cümle → **Tarihte sayıyı erste, zweite, dritte diye söylersin.**
+5. **Halka başlıkları (7)**: kartlar halkalar arasında taşındı, başlıklar eski kaldı. 16. gün h1, h2, h3; 17. gün h1, h2, h3; 18. gün h2 (h1 ile aynı sözü taşıyordu, **vielleicht** artık h1'de) yeni kartları da söyleyecek biçimde güncellendi.
+6. **gorulmemis-03 g5, g7**: en yalın doğru cevaplar listede yoktu. g5'e **Am Montag um neun.**, **Am Montag um neun Uhr.**; g7'ye **Am Freitag, dem achtzehnten, um Viertel nach drei?**, **Am Freitag um Viertel nach drei?** eklendi.
+
+### Doğru bulunanlar
+- Yeni görülmemiş durumlar g5–g7: istemler doğru ve doğal, kabul listeleri doğru; g6 **sie fährt** açıklaması doğru.
+- Yeni kalıp satırları: **Welcher …? – Welche …?**, **Na gut!**, **Auf welchen Namen?**, **Ich möchte …**, **bei Luka – bei uns**, **zum Arzt – zum Kurs**, **unser Kurs – unser Chef**, **Okay! – Okay?**, **jeder – jeden Tag**, **zum Bahnhof**, **bei uns – bei Dr. Weber** doğru.
+- Yeni ya da değişen cümleler doğru: **Ich brauche den Ausweis für die Prüfung.** · **Der Mann kommt am Dienstag um neun.** · **Ich finde keinen Termin im Januar.** · **Ist noch ein Patient vor meinem Vater?** · **Mein Vater ist Patient bei Dr. Weber.** · **Der Bus ist schon weg.** · **Morgen komme ich um Viertel nach acht.**
+- Prova satırları: **Schneider, guten Tag. Was kann ich für Sie tun?**, **Guten Tag! Was kann ich für Sie tun?** (ilk turdaki 3. şüphe **Guten Tag, Zentrale.** böylece kapandı), **Am Freitag nicht? Können Sie mir morgen Bescheid sagen?** doğru; çevirileri uyumlu.
+- `grammar.json`: terimsiz anlatımda anlam bozulmamış (a1-02:t3, t4; a1-04:t3, t4; a1-06:t2; a1-11:t1; a1-12:t1; a1-13:t1, t2, t3). Örnekler değişmedi.
+- Gölge satırları başkasının adını söyletmiyor.
+
+### Takip notları (engel değil)
+- 19. gün a1 gölgesi yine anons selamına döndü (**Guten Abend am Bahnhof Wendlfing.**); hafta içi tekrar kuralı yüzünden. Yanlış değil, konuşma değeri düşük.
+- 15. gün n1b: **Jetzt leider nicht.** cevabından sonra **Gut.** biraz kuru; **Kein Problem** kelime tablosu yüzünden çıktı.
+- 16.–17. günlerde halkalar artık ilgisiz kartları birlikte taşıyor (telefon + **schlucken**, giysi + **Milch**). Dil hatası değil; halka kurgusu baş geliştirici ve PM işi.
+- Tablo başlıklarında **sıfat** sözü duruyor (gr:a1-04:t3, a1-13:t2, t3); metin terimsiz. Okur karar verir.
+
+Sınama (`sina.sh 3`): kalan HATA 0 · İhlal 0 · öğretilmeden istenen 0 · hafta sonu testi 12/12 · görülmemiş 7/7 · sınanmayan can_do yok.
+
+## KARAR: ONAY
