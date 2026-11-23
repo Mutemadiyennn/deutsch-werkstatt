@@ -114,3 +114,27 @@ Oynatıcı satırın tamamını okuyor; hedef ise satırın bir cümlesi olabili
 ## Sonuç
 
 **AÇIK.** Dil yönünden kapandı: bulunan 59 hatanın hepsi düzeltildi, iki denetim temiz. Açık kalan B1 (WORLD kuralı) ve B2 (Ioana'nın zaman çizgisi) karar bekliyor; B3–B7 takip işi.
+
+## Okur geri dönüşleri (2. tur, 2026-11-23)
+
+Kaynak: `docs/v2/reviews/okur/a2-hafta-09.md` (58 GERİ). Yeni tam tur yapılmadı; yalnız geri dönen alanlar düzeltildi. Almanca cümlelere, `accepted` listelerine ve `review` alanına dokunulmadı.
+
+- **Kapanan: 58 / 58.** Açık kalan yok.
+- Denetimler: dikiş `İhlal: 0` (7 gün); `content:validate` bu dosyalarda yalnız `day — Too big` ve `dersler.0`; şema dalında (`h9.sh val`) bu dosyalar için yalnız "bilinmeyen", "(4–6)", "kapıdan geçen" sınıfları.
+
+| Küme | Sayı | Ne yapıldı |
+|---|---:|---|
+| "fiil" sözü | 27 | Terim çıkarıldı, yerine kelimenin kendisi yazıldı ("**habe** en sonda", "**kommen kann** en sona gider"). |
+| "geçmiş zaman", "şimdiki zaman", "ana cümle", "yalın" | 8 | Gündelik söz ya da örnek ("ne yaptığını anlattın", "Bu, şimdi oluyor demek", "**kriegen** değişmeden sona gider"). |
+| Sembol ve uzunluk | 7 | 58, 59, 60 `goal_tr` noktalı virgülsüz (58 tek fikre indi, 59 ve 60 iki kısa cümle); 59 başlık "Neden? Çünkü!"; 58 ve 60 `can_do.tr` tek Almanca örnekle 14 sözcüğün altında. |
+| "kapı" iç sözü (63) | 3 | "Dinle ve anlat: hızlı mola sohbeti", "Haftanın provası: istediğin saat dolu", kapanış "Provayı geçtin. …". |
+| Belirsiz ya da cevapla örtüşmeyen | 4 | 63 `sesler[0]` açıklaması artık cevaptaki sözü gösteriyor (**Ich brauche einen neuen Termin.**); 61 "Açan kişi Frau Huber. Sen de selam verip kendi adını söyle."; 62 "**Am Vormittag** ile başladın"; 60 kalıbı boşluksuz örnek: "Eve gidiyorum, çünkü yorgunum." |
+| 61 çift kalıp | 1 | "Was halten Sie von …? – Hält der Bus …?" iki ayrı kalıba bölündü (Almancası aynı, yalnız ayrıldı). |
+| 59 provası, yanlış seçenek | 1 | Geri bildirim tek fikir: "Sebep **weil**den sonra gelir: **Ich rufe an, weil ich krank bin.**" |
+| grammar t2–t5 | 12 | `h_tr`, `tr`, `table.head` yeniden yazıldı: en uzun cümle 14 sözcük, terim, tırnak, ok ve eşittir yok. Biçim `{id,unit,h_tr,tr,table,ex}` aynı; tablo satırları ve örnekler değişmedi. |
+
+Dil noktalarında bilerek çıkarılan iki bilgi: t3'teki "bu parçalar vurgusuzdur" açıklaması ve t5'teki "vermissen Akkusativ ister" notu (terimsiz anlatılamıyor; örnek cümle kaldı). Tablo başlıkları: "Kelime · Geçmişte · Türkçe" (t2, t3), "İlk kısım · weil ile başlayan kısım · Sonda duran kelime" (t4), dört sütunlu biçimi t5'te.
+
+Düzeltmelerin getirdiği olası kusur: 58 `goal_tr` artık "ge almayan kelimeler" hedefini söylemiyor (konu dersin başlığında duruyor). Okurun "GERİ değil" diye not ettiği 14 satıra dokunulmadı.
+
+**Bu tur için sonuç: ONAY** (okur geri dönüşleri kapandı). 1. turdaki B1 ve B2 hâlâ baş geliştiricinin kararını bekliyor.
