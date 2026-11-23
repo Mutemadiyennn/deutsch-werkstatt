@@ -1,0 +1,125 @@
+{
+ "id": "m1:gorulmemis:02",
+ "hafta": 2,
+ "durumlar": [
+  {
+   "id": "m1:h02:g1",
+   "can_do": "cd:m1:08",
+   "durum_tr": "Pazartesi sabahı garda küçük bir büfedesin. Satıcı ekmeğin bittiğini, yalnızca küçük ekmek kaldığını söylüyor. Fiyatını sor.",
+   "karsi": "ein Verkäufer",
+   "yer": "pl:bahnhof",
+   "prompt_de": "Wir haben leider kein Brot mehr. Nur noch Semmeln.",
+   "accepted": [
+    "Ach so. Was kostet eine Semmel?",
+    "Gut. Was kosten die Semmeln?",
+    "Was kostet eine Semmel?",
+    "Dann nur eine Semmel. Was kostet die?",
+    "Okay, was kosten zwei Semmeln?"
+   ],
+   "kalip": "Was kostet …? – Was kosten …?",
+   "why_tr": "Tek şey için **Was kostet**, birden çok şey için **Was kosten** dersin."
+  },
+  {
+   "id": "m1:h02:g2",
+   "can_do": "cd:m1:09",
+   "durum_tr": "Firmanın mutfağındasın. Tobi pastayı ve ekmeği arıyor. Pasta burada, ekmek şurada.",
+   "karsi": "ch:lechner",
+   "yer": "pl:firma",
+   "prompt_de": "Du, wo ist der Kuchen? Und das Brot?",
+   "accepted": [
+    "Der Kuchen ist hier. Das Brot ist da.",
+    "Der Kuchen ist hier, und das Brot ist da.",
+    "Hier ist der Kuchen. Und da ist das Brot.",
+    "Der Kuchen ist hier. Und das Brot ist da.",
+    "Hier ist der Kuchen, da ist das Brot."
+   ],
+   "kalip": "Der … ist hier. – Das … ist da.",
+   "why_tr": "Her ismi kendi artikeliyle söyle: **der Kuchen**, **das Brot**."
+  },
+  {
+   "id": "m1:h02:g3",
+   "can_do": "cd:m1:10",
+   "durum_tr": "Salon Haarwerk'i ilk kez arıyorsun. Cumartesi için boş randevu var mı, sor.",
+   "karsi": "ch:petrovic",
+   "yer": "pl:friseur",
+   "prompt_de": "Salon Haarwerk, Petrović, hallo?",
+   "accepted": [
+    "Hallo, hier ist {name}. Haben Sie am Samstag einen Termin frei?",
+    "Guten Tag, hier ist {name}. Haben Sie am Samstag einen Termin frei?",
+    "Hallo! Hier ist {name}. Ich hätte gern einen Termin am Samstag. Geht das?",
+    "Guten Tag! Haben Sie am Samstag noch einen Termin frei?",
+    "Hallo, hier ist {name}. Ist am Samstag ein Termin frei?"
+   ],
+   "kalip": "Haben Sie am … einen Termin frei?",
+   "why_tr": "Önce adını söyle. Sonra **Haben Sie … einen Termin frei?** diye sor."
+  },
+  {
+   "id": "m1:h02:g4",
+   "can_do": "cd:m1:11",
+   "durum_tr": "Ofiste Herr Wimmer yarınki toplantı için fırından ne gerektiğini soruyor. On küçük ekmek ve iki ekmek gerekiyor.",
+   "karsi": "ch:wimmer",
+   "yer": "pl:firma",
+   "prompt_de": "Was brauchen wir für morgen?",
+   "accepted": [
+    "Wir brauchen zehn Semmeln und zwei Brote.",
+    "Zehn Semmeln und zwei Brote.",
+    "Ich denke, zehn Semmeln und zwei Brote.",
+    "Wir brauchen zehn Semmeln und zwei Brote, Herr Wimmer.",
+    "Für morgen brauchen wir zehn Semmeln und zwei Brote."
+   ],
+   "kalip": "Wir brauchen … – zehn Semmeln – zwei Brote",
+   "why_tr": "Birden çok şeyde isim çoğul olur: **Semmeln**, **Brote**."
+  },
+  {
+   "id": "m1:h02:g5",
+   "can_do": "cd:m1:12",
+   "durum_tr": "Salon Haarwerk'te saçın kesildi. Luka seninle du konuşuyor ve başka bir şey isteyip istemediğini soruyor. Hayır de, sonra hesabı iste.",
+   "karsi": "ch:petrovic",
+   "yer": "pl:friseur",
+   "prompt_de": "So! Gut? Möchtest du noch etwas?",
+   "accepted": [
+    "Nein, danke. Ich hätte gern die Rechnung.",
+    "Nein, danke, Luka. Die Rechnung, bitte.",
+    "Danke, das ist alles. Ich hätte gern die Rechnung.",
+    "Nein, danke! Ich hätte gerne die Rechnung.",
+    "Nein, danke. Die Rechnung, bitte. Kann ich mit Karte zahlen?"
+   ],
+   "kalip": "Ich hätte gern … – Die Rechnung, bitte.",
+   "why_tr": "Luka'ya **du** dersin, ama istek yine kibar olur: **Ich hätte gern die Rechnung**."
+  },
+  {
+   "id": "m1:h02:g6",
+   "can_do": "cd:m1:13",
+   "durum_tr": "Ofiste Derya hızlı konuşuyor. Masada bir kart bulmuş. Kart senin değil, senin kartın çantanda.",
+   "karsi": "ch:aksoy",
+   "yer": "pl:firma",
+   "prompt_de": "Hast du 'ne Minute? Ist das deine Karte?",
+   "accepted": [
+    "Nein, das ist nicht meine Karte. Meine Karte ist hier.",
+    "Nein, das ist nicht meine Karte.",
+    "Nein, meine Karte ist hier.",
+    "Nein. Das ist nicht meine Karte, meine ist hier.",
+    "Ja, ich hab 'ne Minute. Aber das ist nicht meine Karte."
+   ],
+   "kalip": "Ist das deine …? – Das ist (nicht) meine …",
+   "why_tr": "**deine Karte** sorusuna **meine Karte** ile cevap verirsin. **'ne** konuşmada **eine** demektir."
+  },
+  {
+   "id": "m1:h02:g7",
+   "can_do": "cd:m1:14",
+   "durum_tr": "Stadtplatz'taki Noel pazarında bir pasta standındasın. Satıcı sana Sie diyor. Selam ver, iki pasta iste, fiyatını sor ve nakit ödeyeceğini söyle.",
+   "karsi": "eine Verkäuferin",
+   "yer": "pl:marktplatz",
+   "prompt_de": "Hallo! Was hätten Sie gern?",
+   "accepted": [
+    "Guten Tag! Ich hätte gern zwei Kuchen. Was kostet das? Ich zahle bar.",
+    "Guten Tag! Geben Sie mir bitte zwei Kuchen. Was kostet das? Bar, bitte.",
+    "Guten Tag! Zwei Kuchen, bitte. Was macht das? Ich zahle bar.",
+    "Hallo! Ich hätte gern zwei Kuchen. Was kosten die? Ich zahle bar.",
+    "Guten Tag, ich möchte zwei Kuchen. Was kostet das? Ich zahle bar."
+   ],
+   "kalip": "Ich hätte gern … – Was kostet das? – Ich zahle bar.",
+   "why_tr": "Selam, istek, fiyat, ödeme: dört kısa cümle yeter."
+  }
+ ]
+}
