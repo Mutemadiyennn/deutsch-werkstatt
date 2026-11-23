@@ -15,7 +15,7 @@ import { personalizeDeep } from "../core/persona.ts";
 import { loadIndex, loadLexicon, loadM1Gun, contentUrl, loadTemeller, loadWorld, loadGenelAdlar } from "../services/content.ts";
 import { addClaim, getMeta, itemsMap, setMeta } from "../data/db.ts";
 import { plain, Rich } from "../ui/rich.tsx";
-import { ADIM_TR, BASLANGIC, dikteSuz, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
+import { ADIM_TR, BASLANGIC, dikteSuz, adimlar, turaGore, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
 import { baslangicYavas, konusanAta, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
@@ -93,7 +93,7 @@ function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynat
 }
 
 /* ============================ Ekran ============================ */
-export function MedyaEkrani({ day, id }: { day: number; id: string }) {
+export function MedyaEkrani({ day, id, tur }: { day: number; id: string; tur?: Medya["tur"] }) {
   const [veri, setVeri] = useState<{ gun: Gun; m: Medya; lex: Lexeme[]; base: string } | null>(null);
   const [err, setErr] = useState<string | null>(null);
   const [p, setP] = useState<MedyaIlerleme | null>(null);
@@ -102,8 +102,9 @@ export function MedyaEkrani({ day, id }: { day: number; id: string }) {
     (async () => {
       // {name}, {Herr|Frau} yer tutucuları cihaz profiline göre (D-061; inceleme #60 2. tur P1-B)
       const gun = personalizeDeep(await loadM1Gun(day), { name: profile.displayName, address: profile.address });
-      const m = medyalar(gun).find((x) => x.id === id);
-      if (!m) throw new Error("Bu kayıt bulunamadı.");
+      const m0 = medyalar(gun).find((x) => x.id === id);
+      if (!m0) throw new Error("Bu kayıt bulunamadı.");
+      const m = tur ? turaGore(m0, tur) : m0;
       const [{ lexemes }, i] = await Promise.all([loadLexicon(), loadIndex()]);
       // akış günü: öğretilmemiş sözcük isteyen dikte basamağı atlanır (P0-1). Bilinen: cihazda görülmüş kartlar, ders, dünya ve genel adlar
       let mm = m;
@@ -112,16 +113,23 @@ export function MedyaEkrani({ day, id }: { day: number; id: string }) {
         const dizin = kumeDizini(lexemes, temel, world, genel);
         const kart = new Set([...items].filter(([, x]) => x.passive?.fsrs).map(([k]) => k));
         mm = dikteSuz(m, (de) => bilinmeyenler(dizin, de, { kart, biten: new Set() }).length > 0);
+        // ikinci turda süzülen bölüm adımsız kalabilir: o bölüm düşer; hiç madde kalmadıysa tur bitmiş sayılır (akış ilerler)
+        if (tur) mm = turaGore(mm, tur);
+      }
+      if (tur && !mm.bolumler.length) {
+        const bitti = { ...BASLANGIC, bitti: true, ilkBitti: true };
+        await setMeta(ilerlemeAnahtari(id, tur), bitti);
+        setVeri({ gun, m: m0, lex: lexemes, base: contentUrl(i.version) }); setP(bitti); return;
       }
       setVeri({ gun, m: mm, lex: lexemes, base: contentUrl(i.version) });
       // kayıtlı konum içerikle uyuşmuyorsa (içerik değişti) baştan başla; ekran çökmez (inceleme #60 P1-3)
-      setP(gecerliKonum(await getMeta<MedyaIlerleme>(ilerlemeAnahtari(id)), mm));
+      setP(gecerliKonum(await getMeta<MedyaIlerleme>(ilerlemeAnahtari(id, tur)), mm));
     })().catch((e) => setErr(String(e?.message || e)));
     return () => stopSpeaking();
-  }, [day, id]);
+  }, [day, id, tur]);
   if (err) return <ErrorPanel message={err} onRetry={() => location.reload()} />;
   if (!veri || !p) return <Loading />;
-  return <Akis veri={veri} p={p} setP={(x) => { setP(x); void setMeta(ilerlemeAnahtari(id), x); }} />;
+  return <Akis veri={veri} p={p} setP={(x) => { setP(x); void setMeta(ilerlemeAnahtari(id, tur), x); }} />;
 }
 
 function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; base: string }; p: MedyaIlerleme; setP: (p: MedyaIlerleme) => void }) {
@@ -156,7 +164,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
   );
 
   const b = m.bolumler[p.b]!;
-  const steps = adimlar(b);
+  const steps = adimlar(b, m.tur);
   const adim = steps[p.s]!;
   const cs = bolumCumleleri(m, b);
   // XP: doğru başına (beyanla geçilen cevapta ve tekrar çalışmada yok); adım XP'si adım başına bir kez (inceleme #66 P1-2, P2-1)

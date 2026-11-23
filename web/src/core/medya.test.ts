@@ -115,3 +115,23 @@ describe("dikteSuz (1. gün öğrenci simülasyonu P0-1)", () => {
     }
   });
 });
+
+describe("sesin iki turu (PM-097 md. 1)", () => {
+  it("ilk tur: dinle + anlama (üretim yok); ikinci tur: yalnız dikte, gölge, cevapla; tursuz: hepsi", async () => {
+    const { turaGore, ikinciTurVar, ilerlemeAnahtari } = await import("./medya.ts");
+    const b = video!.bolumler[0]!;
+    expect(adimlar(b, "ilk")).toEqual(["dinle", "ana", "ayrinti", "cumle", "transkript"]);
+    expect(adimlar(b, "ikinci")).toEqual(["dikte", "golge", "cevapla"]);
+    expect(adimlar(b)).toEqual([...adimlar(b, "ilk").slice(0, 4), "dikte", "transkript", "golge", "cevapla"]);
+    expect(ikinciTurVar(video!)).toBe(true);
+    const iki = turaGore(video!, "ikinci");
+    expect(iki.tur).toBe("ikinci");
+    for (const x of iki.bolumler) expect(adimlar(x, "ikinci").length).toBeGreaterThan(0);
+    // ikinci turda ileri yalnız o turun adımlarında yürür ve biter
+    let q = { ...BASLANGIC }; let n = 0;
+    while (!q.bitti && n++ < 200) { const s = adimlar(iki.bolumler[q.b]!, "ikinci")[q.s]!; expect(["dikte", "golge", "cevapla"]).toContain(s); const bb = iki.bolumler[q.b]!; q = ileri(q, iki, s === "dikte" ? bb.dikte.length : s === "golge" ? bb.golge.length : 1); }
+    expect(q.bitti).toBe(true);
+    expect(turaGore({ ...video!, bolumler: [{ ...b, dikte: [], golge: [], cevapla: undefined }] } as never, "ikinci").bolumler).toHaveLength(0);
+    expect([ilerlemeAnahtari("x"), ilerlemeAnahtari("x", "ilk"), ilerlemeAnahtari("x", "ikinci")]).toEqual(["m1:medya:x", "m1:medya:x:1", "m1:medya:x:2"]);
+  });
+});

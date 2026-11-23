@@ -360,3 +360,19 @@ describe("değişmez kural: hiçbir kart kendi tanıtım adımından önce sorul
       expect(erken(uygulama({ ...g, yeni_kartlar: g.yeni_kartlar.filter((x) => x !== k) }, { tohum })), `${k} listede yok, ${tohum}`).toEqual([]);
   });
 });
+
+describe("ses iki turda (PM-097 md. 1)", () => {
+  it("ilk tur başta (halkalardan önce); ikinci tur son halkadan sonra, provadan önce; her planda", () => {
+    const ikinciVar = g1.sesler.some((s) => s.bolumler.some((b) => b.dikte.length || b.golge.length || b.cevapla));
+    for (const { p } of PLANLAR) {
+      const d = p.duraklar;
+      const ilk = d.findIndex((x) => x.ses_turu === "ilk"), ikinci = d.findIndex((x) => x.ses_turu === "ikinci");
+      const ilkHalka = d.findIndex((x) => x.tur === "halka"), sonHalka = d.map((x) => x.tur).lastIndexOf("halka"), prova = d.findIndex((x) => x.tur === "prova");
+      if (g1.sesler.length) expect(ilk).toBeGreaterThanOrEqual(0);
+      if (ilk >= 0) expect(ilk).toBeLessThan(ilkHalka);
+      expect(ikinci >= 0).toBe(ikinciVar);
+      if (ikinci >= 0) { expect(ikinci).toBeGreaterThan(sonHalka); if (prova >= 0) expect(ikinci).toBeLessThan(prova); }
+      expect(d.filter((x) => x.tur === "ses")).toHaveLength((ilk >= 0 ? 1 : 0) + (ikinci >= 0 ? 1 : 0));
+    }
+  });
+});
