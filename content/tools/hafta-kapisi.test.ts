@@ -7,7 +7,7 @@ import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
-import { tabloGunleri, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
+import { dikisDenetle, tabloGunleri, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
 import { haftaKapisi, kapiRaporu, maddeler, type KapiGirdi } from "./hafta-kapisi.ts";
 import { loadContent, ROOT } from "./load.ts";
 
@@ -186,5 +186,41 @@ describe("düzenli çekim (PM-097 md. 2; dikişle aynı ölçü)", () => {
   it("kişinin tablosu sunulmadan düzenli biçim de kesin (temel ders metni verilmeden)", () => {
     const r = ilk(kos(hafta2((gs) => { gs[0] = gun(8, [g("Ihr wartet hier.")]); }), { dersler: new Map() }));
     expect(r.sonuc).toBe("kesin"); expect(r.eksik).toContain("çekim:wartet");
+  });
+});
+
+describe("aynı ölçü: dikiş ve hafta kapısı aynı girdide aynı çekim kararını verir (PM-097 md. 2; inceleme #213 P1-4)", () => {
+  type Durum = { ad: string; gun: 8 | 9; de: string; w: string; sonra?: boolean; dn?: string[][]; dersYok?: boolean; kalip?: string; kalipOnce?: string; beklenen: "serbest" | "engel" };
+  const D: Durum[] = [
+    { ad: "dn tablosu 2c sunar, dersten_sonra", gun: 8, de: "Ihr wartet hier.", w: "wartet", sonra: true, dn: [["ihr", "wohnt"]], dersYok: true, beklenen: "serbest" },
+    { ad: "aynı günün dn'si dersten_sonra olmadan sunmaz", gun: 8, de: "Ihr wartet hier.", w: "wartet", dn: [["ihr", "wohnt"]], dersYok: true, beklenen: "engel" },
+    { ad: "başka kişinin tablosu yetmez", gun: 8, de: "Ihr wartet hier.", w: "wartet", sonra: true, dn: [["er/sie/es", "wohnt"]], dersYok: true, beklenen: "engel" },
+    { ad: "önceki günün dn'si sunar (günler arası birikim)", gun: 9, de: "Ihr wartet hier.", w: "wartet", dn: [["ihr", "wohnt"]], dersYok: true, beklenen: "serbest" },
+    { ad: "düzensiz biçim dn tablosunda gösterilince serbest", gun: 8, de: "Tobi spricht Deutsch.", w: "spricht", sonra: true, dn: [["er/sie/es", "spricht"]], beklenen: "serbest" },
+    { ad: "düzensiz biçim gösterilmeden engel", gun: 8, de: "Tobi spricht Deutsch.", w: "spricht", sonra: true, dn: [["er/sie/es", "wohnt"]], beklenen: "engel" },
+    { ad: "düzensiz biçim kalıp satırında gösterilince serbest", gun: 8, de: "Tobi spricht Deutsch.", w: "spricht", kalip: "… spricht Deutsch", beklenen: "serbest" },
+    { ad: "önceki günün kalıp satırında gösterilen biçim, kalıp dışında da serbest", gun: 9, de: "Spricht Tobi gut Deutsch?", w: "spricht", kalipOnce: "… spricht Deutsch", beklenen: "serbest" },
+    { ad: "eşlenemeyen düzenli biçim, 1. haftanın dersleri 2t sunmuş", gun: 8, de: "Du kostest den Kuchen.", w: "kostest", beklenen: "serbest" },
+    { ad: "eşlenemeyen düzenli biçim, tablo yok", gun: 8, de: "Du kostest den Kuchen.", w: "kostest", dersYok: true, beklenen: "engel" },
+    { ad: "aynı sözcüğün ikinci geçişi de sayılır", gun: 8, de: "Tobi wartet, ihr wartet.", w: "wartet", sonra: true, dn: [["er/sie/es", "wohnt"]], dersYok: true, beklenen: "engel" }
+  ];
+  const kur = (x: Durum) => hafta2((gs) => {
+    const i = x.gun - 8; gs[i] = gun(x.gun, [g(x.de)]);
+    const h = (gs[i]!.halkalar as Record<string, unknown>[])[0]!;
+    if (x.sonra) h.dersten_sonra = true;
+    if (x.kalip) h.kaliplar = [{ de: x.kalip }];
+    if (x.kalipOnce) (gs[0]!.halkalar as Record<string, unknown>[])[0]!.kaliplar = [{ de: x.kalipOnce }];
+  });
+  const ek = (x: Durum) => ({
+    ...(x.dersYok ? { dersler: new Map() } : {}),
+    ...(x.dn ? { dilNoktalari: new Map([[omDers(8)[0]!, x.dn.flat()]]), dilNoktasiSatirlari: new Map([[omDers(8)[0]!, x.dn]]) } : {})
+  });
+  for (const x of D) it(x.ad, () => {
+    const gs = kur(x);
+    const k = kos(gs, ek(x)).adimlar.find((a) => a.gun === x.gun && a.yer.includes("halka") && a.cumle === x.de)!;
+    const kapi = k.eksik.includes(`çekim:${x.w}`) ? "engel" : k.eksik.some((e) => e.replace(/^~/, "") === x.w) ? "diğer" : "serbest";
+    const r = dikisDenetle({ gunler: gs.map((data) => ({ file: `gun-${data.day}.json`, data })), tablo, omurga, dizin, dersler, yarim: true, ...ek(x) });
+    const dikis = r.ihlaller.some((i) => i.gun === x.gun && i.mesaj.startsWith(`"${x.w}" çekimli`)) ? "engel" : "serbest";
+    expect({ kapi, dikis }).toEqual({ kapi: x.beklenen, dikis: x.beklenen });
   });
 });

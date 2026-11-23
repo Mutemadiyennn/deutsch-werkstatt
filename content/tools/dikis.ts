@@ -29,7 +29,7 @@
  * 1. haftanın halkasız (eski biçim) günleri "atlandı" görünür ve sayılmaz; `tum: true` ile denetlenir. Böyle bir gün varken
  * 1. haftanın küme eşitliği (a) kurulamaz (o günler tablo öncesi dağılımı taşır): satıra not düşülür; halkaya geçince sayılır.
  */
-import { YUVA, YUVA_AD, bilinmeyenler, cekimKarari, sunulanCekim, kalipOrtu, kalipSecenekleri, toks, toksAsil, type Bilinen, type CekimSinifi, type KumeDizini } from "../../packages/shared/src/kume.ts";
+import { YUVA, YUVA_AD, bilinmeyenler, cekimKarari, sunulanCekim, type CekimKarari, kalipOrtu, kalipSecenekleri, toks, toksAsil, type Bilinen, type CekimSinifi, type KumeDizini } from "../../packages/shared/src/kume.ts";
 import type { Lexeme, TemelDers } from "../../packages/shared/src/index.ts";
 
 export interface KesinTablo {
@@ -333,9 +333,10 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
       for (const x of bilinmeyenler(g.dizin, c.de, k)) {
         // gösterilmiş biçim (kalıp satırı, tanıtım, dil noktası tablosu) serbesttir: düzensiz biçim de "ancak gösterilince"
         if (x.tur === "kart" || ckBildirilen.has(x.sozcuk) || S.has(x.sozcuk)) continue;
-        const j = tt.findIndex((t, i) => t === x.sozcuk && !ic.has(i) && !dis.has(i)); if (j < 0) continue;
-        const ck = cekimKarari(g.dizin, tt, j, bilinenKart, C, x.tur === "bicim" ? x.adaylar : []);
-        if (ck?.karar !== "engel") continue;
+        // sözcüğün kalıp dışındaki BÜTÜN geçişleri (Er wartet, ihr wartet): biri engelse ihlal
+        let ck: CekimKarari = null;
+        tt.forEach((t, i) => { if (!ck && t === x.sozcuk && !ic.has(i) && !dis.has(i)) { const k1 = cekimKarari(g.dizin, c.de, i, bilinenKart, C, x.tur === "bicim" ? x.adaylar : []); if (k1?.karar === "engel") ck = k1; } });
+        if (!ck) continue;
         ckBildirilen.add(x.sozcuk);
         ihlal(satir, "b", c.yer, `"${x.sozcuk}" çekimli biçim gösterilmeden kullanılıyor (${ck.kart}: ${ck.neden}): ${c.de}`);
       }

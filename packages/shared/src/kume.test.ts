@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { Lexeme, type TemelDers } from "./content.ts";
-import { bilinmeyenler, bilinmeyenYazi, cekimKarari, duzenliBicimler, kumeDizini, sunulanCekim, toks, type CekimSinifi } from "./kume.ts";
+import { bilinmeyenler, bilinmeyenYazi, cekimKarari, duzenliBicimler, kumeDizini, sunulanCekim, toks, toksAsil, type CekimSinifi } from "./kume.ts";
 
 const L = (o: Record<string, unknown>) => Lexeme.parse({ tr: "x", pos: "other", ...o });
 const LEX = [
@@ -61,39 +61,68 @@ describe("düzenli çekim (PM-097 md. 2)", () => {
     L({ id: "lx:arbeiten", de: "arbeiten", pos: "verb" }),
     L({ id: "lx:heißen", de: "heißen", pos: "verb" }),
     L({ id: "lx:schlafen", de: "schlafen", pos: "verb", verb: { praesens3: "schläft" } }),
+    L({ id: "lx:rufen", de: "rufen", pos: "verb" }),
     L({ id: "lx:anrufen", de: "anrufen", pos: "verb", forms: [{ de: "Ich ___ dich an.", answer: "rufe" }] }),
+    L({ id: "lx:kommen", de: "kommen", pos: "verb" }),
+    L({ id: "lx:mitkommen", de: "mitkommen", pos: "verb" }),
+    L({ id: "lx:fragen", de: "fragen", pos: "verb" }),
+    L({ id: "lx:Frage", de: "Frage", pos: "noun", art: "die" }),
     L({ id: "lx:bestellen", de: "bestellen", pos: "verb" }),
     L({ id: "lx:feiern", de: "feiern", pos: "verb" }),
+    L({ id: "lx:sammeln", de: "sammeln", pos: "verb" }),
+    L({ id: "lx:kaufen", de: "kaufen", pos: "verb" }),
     L({ id: "lx:sein", de: "sein", pos: "verb" })
   ];
   const cd = kumeDizini(CL, [], null, []);
-  const kart = new Set(CL.map((l) => l.id));
-  const karar = (cumle: string, w: string, sunulan: string[], adaylar: string[] = []) => {
-    const tt = toks(cumle); return cekimKarari(cd, tt, tt.indexOf(w), kart, new Set(sunulan as CekimSinifi[]), adaylar)?.karar ?? null;
-  };
-  it("düzenli biçimler: kök + ek, ara -e-, s/ß sonrası 2t, -ern, p2; sein türetilmez", () => {
+  const kart = new Set(CL.filter((l) => l.pos === "verb").map((l) => l.id));
+  const karar = (cumle: string, w: string, sunulan: string[], adaylar: string[] = []) =>
+    cekimKarari(cd, cumle, toksAsil(cumle).findIndex((x) => x.t === w), kart, new Set(sunulan as CekimSinifi[]), adaylar)?.karar ?? null;
+  const HEPSI = ["1t", "2t", "3t", "1c", "2c", "3c", "p2"];
+  it("düzenli biçimler: kök + ek, ara -e- (ünsüz + m/n; ch), s/ß sonrası 2t, -eln/-ern, p2; sein türetilmez", () => {
     const b = (m: string) => Object.fromEntries([...duzenliBicimler(m)].map(([k, v]) => [k, [...v].sort().join(",")]));
     expect(b("wohnen")).toEqual({ wohne: "1t", wohnst: "2t", wohnt: "2c,3t", gewohnt: "p2" });
     expect(b("arbeiten")).toMatchObject({ arbeite: "1t", arbeitest: "2t", arbeitet: "2c,3t", gearbeitet: "p2" });
+    expect(b("meinen")).toMatchObject({ meinst: "2t", meint: "2c,3t" });
+    expect(b("verdienen")).toMatchObject({ verdient: "2c,3t,p2" });
+    expect(b("rechnen")).toMatchObject({ rechnest: "2t", rechnet: "2c,3t" });
+    expect(b("öffnen")).toMatchObject({ öffnet: "2c,3t" });
+    expect(b("atmen")).toMatchObject({ atmet: "2c,3t" });
     expect(b("heißen")).toMatchObject({ heißt: "2c,2t,3t" });
     expect(b("feiern")).toMatchObject({ feiere: "1t", feierst: "2t", feiert: "2c,3t" });
+    expect(b("sammeln")).toMatchObject({ sammle: "1t", sammele: "1t" });
     expect(b("bestellen")).toMatchObject({ bestellt: "2c,3t,p2" });
+    expect(b("gehen")).toMatchObject({ geht: "2c,3t", gegeht: "p2" });   // ge- önekli değil: geht ortaç sayılmaz
     expect(duzenliBicimler("sein").size).toBe(0);
   });
-  it("tablonun sunduğu sınıflar: satır kişisi (er/sie/es → 3t) ya da hücre içi zamir + biçim", () => {
+  it("tablonun sunduğu sınıflar: satır kişisi (er/sie/es → 3t; parantez atılır) ya da hücre içi zamir + biçim", () => {
     expect([...sunulanCekim(cd, [["ich", "wohne", "arbeite"], ["er/sie/es", "wohnt"]])].sort()).toEqual(["1t", "3t"]);
+    expect([...sunulanCekim(cd, [["sie (o, kadın)", "wohnt"]])]).toEqual(["3t"]);
     expect([...sunulanCekim(cd, [["Du wohnst in Wien."]])]).toEqual(["2t"]);
+    expect([...sunulanCekim(cd, [["Wie heißt ihr Sohn?"]])]).toEqual([]);   // ihr + büyük harfli ad: iyelik
     expect([...sunulanCekim(cd, [["Sie (siz)", "wohnen"]])]).toEqual([]);   // mastarla aynı biçim sınıf sunmaz
   });
-  it("serbest: bilinen fiilin düzenli biçimi ve kişinin tablosu sunulmuş; zamir varsa o kişi", () => {
+  it("serbest: bilinen fiilin düzenli biçimi ve kişinin tablosu sunulmuş; önce öndeki zamir", () => {
     expect(karar("Ich arbeite heute.", "arbeite", ["1t"])).toBe("serbest");
     expect(karar("Ich arbeite heute.", "arbeite", [])).toBe("engel");            // tablo sunulmadı
     expect(karar("Ihr wohnt hier.", "wohnt", ["3t"])).toBe("engel");             // ihr (2c) sunulmadı
+    expect(karar("Ihr kauft es morgen.", "kauft", ["3t"])).toBe("engel");        // öndeki ihr; arkadaki es nesne
+    expect(karar("Wohnt ihr Mann hier?", "wohnt", ["3t"])).toBe("serbest");      // ihr Mann: iyelik
     expect(karar("Tobi wohnt hier.", "wohnt", ["3t"])).toBe("serbest");          // zamir yok: biçimin herhangi bir kişisi yeter
+    expect(karar("Ihr bestellt jetzt.", "bestellt", ["3t", "p2"])).toBe("engel"); // zamir varken p2 sayılmaz
+    expect(karar("Ich habe bestellt.", "bestellt", ["p2"])).toBe("serbest");     // komşu zamir yok: ortaç
+    expect(karar("Was hast du bestellt?", "bestellt", ["p2"])).toBe("engel");    // belirsiz biçim + zamir: kişiyle (sıkı yön, bilinçli)
+    expect(karar("Hast du gewohnt?", "gewohnt", ["p2"])).toBe("serbest");        // tek anlamlı ortaç
+    expect(karar("Ich sammle Briefmarken.", "sammle", ["1t"])).toBe("serbest");
   });
-  it("engel: düzensiz biçim (kök değişimi, ayrılan önek); fiil olmayan biçim karar dışı", () => {
-    expect(karar("Er schläft.", "schläft", ["1t", "2t", "3t"], ["lx:schlafen"])).toBe("engel");
-    expect(karar("Ich rufe dich an.", "rufe", ["1t"], ["lx:anrufen"])).toBe("engel");
+  it("engel: düzensiz biçim, ayrılan önek (taban fiil bilinse de); büyük harfli ad fiil sayılmaz", () => {
+    expect(karar("Er schläft.", "schläft", HEPSI, ["lx:schlafen"])).toBe("engel");
+    expect(karar("Ich rufe dich an.", "rufe", HEPSI)).toBe("engel");
+    expect(karar("Ich rufe dich heute Abend an!", "rufe", HEPSI)).toBe("engel");
+    expect(karar("Kommst du mit?", "kommst", HEPSI)).toBe("engel");
+    expect(karar("Er kommt mit dem Bus.", "kommt", HEPSI)).toBe("serbest");
+    expect(karar("Ich rufe laut.", "rufe", HEPSI)).toBe("serbest");
+    expect(karar("Die Frage ist gut.", "frage", HEPSI)).toBe(null);
+    expect(karar("Frage ich ihn?", "frage", HEPSI)).toBe("serbest");               // cümle başında büyük harf ayırt edici değil
     expect(karar("Das ist gut.", "ist", ["3t"], [])).toBe(null);
   });
 });

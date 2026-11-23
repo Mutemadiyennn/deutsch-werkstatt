@@ -21,7 +21,7 @@
  *     içeriğinde aynen geçmeyen bir kabul cümlesi var; haftanın her `can_do`'su en az bir durumla sınanır.
  * Uygulamada oynanış (tarayıcı) ayrı katmandır: `tests/e2e/ogrenci_akis.py` haftaya genişletilince aynı sayıları ekrandan ölçer.
  */
-import { bilinmeyenler, cekimKarari, sunulanCekim, kalipOrtu, kalipSecenekleri, toks, toksAsil, YUVA_AD, type Bilinen, type CekimSinifi, type KumeDizini } from "../../packages/shared/src/kume.ts";
+import { bilinmeyenler, cekimKarari, sunulanCekim, type CekimKarari, kalipOrtu, kalipSecenekleri, toks, toksAsil, YUVA_AD, type Bilinen, type CekimSinifi, type KumeDizini } from "../../packages/shared/src/kume.ts";
 import type { TemelDers } from "../../packages/shared/src/index.ts";
 import { dilNoktasiMetni, dilNoktasiSatirlari, gosterilenKaliplar, icOrtu, tabloCerceve, tabloGunleri, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
 
@@ -171,9 +171,18 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     const u = u0.filter((x) => { const n = (say.get(x.sozcuk) ?? 0) + 1; say.set(x.sozcuk, n); return n <= tt.filter((t, j) => t === x.sozcuk && !ic.has(j) && !dis.has(j)).length; });
     // PM-097 md. 2: bilinen fiilin düzenli biçimi, kişinin tablosu sunulduysa serbest; sunulmadıysa ya da düzensizse engel (kesin)
     const kesin: string[] = [], sinirda: string[] = [];
+    const ckGorulen = new Set<string>();
     for (const x of u) {
-      const j = tt.findIndex((t, i) => t === x.sozcuk && !ic.has(i) && !dis.has(i));
-      const ck = x.tur === "kart" || j < 0 ? null : cekimKarari(d, tt, j, b.kart, b.cekim, x.tur === "bicim" ? x.adaylar : []);
+      // sözcüğün kalıp dışındaki BÜTÜN geçişleri (Er wartet, ihr wartet): biri engelse engel
+      let ck: CekimKarari = null;
+      if (x.tur !== "kart" && !ckGorulen.has(x.sozcuk)) {
+        ckGorulen.add(x.sozcuk);
+        tt.forEach((t, i) => {
+          if (t !== x.sozcuk || ic.has(i) || dis.has(i) || ck?.karar === "engel") return;
+          const k1 = cekimKarari(d, cumle, i, b.kart, b.cekim, x.tur === "bicim" ? x.adaylar : []);
+          if (k1 && (!ck || k1.karar === "engel")) ck = k1;
+        });
+      }
       if (ck?.karar === "serbest") continue;
       if (ck?.karar === "engel") kesin.push(`çekim:${x.sozcuk}`);
       else if (x.tur === "bicim") sinirda.push(`~${x.sozcuk}`);
