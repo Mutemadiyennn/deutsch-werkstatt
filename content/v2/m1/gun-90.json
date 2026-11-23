@@ -5,7 +5,7 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "Eczanede ilaç istemek ve kullanımı sormak",
- "goal_tr": "Eczacıya neyin olduğunu söyler, bir ilaç istersin; günde kaç kez ve nasıl alacağını sorup tekrar edersin.",
+ "goal_tr": "Eczacıya neyin olduğunu söyler, bir ilaç istersin. Günde kaç kez ve nasıl alacağını sorup tekrar edersin.",
  "can_do": {
   "id": "cd:m1:90",
   "tr": "Eczanede ilaç ister, nasıl ve ne kadar alacağımı sorarım."
@@ -59,7 +59,7 @@
     },
     {
      "de": "Der Husten hört nicht auf. – Wenn der Husten nicht aufhört, …",
-     "tr": "Öksürük geçmiyor. – Öksürük geçmezse, …"
+     "tr": "Öksürük geçmiyor. – Öksürük geçmezse doktora git."
     },
     {
      "de": "ganz unten im Regal – unten links – von unten",
@@ -83,7 +83,7 @@
     },
     {
      "de": "Ich habe einen Kuchen gebacken. – …, gell? – vorne an der Kasse",
-     "tr": "Kek yaptım. – …, tamam mı? (güney ağzı) – öndeki kasada"
+     "tr": "Kek yaptım. – Kapınızın önüne koyuyorum, tamam mı? (Bavyera'da) – öndeki kasada"
     }
    ],
    "gorev_cumleleri": [
@@ -170,7 +170,7 @@
     "soru": {
      "q_tr": "Eczacı ne diyor?",
      "opts": [
-      "Damla al; öksürük geçmezse doktora git",
+      "Damla al, öksürük geçmezse doktora git",
       "Hemen hastaneye git",
       "Reçetesiz bir şey yok"
      ],
@@ -407,7 +407,7 @@
      "opts": [
       "Boğaz için tablet ve gece için damla",
       "Sadece bir merhem",
-      "Hiçbir şey; reçete istiyor"
+      "Hiçbir şey, reçete istiyor"
      ],
      "ans": 0,
      "kanit": [
@@ -530,7 +530,7 @@
     "cevapla": {
      "id": "m1:90:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Eczacı ne zamandan beri öksürdüğünü soruyor. Dünden beri; boğazın da üç gündür ağrıyor.",
+     "situation_tr": "Eczacı ne zamandan beri öksürdüğünü soruyor. Dünden beri. Boğazın da üç gündür ağrıyor.",
      "prompt_de": "Seit wann haben Sie den Husten?",
      "accepted": [
       "Seit gestern. Halsschmerzen habe ich seit drei Tagen.",
@@ -571,7 +571,7 @@
       "kind": "detail",
       "q_tr": "Eczacı kadına ne öneriyor?",
       "opts": [
-       "Bugün doktora git; nöbetçi hattı ara",
+       "Bugün doktora git, nöbetçi hattı ara",
        "Pazartesiyi bekle",
        "Bebeğe damla ver"
       ],
@@ -853,7 +853,7 @@
      "cevapla": {
       "id": "m1:90:a1:c1",
       "k": "guided_response",
-      "situation_tr": "Eczacı telefonu açtı. Kötü bir nezlen var; bugün gelip öksürüğe karşı bir şey alabilir misin, sor.",
+      "situation_tr": "Eczacı telefonu açtı. Kötü bir nezlen var. Bugün gelip öksürüğe karşı bir şey alabilir misin, sor.",
       "prompt_de": "Apotheke, guten Tag. Was kann ich für Sie tun?",
       "accepted": [
        "Guten Tag, ich habe eine böse Erkältung. Kann ich heute etwas gegen Husten holen?",
@@ -871,7 +871,7 @@
     "k": "pick",
     "q_tr": "Cumartesi saat ikide ilaç lazım. Ne yapmalısın?",
     "opts": [
-     "Vils-Apotheke kapalı; başka bir eczaneye ya da pazartesiye bak",
+     "Vils-Apotheke kapalı, başka bir eczaneye ya da pazartesiye bak",
      "Vils-Apotheke'ye git, açık",
      "Pazar günü Vils-Apotheke'ye git"
     ],
@@ -1046,7 +1046,7 @@
      "cevapla": {
       "id": "m1:90:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Frau Brandl'ı geri ara: kek için teşekkür et; eczanedeydin, ilacın var.",
+      "situation_tr": "Frau Brandl'ı geri ara. Kek için teşekkür et. Eczanedeydin, ilacın var.",
       "prompt_de": "Brandl? Grüß Gott!",
       "accepted": [
        "Grüß Gott, Frau Brandl! Danke für den Kuchen. Ich war schon in der Apotheke.",
@@ -1195,7 +1195,7 @@
       ],
       "sonraki": "n2",
       "uygun": false,
-      "geri_bildirim_tr": "Durumda ateşin yok: **Nein, kein Fieber.**"
+      "geri_bildirim_tr": "Ateşin yok. Şöyle söyle: **Nein, kein Fieber.**"
      }
     ]
    },
@@ -1259,7 +1259,7 @@
       ],
       "sonraki": "n4r",
       "uygun": true,
-      "geri_bildirim_tr": "Anlamadığında sormak doğru; neyi kaçırdığını da söyledin."
+      "geri_bildirim_tr": "Anlamadığında sormak doğru. Neyi kaçırdığını da söyledin."
      }
     ]
    },
@@ -1329,7 +1329,7 @@
   "tur": "okuma",
   "title_tr": "Kutunun içindeki kâğıt: kullanım talimatı",
   "metin_de": "Gegen Halsschmerzen und Husten. Ab 12 Jahren: dreimal am Tag eine Tablette, nach dem Essen, und für die Nacht eine halbe Tablette. Kinder von 6 bis 12 Jahren: zweimal am Tag eine halbe Tablette. Kinder unter 6 Jahren: Fragen Sie bitte den Arzt. Nach fünf Tagen nicht mehr nehmen. Wenn die Schmerzen nicht aufhören, gehen Sie zum Arzt. Nebenwirkungen: manchmal Übelkeit.",
-  "metin_tr": "Boğaz ağrısına ve öksürüğe karşı. 12 yaşından itibaren: günde üç kez bir tablet, yemekten sonra; gece için de yarım tablet. 6–12 yaş çocuklar: günde iki kez yarım tablet. 6 yaşından küçük çocuklar: lütfen doktora sorun. Beş günden sonra artık almayın. Ağrılar geçmezse doktora gidin. Yan etkiler: bazen mide bulantısı.",
+  "metin_tr": "Boğaz ağrısına ve öksürüğe karşı. 12 yaşından itibaren: günde üç kez bir tablet, yemekten sonra. Gece için de yarım tablet. 6–12 yaş çocuklar: günde iki kez yarım tablet. 6 yaşından küçük çocuklar: lütfen doktora sorun. Beş günden sonra artık almayın. Ağrılar geçmezse doktora gidin. Yan etkiler: bazen mide bulantısı.",
   "sorular": [
    {
     "id": "m1:90:o1",
@@ -1390,7 +1390,7 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Derya'ya kısa bir mesaj yaz: eczanedeydin; tabletleri günde üç kez alıyorsun; pazartesi daha iyi değilsen hasta olduğunu bildireceksin.",
+   "gorev_tr": "Derya'ya kısa bir mesaj yaz. Eczanedeydin. Tabletleri günde üç kez alıyorsun. Pazartesi daha iyi değilsen hasta olduğunu bildireceksin.",
    "ornek_de": "Hallo Derya, ich war in der Apotheke. Ich nehme dreimal am Tag eine Tablette. Wenn es am Montag nicht besser ist, melde ich mich krank.",
    "zorunlu": [
     "dreimal am Tag",
@@ -1472,7 +1472,7 @@
      "Haben Sie bitte etwas gegen Husten?",
      "Gibt es etwas gegen Husten?"
     ],
-    "why_tr": "**etwas gegen …**: … karşı bir şey."
+    "why_tr": "**etwas gegen Husten** öksürüğe karşı bir şey demektir."
    },
    {
     "id": "m1:90:s6",
@@ -1483,7 +1483,7 @@
      "Verkaufen Sie das ohne Rezept?",
      "Verkaufen Sie das auch ohne ein Rezept?"
     ],
-    "why_tr": "Soru **Verkaufen** ile başlar: **Verkaufen Sie …?**"
+    "why_tr": "Soru **Verkaufen** ile başlar: **Verkaufen Sie das auch ohne Rezept?**"
    },
    {
     "id": "m1:90:s7",

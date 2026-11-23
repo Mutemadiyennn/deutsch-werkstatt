@@ -5,7 +5,7 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "Haftanın sınavı: işe hasta olduğunu bildirmek",
- "goal_tr": "Pazartesi sabahı Herr Wimmer'i arar; hasta olduğunu, bugün gelemeyeceğini, ne zaman doktora gideceğini ve raporun ne zaman olacağını söylersin. Şefin sesli mesajından raporu ne zamana kadar istediğini yakalarsın.",
+ "goal_tr": "Pazartesi sabahı Herr Wimmer'i ararsın. Hasta olduğunu ve bugün gelemeyeceğini söylersin. Ne zaman doktora gideceğini ve raporun ne zaman olacağını da söylersin. Şefin sesli mesajından raporu ne zamana kadar istediğini yakalarsın.",
  "can_do": {
   "id": "cd:m1:91",
   "tr": "Hasta olduğumu işe telefonla bildiririm."
@@ -77,7 +77,7 @@
     },
     {
      "de": "Hier spricht … – Auf Wiederhören! – Viele Grüße",
-     "tr": "Ben … (telefonda) – Hoşça kalın! (telefonda) – Selamlar (mesaj sonunda)"
+     "tr": "Ben Ioana. (telefonda) – Hoşça kalın! (telefonda) – Selamlar (mesaj sonunda)"
     },
     {
      "de": "Tobi macht meine Schicht. – Am Donnerstag mache ich Tobis Schicht.",
@@ -85,7 +85,7 @@
     },
     {
      "de": "Ich koche heute Abend. – Es gibt auch …",
-     "tr": "Bu akşam yemek yapıyorum. – … da var."
+     "tr": "Bu akşam yemek yapıyorum. – İyi bir şarap da var."
     },
     {
      "de": "Schade! – Bleib im Bett und schlaf viel.",
@@ -93,11 +93,11 @@
     },
     {
      "de": "du brauchst – er braucht … bis Mittwoch – wenn Sie wissen, wie lange es dauert",
-     "tr": "senin … lazım – … çarşambaya kadar ona lazım – ne kadar süreceğini bilince"
+     "tr": "ihtiyacın var – Raporu çarşambaya kadar istiyor. – ne kadar süreceğini bilince"
     },
     {
      "de": "Der Kurs fällt aus. – Ich schicke dir … – Ioana schickt mir …",
-     "tr": "Kurs yapılmıyor. – Sana … gönderiyorum. – Ioana bana … gönderiyor."
+     "tr": "Kurs yapılmıyor. – Sana ödevleri gönderiyorum. – Ioana bana ödevleri gönderiyor."
     }
    ],
    "gorev_cumleleri": [
@@ -180,7 +180,7 @@
    {
     "id": "s1",
     "speaker": "ch:aksoy",
-    "sahne_tr": "Pazar akşamı. Derya arıyor; sesi sakin.",
+    "sahne_tr": "Pazar akşamı. Derya arıyor, sesi sakin.",
     "de": "Hallo, hier ist Derya. Wie geht es dir? Du klingst gar nicht gut.",
     "tr": "Merhaba, ben Derya. Nasılsın? Sesin hiç iyi gelmiyor."
    },
@@ -222,7 +222,7 @@
    {
     "id": "s7",
     "speaker": "ch:lechner",
-    "sahne_tr": "Biraz sonra Tobi arıyor; hızlı konuşuyor.",
+    "sahne_tr": "Biraz sonra Tobi arıyor, hızlı konuşuyor.",
     "de": "Servus, hier ist Tobi! Derya sagt, dass du krank bist.",
     "tr": "Selam, ben Tobi! Derya hasta olduğunu söylüyor."
    },
@@ -517,7 +517,7 @@
     "cevapla": {
      "id": "m1:91:v1:c2",
      "k": "guided_response",
-     "situation_tr": "Tobi'ye teşekkür et; perşembe de sen onun vardiyasını yapacaksın.",
+     "situation_tr": "Tobi'ye teşekkür et. Perşembe de sen onun vardiyasını yapacaksın.",
      "prompt_de": "Morgen mache ich deine Spätschicht, kein Problem.",
      "accepted": [
       "Danke, Tobi! Am Donnerstag mache ich dann deine Schicht.",
@@ -526,7 +526,7 @@
       "Super, danke! Donnerstag mache ich deine Schicht.",
       "Danke, Tobi. Ich mache am Donnerstag deine Schicht."
      ],
-     "why_tr": "**Danke dir** samimi bir teşekkür; **mache ich deine Schicht** sözünü tekrar eder."
+     "why_tr": "**Danke, Tobi!** samimi bir teşekkür. Sonra perşembe onun vardiyasını yapacağını söylersin."
     }
    }
   ]
@@ -535,8 +535,8 @@
   {
    "id": "m1:91:a1",
    "tur": "sesli-mesaj",
-   "title_tr": "Kulak kapısı: Herr Wimmer'in sesli mesajı",
-   "ortam_tr": "Pazartesi öğlen. Doktordan döndün. Sabah Herr Wimmer'le konuşmuştun; şimdi sana hızlı bir mesaj bırakmış.",
+   "title_tr": "Herr Wimmer'in sesli mesajı",
+   "ortam_tr": "Pazartesi öğlen. Doktordan döndün. Sabah Herr Wimmer'le konuşmuştun. Şimdi sana hızlı bir mesaj bırakmış.",
    "speaker": "ch:wimmer",
    "hizlar": [
     "natural",
@@ -719,7 +719,7 @@
        "Herr Wimmer braucht sie bis Mittwoch.",
        "Die Krankschreibung braucht er bis Mittwoch."
       ],
-      "why_tr": "**bis Mittwoch**: çarşambaya kadar. Kulak kapısının cevabı bu."
+      "why_tr": "**bis Mittwoch** çarşambaya kadar demektir."
      }
     }
    ],
@@ -790,7 +790,7 @@
       "kind": "gist",
       "q_tr": "Ioana ne söylüyor?",
       "opts": [
-       "Şarabı sonra içeriz; salı kurs yok",
+       "Şarabı sonra içeriz, salı kurs yok",
        "Yarın uğruyor",
        "Kurs saati değişti"
       ],
@@ -899,7 +899,7 @@
      "cevapla": {
       "id": "m1:91:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Ioana'ya mesajla cevap ver: teşekkür et; şarabı sonra birlikte içersiniz.",
+      "situation_tr": "Ioana'ya mesajla cevap ver. Teşekkür et. Şarabı sonra birlikte içersiniz.",
       "prompt_de": "Den Wein trinken wir dann zusammen, wenn du gesund bist.",
       "accepted": [
        "Danke, Ioana! Den Wein trinken wir dann zusammen.",
@@ -917,7 +917,7 @@
     "k": "pick",
     "q_tr": "Salı akşamı ne yapmalısın?",
     "opts": [
-     "Kursa gitme; kurs yok, ödevleri yap",
+     "Kurs yok, kursa gitme ve ödevleri yap",
      "Kursa git",
      "Ioana'ya şarap götür"
     ],
@@ -975,7 +975,7 @@
  "prova": {
   "id": "m1:91:p1",
   "title_tr": "Haftanın kapısı: Herr Wimmer'i arayıp hasta olduğunu bildir",
-  "durum_tr": "Pazartesi sabahı saat yedi buçuk. Dün akşamdan beri yüksek ateşin var, boğazın ağrıyor. Bugün akşam vardiyan var ama çalışamazsın. Saat onda Dr. Weber'de randevun var. Tobi dün akşam vardiyanı yapabileceğini söyledi. Herr Wimmer'i ara: adını, hasta olduğunu, bugün gelemeyeceğini, ne zaman doktora gideceğini ve raporun ne zaman olacağını söyle.",
+  "durum_tr": "Pazartesi sabahı saat yedi buçuk. Dün akşamdan beri yüksek ateşin var, boğazın ağrıyor. Bugün akşam vardiyan var ama çalışamazsın. Saat onda Dr. Weber'de randevun var. Tobi dün, akşam vardiyanı yapabileceğini söyledi. Herr Wimmer'i ara. Adını ve hasta olduğunu söyle. Bugün gelemeyeceğini de söyle. Ne zaman doktora gideceğini ve raporun ne zaman olacağını söyle.",
   "karsi": "ch:wimmer",
   "baslangic": "n1",
   "dugumler": [
@@ -1032,7 +1032,7 @@
       ],
       "sonraki": "n1",
       "uygun": false,
-      "geri_bildirim_tr": "Telefonda önce adını söyle; nedenini de ekle: **Ich bin krank.**"
+      "geri_bildirim_tr": "Telefonda önce adını söyle. Nedenini de ekle: **Ich bin krank.**"
      }
     ]
    },
@@ -1157,7 +1157,7 @@
       ],
       "sonraki": "n6",
       "uygun": true,
-      "geri_bildirim_tr": "Çözümü sen getirdin; şef bunu sever."
+      "geri_bildirim_tr": "Çözümü sen getirdin. Şef bunu sever."
      },
      {
       "de": "Herr Lechner kann meine Schicht machen.",
@@ -1176,7 +1176,7 @@
    {
     "id": "n6",
     "de": "Sehr gut. Dann gute Besserung, und rufen Sie mich an, wenn Sie wissen, wie lange es dauert.",
-    "tr": "Çok iyi. O zaman geçmiş olsun; ne kadar süreceğini bilince beni arayın.",
+    "tr": "Çok iyi. O zaman geçmiş olsun. Ne kadar süreceğini bilince beni arayın.",
     "secenekler": [
      {
       "de": "Mache ich. Vielen Dank, Herr Wimmer. Auf Wiederhören!",
@@ -1211,13 +1211,13 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Kapıdan geçtin: adını söyledin, hastalığını ve bugün gelemeyeceğini bildirdin, doktor saatini söyledin, şefin rapor sürprizine sakin cevap verdin. Not: Yasal sigortalıysan doktor raporu elektronik olarak sigortana gönderir, firma oradan alır; ama şefe haber vermek her zaman senin işin."
+  "kapanis_tr": "Adını söyledin, hastalığını ve bugün gelemeyeceğini bildirdin. Doktor saatini söyledin ve şefin rapor sürprizine sakin cevap verdin. Çoğu zaman rapor doktordan sigortaya, oradan firmaya gider. Şefe haber vermek ise hep senin işin."
  },
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Firmanın hastalık kuralı",
   "metin_de": "Krank? Dann machen Sie es so. Rufen Sie vor Ihrer Schicht Herrn Wimmer an. Ist er nicht da, sprechen Sie auf den Anrufbeantworter. Sagen Sie, wie lange Sie vielleicht krank sind. Sind Sie mehr als drei Tage krank, brauchen wir eine Krankschreibung vom Arzt. Manchmal brauchen wir sie auch schon ab dem ersten Tag. Die Krankschreibung geht vom Arzt an die Krankenkasse, und wir bekommen sie von dort. Aber Bescheid sagen müssen Sie uns immer selbst.",
-  "metin_tr": "Hasta mısınız? O zaman şöyle yapın. Vardiyanızdan önce Herr Wimmer'i arayın. Yoksa telesekretere konuşun. Ne kadar hasta olabileceğinizi söyleyin. Üç günden fazla hastaysanız doktordan rapor gerekir. Bazen raporu ilk günden de isteriz. Rapor doktordan sağlık sigortasına gider, biz de oradan alırız. Ama bize haber vermek her zaman sizin işiniz.",
+  "metin_tr": "Hasta mısınız? O zaman şöyle yapın. Vardiyanızdan önce Herr Wimmer'i arayın. Herr Wimmer yoksa telesekretere konuşun. Ne kadar süre hasta olabileceğinizi söyleyin. Üç günden fazla hastaysanız doktordan rapor gerekir. Bazen raporu ilk günden de isteriz. Rapor doktordan sağlık sigortasına gider, biz de oradan alırız. Ama bize haber vermek her zaman sizin işiniz.",
   "sorular": [
    {
     "id": "m1:91:o1",
@@ -1278,7 +1278,7 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Herr Wimmer'e kısa bir mesaj yaz: hastasın, bugün gelemiyorsun, saat onda doktora gidiyorsun, rapor yarın onda olur.",
+   "gorev_tr": "Herr Wimmer'e kısa bir mesaj yaz. Hastasın ve bugün gelemiyorsun. Saat onda doktora gidiyorsun. Rapor yarın Herr Wimmer'de olacak.",
    "ornek_de": "Guten Morgen, Herr Wimmer, ich bin leider krank und kann heute nicht kommen. Ich gehe um zehn Uhr zum Arzt. Die Krankschreibung haben Sie dann morgen. Viele Grüße, {name}",
    "zorunlu": [
     "krank",
@@ -1312,7 +1312,7 @@
      "ich kann heute leider nicht zur arbeit kommen",
      "Ich kann heute leider nicht zur Arbeit kommen"
     ],
-    "why_tr": "**kann … kommen**: **kommen** en sonda."
+    "why_tr": "**kann** ikinci yerde, **kommen** en sonda."
    },
    {
     "id": "m1:91:s2",
@@ -1423,12 +1423,12 @@
      "Kein Problem, ich gehe heute zum Arzt. Morgen haben Sie die Krankschreibung.",
      "Natürlich. Heute gehe ich zum Arzt, und morgen haben Sie die Krankschreibung."
     ],
-    "why_tr": "Sürprize sakin cevap: **Kein Problem** + ne zaman."
+    "why_tr": "Sakin cevap ver. Önce **Kein Problem** de, sonra raporun ne zaman olacağını söyle."
    },
    {
     "id": "m1:91:s11",
     "k": "guided_response",
-    "situation_tr": "Pazartesi sabahı Herr Wimmer'i arıyorsun. Adını söyle; hasta olduğunu ve bugün gelemeyeceğini söyle.",
+    "situation_tr": "Pazartesi sabahı Herr Wimmer'i arıyorsun. Adını söyle. Hasta olduğunu ve bugün gelemeyeceğini de söyle.",
     "prompt_de": "Wimmer, guten Morgen.",
     "accepted": [
      "Guten Morgen, Herr Wimmer, hier ist {name}. Ich bin krank und kann heute leider nicht kommen.",

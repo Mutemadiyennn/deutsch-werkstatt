@@ -5,10 +5,10 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "İş yerinde vardiya, izin ve hastalık",
- "goal_tr": "İş arkadaşından vardiya değişimi, şefinden izin istersin; küçük bir iş kazasını hemen bildirirsin.",
+ "goal_tr": "İş arkadaşından vardiya değişimi, şefinden izin istersin. Küçük bir iş kazasını hemen bildirirsin.",
  "can_do": {
   "id": "cd:m1:89",
-  "tr": "İş yerinde vardiya değiştirmeyi ya da izin almayı kibarca sorarım; bir kazayı bildiririm."
+  "tr": "İş yerinde vardiya değiştirmeyi ya da izin almayı kibarca sorarım. Bir kazayı bildiririm."
  },
  "unit": "u:a2:is-3",
  "arm": "pazar",
@@ -83,7 +83,7 @@
     },
     {
      "de": "Was gibt es? – Es gibt … – Das passt.",
-     "tr": "Ne var? – … var. – Uyar."
+     "tr": "Ne var? – Su da var. – Uyar."
     },
     {
      "de": "Komm, wir gehen zu Herrn Wimmer. – Ich schreibe das auf. – wenn es wehtut",
@@ -210,7 +210,7 @@
     },
     {
      "de": "ich mache – du machst – Machst du dann …?",
-     "tr": "yaparım – yaparsın – O zaman sen de … yapar mısın?"
+     "tr": "yaparım – yaparsın – O zaman sen de benim vardiyamı yapar mısın?"
     },
     {
      "de": "ein großes Fest – eine kurze Nachricht",
@@ -539,7 +539,7 @@
     "cevapla": {
      "id": "m1:89:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Herr Wimmer ne olduğunu soruyor. Kutuyu açarken elin biraz kanadı; kötü değil.",
+     "situation_tr": "Herr Wimmer ne olduğunu soruyor. Kutuyu açarken elin biraz kanadı. Kötü değil.",
      "prompt_de": "Was ist passiert? Geht es Ihnen gut?",
      "accepted": [
       "Ich hatte einen kleinen Arbeitsunfall, beim Auspacken. Es ist nicht schlimm.",
@@ -697,7 +697,7 @@
       "Klar, ich komme mit! Aber kein Bier für mich.",
       "Ja, gern. Ich trinke aber kein Bier."
      ],
-     "why_tr": "**Ja, gern** ile kabul edersin; **aber** ile ekini söylersin."
+     "why_tr": "**Ja, gern** ile kabul edersin. **aber** ile bira içmeyeceğini söylersin."
     }
    }
   ]
@@ -874,7 +874,7 @@
        "Herr Wimmer, am Donnerstag möchte ich die Schicht ändern. Ist das möglich?",
        "Ich möchte am Donnerstag meine Schicht ändern. Tobi macht meine Frühschicht."
       ],
-      "why_tr": "Şefe **Ist es möglich, dass …?** ile kibarca sorarsın."
+      "why_tr": "Şefe kibarca söylersin: **Ich möchte am Donnerstag meine Schicht ändern.** **Ist es möglich, dass** ile sormak da olur."
      }
     }
    ],
@@ -885,7 +885,7 @@
     "opts": [
      "Bugün saat üçe kadar Herr Wimmer'e haber ver",
      "Pazartesi sabah söyle",
-     "Hiçbir şey; Tobi halleder"
+     "Hiçbir şey, Tobi halleder"
     ],
     "ans": 0,
     "why_tr": "Herr Wimmer bugün saat üçe kadar haber istiyor.",
@@ -1071,7 +1071,7 @@
        "Vor der Arbeit. Man ruft die Firma an.",
        "Vor der Arbeit, und man sagt, dass man krank ist."
       ],
-      "why_tr": "**vor der Arbeit**: işten önce. **rufe … an**: ararım."
+      "why_tr": "**vor der Arbeit** işten önce demektir. **anrufen** aramak demektir."
      }
     }
    ],
@@ -1201,7 +1201,7 @@
       ],
       "sonraki": "n3",
       "uygun": true,
-      "geri_bildirim_tr": "Çok kibar: **Ist es möglich, dass …** **habe** en sonda."
+      "geri_bildirim_tr": "Çok kibar. **habe** en sonda, doğru."
      },
      {
       "de": "Ich möchte im März einen Tag Urlaub nehmen, am ersten Freitag.",
@@ -1259,7 +1259,7 @@
       ],
       "sonraki": "n3",
       "uygun": false,
-      "geri_bildirim_tr": "Durumda Derya senin vardiyanı yapabilir. Bunu söyle."
+      "geri_bildirim_tr": "Derya senin vardiyanı yapabilir. Bunu söyle."
      }
     ]
    },
@@ -1336,7 +1336,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "İzni kibarca istedin, vardiya sorusuna çözümle cevap verdin. Şefe **Ist es möglich, dass …?** iyi bir kapı açar."
+  "kapanis_tr": "İzni kibarca istedin, vardiya sorusuna çözümle cevap verdin. Şefe **Ist es möglich, dass** ile sormak hep kibardır."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1404,7 +1404,7 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Tobi'ye kısa bir mesaj yaz: perşembe onun akşam vardiyasını sen yaparsın; o da senin sabah vardiyanı yapsın.",
+   "gorev_tr": "Tobi'ye kısa bir mesaj yaz. Perşembe onun akşam vardiyasını sen yaparsın. O da senin sabah vardiyanı yapsın.",
    "ornek_de": "Hallo Tobi, ich mache am Donnerstag deine Spätschicht. Kannst du dann meine Frühschicht machen? Danke!",
    "zorunlu": [
     "Spätschicht",
@@ -1486,7 +1486,7 @@
      "Kannst du meine Schicht am Donnerstag machen?",
      "Kannst du am Donnerstag für mich die Schicht machen?"
     ],
-    "why_tr": "**Kannst du** ile başlarsın; **machen** en sonda."
+    "why_tr": "**Kannst du** ile başlarsın. **machen** en sona gider."
    },
    {
     "id": "m1:89:s6",
@@ -1497,7 +1497,7 @@
      "Heute hatte ich einen kleinen Arbeitsunfall.",
      "Ich hatte heute einen Arbeitsunfall."
     ],
-    "why_tr": "**ich hatte**: geçirdim (oldu). **einen kleinen Arbeitsunfall**."
+    "why_tr": "**ich hatte** geçirdim demektir. **einen kleinen Arbeitsunfall** küçük bir iş kazası demektir."
    },
    {
     "id": "m1:89:s7",
@@ -1524,7 +1524,7 @@
    {
     "id": "m1:89:s9",
     "k": "guided_response",
-    "situation_tr": "Herr Wimmer elindeki kanı görüyor. Kutuyu açarken küçük bir iş kazası geçirdin; kötü değil.",
+    "situation_tr": "Herr Wimmer elindeki kanı görüyor. Kutuyu açarken küçük bir iş kazası geçirdin. Kötü değil.",
     "prompt_de": "Was ist mit Ihrer Hand?",
     "accepted": [
      "Ich hatte einen kleinen Arbeitsunfall. Es ist nicht schlimm.",
@@ -1540,14 +1540,14 @@
     "k": "listen_and_respond",
     "audio_de": "Kannst du am Donnerstag meine Frühschicht machen?",
     "speed": "fast",
-    "situation_tr": "Derya soruyor. Perşembe olur; karşılığında onun akşam vardiyasını istiyorsun.",
+    "situation_tr": "Derya soruyor. Perşembe olur. Karşılığında o da senin akşam vardiyanı yapsın.",
     "accepted": [
      "Ja, klar. Machst du dann meine Spätschicht?",
      "Donnerstag geht. Machst du dann meine Spätschicht?",
      "Ja, das passt. Dann machst du meine Spätschicht, okay?",
      "Klar! Und du machst dann meine Spätschicht?"
     ],
-    "why_tr": "Kabul edip **Machst du dann …?** ile karşılığını sorarsın."
+    "why_tr": "Kabul edip karşılığını sorarsın: **Machst du dann meine Spätschicht?**"
    },
    {
     "id": "m1:89:s11",
@@ -1561,7 +1561,7 @@
      "Ist es möglich, dass ich am Freitag Urlaub nehme?",
      "Haben Sie kurz Zeit? Ist es möglich, dass ich am Freitag frei habe?"
     ],
-    "why_tr": "**Ist es möglich, dass …**: **habe** en sonda."
+    "why_tr": "**Ist es möglich, dass** ile kibarca sorarsın. **habe** en sona gider."
    }
   ],
   "sesli": [
