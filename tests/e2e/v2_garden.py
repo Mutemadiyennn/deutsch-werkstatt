@@ -75,6 +75,7 @@ def main():
             ust = pg.evaluate("""() => { const r = (e) => e.getBoundingClientRect(); const t = r(document.querySelector('.toast'));
               return [...document.querySelectorAll('button.primary, .tabbar')].some((b) => { const k = r(b); return !(t.right <= k.left || t.left >= k.right || t.bottom <= k.top || t.top >= k.bottom); }); }""")
             check(not ust, "bildirim balonu birincil düğmeyi ve alt çubuğu örtmüyor")
+            check(pg.evaluate("getComputedStyle(document.querySelector('.toast')).pointerEvents") == "none", "bildirim balonu dokunuşu yutmaz: altındaki düğmeye basılır (gezgin #/ben/ayarlar öğe 55)")
         # çift dokunuş (inceleme #126 P1-B): "Tamam"a iki kez basmak tam bir adım ilerletir (sonraki tanıtım atlanmaz)
         if pg.locator("[data-test=garden-intro]").count():  # turun ilk tanıtımı: ardından yine tanıtım gelir
             pg.wait_for_timeout(500)
