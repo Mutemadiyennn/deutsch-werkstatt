@@ -92,3 +92,33 @@ Okur geçince `status: "reviewed"`, `okur: "passed"`, `okur_at` birlikte yazıla
 ## Sonuç
 
 **KAPANDI** (dil incelemesi). Bulunan bütün hatalar dosyada düzeltildi; kalan şüphelerin hiçbiri yanlış Almanca ya da yanlış bilgi değil. Parti okur turuna hazır. `reviewed` işareti okur kapısına bağlı olduğu için bu turda konmadı.
+
+## Okur GERİ düzeltmesi (2026-11-23)
+
+Okur raporu: `docs/v2/reviews/okur/lexicon-batch-015.md` (378 alan, 7 GERİ). Yedi alanın hepsi düzeltildi; aynı türden üç ipucu daha bulundu ve düzeltildi. Başka alana dokunulmadı. `review` **draft** kaldı; okur yeniden okumalı.
+
+### Okurun geri döndürdüğü 7 alan
+
+| Alan | Önce → Sonra | Gerekçe |
+|---|---|---|
+| lx:Rückruf `exp.ipucu_tr` | Fiil olarak **zurückrufen** kullanılır, mesela **Ich rufe Sie zurück**. → Sizi geri arayacağım derken **Ich rufe Sie zurück** denir. | Terim (fiil) kalktı; örnek cümle kaldı. |
+| lx:Abfahrt `exp.ipucu_tr` | Fiil olarak **abfahren** kullanılır, mesela **Der Zug fährt ab**. → Tren kalkıyor derken **Der Zug fährt ab** denir. | Aynı. |
+| lx:Rückruf `forms[4].hint_tr` | Geri arama derken **der Rückruf** denir. → Geri aramayı derken **den Rückruf** denir. | Cümlede boşluğun önünde **den** var; ipucu artık cümledeki biçimi söylüyor. |
+| lx:Bahnsteig `forms[2].hint_tr` | Peronda derken **am Bahnsteig** denir. → Peronda derken **am Bahnsteig** de denir, **auf dem Bahnsteig** ile aynı. | İki biçim de doğru ve aynı anlamda; ipucu bunu açıkça söylüyor. |
+| lx:Bahnsteig `forms[4].hint_tr` | Peronda derken **am Bahnsteig** denir. → Perondaki bank derken **eine Bank am Bahnsteig** denir. | Aynı Türkçe söz artık iki farklı karşılığa bağlanmıyor. |
+| lx:Zugausfall `forms[5].hint_tr` | Bir tren iptali var derken **es gibt einen Zugausfall** denir. → **es gibt** gelince **ein** sözü **einen** olur, **es gibt einen Zugausfall** denir. | **ein** ile **einen** farkının nedeni yazıldı. |
+| lx:Vorgesetzte `exp.ipucu_tr` | Kadın amir için **die Vorgesetzte**, birden çok amir için **die Vorgesetzten** denir. → Kadın amir için **die Vorgesetzte** denir. | Tek fikir. Çoğul, kartın başlığında ve altıncı boşluğun ipucunda zaten var. |
+
+### Aynı türden, taramada bulunan 3 alan
+
+78 ipucunun hepsi yeniden tarandı: aynı kartta aynı Türkçe söz farklı biçime bağlanıyor mu, ipucu cümledeki biçimle çelişiyor mu.
+
+| Alan | Önce → Sonra | Gerekçe |
+|---|---|---|
+| lx:Rückruf `forms[2].hint_tr` | Geri arama derken **einen Rückruf** denir. → Bir geri arama rica ederken **um einen Rückruf** denir. | Okurun işaret ettiği çiftin öteki yarısı (geri arama derken → **einen** / **der**). |
+| lx:Fahrplan `forms[4].hint_tr` | Tarife derken **der Fahrplan** denir. → Tarifeyi derken **den Fahrplan** denir. | Cümlede **den** var, ipucu **der** diyordu; aynı söz birinci boşlukta **der Fahrplan** ile eşleşiyor. |
+| lx:Gehaltsabrechnung `forms[4].hint_tr` | Maaş bordrosu derken **die Gehaltsabrechnung** denir. → Onun maaş bordrosu derken **seine Gehaltsabrechnung** denir. | Cümlede **seine** var, ipucu **die** diyordu. |
+
+Öteki kartlarda aynı Türkçe sözün tekrarlandığı ipuçları (lx:Anrufbeantworter, lx:Durchwahl, lx:Lohn, lx:Schichtplan, lx:Abfahrt, lx:Warteschleife) her seferinde aynı biçimi veriyor ve cümleyle örtüşüyor; dokunulmadı.
+
+`content:validate`: 0 hata, 147 uyarı.

@@ -132,6 +132,38 @@ SOURCES.md dilbilimcinin yazma yolunda değil. BM için öneri:
 5. **Uygulamada sorulmayan boşluklar:** lx:krankmelden boşluklarının beşi (melde, meldet, krankgemeldet, mich, krank) kartın kendi alanlarıyla `cevapGosterildi` kuralından geçmiyor, çünkü eşdizimlerin hepsi mastar. Başka kartlar bu kelimeleri göstermediyse uygulama bunları sormaz, **krankmelden** boşluğuna düşer. İçerik doğru; karar BM'de.
 6. **lx:Wasserhahn boşluk 6:** **Mach den Wasserhahn aus** konuşmada duyulur. Standart değil diye `also_ok` içine alınmadı.
 
+## Okur GERİ düzeltmesi (2026-11-23)
+
+Okur raporu: `docs/v2/reviews/okur/lexicon-batch-016.md` (909 alan, 20 GERİ). 20 alanın hepsi düzeltildi; aynı türden 3 alan daha bulundu ve düzeltildi (işaretli). Başka alana dokunulmadı. `content:validate`: 0 hata. `review.status` `draft` kaldı; okur yeniden okuyacak.
+
+| Alan | Önce → Sonra | Okurun nedeni |
+|---|---|---|
+| `lx:Mietvertrag.forms[0].hint_tr` | Kira sözleşmesi derken **der Mietvertrag** denir. → Kira sözleşmesini derken **den Mietvertrag** denir. | Cümlede **den** var, ipucu **der** diyordu. |
+| `lx:zustellen.forms[0].hint_tr` | **Die Post** ile söylerken **zustellen**, **stellt … zu** olur. → **Die Post** ile söylerken **stellt** denir, **zu** sona gider. | Üç nokta. |
+| `lx:zustellen.forms[3].hint_tr` | Teslim edildi derken **ist zugestellt** denir. → Paket çoktan gelmiş derken **ist schon zugestellt** denir. | Aynı söz kartta **wurde** ile de çıkıyordu. |
+| `lx:zustellen.forms[4].hint_tr` | **Wir** ile söylerken **stellen … zu** denir. → **Wir** ile söylerken **stellen** denir, **zu** sona gider. | Üç nokta. |
+| `lx:zustellen.forms[5].hint_tr` | **zustellen** fiilinde **zu** sona gider. → **zu** cümlenin sonuna gider: **stellt hier um elf zu**. | Terim: fiil. |
+| `lx:Arbeitsvertrag.forms[4].hint_tr` | İmzaladım derken **habe … unterschrieben** denir. → İmzaladım derken **Ich habe** ile başlarsın, **unterschrieben** sona gelir. | Üç nokta. |
+| `lx:Arbeitsunfall.forms[0].hint_tr` | Bir iş kazası derken **einen Arbeitsunfall** denir. → Bir iş kazası geçirdim derken **einen Arbeitsunfall** denir. | Ek: [1] ile aynı söz, başka biçim. |
+| `lx:Arbeitsunfall.forms[1].hint_tr` | Bir iş kazası derken **ein Arbeitsunfall** denir. → Bu bir iş kazasıydı derken **ein Arbeitsunfall** denir. | Aynı söz **einen** ve **ein** veriyordu. |
+| `lx:Kassenbon.forms[1].hint_tr` | Fiş derken **den Kassenbon** denir. → Fiş sizde mi diye sorarken **den Kassenbon** denir. | **Fiş** için **den** çıkıyordu. |
+| `lx:Quittung.forms[2].hint_tr` | Makbuz derken **eine Quittung** denir. → Bir makbuz derken **eine Quittung** denir. | Ek: aynı söz **eine** ve **die** veriyordu. |
+| `lx:Quittung.forms[3].hint_tr` | Makbuz derken **die Quittung** denir. → Belli bir makbuzu sorarken **die Quittung** denir. | Aynı söz **eine** ve **die** veriyordu. |
+| `lx:Quittung.forms[5].hint_tr` | Makbuz derken **eine Quittung** denir. → Bir makbuz derken **eine Quittung** denir. | Aynı neden. |
+| `lx:Umtausch.forms[0].hint_tr` | Değişim derken **ein Umtausch** denir. → Değişim mümkün mü derken **ein Umtausch** denir. | Ek: aynı söz üç biçim veriyordu. |
+| `lx:Umtausch.forms[1].hint_tr` | Değişim derken **Umtausch** denir. → Tabelada kısaca yalnız **Umtausch** yazar. | Aynı söz üç biçim veriyordu. |
+| `lx:Umtausch.forms[4].hint_tr` | Değişim derken **der Umtausch** denir. → Yapılmış belli bir değişim için **der Umtausch** denir. | Aynı neden. |
+| `lx:umtauschen.forms[1].hint_tr` | **Ich** ile söylerken **tausche … um** denir. → **Ich** ile söylerken **tausche** denir, **um** sona gider. | Üç nokta. |
+| `lx:umtauschen.forms[4].hint_tr` | **umtauschen** fiilinde **um** sona gider. → **um** cümlenin sonuna gider: **Ich tausche die Jacke um**. | Terim: fiil. |
+| `lx:umtauschen.forms[5].hint_tr` | **Ioana** ile söylerken **tauscht … um** denir. → **Ioana** ile söylerken **tauscht** denir, **um** sona gider. | Üç nokta. |
+| `lx:Rettungswagen.forms[4].hint_tr` | Bir ambulans derken **ein Rettungswagen** denir. → Ambulans duruyor derken **ein Rettungswagen**, çağırırken **einen Rettungswagen** denir. | Hata notuyla çelişiyor görünüyordu. |
+| `lx:färben.forms[1].hint_tr` | Boyadın derken **hast … gefärbt** denir. → Boyadın mı diye sorarken **Hast du** ile başlarsın, **gefärbt** sona gelir. | Üç nokta. |
+| `lx:färben.forms[5].hint_tr` | Boyattım derken **färben lassen** denir. → **lassen** varsa **gefärbt** olmaz, **färben** kalır: **färben lassen**. | **gefärbt** ile **färben** farkı açık değildi. |
+| `lx:Kündigung.exp.ipucu_tr` | Yaparken **kündigen** dersin: **Ich habe gekündigt**. → Sözleşmeyi sen bitiriyorsan **kündigen** dersin: **Ich habe gekündigt**. | **Yaparken** belirsizdi. |
+| `lx:Haarschnitt.mistakes_tr[0]` | Saçımı kestirdim derken **Ich habe meine Haare geschnitten** dersen, kendin kestin sanılır. Doğrusu **Ich war beim Friseur**. → Saçımı kestirdim derken **Ich habe Haarschnitt gemacht** yanlış. Doğrusu **Ich habe einen neuen Haarschnitt**. | Kartın kelimesi geçmiyordu (OD-9.2 md. 4). |
+
+lx:Haarschnitt hata notu: eski not (kendin kestin sanılır) doğruydu ama başka bir ifadeyi anlatıyordu. Yenisi Türkçedeki **saç kesimi yaptırmak** kalıbından gelen hatayı kartın kelimesiyle gösteriyor.
+
 ## Sonuç
 
 **AÇIK** (yalnız okur kapısı). Dil, gerçeklik ve WORLD hataları dosyada kapandı; `content:validate` 0 hata. `reviewed` için kalan tek adım okur kontrolü (OD-9.4).
