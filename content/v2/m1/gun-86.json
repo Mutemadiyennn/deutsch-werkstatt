@@ -5,10 +5,10 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "Fikrini söylemek: Ich glaube, dass das stimmt",
- "goal_tr": "Bir kişi ya da durum hakkında fikrini Ich finde / Ich glaube, dass … ile söylersin; başkasının fikrine katılır ya da katılmazsın.",
+ "goal_tr": "Bir kişi hakkında fikrini Ich finde ya da Ich glaube ile söylersin. Başkasının fikrine katılır ya da katılmazsın.",
  "can_do": {
   "id": "cd:m1:86",
-  "tr": "Bir kişi ya da durum hakkında fikrimi Ich finde / Ich glaube, dass … ile söylerim."
+  "tr": "Bir kişi hakkında fikrimi Ich finde ya da Ich glaube ile söylerim."
  },
  "unit": "u:a2:is-3",
  "arm": "pazar",
@@ -74,11 +74,11 @@
     },
     {
      "de": "ich glaube – du glaubst – sie glaubt – Ich glaube, dass … – Das glaube ich nicht.",
-     "tr": "sanırım – sanıyorsun – sanıyor – Sanırım … – Sanmıyorum."
+     "tr": "sanırım – sanıyorsun – sanıyor – Sanırım yine anlaşıyorlar. – Sanmıyorum."
     },
     {
      "de": "ich finde – du findest – er findet – Ich finde, dass … – Das finde ich auch.",
-     "tr": "bence – sence – ona göre – Bence … – Ben de öyle düşünüyorum."
+     "tr": "bence – sence – ona göre – Bence çok sık kavga ediyorlar. – Ben de öyle düşünüyorum."
     }
    ],
    "dersten_sonra": true,
@@ -156,7 +156,7 @@
     {
      "kart": "lx:sich_trennen",
      "de": "Derya sagt, dass die zwei sich trennen.",
-     "tr": "Derya ikisinin ayrıldığını söylüyor.",
+     "tr": "Derya ikisinin ayrılacağını söylüyor.",
      "accepted": [
       "Derya sagt, dass die zwei sich trennen.",
       "Derya sagt, die zwei trennen sich.",
@@ -165,7 +165,7 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Salı, öğle molası, kantin. Tobi telefonunu sallıyor; dün akşamki dizi bölümünü konuşmak istiyor.",
+    "ortam_tr": "Salı, öğle molası, kantin. Tobi telefonunu sallıyor. Dün akşamki dizi bölümünü konuşmak istiyor.",
     "satirlar": [
      {
       "r": "ch:lechner",
@@ -219,11 +219,11 @@
     },
     {
      "de": "Das freut mich. – Ich freue mich auf … – Er freut sich.",
-     "tr": "Buna sevindim. – … için sabırsızlanıyorum. – Seviniyor."
+     "tr": "Buna sevindim. – Kursu dört gözle bekliyorum. – Seviniyor."
     },
     {
      "de": "Ehrlich gesagt …",
-     "tr": "Açıkçası …"
+     "tr": "Açıkçası diziyi iyi bulmuyorum."
     },
     {
      "de": "ich fliege – du fliegst – er fliegt – Wir fliegen in den Urlaub.",
@@ -395,9 +395,9 @@
    {
     "id": "s6",
     "speaker": "ch:aksoy",
-    "sahne_tr": "Derya gülümsüyor, çok emin.",
+    "sahne_tr": "Derya gülümsüyor.",
     "de": "Ich glaube, dass sie sich am Ende wieder verstehen.",
-    "tr": "Bence sonunda yine anlaşacaklar."
+    "tr": "Sanırım sonunda yine anlaşacaklar."
    },
    {
     "id": "s7",
@@ -439,7 +439,7 @@
     "speaker": "ch:lechner",
     "sahne_tr": "Tobi gülüyor, ikisi de sana bakıyor.",
     "de": "Ich glaube, dass wir alle Urlaub brauchen!",
-    "tr": "Bence hepimizin tatile ihtiyacı var!"
+    "tr": "Sanırım hepimizin tatile ihtiyacı var!"
    }
   ],
   "bolumler": [
@@ -583,7 +583,7 @@
     "cevapla": {
      "id": "m1:86:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Tobi senin fikrini soruyor. Sen de çiftin sonunda yine anlaşacağını düşünüyorsun. Ich glaube, dass … ile söyle.",
+     "situation_tr": "Tobi senin fikrini soruyor. Sen de çiftin sonunda yine anlaşacağını düşünüyorsun. Ich glaube, dass ile başla.",
      "prompt_de": "Und du? Was denkst du?",
      "accepted": [
       "Ich glaube, dass sie sich wieder verstehen.",
@@ -593,7 +593,7 @@
       "Das finde ich auch. Ich glaube, dass sie sich noch lieben.",
       "Ich glaube nicht, dass sie sich trennen."
      ],
-     "why_tr": "Fikrini **Ich glaube, dass …** ile söylersin. **verstehen** en sona gider: **dass sie sich wieder verstehen**."
+     "why_tr": "Tahminini **Ich glaube, dass** ile söylersin. **verstehen** en sona gider. Örnek: **dass sie sich wieder verstehen**."
     }
    },
    {
@@ -735,7 +735,7 @@
     "cevapla": {
      "id": "m1:86:v1:c2",
      "k": "guided_response",
-     "situation_tr": "Derya sana soruyor: yeni bir iş arkadaşının gelmesi iyi mi? Sen iyi buluyorsun. Ich finde es gut, dass … ile söyle.",
+     "situation_tr": "Derya sana soruyor: yeni bir iş arkadaşının gelmesi iyi mi? Sen iyi buluyorsun. Ich finde es gut, dass ile başla.",
      "prompt_de": "Was denkst du? Ist das gut für uns?",
      "accepted": [
       "Ja, ich finde es gut, dass wir eine neue Kollegin bekommen.",
@@ -745,7 +745,7 @@
       "Ich finde es gut, dass Frau Hoffmann morgen beginnt.",
       "Ja. Ich glaube, dass sie sehr zuverlässig ist."
      ],
-     "why_tr": "Bir durumu iyi bulunca **Ich finde es gut, dass …** dersin. **bekommen** en sona gider."
+     "why_tr": "Bir durumu iyi bulunca **Ich finde es gut, dass** dersin. **bekommen** en sona gider."
     }
    }
   ]
@@ -942,7 +942,7 @@
        "Ehrlich gesagt finde ich, dass das kein Problem ist.",
        "Das ist kein Problem, finde ich."
       ],
-      "why_tr": "**Ich finde, dass …** ile fikrini söylersin. **ist** en sona gider: **dass das kein Problem ist**."
+      "why_tr": "**Ich finde, dass** ile fikrini söylersin. **ist** en sona gider. Örnek: **dass das kein Problem ist**."
      }
     }
    ],
@@ -1329,7 +1329,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Harika: **wir verstehen uns**. **uns** ile birlikte."
+      "geri_bildirim_tr": "Harika. **wir** dersen **uns** dersin: **wir verstehen uns**."
      },
      {
       "de": "Ehrlich gesagt, er hat immer wenig Zeit. Aber wir verstehen uns gut.",
@@ -1342,7 +1342,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Çok doğal: **Ehrlich gesagt …** ile başladın."
+      "geri_bildirim_tr": "Çok doğal: **Ehrlich gesagt** ile başladın."
      },
      {
       "de": "Ja, wir verstehen sich gut.",
@@ -1387,7 +1387,7 @@
       ],
       "sonraki": "n5",
       "uygun": true,
-      "geri_bildirim_tr": "**sich freuen auf …**: bir şeyi sabırsızlıkla beklemek."
+      "geri_bildirim_tr": "**Ich freue mich auf** ile dört gözle beklediğin şeyi söylersin."
      }
     ]
    },
@@ -1398,7 +1398,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Fikrini Ich finde / Ich glaube, dass … ile söyledin. Katıldın, katılmadın, anlaştığını söyledin."
+  "kapanis_tr": "Fikrini Ich finde ve Ich glaube ile söyledin. Katıldın, katılmadın, anlaştığını söyledin."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1475,11 +1475,11 @@
      "Ich glaube, dass ein guter Kollege ehrlich ist.",
      "Ehrlich, finde ich. Das ist wichtig."
     ],
-    "why_tr": "Fikrini **Ich finde, dass …** ile söylersin. **ist** en sona gider."
+    "why_tr": "Fikrini **Ich finde, dass** ile söylersin. **ist** en sona gider."
    }
   ],
   "yazma": {
-   "gorev_tr": "Bültene kısa bir cevap yaz. İyi bir iş arkadaşı sence nasıl olur? Ich finde, dass … ve Ich glaube, dass … ile iki fikir yaz.",
+   "gorev_tr": "Bültene kısa bir cevap yaz. İyi bir iş arkadaşı sence nasıl olur? Ich finde, dass ve Ich glaube, dass ile iki fikir yaz.",
    "ornek_de": "Ich finde, dass ein guter Kollege zuverlässig ist. Ich glaube, dass wir uns im Büro gut verstehen.",
    "zorunlu": [
     "Ich finde",
@@ -1490,7 +1490,7 @@
     "Ich glaube, dass …"
    ],
    "kontrol_tr": [
-    "Ich finde, dass … ile bir fikir yazdın mı?",
+    "Ich finde, dass ile bir fikir yazdın mı?",
     "dass ile başlayan parçada ist ya da verstehen en sonda mı?",
     "İkinci bir fikir de yazdın mı?"
    ]
@@ -1523,7 +1523,7 @@
      "wir verstehen uns sehr gut",
      "Wir verstehen uns sehr gut"
     ],
-    "why_tr": "**wir** ile **uns**."
+    "why_tr": "**wir** dersen **uns** dersin: **wir verstehen uns**."
    },
    {
     "id": "m1:86:s3",
@@ -1560,7 +1560,7 @@
      "Ich glaube, sie lieben sich noch.",
      "Ich glaube, dass sie sich immer noch lieben."
     ],
-    "why_tr": "**Ich glaube, dass …**: sanırım. **lieben** en sona gider."
+    "why_tr": "**Ich glaube, dass** sanırım demektir. **lieben** en sona gider."
    },
    {
     "id": "m1:86:s6",
@@ -1593,7 +1593,7 @@
      "Derya glaubt nicht, dass er sich in seine Kollegin verliebt hat.",
      "Derya glaubt nicht, er hat sich in die Kollegin verliebt."
     ],
-    "why_tr": "**glaubt nicht, dass …**: sanmıyor. **hat** en sona gider."
+    "why_tr": "**glaubt nicht, dass** sanmıyor demektir. **hat** en sona gider."
    },
    {
     "id": "m1:86:s9",
@@ -1608,7 +1608,7 @@
      "Nein. Ich glaube, sie verstehen sich wieder.",
      "Ich glaube nicht, dass sie sich wirklich trennen."
     ],
-    "why_tr": "**Ich glaube nicht, dass …**: sanmıyorum."
+    "why_tr": "**Ich glaube nicht, dass** sanmıyorum demektir."
    },
    {
     "id": "m1:86:s10",
@@ -1638,7 +1638,7 @@
      "Ein guter Kollege ist zuverlässig und ehrlich, finde ich.",
      "Ich finde, dass er zuverlässig und ehrlich ist."
     ],
-    "why_tr": "**Ich finde, dass …** ve sonda **ist**."
+    "why_tr": "**Ich finde, dass** ile başlarsın. **ist** en sona gider."
    }
   ],
   "sesli": [

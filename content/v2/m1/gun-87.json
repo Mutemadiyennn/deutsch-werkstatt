@@ -5,10 +5,10 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "Kuralı anlatmak: Es ist wichtig, dass man pünktlich ist",
- "goal_tr": "Yeni gelen birine iş yerinin kurallarını Es ist wichtig, dass … ile anlatırsın; birinin söylediği kuralı aktarırsın.",
+ "goal_tr": "Yeni gelen birine iş yerinin kurallarını Es ist wichtig, dass ile anlatırsın. Birinin söylediği kuralı aktarırsın.",
  "can_do": {
   "id": "cd:m1:87",
-  "tr": "Yeni birine iş yerinin kurallarını Es ist wichtig, dass … ile anlatırım."
+  "tr": "Yeni birine iş yerinin kurallarını Es ist wichtig, dass ile anlatırım."
  },
  "unit": "u:a2:is-3",
  "arm": "pazar",
@@ -57,7 +57,7 @@
    "kaliplar": [
     {
      "de": "Es ist wichtig, dass … – Bei uns ist es normal, dass …",
-     "tr": "… önemli. – Bizde … normaldir."
+     "tr": "Dakik olmak önemli. – Bizde sekizde başlamak normaldir."
     },
     {
      "de": "Ich melde mich krank. – Man muss sich krankmelden. – dass man sich krankmeldet",
@@ -73,7 +73,7 @@
     },
     {
      "de": "Er hat gesagt, dass … – bei Herrn Wimmer",
-     "tr": "… söyledi. – Herr Wimmer'e (haber vermek)"
+     "tr": "Toplantının onda başladığını söyledi. – Herr Wimmer'e (haber vermek)"
     },
     {
      "de": "Man braucht eine Krankschreibung. – länger als drei Tage",
@@ -225,7 +225,7 @@
     },
     {
      "de": "Ich freue mich, dass … – früher – zehn Minuten früher",
-     "tr": "… sevindim. – daha erken – on dakika erken"
+     "tr": "Burada olduğuma seviniyorum. – daha erken – on dakika erken"
     }
    ],
    "dersten_sonra": true,
@@ -563,7 +563,7 @@
     "cevapla": {
      "id": "m1:87:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Frau Hoffmann sana dönüp soruyor: Başka ne önemli? Ona hastalanınca saat sekizden önce bildirmenin önemli olduğunu Es ist wichtig, dass … ile söyle.",
+     "situation_tr": "Frau Hoffmann sana dönüp soruyor: Başka ne önemli? Hastalığı saat sekizden önce bildirmek önemli. Bunu Es ist wichtig, dass ile söyle.",
      "prompt_de": "Und was ist hier noch wichtig?",
      "accepted": [
       "Es ist wichtig, dass man sich vor acht Uhr krankmeldet.",
@@ -573,7 +573,7 @@
       "Es ist wichtig, dass man pünktlich ist. Und man muss sich vor acht Uhr krankmelden.",
       "Es ist wichtig, dass man sich bei Herrn Wimmer krankmeldet."
      ],
-     "why_tr": "Kuralı **Es ist wichtig, dass …** ile anlatırsın. **krankmeldet** en sona gider."
+     "why_tr": "Kuralı **Es ist wichtig, dass** ile anlatırsın. **krankmeldet** en sona gider."
     }
    },
    {
@@ -723,7 +723,7 @@
       "Nein, um zehn. Er hat gesagt, dass er den Plan ändern muss.",
       "Nein, Herr Wimmer hat gesagt, sie beginnt um zehn."
      ],
-     "why_tr": "Söyleneni geçmişle aktarırsın: **Herr Wimmer hat gesagt, dass …**. **beginnt** en sona gider."
+     "why_tr": "Söyleneni **Herr Wimmer hat gesagt, dass** ile aktarırsın. **beginnt** en sona gider."
     }
    }
   ]
@@ -921,7 +921,7 @@
        "Ja, die Personalabteilung. Ihr Arbeitsvertrag ist fertig. Bitte bis vier Uhr.",
        "Ja. Die Personalabteilung hat gesagt, dass Ihr Arbeitsvertrag fertig ist."
       ],
-      "why_tr": "Kuralı aktarırken **dass … unterschreiben müssen**: **müssen** en sonda, **unterschreiben** onun önünde."
+      "why_tr": "Kuralı aktarırken **müssen** en sona gider. **unterschreiben** onun hemen önünde durur."
      }
     }
    ],
@@ -1130,7 +1130,7 @@
        "Es ist wichtig, dass man pünktlich ist.",
        "Du musst pünktlich sein. Das ist wichtig."
       ],
-      "why_tr": "**Es ist wichtig, dass du …**: **bist** ya da **kommst** en sona gider."
+      "why_tr": "**Es ist wichtig, dass du** ile başlarsın. **bist** ya da **kommst** en sona gider."
      }
     }
    ],
@@ -1196,7 +1196,7 @@
  "prova": {
   "id": "m1:87:p1",
   "title_tr": "Frau Hoffmann'a kuralları sen anlat",
-  "durum_tr": "Öğleden sonra Derya bir müşteriyle telefonda. Frau Hoffmann sana geliyor; kuralları ona sen anlatacaksın: iş sekizde başlıyor, hastalık saat sekizden önce Herr Wimmer'e bildirilir, üç günden uzun hastalıkta doktor raporu gerekir. Toplantı perşembe saat onda.",
+  "durum_tr": "Öğleden sonra Derya bir müşteriyle telefonda. Frau Hoffmann sana geliyor. Kuralları ona sen anlatacaksın. İş sekizde başlıyor. Hastalık saat sekizden önce Herr Wimmer'e bildirilir. Üç günden uzun hastalıkta doktor raporu gerekir. Toplantı perşembe saat onda.",
   "karsi": "Frau Hoffmann",
   "baslangic": "n1",
   "dugumler": [
@@ -1229,7 +1229,7 @@
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel: **Bei uns ist es normal, dass …**"
+      "geri_bildirim_tr": "Güzel: **Bei uns ist es normal, dass** ile başladın."
      },
      {
       "de": "Es ist wichtig, dass man ist pünktlich.",
@@ -1319,7 +1319,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Çok iyi aktardın: **Derya hat gesagt, dass …**"
+      "geri_bildirim_tr": "Çok iyi aktardın: **Derya hat gesagt, dass** ile başladın."
      },
      {
       "de": "Nein, nie.",
@@ -1351,7 +1351,7 @@
       ],
       "sonraki": "n5",
       "uygun": true,
-      "geri_bildirim_tr": "Mükemmel: **er hat gesagt, dass … beginnt**."
+      "geri_bildirim_tr": "Mükemmel. **beginnt** en sonda, doğru."
      },
      {
       "de": "Ja, sie beginnt jetzt um zehn, nicht um neun.",
@@ -1387,7 +1387,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Yeni iş arkadaşına iş yerinin kurallarını Es ist wichtig, dass … ile anlattın; Herr Wimmer'in değiştirdiği planı da aktardın."
+  "kapanis_tr": "Yeni iş arkadaşına iş yerinin kurallarını Es ist wichtig, dass ile anlattın. Herr Wimmer'in değiştirdiği planı da aktardın."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1465,11 +1465,11 @@
      "Im Arbeitsvertrag steht, dass man nach drei Tagen eine Krankschreibung vom Arzt braucht.",
      "Wenn Sie länger als drei Tage krank sind, brauchen Sie eine Krankschreibung."
     ],
-    "why_tr": "**Im Arbeitsvertrag steht, dass …**: sözleşmede … yazıyor. **länger als drei Tage**: üç günden uzun."
+    "why_tr": "**Im Arbeitsvertrag steht, dass** sözleşmede yazıyor demektir. **länger als drei Tage** üç günden uzun demektir."
    }
   ],
   "yazma": {
-   "gorev_tr": "Frau Hoffmann'a kısa bir not yaz. İki kuralı Es ist wichtig, dass … ile yaz: dakik olmak ve saat sekizden önce hastalığı bildirmek.",
+   "gorev_tr": "Frau Hoffmann'a kısa bir not yaz. İki kural yaz: dakik olmak ve hastalığı sekizden önce bildirmek. Es ist wichtig, dass ile başla.",
    "ornek_de": "Es ist wichtig, dass Sie pünktlich sind. Es ist auch wichtig, dass Sie sich vor acht Uhr krankmelden.",
    "zorunlu": [
     "Es ist wichtig, dass",
@@ -1550,7 +1550,7 @@
      "Es ist wichtig, dass man sich vor acht krankmeldet.",
      "Es ist wichtig, dass Sie sich vor acht Uhr krankmelden."
     ],
-    "why_tr": "**Es ist wichtig, dass …** ve sonda **krankmeldet**."
+    "why_tr": "**Es ist wichtig, dass** ile başlarsın. **krankmeldet** en sona gider."
    },
    {
     "id": "m1:87:s6",
@@ -1561,7 +1561,7 @@
      "Bei uns ist es normal, dass alle um acht Uhr beginnen.",
      "Bei uns ist es normal, dass man um acht beginnt."
     ],
-    "why_tr": "**Bei uns ist es normal, dass …**: **beginnen** en sonda."
+    "why_tr": "**Bei uns ist es normal, dass** ile başlarsın. **beginnen** en sona gider."
    },
    {
     "id": "m1:87:s7",
@@ -1572,7 +1572,7 @@
      "Derya hat mir alles erklärt.",
      "Derya erklärt mir die Regeln."
     ],
-    "why_tr": "**hat … erklärt**: **erklärt** en sonda."
+    "why_tr": "**erklärt** cümlenin en sonuna gider: **Derya hat mir die Regeln erklärt.**"
    },
    {
     "id": "m1:87:s8",
@@ -1583,7 +1583,7 @@
      "Herr Wimmer hat gesagt, die Besprechung beginnt um zehn.",
      "Herr Wimmer hat gesagt, dass die Besprechung um zehn Uhr beginnt."
     ],
-    "why_tr": "**hat gesagt, dass …** ve sonda **beginnt**."
+    "why_tr": "**Herr Wimmer hat gesagt, dass** ile başlarsın. **beginnt** en sona gider."
    },
    {
     "id": "m1:87:s9",
@@ -1618,7 +1618,7 @@
    {
     "id": "m1:87:s11",
     "k": "guided_response",
-    "situation_tr": "Yeni gelen bir iş arkadaşı iş yerinde neyin önemli olduğunu soruyor. Dakik olmayı ve saat sekizden önce hastalığı bildirmeyi Es ist wichtig, dass … ile anlat.",
+    "situation_tr": "Yeni gelen bir iş arkadaşı iş yerinde neyin önemli olduğunu soruyor. Dakik olmayı ve hastalığı sekizden önce bildirmeyi anlat. Es ist wichtig, dass ile başla.",
     "prompt_de": "Was ist hier wichtig?",
     "accepted": [
      "Es ist wichtig, dass man pünktlich ist. Und man muss sich vor acht Uhr krankmelden.",
@@ -1628,7 +1628,7 @@
      "Es ist wichtig, dass Sie pünktlich sind. Wenn Sie krank sind, melden Sie sich vor acht Uhr krank.",
      "Es ist wichtig, dass du pünktlich bist und dich vor acht Uhr krankmeldest."
     ],
-    "why_tr": "İki kural: **pünktlich** ve **krankmelden**. **dass** ile başlayan parçada kelime en sona gider."
+    "why_tr": "İki kural: **pünktlich** ve **krankmelden**. **dass** ile başlayan parçada **ist** en sona gider."
    }
   ],
   "sesli": [
