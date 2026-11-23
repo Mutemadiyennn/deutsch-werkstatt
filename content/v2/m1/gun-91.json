@@ -164,11 +164,11 @@
     "soru": {
      "q_tr": "Ioana ne diyor?",
      "opts": [
+      "Doktoru hemen ara",
       "Yatakta kal, bol uyu",
-      "Yine de yemeğe gel",
-      "Doktoru hemen ara"
+      "Yine de yemeğe gel"
      ],
-     "ans": 0
+     "ans": 1
     }
    }
   }
@@ -279,11 +279,11 @@
       "kind": "detail",
       "q_tr": "Herr Wimmer'i ne zaman aramalısın?",
       "opts": [
-       "Yarın sabah, vardiyadan önce",
        "Bu akşam",
-       "Vardiyadan sonra"
+       "Vardiyadan sonra",
+       "Yarın sabah, vardiyadan önce"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s3"
       ]
@@ -322,11 +322,11 @@
       "seviye": "kolay",
       "q_tr": "Kimi araman gerekiyor?",
       "opts": [
-       "Herrn Wimmer",
        "Frau Brandl",
-       "Dr. Weber"
+       "Dr. Weber",
+       "Herrn Wimmer"
       ],
-      "ans": 0
+      "ans": 2
      },
      {
       "id": "d2",
@@ -408,11 +408,11 @@
      "kind": "gist",
      "q_tr": "Tobi neden arıyor?",
      "opts": [
+      "Vardiyasını iptal ediyor",
       "Yarın senin vardiyanı yapacağını söylüyor",
-      "Seni maça çağırıyor",
-      "Vardiyasını iptal ediyor"
+      "Seni maça çağırıyor"
      ],
-     "ans": 0,
+     "ans": 1,
      "kanit": [
       "s8"
      ]
@@ -435,11 +435,11 @@
       "kind": "detail",
       "q_tr": "Tobi yarın hangi vardiyayı yapıyor?",
       "opts": [
+       "Hiçbirini",
        "Senin akşam vardiyanı",
-       "Kendi sabah vardiyasını",
-       "Hiçbirini"
+       "Kendi sabah vardiyasını"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "s8"
       ]
@@ -452,11 +452,11 @@
       "seviye": "kolay",
       "q_tr": "Hangi günü duydun?",
       "opts": [
+       "Freitag",
        "Donnerstag",
-       "Dienstag",
-       "Freitag"
+       "Dienstag"
       ],
-      "ans": 0
+      "ans": 1
      },
      {
       "id": "d2",
@@ -536,7 +536,7 @@
    "id": "m1:91:a1",
    "tur": "sesli-mesaj",
    "title_tr": "Herr Wimmer'in sesli mesajı",
-   "ortam_tr": "Pazartesi öğlen. Doktordan döndün. Sabah Herr Wimmer'le konuşmuştun. Şimdi sana hızlı bir mesaj bırakmış.",
+   "ortam_tr": "Pazartesi Herr Wimmer'i aradıktan sonra böyle bir mesaj gelebilir. Hızlı konuşuyor.",
    "speaker": "ch:wimmer",
    "hizlar": [
     "natural",
@@ -617,11 +617,11 @@
        "kind": "detail",
        "q_tr": "Bu hafta senin akşam vardiyanı kim yapıyor?",
        "opts": [
+        "Herr Wimmer",
         "Herr Lechner (Tobi)",
-        "Derya",
-        "Herr Wimmer"
+        "Derya"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c3"
        ]
@@ -647,11 +647,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi günü duydun?",
        "opts": [
+        "Dienstag",
         "Mittwoch",
-        "Montag",
-        "Dienstag"
+        "Montag"
        ],
-       "ans": 0
+       "ans": 1
       },
       {
        "id": "d2",
@@ -805,11 +805,11 @@
        "kind": "detail",
        "q_tr": "Salı günü ne oluyor?",
        "opts": [
+        "Sınav var",
         "Kurs yok",
-        "Kurs erken başlıyor",
-        "Sınav var"
+        "Kurs erken başlıyor"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c3"
        ]
@@ -818,11 +818,11 @@
        "kind": "detail",
        "q_tr": "Ioana sana ne gönderiyor?",
        "opts": [
+        "Bir kek",
         "Ödevleri",
-        "Şarabı",
-        "Bir kek"
+        "Şarabı"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c4"
        ]
@@ -917,11 +917,11 @@
     "k": "pick",
     "q_tr": "Salı akşamı ne yapmalısın?",
     "opts": [
+     "Ioana'ya şarap götür",
      "Kurs yok, kursa gitme ve ödevleri yap",
-     "Kursa git",
-     "Ioana'ya şarap götür"
+     "Kursa git"
     ],
-    "ans": 0,
+    "ans": 1,
     "why_tr": "Ioana salı günü kursun olmadığını söylüyor.",
     "kanit": [
      "c3",
@@ -1117,16 +1117,16 @@
       "geri_bildirim_tr": "Sürprize sakin cevap: ne zaman olacağını söyledin."
      },
      {
-      "de": "Ja, natürlich. Nach dem Termin sage ich Ihnen Bescheid.",
-      "tr": "Evet, tabii. Randevudan sonra size haber veririm.",
+      "de": "Ja, natürlich. Nach dem Termin sage ich Ihnen Bescheid. Die Krankschreibung haben Sie morgen.",
+      "tr": "Evet, tabii. Randevudan sonra size haber veririm. Rapor yarın sizde olur.",
       "accepted": [
-       "Ja, natürlich. Nach dem Termin sage ich Ihnen Bescheid.",
-       "Natürlich. Nach dem Arzt sage ich Ihnen Bescheid.",
-       "Ja, klar. Ich sage Ihnen nach dem Termin Bescheid."
+       "Ja, natürlich. Nach dem Termin sage ich Ihnen Bescheid. Die Krankschreibung haben Sie morgen.",
+       "Natürlich. Nach dem Termin sage ich Ihnen Bescheid, die Krankschreibung haben Sie morgen.",
+       "Ja, klar. Ich sage Ihnen nach dem Termin Bescheid. Morgen haben Sie die Krankschreibung."
       ],
       "sonraki": "n5",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel: haber vereceğini söyledin."
+      "geri_bildirim_tr": "Güzel. Haber vereceğini ve raporun ne zaman geleceğini söyledin."
      },
      {
       "de": "Eine Krankschreibung? Das brauche ich erst ab dem vierten Tag.",
@@ -1224,14 +1224,15 @@
     "kind": "gist",
     "q_tr": "Bu metin ne anlatıyor?",
     "opts": [
+     "Vardiya planını",
      "Hastalanınca firmaya nasıl haber verileceğini",
-     "İzin almayı",
-     "Vardiya planını"
+     "İzin almayı"
     ],
-    "ans": 0,
+    "ans": 1,
     "kanit": [
      0,
-     1
+     1,
+     2
     ]
    },
    {
@@ -1239,13 +1240,13 @@
     "kind": "detail",
     "q_tr": "Herr Wimmer telefonu açmazsa ne yapmalısın?",
     "opts": [
+     "Derya'ya söyle",
      "Telesekretere konuş",
-     "Ertesi gün ara",
-     "Derya'ya söyle"
+     "Ertesi gün ara"
     ],
-    "ans": 0,
+    "ans": 1,
     "kanit": [
-     2
+     3
     ]
    },
    {
@@ -1259,7 +1260,7 @@
     ],
     "ans": 0,
     "kanit": [
-     6
+     7
     ]
    },
    {

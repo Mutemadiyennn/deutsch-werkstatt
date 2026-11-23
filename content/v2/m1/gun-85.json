@@ -67,6 +67,10 @@
      "tr": "Tren bugün 5. perondan kalkıyor."
     },
     {
+     "de": "fahren – ist gefahren – Der Zug ist von Gleis fünf gefahren.",
+     "tr": "kalkmak – kalktı – Tren 5. perondan kalktı."
+    },
+    {
      "de": "später – Ich komme später. – zehn Minuten später",
      "tr": "daha geç – Daha geç geliyorum. – on dakika sonra"
     },
@@ -182,7 +186,7 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Pazartesi sabahı, Bahnhof Wendlfing. Trenini bekliyorsun. Telefonun çalıyor: Derya.",
+    "ortam_tr": "Pazartesi sabahı, Bahnhof Wendlfing. Münih'e giden bir arkadaşını uğurluyorsun. Telefonun çalıyor: Derya.",
     "satirlar": [
      {
       "r": "ch:aksoy",
@@ -208,17 +212,17 @@
     "soru": {
      "q_tr": "Trenin rötarı ne kadar?",
      "opts": [
+      "Rötar yok",
       "On dakika",
-      "Yarım saat",
-      "Rötar yok"
+      "Yarım saat"
      ],
-     "ans": 0
+     "ans": 1
     }
    }
   },
   {
    "id": "m1:85:h2",
-   "title_tr": "Trende ve ofiste: duyduğunu aktarmak",
+   "title_tr": "Peronda ve ofiste: duyduğunu aktarmak",
    "kartlar": [
     "lx:Anschluss",
     "lx:beginnen",
@@ -339,7 +343,7 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Trendesin. Yanındaki adam anonsu anlamamış, sana soruyor.",
+    "ortam_tr": "Peronda arkadaşınla bekliyorsun. Yanınızdaki adam anonsu anlamamış, sana soruyor.",
     "satirlar": [
      {
       "r": "ein Mann",
@@ -365,11 +369,11 @@
     "soru": {
      "q_tr": "Adamın aktarması ne olacak?",
      "opts": [
-      "Beklemiyor, 8.05'te başka bir tren var",
       "Regensburg'da onu bekliyor",
-      "Bugün Münih'e hiç tren yok"
+      "Bugün Münih'e hiç tren yok",
+      "Beklemiyor, 8.05'te başka bir tren var"
      ],
-     "ans": 0
+     "ans": 2
     }
    }
   }
@@ -485,11 +489,11 @@
      "kind": "gist",
      "q_tr": "Peronda ne oluyor?",
      "opts": [
-      "Tren başka perondan kalkıyor ve rötarlı, kadın aktarmasını kaçıracak",
       "Tren iptal oldu, herkes otobüse biniyor",
-      "Kadın yanlış trene binmiş"
+      "Kadın yanlış trene binmiş",
+      "Tren başka perondan kalkıyor ve rötarlı, kadın aktarmasını kaçıracak"
      ],
-     "ans": 0,
+     "ans": 2,
      "kanit": [
       "s2",
       "s4",
@@ -501,11 +505,11 @@
       "kind": "detail",
       "q_tr": "Regensburg treni bugün hangi perondan kalkıyor?",
       "opts": [
+       "8. perondan",
        "2. perondan",
-       "5. perondan",
-       "8. perondan"
+       "5. perondan"
       ],
-      "ans": 1,
+      "ans": 2,
       "kanit": [
        "s2"
       ]
@@ -514,11 +518,11 @@
       "kind": "detail",
       "q_tr": "Trenin rötarı ne kadar?",
       "opts": [
+       "Bir saat",
        "Yaklaşık beş dakika",
-       "Yaklaşık on dakika",
-       "Bir saat"
+       "Yaklaşık on dakika"
       ],
-      "ans": 1,
+      "ans": 2,
       "kanit": [
        "s4"
       ]
@@ -527,11 +531,11 @@
       "kind": "detail",
       "q_tr": "Kadın Münih'e hangi trenle gidebilir?",
       "opts": [
-       "8.05 treniyle",
        "7.12 treniyle",
-       "Bugün gidemez"
+       "Bugün gidemez",
+       "8.05 treniyle"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s6"
       ]
@@ -664,11 +668,11 @@
       "kind": "detail",
       "q_tr": "Yeni iş arkadaşı ne zaman başlıyor?",
       "opts": [
-       "Pazartesi",
        "Çarşamba",
-       "Perşembe"
+       "Perşembe",
+       "Pazartesi"
       ],
-      "ans": 1,
+      "ans": 0,
       "kanit": [
        "s10"
       ]
@@ -677,11 +681,11 @@
       "kind": "detail",
       "q_tr": "Kantin bu hafta saat kaçta kapanıyor?",
       "opts": [
-       "İkide",
        "On ikide",
-       "Dokuzda"
+       "Dokuzda",
+       "İkide"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s12"
       ]
@@ -784,7 +788,7 @@
    "id": "m1:85:a1",
    "tur": "anons",
    "title_tr": "Bahnhof Wendlfing'de anons",
-   "ortam_tr": "Pazartesi sabahı, saat yediyi beş geçiyor. Trenle işe gideceksin, 2. peronda bekliyorsun. Hoparlörden bir anons geliyor.",
+   "ortam_tr": "Pazartesi sabahı, saat yediyi beş geçiyor. Münih'e giden bir arkadaşınla 2. peronda bekliyorsun. Hoparlörden bir anons geliyor.",
    "hizlar": [
     "slow",
     "normal"
@@ -848,11 +852,11 @@
       "kind": "gist",
       "q_tr": "Anons ne söylüyor?",
       "opts": [
+       "Tren bugün erken kalkıyor",
        "Tren bugün başka perondan kalkıyor ve geç geliyor",
-       "Tren bugün hiç yok, otobüse binin",
-       "Tren bugün erken kalkıyor"
+       "Tren bugün hiç yok, otobüse binin"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "c2",
        "c3",
@@ -864,11 +868,11 @@
        "kind": "detail",
        "q_tr": "Tren bugün hangi perondan kalkıyor?",
        "opts": [
-        "2. perondan",
         "5. perondan",
-        "7. perondan"
+        "7. perondan",
+        "2. perondan"
        ],
-       "ans": 1,
+       "ans": 0,
        "kanit": [
         "c3"
        ]
@@ -877,11 +881,11 @@
        "kind": "detail",
        "q_tr": "Neden?",
        "opts": [
-        "Bir kaza yüzünden",
         "Bir yol çalışması yüzünden",
-        "Kar yüzünden"
+        "Kar yüzünden",
+        "Bir kaza yüzünden"
        ],
-       "ans": 1,
+       "ans": 0,
        "kanit": [
         "c4"
        ]
@@ -908,11 +912,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi peron numarasını duydun?",
        "opts": [
+        "vier",
         "fünf",
-        "zwei",
-        "vier"
+        "zwei"
        ],
-       "ans": 0
+       "ans": 1
       },
       {
        "id": "d2",
@@ -972,7 +976,7 @@
      "cevapla": {
       "id": "m1:85:a1:c1",
       "k": "guided_response",
-      "situation_tr": "Trende Derya seni arıyor ve neden geç kaldığını soruyor. Anonsta trenin on dakika rötarlı olduğunun söylendiğini dass ile aktar.",
+      "situation_tr": "Peronda Derya seni arıyor ve neden geç kaldığını soruyor. Anonsta trenin on dakika rötarlı olduğunun söylendiğini dass ile aktar.",
       "prompt_de": "Wo bist du? Kommst du heute später?",
       "accepted": [
        "Ja. In der Durchsage haben sie gesagt, dass der Zug zehn Minuten Verspätung hat.",
@@ -991,11 +995,11 @@
     "k": "pick",
     "q_tr": "Şimdi ne yapmalısın?",
     "opts": [
+     "Eve dön, bugün tren yok",
      "5. perona git, tren yaklaşık on dakika geç gelecek",
-     "2. peronda beklemeye devam et",
-     "Eve dön, bugün tren yok"
+     "2. peronda beklemeye devam et"
     ],
-    "ans": 0,
+    "ans": 1,
     "why_tr": "Anons 5. perona gitmeni söylüyor. Tren on dakika rötarlı.",
     "kanit": [
      "c3",
@@ -1061,11 +1065,11 @@
       "kind": "gist",
       "q_tr": "Tobi neden mesaj bırakıyor?",
       "opts": [
-       "Trafikte sıkışmış, geç gelecek",
        "Hasta, bugün gelmeyecek",
-       "Treni kaçırmış"
+       "Treni kaçırmış",
+       "Trafikte sıkışmış, geç gelecek"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "c2",
        "c4"
@@ -1089,11 +1093,11 @@
        "kind": "detail",
        "q_tr": "Tobi senden ne istiyor?",
        "opts": [
-        "Şefe sekiz buçukta geleceğini söylemeni",
         "Onu hemen geri aramanı",
-        "Onu istasyondan almanı"
+        "Onu istasyondan almanı",
+        "Şefe sekiz buçukta geleceğini söylemeni"
        ],
-       "ans": 0,
+       "ans": 2,
        "kanit": [
         "c4"
        ]
@@ -1102,11 +1106,11 @@
        "kind": "detail",
        "q_tr": "Tobi'yi neden aramamalısın?",
        "opts": [
-        "Araba kullanıyor",
         "Toplantıda",
-        "Telefonu bozuk"
+        "Telefonu bozuk",
+        "Araba kullanıyor"
        ],
-       "ans": 0,
+       "ans": 2,
        "kanit": [
         "c5"
        ]
@@ -1201,11 +1205,11 @@
     "k": "pick",
     "q_tr": "Şimdi ne yapmalısın?",
     "opts": [
-     "Herr Wimmer'e Tobi'nin trafikte olduğunu ve sekiz buçukta geleceğini söyle",
      "Tobi'yi hemen ara",
-     "Toplantıyı iptal et"
+     "Toplantıyı iptal et",
+     "Herr Wimmer'e Tobi'nin trafikte olduğunu ve sekiz buçukta geleceğini söyle"
     ],
-    "ans": 0,
+    "ans": 2,
     "why_tr": "Tobi şefe haber vermeni istiyor ve aranmak istemiyor.",
     "kanit": [
      "c4",
@@ -1259,7 +1263,7 @@
  "prova": {
   "id": "m1:85:p1",
   "title_tr": "Herr Wimmer'e aktar: tren ve Tobi",
-  "durum_tr": "Saat sekizi on geçiyor. Trenin on dakika rötar yaptı, ofise yeni geldin. Tobi sana mesaj bıraktı: trafikte sıkışmış, sekiz buçukta gelecek. Herr Wimmer yanına geliyor.",
+  "durum_tr": "Saat sekizi on geçiyor. Arkadaşının treni on dakika rötar yaptı. Ofise yeni geldin. Tobi sana mesaj bıraktı: trafikte sıkışmış, sekiz buçukta gelecek. Herr Wimmer yanına geliyor.",
   "karsi": "ch:wimmer",
   "baslangic": "n1",
   "dugumler": [
@@ -1269,13 +1273,13 @@
     "tr": "Günaydın! Bugün biraz geç kaldınız. Ne oldu?",
     "secenekler": [
      {
-      "de": "Guten Morgen, Herr Wimmer. Mein Zug hatte zehn Minuten Verspätung.",
-      "tr": "Günaydın Herr Wimmer. Trenimin on dakika rötarı vardı.",
+      "de": "Guten Morgen, Herr Wimmer. Ich war am Bahnhof, der Zug hatte zehn Minuten Verspätung.",
+      "tr": "Günaydın Herr Wimmer. İstasyondaydım, trenin on dakika rötarı vardı.",
       "accepted": [
-       "Guten Morgen, Herr Wimmer. Mein Zug hatte zehn Minuten Verspätung.",
-       "Guten Morgen. Mein Zug hatte zehn Minuten Verspätung.",
-       "Entschuldigung, mein Zug hatte zehn Minuten Verspätung.",
-       "Mein Zug hatte Verspätung, zehn Minuten."
+       "Guten Morgen, Herr Wimmer. Ich war am Bahnhof, der Zug hatte zehn Minuten Verspätung.",
+       "Guten Morgen. Ich war am Bahnhof. Der Zug hatte zehn Minuten Verspätung.",
+       "Entschuldigung, ich war am Bahnhof. Der Zug hatte zehn Minuten Verspätung.",
+       "Ich war am Bahnhof, der Zug hatte Verspätung, zehn Minuten."
       ],
       "sonraki": "n2",
       "uygun": true,
@@ -1304,7 +1308,7 @@
       ],
       "sonraki": "n1",
       "uygun": false,
-      "geri_bildirim_tr": "Trafikte sıkışan Tobi. Sen trenle geldin: **Mein Zug hatte Verspätung.**"
+      "geri_bildirim_tr": "Trafikte sıkışan Tobi. Sen istasyondaydın: **Der Zug hatte Verspätung.**"
      }
     ]
    },
@@ -1506,7 +1510,7 @@
  },
  "okuma_yazma": {
   "tur": "okuma",
-  "title_tr": "Telefonuna gelen tren bildirimi",
+  "title_tr": "Arkadaşının telefonundaki tren bildirimi",
   "metin_de": "Guten Morgen! Ihr Zug nach Regensburg um 7:12 Uhr hat heute etwa zehn Minuten Verspätung. Wegen einer Baustelle fährt der Zug heute von Gleis 5. In Regensburg wartet der Anschluss nach München nicht. Bitte nehmen Sie dort den Zug um 8:05 Uhr. Ab Mittwoch fährt der Zug wieder von Gleis 2. Wir bitten um Entschuldigung.",
   "metin_tr": "Günaydın! Saat 7.12'deki Regensburg treninizin bugün yaklaşık on dakika rötarı var. Bir yol çalışması yüzünden tren bugün 5. perondan kalkıyor. Regensburg'da Münih aktarması beklemiyor. Lütfen orada saat 8.05'teki trene binin. Çarşambadan itibaren tren yine 2. perondan kalkıyor. Özür dileriz.",
   "sorular": [
@@ -1515,11 +1519,11 @@
     "kind": "gist",
     "q_tr": "Bildirim ne hakkında?",
     "opts": [
-     "Trenin bugün rötarlı olduğu ve başka perondan kalktığı",
      "Biletinin iptal edildiği",
-     "Yeni bir tren hattının açıldığı"
+     "Yeni bir tren hattının açıldığı",
+     "Trenin bugün rötarlı olduğu ve başka perondan kalktığı"
     ],
-    "ans": 0,
+    "ans": 2,
     "kanit": [
      1,
      2
@@ -1544,11 +1548,11 @@
     "kind": "detail",
     "q_tr": "Tren ne zamandan itibaren yine 2. perondan kalkacak?",
     "opts": [
-     "Yarından itibaren",
      "Çarşambadan itibaren",
-     "Gelecek aydan itibaren"
+     "Gelecek aydan itibaren",
+     "Yarından itibaren"
     ],
-    "ans": 1,
+    "ans": 0,
     "kanit": [
      5
     ]
@@ -1558,11 +1562,11 @@
     "kind": "detail",
     "q_tr": "Münih'e gidenler Regensburg'da ne yapmalı?",
     "opts": [
+     "Otobüse binmeli",
      "Saat 8.05 trenine binmeli",
-     "Aktarma trenini beklemeli",
-     "Otobüse binmeli"
+     "Aktarma trenini beklemeli"
     ],
-    "ans": 0,
+    "ans": 1,
     "kanit": [
      3,
      4
@@ -1571,14 +1575,14 @@
    {
     "id": "m1:85:o5",
     "k": "guided_response",
-    "situation_tr": "Derya mesaj yazıyor: neden geç geliyorsun? Bildirimde yazanı dass ile aktar: tren on dakika rötarlı.",
+    "situation_tr": "Derya mesaj yazıyor: neden geç geliyorsun? Arkadaşının treni rötarlı. Bildirimde yazanı dass ile aktar.",
     "prompt_de": "Warum kommst du heute später?",
     "accepted": [
-     "Die Bahn schreibt, dass mein Zug zehn Minuten Verspätung hat.",
      "Die Bahn schreibt, dass der Zug zehn Minuten Verspätung hat.",
-     "Mein Zug hat zehn Minuten Verspätung. Die Bahn schreibt, dass eine Baustelle da ist.",
-     "Die Bahn schreibt, mein Zug hat zehn Minuten Verspätung.",
-     "Wegen einer Baustelle. Die Bahn schreibt, dass mein Zug Verspätung hat.",
+     "Die Bahn schreibt, dass ihr Zug zehn Minuten Verspätung hat.",
+     "Der Zug hat zehn Minuten Verspätung. Die Bahn schreibt, dass eine Baustelle da ist.",
+     "Die Bahn schreibt, der Zug hat zehn Minuten Verspätung.",
+     "Wegen einer Baustelle. Die Bahn schreibt, dass der Zug Verspätung hat.",
      "Die Bahn schreibt, dass der Zug Verspätung hat. Zehn Minuten."
     ],
     "why_tr": "Yazılanı **Die Bahn schreibt, dass** ile aktarırsın. **hat** en sona gider."
@@ -1586,7 +1590,7 @@
   ],
   "yazma": {
    "gorev_tr": "Derya'ya kısa bir mesaj yaz. Tren şirketinin yazdığını dass ile aktar: rötar ve peron. Biraz geç geleceğini de yaz.",
-   "ornek_de": "Hallo Derya, die Bahn schreibt, dass mein Zug zehn Minuten Verspätung hat. Er fährt heute von Gleis fünf. Ich komme etwas später.",
+   "ornek_de": "Hallo Derya, die Bahn schreibt, dass der Zug zehn Minuten Verspätung hat. Er fährt heute von Gleis fünf. Ich komme etwas später.",
    "zorunlu": [
     "dass",
     "Verspätung"

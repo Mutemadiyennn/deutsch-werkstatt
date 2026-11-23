@@ -295,3 +295,51 @@ Tür: G = okur GERİ satırı · N = okur notu (3. bölüm) · E = ek (aynı sor
 **m1/gun-90.json**
 
 - [N] `prova.dugumler[n2].secenekler[1].geri_bildirim_tr`: Ateşin yok. Şöyle söyle: **Nein, kein Fieber.**
+
+## İnceleme farkı (PR #253, yorum 7107923610; 2026-11-23, fark turu)
+
+Yalnız incelemenin bulgularına bakıldı (P1-1, P1-2, P2-2…P2-8). P2-1 ve P2-9 bu turun görevinde yoktu, dokunulmadı.
+
+**P1-1 · t4 için 89'da ≥ 2 görev.** `gun-89.json` `halkalar[m1:89:h2]` (dersten_sonra: true):
+- yeni görev, kart `lx:reichen`: `Deryas Laptop ist alt, aber er reicht für die Arbeit.` · tr "Derya'nın dizüstü bilgisayarı eski ama iş için yetiyor." · accepted 4 (`Der Laptop von Derya …`, `… für die Arbeit reicht er.`, iki cümleli biçim)
+- yeni görev, kart `lx:Fest`: `Ist das Deryas Foto vom Fest?` · tr "Bu, Derya'nın şenlikten fotoğrafı mı?" · accepted 3 (`Ist das das Foto von Derya vom Fest?`, `… von dem Fest?`)
+- yeni kalıp satırı `kaliplar[1]`: `Tobis Spätschicht – Deryas Laptop – das Foto von Derya` · tr "Tobi'nin akşam vardiyası – Derya'nın dizüstü bilgisayarı – Derya'nın fotoğrafı"
+- Halka denetimi (görev cümlesinde bilinmeyen = hata) iki cümleyi de geçirdi. Hafta kapısında 89 için öğretilmeden istenen 0.
+
+**P1-2 · okuma `kanit`.** Bölme `okuma.ts cumleler` ve kapının `split` kuralıyla yeniden sayıldı. Yedi günün okuma metninde iki bölme artık aynı sonucu veriyor.
+- 89 `okuma_yazma.metin_de`: `hier ist der Schichtplan vom 22. bis 26. Februar.` → `hier ist der Schichtplan für nächste Woche.` · metin_tr "22–26 Şubat vardiya planı burada." → "gelecek haftanın vardiya planı burada." Böylece cümle sırası yazarın verdiği anahtarla örtüşüyor: o1 [0,4] (plan + kaza kuralı), o2 [1] (saatler), o3 [2,3] (değişiklik + saat 15). Anahtarlar değişmedi.
+- 91: o1 [0,1] → [0,1,2] ("Krank?" · "Dann machen Sie es so." · "Rufen Sie … an."), o2 [2] → [3] (Anrufbeantworter), o3 [6] → [7] (Krankenkasse).
+
+**P2-2 · prova Partizipleri.**
+- 85 `halkalar[m1:85:h1].kaliplar[2]` yeni: `fahren – ist gefahren – Der Zug ist von Gleis fünf gefahren.` · "kalkmak – kalktı – Tren 5. perondan kalktı."
+- 88 `halkalar[m1:88:h1].kaliplar[2]` yeni: `arbeiten – hat gearbeitet – Ich habe mit Derya gearbeitet.` · "çalışmak – çalıştı – Derya ile çalıştım."
+
+**P2-3 · 91 kapı provası n4, seçenek 1.** Seçenek uygun kaldı, raporun zamanı eklendi:
+`Ja, natürlich. Nach dem Termin sage ich Ihnen Bescheid. Die Krankschreibung haben Sie morgen.` · "Evet, tabii. Randevudan sonra size haber veririm. Rapor yarın sizde olur." · accepted 3 · geri bildirim "Güzel. Haber vereceğini ve raporun ne zaman geleceğini söyledin."
+
+**P2-4 · test t01.** `accepted[4]` (`Tobi steht im Stau, er kommt zwanzig Minuten später.`) çıktı. Kalan 4 kabulün hepsi `sagt, dass` ile.
+
+**P2-5 · test haftanın cümlelerini aynen soruyordu.** Üç madde aynı kalıpla yeni duruma çekildi:
+- t06 (transform): from_de `Ich will am Montag zum Arzt gehen.` · accepted `Ist es möglich, dass ich am Montag zum Arzt gehe?` (+ küçük harfli, + `Herr Wimmer, …`) · why "**dass** cümlesinde **gehe** en sona gider."
+- t10: durum "Herr Wimmer'i aradın. İki gündür öksürüğün ve baş ağrın var." · accepted `Ich habe seit zwei Tagen Husten und Kopfschmerzen.` ve 3 varyant · why "Ne (**Husten, Kopfschmerzen**), ne zamandan beri (**seit zwei Tagen**)."
+- t12: durum "Herr Wimmer raporu ilk günden istiyor. Yarın sabah doktora gideceğini söyle. Raporun çarşamba onun elinde olacağını da söyle." · accepted `Kein Problem. Ich gehe morgen früh zum Arzt. Die Krankschreibung haben Sie dann am Mittwoch.` ve 3 varyant. ("onda" yazılmadı: saat mi kişi mi karışıyordu.)
+
+**P2-6 · g4 test t05'e çok yakındı.** Bağlam kurs olarak kaldı (derste ve testte yok), nesne ve istem değişti: durum "Kurs bitti. Bir sandalyede bir ceket kaldı. Bir kursiyer senin mi diye soruyor. Ceket Ioana'nın." · prompt `Ist das deine Jacke?` · accepted `Nein, das ist Ioanas Jacke.`, `Nein, das ist die Jacke von Ioana.`, `Nein, die Jacke ist von Ioana.`, `Nein, die ist von Ioana.`, `Nein, das ist Ioanas.` · kalıp `… s Jacke – die Jacke von …` · why "Kimin: **Ioanas Jacke** ya da **die Jacke von Ioana**."
+
+**P2-7 · 85 WORLD ile çelişki.** Öğrenci artık trenle işe gitmiyor. Münih'e giden adsız bir arkadaşını istasyonda uğurluyor, tren rötarlı olduğu için işe geç kalıyor. Arkadaşa ad verilmedi, WORLD'e yeni olay eklenmedi (İÇ 7013446061 kuralı). Almanca satırlarda yalnız prova seçeneği ve o5 kabulleri değişti, bütün sözcükler o gün zaten öğretiliyor.
+- h1 sahne ortam: "Pazartesi sabahı, Bahnhof Wendlfing. Münih'e giden bir arkadaşını uğurluyorsun. Telefonun çalıyor: Derya."
+- h2 başlık: "Peronda ve ofiste: duyduğunu aktarmak" · sahne ortam: "Peronda arkadaşınla bekliyorsun. Yanınızdaki adam anonsu anlamamış, sana soruyor."
+- a1 ortam: "Pazartesi sabahı, saat yediyi beş geçiyor. Münih'e giden bir arkadaşınla 2. peronda bekliyorsun. Hoparlörden bir anons geliyor." Anonstaki `Fahren Sie weiter nach München?` artık arkadaşa uyuyor.
+- a1 cevapla durum: "Trende Derya …" → "Peronda Derya seni arıyor ve neden geç kaldığını soruyor. …"
+- prova durum: "Arkadaşının treni on dakika rötar yaptı. Ofise yeni geldin."
+- prova n1 seçenek 0: `Mein Zug hatte zehn Minuten Verspätung.` → `Guten Morgen, Herr Wimmer. Ich war am Bahnhof, der Zug hatte zehn Minuten Verspätung.` · "Günaydın Herr Wimmer. İstasyondaydım, trenin on dakika rötarı vardı." · accepted 4
+- prova n1 seçenek 2 (uygun değil) geri bildirim: "Trafikte sıkışan Tobi. Sen istasyondaydın: **Der Zug hatte Verspätung.**"
+- okuma başlık: "Arkadaşının telefonundaki tren bildirimi" · o5 durum: "Derya mesaj yazıyor: neden geç geliyorsun? Arkadaşının treni rötarlı. Bildirimde yazanı dass ile aktar." · o5 kabullerinde `mein Zug` → `der Zug` (bir kabul `ihr Zug`) · yazma ornek_de `dass mein Zug` → `dass der Zug`
+- Bırakılan: halka görev cümlelerindeki `Unser Zug fährt heute von Gleis fünf …`, `unser Anschluss`, `Ich hoffe, dass ich den Anschluss schaffe` ve s7. Bunlar bağlamsız kart cümleleri, öğrencinin işe gidişini anlatmıyor. Arkadaşla peronda beklerken `unser Zug` da doğal.
+
+**P2-8 · 91 ses ortamı.** `sesler[m1:91:a1].ortam_tr`: "Pazartesi Herr Wimmer'i aradıktan sonra böyle bir mesaj gelebilir. Hızlı konuşuyor." Ses durağı provadan önce gelse de öğrenci yapmadığı bir aramanın sonrasını dinlemiyor.
+
+**Denetim (bu farktan sonra).** `denet.sh 13`: validate **0 hata**, 178 uyarı (önceki gibi) · dikiş 85–91 bütün sütunlar 0, **İhlal: 0** · hafta kapısı **GEÇTİ**: öğretilmeden istenen 0 (kesin 0, sınırda 0), anlaşılmayan karşı soru 0, test %100 (12/12), görülmemiş 7/7. `yzkontrol.ts 85 91`: **7/7 TAMAM**. Okuma bölmesi: 85–91'de `cumleler` ile kapının bölmesi aynı, bütün `kanit` cümleleri elle okundu.
+Değişen Türkçe satırlar OD-9'a göre: sembol yok, her cümle ≤ 14 sözcük, İngilizce yok. `review` alanları değişmedi (gün dosyaları "draft", gerekçe yukarıda).
+
+Sonuç: incelemenin iki P1'i ve görevdeki yedi P2 kapandı. **KAPANDI.**
