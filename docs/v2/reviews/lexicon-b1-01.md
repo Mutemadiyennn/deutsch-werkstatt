@@ -210,3 +210,16 @@ WORLD.md'de Tobi 14. haftada taşınıyor; batch-b1-01a'daki 14 Tobi geçişi (7
 | lx:abwarten | forms[3] Wir haben zwei Wochen ___. | also_ok: **gewartet** |
 | lx:Klinik | forms[3] Die beiden ___ liegen nah beieinander. | also_ok: **Krankenhäuser** |
 | lx:Hinweis | forms[3] Auf dem Zettel stehen alle ___ zum Termin. | also_ok: **Informationen**, **Infos** |
+
+## Örneklem 2. tur ve kapanış (2026-11-23)
+
+| Kimlik | Boşluk | Ne yapıldı |
+|---|---|---|
+| lx:diskutieren | forms[0], forms[2] | `also_ok`'tan **gestritten** ve **streitet** çıktı (kavga etmek; kartın hata notuyla çelişiyordu). forms[3] **streiten** kaldı: **Darüber kann man streiten** tartışılır anlamında yerleşik. |
+| lx:Vorfall | forms[0], forms[2], forms[3] | `also_ok`'tan **Ereignis**, **Ereignisse** çıktı. İki kart tam bu ayrımı öğretiyor (kötü olay **Vorfall**, güzel olay **Ereignis**). |
+| lx:Meldung | forms[1] | `also_ok`: **Nachricht** |
+| lx:Wartezeit | forms[2] | `also_ok`: **warten** |
+
+Makine taraması: her kartın `also_ok` sözcükleri aynı kartın `mistakes_tr` içindeki kalın sözcüklerle karşılaştırıldı. 7 eşleşme çıktı. lx:Vorfall (2) çıkarıldı. Kalan 5'i çelişki değil: lx:Meldung **Nachricht** (not yalnız arkadaştan gelen mesajı ayırıyor), lx:sinken **fallen** (fiyat için de doğru; not yere düşmeyi anlatıyor), lx:einnehmen **nehmen** ve lx:abwarten **warten** (notlarda doğru biçim olarak geçiyor).
+
+Okur 3. turda geçti, örneklem bu düzeltmelerle kapandı. İki dosyada `review.status: reviewed`, `okur: passed`. **Sonuç: KAPANDI.** Baştaki B-1 böylece kapandı; B-2 (img, ne_zaman_tr) ve B-3 (sevk zorunluluğu kaynağı) açık duruyor.
