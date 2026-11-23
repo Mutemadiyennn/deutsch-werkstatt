@@ -80,3 +80,45 @@ du/Sie: Wimmer, Brandl, Schneider ve kurs öğretmeni Sie; Derya, Lena, Ioana, T
 - `review`: gun-99 … gun-105 → `{status: "draft", by: "dilbilimci-ajan", at: "2026-11-23", notes: "…; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."}` (101 ve 104'teki eski notlar, 116 116 kaynakları dahil, korunarak sona eklendi).
 
 SONUÇ: ONAY (bütün bulgular kapandı; draft yalnız video ve kart sayısı kapıları yüzünden)
+
+## Okur fark turu
+
+Kaynak: `docs/v2/reviews/okur/ic17-h15.md` (GERİ 114: A 50, B 56, gr 7, dn 1). Tarih: 2026-11-23.
+
+**Düzeltilen GERİ: 114/114.** Ek olarak 1 alan okurun notu üzerine düzeltildi (hafta-sonu-testi-15 maddeler[0] situation_tr: aynı cümledeki iki ayrı anlamlı "daha" yerine "Önce para çekmen gerekiyordu"). Almanca satırlara ve `accepted`'a dokunulmadı.
+
+Uygulanan ilke:
+- "fiil", "mastar", "isim", "şimdiki zaman" terimleri tümüyle çıktı. Yerine sözcüğün kendisi kalın yazıldı ve yeri söylendi: "**Früher** başta, **mussten** ikinci yerde", "**abheben** en sonda". "Mastar" bu turda hiçbir yerde kalmadı.
+- `…` olan her açıklamada boşluk, maddenin kendi doğru cevabından tam cümleyle dolduruldu (ör. **Danach bin ich zu Fuß gegangen.**). `um … zu` → "**um** ve **zu** ile".
+- `;` iki kısa cümleye bölündü; `=` "demek" oldu; `+` çıktı; tırnaklı Almanca kalın yazıldı.
+- "Kulak kapısı" → "Haftanın son dinlemesi"; "Haftanın kapısı" → "Haftanın son provası".
+- gun-103 kalıp 7 tr: "zengin olmak – zenginleşmek – …" (**reich werden** farkı görünür).
+- gun-103 m1:103:s1: "yok olmak" → "işe ya da okula gelmemek".
+- gun-99 prova n1 s1: "sabah oldu" → "Para çekmek bu sabahtı, şimdi değil."
+- gun-105 yazma `gorev_tr`: dört cümle ile dört soru eşitlendi (Pazartesi neden geç kaldın? Cumartesi hangi hatayı yaptın? Bu hataya ne dersin? Bugün ne oldu?). Örnek metinde olmayan **zuerst/danach** isteği çıkarıldı. Görev artık yalnız **musste** ve **deswegen** istiyor, `zorunlu` ile örtüşüyor.
+- gun-105 prova `durum_tr`: liste kısa cümlelere bölündü. Şifre "Sonra bir an şifreyi unuttun" oldu: Almanca düğümlerdeki **Geheimzahl vergessen** ile uyumlu, 99. gündeki "ilk denemede yanlıştı" ile çelişmiyor.
+- gr:a2-06:t1–t4: "kısa geçmiş biçimi", kök, ek, mastar, fiil çıktı ("tek kelimeyle söylenir", "**-te** gelir"). t2 başlığı tek fikir: "Geçmişte istek ve izin: wollte, sollte, musste nicht, durfte nicht". t3 tablo: "not (1 en iyi, 6 en kötü)". t4 tablo başlığı "fiil (2. sıra)" → "2. sıradaki kelime". Yalnız Edit aracıyla, yalnız bu dört girdide.
+- `can_do.tr` (gun-100) düz metin olarak gösterildiği için (Ders.tsx, Rehber.tsx) Almanca sözcükler kalın yazılmadı.
+
+Değişen kimlikler (okur fark okuması bunları okuyacak):
+- **gun-99** (15): sahne.bolumler[1].cevapla.situation_tr; sahne.bolumler[1].cevapla.why_tr; sesler[0].bolumler[0].cevapla.why_tr; sesler[1].bolumler[0].cevapla.situation_tr; prova.dugumler[0].secenekler[2].geri_bildirim_tr; prova.dugumler[1].secenekler[1].geri_bildirim_tr; prova.dugumler[2].secenekler[0].geri_bildirim_tr; prova.kapanis_tr; okuma_yazma.sorular[4].why_tr; okuma_yazma.yazma.kontrol_tr[2]; m1:99:s2 why_tr; m1:99:s4 why_tr; m1:99:s5 why_tr; m1:99:s9 why_tr; m1:99:s10 why_tr
+- **gun-100** (15): can_do.tr; sahne.bolumler[0].cevapla.situation_tr; sesler[0].eylem.why_tr; sesler[1].bolumler[0].cevapla.situation_tr; sesler[1].eylem.why_tr; prova.durum_tr; prova.dugumler[0].secenekler[1].geri_bildirim_tr; prova.dugumler[1].secenekler[0].geri_bildirim_tr; prova.dugumler[2].secenekler[1].geri_bildirim_tr; prova.dugumler[3].secenekler[0].geri_bildirim_tr; m1:100:s3 why_tr; m1:100:s5 why_tr; m1:100:s7 why_tr; m1:100:s10 why_tr; m1:100:s11 situation_tr
+- **gun-101** (9): sahne.bolumler[0].cevapla.situation_tr; sahne.bolumler[0].cevapla.why_tr; prova.dugumler[2].secenekler[0].geri_bildirim_tr; prova.kapanis_tr; okuma_yazma.sorular[4].why_tr; okuma_yazma.yazma.kontrol_tr[1]; m1:101:s1 why_tr; m1:101:s4 why_tr; m1:101:s8 why_tr
+- **gun-102** (23): sahne.bolumler[0].cevapla.situation_tr; sahne.bolumler[0].cevapla.why_tr; sahne.bolumler[1].cevapla.situation_tr; sahne.bolumler[1].cevapla.why_tr; sesler[1].bolumler[0].cevapla.situation_tr; sesler[1].bolumler[0].cevapla.why_tr; sesler[1].eylem.why_tr; prova.durum_tr; prova.dugumler[0].secenekler[0].geri_bildirim_tr; prova.dugumler[0].secenekler[1].geri_bildirim_tr; prova.dugumler[2].secenekler[0].geri_bildirim_tr; prova.dugumler[3].secenekler[0].geri_bildirim_tr; prova.kapanis_tr; okuma_yazma.yazma.gorev_tr; okuma_yazma.yazma.kontrol_tr[1]; okuma_yazma.yazma.kontrol_tr[2]; m1:102:s1 why_tr; m1:102:s4 why_tr; m1:102:s5 why_tr; m1:102:s6 why_tr; m1:102:s8 why_tr; m1:102:s10 why_tr; m1:102:s11 situation_tr
+- **gun-103** (13): halkalar[1].kaliplar[7].tr; prova.dugumler[0].secenekler[1].geri_bildirim_tr; prova.dugumler[2].secenekler[1].geri_bildirim_tr; prova.dugumler[3].secenekler[1].geri_bildirim_tr; prova.dugumler[3].secenekler[2].geri_bildirim_tr; okuma_yazma.sorular[4].why_tr; okuma_yazma.yazma.kontrol_tr[1]; m1:103:s1 why_tr; m1:103:s2 why_tr; m1:103:s7 why_tr; m1:103:s8 why_tr; m1:103:s9 why_tr; m1:103:s10 why_tr
+- **gun-104** (8): sesler[0].bolumler[0].cevapla.why_tr; prova.dugumler[3].secenekler[1].geri_bildirim_tr; okuma_yazma.yazma.kontrol_tr[1]; m1:104:s4 why_tr; m1:104:s5 why_tr; m1:104:s6 why_tr; m1:104:s7 why_tr; m1:104:s11 why_tr
+- **gun-105** (11): sahne.bolumler[0].cevapla.situation_tr; sahne.bolumler[0].cevapla.why_tr; sesler[0].title_tr; prova.title_tr; prova.durum_tr; prova.kapanis_tr; okuma_yazma.yazma.gorev_tr; okuma_yazma.yazma.kontrol_tr[1]; m1:105:s1 why_tr; m1:105:s4 why_tr; m1:105:s8 why_tr
+- **hafta-sonu-testi-15** (9): maddeler[0] (m1:105:t01) situation_tr; maddeler[0] (m1:105:t01) why_tr; maddeler[4] (m1:105:t05) why_tr; maddeler[5] (m1:105:t06) why_tr; maddeler[6] (m1:105:t07) why_tr; maddeler[7] (m1:105:t08) why_tr; maddeler[9] (m1:105:t10) instr_tr; maddeler[9] (m1:105:t10) why_tr; maddeler[11] (m1:105:t12) why_tr
+- **gorulmemis-15** (4): durumlar[1] (m1:h15:g2) durum_tr; durumlar[2] (m1:h15:g3) why_tr; durumlar[4] (m1:h15:g5) why_tr; durumlar[6] (m1:h15:g7) why_tr
+- **dn-15** (1): dn:akicilik-432 tr
+- **grammar.json** (7): gr:a2-06:t1 tr; gr:a2-06:t2 h_tr; gr:a2-06:t2 tr; gr:a2-06:t3 tr; gr:a2-06:t3 tablo (son satır); gr:a2-06:t4 tr; gr:a2-06:t4 tablo (başlık)
+
+Öz-denetim (betik, değişen 115 alan + gr t1–t4 bütün metinleri + dn-15): `;` `…` `=` `+` `→` `≠` 0, tırnaklı Almanca 0, yasak terim (fiil, mastar, isim, özne, nesne, şimdiki/geçmiş zaman, çekim, ek, kök, kapı, biçim, olumsuz) 0, 14 kelimeyi aşan cümle 0 (kalıp `tr`'sindeki `…` serbest).
+
+Kapılar: `npm run content:validate` → 0 hata. `hafta-kapisi-kos.ts --hafta 15` → **GEÇTİ** (öğretilmeden istenen 0, hafta sonu testi %100, görülmemiş 7/7).
+
+Okurun sayılmayan notları: sahne anlatımı/ortam/şıklardaki `;` ve başlıklardaki "Als Kind …" (gun-102 sahne.title_tr, okuma title_tr) bu turda değiştirilmedi. Ötekilerde "Daha para çekmen gerekiyordu" çevirileri (**noch Geld abheben**) bırakıldı, yalnız iki "daha"nın çakıştığı hafta testi düzeltildi.
+
+`review`: değişmedi (draft; video ve kart sayısı kapıları açık, OD-9.4 okur fark okuması bekleniyor).
+
+SONUÇ (fark turu): KAPANDI. 114 GERİ düzeltildi, okur fark okuması bekleniyor.

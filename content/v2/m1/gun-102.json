@@ -497,7 +497,7 @@
     "cevapla": {
      "id": "m1:102:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Öğretmen sana dönüyor. Çocukken her gün erken yatmak zorundaydın; yine de güzeldi.",
+     "situation_tr": "Öğretmen sana dönüyor. Çocukken her gün erken yatmak zorundaydın. Yine de güzeldi.",
      "prompt_de": "Und Sie? Was mussten Sie als Kind machen?",
      "accepted": [
       "Als Kind musste ich jeden Tag früh ins Bett gehen. Trotzdem war das gut.",
@@ -506,7 +506,7 @@
       "Als Kind musste ich jeden Tag früh ins Bett gehen, trotzdem war das gut.",
       "Früher musste ich jeden Tag früh ins Bett gehen."
      ],
-     "why_tr": "**Als Kind** başta olunca fiil **musste** hemen ardından gelir, sonra **ich**."
+     "why_tr": "**Als Kind** başta olunca **musste** hemen ardından gelir, sonra **ich**."
     }
    },
    {
@@ -630,7 +630,7 @@
     "cevapla": {
      "id": "m1:102:v1:c2",
      "k": "guided_response",
-     "situation_tr": "Ceket senin değil; öğretmenin olabilir, onun ceketine benziyor.",
+     "situation_tr": "Ceket senin değil. Öğretmenin olabilir, onun ceketine benziyor.",
      "prompt_de": "Wem gehört die Jacke hier? Ist das deine?",
      "accepted": [
       "Nein, die gehört mir nicht. Vielleicht gehört sie der Lehrerin.",
@@ -639,7 +639,7 @@
       "Nein. Ich glaube, die Jacke gehört der Lehrerin.",
       "Nein, nicht meine. Die gehört vielleicht der Lehrerin."
      ],
-     "why_tr": "Sahiplik: **Die Jacke gehört mir (nicht).** Kimin olduğu **gehört** + kişi."
+     "why_tr": "Sahiplik: **Die Jacke gehört mir nicht.** Kimin olduğu **gehört**'ten sonra gelir: **Sie gehört der Lehrerin.**"
     }
    }
   ]
@@ -1020,7 +1020,7 @@
      "cevapla": {
       "id": "m1:102:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Ioana soruyor. Çocukken sen de saat altıda evde olmak zorundaydın; yine de güzeldi.",
+      "situation_tr": "Ioana soruyor. Çocukken sen de saat altıda evde olmak zorundaydın. Yine de güzeldi.",
       "prompt_de": "Und du? Musstest du als Kind auch früh zu Hause sein?",
       "accepted": [
        "Ja, ich musste um sechs Uhr zu Hause sein. Trotzdem war das schön.",
@@ -1029,7 +1029,7 @@
        "Ja, ich musste auch um sechs zu Hause sein. Trotzdem war das gut.",
        "Ja. Um sechs Uhr musste ich zu Hause sein, trotzdem war das schön."
       ],
-      "why_tr": "**trotzdem** ikinci cümlenin başında; fiil (**war**) hemen ardından gelir."
+      "why_tr": "**trotzdem** ikinci cümlenin başında. **war** hemen ardından gelir: **Trotzdem war das schön.**"
      }
     }
    ],
@@ -1043,7 +1043,7 @@
      "Okula gidemiyordu"
     ],
     "ans": 0,
-    "why_tr": "\"Als Kind hatte ich kein Handy\" diyor.",
+    "why_tr": "**Als Kind hatte ich kein Handy** diyor.",
     "kanit": [
      "c3"
     ]
@@ -1095,7 +1095,7 @@
  "prova": {
   "id": "m1:102:p1",
   "title_tr": "Ioana ile çocukluk sohbeti",
-  "durum_tr": "Kurs arası. Ioana ile \"Als Kind …\" alıştırması yapıyorsunuz. Çocukluğunla ilgili ne istersen anlatabilirsin; bu bir alıştırma.",
+  "durum_tr": "Kurs arası. Ioana ile **Als Kind** alıştırması yapıyorsunuz. Çocukluğunla ilgili ne istersen anlatabilirsin. Bu bir alıştırma.",
   "karsi": "ch:popescu",
   "baslangic": "n1",
   "dugumler": [
@@ -1115,7 +1115,7 @@
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Doğru: **Als Kind musste ich …** Fiil ikinci yerde."
+      "geri_bildirim_tr": "Doğru: **Als Kind musste ich jeden Tag früh ins Bett gehen.** **musste** ikinci yerde."
      },
      {
       "de": "Ich musste in der Küche helfen.",
@@ -1128,7 +1128,7 @@
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel. **musste** + mastar **helfen** sonda."
+      "geri_bildirim_tr": "Güzel. **musste** ikinci yerde, **helfen** en sonda."
      },
      {
       "de": "Als Kind muss ich früh schlafen.",
@@ -1194,7 +1194,7 @@
       ],
       "sonraki": "n3",
       "uygun": true,
-      "geri_bildirim_tr": "Doğru: yasak = **durfte nicht**."
+      "geri_bildirim_tr": "Doğru: **durfte nicht** yasaktı demek."
      },
      {
       "de": "Ich durfte am Abend nicht fernsehen.",
@@ -1240,7 +1240,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "**Trotzdem** başta, fiil **war** hemen ardından."
+      "geri_bildirim_tr": "**Trotzdem** başta, **war** hemen ardından."
      },
      {
       "de": "Ja, aber heute ist es auch cool.",
@@ -1264,7 +1264,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Çocukluğunu **Als Kind musste / durfte nicht** ile anlattın; **trotzdem** ile iki fikri bağladın. **musste nicht** (gerek yoktu) ile **durfte nicht** (yasaktı) yine işine yaradı."
+  "kapanis_tr": "Çocukluğunu **Als Kind musste** ve **Als Kind durfte nicht** ile anlattın. **trotzdem** ile iki fikri bağladın. **musste nicht** (gerek yoktu) ile **durfte nicht** (yasaktı) yine işine yaradı."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1345,7 +1345,7 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Sen de üç cümlelik bir \"Als Kind …\" metni yaz: zorunda olduğun bir şey, yapabildiğin bir şey, istediğin bir şey. (Gerçek ya da uydurma olabilir.)",
+   "gorev_tr": "Sen de çocukluğunu üç cümleyle yaz. **Als Kind** ile başlayabilirsin. Zorunda olduğun bir şey, yapabildiğin bir şey, istediğin bir şey yaz. Gerçek ya da uydurma olabilir.",
    "ornek_de": "Als Kind musste ich früh ins Bett gehen. Ich konnte gut schwimmen. Mit zehn wollte ich viel reisen.",
    "zorunlu": [
     "musste",
@@ -1359,8 +1359,8 @@
    ],
    "kontrol_tr": [
     "Üç cümlede **musste**, **konnte** ve **wollte** var mı?",
-    "Cümle **Als Kind** ile başlıyorsa fiil hemen ardından mı geliyor?",
-    "Mastar (**gehen**, **schwimmen**, **reisen**) cümlenin sonunda mı?"
+    "**Als Kind**'den hemen sonra **musste**, **konnte** ya da **wollte** geldi mi?",
+    "Cümlenin son sözcüğü sözlükteki hâliyle mi? Örnek: **gehen**, **schwimmen**."
    ]
   }
  },
@@ -1378,7 +1378,7 @@
      "früher mussten wir überall zu fuß gehen",
      "Früher mussten wir überall zu Fuß gehen"
     ],
-    "why_tr": "**Früher** başta, fiil **mussten** ikinci yerde."
+    "why_tr": "**Früher** başta, **mussten** ikinci yerde."
    },
    {
     "id": "m1:102:s2",
@@ -1417,7 +1417,7 @@
      "trotzdem war die zeit schön",
      "Trotzdem war die Zeit schön"
     ],
-    "why_tr": "**Trotzdem** başta, fiil **war** hemen ardından."
+    "why_tr": "**Trotzdem** başta, **war** hemen ardından."
    },
    {
     "id": "m1:102:s5",
@@ -1428,7 +1428,7 @@
      "Wir hatten früher kein Handy.",
      "Früher hatten wir noch kein Handy."
     ],
-    "why_tr": "**Früher** başta, fiil **hatten** ikinci yerde."
+    "why_tr": "**Früher** başta, **hatten** ikinci yerde."
    },
    {
     "id": "m1:102:s6",
@@ -1439,7 +1439,7 @@
      "Wem gehört diese Jacke?",
      "Wem gehört die Jacke hier?"
     ],
-    "why_tr": "Kimin: **Wem gehört …?**"
+    "why_tr": "Kimin olduğunu sormak için: **Wem gehört die Jacke?**"
    },
    {
     "id": "m1:102:s7",
@@ -1461,7 +1461,7 @@
      "Das Wetter war schlecht, trotzdem sind wir zu Fuß gegangen.",
      "Das Wetter war schlecht. Wir sind trotzdem zu Fuß gegangen."
     ],
-    "why_tr": "**Trotzdem** başa gelirse fiil (**sind**) hemen ardından gelir."
+    "why_tr": "**Trotzdem** başa gelirse **sind** hemen ardından gelir."
    },
    {
     "id": "m1:102:s9",
@@ -1490,12 +1490,12 @@
      "Ja, das habe ich gestern gebucht.",
      "Ja, gestern habe ich es gebucht."
     ],
-    "why_tr": "Geçmiş: **habe … gebucht**."
+    "why_tr": "Geçmiş: **Ich habe es gestern gebucht.** **gebucht** en sonda."
    },
    {
     "id": "m1:102:s11",
     "k": "guided_response",
-    "situation_tr": "Kurs öğretmeni çocukluğunu soruyor. Okula yürüyerek gitmek zorundaydın; ama dışarıda çok oynayabiliyordun.",
+    "situation_tr": "Kurs öğretmeni çocukluğunu soruyor. Okula yürüyerek gitmek zorundaydın. Ama dışarıda çok oynayabiliyordun.",
     "prompt_de": "Erzählen Sie: Wie war das früher bei Ihnen?",
     "accepted": [
      "Als Kind musste ich zu Fuß in die Schule gehen. Aber ich konnte draußen viel spielen.",

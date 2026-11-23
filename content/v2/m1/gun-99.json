@@ -750,7 +750,7 @@
     "cevapla": {
      "id": "m1:99:v1:c2",
      "k": "guided_response",
-     "situation_tr": "Herr Wimmer ne olduğunu soruyor. Para çekmek zorundaydın; daha erken gelemedin.",
+     "situation_tr": "Herr Wimmer ne olduğunu soruyor. Para çekmek zorundaydın. Bu yüzden daha erken gelemedin.",
      "prompt_de": "Was war denn los?",
      "accepted": [
       "Entschuldigung, ich musste noch Geld abheben. Ich konnte nicht früher kommen.",
@@ -760,7 +760,7 @@
       "Der Geldautomat war kaputt. Ich musste noch Geld abheben.",
       "Tut mir leid. Ich musste noch Geld abheben, ich konnte nicht früher kommen."
      ],
-     "why_tr": "Zorunluluk geçmişte **ich musste**, yapamamak **ich konnte nicht** olur. Mastar (**abheben**, **kommen**) en sona gider."
+     "why_tr": "Zorunluluk geçmişte **ich musste**, yapamamak **ich konnte nicht** olur. **abheben** ve **kommen** en sona gider."
     }
    }
   ]
@@ -967,7 +967,7 @@
        "Mein Geldautomat war kaputt. Bei einer anderen Bank musste ich fünf Euro Gebühr bezahlen.",
        "Ich musste bei einer anderen Bank fünf Euro Gebühr bezahlen."
       ],
-      "why_tr": "**Ich musste** + mastar: **Ich musste … Geld abheben.** Ücreti **Gebühr** ile söylersin."
+      "why_tr": "**Ich musste bei einer anderen Bank Geld abheben.** **abheben** en sonda. Ücreti **Gebühr** ile söylersin."
      }
     }
    ],
@@ -1156,7 +1156,7 @@
      "cevapla": {
       "id": "m1:99:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Lena'ya geri dönüyorsun. Teşekkür et; bir dahaki sefere parayı havale edeceğini söyle.",
+      "situation_tr": "Lena'ya geri dönüyorsun. Teşekkür et. Bir dahaki sefere parayı havale edeceğini söyle.",
       "prompt_de": "Hallo! Hast du meine Nachricht bekommen?",
       "accepted": [
        "Ja, danke! Ich kann das Geld auch überweisen. Das ist kostenlos.",
@@ -1277,7 +1277,7 @@
       ],
       "sonraki": "n1b",
       "uygun": false,
-      "geri_bildirim_tr": "**ich muss** şimdiki zaman: Herr Wimmer şimdi gideceğini sanır. Geçmiş için **ich musste** de."
+      "geri_bildirim_tr": "**ich muss** şimdi demek. Herr Wimmer şimdi gideceğini sanır. Geçmiş için **ich musste** de."
      }
     ]
    },
@@ -1310,7 +1310,7 @@
       ],
       "sonraki": "n1b",
       "uygun": false,
-      "geri_bildirim_tr": "Para çekme işi bitti, sabah oldu. **Ich musste** de."
+      "geri_bildirim_tr": "Para çekmek bu sabahtı, şimdi değil. Geçmiş için **Ich musste** de."
      }
     ]
    },
@@ -1330,7 +1330,7 @@
       ],
       "sonraki": "n3",
       "uygun": true,
-      "geri_bildirim_tr": "Doğru: **ich konnte nicht** + mastar **schreiben** sonda."
+      "geri_bildirim_tr": "Doğru: **ich konnte nicht** ve en sonda **schreiben**."
      },
      {
       "de": "Tut mir leid, ich hatte keine Zeit. Ich musste schnell zur Bank.",
@@ -1400,7 +1400,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Geç kaldığını ve nedenini **musste / konnte** ile açıkladın. Herr Wimmer kısa ve net bir açıklama istiyordu; tam da onu verdin."
+  "kapanis_tr": "Geç kaldığını ve nedenini **musste** ve **konnte** ile açıkladın. Herr Wimmer kısa ve net bir açıklama istiyordu. Tam da onu verdin."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1477,7 +1477,7 @@
      "Ja, am Donnerstag kann ich dir gern helfen.",
      "Ja, gern. Ich kann dir im Kurs helfen."
     ],
-    "why_tr": "**Ich kann dir helfen**: yardım edilen kişi **dir** (sana). Mastar **helfen** sonda."
+    "why_tr": "**Ich kann dir helfen**: yardım edilen kişi **dir** (sana). **helfen** en sonda."
    }
   ],
   "yazma": {
@@ -1494,7 +1494,7 @@
    "kontrol_tr": [
     "Perşembe gününü yazdın mı?",
     "Geç kalma sebebini **ich musste** ile yazdın mı?",
-    "Mastar (**helfen**, **abheben**) cümlenin sonunda mı?"
+    "**helfen** ve **abheben** cümlenin sonunda mı?"
    ]
   }
  },
@@ -1525,7 +1525,7 @@
      "die geheimzahl war beim ersten mal falsch",
      "Die Geheimzahl war beim ersten Mal falsch"
     ],
-    "why_tr": "**Geheimzahl** büyük harfle başlar: isim."
+    "why_tr": "**Geheimzahl** büyük harfle başlar. Almancada şeylerin adı büyük harfle yazılır."
    },
    {
     "id": "m1:99:s3",
@@ -1551,7 +1551,7 @@
      "ioana schreibt einen lebenslauf um im kindergarten zu arbeiten",
      "Ioana schreibt einen Lebenslauf, um im Kindergarten zu arbeiten"
     ],
-    "why_tr": "**um … zu** ile amaç: **zu arbeiten** en sonda."
+    "why_tr": "Amacı **um** ve **zu** ile söylersin: **um im Kindergarten zu arbeiten**. **zu arbeiten** en sonda."
    },
    {
     "id": "m1:99:s5",
@@ -1562,7 +1562,7 @@
      "Früher konnte ich nicht kommen.",
      "Ich konnte leider nicht früher kommen."
     ],
-    "why_tr": "Yapamamak geçmişte **ich konnte nicht**; **kommen** sonda."
+    "why_tr": "Yapamamak geçmişte **ich konnte nicht** olur. **kommen** en sonda."
    },
    {
     "id": "m1:99:s6",
@@ -1609,7 +1609,7 @@
      "Ja, ich habe das Geld abgehoben. Fünfzig Euro.",
      "Ja, schon. Fünfzig Euro."
     ],
-    "why_tr": "Geçmiş: **habe … abgehoben**. **ab** başa geçer, **ge** ortaya girer."
+    "why_tr": "Geçmiş: **Ich habe fünfzig Euro abgehoben.** **ab** başa geçer, **ge** ortaya girer."
    },
    {
     "id": "m1:99:s10",
@@ -1624,7 +1624,7 @@
      "Ja, mein Geldautomat war kaputt. Ich musste zu einer anderen Bank gehen.",
      "Ja, leider. Ich musste zu einer anderen Bank gehen."
     ],
-    "why_tr": "**Musstest du …?** sorusuna **ich musste** ile cevap verirsin."
+    "why_tr": "**Musstest du heute noch zur Bank?** sorusuna **ich musste** ile cevap verirsin."
    },
    {
     "id": "m1:99:s11",
