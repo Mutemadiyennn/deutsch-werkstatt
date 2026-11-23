@@ -1,0 +1,1360 @@
+{
+ "schema": 1,
+ "id": "m1:gun:60",
+ "day": 60,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Duyguyu nedeniyle söylemek: Ich bin müde, weil ich früh aufgestanden bin",
+ "goal_tr": "Nasıl hissettiğini ve nedenini söylersin. Birinden kibarca bir şey rica edersin.",
+ "can_do": {
+  "id": "cd:m1:60",
+  "tr": "Nasıl olduğumu nedeniyle söylerim: Ich bin müde, weil ich früh aufgestanden bin."
+ },
+ "unit": "u:a2:60",
+ "arm": "kafe",
+ "place": "pl:firma",
+ "characters": [
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:wimmer",
+  "ch:huber",
+  "ch:brandl",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-01:t5"
+ ],
+ "yeni_kartlar": [
+  "lx:bitten",
+  "lx:geduldig",
+  "lx:lassen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:60:h1",
+   "title_tr": "Nasılsın? Neden?",
+   "kartlar": [
+    "lx:bitten",
+    "lx:geduldig",
+    "lx:lassen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Kann mir jemand helfen?",
+     "tr": "Bana biri yardım edebilir mi?"
+    },
+    {
+     "de": "Wie sagt man … auf Deutsch?",
+     "tr": "… Almanca nasıl denir?"
+    },
+    {
+     "de": "Ich verstehe … nicht.",
+     "tr": "…'ı anlamıyorum."
+    },
+    {
+     "de": "Ich bitte dich um … – Er bittet mich um …",
+     "tr": "Senden … rica ediyorum. – O benden … rica ediyor."
+    },
+    {
+     "de": "…, denn ich bin …",
+     "tr": "Eve gidiyorum, çünkü yorgunum."
+    },
+    {
+     "de": "mehr als …",
+     "tr": "…'den fazla"
+    },
+    {
+     "de": "Ich lasse … zu Hause.",
+     "tr": "…'ı evde bırakıyorum."
+    },
+    {
+     "de": "Lass mich bitte …",
+     "tr": "Lütfen bırak da … yapayım."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:bitten",
+     "de": "Darf ich Sie um etwas bitten?",
+     "tr": "Sizden bir şey rica edebilir miyim?",
+     "accepted": [
+      "Darf ich Sie um etwas bitten?",
+      "Darf ich Sie bitte um etwas bitten?",
+      "Kann ich Sie um etwas bitten?"
+     ]
+    },
+    {
+     "kart": "lx:bitten",
+     "de": "Ich bitte Derya um Hilfe, weil ich das Formular nicht verstehe.",
+     "tr": "Derya'dan yardım istiyorum, çünkü formu anlamıyorum.",
+     "accepted": [
+      "Ich bitte Derya um Hilfe, weil ich das Formular nicht verstehe.",
+      "Ich bitte Derya um Hilfe, weil ich das Formular nicht ganz verstehe.",
+      "Weil ich das Formular nicht verstehe, bitte ich Derya um Hilfe."
+     ]
+    },
+    {
+     "kart": "lx:bitten",
+     "de": "Frau Brandl bittet mich um Hilfe, weil ihre Lampe kaputt ist.",
+     "tr": "Frau Brandl benden yardım istiyor, çünkü lambası bozuk.",
+     "accepted": [
+      "Frau Brandl bittet mich um Hilfe, weil ihre Lampe kaputt ist.",
+      "Frau Brandl bittet mich um Hilfe, weil die Lampe kaputt ist.",
+      "Weil ihre Lampe kaputt ist, bittet mich Frau Brandl um Hilfe."
+     ]
+    },
+    {
+     "kart": "lx:bitten",
+     "de": "Tobi bittet mich um zwanzig Euro.",
+     "tr": "Tobi benden yirmi avro istiyor.",
+     "accepted": [
+      "Tobi bittet mich um zwanzig Euro.",
+      "Tobi bittet mich um 20 Euro.",
+      "Tobi bittet mich schon wieder um zwanzig Euro."
+     ]
+    },
+    {
+     "kart": "lx:geduldig",
+     "de": "Ich bin heute nicht geduldig, weil ich schlecht geschlafen habe.",
+     "tr": "Bugün sabırlı değilim, çünkü kötü uyudum.",
+     "accepted": [
+      "Ich bin heute nicht geduldig, weil ich schlecht geschlafen habe.",
+      "Heute bin ich nicht geduldig, weil ich schlecht geschlafen habe.",
+      "Ich bin heute nicht so geduldig, weil ich schlecht geschlafen habe."
+     ]
+    },
+    {
+     "kart": "lx:geduldig",
+     "de": "Ich war nicht geduldig, weil ich zwei Stunden gewartet habe.",
+     "tr": "Sabırlı değildim, çünkü iki saat bekledim.",
+     "accepted": [
+      "Ich war nicht geduldig, weil ich zwei Stunden gewartet habe.",
+      "Ich war nicht mehr geduldig, weil ich zwei Stunden gewartet habe.",
+      "Ich war nicht geduldig, weil ich schon zwei Stunden gewartet habe."
+     ]
+    },
+    {
+     "kart": "lx:geduldig",
+     "de": "Sei bitte geduldig mit mir, weil ich das noch nicht gelernt habe.",
+     "tr": "Lütfen bana karşı sabırlı ol, çünkü bunu henüz öğrenmedim.",
+     "accepted": [
+      "Sei bitte geduldig mit mir, weil ich das noch nicht gelernt habe.",
+      "Bitte sei geduldig mit mir, weil ich das noch nicht gelernt habe.",
+      "Sei bitte geduldig, weil ich das noch nicht gelernt habe."
+     ]
+    },
+    {
+     "kart": "lx:lassen",
+     "de": "Ich lasse mein Handy nicht zu Hause, weil Frau Huber anrufen will.",
+     "tr": "Telefonumu evde bırakmıyorum, çünkü Frau Huber aramak istiyor.",
+     "accepted": [
+      "Ich lasse mein Handy nicht zu Hause, weil Frau Huber anrufen will.",
+      "Ich lasse das Handy nicht zu Hause, weil Frau Huber anrufen will.",
+      "Mein Handy lasse ich nicht zu Hause, weil Frau Huber anrufen will."
+     ]
+    },
+    {
+     "kart": "lx:lassen",
+     "de": "Ich lasse das Fahrrad heute zu Hause, weil es so kalt geworden ist.",
+     "tr": "Bugün bisikleti evde bırakıyorum, çünkü hava çok soğudu.",
+     "accepted": [
+      "Ich lasse das Fahrrad heute zu Hause, weil es so kalt geworden ist.",
+      "Heute lasse ich das Fahrrad zu Hause, weil es so kalt geworden ist.",
+      "Ich lasse heute das Fahrrad zu Hause, weil es so kalt geworden ist."
+     ]
+    },
+    {
+     "kart": "lx:lassen",
+     "de": "Lass mich bitte kurz schlafen, weil ich die ganze Nacht gearbeitet habe.",
+     "tr": "Lütfen biraz uyumama izin ver, çünkü bütün gece çalıştım.",
+     "accepted": [
+      "Lass mich bitte kurz schlafen, weil ich die ganze Nacht gearbeitet habe.",
+      "Bitte lass mich kurz schlafen, weil ich die ganze Nacht gearbeitet habe.",
+      "Lass mich kurz schlafen, weil ich die ganze Nacht gearbeitet habe."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Perşembe sabahı, firmanın mutfağı. Tobi masaya başını koymuş.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Lass ihn, er ist heute sehr müde.",
+      "tr": "Bırak onu, bugün çok yorgun."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Warum ist er so müde?",
+      "tr": "Neden bu kadar yorgun?"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Weil er mehr als zehn Stunden gearbeitet hat.",
+      "tr": "Çünkü on saatten fazla çalıştı."
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi neden yorgun?",
+     "opts": [
+      "On saatten fazla çalıştı",
+      "Hasta",
+      "Uyuyamadı, çünkü komşusu gürültü yaptı"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:60:v1",
+  "title_tr": "Perşembe sabahı: yorgun Tobi, mutlu Derya",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Firmanın mutfağı. Tobi kahvesine sarılmış, gözleri yarı kapalı.",
+    "de": "Tobi, was ist los? Du bist ja so müde!",
+    "tr": "Tobi, ne oldu? Ne kadar yorgunsun!"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi esniyor.",
+    "de": "Ja, ich bin so kaputt, weil ich heute um vier aufgestanden bin.",
+    "tr": "Evet, çok bitkinim, çünkü bugün dörtte kalktım."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gözlerini kocaman açıyor.",
+    "de": "Um vier? Warum denn?",
+    "tr": "Dörtte mi? Neden?"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi telefonunda bir tren bileti gösteriyor.",
+    "de": "Weil ein Freund aus Berlin gekommen ist. Ich bin zum Bahnhof gefahren.",
+    "tr": "Çünkü bir arkadaşım Berlin'den geldi. Gara gittim."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülümseyerek telefonundaki bir bebek fotoğrafını gösteriyor.",
+    "de": "Und mir geht es heute super, weil eine Freundin ein Baby bekommen hat!",
+    "tr": "Benim de bugün keyfim çok yerinde, çünkü bir arkadaşımın bebeği oldu!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi bir anda uyanıyor.",
+    "de": "Echt? Glückwunsch!",
+    "tr": "Gerçekten mi? Tebrikler!"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Kapıda Herr Wimmer, ceketini giymiş.",
+    "de": "Guten Morgen. Herr Lechner, darf ich Sie um etwas bitten?",
+    "tr": "Günaydın. Lechner Bey, sizden bir şey rica edebilir miyim?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi hemen doğruluyor.",
+    "de": "Natürlich, Herr Wimmer.",
+    "tr": "Tabii, Wimmer Bey."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer saatine bakıyor.",
+    "de": "Die Besprechung ist heute um zwei. Ich kann nicht kommen, weil ich zum Kunden nach Passau fahren muss.",
+    "tr": "Toplantı bugün saat ikide. Ben gelemiyorum, çünkü müşteriye Passau'ya gitmem gerekiyor."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer bir dosya uzatıyor.",
+    "de": "Können Sie die Besprechung machen? Frau Aksoy hilft Ihnen.",
+    "tr": "Toplantıyı siz yapabilir misiniz? Aksoy Hanım size yardım eder."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi dosyayı alıyor, biraz telaşlı.",
+    "de": "Ich? Na gut. Aber bitte seien Sie geduldig, ich bin heute ein bisschen langsam.",
+    "tr": "Ben mi? Peki. Ama lütfen sabırlı olun, bugün biraz yavaşım."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer gülümseyip çıkıyor.",
+    "de": "Kein Problem. Danke, Herr Lechner!",
+    "tr": "Sorun değil. Teşekkürler, Lechner Bey!"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya boş fincanları topluyor.",
+    "de": "So. Möchte noch jemand Kaffee?",
+    "tr": "Evet. Kahve isteyen var mı?"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi fincanını uzatıyor.",
+    "de": "Ich! Und ich brauche jetzt mehr als einen Kaffee.",
+    "tr": "Ben! Benim şimdi bir kahveden fazlasına ihtiyacım var."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu sahnede ne oluyor?",
+     "opts": [
+      "Tobi yorgun, Derya mutlu, şef bir rica ediyor",
+      "Tobi işten ayrılıyor",
+      "Derya tatile gidiyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s5",
+      "s7"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Tobi neden yorgun?",
+      "opts": [
+       "Dörtte kalktı",
+       "Bütün gece futbol izledi",
+       "Hasta"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya neden çok iyi?",
+      "opts": [
+       "Bir arkadaşının bebeği oldu",
+       "Yeni bir ev buldu",
+       "Tatile gidiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Herr Wimmer neden toplantıya gelemiyor?",
+      "opts": [
+       "Müşteriye Passau'ya gitmesi gerekiyor",
+       "Hasta",
+       "Tatilde"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s2",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "aufgestanden",
+       "angekommen",
+       "angerufen"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s9",
+      "seviye": "orta",
+      "de": "Die Besprechung ist heute um zwei. Ich kann nicht kommen, weil ich zum Kunden nach Passau fahren ___.",
+      "accepted": [
+       "muss",
+       "Muss",
+       "muss."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s5",
+      "seviye": "zor",
+      "banka": [
+       "Und",
+       "mir",
+       "geht",
+       "es",
+       "heute",
+       "super",
+       "weil",
+       "eine",
+       "Freundin",
+       "ein",
+       "Baby",
+       "bekommen",
+       "hat",
+       "ist",
+       "Kollegin"
+      ],
+      "accepted": [
+       "Und mir geht es heute super, weil eine Freundin ein Baby bekommen hat!",
+       "und mir geht es heute super weil eine freundin ein baby bekommen hat",
+       "Und mir geht es heute super, weil eine Freundin ein Baby bekommen hat"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s14",
+      "seviye": "usta",
+      "accepted": [
+       "Und ich brauche jetzt mehr als einen Kaffee.",
+       "und ich brauche jetzt mehr als einen kaffee",
+       "Und ich brauche jetzt mehr als einen Kaffee"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Tobi ve Derya nasıl, neden? Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Tobi ist müde, weil er um vier aufgestanden ist. Derya geht es super, weil eine Freundin ein Baby bekommen hat.",
+      "zorunlu": [
+       "weil",
+       "müde"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s9"
+    ],
+    "cevapla": {
+     "id": "m1:60:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya sana dönüp soruyor. Sen de yorgunsun, çünkü dün çok geç yattın.",
+     "prompt_de": "Und du? Wie geht es dir heute?",
+     "accepted": [
+      "Ich bin müde, weil ich gestern spät ins Bett gegangen bin.",
+      "Nicht so gut. Ich bin müde, weil ich spät ins Bett gegangen bin.",
+      "Ich bin müde, weil ich gestern sehr spät ins Bett gegangen bin.",
+      "Müde, weil ich gestern spät ins Bett gegangen bin.",
+      "Ich bin heute müde, weil ich gestern spät ins Bett gegangen bin."
+     ],
+     "why_tr": "**bin** en sona gider, **gegangen** hemen önünde durur."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:60:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Muayenehaneden bir rica",
+   "ortam_tr": "Öğle arası telefonuna bakıyorsun. Frau Huber yarınki randevun için mesaj bırakmış.",
+   "speaker": "ch:huber",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, Praxis Dr. Weber, hier spricht Huber.",
+     "tr": "İyi günler, Dr. Weber muayenehanesi, ben Huber."
+    },
+    {
+     "id": "c2",
+     "de": "Leider geht Ihr Termin morgen nicht, weil Dr. Weber ins Krankenhaus fahren muss.",
+     "tr": "Maalesef yarınki randevunuz olmuyor, çünkü Dr. Weber'in hastaneye gitmesi gerekiyor."
+    },
+    {
+     "id": "c3",
+     "de": "Ich möchte Sie bitten: Kommen Sie am Montag um zehn.",
+     "tr": "Sizden rica ediyorum: Pazartesi saat onda gelin."
+    },
+    {
+     "id": "c4",
+     "de": "Am Montag ist es oft voll. Bitte seien Sie ein bisschen geduldig.",
+     "tr": "Pazartesi çoğu zaman kalabalık olur. Lütfen biraz sabırlı olun."
+    },
+    {
+     "id": "c5",
+     "de": "Passt Montag nicht? Dann rufen Sie uns bitte an.",
+     "tr": "Pazartesi uymuyor mu? O zaman lütfen bizi arayın."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Frau Huber neden arıyor?",
+      "opts": [
+       "Yarınki randevu olmuyor, pazartesi gelmeni rica ediyor",
+       "Reçeten hazır",
+       "Doktor tatile gidiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Dr. Weber yarın neden yok?",
+       "opts": [
+        "Hastaneye gitmesi gerekiyor",
+        "Hasta",
+        "Tatilde"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Yeni randevu ne zaman?",
+       "opts": [
+        "Pazartesi onda",
+        "Pazartesi dokuzda",
+        "Salı onda"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "geduldig",
+        "pünktlich",
+        "schnell"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Ich möchte Sie ___: Kommen Sie am Montag um zehn.",
+       "accepted": [
+        "bitten",
+        "Bitten",
+        "bitten."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Dann",
+        "rufen",
+        "Sie",
+        "uns",
+        "bitte",
+        "an",
+        "auf",
+        "mich"
+       ],
+       "accepted": [
+        "Dann rufen Sie uns bitte an.",
+        "dann rufen sie uns bitte an",
+        "Dann rufen Sie uns bitte an"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Leider geht Ihr Termin morgen nicht, weil Dr. Weber ins Krankenhaus fahren muss.",
+        "leider geht ihr termin morgen nicht weil dr weber ins krankenhaus fahren muss",
+        "Leider geht Ihr Termin morgen nicht, weil Dr. Weber ins Krankenhaus fahren muss"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Mein Termin morgen geht nicht, weil Dr. Weber ins Krankenhaus muss. Ich soll am Montag um zehn kommen.",
+       "zorunlu": [
+        "weil",
+        "Montag"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:60:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Frau Huber'i geri arıyorsun. Pazartesi saat onda gelemiyorsun, çünkü çalışman gerekiyor. Öğleden sonrayı sor.",
+      "prompt_de": "Guten Tag, Praxis Dr. Weber, Huber?",
+      "accepted": [
+       "Guten Tag, hier ist {name}. Am Montag um zehn kann ich leider nicht, weil ich arbeiten muss. Geht es am Nachmittag?",
+       "Hallo, Frau Huber. Ich kann am Montag um zehn nicht kommen, weil ich arbeiten muss. Geht es auch am Nachmittag?",
+       "Guten Tag. Montag um zehn geht leider nicht, weil ich arbeiten muss. Haben Sie am Nachmittag einen Termin?",
+       "Hier ist {name}. Um zehn kann ich nicht, weil ich arbeiten muss. Geht es am Nachmittag?"
+      ],
+      "why_tr": "**muss** en sona gider: **weil ich arbeiten muss**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:60:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Pazartesi onda gidersin, uymazsa muayenehaneyi ararsın.",
+     "Yarın sabah her zamanki gibi gidersin.",
+     "Hiçbir şey yapmazsın, randevu iptal oldu."
+    ],
+    "ans": 0,
+    "why_tr": "Yeni randevu pazartesi onda. Uymazsa aramanı istiyor.",
+    "kanit": [
+     "c3",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:60:a2",
+   "tur": "radyo",
+   "title_tr": "Radyoda soru: bugün nasılsınız?",
+   "ortam_tr": "Akşam eve dönerken otobüste yerel radyo açık. Dinleyiciler telefonla bağlanıyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Radio Wendlfing am Donnerstag. Unsere Frage heute: Wie geht es Ihnen, und warum?",
+     "tr": "Perşembe günü Radyo Wendlfing. Bugünkü sorumuz: Nasılsınız, ve neden?"
+    },
+    {
+     "id": "c2",
+     "de": "Mir geht es super, weil ich endlich eine Wohnung gefunden habe.",
+     "tr": "Keyfim çok yerinde, çünkü sonunda bir ev buldum."
+    },
+    {
+     "id": "c3",
+     "de": "Ich bin müde, weil ich diese Woche viele Überstunden gemacht habe.",
+     "tr": "Yorgunum, çünkü bu hafta çok fazla mesai yaptım."
+    },
+    {
+     "id": "c4",
+     "de": "Mir geht es nicht so gut, weil ich meine Familie vermisse.",
+     "tr": "Pek iyi değilim, çünkü ailemi özlüyorum."
+    },
+    {
+     "id": "c5",
+     "de": "Ich habe keine Lust, weil ich am Samstag arbeiten muss.",
+     "tr": "Hiç keyfim yok, çünkü cumartesi çalışmam gerekiyor."
+    },
+    {
+     "id": "c6",
+     "de": "Danke! Jetzt hören wir Musik.",
+     "tr": "Teşekkürler! Şimdi müzik dinliyoruz."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo dinleyicilere ne soruyor?",
+      "opts": [
+       "Nasıl olduklarını ve nedenini",
+       "Havanın nasıl olduğunu",
+       "Ne iş yaptıklarını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Birinci kişinin keyfi neden yerinde?",
+       "opts": [
+        "Sonunda bir ev buldu",
+        "Bugün izinli",
+        "Tatile gidiyor"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Son kişinin neden keyfi yok?",
+       "opts": [
+        "Cumartesi çalışması gerekiyor",
+        "Hasta",
+        "Ailesini özlüyor"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Überstunden",
+        "Termine",
+        "Kunden"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Mir geht es super, weil ich endlich eine Wohnung gefunden ___.",
+       "accepted": [
+        "habe",
+        "Habe",
+        "habe."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Mir",
+        "geht",
+        "es",
+        "nicht",
+        "so",
+        "gut",
+        "weil",
+        "ich",
+        "meine",
+        "Familie",
+        "vermisse",
+        "habe",
+        "Freunde"
+       ],
+       "accepted": [
+        "Mir geht es nicht so gut, weil ich meine Familie vermisse.",
+        "mir geht es nicht so gut weil ich meine familie vermisse",
+        "Mir geht es nicht so gut, weil ich meine Familie vermisse"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Ich habe keine Lust, weil ich am Samstag arbeiten muss.",
+        "ich habe keine lust weil ich am samstag arbeiten muss",
+        "Ich habe keine Lust, weil ich am Samstag arbeiten muss"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Sen bugün nasılsın, neden? Almanca bir cümle yaz.",
+       "ornek_de": "Mir geht es gut, weil ich heute gut geschlafen habe.",
+       "zorunlu": [
+        "weil"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:60:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Radyo seni de arıyor! Bugün çok iyisin, çünkü doktordan randevu aldın.",
+      "prompt_de": "Und Sie? Wie geht es Ihnen heute?",
+      "accepted": [
+       "Mir geht es gut, weil ich einen Termin beim Arzt bekommen habe.",
+       "Gut, weil ich endlich einen Termin bekommen habe.",
+       "Mir geht es super, weil ich einen Termin bei Dr. Weber bekommen habe.",
+       "Sehr gut, weil ich heute einen Termin bekommen habe.",
+       "Mir geht es gut, weil ich einen Termin bekommen habe."
+      ],
+      "why_tr": "**habe** en sona gider, **bekommen** hemen önünde durur."
+     }
+    }
+   ]
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:60:g1",
+   "de": "Baby",
+   "dogru_img": "newborn baby sleeping in a blanket",
+   "celdirici_img": [
+    "small dog in a basket",
+    "teddy bear on a bed",
+    "flowers in a vase"
+   ]
+  },
+  {
+   "id": "m1:60:g2",
+   "de": "Krankenhaus",
+   "dogru_img": "hospital building with an entrance",
+   "celdirici_img": [
+    "town hall building",
+    "train station",
+    "shopping center"
+   ]
+  },
+  {
+   "id": "m1:60:g3",
+   "de": "Bett",
+   "dogru_img": "bed with pillows in a bedroom",
+   "celdirici_img": [
+    "sofa in a living room",
+    "kitchen table",
+    "bathroom sink"
+   ]
+  },
+  {
+   "id": "m1:60:g4",
+   "de": "Schlüssel",
+   "dogru_img": "house keys on a key ring",
+   "celdirici_img": [
+    "coins on a table",
+    "mobile phone",
+    "wallet"
+   ]
+  },
+  {
+   "id": "m1:60:g5",
+   "de": "Handy",
+   "dogru_img": "smartphone on a desk",
+   "celdirici_img": [
+    "landline telephone",
+    "laptop computer",
+    "alarm clock"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:60:p1",
+  "title_tr": "Komşudan rica",
+  "durum_tr": "Yarın sabah doktordasın. Herr Pichler saat sekizde kaloriferi tamir etmeye gelecek. Frau Brandl'dan anahtarı onda bırakmayı rica ediyorsun.",
+  "karsi": "ch:brandl",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Guten Tag! Na, wie geht's?",
+    "tr": "İyi günler! Eee, nasılsınız?",
+    "secenekler": [
+     {
+      "de": "Guten Tag, Frau Brandl. Darf ich Sie um etwas bitten?",
+      "tr": "İyi günler Brandl Hanım. Sizden bir şey rica edebilir miyim?",
+      "accepted": [
+       "Guten Tag, Frau Brandl. Darf ich Sie um etwas bitten?",
+       "Hallo, Frau Brandl. Darf ich Sie um etwas bitten?",
+       "Guten Tag! Kann ich Sie um etwas bitten?",
+       "Guten Tag, Frau Brandl. Kann ich Sie um etwas bitten?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok kibar. Ricaya böyle başlanır."
+     },
+     {
+      "de": "Nicht so gut. Ich bin müde, weil ich schlecht geschlafen habe.",
+      "tr": "Pek iyi değil. Yorgunum, çünkü kötü uyudum.",
+      "accepted": [
+       "Nicht so gut. Ich bin müde, weil ich schlecht geschlafen habe.",
+       "Nicht so gut, weil ich schlecht geschlafen habe.",
+       "Ich bin müde, weil ich schlecht geschlafen habe.",
+       "Nicht gut. Ich bin müde, weil ich wenig geschlafen habe."
+      ],
+      "sonraki": "n1b",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru kurdun: **geschlafen habe** en sonda."
+     },
+     {
+      "de": "Nehmen Sie meinen Schlüssel!",
+      "tr": "Anahtarımı alın!",
+      "accepted": [
+       "Nehmen Sie meinen Schlüssel!",
+       "Nehmen Sie den Schlüssel!",
+       "Hier ist mein Schlüssel!",
+       "Nehmen Sie bitte meinen Schlüssel."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Rica ederken önce kibarca sor: **Darf ich Sie um etwas bitten?**"
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Das tut mir leid. Kann ich Ihnen helfen?",
+    "tr": "Üzüldüm. Size yardım edebilir miyim?",
+    "secenekler": [
+     {
+      "de": "Ja, vielleicht. Darf ich Sie um etwas bitten?",
+      "tr": "Evet, belki. Sizden bir şey rica edebilir miyim?",
+      "accepted": [
+       "Ja, vielleicht. Darf ich Sie um etwas bitten?",
+       "Ja, vielleicht. Kann ich Sie um etwas bitten?",
+       "Ja, gern. Darf ich Sie um etwas bitten?",
+       "Vielleicht. Darf ich Sie um etwas bitten?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Şimdi ricanı söyleyebilirsin."
+     },
+     {
+      "de": "Nein, danke.",
+      "tr": "Hayır, teşekkürler.",
+      "accepted": [
+       "Nein, danke.",
+       "Nein.",
+       "Danke, nein.",
+       "Nein, alles gut."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Ama bir rican var! Kibarca söyle."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Natürlich, gern! Was gibt's?",
+    "tr": "Tabii, memnuniyetle! Ne oldu?",
+    "secenekler": [
+     {
+      "de": "Ich kann morgen nicht zu Hause sein, weil ich zum Arzt gehen muss.",
+      "tr": "Yarın evde olamıyorum, çünkü doktora gitmem gerekiyor.",
+      "accepted": [
+       "Ich kann morgen nicht zu Hause sein, weil ich zum Arzt gehen muss.",
+       "Ich bin morgen nicht zu Hause, weil ich zum Arzt gehen muss.",
+       "Morgen kann ich nicht zu Hause sein, weil ich zum Arzt gehen muss.",
+       "Ich kann morgen nicht da sein, weil ich zum Arzt muss."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. **muss** en sonda, **gehen** hemen önünde."
+     },
+     {
+      "de": "Herr Pichler repariert morgen um acht die Heizung, aber ich habe einen Termin beim Arzt.",
+      "tr": "Herr Pichler yarın sekizde kaloriferi tamir ediyor, ama benim doktorda randevum var.",
+      "accepted": [
+       "Herr Pichler repariert morgen um acht die Heizung, aber ich habe einen Termin beim Arzt.",
+       "Herr Pichler kommt morgen um acht, aber ich habe einen Termin beim Arzt.",
+       "Morgen um acht repariert Herr Pichler die Heizung, aber ich habe einen Arzttermin.",
+       "Herr Pichler repariert morgen die Heizung, aber ich bin beim Arzt."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Durumu açıkça anlattın."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Ach so. Und was soll ich machen?",
+    "tr": "Anladım. Peki ben ne yapayım?",
+    "secenekler": [
+     {
+      "de": "Kann ich den Schlüssel bei Ihnen lassen? Herr Pichler kommt um acht.",
+      "tr": "Anahtarı sizde bırakabilir miyim? Herr Pichler sekizde geliyor.",
+      "accepted": [
+       "Kann ich den Schlüssel bei Ihnen lassen? Herr Pichler kommt um acht.",
+       "Kann ich den Schlüssel bei Ihnen lassen?",
+       "Darf ich den Schlüssel bei Ihnen lassen? Herr Pichler kommt um acht.",
+       "Kann ich bitte den Schlüssel bei Ihnen lassen?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Bırakmak için **lassen** dersin."
+     },
+     {
+      "de": "Ich lasse den Schlüssel bei Ihnen, ja? Dann kann Herr Pichler in die Wohnung.",
+      "tr": "Anahtarı sizde bırakıyorum, olur mu? O zaman Herr Pichler daireye girebilir.",
+      "accepted": [
+       "Ich lasse den Schlüssel bei Ihnen, ja? Dann kann Herr Pichler in die Wohnung.",
+       "Ich lasse den Schlüssel bei Ihnen, okay?",
+       "Ich lasse Ihnen den Schlüssel, ja?",
+       "Ich lasse den Schlüssel bei Ihnen. Dann kann Herr Pichler in die Wohnung."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Sondaki **ja?** ricayı yumuşatır."
+     },
+     {
+      "de": "Machen Sie bitte die Heizung.",
+      "tr": "Lütfen kaloriferi yapın.",
+      "accepted": [
+       "Machen Sie bitte die Heizung.",
+       "Reparieren Sie bitte die Heizung.",
+       "Bitte die Heizung machen.",
+       "Machen Sie die Heizung."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Frau Brandl tamirci değil. Anahtarı ona bırakmayı rica et."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Aber natürlich! Ich bin ja immer da.",
+    "tr": "Tabii ki! Ben zaten hep evdeyim.",
+    "secenekler": [
+     {
+      "de": "Vielen Dank, Frau Brandl! Sie sind sehr lieb.",
+      "tr": "Çok teşekkürler Brandl Hanım! Çok naziksiniz.",
+      "accepted": [
+       "Vielen Dank, Frau Brandl! Sie sind sehr lieb.",
+       "Danke, Frau Brandl! Sie sind sehr lieb.",
+       "Vielen Dank! Sie sind so lieb.",
+       "Danke! Sie sind wirklich lieb."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Sıcak bir teşekkür."
+     },
+     {
+      "de": "Danke! Morgen bekommen Sie einen Kuchen.",
+      "tr": "Teşekkürler! Yarın size bir kek getiririm.",
+      "accepted": [
+       "Danke! Morgen bekommen Sie einen Kuchen.",
+       "Danke! Sie bekommen morgen einen Kuchen.",
+       "Vielen Dank! Morgen bekommen Sie einen Kuchen.",
+       "Danke! Ich habe morgen einen Kuchen für Sie."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Frau Brandl buna çok sevinir."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Gern! Und gute Besserung!",
+    "tr": "Ne demek! Geçmiş olsun!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Kibarca rica ettin, nedenini söyledin ve anahtarı komşuna bıraktın."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Ioana'nın ilk iş haftası",
+  "metin_de": "Hallo {name}! Ich bin so müde, weil ich diese Woche jeden Tag um fünf aufgestanden bin. Aber mir geht es gut, denn die neue Stelle ist super. Meine Chefin ist sehr geduldig, weil ich noch nicht alles verstehe. Nur am Abend bin ich oft allein, weil meine Familie weit weg ist. Kann ich dich um etwas bitten? Kommst du am Samstag zu mir? Ich mache einen Kuchen!",
+  "metin_tr": "Merhaba {name}! Çok yorgunum, çünkü bu hafta her gün beşte kalktım. Ama iyiyim, çünkü yeni iş harika. Patronum çok sabırlı, çünkü henüz her şeyi anlamıyorum. Sadece akşamları çoğu zaman yalnızım, çünkü ailem çok uzakta. Senden bir şey rica edebilir miyim? Cumartesi bana gelir misin? Kek yapıyorum!",
+  "sorular": [
+   {
+    "id": "m1:60:o1",
+    "kind": "gist",
+    "q_tr": "Ioana nasıl?",
+    "opts": [
+     "Yorgun ama işinden memnun",
+     "Hasta ve üzgün",
+     "Tatilde ve mutlu"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:60:o2",
+    "kind": "detail",
+    "q_tr": "Ioana neden yorgun?",
+    "opts": [
+     "Bu hafta her gün beşte kalktı",
+     "Hasta",
+     "Taşındı"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:60:o3",
+    "kind": "detail",
+    "q_tr": "Ioana'nın patronu nasıl biri?",
+    "opts": [
+     "Çok sabırlı",
+     "Çok sert",
+     "Hep geç kalıyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:60:o4",
+    "kind": "detail",
+    "q_tr": "Ioana senden ne rica ediyor?",
+    "opts": [
+     "Cumartesi ona gelmeni",
+     "Taşınmada yardım etmeni",
+     "Onu sabah aramanı"
+    ],
+    "ans": 0,
+    "kanit": [
+     5,
+     6
+    ]
+   },
+   {
+    "id": "m1:60:o5",
+    "k": "guided_response",
+    "situation_tr": "Ioana'ya cevap yaz. Cumartesi gelemezsin, çünkü çalışman gerekiyor. Pazar olur mu diye sor.",
+    "prompt_de": "Kommst du am Samstag zu mir?",
+    "accepted": [
+     "Leider nicht, weil ich am Samstag arbeiten muss. Geht es am Sonntag?",
+     "Am Samstag kann ich leider nicht, weil ich arbeiten muss. Geht es am Sonntag?",
+     "Leider nicht, weil ich arbeiten muss. Passt es am Sonntag?",
+     "Ich kann leider nicht kommen, weil ich am Samstag arbeiten muss. Und am Sonntag?",
+     "Am Samstag geht es leider nicht, weil ich arbeiten muss. Geht Sonntag?"
+    ],
+    "why_tr": "Önce **Leider nicht** de. **weil** cümlesinde **muss** en sonda."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:60:s",
+  "maddeler": [
+   {
+    "id": "m1:60:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich bin müde, weil ich heute früh aufgestanden bin.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich bin müde, weil ich heute früh aufgestanden bin.",
+     "ich bin müde weil ich heute früh aufgestanden bin",
+     "Ich bin müde, weil ich heute früh aufgestanden bin"
+    ],
+    "why_tr": "**bin** en sona gider, **aufgestanden** hemen önünde."
+   },
+   {
+    "id": "m1:60:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Derya kann nicht kommen, weil sie arbeiten muss.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Derya kann nicht kommen, weil sie arbeiten muss.",
+     "derya kann nicht kommen weil sie arbeiten muss",
+     "Derya kann nicht kommen, weil sie arbeiten muss"
+    ],
+    "why_tr": "**muss** en sonda, **arbeiten** hemen önünde."
+   },
+   {
+    "id": "m1:60:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Kann mir jemand helfen? Ich habe den Schlüssel vergessen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Kann mir jemand helfen? Ich habe den Schlüssel vergessen.",
+     "kann mir jemand helfen ich habe den schlüssel vergessen",
+     "Kann mir jemand helfen? Ich habe den Schlüssel vergessen"
+    ],
+    "why_tr": "Biri derken **jemand** dersin."
+   },
+   {
+    "id": "m1:60:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Wir nehmen ein Taxi, denn der Bus ist schon weg.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir nehmen ein Taxi, denn der Bus ist schon weg.",
+     "wir nehmen ein taxi denn der bus ist schon weg",
+     "Wir nehmen ein Taxi, denn der Bus ist schon weg"
+    ],
+    "why_tr": "**denn** sonrasında **ist** ikinci yerde kalır: **der Bus ist**."
+   },
+   {
+    "id": "m1:60:s5",
+    "k": "tr_de",
+    "tr": "Sabırlı değilim, çünkü bir saat bekledim.",
+    "accepted": [
+     "Ich bin nicht geduldig, weil ich eine Stunde gewartet habe.",
+     "Ich bin nicht mehr geduldig, weil ich eine Stunde gewartet habe.",
+     "Ich bin nicht geduldig, weil ich schon eine Stunde gewartet habe.",
+     "Ich bin ungeduldig, weil ich eine Stunde gewartet habe."
+    ],
+    "why_tr": "**habe** en sona gider, **gewartet** hemen önünde."
+   },
+   {
+    "id": "m1:60:s6",
+    "k": "tr_de",
+    "tr": "Ioana'dan yardım rica ediyorum.",
+    "accepted": [
+     "Ich bitte Ioana um Hilfe.",
+     "Ich bitte Ioana um ihre Hilfe.",
+     "Ioana bitte ich um Hilfe."
+    ],
+    "why_tr": "Yardım istemek **um Hilfe bitten**."
+   },
+   {
+    "id": "m1:60:s7",
+    "k": "tr_de",
+    "tr": "Anahtarı sende bırakabilir miyim?",
+    "accepted": [
+     "Kann ich den Schlüssel bei dir lassen?",
+     "Darf ich den Schlüssel bei dir lassen?",
+     "Kann ich bitte den Schlüssel bei dir lassen?"
+    ],
+    "why_tr": "Bırakmak için **lassen**, sende derken **bei dir** dersin."
+   },
+   {
+    "id": "m1:60:s8",
+    "k": "tr_de",
+    "tr": "Bu Almanca nasıl denir?",
+    "accepted": [
+     "Wie sagt man das auf Deutsch?",
+     "Wie sagt man das auf Deutsch, bitte?",
+     "Entschuldigung, wie sagt man das auf Deutsch?",
+     "Wie heißt das auf Deutsch?"
+    ],
+    "why_tr": "Kalıbı ezberle: **Wie sagt man das auf Deutsch?**"
+   },
+   {
+    "id": "m1:60:s9",
+    "k": "guided_response",
+    "situation_tr": "Tobi soruyor. Yorgunsun, çünkü dün fazla mesai yaptın.",
+    "prompt_de": "Du bist ja so müde! Was ist los?",
+    "accepted": [
+     "Ich bin müde, weil ich gestern Überstunden gemacht habe.",
+     "Weil ich gestern Überstunden gemacht habe.",
+     "Ich habe gestern Überstunden gemacht.",
+     "Ich bin müde, weil ich gestern lange gearbeitet habe.",
+     "Weil ich gestern lange gearbeitet habe."
+    ],
+    "why_tr": "**habe** en sona gider, **gemacht** hemen önünde durur."
+   },
+   {
+    "id": "m1:60:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Warum hast du nicht angerufen?",
+    "speed": "normal",
+    "situation_tr": "Telefonunu evde bırakmıştın. Söyle.",
+    "accepted": [
+     "Weil ich mein Handy zu Hause gelassen habe.",
+     "Ich habe mein Handy zu Hause gelassen.",
+     "Weil mein Handy zu Hause war.",
+     "Entschuldigung, weil ich mein Handy zu Hause gelassen habe.",
+     "Weil ich das Handy zu Hause gelassen habe."
+    ],
+    "why_tr": "**lassen** geçmişte **gelassen** olur. **habe** en sonda."
+   },
+   {
+    "id": "m1:60:s11",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl'a rica et: yarın doktora gitmen gerekiyor, anahtarı onda bırakmak istiyorsun.",
+    "prompt_de": "Na, was gibt's?",
+    "accepted": [
+     "Ich muss morgen zum Arzt. Kann ich den Schlüssel bei Ihnen lassen?",
+     "Kann ich den Schlüssel bei Ihnen lassen, weil ich morgen zum Arzt muss?",
+     "Darf ich Sie um etwas bitten? Ich muss morgen zum Arzt. Kann ich den Schlüssel bei Ihnen lassen?",
+     "Frau Brandl, kann ich morgen den Schlüssel bei Ihnen lassen? Ich muss zum Arzt."
+    ],
+    "why_tr": "Önce nedeni, sonra ricayı söyle: **Kann ich den Schlüssel bei Ihnen lassen?**"
+   }
+  ],
+  "sesli": [
+   "m1:60:s9",
+   "m1:60:s10"
+  ],
+  "dikte": [
+   "m1:60:s1",
+   "m1:60:s2",
+   "m1:60:s3",
+   "m1:60:s4"
+  ]
+ }
+}
