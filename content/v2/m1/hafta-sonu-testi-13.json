@@ -1,0 +1,173 @@
+{
+ "id": "m1:hafta-sonu-testi:13",
+ "day": 91,
+ "maddeler": [
+  {
+   "id": "m1:91:t01",
+   "k": "listen_and_respond",
+   "audio_de": "Ich stehe im Stau und komme zwanzig Minuten später.",
+   "speed": "normal",
+   "situation_tr": "Tobi'nin sesli mesajı. Herr Wimmer'e Tobi'nin dediğini aktar.",
+   "accepted": [
+    "Tobi sagt, dass er im Stau steht.",
+    "Tobi sagt, dass er im Stau steht und später kommt.",
+    "Herr Wimmer, Tobi sagt, dass er im Stau steht.",
+    "Tobi sagt, dass er zwanzig Minuten später kommt.",
+    "Tobi steht im Stau, er kommt zwanzig Minuten später."
+   ],
+   "why_tr": "Aktarırken **Tobi sagt, dass …** dersin; fiil (**steht**) en sona gider."
+  },
+  {
+   "id": "m1:91:t02",
+   "k": "order",
+   "de": "finde / Ich / dass / ehrlich / Tobi / ist",
+   "tr": "Bence Tobi dürüst.",
+   "accepted": [
+    "Ich finde, dass Tobi ehrlich ist.",
+    "ich finde dass tobi ehrlich ist",
+    "Ich finde, dass Tobi ehrlich ist"
+   ],
+   "why_tr": "**dass**'tan sonra çekimli fiil (**ist**) en sonda."
+  },
+  {
+   "id": "m1:91:t03",
+   "k": "guided_response",
+   "situation_tr": "Frau Hoffmann yeni başladı. Hastalanınca ne yapması önemli, anlat: vardiyadan önce Herr Wimmer'i araması.",
+   "prompt_de": "Was mache ich, wenn ich krank bin?",
+   "accepted": [
+    "Es ist wichtig, dass Sie vor der Schicht Herrn Wimmer anrufen.",
+    "Es ist wichtig, dass Sie vor der Schicht anrufen.",
+    "Es ist wichtig, dass man vor der Schicht Herrn Wimmer anruft.",
+    "Sie rufen vor der Schicht Herrn Wimmer an. Das ist wichtig.",
+    "Es ist wichtig, dass Sie Herrn Wimmer vor der Schicht anrufen."
+   ],
+   "why_tr": "**Es ist wichtig, dass …**: **anrufen** dass cümlesinde bitişik ve en sonda."
+  },
+  {
+   "id": "m1:91:t04",
+   "k": "gap",
+   "de": "Am Donnerstag mache ich ___ Schicht.",
+   "tr": "Perşembe Tobi'nin vardiyasını yapıyorum.",
+   "accepted": [
+    "Tobis",
+    "tobis",
+    "Tobis."
+   ],
+   "opts": [
+    "Tobis",
+    "Tobi",
+    "Tobi's"
+   ],
+   "why_tr": "Kimin olduğunu isme **-s** ekleyerek söylersin; kesme işareti yok: **Tobis Schicht**."
+  },
+  {
+   "id": "m1:91:t05",
+   "k": "listen_and_respond",
+   "audio_de": "Ist das dein Handy?",
+   "speed": "normal",
+   "situation_tr": "Masadaki telefon Tobi'nin. Söyle.",
+   "accepted": [
+    "Nein, das ist Tobis Handy.",
+    "Nein, das ist das Handy von Tobi.",
+    "Das ist Tobis Handy.",
+    "Nein, das ist Tobis."
+   ],
+   "why_tr": "**Tobis Handy** ya da konuşmada **das Handy von Tobi**."
+  },
+  {
+   "id": "m1:91:t06",
+   "k": "transform",
+   "instr_tr": "Şefe kibarca sor: **Ist es möglich, dass …?** ile başla.",
+   "from_de": "Ich will am Freitag frei haben.",
+   "accepted": [
+    "Ist es möglich, dass ich am Freitag frei habe?",
+    "ist es möglich dass ich am freitag frei habe",
+    "Herr Wimmer, ist es möglich, dass ich am Freitag frei habe?"
+   ],
+   "why_tr": "**dass** cümlesinde **habe** en sona gider."
+  },
+  {
+   "id": "m1:91:t07",
+   "k": "listen_and_respond",
+   "audio_de": "Nehmen Sie zweimal am Tag eine halbe Tablette, vor dem Essen.",
+   "speed": "natural",
+   "situation_tr": "Eczacı hızlı söylüyor. Talimatı tekrar et.",
+   "accepted": [
+    "Also zweimal am Tag eine halbe Tablette, vor dem Essen.",
+    "Zweimal am Tag eine halbe Tablette vor dem Essen.",
+    "Zweimal am Tag eine halbe, vor dem Essen. Richtig?",
+    "Also: zweimal am Tag, vor dem Essen, eine halbe Tablette."
+   ],
+   "why_tr": "Kaç kez (**zweimal am Tag**), ne kadar (**eine halbe**), ne zaman (**vor dem Essen**)."
+  },
+  {
+   "id": "m1:91:t08",
+   "k": "guided_response",
+   "situation_tr": "Tobi cumartesi vardiyasını yapmanı istiyor. Olur; karşılığında pazartesi senin vardiyanı yapsın.",
+   "prompt_de": "Kannst du am Samstag meine Schicht machen?",
+   "accepted": [
+    "Ja, klar. Machst du dann am Montag meine Schicht?",
+    "Samstag geht. Machst du dann am Montag meine Schicht?",
+    "Ja, das passt. Und du machst am Montag meine Schicht, okay?",
+    "Klar! Kannst du dann am Montag meine Schicht machen?",
+    "Ja, gern. Dann machst du am Montag meine Schicht."
+   ],
+   "why_tr": "Kabul edip **Machst du dann …?** ile karşılığını sorarsın."
+  },
+  {
+   "id": "m1:91:t09",
+   "k": "gap",
+   "de": "Der Husten hört nicht ___.",
+   "tr": "Öksürük geçmiyor.",
+   "accepted": [
+    "auf",
+    "Auf",
+    "auf."
+   ],
+   "opts": [
+    "auf",
+    "an",
+    "aus"
+   ],
+   "why_tr": "**aufhören**: **hört … auf**; **auf** en sona gider."
+  },
+  {
+   "id": "m1:91:t10",
+   "k": "listen_and_respond",
+   "audio_de": "Das tut mir leid. Was haben Sie denn?",
+   "speed": "fast",
+   "situation_tr": "Herr Wimmer'i aradın. Dün akşamdan beri ateşin var, boğazın ağrıyor.",
+   "accepted": [
+    "Ich habe seit gestern Abend Fieber und Halsschmerzen.",
+    "Seit gestern Abend habe ich Fieber und Halsschmerzen.",
+    "Fieber und Halsschmerzen, seit gestern Abend.",
+    "Ich habe Fieber, seit gestern Abend. Der Hals tut auch weh."
+   ],
+   "why_tr": "Ne (**Fieber, Halsschmerzen**), ne zamandan beri (**seit gestern Abend**)."
+  },
+  {
+   "id": "m1:91:t11",
+   "k": "tr_de",
+   "tr": "Bir iş kazası geçirdim; kötü değil.",
+   "accepted": [
+    "Ich hatte einen Arbeitsunfall, es ist nicht schlimm.",
+    "Ich hatte einen Arbeitsunfall. Es ist nicht schlimm.",
+    "Ich hatte einen Arbeitsunfall, aber es ist nicht schlimm."
+   ],
+   "why_tr": "**ich hatte**: geçirdim. **nicht schlimm**: kötü değil."
+  },
+  {
+   "id": "m1:91:t12",
+   "k": "guided_response",
+   "situation_tr": "Herr Wimmer raporu ilk günden istiyor. Bugün doktora gideceğini ve raporun yarın olacağını söyle.",
+   "prompt_de": "Ich brauche die Krankmeldung ab dem ersten Tag.",
+   "accepted": [
+    "Kein Problem. Ich gehe heute zum Arzt, die Krankmeldung haben Sie dann morgen.",
+    "Ja, natürlich. Heute gehe ich zum Arzt. Morgen haben Sie die Krankmeldung.",
+    "Kein Problem, ich gehe heute zum Arzt. Die Krankmeldung haben Sie morgen.",
+    "Natürlich. Ich gehe heute zum Arzt, und morgen haben Sie die Krankmeldung."
+   ],
+   "why_tr": "Sürprize sakin cevap: **Kein Problem** + ne zaman."
+  }
+ ]
+}

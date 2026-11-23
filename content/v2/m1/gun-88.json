@@ -1,0 +1,1653 @@
+{
+ "schema": 1,
+ "id": "m1:gun:88",
+ "day": 88,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Kimin? Deryas Laptop, Tobis Folien",
+ "goal_tr": "Bir eşyanın ya da işin kime ait olduğunu söylersin; toplantıda soruya kısa cevap verir, anladığını doğrularsın.",
+ "can_do": {
+  "id": "cd:m1:88",
+  "tr": "Bir eşyanın ya da işin kime ait olduğunu söyler, toplantıda soruya kısa cevap veririm."
+ },
+ "unit": "u:a2:is-3",
+ "arm": "pazar",
+ "place": "pl:firma",
+ "characters": [
+  "ch:wimmer",
+  "ch:aksoy",
+  "ch:lechner"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-04:t4"
+ ],
+ "yeni_kartlar": [
+  "lx:schuld",
+  "lx:antworten",
+  "lx:benutzen",
+  "lx:möglich",
+  "lx:Gesicht",
+  "lx:Feuer"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:88:h1",
+   "title_tr": "Toplantı başlıyor: kimin bilgisayarı, kimin sunumu?",
+   "kartlar": [
+    "lx:schuld",
+    "lx:antworten",
+    "lx:benutzen",
+    "lx:möglich"
+   ],
+   "kaliplar": [
+    {
+     "de": "Deryas Laptop – Tobis Tasche – der Laptop von Derya – die Folien von Herrn Lechner",
+     "tr": "Derya'nın dizüstü bilgisayarı – Tobi'nin çantası – Derya'nın bilgisayarı – Herr Lechner'in sunum sayfaları"
+    },
+    {
+     "de": "die Folien – Tobis Folien",
+     "tr": "sunum sayfaları – Tobi'nin sunum sayfaları"
+    },
+    {
+     "de": "Wer ist schuld? – Ich bin nicht schuld.",
+     "tr": "Suç kimde? – Suç bende değil."
+    },
+    {
+     "de": "Ich antworte. – Er antwortet. – Er hat nicht geantwortet.",
+     "tr": "Cevap veriyorum. – Cevap veriyor. – Cevap vermedi."
+    },
+    {
+     "de": "Darf ich … benutzen? – Ich benutze … – Er hat … benutzt.",
+     "tr": "… kullanabilir miyim? – … kullanıyorum. – … kullandı."
+    },
+    {
+     "de": "Ist das möglich? – so schnell wie möglich",
+     "tr": "Mümkün mü? – olabildiğince çabuk"
+    },
+    {
+     "de": "Ich habe es geschickt. – Ich schicke es Ihnen. – kurz – eine kurze Nachricht",
+     "tr": "Gönderdim. – Size gönderiyorum. – kısa – kısa bir mesaj"
+    },
+    {
+     "de": "die Regeln – Ich habe die Regeln erklärt.",
+     "tr": "kurallar – Kuralları anlattım."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:schuld",
+     "de": "Wer ist schuld? Tobis Laptop ist kaputt.",
+     "tr": "Suç kimde? Tobi'nin bilgisayarı bozuk.",
+     "accepted": [
+      "Wer ist schuld? Tobis Laptop ist kaputt.",
+      "Tobis Laptop ist kaputt. Wer ist schuld?",
+      "Wer ist schuld? Der Laptop von Tobi ist kaputt."
+     ]
+    },
+    {
+     "kart": "lx:schuld",
+     "de": "Tobi sagt, dass der Drucker schuld ist.",
+     "tr": "Tobi suçun yazıcıda olduğunu söylüyor.",
+     "accepted": [
+      "Tobi sagt, dass der Drucker schuld ist.",
+      "Tobi sagt, der Drucker ist schuld.",
+      "Tobi sagt, dass der Drucker an allem schuld ist."
+     ]
+    },
+    {
+     "kart": "lx:antworten",
+     "de": "Ich antworte morgen auf Deryas Nachricht.",
+     "tr": "Derya'nın mesajına yarın cevap veriyorum.",
+     "accepted": [
+      "Ich antworte morgen auf Deryas Nachricht.",
+      "Morgen antworte ich auf Deryas Nachricht.",
+      "Ich antworte morgen auf die Nachricht von Derya."
+     ]
+    },
+    {
+     "kart": "lx:antworten",
+     "de": "Es ist wichtig, dass man schnell antwortet.",
+     "tr": "Çabuk cevap vermek önemli.",
+     "accepted": [
+      "Es ist wichtig, dass man schnell antwortet.",
+      "Es ist wichtig, dass man sehr schnell antwortet.",
+      "Es ist wichtig, dass Sie schnell antworten."
+     ]
+    },
+    {
+     "kart": "lx:benutzen",
+     "de": "Darf ich Deryas Laptop benutzen?",
+     "tr": "Derya'nın bilgisayarını kullanabilir miyim?",
+     "accepted": [
+      "Darf ich Deryas Laptop benutzen?",
+      "Darf ich den Laptop von Derya benutzen?",
+      "Kann ich Deryas Laptop benutzen?"
+     ]
+    },
+    {
+     "kart": "lx:benutzen",
+     "de": "Ich benutze heute den Laptop von Tobi.",
+     "tr": "Bugün Tobi'nin bilgisayarını kullanıyorum.",
+     "accepted": [
+      "Ich benutze heute den Laptop von Tobi.",
+      "Ich benutze heute Tobis Laptop.",
+      "Heute benutze ich den Laptop von Tobi."
+     ]
+    },
+    {
+     "kart": "lx:möglich",
+     "de": "Ist das möglich? Ich brauche Deryas Laptop bis elf.",
+     "tr": "Bu mümkün mü? Saat on bire kadar Derya'nın bilgisayarına ihtiyacım var.",
+     "accepted": [
+      "Ist das möglich? Ich brauche Deryas Laptop bis elf.",
+      "Ich brauche Deryas Laptop bis elf. Ist das möglich?",
+      "Ist das möglich? Ich brauche den Laptop von Derya bis elf."
+     ]
+    },
+    {
+     "kart": "lx:möglich",
+     "de": "Herr Wimmer hat gesagt, dass das leider nicht möglich ist.",
+     "tr": "Herr Wimmer bunun maalesef mümkün olmadığını söyledi.",
+     "accepted": [
+      "Herr Wimmer hat gesagt, dass das leider nicht möglich ist.",
+      "Herr Wimmer hat gesagt, das ist leider nicht möglich.",
+      "Herr Wimmer sagt, dass das leider nicht möglich ist."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Perşembe saat on, toplantı odası. Herr Wimmer'in bilgisayarı açılmıyor.",
+    "satirlar": [
+     {
+      "r": "ch:wimmer",
+      "de": "Frau Aksoy, darf ich Ihren Laptop benutzen?",
+      "tr": "Frau Aksoy, bilgisayarınızı kullanabilir miyim?"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Natürlich. Aber Tobis Folien sind nicht da!",
+      "tr": "Tabii. Ama Tobi'nin sunum sayfaları yok!"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Entschuldigung, ich bin schuld. Ich habe sie nicht geschickt.",
+      "tr": "Pardon, suç bende. Göndermedim."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Kein Problem. Ich glaube, sie sind auf Deryas Laptop.",
+      "tr": "Sorun değil. Sanırım Derya'nın bilgisayarındalar."
+     }
+    ],
+    "soru": {
+     "q_tr": "Herr Wimmer kimin bilgisayarını kullanıyor?",
+     "opts": [
+      "Derya'nın",
+      "Tobi'nin",
+      "Kendi bilgisayarını"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:88:h2",
+   "title_tr": "Toplantının ortasında yangın tatbikatı",
+   "kartlar": [
+    "lx:Gesicht",
+    "lx:Feuer"
+   ],
+   "kaliplar": [
+    {
+     "de": "zwischen zehn und elf – zwischen neun und zehn Uhr",
+     "tr": "onla on bir arası – dokuzla on arası"
+    },
+    {
+     "de": "das Feuer – die Übung – die Feuerübung – Alle gehen nach draußen.",
+     "tr": "yangın – tatbikat – yangın tatbikatı – Herkes dışarı çıkıyor."
+    },
+    {
+     "de": "es gibt – Heute gibt es eine Feuerübung.",
+     "tr": "var – Bugün bir yangın tatbikatı var."
+    },
+    {
+     "de": "das Gesicht – Tobis Gesicht – Warum machst du so ein langes Gesicht?",
+     "tr": "yüz – Tobi'nin yüzü – Neden suratını asıyorsun?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Gesicht",
+     "de": "Tobis Gesicht ist ganz rot.",
+     "tr": "Tobi'nin yüzü kıpkırmızı.",
+     "accepted": [
+      "Tobis Gesicht ist ganz rot.",
+      "Das Gesicht von Tobi ist ganz rot.",
+      "Tobis Gesicht ist rot."
+     ]
+    },
+    {
+     "kart": "lx:Gesicht",
+     "de": "Warum macht Tobi so ein langes Gesicht?",
+     "tr": "Tobi neden suratını asıyor?",
+     "accepted": [
+      "Warum macht Tobi so ein langes Gesicht?",
+      "Warum macht Tobi ein langes Gesicht?",
+      "Warum macht Tobi denn so ein langes Gesicht?"
+     ]
+    },
+    {
+     "kart": "lx:Feuer",
+     "de": "Bei Feuer gehen alle nach draußen.",
+     "tr": "Yangında herkes dışarı çıkar.",
+     "accepted": [
+      "Bei Feuer gehen alle nach draußen.",
+      "Bei Feuer gehen alle sofort nach draußen.",
+      "Bei einem Feuer gehen alle nach draußen."
+     ]
+    },
+    {
+     "kart": "lx:Feuer",
+     "de": "Es ist kein Feuer, das ist eine Übung.",
+     "tr": "Yangın yok, bu bir tatbikat.",
+     "accepted": [
+      "Es ist kein Feuer, das ist eine Übung.",
+      "Es ist kein Feuer. Das ist eine Übung.",
+      "Das ist kein Feuer, das ist eine Übung."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Toplantı sürerken hoparlörden bir anons geliyor.",
+    "satirlar": [
+     {
+      "r": "die Durchsage",
+      "de": "Bitte gehen Sie jetzt alle nach draußen. Das ist eine Feuerübung.",
+      "tr": "Lütfen şimdi hepiniz dışarı çıkın. Bu bir yangın tatbikatı."
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Eine Feuerübung? Jetzt, zwischen zehn und elf?",
+      "tr": "Yangın tatbikatı mı? Şimdi, onla on bir arasında mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, Herr Wimmer hat es gestern gesagt.",
+      "tr": "Evet, Herr Wimmer dün söyledi."
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Dann ist es kein Feuer. Gut!",
+      "tr": "O zaman yangın yok. İyi!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Herkes neden dışarı çıkıyor?",
+     "opts": [
+      "Yangın tatbikatı var",
+      "Gerçek bir yangın var",
+      "Mola saati"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:88:v1",
+  "title_tr": "Perşembe toplantısı ve yangın tatbikatı",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Toplantı odası, saat ona beş var. Herr Wimmer elinde kahveyle masanın başında.",
+    "de": "Guten Morgen! Wir haben nicht viel Zeit. Jeder erzählt kurz, was er gerade macht.",
+    "tr": "Günaydın! Fazla vaktimiz yok. Herkes şu an ne yaptığını kısaca anlatsın."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer ekranı gösteriyor.",
+    "de": "Wir beginnen mit Frau Aksoy. Wir benutzen den Laptop von Frau Aksoy.",
+    "tr": "Frau Aksoy ile başlıyoruz. Frau Aksoy'un bilgisayarını kullanıyoruz."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya kısa ve net konuşuyor.",
+    "de": "Danke. Diese Woche habe ich vielen Kunden geantwortet. Das war viel Arbeit.",
+    "tr": "Teşekkürler. Bu hafta birçok müşteriye cevap verdim. Çok iş oldu."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer Tobi'ye dönüyor.",
+    "de": "Gut. Herr Lechner, wo sind Ihre Folien?",
+    "tr": "Güzel. Herr Lechner, sunum sayfalarınız nerede?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi telaşla Derya'nın bilgisayarına uzanıyor.",
+    "de": "Die sind auf Deryas Laptop. Moment, bitte.",
+    "tr": "Derya'nın bilgisayarında. Bir saniye lütfen."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer sana bakıyor.",
+    "de": "Und jetzt Sie, bitte. Was machen Sie gerade?",
+    "tr": "Şimdi siz, lütfen. Şu an ne yapıyorsunuz?"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Sen konuştuktan sonra Herr Wimmer not alıyor.",
+    "de": "Danke. Bitte schicken Sie mir das bis Freitag als Nachricht.",
+    "tr": "Teşekkürler. Lütfen bunu bana cumaya kadar mesaj olarak gönderin."
+   },
+   {
+    "id": "s8",
+    "speaker": "die Durchsage",
+    "sahne_tr": "Birden tavandaki hoparlörden bir ses geliyor.",
+    "de": "Hier ist eine Durchsage: Es gibt jetzt eine Feuerübung. Bitte gehen Sie alle nach draußen.",
+    "tr": "Bir anons: Şimdi yangın tatbikatı var. Lütfen hepiniz dışarı çıkın."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi ellerini havaya kaldırıyor.",
+    "de": "Eine Feuerübung? Jetzt? Zwischen zehn und elf?",
+    "tr": "Yangın tatbikatı mı? Şimdi mi? Onla on bir arasında mı?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer sakin, ayağa kalkıyor.",
+    "de": "Ja, das habe ich gestern gesagt. Bitte nehmen Sie nur Ihr Handy mit.",
+    "tr": "Evet, dün söyledim. Lütfen yalnızca telefonunuzu alın."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Otoparkta, soğukta bekliyorlar. Derya Tobi'nin yüzüne bakıyor.",
+    "de": "Tobi, warum machst du so ein langes Gesicht?",
+    "tr": "Tobi, neden suratını asıyorsun?"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kollarını kavuşturuyor.",
+    "de": "Meine Folien sind noch nicht fertig. Wer ist schuld? Die Feuerübung!",
+    "tr": "Sunumum daha hazır değil. Suç kimde? Yangın tatbikatında!"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülüyor.",
+    "de": "Nein, Tobi. Du bist schuld!",
+    "tr": "Hayır Tobi. Suç sende!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Toplantıda ne oluyor?",
+     "opts": [
+      "Herkes kısaca ne yaptığını anlatıyor",
+      "Herr Wimmer yeni bir plan anlatıyor",
+      "Frau Hoffmann kendini tanıtıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Toplantıda kimin bilgisayarını kullanıyorlar?",
+      "opts": [
+       "Derya'nın",
+       "Tobi'nin",
+       "Herr Wimmer'in"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya bu hafta ne yapmış?",
+      "opts": [
+       "Birçok müşteriye cevap vermiş",
+       "Tatile gitmiş",
+       "Yeni sunum hazırlamış"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s3"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi'nin sunum sayfaları nerede?",
+      "opts": [
+       "Derya'nın bilgisayarında",
+       "Evde",
+       "Herr Wimmer'de"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s3",
+      "seviye": "kolay",
+      "q_tr": "Derya kime cevap vermiş?",
+      "opts": [
+       "Kunden",
+       "Kollegen",
+       "Kindern"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Die sind auf ___ Laptop. Moment, bitte.",
+      "accepted": [
+       "Deryas",
+       "deryas",
+       "Deryas."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s6",
+      "seviye": "zor",
+      "banka": [
+       "Und",
+       "jetzt",
+       "Sie",
+       "bitte",
+       "Was",
+       "machen",
+       "Sie",
+       "gerade",
+       "macht",
+       "wer"
+      ],
+      "accepted": [
+       "Und jetzt Sie, bitte. Was machen Sie gerade?",
+       "und jetzt sie bitte was machen sie gerade",
+       "Und jetzt Sie, bitte. Was machen Sie gerade"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s2",
+      "seviye": "usta",
+      "accepted": [
+       "Wir beginnen mit Frau Aksoy. Wir benutzen den Laptop von Frau Aksoy.",
+       "wir beginnen mit frau aksoy wir benutzen den laptop von frau aksoy",
+       "Wir beginnen mit Frau Aksoy. Wir benutzen den Laptop von Frau Aksoy"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Toplantının başını Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Wir benutzen Deryas Laptop. Tobis Folien sind auf Deryas Laptop.",
+      "zorunlu": [
+       "Deryas",
+       "Tobis"
+      ]
+     }
+    ],
+    "golge": [
+     "s4",
+     "s6"
+    ],
+    "cevapla": {
+     "id": "m1:88:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Sıra sende. Bu hafta Frau Hoffmann'a kuralları anlattığını ve Derya'yla birlikte çalıştığını kısaca söyle.",
+     "prompt_de": "Und jetzt Sie, bitte. Was machen Sie gerade?",
+     "accepted": [
+      "Diese Woche habe ich Frau Hoffmann die Regeln erklärt. Und ich arbeite mit Derya zusammen.",
+      "Ich habe Frau Hoffmann die Regeln erklärt. Ich arbeite mit Derya zusammen.",
+      "Ich arbeite mit Derya zusammen. Und ich habe Frau Hoffmann die Regeln erklärt.",
+      "Diese Woche habe ich Frau Hoffmann alles erklärt. Ich arbeite mit Derya zusammen.",
+      "Ich habe der neuen Kollegin die Regeln erklärt. Und ich arbeite mit Derya.",
+      "Diese Woche habe ich Frau Hoffmann die Regeln erklärt."
+     ],
+     "why_tr": "Kısa ve net: önce ne yaptın (**habe … erklärt**), sonra kiminle çalışıyorsun (**mit Derya**)."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Toplantı neden yarıda kalıyor?",
+     "opts": [
+      "Yangın tatbikatı başlıyor",
+      "Herr Wimmer'in telefonu çalıyor",
+      "Bilgisayar bozuluyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s8"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Herr Wimmer senden ne istiyor?",
+      "opts": [
+       "Cumaya kadar bir mesaj",
+       "Yarın bir sunum",
+       "Pazartesi bir rapor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s7"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Dışarı ne almaları gerekiyor?",
+      "opts": [
+       "Yalnızca telefonlarını",
+       "Bilgisayarlarını",
+       "Montlarını ve çantalarını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya'ya göre suç kimde?",
+      "opts": [
+       "Tobi'de",
+       "Tatbikatta",
+       "Herr Wimmer'de"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s13"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s7",
+      "seviye": "kolay",
+      "q_tr": "Hangi günü duydun?",
+      "opts": [
+       "Freitag",
+       "Montag",
+       "Dienstag"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s11",
+      "seviye": "orta",
+      "de": "Tobi, warum machst du so ein langes ___?",
+      "accepted": [
+       "Gesicht",
+       "gesicht",
+       "Gesicht?"
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s13",
+      "seviye": "zor",
+      "banka": [
+       "Nein",
+       "Tobi",
+       "Du",
+       "bist",
+       "schuld",
+       "ist",
+       "ich"
+      ],
+      "accepted": [
+       "Nein, Tobi. Du bist schuld!",
+       "nein tobi du bist schuld",
+       "Nein, Tobi, du bist schuld."
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Ja, das habe ich gestern gesagt. Bitte nehmen Sie nur Ihr Handy mit.",
+       "ja das habe ich gestern gesagt bitte nehmen sie nur ihr handy mit",
+       "Ja, das habe ich gestern gesagt. Bitte nehmen Sie nur Ihr Handy mit"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Tatbikatı Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Zwischen zehn und elf gehen alle nach draußen. Es ist kein Feuer.",
+      "zorunlu": [
+       "zwischen",
+       "draußen"
+      ]
+     }
+    ],
+    "golge": [
+     "s10",
+     "s13"
+    ],
+    "cevapla": {
+     "id": "m1:88:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Otoparkta Herr Wimmer soruyor: mesajı ne zamana kadar göndereceksin? Anladığını kontrol et: cumaya kadar mı?",
+     "prompt_de": "Haben Sie alles verstanden? Bis wann schicken Sie mir die Nachricht?",
+     "accepted": [
+      "Habe ich Sie richtig verstanden? Bis Freitag?",
+      "Bis Freitag. Habe ich Sie richtig verstanden?",
+      "Ja. Ich schicke sie Ihnen bis Freitag.",
+      "Bis Freitag, richtig?",
+      "Ja, bis Freitag. Ist das richtig?",
+      "Habe ich Sie richtig verstanden? Die Nachricht bis Freitag?"
+     ],
+     "why_tr": "Anladığını kontrol etmek için **Habe ich Sie richtig verstanden?** dersin. Şefler bunu sever."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:88:a1",
+   "tur": "anons",
+   "title_tr": "Binada anons: yangın tatbikatı",
+   "ortam_tr": "Perşembe sabahı, işe yeni geldin. Binanın hoparlöründen bir anons geliyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen, hier ist eine Durchsage für alle Kollegen.",
+     "tr": "Günaydın, bütün çalışanlar için bir anons."
+    },
+    {
+     "id": "c2",
+     "de": "Heute gibt es eine Feuerübung, zwischen zehn und elf Uhr.",
+     "tr": "Bugün saat onla on bir arasında yangın tatbikatı var."
+    },
+    {
+     "id": "c3",
+     "de": "Bitte gehen Sie dann sofort nach draußen.",
+     "tr": "Lütfen o zaman hemen dışarı çıkın."
+    },
+    {
+     "id": "c4",
+     "de": "Nehmen Sie nur Ihr Handy mit.",
+     "tr": "Yalnızca telefonunuzu alın."
+    },
+    {
+     "id": "c5",
+     "de": "Wir treffen uns auf dem Parkplatz.",
+     "tr": "Otoparkta buluşuyoruz."
+    },
+    {
+     "id": "c6",
+     "de": "Es ist kein Feuer, es ist nur eine Übung. Danke!",
+     "tr": "Yangın yok, bu sadece bir tatbikat. Teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Anons ne hakkında?",
+      "opts": [
+       "Bugün bir yangın tatbikatı var",
+       "Binada gerçek bir yangın var",
+       "Otopark bugün kapalı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c6"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Tatbikat ne zaman?",
+       "opts": [
+        "Saat onla on bir arası",
+        "Saat dokuzla on arası",
+        "Öğleden sonra"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Herkes nerede buluşuyor?",
+       "opts": [
+        "Otoparkta",
+        "Kantinde",
+        "Toplantı odasında"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Yanına ne almalısın?",
+       "opts": [
+        "Yalnızca telefonunu",
+        "Bilgisayarını",
+        "Hiçbir şey"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Tatbikat saat kaçta başlıyor?",
+       "opts": [
+        "zehn",
+        "neun",
+        "zwölf"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c6",
+       "seviye": "orta",
+       "de": "Es ist kein ___, es ist nur eine Übung. Danke!",
+       "accepted": [
+        "Feuer",
+        "feuer",
+        "Feuer."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Bitte",
+        "gehen",
+        "Sie",
+        "dann",
+        "sofort",
+        "nach",
+        "draußen",
+        "Hause",
+        "geht"
+       ],
+       "accepted": [
+        "Bitte gehen Sie dann sofort nach draußen.",
+        "bitte gehen sie dann sofort nach draußen",
+        "Bitte gehen Sie dann sofort nach draußen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Wir treffen uns auf dem Parkplatz.",
+        "wir treffen uns auf dem parkplatz",
+        "Wir treffen uns auf dem Parkplatz"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Anonsu Frau Hoffmann için iki kısa Almanca cümleyle özetle.",
+       "ornek_de": "Zwischen zehn und elf ist eine Feuerübung. Wir treffen uns auf dem Parkplatz.",
+       "zorunlu": [
+        "zwischen",
+        "Parkplatz"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:88:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Frau Hoffmann anonsu anlamadı, soruyor. Tatbikatın saat onla on bir arasında olduğunu söyle.",
+      "prompt_de": "Entschuldigung, wann ist die Feuerübung?",
+      "accepted": [
+       "Zwischen zehn und elf Uhr.",
+       "Die Feuerübung ist zwischen zehn und elf.",
+       "Heute zwischen zehn und elf.",
+       "Zwischen zehn und elf. Wir treffen uns auf dem Parkplatz.",
+       "Sie ist zwischen zehn und elf Uhr.",
+       "Heute, zwischen zehn und elf Uhr."
+      ],
+      "why_tr": "**zwischen zehn und elf**: onla on bir arası."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:88:a1:e1",
+    "k": "pick",
+    "q_tr": "Tatbikat başlayınca ne yapmalısın?",
+    "opts": [
+     "Telefonunu alıp otoparka çık",
+     "Masanda bekle",
+     "Bilgisayarını da alıp kantine git"
+    ],
+    "ans": 0,
+    "why_tr": "Anons: hemen dışarı, yalnızca telefon, buluşma yeri otopark.",
+    "kanit": [
+     "c3",
+     "c4",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:88:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Herr Wimmer'in sesli mesajı",
+   "ortam_tr": "Öğleden sonra. Herr Wimmer toplantıdan sonra sana bir sesli mesaj bırakmış. Hızlı konuşuyor.",
+   "speaker": "ch:wimmer",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Wimmer. Danke für heute.",
+     "tr": "Merhaba, ben Wimmer. Bugün için teşekkürler."
+    },
+    {
+     "id": "c2",
+     "de": "Ihre kurze Nachricht brauche ich bis Freitag um zwölf.",
+     "tr": "Kısa mesajınıza cuma saat on ikiye kadar ihtiyacım var."
+    },
+    {
+     "id": "c3",
+     "de": "Bitte schreiben Sie auch, was Frau Hoffmann diese Woche gemacht hat.",
+     "tr": "Lütfen Frau Hoffmann'ın bu hafta ne yaptığını da yazın."
+    },
+    {
+     "id": "c4",
+     "de": "Und benutzen Sie bitte Tobis Folien, die sind sehr gut.",
+     "tr": "Bir de lütfen Tobi'nin sunum sayfalarını kullanın, çok iyiler."
+    },
+    {
+     "id": "c5",
+     "de": "Ist das möglich? Danke und bis morgen.",
+     "tr": "Bu mümkün mü? Teşekkürler, yarın görüşürüz."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Herr Wimmer ne istiyor?",
+      "opts": [
+       "Cuma öğlene kadar kısa bir mesaj",
+       "Hemen geri aramanı",
+       "Toplantıyı yeniden yapmayı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Mesaja ne zamana kadar ihtiyacı var?",
+       "opts": [
+        "Cuma saat on ikiye kadar",
+        "Perşembe akşamına kadar",
+        "Pazartesiye kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Mesajda kimin hakkında da yazmalısın?",
+       "opts": [
+        "Frau Hoffmann",
+        "Tobi",
+        "Derya"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kimin sunum sayfalarını kullanmalısın?",
+       "opts": [
+        "Tobi'nin",
+        "Derya'nın",
+        "Kendi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "Freitag",
+        "Mittwoch",
+        "Samstag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Und benutzen Sie bitte ___ Folien, die sind sehr gut.",
+       "accepted": [
+        "Tobis",
+        "tobis",
+        "Tobis."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Ist",
+        "das",
+        "möglich",
+        "Danke",
+        "und",
+        "bis",
+        "morgen",
+        "heute",
+        "gut"
+       ],
+       "accepted": [
+        "Ist das möglich? Danke und bis morgen.",
+        "ist das möglich danke und bis morgen",
+        "Ist das möglich? Danke, und bis morgen."
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Ihre kurze Nachricht brauche ich bis Freitag um zwölf.",
+        "ihre kurze nachricht brauche ich bis freitag um zwölf",
+        "Ihre kurze Nachricht brauche ich bis Freitag um zwölf"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Herr Wimmer'in istediğini Almanca iki kısa cümleyle yaz.",
+       "ornek_de": "Die Nachricht muss bis Freitag um zwölf da sein. Ich benutze Tobis Folien.",
+       "zorunlu": [
+        "Freitag",
+        "Tobis"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:88:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Herr Wimmer'i geri arıyorsun. Bunun mümkün olduğunu söyle ve anladığını kontrol et: cuma on ikiye kadar mı?",
+      "prompt_de": "Wimmer. Haben Sie meine Nachricht bekommen?",
+      "accepted": [
+       "Ja, das ist möglich. Habe ich Sie richtig verstanden? Bis Freitag um zwölf?",
+       "Ja. Das ist möglich. Bis Freitag um zwölf, richtig?",
+       "Ja, danke. Bis Freitag um zwölf, das ist möglich.",
+       "Ja. Habe ich Sie richtig verstanden? Bis Freitag um zwölf?",
+       "Ja, das ist kein Problem. Bis Freitag um zwölf?",
+       "Ja, das ist möglich. Ich benutze Tobis Folien."
+      ],
+      "why_tr": "Önce **Das ist möglich.** Sonra kontrol: **Habe ich Sie richtig verstanden?**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:88:a2:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Cuma on ikiye kadar Frau Hoffmann'ın işini de yazıp Tobi'nin sunumuyla göndermek",
+     "Yarın sabah Herr Wimmer'le toplantı yapmak",
+     "Tobi'den yeni bir sunum istemek"
+    ],
+    "ans": 0,
+    "why_tr": "Mesaj: cuma on ikiye kadar, Frau Hoffmann'ı da yaz, Tobi'nin sayfalarını kullan.",
+    "kanit": [
+     "c2",
+     "c3",
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:88:g1",
+   "de": "Gesicht",
+   "dogru_img": "close-up of a man's face looking unhappy",
+   "celdirici_img": [
+    "hand",
+    "foot",
+    "back of a head"
+   ]
+  },
+  {
+   "id": "m1:88:g2",
+   "de": "Feuer",
+   "dogru_img": "fire burning in a fireplace",
+   "celdirici_img": [
+    "glass of water",
+    "snow on a roof",
+    "light bulb"
+   ]
+  },
+  {
+   "id": "m1:88:g3",
+   "de": "benutzen",
+   "dogru_img": "woman using a laptop in an office",
+   "celdirici_img": [
+    "woman sleeping on a sofa",
+    "woman running in a park",
+    "woman cooking"
+   ]
+  },
+  {
+   "id": "m1:88:g4",
+   "de": "schuld",
+   "dogru_img": "boy next to a broken vase looking guilty",
+   "celdirici_img": [
+    "boy laughing with friends",
+    "boy sleeping",
+    "boy reading a book"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:88:p1",
+  "title_tr": "Toplantıda Herr Wimmer'in soruları",
+  "durum_tr": "Perşembe toplantısı. Sıra sende. Bu hafta Frau Hoffmann'a kuralları anlattın. Tobi'nin sunum sayfaları Derya'nın bilgisayarında. Tatbikat onla on bir arasında.",
+  "karsi": "ch:wimmer",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Und jetzt Sie, bitte. Was haben Sie diese Woche gemacht?",
+    "tr": "Şimdi siz lütfen. Bu hafta ne yaptınız?",
+    "secenekler": [
+     {
+      "de": "Ich habe Frau Hoffmann die Regeln erklärt.",
+      "tr": "Frau Hoffmann'a kuralları anlattım.",
+      "accepted": [
+       "Ich habe Frau Hoffmann die Regeln erklärt.",
+       "Diese Woche habe ich Frau Hoffmann die Regeln erklärt.",
+       "Ich habe der neuen Kollegin die Regeln erklärt.",
+       "Ich habe Frau Hoffmann alles erklärt."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve net. **habe … erklärt**: anlattım."
+     },
+     {
+      "de": "Ich habe mit Derya gearbeitet und Frau Hoffmann alles erklärt.",
+      "tr": "Derya'yla çalıştım ve Frau Hoffmann'a her şeyi anlattım.",
+      "accepted": [
+       "Ich habe mit Derya gearbeitet und Frau Hoffmann alles erklärt.",
+       "Ich habe mit Derya gearbeitet. Und ich habe Frau Hoffmann alles erklärt.",
+       "Diese Woche habe ich mit Derya gearbeitet und Frau Hoffmann alles erklärt.",
+       "Ich habe Frau Hoffmann alles erklärt und mit Derya gearbeitet."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: iki işi kısa söyledin."
+     },
+     {
+      "de": "Ich bin schuld.",
+      "tr": "(yanlış) Suç bende.",
+      "accepted": [
+       "Ich bin schuld.",
+       "Ich bin nicht schuld.",
+       "Wer ist schuld?"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Şef ne yaptığını soruyor: **Ich habe … gemacht / erklärt.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Danke. Und wo sind die Folien von Herrn Lechner?",
+    "tr": "Teşekkürler. Peki Herr Lechner'in sunum sayfaları nerede?",
+    "secenekler": [
+     {
+      "de": "Ich glaube, sie sind auf Deryas Laptop.",
+      "tr": "Sanırım Derya'nın bilgisayarındalar.",
+      "accepted": [
+       "Ich glaube, sie sind auf Deryas Laptop.",
+       "Sie sind auf Deryas Laptop.",
+       "Ich glaube, die Folien sind auf Deryas Laptop.",
+       "Tobis Folien sind auf Deryas Laptop."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru: **Deryas Laptop**, araya kesme işareti yok."
+     },
+     {
+      "de": "Sie sind auf dem Laptop von Derya.",
+      "tr": "Derya'nın bilgisayarındalar.",
+      "accepted": [
+       "Sie sind auf dem Laptop von Derya.",
+       "Auf dem Laptop von Derya.",
+       "Die Folien sind auf dem Laptop von Derya.",
+       "Ich glaube, auf dem Laptop von Derya."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Konuşurken **von Derya** çok doğal."
+     },
+     {
+      "de": "Sie sind auf Derya Laptop.",
+      "tr": "(yanlış) Derya bilgisayarında.",
+      "accepted": [
+       "Sie sind auf Derya Laptop.",
+       "Auf Derya Laptop.",
+       "Sie sind auf der Deryas Laptop."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Ada **-s** eklenir, önüne **der** gelmez: **Deryas Laptop**."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Gut. Schicken Sie mir bitte bis Freitag eine kurze Nachricht.",
+    "tr": "Güzel. Lütfen cumaya kadar bana kısa bir mesaj gönderin.",
+    "secenekler": [
+     {
+      "de": "Habe ich Sie richtig verstanden? Bis Freitag?",
+      "tr": "Sizi doğru anladım mı? Cumaya kadar mı?",
+      "accepted": [
+       "Habe ich Sie richtig verstanden? Bis Freitag?",
+       "Habe ich Sie richtig verstanden? Die Nachricht bis Freitag?",
+       "Entschuldigung, habe ich Sie richtig verstanden? Bis Freitag?",
+       "Bis Freitag? Habe ich Sie richtig verstanden?"
+      ],
+      "sonraki": "n3b",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: anladığını kontrol ettin."
+     },
+     {
+      "de": "Alles klar, bis Freitag.",
+      "tr": "Tamam, cumaya kadar.",
+      "accepted": [
+       "Alles klar, bis Freitag.",
+       "Gut, bis Freitag.",
+       "Alles klar. Ich schicke sie Ihnen bis Freitag.",
+       "Kein Problem, bis Freitag."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Günü tekrar ettin, şef rahat."
+     },
+     {
+      "de": "Ja, bis Dienstag.",
+      "tr": "(yanlış) Evet, salıya kadar.",
+      "accepted": [
+       "Ja, bis Dienstag.",
+       "Bis Dienstag.",
+       "Gut, am Dienstag."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Şef **Freitag** dedi: cuma. **Dienstag** salı."
+     }
+    ]
+   },
+   {
+    "id": "n3b",
+    "de": "Genau, bis Freitag um zwölf. Ist das möglich?",
+    "tr": "Aynen, cuma saat on ikiye kadar. Mümkün mü?",
+    "secenekler": [
+     {
+      "de": "Ja, das ist möglich.",
+      "tr": "Evet, mümkün.",
+      "accepted": [
+       "Ja, das ist möglich.",
+       "Ja, das ist kein Problem.",
+       "Ja, natürlich. Das ist möglich.",
+       "Ja, das ist möglich. Danke."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "**Das ist möglich.**: mümkün."
+     },
+     {
+      "de": "Ja, kein Problem. Bis Freitag um zwölf.",
+      "tr": "Evet, sorun değil. Cuma on ikiye kadar.",
+      "accepted": [
+       "Ja, kein Problem. Bis Freitag um zwölf.",
+       "Kein Problem, bis Freitag um zwölf.",
+       "Ja, bis Freitag um zwölf.",
+       "Gut, bis Freitag um zwölf."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Saati de tekrar ettin. Harika."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Und noch etwas: Wann ist die Feuerübung?",
+    "tr": "Bir şey daha: Yangın tatbikatı ne zaman?",
+    "secenekler": [
+     {
+      "de": "Zwischen zehn und elf, also jetzt!",
+      "tr": "Onla on bir arası, yani şimdi!",
+      "accepted": [
+       "Zwischen zehn und elf, also jetzt!",
+       "Zwischen zehn und elf. Also jetzt!",
+       "Zwischen zehn und elf Uhr, also jetzt.",
+       "Jetzt, zwischen zehn und elf!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru: **zwischen zehn und elf**."
+     },
+     {
+      "de": "Sie ist zwischen zehn und elf Uhr.",
+      "tr": "Onla on bir arasında.",
+      "accepted": [
+       "Sie ist zwischen zehn und elf Uhr.",
+       "Die Feuerübung ist zwischen zehn und elf.",
+       "Heute zwischen zehn und elf.",
+       "Zwischen zehn und elf Uhr."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Net cevap."
+     },
+     {
+      "de": "Zwischen elf und zwölf.",
+      "tr": "(yanlış) On birle on iki arası.",
+      "accepted": [
+       "Zwischen elf und zwölf.",
+       "Um zwölf.",
+       "Zwischen elf und zwölf Uhr."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Anons **zwischen zehn und elf** dedi: onla on bir arası."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Stimmt! Dann gehen wir alle nach draußen.",
+    "tr": "Doğru! O zaman hepimiz dışarı çıkıyoruz.",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Toplantıda kısa cevap verdin, kimin neyi olduğunu söyledin ve anladığını kontrol ettin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Toplantıdan sonra Herr Wimmer'in e-postası",
+  "metin_de": "Hallo zusammen, danke für die Besprechung heute. Tobis Folien sind jetzt fertig, sie sind auf Deryas Laptop. Der Laptop von Frau Hoffmann kommt erst am Montag. Bis dann benutzt sie den Laptop von Tobi. Bitte schicken Sie mir bis Freitag um zwölf eine kurze Nachricht. In zwei Wochen ist wieder eine Besprechung, zwischen neun und zehn Uhr. Danke! Stefan Wimmer",
+  "metin_tr": "Herkese merhaba, bugünkü toplantı için teşekkürler. Tobi'nin sunum sayfaları artık hazır, Derya'nın bilgisayarındalar. Frau Hoffmann'ın bilgisayarı ancak pazartesi geliyor. O zamana kadar Tobi'nin bilgisayarını kullanıyor. Lütfen bana cuma saat on ikiye kadar kısa bir mesaj gönderin. İki hafta sonra yine bir toplantı var, saat dokuzla on arasında. Teşekkürler! Stefan Wimmer",
+  "sorular": [
+   {
+    "id": "m1:88:o1",
+    "kind": "gist",
+    "q_tr": "E-posta ne hakkında?",
+    "opts": [
+     "Toplantıdan sonraki önemli noktalar",
+     "Yangın tatbikatının sonucu",
+     "Yeni bir iş ilanı"
+    ],
+    "ans": 0,
+    "kanit": [
+     0
+    ]
+   },
+   {
+    "id": "m1:88:o2",
+    "kind": "detail",
+    "q_tr": "Tobi'nin sunum sayfaları nerede?",
+    "opts": [
+     "Derya'nın bilgisayarında",
+     "Tobi'nin bilgisayarında",
+     "Herr Wimmer'de"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:88:o3",
+    "kind": "detail",
+    "q_tr": "Frau Hoffmann pazartesiye kadar kimin bilgisayarını kullanıyor?",
+    "opts": [
+     "Tobi'nin",
+     "Derya'nın",
+     "Herr Wimmer'in"
+    ],
+    "ans": 0,
+    "kanit": [
+     2,
+     3
+    ]
+   },
+   {
+    "id": "m1:88:o4",
+    "kind": "detail",
+    "q_tr": "Bir sonraki toplantı ne zaman?",
+    "opts": [
+     "İki hafta sonra, dokuzla on arası",
+     "Gelecek perşembe, onla on bir arası",
+     "Cuma öğlen"
+    ],
+    "ans": 0,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:88:o5",
+    "k": "guided_response",
+    "situation_tr": "Frau Hoffmann soruyor: pazartesiye kadar kimin bilgisayarını kullanacak? Tobi'nin.",
+    "prompt_de": "Welchen Laptop benutze ich bis Montag?",
+    "accepted": [
+     "Den Laptop von Tobi.",
+     "Tobis Laptop.",
+     "Sie benutzen den Laptop von Tobi.",
+     "Bis Montag benutzen Sie Tobis Laptop.",
+     "Sie benutzen Tobis Laptop.",
+     "Den Laptop von Tobi, bis Montag."
+    ],
+    "why_tr": "Kimin olduğunu **Tobis Laptop** ya da **den Laptop von Tobi** ile söylersin."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Herr Wimmer'e kısa bir cevap yaz. Tobi'nin sunumunun hazır olduğunu ve mesajını cumaya kadar göndereceğini yaz. Bir yerde kişi adına -s ekle.",
+   "ornek_de": "Tobis Folien sind fertig. Ich schicke Ihnen meine Nachricht bis Freitag.",
+   "zorunlu": [
+    "Tobis",
+    "Freitag"
+   ],
+   "accepted_kaliplar": [
+    "Tobis …",
+    "Ich schicke Ihnen … bis Freitag."
+   ],
+   "kontrol_tr": [
+    "Tobi'nin adına -s ekledin mi, kesme işareti koymadın mı?",
+    "Günü yazdın mı?",
+    "Herr Wimmer'e Sie ile mi yazdın?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:88:s",
+  "maddeler": [
+   {
+    "id": "m1:88:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Darf ich Deryas Laptop benutzen?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Darf ich Deryas Laptop benutzen?",
+     "darf ich deryas laptop benutzen",
+     "Darf ich Deryas Laptop benutzen"
+    ],
+    "why_tr": "**Deryas**: araya kesme işareti yok."
+   },
+   {
+    "id": "m1:88:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Zwischen zehn und elf gehen alle nach draußen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Zwischen zehn und elf gehen alle nach draußen.",
+     "zwischen zehn und elf gehen alle nach draußen",
+     "Zwischen zehn und elf gehen alle nach draußen"
+    ],
+    "why_tr": "**zwischen … und …**: … ile … arası."
+   },
+   {
+    "id": "m1:88:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Tobis Laptop ist leider kaputt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Tobis Laptop ist leider kaputt.",
+     "tobis laptop ist leider kaputt",
+     "Tobis Laptop ist leider kaputt"
+    ],
+    "why_tr": "**Tobis Laptop**: Tobi'nin bilgisayarı."
+   },
+   {
+    "id": "m1:88:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Er hat noch nicht geantwortet.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Er hat noch nicht geantwortet.",
+     "er hat noch nicht geantwortet",
+     "Er hat noch nicht geantwortet"
+    ],
+    "why_tr": "**geantwortet** en sonda."
+   },
+   {
+    "id": "m1:88:s5",
+    "k": "tr_de",
+    "tr": "Tobi'nin bilgisayarını kullanabilir miyim?",
+    "accepted": [
+     "Darf ich Tobis Laptop benutzen?",
+     "Darf ich den Laptop von Tobi benutzen?",
+     "Kann ich Tobis Laptop benutzen?"
+    ],
+    "why_tr": "**Tobis Laptop** ya da **den Laptop von Tobi**. **benutzen** en sonda."
+   },
+   {
+    "id": "m1:88:s6",
+    "k": "tr_de",
+    "tr": "Suç bende değil.",
+    "accepted": [
+     "Ich bin nicht schuld.",
+     "Ich bin nicht schuld!",
+     "Das ist nicht meine Schuld."
+    ],
+    "why_tr": "**schuld sein**: suçlu olmak."
+   },
+   {
+    "id": "m1:88:s7",
+    "k": "tr_de",
+    "tr": "Mümkün mü? Mesaja cumaya kadar ihtiyacım var.",
+    "accepted": [
+     "Ist das möglich? Ich brauche die Nachricht bis Freitag.",
+     "Ist das möglich? Ich brauche die Nachricht schon bis Freitag.",
+     "Ist es möglich? Ich brauche die Nachricht bis Freitag."
+    ],
+    "why_tr": "**Ist das möglich?**: mümkün mü?"
+   },
+   {
+    "id": "m1:88:s8",
+    "k": "tr_de",
+    "tr": "Derya'nın mesajına yarın cevap veriyorum.",
+    "accepted": [
+     "Ich antworte morgen auf Deryas Nachricht.",
+     "Morgen antworte ich auf Deryas Nachricht.",
+     "Ich antworte morgen auf die Nachricht von Derya."
+    ],
+    "why_tr": "**auf Deryas Nachricht antworten**: Derya'nın mesajına cevap vermek."
+   },
+   {
+    "id": "m1:88:s9",
+    "k": "guided_response",
+    "situation_tr": "Herr Wimmer soruyor: Bu çanta kimin? Tobi'nin.",
+    "prompt_de": "Ist das Ihre Tasche?",
+    "accepted": [
+     "Nein, das ist Tobis Tasche.",
+     "Nein, das ist die Tasche von Tobi.",
+     "Nein. Das ist Tobis Tasche.",
+     "Das ist Tobis Tasche.",
+     "Nein, die Tasche ist von Tobi.",
+     "Nein, ich glaube, das ist Tobis Tasche."
+    ],
+    "why_tr": "**Tobis Tasche** ya da **die Tasche von Tobi**."
+   },
+   {
+    "id": "m1:88:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Schicken Sie mir die Nachricht bis Freitag, bitte.",
+    "speed": "normal",
+    "situation_tr": "Herr Wimmer bir şey istiyor. Anladığını kontrol et.",
+    "accepted": [
+     "Habe ich Sie richtig verstanden? Bis Freitag?",
+     "Bis Freitag? Habe ich Sie richtig verstanden?",
+     "Habe ich Sie richtig verstanden? Die Nachricht bis Freitag?",
+     "Alles klar, bis Freitag.",
+     "Bis Freitag, richtig?"
+    ],
+    "why_tr": "Kontrol için: **Habe ich Sie richtig verstanden?**"
+   },
+   {
+    "id": "m1:88:s11",
+    "k": "guided_response",
+    "situation_tr": "Toplantıda Herr Wimmer soruyor: Herr Lechner'in sunum sayfaları nerede? Derya'nın bilgisayarında. Sonra anladığını da kontrol et: toplantı dokuzla on arası mı?",
+    "prompt_de": "Wo sind die Folien von Herrn Lechner? Und die Besprechung in zwei Wochen ist zwischen neun und zehn.",
+    "accepted": [
+     "Sie sind auf Deryas Laptop. Habe ich Sie richtig verstanden? Zwischen neun und zehn?",
+     "Auf Deryas Laptop. Zwischen neun und zehn, richtig?",
+     "Die Folien sind auf dem Laptop von Derya. Habe ich Sie richtig verstanden? Zwischen neun und zehn?",
+     "Ich glaube, sie sind auf Deryas Laptop. Zwischen neun und zehn Uhr?",
+     "Auf Deryas Laptop. Habe ich Sie richtig verstanden, zwischen neun und zehn?",
+     "Sie sind auf Deryas Laptop. Zwischen neun und zehn, gut."
+    ],
+    "why_tr": "Önce kimin: **Deryas Laptop**. Sonra kontrol: **Habe ich Sie richtig verstanden?**"
+   }
+  ],
+  "sesli": [
+   "m1:88:s9",
+   "m1:88:s10"
+  ],
+  "dikte": [
+   "m1:88:s1",
+   "m1:88:s2",
+   "m1:88:s3",
+   "m1:88:s4"
+  ]
+ }
+}

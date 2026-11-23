@@ -1,0 +1,1561 @@
+{
+ "schema": 1,
+ "id": "m1:gun:90",
+ "day": 90,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Eczanede ilaç istemek ve kullanımı sormak",
+ "goal_tr": "Eczacıya neyin olduğunu söyler, bir ilaç istersin; günde kaç kez ve nasıl alacağını sorup tekrar edersin.",
+ "can_do": {
+  "id": "cd:m1:90",
+  "tr": "Eczanede ilaç ister, nasıl ve ne kadar alacağımı sorarım."
+ },
+ "unit": "u:a2:saglik-2",
+ "arm": "pazar",
+ "place": "pl:apotheke",
+ "characters": [
+  "ch:brandl"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:böse",
+  "lx:aufhören",
+  "lx:unten",
+  "lx:Teil",
+  "lx:weinen",
+  "lx:verkaufen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:90:h1",
+   "title_tr": "Cumartesi sabahı: kötü bir nezle",
+   "kartlar": [
+    "lx:böse",
+    "lx:aufhören",
+    "lx:unten"
+   ],
+   "kaliplar": [
+    {
+     "de": "Grüß Gott! – Was kann ich für Sie tun?",
+     "tr": "İyi günler! – Sizin için ne yapabilirim?"
+    },
+    {
+     "de": "eine böse Erkältung – Bist du mir böse? – Sei nicht böse!",
+     "tr": "kötü bir nezle – Bana kızgın mısın? – Kızma!"
+    },
+    {
+     "de": "Der Husten hört nicht auf. – Wenn der Husten nicht aufhört, …",
+     "tr": "Öksürük geçmiyor. – Öksürük geçmezse, …"
+    },
+    {
+     "de": "ganz unten im Regal – unten links – von unten",
+     "tr": "rafın en altında – sol altta – alt kattan"
+    },
+    {
+     "de": "Wie oft? – einmal, zweimal, dreimal am Tag – Wie viele Tabletten?",
+     "tr": "Kaç kez? – günde bir, iki, üç kez – Kaç tablet?"
+    },
+    {
+     "de": "vor dem Essen – nach dem Essen – eine halbe Tablette",
+     "tr": "yemekten önce – yemekten sonra – yarım tablet"
+    },
+    {
+     "de": "Ich melde mich krank. – Am Montag habe ich Spätschicht.",
+     "tr": "Hasta olduğumu bildiriyorum. – Pazartesi akşam vardiyam var."
+    },
+    {
+     "de": "seit drei Tagen – in drei Tagen – nach fünf Tagen",
+     "tr": "üç gündür – üç gün içinde – beş gün sonra"
+    },
+    {
+     "de": "Ich habe einen Kuchen gebacken. – …, gell? – vorne an der Kasse",
+     "tr": "Kek yaptım. – …, tamam mı? (güney ağzı) – öndeki kasada"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:böse",
+     "de": "Ich habe eine böse Erkältung und brauche etwas gegen Husten.",
+     "tr": "Kötü bir nezlem var, öksürüğe karşı bir şeye ihtiyacım var.",
+     "accepted": [
+      "Ich habe eine böse Erkältung und brauche etwas gegen Husten.",
+      "Ich habe eine böse Erkältung. Ich brauche etwas gegen Husten.",
+      "Ich habe eine böse Erkältung und brauche bitte etwas gegen Husten."
+     ]
+    },
+    {
+     "kart": "lx:böse",
+     "de": "Tobi, sei nicht böse, aber am Montag melde ich mich krank.",
+     "tr": "Tobi, kızma ama pazartesi hasta olduğumu bildiriyorum.",
+     "accepted": [
+      "Tobi, sei nicht böse, aber am Montag melde ich mich krank.",
+      "Sei nicht böse, Tobi, aber am Montag melde ich mich krank.",
+      "Tobi, sei bitte nicht böse, aber am Montag melde ich mich krank."
+     ]
+    },
+    {
+     "kart": "lx:aufhören",
+     "de": "Der Husten hört nicht auf, ich gehe zum Arzt.",
+     "tr": "Öksürük geçmiyor, doktora gidiyorum.",
+     "accepted": [
+      "Der Husten hört nicht auf, ich gehe zum Arzt.",
+      "Der Husten hört nicht auf. Ich gehe zum Arzt.",
+      "Der Husten hört nicht auf, deshalb gehe ich zum Arzt."
+     ]
+    },
+    {
+     "kart": "lx:aufhören",
+     "de": "Das Fieber hört nicht auf, deshalb melde ich mich am Montag krank.",
+     "tr": "Ateş geçmiyor, bu yüzden pazartesi hasta olduğumu bildiriyorum.",
+     "accepted": [
+      "Das Fieber hört nicht auf, deshalb melde ich mich am Montag krank.",
+      "Das Fieber hört nicht auf. Deshalb melde ich mich am Montag krank.",
+      "Das Fieber hört nicht auf, deshalb melde ich mich Montag krank."
+     ]
+    },
+    {
+     "kart": "lx:unten",
+     "de": "Die Tropfen sind ganz unten im Regal.",
+     "tr": "Damlalar rafın en altında.",
+     "accepted": [
+      "Die Tropfen sind ganz unten im Regal.",
+      "Die Tropfen sind unten im Regal.",
+      "Ganz unten im Regal sind die Tropfen."
+     ]
+    },
+    {
+     "kart": "lx:unten",
+     "de": "Die Salbe ist unten links, bei den Tabletten.",
+     "tr": "Merhem sol altta, tabletlerin yanında.",
+     "accepted": [
+      "Die Salbe ist unten links, bei den Tabletten.",
+      "Die Salbe ist unten links bei den Tabletten.",
+      "Unten links, bei den Tabletten, ist die Salbe."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cumartesi sabahı Vils-Apotheke. Sıra sende.",
+    "satirlar": [
+     {
+      "r": "die Apothekerin",
+      "de": "Grüß Gott! Was kann ich für Sie tun?",
+      "tr": "İyi günler! Sizin için ne yapabilirim?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich habe eine böse Erkältung. Haben Sie etwas gegen Husten?",
+      "tr": "Kötü bir nezlem var. Öksürüğe karşı bir şeyiniz var mı?"
+     },
+     {
+      "r": "die Apothekerin",
+      "de": "Ja, die Tropfen hier. Und wenn der Husten nicht aufhört, gehen Sie zum Arzt.",
+      "tr": "Evet, şu damlalar. Öksürük geçmezse de doktora gidin."
+     }
+    ],
+    "soru": {
+     "q_tr": "Eczacı ne diyor?",
+     "opts": [
+      "Damla al; öksürük geçmezse doktora git",
+      "Hemen hastaneye git",
+      "Reçetesiz bir şey yok"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:90:h2",
+   "title_tr": "Ağlayan bebek ve reçeteli ilaç",
+   "kartlar": [
+    "lx:Teil",
+    "lx:weinen",
+    "lx:verkaufen"
+   ],
+   "kaliplar": [
+    {
+     "de": "ein Teil – zum Teil – einen Teil bezahlen",
+     "tr": "bir kısmı – kısmen – bir kısmını ödemek"
+    },
+    {
+     "de": "ich bezahle – die Krankenkasse bezahlt – die Apotheke verkauft",
+     "tr": "öderim – sağlık sigortası öder – eczane satar"
+    },
+    {
+     "de": "nur mit Rezept – auch ohne Rezept",
+     "tr": "sadece reçeteyle – reçetesiz de"
+    },
+    {
+     "de": "Das Baby weint. – Warum weint das Kind?",
+     "tr": "Bebek ağlıyor. – Çocuk neden ağlıyor?"
+    },
+    {
+     "de": "Das verkaufen wir nur mit Rezept. – Verkaufen Sie das auch ohne Rezept?",
+     "tr": "Bunu sadece reçeteyle satıyoruz. – Bunu reçetesiz de satıyor musunuz?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Teil",
+     "de": "Einen Teil bezahlt die Krankenkasse.",
+     "tr": "Bir kısmını sağlık sigortası ödüyor.",
+     "accepted": [
+      "Einen Teil bezahlt die Krankenkasse.",
+      "Die Krankenkasse bezahlt einen Teil.",
+      "Einen Teil bezahlt meine Krankenkasse."
+     ]
+    },
+    {
+     "kart": "lx:Teil",
+     "de": "Für die Nacht nehme ich einen Teil, eine halbe Tablette.",
+     "tr": "Gece için bir kısmını, yarım tablet alıyorum.",
+     "accepted": [
+      "Für die Nacht nehme ich einen Teil, eine halbe Tablette.",
+      "Für die Nacht nehme ich einen Teil: eine halbe Tablette.",
+      "In der Nacht nehme ich einen Teil, eine halbe Tablette."
+     ]
+    },
+    {
+     "kart": "lx:weinen",
+     "de": "Das Baby weint, es ist bestimmt müde.",
+     "tr": "Bebek ağlıyor, kesin yorgun.",
+     "accepted": [
+      "Das Baby weint, es ist bestimmt müde.",
+      "Das Baby weint. Es ist bestimmt müde.",
+      "Das Baby weint, bestimmt ist es müde."
+     ]
+    },
+    {
+     "kart": "lx:weinen",
+     "de": "Warum weint das Kind? Hat es Schmerzen?",
+     "tr": "Çocuk neden ağlıyor? Bir yeri mi ağrıyor?",
+     "accepted": [
+      "Warum weint das Kind? Hat es Schmerzen?",
+      "Warum weint das Kind? Hat es vielleicht Schmerzen?",
+      "Warum weint das Kind, hat es Schmerzen?"
+     ]
+    },
+    {
+     "kart": "lx:verkaufen",
+     "de": "Verkaufen Sie das auch ohne Rezept?",
+     "tr": "Bunu reçetesiz de satıyor musunuz?",
+     "accepted": [
+      "Verkaufen Sie das auch ohne Rezept?",
+      "Verkaufen Sie das ohne Rezept?",
+      "Verkaufen Sie die Tabletten auch ohne Rezept?"
+     ]
+    },
+    {
+     "kart": "lx:verkaufen",
+     "de": "Die Apotheke verkauft die Tabletten nur mit Rezept.",
+     "tr": "Eczane tabletleri sadece reçeteyle satıyor.",
+     "accepted": [
+      "Die Apotheke verkauft die Tabletten nur mit Rezept.",
+      "Die Tabletten verkauft die Apotheke nur mit Rezept.",
+      "Die Apotheke verkauft diese Tabletten nur mit Rezept."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Arkanda kucağında bebekle bir kadın var. Bebek ağlıyor.",
+    "satirlar": [
+     {
+      "r": "eine Frau",
+      "de": "Entschuldigung, mein Baby weint, und es hat Fieber.",
+      "tr": "Affedersiniz, bebeğim ağlıyor ve ateşi var."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Bitte, Sie sind dran. Ich kann warten.",
+      "tr": "Buyurun, sıra sizin. Ben bekleyebilirim."
+     },
+     {
+      "r": "eine Frau",
+      "de": "Danke, das ist nett von Ihnen!",
+      "tr": "Teşekkürler, çok naziksiniz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Sen ne yapıyorsun?",
+     "opts": [
+      "Sıranı kadına veriyorsun",
+      "Eczaneden çıkıyorsun",
+      "Doktoru arıyorsun"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:90:v1",
+  "title_tr": "Cumartesi: Vils-Apotheke'de",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Vils-Apotheke, cumartesi sabahı. Eczacı gülümsüyor.",
+    "de": "Grüß Gott! Was kann ich für Sie tun?",
+    "tr": "İyi günler! Sizin için ne yapabilirim?"
+   },
+   {
+    "id": "s2",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Öksürüyorsun. Eczacı başını sallıyor.",
+    "de": "Eine böse Erkältung? Seit wann haben Sie den Husten?",
+    "tr": "Kötü bir nezle mi? Ne zamandan beri öksürüyorsunuz?"
+   },
+   {
+    "id": "s3",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Eczacı bir kutu gösteriyor.",
+    "de": "Für den Hals habe ich hier Tabletten. Die verkaufen wir auch ohne Rezept.",
+    "tr": "Boğaz için burada tabletler var. Bunları reçetesiz de satıyoruz."
+   },
+   {
+    "id": "s4",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Eczacı kutunun üstüne yazıyor.",
+    "de": "Nehmen Sie dreimal am Tag eine Tablette, immer nach dem Essen.",
+    "tr": "Günde üç kez bir tablet alın, hep yemekten sonra."
+   },
+   {
+    "id": "s5",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Eczacı rafa eğiliyor.",
+    "de": "Für die Nacht gibt es Tropfen. Die sind ganz unten im Regal.",
+    "tr": "Gece için damlalar var. Rafın en altındalar."
+   },
+   {
+    "id": "s6",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Eczacı damlaları veriyor.",
+    "de": "Und wenn der Husten in drei Tagen nicht aufhört, gehen Sie bitte zum Arzt.",
+    "tr": "Öksürük üç gün içinde geçmezse lütfen doktora gidin."
+   },
+   {
+    "id": "s7",
+    "speaker": "eine Frau",
+    "sahne_tr": "Arkada kucağında bebekle bir kadın. Bebek ağlıyor.",
+    "de": "Entschuldigung, mein Baby weint seit heute Morgen.",
+    "tr": "Affedersiniz, bebeğim bu sabahtan beri ağlıyor."
+   },
+   {
+    "id": "s8",
+    "speaker": "eine Frau",
+    "sahne_tr": "Kadın endişeli.",
+    "de": "Es hat Fieber und will nicht trinken.",
+    "tr": "Ateşi var ve içmek istemiyor."
+   },
+   {
+    "id": "s9",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Eczacı ciddi.",
+    "de": "Mit dem Baby gehen Sie bitte heute noch zum Arzt.",
+    "tr": "Bebekle lütfen bugün doktora gidin."
+   },
+   {
+    "id": "s10",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Eczacı bir kâğıda numara yazıyor.",
+    "de": "Heute ist Samstag. Rufen Sie den Bereitschaftsdienst an: eins, eins, sechs, eins, eins, sieben.",
+    "tr": "Bugün cumartesi. Nöbetçi hekim hattını arayın: 116 117."
+   },
+   {
+    "id": "s11",
+    "speaker": "eine Frau",
+    "sahne_tr": "Kadın kâğıdı alıyor.",
+    "de": "Danke, das mache ich sofort.",
+    "tr": "Teşekkürler, hemen yapıyorum."
+   },
+   {
+    "id": "s12",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Eczacı sana dönüyor.",
+    "de": "Und Ihnen gute Besserung! Die Tabletten bezahlen Sie vorne an der Kasse.",
+    "tr": "Size de geçmiş olsun! Tabletleri öndeki kasada ödüyorsunuz."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Eczacı sana ne veriyor?",
+     "opts": [
+      "Boğaz için tablet ve gece için damla",
+      "Sadece bir merhem",
+      "Hiçbir şey; reçete istiyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s3",
+      "s5"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Tableti günde kaç kez almalısın?",
+      "opts": [
+       "Üç kez",
+       "İki kez",
+       "Bir kez"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Damlalar nerede?",
+      "opts": [
+       "Rafın en altında",
+       "Kasada",
+       "Rafın en üstünde"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Öksürük üç gün içinde geçmezse ne yapmalısın?",
+      "opts": [
+       "Doktora git",
+       "Daha çok tablet al",
+       "Eczaneyi ara"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Kaç kez duydun?",
+      "opts": [
+       "dreimal",
+       "zweimal",
+       "einmal"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Für die Nacht gibt es Tropfen. Die sind ganz ___ im Regal.",
+      "accepted": [
+       "unten",
+       "Unten",
+       "unten."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s1",
+      "seviye": "zor",
+      "banka": [
+       "Grüß",
+       "Gott",
+       "Was",
+       "kann",
+       "ich",
+       "für",
+       "Sie",
+       "tun",
+       "dir",
+       "machen"
+      ],
+      "accepted": [
+       "Grüß Gott! Was kann ich für Sie tun?",
+       "grüß gott was kann ich für sie tun",
+       "Grüß Gott! Was kann ich für Sie tun"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Nehmen Sie dreimal am Tag eine Tablette, immer nach dem Essen.",
+       "nehmen sie dreimal am tag eine tablette immer nach dem essen",
+       "Nehmen Sie dreimal am Tag eine Tablette, immer nach dem Essen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Eczacının iki talimatını Almanca yaz.",
+      "ornek_de": "Ich nehme dreimal am Tag eine Tablette, nach dem Essen. Wenn der Husten nicht aufhört, gehe ich zum Arzt.",
+      "zorunlu": [
+       "dreimal am Tag",
+       "aufhört"
+      ]
+     }
+    ],
+    "golge": [
+     "s1",
+     "s4"
+    ],
+    "cevapla": {
+     "id": "m1:90:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Eczacı ne zamandan beri öksürdüğünü soruyor. Dünden beri; boğazın da üç gündür ağrıyor.",
+     "prompt_de": "Seit wann haben Sie den Husten?",
+     "accepted": [
+      "Seit gestern. Halsschmerzen habe ich seit drei Tagen.",
+      "Den Husten habe ich seit gestern, die Halsschmerzen seit drei Tagen.",
+      "Seit gestern, und der Hals tut seit drei Tagen weh.",
+      "Seit gestern. Und seit drei Tagen tut mein Hals weh.",
+      "Der Husten seit gestern, der Hals seit drei Tagen."
+     ],
+     "why_tr": "**seit gestern**: dünden beri. **seit drei Tagen**: üç gündür."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Kadının sorunu ne?",
+     "opts": [
+      "Bebeği ateşli ve ağlıyor",
+      "Reçetesini kaybetmiş",
+      "Parası yetmiyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s7",
+      "s8"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Eczacı kadına ne öneriyor?",
+      "opts": [
+       "Bugün doktora git; nöbetçi hattı ara",
+       "Pazartesiyi bekle",
+       "Bebeğe damla ver"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9",
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Nöbetçi hekim hattının numarası ne?",
+      "opts": [
+       "116 117",
+       "112",
+       "110"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tabletleri nerede ödüyorsun?",
+      "opts": [
+       "Öndeki kasada",
+       "Doktorda",
+       "Ödemiyorsun"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s12"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s10",
+      "seviye": "kolay",
+      "q_tr": "Hangi günü duydun?",
+      "opts": [
+       "Samstag",
+       "Sonntag",
+       "Montag"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s7",
+      "seviye": "orta",
+      "de": "Entschuldigung, mein Baby ___ seit heute Morgen.",
+      "accepted": [
+       "weint",
+       "Weint",
+       "weint."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s8",
+      "seviye": "zor",
+      "banka": [
+       "Es",
+       "hat",
+       "Fieber",
+       "und",
+       "will",
+       "nicht",
+       "trinken",
+       "essen",
+       "kann"
+      ],
+      "accepted": [
+       "Es hat Fieber und will nicht trinken.",
+       "es hat fieber und will nicht trinken",
+       "Es hat Fieber und will nicht trinken"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s11",
+      "seviye": "usta",
+      "accepted": [
+       "Danke, das mache ich sofort.",
+       "danke das mache ich sofort",
+       "Danke, das mache ich sofort"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Eczacının kadına söylediğini Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Mit dem Baby muss sie heute zum Arzt. Sie ruft den Bereitschaftsdienst an.",
+      "zorunlu": [
+       "Bereitschaftsdienst"
+      ]
+     }
+    ],
+    "golge": [
+     "s9",
+     "s11"
+    ],
+    "cevapla": {
+     "id": "m1:90:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Kadın telaşla sana dönüyor. Sıranı ona ver.",
+     "prompt_de": "Entschuldigung, mein Baby weint. Kann ich vor Ihnen dran sein?",
+     "accepted": [
+      "Ja, bitte, Sie sind dran.",
+      "Natürlich, bitte. Ich kann warten.",
+      "Ja, klar. Sie sind dran.",
+      "Bitte, gern. Ich kann warten.",
+      "Natürlich. Gute Besserung für das Baby!"
+     ],
+     "why_tr": "**Sie sind dran**: sıra sizde."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:90:a1",
+   "tur": "bekleme-anonsu",
+   "title_tr": "Eczanenin telefon bandı",
+   "ortam_tr": "Cumartesi sabahı evden Vils-Apotheke'yi arıyorsun. Önce bir bant çalıyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Vils-Apotheke, guten Tag. Bitte warten Sie, wir sind gleich für Sie da.",
+     "tr": "Vils-Apotheke, iyi günler. Lütfen bekleyin, hemen sizinleyiz."
+    },
+    {
+     "id": "c2",
+     "de": "Wir haben Montag bis Freitag von acht bis achtzehn Uhr geöffnet.",
+     "tr": "Pazartesiden cumaya sekizden on sekize açığız."
+    },
+    {
+     "id": "c3",
+     "de": "Am Samstag haben wir von acht bis dreizehn Uhr geöffnet.",
+     "tr": "Cumartesi sekizden on üçe açığız."
+    },
+    {
+     "id": "c4",
+     "de": "Am Sonntag ist die Apotheke am Bahnhof offen.",
+     "tr": "Pazar günü istasyondaki eczane açık."
+    },
+    {
+     "id": "c5",
+     "de": "Bitte bleiben Sie dran.",
+     "tr": "Lütfen hatta kalın."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Bantta ne söyleniyor?",
+      "opts": [
+       "Eczanenin açık olduğu saatler",
+       "İlaç fiyatları",
+       "Yeni bir eczanenin adresi"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Cumartesi eczane kaça kadar açık?",
+       "opts": [
+        "Saat 13'e kadar",
+        "Saat 18'e kadar",
+        "Bütün gün"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Pazar günü hangi eczane açık?",
+       "opts": [
+        "İstasyondaki eczane",
+        "Vils-Apotheke",
+        "Hiçbiri"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "Samstag",
+        "Sonntag",
+        "Freitag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Am Sonntag ist die Apotheke am ___ offen.",
+       "accepted": [
+        "Bahnhof",
+        "bahnhof",
+        "Bahnhof."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Bitte",
+        "bleiben",
+        "Sie",
+        "dran",
+        "warten",
+        "da"
+       ],
+       "accepted": [
+        "Bitte bleiben Sie dran.",
+        "bitte bleiben sie dran",
+        "Bitte bleiben Sie dran"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Am Samstag haben wir von acht bis dreizehn Uhr geöffnet.",
+        "am samstag haben wir von acht bis dreizehn uhr geöffnet",
+        "Am Samstag haben wir von acht bis dreizehn Uhr geöffnet"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Eczanenin cumartesi ve pazar saatlerini Almanca yaz.",
+       "ornek_de": "Am Samstag ist die Apotheke bis dreizehn Uhr offen. Am Sonntag ist die Apotheke am Bahnhof offen.",
+       "zorunlu": [
+        "Samstag",
+        "Sonntag"
+       ]
+      }
+     ],
+     "golge": [
+      "c1",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:90:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Eczacı telefonu açtı. Kötü bir nezlen var; bugün gelip öksürüğe karşı bir şey alabilir misin, sor.",
+      "prompt_de": "Apotheke, guten Tag. Was kann ich für Sie tun?",
+      "accepted": [
+       "Guten Tag, ich habe eine böse Erkältung. Kann ich heute etwas gegen Husten holen?",
+       "Guten Tag! Haben Sie heute etwas gegen Husten? Ich komme gleich vorbei.",
+       "Ich habe eine böse Erkältung. Haben Sie etwas gegen Husten?",
+       "Guten Tag, ich brauche etwas gegen Husten. Bis wann haben Sie heute geöffnet?",
+       "Guten Tag. Ich habe Husten. Kann ich heute etwas holen?"
+      ],
+      "why_tr": "**etwas gegen Husten**: öksürüğe karşı bir şey."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:90:a1:e1",
+    "k": "pick",
+    "q_tr": "Cumartesi saat ikide ilaç lazım. Ne yapmalısın?",
+    "opts": [
+     "Vils-Apotheke kapalı; başka bir eczaneye ya da pazartesiye bak",
+     "Vils-Apotheke'ye git, açık",
+     "Pazar günü Vils-Apotheke'ye git"
+    ],
+    "ans": 0,
+    "why_tr": "Vils-Apotheke cumartesi yalnızca 13'e kadar açık.",
+    "kanit": [
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:90:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Frau Brandl'dan sesli mesaj",
+   "ortam_tr": "Eczaneden dönünce telefonunda alt kattaki komşun Frau Brandl'ın mesajı var.",
+   "hizlar": [
+    "normal",
+    "natural"
+   ],
+   "speaker": "ch:brandl",
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, hier ist Rosa Brandl, von unten.",
+     "tr": "İyi günler, ben Rosa Brandl, alt kattan."
+    },
+    {
+     "id": "c2",
+     "de": "Ich habe gehört, Sie haben eine böse Erkältung.",
+     "tr": "Duydum ki kötü bir nezleniz var."
+    },
+    {
+     "id": "c3",
+     "de": "Ich habe heute einen Kuchen gebacken. Ein Stück stelle ich Ihnen vor die Tür, gell?",
+     "tr": "Bugün kek yaptım. Bir dilimini kapınızın önüne koyuyorum, tamam mı?"
+    },
+    {
+     "id": "c4",
+     "de": "Und wenn Sie etwas brauchen, rufen Sie mich an.",
+     "tr": "Bir şeye ihtiyacınız olursa beni arayın."
+    },
+    {
+     "id": "c5",
+     "de": "Gute Besserung!",
+     "tr": "Geçmiş olsun!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Frau Brandl neden arıyor?",
+      "opts": [
+       "Geçmiş olsun diyor ve kapına kek bırakıyor",
+       "Seni kahveye çağırıyor",
+       "Bir şikâyeti var"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Frau Brandl ne yaptı?",
+       "opts": [
+        "Kek",
+        "Ekmek",
+        "Çorba"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Keki nereye koyuyor?",
+       "opts": [
+        "Kapının önüne",
+        "Posta kutusuna",
+        "Bodruma"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c1",
+       "seviye": "kolay",
+       "q_tr": "Frau Brandl nerede oturuyor?",
+       "opts": [
+        "unten",
+        "oben",
+        "links"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Ich habe gehört, Sie haben eine ___ Erkältung.",
+       "accepted": [
+        "böse",
+        "Böse",
+        "böse."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Und",
+        "wenn",
+        "Sie",
+        "etwas",
+        "brauchen",
+        "rufen",
+        "Sie",
+        "mich",
+        "an",
+        "mir",
+        "dich"
+       ],
+       "accepted": [
+        "Und wenn Sie etwas brauchen, rufen Sie mich an.",
+        "und wenn sie etwas brauchen rufen sie mich an",
+        "Und wenn Sie etwas brauchen, rufen Sie mich an"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Gute Besserung!",
+        "gute besserung",
+        "Gute Besserung"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Frau Brandl'ın mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Frau Brandl hat einen Kuchen gebacken. Ein Stück ist vor der Tür.",
+       "zorunlu": [
+        "Kuchen",
+        "Tür"
+       ]
+      }
+     ],
+     "golge": [
+      "c1",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:90:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Frau Brandl'ı geri ara: kek için teşekkür et; eczanedeydin, ilacın var.",
+      "prompt_de": "Brandl? Grüß Gott!",
+      "accepted": [
+       "Grüß Gott, Frau Brandl! Danke für den Kuchen. Ich war schon in der Apotheke.",
+       "Danke für den Kuchen, Frau Brandl! Ich war in der Apotheke, ich habe Tabletten.",
+       "Vielen Dank für den Kuchen! Ich war in der Apotheke, es geht schon.",
+       "Danke, Frau Brandl, das ist sehr lieb. Ich war schon in der Apotheke.",
+       "Grüß Gott! Danke für den Kuchen. Tabletten habe ich schon aus der Apotheke."
+      ],
+      "why_tr": "**Danke für den Kuchen**: kek için teşekkürler."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:90:a2:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Kapının önüne bak",
+     "Frau Brandl'a kek götür",
+     "Eczaneye yeniden git"
+    ],
+    "ans": 0,
+    "why_tr": "Frau Brandl kapının önüne bir dilim kek koyuyor.",
+    "kanit": [
+     "c3"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:90:g1",
+   "de": "unten",
+   "dogru_img": "medicine box on the bottom shelf of a pharmacy",
+   "celdirici_img": [
+    "medicine box on the top shelf",
+    "medicine box on the counter",
+    "medicine box in a shopping bag"
+   ]
+  },
+  {
+   "id": "m1:90:g2",
+   "de": "weinen",
+   "dogru_img": "crying baby in the arms of its mother",
+   "celdirici_img": [
+    "sleeping baby",
+    "laughing baby",
+    "baby eating"
+   ]
+  },
+  {
+   "id": "m1:90:g3",
+   "de": "verkaufen",
+   "dogru_img": "pharmacist handing medicine over the counter to a customer",
+   "celdirici_img": [
+    "doctor examining a patient",
+    "person reading a book",
+    "woman cooking"
+   ]
+  },
+  {
+   "id": "m1:90:g4",
+   "de": "Teil",
+   "dogru_img": "tablet broken in two halves",
+   "celdirici_img": [
+    "full box of tablets",
+    "glass of water",
+    "bottle of drops"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:90:p1",
+  "title_tr": "Eczacıyla: ilaç istemek ve kullanımı sormak",
+  "durum_tr": "Cumartesi sabahı, Vils-Apotheke. Üç gündür boğazın ağrıyor, dünden beri öksürüyorsun. Ateşin yok. Pazartesi akşam vardiyan var. Öksürüğe karşı bir şey iste, günde kaç kez ve nasıl alacağını sor.",
+  "karsi": "die Apothekerin",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Grüß Gott! Was kann ich für Sie tun?",
+    "tr": "İyi günler! Sizin için ne yapabilirim?",
+    "secenekler": [
+     {
+      "de": "Ich habe Halsschmerzen und seit gestern Husten. Haben Sie etwas gegen Husten?",
+      "tr": "Boğazım ağrıyor ve dünden beri öksürüyorum. Öksürüğe karşı bir şeyiniz var mı?",
+      "accepted": [
+       "Ich habe Halsschmerzen und seit gestern Husten. Haben Sie etwas gegen Husten?",
+       "Ich habe seit gestern Husten und Halsschmerzen. Haben Sie etwas gegen Husten?",
+       "Halsschmerzen und seit gestern Husten. Haben Sie etwas gegen Husten?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: ne olduğunu ve ne istediğini söyledin."
+     },
+     {
+      "de": "Ich brauche etwas gegen Husten und Halsschmerzen.",
+      "tr": "Öksürüğe ve boğaz ağrısına karşı bir şeye ihtiyacım var.",
+      "accepted": [
+       "Ich brauche etwas gegen Husten und Halsschmerzen.",
+       "Ich brauche bitte etwas gegen Husten und Halsschmerzen.",
+       "Ich brauche etwas gegen Husten.",
+       "Ich brauche etwas gegen Halsschmerzen und Husten."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Açık ve net."
+     },
+     {
+      "de": "Tabletten.",
+      "tr": "Tablet.",
+      "accepted": [
+       "Tabletten.",
+       "Tabletten, bitte."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Çok kısa. Önce neyin olduğunu söyle: **Ich habe Husten.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Haben Sie auch Fieber?",
+    "tr": "Ateşiniz de var mı?",
+    "secenekler": [
+     {
+      "de": "Nein, kein Fieber.",
+      "tr": "Hayır, ateş yok.",
+      "accepted": [
+       "Nein, kein Fieber.",
+       "Nein, ich habe kein Fieber.",
+       "Kein Fieber, nein.",
+       "Nein, Fieber habe ich nicht."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru."
+     },
+     {
+      "de": "Ja, hohes Fieber.",
+      "tr": "Evet, yüksek ateş.",
+      "accepted": [
+       "Ja, hohes Fieber.",
+       "Ja, ich habe hohes Fieber."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Durumda ateşin yok: **Nein, kein Fieber.**"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Dann nehmen Sie diese Tabletten. Die verkaufen wir auch ohne Rezept.",
+    "tr": "O zaman şu tabletleri alın. Bunları reçetesiz de satıyoruz.",
+    "secenekler": [
+     {
+      "de": "Wie oft muss ich die Tabletten nehmen?",
+      "tr": "Tabletleri kaç kez almam gerekiyor?",
+      "accepted": [
+       "Wie oft muss ich die Tabletten nehmen?",
+       "Wie oft nehme ich sie?",
+       "Und wie oft muss ich sie nehmen?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Tam doğru soru: **Wie oft?**"
+     },
+     {
+      "de": "Wie viele Tabletten nehme ich am Tag?",
+      "tr": "Günde kaç tablet alıyorum?",
+      "accepted": [
+       "Wie viele Tabletten nehme ich am Tag?",
+       "Wie viele Tabletten muss ich am Tag nehmen?",
+       "Wie viele nehme ich am Tag?",
+       "Und wie viele Tabletten nehme ich am Tag?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: miktarı sordun."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Dreimal am Tag eine Tablette, nach dem Essen. Für die Nacht reicht eine halbe.",
+    "tr": "Günde üç kez bir tablet, yemekten sonra. Gece için yarım tablet yeter.",
+    "secenekler": [
+     {
+      "de": "Also dreimal am Tag nach dem Essen, und in der Nacht eine halbe.",
+      "tr": "Yani günde üç kez yemekten sonra, gece de yarım.",
+      "accepted": [
+       "Also dreimal am Tag nach dem Essen, und in der Nacht eine halbe.",
+       "Also dreimal am Tag nach dem Essen und in der Nacht eine halbe.",
+       "Dreimal am Tag nach dem Essen, und für die Nacht eine halbe.",
+       "Also: dreimal am Tag, nach dem Essen. In der Nacht eine halbe Tablette."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Mükemmel: talimatı tekrar ettin."
+     },
+     {
+      "de": "Entschuldigung, das war zu schnell. Wie oft, bitte?",
+      "tr": "Affedersiniz, çok hızlıydı. Kaç kez, lütfen?",
+      "accepted": [
+       "Entschuldigung, das war zu schnell. Wie oft, bitte?",
+       "Das war zu schnell. Wie oft am Tag, bitte?",
+       "Entschuldigung, wie oft am Tag, bitte?"
+      ],
+      "sonraki": "n4r",
+      "uygun": true,
+      "geri_bildirim_tr": "Anlamadığında sormak doğru; neyi kaçırdığını da söyledin."
+     }
+    ]
+   },
+   {
+    "id": "n4r",
+    "de": "Gern: dreimal am Tag, immer nach dem Essen. Und für die Nacht nur eine halbe Tablette.",
+    "tr": "Tabii: günde üç kez, hep yemekten sonra. Gece için de yalnızca yarım tablet.",
+    "secenekler": [
+     {
+      "de": "Danke. Dreimal am Tag nach dem Essen, und für die Nacht eine halbe.",
+      "tr": "Teşekkürler. Günde üç kez yemekten sonra, gece için yarım.",
+      "accepted": [
+       "Danke. Dreimal am Tag nach dem Essen, und für die Nacht eine halbe.",
+       "Danke! Dreimal am Tag nach dem Essen und in der Nacht eine halbe.",
+       "Alles klar: dreimal am Tag, nach dem Essen, und eine halbe für die Nacht.",
+       "Danke. Also dreimal am Tag und in der Nacht eine halbe."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru yakaladın."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Genau. Und wenn der Husten nicht aufhört, gehen Sie bitte zum Arzt.",
+    "tr": "Aynen. Öksürük geçmezse lütfen doktora gidin.",
+    "secenekler": [
+     {
+      "de": "Am Montag habe ich Spätschicht. Wenn es nicht besser ist, melde ich mich krank und gehe zum Arzt.",
+      "tr": "Pazartesi akşam vardiyam var. Düzelmezse hasta olduğumu bildirip doktora giderim.",
+      "accepted": [
+       "Am Montag habe ich Spätschicht. Wenn es nicht besser ist, melde ich mich krank und gehe zum Arzt.",
+       "Am Montag habe ich Spätschicht. Wenn es nicht besser ist, melde ich mich krank.",
+       "Wenn es am Montag nicht besser ist, melde ich mich krank und gehe zum Arzt.",
+       "Okay. Wenn der Husten nicht aufhört, melde ich mich am Montag krank und gehe zu Dr. Weber."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika: eczanedeki bilgiyi iş planınla bağladın."
+     },
+     {
+      "de": "Okay, dann gehe ich am Montag zu Dr. Weber.",
+      "tr": "Tamam, o zaman pazartesi Dr. Weber'e giderim.",
+      "accepted": [
+       "Okay, dann gehe ich am Montag zu Dr. Weber.",
+       "Okay, am Montag gehe ich zu Dr. Weber.",
+       "Gut, dann gehe ich am Montag zum Arzt.",
+       "Alles klar, am Montag gehe ich zu meinem Hausarzt."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Gute Besserung und ein schönes Wochenende!",
+    "tr": "Geçmiş olsun, iyi hafta sonları!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Eczanede neyin olduğunu söyledin, **Wie oft?** diye sordun ve talimatı tekrar ettin. Öksürük geçmezse ne yapacağını da biliyorsun."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Kutunun içindeki kâğıt: kullanım talimatı",
+  "metin_de": "Gegen Halsschmerzen und Husten. Ab 12 Jahren: dreimal am Tag eine Tablette, nach dem Essen. Kinder von 6 bis 12 Jahren: zweimal am Tag eine halbe Tablette. Kinder unter 6 Jahren: Fragen Sie bitte den Arzt. Nach fünf Tagen nicht mehr nehmen. Wenn die Schmerzen nicht aufhören, gehen Sie zum Arzt. Nebenwirkungen: manchmal Übelkeit.",
+  "metin_tr": "Boğaz ağrısına ve öksürüğe karşı. 12 yaşından itibaren: günde üç kez bir tablet, yemekten sonra. 6–12 yaş çocuklar: günde iki kez yarım tablet. 6 yaşından küçük çocuklar: lütfen doktora sorun. Beş günden sonra artık almayın. Ağrılar geçmezse doktora gidin. Yan etkiler: bazen mide bulantısı.",
+  "sorular": [
+   {
+    "id": "m1:90:o1",
+    "kind": "gist",
+    "q_tr": "Bu metin ne?",
+    "opts": [
+     "Bir ilacın kullanım talimatı",
+     "Bir reçete",
+     "Eczanenin açılış saatleri"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     1
+    ]
+   },
+   {
+    "id": "m1:90:o2",
+    "kind": "detail",
+    "q_tr": "Sen yetişkinsin. Tableti nasıl almalısın?",
+    "opts": [
+     "Günde üç kez bir tablet, yemekten sonra",
+     "Günde iki kez yarım tablet, yemekten sonra",
+     "Günde bir kez, yemekten önce"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:90:o3",
+    "kind": "detail",
+    "q_tr": "Tableti en çok kaç gün alabilirsin?",
+    "opts": [
+     "Beş gün",
+     "On iki gün",
+     "Altı gün"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:90:o4",
+    "k": "guided_response",
+    "situation_tr": "Ioana kursta tabletleri nasıl aldığını soruyor.",
+    "prompt_de": "Wie oft nimmst du die Tabletten?",
+    "accepted": [
+     "Dreimal am Tag, nach dem Essen.",
+     "Dreimal am Tag eine Tablette, immer nach dem Essen.",
+     "Ich nehme dreimal am Tag eine Tablette nach dem Essen.",
+     "Dreimal am Tag. Immer nach dem Essen.",
+     "Ich nehme sie dreimal am Tag, nach dem Essen."
+    ],
+    "why_tr": "**dreimal am Tag**: günde üç kez. **nach dem Essen**: yemekten sonra."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Derya'ya kısa bir mesaj yaz: eczanedeydin; tabletleri günde üç kez alıyorsun; pazartesi daha iyi değilsen hasta olduğunu bildireceksin.",
+   "ornek_de": "Hallo Derya, ich war in der Apotheke. Ich nehme dreimal am Tag eine Tablette. Wenn es am Montag nicht besser ist, melde ich mich krank.",
+   "zorunlu": [
+    "dreimal am Tag",
+    "krank"
+   ],
+   "accepted_kaliplar": [
+    "Hallo ___, ich war in der Apotheke.",
+    "Ich nehme ___ am Tag eine Tablette.",
+    "Wenn es am ___ nicht besser ist, melde ich mich krank."
+   ],
+   "kontrol_tr": [
+    "Eczanede olduğunu yazdın mı?",
+    "Günde kaç kez aldığını yazdın mı?",
+    "Pazartesi için planını wenn ile yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:90:s",
+  "maddeler": [
+   {
+    "id": "m1:90:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Die Salbe ist ganz unten.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Salbe ist ganz unten.",
+     "die salbe ist ganz unten",
+     "Die Salbe ist ganz unten"
+    ],
+    "why_tr": "**ganz unten**: en altta."
+   },
+   {
+    "id": "m1:90:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Das Baby weint die ganze Nacht.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Baby weint die ganze Nacht.",
+     "das baby weint die ganze nacht",
+     "Das Baby weint die ganze Nacht"
+    ],
+    "why_tr": "**weint**: ağlıyor. **die ganze Nacht**: bütün gece."
+   },
+   {
+    "id": "m1:90:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Wir verkaufen das nur mit Rezept.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir verkaufen das nur mit Rezept.",
+     "wir verkaufen das nur mit rezept",
+     "Wir verkaufen das nur mit Rezept"
+    ],
+    "why_tr": "**verkaufen**: satmak. **nur mit Rezept**: sadece reçeteyle."
+   },
+   {
+    "id": "m1:90:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Nehmen Sie am Abend eine halbe Tablette.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Nehmen Sie am Abend eine halbe Tablette.",
+     "nehmen sie am abend eine halbe tablette",
+     "Nehmen Sie am Abend eine halbe Tablette"
+    ],
+    "why_tr": "**eine halbe Tablette**: yarım tablet."
+   },
+   {
+    "id": "m1:90:s5",
+    "k": "tr_de",
+    "tr": "Öksürüğe karşı bir şeyiniz var mı?",
+    "accepted": [
+     "Haben Sie etwas gegen Husten?",
+     "Haben Sie bitte etwas gegen Husten?",
+     "Gibt es etwas gegen Husten?"
+    ],
+    "why_tr": "**etwas gegen …**: … karşı bir şey."
+   },
+   {
+    "id": "m1:90:s6",
+    "k": "tr_de",
+    "tr": "Bunu reçetesiz de satıyor musunuz?",
+    "accepted": [
+     "Verkaufen Sie das auch ohne Rezept?",
+     "Verkaufen Sie das ohne Rezept?",
+     "Verkaufen Sie das auch ohne ein Rezept?"
+    ],
+    "why_tr": "Soru fiille başlar: **Verkaufen Sie …?**"
+   },
+   {
+    "id": "m1:90:s7",
+    "k": "tr_de",
+    "tr": "Öksürük geçmezse doktora giderim.",
+    "accepted": [
+     "Wenn der Husten nicht aufhört, gehe ich zum Arzt.",
+     "Ich gehe zum Arzt, wenn der Husten nicht aufhört.",
+     "Wenn der Husten nicht aufhört, gehe ich zum Doktor."
+    ],
+    "why_tr": "**wenn** cümlesinde fiil (**aufhört**) en sonda; sonra **gehe ich** gelir."
+   },
+   {
+    "id": "m1:90:s8",
+    "k": "tr_de",
+    "tr": "Kötü bir nezlem var.",
+    "accepted": [
+     "Ich habe eine böse Erkältung.",
+     "Ich habe eine ziemlich böse Erkältung.",
+     "Ich bin erkältet, eine böse Erkältung."
+    ],
+    "why_tr": "**böse** burada kötü, ağır demek: **eine böse Erkältung**."
+   },
+   {
+    "id": "m1:90:s9",
+    "k": "guided_response",
+    "situation_tr": "Eczacı tabletleri veriyor. Günde kaç kez alacağını sor.",
+    "prompt_de": "Hier sind Ihre Tabletten.",
+    "accepted": [
+     "Wie oft nehme ich die Tabletten?",
+     "Danke. Wie oft muss ich die Tabletten nehmen?",
+     "Wie viele Tabletten nehme ich am Tag?",
+     "Wie oft am Tag muss ich sie nehmen?"
+    ],
+    "why_tr": "**Wie oft?**: kaç kez?"
+   },
+   {
+    "id": "m1:90:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Dreimal am Tag eine Tablette, nach dem Essen.",
+    "speed": "natural",
+    "situation_tr": "Eczacının talimatını tekrar et.",
+    "accepted": [
+     "Also dreimal am Tag eine Tablette, nach dem Essen.",
+     "Dreimal am Tag, nach dem Essen. Okay.",
+     "Dreimal am Tag nach dem Essen.",
+     "Also: dreimal am Tag nach dem Essen.",
+     "Okay, dreimal am Tag eine Tablette nach dem Essen."
+    ],
+    "why_tr": "Talimatı tekrar etmek doğru anladığını gösterir."
+   },
+   {
+    "id": "m1:90:s11",
+    "k": "guided_response",
+    "situation_tr": "Eczanedesin. Kötü bir nezlen var, öksürüyorsun. Bir şey iste ve kaç kez alacağını sor.",
+    "prompt_de": "Grüß Gott! Was kann ich für Sie tun?",
+    "accepted": [
+     "Ich habe eine böse Erkältung. Haben Sie etwas gegen Husten? Wie oft muss ich es nehmen?",
+     "Ich habe Husten. Haben Sie etwas dagegen? Und wie oft nehme ich das?",
+     "Ich brauche etwas gegen Husten. Wie oft muss ich das nehmen?",
+     "Ich habe eine böse Erkältung und brauche etwas gegen Husten. Wie oft nehme ich das?",
+     "Haben Sie etwas gegen Husten? Ich habe eine böse Erkältung. Wie oft muss ich das nehmen?"
+    ],
+    "why_tr": "Önce ne olduğunu, sonra ne istediğini, en son **Wie oft?** sorusunu söylersin."
+   }
+  ],
+  "sesli": [
+   "m1:90:s9",
+   "m1:90:s10"
+  ],
+  "dikte": [
+   "m1:90:s1",
+   "m1:90:s2",
+   "m1:90:s3",
+   "m1:90:s4"
+  ]
+ }
+}

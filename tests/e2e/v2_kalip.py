@@ -26,7 +26,7 @@ def main():
         for tema in ("light", "dark"):
             b, ctx = launch(p, color_scheme=tema); pg = new_page(ctx)
             login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-            pg.goto(base + "#/learn"); pg.click("[data-test=kalip-ac]"); pg.wait_for_selector("[data-test=kalip-liste]")
+            pg.goto(base + "#/koy"); pg.click("[data-mekan=atolye]"); pg.wait_for_selector("[data-test=kalip-liste]")
             n = pg.locator("[data-test=kalip-satir]").count()
             check(n == len(pts), f"[{tema}] listede bütün kalıplar ({n}/{len(pts)})")
             pg.goto(base + "#/kalip/pt:ich-bin"); pg.wait_for_selector("[data-test=kalip-karti]")
@@ -38,7 +38,7 @@ def main():
             check(p0["grammar_tr"][:30] not in metin, f"[{tema}] yazar notu (grammar_tr) öğrenciye görünmüyor")
             # OD-9: yazar alanı boşluk adları (terim içerebilir) öğrenciye görünmez (inceleme #94 P1-1)
             check(all(sl["name"] not in metin for sl in p0["slots"]), f"[{tema}] boşluk adları (yazar alanı) görünmüyor")
-            check(pg.get_attribute("[data-tab=learn]", "aria-current") == "page", f"[{tema}] sekme çubuğunda Öğren seçili (inceleme #94 P1-4)")
+            check(pg.get_attribute("[data-tab=koy]", "aria-current") == "page", f"[{tema}] sekme çubuğunda Köy seçili (inceleme #94 P1-4)")
             # slot doldurma: ilk örnekte geçmeyen öbek ("fertig", 9. örnek) → örneği çiplerin hemen altında, ekranda (P1-2)
             pg.locator("[data-test=kalip-dolgu]", has_text="fertig").first.click()
             ornek = pg.locator("[data-test=kalip-secili-ornek]")

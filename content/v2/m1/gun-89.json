@@ -1,0 +1,1575 @@
+{
+ "schema": 1,
+ "id": "m1:gun:89",
+ "day": 89,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "İş yerinde vardiya, izin ve hastalık",
+ "goal_tr": "İş arkadaşından vardiya değişimi, şefinden izin istersin; küçük bir iş kazasını hemen bildirirsin.",
+ "can_do": {
+  "id": "cd:m1:89",
+  "tr": "İş yerinde vardiya değiştirmeyi ya da izin almayı kibarca sorarım; bir kazayı bildiririm."
+ },
+ "unit": "u:a2:is-3",
+ "arm": "pazar",
+ "place": "pl:firma",
+ "characters": [
+  "ch:aksoy",
+  "ch:wimmer",
+  "ch:lechner"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-04:t5"
+ ],
+ "yeni_kartlar": [
+  "lx:Arbeitsunfall",
+  "lx:Blut",
+  "lx:Gefühl",
+  "lx:verdienen",
+  "lx:reichen",
+  "lx:Fest"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:89:h1",
+   "title_tr": "Cuma sabahı: depoda küçük bir kaza",
+   "kartlar": [
+    "lx:Arbeitsunfall",
+    "lx:Blut",
+    "lx:Gefühl"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich hatte einen Arbeitsunfall. – Das war ein kleiner Arbeitsunfall.",
+     "tr": "Bir iş kazası geçirdim. – Küçük bir iş kazasıydı."
+    },
+    {
+     "de": "Ich habe Blut an der Hand. – nur ein bisschen Blut",
+     "tr": "Elimde kan var. – sadece biraz kan"
+    },
+    {
+     "de": "ein komisches Gefühl im Hals – kein gutes Gefühl",
+     "tr": "boğazda tuhaf bir his – iyi bir his değil (içim rahat değil)"
+    },
+    {
+     "de": "Ich sage es Herrn Wimmer sofort. – Ich sage sofort Bescheid.",
+     "tr": "Herr Wimmer'e hemen söylerim. – Hemen haber veririm."
+    },
+    {
+     "de": "ich werde krank – ich glaube, ich werde krank",
+     "tr": "hastalanıyorum – sanırım hastalanıyorum"
+    },
+    {
+     "de": "einen kleinen Arbeitsunfall – auch wenn der Unfall klein ist",
+     "tr": "küçük bir iş kazası – kaza küçük olsa bile"
+    },
+    {
+     "de": "Ich habe eine Frage. – Ich habe sie schon gefragt.",
+     "tr": "Bir sorum var. – Ona sordum bile."
+    },
+    {
+     "de": "Was gibt es? – Es gibt … – Das passt.",
+     "tr": "Ne var? – … var. – Uyar."
+    },
+    {
+     "de": "Komm, wir gehen zu Herrn Wimmer. – Ich schreibe das auf. – wenn es wehtut",
+     "tr": "Gel, Herr Wimmer'e gidelim. – Bunu not ediyorum. – ağrırsa"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Arbeitsunfall",
+     "de": "Herr Wimmer, ich hatte heute einen Arbeitsunfall.",
+     "tr": "Herr Wimmer, bugün bir iş kazası geçirdim.",
+     "accepted": [
+      "Herr Wimmer, ich hatte heute einen Arbeitsunfall.",
+      "Ich hatte heute einen Arbeitsunfall, Herr Wimmer.",
+      "Herr Wimmer, ich hatte heute einen kleinen Arbeitsunfall."
+     ]
+    },
+    {
+     "kart": "lx:Arbeitsunfall",
+     "de": "Das war ein kleiner Arbeitsunfall, ich sage es Herrn Wimmer sofort.",
+     "tr": "Küçük bir iş kazasıydı, Herr Wimmer'e hemen söylüyorum.",
+     "accepted": [
+      "Das war ein kleiner Arbeitsunfall, ich sage es Herrn Wimmer sofort.",
+      "Das war ein kleiner Arbeitsunfall. Ich sage es Herrn Wimmer sofort.",
+      "Das war ein Arbeitsunfall, ich sage es Herrn Wimmer sofort."
+     ]
+    },
+    {
+     "kart": "lx:Blut",
+     "de": "Ich habe Blut an der Hand, aber es ist nicht schlimm.",
+     "tr": "Elimde kan var ama kötü değil.",
+     "accepted": [
+      "Ich habe Blut an der Hand, aber es ist nicht schlimm.",
+      "Ich habe Blut an der Hand, aber das ist nicht schlimm.",
+      "Ich habe Blut an der Hand. Es ist nicht schlimm."
+     ]
+    },
+    {
+     "kart": "lx:Blut",
+     "de": "Kein Problem, das ist nur ein bisschen Blut.",
+     "tr": "Sorun yok, sadece biraz kan.",
+     "accepted": [
+      "Kein Problem, das ist nur ein bisschen Blut.",
+      "Kein Problem, das ist nur ein bisschen Blut!",
+      "Das ist nur ein bisschen Blut, kein Problem."
+     ]
+    },
+    {
+     "kart": "lx:Gefühl",
+     "de": "Ich habe so ein komisches Gefühl im Hals.",
+     "tr": "Boğazımda öyle tuhaf bir his var.",
+     "accepted": [
+      "Ich habe so ein komisches Gefühl im Hals.",
+      "Ich habe ein komisches Gefühl im Hals.",
+      "Im Hals habe ich so ein komisches Gefühl."
+     ]
+    },
+    {
+     "kart": "lx:Gefühl",
+     "de": "Ich habe kein gutes Gefühl, ich glaube, ich werde krank.",
+     "tr": "İçim rahat değil, sanırım hastalanıyorum.",
+     "accepted": [
+      "Ich habe kein gutes Gefühl, ich glaube, ich werde krank.",
+      "Ich habe kein gutes Gefühl. Ich glaube, ich werde krank.",
+      "Kein gutes Gefühl, ich glaube, ich werde krank."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cuma sabahı depoda kutuları açıyorsun. Elinde biraz kan var.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Da ist Blut an deiner Hand! Was ist passiert?",
+      "tr": "Elinde kan var! Ne oldu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ein bisschen Blut, nicht schlimm. Das war ein Arbeitsunfall, oder?",
+      "tr": "Biraz kan, kötü değil. Bu bir iş kazasıydı, değil mi?"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Ja. Bei einem Arbeitsunfall sagen wir sofort Bescheid. Komm, wir gehen zu Herrn Wimmer.",
+      "tr": "Evet. İş kazasında hemen haber veririz. Gel, Herr Wimmer'e gidelim."
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya ne diyor?",
+     "opts": [
+      "İş kazasında hemen haber verilir",
+      "Kan önemli değil, çalışmaya devam",
+      "Hemen eve git"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:89:h2",
+   "title_tr": "Mola: vardiya, para ve mart şenliği",
+   "kartlar": [
+    "lx:verdienen",
+    "lx:reichen",
+    "lx:Fest"
+   ],
+   "kaliplar": [
+    {
+     "de": "Kannst du am Donnerstag meine Spätschicht machen? – Dann mache ich deine Frühschicht.",
+     "tr": "Perşembe benim akşam vardiyamı yapabilir misin? – O zaman ben de senin sabah vardiyanı yaparım."
+    },
+    {
+     "de": "ich verdiene – du verdienst – Du hast die Pause verdient.",
+     "tr": "kazanırım – kazanırsın – Molayı hak ettin."
+    },
+    {
+     "de": "Das Geld reicht (nicht). – Die Zeit reicht nicht. – Das reicht mir.",
+     "tr": "Para yetiyor (yetmiyor). – Zaman yetmiyor. – Bu bana yeter."
+    },
+    {
+     "de": "das Starkbierfest im März – zum Fest kommen",
+     "tr": "martta Güçlü Bira Şenliği – şenliğe gelmek"
+    },
+    {
+     "de": "ich mache – du machst – Machst du dann …?",
+     "tr": "yaparım – yaparsın – O zaman sen de … yapar mısın?"
+    },
+    {
+     "de": "ein großes Fest – eine kurze Nachricht",
+     "tr": "büyük bir şenlik – kısa bir mesaj"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:verdienen",
+     "de": "Mit Überstunden verdiene ich im Monat mehr.",
+     "tr": "Fazla mesaiyle ayda daha çok kazanıyorum.",
+     "accepted": [
+      "Mit Überstunden verdiene ich im Monat mehr.",
+      "Mit Überstunden verdiene ich mehr im Monat.",
+      "Im Monat verdiene ich mit Überstunden mehr."
+     ]
+    },
+    {
+     "kart": "lx:verdienen",
+     "de": "Derya, du hast die Pause heute wirklich verdient.",
+     "tr": "Derya, bugün molayı gerçekten hak ettin.",
+     "accepted": [
+      "Derya, du hast die Pause heute wirklich verdient.",
+      "Du hast die Pause heute wirklich verdient, Derya.",
+      "Derya, du hast heute die Pause wirklich verdient."
+     ]
+    },
+    {
+     "kart": "lx:reichen",
+     "de": "Die Zeit reicht nicht, ich mache heute Überstunden.",
+     "tr": "Zaman yetmiyor, bugün fazla mesai yapıyorum.",
+     "accepted": [
+      "Die Zeit reicht nicht, ich mache heute Überstunden.",
+      "Die Zeit reicht nicht. Ich mache heute Überstunden.",
+      "Die Zeit reicht nicht, heute mache ich Überstunden."
+     ]
+    },
+    {
+     "kart": "lx:reichen",
+     "de": "Ein Tag Urlaub im März reicht mir.",
+     "tr": "Martta bir gün izin bana yeter.",
+     "accepted": [
+      "Ein Tag Urlaub im März reicht mir.",
+      "Mir reicht ein Tag Urlaub im März.",
+      "Ein Tag Urlaub reicht mir im März."
+     ]
+    },
+    {
+     "kart": "lx:Fest",
+     "de": "Kommst du im März zum Fest? Das ist das Starkbierfest.",
+     "tr": "Martta şenliğe geliyor musun? Güçlü Bira Şenliği.",
+     "accepted": [
+      "Kommst du im März zum Fest? Das ist das Starkbierfest.",
+      "Kommst du im März auch zum Fest? Das ist das Starkbierfest.",
+      "Im März ist das Starkbierfest. Kommst du zum Fest?"
+     ]
+    },
+    {
+     "kart": "lx:Fest",
+     "de": "Am Samstag ist das Fest, aber ich habe Spätschicht.",
+     "tr": "Şenlik cumartesi ama ben akşam vardiyasındayım.",
+     "accepted": [
+      "Am Samstag ist das Fest, aber ich habe Spätschicht.",
+      "Das Fest ist am Samstag, aber ich habe Spätschicht.",
+      "Am Samstag ist das Fest, aber da habe ich Spätschicht."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Öğle molası. Tobi bir şey rica ediyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Du, kannst du am Donnerstag meine Spätschicht machen? Ich habe einen Termin.",
+      "tr": "Baksana, perşembe benim akşam vardiyamı yapabilir misin? Randevum var."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Donnerstag geht. Und du machst meine Frühschicht?",
+      "tr": "Perşembe olur. Sen de benim sabah vardiyamı yapar mısın?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Klar, das passt. Danke dir!",
+      "tr": "Tabii, uyar. Sağ ol!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Perşembe kim hangi vardiyada?",
+     "opts": [
+      "Sen akşam, Tobi sabah",
+      "Sen sabah, Tobi akşam",
+      "İkiniz de izinlisiniz"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:89:v1",
+  "title_tr": "Cuma: depoda kaza, molada para ve şenlik",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Depo. Derya elindeki kanı görüyor.",
+    "de": "Warte, zeig mal deine Hand. Da ist Blut.",
+    "tr": "Dur, elini göster. Kan var."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya elini inceliyor.",
+    "de": "Es ist nicht schlimm, aber das ist ein Arbeitsunfall.",
+    "tr": "Kötü değil ama bu bir iş kazası."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya ciddi bakıyor.",
+    "de": "Bei uns ist es wichtig, dass man bei einem Arbeitsunfall sofort Bescheid sagt.",
+    "tr": "Bizde iş kazasında hemen haber vermek önemlidir."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer'in ofisi. Hızlı konuşuyor.",
+    "de": "Was ist passiert? Geht es Ihnen gut?",
+    "tr": "Ne oldu? İyi misiniz?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer bir deftere yazıyor.",
+    "de": "Gut, dass Sie es gleich sagen. Ich schreibe das auf.",
+    "tr": "Hemen söylemeniz iyi oldu. Bunu not ediyorum."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer elini gösteriyor.",
+    "de": "Und wenn es morgen noch wehtut, gehen Sie bitte zum Arzt.",
+    "tr": "Yarın hâlâ ağrırsa lütfen doktora gidin."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Öğle molası, mutfak. Tobi kahvesini alıyor.",
+    "de": "Diese Woche habe ich zehn Überstunden gemacht.",
+    "tr": "Bu hafta on saat fazla mesai yaptım."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi gülüyor.",
+    "de": "Dann verdiene ich mehr, und das Geld reicht für den Urlaub im Sommer.",
+    "tr": "O zaman daha çok kazanırım, para da yazın tatile yeter."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya telefonunda bir resim gösteriyor.",
+    "de": "Im März ist das Starkbierfest in Wendlfing. Kommt ihr mit?",
+    "tr": "Martta Wendlfing'de Güçlü Bira Şenliği var. Siz de geliyor musunuz?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya sana dönüyor.",
+    "de": "Du musst kein Bier trinken. Es gibt auch Wasser.",
+    "tr": "Bira içmek zorunda değilsin. Su da var."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Öksürüyorsun. Tobi kaşlarını kaldırıyor.",
+    "de": "Du klingst aber nicht gut. Bist du erkältet?",
+    "tr": "Sesin hiç iyi gelmiyor ama. Nezle misin?"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya başını sallıyor.",
+    "de": "Am Wochenende viel schlafen und viel trinken, ja?",
+    "tr": "Hafta sonu bol uyu, bol iç, tamam mı?"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu bölümde ne oluyor?",
+     "opts": [
+      "Küçük bir iş kazası şefe bildiriliyor",
+      "Derya hastaneye gidiyor",
+      "Herr Wimmer toplantı yapıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s3",
+      "s4"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Derya'ya göre kaza kötü mü?",
+      "opts": [
+       "Hayır, kötü değil",
+       "Evet, çok kötü",
+       "Bilmiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Herr Wimmer ne yapıyor?",
+      "opts": [
+       "Kazayı not ediyor",
+       "Seni eve gönderiyor",
+       "Ambulans çağırıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Yarın hâlâ ağrırsa ne yapmalısın?",
+      "opts": [
+       "Doktora git",
+       "İşe gelme",
+       "Derya'yı ara"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s6",
+      "seviye": "kolay",
+      "q_tr": "Hangi günü duydun?",
+      "opts": [
+       "morgen",
+       "Montag",
+       "Samstag"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s2",
+      "seviye": "orta",
+      "de": "Es ist nicht schlimm, aber das ist ein ___.",
+      "accepted": [
+       "Arbeitsunfall",
+       "arbeitsunfall",
+       "Arbeitsunfall."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s4",
+      "seviye": "zor",
+      "banka": [
+       "Was",
+       "ist",
+       "passiert",
+       "Geht",
+       "es",
+       "Ihnen",
+       "gut",
+       "dir",
+       "war"
+      ],
+      "accepted": [
+       "Was ist passiert? Geht es Ihnen gut?",
+       "was ist passiert geht es ihnen gut",
+       "Was ist passiert? Geht es Ihnen gut"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s5",
+      "seviye": "usta",
+      "accepted": [
+       "Gut, dass Sie es gleich sagen.",
+       "gut dass sie es gleich sagen",
+       "Gut, dass Sie es gleich sagen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Kazayı ve Herr Wimmer'in dediğini Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Ich hatte einen kleinen Arbeitsunfall. Herr Wimmer schreibt das auf.",
+      "zorunlu": [
+       "Arbeitsunfall"
+      ]
+     }
+    ],
+    "golge": [
+     "s4",
+     "s6"
+    ],
+    "cevapla": {
+     "id": "m1:89:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Herr Wimmer ne olduğunu soruyor. Kutuyu açarken elin biraz kanadı; kötü değil.",
+     "prompt_de": "Was ist passiert? Geht es Ihnen gut?",
+     "accepted": [
+      "Ich hatte einen kleinen Arbeitsunfall, beim Auspacken. Es ist nicht schlimm.",
+      "Beim Auspacken. Ich habe ein bisschen Blut an der Hand, aber es ist nicht schlimm.",
+      "Ein kleiner Arbeitsunfall beim Auspacken. Es geht mir gut.",
+      "Ich hatte einen Arbeitsunfall. Nur ein bisschen Blut, nicht schlimm.",
+      "Es geht. Ich hatte beim Auspacken einen kleinen Arbeitsunfall."
+     ],
+     "why_tr": "Önce ne olduğunu (**einen Arbeitsunfall**), sonra durumunu (**nicht schlimm**) söylersin."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Molada ne konuşuluyor?",
+     "opts": [
+      "Fazla mesai, para ve martta bir şenlik",
+      "Yeni bir iş",
+      "Tobi'nin taşınması"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s7",
+      "s8",
+      "s9"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Tobi bu hafta kaç saat fazla mesai yaptı?",
+      "opts": [
+       "On",
+       "Üç",
+       "Yirmi"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s7"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Starkbierfest ne zaman?",
+      "opts": [
+       "Martta",
+       "Şubatta",
+       "Mayısta"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya hafta sonu için ne öneriyor?",
+      "opts": [
+       "Bol uyu, bol iç",
+       "Şenliğe git",
+       "Fazla mesai yap"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s12"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s9",
+      "seviye": "kolay",
+      "q_tr": "Hangi ayı duydun?",
+      "opts": [
+       "März",
+       "Mai",
+       "Juni"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s8",
+      "seviye": "orta",
+      "de": "Dann verdiene ich mehr, und das Geld ___ für den Urlaub im Sommer.",
+      "accepted": [
+       "reicht",
+       "Reicht",
+       "reicht."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s10",
+      "seviye": "zor",
+      "banka": [
+       "Du",
+       "musst",
+       "kein",
+       "Bier",
+       "trinken",
+       "Wasser",
+       "darfst"
+      ],
+      "accepted": [
+       "Du musst kein Bier trinken.",
+       "du musst kein bier trinken",
+       "Du musst kein Bier trinken"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s11",
+      "seviye": "usta",
+      "accepted": [
+       "Bist du erkältet?",
+       "bist du erkältet",
+       "Bist du erkältet"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Moladaki iki haberi Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Tobi verdient mit Überstunden mehr. Im März ist das Starkbierfest.",
+      "zorunlu": [
+       "Überstunden",
+       "März"
+      ]
+     }
+    ],
+    "golge": [
+     "s9",
+     "s11"
+    ],
+    "cevapla": {
+     "id": "m1:89:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Derya seni martta şenliğe çağırıyor. Gelmek istiyorsun ama bira içmeyeceksin.",
+     "prompt_de": "Im März ist das Starkbierfest. Kommst du mit?",
+     "accepted": [
+      "Ja, gern! Aber ich trinke kein Bier.",
+      "Gern, ich komme mit. Bier trinke ich aber nicht.",
+      "Ja, ich komme gern mit, aber ich trinke Wasser.",
+      "Klar, ich komme mit! Aber kein Bier für mich.",
+      "Ja, gern. Ich trinke aber kein Bier."
+     ],
+     "why_tr": "**Ja, gern** ile kabul edersin; **aber** ile ekini söylersin."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:89:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Herr Wimmer'den vardiya planı",
+   "ortam_tr": "Cuma sabahı işe giderken telefonunda Herr Wimmer'in mesajı var.",
+   "hizlar": [
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen, hier ist Wimmer, ganz kurz zum Schichtplan.",
+     "tr": "Günaydın, ben Wimmer, vardiya planı için çok kısa."
+    },
+    {
+     "id": "c2",
+     "de": "Ab Montag haben Sie bis Mittwoch Spätschicht, von vierzehn bis zweiundzwanzig Uhr.",
+     "tr": "Pazartesiden çarşambaya kadar akşam vardiyasındasınız, on dörtten yirmi ikiye."
+    },
+    {
+     "id": "c3",
+     "de": "Am Donnerstag und am Freitag haben Sie dann Frühschicht.",
+     "tr": "Perşembe ve cuma da sabah vardiyasındasınız."
+    },
+    {
+     "id": "c4",
+     "de": "Wenn Sie eine Schicht ändern möchten, sagen Sie mir bitte bis heute um drei Bescheid.",
+     "tr": "Bir vardiyayı değiştirmek isterseniz bana lütfen bugün saat üçe kadar haber verin."
+    },
+    {
+     "id": "c5",
+     "de": "Danke, bis später!",
+     "tr": "Teşekkürler, sonra görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Herr Wimmer neden arıyor?",
+      "opts": [
+       "Gelecek haftanın vardiya planı için",
+       "Kaza için",
+       "Toplantı için"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Pazartesiden çarşambaya hangi vardiyadasın?",
+       "opts": [
+        "Akşam vardiyası, 14–22",
+        "Sabah vardiyası",
+        "İzinlisin"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Değişiklik için ne zamana kadar haber vermelisin?",
+       "opts": [
+        "Bugün saat üçe kadar",
+        "Pazartesiye kadar",
+        "Akşama kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "Donnerstag",
+        "Dienstag",
+        "Sonntag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Am Donnerstag und am Freitag haben Sie dann ___.",
+       "accepted": [
+        "Frühschicht",
+        "frühschicht",
+        "Frühschicht."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c1",
+       "seviye": "zor",
+       "banka": [
+        "Guten",
+        "Morgen",
+        "hier",
+        "ist",
+        "Wimmer",
+        "ganz",
+        "kurz",
+        "zum",
+        "Schichtplan",
+        "lang",
+        "Abend"
+       ],
+       "accepted": [
+        "Guten Morgen, hier ist Wimmer, ganz kurz zum Schichtplan.",
+        "guten morgen hier ist wimmer ganz kurz zum schichtplan",
+        "Guten Morgen, hier ist Wimmer, ganz kurz zum Schichtplan"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Danke, bis später!",
+        "danke bis später",
+        "Danke, bis später"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Gelecek haftanın planını Almanca iki kısa cümleyle yaz.",
+       "ornek_de": "Von Montag bis Mittwoch habe ich Spätschicht. Am Donnerstag und am Freitag habe ich Frühschicht.",
+       "zorunlu": [
+        "Spätschicht",
+        "Frühschicht"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:89:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Herr Wimmer'i geri arıyorsun. Perşembe vardiyanı değiştirmek istiyorsun: Tobi'nin akşam vardiyasını sen yapacaksın.",
+      "prompt_de": "Wimmer. Ja, bitte?",
+      "accepted": [
+       "Herr Wimmer, ich möchte am Donnerstag eine Schicht ändern. Tobi macht meine Frühschicht, ich mache seine Spätschicht.",
+       "Ist es möglich, dass ich am Donnerstag Spätschicht habe? Tobi macht dann meine Frühschicht.",
+       "Am Donnerstag mache ich Tobis Spätschicht und er macht meine Frühschicht. Ist das möglich?",
+       "Herr Wimmer, am Donnerstag möchte ich die Schicht ändern. Ist das möglich?",
+       "Ich möchte am Donnerstag meine Schicht ändern. Tobi macht meine Frühschicht."
+      ],
+      "why_tr": "Şefe **Ist es möglich, dass …?** ile kibarca sorarsın."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:89:a1:e1",
+    "k": "pick",
+    "q_tr": "Vardiyayı değiştirmek istiyorsun. Ne yapmalısın?",
+    "opts": [
+     "Bugün saat üçe kadar Herr Wimmer'e haber ver",
+     "Pazartesi sabah söyle",
+     "Hiçbir şey; Tobi halleder"
+    ],
+    "ans": 0,
+    "why_tr": "Herr Wimmer bugün saat üçe kadar haber istiyor.",
+    "kanit": [
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:89:a2",
+   "tur": "radyo",
+   "title_tr": "Radyo: iş yerinde hasta olunca",
+   "ortam_tr": "Akşam evde yerel radyo açık. Bir uzman dinleyicilere kısa bilgi veriyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Und jetzt am Freitag: krank im Job. Was muss man machen?",
+     "tr": "Ve şimdi cuma: işte hasta olmak. Ne yapmak gerekir?"
+    },
+    {
+     "id": "c2",
+     "de": "Wenn Sie krank sind, rufen Sie bitte vor der Arbeit Ihre Firma an.",
+     "tr": "Hastaysanız lütfen işten önce firmanızı arayın."
+    },
+    {
+     "id": "c3",
+     "de": "Sind Sie mehr als drei Tage krank, brauchen Sie eine Krankmeldung vom Arzt.",
+     "tr": "Üç günden fazla hastaysanız doktordan rapor gerekir."
+    },
+    {
+     "id": "c4",
+     "de": "Manchmal möchte der Chef sie aber schon am ersten Tag haben.",
+     "tr": "Ama şef bazen raporu ilk gün istiyor."
+    },
+    {
+     "id": "c5",
+     "de": "Und bei einem Arbeitsunfall sagen Sie bitte sofort Bescheid, auch wenn er klein ist.",
+     "tr": "İş kazasında da küçük olsa bile lütfen hemen haber verin."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyoda ne anlatılıyor?",
+      "opts": [
+       "Hasta olunca ve kazada işte ne yapılır",
+       "Hava durumu",
+       "Şenlik programı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1",
+       "c2",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Ne zaman doktor raporu gerekir?",
+       "opts": [
+        "Üç günden fazla hastaysan",
+        "Her zaman ilk saatte",
+        "Hiçbir zaman"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Şef raporu ne zaman isteyebilir?",
+       "opts": [
+        "İlk gün de",
+        "Yalnızca bir hafta sonra",
+        "Hiç istemez"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi sayıyı duydun?",
+       "opts": [
+        "drei",
+        "zwei",
+        "zehn"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Sind Sie mehr als drei Tage krank, brauchen Sie eine ___ vom Arzt.",
+       "accepted": [
+        "Krankmeldung",
+        "krankmeldung",
+        "Krankmeldung."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Wenn",
+        "Sie",
+        "krank",
+        "sind",
+        "rufen",
+        "Sie",
+        "bitte",
+        "vor",
+        "der",
+        "Arbeit",
+        "Ihre",
+        "Firma",
+        "an",
+        "nach",
+        "aus"
+       ],
+       "accepted": [
+        "Wenn Sie krank sind, rufen Sie bitte vor der Arbeit Ihre Firma an.",
+        "wenn sie krank sind rufen sie bitte vor der arbeit ihre firma an",
+        "Wenn Sie krank sind, rufen Sie bitte vor der Arbeit Ihre Firma an"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c1",
+       "seviye": "usta",
+       "accepted": [
+        "Was muss man machen?",
+        "was muss man machen",
+        "Was muss man machen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyodaki iki kuralı Almanca yaz.",
+       "ornek_de": "Wenn ich krank bin, rufe ich vor der Arbeit an. Bei einem Arbeitsunfall sage ich sofort Bescheid.",
+       "zorunlu": [
+        "krank",
+        "Arbeitsunfall"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:89:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana radyoda ne dendiğini soruyor. Hastaysan ne zaman araman gerektiğini söyle.",
+      "prompt_de": "Wann muss man die Firma anrufen?",
+      "accepted": [
+       "Vor der Arbeit muss man die Firma anrufen.",
+       "Man ruft vor der Arbeit die Firma an.",
+       "Wenn man krank ist, ruft man vor der Arbeit an.",
+       "Vor der Arbeit. Man ruft die Firma an.",
+       "Vor der Arbeit, und man sagt, dass man krank ist."
+      ],
+      "why_tr": "**vor der Arbeit**: işten önce. **rufe … an**: ararım."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:89:a2:e1",
+    "k": "pick",
+    "q_tr": "Pazartesi sabah hastasın. Radyoya göre ne yapmalısın?",
+    "opts": [
+     "İşten önce firmanı ara",
+     "Akşam bir mesaj yaz",
+     "Önce bir hafta bekle"
+    ],
+    "ans": 0,
+    "why_tr": "Radyo işten önce firmayı aramanı söylüyor.",
+    "kanit": [
+     "c2"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:89:g1",
+   "de": "Blut",
+   "dogru_img": "small cut on a finger with a drop of blood",
+   "celdirici_img": [
+    "clean hand with a ring",
+    "hand holding a coffee cup",
+    "hand writing on paper"
+   ]
+  },
+  {
+   "id": "m1:89:g2",
+   "de": "Arbeitsunfall",
+   "dogru_img": "warehouse worker with a bandaged hand talking to a manager",
+   "celdirici_img": [
+    "workers having a lunch break",
+    "people in a meeting room",
+    "worker packing boxes happily"
+   ]
+  },
+  {
+   "id": "m1:89:g3",
+   "de": "Fest",
+   "dogru_img": "Bavarian beer festival tent with long tables and music",
+   "celdirici_img": [
+    "empty office at night",
+    "doctor's waiting room",
+    "supermarket checkout"
+   ]
+  },
+  {
+   "id": "m1:89:g4",
+   "de": "verdienen",
+   "dogru_img": "person looking happily at a payslip",
+   "celdirici_img": [
+    "person paying at a cash register",
+    "person losing a wallet",
+    "person sleeping on a sofa"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:89:p1",
+  "title_tr": "Herr Wimmer'den bir gün izin istemek",
+  "durum_tr": "Cuma öğleden sonra. Martın ilk cuması izinli olmak istiyorsun. Derya o gün senin vardiyanı yapabilir, onunla konuştun. Herr Wimmer'e kibarca sor.",
+  "karsi": "ch:wimmer",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Ja, bitte? Was gibt es?",
+    "tr": "Evet, buyurun? Ne var?",
+    "secenekler": [
+     {
+      "de": "Herr Wimmer, haben Sie kurz Zeit? Ich habe eine Frage.",
+      "tr": "Herr Wimmer, kısa bir vaktiniz var mı? Bir sorum var.",
+      "accepted": [
+       "Herr Wimmer, haben Sie kurz Zeit? Ich habe eine Frage.",
+       "Haben Sie kurz Zeit, Herr Wimmer? Ich habe eine Frage.",
+       "Herr Wimmer, haben Sie kurz Zeit?",
+       "Entschuldigung, Herr Wimmer, ich habe eine Frage."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar ve kısa bir başlangıç."
+     },
+     {
+      "de": "Ich habe eine Frage zum Urlaub.",
+      "tr": "İzinle ilgili bir sorum var.",
+      "accepted": [
+       "Ich habe eine Frage zum Urlaub.",
+       "Ich habe eine Frage zum Urlaub, Herr Wimmer.",
+       "Herr Wimmer, ich habe eine Frage zum Urlaub.",
+       "Eine Frage zum Urlaub, bitte."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Konuyu hemen söyledin, güzel."
+     },
+     {
+      "de": "Ich will im März frei haben.",
+      "tr": "Martta izinli olmak istiyorum.",
+      "accepted": [
+       "Ich will im März frei haben.",
+       "Ich will frei haben.",
+       "Im März will ich frei haben."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "**Ich will** şefe sert gelir. Önce kibarca vakti var mı diye sor."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Ja, natürlich. Was möchten Sie fragen?",
+    "tr": "Evet, tabii. Ne sormak istiyorsunuz?",
+    "secenekler": [
+     {
+      "de": "Ist es möglich, dass ich am ersten Freitag im März frei habe?",
+      "tr": "Martın ilk cuması izinli olmam mümkün mü?",
+      "accepted": [
+       "Ist es möglich, dass ich am ersten Freitag im März frei habe?",
+       "Ist es möglich, dass ich im März am ersten Freitag frei habe?",
+       "Ist es möglich, dass ich am ersten Freitag im März einen Tag Urlaub nehme?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok kibar: **Ist es möglich, dass …**; fiil (**habe**) en sonda."
+     },
+     {
+      "de": "Ich möchte im März einen Tag Urlaub nehmen, am ersten Freitag.",
+      "tr": "Martta bir gün izin almak istiyorum, ilk cuma.",
+      "accepted": [
+       "Ich möchte im März einen Tag Urlaub nehmen, am ersten Freitag.",
+       "Ich möchte am ersten Freitag im März einen Tag Urlaub nehmen.",
+       "Ich möchte im März einen Tag Urlaub nehmen.",
+       "Am ersten Freitag im März möchte ich einen Tag Urlaub nehmen."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "**Ich möchte** kibar bir istek."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Am ersten Freitag im März? Da haben wir viel Arbeit. Wer macht dann Ihre Schicht?",
+    "tr": "Martın ilk cuması mı? O gün çok işimiz var. Sizin vardiyanızı kim yapacak?",
+    "secenekler": [
+     {
+      "de": "Derya kann meine Schicht machen. Ich habe sie schon gefragt.",
+      "tr": "Derya benim vardiyamı yapabilir. Ona sordum bile.",
+      "accepted": [
+       "Derya kann meine Schicht machen. Ich habe sie schon gefragt.",
+       "Derya kann meine Schicht machen, ich habe sie schon gefragt.",
+       "Derya macht meine Schicht. Ich habe sie schon gefragt.",
+       "Ich habe Derya gefragt, sie kann meine Schicht machen."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika: çözümü önceden buldun."
+     },
+     {
+      "de": "Derya macht meine Schicht, und ich mache dann eine Schicht von ihr.",
+      "tr": "Derya benim vardiyamı yapıyor, ben de sonra onun bir vardiyasını yapıyorum.",
+      "accepted": [
+       "Derya macht meine Schicht, und ich mache dann eine Schicht von ihr.",
+       "Derya macht meine Schicht und ich mache dann ihre.",
+       "Derya macht meine Schicht. Dann mache ich eine Schicht von ihr.",
+       "Derya macht die Schicht, und ich mache dann ihre Schicht."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: karşılığını da söyledin."
+     },
+     {
+      "de": "Das weiß ich nicht.",
+      "tr": "Bilmiyorum.",
+      "accepted": [
+       "Das weiß ich nicht.",
+       "Das weiß ich leider nicht.",
+       "Keine Ahnung."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Durumda Derya senin vardiyanı yapabilir. Bunu söyle."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gut, dann passt das. Schreiben Sie mir bitte noch eine kurze Nachricht.",
+    "tr": "Peki, o zaman uyar. Bana bir de kısa bir mesaj yazın lütfen.",
+    "secenekler": [
+     {
+      "de": "Mache ich, heute noch. Vielen Dank, Herr Wimmer!",
+      "tr": "Bugün yaparım. Çok teşekkürler Herr Wimmer!",
+      "accepted": [
+       "Mache ich, heute noch. Vielen Dank, Herr Wimmer!",
+       "Mache ich heute noch. Vielen Dank, Herr Wimmer!",
+       "Mache ich. Vielen Dank!",
+       "Ja, heute noch. Vielen Dank, Herr Wimmer."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve net."
+     },
+     {
+      "de": "Ja, natürlich. Danke schön!",
+      "tr": "Evet, tabii. Çok teşekkürler!",
+      "accepted": [
+       "Ja, natürlich. Danke schön!",
+       "Ja, natürlich, danke schön!",
+       "Natürlich. Danke schön!",
+       "Ja, natürlich. Danke!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Gern. Und Ihre Hand? Tut sie noch weh?",
+    "tr": "Rica ederim. Ya eliniz? Hâlâ ağrıyor mu?",
+    "secenekler": [
+     {
+      "de": "Nur noch ein bisschen, danke.",
+      "tr": "Artık sadece biraz, teşekkürler.",
+      "accepted": [
+       "Nur noch ein bisschen, danke.",
+       "Nur noch ein bisschen.",
+       "Ein bisschen, aber es geht. Danke.",
+       "Nur noch ein bisschen, aber es ist nicht schlimm."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel."
+     },
+     {
+      "de": "Nein, nicht mehr. Es geht mir gut.",
+      "tr": "Hayır, artık ağrımıyor. İyiyim.",
+      "accepted": [
+       "Nein, nicht mehr. Es geht mir gut.",
+       "Nein, nicht mehr.",
+       "Nicht mehr, danke. Es geht mir gut.",
+       "Nein, sie tut nicht mehr weh."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Gut. Dann schönes Wochenende, und bis Montag!",
+    "tr": "Güzel. O zaman iyi hafta sonları, pazartesi görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "İzni kibarca istedin, vardiya sorusuna çözümle cevap verdin. Şefe **Ist es möglich, dass …?** iyi bir kapı açar."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Panoda: vardiya planı ve kaza kuralı",
+  "metin_de": "Hallo zusammen, hier ist der Schichtplan vom 22. bis 26. Februar. Frühschicht ist von 6 bis 14 Uhr, Spätschicht von 14 bis 22 Uhr. Möchten Sie eine Schicht ändern? Dann sagen Sie bitte bis Mittwoch Bescheid. Wichtig: Nach einem Arbeitsunfall sagen Sie bitte sofort Herrn Wimmer Bescheid, auch wenn der Unfall klein ist. Wir schreiben jeden Arbeitsunfall auf. Danke! Stefan Wimmer",
+  "metin_tr": "Herkese merhaba, 22–26 Şubat vardiya planı burada. Sabah vardiyası 6–14, akşam vardiyası 14–22. Bir vardiyayı değiştirmek mi istiyorsunuz? O zaman lütfen çarşambaya kadar haber verin. Önemli: Bir iş kazasından sonra, kaza küçük olsa bile lütfen hemen Herr Wimmer'e haber verin. Her iş kazasını not ediyoruz. Teşekkürler! Stefan Wimmer",
+  "sorular": [
+   {
+    "id": "m1:89:o1",
+    "kind": "gist",
+    "q_tr": "Bu duyuru ne hakkında?",
+    "opts": [
+     "Vardiya planı ve iş kazası kuralı",
+     "Starkbierfest",
+     "Maaşlar"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     4
+    ]
+   },
+   {
+    "id": "m1:89:o2",
+    "kind": "detail",
+    "q_tr": "Akşam vardiyası saat kaçta?",
+    "opts": [
+     "14–22",
+     "6–14",
+     "8–16"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:89:o3",
+    "kind": "detail",
+    "q_tr": "Vardiyanı değiştirmek istiyorsan ne zamana kadar haber verirsin?",
+    "opts": [
+     "Çarşambaya kadar",
+     "Cumaya kadar",
+     "Bugün"
+    ],
+    "ans": 0,
+    "kanit": [
+     2,
+     3
+    ]
+   },
+   {
+    "id": "m1:89:o4",
+    "k": "guided_response",
+    "situation_tr": "Tobi panoyu okumadı. Küçük bir kaza olunca ne yapması gerektiğini söyle.",
+    "prompt_de": "Was steht da? Was mache ich nach einem kleinen Unfall?",
+    "accepted": [
+     "Du sagst sofort Herrn Wimmer Bescheid.",
+     "Sofort Herrn Wimmer Bescheid sagen, auch wenn der Unfall klein ist.",
+     "Du musst sofort Herrn Wimmer Bescheid sagen.",
+     "Sag sofort Herrn Wimmer Bescheid, auch bei einem kleinen Unfall.",
+     "Nach einem Arbeitsunfall sagst du sofort Herrn Wimmer Bescheid."
+    ],
+    "why_tr": "**Bescheid sagen**: haber vermek. Kime: **Herrn Wimmer**."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Tobi'ye kısa bir mesaj yaz: perşembe onun akşam vardiyasını sen yaparsın; o da senin sabah vardiyanı yapsın.",
+   "ornek_de": "Hallo Tobi, ich mache am Donnerstag deine Spätschicht. Kannst du dann meine Frühschicht machen? Danke!",
+   "zorunlu": [
+    "Spätschicht",
+    "Frühschicht"
+   ],
+   "accepted_kaliplar": [
+    "Hallo ___, ich mache am ___ deine Spätschicht.",
+    "Kannst du dann meine Frühschicht machen?",
+    "Danke!"
+   ],
+   "kontrol_tr": [
+    "Günü yazdın mı?",
+    "Hangi vardiyayı yapacağını yazdın mı?",
+    "Karşılığını soru olarak sordun mu?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:89:s",
+  "maddeler": [
+   {
+    "id": "m1:89:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich habe diese Woche Spätschicht.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich habe diese Woche Spätschicht.",
+     "ich habe diese woche spätschicht",
+     "Ich habe diese Woche Spätschicht"
+    ],
+    "why_tr": "**Spätschicht**: akşam vardiyası. **diese Woche**: bu hafta."
+   },
+   {
+    "id": "m1:89:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Das Geld reicht nicht für den Urlaub.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Geld reicht nicht für den Urlaub.",
+     "das geld reicht nicht für den urlaub",
+     "Das Geld reicht nicht für den Urlaub"
+    ],
+    "why_tr": "**reicht nicht**: yetmiyor."
+   },
+   {
+    "id": "m1:89:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Im März gibt es ein großes Fest.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Im März gibt es ein großes Fest.",
+     "im märz gibt es ein großes fest",
+     "Im März gibt es ein großes Fest"
+    ],
+    "why_tr": "**ein großes Fest**: büyük bir şenlik."
+   },
+   {
+    "id": "m1:89:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ich sage es sofort Herrn Wimmer.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich sage es sofort Herrn Wimmer.",
+     "ich sage es sofort herrn wimmer",
+     "Ich sage es sofort Herrn Wimmer"
+    ],
+    "why_tr": "**sofort**: hemen. Kime: **Herrn Wimmer**."
+   },
+   {
+    "id": "m1:89:s5",
+    "k": "tr_de",
+    "tr": "Perşembe benim vardiyamı yapabilir misin?",
+    "accepted": [
+     "Kannst du am Donnerstag meine Schicht machen?",
+     "Kannst du meine Schicht am Donnerstag machen?",
+     "Kannst du am Donnerstag für mich die Schicht machen?"
+    ],
+    "why_tr": "**Kannst du** ile başlarsın; **machen** en sonda."
+   },
+   {
+    "id": "m1:89:s6",
+    "k": "tr_de",
+    "tr": "Bugün küçük bir iş kazası geçirdim.",
+    "accepted": [
+     "Ich hatte heute einen kleinen Arbeitsunfall.",
+     "Heute hatte ich einen kleinen Arbeitsunfall.",
+     "Ich hatte heute einen Arbeitsunfall."
+    ],
+    "why_tr": "**ich hatte**: geçirdim (oldu). **einen kleinen Arbeitsunfall**."
+   },
+   {
+    "id": "m1:89:s7",
+    "k": "tr_de",
+    "tr": "Fazla mesaiyle daha çok kazanıyorum.",
+    "accepted": [
+     "Mit Überstunden verdiene ich mehr.",
+     "Ich verdiene mit Überstunden mehr.",
+     "Mit Überstunden verdiene ich mehr Geld."
+    ],
+    "why_tr": "**verdiene**: kazanırım. **mit Überstunden**: fazla mesaiyle."
+   },
+   {
+    "id": "m1:89:s8",
+    "k": "tr_de",
+    "tr": "İçim rahat değil.",
+    "accepted": [
+     "Ich habe kein gutes Gefühl.",
+     "Ich habe ein komisches Gefühl.",
+     "Ich habe da kein gutes Gefühl."
+    ],
+    "why_tr": "Türkçede \"içim rahat değil\", Almancada **kein gutes Gefühl** denir."
+   },
+   {
+    "id": "m1:89:s9",
+    "k": "guided_response",
+    "situation_tr": "Herr Wimmer elindeki kanı görüyor. Kutuyu açarken küçük bir iş kazası geçirdin; kötü değil.",
+    "prompt_de": "Was ist mit Ihrer Hand?",
+    "accepted": [
+     "Ich hatte einen kleinen Arbeitsunfall. Es ist nicht schlimm.",
+     "Ein kleiner Arbeitsunfall beim Auspacken. Nicht schlimm.",
+     "Ich hatte beim Auspacken einen Arbeitsunfall. Es ist nicht schlimm.",
+     "Nur ein bisschen Blut, ein kleiner Arbeitsunfall.",
+     "Ich habe Blut an der Hand, aber es ist nicht schlimm."
+    ],
+    "why_tr": "Önce ne olduğunu, sonra **nicht schlimm** ile durumu söylersin."
+   },
+   {
+    "id": "m1:89:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Kannst du am Donnerstag meine Frühschicht machen?",
+    "speed": "fast",
+    "situation_tr": "Derya soruyor. Perşembe olur; karşılığında onun akşam vardiyasını istiyorsun.",
+    "accepted": [
+     "Ja, klar. Machst du dann meine Spätschicht?",
+     "Donnerstag geht. Machst du dann meine Spätschicht?",
+     "Ja, das passt. Dann machst du meine Spätschicht, okay?",
+     "Klar! Und du machst dann meine Spätschicht?"
+    ],
+    "why_tr": "Kabul edip **Machst du dann …?** ile karşılığını sorarsın."
+   },
+   {
+    "id": "m1:89:s11",
+    "k": "guided_response",
+    "situation_tr": "Herr Wimmer'e kibarca sor: cuma izinli olabilir misin?",
+    "prompt_de": "Ja, bitte? Was gibt es?",
+    "accepted": [
+     "Ist es möglich, dass ich am Freitag frei habe?",
+     "Herr Wimmer, ist es möglich, dass ich am Freitag frei habe?",
+     "Ich möchte am Freitag einen Tag Urlaub nehmen. Ist das möglich?",
+     "Ist es möglich, dass ich am Freitag Urlaub nehme?",
+     "Haben Sie kurz Zeit? Ist es möglich, dass ich am Freitag frei habe?"
+    ],
+    "why_tr": "**Ist es möglich, dass …**: fiil (**habe**) en sonda."
+   }
+  ],
+  "sesli": [
+   "m1:89:s9",
+   "m1:89:s10"
+  ],
+  "dikte": [
+   "m1:89:s1",
+   "m1:89:s2",
+   "m1:89:s3",
+   "m1:89:s4"
+  ]
+ }
+}

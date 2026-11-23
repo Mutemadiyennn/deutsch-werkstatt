@@ -1,0 +1,1652 @@
+{
+ "schema": 1,
+ "id": "m1:gun:86",
+ "day": 86,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Fikrini söylemek: Ich glaube, dass das stimmt",
+ "goal_tr": "Bir kişi ya da durum hakkında fikrini Ich finde / Ich glaube, dass … ile söylersin; başkasının fikrine katılır ya da katılmazsın.",
+ "can_do": {
+  "id": "cd:m1:86",
+  "tr": "Bir kişi ya da durum hakkında fikrimi Ich finde / Ich glaube, dass … ile söylerim."
+ },
+ "unit": "u:a2:is-3",
+ "arm": "pazar",
+ "place": "pl:firma",
+ "characters": [
+  "ch:aksoy",
+  "ch:lechner",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-04:t2"
+ ],
+ "yeni_kartlar": [
+  "lx:sich_verstehen",
+  "lx:sich_streiten",
+  "lx:sich_verlieben",
+  "lx:sich_trennen",
+  "lx:zuverlässig",
+  "lx:ehrlich",
+  "lx:fliegen",
+  "lx:freuen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:86:h1",
+   "title_tr": "Öğle molası: dizideki çift",
+   "kartlar": [
+    "lx:sich_verstehen",
+    "lx:sich_streiten",
+    "lx:sich_verlieben",
+    "lx:sich_trennen"
+   ],
+   "kaliplar": [
+    {
+     "de": "ich verstehe mich – du verstehst dich – er versteht sich – wir verstehen uns – ihr versteht euch – sie verstehen sich",
+     "tr": "anlaşıyorum – anlaşıyorsun – anlaşıyor – anlaşıyoruz – anlaşıyorsunuz – anlaşıyorlar"
+    },
+    {
+     "de": "Sie streiten sich. – Streitet ihr euch? – Sie haben sich gestritten.",
+     "tr": "Kavga ediyorlar. – Kavga mı ediyorsunuz? – Kavga ettiler."
+    },
+    {
+     "de": "Er hat sich verliebt. – Sie trennen sich. – Man trennt sich. – Sie haben sich getrennt.",
+     "tr": "Âşık oldu. – Ayrılıyorlar. – İnsan ayrılıyor. – Ayrıldılar."
+    },
+    {
+     "de": "die Serie – in der Serie – Hast du die Serie gesehen?",
+     "tr": "dizi – dizide – Diziyi izledin mi?"
+    },
+    {
+     "de": "ich glaube – du glaubst – sie glaubt – Ich glaube, dass … – Das glaube ich nicht.",
+     "tr": "sanırım – sanıyorsun – sanıyor – Sanırım … – Sanmıyorum."
+    },
+    {
+     "de": "ich finde – du findest – er findet – Ich finde, dass … – Das finde ich auch.",
+     "tr": "bence – sence – ona göre – Bence … – Ben de öyle düşünüyorum."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:sich_verstehen",
+     "de": "Ich glaube, dass sie sich wieder verstehen.",
+     "tr": "Sanırım yine anlaşıyorlar.",
+     "accepted": [
+      "Ich glaube, dass sie sich wieder verstehen.",
+      "Ich glaube, sie verstehen sich wieder.",
+      "Ich glaube, dass die zwei sich wieder verstehen."
+     ]
+    },
+    {
+     "kart": "lx:sich_verstehen",
+     "de": "Im Büro verstehen wir uns alle gut.",
+     "tr": "Ofiste hepimiz iyi anlaşıyoruz.",
+     "accepted": [
+      "Im Büro verstehen wir uns alle gut.",
+      "Wir verstehen uns im Büro alle gut.",
+      "Im Büro verstehen wir uns gut."
+     ]
+    },
+    {
+     "kart": "lx:sich_streiten",
+     "de": "Ich finde, dass sie sich jeden Tag streiten.",
+     "tr": "Bence her gün kavga ediyorlar.",
+     "accepted": [
+      "Ich finde, dass sie sich jeden Tag streiten.",
+      "Ich finde, sie streiten sich jeden Tag.",
+      "Ich finde, dass die zwei sich jeden Tag streiten."
+     ]
+    },
+    {
+     "kart": "lx:sich_streiten",
+     "de": "Warum streitet ihr euch?",
+     "tr": "Neden kavga ediyorsunuz?",
+     "accepted": [
+      "Warum streitet ihr euch?",
+      "Warum streitet ihr euch denn?",
+      "Warum streitet ihr euch jetzt?"
+     ]
+    },
+    {
+     "kart": "lx:sich_verlieben",
+     "de": "Ich glaube, dass er sich in seine Kollegin verliebt hat.",
+     "tr": "Sanırım iş arkadaşına âşık oldu.",
+     "accepted": [
+      "Ich glaube, dass er sich in seine Kollegin verliebt hat.",
+      "Ich glaube, er hat sich in seine Kollegin verliebt.",
+      "Ich glaube, dass er sich in die Kollegin verliebt hat."
+     ]
+    },
+    {
+     "kart": "lx:sich_verlieben",
+     "de": "In der Serie verliebt sich ein Arzt in seine Kollegin.",
+     "tr": "Dizide bir doktor iş arkadaşına âşık oluyor.",
+     "accepted": [
+      "In der Serie verliebt sich ein Arzt in seine Kollegin.",
+      "Ein Arzt verliebt sich in der Serie in seine Kollegin.",
+      "In der Serie verliebt sich der Arzt in seine Kollegin."
+     ]
+    },
+    {
+     "kart": "lx:sich_trennen",
+     "de": "Ich glaube nicht, dass sie sich trennen.",
+     "tr": "Ayrılacaklarını sanmıyorum.",
+     "accepted": [
+      "Ich glaube nicht, dass sie sich trennen.",
+      "Ich glaube nicht, dass die zwei sich trennen.",
+      "Ich glaube nicht, dass sie sich wirklich trennen."
+     ]
+    },
+    {
+     "kart": "lx:sich_trennen",
+     "de": "Derya sagt, dass die zwei sich trennen.",
+     "tr": "Derya ikisinin ayrıldığını söylüyor.",
+     "accepted": [
+      "Derya sagt, dass die zwei sich trennen.",
+      "Derya sagt, die zwei trennen sich.",
+      "Derya sagt, dass sich die zwei trennen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Salı, öğle molası, kantin. Tobi telefonunu sallıyor; dün akşamki dizi bölümünü konuşmak istiyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Hast du die Serie gestern gesehen? Die zwei haben sich wieder gestritten!",
+      "tr": "Dün diziyi izledin mi? İkisi yine kavga etti!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja! Ich glaube, dass sie sich trennen.",
+      "tr": "Evet! Sanırım ayrılacaklar."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Das glaube ich nicht. Sie verstehen sich doch gut.",
+      "tr": "Sanmıyorum. Aslında iyi anlaşıyorlar."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich finde, dass sie sich zu oft streiten.",
+      "tr": "Bence çok sık kavga ediyorlar."
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya ne düşünüyor?",
+     "opts": [
+      "Çiftin ayrılmayacağını",
+      "Çiftin hemen ayrılacağını",
+      "Dizinin kötü olduğunu"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:86:h2",
+   "title_tr": "Yeni iş arkadaşı, tatil, sevinç",
+   "kartlar": [
+    "lx:zuverlässig",
+    "lx:ehrlich",
+    "lx:fliegen",
+    "lx:freuen"
+   ],
+   "kaliplar": [
+    {
+     "de": "gut – ein guter Kollege – eine gute Kollegin",
+     "tr": "iyi – iyi bir iş arkadaşı (erkek) – iyi bir iş arkadaşı (kadın)"
+    },
+    {
+     "de": "neu – die neue Kollegin – Frau Hoffmann ist neu.",
+     "tr": "yeni – yeni iş arkadaşı – Frau Hoffmann yeni."
+    },
+    {
+     "de": "Das freut mich. – Ich freue mich auf … – Er freut sich.",
+     "tr": "Buna sevindim. – … için sabırsızlanıyorum. – Seviniyor."
+    },
+    {
+     "de": "Ehrlich gesagt …",
+     "tr": "Açıkçası …"
+    },
+    {
+     "de": "ich fliege – du fliegst – er fliegt – Wir fliegen in den Urlaub.",
+     "tr": "uçuyorum – uçuyorsun – uçuyor – Tatile uçakla gidiyoruz."
+    },
+    {
+     "de": "ich denke – er denkt – Was denkst du?",
+     "tr": "düşünüyorum – düşünüyor – Ne düşünüyorsun?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:zuverlässig",
+     "de": "Ich finde, dass Derya zuverlässig ist.",
+     "tr": "Bence Derya güvenilir biri.",
+     "accepted": [
+      "Ich finde, dass Derya zuverlässig ist.",
+      "Ich finde, Derya ist zuverlässig.",
+      "Ich finde, dass Derya sehr zuverlässig ist."
+     ]
+    },
+    {
+     "kart": "lx:zuverlässig",
+     "de": "Ich glaube, dass Frau Hoffmann zuverlässig ist.",
+     "tr": "Sanırım Frau Hoffmann güvenilir biri.",
+     "accepted": [
+      "Ich glaube, dass Frau Hoffmann zuverlässig ist.",
+      "Ich glaube, Frau Hoffmann ist zuverlässig.",
+      "Ich glaube, dass die neue Kollegin zuverlässig ist."
+     ]
+    },
+    {
+     "kart": "lx:ehrlich",
+     "de": "Ich denke, dass Tobi ehrlich ist.",
+     "tr": "Bana kalırsa Tobi dürüst biri.",
+     "accepted": [
+      "Ich denke, dass Tobi ehrlich ist.",
+      "Ich denke, Tobi ist ehrlich.",
+      "Ich denke, dass Tobi sehr ehrlich ist."
+     ]
+    },
+    {
+     "kart": "lx:ehrlich",
+     "de": "Ehrlich gesagt finde ich die Serie nicht gut.",
+     "tr": "Açıkçası diziyi iyi bulmuyorum.",
+     "accepted": [
+      "Ehrlich gesagt finde ich die Serie nicht gut.",
+      "Ehrlich gesagt, ich finde die Serie nicht gut.",
+      "Ehrlich gesagt finde ich die Serie nicht so gut."
+     ]
+    },
+    {
+     "kart": "lx:fliegen",
+     "de": "Wir fliegen im Sommer in den Urlaub.",
+     "tr": "Yazın tatile uçakla gidiyoruz.",
+     "accepted": [
+      "Wir fliegen im Sommer in den Urlaub.",
+      "Im Sommer fliegen wir in den Urlaub.",
+      "Wir fliegen im Sommer wieder in den Urlaub."
+     ]
+    },
+    {
+     "kart": "lx:fliegen",
+     "de": "Ich glaube, dass Derya im Sommer in den Urlaub fliegt.",
+     "tr": "Sanırım Derya yazın tatile uçakla gidiyor.",
+     "accepted": [
+      "Ich glaube, dass Derya im Sommer in den Urlaub fliegt.",
+      "Ich glaube, Derya fliegt im Sommer in den Urlaub.",
+      "Ich glaube, dass Derya im Sommer fliegt."
+     ]
+    },
+    {
+     "kart": "lx:freuen",
+     "de": "Ich freue mich auf die neue Kollegin.",
+     "tr": "Yeni iş arkadaşını görmek için sabırsızlanıyorum.",
+     "accepted": [
+      "Ich freue mich auf die neue Kollegin.",
+      "Ich freue mich schon auf die neue Kollegin.",
+      "Ich freue mich sehr auf die neue Kollegin."
+     ]
+    },
+    {
+     "kart": "lx:freuen",
+     "de": "Tobi sagt, dass er sich auf das Wochenende freut.",
+     "tr": "Tobi hafta sonu için sabırsızlandığını söylüyor.",
+     "accepted": [
+      "Tobi sagt, dass er sich auf das Wochenende freut.",
+      "Tobi sagt, er freut sich auf das Wochenende.",
+      "Tobi sagt, dass er sich aufs Wochenende freut."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Molanın sonu. Derya yeni iş arkadaşından söz ediyor.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Herr Wimmer sagt, dass Frau Hoffmann sehr zuverlässig ist.",
+      "tr": "Herr Wimmer, Frau Hoffmann'ın çok güvenilir olduğunu söylüyor."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Das freut mich. Ich finde es gut, dass wir eine neue Kollegin bekommen.",
+      "tr": "Buna sevindim. Yeni bir iş arkadaşımızın gelmesini iyi buluyorum."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Ehrlich gesagt, wir brauchen sie wirklich.",
+      "tr": "Açıkçası ona gerçekten ihtiyacımız var."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Das finde ich auch.",
+      "tr": "Ben de öyle düşünüyorum."
+     }
+    ],
+    "soru": {
+     "q_tr": "Herr Wimmer'e göre Frau Hoffmann nasıl biri?",
+     "opts": [
+      "Çok güvenilir",
+      "Çok komik",
+      "Çok sessiz"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:86:v1",
+  "title_tr": "Kantinde tartışma: dizi, yeni iş arkadaşı, tatil",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Kantin, öğle. Tobi tepsisini masaya koyuyor, heyecanlı.",
+    "de": "Habt ihr gestern die Serie gesehen? Der Arzt und die Lehrerin haben sich getrennt!",
+    "tr": "Dün diziyi izlediniz mi? Doktorla öğretmen ayrıldı!"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya çorbasını karıştırıyor.",
+    "de": "Ja, ich habe es gesehen. Sie haben sich so laut gestritten.",
+    "tr": "Evet, izledim. Çok yüksek sesle kavga ettiler."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi omuz silkiyor.",
+    "de": "Ich finde, dass das gut ist. Sie streiten sich jeden Tag.",
+    "tr": "Bence bu iyi. Her gün kavga ediyorlar."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya başını sallıyor.",
+    "de": "Das finde ich nicht. Ich glaube, dass sie sich noch lieben.",
+    "tr": "Ben öyle düşünmüyorum. Sanırım hâlâ birbirlerini seviyorlar."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kaşını kaldırıyor.",
+    "de": "Ehrlich? Er hat sich doch in eine Kollegin verliebt!",
+    "tr": "Gerçekten mi? Adam bir iş arkadaşına âşık oldu ama!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülümsüyor, çok emin.",
+    "de": "Ich glaube, dass sie sich am Ende wieder verstehen.",
+    "tr": "Bence sonunda yine anlaşacaklar."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya konuyu değiştiriyor.",
+    "de": "Und noch etwas: Frau Hoffmann beginnt morgen.",
+    "tr": "Bir şey daha: Frau Hoffmann yarın başlıyor."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi ağzı dolu konuşuyor.",
+    "de": "Die Neue? Herr Wimmer sagt, dass sie sehr zuverlässig ist.",
+    "tr": "Yeni gelen mi? Herr Wimmer onun çok güvenilir olduğunu söylüyor."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya rahatlamış.",
+    "de": "Das freut mich. Wir brauchen wirklich Hilfe.",
+    "tr": "Buna sevindim. Gerçekten yardıma ihtiyacımız var."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi Derya'ya dönüyor.",
+    "de": "Und du, Derya? Fliegst du im Sommer wieder in den Urlaub?",
+    "tr": "Ya sen Derya? Yazın yine tatile uçakla gidiyor musun?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya iç çekiyor.",
+    "de": "Ja, ich freue mich schon. Ehrlich gesagt, ich brauche Urlaub!",
+    "tr": "Evet, şimdiden sabırsızlanıyorum. Açıkçası tatile ihtiyacım var!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi gülüyor, ikisi de sana bakıyor.",
+    "de": "Ich glaube, dass wir alle Urlaub brauchen!",
+    "tr": "Bence hepimizin tatile ihtiyacı var!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Tobi ile Derya ne hakkında tartışıyor?",
+     "opts": [
+      "Dizideki çiftin ayrılığı hakkında",
+      "Kantinin yemeği hakkında",
+      "Perşembe toplantısı hakkında"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s4"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Tobi ayrılık hakkında ne düşünüyor?",
+      "opts": [
+       "İyi bir şey, çünkü her gün kavga ediyorlar",
+       "Çok üzücü",
+       "Dizinin sonu kötü"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s3"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya ne düşünüyor?",
+      "opts": [
+       "Hâlâ birbirlerini sevdiklerini",
+       "Hiç anlaşmadıklarını",
+       "Dizinin sıkıcı olduğunu"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Dizideki doktor kime âşık olmuş?",
+      "opts": [
+       "Bir iş arkadaşına",
+       "Bir hastaya",
+       "Bir komşuya"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s2",
+      "seviye": "kolay",
+      "q_tr": "Nasıl kavga etmişler?",
+      "opts": [
+       "laut",
+       "leise",
+       "kurz"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s3",
+      "seviye": "orta",
+      "de": "Ich finde, dass das gut ist. Sie streiten sich jeden ___.",
+      "accepted": [
+       "Tag",
+       "tag",
+       "Tag."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s6",
+      "seviye": "zor",
+      "banka": [
+       "Ich",
+       "glaube",
+       "dass",
+       "sie",
+       "sich",
+       "am",
+       "Ende",
+       "wieder",
+       "verstehen",
+       "uns",
+       "versteht"
+      ],
+      "accepted": [
+       "Ich glaube, dass sie sich am Ende wieder verstehen.",
+       "ich glaube dass sie sich am ende wieder verstehen",
+       "Ich glaube dass sie sich am Ende wieder verstehen"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Das finde ich nicht. Ich glaube, dass sie sich noch lieben.",
+       "das finde ich nicht ich glaube dass sie sich noch lieben",
+       "Das finde ich nicht. Ich glaube dass sie sich noch lieben"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Tobi ile Derya'nın fikrini Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Tobi findet das gut. Derya glaubt, dass sie sich noch lieben.",
+      "zorunlu": [
+       "Tobi",
+       "Derya"
+      ]
+     }
+    ],
+    "golge": [
+     "s4",
+     "s6"
+    ],
+    "cevapla": {
+     "id": "m1:86:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Tobi senin fikrini soruyor. Sen de çiftin sonunda yine anlaşacağını düşünüyorsun. Ich glaube, dass … ile söyle.",
+     "prompt_de": "Und du? Was denkst du?",
+     "accepted": [
+      "Ich glaube, dass sie sich wieder verstehen.",
+      "Ich glaube, dass sie sich am Ende wieder verstehen.",
+      "Ich denke, dass sie sich wieder verstehen.",
+      "Ich glaube, sie verstehen sich am Ende wieder.",
+      "Das finde ich auch. Ich glaube, dass sie sich noch lieben.",
+      "Ich glaube nicht, dass sie sich trennen."
+     ],
+     "why_tr": "Fikrini **Ich glaube, dass …** ile söylersin. **verstehen** en sona gider: **dass sie sich wieder verstehen**."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu bölümde ne konuşuluyor?",
+     "opts": [
+      "Yeni iş arkadaşı ve Derya'nın tatili",
+      "Tobi'nin yeni arabası",
+      "Kantinin kapanış saati"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s7",
+      "s10"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Frau Hoffmann ne zaman başlıyor?",
+      "opts": [
+       "Bugün",
+       "Yarın",
+       "Gelecek hafta"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s7"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Herr Wimmer Frau Hoffmann için ne diyor?",
+      "opts": [
+       "Çok güvenilir",
+       "Çok hızlı",
+       "Çok genç"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s8"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya yazın ne yapıyor?",
+      "opts": [
+       "Uçakla tatile gidiyor",
+       "Evde kalıyor",
+       "Fazla mesai yapıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10",
+       "s11"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s7",
+      "seviye": "kolay",
+      "q_tr": "Frau Hoffmann ne zaman başlıyor?",
+      "opts": [
+       "morgen",
+       "heute",
+       "Montag"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s9",
+      "seviye": "orta",
+      "de": "Das ___ mich. Wir brauchen wirklich Hilfe.",
+      "accepted": [
+       "freut",
+       "Freut",
+       "freut."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s12",
+      "seviye": "zor",
+      "banka": [
+       "Ich",
+       "glaube",
+       "dass",
+       "wir",
+       "alle",
+       "Urlaub",
+       "brauchen",
+       "braucht",
+       "uns"
+      ],
+      "accepted": [
+       "Ich glaube, dass wir alle Urlaub brauchen!",
+       "ich glaube dass wir alle urlaub brauchen",
+       "Ich glaube, dass wir alle Urlaub brauchen."
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Und du, Derya? Fliegst du im Sommer wieder in den Urlaub?",
+       "und du derya fliegst du im sommer wieder in den urlaub",
+       "Und du, Derya? Fliegst du im Sommer wieder in den Urlaub"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Yeni iş arkadaşı hakkında ne öğrendin? Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Frau Hoffmann beginnt morgen. Herr Wimmer sagt, dass sie sehr zuverlässig ist.",
+      "zorunlu": [
+       "morgen",
+       "zuverlässig"
+      ]
+     }
+    ],
+    "golge": [
+     "s9",
+     "s12"
+    ],
+    "cevapla": {
+     "id": "m1:86:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Derya sana soruyor: yeni bir iş arkadaşının gelmesi iyi mi? Sen iyi buluyorsun. Ich finde es gut, dass … ile söyle.",
+     "prompt_de": "Was denkst du? Ist das gut für uns?",
+     "accepted": [
+      "Ja, ich finde es gut, dass wir eine neue Kollegin bekommen.",
+      "Ich finde es gut, dass wir eine neue Kollegin bekommen.",
+      "Ja, das freut mich. Ich finde es gut, dass Frau Hoffmann kommt.",
+      "Ja, ich finde, dass das gut ist.",
+      "Ich finde es gut, dass Frau Hoffmann morgen beginnt.",
+      "Ja. Ich glaube, dass sie sehr zuverlässig ist."
+     ],
+     "why_tr": "Bir durumu iyi bulunca **Ich finde es gut, dass …** dersin. **bekommen** en sona gider."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:86:a1",
+   "tur": "radyo",
+   "title_tr": "Öğle radyosu: dinleyiciler ne düşünüyor?",
+   "ortam_tr": "Salı öğlesi, kantinde radyo açık. Bugünkü konu: iş yerinde âşık olmak. Dinleyiciler arayıp fikrini söylüyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag! Heute bei uns: Kollegen verlieben sich im Büro. Ist das gut? Was denken Sie?",
+     "tr": "İyi günler! Bugün programımızda: iş arkadaşları ofiste âşık oluyor. Bu iyi mi? Siz ne düşünüyorsunuz?"
+    },
+    {
+     "id": "c2",
+     "de": "Ein Mann ist am Telefon: Ich finde, dass das kein Problem ist.",
+     "tr": "Telefonda bir adam var: Bence bu sorun değil."
+    },
+    {
+     "id": "c3",
+     "de": "Eine Frau sagt: Ich glaube nicht, dass das gut geht. Wenn man sich trennt, ist es schwer.",
+     "tr": "Bir kadın diyor ki: Bunun iyi gideceğini sanmıyorum. İnsan ayrılınca zor oluyor."
+    },
+    {
+     "id": "c4",
+     "de": "Ein Mann erzählt: Ich habe mich vor zehn Jahren in eine Kollegin verliebt.",
+     "tr": "Bir adam anlatıyor: On yıl önce bir iş arkadaşıma âşık oldum."
+    },
+    {
+     "id": "c5",
+     "de": "Heute ist sie meine Frau, und wir verstehen uns immer noch gut!",
+     "tr": "Bugün o benim eşim ve hâlâ iyi anlaşıyoruz!"
+    },
+    {
+     "id": "c6",
+     "de": "Das freut uns! Und Sie? Rufen Sie uns an!",
+     "tr": "Buna sevindik! Ya siz? Bizi arayın!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyoda ne konuşuluyor?",
+      "opts": [
+       "İş yerinde âşık olmanın iyi olup olmadığı",
+       "Kantin yemekleri",
+       "Trafik ve yol çalışmaları"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Kadın neden bunun iyi olmadığını düşünüyor?",
+       "opts": [
+        "Ayrılınca zor oluyor",
+        "Şef kızıyor",
+        "İş yavaşlıyor"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Son arayan adamın iş arkadaşı bugün kim?",
+       "opts": [
+        "Eşi",
+        "Şefi",
+        "Komşusu"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Adam ne zaman âşık olmuş?",
+       "opts": [
+        "On yıl önce",
+        "Geçen yıl",
+        "İki yıl önce"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Kaç yıl önce?",
+       "opts": [
+        "zehn",
+        "zwei",
+        "drei"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Ein Mann ist am Telefon: Ich finde, dass das kein ___ ist.",
+       "accepted": [
+        "Problem",
+        "problem",
+        "Problem."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Das",
+        "freut",
+        "uns",
+        "Und",
+        "Sie",
+        "Rufen",
+        "Sie",
+        "uns",
+        "an",
+        "mich",
+        "freue"
+       ],
+       "accepted": [
+        "Das freut uns! Und Sie? Rufen Sie uns an!",
+        "das freut uns und sie rufen sie uns an",
+        "Das freut uns. Und Sie? Rufen Sie uns an."
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Heute ist sie meine Frau, und wir verstehen uns immer noch gut!",
+        "heute ist sie meine frau und wir verstehen uns immer noch gut",
+        "Heute ist sie meine Frau und wir verstehen uns immer noch gut."
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Dinleyicilerden ikisinin fikrini Almanca iki kısa cümleyle aktar.",
+       "ornek_de": "Ein Mann findet, dass das kein Problem ist. Eine Frau glaubt das nicht.",
+       "zorunlu": [
+        "findet",
+        "glaubt"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:86:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi radyoyu dinledi ve senin fikrini soruyor. Sen bunun sorun olmadığını düşünüyorsun.",
+      "prompt_de": "Und du? Was denkst du?",
+      "accepted": [
+       "Ich finde, dass das kein Problem ist.",
+       "Ich finde, das ist kein Problem.",
+       "Ich glaube, dass das kein Problem ist.",
+       "Ich denke, dass das kein Problem ist.",
+       "Ehrlich gesagt finde ich, dass das kein Problem ist.",
+       "Das ist kein Problem, finde ich."
+      ],
+      "why_tr": "**Ich finde, dass …** ile fikrini söylersin. **ist** en sona gider: **dass das kein Problem ist**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:86:a1:e1",
+    "k": "pick",
+    "q_tr": "Sunucu dinleyicilerden ne istiyor?",
+    "opts": [
+     "Radyoyu arayıp fikirlerini söylemelerini",
+     "Mektup yazmalarını",
+     "Hiçbir şey"
+    ],
+    "ans": 0,
+    "why_tr": "Sunucu sonunda **Rufen Sie uns an!** diyor: bizi arayın.",
+    "kanit": [
+     "c6"
+    ]
+   }
+  },
+  {
+   "id": "m1:86:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Ioana'nın sesli mesajı",
+   "ortam_tr": "Akşam eve dönüyorsun. Telefonunda kurstan Ioana'nın mesajı var. Yavaş ve dikkatli konuşuyor.",
+   "speaker": "ch:popescu",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Ioana.",
+     "tr": "Merhaba, ben Ioana."
+    },
+    {
+     "id": "c2",
+     "de": "Morgen im Kurs sprechen wir über Kollegen.",
+     "tr": "Yarın kursta iş arkadaşları hakkında konuşuyoruz."
+    },
+    {
+     "id": "c3",
+     "de": "Die Lehrerin möchte wissen: Was ist ein guter Kollege?",
+     "tr": "Öğretmen bilmek istiyor: İyi bir iş arkadaşı nasıl olur?"
+    },
+    {
+     "id": "c4",
+     "de": "Jeder soll sagen, was er denkt.",
+     "tr": "Herkes ne düşündüğünü söyleyecek."
+    },
+    {
+     "id": "c5",
+     "de": "Ich finde das schwer. Können wir heute Abend zusammen üben?",
+     "tr": "Bence bu zor. Bu akşam birlikte çalışabilir miyiz?"
+    },
+    {
+     "id": "c6",
+     "de": "Ruf mich bitte an! Bis später!",
+     "tr": "Lütfen beni ara! Sonra görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Ioana neden arıyor?",
+      "opts": [
+       "Yarınki kurs için birlikte çalışmak istiyor",
+       "Kursa gelemeyecek",
+       "Bir dizi öneriyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Yarın kursta konu ne?",
+       "opts": [
+        "İş arkadaşları",
+        "Tatil",
+        "Yemek"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Öğretmen ne bilmek istiyor?",
+       "opts": [
+        "İyi bir iş arkadaşı nasıl olur",
+        "Herkes nerede çalışıyor",
+        "Kim tatile gidiyor"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ioana ne zaman çalışmak istiyor?",
+       "opts": [
+        "Bu akşam",
+        "Yarın sabah",
+        "Hafta sonu"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c5",
+       "seviye": "kolay",
+       "q_tr": "Ioana nasıl buluyor?",
+       "opts": [
+        "schwer",
+        "leicht",
+        "lustig"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Morgen im Kurs sprechen wir über ___.",
+       "accepted": [
+        "Kollegen",
+        "kollegen",
+        "Kollegen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Jeder",
+        "soll",
+        "sagen",
+        "was",
+        "er",
+        "denkt",
+        "denke",
+        "wer"
+       ],
+       "accepted": [
+        "Jeder soll sagen, was er denkt.",
+        "jeder soll sagen was er denkt",
+        "Jeder soll sagen was er denkt"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Die Lehrerin möchte wissen: Was ist ein guter Kollege?",
+        "die lehrerin möchte wissen was ist ein guter kollege",
+        "Die Lehrerin möchte wissen, was ist ein guter Kollege?"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Ioana'nın mesajını iki kısa Almanca cümleyle özetle.",
+       "ornek_de": "Morgen sprechen wir im Kurs über Kollegen. Ioana möchte heute Abend üben.",
+       "zorunlu": [
+        "Kurs",
+        "üben"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:86:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana'yı geri arıyorsun. Bu akşam birlikte çalışmaya sevindiğini söyle.",
+      "prompt_de": "Hallo! Hast du meine Nachricht bekommen?",
+      "accepted": [
+       "Ja! Das freut mich. Wir können heute Abend zusammen üben.",
+       "Ja, wir können heute Abend zusammen üben. Das freut mich.",
+       "Ja. Ich freue mich, wir üben heute Abend zusammen.",
+       "Ja, gern! Heute Abend können wir zusammen üben.",
+       "Ja, das freut mich. Heute Abend passt gut.",
+       "Ja! Wir üben heute Abend zusammen. Ich freue mich."
+      ],
+      "why_tr": "Sevindiğini **Das freut mich** ile söylersin. **Ich freue mich** de olur."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:86:a2:e1",
+    "k": "pick",
+    "q_tr": "Şimdi ne yapmalısın?",
+    "opts": [
+     "Ioana'yı arayıp bu akşam birlikte çalışmak",
+     "Öğretmene e-posta yazmak",
+     "Yarın kursa gitmemek"
+    ],
+    "ans": 0,
+    "why_tr": "Ioana birlikte çalışmak istiyor ve **Ruf mich bitte an!** diyor.",
+    "kanit": [
+     "c5",
+     "c6"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:86:g1",
+   "de": "sich streiten",
+   "dogru_img": "couple arguing loudly in a kitchen",
+   "celdirici_img": [
+    "couple laughing together",
+    "couple sleeping",
+    "couple cooking together"
+   ]
+  },
+  {
+   "id": "m1:86:g2",
+   "de": "sich verlieben",
+   "dogru_img": "young couple falling in love on a park bench",
+   "celdirici_img": [
+    "two colleagues shaking hands",
+    "family having dinner",
+    "woman reading alone"
+   ]
+  },
+  {
+   "id": "m1:86:g3",
+   "de": "fliegen",
+   "dogru_img": "airplane taking off from runway",
+   "celdirici_img": [
+    "train at a platform",
+    "car on a highway",
+    "ship in a harbor"
+   ]
+  },
+  {
+   "id": "m1:86:g4",
+   "de": "sich freuen",
+   "dogru_img": "woman smiling happily opening a letter",
+   "celdirici_img": [
+    "woman crying",
+    "angry man on phone",
+    "tired man at desk"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:86:p1",
+  "title_tr": "Ioana ile fikir alıştırması",
+  "durum_tr": "Akşam Ioana ile telefonda yarınki kurs için çalışıyorsunuz. Konu: İyi bir iş arkadaşı nasıl olur? Fikrini söyle, onun fikrine katıl ya da katılma.",
+  "karsi": "ch:popescu",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Also, was ist für dich ein guter Kollege?",
+    "tr": "Peki, senin için iyi bir iş arkadaşı nasıl olur?",
+    "secenekler": [
+     {
+      "de": "Ich finde, dass ein guter Kollege zuverlässig ist.",
+      "tr": "Bence iyi bir iş arkadaşı güvenilirdir.",
+      "accepted": [
+       "Ich finde, dass ein guter Kollege zuverlässig ist.",
+       "Ich finde, ein guter Kollege ist zuverlässig.",
+       "Ich denke, dass ein guter Kollege zuverlässig ist.",
+       "Ich finde, dass ein guter Kollege sehr zuverlässig ist."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: **dass ein guter Kollege zuverlässig ist**. **ist** en sonda."
+     },
+     {
+      "de": "Ich glaube, dass ein guter Kollege ehrlich ist.",
+      "tr": "Sanırım iyi bir iş arkadaşı dürüsttür.",
+      "accepted": [
+       "Ich glaube, dass ein guter Kollege ehrlich ist.",
+       "Ich glaube, ein guter Kollege ist ehrlich.",
+       "Ich finde, dass ein guter Kollege ehrlich ist.",
+       "Ich denke, dass ein guter Kollege ehrlich ist."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **ehrlich**: dürüst."
+     },
+     {
+      "de": "Ich finde, dass ein guter Kollege ist zuverlässig.",
+      "tr": "(yanlış sıra) Bence iyi bir iş arkadaşı güvenilirdir.",
+      "accepted": [
+       "Ich finde, dass ein guter Kollege ist zuverlässig.",
+       "Ich glaube, dass ein guter Kollege ist ehrlich.",
+       "Ich finde, dass ist ein guter Kollege zuverlässig."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "**dass** ile başlayan parçada **ist** en sona gider: **dass ein guter Kollege zuverlässig ist**."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Das finde ich auch. Ich glaube, dass ein guter Kollege immer lustig ist.",
+    "tr": "Ben de öyle düşünüyorum. Sanırım iyi bir iş arkadaşı hep eğlencelidir.",
+    "secenekler": [
+     {
+      "de": "Das glaube ich nicht. Tobi ist lustig, aber nicht immer zuverlässig.",
+      "tr": "Sanmıyorum. Tobi eğlenceli ama her zaman güvenilir değil.",
+      "accepted": [
+       "Das glaube ich nicht. Tobi ist lustig, aber nicht immer zuverlässig.",
+       "Das glaube ich nicht. Lustig ist gut, aber nicht so wichtig.",
+       "Das glaube ich nicht. Ehrlich ist wichtiger.",
+       "Das glaube ich nicht."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Katılmadığını kibarca söyledin: **Das glaube ich nicht.**"
+     },
+     {
+      "de": "Das finde ich auch. Lustige Kollegen sind super.",
+      "tr": "Ben de öyle düşünüyorum. Eğlenceli iş arkadaşları süper.",
+      "accepted": [
+       "Das finde ich auch. Lustige Kollegen sind super.",
+       "Das finde ich auch.",
+       "Ja, das finde ich auch.",
+       "Das finde ich auch, lustig ist gut."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Katıldın: **Das finde ich auch.**"
+     },
+     {
+      "de": "Das freut mich nicht.",
+      "tr": "(yanlış) Buna sevinmedim.",
+      "accepted": [
+       "Das freut mich nicht.",
+       "Freut mich nicht.",
+       "Nein, das freut mich nicht."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Ioana fikir soruyor. Katılmıyorsan **Das glaube ich nicht** ya da **Das finde ich nicht** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Und dein Chef? Verstehst du dich gut mit ihm?",
+    "tr": "Ya şefin? Onunla iyi anlaşıyor musun?",
+    "secenekler": [
+     {
+      "de": "Ja, wir verstehen uns gut. Ich finde, dass er sehr zuverlässig ist.",
+      "tr": "Evet, iyi anlaşıyoruz. Bence çok güvenilir biri.",
+      "accepted": [
+       "Ja, wir verstehen uns gut. Ich finde, dass er sehr zuverlässig ist.",
+       "Ja, wir verstehen uns gut.",
+       "Ja, ich verstehe mich gut mit ihm. Er ist sehr zuverlässig.",
+       "Ja, wir verstehen uns gut. Ich finde, er ist zuverlässig."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika: **wir verstehen uns**. **uns** ile birlikte."
+     },
+     {
+      "de": "Ehrlich gesagt, er hat immer wenig Zeit. Aber wir verstehen uns gut.",
+      "tr": "Açıkçası hep az vakti var. Ama iyi anlaşıyoruz.",
+      "accepted": [
+       "Ehrlich gesagt, er hat immer wenig Zeit. Aber wir verstehen uns gut.",
+       "Ehrlich gesagt hat er wenig Zeit, aber wir verstehen uns gut.",
+       "Ehrlich gesagt, er hat wenig Zeit. Wir verstehen uns aber gut.",
+       "Er hat wenig Zeit, aber wir verstehen uns gut."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok doğal: **Ehrlich gesagt …** ile başladın."
+     },
+     {
+      "de": "Ja, wir verstehen sich gut.",
+      "tr": "(yanlış) Evet, iyi anlaşıyoruz.",
+      "accepted": [
+       "Ja, wir verstehen sich gut.",
+       "Wir verstehen sich gut.",
+       "Ja, wir verstehen mich gut."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "**wir** ile **uns** gelir: **wir verstehen uns**."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Super! Ich glaube, dass wir morgen gut sprechen. Bis morgen!",
+    "tr": "Süper! Sanırım yarın iyi konuşacağız. Yarın görüşürüz!",
+    "secenekler": [
+     {
+      "de": "Das glaube ich auch. Das freut mich! Bis morgen!",
+      "tr": "Ben de öyle sanıyorum. Buna sevindim! Yarın görüşürüz!",
+      "accepted": [
+       "Das glaube ich auch. Das freut mich! Bis morgen!",
+       "Das glaube ich auch. Bis morgen!",
+       "Das freut mich! Bis morgen, Ioana!",
+       "Ich glaube das auch. Bis morgen!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel bir kapanış."
+     },
+     {
+      "de": "Danke, Ioana. Ich freue mich auf den Kurs!",
+      "tr": "Teşekkürler Ioana. Kursa sabırsızlanıyorum!",
+      "accepted": [
+       "Danke, Ioana. Ich freue mich auf den Kurs!",
+       "Danke! Ich freue mich auf den Kurs.",
+       "Ich freue mich auf morgen!",
+       "Danke, ich freue mich auf den Kurs. Bis morgen!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "**sich freuen auf …**: bir şeyi sabırsızlıkla beklemek."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Nur Deutsch! Tschüss!",
+    "tr": "Sadece Almanca! Hoşça kal!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Fikrini Ich finde / Ich glaube, dass … ile söyledin. Katıldın, katılmadın, anlaştığını söyledin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Şirket bülteninde kısa anket",
+  "metin_de": "Wir möchten wissen: Was ist für Sie ein guter Kollege? Ein Kollege aus dem Büro sagt: Ich finde, dass ein guter Kollege zuverlässig ist. Eine Kollegin aus der Kantine sagt: Für mich ist wichtig, dass man ehrlich ist. Ein Kollege sagt: Ich glaube, dass wir uns hier alle gut verstehen. Das freut mich jeden Tag. Und Sie? Schreiben Sie uns bis Freitag!",
+  "metin_tr": "Bilmek istiyoruz: Sizin için iyi bir iş arkadaşı nasıl olur? Ofisten bir çalışan diyor ki: Bence iyi bir iş arkadaşı güvenilirdir. Kantinden bir çalışan diyor ki: Benim için dürüst olmak önemli. Bir çalışan diyor ki: Sanırım burada hepimiz iyi anlaşıyoruz. Bu beni her gün sevindiriyor. Ya siz? Cumaya kadar bize yazın!",
+  "sorular": [
+   {
+    "id": "m1:86:o1",
+    "kind": "gist",
+    "q_tr": "Bültende ne var?",
+    "opts": [
+     "İyi bir iş arkadaşı hakkında çalışanların fikirleri",
+     "Yeni çalışma saatleri",
+     "Kantinin yeni yemek listesi"
+    ],
+    "ans": 0,
+    "kanit": [
+     0
+    ]
+   },
+   {
+    "id": "m1:86:o2",
+    "kind": "detail",
+    "q_tr": "Ofisteki çalışana göre iyi bir iş arkadaşı nasıl olur?",
+    "opts": [
+     "Güvenilir",
+     "Eğlenceli",
+     "Hızlı"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:86:o3",
+    "kind": "detail",
+    "q_tr": "Kantindeki çalışan için ne önemli?",
+    "opts": [
+     "Dürüst olmak",
+     "Dakik olmak",
+     "Çok çalışmak"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:86:o4",
+    "kind": "detail",
+    "q_tr": "Cevaplar ne zamana kadar gönderilmeli?",
+    "opts": [
+     "Cumaya kadar",
+     "Pazartesiye kadar",
+     "Ay sonuna kadar"
+    ],
+    "ans": 0,
+    "kanit": [
+     6
+    ]
+   },
+   {
+    "id": "m1:86:o5",
+    "k": "guided_response",
+    "situation_tr": "Derya bülteni okudu ve sana soruyor: hangi fikre katılıyorsun? Sen de dürüstlüğü önemli buluyorsun.",
+    "prompt_de": "Was denkst du? Was ist wichtig?",
+    "accepted": [
+     "Ich finde, dass ein guter Kollege ehrlich ist.",
+     "Ich finde, ein guter Kollege ist ehrlich.",
+     "Für mich ist wichtig, dass man ehrlich ist.",
+     "Ich finde auch, dass man ehrlich ist.",
+     "Ich glaube, dass ein guter Kollege ehrlich ist.",
+     "Ehrlich, finde ich. Das ist wichtig."
+    ],
+    "why_tr": "Fikrini **Ich finde, dass …** ile söylersin. **ist** en sona gider."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Bültene kısa bir cevap yaz. İyi bir iş arkadaşı sence nasıl olur? Ich finde, dass … ve Ich glaube, dass … ile iki fikir yaz.",
+   "ornek_de": "Ich finde, dass ein guter Kollege zuverlässig ist. Ich glaube, dass wir uns im Büro gut verstehen.",
+   "zorunlu": [
+    "Ich finde",
+    "dass"
+   ],
+   "accepted_kaliplar": [
+    "Ich finde, dass …",
+    "Ich glaube, dass …"
+   ],
+   "kontrol_tr": [
+    "Ich finde, dass … ile bir fikir yazdın mı?",
+    "dass ile başlayan parçada ist ya da verstehen en sonda mı?",
+    "İkinci bir fikir de yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:86:s",
+  "maddeler": [
+   {
+    "id": "m1:86:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich glaube, dass sie sich bald trennen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich glaube, dass sie sich bald trennen.",
+     "ich glaube dass sie sich bald trennen",
+     "Ich glaube dass sie sich bald trennen"
+    ],
+    "why_tr": "**sich**, **sie** kelimesinden hemen sonra gelir. **trennen** en sonda."
+   },
+   {
+    "id": "m1:86:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Wir verstehen uns sehr gut.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir verstehen uns sehr gut.",
+     "wir verstehen uns sehr gut",
+     "Wir verstehen uns sehr gut"
+    ],
+    "why_tr": "**wir** ile **uns**."
+   },
+   {
+    "id": "m1:86:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Ich finde, dass die neue Kollegin sehr zuverlässig ist.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich finde, dass die neue Kollegin sehr zuverlässig ist.",
+     "ich finde dass die neue kollegin sehr zuverlässig ist",
+     "Ich finde dass die neue Kollegin sehr zuverlässig ist"
+    ],
+    "why_tr": "**ist** en sonda."
+   },
+   {
+    "id": "m1:86:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Das freut mich sehr.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das freut mich sehr.",
+     "das freut mich sehr",
+     "Das freut mich sehr"
+    ],
+    "why_tr": "**Das freut mich**: buna sevindim."
+   },
+   {
+    "id": "m1:86:s5",
+    "k": "tr_de",
+    "tr": "Sanırım hâlâ birbirlerini seviyorlar.",
+    "accepted": [
+     "Ich glaube, dass sie sich noch lieben.",
+     "Ich glaube, sie lieben sich noch.",
+     "Ich glaube, dass sie sich immer noch lieben."
+    ],
+    "why_tr": "**Ich glaube, dass …**: sanırım. **lieben** en sona gider."
+   },
+   {
+    "id": "m1:86:s6",
+    "k": "tr_de",
+    "tr": "Sık kavga ediyor musunuz?",
+    "accepted": [
+     "Streitet ihr euch oft?",
+     "Streitet ihr euch oft",
+     "Streitet ihr euch sehr oft?"
+    ],
+    "why_tr": "**ihr** ile **euch**: **Streitet ihr euch?**"
+   },
+   {
+    "id": "m1:86:s7",
+    "k": "tr_de",
+    "tr": "Açıkçası bunu iyi bulmuyorum.",
+    "accepted": [
+     "Ehrlich gesagt finde ich das nicht gut.",
+     "Ehrlich gesagt, ich finde das nicht gut.",
+     "Ehrlich gesagt finde ich das nicht so gut."
+    ],
+    "why_tr": "**Ehrlich gesagt** başta durunca **finde** hemen arkasından gelir."
+   },
+   {
+    "id": "m1:86:s8",
+    "k": "tr_de",
+    "tr": "Derya iş arkadaşına âşık olduğunu sanmıyor.",
+    "accepted": [
+     "Derya glaubt nicht, dass er sich in die Kollegin verliebt hat.",
+     "Derya glaubt nicht, dass er sich in seine Kollegin verliebt hat.",
+     "Derya glaubt nicht, er hat sich in die Kollegin verliebt."
+    ],
+    "why_tr": "**glaubt nicht, dass …**: sanmıyor. **hat** en sona gider."
+   },
+   {
+    "id": "m1:86:s9",
+    "k": "guided_response",
+    "situation_tr": "Tobi diziyi soruyor. Sen çiftin ayrılacağını sanmıyorsun.",
+    "prompt_de": "Trennen sie sich? Was glaubst du?",
+    "accepted": [
+     "Ich glaube nicht, dass sie sich trennen.",
+     "Nein, ich glaube nicht, dass sie sich trennen.",
+     "Das glaube ich nicht.",
+     "Ich glaube, dass sie sich wieder verstehen.",
+     "Nein. Ich glaube, sie verstehen sich wieder.",
+     "Ich glaube nicht, dass sie sich wirklich trennen."
+    ],
+    "why_tr": "**Ich glaube nicht, dass …**: sanmıyorum."
+   },
+   {
+    "id": "m1:86:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Ich finde, dass die Serie super ist. Und du?",
+    "speed": "normal",
+    "situation_tr": "Ioana diziyi çok beğeniyor. Sen de öyle düşünüyorsun. Katıl.",
+    "accepted": [
+     "Das finde ich auch.",
+     "Das finde ich auch. Die Serie ist super.",
+     "Ja, das finde ich auch.",
+     "Ich finde auch, dass die Serie super ist.",
+     "Ich auch! Das finde ich auch."
+    ],
+    "why_tr": "Katılırken kısa cevap: **Das finde ich auch.**"
+   },
+   {
+    "id": "m1:86:s11",
+    "k": "guided_response",
+    "situation_tr": "Kursta öğretmen soruyor: iyi bir iş arkadaşı nasıl olur? Fikrini söyle: güvenilir ve dürüst.",
+    "prompt_de": "Was ist für Sie ein guter Kollege?",
+    "accepted": [
+     "Ich finde, dass ein guter Kollege zuverlässig und ehrlich ist.",
+     "Ich finde, ein guter Kollege ist zuverlässig und ehrlich.",
+     "Ich glaube, dass ein guter Kollege zuverlässig und ehrlich ist.",
+     "Ich denke, dass ein guter Kollege ehrlich und zuverlässig ist.",
+     "Ein guter Kollege ist zuverlässig und ehrlich, finde ich.",
+     "Ich finde, dass er zuverlässig und ehrlich ist."
+    ],
+    "why_tr": "**Ich finde, dass …** ve sonda **ist**."
+   }
+  ],
+  "sesli": [
+   "m1:86:s9",
+   "m1:86:s10"
+  ],
+  "dikte": [
+   "m1:86:s1",
+   "m1:86:s2",
+   "m1:86:s3",
+   "m1:86:s4"
+  ]
+ }
+}

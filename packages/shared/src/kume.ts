@@ -19,6 +19,8 @@
  *    üretimde K5 (≥ 2 görme), Türkçesinde K10 (ilk iki görme) planlayıcıda aynen işler; başka anlamdaki kullanımı yazar işaretler.
  *  - Ders tablosu ve tek sözcüklü `teach`: sözcüğü gösteren kendi kartı varsa o kart bu derse bağlı olmalı; kartı olmayan biçim
  *    (bin, habe, kann) dersle bilinir. Türkçe sütun ayırt edilmez: eşlenmeyen sözcük zaten eklenmez.
+ *  - Dil noktası tablosu (`gr:`, `dn:`; PM-092 md. 1) temel ders tablosundan SIKIDIR: biçim ancak bağlı kartı (sütun başlığı
+ *    ya da dizin adayı) tanıtılınca bilinir; temel derste kartsız biçim (bin, habe) kart tanıtılmadan da bilinir (#205 P2-5).
  *  - Yer tutucu: {name} sayılmaz; {a|b} iki seçeneğiyle sayılır ({Herr|Frau}, {Patient|Patientin}).
  *  - Adlar yalnız büyük harfle başlayan ve hiçbir kartın başlığı olmayan sözcüklerdir; yer adlarından yalnız kişi ya da kasaba adıyla
  *    ortak olanlar (Bäckerei Stadler → Stadler; "Sprachkurs" ad değil).
@@ -124,13 +126,17 @@ export interface KumeDizini {
   yuzey: Map<string, Set<string>>;
   cerceve: Set<string>;
   adlar: Set<string>;
-  /** ders → öğrettiği biçimler, bağladığı kartlar ve çok sözcüklü kalıpları */
-  dersler: Map<string, { bicim: Set<string>; kart: Set<string>; kaliplar: string[][] }>;
+  /** ders → öğrettiği biçimler, bağladığı kartlar ve çok sözcüklü kalıpları. Dil noktası (`gr:`, `dn:`) yalnız `tablo` taşır:
+   *  tablosundaki çekim ve parça biçimleri → bağlı kartlar (PM-092 md. 1; `tabloBicimi`) */
+  dersler: Map<string, { bicim: Set<string>; kart: Set<string>; kaliplar: string[][]; tablo?: Map<string, Set<string>> }>;
   kartlar: Map<string, Lexeme>;
 }
 
 /** Sözlük, temel dersler ve dünyadan sayaç dizinini kurar (bir kez; sonra her cümle için `bilinmeyenler`) */
-export function kumeDizini(lex: readonly Lexeme[], temel: readonly TemelDers[], world?: World | null, genelAdlar: readonly string[] = []): KumeDizini {
+/** Dil noktası durağı (registry/grammar.json `gr:` ve haftanın dn-HH.json'ı `dn:`): kume yalnız kimliğe ve tabloya bakar */
+export interface DilNoktasiTablo { id: string; table?: { head?: readonly string[]; rows: readonly (readonly string[])[] } }
+
+export function kumeDizini(lex: readonly Lexeme[], temel: readonly TemelDers[], world?: World | null, genelAdlar: readonly string[] = [], dilNoktalari: readonly DilNoktasiTablo[] = []): KumeDizini {
   const kartlar = new Map(lex.map((l) => [l.id, l] as const));
   const idx = new Map<string, Set<string>>(), gost = new Map<string, Set<string>>(), yuzey = new Map<string, Set<string>>();
   const gostAsil = new Map<string, Set<string>>(), coklu = new Map<string, string[][]>();
@@ -182,7 +188,40 @@ export function kumeDizini(lex: readonly Lexeme[], temel: readonly TemelDers[], 
   }
   const d: KumeDizini = { idx, gost, gostAsil, coklu, yuzey, cerceve, adlar, dersler: new Map(), kartlar };
   for (const t of temel) d.dersler.set(t.id, dersBicimi(d, t));
+  for (const n of dilNoktalari) if (!d.dersler.has(n.id)) d.dersler.set(n.id, { bicim: new Set(), kart: new Set(), kaliplar: [], tablo: tabloBicimi(d, n) });
   return d;
+}
+
+/**
+ * Dil noktasının tablo biçimleri (PM-092 md. 1: "sunulan dil noktasının tablo biçimleri o andan itibaren bilinen biçim";
+ * PM 7088563328 md. 1: tablodaki bütün biçimler o andan itibaren gösterilmiş). Biçim → bağlı kartlar:
+ *  - dizinde olan biçim yalnız dizindeki adaylarına bağlanır (gehst → lx:gehen);
+ *  - dizinde olmayan biçim, sütun başlığı tek sözcük ve onu gösteren tek gerçek fiil kartıysa (sein, haben, sprechen) o karta
+ *    bağlanır (seid, habt, sprecht: sütun kartı söyler, tahmin yok; #205 P1-1, 2. tur P1-1b); başka başlık bağ vermez.
+ * Başlık sözcüğü (gehen, Arzt: bir gerçek kartın gösterdiği sözcük) tablo yüzünden bilinmez: kart tanıtılmadan sözcük bilinmez.
+ * Biçim de ancak bağlı kartı bilinince (ya da bağlı kartların hepsi çerçeveyse) bilinir — `bilinmeyenler` buna bakar.
+ * Hiçbir karta bağlanamayan hücre (Türkçe sütun, "kişi" sütunu) girmez.
+ */
+function tabloBicimi(d: KumeDizini, n: DilNoktasiTablo): Map<string, Set<string>> {
+  const out = new Map<string, Set<string>>();
+  // sütun kartı: başlık TEK sözcük ve onu gösteren TEK gerçek (çerçeve olmayan) fiil kartı (sein, haben, sprechen); "du", "Dat.",
+  // "wo" gibi başlıklar bağ vermez (#205 2. tur P1-1b: ilgisiz karta bağlanıp Bank, Zahn, nimm bilinmesin)
+  const sutunKart = (n.table?.head ?? []).map((h) => {
+    const t = toks(h); if (t.length !== 1) return null;
+    const k = kendiKarti(d, t[0]!).filter((i) => d.kartlar.get(i)?.pos === "verb");
+    return k.length === 1 ? k[0]! : null;
+  });
+  for (const row of n.table?.rows ?? []) row.forEach((cell, j) => {
+    for (const s of toks(cell)) {
+      if (kendiKarti(d, s).length) continue;
+      // dizinde olan biçim yalnız dizin adaylarına bağlanır; sütun kartı yalnız dizinde OLMAYAN biçime (seid, habt, sprecht)
+      const aday = d.idx.get(s); const sk = sutunKart[j];
+      const bag = new Set(aday?.size ? aday : sk ? [sk] : []);
+      if (!bag.size) continue;
+      const v = out.get(s); if (v) for (const i of bag) v.add(i); else out.set(s, bag);
+    }
+  });
+  return out;
 }
 
 /** Sözcüğü başlık olarak taşıyan, fiil olmayan gerçek (card:true) kartlar: "ja" → lx:ja, "hier" → lx:hier */
@@ -229,8 +268,9 @@ export type Bilinmeyen = { tur: "kart" | "bicim" | "eslenemedi"; sozcuk: string;
 /** Cümlede K(t) dışında kalan sözcükler. `haric`: boşluğun cevabı gibi sayılmayacak sözcükler */
 export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: Iterable<string> = []): Bilinmeyen[] {
   const ta = toksAsil(cumle); const tt = ta.map((x) => x.t); const har = new Set(haric);
-  const kart = new Set(k.kart); const bicim = new Set<string>();
-  for (const id of k.biten) { const b = d.dersler.get(id); if (b) { for (const s of b.bicim) bicim.add(s); for (const x of b.kart) kart.add(x); } }
+  const kart = new Set(k.kart); const bicim = new Set<string>(); const tablo = new Map<string, Set<string>>();
+  for (const id of k.biten) { const b = d.dersler.get(id); if (b) { for (const s of b.bicim) bicim.add(s); for (const x of b.kart) kart.add(x);
+    for (const [s, bag] of b.tablo ?? []) { const v = tablo.get(s); if (v) for (const i of bag) v.add(i); else tablo.set(s, new Set(bag)); } } }
   // kalıplar bütün olarak: biten derslerin kalıpları, halkanın kalıpları, tanıtılmış kartların çok sözcüklü başlıkları
   const ortu = new Set<number>();
   // halkanın öğrettiği kalıpların KARTSIZ çerçeve sözcükleri bilinir (dersle aynı istisna); kartlı sözcük yalnız kendi kartıyla
@@ -244,6 +284,11 @@ export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: I
   const out: Bilinmeyen[] = [];
   tt.forEach((t, j) => {
     if (t === YUVA_AD || ortu.has(j) || har.has(t) || /^\d+$/.test(t) || d.adlar.has(t) || bicim.has(t) || sayiMi(t, k.biten)) return;
+    // sunulmuş dil noktasının tablo biçimi: bağlı kartı bilinen ya da bağlı kartlarının hepsi çerçeve olan biçim bilinir.
+    // Çerçeve dalı bugün aşağıdaki çerçeve kuralıyla örtüşür; çerçeve çekimleri "gösterilmeden bilinmez" olunca (ANA-D2,
+    // PM 7088563328 md. 1) tablo onların gösterim yeridir
+    const tb = tablo.get(t);
+    if (tb && ([...tb].some((i) => kart.has(i)) || [...tb].every((i) => d.cerceve.has(i)))) return;
     const aday = d.idx.get(t);
     if (!aday?.size) { out.push({ tur: "eslenemedi", sozcuk: t }); return; }
     const bilinenAday = [...aday].filter((i) => kart.has(i));
@@ -252,7 +297,10 @@ export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: I
     // cümle başında büyük harf ayırt edici değil: küçük harfle gösteren kart varsa o (öncelikli okunuş) bilinmeli; yoksa büyük harfli kart
     const kucuk = asil.o.charAt(0).toLowerCase() + asil.o.slice(1);
     const kucukKart = asil.bas ? kendiKarti(d, t).filter((i) => d.gostAsil.get(i)?.has(kucuk)) : [];
-    if (asil.bas && kucukKart.length) { if (kucukKart.some((i) => kart.has(i))) return; }
+    // tek sözcüklü cümle (resim etiketi "Arm", tek kelimelik cevap) ayırt edici bağlam taşımaz: iki okunuştan biri yeter
+    // (ANA-D2 devri 7089016679 takibi, PM-101 md. 3: 34. gün `gorsel[g5]` "Arm" lx:Arm biliniyorken lx:arm yüzünden "sınırda")
+    if (asil.bas && kucukKart.length && ta.length > 1) { if (kucukKart.some((i) => kart.has(i))) return; }
+    else if (asil.bas && kucukKart.some((i) => kart.has(i))) return;
     else if (bilinenAday.some((i) => d.gostAsil.get(i)?.has(asil.o))) return;
     if ([...aday].some((i) => d.cerceve.has(i)) && [...baslikKarti(d, t)].every((i) => kart.has(i))) return;
     if (bilinenAday.length) out.push({ tur: "bicim", sozcuk: t, adaylar: bilinenAday.sort() });
