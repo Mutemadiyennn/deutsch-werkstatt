@@ -112,7 +112,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-03.md"
  },
  "dersler": [
   "gr:a1-05:t3",
@@ -408,7 +411,7 @@
      "accepted": [
       "Luka lebt schon lange hier.",
       "Luka lebt hier schon lange.",
-      "Schon lange lebt Luka hier."
+      "Luka lebt schon sehr lange hier."
      ]
     },
     {
@@ -535,7 +538,7 @@
      "accepted": [
       "Ich gehe am Abend zum Kurs.",
       "Am Abend gehe ich zum Kurs.",
-      "Ich gehe heute am Abend zum Kurs."
+      "Ich gehe heute Abend zum Kurs."
      ]
     },
     {
@@ -689,8 +692,15 @@
     "id": "s14",
     "speaker": "ch:petrovic",
     "sahne_tr": "Luka takvimde ocak sayfasını gösteriyor, üstünde bir güneş çizilmiş.",
-    "de": "Nein, im Dezember nicht. Im Januar habe ich Urlaub.",
-    "tr": "Hayır, aralıkta değil. Ocakta iznim var."
+    "de": "Nein, im Dezember nicht.",
+    "tr": "Hayır, aralıkta değil."
+   },
+   {
+    "id": "s14b",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka parmağını ocak sayfasındaki güneşin üstüne koyuyor.",
+    "de": "Im Januar habe ich Urlaub.",
+    "tr": "Ocakta iznim var."
    },
    {
     "id": "s15",
@@ -718,6 +728,7 @@
      "s12",
      "s13",
      "s14",
+     "s14b",
      "s15"
     ],
     "ana_fikir": {
@@ -759,7 +770,7 @@
       ],
       "ans": 1,
       "kanit": [
-       "s14"
+       "s14b"
       ]
      }
     ],
@@ -813,7 +824,7 @@
      },
      {
       "id": "d4",
-      "cumle": "s14",
+      "cumle": "s14b",
       "seviye": "usta",
       "accepted": [
        "Im Januar habe ich Urlaub.",
@@ -878,12 +889,12 @@
     {
      "id": "c2",
      "de": "Bitte warten Sie, Luka ist gleich für Sie da.",
-     "tr": "Lütfen bekleyin, Luka birazdan sizinle."
+     "tr": "Lütfen bekleyin, Luka birazdan sizinle ilgilenecek."
     },
     {
      "id": "c3",
-     "de": "Von Dienstag bis Freitag sind wir von neun bis achtzehn Uhr da.",
-     "tr": "Salıdan cumaya saat dokuzdan on sekize kadar buradayız."
+     "de": "Von Montag bis Freitag sind wir von neun bis achtzehn Uhr da.",
+     "tr": "Pazartesiden cumaya saat dokuzdan on sekize kadar buradayız."
     },
     {
      "id": "c4",
@@ -892,8 +903,8 @@
     },
     {
      "id": "c5",
-     "de": "Am Montag ist der Salon geschlossen.",
-     "tr": "Pazartesi salon kapalı."
+     "de": "Am Sonntag ist der Salon geschlossen.",
+     "tr": "Pazar günü salon kapalı."
     },
     {
      "id": "c6",
@@ -945,8 +956,8 @@
        "kind": "detail",
        "q_tr": "Salon hangi gün kapalı?",
        "opts": [
+        "pazar",
         "pazartesi",
-        "salı",
         "cumartesi"
        ],
        "ans": 0,
@@ -974,9 +985,9 @@
        "seviye": "orta",
        "de": "Am ___ ist der Salon geschlossen.",
        "accepted": [
-        "Montag",
-        "montag",
-        "Montag."
+        "Sonntag",
+        "sonntag",
+        "Sonntag."
        ]
       },
       {
@@ -985,7 +996,7 @@
        "seviye": "zor",
        "banka": [
         "Von",
-        "Dienstag",
+        "Montag",
         "bis",
         "Freitag",
         "sind",
@@ -1000,9 +1011,9 @@
         "am"
        ],
        "accepted": [
-        "Von Dienstag bis Freitag sind wir von neun bis achtzehn Uhr da.",
-        "von dienstag bis freitag sind wir von neun bis achtzehn uhr da",
-        "Von Dienstag bis Freitag sind wir von neun bis achtzehn Uhr da"
+        "Von Montag bis Freitag sind wir von neun bis achtzehn Uhr da.",
+        "von montag bis freitag sind wir von neun bis achtzehn uhr da",
+        "Von Montag bis Freitag sind wir von neun bis achtzehn Uhr da"
        ]
       },
       {
@@ -1019,9 +1030,9 @@
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Salonun ne zaman kapalı ve açık olduğunu bir iki kısa cümleyle yaz.",
-       "ornek_de": "Am Montag ist der Salon geschlossen. Am Samstag ist er bis zwölf Uhr offen.",
+       "ornek_de": "Am Sonntag ist der Salon geschlossen. Am Samstag ist er bis zwölf Uhr offen.",
        "zorunlu": [
-        "Montag",
+        "Sonntag",
         "Samstag"
        ]
       }
@@ -1059,11 +1070,11 @@
     "q_tr": "Cumartesi öğleden sonra saçını kestirmek istiyorsun. Ne yapmalısın?",
     "opts": [
      "Cumartesi saat üçte salona git.",
-     "Cumartesi sabahı ya da salı ile cuma arasında bir gün seç.",
-     "Pazartesi salona git."
+     "Cumartesi sabahı ya da pazartesi ile cuma arasında bir gün seç.",
+     "Pazar günü salona git."
     ],
     "ans": 1,
-    "why_tr": "Cumartesi salon yalnızca sabah açık. Pazartesi kapalı.",
+    "why_tr": "Cumartesi salon yalnızca sabah açık. Pazar kapalı.",
     "kanit": [
      "c3",
      "c4",
@@ -1615,8 +1626,8 @@
  "okuma_yazma": {
   "tur": "yazma",
   "title_tr": "Ioana'ya randevunu yaz",
-  "metin_de": "Hallo {name}! Ich habe einen Termin bei Luka: am Montag um halb drei. Unser Kurs ist am Montag von sechs bis acht. Das geht also gut. Im Januar hat Luka Urlaub. Hast du auch einen Termin bei Luka?",
-  "metin_tr": "Merhaba {name}! Luka'da randevum var: pazartesi iki buçukta. Kursumuz pazartesi altıdan sekize kadar. Yani bu iyi uyuyor. Ocakta Luka izinde. Senin de Luka'da randevun var mı?",
+  "metin_de": "Hallo {name}! Ich habe einen Termin bei Luka: am Montag um halb drei. Unser Kurs ist am Montag von sechs bis acht. Das passt also gut. Im Januar hat Luka Urlaub. Hast du auch einen Termin bei Luka?",
+  "metin_tr": "Merhaba {name}! Luka'da randevum var: pazartesi iki buçukta. Kursumuz pazartesi altıdan sekize kadar. Yani saatler uyuyor. Ocakta Luka izinde. Senin de Luka'da randevun var mı?",
   "sorular": [
    {
     "id": "m1:18:o1",
@@ -1759,7 +1770,7 @@
      "Ich habe einen Termin am Montag um zwei.",
      "Ich habe einen Termin am Montag um zwei Uhr."
     ],
-    "why_tr": "Türkçede ikisi de -de alır. Almancada gün **am**, saat **um** alır."
+    "why_tr": "Günden önce **am**, saatten önce **um** gelir."
    },
    {
     "id": "m1:18:s6",

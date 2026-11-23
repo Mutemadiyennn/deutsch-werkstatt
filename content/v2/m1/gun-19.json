@@ -96,7 +96,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-03.md"
  },
  "dersler": [
   "gr:a1-02:t4",
@@ -221,7 +224,7 @@
      "accepted": [
       "Basti spricht nie langsam.",
       "Basti spricht ja nie langsam.",
-      "Nie spricht Basti langsam."
+      "Basti spricht wirklich nie langsam."
      ]
     },
     {
@@ -246,7 +249,7 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Kurs arası. Ioana iş yerinden Derya'yı soruyor.",
+    "ortam_tr": "Kurs arası. Ioana iş arkadaşın Derya'dan söz ediyor.",
     "satirlar": [
      {
       "r": "ch:popescu",
@@ -570,8 +573,15 @@
     "id": "s3",
     "speaker": "ch:kraus",
     "sahne_tr": "Basti bisikletini direğe yaslıyor, büfeyi gösteriyor.",
-    "de": "Ich fahre nicht, ich bleibe hier. Ich esse noch etwas.",
-    "tr": "Ben gitmiyorum, burada kalıyorum. Bir şeyler daha yiyeceğim."
+    "de": "Ich fahre nicht, ich bleibe hier.",
+    "tr": "Ben gitmiyorum, burada kalıyorum."
+   },
+   {
+    "id": "s3b",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti büfedeki sandviçleri gösteriyor.",
+    "de": "Ich esse noch etwas.",
+    "tr": "Bir şeyler daha yiyeceğim."
    },
    {
     "id": "s4",
@@ -647,8 +657,15 @@
     "id": "s14",
     "speaker": "ch:kraus",
     "sahne_tr": "Basti durak tabelasındaki saate bakıyor.",
-    "de": "Dein Bus fährt um neun? Dann schnell!",
-    "tr": "Otobüsün dokuzda mı kalkıyor? O zaman acele et!"
+    "de": "Dein Bus fährt um neun?",
+    "tr": "Otobüsün dokuzda mı kalkıyor?"
+   },
+   {
+    "id": "s14b",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti eliyle otobüsü gösteriyor, acele ettiriyor.",
+    "de": "Dann schnell!",
+    "tr": "O zaman acele et!"
    },
    {
     "id": "s15",
@@ -665,6 +682,7 @@
      "s1",
      "s2",
      "s3",
+     "s3b",
      "s4",
      "s5",
      "s6",
@@ -676,6 +694,7 @@
      "s12",
      "s13",
      "s14",
+     "s14b",
      "s15"
     ],
     "ana_fikir": {
@@ -704,7 +723,8 @@
       ],
       "ans": 0,
       "kanit": [
-       "s3"
+       "s3",
+       "s3b"
       ]
      },
      {
@@ -747,7 +767,7 @@
      },
      {
       "id": "d3",
-      "cumle": "s3",
+      "cumle": "s3b",
       "seviye": "zor",
       "banka": [
        "Ich",
@@ -827,7 +847,7 @@
     },
     {
      "id": "c2",
-     "de": "Der Bus nach Brunnenviertel fährt heute nicht um acht.",
+     "de": "Der Bus zum Brunnenviertel fährt heute nicht um acht.",
      "tr": "Brunnenviertel otobüsü bugün sekizde kalkmıyor."
     },
     {
@@ -903,7 +923,7 @@
        "id": "d1",
        "cumle": "c3",
        "seviye": "kolay",
-       "q_tr": "Hangi saati duydun?",
+       "q_tr": "Hangi kelimeyi duydun?",
        "opts": [
         "neun",
         "acht",
@@ -915,7 +935,7 @@
        "id": "d2",
        "cumle": "c2",
        "seviye": "orta",
-       "de": "Der Bus nach Brunnenviertel ___ heute nicht um acht.",
+       "de": "Der Bus zum Brunnenviertel ___ heute nicht um acht.",
        "accepted": [
         "fährt",
         "Fährt",
@@ -949,9 +969,9 @@
        "cumle": "c2",
        "seviye": "usta",
        "accepted": [
-        "Der Bus nach Brunnenviertel fährt heute nicht um acht.",
-        "der bus nach brunnenviertel fährt heute nicht um acht",
-        "Der Bus nach Brunnenviertel fährt heute nicht um acht"
+        "Der Bus zum Brunnenviertel fährt heute nicht um acht.",
+        "der bus zum brunnenviertel fährt heute nicht um acht",
+        "Der Bus zum Brunnenviertel fährt heute nicht um acht"
        ]
       },
       {
@@ -966,8 +986,8 @@
       }
      ],
      "golge": [
-      "c1",
-      "c3"
+      "c3",
+      "c4"
      ],
      "cevapla": {
       "id": "m1:19:a1:c1",
@@ -1520,7 +1540,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Nereye gittiğini, kimin nasıl konuştuğunu söyledin. du ve er biçimlerini karıştırmadın."
+  "kapanis_tr": "Nereye gittiğini, kimin nasıl konuştuğunu söyledin. **du** ve **er** biçimlerini karıştırmadın."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1688,7 +1708,7 @@
      "Ioana spricht nie Englisch.",
      "Ioana spricht nie Englisch, nur Deutsch.",
      "Ioana spricht kein Englisch.",
-     "Ioana spricht nie mehr Englisch."
+     "Ioana redet nie Englisch."
     ],
     "why_tr": "Hiç derken **nie** dersin. Ioana için **spricht** gelir."
    },
@@ -1741,7 +1761,7 @@
      "Ich fahre nach Hause. Basti bleibt noch hier.",
      "Ja, ich fahre nach Hause. Und Basti bleibt hier."
     ],
-    "why_tr": "Kendin için **ich fahre**, Basti için **er bleibt** gibi o biçimini kullan."
+    "why_tr": "Kendin için **ich fahre**, Basti için **er bleibt** dersin."
    }
   ],
   "sesli": [

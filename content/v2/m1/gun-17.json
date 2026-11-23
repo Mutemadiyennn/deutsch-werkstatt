@@ -122,7 +122,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-03.md"
  },
  "dersler": [
   "gr:a1-12:t1"
@@ -190,7 +193,7 @@
     {
      "kart": "lx:Durchwahl",
      "de": "Haben Sie eine Durchwahl?",
-     "tr": "Doğrudan bir numaranız var mı?",
+     "tr": "Dahili numaranız var mı?",
      "accepted": [
       "Haben Sie eine Durchwahl?",
       "Haben Sie auch eine Durchwahl?",
@@ -200,7 +203,7 @@
     {
      "kart": "lx:Durchwahl",
      "de": "Könnten Sie mir die Durchwahl geben?",
-     "tr": "Bana doğrudan numarayı verebilir misiniz?",
+     "tr": "Bana dahili numarayı verebilir misiniz?",
      "accepted": [
       "Könnten Sie mir die Durchwahl geben?",
       "Könnten Sie mir bitte die Durchwahl geben?",
@@ -545,7 +548,7 @@
   },
   {
    "id": "m1:17:h4",
-   "title_tr": "Bisiklet, gar, inmek",
+   "title_tr": "Bisiklet, istasyon, inmek",
    "kartlar": [
     "lx:Fahrrad",
     "lx:Bahnhof",
@@ -555,7 +558,7 @@
    "kaliplar": [
     {
      "de": "am Bahnhof – am Freitag",
-     "tr": "garda – cuma günü"
+     "tr": "istasyonda – cuma günü"
     }
    ],
    "gorev_cumleleri": [
@@ -582,7 +585,7 @@
     {
      "kart": "lx:Bahnhof",
      "de": "Ich bin jetzt am Bahnhof.",
-     "tr": "Şimdi gardayım.",
+     "tr": "Şimdi istasyondayım.",
      "accepted": [
       "Ich bin jetzt am Bahnhof.",
       "Jetzt bin ich am Bahnhof.",
@@ -592,7 +595,7 @@
     {
      "kart": "lx:Bahnhof",
      "de": "Wo ist hier der Bahnhof?",
-     "tr": "Burada gar nerede?",
+     "tr": "Buralarda istasyon nerede?",
      "accepted": [
       "Wo ist hier der Bahnhof?",
       "Wo ist der Bahnhof hier?",
@@ -612,7 +615,7 @@
     {
      "kart": "lx:aussteigen",
      "de": "Ich muss am Bahnhof aussteigen.",
-     "tr": "Garda inmem lazım.",
+     "tr": "İstasyonda inmem lazım.",
      "accepted": [
       "Ich muss am Bahnhof aussteigen.",
       "Am Bahnhof muss ich aussteigen.",
@@ -646,12 +649,12 @@
      {
       "r": "ch:popescu",
       "de": "Ich bin am Bahnhof. Muss ich hier aussteigen?",
-      "tr": "Gardayım. Burada mı inmem lazım?"
+      "tr": "İstasyondayım. Burada mı inmem lazım?"
      },
      {
       "r": "ogrenci",
       "de": "Nein, nicht am Bahnhof. Am Stadtplatz.",
-      "tr": "Hayır, garda değil. Meydanda."
+      "tr": "Hayır, istasyonda değil. Meydanda."
      },
      {
       "r": "ch:popescu",
@@ -663,7 +666,7 @@
      "q_tr": "Ioana nerede inmeli?",
      "opts": [
       "Meydanda",
-      "Garda",
+      "İstasyonda",
       "Evin önünde",
       "Muayenehanede"
      ],
@@ -712,8 +715,15 @@
    {
     "id": "s6",
     "sahne_tr": "Ioana kimliğini havaya kaldırıyor.",
-    "de": "Ich brauche einen Ausweis. Am Freitag habe ich eine Prüfung.",
-    "tr": "Kimlik lazım. Cuma günü sınavım var.",
+    "de": "Ich brauche einen Ausweis.",
+    "tr": "Kimlik lazım.",
+    "speaker": "ch:popescu"
+   },
+   {
+    "id": "s6b",
+    "sahne_tr": "Ioana duvardaki takvimde cumayı gösteriyor.",
+    "de": "Am Freitag habe ich eine Prüfung.",
+    "tr": "Cuma günü sınavım var.",
     "speaker": "ch:popescu"
    },
    {
@@ -776,6 +786,7 @@
      "s4",
      "s5",
      "s6",
+     "s6b",
      "s7",
      "s8",
      "s9",
@@ -1075,8 +1086,8 @@
       }
      ],
      "golge": [
-      "c1",
-      "c3"
+      "c3",
+      "c4"
      ],
      "cevapla": {
       "id": "m1:17:a1:c1",
@@ -1376,9 +1387,12 @@
     "tr": "Bürgerbüro, ben Schneider, iyi günler.",
     "secenekler": [
      {
-      "de": "Guten Tag, Frau Schneider, hier ist {name}. Ich möchte einen Termin.",
-      "tr": "İyi günler Schneider Hanım, ben {name}. Randevu istiyorum.",
+      "de": "Guten Tag, Frau Schneider, hier ist {name}. Ich möchte einen Termin für den Ausweis.",
+      "tr": "İyi günler Schneider Hanım, ben {name}. Kimlik için randevu istiyorum.",
       "accepted": [
+       "Guten Tag, Frau Schneider, hier ist {name}. Ich möchte einen Termin für den Ausweis.",
+       "Guten Tag, hier ist {name}. Ich möchte einen Termin für den Ausweis.",
+       "Guten Tag, Frau Schneider, {name} hier. Ich möchte einen Termin für den Ausweis.",
        "Guten Tag, Frau Schneider, hier ist {name}. Ich möchte einen Termin.",
        "Guten Tag, hier ist {name}. Ich möchte einen Termin.",
        "Guten Tag, Frau Schneider, {name} hier. Ich möchte einen Termin.",
@@ -1487,7 +1501,7 @@
     "secenekler": [
      {
       "de": "Ja, gut. Haben Sie auch eine Durchwahl?",
-      "tr": "Tamam. Doğrudan bir numaranız da var mı?",
+      "tr": "Tamam. Dahili numaranız da var mı?",
       "accepted": [
        "Ja, gut. Haben Sie auch eine Durchwahl?",
        "Gut. Könnten Sie mir bitte die Durchwahl geben?",
@@ -1572,12 +1586,12 @@
     "secenekler": []
    }
   ],
-  "kapanis_tr": "Hızlı konuşan memura kibarca tekrar ettirdin, randevuyu aldın ve doğrudan numarayı öğrendin."
+  "kapanis_tr": "Hızlı konuşan memura kibarca tekrar ettirdin, randevuyu aldın ve dahili numarayı öğrendin."
  },
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Tobi'nin masandaki not: Bürgerbüro aradı",
-  "metin_de": "Hallo {name}! Frau Schneider möchte einen Rückruf. Es geht um deinen Ausweis. Bitte heute am Nachmittag zurückrufen. Die Durchwahl ist zwei, vier. Morgen ist sie nicht da. Tobi",
+  "metin_de": "Hallo {name}! Frau Schneider möchte einen Rückruf. Es geht um deinen Ausweis. Bitte heute Nachmittag zurückrufen. Die Durchwahl ist zwei, vier. Morgen ist sie nicht da. Tobi",
   "metin_tr": "Merhaba {name}! Schneider Hanım geri aranmak istiyor. Konu kimliğin. Lütfen bugün öğleden sonra geri ara. Dahili numara iki, dört. Yarın orada değil. Tobi",
   "sorular": [
    {

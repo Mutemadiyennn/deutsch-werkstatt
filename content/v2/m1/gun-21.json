@@ -132,7 +132,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-03.md"
  },
  "dersler": [],
  "yeni_kartlar": [
@@ -283,7 +286,7 @@
      "opts": [
       "Muayenehaneye",
       "Firmaya",
-      "Gara",
+      "İstasyona",
       "Belediyeye"
      ],
      "ans": 0
@@ -397,8 +400,15 @@
     "id": "s15",
     "speaker": "ch:lechner",
     "sahne_tr": "Tobi telefonunu cebine koyuyor.",
-    "de": "Mein Vater ist krank. Am Dienstag geht er zur Praxis.",
-    "tr": "Babam hasta. Salı günü muayenehaneye gidiyor."
+    "de": "Mein Vater ist krank.",
+    "tr": "Babam hasta."
+   },
+   {
+    "id": "s15b",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kâğıttaki günü Derya'ya gösteriyor.",
+    "de": "Am Dienstag geht er zur Praxis.",
+    "tr": "Salı günü muayenehaneye gidiyor."
    },
    {
     "id": "s16",
@@ -434,6 +444,7 @@
      "s13",
      "s14",
      "s15",
+     "s15b",
      "s16",
      "s17"
     ],
@@ -496,11 +507,11 @@
       "id": "d2",
       "cumle": "s10",
       "seviye": "orta",
-      "de": "Nein, am ___.",
+      "de": "Nein, am Dienstag. Dienstag, der ___, um zehn Uhr.",
       "accepted": [
-       "Dienstag",
-       "dienstag",
-       "Dienstag."
+       "fünfzehnte",
+       "Fünfzehnte",
+       "fünfzehnte."
       ]
      },
      {
@@ -526,7 +537,7 @@
      },
      {
       "id": "d4",
-      "cumle": "s15",
+      "cumle": "s15b",
       "seviye": "usta",
       "accepted": [
        "Am Dienstag geht er zur Praxis.",
@@ -572,7 +583,7 @@
    "id": "m1:21:a1",
    "tur": "sesli-mesaj",
    "title_tr": "Huber Hanım'dan hızlı sesli mesaj",
-   "ortam_tr": "Babanın randevusu için Huber Hanım mesaj bırakmış. Çok hızlı konuşuyor. Gün ve saati yaz.",
+   "ortam_tr": "Kontrol randevun için Huber Hanım mesaj bırakmış. Çok hızlı konuşuyor. Gün ve saati yaz.",
    "speaker": "ch:huber",
    "hizlar": [
     "normal",
@@ -586,8 +597,8 @@
     },
     {
      "id": "c2",
-     "de": "Ihr Vater hat einen Termin am Donnerstag, dem siebzehnten Dezember, um halb elf.",
-     "tr": "Babanızın 17 Aralık perşembe saat on buçukta randevusu var."
+     "de": "Sie haben einen Termin am Donnerstag, dem siebzehnten Dezember, um halb elf.",
+     "tr": "17 Aralık perşembe saat on buçukta randevunuz var."
     },
     {
      "id": "c3",
@@ -619,9 +630,9 @@
       "kind": "gist",
       "q_tr": "Huber Hanım ne söylüyor?",
       "opts": [
-       "Babanın randevusunun gününü ve saatini",
+       "Randevunun gününü ve saatini",
        "Muayenehanenin kapalı olduğunu",
-       "Babanın ilacının hazır olduğunu"
+       "İlacının hazır olduğunu"
       ],
       "ans": 0,
       "kanit": [
@@ -673,7 +684,7 @@
        "id": "d2",
        "cumle": "c2",
        "seviye": "orta",
-       "de": "Ihr Vater hat einen Termin am Donnerstag, dem ___ Dezember, um halb elf.",
+       "de": "Sie haben einen Termin am Donnerstag, dem ___ Dezember, um halb elf.",
        "accepted": [
         "siebzehnten",
         "Siebzehnten",
@@ -705,9 +716,9 @@
        "cumle": "c2",
        "seviye": "usta",
        "accepted": [
-        "Ihr Vater hat einen Termin am Donnerstag, dem siebzehnten Dezember, um halb elf.",
-        "ihr vater hat einen termin am donnerstag dem siebzehnten dezember um halb elf",
-        "Ihr Vater hat einen Termin am Donnerstag, dem siebzehnten Dezember, um halb elf"
+        "Sie haben einen Termin am Donnerstag, dem siebzehnten Dezember, um halb elf.",
+        "sie haben einen termin am donnerstag dem siebzehnten dezember um halb elf",
+        "Sie haben einen Termin am Donnerstag, dem siebzehnten Dezember, um halb elf"
        ]
       },
       {
@@ -747,8 +758,8 @@
     "k": "pick",
     "q_tr": "Ne yapmalısın?",
     "opts": [
-     "Babanla 17 Aralık perşembe saat on buçukta git, kartını al.",
-     "Babanla 7 Aralık saat on birde git.",
+     "17 Aralık perşembe saat on buçukta git, kartını al.",
+     "7 Aralık saat on birde git.",
      "Muayenehaneyi hemen ara ve randevuyu iptal et."
     ],
     "ans": 0,
@@ -777,8 +788,13 @@
     },
     {
      "id": "c2",
-     "de": "Was ist passiert? Du bist heute nicht im Büro.",
-     "tr": "Ne oldu? Bugün ofiste değilsin."
+     "de": "Was ist passiert?",
+     "tr": "Ne oldu?"
+    },
+    {
+     "id": "c2b",
+     "de": "Du bist heute nicht im Büro.",
+     "tr": "Bugün ofiste değilsin."
     },
     {
      "id": "c3",
@@ -807,6 +823,7 @@
      "cumleler": [
       "c1",
       "c2",
+      "c2b",
       "c3",
       "c4",
       "c5",
@@ -861,11 +878,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi kelimeyi duydun?",
        "opts": [
-        "Chef",
-        "Vater",
-        "Kollege"
+        "krank",
+        "übel",
+        "klein"
        ],
-       "ans": 1
+       "ans": 0
       },
       {
        "id": "d2",
@@ -897,7 +914,7 @@
       },
       {
        "id": "d4",
-       "cumle": "c2",
+       "cumle": "c2b",
        "seviye": "usta",
        "accepted": [
         "Du bist heute nicht im Büro.",
@@ -909,7 +926,7 @@
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Mesajda ne dendiğini Almanca bir iki kısa cümleyle özetle.",
-       "ornek_de": "Derya ist bis sechs im Büro. Sie kann helfen.",
+       "ornek_de": "Derya fragt: Ist dein Vater krank? Sie ist bis sechs im Büro.",
        "zorunlu": [
         "Vater",
         "sechs"
@@ -1235,7 +1252,7 @@
     "secenekler": [
      {
       "de": "Gut, bis Mittwoch! Auf Wiederhören!",
-      "tr": "Tamam, çarşambaya kadar! Hoşça kalın!",
+      "tr": "Tamam, çarşamba görüşürüz! Hoşça kalın!",
       "accepted": [
        "Gut, bis Mittwoch! Auf Wiederhören!",
        "Danke schön. Auf Wiederhören!",
@@ -1309,7 +1326,7 @@
    {
     "id": "m1:21:o4",
     "k": "guided_response",
-    "situation_tr": "Babanla kartı okuyorsun. Baban günü ve saati soruyor. Almanca söyle.",
+    "situation_tr": "Derya babanın randevusunu soruyor. Karttaki günü ve saati söyle.",
     "prompt_de": "Und wann genau?",
     "accepted": [
      "Am Mittwoch, dem sechzehnten, um Viertel nach zehn.",
