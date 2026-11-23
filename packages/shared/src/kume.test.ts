@@ -85,6 +85,9 @@ describe("dil noktası tablo biçimleri (PM-092 md. 1; PR A)", () => {
     expect(dz.dersler.get("gr:a1-03:t1")?.tablo?.has("gehe")).toBe(true);
     expect(dz.dersler.get("gr:a1-03:t1")?.tablo?.has("gehen")).toBe(false);
     expect([...(dz.dersler.get("r0:01-tage")?.bicim ?? [])].sort()).toEqual([...(d.dersler.get("r0:01-tage")?.bicim ?? [])].sort());
+  });
+});
+
 describe("düzenli çekim (PM-097 md. 2)", () => {
   const CL = [
     L({ id: "lx:wohnen", de: "wohnen", pos: "verb" }),
