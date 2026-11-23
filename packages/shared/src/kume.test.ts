@@ -113,8 +113,10 @@ describe("sesteş isim ve fiil (PM-117 A.3 ön sınama: lx:Frage ↔ lx:fragen)"
     expect([...d.idx.get("frage")!].sort()).toEqual(["lx:Frage", "lx:fragen"]);
     // cümle ortasında büyük harf isim, küçük harf fiil okunuşu (#261 P1-1: Türkçe açıklama doğru kartı göstersin)
     const bil = { kart: new Set<string>(), biten: new Set<string>() };
-    expect(bilinmeyenler(d, "Das ist eine Frage.", bil).find((x) => x.sozcuk === "frage")?.adaylar).toEqual(["lx:Frage"]);
-    expect(bilinmeyenler(d, "Dann frage ich.", bil).find((x) => x.sozcuk === "frage")?.adaylar).toEqual(["lx:fragen"]);
+    expect(bilinmeyenler(d, "Das ist eine Frage.", bil).find((x) => x.sozcuk === "frage")?.adaylar).toEqual(["lx:Frage", "lx:fragen"]);
+    expect(bilinmeyenler(d, "Dann frage ich.", bil).find((x) => x.sozcuk === "frage")?.adaylar).toEqual(["lx:fragen", "lx:Frage"]);
+    // sınıf bütün adaylardan: fiil biliniyorsa büyük harfli "Frage" de "biçim" (kart eksikliği değil; dikiş değişmez)
+    expect(bilinmeyenler(d, "Das ist eine Frage.", { kart: new Set(["lx:fragen"]), biten: new Set<string>() }).find((x) => x.sozcuk === "frage")).toMatchObject({ tur: "bicim", adaylar: ["lx:Frage", "lx:fragen"] });
   });
   it("sahte aday sahibine yenilir: ayrılan ön ek, cümle içi cevap, isim türetmesi (#261 P1-1; sahip kendi biçimini daha çok verir)", () => {
     const V = (id: string, de: string, answer: string, pos = "verb") => Lexeme.parse({ id, de, tr: "x", pos, forms: [{ de: "x ___ x", answer, tr: "x" }] });

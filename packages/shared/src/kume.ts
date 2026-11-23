@@ -305,14 +305,18 @@ export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: I
     const tb = tablo.get(t);
     if (tb && ([...tb].some((i) => kart.has(i)) || [...tb].every((i) => d.cerceve.has(i)))) return;
     const asil = ta[j]!;
-    let aday = d.idx.get(t);
+    const aday = d.idx.get(t);
     if (!aday?.size) { out.push({ tur: "eslenemedi", sozcuk: t }); return; }
-    // sesteş isim/fiil (Frage/fragen, Reise/reisen): cümle ortasında büyük harf isim, küçük harf fiil okunuşudur (#261 P1-1)
+    // sesteş isim/fiil (Frage/fragen, Reise/reisen): yalnız çıktıdaki aday SIRASI (Türkçe açıklama ilk adaydan): cümle ortasında
+    // büyük harf → isim, küçük harf → fiil önce. Sınıf (kart/biçim) bütün adaylardan hesaplanır; dikiş değişmez (#261 fark P1-F1)
     const pos = (i: string) => d.kartlar.get(i)?.pos;
-    if (!asil.bas && [...aday].some((i) => pos(i) === "noun") && [...aday].some((i) => pos(i) === "verb")) {
-      const buyuk = /^\p{Lu}/u.test(asil.o), f = [...aday].filter((i) => (pos(i) === "noun") === buyuk);
-      if (f.length) aday = new Set(f);
-    }
+    const sesTesAday = !asil.bas && [...aday].some((i) => pos(i) === "noun") && [...aday].some((i) => pos(i) === "verb");
+    const sirala = (l: string[]) => {
+      l.sort();
+      if (!sesTesAday || !l.some((i) => pos(i) === "noun") || !l.some((i) => pos(i) === "verb")) return l;
+      const buyuk = /^\p{Lu}/u.test(asil.o);
+      return [...l.filter((i) => (pos(i) === "noun") === buyuk), ...l.filter((i) => (pos(i) === "noun") !== buyuk)];
+    };
     const bilinenAday = [...aday].filter((i) => kart.has(i));
     // gösterilen biçim: cümle ortasında harf büyüklüğü de tutmalı; cümle başında aynı sözcüğü gösteren bütün kartlar tanıtılmış olmalı
     // cümle başında büyük harf ayırt edici değil: küçük harfle gösteren kart varsa o (öncelikli okunuş) bilinmeli; yoksa büyük harfli kart
@@ -324,8 +328,9 @@ export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: I
     else if (asil.bas && kucukKart.some((i) => kart.has(i))) return;
     else if (bilinenAday.some((i) => d.gostAsil.get(i)?.has(asil.o))) return;
     if ([...aday].some((i) => d.cerceve.has(i)) && [...baslikKarti(d, t)].every((i) => kart.has(i))) return;
-    if (bilinenAday.length) out.push({ tur: "bicim", sozcuk: t, adaylar: bilinenAday.sort() });
-    else out.push({ tur: "kart", sozcuk: t, adaylar: [...aday].sort() });
+    // biçimde de açıklama okunuşa göre: büyük harfli "Frage" fiil biliniyor diye "sormak" diye açıklanmaz (isim önde, bilinmese de)
+    if (bilinenAday.length) { const s = sirala([...aday]); out.push({ tur: "bicim", sozcuk: t, adaylar: sesTesAday && s[0] && !bilinenAday.includes(s[0]) && pos(s[0]) !== pos(bilinenAday[0]!) ? s : sirala(bilinenAday) }); }
+    else out.push({ tur: "kart", sozcuk: t, adaylar: sirala([...aday]) });
   });
   return out;
 }
