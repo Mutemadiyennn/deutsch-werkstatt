@@ -106,6 +106,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | AKIS pilot düzeltmeleri (PM 7055715440 md. 1–6, TARGET3c) | `v2/akis-pilot` | PR #186 (#184 üstüne): çubuk/elmas ilerleme, kalıp yuvası ve K(t) içi örnekler, adsız profilde ad maddesi geçilir, durak girişi öğrenci cümlesi, tablo/hatırlatma/görev gövdeleri, akışta çeldirici yalnız halka ve bilinenlerden (3 şık yoksa tanıtım, kanıt yok); 1. tur P1-1…P1-6 düzeltildi, fark doğrulaması · **birleşti** (toplu 6, main `987f6ae`, 22.11) |
 | AKIS AK-10 3. adım: `resimden_sec`, `eslestir` (TARGET3b 3–4) | `v2/halka-turleri` | PR #183: çekirdek + bileşenler + e2e (`v2_halka_tur.py`); yalnız e2e'de `#/__halka-turleri`; görülen fotoğraf servis işçisi önbelleğinde (`dw2-foto`); ekrana bağlanması #184 |
 | Ses: kabukta yavaş kademeleri duraklarla, hız ölçümü (gecikme + üç kademe), üst güvenli alan şeridi (PM 7061304527, 7061337043) | `v2/ses-olcum` | PR #194: 1. tur DEĞİŞİKLİK GEREKLİ (7063836097) → P1-1 taşma, P1-2 kabukta karar/uyarı, P1-3 STATUS düzeltildi; fark doğrulaması · **birleşti** (toplu 6, main `987f6ae`, 22.11) |
+| Bildirim balonu dokunuşu yutmaz (`pointer-events: none`); gezgin `#/ben/ayarlar` öğe 55 kırmızısı (hat B, ANA-B3) | `v2/toast-gecirgen` | PR #230, inceleme ONAY 7090814300; takip: Ayarlar'da balonun yeri |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-20
 | Seviye | Kelime kartı | Kalıp | Senaryo (tam) | Mini senaryo | Diyalog grafiği | Okuma | Dinleme | Haber | Madde bankası |
