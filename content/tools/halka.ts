@@ -1,6 +1,6 @@
 /**
  * AKIS AK-10 1. adım (PM #160 7042498589): `halkalar` şeması denetimi + cümle kapısı sayacı (AK-3).
- *  - `halkalar` olan günde (hata): halka kartları = yeni_kartlar; halka başına 4–6 kart; görev cümlesinde bilinmeyen 0 ve
+ *  - `halkalar` olan günde (hata): halka kartları = yeni_kartlar; halka başına 2–6 kart (PM-098 md. 2: tek kartlık halka yok); görev cümlesinde bilinmeyen 0 ve
  *    kartın kelimesi geçer; sahne satırında bilinmeyen ≤ 1; her kartın kapıdan geçen en az 2 görev cümlesi var.
  *  - Bütün günler için sayaç (uyarı): günün görev cümlelerinde (öğrencinin ürettiği) bilinmeyen > 0 sayısı ve kapıdan geçen
  *    örnek/boşluk cümlesi olmayan kartlar. Sayım İÇ'in "B" kipiyle aynı: günün dersleri yapılmış, günün kartları tanıtılmış.
@@ -10,7 +10,7 @@ import { bilinmeyenler, bilinmeyenYazi, kalipSecenekleri, toks, type Drill, type
 
 import { tabloDolgusu, type KesinTablo } from "./ktablo.ts";
 import POLICY from "../../web/src/policy.json" with { type: "json" };
-/** policy.json → akis.halka_kart (AK-8; PM 7043401257) */
+/** policy.json → akis.halka_kart (AK-8; PM 7043401257; PM-098 md. 2 / PM-100 md. 1: [2, 6] sınırdır, formül değil) */
 export const HALKA_KART = POLICY.akis.halka_kart as [number, number];
 const GOREV_MIN = 2;
 
