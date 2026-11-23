@@ -91,7 +91,60 @@ export function isSameAsGiven(given: string | undefined, answer: string): boolea
 /** Aynı kelimeler farklı sırada: Almancada çoğu zaman yanlış ama bazen doğru; karar yapay zekâya bırakılır, kendi başına doğru sayılmaz */
 const bag = (s: string) => norm(s).split(" ").filter(Boolean).sort().join(" ");
 
-export function ruleVerdict(accepted: string[], answer: string): Verdict {
+/* ───────────── PM-101 md. 6 (İÇ-6 7089902512): üç eşdeğerlik ───────────── */
+const SAAT = "null|eins?|zwei|zwo|drei|vier|f(?:ü|ue)nf|sechs|sieben|acht|neun|zehn|elf|zw(?:ö|oe)lf|dreizehn|vierzehn|f(?:ü|ue)nfzehn|sechzehn|siebzehn|achtzehn|neunzehn|zwanzig|(?:ein|zwei|drei|vier)undzwanzig";
+const DAKIKA = "\\d{2}|f(?:ü|ue)nf|zehn|f(?:ü|ue)nfzehn|zwanzig|f(?:ü|ue)nfundzwanzig|drei(?:ß|ss)ig|f(?:ü|ue)nfunddrei(?:ß|ss)ig|vierzig|f(?:ü|ue)nfundvierzig|f(?:ü|ue)nfzig|f(?:ü|ue)nfundf(?:ü|ue)nfzig";
+// "um drei Uhr" → "um drei", "um 15.30 Uhr" → "um 15.30", "um acht Uhr dreißig" → "um acht dreißig", "um ein Uhr" → "um eins"
+const UHR = new RegExp(`(^|[^\\p{L}\\d])(um\\s+)(\\d{1,2}(?:[:.]\\d{2})?|${SAAT})(\\s+(?:${DAKIKA}))?\\s+uhr(?![\\p{L}])`, "giu");
+/** Karşılaştırma biçimi: saatte "Uhr" atılır, "Dr." → "Doktor". Yalnız karşılaştırmada kullanılır; ekranda özgün biçim kalır. */
+export function esdegerBicim(s: string): string {
+  return String(s || "")
+    .replace(UHR, (_m, on: string, um: string, saat: string, dk: string | undefined) => on + um + (/^ein$/i.test(saat) && !dk ? "eins" : saat) + (dk || ""))
+    .replace(/(^|[^\p{L}])Dr\.?(?=\s|$)/giu, (_m, on: string) => on + "Doktor");
+}
+const SELAM = /^\s*(?:hallo|hi|servus|gr(?:ü|ue|u)(?:ß|ss)\s+gott|guten\s+(?:tag|morgen|abend))(?![\p{L}])[\s,.!]*/iu;
+const HITAP = /^(?:(?:herr|frau)\s+(?:(?:dr\.?|doktor)\s+)?[\p{L}][\p{L}-]*)/iu;
+const AD = /^\p{Lu}[\p{L}-]*/u;
+/**
+ * Baştaki selam ve hitap dolgudur ("Guten Tag, Frau Brandl, ich habe …"). Hitap selamsız geldiyse virgül ya da ünlemle
+ * ayrılmış olmalı ("Frau Brandl ist nicht da" hitap değildir); selamdan sonra büyük harfli tek ad da hitaptır ("Hallo Tobi, …").
+ * Dönen biçimler: selamsız, selamsız + hitapsız (boş kalan aday yok).
+ */
+export function hitapsiz(answer: string): string[] {
+  const out: string[] = [];
+  let s = String(answer || "");
+  const sm = SELAM.exec(s);
+  if (sm) { s = s.slice(sm[0].length); if (s.trim()) out.push(s); }
+  const hm = HITAP.exec(s) || (sm ? AD.exec(s) : null);
+  if (hm) {
+    const kalan = s.slice(hm[0].length), ayrac = /^\s*[,!.]/.test(kalan);
+    if ((ayrac || (sm && HITAP.test(s))) && kalan.replace(/^[\s,!.]+/, "").trim()) out.push(kalan.replace(/^[\s,!.]+/, ""));
+  }
+  return out;
+}
+
+/**
+ * Kural kararı. `opts.siki` (dikte gibi duyduğunu aynen yazma): PM-101 md. 6'nın üç eşdeğerliği uygulanmaz.
+ * Eşdeğerlik yalnız "doğru"ya çevirir; özgün yolun "doğru" dediği hiçbir cevabın sonucu değişmez.
+ */
+export function ruleVerdict(accepted: string[], answer: string, opts?: { siki?: boolean }): Verdict {
+  const v = kuralKarar(accepted, answer);
+  if (v.kind === "correct" || opts?.siki) return v;
+  const accE = accepted.map(esdegerBicim);
+  const degisti = accE.some((a, i) => a !== accepted[i]);
+  for (const c of [answer, ...hitapsiz(answer)]) {
+    const cE = esdegerBicim(c);
+    if (c === answer && !degisti && cE === c) continue;
+    const w = kuralKarar(accE, cE);
+    if (w.kind === "correct") {
+      const i = accE.indexOf(w.best);
+      return { kind: "correct", best: i >= 0 ? accepted[i]! : w.best, via: "variant", note: w.note };
+    }
+  }
+  return v;
+}
+
+function kuralKarar(accepted: string[], answer: string): Verdict {
   const j = judge(accepted, [answer]);
   if (j.ok) return { kind: "correct", best: j.best, via: norm(j.best) === norm(answer) ? "exact" : "variant", note: yazimNotu(j.best, answer) };
   // fiil üçüncü yerde (Gern ich möchte…) dolgu kuralından önce: baştaki "gern" dolgu sayılıp doğru verilmesin (inceleme #76 2. tur K2)
