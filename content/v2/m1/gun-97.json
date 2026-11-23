@@ -1,0 +1,1521 @@
+{
+ "schema": 1,
+ "id": "m1:gun:97",
+ "day": 97,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Bürgerbüro'da sırayı ve evrakı anlamak",
+ "goal_tr": "Vatandaş bürosunda sıra numarası alır, numaranın çağrıldığını anlar ve memura hangi belgeyi vereceğini bilirsin.",
+ "can_do": {
+  "id": "cd:m1:97",
+  "tr": "Bürgerbüro'da numaramın çağrıldığını anlar, hangi belgeyi vereceğimi bilirim."
+ },
+ "unit": "u:a2:resmi-2",
+ "arm": "pazar",
+ "place": "pl:buergerbuero",
+ "characters": [
+  "ch:popescu",
+  "ch:schneider",
+  "ch:lechner"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY, #254 fark turu kapandı. Video ve kart sayısı kapıları açık olduğu için draft."
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:Wartenummer",
+  "lx:zuerst",
+  "lx:öffnen",
+  "lx:hübsch",
+  "lx:werfen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:97:h1",
+   "title_tr": "Cumartesi sabahı belediyede: numara, sıra ve belgeler",
+   "kartlar": [
+    "lx:Wartenummer",
+    "lx:zuerst",
+    "lx:öffnen",
+    "lx:hübsch",
+    "lx:werfen"
+   ],
+   "kaliplar": [
+    {
+     "de": "eine Wartenummer ziehen – Ziehen Sie bitte eine Nummer. – Wir ziehen eine Wartenummer. – Ioana zieht eine Wartenummer.",
+     "tr": "sıra numarası almak – Lütfen bir numara alın. – Sıra numarası alıyoruz. – Ioana sıra numarası alıyor."
+    },
+    {
+     "de": "die Nummer siebenundvierzig – Nummer siebenundvierzig bitte zu Platz drei. – auf dem Bildschirm",
+     "tr": "47 numara – 47 numara lütfen 3 numaralı masaya. – ekranda"
+    },
+    {
+     "de": "zuerst … dann … – Zuerst ziehen wir eine Nummer, dann warten wir. – Zuerst brauche ich Ihren Ausweis.",
+     "tr": "önce, sonra – Önce numara alıyoruz, sonra bekliyoruz. – Önce kimliğinizi istiyorum."
+    },
+    {
+     "de": "öffnen – Das Bürgerbüro öffnet um neun. – Wann öffnet das Bürgerbüro? – Es ist geöffnet.",
+     "tr": "açmak, açılmak – Vatandaş bürosu dokuzda açılıyor. – Vatandaş bürosu ne zaman açılıyor? – Açık."
+    },
+    {
+     "de": "die Öffnungszeiten – am Samstag von neun bis zwölf – nur mit Termin",
+     "tr": "açılış saatleri – cumartesi dokuzdan on ikiye – yalnızca randevuyla"
+    },
+    {
+     "de": "hübsch – Das Rathaus ist hübsch. – eine hübsche Wohnung – Hübsch hier!",
+     "tr": "hoş, güzel – Belediye binası çok hoş. – hoş bir daire – Burası çok hoş!"
+    },
+    {
+     "de": "werfen – Werfen Sie das nicht weg. – Wirf das weg. – Wirf die Nummer nicht weg! – er wirft – in den Müll werfen – Ich habe die Nummer weggeworfen.",
+     "tr": "atmak – Bunu atmayın. – Bunu at. – Numarayı atma! – atıyor – çöpe atmak – Numarayı attım."
+    },
+    {
+     "de": "sich ummelden – Ioana meldet sich um. – Ich melde mich um. – die Ummeldung – Sie ist in eine hübsche Wohnung eingezogen.",
+     "tr": "aynı şehirde yeni adresi kaydettirmek – Ioana yeni adresini kaydettiriyor. – Yeni adresimi kaydettiriyorum. – yeni adres kaydı – Hoş bir daireye taşındı."
+    },
+    {
+     "de": "Hier ist mein Pass. – die Bestätigung vom Vermieter – Unterschreiben Sie bitte hier.",
+     "tr": "İşte pasaportum. – ev sahibinin onay belgesi – Lütfen buraya imza atın."
+    },
+    {
+     "de": "Tobi zieht heute aus. – Wir tragen sein Zeug zum Auto. – ihr tragt",
+     "tr": "Tobi bugün evden çıkıyor. – Eşyalarını arabaya taşıyoruz. – taşıyorsunuz"
+    },
+    {
+     "de": "Ich fühle mich ein bisschen gestresst. – Wir sind gleich dran.",
+     "tr": "Biraz stresliyim. – Birazdan sıra bizde."
+    },
+    {
+     "de": "die Bestätigung – Nach der Ummeldung bekommen Sie eine Bestätigung. – Eine Meldebescheinigung kostet Geld.",
+     "tr": "onay belgesi – Yeni adres kaydından sonra bir onay belgesi alırsınız. – İkamet belgesi ücretlidir."
+    },
+    {
+     "de": "geben – Gib bitte den Pass. – Gib bitte deinen Pass.",
+     "tr": "vermek – Lütfen pasaportu ver. – Lütfen pasaportunu ver."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Wartenummer",
+     "de": "Ioana zieht eine Wartenummer, Nummer siebenundvierzig.",
+     "tr": "Ioana bir sıra numarası alıyor, 47 numara.",
+     "accepted": [
+      "Ioana zieht eine Wartenummer, Nummer siebenundvierzig.",
+      "Ioana zieht eine Wartenummer: Nummer siebenundvierzig.",
+      "Ioana zieht die Wartenummer siebenundvierzig."
+     ]
+    },
+    {
+     "kart": "lx:Wartenummer",
+     "de": "Unsere Wartenummer ist gleich auf dem Bildschirm.",
+     "tr": "Sıra numaramız birazdan ekranda.",
+     "accepted": [
+      "Unsere Wartenummer ist gleich auf dem Bildschirm.",
+      "Gleich ist unsere Wartenummer auf dem Bildschirm.",
+      "Unsere Wartenummer ist gleich auf dem Bildschirm, Ioana."
+     ]
+    },
+    {
+     "kart": "lx:zuerst",
+     "de": "Zuerst ziehen wir eine Wartenummer, dann warten wir.",
+     "tr": "Önce bir sıra numarası alıyoruz, sonra bekliyoruz.",
+     "accepted": [
+      "Zuerst ziehen wir eine Wartenummer, dann warten wir.",
+      "Zuerst ziehen wir eine Nummer, dann warten wir.",
+      "Zuerst ziehen wir eine Wartenummer und dann warten wir."
+     ]
+    },
+    {
+     "kart": "lx:zuerst",
+     "de": "Zuerst meldet sich Ioana um, dann helfen wir Tobi.",
+     "tr": "Önce Ioana yeni adresini kaydettiriyor, sonra Tobi'ye yardım ediyoruz.",
+     "accepted": [
+      "Zuerst meldet sich Ioana um, dann helfen wir Tobi.",
+      "Zuerst meldet sich Ioana um und dann helfen wir Tobi.",
+      "Zuerst meldet sich Ioana um. Dann helfen wir Tobi."
+     ]
+    },
+    {
+     "kart": "lx:öffnen",
+     "de": "Das Bürgerbüro öffnet am Samstag um neun.",
+     "tr": "Vatandaş bürosu cumartesi dokuzda açılıyor.",
+     "accepted": [
+      "Das Bürgerbüro öffnet am Samstag um neun.",
+      "Am Samstag öffnet das Bürgerbüro um neun.",
+      "Das Bürgerbüro öffnet um neun, auch am Samstag."
+     ]
+    },
+    {
+     "kart": "lx:öffnen",
+     "de": "Wann öffnet das Bürgerbüro am Montag?",
+     "tr": "Vatandaş bürosu pazartesi ne zaman açılıyor?",
+     "accepted": [
+      "Wann öffnet das Bürgerbüro am Montag?",
+      "Wann öffnet am Montag das Bürgerbüro?",
+      "Und wann öffnet das Bürgerbüro am Montag?"
+     ]
+    },
+    {
+     "kart": "lx:hübsch",
+     "de": "Das Rathaus in Wendlfing ist wirklich hübsch.",
+     "tr": "Wendlfing'deki belediye binası gerçekten çok hoş.",
+     "accepted": [
+      "Das Rathaus in Wendlfing ist wirklich hübsch.",
+      "Das Rathaus in Wendlfing ist sehr hübsch.",
+      "Das Rathaus ist wirklich hübsch."
+     ]
+    },
+    {
+     "kart": "lx:hübsch",
+     "de": "Ioana ist in eine hübsche Wohnung eingezogen.",
+     "tr": "Ioana hoş bir daireye taşındı.",
+     "accepted": [
+      "Ioana ist in eine hübsche Wohnung eingezogen.",
+      "Ioana ist in eine sehr hübsche Wohnung eingezogen.",
+      "Ioana ist jetzt in eine hübsche Wohnung eingezogen."
+     ]
+    },
+    {
+     "kart": "lx:werfen",
+     "de": "Werfen Sie die Wartenummer bitte nicht weg.",
+     "tr": "Lütfen sıra numarasını atmayın.",
+     "accepted": [
+      "Werfen Sie die Wartenummer bitte nicht weg.",
+      "Bitte werfen Sie die Wartenummer nicht weg.",
+      "Werfen Sie die Nummer bitte nicht weg."
+     ]
+    },
+    {
+     "kart": "lx:werfen",
+     "de": "Nach dem Termin wirft Ioana die Nummer in den Müll.",
+     "tr": "Randevudan sonra Ioana numarayı çöpe atıyor.",
+     "accepted": [
+      "Nach dem Termin wirft Ioana die Nummer in den Müll.",
+      "Ioana wirft nach dem Termin die Nummer in den Müll.",
+      "Nach dem Termin wirft Ioana die Wartenummer in den Müll."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cumartesi sabahı 9.30, belediye binasının önü. Ioana elinde bir dosyayla bekliyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Schau mal, das Rathaus ist so hübsch!",
+      "tr": "Baksana, belediye binası ne kadar hoş!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja! Und das Bürgerbüro öffnet um neun, es ist schon geöffnet.",
+      "tr": "Evet! Vatandaş bürosu da dokuzda açılıyor, zaten açık."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Gut. Was machen wir zuerst?",
+      "tr": "Güzel. Önce ne yapıyoruz?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Zuerst ziehen wir eine Wartenummer.",
+      "tr": "Önce bir sıra numarası alıyoruz."
+     }
+    ],
+    "soru": {
+     "q_tr": "Önce ne yapıyorlar?",
+     "opts": [
+      "Kahve içiyorlar",
+      "Formu dolduruyorlar",
+      "Sıra numarası alıyorlar"
+     ],
+     "ans": 2
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:97:v1",
+  "title_tr": "Cumartesi sabahı vatandaş bürosunda: numara 47",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Cumartesi sabahı. Belediye binasının içinde, vatandaş bürosunun bekleme salonu.",
+    "de": "Ich fühle mich ein bisschen gestresst. Aber das Rathaus ist wirklich hübsch.",
+    "tr": "Biraz stresliyim. Ama belediye binası gerçekten çok hoş."
+   },
+   {
+    "id": "s2",
+    "speaker": "ein Mitarbeiter",
+    "sahne_tr": "Kapının yanında bir görevli duruyor, numara makinesini gösteriyor.",
+    "de": "Guten Morgen. Haben Sie einen Termin? Dann ziehen Sie bitte zuerst eine Wartenummer.",
+    "tr": "Günaydın. Randevunuz var mı? O zaman lütfen önce bir sıra numarası alın."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana makineden küçük bir kâğıt alıyor.",
+    "de": "Ja, um zehn. Hier, Nummer siebenundvierzig.",
+    "tr": "Evet, saat onda. İşte, 47 numara."
+   },
+   {
+    "id": "s4",
+    "speaker": "ein Mitarbeiter",
+    "sahne_tr": "Görevli duvardaki ekranı gösteriyor.",
+    "de": "Gut. Ihre Nummer kommt gleich auf dem Bildschirm. Werfen Sie die Nummer bitte nicht weg.",
+    "tr": "Güzel. Numaranız birazdan ekranda çıkar. Lütfen numarayı atmayın."
+   },
+   {
+    "id": "s5",
+    "speaker": "die Ansage",
+    "sahne_tr": "Hoparlörden bir ses geliyor. Ekranda 45 yanıp sönüyor.",
+    "de": "Nummer fünfundvierzig bitte zu Platz zwei.",
+    "tr": "45 numara lütfen 2 numaralı masaya."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana elindeki kâğıda bakıyor.",
+    "de": "Fünfundvierzig. Wir sind siebenundvierzig, also noch zwei Nummern.",
+    "tr": "Kırk beş. Biz kırk yediyiz, yani iki numara daha."
+   },
+   {
+    "id": "s7",
+    "speaker": "die Ansage",
+    "sahne_tr": "Biraz sonra. Ekranda 47 çıkıyor.",
+    "de": "Nummer siebenundvierzig bitte zu Platz drei.",
+    "tr": "47 numara lütfen 3 numaralı masaya."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:schneider",
+    "sahne_tr": "3 numaralı masa. Frau Schneider gözlüklerini düzeltiyor.",
+    "de": "Guten Morgen, Frau Popescu. Sie sind in Wendlfing umgezogen und möchten sich ummelden?",
+    "tr": "Günaydın Frau Popescu. Wendlfing içinde taşındınız ve yeni adresinizi kaydettirmek istiyorsunuz?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana başını sallıyor.",
+    "de": "Ja, genau. Ich wohne jetzt in der Bahnhofstraße neun.",
+    "tr": "Evet, aynen öyle. Artık Bahnhofstraße 9'da oturuyorum."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:schneider",
+    "sahne_tr": "Frau Schneider yavaş ve açık konuşuyor.",
+    "de": "Gut. Zuerst brauche ich Ihren Pass oder Ausweis und die Bestätigung vom Vermieter.",
+    "tr": "Güzel. Önce pasaportunuz ya da kimliğiniz ve ev sahibinin onay belgesi lazım."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana dosyadan kâğıtları çıkarıyor.",
+    "de": "Hier, bitte. Das Formular habe ich auch schon ausgefüllt.",
+    "tr": "Buyurun. Formu da doldurdum."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:schneider",
+    "sahne_tr": "Frau Schneider kâğıtları kontrol edip bir kalem uzatıyor.",
+    "de": "Sehr gut. Unterschreiben Sie bitte hier. Dann bekommen Sie gleich Ihre Bestätigung.",
+    "tr": "Çok güzel. Lütfen buraya imza atın. Sonra hemen adres kaydının onay belgesini alırsınız."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bekleme salonunda ne oluyor?",
+     "opts": [
+      "Ioana randevusunu iptal ediyor",
+      "Ioana yeni bir randevu alıyor",
+      "Ioana numara alıyor ve sırasını bekliyor"
+     ],
+     "ans": 2,
+     "kanit": [
+      "s2",
+      "s3",
+      "s6"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Ioana'nın numarası kaç?",
+      "opts": [
+       "42",
+       "47",
+       "45"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s3"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Görevli numara için ne diyor?",
+      "opts": [
+       "Numarayı ekrana yazın",
+       "Numarayı atmayın",
+       "Numarayı bana verin"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Ioana ekranda 45'i görünce ne diyor?",
+      "opts": [
+       "Beş numara daha var",
+       "İki numara daha var",
+       "Bir numara daha var"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s5",
+      "seviye": "kolay",
+      "q_tr": "Hangi masa numarasını duydun?",
+      "opts": [
+       "zwei",
+       "drei",
+       "vier"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s3",
+      "seviye": "orta",
+      "de": "Ja, um zehn. Hier, Nummer ___.",
+      "accepted": [
+       "siebenundvierzig",
+       "Siebenundvierzig",
+       "siebenundvierzig."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s2",
+      "seviye": "zor",
+      "banka": [
+       "Guten",
+       "Morgen",
+       "Haben",
+       "Sie",
+       "einen",
+       "Termin",
+       "Dann",
+       "ziehen",
+       "Sie",
+       "bitte",
+       "zuerst",
+       "eine",
+       "Wartenummer",
+       "Zimmer",
+       "spät"
+      ],
+      "accepted": [
+       "Guten Morgen. Haben Sie einen Termin? Dann ziehen Sie bitte zuerst eine Wartenummer.",
+       "guten morgen haben sie einen termin dann ziehen sie bitte zuerst eine wartenummer",
+       "Guten Morgen. Haben Sie einen Termin? Dann ziehen Sie bitte zuerst eine Wartenummer"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Gut. Ihre Nummer kommt gleich auf dem Bildschirm. Werfen Sie die Nummer bitte nicht weg.",
+       "gut ihre nummer kommt gleich auf dem bildschirm werfen sie die nummer bitte nicht weg",
+       "Gut. Ihre Nummer kommt gleich auf dem Bildschirm. Werfen Sie die Nummer bitte nicht weg"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Bekleme salonunda olanları Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Zuerst zieht Ioana eine Wartenummer. Sie hat die Nummer siebenundvierzig.",
+      "zorunlu": [
+       "Zuerst",
+       "Wartenummer"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s4"
+    ],
+    "cevapla": {
+     "id": "m1:97:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Ioana numarayı çöpe atmak üzere. Onu durdur: daha bekliyorsunuz.",
+     "prompt_de": "Brauchen wir die Nummer noch?",
+     "accepted": [
+      "Ja! Wirf die Nummer nicht weg, wir warten noch.",
+      "Ja, wirf sie nicht weg!",
+      "Ja, wir warten noch. Wirf die Wartenummer nicht weg!",
+      "Wirf die Nummer nicht weg!",
+      "Ja, die brauchen wir noch. Wirf sie nicht weg."
+     ],
+     "why_tr": "Arkadaşına **Wirf die Nummer nicht weg!** dersin: numarayı atma. **weg** en sonda."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Masada ne oluyor?",
+     "opts": [
+      "Frau Schneider Ioana'nın yeni adres kaydını yapıyor",
+      "Frau Schneider Ioana'yı geri gönderiyor",
+      "Ioana kaydını sildiriyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s8",
+      "s12"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Ioana hangi masaya gidiyor?",
+      "opts": [
+       "4 numaralı masaya",
+       "3 numaralı masaya",
+       "2 numaralı masaya"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s7"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Frau Schneider önce ne istiyor?",
+      "opts": [
+       "Pasaport ya da kimlik ve ev sahibinin onay belgesi",
+       "Banka kartı",
+       "İş sözleşmesi"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Ioana en sonda ne alıyor?",
+      "opts": [
+       "Yeni bir randevuyu",
+       "Adres kaydının onay belgesini",
+       "Yeni bir numarayı"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s12"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s7",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Platz",
+       "Pass",
+       "Post"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s10",
+      "seviye": "orta",
+      "de": "Gut. ___ brauche ich Ihren Pass oder Ausweis und die Bestätigung vom Vermieter.",
+      "accepted": [
+       "Zuerst",
+       "zuerst",
+       "Zuerst."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s8",
+      "seviye": "zor",
+      "banka": [
+       "Guten",
+       "Morgen",
+       "Frau",
+       "Popescu",
+       "Sie",
+       "sind",
+       "in",
+       "Wendlfing",
+       "umgezogen",
+       "und",
+       "möchten",
+       "sich",
+       "ummelden",
+       "abmelden",
+       "Hamburg"
+      ],
+      "accepted": [
+       "Guten Morgen, Frau Popescu. Sie sind in Wendlfing umgezogen und möchten sich ummelden?",
+       "guten morgen frau popescu sie sind in wendlfing umgezogen und möchten sich ummelden",
+       "Guten Morgen, Frau Popescu. Sie sind in Wendlfing umgezogen und möchten sich ummelden"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s11",
+      "seviye": "usta",
+      "accepted": [
+       "Hier, bitte. Das Formular habe ich auch schon ausgefüllt.",
+       "hier bitte das formular habe ich auch schon ausgefüllt",
+       "Hier, bitte. Das Formular habe ich auch schon ausgefüllt"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Masadaki işi Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Ioana meldet sich um. Zuerst braucht Frau Schneider den Pass.",
+      "zorunlu": [
+       "meldet sich um",
+       "Zuerst"
+      ]
+     }
+    ],
+    "golge": [
+     "s7",
+     "s10"
+    ],
+    "cevapla": {
+     "id": "m1:97:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Ioana heyecanlı ve Frau Schneider'i anlamadı. Önce pasaportu ve ev sahibinin onay belgesini istediğini söyle.",
+     "prompt_de": "Was braucht sie?",
+     "accepted": [
+      "Zuerst braucht sie deinen Pass und die Bestätigung vom Vermieter.",
+      "Sie braucht zuerst deinen Pass und die Bestätigung vom Vermieter.",
+      "Deinen Pass oder Ausweis und die Bestätigung vom Vermieter.",
+      "Zuerst deinen Pass. Und die Bestätigung vom Vermieter.",
+      "Sie braucht zuerst den Pass und die Bestätigung vom Vermieter."
+     ],
+     "why_tr": "**Zuerst** ile başlayınca **braucht** hemen arkadan gelir: **Zuerst braucht sie deinen Pass.**"
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:97:a1",
+   "tur": "anons",
+   "title_tr": "Bekleme salonunda numara anonsları",
+   "ortam_tr": "Cumartesi sabahı, Ioana ile bekleme salonundasın. Hoparlörden anonslar geliyor. Yanındaki yaşlı kadının elinde 43 numara var.",
+   "speaker": "die Ansage",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen und willkommen im Bürgerbüro Wendlfing.",
+     "tr": "Günaydın, Wendlfing vatandaş bürosuna hoş geldiniz."
+    },
+    {
+     "id": "c2",
+     "de": "Bitte ziehen Sie zuerst eine Wartenummer, auch mit Termin.",
+     "tr": "Lütfen önce bir sıra numarası alın, randevunuz olsa da."
+    },
+    {
+     "id": "c3",
+     "de": "Nummer zweiundvierzig bitte zu Platz eins.",
+     "tr": "42 numara lütfen 1 numaralı masaya."
+    },
+    {
+     "id": "c4",
+     "de": "Nummer dreiundvierzig bitte zu Platz vier.",
+     "tr": "43 numara lütfen 4 numaralı masaya."
+    },
+    {
+     "id": "c5",
+     "de": "Bitte nehmen Sie Ihren Ausweis schon in die Hand.",
+     "tr": "Lütfen kimliğinizi şimdiden elinize alın."
+    },
+    {
+     "id": "c6",
+     "de": "Das Bürgerbüro ist heute bis zwölf Uhr geöffnet.",
+     "tr": "Vatandaş bürosu bugün saat on ikiye kadar açık."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Anonslar ne söylüyor?",
+      "opts": [
+       "Hangi numaranın hangi masaya gideceğini",
+       "Büronun bugün kapalı olduğunu",
+       "Randevuların iptal edildiğini"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "43 numara hangi masaya gidiyor?",
+       "opts": [
+        "1 numaralı masaya",
+        "3 numaralı masaya",
+        "4 numaralı masaya"
+       ],
+       "ans": 2,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Randevusu olan da numara almalı mı?",
+       "opts": [
+        "Evet",
+        "Hayır",
+        "Yalnızca öğleden sonra"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Büro bugün saat kaça kadar açık?",
+       "opts": [
+        "On ikiye kadar",
+        "Dokuza kadar",
+        "Dörde kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c6"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi masa numarasını duydun?",
+       "opts": [
+        "eins",
+        "zwei",
+        "vier"
+       ],
+       "ans": 2
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Bitte nehmen Sie Ihren Ausweis schon in die ___.",
+       "accepted": [
+        "Hand",
+        "hand",
+        "Hand."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Das",
+        "Bürgerbüro",
+        "ist",
+        "heute",
+        "bis",
+        "zwölf",
+        "Uhr",
+        "geöffnet",
+        "morgen",
+        "zehn"
+       ],
+       "accepted": [
+        "Das Bürgerbüro ist heute bis zwölf Uhr geöffnet.",
+        "das bürgerbüro ist heute bis zwölf uhr geöffnet",
+        "Das Bürgerbüro ist heute bis zwölf Uhr geöffnet"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Bitte ziehen Sie zuerst eine Wartenummer, auch mit Termin.",
+        "bitte ziehen sie zuerst eine wartenummer auch mit termin",
+        "Bitte ziehen Sie zuerst eine Wartenummer, auch mit Termin"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Anonsu Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Zuerst zieht man eine Wartenummer. Das Bürgerbüro ist bis zwölf Uhr geöffnet.",
+       "zorunlu": [
+        "Zuerst",
+        "Wartenummer"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:97:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Yanındaki kadın soruyor: 43 numara hangi masaya? 4 numaralı masaya dediğini söyle.",
+      "prompt_de": "Entschuldigung, wohin muss die Nummer dreiundvierzig?",
+      "accepted": [
+       "Zu Platz vier.",
+       "Die Nummer dreiundvierzig bitte zu Platz vier.",
+       "Zu Platz vier, bitte.",
+       "Dreiundvierzig? Zu Platz vier.",
+       "Zu Platz vier. Das sind Sie!"
+      ],
+      "why_tr": "**zu Platz vier**: 4 numaralı masaya."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:97:a1:e1",
+    "k": "pick",
+    "q_tr": "Yanındaki kadının numarası 43. Ona ne söylersin?",
+    "opts": [
+     "Yeni bir numara almasını",
+     "Kimliğini eline alıp 4 numaralı masaya gitmesini",
+     "1 numaralı masaya gitmesini"
+    ],
+    "ans": 1,
+    "why_tr": "43 numara 4 numaralı masaya çağrıldı. Kimliğini eline alıp gitmeli.",
+    "kanit": [
+     "c4",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:97:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Ioana'nın akşam mesajı",
+   "ortam_tr": "Cumartesi akşamı. Tobi'ye yardım ettikten sonra eve döndün. Ioana bir sesli mesaj bırakmış.",
+   "speaker": "ch:popescu",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Ioana.",
+     "tr": "Merhaba, ben Ioana."
+    },
+    {
+     "id": "c2",
+     "de": "Danke für heute Morgen! Zuerst war ich so gestresst, aber dann war alles ganz leicht.",
+     "tr": "Bu sabah için teşekkürler! Önce çok stresliydim ama sonra her şey çok kolaydı."
+    },
+    {
+     "id": "c3",
+     "de": "Die Meldebescheinigung habe ich, und die Wartenummer habe ich weggeworfen.",
+     "tr": "İkamet belgesi bende, sıra numarasını da attım."
+    },
+    {
+     "id": "c4",
+     "de": "Und Tobi? Ist er schon weg?",
+     "tr": "Peki Tobi? Gitti mi?"
+    },
+    {
+     "id": "c5",
+     "de": "Morgen um elf trinken wir einen Kaffee, okay? Ich lade dich ein.",
+     "tr": "Yarın saat on birde bir kahve içelim, tamam mı? Benden."
+    },
+    {
+     "id": "c6",
+     "de": "Bis morgen!",
+     "tr": "Yarın görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Ioana ne için arıyor?",
+      "opts": [
+       "Yeni bir randevu istiyor",
+       "Teşekkür ediyor ve yarın kahveye çağırıyor",
+       "Belgesini kaybetti"
+      ],
+      "ans": 1,
+      "kanit": [
+       "c2",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Ioana sabah önce nasıldı?",
+       "opts": [
+        "Çok stresliydi",
+        "Çok yorgundu",
+        "Çok mutluydu"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ioana sıra numarasını ne yaptı?",
+       "opts": [
+        "Sana verdi",
+        "Attı",
+        "Sakladı"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Yarın saat kaçta buluşuyorsunuz?",
+       "opts": [
+        "On ikide",
+        "On birde",
+        "Onda"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c5",
+       "seviye": "kolay",
+       "q_tr": "Hangi saati duydun?",
+       "opts": [
+        "zwölf",
+        "elf",
+        "zehn"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Die ___ habe ich, und die Wartenummer habe ich weggeworfen.",
+       "accepted": [
+        "Meldebescheinigung",
+        "meldebescheinigung",
+        "Meldebescheinigung."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Und",
+        "Tobi",
+        "Ist",
+        "er",
+        "schon",
+        "weg",
+        "da",
+        "nicht"
+       ],
+       "accepted": [
+        "Und Tobi? Ist er schon weg?",
+        "und tobi ist er schon weg",
+        "Und Tobi? Ist er schon weg"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Danke für heute Morgen! Zuerst war ich so gestresst, aber dann war alles ganz leicht.",
+        "danke für heute morgen zuerst war ich so gestresst aber dann war alles ganz leicht",
+        "Danke für heute Morgen! Zuerst war ich so gestresst, aber dann war alles ganz leicht"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Ioana'nın mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Ioana hat die Meldebescheinigung. Morgen um elf trinken wir einen Kaffee.",
+       "zorunlu": [
+        "Meldebescheinigung",
+        "elf"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:97:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana'ya cevap ver: Tobi gitti ve yarın saat on bir sana uyar.",
+      "prompt_de": "Ist Tobi schon weg?",
+      "accepted": [
+       "Ja, Tobi ist schon weg. Morgen um elf passt gut.",
+       "Ja, er ist schon weg. Bis morgen um elf!",
+       "Ja, er ist weg. Und um elf passt mir gut.",
+       "Ja, schon weg. Morgen um elf, super!",
+       "Ja, Tobi ist weg. Danke, bis morgen um elf!"
+      ],
+      "why_tr": "Önce soruya cevap, sonra buluşma: **Morgen um elf passt gut.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:97:a2:e1",
+    "k": "pick",
+    "q_tr": "Ioana ne öneriyor?",
+    "opts": [
+     "Yarın birlikte Hamburg'a gitmeyi",
+     "Pazartesi vatandaş bürosuna gitmeyi",
+     "Yarın saat on birde birlikte kahve içmeyi"
+    ],
+    "ans": 2,
+    "why_tr": "Ioana yarın saat on birde kahve öneriyor ve ısmarlıyor.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:97:g1",
+   "de": "Wartenummer",
+   "dogru_img": "small paper queue number ticket in a hand",
+   "celdirici_img": [
+    "train ticket",
+    "receipt from a shop",
+    "business card"
+   ]
+  },
+  {
+   "id": "m1:97:g2",
+   "de": "hübsch",
+   "dogru_img": "pretty old town hall with flowers",
+   "celdirici_img": [
+    "grey parking garage",
+    "busy motorway",
+    "empty office"
+   ]
+  },
+  {
+   "id": "m1:97:g3",
+   "de": "werfen",
+   "dogru_img": "person throwing a paper into a bin",
+   "celdirici_img": [
+    "person writing on paper",
+    "person reading a paper",
+    "person folding a paper"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:97:p1",
+  "title_tr": "Frau Schneider'in masasında Ioana'ya yardım",
+  "durum_tr": "Ioana çok heyecanlı ve masada senden yardım istiyor. Frau Schneider'e Ioana'nın işini anlat, sorularına cevap ver. Konu Ioana'nın adres kaydı, sen yalnızca yardım ediyorsun.",
+  "karsi": "ch:schneider",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Guten Morgen. Was kann ich für Sie tun?",
+    "tr": "Günaydın. Sizin için ne yapabilirim?",
+    "secenekler": [
+     {
+      "de": "Guten Morgen. Meine Freundin ist umgezogen. Sie möchte sich ummelden.",
+      "tr": "Günaydın. Arkadaşım taşındı. Yeni adresini kaydettirmek istiyor.",
+      "accepted": [
+       "Guten Morgen. Meine Freundin ist umgezogen. Sie möchte sich ummelden.",
+       "Guten Morgen. Meine Freundin ist umgezogen, sie möchte sich ummelden.",
+       "Meine Freundin ist umgezogen. Sie möchte sich ummelden.",
+       "Guten Morgen. Sie ist umgezogen und möchte sich ummelden."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: kısa ve açık."
+     },
+     {
+      "de": "Guten Morgen. Frau Popescu hat um zehn einen Termin. Sie meldet sich um.",
+      "tr": "Günaydın. Frau Popescu'nun saat onda randevusu var. Yeni adresini kaydettiriyor.",
+      "accepted": [
+       "Guten Morgen. Frau Popescu hat um zehn einen Termin. Sie meldet sich um.",
+       "Guten Morgen. Frau Popescu hat einen Termin um zehn. Sie meldet sich um.",
+       "Frau Popescu hat um zehn einen Termin, sie meldet sich um.",
+       "Guten Morgen. Sie hat um zehn einen Termin. Sie meldet sich um."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: randevuyu ve işi söyledin."
+     },
+     {
+      "de": "Guten Morgen. Sie möchte sich abmelden.",
+      "tr": "(yanlış) Günaydın. Kaydını sildirmek istiyor.",
+      "accepted": [
+       "Guten Morgen. Sie möchte sich abmelden.",
+       "Sie möchte sich abmelden.",
+       "Guten Morgen, sie meldet sich ab."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Ioana aynı şehirde taşındı: **abmelden** değil, **ummelden**."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Gut. Zuerst brauche ich den Pass oder den Ausweis.",
+    "tr": "Güzel. Önce pasaport ya da kimlik lazım.",
+    "secenekler": [
+     {
+      "de": "Hier ist ihr Pass.",
+      "tr": "İşte pasaportu.",
+      "accepted": [
+       "Hier ist ihr Pass.",
+       "Hier ist der Pass.",
+       "Hier, bitte. Das ist ihr Pass.",
+       "Hier ist ihr Pass, bitte."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel."
+     },
+     {
+      "de": "Ioana, gib bitte deinen Pass.",
+      "tr": "Ioana, lütfen pasaportunu ver.",
+      "accepted": [
+       "Ioana, gib bitte deinen Pass.",
+       "Ioana, gib bitte den Pass.",
+       "Ioana, deinen Pass, bitte.",
+       "Gib bitte deinen Pass, Ioana."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğal: Ioana'ya **gib** (ver) dedin."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Danke. Und die Bestätigung vom Vermieter?",
+    "tr": "Teşekkürler. Ev sahibinin onay belgesi?",
+    "secenekler": [
+     {
+      "de": "Ja, die haben wir. Hier, bitte.",
+      "tr": "Evet, o da var. Buyurun.",
+      "accepted": [
+       "Ja, die haben wir. Hier, bitte.",
+       "Ja, die haben wir. Hier bitte.",
+       "Ja, hier, bitte.",
+       "Die haben wir, hier bitte."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve doğru."
+     },
+     {
+      "de": "Hier ist sie. Das Formular hat sie auch schon ausgefüllt.",
+      "tr": "İşte. Formu da doldurdu.",
+      "accepted": [
+       "Hier ist sie. Das Formular hat sie auch schon ausgefüllt.",
+       "Hier ist sie. Das Formular hat sie schon ausgefüllt.",
+       "Hier, bitte. Das Formular hat sie auch ausgefüllt.",
+       "Hier ist die Bestätigung. Das Formular ist auch ausgefüllt."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: formu da söyledin."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Sehr gut. Frau Popescu, unterschreiben Sie bitte hier. Brauchen Sie auch eine Meldebescheinigung?",
+    "tr": "Çok güzel. Frau Popescu, lütfen buraya imza atın. Bir de ikamet belgesi lazım mı?",
+    "secenekler": [
+     {
+      "de": "Ja, bitte. Sie braucht eine für die Bank.",
+      "tr": "Evet, lütfen. Banka için bir tane lazım.",
+      "accepted": [
+       "Ja, bitte. Sie braucht eine für die Bank.",
+       "Ja, bitte. Sie braucht eine Meldebescheinigung für die Bank.",
+       "Ja, für die Bank, bitte.",
+       "Ja, bitte, sie braucht eine für die Bank."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: neden lazım olduğunu da söyledin."
+     },
+     {
+      "de": "Ja, bitte. Wann bekommt sie die Meldebescheinigung?",
+      "tr": "Evet, lütfen. İkamet belgesini ne zaman alıyor?",
+      "accepted": [
+       "Ja, bitte. Wann bekommt sie die Meldebescheinigung?",
+       "Ja, bitte. Wann bekommt sie die?",
+       "Ja. Wann bekommt sie die Meldebescheinigung?",
+       "Ja, bitte. Bekommt sie die heute?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel bir soru."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Die bekommen Sie gleich hier. Einen schönen Tag noch!",
+    "tr": "Onu hemen burada alırsınız. İyi günler!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Ioana'nın işini kısa anlattın: **sie meldet sich um**. Belgeleri verdin ve Frau Schneider'in sorularına cevap verdin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Vatandaş bürosunun kapısındaki tabela (kurgu)",
+  "metin_de": "Bürgerbüro Wendlfing im Rathaus. Öffnungszeiten: Montag bis Freitag von acht bis sechzehn Uhr, am Donnerstag bis achtzehn Uhr. Am Samstag ist das Bürgerbüro von neun bis zwölf Uhr geöffnet, aber nur mit Termin. Bitte ziehen Sie zuerst eine Wartenummer, auch mit Termin. Ihre Nummer sehen Sie auf dem Bildschirm. Bitte werfen Sie die Nummer nicht weg. Sie brauchen sie am Platz. Für die Anmeldung und die Ummeldung bringen Sie bitte den Pass oder Ausweis und die Bestätigung vom Vermieter mit.",
+  "metin_tr": "Belediye binasındaki Wendlfing vatandaş bürosu. Açılış saatleri: pazartesiden cumaya sekizden on altıya, perşembe on sekize kadar. Cumartesi vatandaş bürosu dokuzdan on ikiye açık, ama yalnızca randevuyla. Lütfen önce bir sıra numarası alın, randevunuz olsa da. Numaranızı ekranda görürsünüz. Lütfen numarayı atmayın. Masada ona ihtiyacınız var. Kayıt ve yeni adres kaydı için lütfen iki belge getirin. Pasaport ya da kimlik ve ev sahibinin onay belgesi.",
+  "sorular": [
+   {
+    "id": "m1:97:o1",
+    "kind": "gist",
+    "q_tr": "Tabela ne anlatıyor?",
+    "opts": [
+     "Açılış saatlerini ve sıranın nasıl işlediğini",
+     "Yeni bir vatandaş bürosunun açıldığını",
+     "Büronun taşındığını"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     3
+    ]
+   },
+   {
+    "id": "m1:97:o2",
+    "kind": "detail",
+    "q_tr": "Cumartesi büro nasıl açık?",
+    "opts": [
+     "Bütün gün, randevusuz",
+     "Hiç açık değil",
+     "Dokuzdan on ikiye, yalnızca randevuyla"
+    ],
+    "ans": 2,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:97:o3",
+    "kind": "detail",
+    "q_tr": "Perşembe büro saat kaça kadar açık?",
+    "opts": [
+     "On sekize kadar",
+     "On altıya kadar",
+     "On ikiye kadar"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:97:o4",
+    "kind": "detail",
+    "q_tr": "Numarayı neden atmamalısın?",
+    "opts": [
+     "Yeni numara pahalı",
+     "Ekranda görünmez",
+     "Masada ona ihtiyacın var"
+    ],
+    "ans": 2,
+    "kanit": [
+     5,
+     6
+    ]
+   },
+   {
+    "id": "m1:97:o5",
+    "k": "guided_response",
+    "situation_tr": "Herr Haddad soruyor: vatandaş bürosu pazartesi ne zaman açılıyor? Saat sekizde açıldığını söyle.",
+    "prompt_de": "Wann öffnet das Bürgerbüro am Montag?",
+    "accepted": [
+     "Um acht. Es ist von acht bis sechzehn Uhr geöffnet.",
+     "Am Montag öffnet es um acht.",
+     "Um acht Uhr.",
+     "Das Bürgerbüro öffnet am Montag um acht.",
+     "Um acht, und es ist bis sechzehn Uhr geöffnet."
+    ],
+    "why_tr": "**öffnen**: açılmak. **Es öffnet um acht.**"
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Derya'ya kısa bir mesaj yaz. Bu sabah Ioana'yla vatandaş bürosundaydınız. Önce numara aldınız, sonra Ioana yeni adresini kaydettirdi. **Zuerst** ile başlayan bir cümle olsun.",
+   "ornek_de": "Hallo Derya, heute Morgen war ich mit Ioana im Bürgerbüro. Zuerst haben wir eine Wartenummer gezogen. Dann hat sich Ioana umgemeldet. Das Rathaus ist sehr hübsch!",
+   "zorunlu": [
+    "Zuerst",
+    "Wartenummer"
+   ],
+   "accepted_kaliplar": [
+    "Hallo Derya, heute Morgen war ich mit ___ im Bürgerbüro.",
+    "Zuerst haben wir eine Wartenummer gezogen.",
+    "Dann hat sich ___ umgemeldet.",
+    "Das Rathaus ist sehr hübsch!"
+   ],
+   "kontrol_tr": [
+    "**Zuerst** ile başlayan cümlede ikinci sözcük **haben** mi? Örnek: **Zuerst haben wir eine Wartenummer gezogen.**",
+    "**Wartenummer** kelimesini yazdın mı?",
+    "Ioana'nın ne yaptığını yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:97:s",
+  "maddeler": [
+   {
+    "id": "m1:97:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Nummer siebenundvierzig bitte zu Platz drei.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Nummer siebenundvierzig bitte zu Platz drei.",
+     "nummer siebenundvierzig bitte zu platz drei",
+     "Nummer siebenundvierzig bitte zu Platz drei"
+    ],
+    "why_tr": "Numara ve masa: **zu Platz drei**."
+   },
+   {
+    "id": "m1:97:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Das Bürgerbüro öffnet um neun.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Bürgerbüro öffnet um neun.",
+     "das bürgerbüro öffnet um neun",
+     "Das Bürgerbüro öffnet um neun"
+    ],
+    "why_tr": "**öffnet**: açılıyor."
+   },
+   {
+    "id": "m1:97:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Zuerst brauche ich Ihren Ausweis.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Zuerst brauche ich Ihren Ausweis.",
+     "zuerst brauche ich ihren ausweis",
+     "Zuerst brauche ich Ihren Ausweis"
+    ],
+    "why_tr": "**Zuerst** ile başlayınca **brauche** hemen arkadan gelir."
+   },
+   {
+    "id": "m1:97:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Werfen Sie die Nummer bitte nicht weg.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Werfen Sie die Nummer bitte nicht weg.",
+     "werfen sie die nummer bitte nicht weg",
+     "Werfen Sie die Nummer bitte nicht weg"
+    ],
+    "why_tr": "**Werfen Sie die Nummer nicht weg**: **weg** en sonda."
+   },
+   {
+    "id": "m1:97:s5",
+    "k": "tr_de",
+    "tr": "Önce bir sıra numarası alıyoruz.",
+    "accepted": [
+     "Zuerst ziehen wir eine Wartenummer.",
+     "Zuerst ziehen wir eine Nummer.",
+     "Wir ziehen zuerst eine Wartenummer."
+    ],
+    "why_tr": "**zuerst** başta: **ziehen** hemen arkadan."
+   },
+   {
+    "id": "m1:97:s6",
+    "k": "tr_de",
+    "tr": "Belediye binası çok hoş.",
+    "accepted": [
+     "Das Rathaus ist sehr hübsch.",
+     "Das Rathaus ist wirklich hübsch.",
+     "Das Rathaus ist hübsch."
+    ],
+    "why_tr": "**hübsch**: hoş, güzel."
+   },
+   {
+    "id": "m1:97:s7",
+    "k": "tr_de",
+    "tr": "Vatandaş bürosu ne zaman açılıyor?",
+    "accepted": [
+     "Wann öffnet das Bürgerbüro?",
+     "Wann öffnet das Bürgerbüro heute?",
+     "Wann öffnet das Bürgerbüro denn?"
+    ],
+    "why_tr": "**Wann öffnet das Bürgerbüro?** **öffnet** hemen **Wann** kelimesinin arkasında."
+   },
+   {
+    "id": "m1:97:s8",
+    "k": "tr_de",
+    "tr": "Ioana yeni adresini kaydettiriyor.",
+    "accepted": [
+     "Ioana meldet sich heute um.",
+     "Ioana meldet sich im Bürgerbüro um.",
+     "Heute meldet sich Ioana um."
+    ],
+    "why_tr": "Dünkü parça: **um** en sonda."
+   },
+   {
+    "id": "m1:97:s9",
+    "k": "guided_response",
+    "situation_tr": "Ioana soruyor: önce ne yapıyoruz? Önce numara alacağınızı, sonra bekleyeceğinizi söyle.",
+    "prompt_de": "Was machen wir zuerst?",
+    "accepted": [
+     "Zuerst ziehen wir eine Wartenummer, dann warten wir.",
+     "Zuerst ziehen wir eine Nummer. Dann warten wir.",
+     "Zuerst eine Wartenummer, dann warten wir.",
+     "Wir ziehen zuerst eine Wartenummer und dann warten wir.",
+     "Zuerst ziehen wir eine Wartenummer."
+    ],
+    "why_tr": "**zuerst** önce, **dann** sonra demek."
+   },
+   {
+    "id": "m1:97:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Nummer sechsundvierzig bitte zu Platz fünf.",
+    "speed": "normal",
+    "situation_tr": "Yanındaki yaşlı adam iyi duymuyor, numarası 46. Ona nereye gitmesi gerektiğini söyle.",
+    "accepted": [
+     "Das ist Ihre Nummer! Sie müssen zu Platz fünf.",
+     "Sechsundvierzig, das sind Sie. Zu Platz fünf, bitte!",
+     "Gehen Sie bitte zu Platz fünf.",
+     "Sie sind dran! Bitte zu Platz fünf.",
+     "Ihre Nummer! Sie müssen zu Platz fünf."
+    ],
+    "why_tr": "Anonsta numara ve masa: **zu Platz fünf**. Yabancıya **Sie** dersin."
+   },
+   {
+    "id": "m1:97:s11",
+    "k": "guided_response",
+    "situation_tr": "Frau Schneider önce ne istiyor? Ioana'ya söyle: pasaportu ve ev sahibinin onay belgesini.",
+    "prompt_de": "Was braucht sie zuerst?",
+    "accepted": [
+     "Zuerst braucht sie deinen Pass und die Bestätigung vom Vermieter.",
+     "Deinen Pass und die Bestätigung vom Vermieter.",
+     "Sie braucht zuerst den Pass und die Bestätigung vom Vermieter.",
+     "Zuerst den Pass und die Bestätigung vom Vermieter.",
+     "Den Pass oder Ausweis und die Bestätigung vom Vermieter."
+    ],
+    "why_tr": "Belgeler: **der Pass** ve **die Bestätigung vom Vermieter**."
+   }
+  ],
+  "sesli": [
+   "m1:97:s9",
+   "m1:97:s10"
+  ],
+  "dikte": [
+   "m1:97:s1",
+   "m1:97:s2",
+   "m1:97:s3",
+   "m1:97:s4"
+  ]
+ }
+}
