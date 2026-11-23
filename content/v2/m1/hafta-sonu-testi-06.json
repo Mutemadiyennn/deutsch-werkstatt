@@ -1,0 +1,180 @@
+{
+ "id": "m1:hafta-sonu-testi:06",
+ "day": 42,
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic5-hafta-06.md; okur: docs/v2/reviews/okur/ic5-hafta-06.md (28 GERİ, okurun önerisiyle düzeltildi)",
+  "okur": "passed",
+  "okur_at": "2026-11-23"
+ },
+ "maddeler": [
+  {
+   "id": "m1:42:t01",
+   "k": "listen_and_respond",
+   "audio_de": "Wo warst du am Samstag?",
+   "speed": "normal",
+   "situation_tr": "Tobi soruyor. Cumartesi Derya'nın evindeydin.",
+   "accepted": [
+    "Am Samstag war ich bei Derya.",
+    "Ich war bei Derya.",
+    "Bei Derya.",
+    "Ich war am Samstag bei Derya.",
+    "Ich war bei Derya auf der Party."
+   ],
+   "why_tr": "Nerede olduğunu **war** ile söylersin: **Ich war bei Derya.**"
+  },
+  {
+   "id": "m1:42:t02",
+   "k": "order",
+   "de": "gekauft / einen Rock / habe / Ich / am Samstag",
+   "tr": "Cumartesi bir etek aldım.",
+   "accepted": [
+    "Ich habe am Samstag einen Rock gekauft.",
+    "Am Samstag habe ich einen Rock gekauft.",
+    "Einen Rock habe ich am Samstag gekauft."
+   ],
+   "why_tr": "**habe** ikinci yerde, **gekauft** en sonda durur."
+  },
+  {
+   "id": "m1:42:t03",
+   "k": "gap",
+   "de": "Am Sonntag ___ ich zu Hause geblieben.",
+   "tr": "Pazar günü evde kaldım.",
+   "accepted": [
+    "bin",
+    "Bin",
+    "bin."
+   ],
+   "opts": [
+    "bin",
+    "habe",
+    "war"
+   ],
+   "why_tr": "Kalmak **bin** ister: **Ich bin geblieben.**"
+  },
+  {
+   "id": "m1:42:t04",
+   "k": "listen_and_respond",
+   "audio_de": "Wie war das Wetter am Wochenende?",
+   "speed": "normal",
+   "situation_tr": "Ioana soruyor. Cumartesi hava kötüydü, pazar güzeldi.",
+   "accepted": [
+    "Am Samstag war das Wetter schlecht, am Sonntag war es schön.",
+    "Am Samstag schlecht, am Sonntag schön.",
+    "Am Samstag war es schlecht. Am Sonntag war es schön.",
+    "Samstag war schlecht, aber Sonntag war schön.",
+    "Am Samstag war das Wetter schlecht. Am Sonntag war das Wetter schön."
+   ],
+   "why_tr": "Hava geçmişte de **war** ile: **Das Wetter war schön.**"
+  },
+  {
+   "id": "m1:42:t05",
+   "k": "transform",
+   "instr_tr": "Cümleyi geçmişe çevir: dün oldu.",
+   "from_de": "Wir fahren mit dem Bus zum Bahnhof.",
+   "accepted": [
+    "Wir sind mit dem Bus zum Bahnhof gefahren.",
+    "Wir sind mit dem Bus zum Bahnhof gefahren!",
+    "Gestern sind wir mit dem Bus zum Bahnhof gefahren."
+   ],
+   "why_tr": "Gitmekte **sind** gelir, **gefahren** en sona gider."
+  },
+  {
+   "id": "m1:42:t06",
+   "k": "tr_de",
+   "tr": "Dün kaloriferim çalışmadı.",
+   "accepted": [
+    "Gestern hat meine Heizung nicht funktioniert.",
+    "Meine Heizung hat gestern nicht funktioniert.",
+    "Gestern hat die Heizung nicht funktioniert."
+   ],
+   "why_tr": "**funktionieren** geçmişte **hat funktioniert** olur."
+  },
+  {
+   "id": "m1:42:t07",
+   "k": "guided_response",
+   "situation_tr": "Derya Tobi'yi soruyor. Üç gündür soğuk almış, dün doktordaydı.",
+   "prompt_de": "Was hat Tobi denn?",
+   "accepted": [
+    "Er ist seit drei Tagen erkältet. Gestern war er beim Doktor.",
+    "Tobi ist seit drei Tagen erkältet. Er war gestern beim Doktor.",
+    "Er ist erkältet, seit drei Tagen. Gestern war er beim Arzt.",
+    "Seit drei Tagen ist er erkältet. Er war gestern beim Doktor.",
+    "Er ist seit drei Tagen krank und war gestern beim Doktor."
+   ],
+   "why_tr": "Hâlâ sürüyorsa **seit drei Tagen**. Tobi için **er** dersin."
+  },
+  {
+   "id": "m1:42:t08",
+   "k": "order",
+   "de": "neu / Im Jahr 1985 / die Schule / war",
+   "tr": "1985 yılında okul yeniydi.",
+   "accepted": [
+    "Im Jahr 1985 war die Schule neu.",
+    "Die Schule war im Jahr 1985 neu.",
+    "Im Jahr 1985 war die Schule neu!"
+   ],
+   "why_tr": "Yıl başa gelirse **war** hemen arkasından gelir."
+  },
+  {
+   "id": "m1:42:t09",
+   "k": "listen_and_respond",
+   "audio_de": "Seit wann wohnen Sie in Wendlfing?",
+   "speed": "normal",
+   "situation_tr": "Bürgerbüro'da Frau Schneider soruyor. Altı haftadır buradasın.",
+   "accepted": [
+    "Seit sechs Wochen.",
+    "Ich wohne seit sechs Wochen hier.",
+    "Seit sechs Wochen wohne ich hier.",
+    "Erst seit sechs Wochen.",
+    "Ich wohne seit sechs Wochen in Wendlfing."
+   ],
+   "why_tr": "**Seit wann?** sorusuna **seit** ile cevap verirsin."
+  },
+  {
+   "id": "m1:42:t10",
+   "k": "gap",
+   "de": "Ich war ___ einer Woche beim Doktor.",
+   "tr": "Bir hafta önce doktordaydım.",
+   "accepted": [
+    "vor",
+    "Vor",
+    "vor."
+   ],
+   "opts": [
+    "vor",
+    "seit",
+    "für"
+   ],
+   "why_tr": "Önce demek için **vor** kullanırsın: **vor einer Woche**."
+  },
+  {
+   "id": "m1:42:t11",
+   "k": "guided_response",
+   "situation_tr": "Muayenehaneden çıkıyorsun. Frau Huber'e kibarca veda et.",
+   "prompt_de": "So, das war's. Gute Besserung!",
+   "accepted": [
+    "Danke! Auf Wiedersehen, Frau Huber!",
+    "Vielen Dank! Auf Wiedersehen!",
+    "Danke schön, auf Wiedersehen!",
+    "Danke, Frau Huber. Wiedersehen!",
+    "Auf Wiedersehen und danke!",
+    "Danke, auf Wiedersehen!"
+   ],
+   "why_tr": "Kibar veda: **Auf Wiedersehen!**"
+  },
+  {
+   "id": "m1:42:t12",
+   "k": "tr_de",
+   "tr": "Eskiden burada bir okul vardı.",
+   "accepted": [
+    "Früher war hier eine Schule.",
+    "Hier war früher eine Schule.",
+    "Früher war hier mal eine Schule."
+   ],
+   "why_tr": "Geçmişte bir yerde ne olduğunu **war** ile söylersin."
+  }
+ ]
+}
