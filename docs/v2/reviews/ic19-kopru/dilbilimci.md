@@ -1,6 +1,6 @@
 # İÇ-19 — grammar.json İngilizce köprü temizliği (dilbilimci incelemesi)
 
-**Sonuç: DEĞİŞİKLİK → düzeltildi** (ilk turda 4 girdi; okur GERİ'sinden sonra 3 girdi daha, toplam 7; bkz. "Fark (okur GERİ)")
+**Sonuç: DEĞİŞİKLİK → düzeltildi** (ilk turda 4 girdi, okur GERİ sonrası +3, inceleme 7111792516 sonrası +1; toplam 8 girdi. Bkz. "Fark (okur GERİ)" ve "Fark (inceleme 7111792516)")
 
 - İncelenen: 23 girdi (`content/v2/registry/grammar.json`, yalnız `tr` alanı), commit ebf1b16 üzerinde, 2026-11-23.
 - Denetim: eski/yeni `tr` metinlerindeki tırnaklı parçalar karşılaştırıldı. Düşen parçaların hepsi İngilizce ('through', 'around', 'although', 'both … and', 'neither … nor', 'If I had known …', 'the more …, the better', 'while', 'whereas', 'as long as'). **Almanca hiçbir parça değişmemiş.** `tr` dışında değişen alan yok.
@@ -65,10 +65,30 @@ Kaynak: `docs/v2/reviews/okur/ic19-kopru.md`, 4 GERİ (a1-09:t1, a2-11:t3, b1-02
 
 Güncel hata oranı: 7 girdi / 23 (b1-02:t2 iki kez dokunuldu, girdi olarak bir kez sayıldı).
 
-## Değiştirilmeden onaylananlar (16)
-a1-01:t2, a1-02:t5, a2-10:t1, a2-12:t1, a2-12:t3, b1-01:t1, b1-02:t1, b1-05:t1, b1-06:t3, b1-07:t1, b1-07:t2, b1-08:t4, b1-09:t1, b1-09:t3, b1-11:t1, b1-12:t1. Bu girdilerde silinen İngilizce yalnızca var olan Türkçe karşılığı yineliyordu. Kaybolan bilgi yok. Kalan metin doğal ve A2/B1 okuruna açık.
+## Fark (inceleme 7111792516)
+PR #258 1. tur incelemesi. Üç düzeltme yapıldı. Almanca değişmedi, `content:validate` → 0 hata.
+
+9. **gr:a2-10:t1**, `table.head` (P1-1, D-060; tablo ekranda görünüyor)
+   - eski: "içinden (through)" / "etrafından (around)"
+   - yeni: "içinden" / "etrafından"
+   - not: İlk turda yalnız `tr` alanına baktım; tablolardaki İngilizceyi kaçırdım. Bu yüzden 23 girdinin `tr` dışındaki bütün alanları (h_tr, table, ex) İngilizce sözcüklere karşı tarandı. Kalan İngilizce yok; çıkan eşleşmeler Almanca 'Hat', 'am' ve b1-05 örneğindeki "Englisch" sözcüğü.
+
+10. **gr:b1-12:t2**, `tr` (P2-1)
+   - eski: “Karıştırma: 'während' yalnızca iki olayın aynı zamanda olduğunu anlatır; …”
+   - yeni: “Karıştırma: zaman anlamındaki 'während' yalnızca iki olayın aynı zamanda olduğunu anlatır; …”
+   - gerekçe: b1-12:t1, 'während' için ikinci bir anlam da öğretiyor (karşıtlık, “oysa”). “yalnızca” bu anlamla çelişiyordu.
+
+11. **gr:a2-11:t3**, `table.rows[1][1]` (P2-2)
+   - eski: "-e rağmen (beklenmeyen)"
+   - yeni: "-e rağmen (engel)"
+   - gerekçe: Okurun GERİ verdiği yanlış okumayı (beklenmeyen şey 'obwohl'un arkasında) tablo geri getiriyordu. “engel” sözü `tr` metniyle ve 'weil' satırındaki “(sebep)” ile koşut.
+
+Güncel hata oranı: 8 girdi / 23 (ilk tur 4, okur +3, inceleme +1: a2-10:t1. a2-11:t3 ve b1-12:t2 daha önce sayılmıştı).
+
+## Değiştirilmeden onaylananlar (15)
+a1-01:t2, a1-02:t5, a2-12:t1, a2-12:t3, b1-01:t1, b1-02:t1, b1-05:t1, b1-06:t3, b1-07:t1, b1-07:t2, b1-08:t4, b1-09:t1, b1-09:t3, b1-11:t1, b1-12:t1. Bu girdilerde silinen İngilizce yalnızca var olan Türkçe karşılığı yineliyordu. Kaybolan bilgi yok. Kalan metin doğal ve A2/B1 okuruna açık.
 
 ## Kalan şüpheler / takip (engel değil)
 - gr:a2-12:t3: “'zu' mastarın hemen önündedir” cümlesi ayrılabilen fiillerde geçerli değil ('anzurufen', 'aufzuräumen'). Bu girdinin örneklerinde böyle bir fiil yok, çelişki de yok. Kural eski metinde de böyleydi. Ayrılabilen fiil + zu ileride öğretilirken orada açıklanmalı. Takip işidir.
 
-Hata oranı: 7/23 (ilk tur 4, okur GERİ sonrası +3).
+Hata oranı: 8/23 düzeltilen girdi (ilk tur 4, okur GERİ sonrası +3, inceleme 7111792516 sonrası +1: a2-10:t1). a2-11:t3 ve b1-12:t2'ye daha önce dokunulmuştu; girdi olarak yeniden sayılmadı.

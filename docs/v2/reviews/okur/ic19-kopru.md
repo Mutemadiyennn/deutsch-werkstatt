@@ -1,7 +1,8 @@
 # OKUR — İÇ-19 köprü temizliği (grammar.json, 23 girdi)
 
 **Toplam: 23 · GEÇTİ: 19 · GERİ: 4** (1. tur)  
-**Fark turu sonrası (056a73c): 23 GEÇTİ / 0 GERİ** (ayrıntı için en alttaki "Fark turu" bölümüne bakın)
+**Fark turu sonrası (056a73c): 23 GEÇTİ / 0 GERİ** (ayrıntı için en alttaki "Fark turu" bölümüne bakın)  
+**Fark turu 2 sonrası: 23 GEÇTİ / 0 GERİ** (3 küçük değişikliğin üçü de GEÇTİ)
 
 GERİ: `gr:a1-09:t1`, `gr:a2-11:t3`, `gr:b1-02:t2`, `gr:b1-12:t2`
 
@@ -70,3 +71,22 @@ Yeniden okunan 7 girdi: dilbilimcinin değiştirdiği `tr` metinleri, bugünkü 
 - GEÇTİ: 23
 - GERİ: 0
 - OD-9.4: okur açısından engel kalmadı; 23 girdilik küme "reviewed" sayılabilir.
+
+## Fark turu 2 (OD-9.4)
+
+Yeniden okunan 3 küçük değişiklik, bugünkü hâliyle.
+
+| öğe | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| gr:a2-10:t1 | table (anlamı sütunu) | durch → "içinden"; um … herum → "etrafından" | "durch" bir yerin içinden geçmek, "um … herum" bir şeyin çevresinden dolaşmak demek. | GEÇTİ | Tek kelimelik Türkçe karşılıklar açık ve metindeki açıklamayla örtüşüyor; İngilizce iz kalmamış. |
+| gr:b1-12:t2 | tr (son cümle) | "Karıştırma: zaman anlamındaki 'während' yalnızca iki olayın aynı zamanda olduğunu anlatır; 'solange' ise … bir koşulu anlatır" | "-ken" anlamındaki "während" yalnız iki şeyin aynı zamanda olduğunu söyler; "solange" ise bir şart koyar: o durum bitince öbürü de biter. | GEÇTİ | "zaman anlamındaki" eki, "während"in öbür ("oysa") anlamıyla karışmayı önlüyor. Tablodaki sorular da ("aynı anda mı?" / "ne kadar süre, hangi koşulla?") farkı destekliyor. |
+| gr:a2-11:t3 | table (obwohl satırı) | "-e rağmen (engel)" | "obwohl" "-e rağmen" demek; arkasından engel olan durum gelir. | GEÇTİ | Metindeki "engel" açıklamasıyla tutarlı; üstteki "weil" satırındaki "çünkü (sebep)" ile yan yana bakınca fark açık. |
+
+**Fark turu 2: 3 · GEÇTİ: 3 · GERİ: 0**
+
+## Son durum (üç tur birlikte)
+
+- Toplam: 23 girdi
+- GEÇTİ: 23
+- GERİ: 0
+- OD-9.4: okur açısından engel yok; 23 girdilik küme "reviewed" sayılabilir.
