@@ -171,8 +171,8 @@ export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Pla
 
 export function YolEkrani() {
   const { plan, err, yok, yenile } = usePlan();
-  if (err) return <div class="stack"><TopBar title="İlk Hafta" back="#/today" /><ErrorPanel message={err} onRetry={yenile} /></div>;
-  if (yok) return <div class="stack"><TopBar title="Yol" back="#/today" /><section class="card"><p>İlk Hafta'nın günleri hazırlanıyor.</p></section></div>;
+  if (err) return <div class="stack"><TopBar title="İlk Hafta" /><ErrorPanel message={err} onRetry={yenile} /></div>;
+  if (yok) return <div class="stack"><TopBar title="Yol" /><section class="card"><p>İlk Hafta'nın günleri hazırlanıyor.</p></section></div>;
   if (!plan) return <Loading />;
-  return <div class="stack"><TopBar title="İlk Hafta" back="#/today" /><YolHarita plan={plan} /></div>;
+  return <div class="stack"><TopBar title="İlk Hafta" /><YolHarita plan={plan} /></div>;
 }

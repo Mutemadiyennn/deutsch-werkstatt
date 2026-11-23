@@ -15,7 +15,8 @@
   "1. Öğretilmiş: main'deki gun-01…07 yeni_kartlar + halka dalındaki bilinen takaslar (takaslar alanı).",
   "2. Hafta: omurganın her k1_aralik grubu için o grubun, sıra aralığındaki, öğretilmemiş, daha önce atanmamış, takvim kolunda olmayan kartları; K1 sırasıyla; adet kadar. r0 grubu r0:* gruplarının tamamıdır. 2. haftanın ilk grubu omurganın 8. gün listesidir.",
   "3. Gün: gunler[].kelime.adet kadar. Önce günün başlığında ya da derslerinin grammar.json kaydında (başlık, tablo, örnek cümle; Türkçe açıklama sayılmaz) tam sözcük olarak geçen kartlar ve dersin K1 grubundaki kartlar (r0:10-buchstabieren ↔ r0:heceleme), en erken uyan güne; kalanı K1 sırasıyla, gün sırasıyla. 8. gün omurgadaki listesinin kalanını öğretir.",
-  "4. Dilbilimci gün sırası denetimi: bulgular yalnız aynı hafta içinde gün değiştirerek düzeltilir (duzeltmeler alanı)."
+  "4. Dilbilimci gün sırası denetimi: bulgular yalnız aynı hafta içinde gün değiştirerek düzeltilir (duzeltmeler alanı).",
+  "5. Kart ve çerçeve (PM 7088230583 md. 1, PM-047 §2): kartlar = kartMi (card:false değil ve tür det/pron/conj/prep/particle/num değil) ya da sözlükte henüz kaydı olmayan kimlik; cerceve = öteki işlev sözcükleri. Hafta kümesi kuralı yalnız kartlar içindir. cerceve sözcüğü yeni_kartlar'a yazılmaz, ama o hafta bir kalıpta ya da dil noktasında gösterilmeden kullanılamaz. Boşalan yer doldurulmaz; planlanan_yeni üst sınırdır. sozlukte_yok: registry/lexicon/batch-*.json içinde derin kaydı olmayan kimlik (3. haftanın 4'ünden Anrufbeantworter'in yalnız v1 aktarım kaydı var, lexemes.v1.json; Durchwahl, Rückruf, Warteschleife yalnız domains/telefon/proposals.json'da yazar önerisi; 5. haftanın 9'unun hiçbir kaydı yok); işaretli kimlik (kimlik_isaretleri) lex kaydı girene kadar günün en sonuna bırakılır."
  ],
  "takaslar": {
   "not_tr": "main'deki gun-0N.json dosyalarında takas yok; bilinen takaslar halka dalında duruyor (PM-090 md. 1: tablo onları hesaba katar). one_gelen kartlar 1. haftada öğretilmiş sayılır ve 8. günden düşer. hafta_ici takaslar 1. haftanın içinde kalır, tabloyu değiştirmez.",
@@ -271,7 +272,10 @@
     "lx:arbeiten",
     "lx:müde"
    ]
-  }
+  },
+  "kart_adet": 123,
+  "cerceve_adet": 41,
+  "kart_cerceve_notu_tr": "adet (164) K(t) için öğretilmiş sayılan bütün kimliklerdir. kartMi ölçüsüyle (card:false ya da işlev türü: det, pron, conj, prep, particle, num) bunların kart_adet kadarı kart, cerceve_adet kadarı çerçeve sözcüğüdür (hallo, sayılar, wer, was …). 1. haftanın listesi değiştirilmedi."
  },
  "haftalar": [
   {
@@ -286,7 +290,10 @@
    "birikimli": 164,
    "omurga_birikimli": 155,
    "birikimli_fark": 9,
-   "neden_tr": "PM kararı F2: 9 kart 8. günden 4.–6. güne çıktı (halka dalı). Tablo 1.–7. güne kart atamaz, bu satır yalnız sayım içindir."
+   "neden_tr": "PM kararı F2: 9 kart 8. günden 4.–6. güne çıktı (halka dalı). Tablo 1.–7. güne kart atamaz, bu satır yalnız sayım içindir.",
+   "kart_adet": 123,
+   "cerceve_adet": 41,
+   "kart_birikimli": 123
   },
   {
    "no": 2,
@@ -294,12 +301,15 @@
     8,
     14
    ],
-   "adet": 106,
+   "adet": 71,
+   "cerceve_adet": 35,
+   "onceki_adet": 106,
    "planlanan_yeni": 115,
-   "fark": -9,
+   "fark": -44,
    "birikimli": 270,
    "omurga_birikimli": 270,
    "birikimli_fark": 0,
+   "kart_birikimli": 194,
    "gruplar": [
     {
      "grup": "öne çekilen küçük sözcükler (gün 8)",
@@ -342,7 +352,118 @@
      "alinan": 23
     }
    ],
-   "neden_tr": "Fark -9: omurganın 8. gün listesindeki 9 kart (noch, schon, nur, gern, dann, oft, sehr, Euro, Cent) PM kararı F2 ile 4.–6. güne çıktı; 8. güne yerine kart konmadı (uydurma yok). Euro ve Cent K1 dışıdır (omurga k1_disi 2). Birikimli sayı değişmez."
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). 2. hafta ayrıca −9: omurganın 8. gün listesindeki 9 kart (noch, schon, nur, gern, dann, oft, sehr, Euro, Cent) PM kararı F2 ile 4.–6. güne çıktı.",
+   "kartlar": [
+    "lx:lange",
+    "lx:erst",
+    "lx:viel",
+    "lx:gleich",
+    "lx:echt",
+    "lx:Zeit",
+    "lx:gut",
+    "lx:klar",
+    "lx:kurz",
+    "lx:immer",
+    "lx:jetzt",
+    "lx:mehr",
+    "lx:ganz",
+    "lx:Küche",
+    "lx:Kuchen",
+    "lx:hier",
+    "lx:werden",
+    "lx:nehmen",
+    "lx:einfach",
+    "lx:bringen",
+    "lx:kennen",
+    "lx:fahren",
+    "lx:bekommen",
+    "lx:schnell",
+    "lx:meinen",
+    "lx:ziehen",
+    "lx:Familie",
+    "lx:Kopf",
+    "lx:schlimm",
+    "lx:lernen",
+    "lx:anrufen",
+    "lx:heiß",
+    "lx:kaufen",
+    "lx:bedeuten",
+    "lx:frei",
+    "lx:Wort",
+    "lx:stark",
+    "lx:Entschuldigung",
+    "lx:anfangen",
+    "lx:langsam",
+    "lx:Schuh",
+    "lx:Firma",
+    "lx:schenken",
+    "lx:einladen",
+    "lx:links",
+    "lx:kaputt",
+    "lx:Hose",
+    "lx:rechts",
+    "lx:Flasche",
+    "lx:Glückwunsch",
+    "lx:aufstehen",
+    "lx:warm",
+    "lx:frühstücken",
+    "lx:unterschreiben",
+    "lx:fernsehen",
+    "lx:Bus",
+    "lx:reparieren",
+    "lx:Gast",
+    "lx:sehen",
+    "lx:Rechnung",
+    "lx:schwimmen",
+    "lx:zu#2",
+    "lx:so",
+    "lx:Kurs",
+    "lx:wissen",
+    "lx:tun",
+    "lx:auch",
+    "lx:geben",
+    "lx:Mal",
+    "lx:hören",
+    "lx:denken"
+   ],
+   "cerceve": [
+    "lx:der",
+    "lx:ein",
+    "lx:seit",
+    "lx:kein",
+    "lx:ich",
+    "lx:du",
+    "lx:sie",
+    "lx:es",
+    "lx:wir",
+    "lx:er",
+    "lx:ihr",
+    "lx:oder",
+    "lx:sein#2",
+    "lx:sie#2",
+    "lx:nicht",
+    "lx:und",
+    "lx:zu",
+    "lx:ihr#2",
+    "lx:mit",
+    "lx:auf",
+    "lx:aber",
+    "lx:für",
+    "lx:von",
+    "lx:alle",
+    "lx:in",
+    "lx:mein",
+    "lx:dein",
+    "lx:an",
+    "lx:dieser",
+    "lx:mal",
+    "lx:aus",
+    "lx:im",
+    "lx:doch",
+    "lx:nichts",
+    "lx:etwas"
+   ],
+   "sozlukte_yok": []
   },
   {
    "no": 3,
@@ -350,12 +471,15 @@
     15,
     21
    ],
-   "adet": 95,
+   "adet": 81,
+   "cerceve_adet": 14,
+   "onceki_adet": 95,
    "planlanan_yeni": 95,
-   "fark": 0,
+   "fark": -14,
    "birikimli": 365,
    "omurga_birikimli": 365,
    "birikimli_fark": 0,
+   "kart_birikimli": 275,
    "gruplar": [
     {
      "grup": "r0",
@@ -407,6 +531,112 @@
      "aralikta_aday": 21,
      "alinan": 21
     }
+   ],
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). ",
+   "kartlar": [
+    "lx:krank",
+    "lx:nochmal",
+    "lx:Schmerz",
+    "lx:Stand",
+    "lx:Geschenk",
+    "lx:Bescheid",
+    "lx:feiern",
+    "lx:Chef",
+    "lx:Rücken",
+    "lx:Ohr",
+    "lx:Patient",
+    "lx:übel",
+    "lx:Lust",
+    "lx:Fuß",
+    "lx:Kollege",
+    "lx:wehtun",
+    "lx:mitkommen",
+    "lx:üben",
+    "lx:Name",
+    "lx:Buchstabe",
+    "lx:buchstabieren",
+    "lx:schlucken",
+    "lx:Stuhl",
+    "lx:Sprache",
+    "lx:Milch",
+    "lx:Hemd",
+    "lx:Kleid",
+    "lx:gratulieren",
+    "lx:Jacke",
+    "lx:billig",
+    "lx:hell",
+    "lx:Mantel",
+    "lx:Schrank",
+    "lx:aussteigen",
+    "lx:Prüfung",
+    "lx:Ausweis",
+    "lx:einkaufen",
+    "lx:Hausaufgabe",
+    "lx:Fahrrad",
+    "lx:Bahnhof",
+    "lx:verbinden",
+    "lx:auflegen",
+    "lx:zurückrufen",
+    "lx:Anrufbeantworter",
+    "lx:Durchwahl",
+    "lx:Rückruf",
+    "lx:Haus",
+    "lx:zurück",
+    "lx:Warteschleife",
+    "lx:glauben",
+    "lx:los",
+    "lx:finden",
+    "lx:anderer",
+    "lx:Mann",
+    "lx:leben",
+    "lx:vielleicht",
+    "lx:Deutsch",
+    "lx:mögen",
+    "lx:mögen#2",
+    "lx:wirklich",
+    "lx:nie",
+    "lx:weg",
+    "lx:Weg",
+    "lx:reden",
+    "lx:schön",
+    "lx:bleiben",
+    "lx:Größe",
+    "lx:Ei",
+    "lx:regnen",
+    "lx:fragen",
+    "lx:sicher",
+    "lx:helfen",
+    "lx:lieben",
+    "lx:leid",
+    "lx:klein",
+    "lx:groß",
+    "lx:stehen",
+    "lx:Kind",
+    "lx:genau",
+    "lx:Vater",
+    "lx:passieren"
+   ],
+   "cerceve": [
+    "lx:vor",
+    "lx:welcher",
+    "lx:na",
+    "lx:am",
+    "lx:um",
+    "lx:bis",
+    "lx:bei",
+    "lx:unser",
+    "lx:denn",
+    "lx:zum",
+    "lx:nach",
+    "lx:okay",
+    "lx:jeder",
+    "lx:zur"
+   ],
+   "sozlukte_yok": [
+    "lx:Anrufbeantworter",
+    "lx:Durchwahl",
+    "lx:Rückruf",
+    "lx:Warteschleife"
    ]
   },
   {
@@ -415,12 +645,15 @@
     22,
     28
    ],
-   "adet": 90,
+   "adet": 83,
+   "cerceve_adet": 7,
+   "onceki_adet": 90,
    "planlanan_yeni": 90,
-   "fark": 0,
+   "fark": -7,
    "birikimli": 455,
    "omurga_birikimli": 455,
    "birikimli_fark": 0,
+   "kart_birikimli": 358,
    "gruplar": [
     {
      "grup": "ihtiyac:wohnen",
@@ -462,7 +695,103 @@
      "aralikta_aday": 25,
      "alinan": 25
     }
-   ]
+   ],
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). ",
+   "kartlar": [
+    "lx:Einladung",
+    "lx:Zahl",
+    "lx:Tasse",
+    "lx:Husten",
+    "lx:absagen",
+    "lx:zurückgeben",
+    "lx:backen",
+    "lx:Tablette",
+    "lx:aufschreiben",
+    "lx:Feierabend",
+    "lx:Bauch",
+    "lx:aufräumen",
+    "lx:Führerschein",
+    "lx:Rezept",
+    "lx:Amt",
+    "lx:Unterschrift",
+    "lx:Werkstatt",
+    "lx:Gemüse",
+    "lx:Mensch",
+    "lx:Flur",
+    "lx:Sofa",
+    "lx:Banane",
+    "lx:Feiertag",
+    "lx:Hobby",
+    "lx:Kollegin",
+    "lx:Geschwister",
+    "lx:Freizeit",
+    "lx:Verkäufer",
+    "lx:arbeitslos",
+    "lx:Tomate",
+    "lx:Techniker",
+    "lx:Freut_mich!",
+    "lx:Nachbar",
+    "lx:Arbeit",
+    "lx:geradeaus",
+    "lx:Störung",
+    "lx:Kaution",
+    "lx:Hausmeister",
+    "lx:Nachbarin",
+    "lx:Vermieter",
+    "lx:Schimmel",
+    "lx:Morgen",
+    "lx:richtig",
+    "lx:Leute",
+    "lx:jung",
+    "lx:gerade",
+    "lx:Geld",
+    "lx:Mutter",
+    "lx:Paar",
+    "lx:wieso",
+    "lx:lieb",
+    "lx:erzählen",
+    "lx:stimmen",
+    "lx:laufen",
+    "lx:suchen",
+    "lx:holen",
+    "lx:natürlich",
+    "lx:treffen",
+    "lx:Balkon",
+    "lx:Nebenkosten",
+    "lx:dort",
+    "lx:Ordnung",
+    "lx:Problem",
+    "lx:vergessen",
+    "lx:zeigen",
+    "lx:Mädchen",
+    "lx:Freund",
+    "lx:weit",
+    "lx:Rathaus",
+    "lx:Supermarkt",
+    "lx:Apotheke",
+    "lx:spielen",
+    "lx:zusammen",
+    "lx:schlafen",
+    "lx:Hand",
+    "lx:liegen",
+    "lx:lang",
+    "lx:Moment",
+    "lx:schauen",
+    "lx:Garantie",
+    "lx:Bruder",
+    "lx:Musik",
+    "lx:Sohn"
+   ],
+   "cerceve": [
+    "lx:ab",
+    "lx:euer",
+    "lx:paar",
+    "lx:ohne",
+    "lx:ach",
+    "lx:ins",
+    "lx:vom"
+   ],
+   "sozlukte_yok": []
   },
   {
    "no": 5,
@@ -470,12 +799,15 @@
     29,
     35
    ],
-   "adet": 85,
+   "adet": 83,
+   "cerceve_adet": 2,
+   "onceki_adet": 85,
    "planlanan_yeni": 85,
-   "fark": 0,
+   "fark": -2,
    "birikimli": 540,
    "omurga_birikimli": 540,
    "birikimli_fark": 0,
+   "kart_birikimli": 441,
    "gruplar": [
     {
      "grup": "ihtiyac:verkehr",
@@ -527,6 +859,107 @@
      "aralikta_aday": 20,
      "alinan": 20
     }
+   ],
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). ",
+   "kartlar": [
+    "lx:Bratwurst",
+    "lx:Dialekt",
+    "lx:Erkältung",
+    "lx:Hals",
+    "lx:Krankenkasse",
+    "lx:Krankschreibung",
+    "lx:Pfand",
+    "lx:Schnupfen",
+    "lx:Senf",
+    "lx:Sprechstunde",
+    "lx:ledig",
+    "lx:Fleisch",
+    "lx:Bäckerei",
+    "lx:Bad",
+    "lx:Lampe",
+    "lx:Miete",
+    "lx:Wie_spät_ist_es?",
+    "lx:schreiben",
+    "lx:Wetter",
+    "lx:noch_nicht",
+    "lx:Formular",
+    "lx:Anmeldung",
+    "lx:Pass",
+    "lx:ausfüllen",
+    "lx:Gute_Besserung!",
+    "lx:U-Bahn",
+    "lx:Ankunft",
+    "lx:Parkplatz",
+    "lx:Gehalt",
+    "lx:Tankstelle",
+    "lx:Vorgesetzte",
+    "lx:Lohn",
+    "lx:Beruf",
+    "lx:Schwester",
+    "lx:Gehaltsabrechnung",
+    "lx:Schichtplan",
+    "lx:Bahnsteig",
+    "lx:Fahrplan",
+    "lx:Abfahrt",
+    "lx:Fahrschein",
+    "lx:Zugausfall",
+    "lx:sofort",
+    "lx:entschuldigen",
+    "lx:toll",
+    "lx:einmal",
+    "lx:passen",
+    "lx:Wand",
+    "lx:letzter",
+    "lx:Auge",
+    "lx:fertig",
+    "lx:allein",
+    "lx:schlecht",
+    "lx:Hilfe",
+    "lx:wichtig",
+    "lx:trinken",
+    "lx:nett",
+    "lx:Baby",
+    "lx:Dank",
+    "lx:egal",
+    "lx:Stadt",
+    "lx:sitzen",
+    "lx:Tür",
+    "lx:falsch",
+    "lx:Glück",
+    "lx:schwer",
+    "lx:Land",
+    "lx:bald",
+    "lx:Idee",
+    "lx:lesen",
+    "lx:draußen",
+    "lx:Haltestelle",
+    "lx:Kreuzung",
+    "lx:Ampel",
+    "lx:nah",
+    "lx:Auto",
+    "lx:Junge",
+    "lx:Polizei",
+    "lx:Tochter",
+    "lx:Arm",
+    "lx:Bett",
+    "lx:Job",
+    "lx:Mama",
+    "lx:gefallen"
+   ],
+   "cerceve": [
+    "lx:beim",
+    "lx:bisschen"
+   ],
+   "sozlukte_yok": [
+    "lx:Vorgesetzte",
+    "lx:Lohn",
+    "lx:Gehaltsabrechnung",
+    "lx:Schichtplan",
+    "lx:Bahnsteig",
+    "lx:Fahrplan",
+    "lx:Abfahrt",
+    "lx:Fahrschein",
+    "lx:Zugausfall"
    ]
   },
   {
@@ -536,11 +969,14 @@
     42
    ],
    "adet": 60,
+   "cerceve_adet": 0,
+   "onceki_adet": 60,
    "planlanan_yeni": 60,
    "fark": 0,
    "birikimli": 600,
    "omurga_birikimli": 600,
    "birikimli_fark": 0,
+   "kart_birikimli": 501,
    "gruplar": [
     {
      "grup": "senaryo",
@@ -582,7 +1018,72 @@
      "aralikta_aday": 4,
      "alinan": 4
     }
-   ]
+   ],
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). ",
+   "kartlar": [
+    "lx:Film",
+    "lx:Versichertenkarte",
+    "lx:dringend",
+    "lx:duzen",
+    "lx:ein_bisschen",
+    "lx:erkältet",
+    "lx:stehen#2",
+    "lx:Versprechen",
+    "lx:unbedingt",
+    "lx:fremd",
+    "lx:Fahrkarte",
+    "lx:abbiegen",
+    "lx:Foto",
+    "lx:besuchen",
+    "lx:umsteigen",
+    "lx:Heizung",
+    "lx:Waschmaschine",
+    "lx:geöffnet",
+    "lx:Rock",
+    "lx:Pullover",
+    "lx:Umkleidekabine",
+    "lx:anprobieren",
+    "lx:endlich",
+    "lx:Freundin",
+    "lx:Wasser",
+    "lx:bezahlen",
+    "lx:Spaß",
+    "lx:Zimmer",
+    "lx:schicken",
+    "lx:manchmal",
+    "lx:Schule",
+    "lx:Hund",
+    "lx:Wiedersehen",
+    "lx:Nachricht",
+    "lx:funktionieren",
+    "lx:voll",
+    "lx:Eltern",
+    "lx:laut",
+    "lx:Platz",
+    "lx:Papa",
+    "lx:dauern",
+    "lx:Telefon",
+    "lx:Fehler",
+    "lx:Straßenbahn",
+    "lx:Straße",
+    "lx:willkommen",
+    "lx:süß",
+    "lx:Sekunde",
+    "lx:schwarz",
+    "lx:Laden",
+    "lx:Buch",
+    "lx:Doktor",
+    "lx:Stück",
+    "lx:Party",
+    "lx:Person",
+    "lx:Kaffee",
+    "lx:Onkel",
+    "lx:super",
+    "lx:lustig",
+    "lx:Haar"
+   ],
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "no": 7,
@@ -590,12 +1091,15 @@
     43,
     49
    ],
-   "adet": 80,
+   "adet": 78,
+   "cerceve_adet": 2,
+   "onceki_adet": 80,
    "planlanan_yeni": 80,
-   "fark": 0,
+   "fark": -2,
    "birikimli": 680,
    "omurga_birikimli": 680,
    "birikimli_fark": 0,
+   "kart_birikimli": 579,
    "gruplar": [
     {
      "grup": "ihtiyac:arzt",
@@ -637,7 +1141,93 @@
      "aralikta_aday": 39,
      "alinan": 39
     }
-   ]
+   ],
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). ",
+   "kartlar": [
+    "lx:weh",
+    "lx:lieber",
+    "lx:schwindelig",
+    "lx:sich_treffen",
+    "lx:siezen",
+    "lx:zusagen",
+    "lx:vermissen",
+    "lx:Gericht",
+    "lx:gesund",
+    "lx:ankommen",
+    "lx:Kunde",
+    "lx:Aufgabe",
+    "lx:Insel",
+    "lx:Messer",
+    "lx:bestellen",
+    "lx:See",
+    "lx:Restaurant",
+    "lx:Meer",
+    "lx:studieren",
+    "lx:scharf",
+    "lx:Wunsch",
+    "lx:streng",
+    "lx:Freundschaft",
+    "lx:ausgeben",
+    "lx:abnehmen",
+    "lx:leihen",
+    "lx:empfehlen",
+    "lx:lecker",
+    "lx:Durst",
+    "lx:pünktlich",
+    "lx:Vorschlag",
+    "lx:Heimat",
+    "lx:umziehen",
+    "lx:Konto",
+    "lx:eröffnen",
+    "lx:aufwachsen",
+    "lx:Tunnel",
+    "lx:Training",
+    "lx:Kindheit",
+    "lx:Jugend",
+    "lx:vorschlagen",
+    "lx:Note",
+    "lx:verheiratet",
+    "lx:Ausbildung",
+    "lx:Krankenwagen",
+    "lx:Patientin",
+    "lx:Tropfen",
+    "lx:Blutdruck",
+    "lx:Notaufnahme",
+    "lx:Zahnarzt",
+    "lx:Wartezimmer",
+    "lx:Krankmeldung",
+    "lx:Attest",
+    "lx:Allergie",
+    "lx:Impfung",
+    "lx:Salbe",
+    "lx:Bild",
+    "lx:Wohnung",
+    "lx:Bein",
+    "lx:Schlüssel",
+    "lx:Krankenhaus",
+    "lx:rot",
+    "lx:Klasse",
+    "lx:weiß",
+    "lx:Handy",
+    "lx:Nähe",
+    "lx:kalt",
+    "lx:Tier",
+    "lx:Hotel",
+    "lx:interessant",
+    "lx:Tisch",
+    "lx:deutsch",
+    "lx:kennenlernen",
+    "lx:Tasche",
+    "lx:Fenster",
+    "lx:kochen",
+    "lx:Zug",
+    "lx:Bier"
+   ],
+   "cerceve": [
+    "lx:gegenüber",
+    "lx:entlang"
+   ],
+   "sozlukte_yok": []
   },
   {
    "no": 8,
@@ -646,11 +1236,14 @@
     56
    ],
    "adet": 15,
+   "cerceve_adet": 0,
+   "onceki_adet": 15,
    "planlanan_yeni": 15,
    "fark": 0,
    "birikimli": 695,
    "omurga_birikimli": 695,
    "birikimli_fark": 0,
+   "kart_birikimli": 594,
    "gruplar": [
     {
      "grup": "v1-A2",
@@ -662,7 +1255,27 @@
      "aralikta_aday": 15,
      "alinan": 15
     }
-   ]
+   ],
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). ",
+   "kartlar": [
+    "lx:Aussicht",
+    "lx:Teppich",
+    "lx:schüchtern",
+    "lx:Ausflug",
+    "lx:vorhaben",
+    "lx:Verspätung",
+    "lx:Mannschaft",
+    "lx:Bargeld",
+    "lx:wandern",
+    "lx:Beschwerde",
+    "lx:ausfallen",
+    "lx:Trinkgeld",
+    "lx:Rente",
+    "lx:einpacken",
+    "lx:reservieren"
+   ],
+   "cerceve": [],
+   "sozlukte_yok": []
   }
  ],
  "gunler": [
@@ -692,7 +1305,10 @@
     "lx:jetzt",
     "lx:mehr",
     "lx:ganz"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 9,
@@ -702,14 +1318,12 @@
    "dersler": [
     "gr:a1-04:t1"
    ],
-   "adet": 20,
+   "adet": 17,
    "omurga_adet": 20,
-   "derse_ait": 5,
+   "derse_ait": 3,
    "kartlar": [
     "lx:Küche",
     "lx:Kuchen",
-    "lx:der",
-    "lx:ein",
     "lx:hier",
     "lx:werden",
     "lx:nehmen",
@@ -719,14 +1333,20 @@
     "lx:fahren",
     "lx:bekommen",
     "lx:schnell",
-    "lx:seit",
     "lx:meinen",
     "lx:ziehen",
     "lx:Familie",
     "lx:Kopf",
     "lx:schlimm",
     "lx:lernen"
-   ]
+   ],
+   "cerceve_adet": 3,
+   "cerceve": [
+    "lx:der",
+    "lx:ein",
+    "lx:seit"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 10,
@@ -737,11 +1357,10 @@
     "gr:a1-03:t1",
     "gr:a1-03:t2"
    ],
-   "adet": 20,
+   "adet": 19,
    "omurga_adet": 20,
-   "derse_ait": 1,
+   "derse_ait": 0,
    "kartlar": [
-    "lx:kein",
     "lx:anrufen",
     "lx:heiß",
     "lx:kaufen",
@@ -761,7 +1380,12 @@
     "lx:Hose",
     "lx:rechts",
     "lx:Flasche"
-   ]
+   ],
+   "cerceve_adet": 1,
+   "cerceve": [
+    "lx:kein"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 11,
@@ -772,18 +1396,10 @@
     "gr:a1-03:t3",
     "gr:a1-03:t4"
    ],
-   "adet": 18,
+   "adet": 10,
    "omurga_adet": 18,
-   "derse_ait": 8,
+   "derse_ait": 0,
    "kartlar": [
-    "lx:ich",
-    "lx:du",
-    "lx:sie",
-    "lx:es",
-    "lx:wir",
-    "lx:er",
-    "lx:ihr",
-    "lx:oder",
     "lx:Glückwunsch",
     "lx:aufstehen",
     "lx:warm",
@@ -794,7 +1410,19 @@
     "lx:reparieren",
     "lx:Gast",
     "lx:sehen"
-   ]
+   ],
+   "cerceve_adet": 8,
+   "cerceve": [
+    "lx:ich",
+    "lx:du",
+    "lx:sie",
+    "lx:es",
+    "lx:wir",
+    "lx:er",
+    "lx:ihr",
+    "lx:oder"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 12,
@@ -806,27 +1434,31 @@
     "gr:a1-06:t1",
     "gr:a1-01:t1"
    ],
-   "adet": 16,
+   "adet": 4,
    "omurga_adet": 16,
    "derse_ait": 1,
    "kartlar": [
     "lx:Rechnung",
     "lx:schwimmen",
+    "lx:zu#2",
+    "lx:so"
+   ],
+   "cerceve_adet": 12,
+   "cerceve": [
     "lx:sein#2",
     "lx:sie#2",
     "lx:nicht",
     "lx:und",
     "lx:zu",
-    "lx:zu#2",
     "lx:ihr#2",
     "lx:mit",
     "lx:auf",
     "lx:aber",
-    "lx:so",
     "lx:für",
     "lx:von",
     "lx:alle"
-   ]
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 13,
@@ -837,25 +1469,29 @@
     "gr:a1-02:t1",
     "dn:kisaltma-1"
    ],
-   "adet": 14,
+   "adet": 6,
    "omurga_adet": 14,
-   "derse_ait": 3,
+   "derse_ait": 0,
    "kartlar": [
-    "lx:in",
-    "lx:mein",
-    "lx:dein",
     "lx:Kurs",
     "lx:wissen",
-    "lx:an",
-    "lx:dieser",
     "lx:tun",
     "lx:auch",
     "lx:geben",
+    "lx:Mal"
+   ],
+   "cerceve_adet": 8,
+   "cerceve": [
+    "lx:in",
+    "lx:mein",
+    "lx:dein",
+    "lx:an",
+    "lx:dieser",
     "lx:mal",
-    "lx:Mal",
     "lx:aus",
     "lx:im"
-   ]
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 14,
@@ -863,16 +1499,20 @@
    "id": "om:gun:14",
    "title_tr": "Haftanın sınavı: fırında alışveriş",
    "dersler": [],
-   "adet": 5,
+   "adet": 2,
    "omurga_adet": 5,
    "derse_ait": 0,
    "kartlar": [
-    "lx:doch",
     "lx:hören",
+    "lx:denken"
+   ],
+   "cerceve_adet": 3,
+   "cerceve": [
+    "lx:doch",
     "lx:nichts",
-    "lx:denken",
     "lx:etwas"
-   ]
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 15,
@@ -882,12 +1522,10 @@
    "dersler": [
     "gr:a1-02:t3"
    ],
-   "adet": 20,
+   "adet": 18,
    "omurga_adet": 20,
    "derse_ait": 0,
    "kartlar": [
-    "lx:vor",
-    "lx:welcher",
     "lx:krank",
     "lx:nochmal",
     "lx:Schmerz",
@@ -906,7 +1544,13 @@
     "lx:wehtun",
     "lx:mitkommen",
     "lx:üben"
-   ]
+   ],
+   "cerceve_adet": 2,
+   "cerceve": [
+    "lx:vor",
+    "lx:welcher"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 16,
@@ -917,7 +1561,7 @@
     "gr:a1-12:t5",
     "r0:10-buchstabieren"
    ],
-   "adet": 16,
+   "adet": 15,
    "omurga_adet": 16,
    "derse_ait": 3,
    "kartlar": [
@@ -935,9 +1579,13 @@
     "lx:billig",
     "lx:hell",
     "lx:Mantel",
-    "lx:Schrank",
+    "lx:Schrank"
+   ],
+   "cerceve_adet": 1,
+   "cerceve": [
     "lx:na"
-   ]
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 17,
@@ -947,11 +1595,10 @@
    "dersler": [
     "gr:a1-12:t1"
    ],
-   "adet": 16,
+   "adet": 15,
    "omurga_adet": 16,
-   "derse_ait": 1,
+   "derse_ait": 0,
    "kartlar": [
-    "lx:am",
     "lx:aussteigen",
     "lx:Prüfung",
     "lx:Ausweis",
@@ -967,6 +1614,15 @@
     "lx:Rückruf",
     "lx:Haus",
     "lx:zurück"
+   ],
+   "cerceve_adet": 1,
+   "cerceve": [
+    "lx:am"
+   ],
+   "sozlukte_yok": [
+    "lx:Anrufbeantworter",
+    "lx:Durchwahl",
+    "lx:Rückruf"
    ]
   },
   {
@@ -978,24 +1634,30 @@
     "gr:a1-05:t3",
     "gr:a1-12:t3"
    ],
-   "adet": 14,
+   "adet": 8,
    "omurga_adet": 14,
-   "derse_ait": 2,
+   "derse_ait": 0,
    "kartlar": [
-    "lx:um",
-    "lx:bis",
     "lx:Warteschleife",
-    "lx:bei",
-    "lx:unser",
     "lx:glauben",
     "lx:los",
     "lx:finden",
     "lx:anderer",
-    "lx:denn",
     "lx:Mann",
-    "lx:zum",
     "lx:leben",
     "lx:vielleicht"
+   ],
+   "cerceve_adet": 6,
+   "cerceve": [
+    "lx:um",
+    "lx:bis",
+    "lx:bei",
+    "lx:unser",
+    "lx:denn",
+    "lx:zum"
+   ],
+   "sozlukte_yok": [
+    "lx:Warteschleife"
    ]
   },
   {
@@ -1007,24 +1669,28 @@
     "gr:a1-02:t4",
     "gr:a1-06:t2"
    ],
-   "adet": 13,
+   "adet": 10,
    "omurga_adet": 13,
-   "derse_ait": 2,
+   "derse_ait": 1,
    "kartlar": [
-    "lx:nach",
     "lx:Deutsch",
     "lx:mögen",
     "lx:mögen#2",
-    "lx:okay",
     "lx:wirklich",
     "lx:nie",
     "lx:weg",
     "lx:Weg",
     "lx:reden",
     "lx:schön",
-    "lx:jeder",
     "lx:bleiben"
-   ]
+   ],
+   "cerceve_adet": 3,
+   "cerceve": [
+    "lx:nach",
+    "lx:okay",
+    "lx:jeder"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 20,
@@ -1050,7 +1716,10 @@
     "lx:groß",
     "lx:stehen",
     "lx:Kind"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 21,
@@ -1058,15 +1727,19 @@
    "id": "om:gun:21",
    "title_tr": "Haftanın sınavı: muayenehaneyi aramak",
    "dersler": [],
-   "adet": 4,
+   "adet": 3,
    "omurga_adet": 4,
    "derse_ait": 0,
    "kartlar": [
     "lx:genau",
     "lx:Vater",
-    "lx:zur",
     "lx:passieren"
-   ]
+   ],
+   "cerceve_adet": 1,
+   "cerceve": [
+    "lx:zur"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 22,
@@ -1099,7 +1772,10 @@
     "lx:Werkstatt",
     "lx:Gemüse",
     "lx:Mensch"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 23,
@@ -1128,7 +1804,10 @@
     "lx:Freut_mich!",
     "lx:Nachbar",
     "lx:Arbeit"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 24,
@@ -1138,7 +1817,7 @@
    "dersler": [
     "gr:a1-04:t4"
    ],
-   "adet": 15,
+   "adet": 14,
    "omurga_adet": 15,
    "derse_ait": 0,
    "kartlar": [
@@ -1153,11 +1832,15 @@
     "lx:richtig",
     "lx:Leute",
     "lx:jung",
-    "lx:ab",
     "lx:gerade",
     "lx:Geld",
     "lx:Mutter"
-   ]
+   ],
+   "cerceve_adet": 1,
+   "cerceve": [
+    "lx:ab"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 25,
@@ -1168,24 +1851,28 @@
     "gr:a1-13:t1",
     "gr:a1-13:t2"
    ],
-   "adet": 13,
+   "adet": 10,
    "omurga_adet": 13,
    "derse_ait": 0,
    "kartlar": [
-    "lx:euer",
     "lx:Paar",
-    "lx:paar",
     "lx:wieso",
     "lx:lieb",
     "lx:erzählen",
     "lx:stimmen",
     "lx:laufen",
-    "lx:ohne",
     "lx:suchen",
     "lx:holen",
     "lx:natürlich",
     "lx:treffen"
-   ]
+   ],
+   "cerceve_adet": 3,
+   "cerceve": [
+    "lx:euer",
+    "lx:paar",
+    "lx:ohne"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 26,
@@ -1196,24 +1883,28 @@
     "gr:a1-13:t3",
     "gr:a1-04:t5"
    ],
-   "adet": 13,
+   "adet": 10,
    "omurga_adet": 13,
    "derse_ait": 2,
    "kartlar": [
     "lx:Balkon",
     "lx:Nebenkosten",
-    "lx:ach",
-    "lx:ins",
     "lx:dort",
     "lx:Ordnung",
-    "lx:vom",
     "lx:Problem",
     "lx:vergessen",
     "lx:zeigen",
     "lx:Mädchen",
     "lx:Freund",
     "lx:weit"
-   ]
+   ],
+   "cerceve_adet": 3,
+   "cerceve": [
+    "lx:ach",
+    "lx:ins",
+    "lx:vom"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 27,
@@ -1239,7 +1930,10 @@
     "lx:lang",
     "lx:Moment",
     "lx:schauen"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 28,
@@ -1255,7 +1949,10 @@
     "lx:Bruder",
     "lx:Musik",
     "lx:Sohn"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 29,
@@ -1287,7 +1984,10 @@
     "lx:Miete",
     "lx:Wie_spät_ist_es?",
     "lx:schreiben"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 30,
@@ -1313,6 +2013,12 @@
     "lx:Parkplatz",
     "lx:Gehalt",
     "lx:Tankstelle",
+    "lx:Vorgesetzte",
+    "lx:Lohn"
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": [
     "lx:Vorgesetzte",
     "lx:Lohn"
    ]
@@ -1344,6 +2050,17 @@
     "lx:toll",
     "lx:einmal",
     "lx:passen"
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": [
+    "lx:Gehaltsabrechnung",
+    "lx:Schichtplan",
+    "lx:Bahnsteig",
+    "lx:Fahrplan",
+    "lx:Abfahrt",
+    "lx:Fahrschein",
+    "lx:Zugausfall"
    ]
   },
   {
@@ -1354,7 +2071,7 @@
    "dersler": [
     "gr:a1-06:t3"
    ],
-   "adet": 14,
+   "adet": 13,
    "omurga_adet": 14,
    "derse_ait": 0,
    "kartlar": [
@@ -1363,7 +2080,6 @@
     "lx:Auge",
     "lx:fertig",
     "lx:allein",
-    "lx:beim",
     "lx:schlecht",
     "lx:Hilfe",
     "lx:wichtig",
@@ -1372,7 +2088,12 @@
     "lx:Baby",
     "lx:Dank",
     "lx:egal"
-   ]
+   ],
+   "cerceve_adet": 1,
+   "cerceve": [
+    "lx:beim"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 33,
@@ -1383,7 +2104,7 @@
     "gr:a1-14:t4",
     "gr:a1-14:t5"
    ],
-   "adet": 12,
+   "adet": 11,
    "omurga_adet": 12,
    "derse_ait": 0,
    "kartlar": [
@@ -1395,11 +2116,15 @@
     "lx:schwer",
     "lx:Land",
     "lx:bald",
-    "lx:bisschen",
     "lx:Idee",
     "lx:lesen",
     "lx:draußen"
-   ]
+   ],
+   "cerceve_adet": 1,
+   "cerceve": [
+    "lx:bisschen"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 34,
@@ -1425,7 +2150,10 @@
     "lx:Tochter",
     "lx:Arm",
     "lx:Bett"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 35,
@@ -1440,7 +2168,10 @@
     "lx:Job",
     "lx:Mama",
     "lx:gefallen"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 36,
@@ -1467,7 +2198,10 @@
     "lx:Fahrkarte",
     "lx:abbiegen",
     "lx:Foto"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 37,
@@ -1492,7 +2226,10 @@
     "lx:Umkleidekabine",
     "lx:anprobieren",
     "lx:endlich"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 38,
@@ -1518,7 +2255,10 @@
     "lx:Schule",
     "lx:Hund",
     "lx:Wiedersehen"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 39,
@@ -1543,7 +2283,10 @@
     "lx:dauern",
     "lx:Telefon",
     "lx:Fehler"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 40,
@@ -1566,7 +2309,10 @@
     "lx:schwarz",
     "lx:Laden",
     "lx:Buch"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 41,
@@ -1588,7 +2334,10 @@
     "lx:Kaffee",
     "lx:Onkel",
     "lx:super"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 42,
@@ -1602,7 +2351,10 @@
    "kartlar": [
     "lx:lustig",
     "lx:Haar"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 43,
@@ -1612,7 +2364,7 @@
    "dersler": [
     "gr:a1-10:t1"
    ],
-   "adet": 17,
+   "adet": 16,
    "omurga_adet": 17,
    "derse_ait": 1,
    "kartlar": [
@@ -1625,7 +2377,6 @@
     "lx:vermissen",
     "lx:Gericht",
     "lx:gesund",
-    "lx:gegenüber",
     "lx:ankommen",
     "lx:Kunde",
     "lx:Aufgabe",
@@ -1633,7 +2384,12 @@
     "lx:Messer",
     "lx:bestellen",
     "lx:See"
-   ]
+   ],
+   "cerceve_adet": 1,
+   "cerceve": [
+    "lx:gegenüber"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 44,
@@ -1644,11 +2400,10 @@
     "gr:a1-09:t2",
     "gr:a1-09:t3"
    ],
-   "adet": 14,
+   "adet": 13,
    "omurga_adet": 14,
    "derse_ait": 0,
    "kartlar": [
-    "lx:entlang",
     "lx:Restaurant",
     "lx:Meer",
     "lx:studieren",
@@ -1662,7 +2417,12 @@
     "lx:empfehlen",
     "lx:lecker",
     "lx:Durst"
-   ]
+   ],
+   "cerceve_adet": 1,
+   "cerceve": [
+    "lx:entlang"
+   ],
+   "sozlukte_yok": []
   },
   {
    "day": 45,
@@ -1690,7 +2450,10 @@
     "lx:Jugend",
     "lx:vorschlagen",
     "lx:Note"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 46,
@@ -1717,7 +2480,10 @@
     "lx:Krankmeldung",
     "lx:Attest",
     "lx:Allergie"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 47,
@@ -1743,7 +2509,10 @@
     "lx:Klasse",
     "lx:weiß",
     "lx:Handy"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 48,
@@ -1769,7 +2538,10 @@
     "lx:kennenlernen",
     "lx:Tasche",
     "lx:Fenster"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 49,
@@ -1784,7 +2556,10 @@
     "lx:kochen",
     "lx:Zug",
     "lx:Bier"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 50,
@@ -1799,7 +2574,10 @@
     "lx:Aussicht",
     "lx:Teppich",
     "lx:schüchtern"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 51,
@@ -1814,7 +2592,10 @@
     "lx:Ausflug",
     "lx:vorhaben",
     "lx:Verspätung"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 52,
@@ -1829,7 +2610,10 @@
     "lx:Mannschaft",
     "lx:Bargeld",
     "lx:wandern"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 53,
@@ -1844,7 +2628,10 @@
     "lx:Beschwerde",
     "lx:ausfallen",
     "lx:Trinkgeld"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 54,
@@ -1859,7 +2646,10 @@
     "lx:Rente",
     "lx:einpacken",
     "lx:reservieren"
-   ]
+   ],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 55,
@@ -1870,7 +2660,10 @@
    "adet": 0,
    "omurga_adet": 0,
    "derse_ait": 0,
-   "kartlar": []
+   "kartlar": [],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 56,
@@ -1881,7 +2674,10 @@
    "adet": 0,
    "omurga_adet": 0,
    "derse_ait": 0,
-   "kartlar": []
+   "kartlar": [],
+   "cerceve_adet": 0,
+   "cerceve": [],
+   "sozlukte_yok": []
   }
  ],
  "duzeltmeler": [
@@ -2056,9 +2852,79 @@
   "iki_gune_atanmis_kart": 0,
   "ilk_haftada_ogretilmisi_yeniden_atama": 0,
   "k1_de_olmayan_kimlik": 0,
-  "haftalik_toplam_farki_aciklanmamis": 0,
-  "haftalik_toplam_farki_aciklanan": {
-   "2": -9
+  "pasif_listede": 0,
+  "kartlarda_kart_olmayan": 0,
+  "cercevede_kart": 0,
+  "ust_siniri_asan_hafta": 0,
+  "kart_toplam": 471,
+  "cerceve_toplam": 60,
+  "sozlukte_olmayan": 13
+ },
+ "kimlik_isaretleri": {
+  "lx:Anrufbeantworter": {
+   "sozlukte_yok": true,
+   "hafta": 3,
+   "gun": 17
+  },
+  "lx:Durchwahl": {
+   "sozlukte_yok": true,
+   "hafta": 3,
+   "gun": 17
+  },
+  "lx:Rückruf": {
+   "sozlukte_yok": true,
+   "hafta": 3,
+   "gun": 17
+  },
+  "lx:Warteschleife": {
+   "sozlukte_yok": true,
+   "hafta": 3,
+   "gun": 18
+  },
+  "lx:Vorgesetzte": {
+   "sozlukte_yok": true,
+   "hafta": 5,
+   "gun": 30
+  },
+  "lx:Lohn": {
+   "sozlukte_yok": true,
+   "hafta": 5,
+   "gun": 30
+  },
+  "lx:Gehaltsabrechnung": {
+   "sozlukte_yok": true,
+   "hafta": 5,
+   "gun": 31
+  },
+  "lx:Schichtplan": {
+   "sozlukte_yok": true,
+   "hafta": 5,
+   "gun": 31
+  },
+  "lx:Bahnsteig": {
+   "sozlukte_yok": true,
+   "hafta": 5,
+   "gun": 31
+  },
+  "lx:Fahrplan": {
+   "sozlukte_yok": true,
+   "hafta": 5,
+   "gun": 31
+  },
+  "lx:Abfahrt": {
+   "sozlukte_yok": true,
+   "hafta": 5,
+   "gun": 31
+  },
+  "lx:Fahrschein": {
+   "sozlukte_yok": true,
+   "hafta": 5,
+   "gun": 31
+  },
+  "lx:Zugausfall": {
+   "sozlukte_yok": true,
+   "hafta": 5,
+   "gun": 31
   }
  }
 }

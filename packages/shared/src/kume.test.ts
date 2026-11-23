@@ -134,3 +134,36 @@ describe("düzenli çekim (PM-097 md. 2)", () => {
     expect(karar("Das ist gut.", "ist", ["3t"], [])).toBe(null);
   });
 });
+
+describe("dil noktası tablo biçimleri (PM-092 md. 1; PR A)", () => {
+  const DN = [{ id: "gr:a1-03:t1", table: { rows: [["ich", "gehe", "giderim"], ["er", "geht", "gider"], ["", "gehen", ""]] } }];
+  const dz = kumeDizini(LEX, DERS, W, ["Ioana"], DN);
+  const y = (s: string, kart: string[], biten: string[] = []) => bilinmeyenYazi(bilinmeyenler(dz, s, { kart: new Set(kart), biten: new Set(biten) }));
+  it("sunulmadan önce tablo biçimi bilinmez; sunulunca kartı bilinen biçim bilinir", () => {
+    expect(y("gehe", ["lx:gehen"])).toEqual(["~gehe"]);
+    expect(y("gehe", ["lx:gehen"], ["gr:a1-03:t1"])).toEqual([]);
+  });
+  it("tablo kartın kendisini öğretmez: kart tanıtılmadan ne başlık ne biçim bilinir", () => {
+    expect(y("gehen", [], ["gr:a1-03:t1"])).toEqual(["gehen"]);
+    expect(y("gehe", [], ["gr:a1-03:t1"])).toEqual(["gehe"]);
+  });
+  it("sütun başlığı kartı söyler: dizinde olmayan çekim (seid) o kartla bilinir (#205 P1-1)", () => {
+    const dz2 = kumeDizini(LEX, DERS, W, [], [{ id: "gr:a1-02:t2", table: { head: ["kişi", "sein", "gehen"], rows: [["ihr", "seid", "geht"], ["wir", "sind", "gehen"]] } }]);
+    const y2 = (s: string, kart: string[], biten: string[] = []) => bilinmeyenYazi(bilinmeyenler(dz2, s, { kart: new Set(kart), biten: new Set(biten) }));
+    expect(y2("seid", ["lx:sein"])).toEqual(["?seid"]);
+    expect(y2("seid", ["lx:sein"], ["gr:a1-02:t2"])).toEqual([]);
+    expect(y2("seid", [], ["gr:a1-02:t2"])).toEqual(["?seid"]);
+    expect(dz2.dersler.get("gr:a1-02:t2")?.tablo?.has("ihr")).toBe(false);
+  });
+  it("çerçeve çekimi tablo sunulunca bilinir (ANA-D2 sıkılaştırmasına bekçi; #205 P2-6)", () => {
+    const LX2 = [...LEX, L({ id: "lx:ich", de: "ich", pos: "pron", card: false, bicimler: ["mir", "mich"] })];
+    const dz3 = kumeDizini(LX2, DERS, W, [], [{ id: "gr:a1-05:t1", table: { head: ["Nom.", "Dat."], rows: [["ich", "mir"]] } }]);
+    expect(bilinmeyenYazi(bilinmeyenler(dz3, "mir", { kart: new Set(), biten: new Set(["gr:a1-05:t1"]) }))).toEqual([]);
+  });
+  it("dil noktası kart bağlamaz, kalıp taşımaz; temel ders aynı kalır", () => {
+    expect(dz.dersler.get("gr:a1-03:t1")?.kart.size).toBe(0);
+    expect(dz.dersler.get("gr:a1-03:t1")?.tablo?.has("gehe")).toBe(true);
+    expect(dz.dersler.get("gr:a1-03:t1")?.tablo?.has("gehen")).toBe(false);
+    expect([...(dz.dersler.get("r0:01-tage")?.bicim ?? [])].sort()).toEqual([...(d.dersler.get("r0:01-tage")?.bicim ?? [])].sort());
+  });
+});

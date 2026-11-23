@@ -7,15 +7,15 @@
  */
 import { gorevSay } from "../services/gorev.ts";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
-import { Gun, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
+import { Gun, bilinmeyenler, kumeDizini, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { adimXpVer, xpVer } from "../services/ilerleme.ts";
-import { XP } from "../core/gun.ts";
+import { XP, bayrakli } from "../core/gun.ts";
 import { personalizeDeep } from "../core/persona.ts";
-import { loadIndex, loadLexicon, loadM1Gun, contentUrl } from "../services/content.ts";
-import { addClaim, getMeta, setMeta } from "../data/db.ts";
+import { loadIndex, loadLexicon, loadM1Gun, contentUrl, loadTemeller, loadWorld, loadGenelAdlar } from "../services/content.ts";
+import { addClaim, getMeta, itemsMap, setMeta } from "../data/db.ts";
 import { plain, Rich } from "../ui/rich.tsx";
-import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
+import { ADIM_TR, BASLANGIC, dikteSuz, adimlar, turaGore, ikinciTurVar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
 import { baslangicYavas, konusanAta, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
@@ -93,27 +93,47 @@ function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynat
 }
 
 /* ============================ Ekran ============================ */
-export function MedyaEkrani({ day, id }: { day: number; id: string }) {
+export function MedyaEkrani({ day, id, tur }: { day: number; id: string; tur?: Medya["tur"] }) {
   const [veri, setVeri] = useState<{ gun: Gun; m: Medya; lex: Lexeme[]; base: string } | null>(null);
   const [err, setErr] = useState<string | null>(null);
   const [p, setP] = useState<MedyaIlerleme | null>(null);
   const { profile } = useApp();
+  // kaydın son turu bitince eski düzenin eksiz anahtarı da yazılır: Yol ve gün durumu sesi bitmiş görür (inceleme #207 P1-1)
+  const sonTur = useRef(false);
+  const kaydet = (x: MedyaIlerleme) => { void setMeta(ilerlemeAnahtari(id, tur), x); if (tur && sonTur.current && x.bitti) void setMeta(ilerlemeAnahtari(id), x); };
   useEffect(() => {
     (async () => {
       // {name}, {Herr|Frau} yer tutucuları cihaz profiline göre (D-061; inceleme #60 2. tur P1-B)
       const gun = personalizeDeep(await loadM1Gun(day), { name: profile.displayName, address: profile.address });
-      const m = medyalar(gun).find((x) => x.id === id);
-      if (!m) throw new Error("Bu kayıt bulunamadı.");
+      const m0 = medyalar(gun).find((x) => x.id === id);
+      if (!m0) throw new Error("Bu kayıt bulunamadı.");
+      const m = tur ? turaGore(m0, tur) : m0;
+      sonTur.current = tur === "ikinci" || (tur === "ilk" && !ikinciTurVar(m0));
       const [{ lexemes }, i] = await Promise.all([loadLexicon(), loadIndex()]);
-      setVeri({ gun, m, lex: lexemes, base: contentUrl(i.version) });
+      // akış günü: öğretilmemiş sözcük isteyen dikte basamağı atlanır (P0-1). Bilinen: cihazda görülmüş kartlar, ders, dünya ve genel adlar
+      let mm = m;
+      if (bayrakli(day) && gun.halkalar?.length) {
+        const [temel, world, genel, items] = await Promise.all([loadTemeller(), loadWorld(), loadGenelAdlar(), itemsMap(lexemes.map((l) => l.id))]);
+        const dizin = kumeDizini(lexemes, temel, world, genel);
+        const kart = new Set([...items].filter(([, x]) => x.passive?.fsrs).map(([k]) => k));
+        mm = dikteSuz(m, (de) => bilinmeyenler(dizin, de, { kart, biten: new Set() }).length > 0);
+        // ikinci turda süzülen bölüm adımsız kalabilir: o bölüm düşer; hiç madde kalmadıysa tur bitmiş sayılır (akış ilerler)
+        if (tur) mm = turaGore(mm, tur);
+      }
+      if (tur && !mm.bolumler.length) {
+        const bitti = { ...BASLANGIC, bitti: true, ilkBitti: true };
+        sonTur.current = true; kaydet(bitti);
+        setVeri({ gun, m: m0, lex: lexemes, base: contentUrl(i.version) }); setP(bitti); return;
+      }
+      setVeri({ gun, m: mm, lex: lexemes, base: contentUrl(i.version) });
       // kayıtlı konum içerikle uyuşmuyorsa (içerik değişti) baştan başla; ekran çökmez (inceleme #60 P1-3)
-      setP(gecerliKonum(await getMeta<MedyaIlerleme>(ilerlemeAnahtari(id)), m));
+      setP(gecerliKonum(await getMeta<MedyaIlerleme>(ilerlemeAnahtari(id, tur)), mm));
     })().catch((e) => setErr(String(e?.message || e)));
     return () => stopSpeaking();
-  }, [day, id]);
+  }, [day, id, tur]);
   if (err) return <ErrorPanel message={err} onRetry={() => location.reload()} />;
   if (!veri || !p) return <Loading />;
-  return <Akis veri={veri} p={p} setP={(x) => { setP(x); void setMeta(ilerlemeAnahtari(id), x); }} />;
+  return <Akis veri={veri} p={p} setP={(x) => { setP(x); kaydet(x); }} />;
 }
 
 function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; base: string }; p: MedyaIlerleme; setP: (p: MedyaIlerleme) => void }) {
@@ -148,7 +168,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
   );
 
   const b = m.bolumler[p.b]!;
-  const steps = adimlar(b);
+  const steps = adimlar(b, m.tur);
   const adim = steps[p.s]!;
   const cs = bolumCumleleri(m, b);
   // XP: doğru başına (beyanla geçilen cevapta ve tekrar çalışmada yok); adım XP'si adım başına bir kez (inceleme #66 P1-2, P2-1)
@@ -295,7 +315,7 @@ function CumleAdimi({ cs, oy, onNext }: { cs: MedyaCumle[]; oy: ReturnType<typeo
     <section class="card stack fade" data-test="adim-cumle">
       <div class="row"><div class="kicker grow">Cümle cümle dinle</div>
         <button class={`btn sm${yavas ? " primary" : ""}`} aria-pressed={yavas} data-test="yavas" onClick={() => setYavas(!yavas)}>0,75×</button></div>
-      <p class="small muted">Cümleye dokun: o cümle çalar. Anlamadığın cümleyi yavaş dinle; metin dikteden sonra açılacak.</p>
+      <p class="small muted">Cümleye dokun: o cümle çalar. Anlamadığın cümleyi yavaş dinle; metni birazdan göreceksin.</p>
       <ol class="list cumleler">{cs.map((c, i) => (
         <li class={`row${oy.calisiyor === c.id ? " on" : ""}`} style={{ flexWrap: "nowrap" }}>
           <button class="btn sm" data-test={`cumle-${c.id}`} aria-label={`${i + 1}. cümleyi dinle`} onClick={() => void oy.cumle(c, yavas)}><Icon name="play" /> {i + 1}</button>
@@ -441,7 +461,7 @@ export function M1Gun({ day }: { day: number }) {
   const ad = { video: "Video", ses: "Dinle", sahne: "Köy dizisi" } as const;
   return (
     <div class="stack" data-test="m1-gun">
-      <ProgressHeader title={`${gun.day}. gün: ${plain(gun.title_tr)}`} back="#/learn" />
+      <ProgressHeader title={`${gun.day}. gün: ${plain(gun.title_tr)}`} back="#/koy" />
       <p class="small"><Rich text={gun.goal_tr} /></p>
       <ul class="list card">{medyalar(gun).map((m) => (
         <li><a class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }} href={`#/m1/${gun.day}/${encodeURIComponent(m.id)}`} data-test={`medya-${m.kind}`}>
