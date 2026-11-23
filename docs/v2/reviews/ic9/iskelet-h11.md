@@ -1,0 +1,24 @@
+# İÇ-9 · A2 11. hafta iskeleti (gün 71–77, 1–7 Şubat 2027)
+
+Hafta: "Kafede ve markette istediğimi kibarca söylerim." Görev: kafede bir şey ısmarlayıp bir soru sorarım. Kol `pazar`, mekân `pl:marktplatz` (+ `pl:baeckerei`). Birimler `u:a2:hizmet-1` (71–74), `u:a2:hizmet-2` (75–77). Hikâye rengi: Unsinniger Donnerstag (74), pazar günü Faschingszug (77). Çerçeve: `einige` (74), `hinter` (76), önce kalıp satırında.
+Halka düzeni: policy `akis.halka_kart` = 4–6 kart (doğrulayıcı hatası); bu yüzden günde 1–2 halka (BRIEF'teki "4–5 halka, 2–6 kart" ile çelişki, açık soru 1).
+
+| gün | başlık | ders | kartlar | yapabiliyorum | sahne · sesler · prova · okuma | karakterler |
+|---|---|---|---|---|---|---|
+| 71 Pzt | Olunca, olursa: Ich trinke Kaffee, wenn ich müde bin | gr:a2-03:t1 | h1 sich_fühlen, sich_ausruhen, Grund, warten_(auf) · h2 sich_bewegen, sich_anmelden, sich_interessieren_(für), Grundschule, Gymnasium (9) | Kafede ne zaman ne içtiğimi ve kendimi nasıl hissettiğimi söylerim. | ofiste Derya "perşembe Faşing" duyurusu, Wimmer "kostüm mü?" · radyo (Faşing haftası, alay pazar 14.00) + Ioana'nın sesli mesajı (kafede bekliyor) · prova: kafede Ioana (his, kahve, kurs koşulu) · okuma: Derya'nın ekip mesajı + 2 cümlelik cevap yazma | Derya, Tobi, Wimmer, Ioana, (Gerti adı) |
+| 72 Sal | Wenn ich Zeit habe, koche ich | gr:a2-03:t2 | Fach, Unterricht, Zeugnis, Gutschein, Blumenstrauß, Kette, Angebot, Kasse (8) | Markette bir ürünü ve fiyatını sorarım; indirimdeyse alırım derim. | Ioana kurs karnesini (Zeugnis) alıyor; markette ona hediye: çiçek mi, hediye çeki mi, kolye mi · market anonsu (Angebot, kulak kapısı provası) + Kasse 3 kapalı anonsu · prova: kasada kasiyerle · okuma: market broşürü | Ioana, kasiyer (yeni ad), Derya |
+| 73 Çar | einer, keiner, welche | gr:a2-03:t3 | Kassenbon, umtauschen, eigentlich, Typ, Plan (5) | Bir ürünü fişle değiştirmek ister, "bir tane var mı / hiç kalmadı" derim. | dün alınan kolye bozuk: fişle değişim · fırında "Haben Sie noch Krapfen? – Ja, da sind noch welche." · bekleme anonsu (müşteri hizmetleri) · prova: değişim masası · okuma: fişin arkasındaki değişim notu | Gerti, satış görevlisi (yeni ad), Tobi |
+| 74 Per | Ich würde gern … / Ich hätte gern … | gr:a2-03:t4 | tragen, verrückt, bereit, Ahnung, legen, Ruhe (6) · çerçeve einige | Kafede kibarca sipariş verip bir şey rica ederim. | Unsinniger Donnerstag: kostümlü sabah, Derya'nın Krapfen'i, Wimmer'in beklenmedik kostümü ("verrückt!"), Tobi alaya çağırır · radyo + Tobi'nin sesli mesajı · prova: öğlen kafede garsonla (würde gern draußen sitzen) · okuma: kafe menüsü | Derya, Tobi, Wimmer, garson |
+| 75 Cum | Restoranda hesap: Zusammen oder getrennt? | gr:a2-03:t5 | ruhig, kümmern, versprechen, fast, bestimmt, runter (6) | Restoranda hesabı ister, ayrı öder, bahşişi söylerim. | ekip akşam yemeği: masa, sipariş, "Getrennt, bitte", "Stimmt so" · restoran telesekreteri (rezervasyon) + mutfak anonsu · prova: garsonla hesap · okuma: hesap fişi | Derya, Tobi, Ioana, garson |
+| 76 Cmt | Fırında ve kafede sipariş vermek | — | Abitur, Geschichte, vorbei, dran, arm (5) · çerçeve hinter | Fırında sıramı bilir, ne istediğimi Gerti sormadan söylerim. | cumartesi sabahı fırın kuyruğu: "Wer ist dran?", "hinter Ihnen", Gerti'nin Breze ikramı (WORLD sözü) · fırın radyosu + Frau Brandl'ın sesli mesajı · prova: kuyrukta ve tezgâhta · okuma: fırının Faşing ilanı | Gerti, Frau Brandl, müşteri (yeni ad) |
+| 77 Paz | Haftanın sınavı: kafede ve markette istemek | — | lachen, Quittung, Umtausch, Einkaufswagen (4; son üçü sözlükte yok) | Kasada kartım çalışmayınca başka ödeme yolu sorarım. | alaydan önce markette: kart çalışmıyor, Pfand sorusu (kapı sürprizi) · market anonsu: hangi ürün indirimde (kulak kapısı) · prova: kapı provası · `hafta-sonu-testi-11.json` | Tobi, kasiyer |
+
+Dil noktası görev sayımı (halkanın `gorev_cumleleri`, `dersten_sonra: true`): 71 t1 = 6 (h2: bewegen 2, anmelden 1, interessieren 1, Grundschule 1, Gymnasium 1); 72'de t1 ≥ 2 + t2 ≥ 6; 73'te t2 ≥ 2 + t3 ≥ 6; 74'te t3 ≥ 2 + t4 ≥ 6; 75'te t4 ≥ 2 + t5 ≥ 6; 76'da t5 ≥ 2.
+Kart sırası: Grund (71 h1) Grundschule'den (71 h2) önce.
+
+## Görülmemiş durum taslakları (gorulmemis-11; derste kullanılmaz)
+1. (71–72, wenn) Kuaförde bir müşteri: "Wann kommen Sie wieder?" → "Wenn ich Zeit habe, komme ich im März." Başka kişi, başka yer.
+2. (73, einer/keiner/welche) İstasyon büfesinde: "Haben Sie noch Brezen?" → "Nein, leider keine mehr. Aber Semmeln sind noch welche da."
+3. (74, hätte/würde gern) Eczanede: "Ich hätte gern etwas gegen Halsschmerzen. Ich würde gern auch kurz etwas fragen."
+4. (75, hesap) Pizzacıda iki arkadaşla: "Getrennt, bitte. Ich hatte die Pizza und ein Wasser." → "Machen Sie zwölf Euro."
+5. (77, kapı) Eczanede kart okuyucu çalışmıyor: "Kann ich auch bar zahlen? Oder geht es mit dem Handy?"
