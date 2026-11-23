@@ -115,3 +115,7 @@ Okur raporu: `docs/v2/reviews/okur/lexicon-b1-01.md`, 28 GERİ (23 kart). Yalnı
 | lx:zurzeit | exp.ipucu_tr | **Zurzeit** başta olunca hemen arkasından **ist** ya da **habe** gelir. |
 | lx:möglichst | exp.anlam_tr | Bir şeyin olabildiğince erken, hızlı ya da çok olmasını istediğini söyler. |
 | lx:zurzeit | exp.ipucu_tr (okur 2. tur) | **Zurzeit** başta olunca **sind** gibi sözcükler arkasından gelir, örneğin **Zurzeit sind alle Leitungen besetzt.** |
+
+## Dünya uyumu (2026-11-23)
+
+WORLD.md'de Tobi 14. haftada taşınıyor; batch-b1-01a'daki 14 Tobi geçişi (7 cümle, örnek ve boşluk çiftleri) değişti: lx:Ansicht ö5 ve boşluk 3 → Derya · lx:diskutieren ö5 ve boşluk 3 → Ioana · lx:angeblich ö4 → Basti · lx:Experte ö2 ve boşluk 2 → Basti. Cinsiyete bağlı çekim gerektiren cümle yoktu; Türkçeler uyarlandı.
