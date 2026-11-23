@@ -21,11 +21,11 @@
  *     içeriğinde aynen geçmeyen bir kabul cümlesi var; haftanın her `can_do`'su en az bir durumla sınanır.
  * Uygulamada oynanış (tarayıcı) ayrı katmandır: `tests/e2e/ogrenci_akis.py` haftaya genişletilince aynı sayıları ekrandan ölçer.
  */
-import { bilinmeyenler, kalipOrtu, kalipSecenekleri, toks, toksAsil, YUVA_AD, type Bilinen, type KumeDizini } from "../../packages/shared/src/kume.ts";
+import { bilinmeyenler, cekimKarari, sunulanCekim, type CekimKarari, kalipOrtu, kalipSecenekleri, toks, toksAsil, YUVA_AD, type Bilinen, type CekimSinifi, type KumeDizini } from "../../packages/shared/src/kume.ts";
 import type { TemelDers } from "../../packages/shared/src/index.ts";
-import { dilNoktasiMetni, gosterilenKaliplar, icOrtu, tabloCerceve, tabloGunleri, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
+import { dilNoktasiMetni, dilNoktasiSatirlari, gosterilenKaliplar, icOrtu, tabloCerceve, tabloGunleri, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
 
-export { dilNoktasiMetni };
+export { dilNoktasiMetni, dilNoktasiSatirlari };
 const dizi = (x: unknown): unknown[] => (Array.isArray(x) ? x : []);
 const yazilar = (x: unknown): string[] => dizi(x).filter((y): y is string => typeof y === "string" && !!y.trim());
 const nesne = (x: unknown): Record<string, unknown> => (x && typeof x === "object" && !Array.isArray(x) ? (x as Record<string, unknown>) : {});
@@ -90,7 +90,7 @@ function almancaCumleler(kok: unknown, out: Set<string>) {
   gez(kok);
 }
 
-export interface Bilgi { kart: Set<string>; biten: Set<string>; kaliplar: string[][]; bicim: Set<string> }
+export interface Bilgi { kart: Set<string>; biten: Set<string>; kaliplar: string[][]; bicim: Set<string>; cekim: Set<CekimSinifi> }
 export type Sonuc = "tamam" | "kesin" | "sinirda" | "anlama" | "suzuldu";
 export interface AdimSatiri { gun: number; yer: string; sonuc: Sonuc; eksik: string[]; cumle: string; soruEksik: string[] }
 
@@ -100,6 +100,8 @@ export interface KapiGirdi {
   tablo: KesinTablo; omurga: Omurga; dizin: KumeDizini;
   dersler?: ReadonlyMap<string, TemelDers>;
   dilNoktalari?: ReadonlyMap<string, readonly string[]>;
+  /** `gr:`/`dn:` tablosunun satırları (düzenli çekim için kişi sütunu; PM-097 md. 2). Yoksa `dilNoktalari` tek hücreli satır sayılır */
+  dilNoktasiSatirlari?: ReadonlyMap<string, readonly (readonly string[])[]>;
   test?: unknown; gorulmemis?: unknown;
   esik?: number;
 }
@@ -144,11 +146,13 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     for (const s of t?.teach ?? []) goster(b, s.de);
     for (const row of t?.table?.satirlar ?? []) for (const c of row) goster(b, c);
     for (const m of g.dilNoktalari?.get(id) ?? []) goster(b, m);
+    // PM-097 md. 2: sunulan çekim tabloları (kişi + düzenli biçim)
+    sunulanCekim(d, [...(t?.teach ?? []).map((x) => [x.de]), ...(t?.table?.satirlar ?? []), ...(g.dilNoktasiSatirlari?.get(id) ?? (g.dilNoktalari?.get(id) ?? []).map((m) => [m]))], b.cekim);
   };
   const halkaKalip = (b: Bilgi, h: Record<string, unknown>) => {
     for (const kp of dizi(h.kaliplar)) { const de = yazi(nesne(kp).de); if (de) { goster(b, de); b.kaliplar.push(...kalipParca(de)); } }
   };
-  const kopya = (b: Bilgi): Bilgi => ({ kart: new Set(b.kart), biten: new Set(b.biten), kaliplar: [...b.kaliplar], bicim: new Set(b.bicim) });
+  const kopya = (b: Bilgi): Bilgi => ({ kart: new Set(b.kart), biten: new Set(b.biten), kaliplar: [...b.kaliplar], bicim: new Set(b.bicim), cekim: new Set(b.cekim) });
 
   // gösterilmiş kalıplar (kartın açık eşdizimleri, ders parçaları) yalnız BÜTÜN olarak ve KONUMA göre örter (dikişle aynı)
   const gosOnbellek = new WeakMap<Bilgi, { anahtar: string; kp: string[][] }>();
@@ -165,7 +169,26 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     // öğretimde gösterilen sözcük bilinir (LS-16.3 öğrenci kuralı, ogrenci_akis.py "gösterilmiş: ogretim"); kartın tanıtım sırası dikişin işi
     const u0 = bilinmeyenler(d, cumle, k, b.bicim), say = new Map<string, number>();
     const u = u0.filter((x) => { const n = (say.get(x.sozcuk) ?? 0) + 1; say.set(x.sozcuk, n); return n <= tt.filter((t, j) => t === x.sozcuk && !ic.has(j) && !dis.has(j)).length; });
-    const kesin = u.filter((x) => x.tur !== "bicim").map((x) => x.sozcuk), sinirda = u.filter((x) => x.tur === "bicim").map((x) => `~${x.sozcuk}`);
+    // PM-097 md. 2: bilinen fiilin düzenli biçimi, kişinin tablosu sunulduysa serbest; sunulmadıysa ya da düzensizse engel (kesin)
+    const kesin: string[] = [], sinirda: string[] = [];
+    // sözcüğün kalıp dışındaki BÜTÜN geçişleri (Tobi wartet und ihr wartet): biri engelse engel; karar sözcük başına bir kez (dikişle aynı)
+    const ckKarar = new Map<string, CekimKarari>();
+    for (const x of u) {
+      if (x.tur !== "kart" && !ckKarar.has(x.sozcuk)) {
+        let ck: CekimKarari = null;
+        tt.forEach((t, i) => {
+          if (t !== x.sozcuk || ic.has(i) || dis.has(i) || ck?.karar === "engel") return;
+          const k1 = cekimKarari(d, cumle, i, b.kart, b.cekim, x.tur === "bicim" ? x.adaylar : []);
+          if (k1 && (!ck || k1.karar === "engel")) ck = k1;
+        });
+        ckKarar.set(x.sozcuk, ck);
+      }
+      const ck = x.tur === "kart" ? null : ckKarar.get(x.sozcuk) ?? null;
+      if (ck?.karar === "serbest") continue;
+      if (ck?.karar === "engel") kesin.push(`çekim:${x.sozcuk}`);
+      else if (x.tur === "bicim") sinirda.push(`~${x.sozcuk}`);
+      else kesin.push(x.sozcuk);
+    }
     const bildirilen = new Set<string>();
     tt.forEach((t, j) => { if (t !== YUVA_AD && !ic.has(j) && !dis.has(j) && !bildirilen.has(t) && cerceveEksik(t, b)) { bildirilen.add(t); kesin.push(`çerçeve:${t}`); } });
     return { kesin, sinirda };
@@ -193,7 +216,7 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
   };
 
   // önceki haftalar öğretilmiş: tablo kartları, omurga dersleri, dosyası olan günlerin kalıpları
-  const b: Bilgi = { kart: new Set(), biten: new Set(), kaliplar: [], bicim: new Set() };
+  const b: Bilgi = { kart: new Set(), biten: new Set(), kaliplar: [], bicim: new Set(), cekim: new Set() };
   for (const [gn, ks] of tablo) if (gn < ilk) for (const k of ks) b.kart.add(k);
   for (let gn = 1; gn < ilk; gn++) {
     const f = dosya.get(gn);
@@ -247,7 +270,7 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     for (const ad of Object.keys(f).filter((k) => !bilinen.has(k))) bolum(ad);   // resimden seç (gorsel) ve bilinmeyen bölümler: günün bütün kartlarıyla
     bolum("gun_sinavi");
     for (const k of [...gunB.kart]) b.kart.add(k); for (const x of gunB.biten) b.biten.add(x);
-    for (const t of gunB.bicim) b.bicim.add(t); b.kaliplar = gunB.kaliplar;
+    for (const t of gunB.bicim) b.bicim.add(t); for (const t of gunB.cekim) b.cekim.add(t); b.kaliplar = gunB.kaliplar;
   }
 
   const ogretilmedenKesin = adimlar.filter((a) => a.sonuc === "kesin").length, ogretilmedenSinirda = adimlar.filter((a) => a.sonuc === "sinirda").length;

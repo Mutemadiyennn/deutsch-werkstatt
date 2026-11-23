@@ -306,5 +306,131 @@ export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: I
   return out;
 }
 
+/**
+ * Düzenli çekim (PM-097 md. 2). Kartı bilinen fiilin DÜZENLİ biçimi (kök + ek: schlafe, nehme, warte) o kişinin çekim tablosu
+ * daha önce bir dil noktasında (ders tablosu ya da `teach`, `gr:`/`dn:` tablosu) sunulmuşsa serbesttir. Tablo sunulmamışsa ya da
+ * biçim düzensizse (kök değişimi: nimmst, schläft; ayrılan önek: rufe … an) engeldir. Denetçi (dikiş) ve hafta kapısı aynı ölçüyü kullanır.
+ *  - Kişi sınıfları: 1t ich · 2t du · 3t er/sie/es/man · 1c wir · 2c ihr · 3c sie/Sie; geçmiş ortaç (ge…t) "p2".
+ *  - Düzenli biçim yalnız -en / -eln / -ern mastarlarından türetilir (sein, tun türetilmez). Ara -e- (arbeitest, rechnet, öffnet;
+ *    ünsüz + m/n, ama meint, wohnt, lernt) ve s/ß/z sonrası 2t (heißt) kuraldır. -eln 1t iki biçim (sammle, sammele).
+ *    p2 ayrılmayan önekte (bestellt; önekten sonra en az 4 harf: geht, gebt ortaç değil) ve -ieren'de, öteki fiilde ge+kök+t.
+ *  - Kişi zamirle belirlenir: önce fiilden hemen önceki zamir, yoksa hemen sonraki (tümce sonundaki fiilde arkaya bakılmaz);
+ *    zamir yoksa biçimin olabileceği herhangi bir kişi yeter. Zamir varken belirsiz biçimde p2 yalnız ortaç yerinde (tümce sonu ve
+ *    önce yardımcı fiil: Was hast du bestellt?) sayılır (Ihr bestellt → 2c); tek anlamlı ortaç (gewohnt) her zaman p2.
+ *    Satır başı "sie" 3t ya da 3c.
+ *  - Ayrılan önek: fiilden sonra tümce sonunda (noktalama ya da cümle sonu) duran sözcük + mastar sözlükte fiilse (rufe … an →
+ *    anrufen) engel; taban fiilin (rufen) kartı bilinse de.
+ *  - Cümle başı dışında büyük harfle yazılan sözcük (die Frage, die Reise) çekimli fiil sayılmaz.
+ */
+export type CekimSinifi = "1t" | "2t" | "3t" | "1c" | "2c" | "3c" | "p2";
+const AYRILMAZ = /^(be|emp|ent|er|ge|miss|ver|zer)(.{4,})$/;
+/** Fiil mastarının düzenli biçimleri: biçim → sınıflar (mastarın kendisi dahil değildir; o zaten gösterilen biçimdir) */
+export function duzenliBicimler(mastar: string): Map<string, Set<CekimSinifi>> {
+  const out = new Map<string, Set<CekimSinifi>>();
+  const m = mastar.toLowerCase();
+  let kok: string;
+  if (/[^e](el|er)n$/.test(m)) kok = m.slice(0, -1);
+  else if (/en$/.test(m) && m.length > 3) kok = m.slice(0, -2);
+  else return out;
+  const ekle = (b: string, s: CekimSinifi) => { if (b === m) return; let x = out.get(b); if (!x) out.set(b, (x = new Set())); x.add(s); };
+  const araE = /[dt]$/.test(kok) || /(?:[^aeiouäöüylrmnh]|ch)[mn]$/.test(kok);
+  const sz = /(s|ß|z|x)$/.test(kok);
+  ekle(kok + "e", "1t");
+  if (/eln$/.test(m)) ekle(kok.slice(0, -2) + "le", "1t");
+  ekle(kok + (araE ? "est" : sz ? "t" : "st"), "2t");
+  for (const s of ["3t", "2c"] as const) ekle(kok + (araE ? "et" : "t"), s);
+  if (AYRILMAZ.test(m) || /ieren$/.test(m)) ekle(kok + (araE ? "et" : "t"), "p2");
+  else ekle("ge" + kok + (araE ? "et" : "t"), "p2");
+  return out;
+}
+const ZAMIR: Record<string, CekimSinifi[]> = { ich: ["1t"], du: ["2t"], er: ["3t"], es: ["3t"], man: ["3t"], wir: ["1c"], ihr: ["2c"], sie: ["3t", "3c"] };
+/** Fiil kartları: düzenli biçim → [kart, sınıflar]; mastarlar (ayrılan önek denetimi için) */
+const duzenliOnbellek = new WeakMap<KumeDizini, { bicim: Map<string, { kart: string; mastar: string; sinif: Set<CekimSinifi> }[]>; mastar: Set<string> }>();
+function duzenliDizin(d: KumeDizini) {
+  let x = duzenliOnbellek.get(d); if (x) return x;
+  x = { bicim: new Map(), mastar: new Set() };
+  for (const l of d.kartlar.values()) {
+    if (l.pos !== "verb" || d.cerceve.has(l.id)) continue;
+    const t = toks(l.de); const mastar = t[t.length - 1]; if (!mastar || (t.length > 1 && t[0] !== "sich")) continue;
+    x.mastar.add(mastar);
+    for (const [b, s] of duzenliBicimler(mastar)) { let v = x.bicim.get(b); if (!v) x.bicim.set(b, (v = [])); v.push({ kart: l.id, mastar, sinif: s }); }
+  }
+  duzenliOnbellek.set(d, x); return x;
+}
+type Soz = { t: string; o: string; bas: boolean; son: boolean };
+/** toksAsil + tümce sonu bilgisi (sözcükten sonra noktalama ya da metin sonu) */
+function sozcukler(s: string): Soz[] {
+  const x = yerTutucu(s, ` ${AD_YERI} `); const out: Soz[] = [];
+  for (const m of x.matchAll(TOK)) {
+    const once = x.slice(0, m.index).trimEnd(), sonra = x.slice(m.index! + m[0].length).trimStart();
+    const ad = m[0] === AD_YERI;
+    out.push({ t: ad ? YUVA_AD : m[0].toLowerCase(), o: ad ? YUVA_AD : m[0], bas: !once || /[.!?…:„“"»«(–—]$/.test(once), son: !sonra || /^[.!?…:,;“"»«)–—]/.test(sonra) });
+  }
+  return out;
+}
+/** j. sözcüğün kişisi: önce öndeki zamir; yoksa arkadaki (sözcük tümce sonundaysa arkaya bakılmaz). `iyelik`: arkadaki "ihr" + büyük
+ *  harfli ad (ihr Sohn) kişi sayılmaz; yalnız SUNUM tarafında kullanılır (güvenli yön: daha az sınıf sunulur). Karar tarafında
+ *  "Wohnt ihr Mann hier?" 2c ister (sıkı yön, bilinçli; "Kauft ihr Brot?" gevşemesin diye). */
+function kisiOf(ss: readonly Soz[], j: number, iyelik = false): CekimSinifi[] {
+  const on = ZAMIR[ss[j - 1]?.t ?? ""]; if (on && !ss[j - 1]!.son) return on;
+  const ar = ss[j + 1]; if (ss[j]!.son || !ar || !ZAMIR[ar.t]) return [];
+  if (iyelik && ar.t === "ihr" && !ar.son && /^\p{Lu}/u.test(ss[j + 2]?.o ?? "")) return [];
+  return ZAMIR[ar.t]!;
+}
+/** Yardımcı fiil biçimleri: tümce sonundaki ortaç (Ich habe es bestellt) zamirle birlikte de p2 olabilir */
+const YARDIMCI = new Set("habe hast hat haben habt bin bist ist sind seid hatte hattest hatten hattet war warst waren wart".split(" "));
+/** Bir tablonun (satırlar) ya da örnek cümlenin SUNDUĞU düzenli çekim sınıfları: satırın kişisi (ilk hücre zamir; parantez içi
+ *  açıklama atılır: "sie (o, kadın)") ya da hücre içinde zamir + biçim; biçim sözlükteki bir fiilin düzenli biçimi ve sınıfı kişiyle
+ *  tutuyorsa o sınıf sunulmuştur. Tek anlamlı ortaç (gewohnt) p2 sunar. */
+export function sunulanCekim(d: KumeDizini, satirlar: readonly (readonly string[])[], hedef: Set<CekimSinifi> = new Set()): Set<CekimSinifi> {
+  const dz = duzenliDizin(d).bicim;
+  const siniflar = (w: string) => new Set((dz.get(w) ?? []).flatMap((x) => [...x.sinif]));
+  for (const row of satirlar) {
+    const ilk = toks(String(row[0] ?? "").replace(/\([^)]*\)/g, " "));
+    const satirKisi = ilk.length && ilk.every((t) => ZAMIR[t]) ? (ilk.some((t) => t === "er" || t === "es") ? ["3t"] : ilk.flatMap((t) => ZAMIR[t] ?? [])) as CekimSinifi[] : [];
+    for (const cell of row) {
+      const ss = sozcukler(cell);
+      ss.forEach((w, j) => {
+        const s = siniflar(w.t); if (!s.size) return;
+        if (s.size === 1 && s.has("p2")) hedef.add("p2");
+        for (const k of new Set<CekimSinifi>([...satirKisi, ...kisiOf(ss, j, true)])) if (s.has(k)) hedef.add(k);
+      });
+    }
+  }
+  return hedef;
+}
+export type CekimKarari = { karar: "serbest" | "engel"; kart: string; neden: string } | null;
+/**
+ * Cümlenin j. sözcüğü (toksAsil sırası) bilinen bir fiil kartının çekimli biçimi mi (PM-097 md. 2)?
+ *  - serbest: bilinen fiilin düzenli biçimi, (zamirin gösterdiği) kişinin sınıfı sunulmuş ve önek ayrılmamış;
+ *  - engel: bilinen fiilin düzenli biçimi ama sınıfı sunulmamış; ayrılan önek (rufe … an); ya da bilinen fiile eşlenen düzensiz
+ *    biçim (`adaylar` fiil);
+ *  - null: fiil çekimi değil (cümle ortasında büyük harfli sözcük dahil; öteki biçim türleri eski sınıfta kalır).
+ */
+export function cekimKarari(d: KumeDizini, cumle: string, j: number, bilinenKart: ReadonlySet<string>, sunulan: ReadonlySet<CekimSinifi>, adaylar: readonly string[] = []): CekimKarari {
+  const ss = sozcukler(cumle); const s = ss[j]; if (!s) return null;
+  if (!s.bas && /^\p{Lu}/u.test(s.o)) return null;
+  const dz = duzenliDizin(d);
+  const zamir = kisiOf(ss, j);
+  const uyan = (dz.bicim.get(s.t) ?? []).filter((x) => bilinenKart.has(x.kart));
+  // tümce sonunda ve tümcede önce yardımcı fiil varsa ortaç yeri (Ich habe es bestellt; Hast du es bezahlt?)
+  let bas = j; while (bas > 0 && !ss[bas - 1]!.son) bas--;
+  const ortacYeri = s.son && ss.slice(bas, j).some((x) => YARDIMCI.has(x.t));
+  if (uyan.length) {
+    // ayrılan önek: fiilden sonraki ilk tümce sonu sözcüğü + mastar sözlükte fiil (rufe … an → anrufen)
+    const k = ss.findIndex((x, i) => i > j && x.son);
+    if (k > j && !s.son) for (const x of uyan) if (dz.mastar.has(ss[k]!.t + x.mastar)) return { karar: "engel", kart: x.kart, neden: `ayrılan önek (${ss[k]!.t}${x.mastar}) gösterilmedi` };
+  }
+  for (const x of uyan) {
+    // zamir varken belirsiz biçim (bestellt: 3t/2c/p2) kişiyle karar verir; tek anlamlı ortaç (gewohnt) her zaman p2
+    const aday = [...x.sinif].filter((c) => (c === "p2" ? !zamir.length || x.sinif.size === 1 || ortacYeri : !zamir.length || zamir.includes(c)));
+    if (aday.some((c) => sunulan.has(c))) return { karar: "serbest", kart: x.kart, neden: `düzenli ${aday.filter((c) => sunulan.has(c)).join("/")}` };
+  }
+  if (uyan.length) return { karar: "engel", kart: uyan[0]!.kart, neden: `düzenli ama çekim tablosu sunulmadı (${[...uyan[0]!.sinif].join("/")})` };
+  const fiil = adaylar.find((i) => bilinenKart.has(i) && d.kartlar.get(i)?.pos === "verb" && !d.cerceve.has(i));
+  if (fiil) return { karar: "engel", kart: fiil, neden: "düzensiz biçim gösterilmedi" };
+  return null;
+}
+
 /** Rapor için kısa gösterim: kart eksik "x", biçim eksik "~x", eşlenemeyen "?x" */
 export const bilinmeyenYazi = (u: Bilinmeyen[]) => u.map((x) => (x.tur === "kart" ? "" : x.tur === "bicim" ? "~" : "?") + x.sozcuk);

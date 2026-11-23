@@ -7,7 +7,7 @@
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
-import { dikisDenetle, dilNoktasiMetni, rapor, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
+import { dikisDenetle, dilNoktasiMetni, dilNoktasiSatirlari, rapor, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
 import { CDIR, ROOT, loadContent } from "./load.ts";
 
 const argv = process.argv.slice(2);
@@ -34,13 +34,14 @@ const dizin = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, existsS
 
 // dil noktaları (çerçeve kuralı): gr: → registry/grammar.json, dn: → m1/dn-HH.json (grammar.json biçimi; dizi ya da {konular|topics: []})
 const dilNoktalari = new Map<string, string[]>(c.grammar.map((n) => [n.id, dilNoktasiMetni(n)]));
+const dilNoktasiSatirlari_ = new Map<string, string[][]>(c.grammar.map((n) => [n.id, dilNoktasiSatirlari(n)]));
 for (const f of readdirSync(mdir).filter((x) => /^dn-\d{2}\.json$/.test(x)).sort()) {
   const ham = oku<unknown>(join(mdir, f), "dil noktası dosyası");
   const l = Array.isArray(ham) ? ham : Object.values((ham ?? {}) as Record<string, unknown>).find(Array.isArray) ?? [];
-  for (const n of l as { id?: unknown }[]) if (typeof n?.id === "string") dilNoktalari.set(n.id, dilNoktasiMetni(n));
+  for (const n of l as { id?: unknown }[]) if (typeof n?.id === "string") { dilNoktalari.set(n.id, dilNoktasiMetni(n)); dilNoktasiSatirlari_.set(n.id, dilNoktasiSatirlari(n)); }
 }
 
-const r = dikisDenetle({ gunler, tablo, omurga, dizin, dersler: new Map(c.temel.map((t) => [t.data.id, t.data])), dilNoktalari, sadece, tum: argv.includes("--tum"), yarim: argv.includes("--yarim") });
+const r = dikisDenetle({ gunler, tablo, omurga, dizin, dersler: new Map(c.temel.map((t) => [t.data.id, t.data])), dilNoktalari, dilNoktasiSatirlari: dilNoktasiSatirlari_, sadece, tum: argv.includes("--tum"), yarim: argv.includes("--yarim") });
 console.log(`Dikiş denetçisi (PM-090 md. 2.1) · tablo ${tabloYol.replace(ROOT + "/", "")}`);
 console.log(rapor(r));
 if (jsonYol) writeFileSync(jsonYol, JSON.stringify(r, null, 2));
