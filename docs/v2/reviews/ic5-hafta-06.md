@@ -269,3 +269,8 @@ Dokunulmayanlar ve gerekçesi:
 `review` alanları bütün dosyalarda `draft` kaldı.
 
 **Karar: P0-1 KAPANDI** (okur fark turu sırada: 18 Türkçe alan).
+
+### Okur fark turu dönüşü (İÇ-15)
+Okur fark turu (docs/v2/reviews/okur/ic5-hafta-06.md, "Fark turu (İÇ-15, #238)"): 45 alan, 44 GEÇTİ, 1 GERİ.
+- gun-39 · m1:39:s3 · `why_tr`: «Gelmek geçmişte **ist** ile kurulur: …» → okurun önerisi aynen: «Otobüs için **ist** gelir: **ist spät gekommen**, geç geldi.» (genel kural gibi okunuyordu; ben için **bin**). Okur yalnız bu alanı yeniden okur.
+- m1:38:v1 s8 **Meine Freundin**: okur "bir arkadaşım" diye anlıyor; değişiklik yok.
