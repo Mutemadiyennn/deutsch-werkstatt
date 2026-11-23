@@ -43,19 +43,22 @@ export interface ResimSoru { kart: string; secenekler: ResimSecenek[]; dogru: nu
  * Aynı fotoğraf (src) iki kez çıkmaz. Uygun değilse null (planlayıcı bu türü o kart için önermez).
  * @param harita seçilmiş açık fotoğraf haritası (`foto.json`): anahtar → { src }
  */
-export function resimSecenekleri(kart: Lexeme, adaylar: readonly Lexeme[], harita: Readonly<Record<string, { src: string }>>, tohum: string): ResimSoru | null {
+export function resimSecenekleri(kart: Lexeme, adaylar: readonly Lexeme[], harita: Readonly<Record<string, { src: string; ayri?: readonly string[] }>>, tohum: string): ResimSoru | null {
   const kendi = harita[kartGorsel(kart.id)];
   if (!kendi) return null;
+  // görseli karışan kartlar (İÇ haritası "aynı halkada çıkmasın": 👩 Frau ~ 👧 Mädchen) iki yönde çeldirici olmaz (inceleme #193 P1-1)
+  const ayri = (a: Lexeme, b: Lexeme) => (harita[kartGorsel(a.id)]?.ayri ?? []).some((w) => w.toLowerCase() === b.de.toLowerCase());
+  const yasak = (a: Lexeme, b: Lexeme) => karisir(a, b) || ayri(a, b) || ayri(b, a);
   const r = tohumluRng(`${tohum}|resim|${kart.id}`);
   const goruldu = new Set([kendi.src]);
-  const uygun = adaylar.filter((x) => isCard(x) && !!harita[kartGorsel(x.id)] && !karisir(kart, x));
+  const uygun = adaylar.filter((x) => isCard(x) && !!harita[kartGorsel(x.id)] && !yasak(kart, x));
   const ayniTur = karistir(uygun.filter((x) => x.pos === kart.pos), r), oteki = karistir(uygun.filter((x) => x.pos !== kart.pos), r);
   const cel: Lexeme[] = [];
   for (const x of [...ayniTur, ...oteki]) {
     if (cel.length >= 3) break;
     const src = harita[kartGorsel(x.id)]!.src;
     // çeldiriciler birbirine de karışmasın (iki "kış" görseli tek doğruyu bozar)
-    if (goruldu.has(src) || cel.some((c) => karisir(c, x))) continue;
+    if (goruldu.has(src) || cel.some((c) => yasak(c, x))) continue;
     goruldu.add(src); cel.push(x);
   }
   if (cel.length < 3) return null;
