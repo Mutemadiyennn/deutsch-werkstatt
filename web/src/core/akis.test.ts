@@ -189,6 +189,15 @@ describe("Halka planlayıcısı (AKIS AK-2, AK-3, AK-9) — 50 tohum × 4 durum"
       for (const d of halkaD(x.p)) { expect(d.adimlar.at(-1)!.tur, etiket(x, d.id)).toBe("sahne"); expect(d.adimlar.at(-2)!.tur, etiket(x, d.id)).toBe("eslestir"); }
     }
   });
+  it("eşleştir yalnız eslestir_kart[0]+ kartlık halkada: 2–3 kartlık halkada yok, 4'te var (PM-098 md. 2, inceleme #234 P1-1)", () => {
+    expect(POLITIKA.eslestir_kart).toEqual([4, 6]); expect(POLITIKA.halka_kart).toEqual([2, 6]);
+    const kes = (n: number) => halkalar.map((h) => { const k = h.kartlar.slice(0, n); return { ...h, kartlar: k, gorev_cumleleri: h.gorev_cumleleri.filter((g) => k.includes(g.kart)) }; });
+    for (const n of [2, 3, 4]) {
+      const p = plan("1:es", "sifir", { gun: { ...g1, halkalar: kes(n) } });
+      const es = halkaD(p).flatMap((d) => d.adimlar.filter((a) => a.tur === "eslestir"));
+      if (n < 4) expect(es, `${n} kart`).toEqual([]); else expect(es.length, `${n} kart`).toBeGreaterThan(0);
+    }
+  });
   it("dil durağı (AK-1): parçalar arasında en az bir halka; 1. parça kullanımla biter, 2. parça hatırlatmayla başlar", () => {
     for (const x of PLANLAR) {
       const d = x.p.duraklar;
