@@ -431,3 +431,115 @@ Kapsam: 1. turda GERİ dönen 8 madde ve gün 50 `okuma_yazma.sorular[m1:50:o4].
 Dosya durumu (OD-9.4): 2. turdan sonra `gun-50` … `gun-54` dosyalarında okur GERİ'si kalmadı.
 
 OKUR: GEÇTİ
+
+---
+
+## 3. tur (kapı düzeltmeleri)
+
+Kapsam: hafta kapısı düzeltmeleriyle gelen yeni metinler. `gorulmemis-08.json` `m1:h08:g5`, `m1:h08:g6`; `hafta-sonu-testi-08.json` (tamamı); `gun-55.json`, `gun-56.json`; `gun-52.json` prova `n2b` ve `n4`; `gun-53.json` prova `n4`; `gun-54.json` `sahne.bolumler[b1].cevapla`. Sözcük sayımı önceki turlardaki gibi: kalın Almanca sayılır, `…` sayılmaz. Bu sırada dilbilimci aynı dosyalarda küçük düzeltme yapıyor olabilir; aşağıdaki metinler okuma anındaki hâlidir.
+
+### Sonuç
+
+| | |
+|---|---|
+| Okunan metin | 46 (görülmemiş: 5, hafta sonu testi: 24, gün 55: 3, gün 56: 3, gün 52 prova: 6, gün 53 prova: 3, gün 54 cevapla: 2) |
+| GEÇTİ | 42 |
+| GERİ | 4 |
+
+GERİ olan kimlikler:
+1. `gorulmemis-08.json` `durumlar[m1:h08:g6].durum_tr`
+2. `gorulmemis-08.json` `durumlar[m1:h08:g6].why_tr`
+3. `hafta-sonu-testi-08.json` `maddeler[m1:54:t01].why_tr`
+4. `hafta-sonu-testi-08.json` `maddeler[m1:54:t02].why_tr`
+
+Dosya durumu (OD-9.4): `gorulmemis-08.json` ve `hafta-sonu-testi-08.json` bu hâliyle "reviewed" sayılamaz. `gun-52`, `gun-53`, `gun-54` (okunan düğümler), `gun-55`, `gun-56` GERİ'siz.
+
+### GERİ dönenler
+
+Öneri sütunu yalnızca yönü söyler. Metni yazar ya da dilbilimci yazar.
+
+| # | Dosya · alan | Metin | Kendi sözlerimle | Neden | Öneri (yön) |
+|---|---|---|---|---|---|
+| 1 | `gorulmemis-08.json` `durumlar[m1:h08:g6].durum_tr` | İstasyonun yanındaki bir eczanedesin. Öksürüğün için tablet istedin ama bitmiş. Eczacı yarın geleceğini söylüyor. Tabletleri senin için ayırtmasını iste ve ne zaman alacağını sor. | Tablet kalmamış. Eczacı yarın kendisinin geleceğini söylüyor (?). Tabletleri ayırtmasını isteyip onları ne zaman gelip alacağımı soracağım. | İki yerde iki anlama geliyor. (a) "Eczacı yarın geleceğini söylüyor": kim gelecek? İlk okumada eczacının kendisi diye okudum; asıl anlam tabletler gelecek. (b) "ne zaman alacağını sor": ayırtılan tableti ne zaman teslim alacağımı sanıyorum. Asıl anlam (**Wann soll ich sie nehmen?**) tableti günün hangi saatinde içeceğim. 1. turdaki gün 54 `can_do.tr` GERİ'siyle aynı "almak" sorunu. | (a) Gelecek olanın tabletler olduğu yazılsın (hafta sonu testi t09'daki "damlaların yarın geleceğini" gibi). (b) Kullanım için "almak" dışında bir söz (ör. içmek, kullanmak). |
+| 2 | `gorulmemis-08.json` `durumlar[m1:h08:g6].why_tr` | Ayırtmayı **Können Sie sie reservieren?** ile istersin, zamanı **Wann soll ich sie nehmen?** ile sorarsın. | **Können Sie** ile ayırtmayı isterim, **Wann soll ich** ile zamanı sorarım. | 15 kelime. | 14 kelimenin altına insin (ör. iki cümle). |
+| 3 | `hafta-sonu-testi-08.json` `maddeler[m1:54:t01].why_tr` | Yeni saati **Freitag um halb elf?** diye tekrar edersen yanlış anlama kalmaz; **halb elf** 10.30 demektir. | Saati soru gibi tekrar edersem karışıklık olmaz. Bir de **halb elf** 10.30 demek. | Sembol: noktalı virgül. Noktalı virgülle tek cümle 17 kelime. İki ayrı fikir: tekrar etmenin faydası ve **halb elf**'in anlamı. | Tek fikir kalsın ya da iki ayrı cümle olsun; noktalı virgül çıksın. |
+| 4 | `hafta-sonu-testi-08.json` `maddeler[m1:54:t02].why_tr` | İstediğin şey yoksa başkasını **Dann nehme ich …** ile seçersin; **Dann** o zaman demektir. | İstediğim yoksa **Dann nehme ich** diye başka şey alırım. **Dann** "o zaman" demek. | Sembol: noktalı virgül. İki fikir. Anlamı tek okumada anladım; geri dönme nedeni yalnız sembol. | Noktalı virgül yerine nokta (iki cümle) ya da tek fikir. |
+
+### Görülmemiş durumlar (`gorulmemis-08.json`, g5–g6)
+
+| # | Kimlik | Alan | Metin | Kendi sözlerimle | Karar | Not |
+|---|---|---|---|---|---|---|
+| 1 | `m1:h08:g5` | `durum_tr` | Pazartesi akşamı dil kursundasın. Öğretmen herkese hafta sonunu soruyor. Cumartesi bir geziye gidecektin ama gezi iptal oldu, sen de evde kaldın. Bunu anlat. | Kursta öğretmen hafta sonumu soruyor. Gezim iptal oldu, evde kaldım diyeceğim. | GEÇTİ | En uzun cümle 12 kelime. |
+| 2 | `m1:h08:g5` | `why_tr` | İptali **ist ausgefallen** ile, nerede olduğunu **Ich war zu Hause** ile söylersin. | İptal için **ist ausgefallen**, evdeydim için **Ich war zu Hause**. | GEÇTİ | 12 kelime. İki bilgi; önceki turlardaki gibi. |
+| 3 | `m1:h08:g6` | `durum_tr` | (yukarıda 1) | — | **GERİ** | Yukarıda 1. |
+| 4 | `m1:h08:g6` | `yer` | istasyonun yanında bir eczane | İstasyonun yanındaki eczane. | GEÇTİ | |
+| 5 | `m1:h08:g6` | `why_tr` | (yukarıda 2) | — | **GERİ** | Yukarıda 2. |
+
+g5 `yer` alanı kimlik (`pl:sprachkurs`), okunmadı.
+
+### Hafta sonu testi 08 (`hafta-sonu-testi-08.json`, 24 metin, 2 GERİ)
+
+Almanca şıklar (`opts`, t02 ve t07) Türkçe olmadığı için sayılmadı.
+
+| # | Kimlik | Alan | Metin | Kendi sözlerimle | Karar | Not |
+|---|---|---|---|---|---|---|
+| 1 | `t01` | `situation_tr` | Sekreter randevunu değiştiriyor. Yeni saati tekrar ederek doğrula ve kabul et. | Yeni saati tekrar edip olur diyeceğim. | GEÇTİ | |
+| 2 | `t01` | `why_tr` | Yeni saati **Freitag um halb elf?** diye … ; **halb elf** 10.30 demektir. | — | **GERİ** | Yukarıda 3. |
+| 3 | `t02` | `tr` | Ekmeğiniz kalmadı mı? O zaman dört küçük ekmek alayım. | Ekmek yoksa dört küçük ekmek alırım. | GEÇTİ | |
+| 4 | `t02` | `why_tr` | İstediğin şey yoksa başkasını **Dann nehme ich …** ile seçersin; … | — | **GERİ** | Yukarıda 4. |
+| 5 | `t03` | `tr` | O zaman yarım kilo elma alayım. | | GEÇTİ | |
+| 6 | `t03` | `why_tr` | **Dann** başa gelince **nehme** hemen arkasından gelir, yarım kilo da **ein halbes Kilo** olur. | **Dann** başta olunca hemen **nehme** gelir. Yarım kilo **ein halbes Kilo**. | GEÇTİ | Tam 14 kelime. İki bilgi; önceki turlardaki gibi. |
+| 7 | `t04` | `situation_tr` | Basti soruyor. Cumartesi Ioana ile doğa yürüyüşüne gideceksin. Söyle. | Cumartesi Ioana ile yürüyüşe gideceğimi söyleyeceğim. | GEÇTİ | |
+| 8 | `t04` | `why_tr` | Planı **Ich gehe … wandern** ile söylersin, **wandern** en sona gider. | **Ich gehe** derim, **wandern** sonda. | GEÇTİ | |
+| 9 | `t05` | `tr` | Cuma günü nakit para çekeceğim. | | GEÇTİ | |
+| 10 | `t05` | `why_tr` | **hole** ikinci yerde durur, **Am Freitag** başa gelirse **hole ich** olur. | **hole** ikinci kelime. **Am Freitag** ile başlarsam **hole ich** derim. | GEÇTİ | 11 kelime. |
+| 11 | `t06` | `situation_tr` | Pazartesi Tobi soruyor. Pazar günkü antrenman iptal oldu, sen de Ioana ile göle gittin. Anlat. | Antrenman iptal oldu, Ioana ile göle gittim diyeceğim. | GEÇTİ | |
+| 12 | `t06` | `why_tr` | İptali **ist ausgefallen** ile, nerede olduğunu **Ich war … am See** ile söylersin. | İptal **ist ausgefallen**, gölde olmak **Ich war am See**. | GEÇTİ | |
+| 13 | `t07` | `tr` | Dokuz avro yirmi sent. – Buyurun on avro. Üstü kalsın. | | GEÇTİ | |
+| 14 | `t07` | `why_tr` | Bahşiş bırakıp üstünü istemiyorsan **Stimmt so** dersin. | Üstü kalsın demek **Stimmt so**. | GEÇTİ | |
+| 15 | `t08` | `instr_tr` | Pazartesi iş arkadaşına dünkü maçı anlatıyorsun. Cümleyi geçmişe çevir. | Cümleyi olmuş bitmiş bir şey gibi söyleyeceğim. | GEÇTİ | Not: "geçmişe çevir" günlük sözle anlaşılıyor; "geçmiş zaman" gibi terim değil. |
+| 16 | `t08` | `why_tr` | Olmuş bir şey için **habe … gegessen** dersin, **gegessen** en sona gider. | | GEÇTİ | |
+| 17 | `t09` | `situation_tr` | Eczacı damlaların yarın geleceğini söylüyor. Damlaları senin için ayırtmasını kibarca iste. | Damlalar yarın gelecek, benim için ayırmasını isteyeceğim. | GEÇTİ | Burada gelecek olan açıkça damlalar. |
+| 18 | `t09` | `why_tr` | Kibar istek **Können Sie …?** ile başlar, **reservieren** en sona gider. | | GEÇTİ | |
+| 19 | `t10` | `tr` | Damlaları ne zaman almalıyım? | Damlaları ne zaman kullanmalıyım. | GEÇTİ | Not (karar değil): t09'un hemen ardından okununca "ne zaman gelip almalıyım" diye de okunabiliyor. Taşlar (**nehmen**) anlamı belli ettiği ve 1. turda aynı çeviri GEÇTİ sayıldığı için GEÇTİ. |
+| 20 | `t10` | `why_tr` | **Wann** başta, **soll** hemen arkasında, **nehmen** en sonda: **Wann soll ich … nehmen?** | | GEÇTİ | 12 kelime. |
+| 21 | `t11` | `situation_tr` | Fırında ödeme yapacaksın. Sende yalnızca kart var. Hemen gidip nakit çekeceğini söyle. | | GEÇTİ | |
+| 22 | `t11` | `why_tr` | Çözümü **Ich hole schnell Bargeld** ile söylersin, **hole** ikinci yerde durur. | | GEÇTİ | |
+| 23 | `t12` | `situation_tr` | Muayenehaneyi arıyorsun. Cuma günkü randevun için arıyorsun. Kendini tanıt ve konuyu söyle. | Arayıp adımı ve neden aradığımı söyleyeceğim. | GEÇTİ | |
+| 24 | `t12` | `why_tr` | Telefonda önce **Hier ist …** ile adını, sonra **Es geht um …** ile konuyu söylersin. | | GEÇTİ | 13 kelime. |
+
+### Gün 55 ve gün 56 (`gun-55.json`, `gun-56.json`)
+
+| # | Dosya · alan | Metin | Kendi sözlerimle | Karar | Not |
+|---|---|---|---|---|---|
+| 1 | `gun-55` `title_tr` | A1 sınavı: duyduğunu ve okuduğunu anlamak | Bugün dinleme ve okuma sınavı. | GEÇTİ | |
+| 2 | `gun-55` `goal_tr` | Hiç duymadığın kısa kayıtları ve hiç görmediğin kısa metinleri anlarsın. | Yeni kayıtları ve metinleri anlarım. | GEÇTİ | |
+| 3 | `gun-55` `can_do.tr` | Hiç duymadığım kısa kayıtta ve metinde ana fikri ve bir ayrıntıyı anlarım. | Yeni bir kayıtta da metinde de ne anlatıldığını ve bir ayrıntıyı anlarım. | GEÇTİ | 12 kelime. |
+| 4 | `gun-56` `title_tr` | A1 sınavı: üç yeni durumda konuşmak | Bugün konuşma sınavı. | GEÇTİ | Not (karar değil): gün mesaj yazmayı da içeriyor; başlık yalnız konuşmayı söylüyor. |
+| 5 | `gun-56` `goal_tr` | Kısa bir mesaj yazar, hiç karşılaşmadığın durumlarda yardımsız konuşursun. | Mesaj yazarım, yeni durumlarda yardımsız konuşurum. | GEÇTİ | |
+| 6 | `gun-56` `can_do.tr` | Hiç karşılaşmadığım üç durumda yardımsız konuşur, kısa bir mesaj yazarım. | | GEÇTİ | |
+
+### Prova düğümleri ve gün 54 cevapla
+
+| # | Dosya · alan | Metin | Kendi sözlerimle | Karar | Not |
+|---|---|---|---|---|---|
+| 1 | `gun-52` `prova.dugumler[n2b].tr` | Hay aksi! Yürüyüşe pazar da gidebilirsin. Cumartesi takımım oynuyor! | Basti yürüyüşü pazara al, cumartesi maç var diyor. | GEÇTİ | |
+| 2 | `gun-52` `n2b.secenekler[0].tr` | Tamam, geliyorum. Bilet ne kadar? | | GEÇTİ | |
+| 3 | `gun-52` `n2b.secenekler[0].geri_bildirim_tr` | Planını değiştirdin, kabul ettin ve fiyatı sordun. | | GEÇTİ | |
+| 4 | `gun-52` `prova.dugumler[n4].tr` | Süper! Sonra da birlikte sosis yeriz. | | GEÇTİ | |
+| 5 | `gun-52` `n4.secenekler[0].tr` | Süper! Cumartesi görüşürüz! | | GEÇTİ | |
+| 6 | `gun-52` `n4.secenekler[0].geri_bildirim_tr` | Sıcak bir kapanış. | Güzel, samimi bitirdim. | GEÇTİ | |
+| 7 | `gun-53` `prova.dugumler[n4].tr` | Ailemin yanındaydım. Çok eğlenceliydi. | | GEÇTİ | |
+| 8 | `gun-53` `n4.secenekler[0].tr` | Güzel! Bir kahve ister misin? | | GEÇTİ | |
+| 9 | `gun-53` `n4.secenekler[0].geri_bildirim_tr` | Sıcak bir teklif. Yeni iş arkadaşı rahatlıyor. | Kahve teklifim iyi oldu, o da rahatladı. | GEÇTİ | |
+| 10 | `gun-54` `sahne.bolumler[b1].cevapla.situation_tr` | Eczacı soruyor: Frau Brandl tabletleri ne zaman alacak? Doktorun söylediğini aktar. | Doktorun dediği saati (sabah ve akşam) eczacıya söyleyeceğim. | GEÇTİ | "Doktorun söylediğini" sözü "almak"ı "içmek" diye okutuyor; 1. turdaki kararla aynı. |
+| 11 | `gun-54` `sahne.bolumler[b1].cevapla.why_tr` | Zamanı **am Morgen und am Abend** ile söylersin. | | GEÇTİ | |
+
+### Notlar (karar değil)
+
+- "Almak" bu hafta üçüncü kez iki anlamda geçiyor (1. turda gün 54 `goal_tr`, `can_do.tr`; bu turda g6 `durum_tr`, hafta sonu testi t10). Eczane sahnelerinde "ayırt + almak" yan yana gelince öğrenci hep "gelip teslim almak" diye okuyor. g6 dışındakiler bağlamla kurtuluyor.
+- g5 `karsi` **die Kursleiterin**, g6 `karsi` **ein Apotheker** Almanca. Öğrenciye görünüyorsa Türkçe değil; kimlik alanı sayıp okumadım.
+- Bu turdaki 4 GERİ'nin ikisi yalnız noktalı virgül (t01, t02). Anlam olarak ikisini de tek okumada anladım.
+- Hiçbir yeni metinde `=`, tırnak içinde Almanca, İngilizce ya da dilbilgisi terimi yok.
+
+OKUR: GERİ — 4 madde
