@@ -68,11 +68,11 @@ function useModul<T>(yukle: () => Promise<T>): T | null | "hata" {
 }
 const yuklenemedi = <ErrorPanel message="Ekran yüklenemedi. İnternet bağlantını kontrol edip tekrar dene." onRetry={() => location.reload()} />;
 function AkisRota({ day }: { day: number }) {
-  const m = useModul(() => (akisModul ??= import("./screens/Akis.tsx").catch((e) => { akisModul = null; throw e; })));
+  const m = useModul(() => (akisModul ??= within(import("./screens/Akis.tsx")).catch((e) => { akisModul = null; throw e; })));
   return m === "hata" ? yuklenemedi : m ? <m.AkisEkrani day={day} /> : <Loading />;
 }
 function HalkaTurRota() {
-  const m = useModul(() => import("./screens/HalkaTurDeneme.tsx"));
+  const m = useModul(() => within(import("./screens/HalkaTurDeneme.tsx")));
   return m === "hata" ? yuklenemedi : m ? <m.HalkaTurDeneme /> : <Loading />;
 }
 

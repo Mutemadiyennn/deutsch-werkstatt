@@ -7,15 +7,15 @@
  */
 import { gorevSay } from "../services/gorev.ts";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
-import { Gun, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
+import { Gun, bilinmeyenler, kumeDizini, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { adimXpVer, xpVer } from "../services/ilerleme.ts";
-import { XP } from "../core/gun.ts";
+import { XP, bayrakliGunler } from "../core/gun.ts";
 import { personalizeDeep } from "../core/persona.ts";
-import { loadIndex, loadLexicon, loadM1Gun, contentUrl } from "../services/content.ts";
-import { addClaim, getMeta, setMeta } from "../data/db.ts";
+import { loadIndex, loadLexicon, loadM1Gun, contentUrl, loadTemeller, loadWorld, loadGenelAdlar } from "../services/content.ts";
+import { addClaim, getMeta, itemsMap, setMeta } from "../data/db.ts";
 import { plain, Rich } from "../ui/rich.tsx";
-import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
+import { ADIM_TR, BASLANGIC, dikteSuz, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
 import { baslangicYavas, konusanAta, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
@@ -105,9 +105,17 @@ export function MedyaEkrani({ day, id }: { day: number; id: string }) {
       const m = medyalar(gun).find((x) => x.id === id);
       if (!m) throw new Error("Bu kayıt bulunamadı.");
       const [{ lexemes }, i] = await Promise.all([loadLexicon(), loadIndex()]);
-      setVeri({ gun, m, lex: lexemes, base: contentUrl(i.version) });
+      // akış günü: öğretilmemiş sözcük isteyen dikte basamağı atlanır (P0-1). Bilinen: cihazda görülmüş kartlar, ders, dünya ve genel adlar
+      let mm = m;
+      if (bayrakliGunler().includes(day) && gun.halkalar?.length) {
+        const [temel, world, genel, items] = await Promise.all([loadTemeller(), loadWorld(), loadGenelAdlar(), itemsMap(lexemes.map((l) => l.id))]);
+        const dizin = kumeDizini(lexemes, temel, world, genel);
+        const kart = new Set([...items].filter(([, x]) => x.passive?.fsrs).map(([k]) => k));
+        mm = dikteSuz(m, (de) => bilinmeyenler(dizin, de, { kart, biten: new Set() }).length > 0);
+      }
+      setVeri({ gun, m: mm, lex: lexemes, base: contentUrl(i.version) });
       // kayıtlı konum içerikle uyuşmuyorsa (içerik değişti) baştan başla; ekran çökmez (inceleme #60 P1-3)
-      setP(gecerliKonum(await getMeta<MedyaIlerleme>(ilerlemeAnahtari(id)), m));
+      setP(gecerliKonum(await getMeta<MedyaIlerleme>(ilerlemeAnahtari(id)), mm));
     })().catch((e) => setErr(String(e?.message || e)));
     return () => stopSpeaking();
   }, [day, id]);
