@@ -1,0 +1,1818 @@
+{
+ "schema": 1,
+ "id": "m1:gun:17",
+ "day": 17,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Kibar rica: Könnten Sie das wiederholen?",
+ "goal_tr": "Telefonda anlamadığında kibarca tekrar istersin, aktarılmayı ve geri aranmayı rica edersin.",
+ "can_do": {
+  "id": "cd:m1:17",
+  "tr": "Anlamadığımda kibarca tekrar etmesini isterim."
+ },
+ "unit": "u:m1:17",
+ "arm": "pazar",
+ "place": "pl:buergerbuero",
+ "characters": [
+  "ch:schneider",
+  "ch:popescu",
+  "ch:pichler"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:bitte",
+   "lx:danke",
+   "lx:Dienstag",
+   "lx:Donnerstag",
+   "lx:Frau",
+   "lx:Freitag",
+   "lx:gehen",
+   "lx:hallo",
+   "lx:Herr",
+   "lx:heute",
+   "lx:ja",
+   "lx:Mittwoch",
+   "lx:Montag",
+   "lx:morgen",
+   "lx:nein",
+   "lx:Samstag",
+   "lx:Tag",
+   "lx:haben",
+   "lx:kommen",
+   "lx:wann",
+   "lx:acht",
+   "lx:Büro",
+   "lx:drei",
+   "lx:elf",
+   "lx:neun",
+   "lx:null",
+   "lx:Nummer",
+   "lx:vier",
+   "lx:zehn",
+   "lx:zwei",
+   "lx:zwölf",
+   "lx:noch",
+   "lx:also",
+   "lx:da",
+   "lx:dann",
+   "lx:gern",
+   "lx:halb",
+   "lx:leider",
+   "lx:Nachmittag",
+   "lx:nur",
+   "lx:schon",
+   "lx:Termin",
+   "lx:Uhr",
+   "lx:Uhrzeit",
+   "lx:Viertel",
+   "lx:Vormittag",
+   "lx:wieder",
+   "lx:brauchen",
+   "lx:was",
+   "lx:wie",
+   "lx:wo",
+   "lx:können",
+   "lx:möchten",
+   "lx:müssen",
+   "lx:sagen",
+   "lx:sein",
+   "lx:sprechen",
+   "lx:wiederholen",
+   "lx:gut",
+   "lx:immer",
+   "lx:jetzt",
+   "lx:klar",
+   "lx:viel",
+   "lx:bringen",
+   "lx:hier",
+   "lx:Küche",
+   "lx:meinen",
+   "lx:Entschuldigung",
+   "lx:kaputt",
+   "lx:langsam",
+   "lx:du",
+   "lx:es",
+   "lx:ich",
+   "lx:oder",
+   "lx:reparieren",
+   "lx:sie",
+   "lx:wir",
+   "lx:auf",
+   "lx:für",
+   "lx:mit",
+   "lx:nicht",
+   "lx:sie#2",
+   "lx:und",
+   "lx:von",
+   "lx:zu",
+   "lx:zu#2",
+   "lx:auch",
+   "lx:geben",
+   "lx:im",
+   "lx:in",
+   "lx:etwas",
+   "lx:Chef",
+   "lx:nochmal",
+   "lx:Name"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a1-12:t1"
+ ],
+ "yeni_kartlar": [
+  "lx:am",
+  "lx:aussteigen",
+  "lx:Prüfung",
+  "lx:Ausweis",
+  "lx:einkaufen",
+  "lx:Hausaufgabe",
+  "lx:Fahrrad",
+  "lx:Bahnhof",
+  "lx:verbinden",
+  "lx:auflegen",
+  "lx:zurückrufen",
+  "lx:Anrufbeantworter",
+  "lx:Durchwahl",
+  "lx:Rückruf",
+  "lx:Haus",
+  "lx:zurück"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:17:h1",
+   "title_tr": "Kibar rica: bağlar mısınız, geri arar mısınız?",
+   "kartlar": [
+    "lx:verbinden",
+    "lx:Durchwahl",
+    "lx:zurückrufen",
+    "lx:Rückruf"
+   ],
+   "kaliplar": [
+    {
+     "de": "Könnten Sie …?",
+     "tr": "… -abilir misiniz? (kibar)"
+    },
+    {
+     "de": "Einen Moment, ich verbinde.",
+     "tr": "Bir dakika, bağlıyorum."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:verbinden",
+     "de": "Könnten Sie mich mit Frau Schneider verbinden?",
+     "tr": "Beni Schneider Hanım'a bağlayabilir misiniz?",
+     "accepted": [
+      "Könnten Sie mich mit Frau Schneider verbinden?",
+      "Könnten Sie mich bitte mit Frau Schneider verbinden?",
+      "Können Sie mich mit Frau Schneider verbinden?"
+     ]
+    },
+    {
+     "kart": "lx:verbinden",
+     "de": "Guten Tag, hier ist {name}. Könnten Sie mich mit dem Chef verbinden?",
+     "tr": "İyi günler, ben {name}. Beni şefe bağlayabilir misiniz?",
+     "accepted": [
+      "Guten Tag, hier ist {name}. Könnten Sie mich mit dem Chef verbinden?",
+      "Guten Tag, hier ist {name}. Könnten Sie mich bitte mit dem Chef verbinden?",
+      "Guten Tag, {name} hier. Könnten Sie mich mit dem Chef verbinden?"
+     ]
+    },
+    {
+     "kart": "lx:Durchwahl",
+     "de": "Haben Sie eine Durchwahl?",
+     "tr": "Doğrudan bir numaranız var mı?",
+     "accepted": [
+      "Haben Sie eine Durchwahl?",
+      "Haben Sie auch eine Durchwahl?",
+      "Gibt es eine Durchwahl?"
+     ]
+    },
+    {
+     "kart": "lx:Durchwahl",
+     "de": "Könnten Sie mir die Durchwahl geben?",
+     "tr": "Bana doğrudan numarayı verebilir misiniz?",
+     "accepted": [
+      "Könnten Sie mir die Durchwahl geben?",
+      "Könnten Sie mir bitte die Durchwahl geben?",
+      "Können Sie mir die Durchwahl geben?"
+     ]
+    },
+    {
+     "kart": "lx:zurückrufen",
+     "de": "Könnten Sie mich zurückrufen?",
+     "tr": "Beni geri arayabilir misiniz?",
+     "accepted": [
+      "Könnten Sie mich zurückrufen?",
+      "Könnten Sie mich bitte zurückrufen?",
+      "Können Sie mich zurückrufen?"
+     ]
+    },
+    {
+     "kart": "lx:zurückrufen",
+     "de": "Ich kann morgen zurückrufen.",
+     "tr": "Yarın geri arayabilirim.",
+     "accepted": [
+      "Ich kann morgen zurückrufen.",
+      "Morgen kann ich zurückrufen.",
+      "Ich kann Sie morgen zurückrufen."
+     ]
+    },
+    {
+     "kart": "lx:Rückruf",
+     "de": "Danke für den Rückruf!",
+     "tr": "Geri aradığınız için teşekkürler!",
+     "accepted": [
+      "Danke für den Rückruf!",
+      "Vielen Dank für den Rückruf!",
+      "Danke für Ihren Rückruf!"
+     ]
+    },
+    {
+     "kart": "lx:Rückruf",
+     "de": "Ich möchte einen Rückruf, bitte.",
+     "tr": "Geri aranmak istiyorum, lütfen.",
+     "accepted": [
+      "Ich möchte einen Rückruf, bitte.",
+      "Ich hätte gern einen Rückruf.",
+      "Einen Rückruf, bitte."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Belediyedeki Bürgerbüro'yu arıyorsun. Schneider Hanım çok meşgul.",
+    "satirlar": [
+     {
+      "r": "ch:schneider",
+      "de": "Schneider, guten Tag. Ja, bitte?",
+      "tr": "Schneider, iyi günler. Buyurun?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Guten Tag, hier ist {name}. Könnten Sie mich zurückrufen?",
+      "tr": "İyi günler, ben {name}. Beni geri arayabilir misiniz?"
+     },
+     {
+      "r": "ch:schneider",
+      "de": "Ja, gern. Heute um drei.",
+      "tr": "Evet, tabii. Bugün saat üçte."
+     }
+    ],
+    "soru": {
+     "q_tr": "Schneider Hanım ne zaman geri arıyor?",
+     "opts": [
+      "Bugün saat üçte",
+      "Yarın",
+      "Pazartesi",
+      "Hemen şimdi"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:17:h2",
+   "title_tr": "Telesekreter, kapatmak, geri dönmek",
+   "kartlar": [
+    "lx:Anrufbeantworter",
+    "lx:auflegen",
+    "lx:zurück",
+    "lx:Haus"
+   ],
+   "kaliplar": [
+    {
+     "de": "Bitte legen Sie nicht auf.",
+     "tr": "Lütfen telefonu kapatmayın."
+    },
+    {
+     "de": "zu Hause",
+     "tr": "evde"
+    },
+    {
+     "de": "Auf Wiederhören!",
+     "tr": "Telefonda: hoşça kalın!"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Anrufbeantworter",
+     "de": "Ist das der Anrufbeantworter?",
+     "tr": "Bu telesekreter mi?",
+     "accepted": [
+      "Ist das der Anrufbeantworter?",
+      "Ist das nur der Anrufbeantworter?",
+      "Ist das ein Anrufbeantworter?"
+     ]
+    },
+    {
+     "kart": "lx:Anrufbeantworter",
+     "de": "Frau Schneider ist nicht da, nur der Anrufbeantworter.",
+     "tr": "Schneider Hanım yok, sadece telesekreter.",
+     "accepted": [
+      "Frau Schneider ist nicht da, nur der Anrufbeantworter.",
+      "Frau Schneider ist nicht da. Nur der Anrufbeantworter.",
+      "Nur der Anrufbeantworter, Frau Schneider ist nicht da."
+     ]
+    },
+    {
+     "kart": "lx:auflegen",
+     "de": "Bitte nicht auflegen!",
+     "tr": "Lütfen kapatmayın!",
+     "accepted": [
+      "Bitte nicht auflegen!",
+      "Bitte legen Sie nicht auf!",
+      "Nicht auflegen, bitte!"
+     ]
+    },
+    {
+     "kart": "lx:auflegen",
+     "de": "Ich muss jetzt auflegen.",
+     "tr": "Şimdi kapatmam lazım.",
+     "accepted": [
+      "Ich muss jetzt auflegen.",
+      "Jetzt muss ich auflegen.",
+      "Ich muss jetzt leider auflegen."
+     ]
+    },
+    {
+     "kart": "lx:zurück",
+     "de": "Wann ist Frau Schneider zurück?",
+     "tr": "Schneider Hanım ne zaman dönüyor?",
+     "accepted": [
+      "Wann ist Frau Schneider zurück?",
+      "Wann ist Frau Schneider wieder zurück?",
+      "Wann kommt Frau Schneider zurück?"
+     ]
+    },
+    {
+     "kart": "lx:zurück",
+     "de": "Ich bin am Montag zurück.",
+     "tr": "Pazartesi dönüyorum.",
+     "accepted": [
+      "Ich bin am Montag zurück.",
+      "Am Montag bin ich zurück.",
+      "Ich bin am Montag wieder zurück."
+     ]
+    },
+    {
+     "kart": "lx:Haus",
+     "de": "Ich bin heute zu Hause.",
+     "tr": "Bugün evdeyim.",
+     "accepted": [
+      "Ich bin heute zu Hause.",
+      "Heute bin ich zu Hause.",
+      "Ich bin heute daheim."
+     ]
+    },
+    {
+     "kart": "lx:Haus",
+     "de": "Ist Herr Pichler im Haus?",
+     "tr": "Pichler Bey binada mı?",
+     "accepted": [
+      "Ist Herr Pichler im Haus?",
+      "Ist Herr Pichler heute im Haus?",
+      "Ist Herr Pichler da?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Schneider Hanım'ı arıyorsun ama telesekreter açılıyor.",
+    "satirlar": [
+     {
+      "r": "ch:schneider",
+      "de": "Hier ist der Anrufbeantworter von Anja Schneider.",
+      "tr": "Burası Anja Schneider'in telesekreteri."
+     },
+     {
+      "r": "ch:schneider",
+      "de": "Ich bin am Dienstag zurück.",
+      "tr": "Salı günü dönüyorum."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Hallo, hier ist {name}. Könnten Sie mich am Dienstag zurückrufen?",
+      "tr": "Merhaba, ben {name}. Salı günü beni geri arayabilir misiniz?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Schneider Hanım ne zaman dönüyor?",
+     "opts": [
+      "Salı",
+      "Pazartesi",
+      "Cuma",
+      "Bugün"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:17:h3",
+   "title_tr": "Kimlik, sınav, ödev, alışveriş",
+   "kartlar": [
+    "lx:Ausweis",
+    "lx:Prüfung",
+    "lx:Hausaufgabe",
+    "lx:einkaufen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Brauche ich …?",
+     "tr": "… lazım mı?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Ausweis",
+     "de": "Brauche ich den Ausweis?",
+     "tr": "Kimlik lazım mı?",
+     "accepted": [
+      "Brauche ich den Ausweis?",
+      "Brauche ich den Ausweis auch?",
+      "Muss ich den Ausweis mitbringen?"
+     ]
+    },
+    {
+     "kart": "lx:Ausweis",
+     "de": "Ich möchte einen Termin für den Ausweis.",
+     "tr": "Kimlik için randevu istiyorum.",
+     "accepted": [
+      "Ich möchte einen Termin für den Ausweis.",
+      "Ich möchte für den Ausweis einen Termin.",
+      "Ich hätte gern einen Termin für den Ausweis."
+     ]
+    },
+    {
+     "kart": "lx:Prüfung",
+     "de": "Wann ist die Prüfung?",
+     "tr": "Sınav ne zaman?",
+     "accepted": [
+      "Wann ist die Prüfung?",
+      "Wann ist denn die Prüfung?",
+      "Wann ist die Prüfung, bitte?"
+     ]
+    },
+    {
+     "kart": "lx:Prüfung",
+     "de": "Ioana hat am Freitag eine Prüfung.",
+     "tr": "Ioana'nın cuma günü sınavı var.",
+     "accepted": [
+      "Ioana hat am Freitag eine Prüfung.",
+      "Am Freitag hat Ioana eine Prüfung.",
+      "Ioana hat Freitag eine Prüfung."
+     ]
+    },
+    {
+     "kart": "lx:Hausaufgabe",
+     "de": "Wir haben heute keine Hausaufgabe.",
+     "tr": "Bugün ödevimiz yok.",
+     "accepted": [
+      "Wir haben heute keine Hausaufgabe.",
+      "Heute haben wir keine Hausaufgabe.",
+      "Wir haben heute keine Hausaufgaben."
+     ]
+    },
+    {
+     "kart": "lx:Hausaufgabe",
+     "de": "Was ist die Hausaufgabe?",
+     "tr": "Ödev ne?",
+     "accepted": [
+      "Was ist die Hausaufgabe?",
+      "Was ist denn die Hausaufgabe?",
+      "Was ist die Hausaufgabe für Montag?"
+     ]
+    },
+    {
+     "kart": "lx:einkaufen",
+     "de": "Ich gehe heute einkaufen.",
+     "tr": "Bugün alışverişe gidiyorum.",
+     "accepted": [
+      "Ich gehe heute einkaufen.",
+      "Heute gehe ich einkaufen.",
+      "Ich gehe heute noch einkaufen."
+     ]
+    },
+    {
+     "kart": "lx:einkaufen",
+     "de": "Kommst du mit einkaufen?",
+     "tr": "Alışverişe sen de geliyor musun?",
+     "accepted": [
+      "Kommst du mit einkaufen?",
+      "Kommst du mit zum Einkaufen?",
+      "Gehst du mit einkaufen?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Akşam kursu. Ioana çantasından kimliğini çıkarıyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Am Freitag habe ich eine Prüfung.",
+      "tr": "Cuma günü sınavım var."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Am Freitag? Um wie viel Uhr?",
+      "tr": "Cuma mı? Saat kaçta?"
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Um neun. Und ich brauche den Ausweis!",
+      "tr": "Dokuzda. Bir de kimliğim lazım!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Ioana sınava ne getirmeli?",
+     "opts": [
+      "Kimliğini",
+      "Ödevini",
+      "Bisikletini",
+      "Bir hediye"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:17:h4",
+   "title_tr": "Bisiklet, gar, inmek",
+   "kartlar": [
+    "lx:Fahrrad",
+    "lx:Bahnhof",
+    "lx:aussteigen",
+    "lx:am"
+   ],
+   "kaliplar": [
+    {
+     "de": "am Bahnhof – am Freitag",
+     "tr": "garda – cuma günü"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Fahrrad",
+     "de": "Das Fahrrad ist kaputt.",
+     "tr": "Bisiklet bozuk.",
+     "accepted": [
+      "Das Fahrrad ist kaputt.",
+      "Das Fahrrad ist leider kaputt.",
+      "Mein Fahrrad ist kaputt."
+     ]
+    },
+    {
+     "kart": "lx:Fahrrad",
+     "de": "Ist das dein Fahrrad?",
+     "tr": "Bu senin bisikletin mi?",
+     "accepted": [
+      "Ist das dein Fahrrad?",
+      "Ist das dein Fahrrad, Ioana?",
+      "Ist das Fahrrad von dir?"
+     ]
+    },
+    {
+     "kart": "lx:Bahnhof",
+     "de": "Ich bin jetzt am Bahnhof.",
+     "tr": "Şimdi gardayım.",
+     "accepted": [
+      "Ich bin jetzt am Bahnhof.",
+      "Jetzt bin ich am Bahnhof.",
+      "Ich bin schon am Bahnhof."
+     ]
+    },
+    {
+     "kart": "lx:Bahnhof",
+     "de": "Wo ist hier der Bahnhof?",
+     "tr": "Burada gar nerede?",
+     "accepted": [
+      "Wo ist hier der Bahnhof?",
+      "Wo ist der Bahnhof hier?",
+      "Entschuldigung, wo ist hier der Bahnhof?"
+     ]
+    },
+    {
+     "kart": "lx:aussteigen",
+     "de": "Muss ich hier aussteigen?",
+     "tr": "Burada mı inmem lazım?",
+     "accepted": [
+      "Muss ich hier aussteigen?",
+      "Muss ich hier schon aussteigen?",
+      "Muss ich jetzt aussteigen?"
+     ]
+    },
+    {
+     "kart": "lx:aussteigen",
+     "de": "Ich muss am Bahnhof aussteigen.",
+     "tr": "Garda inmem lazım.",
+     "accepted": [
+      "Ich muss am Bahnhof aussteigen.",
+      "Am Bahnhof muss ich aussteigen.",
+      "Ich muss beim Bahnhof aussteigen."
+     ]
+    },
+    {
+     "kart": "lx:am",
+     "de": "Am Samstag gehe ich einkaufen.",
+     "tr": "Cumartesi alışverişe gidiyorum.",
+     "accepted": [
+      "Am Samstag gehe ich einkaufen.",
+      "Ich gehe am Samstag einkaufen.",
+      "Am Samstag gehe ich immer einkaufen."
+     ]
+    },
+    {
+     "kart": "lx:am",
+     "de": "Am Vormittag bin ich im Büro.",
+     "tr": "Öğleden önce ofisteyim.",
+     "accepted": [
+      "Am Vormittag bin ich im Büro.",
+      "Ich bin am Vormittag im Büro.",
+      "Am Vormittag bin ich immer im Büro."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Ioana ilk kez otobüsle sana geliyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Ich bin am Bahnhof. Muss ich hier aussteigen?",
+      "tr": "Gardayım. Burada mı inmem lazım?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nein, nicht am Bahnhof. Am Stadtplatz.",
+      "tr": "Hayır, garda değil. Meydanda."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Gut, danke!",
+      "tr": "Tamam, sağ ol!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Ioana nerede inmeli?",
+     "opts": [
+      "Meydanda",
+      "Garda",
+      "Evin önünde",
+      "Muayenehanede"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:17:v1",
+  "title_tr": "Ioana Bürgerbüro'yu arıyor: tekrar eder misiniz?",
+  "sahneler": [
+   {
+    "id": "s1",
+    "sahne_tr": "Ioana mutfak masasında kimliğine bakıyor. Tarihi geçmiş, yüzü asılıyor.",
+    "de": "Mein Ausweis! Am Freitag ist die Prüfung.",
+    "tr": "Kimliğim! Cuma günü sınav var.",
+    "speaker": "ch:popescu"
+   },
+   {
+    "id": "s2",
+    "sahne_tr": "Belediye santralinde bir kadın sesi.",
+    "de": "Rathaus Wendlfing, guten Tag.",
+    "tr": "Wendlfing Belediyesi, iyi günler."
+   },
+   {
+    "id": "s3",
+    "sahne_tr": "Ioana telefonu kulağına bastırıyor.",
+    "de": "Guten Tag, hier ist Ioana Popescu. Könnten Sie mich mit Frau Schneider verbinden?",
+    "tr": "İyi günler, ben Ioana Popescu. Beni Schneider Hanım'a bağlayabilir misiniz?",
+    "speaker": "ch:popescu"
+   },
+   {
+    "id": "s4",
+    "sahne_tr": "Santraldeki kadın bir düğmeye basıyor.",
+    "de": "Einen Moment, ich verbinde.",
+    "tr": "Bir dakika, bağlıyorum."
+   },
+   {
+    "id": "s5",
+    "sahne_tr": "Bürgerbüro'da Schneider Hanım. Masası kâğıt dolu, çok hızlı konuşuyor.",
+    "de": "Schneider, guten Tag, was kann ich für Sie tun?",
+    "tr": "Schneider, iyi günler, sizin için ne yapabilirim?",
+    "speaker": "ch:schneider"
+   },
+   {
+    "id": "s6",
+    "sahne_tr": "Ioana kimliğini havaya kaldırıyor.",
+    "de": "Ich brauche einen Ausweis. Am Freitag habe ich eine Prüfung.",
+    "tr": "Kimlik lazım. Cuma günü sınavım var.",
+    "speaker": "ch:popescu"
+   },
+   {
+    "id": "s7",
+    "sahne_tr": "Schneider Hanım ekrana bakıp bir çırpıda söylüyor.",
+    "de": "Dann kommen Sie am Donnerstag um halb neun, mit Foto.",
+    "tr": "O zaman perşembe sekiz buçukta gelin, fotoğrafla.",
+    "speaker": "ch:schneider"
+   },
+   {
+    "id": "s8",
+    "sahne_tr": "Ioana şaşırıyor, kalemini arıyor.",
+    "de": "Entschuldigung, könnten Sie das bitte wiederholen?",
+    "tr": "Affedersiniz, bunu tekrar edebilir misiniz lütfen?",
+    "speaker": "ch:popescu"
+   },
+   {
+    "id": "s9",
+    "sahne_tr": "Ioana kâğıdı önüne çekiyor.",
+    "de": "Und könnten Sie bitte langsam sprechen?",
+    "tr": "Bir de yavaş konuşabilir misiniz lütfen?",
+    "speaker": "ch:popescu"
+   },
+   {
+    "id": "s10",
+    "sahne_tr": "Schneider Hanım gülümsüyor, bu kez yavaş konuşuyor.",
+    "de": "Gern. Am Donnerstag. Um halb neun.",
+    "tr": "Tabii. Perşembe günü. Sekiz buçukta.",
+    "speaker": "ch:schneider"
+   },
+   {
+    "id": "s11",
+    "sahne_tr": "Ioana yazarken yüksek sesle tekrar ediyor.",
+    "de": "Am Donnerstag um halb neun. Danke!",
+    "tr": "Perşembe sekiz buçukta. Teşekkürler!",
+    "speaker": "ch:popescu"
+   },
+   {
+    "id": "s12",
+    "sahne_tr": "Schneider Hanım telefonu kapatmaya hazırlanıyor.",
+    "de": "Bitte. Auf Wiederhören!",
+    "tr": "Rica ederim. Hoşça kalın!",
+    "speaker": "ch:schneider"
+   },
+   {
+    "id": "s13",
+    "sahne_tr": "Ioana kâğıda bakıp rahatlıyor.",
+    "de": "Donnerstag, halb neun. Gut!",
+    "tr": "Perşembe, sekiz buçuk. Tamam!",
+    "speaker": "ch:popescu"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Ioana neden arıyor?",
+     "opts": [
+      "Yeni kimlik için",
+      "Sınavı iptal etmek için",
+      "Bisikleti için"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s6"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Ioana Schneider Hanım'dan ne istiyor?",
+      "opts": [
+       "Tekrar etmesini ve yavaş konuşmasını",
+       "Onu geri aramasını",
+       "Adını harf harf söylemesini"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s8",
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Ioana'nın randevusu ne zaman?",
+      "opts": [
+       "perşembe sekiz buçukta",
+       "cuma dokuzda",
+       "perşembe dokuz buçukta"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10",
+       "s11"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s1",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Hausaufgabe",
+       "Prüfung",
+       "Fahrrad"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s10",
+      "seviye": "orta",
+      "de": "Gern. Am Donnerstag. Um ___ neun.",
+      "accepted": [
+       "halb",
+       "Halb",
+       "halb."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s6",
+      "seviye": "zor",
+      "banka": [
+       "Ich",
+       "brauche",
+       "einen",
+       "Ausweis",
+       "eine",
+       "habe"
+      ],
+      "accepted": [
+       "Ich brauche einen Ausweis.",
+       "ich brauche einen ausweis",
+       "Ich brauche einen Ausweis"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s9",
+      "seviye": "usta",
+      "accepted": [
+       "Und könnten Sie bitte langsam sprechen?",
+       "und könnten sie bitte langsam sprechen",
+       "Und könnten Sie bitte langsam sprechen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede duyduklarını Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Ioana hat am Freitag eine Prüfung. Am Donnerstag um halb neun hat sie einen Termin.",
+      "zorunlu": [
+       "Donnerstag",
+       "halb neun"
+      ]
+     }
+    ],
+    "golge": [
+     "s8",
+     "s11"
+    ],
+    "cevapla": {
+     "id": "m1:17:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Schneider Hanım sana da çok hızlı bir saat söylüyor. Anlamadın. Kibarca tekrar etmesini iste.",
+     "prompt_de": "Dann kommen Sie am Mittwoch um Viertel nach zehn.",
+     "accepted": [
+      "Könnten Sie das bitte wiederholen?",
+      "Könnten Sie das wiederholen?",
+      "Entschuldigung, könnten Sie das wiederholen?",
+      "Wie bitte? Könnten Sie das bitte wiederholen?",
+      "Könnten Sie das bitte noch einmal sagen?",
+      "Könnten Sie bitte langsam sprechen?",
+      "Können Sie das bitte wiederholen?",
+      "Könnten Sie das nochmal sagen?"
+     ],
+     "why_tr": "Kibar rica **Könnten Sie** ile başlar. **wiederholen** en sona gider."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:17:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Pichler Bey'den hızlı bir sesli mesaj",
+   "ortam_tr": "Telefonunda Pichler Bey'den bir mesaj var. Çok hızlı konuşuyor.",
+   "speaker": "ch:pichler",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Josef Pichler.",
+     "tr": "Merhaba, ben Josef Pichler."
+    },
+    {
+     "id": "c2",
+     "de": "Ich komme morgen um Viertel nach acht.",
+     "tr": "Yarın sekizi çeyrek geçe geliyorum."
+    },
+    {
+     "id": "c3",
+     "de": "Ich muss in der Küche etwas reparieren.",
+     "tr": "Mutfakta bir şey tamir etmem lazım."
+    },
+    {
+     "id": "c4",
+     "de": "Sind Sie morgen zu Hause?",
+     "tr": "Yarın evde misiniz?"
+    },
+    {
+     "id": "c5",
+     "de": "Können Sie mich heute noch zurückrufen?",
+     "tr": "Bugün beni geri arayabilir misiniz?"
+    },
+    {
+     "id": "c6",
+     "de": "Danke!",
+     "tr": "Teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Pichler Bey neden arıyor?",
+      "opts": [
+       "Yarın mutfakta bir şey tamir etmeye geliyor",
+       "Kira istiyor",
+       "Bisikletini soruyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Pichler Bey yarın saat kaçta geliyor?",
+       "opts": [
+        "sekizi çeyrek geçe",
+        "sekizde",
+        "sekiz buçukta"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Pichler Bey senden ne istiyor?",
+       "opts": [
+        "Bugün geri aramanı",
+        "Yarın ona gelmeni",
+        "Mutfağı temizlemeni"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Büro",
+        "Küche",
+        "Praxis"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Ich komme morgen um ___ nach acht.",
+       "accepted": [
+        "Viertel",
+        "viertel",
+        "Viertel."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Sind",
+        "Sie",
+        "morgen",
+        "zu",
+        "Hause",
+        "Haus",
+        "bist"
+       ],
+       "accepted": [
+        "Sind Sie morgen zu Hause?",
+        "sind sie morgen zu hause",
+        "Sind Sie morgen zu Hause"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Können Sie mich heute noch zurückrufen?",
+        "können sie mich heute noch zurückrufen",
+        "Können Sie mich heute noch zurückrufen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajda ne dendiğini Almanca bir iki kısa cümleyle özetle.",
+       "ornek_de": "Herr Pichler kommt morgen um Viertel nach acht.",
+       "zorunlu": [
+        "morgen",
+        "Viertel"
+       ]
+      }
+     ],
+     "golge": [
+      "c1",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:17:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Pichler Bey'i geri arıyorsun. Saati anlamadın. Kendini tanıt ve kibarca tekrar etmesini iste.",
+      "prompt_de": "Pichler, hallo?",
+      "accepted": [
+       "Hallo, Herr Pichler, hier ist {name}. Könnten Sie das bitte wiederholen?",
+       "Hallo, hier ist {name}. Könnten Sie das bitte wiederholen?",
+       "Guten Tag, Herr Pichler, hier ist {name}. Könnten Sie das wiederholen?",
+       "Hallo, Herr Pichler, hier ist {name}. Könnten Sie die Uhrzeit wiederholen?",
+       "Hallo, Herr Pichler, {name} hier. Könnten Sie das bitte wiederholen?",
+       "Guten Tag, hier ist {name}. Um wie viel Uhr kommen Sie?"
+      ],
+      "why_tr": "Önce **hier ist** ve adın. Sonra **Könnten Sie das bitte wiederholen?** de."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:17:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Bugün Pichler Bey'i geri ara.",
+     "Yarın sabah sekizde evden çık.",
+     "Mutfakta bir şey tamir et."
+    ],
+    "ans": 0,
+    "why_tr": "Pichler Bey bugün geri aramanı istiyor.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:17:a2",
+   "tur": "anons",
+   "title_tr": "Schneider Hanım'ın telesekreteri",
+   "ortam_tr": "Bürgerbüro'da Schneider Hanım'ı arıyorsun. Telesekreter açılıyor.",
+   "speaker": "ch:schneider",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hier ist der Anrufbeantworter von Anja Schneider, Bürgerbüro.",
+     "tr": "Burası Anja Schneider'in telesekreteri, Bürgerbüro."
+    },
+    {
+     "id": "c2",
+     "de": "Ich bin heute nicht im Büro.",
+     "tr": "Bugün ofiste değilim."
+    },
+    {
+     "id": "c3",
+     "de": "Am Mittwoch bin ich zurück.",
+     "tr": "Çarşamba günü dönüyorum."
+    },
+    {
+     "id": "c4",
+     "de": "Für den Ausweis ist die Durchwahl zwölf.",
+     "tr": "Kimlik için dahili numara on iki."
+    },
+    {
+     "id": "c5",
+     "de": "Sagen Sie bitte Ihren Namen und Ihre Nummer.",
+     "tr": "Lütfen adınızı ve numaranızı söyleyin."
+    },
+    {
+     "id": "c6",
+     "de": "Danke und auf Wiederhören!",
+     "tr": "Teşekkürler, hoşça kalın!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Kayıt ne söylüyor?",
+      "opts": [
+       "Schneider Hanım bugün ofiste değil",
+       "Bürgerbüro taşındı",
+       "Kimliğin hazır"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Schneider Hanım ne zaman dönüyor?",
+       "opts": [
+        "çarşamba",
+        "pazartesi",
+        "cuma"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kimlik için hangi dahili numarayı aramalısın?",
+       "opts": [
+        "on iki",
+        "yirmi",
+        "iki"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Montag",
+        "Mittwoch",
+        "Freitag"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Für den Ausweis ist die Durchwahl ___.",
+       "accepted": [
+        "zwölf",
+        "Zwölf",
+        "zwölf."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Sagen",
+        "Sie",
+        "bitte",
+        "Ihren",
+        "Namen",
+        "und",
+        "Ihre",
+        "Nummer",
+        "deinen",
+        "Adresse"
+       ],
+       "accepted": [
+        "Sagen Sie bitte Ihren Namen und Ihre Nummer.",
+        "sagen sie bitte ihren namen und ihre nummer",
+        "Sagen Sie bitte Ihren Namen und Ihre Nummer"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Ich bin heute nicht im Büro.",
+        "ich bin heute nicht im büro",
+        "Ich bin heute nicht im Büro"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kayıtta ne dendiğini Almanca bir iki kısa cümleyle özetle.",
+       "ornek_de": "Frau Schneider ist am Mittwoch zurück. Für den Ausweis: Durchwahl zwölf.",
+       "zorunlu": [
+        "Mittwoch",
+        "zwölf"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:17:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Kayıttan sonra mesaj bırakıyorsun. Kendini tanıt ve çarşamba günü geri aranmak istediğini kibarca söyle.",
+      "prompt_de": "Bitte sprechen Sie jetzt.",
+      "accepted": [
+       "Guten Tag, hier ist {name}. Könnten Sie mich am Mittwoch zurückrufen?",
+       "Hallo, hier ist {name}. Könnten Sie mich am Mittwoch zurückrufen?",
+       "Guten Tag, hier ist {name}. Könnten Sie mich bitte am Mittwoch zurückrufen?",
+       "Guten Tag, {name} hier. Könnten Sie mich am Mittwoch zurückrufen?",
+       "Guten Tag, mein Name ist {name}. Könnten Sie mich am Mittwoch zurückrufen?",
+       "Guten Tag, hier ist {name}. Bitte rufen Sie mich am Mittwoch zurück."
+      ],
+      "why_tr": "Önce **hier ist** ve adın. Sonra **Könnten Sie mich** ile kibarca rica et."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:17:a2:e1",
+    "k": "pick",
+    "q_tr": "Kimliğin için bugün biriyle konuşmak istiyorsun. Ne yapmalısın?",
+    "opts": [
+     "On iki numaralı dahili hattı ara.",
+     "Çarşambayı bekle.",
+     "Telefonu kapat, yarın Bürgerbüro'ya git."
+    ],
+    "ans": 0,
+    "why_tr": "Kimlik için dahili numara on iki. Schneider Hanım bugün yok.",
+    "kanit": [
+     "c2",
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:17:g1",
+   "de": "Ausweis",
+   "dogru_img": "german identity card on a table",
+   "celdirici_img": [
+    "bank card on a table",
+    "train ticket on a table",
+    "library card on a table"
+   ]
+  },
+  {
+   "id": "m1:17:g2",
+   "de": "Fahrrad",
+   "dogru_img": "city bicycle parked on a street",
+   "celdirici_img": [
+    "motor scooter parked on a street",
+    "small car parked on a street",
+    "kick scooter on a pavement"
+   ]
+  },
+  {
+   "id": "m1:17:g3",
+   "de": "Bahnhof",
+   "dogru_img": "small town train station building with platform",
+   "celdirici_img": [
+    "bus stop shelter",
+    "town hall building",
+    "airport terminal"
+   ]
+  },
+  {
+   "id": "m1:17:g4",
+   "de": "Haus",
+   "dogru_img": "small detached house with garden",
+   "celdirici_img": [
+    "office tower",
+    "church",
+    "shop front"
+   ]
+  },
+  {
+   "id": "m1:17:g5",
+   "de": "Anrufbeantworter",
+   "dogru_img": "answering machine with blinking message light",
+   "celdirici_img": [
+    "mobile phone screen",
+    "radio on a shelf",
+    "doorbell intercom panel"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:17:p1",
+  "title_tr": "Bürgerbüro'yu arıyorsun: Schneider Hanım çok hızlı",
+  "durum_tr": "Yeni kimlik için randevu almak istiyorsun. Bürgerbüro'yu arıyorsun, Schneider Hanım açıyor ve çok hızlı konuşuyor.",
+  "karsi": "ch:schneider",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Bürgerbüro, Schneider, guten Tag.",
+    "tr": "Bürgerbüro, ben Schneider, iyi günler.",
+    "secenekler": [
+     {
+      "de": "Guten Tag, Frau Schneider, hier ist {name}. Ich möchte einen Termin.",
+      "tr": "İyi günler Schneider Hanım, ben {name}. Randevu istiyorum.",
+      "accepted": [
+       "Guten Tag, Frau Schneider, hier ist {name}. Ich möchte einen Termin.",
+       "Guten Tag, hier ist {name}. Ich möchte einen Termin.",
+       "Guten Tag, Frau Schneider, {name} hier. Ich möchte einen Termin.",
+       "Guten Tag, hier ist {name}. Ich hätte gern einen Termin.",
+       "Guten Tag, mein Name ist {name}. Ich möchte einen Termin."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Kendini tanıttın ve ne istediğini kısaca söyledin."
+     },
+     {
+      "de": "Ausweis!",
+      "tr": "Kimlik!",
+      "accepted": [
+       "Ausweis!",
+       "Ausweis, bitte!",
+       "Ein Ausweis!"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Tek kelime kaba duyulur. Önce **hier ist** ve adın, sonra isteğin."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Für den Ausweis? Das geht am Donnerstag um halb neun oder am Freitag um elf.",
+    "tr": "Kimlik için mi? Perşembe sekiz buçukta ya da cuma on birde olur.",
+    "secenekler": [
+     {
+      "de": "Entschuldigung, könnten Sie das wiederholen?",
+      "tr": "Affedersiniz, bunu tekrar edebilir misiniz?",
+      "accepted": [
+       "Entschuldigung, könnten Sie das wiederholen?",
+       "Könnten Sie das bitte wiederholen?",
+       "Wie bitte? Könnten Sie das wiederholen?",
+       "Könnten Sie bitte langsam sprechen?",
+       "Entschuldigung, können Sie das wiederholen?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok kibar. Anlamadığında **Könnten Sie das wiederholen?** dersin."
+     },
+     {
+      "de": "Donnerstag um elf, gut.",
+      "tr": "Perşembe on birde, tamam.",
+      "accepted": [
+       "Donnerstag um elf, gut.",
+       "Gut, Donnerstag um elf."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Perşembe sekiz buçuk, cuma on bir. İkisini karıştırdın. Tekrar iste."
+     },
+     {
+      "de": "Ja, ja.",
+      "tr": "Evet, evet.",
+      "accepted": [
+       "Ja, ja.",
+       "Ja.",
+       "Ja, gut."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Anlamadan evet deme. Kibarca **Könnten Sie das wiederholen?** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Gern. Donnerstag um halb neun. Oder Freitag um elf.",
+    "tr": "Tabii. Perşembe sekiz buçukta. Ya da cuma on birde.",
+    "secenekler": [
+     {
+      "de": "Freitag um elf, bitte.",
+      "tr": "Cuma on birde, lütfen.",
+      "accepted": [
+       "Freitag um elf, bitte.",
+       "Am Freitag um elf, bitte.",
+       "Freitag um elf Uhr, bitte.",
+       "Bitte Freitag um elf."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Günü ve saati birlikte söyledin. Yanlış anlama kalmadı."
+     },
+     {
+      "de": "Donnerstag um halb neun, bitte.",
+      "tr": "Perşembe sekiz buçukta, lütfen.",
+      "accepted": [
+       "Donnerstag um halb neun, bitte.",
+       "Am Donnerstag um halb neun, bitte.",
+       "Bitte Donnerstag um halb neun.",
+       "Donnerstag, halb neun, bitte."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Günü ve saati birlikte söyledin. Yanlış anlama kalmadı."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gut. Bringen Sie bitte den alten Ausweis mit.",
+    "tr": "Tamam. Lütfen eski kimliğinizi getirin.",
+    "secenekler": [
+     {
+      "de": "Ja, gut. Könnten Sie mir die Durchwahl geben?",
+      "tr": "Tamam. Bana doğrudan numaranızı verebilir misiniz?",
+      "accepted": [
+       "Ja, gut. Könnten Sie mir die Durchwahl geben?",
+       "Gut. Könnten Sie mir bitte die Durchwahl geben?",
+       "Ja. Haben Sie eine Durchwahl?",
+       "Gut, danke. Könnten Sie mir Ihre Durchwahl geben?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Akıllıca. Bir daha ararken santrali beklemezsin."
+     },
+     {
+      "de": "Ja, gut. Danke!",
+      "tr": "Tamam. Teşekkürler!",
+      "accepted": [
+       "Ja, gut. Danke!",
+       "Gut, danke!",
+       "Ja, danke schön!",
+       "Alles klar, danke!"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve kibar bir onay."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Ja, die Durchwahl ist drei, vier, null.",
+    "tr": "Evet, dahili numara üç, dört, sıfır.",
+    "secenekler": [
+     {
+      "de": "Drei, vier, null. Danke!",
+      "tr": "Üç, dört, sıfır. Teşekkürler!",
+      "accepted": [
+       "Drei, vier, null. Danke!",
+       "Drei vier null, danke!",
+       "Also drei, vier, null. Danke!",
+       "Danke, drei, vier, null."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Numarayı tekrar ettin. Telefonda en güvenli yol bu."
+     },
+     {
+      "de": "Drei, vier, neun. Danke!",
+      "tr": "Üç, dört, dokuz. Teşekkürler!",
+      "accepted": [
+       "Drei, vier, neun. Danke!",
+       "Drei vier neun, danke!"
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "Son rakam **null**, yani sıfır. Bir daha dinle."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Bitte. Auf Wiederhören!",
+    "tr": "Rica ederim. Hoşça kalın!",
+    "secenekler": [
+     {
+      "de": "Auf Wiederhören, Frau Schneider!",
+      "tr": "Hoşça kalın Schneider Hanım!",
+      "accepted": [
+       "Auf Wiederhören, Frau Schneider!",
+       "Auf Wiederhören!",
+       "Danke, auf Wiederhören!",
+       "Vielen Dank, auf Wiederhören!"
+      ],
+      "sonraki": "n7",
+      "uygun": true,
+      "geri_bildirim_tr": "Telefonda doğru vedalaştın."
+     }
+    ]
+   },
+   {
+    "id": "n7",
+    "de": "Wiederhören!",
+    "tr": "Hoşça kalın!",
+    "son": true,
+    "secenekler": []
+   }
+  ],
+  "kapanis_tr": "Hızlı konuşan memura kibarca tekrar ettirdin, randevuyu aldın ve doğrudan numarayı öğrendin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Tobi'nin masandaki not: Bürgerbüro aradı",
+  "metin_de": "Hallo {name}! Frau Schneider möchte einen Rückruf. Es geht um deinen Ausweis. Bitte heute am Nachmittag zurückrufen. Die Durchwahl ist zwei, vier. Morgen ist sie nicht da. Tobi",
+  "metin_tr": "Merhaba {name}! Schneider Hanım geri aranmak istiyor. Konu kimliğin. Lütfen bugün öğleden sonra geri ara. Dahili numara iki, dört. Yarın orada değil. Tobi",
+  "sorular": [
+   {
+    "id": "m1:17:o1",
+    "kind": "gist",
+    "q_tr": "Tobi'nin notu ne söylüyor?",
+    "opts": [
+     "Schneider Hanım'ı geri araman lazım",
+     "Kimliğin kayboldu",
+     "Yarın sınav var"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     3
+    ]
+   },
+   {
+    "id": "m1:17:o2",
+    "kind": "detail",
+    "q_tr": "Konu ne?",
+    "opts": [
+     "kimliğin",
+     "bisikletin",
+     "sınavın"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:17:o3",
+    "kind": "detail",
+    "q_tr": "Ne zaman aramalısın?",
+    "opts": [
+     "bugün öğleden sonra",
+     "yarın sabah",
+     "cuma günü"
+    ],
+    "ans": 0,
+    "kanit": [
+     3,
+     5
+    ]
+   },
+   {
+    "id": "m1:17:o4",
+    "kind": "detail",
+    "q_tr": "Dahili numara ne?",
+    "opts": [
+     "iki, dört",
+     "dört, iki",
+     "on dört"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:17:o5",
+    "k": "guided_response",
+    "situation_tr": "Schneider Hanım'ı geri arıyorsun. O açıyor. Kendini tanıt ve onun seni aradığını söyle.",
+    "prompt_de": "Schneider, guten Tag.",
+    "accepted": [
+     "Guten Tag, Frau Schneider, hier ist {name}. Sie möchten einen Rückruf?",
+     "Guten Tag, hier ist {name}. Sie möchten einen Rückruf?",
+     "Guten Tag, Frau Schneider, {name} hier. Sie möchten einen Rückruf?",
+     "Guten Tag, Frau Schneider, hier ist {name}. Es geht um meinen Ausweis.",
+     "Guten Tag, hier ist {name}. Es geht um meinen Ausweis.",
+     "Guten Tag, Frau Schneider, hier ist {name}. Danke für die Nachricht."
+    ],
+    "why_tr": "Önce **hier ist** ve adın. Sonra neden aradığını kısaca söyle."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:17:s",
+  "maddeler": [
+   {
+    "id": "m1:17:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Könnten Sie die Nummer bitte wiederholen?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Könnten Sie die Nummer bitte wiederholen?",
+     "könnten sie die nummer bitte wiederholen",
+     "Könnten Sie die Nummer bitte wiederholen"
+    ],
+    "why_tr": "**Könnten Sie** kibar bir ricadır."
+   },
+   {
+    "id": "m1:17:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Einen Moment, ich verbinde.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Einen Moment, ich verbinde.",
+     "einen moment ich verbinde",
+     "Einen Moment, ich verbinde"
+    ],
+    "why_tr": "**ich verbinde** sizi bağlıyorum demektir."
+   },
+   {
+    "id": "m1:17:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Frau Schneider ist am Montag zurück.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Frau Schneider ist am Montag zurück.",
+     "frau schneider ist am montag zurück",
+     "Frau Schneider ist am Montag zurück"
+    ],
+    "why_tr": "**zurück** geri, dönmüş demektir."
+   },
+   {
+    "id": "m1:17:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Wir müssen hier aussteigen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir müssen hier aussteigen.",
+     "wir müssen hier aussteigen",
+     "Wir müssen hier aussteigen"
+    ],
+    "why_tr": "**aussteigen** inmek demektir."
+   },
+   {
+    "id": "m1:17:s5",
+    "k": "tr_de",
+    "tr": "Bugün beni geri arayabilir misiniz? Kibarca sor.",
+    "accepted": [
+     "Könnten Sie mich heute zurückrufen?",
+     "Könnten Sie mich bitte heute zurückrufen?",
+     "Könnten Sie mich heute bitte zurückrufen?",
+     "Können Sie mich heute zurückrufen?"
+    ],
+    "why_tr": "Kibar ricada **Könnten Sie** başa gelir, **zurückrufen** sona gider."
+   },
+   {
+    "id": "m1:17:s6",
+    "k": "tr_de",
+    "tr": "Lütfen yavaş konuşabilir misiniz? Kibarca sor.",
+    "accepted": [
+     "Könnten Sie bitte langsam sprechen?",
+     "Könnten Sie langsam sprechen, bitte?",
+     "Könnten Sie bitte langsamer sprechen?",
+     "Können Sie bitte langsam sprechen?"
+    ],
+    "why_tr": "**Könnten Sie** ile başla, **sprechen** en sona gelir."
+   },
+   {
+    "id": "m1:17:s7",
+    "k": "tr_de",
+    "tr": "Kimliğim lazım mı?",
+    "accepted": [
+     "Brauche ich meinen Ausweis?",
+     "Brauche ich den Ausweis?",
+     "Brauche ich einen Ausweis?",
+     "Muss ich meinen Ausweis mitbringen?"
+    ],
+    "why_tr": "Bir şey lazım mı diye sorarken **Brauche ich** dersin."
+   },
+   {
+    "id": "m1:17:s8",
+    "k": "tr_de",
+    "tr": "Lütfen telefonu kapatmayın!",
+    "accepted": [
+     "Bitte legen Sie nicht auf!",
+     "Bitte nicht auflegen!",
+     "Legen Sie bitte nicht auf!"
+    ],
+    "why_tr": "Telefonu kapatmak **auflegen** demektir."
+   },
+   {
+    "id": "m1:17:s9",
+    "k": "guided_response",
+    "situation_tr": "Santral Schneider Hanım'ın yerinde olmadığını söylüyor. Geri aranmak istiyorsun.",
+    "prompt_de": "Frau Schneider ist nicht da. Möchten Sie einen Rückruf?",
+    "accepted": [
+     "Ja, bitte, einen Rückruf.",
+     "Ja, gern.",
+     "Ja, bitte.",
+     "Ja, einen Rückruf, bitte.",
+     "Ja, bitte. Könnten Sie mich zurückrufen?",
+     "Ja, gern, einen Rückruf.",
+     "Ja, ich möchte einen Rückruf."
+    ],
+    "why_tr": "**Rückruf** geri arama demektir. Cevaba **Ja, bitte** ile başla."
+   },
+   {
+    "id": "m1:17:s10",
+    "k": "guided_response",
+    "situation_tr": "Pichler Bey çok hızlı bir saat söyledi. Anlamadın. Kibarca tekrar etmesini iste.",
+    "prompt_de": "Ich komme morgen um Viertel nach acht.",
+    "accepted": [
+     "Wie bitte? Könnten Sie das wiederholen?",
+     "Könnten Sie das bitte wiederholen?",
+     "Entschuldigung, könnten Sie das wiederholen?",
+     "Könnten Sie das wiederholen?",
+     "Könnten Sie bitte langsam sprechen?",
+     "Wie bitte? Könnten Sie das bitte wiederholen?"
+    ],
+    "why_tr": "Anlamadığında **Könnten Sie das wiederholen?** dersin."
+   },
+   {
+    "id": "m1:17:s11",
+    "k": "guided_response",
+    "situation_tr": "Belediye santralini arıyorsun. Kendini tanıt ve kibarca Schneider Hanım'a bağlanmak iste.",
+    "prompt_de": "Guten Tag, Zentrale.",
+    "accepted": [
+     "Guten Tag, hier ist {name}. Könnten Sie mich bitte mit Frau Schneider verbinden?",
+     "Guten Tag, hier ist {name}. Könnten Sie mich mit Frau Schneider verbinden?",
+     "Guten Tag, {name} hier. Könnten Sie mich mit Frau Schneider verbinden?",
+     "Guten Tag, mein Name ist {name}. Könnten Sie mich mit Frau Schneider verbinden?",
+     "Hallo, hier ist {name}. Könnten Sie mich bitte mit Frau Schneider verbinden?",
+     "Guten Tag, hier ist {name}. Können Sie mich mit Frau Schneider verbinden?"
+    ],
+    "why_tr": "Önce **hier ist** ve adın. Sonra **Könnten Sie mich mit** ve kişinin adı."
+   }
+  ],
+  "sesli": [
+   "m1:17:s9",
+   "m1:17:s10"
+  ],
+  "dikte": [
+   "m1:17:s1",
+   "m1:17:s2",
+   "m1:17:s3",
+   "m1:17:s4"
+  ]
+ }
+}
