@@ -28,7 +28,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic5-hafta-06.md"
  },
  "dersler": [],
  "yeni_kartlar": [
@@ -89,7 +92,7 @@
     {
      "kart": "lx:Haar",
      "de": "Vor einer Woche hatte ich noch lange Haare.",
-     "tr": "Bir hafta önce saçlarım daha uzundu.",
+     "tr": "Bir hafta önce saçlarım hâlâ uzundu.",
      "accepted": [
       "Vor einer Woche hatte ich noch lange Haare.",
       "Ich hatte vor einer Woche noch lange Haare.",
@@ -194,8 +197,8 @@
     "id": "s2",
     "speaker": "ch:aksoy",
     "sahne_tr": "Derya gülmeye başlıyor.",
-    "de": "Lustig! Am Samstag bin ich mit der Straßenbahn in die Stadt gefahren.",
-    "tr": "Komikti! Cumartesi tramvayla şehre gittim."
+    "de": "Lustig! Am Samstag bin ich mit dem Bus in die Stadt gefahren.",
+    "tr": "Komikti! Cumartesi otobüsle şehre gittim."
    },
    {
     "id": "s3",
@@ -281,8 +284,8 @@
       "kind": "detail",
       "q_tr": "Derya şehre neyle gitti?",
       "opts": [
-       "tramvayla",
        "otobüsle",
+       "tramvayla",
        "arabayla"
       ],
       "ans": 0,
@@ -390,7 +393,7 @@
       "Derya hat einen Rock gekauft. Dann war das Wetter schlecht.",
       "Sie war in der Stadt. Am Sonntag war sie ein bisschen erkältet.",
       "Lustig! Sie hatte keine Jacke und war in der Bäckerei.",
-      "Derya ist mit der Straßenbahn in die Stadt gefahren. Sie hat Kuchen gegessen."
+      "Derya ist mit dem Bus in die Stadt gefahren. Sie hat Kuchen gegessen."
      ],
      "why_tr": "Derya **ich** dedi, sen **sie** dersin: **Sie hat einen Rock gekauft.**"
     }
@@ -426,8 +429,8 @@
     },
     {
      "id": "c4",
-     "de": "Die Stadt und die Straßenbahn waren sehr voll.",
-     "tr": "Şehir de tramvay da çok kalabalıktı."
+     "de": "Die Stadt und der Bahnhof waren sehr voll.",
+     "tr": "Şehir de gar da çok kalabalıktı."
     },
     {
      "id": "c5",
@@ -451,7 +454,7 @@
       "opts": [
        "Wendlfing'de hafta sonunun nasıl geçtiğini",
        "Yarınki hava durumunu",
-       "Yeni bir tramvay hattını"
+       "Yeni bir otobüs hattını"
       ],
       "ans": 0,
       "kanit": [
@@ -518,8 +521,8 @@
         "Die",
         "Stadt",
         "und",
-        "die",
-        "Straßenbahn",
+        "der",
+        "Bahnhof",
         "waren",
         "sehr",
         "voll",
@@ -527,9 +530,9 @@
         "Bus"
        ],
        "accepted": [
-        "Die Stadt und die Straßenbahn waren sehr voll.",
-        "die stadt und die straßenbahn waren sehr voll",
-        "Die Stadt und die Straßenbahn waren sehr voll"
+        "Die Stadt und der Bahnhof waren sehr voll.",
+        "die stadt und der bahnhof waren sehr voll",
+        "Die Stadt und der Bahnhof waren sehr voll"
        ]
       },
       {
@@ -565,7 +568,7 @@
        "Die Stadt war sehr voll.",
        "Es war warm, und die Stadt war voll.",
        "Sehr voll! Es war warm.",
-       "Voll! Die Straßenbahn war auch voll.",
+       "Voll! Der Bahnhof war auch voll.",
        "Am Sonntag war die Stadt sehr voll."
       ],
       "why_tr": "Birden çok şey için **waren**, tek şey için **war**: **Die Stadt war voll.**"
@@ -864,16 +867,16 @@
    },
    {
     "id": "n2",
-    "de": "In der Stadt? Mit dem Bus?",
-    "tr": "Şehirde mi? Otobüsle mi?",
+    "de": "In der Stadt? Mit dem Auto?",
+    "tr": "Şehirde mi? Arabayla mı?",
     "secenekler": [
      {
-      "de": "Nein, ich bin mit der Straßenbahn in die Stadt gefahren.",
-      "tr": "Hayır, şehre tramvayla gittim.",
+      "de": "Nein, ich bin mit dem Bus in die Stadt gefahren.",
+      "tr": "Hayır, şehre otobüsle gittim.",
       "accepted": [
-       "Nein, ich bin mit der Straßenbahn in die Stadt gefahren.",
-       "Nein, mit der Straßenbahn. Ich bin mit der Straßenbahn gefahren.",
-       "Nein, ich bin mit der Straßenbahn gefahren."
+       "Nein, ich bin mit dem Bus in die Stadt gefahren.",
+       "Nein, mit dem Bus.",
+       "Nein, ich bin mit dem Bus gefahren."
       ],
       "sonraki": "n4",
       "uygun": true,
@@ -892,16 +895,16 @@
       "geri_bildirim_tr": "Güzel. Havayı da **war** ile anlattın."
      },
      {
-      "de": "Nein, ich fahre mit der Straßenbahn.",
-      "tr": "Hayır, tramvayla gidiyorum.",
+      "de": "Nein, ich fahre mit dem Bus.",
+      "tr": "Hayır, otobüsle gidiyorum.",
       "accepted": [
-       "Nein, ich fahre mit der Straßenbahn.",
-       "Ich fahre mit der Straßenbahn.",
+       "Nein, ich fahre mit dem Bus.",
+       "Ich fahre mit dem Bus.",
        "Nein, ich fahre mit dem Fahrrad."
       ],
       "sonraki": "n2",
       "uygun": false,
-      "geri_bildirim_tr": "Bu şimdi. Geçmiş için **Ich bin mit der Straßenbahn gefahren** de."
+      "geri_bildirim_tr": "Bu şimdi. Geçmiş için **Ich bin mit dem Bus gefahren** de."
      }
     ]
    },
@@ -1079,8 +1082,8 @@
    },
    {
     "id": "n7",
-    "de": "Danke, auch gut. Jetzt aber an die Arbeit!",
-    "tr": "Teşekkürler, benimki de iyiydi. Ama şimdi iş başına!",
+    "de": "Schön! Bei mir auch. Jetzt aber an die Arbeit!",
+    "tr": "Güzel! Benimki de öyleydi. Ama şimdi iş başına!",
     "son": true
    }
   ],
@@ -1300,15 +1303,15 @@
     "k": "listen_and_respond",
     "audio_de": "Wie bist du zu Derya gefahren?",
     "speed": "normal",
-    "situation_tr": "Tobi soruyor. Tramvayla gittin.",
+    "situation_tr": "Tobi soruyor. Otobüsle gittin.",
     "accepted": [
-     "Ich bin mit der Straßenbahn zu Derya gefahren.",
-     "Mit der Straßenbahn.",
-     "Mit der Straßenbahn bin ich gefahren.",
-     "Ich bin mit der Straßenbahn gefahren.",
-     "Mit der Straßenbahn, das geht schnell."
+     "Ich bin mit dem Bus zu Derya gefahren.",
+     "Mit dem Bus.",
+     "Mit dem Bus bin ich gefahren.",
+     "Ich bin mit dem Bus gefahren.",
+     "Mit dem Bus, das geht schnell."
     ],
-    "why_tr": "Neyle gittin sorusu: **mit der Straßenbahn**."
+    "why_tr": "Neyle gittin sorusu: **mit dem Bus**."
    },
    {
     "id": "m1:42:s11",
