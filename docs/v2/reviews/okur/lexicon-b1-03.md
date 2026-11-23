@@ -96,3 +96,21 @@ Terim ve içerik ölçüsü önceki okur raporlarıyla aynı (`lexicon-b1-02.md`
   - lx:rechtzeitig exp.ipucu_tr
 
 `batch-b1-03b.json` 3 GERİ (hiermit, vorlegen, rechtzeitig) taşıdığı için "reviewed" sayılamaz (OD-9.4). `batch-b1-03a.json`'da okur GERİ'si yok.
+
+## 2. tur (yalnız doğrulama, PM-079 md. 3)
+
+Girdi: dilbilimcinin düzeltmeleri (`docs/v2/reviews/lexicon-b1-03.md`, "Okur düzeltmeleri"). Metinler içerik dosyasından (`batch-b1-03b.json`) okundu. Yalnız 1. turda geri dönen 3 alan okundu. Çelişki var mı diye aynı kartın Almanca cümlesine, öbür örneklerine ve notlarına da bakıldı. Alan adları 1. turdaki gibi örnek kimliğiyle yazıldı (lx:hiermit:3 sıfırdan sayınca examples[2], lx:vorlegen:5 sıfırdan sayınca examples[4]).
+
+| kart | alan | yeni açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| lx:hiermit | examples[3].tr (lx:hiermit:3) | Doğrudan resmî başvuru cümlesiyle başlıyorum, kulağa çok resmî geliyor, değil mi? | mektuba resmî başvuru cümlesiyle başlıyorum, çok resmî duruyor | GEÇTİ | 12 kelime, tırnak yok, Almanca cümleyle örtüşüyor |
+| lx:vorlegen | examples[5].tr (lx:vorlegen:5) | – Buradaki bu kelime ne demek? – Eh, onu randevuda göstermen lazım. | bu kelime ne demek diye soruyor, cevap: randevuda göstermek | GEÇTİ | tırnak yok. Hangi kelime olduğu üstteki Almanca cümlede kalın değil ama görünüyor (**vorlegen**) |
+| lx:rechtzeitig | exp.ipucu_tr | **gerade noch rechtzeitig** ucu ucuna yetişmek demektir. | gerade noch rechtzeitig, son anda yetiştirmek demek | GEÇTİ | kartın kelimesi notta var, tek fikir, 6 kelime. 3. örnekle (ucu ucuna zamanında teslim ettim) uyumlu |
+
+Takip notu (engel değil): 2. turda eski alanlarda yeni bulgu yok.
+
+### 2. tur sonucu
+
+- Okunan: 3 alan · GEÇTİ: 3 · GERİ: 0
+
+`batch-b1-03a.json` ve `batch-b1-03b.json`'da okur GERİ'si kalmadı (OD-9.3 okur katmanı geçti).
