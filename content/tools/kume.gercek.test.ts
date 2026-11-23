@@ -68,3 +68,22 @@ describe("dil noktası tablosu, gerçek grammar.json (#205 P1-1)", () => {
     expect(yaz("sprichst", kart, ["gr:a1-02:t4"])).toEqual([]);
   });
 });
+
+describe("dil noktası tablosu ilgisiz karta bağlamaz (#205 2. tur P1-1b)", () => {
+  const G = (id: string) => c.grammar.some((g) => g.id === id);
+  const durum: [string, string[], string, string][] = [
+    ["Wo ist die Bank?", ["lx:wo", "lx:sein"], "gr:a1-11:t1", "bank"],
+    ["Mir tut der Zahn weh.", ["lx:weh"], "gr:a1-10:t1", "zahn"],
+    ["Mir tut der Zahn weh.", ["lx:weh"], "gr:a1-10:t1", "tut"],
+    ["Wenn die Sonne scheint.", ["lx:wenn"], "gr:a2-03:t1", "sonne"],
+    ["Seit drei Jahren.", ["lx:seit", "lx:drei"], "gr:a1-08:t4", "jahren"],
+    ["Ich will.", ["lx:Plan"], "gr:a1-09:t3", "will"],
+    ["Nimm das!", ["lx:Wasser", "lx:Platz"], "gr:a1-10:t3", "nimm"],
+    ["Trink Wasser!", ["lx:Wasser", "lx:Platz"], "gr:a1-10:t3", "trink"],
+    ["Nehmt Platz!", ["lx:Wasser", "lx:Platz"], "gr:a1-10:t3", "nehmt"]
+  ];
+  for (const [cumle, kart, dn, soz] of durum) it(`${cumle} (${dn}) → ${soz} bilinmez`, () => {
+    if (!G(dn)) return;
+    expect(yaz(cumle, kart.filter(var_), [dn]).some((x) => x.replace(/^[~?]/, "") === soz)).toBe(true);
+  });
+});

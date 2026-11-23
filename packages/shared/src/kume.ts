@@ -195,20 +195,28 @@ export function kumeDizini(lex: readonly Lexeme[], temel: readonly TemelDers[], 
 /**
  * Dil noktasının tablo biçimleri (PM-092 md. 1: "sunulan dil noktasının tablo biçimleri o andan itibaren bilinen biçim";
  * PM 7088563328 md. 1: tablodaki bütün biçimler o andan itibaren gösterilmiş). Biçim → bağlı kartlar:
- *  - sütun başlığı (`head`) bir kartın gösterdiği sözcükse (sein, haben, sprechen) o sütundaki biçim o karta bağlanır
- *    (seid, habt, sprecht dizinde olmasa da: sütun kartı söyler, tahmin yok; inceleme #205 P1-1);
- *  - dizinde olan biçim ayrıca dizindeki adaylarına bağlanır (gehst → lx:gehen).
+ *  - dizinde olan biçim yalnız dizindeki adaylarına bağlanır (gehst → lx:gehen);
+ *  - dizinde olmayan biçim, sütun başlığı tek sözcük ve onu gösteren tek gerçek fiil kartıysa (sein, haben, sprechen) o karta
+ *    bağlanır (seid, habt, sprecht: sütun kartı söyler, tahmin yok; #205 P1-1, 2. tur P1-1b); başka başlık bağ vermez.
  * Başlık sözcüğü (gehen, Arzt: bir gerçek kartın gösterdiği sözcük) tablo yüzünden bilinmez: kart tanıtılmadan sözcük bilinmez.
  * Biçim de ancak bağlı kartı bilinince (ya da bağlı kartların hepsi çerçeveyse) bilinir — `bilinmeyenler` buna bakar.
  * Hiçbir karta bağlanamayan hücre (Türkçe sütun, "kişi" sütunu) girmez.
  */
 function tabloBicimi(d: KumeDizini, n: DilNoktasiTablo): Map<string, Set<string>> {
   const out = new Map<string, Set<string>>();
-  const sutunKart = (n.table?.head ?? []).map((h) => new Set(toks(h).flatMap((x) => [...(d.idx.get(x) ?? [])].filter((i) => d.gost.get(i)?.has(x)))));
+  // sütun kartı: başlık TEK sözcük ve onu gösteren TEK gerçek (çerçeve olmayan) fiil kartı (sein, haben, sprechen); "du", "Dat.",
+  // "wo" gibi başlıklar bağ vermez (#205 2. tur P1-1b: ilgisiz karta bağlanıp Bank, Zahn, nimm bilinmesin)
+  const sutunKart = (n.table?.head ?? []).map((h) => {
+    const t = toks(h); if (t.length !== 1) return null;
+    const k = kendiKarti(d, t[0]!).filter((i) => d.kartlar.get(i)?.pos === "verb");
+    return k.length === 1 ? k[0]! : null;
+  });
   for (const row of n.table?.rows ?? []) row.forEach((cell, j) => {
     for (const s of toks(cell)) {
       if (kendiKarti(d, s).length) continue;
-      const bag = new Set([...(d.idx.get(s) ?? []), ...(sutunKart[j] ?? [])]);
+      // dizinde olan biçim yalnız dizin adaylarına bağlanır; sütun kartı yalnız dizinde OLMAYAN biçime (seid, habt, sprecht)
+      const aday = d.idx.get(s); const sk = sutunKart[j];
+      const bag = new Set(aday?.size ? aday : sk ? [sk] : []);
       if (!bag.size) continue;
       const v = out.get(s); if (v) for (const i of bag) v.add(i); else out.set(s, bag);
     }
