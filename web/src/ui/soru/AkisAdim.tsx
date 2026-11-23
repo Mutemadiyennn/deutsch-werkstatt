@@ -7,11 +7,11 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
 import { ruleVerdict, type Verdict } from "../../core/answer.ts";
 import { tohumluRng } from "../../core/halkaTur.ts";
-import { speak, speakDizi } from "../../services/speech.ts";
+import { speak, speakDizi, sttAvailable } from "../../services/speech.ts";
 import { haptic } from "../../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, MicButton } from "../kit.tsx";
 
-export interface CumleBilgi { de: string; tr: string; accepted: string[]; /** kalıp örneğinde yuvaya giren sözcükler (vurgulu) */ vurgu?: string[] }
+export interface CumleBilgi { de: string; tr: string; accepted: string[]; /** kalıp örneğinde yuvaya giren sözcükler (vurgulu) */ vurgu?: string[]; /** yuvaya giren, henüz öğretilmemiş tek sözcük: altında Türkçesi, sorulmaz (PM 7059008858 md. 2) */ yeni?: { sozcuk: string; tr?: string } }
 
 const sozcukler = (de: string) => de.replace(/[.,!?;:„“"»«]/g, " ").split(/\s+/).filter(Boolean);
 
@@ -33,7 +33,8 @@ function Sonuc({ v, cevap, bilgi, onDevam }: { v: Verdict | "bilmiyorum"; cevap:
 
 /** TR→DE yaz ya da sesli söyle (`soyle`; TARGET3c 3: büyük mikrofon, "Yazarak cevapla") */
 export function UretAdimi({ bilgi, kip, onBitti }: { bilgi: CumleBilgi; /** yaz: TR→DE · soyle: TR→DE sesli · duy: dikte (önce duy, sonra yaz; Türkçesi yoksa da) */ kip: "yaz" | "soyle" | "duy"; onBitti: (dogru: boolean) => void }) {
-  const sesli = kip === "soyle";
+  // mikrofon yoksa "söyle" adımı yazarak oynanır ve etiket bunu söyler (PM 7055715440 md. 10)
+  const sesli = kip === "soyle" && sttAvailable();
   const [v, setV] = useState<Verdict | "bilmiyorum" | null>(null);
   const [cevap, setCevap] = useState("");
   const [yazarak, setYazarak] = useState(!sesli);
@@ -42,7 +43,7 @@ export function UretAdimi({ bilgi, kip, onBitti }: { bilgi: CumleBilgi; /** yaz:
   return (
     <section class="stack fade" data-test={kip === "duy" ? "akis-dikte" : sesli ? "akis-soyle" : "akis-tr-de"}>
       <div>
-        <div class="kicker icerik" style={{ color: "var(--accent)" }}>{kip === "duy" ? "Duyduğunu yaz" : sesli ? "Sen söyle" : "Almancasını yaz"}</div>
+        <div class="kicker icerik" style={{ color: "var(--accent)" }}>{kip === "duy" ? "Duyduğunu yaz" : sesli ? "Sen söyle" : "Almanca yaz"}</div>
         {kip === "duy"
           ? <div class="row" style={{ justifyContent: "center", marginTop: 8 }}><ListenButton text={bilgi.de} label="Cümleyi dinle" metinGizli={v === null} /></div>
           : <h2 style={{ margin: 0 }}>{bilgi.tr}</h2>}
@@ -137,9 +138,9 @@ export function KalipAdimi({ kalip, ornekler, onBitti }: { kalip: { de: string; 
   return (
     <section class="stack fade" data-test="akis-kalip">
       <div class="kicker icerik" style={{ color: "var(--accent)" }}>Yeni kalıp</div>
-      {kalip.map((k) => <div><div class="de-lg" lang="de">{yuvali(k.de)}</div><p class="small muted" style={{ margin: 0 }}>{k.tr}</p></div>)}
+      {kalip.map((k) => <div data-test="kalip-cerceve"><div class="de-lg" lang="de">{yuvali(k.de)}</div><p class="small muted" style={{ margin: 0 }}>{k.tr}</p></div>)}
       {ornekler.length > 0 && <section class="card stack" style={{ gap: 6 }} data-test="kalip-ornekler">
-        {ornekler.slice(0, 2).map((o) => <div class="row" style={{ flexWrap: "nowrap", gap: 10, alignItems: "center" }}><span class="grow"><b lang="de">{vurgulu(o)}</b><br /><span class="small muted">{o.tr}</span></span><ListenButton text={o.de} small slowToggle={false} /></div>)}
+        {ornekler.slice(0, 3).map((o) => <div class="row" data-test="kalip-ornek" style={{ flexWrap: "nowrap", gap: 10, alignItems: "center" }}><span class="grow"><b lang="de">{vurgulu(o)}</b><br /><span class="small muted">{o.tr}</span>{o.yeni && <><br /><span class="small" data-test="kalip-yeni"><b lang="de">{o.yeni.sozcuk}</b>: {o.yeni.tr ?? "yeni sözcük"}</span></>}</span><ListenButton text={o.de} small slowToggle={false} /></div>)}
       </section>}
       <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={onBitti}>Anladım</button></ActionBar>
     </section>
@@ -154,16 +155,21 @@ export function TanitAdimi({ bilgi, kelime, tr, vurgu, isaretli, onBitti }: { bi
   const [acik, setAcik] = useState<string | null>(null);
   const v = new Set(vurgu.map((x) => x.toLowerCase())), isr = new Map(isaretli.map((x) => [x.sozcuk.toLowerCase(), x.tr]));
   const parcalar = bilgi.de.split(/(\s+|[.,!?;:„“"»«]+)/).filter((x) => x !== "");
+  // "önce duy": cümle girişte kendiliğinden okunur; yanında cümlenin, kartta kelimenin dinle düğmesi (PM 7055715440 md. 11)
+  useEffect(() => { void speak(bilgi.de, "de", "normal"); }, [bilgi.de]);
   return (
     <section class="stack fade" data-test="akis-tanit">
       <div class="kicker icerik" style={{ color: "var(--accent)" }}>Yeni kelime</div>
-      <div class="de-lg" lang="de" style={{ fontSize: "1.7rem" }} data-test="tanit-cumle">
+      <div class="row" style={{ flexWrap: "nowrap", gap: 10, alignItems: "flex-start" }}>
+      <div class="de-lg grow" lang="de" style={{ fontSize: "1.7rem" }} data-test="tanit-cumle">
         {parcalar.map((p) => {
           const k = p.toLowerCase();
           if (v.has(k)) return <mark class="tanit-vurgu">{p}</mark>;
           if (isr.has(k)) return <button type="button" class="tanit-isaret" data-test="tanit-isaret" aria-label={`${p}: Türkçesini göster`} onClick={() => setAcik(acik === k ? null : k)}>{p}</button>;
           return p;
         })}
+      </div>
+      <span style={{ flex: "none", marginTop: 6 }} data-test="tanit-cumle-dinle"><ListenButton text={bilgi.de} small slowToggle={false} /></span>
       </div>
       {acik && <p class="small" style={{ margin: 0 }} data-test="tanit-isaret-tr"><b lang="de">{acik}</b>: {isr.get(acik) ?? "—"}</p>}
       <p class="small muted" style={{ margin: 0 }}>{bilgi.tr}</p>

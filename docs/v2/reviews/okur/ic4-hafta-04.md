@@ -1161,3 +1161,18 @@ Fark turunda GERİ yok. Önceki 32 GERİ'nin hepsi düzelmiş. İlk turda GEÇT�
 - `F-65` (`m1:28:t02`) iki cümle ama ikisi de aynı kart dizisinin sırasını anlatıyor; tek fikir saydım. **ilk parça / hemen arkasından** kartları sayınca da doğru çıkıyor (**Das Haus** iki kart, ama tek parça olarak adlandırılmış).
 - İlk turdaki kapsam dışı not hâlâ geçerli: `m1:28:t07` açıklaması artık **Er ist hell und schön** örneğini veriyor, ama kabul listesinin ilk cevabı hâlâ **Ich finde ihn hell und schön**. Dilbilimciye bilgi.
 
+
+## Son kontrol (23.11)
+
+Kapsam: fark turundan sonra değişen, öğrenciye görünen Türkçe açıklama alanları (aynı alan listesi). Dosyaların son hâlinden aynı betikle yeni bir alan listesi çıkardım ve fark turundaki listeyle (944 alan) alan alan karşılaştırdım; git kullanmadım. Sonuç: 944 alan duruyor, hiçbiri silinmemiş, **6 alanın metni değişmiş**. İstenen `m1:27:v1:c1` alanları bu altının içinde. Dilbilimcinin değiştirdiği ve listemde olmayan başka açıklama alanı yok. Her alanı güncel Almanca bağlamıyla okudum: kalıbın Almancası, sahne, kabul listesi, ses.
+
+| Öğe kimliği | Alan | Eski | Yeni açıklama | Kendi sözlerimle | Karar | Not |
+|---|---|---|---|---|---|---|
+| `gun-22` · `m1:22:h3.kalip0` | `kaliplar.tr` | …'i topluyorum. – …'i geri veriyorum. | …'i topluyorum. – …'i geri veriyorum. – …'i geri verir misin? | Topluyorum, geri veriyorum, geri verir misin diye soruyorum. | GEÇTİ | Almancası **Gibst du … zurück?** eklenmiş, uyuyor. |
+| `gun-23` · `m1:23:h1.kalip1` | `kaliplar.tr` | Bence o … (die ile) – Bence o … (das ile) | Bence o … (das ile) | das'lı bir eşya için bence o … | GEÇTİ | Almancası artık yalnız **Ich finde es …**; sahnedeki **Ich finde es schön** ile uyuyor. |
+| `gun-27` · `m1:27:v1:c1` | `situation_tr` | Brandl Hanım katını karıştırıyor. Sen ikinci katta oturuyorsun. | Ioana sana da soruyor. Süpermarket uzak değil, istasyonun arkasında. | Ioana bana da soruyor; süpermarket uzak değil, istasyonun arkasında. | GEÇTİ | Soru **Und der Supermarkt? Ist er weit?**; kabul listesi (**Nein, er ist hinter dem Bahnhof** …) yönergeyle örtüşüyor. Önceki notum (**katını** iki okumalı) bu değişiklikle kapandı. |
+| `gun-27` · `m1:27:v1:c1` | `why_tr` | Önce **Nein** de. Kat için **im** dersin: **im zweiten Stock**. | **der Supermarkt** için **er** dersin. İstasyonun arkasında derken **hinter dem Bahnhof**. | Süpermarket için er; istasyonun arkasında için hinter dem Bahnhof. | GEÇTİ | İki cümle, ikisi de aynı cevabın parçası (ilk turdaki `22-085` gibi). |
+| `gun-28` · `m1:28:h1.kalip9` | `kaliplar.tr` | daha ucuz – en ucuz | daha ucuz | Daha ucuz. | GEÇTİ | Almancası artık yalnız **billiger**, uyuyor. |
+| `gun-28` · `m1:28:s4` | `why_tr` | **am billigsten** en ucuz demektir. | **im Flur** koridorda demektir. | im Flur koridorda demek. | GEÇTİ | Dikte artık **Im Flur bitte keine Fahrräder!**, uyuyor. |
+
+**Son kontrol toplamı:** 6 alan · GEÇTİ 6 · GERİ 0. 4. hafta dosyalarında açık okur GERİ'si yok.
