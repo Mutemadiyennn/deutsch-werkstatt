@@ -27,7 +27,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic9/dilbilimci-h11.md; dilbilimci ONAY. okur (OD-9) bekliyor."
  },
  "dersler": [
   "gr:a2-03:t4"
@@ -1105,20 +1108,20 @@
    },
    {
     "id": "n3",
-    "de": "Krapfen haben wir leider keine mehr. Möchten Sie einen Kuchen?",
-    "tr": "Krapfen maalesef kalmadı. Kek ister misiniz?",
+    "de": "Krapfen haben wir leider keine mehr. Möchten Sie ein Stück Kuchen?",
+    "tr": "Krapfen maalesef kalmadı. Bir dilim kek ister misiniz?",
     "secenekler": [
      {
-      "de": "Ja, gern. Dann nehme ich einen.",
+      "de": "Ja, gern. Dann nehme ich eins.",
       "tr": "Evet, memnuniyetle. O zaman bir tane alayım.",
       "accepted": [
-       "Ja, gern. Dann nehme ich einen.",
-       "Ja, gern, dann nehme ich einen.",
-       "Ja, dann nehme ich einen Kuchen."
+       "Ja, gern. Dann nehme ich eins.",
+       "Ja, gern, dann nehme ich eins.",
+       "Ja, dann nehme ich ein Stück Kuchen."
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel. **der Kuchen** yerine **einen** dedin."
+      "geri_bildirim_tr": "Güzel. **ein Stück** yerine kısaca **eins** dedin."
      },
      {
       "de": "Nein, danke. Dann nur den Kaffee, bitte.",
@@ -1133,16 +1136,16 @@
       "geri_bildirim_tr": "Net ve kibar."
      },
      {
-      "de": "Ja, ich möchte keinen.",
+      "de": "Ja, ich möchte keins.",
       "tr": "Evet, hiç istemiyorum.",
       "accepted": [
-       "Ja, ich möchte keinen.",
-       "Ja, keinen.",
-       "Ja, ich will keinen."
+       "Ja, ich möchte keins.",
+       "Ja, keins.",
+       "Ja, ich will keins."
       ],
       "sonraki": "n3",
       "uygun": false,
-      "geri_bildirim_tr": "**Ja** ile **keinen** çelişiyor. **Ja, gern** ya da **Nein, danke** de."
+      "geri_bildirim_tr": "**Ja** ile **keins** çelişiyor. **Ja, gern** ya da **Nein, danke** de."
      }
     ]
    },
