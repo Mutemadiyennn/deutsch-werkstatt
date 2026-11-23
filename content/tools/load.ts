@@ -43,6 +43,8 @@ export interface Loaded {
   k1?: { cekirdek: string[]; pasif: string[] } | null;
   /** #58 B4 tabanı ve incelenmiş hassas konular (content/tools/b4-taban.json; yalnızca depo içeriği yüklenince) */
   b4Taban?: B4Taban;
+  /** içerik kökü (loadContent(dir)) */
+  dir?: string;
   errors: string[];
   warnings: string[];
 }
@@ -152,7 +154,7 @@ export function loadContent(dir = CDIR): Loaded {
   const tabanDosya = join(ROOT, "content/tools/b4-taban.json");
   const b4Taban = dir === CDIR && existsSync(tabanDosya) ? (JSON.parse(readFileSync(tabanDosya, "utf8")) as B4Taban) : undefined;
   const kesin = kesinTabloOku(dir, errors);
-  return { domains, lexemes: [...byId.values()], lexiconBatches, patterns, grammar, scenarios, assess, world, temel, m1, dn, k1, b4Taban, kesin, errors, warnings };
+  return { domains, lexemes: [...byId.values()], lexiconBatches, patterns, grammar, scenarios, assess, world, temel, m1, dn, k1, b4Taban, kesin, dir, errors, warnings };
 }
 
 /** PEDAGOGY.md §2: derin (K1) ve hafif (K2) kart zorunlu alanları */
@@ -384,12 +386,18 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
   // M1 günleri (#58 A4, PM-053, PM-055): kimlik/dosya, bölüm ve dikte bağları, gerçek video
   { const days = new Set<number>(), temelIds = new Set(c.temel.map((t) => t.data.id));
     const taught = baseTaught(c);
+    // sınav bağı (PM-101 md. 5): assess/*.json'daki `id`; deneme dosyası henüz dalda yoksa uyarı (yükleyici hat F/ANA-D3)
+    const denemeler = new Set<string>();
+    for (const f of walk(join(c.dir ?? CDIR, "assess")).filter((f) => f.endsWith(".json"))) {
+      try { const x = JSON.parse(readFileSync(f, "utf8")) as { id?: unknown }; if (typeof x?.id === "string") denemeler.add(x.id); } catch { /* bozuk JSON başka denetimin işi */ }
+    }
     // önceki günün dosyası yoksa K(t) kesin tablodan (PM-092 md. 3.2; ktablo.ts)
     const dolgu = tabloDolgusu(c.m1.map((x) => x.data.day), c.kesin);
     const gr = new Set(c.grammar.map((x) => x.id));
     const dnHaftasi = new Map<string, number[]>();
     for (const f of c.dn) for (const n of f.data) dnHaftasi.set(n.id, [...(dnHaftasi.get(n.id) ?? []), f.hafta]);
     for (const { file, data: g } of [...c.m1].sort((a, b) => a.data.day - b.data.day)) {
+      if (g.sinav && !denemeler.has(g.sinav)) warnings.push(`${file}: sinav ${g.sinav} assess/ altında bulunamadı`);
       for (const t of dolgu.get(g.day) ?? []) addDayTaught(taught, { yeni_kartlar: [...t.kartlar, ...t.cerceve], dersler: t.dersler }, c);
       addDayTaught(taught, g, c);
       // dersler: gr: kimliği registry/grammar.json'da, dn: kimliği o haftanın dn-HH.json'ında olmalı (PM-092 md. 3.1)
