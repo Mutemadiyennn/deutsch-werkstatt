@@ -55,7 +55,7 @@ export function Onboarding() {
           <section class="card stack" style={{ gap: 6 }}>
             <label class="lbl" for="onm2" style={{ margin: 0 }}>Adın</label>
             <input id="onm2" class="input" maxLength={40} autoComplete="off" autoFocus value={p.displayName || ""} onInput={(e) => set((x) => { const v = (e.target as HTMLInputElement).value; x.displayName = v.trim() ? v : undefined; })} />
-            <p class="tiny muted" style={{ margin: 0 }}>Adını yazmazsan diyaloglarda adsız cümleler kullanılır. Sonra Profil'den de ekleyebilirsin.</p>
+            <p class="tiny muted" style={{ margin: 0 }}>Adını yazmazsan diyaloglarda adsız cümleler kullanılır. Sonra Ben → Ayarlar'dan da ekleyebilirsin.</p>
           </section>
           <button class="btn primary block" data-test="ad-tamam" disabled={!p.displayName?.trim()} onClick={() => { setAdSor("soruldu"); setStep(1); }}>Devam</button>
           <button class="btn ghost block" data-test="ad-gec" onClick={() => { set((x) => { x.displayName = undefined; }); setAdSor("soruldu"); setStep(1); }}>Adsız devam et</button>
@@ -129,7 +129,7 @@ export function Onboarding() {
             <ol class="small" style={{ margin: 0, paddingLeft: 20 }}>
               {p.focus.sessionPlan.map((acts) => <li>{acts.map((a) => ACTIVITY_TR[a]).join(", ")}</li>)}
             </ol>
-            <p class="tiny muted" style={{ marginTop: 8 }}>4. seanstan sonra isteğe bağlı {p.focus.longBreakMin} dakikalık uzun mola. Bunları Profil'den değiştirebilirsin.</p>
+            <p class="tiny muted" style={{ marginTop: 8 }}>4. seanstan sonra isteğe bağlı {p.focus.longBreakMin} dakikalık uzun mola. Bunları Ben → Ayarlar'dan değiştirebilirsin.</p>
           </div>
           <button class="btn primary block" onClick={() => setStep(4)}>Devam</button>
         </section>

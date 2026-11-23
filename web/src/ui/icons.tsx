@@ -28,6 +28,8 @@ const P: Record<string, string> = {
   down: "M6 9l6 6 6-6",
   keyboard: "M3 6h18v12H3z|M7 10h.01|M11 10h.01|M15 10h.01|M8 14h8",
   // Hedef 3 sekme simgeleri (design/TARGET3.html; projeye özgü çizim)
+  harita: "M9 4l6 2 5-2v14l-5 2-6-2-5 2V6z|M9 4v14M15 6v14",
+  ayar: "M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z|M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1",
   saat: "M12 3a9 9 0 1 0 9 9|M12 7v5l3 2",
   yol: "M5 20c4-1 2-7 7-8s4-6 7-8|M3.5 20a1.5 1.5 0 1 0 3 0 1.5 1.5 0 1 0-3 0|M17.5 4a1.5 1.5 0 1 0 3 0 1.5 1.5 0 1 0-3 0",
   koy: "M3 21h18|M5 21V10l7-5 7 5v11|M10 21v-6h4v6",

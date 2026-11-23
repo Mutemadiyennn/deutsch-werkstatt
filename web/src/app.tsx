@@ -38,6 +38,7 @@ import { LongPressExplain } from "./ui/learn.tsx";
 import { BreakOverlay, OdakEkrani } from "./screens/Today.tsx";
 import { AssessRun, AssessResult } from "./screens/Assess.tsx";
 import { Progress } from "./screens/Progress.tsx";
+import { BenEkrani } from "./screens/Ben.tsx";
 import { Garden } from "./screens/Garden.tsx";
 import { ProfileView } from "./screens/Profile.tsx";
 
@@ -177,8 +178,9 @@ export function App() {
     case "domain": screen = <DomainView id={route.id} />; break;
     case "scenario": screen = <PlayerHome id={route.id} />; break;
     case "section": screen = <PlayerSection id={route.id} section={route.section} />; break;
-    // Ben ekranı gelene kadar sekme bugünkü İlerlemem ekranını açar (PM-084 md. 3.2)
-    case "ben": screen = <Progress />; break;
+    // Ben (PM-084 md. 5); eski İlerlemem "Çalışma düzenim" olarak #/ben/duzen'de
+    case "ben": screen = <BenEkrani />; break;
+    case "benDuzen": screen = <Progress />; break;
     case "profile": screen = <ProfileView />; break;
     case "assess": screen = <AssessRun />; break;
     case "assessResult": screen = <AssessResult id={route.id} />; break;
