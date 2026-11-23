@@ -1,0 +1,129 @@
+{
+ "id": "m1:gorulmemis:10",
+ "hafta": 10,
+ "durumlar": [
+  {
+   "id": "m1:h10:g1",
+   "can_do": "cd:m1:69",
+   "durum_tr": "Dr. Winter'in muayenehanesinde perşembe saat dörtte randevun var. Ama perşembe uzun bir toplantın var. Muayenehaneyi arıyorsun. Adını ve randevunu söyle, gelemeyeceğini söyle ve başka bir gün iste.",
+   "karsi": "Praxis Dr. Winter (Rezeption)",
+   "yer": "Praxis Dr. Winter (Telefon)",
+   "prompt_de": "Praxis Dr. Winter, guten Tag?",
+   "accepted": [
+    "Guten Tag, hier ist {name}. Ich habe am Donnerstag um vier einen Termin. Leider kann ich nicht kommen. Geht es an einem anderen Tag?",
+    "Guten Tag, mein Name ist {name}. Ich habe am Donnerstag um vier einen Termin, aber ich kann leider nicht kommen, weil ich eine Besprechung habe. Haben Sie an einem anderen Tag etwas frei?",
+    "Guten Tag, hier ist {name}. Ich muss meinen Termin am Donnerstag um vier leider absagen. Haben Sie einen anderen Tag frei?",
+    "Hallo, hier ist {name}. Am Donnerstag um vier kann ich leider nicht kommen. Kriege ich einen neuen Termin?",
+    "Guten Tag, {name} hier. Ich rufe an, weil ich am Donnerstag um vier nicht kommen kann. Geht es vielleicht am Freitag?",
+    "Grüß Gott, hier ist {name}. Mein Termin am Donnerstag um vier geht leider nicht, ich habe eine lange Besprechung. Haben Sie sonst noch etwas frei?"
+   ],
+   "kalip": "Ich habe am … einen Termin. Leider kann ich nicht kommen. Geht es an einem anderen Tag?",
+   "why_tr": "Önce adını ve randevunu söyle. Sonra **leider** ile gelemediğini söyle ve yeni gün iste."
+  },
+  {
+   "id": "m1:h10:g2",
+   "can_do": "cd:m1:70",
+   "durum_tr": "Arabanın lastik değişimi için oto servisi aradın. Salı olmadı. Usta Frau Lindqvist şimdi pazartesi sabah sekizi öneriyor. Pazartesi sabah işteysin, cumartesi boşsun. Olmadığını söyle ve yeni bir gün iste.",
+   "karsi": "Frau Lindqvist (Autowerkstatt)",
+   "yer": "Autowerkstatt (Telefon)",
+   "prompt_de": "Dienstag geht nicht? Dann vielleicht am Montag um acht?",
+   "accepted": [
+    "Montag um acht geht leider auch nicht, da bin ich im Büro. Haben Sie am Samstag etwas frei?",
+    "Leider nicht, am Montag arbeite ich. Geht es am Samstag?",
+    "Das passt mir leider auch nicht. Geht es vielleicht am Samstag?",
+    "Am Montag um acht bin ich leider in der Arbeit. Haben Sie am Samstag noch etwas frei?",
+    "Montag passt mir leider auch nicht. Ich hoffe, am Samstag geht es.",
+    "Leider auch nicht, ich arbeite am Montag. Was ist mit Samstag?"
+   ],
+   "kalip": "… geht leider auch nicht. Haben Sie am … etwas frei?",
+   "why_tr": "Vazgeçme. Önce **leider auch nicht** de, sonra uyan günü sor: **Geht es am Samstag?**"
+  },
+  {
+   "id": "m1:h10:g3",
+   "can_do": "cd:m1:68",
+   "durum_tr": "Bir iş arkadaşının apartmanında, avlunun çöp bidonlarının yanındasın. Yeni taşınmış bir komşu, Frau Mensah, kâğıdı nereye atacağını soruyor. Duvardaki duyuruya göre kâğıt, kâğıt bidonuna atılıyor, bidonların yanına bir şey konmuyor. Ona söyle.",
+   "karsi": "Frau Mensah (neue Nachbarin)",
+   "yer": "Hof mit Mülltonnen (Haus von einem Kollegen)",
+   "prompt_de": "Entschuldigung, wohin kommt hier das Papier?",
+   "accepted": [
+    "Das Papier kommt in die Mülltonne für Papier. Man darf nichts neben die Mülltonnen stellen.",
+    "In die Mülltonne für Papier. Aber man darf nichts neben die Mülltonnen stellen.",
+    "Papier kommt in die Mülltonne für Papier, und neben die Mülltonnen darf man nichts stellen.",
+    "Das kommt in die Mülltonne für Papier. Bitte stellen Sie nichts neben die Mülltonnen.",
+    "In die Mülltonne für Papier, hier. Neben die Mülltonnen darf man nichts stellen.",
+    "Das Papier kommt in diese Mülltonne. Man darf nichts neben die Mülltonnen stellen."
+   ],
+   "kalip": "… kommt in die … Mülltonne. Man darf nichts neben … stellen.",
+   "why_tr": "Nereye: **in die Mülltonne**. Kural: **man darf nicht**."
+  },
+  {
+   "id": "m1:h10:g4",
+   "can_do": "cd:m1:66",
+   "durum_tr": "Hafta sonu Passau'da kiralık bir tatil dairesindesin. Ev sahibi Frau Sommer arıyor ve her şey yolunda mı diye soruyor. Banyodaki musluk damlatıyor, mutfaktaki priz çalışmıyor. Ona söyle.",
+   "karsi": "Frau Sommer (Vermieterin, Ferienwohnung)",
+   "yer": "Ferienwohnung in Passau (Telefon)",
+   "prompt_de": "Hallo, hier ist Frau Sommer. Ist in der Wohnung alles in Ordnung?",
+   "accepted": [
+    "Nicht ganz. Der Wasserhahn im Bad tropft, und die Steckdose in der Küche geht nicht.",
+    "Leider nicht. Der Wasserhahn im Bad tropft. Die Steckdose in der Küche geht auch nicht.",
+    "Leider nicht ganz. Im Bad tropft der Wasserhahn, und in der Küche geht die Steckdose nicht.",
+    "Die Wohnung ist schön, aber der Wasserhahn im Bad tropft und die Steckdose in der Küche ist kaputt.",
+    "Leider nein. Der Wasserhahn im Bad tropft, und die Steckdose in der Küche funktioniert nicht.",
+    "Danke, die Wohnung ist schön. Aber im Bad tropft der Wasserhahn. Und die Steckdose in der Küche geht nicht."
+   ],
+   "kalip": "Der Wasserhahn im … tropft, und die Steckdose in der … geht nicht.",
+   "why_tr": "Ne bozuk ve nerede, ikisini de söyle: **im Bad**, **in der Küche**."
+  },
+  {
+   "id": "m1:h10:g5",
+   "can_do": "cd:m1:64",
+   "durum_tr": "Bir arkadaşının iş yerindeki kantindesin. Yeni çalışan Herr Castillo kaşıkların yerini soruyor. Kaşıklar rafta, kapının yanında. Ona söyle.",
+   "karsi": "Herr Castillo (neuer Kollege)",
+   "yer": "Kantine (Firma von einem Freund)",
+   "prompt_de": "Entschuldigung, wo sind die Löffel?",
+   "accepted": [
+    "Die Löffel sind im Regal neben der Tür.",
+    "Im Regal neben der Tür.",
+    "Sie sind im Regal neben der Tür.",
+    "Die Löffel liegen im Regal neben der Tür.",
+    "Da, im Regal neben der Tür."
+   ],
+   "kalip": "… sind im Regal neben …",
+   "why_tr": "Nerede sorusu: **im Regal**, **neben der Tür**."
+  },
+  {
+   "id": "m1:h10:g6",
+   "can_do": "cd:m1:65",
+   "durum_tr": "Otobüste yeni komşun Frau Novak'la karşılaşıyorsun. Hafta sonunu soruyor. Cumartesi yüzme havuzuna gidiyorsun ve buna seviniyorsun. Ona söyle.",
+   "karsi": "Frau Novak (neue Nachbarin)",
+   "yer": "Bus",
+   "prompt_de": "Was machen Sie am Wochenende?",
+   "accepted": [
+    "Am Samstag gehe ich ins Schwimmbad. Ich freue mich schon.",
+    "Ich gehe am Samstag ins Schwimmbad. Ich freue mich sehr.",
+    "Am Samstag gehe ich ins Schwimmbad, ich freue mich schon!",
+    "Ich gehe ins Schwimmbad. Ich freue mich auf das Wochenende.",
+    "Am Samstag bin ich im Schwimmbad. Ich freue mich schon."
+   ],
+   "kalip": "Am … gehe ich ins … Ich freue mich.",
+   "why_tr": "Nereye: **ins Schwimmbad**. Sevincini **Ich freue mich** ile söyle."
+  },
+  {
+   "id": "m1:h10:g7",
+   "can_do": "cd:m1:67",
+   "durum_tr": "Bir otelde kalıyorsun. Dün anahtarını görevli Herr Demir aldı. Bugün anahtarı bulamıyorsun. Ona anahtarı nereye koyduğunu sor.",
+   "karsi": "Herr Demir (Hotel)",
+   "yer": "Hotel",
+   "prompt_de": "Guten Morgen! Kann ich Ihnen helfen?",
+   "accepted": [
+    "Guten Morgen! Wo ist mein Schlüssel hin? Wohin haben Sie ihn gelegt?",
+    "Ja, bitte. Wohin haben Sie meinen Schlüssel gelegt?",
+    "Guten Morgen. Wohin haben Sie gestern meinen Schlüssel gelegt?",
+    "Ja, wo ist mein Schlüssel hin?",
+    "Ja, bitte. Ich finde meinen Schlüssel nicht. Wohin haben Sie ihn gelegt?"
+   ],
+   "kalip": "Wohin haben Sie … gelegt?",
+   "why_tr": "Nereye koyduğunu sor: **Wohin haben Sie ihn gelegt?**"
+  }
+ ]
+}

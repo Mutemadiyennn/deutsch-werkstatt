@@ -1,0 +1,173 @@
+{
+ "id": "m1:hafta-sonu-testi:10",
+ "day": 70,
+ "maddeler": [
+  {
+   "id": "m1:70:t01",
+   "k": "listen_and_respond",
+   "audio_de": "Wohin hast du mein Handy gelegt?",
+   "speed": "normal",
+   "situation_tr": "Tobi soruyor. Tobi'nin telefonunu masaya koydun.",
+   "accepted": [
+    "Ich habe es auf den Tisch gelegt.",
+    "Auf den Tisch.",
+    "Ich habe dein Handy auf den Tisch gelegt.",
+    "Das habe ich auf den Tisch gelegt.",
+    "Es liegt auf dem Tisch."
+   ],
+   "why_tr": "Nereye koydun: **auf den Tisch gelegt**. Şimdi nerede: **liegt auf dem Tisch**."
+  },
+  {
+   "id": "m1:70:t02",
+   "k": "order",
+   "de": "stellen / die Mülltonnen / Wir / hinter das Haus",
+   "tr": "Çöp bidonlarını apartmanın arkasına koyuyoruz.",
+   "accepted": [
+    "Wir stellen die Mülltonnen hinter das Haus.",
+    "Die Mülltonnen stellen wir hinter das Haus.",
+    "Hinter das Haus stellen wir die Mülltonnen."
+   ],
+   "why_tr": "**stellen** ikinci yerde. Nereye: **hinter das Haus**."
+  },
+  {
+   "id": "m1:70:t03",
+   "k": "guided_response",
+   "situation_tr": "Frau Huber pazartesi saat sekizi öneriyor. Pazartesi sabah toplantın var. Olmadığını söyle, salıyı sor.",
+   "prompt_de": "Montag um acht, passt Ihnen das?",
+   "accepted": [
+    "Montag um acht passt mir leider nicht. Geht es am Dienstag?",
+    "Leider nicht, am Montag habe ich eine Besprechung. Geht es am Dienstag?",
+    "Am Montag kann ich leider nicht. Haben Sie am Dienstag etwas frei?",
+    "Das passt mir leider nicht, weil ich eine Besprechung habe. Geht es auch am Dienstag?",
+    "Leider nicht. Ich hoffe, am Dienstag geht es."
+   ],
+   "why_tr": "Önce **leider nicht** de. Sonra yeni gün iste: **Geht es am Dienstag?**"
+  },
+  {
+   "id": "m1:70:t04",
+   "k": "gap",
+   "de": "Das Handy ___ auf dem Tisch.",
+   "tr": "Telefon masada duruyor.",
+   "accepted": [
+    "liegt",
+    "Liegt",
+    "liegt."
+   ],
+   "opts": [
+    "liegt",
+    "legt",
+    "stellt"
+   ],
+   "why_tr": "Telefon yatay duruyor: **liegt**. **legt** koymak demek."
+  },
+  {
+   "id": "m1:70:t05",
+   "k": "listen_and_respond",
+   "audio_de": "Am Mittwoch gibt es von acht bis zwölf kein Wasser im Haus.",
+   "speed": "normal",
+   "situation_tr": "Apartman duyurusu okunuyor. Komşun duyamadı ve soruyor: Su ne zaman yok? Söyle.",
+   "accepted": [
+    "Am Mittwoch von acht bis zwölf.",
+    "Am Mittwoch von acht bis zwölf gibt es kein Wasser.",
+    "Von acht bis zwölf am Mittwoch.",
+    "Am Mittwoch gibt es von acht bis zwölf kein Wasser.",
+    "Am Mittwoch, von acht bis zwölf Uhr."
+   ],
+   "why_tr": "Önce gün, sonra saat: **am Mittwoch von acht bis zwölf**."
+  },
+  {
+   "id": "m1:70:t06",
+   "k": "transform",
+   "instr_tr": "Bunu dün yaptınız. Cümleyi öyle söyle.",
+   "from_de": "Wir hängen das Bild an die Wand.",
+   "accepted": [
+    "Wir haben das Bild an die Wand gehängt.",
+    "Das Bild haben wir an die Wand gehängt.",
+    "Wir haben das Bild schon an die Wand gehängt.",
+    "Wir haben das Bild gestern an die Wand gehängt."
+   ],
+   "why_tr": "**haben** ikinci yerde, **gehängt** en sonda durur."
+  },
+  {
+   "id": "m1:70:t07",
+   "k": "tr_de",
+   "tr": "Komşum yine müziğe sinirleniyor.",
+   "accepted": [
+    "Mein Nachbar ärgert sich schon wieder über die Musik.",
+    "Mein Nachbar ärgert sich wieder über die Musik.",
+    "Meine Nachbarin ärgert sich schon wieder über die Musik."
+   ],
+   "why_tr": "Sinirlenmek: **sich ärgern über**. Komşun için **ärgert sich** dersin."
+  },
+  {
+   "id": "m1:70:t08",
+   "k": "gap",
+   "de": "Der Müll kommt in ___ Mülltonne.",
+   "tr": "Çöp, çöp bidonuna atılır.",
+   "accepted": [
+    "die",
+    "Die",
+    "die."
+   ],
+   "opts": [
+    "die",
+    "der",
+    "den"
+   ],
+   "why_tr": "Nereye sorusu. Bidon **die Mülltonne**, nereye sorusunda da **die** kalır."
+  },
+  {
+   "id": "m1:70:t09",
+   "k": "listen_and_respond",
+   "audio_de": "Könnten Sie die Musik bitte nicht so laut machen?",
+   "speed": "normal",
+   "situation_tr": "Saat on bir. Alt kattaki komşun kapında, kibarca rica ediyor. Özür dile ve tabii de.",
+   "accepted": [
+    "Oh, Entschuldigung! Natürlich.",
+    "Ja, natürlich. Entschuldigung!",
+    "Entschuldigung, kein Problem!",
+    "Natürlich, das tut mir leid!",
+    "Oh, Entschuldigung. Ja, klar."
+   ],
+   "why_tr": "Kısa ve kibar cevap: **Entschuldigung! Natürlich.**"
+  },
+  {
+   "id": "m1:70:t10",
+   "k": "order",
+   "de": "erinnern / Sie / mich / Könnten / an den Termin / bitte",
+   "tr": "Bana randevuyu hatırlatabilir misiniz lütfen?",
+   "accepted": [
+    "Könnten Sie mich bitte an den Termin erinnern?",
+    "Könnten Sie mich an den Termin bitte erinnern?",
+    "Könnten Sie mich an den Termin erinnern, bitte?"
+   ],
+   "why_tr": "**Könnten** başta, **erinnern** en sonda durur."
+  },
+  {
+   "id": "m1:70:t11",
+   "k": "tr_de",
+   "tr": "Umarım cumartesi hava güzel olur.",
+   "accepted": [
+    "Ich hoffe, am Samstag ist das Wetter schön.",
+    "Ich hoffe, das Wetter ist am Samstag schön.",
+    "Ich hoffe, am Samstag ist schönes Wetter.",
+    "Ich hoffe, das Wetter ist am Samstag gut."
+   ],
+   "why_tr": "**Ich hoffe** ile başla. Ardından cümle değişmeden gelir: **das Wetter ist schön**."
+  },
+  {
+   "id": "m1:70:t12",
+   "k": "guided_response",
+   "situation_tr": "Derya kantinde soruyor: Yemek listesi nerede? Listeyi kapının yanına koydun.",
+   "prompt_de": "Wo ist denn die Speisekarte hin?",
+   "accepted": [
+    "Ich habe sie neben die Tür gestellt.",
+    "Ich habe sie neben die Tür gelegt.",
+    "Sie steht neben der Tür.",
+    "Die Speisekarte steht neben der Tür.",
+    "Sie steht da, neben der Tür."
+   ],
+   "why_tr": "Koyduysan: **neben die Tür gestellt**. Şimdi nerede: **steht neben der Tür**."
+  }
+ ]
+}
