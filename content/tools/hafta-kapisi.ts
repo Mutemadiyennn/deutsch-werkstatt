@@ -210,7 +210,7 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     almancaCumleler(f, haftaCumleleri);
     const cd = nesne(f.can_do).id; if (typeof cd === "string") canDo.add(cd);
     const yeni = new Set(yazilar(f.yeni_kartlar)), dersler = yazilar(f.dersler);
-    // durak sırası uygulamanın planlayıcısıyla aynı (web/src/core/akis.ts, K1 dizisi): ısınma · ses · h1 · h2 · (sahne/video) · h3 · h4 ·
+    // durak sırası uygulamanın planlayıcısıyla aynı (web/src/core/akis.ts, K1 dizisi; PM-097 md. 1 ses ikinci turu): ısınma · ses (dinle) · h1 · h2 · (sahne/video) · h3 · h4 ·
     // prova · h5 · okuma · gün sonu; az halkalı günde sabit duraklar sona kalır. Dil noktası: `dersten_sonra` olan ilk halkadan önce
     // (yoksa son halkadan sonra). Yaklaşıktır: planlayıcı dil durağını K(t)'den yerleştirir (akis.ts ~560–580; gr:/dn: dersleri
     // dersler haritasına girince); `sahne` (köy dizisi) planlayıcıda ayrı durak değil, burada video yerinde sayılır.
@@ -218,15 +218,20 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     // medya durağı (ses, sahne, video): uygulama bilinmeyen sözcük isteyen dikte ve "Sen ne derdin?" maddesini sormaz
     // (Medya.tsx `dikteSuz`, 1. gün öğrenci simülasyonu P0-1): öğretilmeden istenen değil, "süzülen" sayılır
     const MEDYA = new Set(["sesler", "sahne", "video"]);
-    const bolum = (ad: string) => {
+    // PM-097 md. 1: ses durağı iki tur. Başta yalnız dinleme + anlama; dikte, gölge ve "Sen ne derdin?" son halkadan sonra (ikinci tur)
+    const URETIM = /\/(dikte|cevapla|golge)\b/;
+    const bolum = (ad: string, tur?: "dinle" | "uretim") => {
       if (f[ad] === undefined) return;
-      for (const m of maddeler({ [ad]: f[ad] }, "gün")) adimlar.push(degerle(gn, { ...m, suzulur: MEDYA.has(ad) && /\/(dikte|cevapla)\b/.test(m.yer) }, gunB));
+      for (const m of maddeler({ [ad]: f[ad] }, "gün")) {
+        if (tur && (tur === "uretim") !== URETIM.test(m.yer)) continue;
+        adimlar.push(degerle(gn, { ...m, suzulur: MEDYA.has(ad) && /\/(dikte|cevapla)\b/.test(m.yer) }, gunB));
+      }
     };
     const ARA: Record<number, string[]> = { 1: ["sahne", "video"], 3: ["prova"], 4: ["okuma_yazma"] };
     const dersYeri = halkalar.findIndex((h) => h.dersten_sonra === true);
     let dersVerildi = false;
     const dersVer = () => { if (!dersVerildi) { for (const x of dersler) dersEkle(gunB, x); dersVerildi = true; } };
-    bolum("sesler");
+    bolum("sesler", "dinle");
     halkalar.forEach((h, hi) => {
       if (hi === dersYeri) dersVer();
       halkaKalip(gunB, h);
@@ -236,6 +241,7 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     });
     for (const k of yeni) gunB.kart.add(k);
     dersVer();
+    bolum("sesler", "uretim");   // ses · ikinci tur: son halkadan sonra
     for (const [hi, adlar] of Object.entries(ARA)) if (+hi >= halkalar.length) for (const ad of adlar) bolum(ad);
     const bilinen = new Set(["halkalar", "yeni_kartlar", "dersler", "requires", "review", "can_do", "sesler", "sahne", "video", "prova", "okuma_yazma", "gun_sinavi"]);
     for (const ad of Object.keys(f).filter((k) => !bilinen.has(k))) bolum(ad);   // resimden seç (gorsel) ve bilinmeyen bölümler: günün bütün kartlarıyla

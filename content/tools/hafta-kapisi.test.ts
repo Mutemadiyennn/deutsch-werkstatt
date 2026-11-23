@@ -75,18 +75,25 @@ describe("hafta kapısı: 2. hafta (önceki hafta öğretilmiş)", () => {
     const r2 = kos(hafta2((gs) => { gs[0]!.halkalar = [{ id: "h8", kartlar: [], gorev_cumleleri: [g(sonraki, sonraki, "Hallo!")] }]; }));
     expect(r2.ogretilmedenKesin).toBe(0);
   });
-  it("ses durağı 1. halkadan önce: bugünün kartı seste kesin, gün sınavında bilinir (akis.ts sırası)", () => {
+  it("ses: ikinci turdaki üretim ve gün sınavı günün kartını bilir (akis.ts sırası, PM-097 md. 1)", () => {
     const uygun = (k: string) => !dizin.cerceve.has(k) && /^[A-Za-zÄÖÜäöüß]+$/.test(dizin.kartlar.get(k)?.de ?? "") && !GOSTERIM.includes((dizin.kartlar.get(k)?.de ?? "").toLowerCase());
     const gn = [8, 9, 10, 11, 12, 13, 14].find((n) => T.get(n)!.some(uygun))!, k8 = dizin.kartlar.get(T.get(gn)!.find(uygun)!)!.de;
     const ses = { sesler: [{ id: "a1", script: [], bolumler: [{ id: "b1", cevapla: { prompt_de: "Hallo!", accepted: [`Hallo, ${k8}!`] } }] }] };
     const r = kos(hafta2((gs) => Object.assign(gs[gn - 8]!, ses)));
-    // medyada bilinmeyen sözcük isteyen "Sen ne derdin?" uygulamada sorulmaz (dikteSuz): süzülen, öğretilmeden istenen değil
-    expect(r.adimlar.filter((a) => a.sonuc === "suzuldu").map((a) => a.yer)).toEqual(["gün/sesler[a1]/bolumler[b1]/cevapla"]);
+    // "Sen ne derdin?" ikinci turda (son halkadan sonra, PM-097 md. 1): günün kartı bilinir, süzülmez
+    expect(r.adimlar.filter((a) => a.sonuc === "suzuldu")).toEqual([]);
     expect(r.ogretilmedenKesin).toBe(0);
     const yazma = { okuma_yazma: { metin_de: "Hallo!", sorular: [], yazma: { ornek_de: `Hallo, ${k8}!` } } };
     expect(kos(hafta2((gs) => Object.assign(gs[gn - 8]!, ses, yazma))).ogretilmedenKesin).toBe(0);   // okuma halkalardan sonra
     const r2 = kos(hafta2((gs) => Object.assign(gs[gn - 8]!, { gun_sinavi: { maddeler: [{ id: "s1", prompt_de: "Hallo!", accepted: [`Hallo, ${k8}!`] }] } })));
     expect(r2.ogretilmedenKesin).toBe(0);
+  });
+  it("ses ikinci turu (PM-097 md. 1): dikte ve 'Sen ne derdin?' son halkadan sonra, günün kartlarıyla", () => {
+    const uygun = (k: string) => !dizin.cerceve.has(k) && /^[A-Za-zÄÖÜäöüß]+$/.test(dizin.kartlar.get(k)?.de ?? "") && !GOSTERIM.includes((dizin.kartlar.get(k)?.de ?? "").toLowerCase());
+    const gn = [8, 9, 10, 11, 12, 13, 14].find((n) => T.get(n)!.some(uygun))!, k8 = dizin.kartlar.get(T.get(gn)!.find(uygun)!)!.de;
+    const ses = { sesler: [{ id: "a1", script: [{ id: "c1", de: `Hallo, ${k8}!` }], bolumler: [{ id: "b1", ana_fikir: { q_tr: "?", opts: ["a"], ans: 0, kanit: ["c1"] }, dikte: [{ id: "d1", seviye: "zor", accepted: [`Hallo, ${k8}!`] }] }] }] };
+    const r = kos(hafta2((gs) => Object.assign(gs[gn - 8]!, ses)));
+    expect(r.adimlar.filter((a) => a.gun === gn && a.yer.includes("sesler")).map((a) => [a.yer.replace(/^.*\//, ""), a.sonuc])).toEqual([["ana_fikir", "anlama"], ["dikte[d1]", "tamam"]]);
   });
   it("medya maddesinin cevabı biliniyor, sorusu bilinmiyorsa süzülmez: öğretilmeden istenen (inceleme 7088959856 P1-6)", () => {
     const ses = { sesler: [{ id: "a1", script: [], bolumler: [{ id: "b1", cevapla: { prompt_de: `Hallo, ${H3}?`, accepted: ["Hallo!"] } }] }] };
