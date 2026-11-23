@@ -11,7 +11,7 @@ import { loadLexicon } from "../services/content.ts";
 import { ilerlemeOku } from "../services/ilerleme.ts";
 import { visibleScenarios } from "../core/season.ts";
 import { AYRAC, ayrac } from "../core/ayrac.ts";
-import { KOY_ADI, MEKAN_ADI, acikAdimlar, bekleyenKart, dukkanlar, mekanMedya, telefon, vadesiGelen, type Dukkan, type DukkanId, type MekanId } from "../core/koy.ts";
+import { KOY_ADI, MEKAN_ADI, acikAdimlar, acikGunler, bekleyenKart, dukkanlar, mekanMedya, telefon, vadesiGelen, type Dukkan, type DukkanId, type MekanId } from "../core/koy.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 import { Icon, type IconName } from "../ui/icons.tsx";
 import { plain } from "../ui/rich.tsx";
@@ -93,16 +93,20 @@ export function MekanEkrani({ id }: { id: MekanId }) {
   );
 }
 
-/** Sinema (video, köy dizisi) ve Radyo (ses kayıtları): eski "İlk Hafta" listesinin kayıtları, gün gün */
+/** Sinema (video, köy dizisi) ve Radyo (ses kayıtları): yalnız açılmış günlerin kayıtları, gün gün (#200 PM finali takip a) */
 function MedyaListesi({ mekan }: { mekan: "sinema" | "radyo" }) {
   const { index, indexError } = useApp();
+  const { plan, err } = usePlan();
   const [bitti, setBitti] = useState<Set<string>>(new Set());
   useEffect(() => { ilerlemeOku().then((i) => setBitti(i.medyaBitti)).catch(() => { /* işaret yok */ }); }, []);
-  const gunler = useMemo(() => (index ? mekanMedya(index, mekan) : []), [index?.version, mekan]);
+  // plan kurulamazsa (ilk gün dosyası bile yok) yalnız ilk gün listelenir; kilitli gün hiçbir durumda açılmaz
+  const gunler = useMemo(() => (index ? mekanMedya(index, mekan, acikGunler(index, plan?.gunler ?? [])) : []), [index?.version, mekan, plan]);
+  // kilitli günlerde de bu mekânın kaydı varsa liste neden kısa, tek satırla söylenir
+  const sonra = useMemo(() => (index ? mekanMedya(index, mekan, new Set(index.m1.map((g) => g.day))).length > gunler.length : false), [index?.version, mekan, gunler]);
   if (indexError) return <ErrorPanel message={indexError} onRetry={() => location.reload()} />;
-  if (!index) return <Loading />;
+  if (!index || (!plan && !err && index.m1.length > 0)) return <Loading />;
   const tur = { video: "Video", sahne: "Köy dizisi", ses: "Dinle" } as const;
-  if (!gunler.length) return <p class="small muted">{mekan === "sinema" ? "Burada henüz video yok." : "Burada henüz ses kaydı yok."}</p>;
+  if (!gunler.length) return <p class="small muted">{mekan === "sinema" ? "Burada henüz video yok." : "Burada henüz ses kaydı yok."}{sonra ? " Yeni günler açıldıkça gelir." : ""}</p>;
   return (
     <>
       {gunler.map((g) => (
@@ -115,6 +119,7 @@ function MedyaListesi({ mekan }: { mekan: "sinema" | "radyo" }) {
               <span aria-hidden="true">›</span></a></li>))}</ul>
         </section>
       ))}
+      {sonra && <p class="small muted" data-test="mekan-sonra">{mekan === "sinema" ? "Sonraki günlerin videoları, o gün açılınca burada." : "Sonraki günlerin kayıtları, o gün açılınca burada."}</p>}
     </>
   );
 }

@@ -21,7 +21,12 @@ export function ProfileView() {
   useEffect(() => { void persistState().then(setPersist).catch(() => {}); }, []);
   const [, tick] = useState(0);
   useEffect(() => onAiState(() => tick((n) => n + 1)), []); // sağlayıcı yoklaması sonrası yeniden çiz
-  const { profile, setProfile, index, api, toast, user } = useApp();
+  const { profile, setProfile, index, api, toast, user, route } = useApp();
+  // Ben'deki "Fotoğraf rafı bağlı değil → bağla" satırı (`#/ben/ayarlar/raf`) uzun sayfanın başına değil, doğrudan
+  // Medya rafı kartına iner (#208 PM finali takip d)
+  const raf = useRef<HTMLElement>(null);
+  const rafaIn = route.name === "profile" && route.bolum === "raf";
+  useEffect(() => { if (rafaIn) requestAnimationFrame(() => raf.current?.scrollIntoView({ block: "start" })); }, [rafaIn]);
   const basliklar = Object.fromEntries((index?.temel ?? []).map((t) => [t.id, t.title_tr]));
   const [srv, setSrv] = useState<string | null>(null);
   // Art arda iki değişiklik (ör. adı yazıp hemen hitabı seçmek) aynı eski kopyadan yazılırsa ikincisi birincisini siler:
@@ -143,7 +148,7 @@ export function ProfileView() {
         <KullanimTablosu basliklar={basliklar} />
       </section>
 
-      <section class="card">
+      <section class="card" ref={raf} data-test="raf-karti" style={{ scrollMarginTop: "12px" }}>
         <h2>Medya rafı</h2>
         <MedyaRafi />
       </section>
