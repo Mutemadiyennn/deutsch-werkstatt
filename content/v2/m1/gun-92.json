@@ -27,7 +27,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [
   "gr:a2-05:t1"
@@ -139,7 +142,7 @@
     {
      "kart": "lx:Übernachtung",
      "de": "Zwei Übernachtungen, und das Zimmer war laut. Ich ärgere mich.",
-     "tr": "İki gece, ve oda gürültülüydü. Sinirleniyorum.",
+     "tr": "İki gece kaldık, oda da gürültülüydü. Sinirleniyorum.",
      "accepted": [
       "Zwei Übernachtungen, und das Zimmer war laut. Ich ärgere mich.",
       "Zwei Übernachtungen und das Zimmer war laut, ich ärgere mich.",
@@ -425,7 +428,7 @@
     "speaker": "ch:aksoy",
     "sahne_tr": "Derya parmaklarıyla iki sayıyor.",
     "de": "Und die Zimmer waren klein und laut. Zwei Übernachtungen, und es war immer laut.",
-    "tr": "Odalar da küçük ve gürültülüydü. İki gece, ve hep gürültü vardı."
+    "tr": "Odalar da küçük ve gürültülüydü. İki gece kaldık, hep gürültü vardı."
    },
    {
     "id": "s6",
@@ -500,7 +503,7 @@
      "kind": "gist",
      "q_tr": "Derya hafta sonunu nasıl anlatıyor?",
      "opts": [
-      "Otelde sorun oldu, şikâyet etti; göl yürüyüşü güzeldi",
+      "Otelde sorun oldu ve şikâyet etti, göl yürüyüşü ise güzeldi",
       "Hafta sonu hastaydı, evden çıkmadı",
       "Otel çok iyiydi, hiçbir sorun olmadı"
      ],
@@ -534,7 +537,7 @@
        "Büyük ve sessiz",
        "Soğuk ama güzel"
       ],
-      "ans": 1,
+      "ans": 0,
       "kanit": [
        "s5"
       ]
@@ -547,7 +550,7 @@
        "Yirmi avro",
        "Yetmiş avro"
       ],
-      "ans": 1,
+      "ans": 0,
       "kanit": [
        "s7"
       ]
@@ -669,7 +672,7 @@
        "Cuma",
        "Pazar"
       ],
-      "ans": 1,
+      "ans": 0,
       "kanit": [
        "s10"
       ]
@@ -853,7 +856,7 @@
       "kind": "gist",
       "q_tr": "Mesaj ne söylüyor?",
       "opts": [
-       "Şu an resepsiyonda kimse yok; saatler ve fiyatlar bunlar",
+       "Şu an resepsiyonda kimse yok, saatleri ve fiyatları söylüyor",
        "Otel bu hafta kapalı",
        "Bütün odalar dolu"
       ],
@@ -886,7 +889,7 @@
         "Yetmiş",
         "Otuz"
        ],
-       "ans": 1,
+       "ans": 0,
        "kanit": [
         "c4"
        ]
@@ -989,7 +992,7 @@
        "Ein Doppelzimmer, bitte. Ist das Frühstück inklusive?",
        "Guten Morgen. Ich möchte ein Doppelzimmer reservieren."
       ],
-      "why_tr": "**Ich möchte … reservieren** ile kibarca ayırtırsın. **mit Frühstück**: kahvaltılı."
+      "why_tr": "**Ich möchte ein Doppelzimmer reservieren** ile kibarca ayırtırsın. **mit Frühstück**: kahvaltılı."
      }
     }
    ],
@@ -1014,7 +1017,7 @@
    "id": "m1:92:a2",
    "tur": "radyo",
    "title_tr": "Radyoda hafta sonu havası",
-   "ortam_tr": "Cuma akşamı mutfakta radyo açık. Tobi hafta sonu dağa gitmek istiyor; sen de hava durumunu dinliyorsun.",
+   "ortam_tr": "Geçen cuma akşamı, mutfakta radyo açık. Tobi hafta sonu dağa gitmek istiyor. Sen de hava durumunu dinliyorsun.",
    "speaker": "der Radiosprecher",
    "hizlar": [
     "slow",
@@ -1035,7 +1038,7 @@
     {
      "id": "c3",
      "de": "Am Sonntag regnet es, auch am Fluss und in der Stadt.",
-     "tr": "Pazar günü yağmur yağıyor; nehir kenarında ve şehirde de."
+     "tr": "Pazar günü yağmur yağıyor, nehir kenarında ve şehirde de."
     },
     {
      "id": "c4",
@@ -1448,7 +1451,7 @@
     "secenekler": [
      {
       "de": "Vielen Dank, das ist gut. Dann freue ich mich auf morgen.",
-      "tr": "Çok teşekkürler, bu iyi. O zaman yarını bekliyorum.",
+      "tr": "Çok teşekkürler, bu iyi. O zaman yarını dört gözle bekliyorum.",
       "accepted": [
        "Vielen Dank, das ist gut. Dann freue ich mich auf morgen.",
        "Danke, das ist gut.",
@@ -1486,8 +1489,8 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "İnternette bir otel yorumu",
-  "metin_de": "Hotel am Fluss – zwei Übernachtungen im Februar. Das Hotel liegt sehr schön am Fluss, und um das Hotel herum gibt es nur Berge. Wir haben ein Doppelzimmer reserviert, aber an der Rezeption haben wir nur ein Einzelzimmer bekommen. Wir haben uns beschwert. Die Frau an der Rezeption war sehr nett und hat uns am zweiten Tag ein Doppelzimmer gegeben. Das Frühstück war gut, aber das Zimmer war am Abend sehr laut. Aber wir haben uns gefreut. Im Sommer kommen wir wieder.",
-  "metin_tr": "Hotel am Fluss – şubatta iki gece. Otel nehrin kenarında çok güzel bir yerde, otelin çevresinde yalnızca dağlar var. Çift kişilik oda ayırtmıştık ama resepsiyonda yalnızca tek kişilik oda aldık. Şikâyet ettik. Resepsiyondaki kadın çok nazikti ve ikinci gün bize çift kişilik oda verdi. Kahvaltı iyiydi ama oda akşamları çok gürültülüydü. Ama sevindik. Yazın yine geliyoruz.",
+  "metin_de": "Hotel am Fluss – zwei Übernachtungen im Februar. Das Hotel liegt sehr schön am Fluss, und um das Hotel herum gibt es nur Berge. Wir haben ein Doppelzimmer reserviert, aber an der Rezeption haben wir nur ein Einzelzimmer bekommen. Wir haben uns beschwert. Die Frau an der Rezeption war sehr nett und hat uns am zweiten Tag ein Doppelzimmer gegeben. Das Frühstück war gut, aber das Zimmer war am Abend sehr laut. Wir haben uns aber gefreut. Im Sommer kommen wir wieder.",
+  "metin_tr": "Hotel am Fluss – şubatta iki gece. Otel nehrin kenarında çok güzel bir yerde, otelin çevresinde yalnızca dağlar var. Çift kişilik oda ayırtmıştık ama resepsiyonda yalnızca tek kişilik oda aldık. Şikâyet ettik. Resepsiyondaki kadın çok nazikti ve ikinci gün bize çift kişilik oda verdi. Kahvaltı iyiydi ama oda akşamları çok gürültülüydü. Yine de sevindik. Yazın yine geliyoruz.",
   "sorular": [
    {
     "id": "m1:92:o1",
@@ -1515,7 +1518,7 @@
      "Bir",
      "Üç"
     ],
-    "ans": 1,
+    "ans": 0,
     "kanit": [
      0
     ]
@@ -1543,7 +1546,7 @@
      "Kahvaltı",
      "Resepsiyondaki kadın"
     ],
-    "ans": 1,
+    "ans": 0,
     "kanit": [
      5
     ]
@@ -1565,7 +1568,7 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Kaldığın (ya da kalmak istediğin) bir otel için kısa bir yorum yaz: ne güzeldi, neye kızdın, şikâyet ettin mi?",
+   "gorev_tr": "Kaldığın ya da kalmak istediğin bir otel için kısa bir yorum yaz. Ne güzeldi, neye kızdın, şikâyet ettin mi?",
    "ornek_de": "Das Hotel liegt schön in den Bergen. Aber das Zimmer war zu klein, ich habe mich geärgert. Ich habe mich an der Rezeption beschwert.",
    "zorunlu": [
     "mich",
@@ -1578,7 +1581,7 @@
    ],
    "kontrol_tr": [
     "Otelde güzel olan bir şeyi yazdın mı?",
-    "**ich habe mich geärgert** ya da **ich habe mich beschwert** gibi **mich** ile bir cümle var mı?",
+    "**mich** ile bir cümle var mı? Örnek: **ich habe mich geärgert**.",
     "**mich** kelimesi **habe** kelimesinin hemen arkasında mı?"
    ]
   }
@@ -1694,7 +1697,7 @@
      "Im Hotel ist das Zimmer zu laut, ich ärgere mich.",
      "Das Hotelzimmer ist so laut, ich ärgere mich."
     ],
-    "why_tr": "**Warum ärgerst du dich?** sorusuna **Ich ärgere mich, …** ile cevap verirsin. **du – dich**, **ich – mich**."
+    "why_tr": "**Warum ärgerst du dich?** sorusuna **Ich ärgere mich** diye başlayarak cevap verirsin. **du – dich**, **ich – mich**."
    },
    {
     "id": "m1:92:s10",
@@ -1724,7 +1727,7 @@
      "Entschuldigung, ich habe ein Doppelzimmer reserviert. Mein Zimmer ist ein Einzelzimmer.",
      "Guten Abend. Mein Zimmer ist zu klein, ich habe ein Doppelzimmer reserviert."
     ],
-    "why_tr": "Önce **Ich möchte mich beschweren** ya da **Ich habe ein Problem**, sonra ne ayırttığını söylersin."
+    "why_tr": "Önce **Ich möchte mich beschweren** ya da **Ich habe ein Problem** dersin. Sonra ne ayırttığını söylersin."
    }
   ],
   "sesli": [

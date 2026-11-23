@@ -5,7 +5,7 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "Baştaki parça anlamı değiştirir: anmelden, abmelden, ummelden",
- "goal_tr": "Baştaki an, ab, um, ein, aus parçalarının anlamı nasıl değiştirdiğini görür; adres kaydında anmelden, abmelden ve ummelden'i doğru seçersin.",
+ "goal_tr": "Baştaki an, ab, um, ein, aus parçasının anlamı nasıl değiştirdiğini görürsün. Adres kaydında anmelden, abmelden ya da ummelden'i doğru seçersin.",
  "can_do": {
   "id": "cd:m1:96",
   "tr": "anmelden, abmelden, ummelden farkını bilir, bir durum için doğrusunu seçerim."
@@ -28,7 +28,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [
   "dn:kelime-ailesi-2"
@@ -106,11 +109,11 @@
     },
     {
      "de": "Wir bleiben in Kontakt! – Melde dich mal! – ihr helft – Helft ihr mir?",
-     "tr": "Görüşmeye devam! – Bir ara haber ver! – yardım ediyorsunuz – Bana yardım eder misiniz?"
+     "tr": "İletişimde kalalım! – Bir ara haber ver! – yardım ediyorsunuz – Bana yardım eder misiniz?"
     },
     {
      "de": "innerhalb von zwei Wochen – die Bestätigung vom Vermieter – Dann melden Sie sich … an.",
-     "tr": "iki hafta içinde – ev sahibinin onay belgesi – O zaman … kayıt yaptırın."
+     "tr": "iki hafta içinde – ev sahibinin onay belgesi – O zaman lütfen kayıt yaptırın."
     },
     {
      "de": "im Ausland – ins Ausland – nach Wendlfing gezogen – in eine neue Stadt in Deutschland",
@@ -211,12 +214,12 @@
     },
     {
      "kart": "lx:Zeug",
-     "de": "Morgen zieht Tobi aus, sein Zeug ist im Auto.",
-     "tr": "Tobi yarın evden çıkıyor, eşyaları arabada.",
+     "de": "Morgen zieht Tobi aus, sein Zeug ist eingepackt.",
+     "tr": "Tobi yarın evden çıkıyor, eşyaları toplandı.",
      "accepted": [
-      "Morgen zieht Tobi aus, sein Zeug ist im Auto.",
-      "Tobi zieht morgen aus, sein Zeug ist im Auto.",
-      "Morgen zieht Tobi aus. Sein Zeug ist im Auto."
+      "Morgen zieht Tobi aus, sein Zeug ist eingepackt.",
+      "Tobi zieht morgen aus, sein Zeug ist eingepackt.",
+      "Morgen zieht Tobi aus. Sein Zeug ist eingepackt."
      ]
     }
    ],
@@ -658,7 +661,7 @@
    "id": "m1:96:a1",
    "tur": "bekleme-anonsu",
    "title_tr": "Vatandaş bürosunun telefon bandı",
-   "ortam_tr": "Tobi için vatandaş bürosunu arıyorsun. Hat meşgul; bir kayıt konuşuyor.",
+   "ortam_tr": "Tobi için vatandaş bürosunu arıyorsun. Hat meşgul, bir kayıt konuşuyor.",
    "speaker": "Bürgerbüro Wendlfing",
    "hizlar": [
     "slow",
@@ -740,7 +743,7 @@
        "kind": "detail",
        "q_tr": "Almanya'da başka bir şehre taşınan burada ne yapar?",
        "opts": [
-        "Hiçbir şey; yeni şehirde kayıt yaptırır",
+        "Hiçbir şey, yeni şehirde kayıt yaptırır",
         "Kaydını sildirir",
         "Yeni adresini burada kaydettirir"
        ],
@@ -861,7 +864,7 @@
      "Hiçbir şey yapmamalı"
     ],
     "ans": 0,
-    "why_tr": "Almanya içinde taşınan yeni şehirde kayıt yaptırır; burada kaydını sildirmez.",
+    "why_tr": "Almanya içinde taşınan yeni şehirde kayıt yaptırır. Burada kaydını sildirmez.",
     "kanit": [
      "c4",
      "c5"
@@ -892,8 +895,8 @@
     },
     {
      "id": "c3",
-     "de": "Mein ganzes Zeug ist jetzt eingepackt. Morgen um acht ziehe ich aus.",
-     "tr": "Bütün eşyalarım artık toplandı. Yarın saat sekizde evden çıkıyorum."
+     "de": "Mein ganzes Zeug ist jetzt eingepackt. Morgen um vier ziehe ich aus.",
+     "tr": "Bütün eşyalarım artık toplandı. Yarın saat dörtte evden çıkıyorum."
     },
     {
      "id": "c4",
@@ -941,7 +944,7 @@
        "kind": "detail",
        "q_tr": "Tobi yarın saat kaçta evden çıkıyor?",
        "opts": [
-        "Sekizde",
+        "Dörtte",
         "İkide",
         "Onda"
        ],
@@ -1134,7 +1137,7 @@
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Çok iyi: **irgendwas** = bir şey, herhangi bir şey."
+      "geri_bildirim_tr": "Çok iyi. **irgendwas** bir şey, herhangi bir şey demek."
      },
      {
       "de": "Wir dich auch. Kann ich dir morgen helfen?",
@@ -1224,7 +1227,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Harika: **nicht …, sondern …** ile düzelttin."
+      "geri_bildirim_tr": "Harika: **nicht ab, sondern an** ile düzelttin."
      },
      {
       "de": "Ja, du musst dich hier abmelden.",
@@ -1236,7 +1239,7 @@
       ],
       "sonraki": "n3",
       "uygun": false,
-      "geri_bildirim_tr": "Almanya içinde taşınınca eski şehirde **abmelden** gerekmez. **abmelden** yalnızca yurt dışına giderken."
+      "geri_bildirim_tr": "Almanya içinde taşınınca eski şehirde **abmelden** gerekmez. **abmelden** yalnızca yurt dışına giderken ya da yeni ev yokken."
      },
      {
       "de": "Du musst dich ummelden.",
@@ -1291,7 +1294,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Vedalaştın, yardım teklif ettin ve **anmelden / abmelden / ummelden** farkını doğru söyledin. **nicht …, sondern …** ile yanlışı düzelttin."
+  "kapanis_tr": "Vedalaştın, yardım teklif ettin ve **anmelden**, **abmelden**, **ummelden** farkını doğru söyledin. **nicht ab, sondern an** ile yanlışı düzelttin."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1375,7 +1378,7 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Tobi'ye kısa bir mesaj yaz: Hamburg'da iki hafta içinde kayıt yaptırmasını, burada kaydını sildirmesine gerek olmadığını yaz. **sondern** ile bir cümle ekle.",
+   "gorev_tr": "Tobi'ye kısa bir mesaj yaz. Hamburg'da iki hafta içinde kayıt yaptırmasını yaz. Burada kaydını sildirmesine gerek olmadığını da yaz. **sondern** ile bir cümle ekle.",
    "ornek_de": "Hallo Tobi, in Hamburg musst du dich innerhalb von zwei Wochen anmelden. Hier musst du dich nicht abmelden. Also nicht ab, sondern an! Viel Glück!",
    "zorunlu": [
     "anmelden",
@@ -1390,7 +1393,7 @@
    "kontrol_tr": [
     "İki haftayı yazdın mı?",
     "**anmelden** ve **abmelden** doğru yerde mi? **muss** varsa **anmelden** sonda ve bitişik.",
-    "**nicht …, sondern …** ile bir cümle var mı?"
+    "**nicht ab, sondern an** gibi **sondern** ile bir cümle var mı?"
    ]
   }
  },
@@ -1480,7 +1483,7 @@
      "Er zieht aus.",
      "Tobi zieht heute aus."
     ],
-    "why_tr": "**ausziehen**: **zieht … aus**; **aus** en sonda."
+    "why_tr": "**ausziehen**: **Tobi zieht aus.** **aus** en sonda."
    },
    {
     "id": "m1:96:s8",
@@ -1512,7 +1515,7 @@
     "k": "listen_and_respond",
     "audio_de": "Ziehst du auch nach Hamburg?",
     "speed": "normal",
-    "situation_tr": "Tobi şaka yapıyor. Hamburg'a değil, burada kaldığını söyle; **sondern** kullan.",
+    "situation_tr": "Tobi şaka yapıyor. Hamburg'a değil, burada kaldığını söyle. **sondern** kullan.",
     "accepted": [
      "Nein, nicht nach Hamburg. Ich bleibe hier.",
      "Nein, ich ziehe nicht nach Hamburg, sondern bleibe hier.",
@@ -1520,12 +1523,12 @@
      "Nein, ich bleibe hier in Wendlfing.",
      "Nein, ich ziehe nicht um. Ich bleibe hier."
     ],
-    "why_tr": "**nicht …, sondern …**: hayır demek ve düzeltmek."
+    "why_tr": "**nicht nach Hamburg, sondern hier**: hayır deyip düzeltirsin."
    },
    {
     "id": "m1:96:s11",
     "k": "guided_response",
-    "situation_tr": "Tobi soruyor: burada kaydımı sildirmeli miyim? Hayır de; Hamburg'da kayıt yaptıracağını söyle.",
+    "situation_tr": "Tobi soruyor: burada kaydımı sildirmeli miyim? Hayır de. Hamburg'da kayıt yaptıracağını söyle.",
     "prompt_de": "Muss ich mich hier im Bürgerbüro abmelden?",
     "accepted": [
      "Nein, du meldest dich in Hamburg an.",

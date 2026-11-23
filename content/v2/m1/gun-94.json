@@ -25,7 +25,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [
   "gr:a2-05:t3"
@@ -80,11 +83,11 @@
     },
     {
      "de": "sich ärgern über – über die Behörde – über die Unterlagen",
-     "tr": "-e kızmak – resmî daireye – belgelere"
+     "tr": "bir şeye kızmak – resmî daireye – belgelere"
     },
     {
      "de": "sich freuen über – über die Hilfe – warten auf – auf die Meldebescheinigung",
-     "tr": "-e sevinmek – yardıma – beklemek – ikamet belgesini"
+     "tr": "bir şeye sevinmek – yardıma – beklemek – ikamet belgesini"
     },
     {
      "de": "erst am Samstag – Ich muss hin.",
@@ -234,7 +237,7 @@
     },
     {
      "de": "Was schreibe ich hier? – Hier schreibst du … – Hier steht …",
-     "tr": "Buraya ne yazıyorum? – Buraya … yazıyorsun. – Burada … yazıyor."
+     "tr": "Buraya ne yazıyorum? – Buraya şunu yazıyorsun. – Burada şu yazıyor."
     },
     {
      "de": "Rumänien – rumänisch – Cluj – Ioana ist in Cluj geboren.",
@@ -249,8 +252,8 @@
      "tr": "Herr Haddad – kurstan bir arkadaş"
     },
     {
-     "de": "sich interessieren für – Ich interessiere mich für … – Interessierst du dich für …?",
-     "tr": "-e ilgi duymak – … ilgi duyuyorum – … ilgi duyuyor musun?"
+     "de": "sich interessieren für – Ich interessiere mich für Musik. – Interessierst du dich für Sport?",
+     "tr": "bir şeye ilgi duymak – Müziğe ilgi duyuyorum. – Spora ilgin var mı?"
     },
     {
      "de": "sich freuen auf – Ich freue mich auf Samstag. – auf den Termin – auf die Wohnung",
@@ -348,8 +351,8 @@
      },
      {
       "r": "ogrenci",
-      "de": "Richtig. Freust du dich auf die neue Wohnung?",
-      "tr": "Doğru. Yeni daireyi dört gözle bekliyor musun?"
+      "de": "Richtig. Freust du dich auf Samstag?",
+      "tr": "Doğru. Cumartesiyi dört gözle bekliyor musun?"
      }
     ],
     "soru": {
@@ -379,8 +382,8 @@
     "id": "s2",
     "speaker": "die Kursleiterin",
     "sahne_tr": "Kurs öğretmeni gülümsüyor.",
-    "de": "Herzlichen Glückwunsch! Freuen Sie sich auf die neue Wohnung?",
-    "tr": "Tebrikler! Yeni daireyi dört gözle bekliyor musunuz?"
+    "de": "Herzlichen Glückwunsch! Freuen Sie sich über die neue Wohnung?",
+    "tr": "Tebrikler! Yeni dairenize seviniyor musunuz?"
    },
    {
     "id": "s3",
@@ -468,7 +471,7 @@
      "kind": "gist",
      "q_tr": "Ioana ve öğretmen ne konuşuyor?",
      "opts": [
-      "Ioana taşındı; yeni adresini belediyeye bildirmeli",
+      "Ioana taşındı, yeni adresini belediyeye bildirmeli",
       "Ioana kursu bırakıyor",
       "Ioana başka bir şehre gidiyor"
      ],
@@ -500,7 +503,7 @@
        "Bir hafta",
        "Bir ay"
       ],
-      "ans": 1,
+      "ans": 0,
       "kanit": [
        "s4"
       ]
@@ -576,9 +579,9 @@
       "cumle": "s2",
       "seviye": "usta",
       "accepted": [
-       "Herzlichen Glückwunsch! Freuen Sie sich auf die neue Wohnung?",
-       "herzlichen glückwunsch freuen sie sich auf die neue wohnung",
-       "Herzlichen Glückwunsch! Freuen Sie sich auf die neue Wohnung"
+       "Herzlichen Glückwunsch! Freuen Sie sich über die neue Wohnung?",
+       "herzlichen glückwunsch freuen sie sich über die neue wohnung",
+       "Herzlichen Glückwunsch! Freuen Sie sich über die neue Wohnung"
       ]
      },
      {
@@ -659,7 +662,7 @@
        "Müzikle",
        "Futbolla"
       ],
-      "ans": 1,
+      "ans": 0,
       "kanit": [
        "s10"
       ]
@@ -1176,7 +1179,7 @@
     "k": "pick",
     "q_tr": "Ne yapmalısın?",
     "opts": [
-     "Yarın kursta Ioana'nın formuna bak; cumartesi dokuz buçukta belediyenin önünde ol",
+     "Yarın kursta Ioana'nın formuna bak, cumartesi dokuz buçukta belediyenin önünde ol",
      "Cumartesi saat onda kursa git",
      "Ioana'nın yerine formu belediyeye götür"
     ],
@@ -1446,7 +1449,7 @@
      "Wendlfing'de",
      "Münih'te"
     ],
-    "ans": 1,
+    "ans": 0,
     "kanit": [
      3
     ]
@@ -1491,11 +1494,11 @@
      "Bei Staatsangehörigkeit schreibst du rumänisch.",
      "Das steht im Pass: rumänisch."
     ],
-    "why_tr": "**Da schreibst du …**: buraya … yazıyorsun."
+    "why_tr": "**Da schreibst du rumänisch**: buraya rumänisch yazıyorsun."
    }
   ],
   "yazma": {
-   "gorev_tr": "Böyle bir formun dört alanını Almanca yaz. Kendi bilgilerin için yalnızca alanın adını yaz ve arkasını boş bırak (___); istersen uydurma bilgi de yazabilirsin.",
+   "gorev_tr": "Böyle bir formun dört alanını Almanca yaz. Alanın adını yaz, arkasını boş bırak. İstersen uydurma bir bilgi de yazabilirsin.",
    "ornek_de": "Familienname: ___. Vorname: ___. Geburtsort: ___. Staatsangehörigkeit: ___.",
    "zorunlu": [
     "Familienname",
@@ -1521,13 +1524,13 @@
    {
     "id": "m1:94:s1",
     "k": "listen_and_respond",
-    "audio_de": "Ioana freut sich auf die neue Wohnung.",
+    "audio_de": "Ioana freut sich auf den Termin am Samstag.",
     "speed": "normal",
     "situation_tr": "Duyduğunu yaz.",
     "accepted": [
-     "Ioana freut sich auf die neue Wohnung.",
-     "ioana freut sich auf die neue wohnung",
-     "Ioana freut sich auf die neue Wohnung"
+     "Ioana freut sich auf den Termin am Samstag.",
+     "ioana freut sich auf den termin am samstag",
+     "Ioana freut sich auf den Termin am Samstag"
     ],
     "why_tr": "Henüz gelmedi: **sich freuen auf**."
    },
@@ -1612,7 +1615,7 @@
      "Am Samstag um neun treffen wir uns vor dem Rathaus.",
      "Am Samstag treffen wir uns um neun vor dem Rathaus."
     ],
-    "why_tr": "Dünkü kalıp: **wir treffen uns**. Günle başlarsan: **Am Samstag treffen wir uns …**"
+    "why_tr": "Dünkü kalıp: **wir treffen uns**. Günle başlarsan: **Am Samstag treffen wir uns.**"
    },
    {
     "id": "m1:94:s9",
@@ -1626,7 +1629,7 @@
      "Für Fußball nicht, aber für Musik.",
      "Nein, ich interessiere mich für Musik."
     ],
-    "why_tr": "**Ich interessiere mich für …**: … ilgi duyuyorum."
+    "why_tr": "**Ich interessiere mich für Musik**: müziğe ilgi duyuyorum."
    },
    {
     "id": "m1:94:s10",
@@ -1656,7 +1659,7 @@
      "Nicht das Land, die Stadt.",
      "Da schreibst du Cluj."
     ],
-    "why_tr": "**Geburtsort**: doğduğun şehir. **Da schreibst du …**: buraya … yazıyorsun."
+    "why_tr": "**Geburtsort**: doğduğun şehir. **Da schreibst du Cluj**: buraya Cluj yazıyorsun."
    }
   ],
   "sesli": [

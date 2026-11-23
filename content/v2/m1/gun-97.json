@@ -27,7 +27,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [],
  "yeni_kartlar": [
@@ -59,7 +62,7 @@
     },
     {
      "de": "zuerst … dann … – Zuerst ziehen wir eine Nummer, dann warten wir. – Zuerst brauche ich Ihren Ausweis.",
-     "tr": "önce … sonra … – Önce numara alıyoruz, sonra bekliyoruz. – Önce kimliğinizi istiyorum."
+     "tr": "önce, sonra – Önce numara alıyoruz, sonra bekliyoruz. – Önce kimliğinizi istiyorum."
     },
     {
      "de": "öffnen – Das Bürgerbüro öffnet um neun. – Wann öffnet das Bürgerbüro? – Es ist geöffnet.",
@@ -74,8 +77,8 @@
      "tr": "hoş, güzel – Belediye binası çok hoş. – hoş bir daire – Burası çok hoş!"
     },
     {
-     "de": "werfen – Werfen Sie … nicht weg. – wirf … weg – Wirf die Nummer nicht weg! – er wirft – in den Müll werfen – Ich habe die Nummer weggeworfen.",
-     "tr": "atmak – … at – Numarayı atma! – atıyor – çöpe atmak – Numarayı attım."
+     "de": "werfen – Werfen Sie das nicht weg. – Wirf das weg. – Wirf die Nummer nicht weg! – er wirft – in den Müll werfen – Ich habe die Nummer weggeworfen.",
+     "tr": "atmak – Bunu atmayın. – Bunu at. – Numarayı atma! – atıyor – çöpe atmak – Numarayı attım."
     },
     {
      "de": "sich ummelden – Ioana meldet sich um. – Ich melde mich um. – die Ummeldung – Sie ist in eine hübsche Wohnung eingezogen.",
@@ -92,6 +95,10 @@
     {
      "de": "Ich fühle mich ein bisschen gestresst. – Wir sind gleich dran.",
      "tr": "Biraz stresliyim. – Birazdan sıra bizde."
+    },
+    {
+     "de": "die Bestätigung – Nach der Ummeldung bekommen Sie eine Bestätigung. – Eine Meldebescheinigung kostet Geld.",
+     "tr": "onay belgesi – Yeni adres kaydından sonra bir onay belgesi alırsınız. – İkamet belgesi ücretlidir."
     }
    ],
    "dersten_sonra": true,
@@ -318,8 +325,8 @@
     "id": "s12",
     "speaker": "ch:schneider",
     "sahne_tr": "Frau Schneider kâğıtları kontrol edip bir kalem uzatıyor.",
-    "de": "Sehr gut. Unterschreiben Sie bitte hier. Dann bekommen Sie gleich Ihre Meldebescheinigung.",
-    "tr": "Çok güzel. Lütfen buraya imza atın. Sonra hemen ikamet belgenizi alırsınız."
+    "de": "Sehr gut. Unterschreiben Sie bitte hier. Dann bekommen Sie gleich Ihre Bestätigung.",
+    "tr": "Çok güzel. Lütfen buraya imza atın. Sonra hemen adres kaydının onay belgesini alırsınız."
    }
   ],
   "bolumler": [
@@ -477,7 +484,7 @@
       "Wirf die Nummer nicht weg!",
       "Ja, die brauchen wir noch. Wirf sie nicht weg."
      ],
-     "why_tr": "**Wirf … nicht weg!**: … atma! **du** ile emir: **wirf**."
+     "why_tr": "Arkadaşına **Wirf die Nummer nicht weg!** dersin: numarayı atma. **weg** en sonda."
     }
    },
    {
@@ -535,7 +542,7 @@
       "kind": "detail",
       "q_tr": "Ioana en sonda ne alıyor?",
       "opts": [
-       "İkamet belgesini",
+       "Adres kaydının onay belgesini",
        "Yeni bir numarayı",
        "Yeni bir randevuyu"
       ],
@@ -571,28 +578,29 @@
      },
      {
       "id": "d3",
-      "cumle": "s12",
+      "cumle": "s8",
       "seviye": "zor",
       "banka": [
-       "Sehr",
-       "gut",
-       "Unterschreiben",
+       "Guten",
+       "Morgen",
+       "Frau",
+       "Popescu",
        "Sie",
-       "bitte",
-       "hier",
-       "Dann",
-       "bekommen",
-       "Sie",
-       "gleich",
-       "Ihre",
-       "Meldebescheinigung",
-       "morgen",
-       "Pass"
+       "sind",
+       "in",
+       "Wendlfing",
+       "umgezogen",
+       "und",
+       "möchten",
+       "sich",
+       "ummelden",
+       "abmelden",
+       "Hamburg"
       ],
       "accepted": [
-       "Sehr gut. Unterschreiben Sie bitte hier. Dann bekommen Sie gleich Ihre Meldebescheinigung.",
-       "sehr gut unterschreiben sie bitte hier dann bekommen sie gleich ihre meldebescheinigung",
-       "Sehr gut. Unterschreiben Sie bitte hier. Dann bekommen Sie gleich Ihre Meldebescheinigung"
+       "Guten Morgen, Frau Popescu. Sie sind in Wendlfing umgezogen und möchten sich ummelden?",
+       "guten morgen frau popescu sie sind in wendlfing umgezogen und möchten sich ummelden",
+       "Guten Morgen, Frau Popescu. Sie sind in Wendlfing umgezogen und möchten sich ummelden"
       ]
      },
      {
@@ -632,7 +640,7 @@
       "Zuerst deinen Pass. Und die Bestätigung vom Vermieter.",
       "Sie braucht zuerst den Pass und die Bestätigung vom Vermieter."
      ],
-     "why_tr": "**Zuerst** ile başlayınca **braucht** hemen arkadan gelir: **Zuerst braucht sie …**"
+     "why_tr": "**Zuerst** ile başlayınca **braucht** hemen arkadan gelir: **Zuerst braucht sie deinen Pass.**"
     }
    }
   ]
@@ -844,7 +852,7 @@
      "Yeni bir numara alırım"
     ],
     "ans": 0,
-    "why_tr": "43 numara 4 numaralı masaya çağrıldı; kimliğini eline alırsın.",
+    "why_tr": "43 numara 4 numaralı masaya çağrıldı. Kimliğini eline alıp gidersin.",
     "kanit": [
      "c4",
      "c5"
@@ -879,8 +887,8 @@
     },
     {
      "id": "c4",
-     "de": "Und Tobi? Ist er schon in Hamburg?",
-     "tr": "Peki Tobi? Hamburg'a vardı mı?"
+     "de": "Und Tobi? Ist er schon weg?",
+     "tr": "Peki Tobi? Gitti mi?"
     },
     {
      "id": "c5",
@@ -993,15 +1001,14 @@
         "Ist",
         "er",
         "schon",
-        "in",
-        "Hamburg",
-        "Bremen",
+        "weg",
+        "da",
         "nicht"
        ],
        "accepted": [
-        "Und Tobi? Ist er schon in Hamburg?",
-        "und tobi ist er schon in hamburg",
-        "Und Tobi? Ist er schon in Hamburg"
+        "Und Tobi? Ist er schon weg?",
+        "und tobi ist er schon weg",
+        "Und Tobi? Ist er schon weg"
        ]
       },
       {
@@ -1032,14 +1039,14 @@
      "cevapla": {
       "id": "m1:97:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Ioana'ya cevap ver: Tobi Hamburg'a vardı ve yarın saat on bire tamam.",
-      "prompt_de": "Ist Tobi schon in Hamburg?",
+      "situation_tr": "Ioana'ya cevap ver: Tobi gitti ve yarın saat on bir sana uyar.",
+      "prompt_de": "Ist Tobi schon weg?",
       "accepted": [
-       "Ja, Tobi ist schon in Hamburg. Morgen um elf passt gut.",
-       "Ja, er ist schon in Hamburg. Bis morgen um elf!",
-       "Ja, er ist in Hamburg. Und um elf passt mir gut.",
-       "Ja, schon in Hamburg. Morgen um elf, super!",
-       "Ja, Tobi ist in Hamburg. Danke, bis morgen um elf!"
+       "Ja, Tobi ist schon weg. Morgen um elf passt gut.",
+       "Ja, er ist schon weg. Bis morgen um elf!",
+       "Ja, er ist weg. Und um elf passt mir gut.",
+       "Ja, schon weg. Morgen um elf, super!",
+       "Ja, Tobi ist weg. Danke, bis morgen um elf!"
       ],
       "why_tr": "Önce soruya cevap, sonra buluşma: **Morgen um elf passt gut.**"
      }
@@ -1097,7 +1104,7 @@
  "prova": {
   "id": "m1:97:p1",
   "title_tr": "Frau Schneider'in masasında Ioana'ya yardım",
-  "durum_tr": "Ioana çok heyecanlı; masada senden yardım istiyor. Frau Schneider'e Ioana'nın işini anlat ve onun sorularına cevap ver. (Konu Ioana'nın adres kaydı; sen yalnızca yardım ediyorsun.)",
+  "durum_tr": "Ioana çok heyecanlı ve masada senden yardım istiyor. Frau Schneider'e Ioana'nın işini anlat, sorularına cevap ver. Konu Ioana'nın adres kaydı, sen yalnızca yardım ediyorsun.",
   "karsi": "ch:schneider",
   "baslangic": "n1",
   "dugumler": [
@@ -1252,7 +1259,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Ioana'nın işini kısa anlattın (**sie meldet sich um**), belgeleri verdin ve Frau Schneider'in sorularına cevap verdin."
+  "kapanis_tr": "Ioana'nın işini kısa anlattın: **sie meldet sich um**. Belgeleri verdin ve Frau Schneider'in sorularına cevap verdin."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1334,7 +1341,7 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Derya'ya kısa bir mesaj yaz: bu sabah Ioana'yla vatandaş bürosundaydınız; önce numara aldınız, sonra Ioana yeni adresini kaydettirdi. **Zuerst** ile başlayan bir cümle olsun.",
+   "gorev_tr": "Derya'ya kısa bir mesaj yaz. Bu sabah Ioana'yla vatandaş bürosundaydınız. Önce numara aldınız, sonra Ioana yeni adresini kaydettirdi. **Zuerst** ile başlayan bir cümle olsun.",
    "ornek_de": "Hallo Derya, heute Morgen war ich mit Ioana im Bürgerbüro. Zuerst haben wir eine Wartenummer gezogen. Dann hat sich Ioana umgemeldet. Das Rathaus ist sehr hübsch!",
    "zorunlu": [
     "Zuerst",
@@ -1347,7 +1354,7 @@
     "Das Rathaus ist sehr hübsch!"
    ],
    "kontrol_tr": [
-    "**Zuerst** ile başlayan cümlede ikinci sözcük **haben** mi? (**Zuerst haben wir …**)",
+    "**Zuerst** ile başlayan cümlede ikinci sözcük **haben** mi? Örnek: **Zuerst haben wir eine Wartenummer gezogen.**",
     "**Wartenummer** kelimesini yazdın mı?",
     "Ioana'nın ne yaptığını yazdın mı?"
    ]
@@ -1406,7 +1413,7 @@
      "werfen sie die nummer bitte nicht weg",
      "Werfen Sie die Nummer bitte nicht weg"
     ],
-    "why_tr": "**werfen … weg**: **weg** en sonda."
+    "why_tr": "**Werfen Sie die Nummer nicht weg**: **weg** en sonda."
    },
    {
     "id": "m1:97:s5",
@@ -1439,7 +1446,7 @@
      "Wann öffnet das Bürgerbüro heute?",
      "Wann öffnet das Bürgerbüro denn?"
     ],
-    "why_tr": "**Wann öffnet …?**"
+    "why_tr": "**Wann öffnet das Bürgerbüro?** **öffnet** hemen **Wann** kelimesinin arkasında."
    },
    {
     "id": "m1:97:s8",
@@ -1464,7 +1471,7 @@
      "Wir ziehen zuerst eine Wartenummer und dann warten wir.",
      "Zuerst ziehen wir eine Wartenummer."
     ],
-    "why_tr": "**zuerst … dann …**: önce … sonra …"
+    "why_tr": "**zuerst** önce, **dann** sonra demek."
    },
    {
     "id": "m1:97:s10",

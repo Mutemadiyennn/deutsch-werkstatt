@@ -5,7 +5,7 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "Haftanın sınavı: Bürgerbüro'da sıra ve belgeler",
- "goal_tr": "Vatandaş bürosunda numaranın çağrıldığını ve memurun istediğini duyarsın; işini anlatır, eksik bir belge için ne yapacağını sorarsın.",
+ "goal_tr": "Vatandaş bürosunda numaranın çağrıldığını ve memurun istediğini duyarsın. İşini anlatır, eksik bir belge için ne yapacağını sorarsın.",
  "can_do": {
   "id": "cd:m1:98",
   "tr": "Bürgerbüro'da işimi anlatır, eksik bir belge için ne yapacağımı sorarım."
@@ -29,7 +29,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [],
  "yeni_kartlar": [
@@ -137,7 +140,7 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Pazar sabahı. Tobi Hamburg'dan seni arıyor; sesi yorgun.",
+    "ortam_tr": "Pazar sabahı. Tobi Hamburg'dan seni arıyor, sesi yorgun.",
     "satirlar": [
      {
       "r": "ch:lechner",
@@ -401,7 +404,7 @@
     "cevapla": {
      "id": "m1:98:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Derya sana da soruyor: Wendlfing içinde taşınırsam kaydımı sildirmem lazım mı? Hayır de; yeni adresini kaydettirir.",
+     "situation_tr": "Derya sana da soruyor: Wendlfing içinde taşınırsam kaydımı sildirmem lazım mı? Hayır de. Yeni adresini kaydettirmesi yeter.",
      "prompt_de": "Muss ich mich abmelden?",
      "accepted": [
       "Nein, du meldest dich um.",
@@ -570,8 +573,8 @@
   {
    "id": "m1:98:a1",
    "tur": "anons",
-   "title_tr": "Kulak kapısı: numara anonsu ve memurun isteği",
-   "ortam_tr": "Pazartesi sabahı vatandaş bürosundasın; Frau Brandl'ın işi için geldin. Elinde 52 numara var. Anonslar ve memur doğal hızda konuşuyor.",
+   "title_tr": "Dinleme: numara anonsu ve memurun isteği",
+   "ortam_tr": "Pazartesi sabahı vatandaş bürosundasın, Frau Brandl'ın işi için geldin. Elinde 52 numara var. Anonslar ve memur doğal hızda konuşuyor.",
    "speaker": "die Ansage",
    "hizlar": [
     "natural",
@@ -770,7 +773,7 @@
      "Yeni bir numara alırım"
     ],
     "ans": 0,
-    "why_tr": "52 numara 4 numaralı masaya çağrıldı; memur önce kimlik ya da pasaport istiyor.",
+    "why_tr": "52 numara 4 numaralı masaya çağrıldı. Memur önce kimlik ya da pasaport istiyor.",
     "kanit": [
      "c2",
      "c4"
@@ -811,8 +814,8 @@
     },
     {
      "id": "c5",
-     "de": "Danke noch mal für eure Hilfe gestern. Ohne euch war das nicht leicht.",
-     "tr": "Dünkü yardımınız için bir kez daha teşekkürler. Sizsiz kolay olmazdı."
+     "de": "Danke noch mal für eure Hilfe gestern. Mit euch war das ganz leicht.",
+     "tr": "Dünkü yardımınız için bir kez daha teşekkürler. Sizinle her şey çok kolaydı."
     },
     {
      "id": "c6",
@@ -1012,8 +1015,8 @@
  ],
  "prova": {
   "id": "m1:98:p1",
-  "title_tr": "Haftanın kapısı: Bürgerbüro'da işini anlat, eksik belgeyi sor",
-  "durum_tr": "Pazartesi sabahı vatandaş bürosundasın. Numaran çağrıldı; 4 numaralı masada Frau Schneider var. Komşun Frau Brandl banka için bir ikamet belgesi istiyor; kimliği yanında. İşini anlat. Dikkat: bir belge eksik çıkabilir; o zaman ne yapacağını sor.",
+  "title_tr": "Haftanın son provası: Bürgerbüro'da işini anlat, eksik belgeyi sor",
+  "durum_tr": "Pazartesi sabahı vatandaş bürosundasın. Numaran çağrıldı, 4 numaralı masada Frau Schneider var. Komşun Frau Brandl banka için bir ikamet belgesi istiyor. Onun kimliği sende. İşini anlat. Dikkat: bir belge eksik çıkabilir. O zaman ne yapacağını sor.",
   "karsi": "ch:schneider",
   "baslangic": "n1",
   "dugumler": [
@@ -1110,14 +1113,14 @@
       ],
       "sonraki": "n2",
       "uygun": false,
-      "geri_bildirim_tr": "Kurum kuralı uygular; tartışma. Sor: **Was kann ich jetzt machen?**"
+      "geri_bildirim_tr": "Kurum kuralı uygular, tartışmak işe yaramaz. Sor: **Was kann ich jetzt machen?**"
      }
     ]
    },
    {
     "id": "n3",
-    "de": "Frau Brandl schreibt die Vollmacht und unterschreibt. Dann bringen Sie die Vollmacht, ihren Ausweis und Ihren Ausweis.",
-    "tr": "Frau Brandl vekâletnameyi yazar ve imzalar. Sonra vekâletnameyi, onun kimliğini ve kendi kimliğinizi getirirsiniz.",
+    "de": "Frau Brandl schreibt die Vollmacht und unterschreibt. Dann bringen Sie die Vollmacht, den Ausweis von Frau Brandl und Ihren eigenen Ausweis.",
+    "tr": "Frau Brandl vekâletnameyi yazar ve imzalar. Sonra vekâletnameyi, Frau Brandl'ın kimliğini ve kendi kimliğinizi getirirsiniz.",
     "secenekler": [
      {
       "de": "Gut. Brauche ich dann einen neuen Termin?",
@@ -1265,11 +1268,11 @@
      "Da stehen Ihr Name, mein Name und Ihre Unterschrift.",
      "Ihren Namen und meinen Namen. Dann unterschreiben Sie bitte."
     ],
-    "why_tr": "Vekâletname: iki ad ve imza. Frau Brandl'a **Sie / Ihr** ile."
+    "why_tr": "Vekâletname: iki ad ve imza. Frau Brandl'a **Sie** ve **Ihr** ile konuşursun."
    }
   ],
   "yazma": {
-   "gorev_tr": "Frau Brandl'a kısa bir not yaz: vatandaş bürosunda vekâletname gerekiyor; yazıp imzalamasını rica et ve öğleden sonra tekrar gideceğini yaz.",
+   "gorev_tr": "Frau Brandl'a kısa bir not yaz. Vatandaş bürosunda vekâletname gerekiyor. Yazıp imzalamasını rica et. Öğleden sonra tekrar gideceğini yaz.",
    "ornek_de": "Liebe Frau Brandl, im Bürgerbüro brauche ich eine Vollmacht von Ihnen. Bitte schreiben und unterschreiben Sie die Vollmacht. Heute Nachmittag gehe ich noch einmal hin. Viele Grüße",
    "zorunlu": [
     "Vollmacht",
@@ -1328,7 +1331,7 @@
      "tobi hat sich an der hand verletzt",
      "Tobi hat sich an der Hand verletzt"
     ],
-    "why_tr": "**sich verletzen**: **hat sich … verletzt**."
+    "why_tr": "**sich verletzen**: **Tobi hat sich verletzt.**"
    },
    {
     "id": "m1:98:s4",
@@ -1374,7 +1377,7 @@
      "Ich brauche für meine Nachbarin eine Meldebescheinigung.",
      "Für meine Nachbarin brauche ich eine Meldebescheinigung."
     ],
-    "why_tr": "İşini tek cümlede söyle: **Ich brauche … für …**"
+    "why_tr": "İşini tek cümlede söyle: ne lazım ve kimin için."
    },
    {
     "id": "m1:98:s8",
@@ -1390,7 +1393,7 @@
    {
     "id": "m1:98:s9",
     "k": "guided_response",
-    "situation_tr": "Frau Schneider vekâletname istiyor; sende yok. Dürüstçe söyle ve ne yapacağını sor.",
+    "situation_tr": "Frau Schneider vekâletname istiyor, sende yok. Dürüstçe söyle ve ne yapacağını sor.",
     "prompt_de": "Haben Sie eine Vollmacht?",
     "accepted": [
      "Nein, leider nicht. Was kann ich jetzt machen?",
@@ -1399,14 +1402,14 @@
      "Nein. Was kann ich jetzt machen?",
      "Leider habe ich keine Vollmacht. Was mache ich jetzt?"
     ],
-    "why_tr": "Eksik belge: tartışma; **Was kann ich jetzt machen?** diye sor."
+    "why_tr": "Eksik belgede tartışmazsın. **Was kann ich jetzt machen?** diye sorarsın."
    },
    {
     "id": "m1:98:s10",
     "k": "listen_and_respond",
     "audio_de": "Zuerst brauche ich Ihren Ausweis oder Pass.",
     "speed": "normal",
-    "situation_tr": "Memur bunu söyledi. Frau Brandl telefonda; ona memurun ne istediğini söyle.",
+    "situation_tr": "Memur bunu söyledi. Frau Brandl telefonda. Ona memurun ne istediğini söyle.",
     "accepted": [
      "Sie braucht zuerst meinen Ausweis oder Pass.",
      "Zuerst braucht sie meinen Ausweis.",
@@ -1419,7 +1422,7 @@
    {
     "id": "m1:98:s11",
     "k": "guided_response",
-    "situation_tr": "Haftanın kapısı, kısa: Frau Schneider'e Frau Brandl için ikamet belgesi istediğini söyle; vekâletname yoksa ne yapacağını sor.",
+    "situation_tr": "Haftanın son provası, kısa: Frau Schneider'e Frau Brandl için ikamet belgesi istediğini söyle. Vekâletnamen yok, ne yapacağını sor.",
     "prompt_de": "Was kann ich für Sie tun?",
     "accepted": [
      "Ich brauche eine Meldebescheinigung für Frau Brandl. Ich habe keine Vollmacht. Was kann ich jetzt machen?",
