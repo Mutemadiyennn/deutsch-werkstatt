@@ -22,7 +22,9 @@ Dokunulmayan kartlar: Frage, Erklärung, typisch.
 - deutlich 2 ve 2. boşluk: **Am Telefon spricht Dr. Weber immer langsam und deutlich** WORLD ile çelişiyordu (Weber'in hızı normal, istenince yavaşlar; telefondaki ses Huber). → **Frau Schneider spricht immer langsam und deutlich** (WORLD: yavaş ve açık konuşur).
 - Ioana'ya eklenen üç alışkanlık adsıza ya da öğrencinin kendi cümlesine çevrildi: Bedeutung 6 (**Ich schreibe neue Wörter …**), Satz 6 ve 4. boşluk (**Ich schreibe jeden Tag drei Sätze …**), aussprechen 6 (**Viele sprechen meinen Namen falsch aus.**).
 - unterbrechen 5. boşluk: **Tobi unterbricht mich ständig** → **Mein Kollege …** (karaktere olumsuz alışkanlık ekliyordu).
-- Bırakılanlar WORLD'deki tanımla örtüşüyor: Weber standart Almanca ve sabır, Schneider net açıklama, Derya sabırlı ve örnekle açıklıyor, Ioana ile karşılıklı düzeltme, Pichler ve Brandl'ın ağzı, paket Brandl'da (17. hafta), Wimmer'e soru sormak (13. hafta). **Tobi kapiert alles sofort** ve **Herr Pichler kennt jede Straße** karakter çizgisinde, olay değil; bırakıldı.
+- Bırakılanlar WORLD'deki tanımla örtüşüyor: Weber standart Almanca ve sabır, Schneider net açıklama, Derya sabırlı ve örnekle açıklıyor, Ioana ile karşılıklı düzeltme, Pichler ve Brandl'ın ağzı, paket Brandl'da (17. hafta), Wimmer'e soru sormak (13. hafta). **Herr Pichler kennt jede Straße** karakter çizgisinde, olay değil; bırakıldı.
+- BG kararı (2026-11-23, tur sonrası): Tobi 14. haftadan sonra yalnız sesli mesajla görünür, parti 17. haftada; kapieren 6 ve boşluğu (**Tobi kapiert alles sofort**) **Mein Kollege …** oldu (çeviri ve ipucu dahil). Partide Tobi satırı kalmadı.
+- Okur geri dönüşü (2026-11-23, 4 alan + aynı türden 1): korrigieren ve notieren hata notlarında **hat ge-** → **Ich habe …** (Türkçe söz "ben"); notieren 1. hata notu "Bunu not alıyorum", 4. boşluk ipucu yeniden yazıldı (aynı söz iki biçim veriyordu); Zettel **auf dem Zettel stehen** → "kâğıtta yazılı olmak". Toplam 89 düzeltme.
 
 **Boşluklar, also_ok (17)**
 - bayerisch 1–5: **bayrisch-** yazımı eklendi (Duden iki yazımı da verir; duyduğu gibi yazan öğrenci haksız ret alırdı).
