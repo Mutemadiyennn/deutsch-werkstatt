@@ -279,3 +279,39 @@ Kapsam: `git diff f544905 ddc99df -- content/v2/m1/` (47 yeni görev cümlesi, 1
 Sınama: `sina.sh 3` tam yeşil · `kalipornek.ts` örneksiz 0.
 
 ## KARAR: ONAY
+
+## Bütünleştirme fark turu (İÇ-10)
+
+Kapsam: `f478020b` (15, 16, 17, 19, 20, 21. gün, `gorulmemis-03`). İncelenen değişiklik: 12 (4 yeni kalıp satırı, 2 gölge/dikte seçimi, 4 yeniden kurulan cümle, 1 dikte maddesi, 1 karşı taraf sorusu). Tarih: 2026-11-23.
+
+### Bulgular ve düzeltmeler (4 bulgu, 4 düzeltme; 2 dosya)
+1. **16. gün h1, kalıp örneği yok.** `Ihren Namen – meinen Namen` satırının **Ihren Namen** yarısının halkada görev cümlesi yoktu. Kalıp yarıya indirilemez: **Ihren** aynı gün `s1` diktesinde, `s6` çevirisinde ve provada geçiyor (bütünleşik kapının 3 bulgusu). Görev cümlesi değişti:
+   - önce: **Können Sie den Namen bitte buchstabieren?** / "Adı harf harf söyleyebilir misiniz lütfen?"
+   - sonra: **Können Sie Ihren Namen bitte buchstabieren?** / "Adınızı harf harf söyleyebilir misiniz lütfen?"; kabul 4 (**bitte** yeri, **bitte**siz, **Bitte buchstabieren Sie Ihren Namen.**).
+   - Yeni sözcük yok. `s6` artık halkada çalışılmış bir cümleyi soruyor. 50. günle çakışma yok (orada **die Adresse**).
+2. **20. gün h2, `meiner` gösterilmiyordu.** Yazar provadaki cümleyi **Auf der Karte** ile yeniden kurdu, ama aynı biçim h2 görev cümlesinde (**Auf meiner Karte steht der vierte Dezember.**), ana sahnede ve sahne diktesinde duruyor. Kapı bunu yalnız ikinci kabul seçeneği **der Karte** olduğu için geçiriyordu. h2'ye kalıp satırı eklendi: `auf der Karte – auf meiner Karte` / "kartta – kartımda". Halkada iki yarının da örneği var.
+3. **20. gün prova n3, haksız ret riski.** Öğrenci h2'de **Auf meiner Karte steht …** çalışıyor, provada aynı kuruluş kabul edilmiyordu. Kabule eklendi: **Ist das sicher? Auf meiner Karte steht der zehnte.**, **Sind Sie sicher? Auf meiner Karte steht der zehnte.** Gösterilen cümle (`de`) yazarın biçiminde kaldı.
+4. **20. gün `s1` açıklaması.** "Bugünün tarihi için **Heute ist der zweite** dersin." her gün için geçerliymiş gibi okunuyordu. Sonra: "**Heute ist der zweite** bugün ayın ikisi demektir."
+
+### Onaylananlar
+- 15. gün h3 `seit Montag` / "pazartesiden beri": doğru; halkada iki örnek. `a2` gölgesi c3, c5: kişi adı yok, anlama soruları ve kanıtlar (c2, c3, c4) yerinde.
+- 17. gün h1 `Könnten Sie mich …?` / "Beni … -abilir misiniz?": doğru; halkada dört örnek.
+- 21. gün h1 `mit meinem Vater – mit deinem Vater – mit Ihrem Vater` / "babamla – babanla – babanızla": doğru. Örnek: **vor meinem Vater**, **mit deinem Vater** halkada; **von Ihrem Vater** yalnız ana sahnede (s12) ve provada, karşı tarafın ağzında.
+- 19. gün **Er sieht den Kuchen, ich sehe das Brot. Schön!**: doğru, kabul 3. Önceki turun "yapay" notu sürüyor.
+- 19. gün prova n2 **Und Basti? Sprichst du mit Basti Deutsch?**: doğru ve doğal; iki seçenek ve geri bildirimleri yeni soruya uyuyor.
+- 20. gün `a1` diktesi d4 → c5 **Bitte rufen Sie zurück.**: kabuller yalnız yazım farkı; cümle h1 kalıbında gösterilmiş. Dört sözcük, "usta" basamağı için kısa (engel değil).
+- 20. gün prova n3 **Ist das sicher? Auf der Karte steht der zehnte.** / "Kartta ayın onu yazıyor.": n3c cevabıyla uyumlu.
+- 20. gün `s1` **Heute ist der zweite Dezember.**: takvimle çelişmiyor. Sınav maddeleri bağımsız (s5 on biri, s10 7 Aralık pazartesi); **am zweiten Dezember** h2'de geçiyor.
+- `gorulmemis-03` g2 **Können Sie das buchstabieren?**: 16. gün sahnesindeki soruyla aynı kuruluş; kabuller uyumlu.
+
+### Kalan notlar (engel değil)
+- 21. gün: **Ihrem** biçiminin halkada görev cümlesi yok; öğrenci bu biçimi üretmiyor, yalnız duyuyor.
+- 18. gün kabul listesinde **Luka, wie findest du ihn?** (ilk seçenek değil) duruyor; farkın dışında, dokunulmadı.
+
+### Sınama
+- Bütünleşik ağacın kopyasında (üç dalın dosyaları + bu düzeltmeler): hafta kapısı 3. hafta GEÇTİ (öğretilmeden istenen 0, test %100, görülmemiş 7/7); dikiş denetçisi 15.–21. gün 0 ihlal; doğrulayıcı ve içerik testlerinin hata kümesi düzeltme öncesiyle aynı (16. ve 20. günde hata yok).
+- Bu dal tek başına `content:validate` 0 vermiyor (80 hata, önceki haftaların sözlüğü dalda yok); küme düzeltme öncesiyle aynı.
+
+Sonuç: 4 bulgu, 4 düzeltme. Hata oranı 4/12. `review.status` "draft" (önceki turların açık noktaları). KAPANDI.
+
+KARAR: DÜZELTİLDİ-ONAY
