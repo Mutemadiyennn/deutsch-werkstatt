@@ -38,7 +38,7 @@ export function Garden({ day }: { day?: number } = {}) {
 }
 
 function GardenTur({ day, again }: { day?: number; again: () => void }) {
-  const [data, setData] = useState<{ lex: Map<string, Lexeme>; all: Lexeme[]; items: Map<string, LearnerItem>; round: GardenQ[]; capped: boolean; gunKartlari: string[]; yakin: Yakinlik } | null>(null);
+  const [data, setData] = useState<{ lex: Map<string, Lexeme>; all: Lexeme[]; items: Map<string, LearnerItem>; round: GardenQ[]; capped: boolean; gunKartlari: string[]; yakin: Yakinlik; /** PM-114 B: atlanan günün Bahçe'si (adım bitirmez) */ atlandi?: boolean } | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [i, setI] = useState(0);
@@ -109,10 +109,12 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       // normal akış seçildiyse ya da bugün öneri reddedildiyse kendiliğinden öneri de gelmez (tercih saygısı)
       if (kapali || (await getMeta<string>("hizliOneriRed")) === bugun) setOneri("reddedildi");
       // boş tur: günün kartları zaten tanıtıldıysa Seans 1 burada tamamlanır (ekran efektine bırakılmaz)
-      if (day && !round.length && !kalan.length) await bahceTamam(day);
+      // atlanan günün Bahçe'si o günün adımını bitirmez: XP, seri ve m1:bahce yazılmaz (PM-114 B md. 4; inceleme #245 F-1)
+      const atlandi = !!day && atl.has(day);
+      if (day && !atlandi && !round.length && !kalan.length) await bahceTamam(day);
       // çeldirici yakınlığı: turun ve günün kartları, öğrencinin tanıdıkları (PM 7011722598 madde 5)
       const yakin: Yakinlik = { tur: new Set([...round.map((q) => q.lexId), ...gunKartlari]), bilinen: new Set(items.keys()) };
-      setData({ lex, all: lexemes, items, round, capped: newLeft <= 0, gunKartlari, yakin });
+      setData({ lex, all: lexemes, items, round, capped: newLeft <= 0, gunKartlari, yakin, atlandi });
     })().catch((e) => setErr(String(e?.message || e)));
     return () => stopSpeaking();
   }, []);
@@ -168,7 +170,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     // tekrar, en son gösterilen cümlenin ardından ("Başka cümle"ye basıldıysa o cümleden sonra; inceleme #92 P1-1)
     const r2 = !r.ok && outcome ? requeue(round, { ...q, type: tip, sina: false, ex: exi }, l, Math.random, data.items.get(q.lexId)) : round;
     // son cevap: günün bütün kartları tanıtıldıysa Seans 1 şimdi işaretlenir (inceleme #66 P1-1)
-    if (day && i + 1 >= r2.length && data.gunKartlari.every((id) => data.items.has(id))) { try { await bahceTamam(day); } catch { /* bir sonraki açılışta yeniden denenir */ } }
+    if (day && !data.atlandi && i + 1 >= r2.length && data.gunKartlari.every((id) => data.items.has(id))) { try { await bahceTamam(day); } catch { /* bir sonraki açılışta yeniden denenir */ } }
     setData({ ...data, round: r2 });
     setI(i + 1);
   };
