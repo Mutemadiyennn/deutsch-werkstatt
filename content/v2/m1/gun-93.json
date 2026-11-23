@@ -1,0 +1,1678 @@
+{
+ "schema": 1,
+ "id": "m1:gun:93",
+ "day": 93,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Buluşmak ve kendini iyi hissetmek: Wir treffen uns, ich fühle mich gut",
+ "goal_tr": "Biriyle buluşma yeri ve saati ayarlar, bankada basit bir işi halledersin.",
+ "can_do": {
+  "id": "cd:m1:93",
+  "tr": "Biriyle buluşma yeri ve saati ayarlar, bankada basit bir işi hallederim."
+ },
+ "unit": "u:a2:resmi-1",
+ "arm": "pazar",
+ "place": "pl:marktplatz",
+ "characters": [
+  "ch:lechner",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-05:t2"
+ ],
+ "yeni_kartlar": [
+  "lx:Geldautomat",
+  "lx:Bankkarte",
+  "lx:Überweisung",
+  "lx:Mahnung",
+  "lx:Frist",
+  "lx:erledigen",
+  "lx:wahrscheinlich",
+  "lx:leicht"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:93:h1",
+   "title_tr": "Bankada: bankamatik, kart, havale, ödeme uyarısı",
+   "kartlar": [
+    "lx:Geldautomat",
+    "lx:Bankkarte",
+    "lx:Überweisung",
+    "lx:Mahnung"
+   ],
+   "kaliplar": [
+    {
+     "de": "die Bank – zur Bank – in der Bank – am Stadtplatz – Ich muss zur Bank.",
+     "tr": "banka – bankaya – bankada – Stadtplatz'da – Bankaya gitmem lazım."
+    },
+    {
+     "de": "am Geldautomaten – Ich hole schnell Geld am Geldautomaten.",
+     "tr": "bankamatikte – Hemen bankamatikten para alıyorum."
+    },
+    {
+     "de": "eine Überweisung machen – Ich mache die Überweisung online.",
+     "tr": "havale yapmak – Havaleyi internetten yapıyorum."
+    },
+    {
+     "de": "Ich habe eine Mahnung bekommen. – ich vergesse – Ich habe die Rechnung vergessen.",
+     "tr": "Ödeme uyarısı aldım. – unutuyorum – Faturayı unuttum."
+    },
+    {
+     "de": "er gibt – Er gibt mir kein Geld. – er nimmt – Er nimmt die Karte nicht.",
+     "tr": "veriyor – Bana para vermiyor. – alıyor – Kartı almıyor."
+    },
+    {
+     "de": "drücken – Drücken Sie die Eins. – Drück die Eins.",
+     "tr": "basmak – Bire basın. – Bire bas."
+    },
+    {
+     "de": "Danke, dass du mitkommst.",
+     "tr": "Benimle geldiğin için sağ ol."
+    },
+    {
+     "de": "Sehr geehrter Herr Lechner, … – Mit freundlichen Grüßen",
+     "tr": "Sayın Herr Lechner, … – Saygılarımla"
+    },
+    {
+     "de": "Die Karte geht nicht. – mit der Bankkarte bezahlen",
+     "tr": "Kart çalışmıyor. – banka kartıyla ödemek"
+    },
+    {
+     "de": "ich ärgere mich – er ärgert sich – Tobi ärgert sich.",
+     "tr": "kızıyorum – kızıyor – Tobi sinirleniyor."
+    },
+    {
+     "de": "ich verstehe – Das verstehe ich. – Was ist los?",
+     "tr": "anlıyorum – Bunu anlıyorum. – Ne oldu?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Geldautomat",
+     "de": "Ich hole schnell Geld am Geldautomaten.",
+     "tr": "Hemen bankamatikten para alıyorum.",
+     "accepted": [
+      "Ich hole schnell Geld am Geldautomaten.",
+      "Ich hole noch schnell Geld am Geldautomaten.",
+      "Am Geldautomaten hole ich schnell Geld."
+     ]
+    },
+    {
+     "kart": "lx:Geldautomat",
+     "de": "Der Geldautomat gibt mir kein Geld, ich ärgere mich.",
+     "tr": "Bankamatik bana para vermiyor, sinirleniyorum.",
+     "accepted": [
+      "Der Geldautomat gibt mir kein Geld, ich ärgere mich.",
+      "Der Geldautomat gibt mir kein Geld. Ich ärgere mich.",
+      "Ich ärgere mich, der Geldautomat gibt mir kein Geld."
+     ]
+    },
+    {
+     "kart": "lx:Bankkarte",
+     "de": "Kann ich hier mit der Bankkarte bezahlen?",
+     "tr": "Burada banka kartıyla ödeyebilir miyim?",
+     "accepted": [
+      "Kann ich hier mit der Bankkarte bezahlen?",
+      "Kann ich hier mit Bankkarte bezahlen?",
+      "Kann ich mit der Bankkarte bezahlen?"
+     ]
+    },
+    {
+     "kart": "lx:Bankkarte",
+     "de": "Tobi hat seine Bankkarte vergessen und ärgert sich.",
+     "tr": "Tobi banka kartını unutmuş ve sinirleniyor.",
+     "accepted": [
+      "Tobi hat seine Bankkarte vergessen und ärgert sich.",
+      "Tobi hat seine Bankkarte vergessen, er ärgert sich.",
+      "Tobi ärgert sich, er hat seine Bankkarte vergessen."
+     ]
+    },
+    {
+     "kart": "lx:Überweisung",
+     "de": "Ich mache die Überweisung heute online.",
+     "tr": "Havaleyi bugün internetten yapıyorum.",
+     "accepted": [
+      "Ich mache die Überweisung heute online.",
+      "Heute mache ich die Überweisung online.",
+      "Ich mache heute die Überweisung online."
+     ]
+    },
+    {
+     "kart": "lx:Überweisung",
+     "de": "Hast du die Überweisung heute gemacht?",
+     "tr": "Havaleyi bugün yaptın mı?",
+     "accepted": [
+      "Hast du die Überweisung heute gemacht?",
+      "Hast du heute die Überweisung gemacht?",
+      "Hast du die Überweisung gemacht?"
+     ]
+    },
+    {
+     "kart": "lx:Mahnung",
+     "de": "Tobi hat eine Mahnung vom Fitnessstudio bekommen.",
+     "tr": "Tobi'ye spor salonundan ödeme uyarısı gelmiş.",
+     "accepted": [
+      "Tobi hat eine Mahnung vom Fitnessstudio bekommen.",
+      "Tobi hat vom Fitnessstudio eine Mahnung bekommen.",
+      "Tobi hat eine Mahnung bekommen, vom Fitnessstudio."
+     ]
+    },
+    {
+     "kart": "lx:Mahnung",
+     "de": "Ich habe die Rechnung vergessen, jetzt habe ich eine Mahnung.",
+     "tr": "Faturayı unuttum, şimdi ödeme uyarısı geldi.",
+     "accepted": [
+      "Ich habe die Rechnung vergessen, jetzt habe ich eine Mahnung.",
+      "Ich habe die Rechnung vergessen. Jetzt habe ich eine Mahnung.",
+      "Jetzt habe ich eine Mahnung, ich habe die Rechnung vergessen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Salı öğlen ofiste. Tobi masana geliyor, elinde bir mektup.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Hast du heute nach der Arbeit kurz Zeit? Ich muss zur Bank.",
+      "tr": "Bugün işten sonra biraz vaktin var mı? Bankaya gitmem lazım."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, klar. Was ist los?",
+      "tr": "Evet, tabii. Ne oldu?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Ich habe eine Mahnung bekommen. Ich habe eine Rechnung vergessen.",
+      "tr": "Ödeme uyarısı aldım. Bir faturayı unutmuşum."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Kein Problem, ich komme mit.",
+      "tr": "Sorun değil, ben de gelirim."
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi neden bankaya gidiyor?",
+     "opts": [
+      "Bir faturayı unutmuş, ödeme uyarısı gelmiş",
+      "Yeni bir hesap açacak",
+      "Kartını kaybetmiş"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:93:h2",
+   "title_tr": "Buluşmak, kendini hissetmek, işleri halletmek",
+   "kartlar": [
+    "lx:Frist",
+    "lx:erledigen",
+    "lx:wahrscheinlich",
+    "lx:leicht"
+   ],
+   "kaliplar": [
+    {
+     "de": "wir treffen uns – Wir treffen uns um fünf. – Um fünf treffen wir uns.",
+     "tr": "buluşuyoruz – Beşte buluşuyoruz. – Beşte buluşuyoruz."
+    },
+    {
+     "de": "ich fühle mich – du fühlst dich – er fühlt sich – gestresst – Ich fühle mich gestresst.",
+     "tr": "kendimi … hissediyorum – hissediyorsun – hissediyor – stresli – Kendimi stresli hissediyorum."
+    },
+    {
+     "de": "Die Frist war am Freitag. – Die Frist ist vorbei.",
+     "tr": "Son gün cumaydı. – Süre geçti."
+    },
+    {
+     "de": "Ich muss noch viel erledigen. – Ich habe alles erledigt. – Das ist erledigt.",
+     "tr": "Daha halletmem gereken çok iş var. – Her şeyi hallettim. – Bu halloldu."
+    },
+    {
+     "de": "wahrscheinlich – Wahrscheinlich nicht.",
+     "tr": "muhtemelen – Muhtemelen hayır."
+    },
+    {
+     "de": "leicht – Das ist ganz leicht. – Das ist nicht leicht.",
+     "tr": "kolay – Bu çok kolay. – Bu kolay değil."
+    },
+    {
+     "de": "ich helfe dir – Kann ich Ihnen helfen? – Komm mit!",
+     "tr": "sana yardım ederim – Size yardım edebilir miyim? – Gel benimle!"
+    },
+    {
+     "de": "ich hoffe – Ich hoffe, du bist wieder gesund.",
+     "tr": "umarım – Umarım yine iyileşmişsindir."
+    },
+    {
+     "de": "Ich melde mich im Fitnessstudio an. – Ich habe mich angemeldet.",
+     "tr": "Spor salonuna kaydoluyorum. – Kaydoldum."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Frist",
+     "de": "Die Frist war am Freitag, Tobi fühlt sich gestresst.",
+     "tr": "Son gün cumaydı, Tobi kendini stresli hissediyor.",
+     "accepted": [
+      "Die Frist war am Freitag, Tobi fühlt sich gestresst.",
+      "Die Frist war am Freitag. Tobi fühlt sich gestresst.",
+      "Tobi fühlt sich gestresst, die Frist war am Freitag."
+     ]
+    },
+    {
+     "kart": "lx:Frist",
+     "de": "Die Frist ist am Freitag, wir treffen uns am Donnerstag.",
+     "tr": "Son gün cuma, perşembe buluşuyoruz.",
+     "accepted": [
+      "Die Frist ist am Freitag, wir treffen uns am Donnerstag.",
+      "Die Frist ist am Freitag. Wir treffen uns am Donnerstag.",
+      "Wir treffen uns am Donnerstag, die Frist ist am Freitag."
+     ]
+    },
+    {
+     "kart": "lx:erledigen",
+     "de": "Nach der Arbeit treffen wir uns und erledigen alles.",
+     "tr": "İşten sonra buluşup her şeyi hallediyoruz.",
+     "accepted": [
+      "Nach der Arbeit treffen wir uns und erledigen alles.",
+      "Nach der Arbeit treffen wir uns und erledigen das.",
+      "Wir treffen uns nach der Arbeit und erledigen alles."
+     ]
+    },
+    {
+     "kart": "lx:erledigen",
+     "de": "Ich habe alles erledigt, jetzt fühle ich mich gut.",
+     "tr": "Her şeyi hallettim, şimdi kendimi iyi hissediyorum.",
+     "accepted": [
+      "Ich habe alles erledigt, jetzt fühle ich mich gut.",
+      "Ich habe alles erledigt. Jetzt fühle ich mich gut.",
+      "Jetzt fühle ich mich gut, ich habe alles erledigt."
+     ]
+    },
+    {
+     "kart": "lx:wahrscheinlich",
+     "de": "Wahrscheinlich treffen wir uns um fünf am Geldautomaten.",
+     "tr": "Muhtemelen beşte bankamatiğin önünde buluşuyoruz.",
+     "accepted": [
+      "Wahrscheinlich treffen wir uns um fünf am Geldautomaten.",
+      "Wir treffen uns wahrscheinlich um fünf am Geldautomaten.",
+      "Wahrscheinlich treffen wir uns um fünf."
+     ]
+    },
+    {
+     "kart": "lx:wahrscheinlich",
+     "de": "Ich melde mich wahrscheinlich im Fitnessstudio an.",
+     "tr": "Muhtemelen spor salonuna kaydoluyorum.",
+     "accepted": [
+      "Ich melde mich wahrscheinlich im Fitnessstudio an.",
+      "Wahrscheinlich melde ich mich im Fitnessstudio an.",
+      "Ich melde mich im Fitnessstudio wahrscheinlich an."
+     ]
+    },
+    {
+     "kart": "lx:leicht",
+     "de": "Die Überweisung ist ganz leicht, keine Angst.",
+     "tr": "Havale çok kolay, korkma.",
+     "accepted": [
+      "Die Überweisung ist ganz leicht, keine Angst.",
+      "Keine Angst, die Überweisung ist ganz leicht.",
+      "Die Überweisung ist leicht, keine Angst."
+     ]
+    },
+    {
+     "kart": "lx:leicht",
+     "de": "Das ist nicht leicht, ich fühle mich gestresst.",
+     "tr": "Bu kolay değil, kendimi stresli hissediyorum.",
+     "accepted": [
+      "Das ist nicht leicht, ich fühle mich gestresst.",
+      "Das ist nicht leicht. Ich fühle mich gestresst.",
+      "Ich fühle mich gestresst, das ist nicht leicht."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Saat beş, Stadtplatz'daki bankanın önü. Tobi bankamatiğin yanında bekliyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Da bist du ja! Wie fühlst du dich heute?",
+      "tr": "Geldin! Bugün kendini nasıl hissediyorsun?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich fühle mich gut, danke. Und du?",
+      "tr": "İyiyim, teşekkürler. Ya sen?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Nicht so gut. Bis Samstag muss ich noch so viel erledigen.",
+      "tr": "Pek iyi değil. Cumartesiye kadar daha halletmem gereken çok iş var."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Das ist nicht leicht. Ich helfe dir.",
+      "tr": "Bu kolay değil. Sana yardım ederim."
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi nasıl hissediyor?",
+     "opts": [
+      "Pek iyi değil, çok işi var",
+      "Çok iyi, her şeyi halletmiş",
+      "Hasta"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:93:v1",
+  "title_tr": "Bankada: eski kart ve ödeme uyarısı",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Stadtplatz, bankanın önü, saat beş. Tobi bankamatiğin ekranını gösteriyor: \"Karte ungültig\".",
+    "de": "Danke, dass du mitkommst. Mein Problem: Der Geldautomat nimmt meine Bankkarte nicht.",
+    "tr": "Geldiğin için sağ ol. Sorunum şu: bankamatik banka kartımı almıyor."
+   },
+   {
+    "id": "s2",
+    "speaker": "eine Bankangestellte",
+    "sahne_tr": "Banka çalışanı bir kadın kapıdan başını uzatıyor.",
+    "de": "Guten Tag. Kann ich Ihnen helfen?",
+    "tr": "İyi günler. Size yardım edebilir miyim?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kartı ve bir mektubu uzatıyor.",
+    "de": "Ja, bitte. Meine Bankkarte geht nicht, und ich habe eine Mahnung bekommen.",
+    "tr": "Evet, lütfen. Banka kartım çalışmıyor, bir de ödeme uyarısı aldım."
+   },
+   {
+    "id": "s4",
+    "speaker": "eine Bankangestellte",
+    "sahne_tr": "Kadın kartı çeviriyor, tarihine bakıyor.",
+    "de": "Zeigen Sie mal. Ihre Karte ist zu alt. Sie bekommen in einer Woche eine neue.",
+    "tr": "Bir bakayım. Kartınız çok eski. Bir hafta içinde yenisini alırsınız."
+   },
+   {
+    "id": "s5",
+    "speaker": "eine Bankangestellte",
+    "sahne_tr": "Kadın mektuba göz atıyor, kırmızı yazılı bir satırı gösteriyor.",
+    "de": "Und die Mahnung? Die Frist war am Freitag. Machen Sie heute eine Überweisung, dann ist das erledigt.",
+    "tr": "Ya ödeme uyarısı? Son gün cumaydı. Bugün bir havale yapın, o zaman bu iş halloluyor."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi derin bir nefes alıyor.",
+    "de": "Gut, dann mache ich das gleich.",
+    "tr": "Tamam, o zaman hemen yapıyorum."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:lechner",
+    "sahne_tr": "İçeride, gişenin önü.",
+    "de": "Kann ich die Überweisung hier machen?",
+    "tr": "Havaleyi burada yapabilir miyim?"
+   },
+   {
+    "id": "s8",
+    "speaker": "eine Bankangestellte",
+    "sahne_tr": "Kadın masaya bir form koyuyor, iki yeri parmağıyla gösteriyor.",
+    "de": "Natürlich. Hier ist das Formular. Schreiben Sie hier den Namen und hier, wie viel Geld.",
+    "tr": "Tabii. Form burada. Buraya adı, buraya da ne kadar para olduğunu yazın."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi yazıyor.",
+    "de": "Neunundvierzig Euro, für das Fitnessstudio. Ich ziehe am Samstag nach Hamburg.",
+    "tr": "Kırk dokuz avro, spor salonu için. Cumartesi Hamburg'a taşınıyorum."
+   },
+   {
+    "id": "s10",
+    "speaker": "eine Bankangestellte",
+    "sahne_tr": "Kadın bilgisayarına bakıyor.",
+    "de": "Dann ändern Sie bitte auch Ihre Adresse bei uns. Das können Sie online erledigen, das ist ganz leicht.",
+    "tr": "O zaman lütfen bizdeki adresinizi de değiştirin. Bunu internetten halledebilirsiniz, çok kolay."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi sana dönüyor, saçlarını karıştırıyor.",
+    "de": "Ich fühle mich so gestresst. Wahrscheinlich vergesse ich noch etwas.",
+    "tr": "Kendimi çok stresli hissediyorum. Muhtemelen yine bir şey unutacağım."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Dışarıda Tobi gülümsüyor, mektubu cebine koyuyor.",
+    "de": "Aber jetzt ist das erledigt. Komm, wir trinken noch einen Kaffee.",
+    "tr": "Ama şimdi bu iş halloldu. Gel, bir kahve içelim."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bankanın önünde ne oluyor?",
+     "opts": [
+      "Tobi'nin kartı çalışmıyor ve bir ödeme uyarısı var",
+      "Tobi yeni bir hesap açıyor",
+      "Bankamatik bozuk, banka kapalı"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s3"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Kart neden çalışmıyor?",
+      "opts": [
+       "Kart çok eski",
+       "Kartta para yok",
+       "Tobi şifreyi unuttu"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Yeni kart ne zaman gelecek?",
+      "opts": [
+       "Bir hafta içinde",
+       "Yarın",
+       "Bir ay içinde"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Banka çalışanı ne öneriyor?",
+      "opts": [
+       "Bugün havale yapmasını",
+       "Spor salonunu aramasını",
+       "Cuma yeniden gelmesini"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s3",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Mahnung",
+       "Meinung",
+       "Wohnung"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Und die Mahnung? Die ___ war am Freitag. Machen Sie heute eine Überweisung, dann ist das erledigt.",
+      "accepted": [
+       "Frist",
+       "frist",
+       "Frist."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s6",
+      "seviye": "zor",
+      "banka": [
+       "Gut",
+       "dann",
+       "mache",
+       "ich",
+       "das",
+       "gleich",
+       "morgen",
+       "du"
+      ],
+      "accepted": [
+       "Gut, dann mache ich das gleich.",
+       "gut dann mache ich das gleich",
+       "Gut, dann mache ich das gleich"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Zeigen Sie mal. Ihre Karte ist zu alt. Sie bekommen in einer Woche eine neue.",
+       "zeigen sie mal ihre karte ist zu alt sie bekommen in einer woche eine neue",
+       "Zeigen Sie mal. Ihre Karte ist zu alt. Sie bekommen in einer Woche eine neue"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Bankada ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Tobis Bankkarte geht nicht. Er hat eine Mahnung bekommen.",
+      "zorunlu": [
+       "Bankkarte",
+       "Mahnung"
+      ]
+     }
+    ],
+    "golge": [
+     "s4",
+     "s5"
+    ],
+    "cevapla": {
+     "id": "m1:93:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Akşam Derya Tobi'yi soruyor. Tobi'nin ödeme uyarısı aldığını ama şimdi her şeyin halledildiğini söyle.",
+     "prompt_de": "Und, was war mit Tobi los?",
+     "accepted": [
+      "Er hat eine Mahnung bekommen. Aber jetzt ist alles erledigt.",
+      "Tobi hat eine Mahnung bekommen, aber jetzt ist das erledigt.",
+      "Er hatte eine Mahnung. Er hat eine Überweisung gemacht, jetzt ist alles erledigt.",
+      "Eine Mahnung vom Fitnessstudio. Jetzt ist alles erledigt.",
+      "Er hat eine Rechnung vergessen. Aber jetzt ist das erledigt.",
+      "Tobi hat eine Mahnung bekommen. Er hat die Überweisung gemacht."
+     ],
+     "why_tr": "**erledigt**: halloldu. **Jetzt ist alles erledigt.** Artık her şey halloldu."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bankanın içinde ne yapıyorlar?",
+     "opts": [
+      "Havale formunu dolduruyorlar; Tobi adresini de değiştirmeli",
+      "Tobi bankada çalışmak için başvuruyor",
+      "Tobi hesabını kapatıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s8",
+      "s10"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Tobi ne kadar ödüyor?",
+      "opts": [
+       "Kırk dokuz avro",
+       "Doksan dört avro",
+       "On dokuz avro"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi adresini nasıl değiştirebilir?",
+      "opts": [
+       "İnternetten",
+       "Mektupla",
+       "Yalnızca bankaya gelerek"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi nasıl hissediyor?",
+      "opts": [
+       "Stresli",
+       "Mutlu ve sakin",
+       "Hasta"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s9",
+      "seviye": "kolay",
+      "q_tr": "Tobi nereye taşınıyor?",
+      "opts": [
+       "Hamburg",
+       "Augsburg",
+       "Regensburg"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s11",
+      "seviye": "orta",
+      "de": "Ich fühle mich so ___. Wahrscheinlich vergesse ich noch etwas.",
+      "accepted": [
+       "gestresst",
+       "Gestresst",
+       "gestresst."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s12",
+      "seviye": "zor",
+      "banka": [
+       "Aber",
+       "jetzt",
+       "ist",
+       "das",
+       "erledigt",
+       "Komm",
+       "wir",
+       "trinken",
+       "noch",
+       "einen",
+       "Kaffee",
+       "Tee",
+       "trinke"
+      ],
+      "accepted": [
+       "Aber jetzt ist das erledigt. Komm, wir trinken noch einen Kaffee.",
+       "aber jetzt ist das erledigt komm wir trinken noch einen kaffee",
+       "Aber jetzt ist das erledigt. Komm, wir trinken noch einen Kaffee"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s7",
+      "seviye": "usta",
+      "accepted": [
+       "Kann ich die Überweisung hier machen?",
+       "kann ich die überweisung hier machen",
+       "Kann ich die Überweisung hier machen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Tobi'nin bankadan sonraki durumunu Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Tobi hat die Überweisung gemacht. Er fühlt sich gestresst.",
+      "zorunlu": [
+       "Überweisung",
+       "fühlt sich"
+      ]
+     }
+    ],
+    "golge": [
+     "s11",
+     "s12"
+    ],
+    "cevapla": {
+     "id": "m1:93:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Tobi çok stresli olduğunu söylüyor. Onu sakinleştir: havale kolaydı ve artık halloldu.",
+     "prompt_de": "Ich fühle mich so gestresst.",
+     "accepted": [
+      "Das verstehe ich. Aber die Überweisung war leicht, jetzt ist alles erledigt.",
+      "Keine Angst, das ist jetzt erledigt.",
+      "Das war doch leicht. Jetzt ist alles erledigt.",
+      "Das verstehe ich. Aber jetzt ist das erledigt.",
+      "Keine Angst, Tobi. Die Überweisung ist erledigt.",
+      "Das verstehe ich. Komm, wir trinken einen Kaffee."
+     ],
+     "why_tr": "**erledigt** halloldu, **leicht** kolay. Kısa ve sıcak cevaplar burada iyi gider."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:93:a1",
+   "tur": "bekleme-anonsu",
+   "title_tr": "Bankanın telefon menüsü",
+   "ortam_tr": "Pazartesi akşamı. Tobi'nin banka kartı çalışmıyor; Tobi senin telefonundan bankayı arıyor ve hoparlörü açıyor. Bir kayıt konuşuyor.",
+   "speaker": "Vilsbank",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Willkommen bei der Vilsbank.",
+     "tr": "Vilsbank'a hoş geldiniz."
+    },
+    {
+     "id": "c2",
+     "de": "Ihre Bankkarte ist weg? Dann drücken Sie bitte die Eins.",
+     "tr": "Banka kartınız mı kayıp? O zaman lütfen bire basın."
+    },
+    {
+     "id": "c3",
+     "de": "Sie möchten eine Überweisung machen? Dann drücken Sie die Zwei.",
+     "tr": "Havale mi yapmak istiyorsunuz? O zaman ikiye basın."
+    },
+    {
+     "id": "c4",
+     "de": "Sie haben eine Mahnung bekommen und möchten mit uns sprechen? Dann drücken Sie die Drei.",
+     "tr": "Ödeme uyarısı aldınız ve bizimle konuşmak mı istiyorsunuz? O zaman üçe basın."
+    },
+    {
+     "id": "c5",
+     "de": "Unsere Bank am Stadtplatz ist von Montag bis Freitag von neun bis siebzehn Uhr geöffnet.",
+     "tr": "Stadtplatz'daki bankamız pazartesiden cumaya dokuzdan on yediye kadar açık."
+    },
+    {
+     "id": "c6",
+     "de": "Der Geldautomat geht immer, auch am Sonntag.",
+     "tr": "Bankamatik her zaman çalışır, pazar günü de."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Bu kayıt ne anlatıyor?",
+      "opts": [
+       "Hangi iş için hangi tuşa basılacağını ve bankanın saatlerini",
+       "Bankanın bugün kapalı olduğunu",
+       "Yeni bir banka kartının fiyatını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Kartı kaybolan hangi tuşa basmalı?",
+       "opts": [
+        "Bir",
+        "İki",
+        "Üç"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Banka cumartesi açık mı?",
+       "opts": [
+        "Hayır, yalnızca pazartesiden cumaya",
+        "Evet, dokuzdan on ikiye",
+        "Evet, bütün gün"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Bankamatik ne zaman çalışır?",
+       "opts": [
+        "Her zaman, pazar da",
+        "Yalnızca banka açıkken",
+        "Yalnızca hafta içi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c6"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi sayıyı duydun?",
+       "opts": [
+        "Zwei",
+        "Drei",
+        "Eins"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Unsere Bank am Stadtplatz ist von Montag bis Freitag von neun bis siebzehn Uhr ___.",
+       "accepted": [
+        "geöffnet",
+        "Geöffnet",
+        "geöffnet."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Der",
+        "Geldautomat",
+        "geht",
+        "immer",
+        "auch",
+        "am",
+        "Sonntag",
+        "nie",
+        "Samstag"
+       ],
+       "accepted": [
+        "Der Geldautomat geht immer, auch am Sonntag.",
+        "der geldautomat geht immer auch am sonntag",
+        "Der Geldautomat geht immer, auch am Sonntag"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Sie möchten eine Überweisung machen? Dann drücken Sie die Zwei.",
+        "sie möchten eine überweisung machen dann drücken sie die zwei",
+        "Sie möchten eine Überweisung machen? Dann drücken Sie die Zwei"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Bankanın saatlerini Almanca iki kısa cümleyle yaz.",
+       "ornek_de": "Die Bank ist von Montag bis Freitag geöffnet. Der Geldautomat geht immer.",
+       "zorunlu": [
+        "Montag",
+        "Geldautomat"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:93:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi soruyor: banka kartımı kaybettim, hangi tuşa basayım? Bire basmasını söyle.",
+      "prompt_de": "Meine Bankkarte ist weg. Was muss ich drücken?",
+      "accepted": [
+       "Drück die Eins.",
+       "Die Eins. Drück die Eins.",
+       "Du musst die Eins drücken.",
+       "Drück bitte die Eins.",
+       "Die Eins, Tobi."
+      ],
+      "why_tr": "Arkadaşına **Drück die Eins.** dersin: bire bas."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:93:a1:e1",
+    "k": "pick",
+    "q_tr": "Tobi'nin kartı çalışmıyor, ödeme uyarısı da var. Bugün pazartesi, saat on dokuz. Ne yapmalı?",
+    "opts": [
+     "Yarın dokuzdan sonra bankaya gitmeli",
+     "Hemen bankaya gitmeli, banka açık",
+     "Pazar günü bankaya gitmeli"
+    ],
+    "ans": 0,
+    "why_tr": "Banka pazartesiden cumaya dokuzdan on yediye kadar açık. Saat on dokuzda kapalı.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:93:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Derya'nın sesli mesajı: veda kutlaması",
+   "ortam_tr": "Salı akşamı eve geldin. Telefonunda Derya'dan bir sesli mesaj var.",
+   "speaker": "ch:aksoy",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Derya.",
+     "tr": "Merhaba, ben Derya."
+    },
+    {
+     "id": "c2",
+     "de": "Wie fühlst du dich? Ich hoffe, du bist wieder gesund.",
+     "tr": "Nasıl hissediyorsun? Umarım yine iyileşmişsindir."
+    },
+    {
+     "id": "c3",
+     "de": "Am Freitag machen wir die Feier für Tobi.",
+     "tr": "Cuma günü Tobi için kutlamayı yapıyoruz."
+    },
+    {
+     "id": "c4",
+     "de": "Wir treffen uns um sechs im Restaurant am Stadtplatz.",
+     "tr": "Saat altıda Stadtplatz'daki restoranda buluşuyoruz."
+    },
+    {
+     "id": "c5",
+     "de": "Ich habe schon für zehn Personen reserviert.",
+     "tr": "On kişilik yer ayırttım bile."
+    },
+    {
+     "id": "c6",
+     "de": "Kannst du bitte einen Kuchen backen? Das ist eine gute Idee, oder?",
+     "tr": "Lütfen bir pasta yapabilir misin? İyi bir fikir, değil mi?"
+    },
+    {
+     "id": "c7",
+     "de": "Ruf mich kurz an, ja? Bis dann!",
+     "tr": "Beni kısaca ara, olur mu? Görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Derya neden arıyor?",
+      "opts": [
+       "Cuma günkü kutlamayı anlatıyor ve senden bir pasta istiyor",
+       "Hasta olduğunu söylüyor",
+       "Toplantının saatini değiştiriyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c6"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Nerede buluşuyorlar?",
+       "opts": [
+        "Stadtplatz'daki restoranda",
+        "Ofiste",
+        "Tobi'nin evinde"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Saat kaçta?",
+       "opts": [
+        "Altıda",
+        "Beşte",
+        "Yedide"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kaç kişilik yer ayırtılmış?",
+       "opts": [
+        "On",
+        "Altı",
+        "On iki"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi saati duydun?",
+       "opts": [
+        "sechs",
+        "sieben",
+        "zehn"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Ich habe schon für zehn Personen ___.",
+       "accepted": [
+        "reserviert",
+        "Reserviert",
+        "reserviert."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Am",
+        "Freitag",
+        "machen",
+        "wir",
+        "die",
+        "Feier",
+        "für",
+        "Tobi",
+        "Samstag",
+        "Party"
+       ],
+       "accepted": [
+        "Am Freitag machen wir die Feier für Tobi.",
+        "am freitag machen wir die feier für tobi",
+        "Am Freitag machen wir die Feier für Tobi"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Wie fühlst du dich? Ich hoffe, du bist wieder gesund.",
+        "wie fühlst du dich ich hoffe du bist wieder gesund",
+        "Wie fühlst du dich? Ich hoffe, du bist wieder gesund"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Derya'nın mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Am Freitag machen wir die Feier für Tobi. Wir treffen uns um sechs.",
+       "zorunlu": [
+        "Freitag",
+        "treffen uns"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c7"
+     ],
+     "cevapla": {
+      "id": "m1:93:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya'yı arıyorsun. Kendini iyi hissettiğini ve pastayı yapacağını söyle.",
+      "prompt_de": "Hallo! Wie fühlst du dich?",
+      "accepted": [
+       "Hallo Derya, ich fühle mich gut, danke. Ich backe den Kuchen.",
+       "Ich fühle mich wieder gut. Und ja, ich backe einen Kuchen.",
+       "Danke, ich fühle mich gut. Den Kuchen backe ich gern.",
+       "Gut, danke! Ich backe gern einen Kuchen für Tobi.",
+       "Ich fühle mich gut. Ich kann einen Kuchen backen.",
+       "Hallo! Mir geht es gut. Ich backe einen Kuchen."
+      ],
+      "why_tr": "**Ich fühle mich gut**: kendimi iyi hissediyorum. **mich** **fühle** kelimesinin arkasında."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:93:a2:e1",
+    "k": "pick",
+    "q_tr": "Şimdi ne yapmalısın?",
+    "opts": [
+     "Derya'yı arayıp pastayı yapıp yapamayacağını söyle",
+     "Restorana gidip yer ayırt",
+     "Tobi'yi arayıp kutlamayı anlat"
+    ],
+    "ans": 0,
+    "why_tr": "Derya senden bir pasta istiyor ve kısaca aramanı söylüyor.",
+    "kanit": [
+     "c6",
+     "c7"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:93:g1",
+   "de": "Geldautomat",
+   "dogru_img": "person using an atm cash machine",
+   "celdirici_img": [
+    "ticket machine at station",
+    "coffee machine",
+    "parking meter"
+   ]
+  },
+  {
+   "id": "m1:93:g2",
+   "de": "Bankkarte",
+   "dogru_img": "bank debit card in hand",
+   "celdirici_img": [
+    "passport",
+    "train ticket",
+    "library card"
+   ]
+  },
+  {
+   "id": "m1:93:g3",
+   "de": "Überweisung",
+   "dogru_img": "online bank transfer form on laptop",
+   "celdirici_img": [
+    "shopping list",
+    "train timetable",
+    "hotel booking page"
+   ]
+  },
+  {
+   "id": "m1:93:g4",
+   "de": "Mahnung",
+   "dogru_img": "letter with red payment reminder",
+   "celdirici_img": [
+    "birthday card",
+    "postcard",
+    "invitation letter"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:93:p1",
+  "title_tr": "Tobi ile buluşma ayarlamak",
+  "durum_tr": "Salı akşamı Tobi seni arıyor. Taşınmadan önce halletmesi gereken çok iş var ve senden yardım istiyor. Bir gün, bir saat ve bir yer ayarlayın.",
+  "karsi": "ch:lechner",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Du, hast du am Donnerstag Zeit? Ich muss noch so viel erledigen.",
+    "tr": "Baksana, perşembe vaktin var mı? Daha halletmem gereken çok iş var.",
+    "secenekler": [
+     {
+      "de": "Ja, am Donnerstag habe ich Zeit. Wann treffen wir uns?",
+      "tr": "Evet, perşembe vaktim var. Ne zaman buluşuyoruz?",
+      "accepted": [
+       "Ja, am Donnerstag habe ich Zeit. Wann treffen wir uns?",
+       "Ja, ich habe Zeit. Wann treffen wir uns?",
+       "Am Donnerstag habe ich Zeit. Wann treffen wir uns?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: **Wann treffen wir uns?** **uns** **wir** kelimesinin arkasında."
+     },
+     {
+      "de": "Am Donnerstag ist schlecht. Treffen wir uns am Mittwoch?",
+      "tr": "Perşembe olmaz. Çarşamba buluşalım mı?",
+      "accepted": [
+       "Am Donnerstag ist schlecht. Treffen wir uns am Mittwoch?",
+       "Donnerstag ist schlecht. Treffen wir uns am Mittwoch?",
+       "Am Donnerstag geht es nicht. Treffen wir uns am Mittwoch?",
+       "Treffen wir uns lieber am Mittwoch?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Başka bir gün önerdin. **Treffen wir uns …?** kibar bir öneridir."
+     },
+     {
+      "de": "Wann treffen uns wir?",
+      "tr": "(yanlış sıra) Ne zaman buluşuyoruz?",
+      "accepted": [
+       "Wann treffen uns wir?",
+       "Wann treffen uns wir",
+       "Wann wir treffen uns?"
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Sıra: **Wann treffen wir uns?** Önce **wir**, sonra **uns**."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Wie bitte?",
+    "tr": "Efendim?",
+    "secenekler": [
+     {
+      "de": "Wann treffen wir uns?",
+      "tr": "Ne zaman buluşuyoruz?",
+      "accepted": [
+       "Wann treffen wir uns?",
+       "Wann treffen wir uns, Tobi?",
+       "Ich habe Zeit. Wann treffen wir uns?",
+       "Gut. Wann treffen wir uns?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi doğru: **Wann treffen wir uns?**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Gut. Um wie viel Uhr? Ich arbeite bis fünf.",
+    "tr": "Tamam. Saat kaçta? Beşe kadar çalışıyorum.",
+    "secenekler": [
+     {
+      "de": "Um sechs? Dann treffen wir uns um sechs am Rathaus.",
+      "tr": "Altıda mı? O zaman altıda belediye binasının önünde buluşalım.",
+      "accepted": [
+       "Um sechs? Dann treffen wir uns um sechs am Rathaus.",
+       "Um sechs. Wir treffen uns um sechs am Rathaus.",
+       "Treffen wir uns um sechs am Rathaus.",
+       "Um sechs am Rathaus?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Saat ve yer: tam bir buluşma cümlesi."
+     },
+     {
+      "de": "Um halb sechs treffen wir uns am Bahnhof.",
+      "tr": "Beş buçukta istasyonda buluşalım.",
+      "accepted": [
+       "Um halb sechs treffen wir uns am Bahnhof.",
+       "Wir treffen uns um halb sechs am Bahnhof.",
+       "Um halb sechs am Bahnhof?",
+       "Treffen wir uns um halb sechs am Bahnhof."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Saatle başladın: **Um halb sechs treffen wir uns** — **treffen** yine ikinci yerde."
+     },
+     {
+      "de": "Um vier treffen wir uns.",
+      "tr": "(yanlış) Dörtte buluşalım.",
+      "accepted": [
+       "Um vier treffen wir uns.",
+       "Wir treffen uns um vier.",
+       "Um vier?"
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Tobi beşe kadar çalışıyor. Beşten sonra bir saat söyle."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Super. Ehrlich gesagt, ich fühle mich ein bisschen gestresst.",
+    "tr": "Süper. Açıkçası kendimi biraz stresli hissediyorum.",
+    "secenekler": [
+     {
+      "de": "Das verstehe ich. Wir erledigen das zusammen.",
+      "tr": "Anlıyorum. Bunu birlikte hallederiz.",
+      "accepted": [
+       "Das verstehe ich. Wir erledigen das zusammen.",
+       "Das verstehe ich. Wir machen das zusammen.",
+       "Keine Angst, wir erledigen das zusammen.",
+       "Das verstehe ich, wir erledigen alles zusammen."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Sıcak ve yardımsever. **erledigen**: halletmek."
+     },
+     {
+      "de": "Kein Problem, das ist nicht so schwer. Ich helfe dir.",
+      "tr": "Sorun değil, o kadar zor değil. Sana yardım ederim.",
+      "accepted": [
+       "Kein Problem, das ist nicht so schwer. Ich helfe dir.",
+       "Kein Problem. Ich helfe dir.",
+       "Das ist nicht so schwer, ich helfe dir.",
+       "Keine Angst, ich helfe dir."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: onu sakinleştirdin."
+     },
+     {
+      "de": "Ich fühle dich gestresst.",
+      "tr": "(yanlış) Seni stresli hissediyorum.",
+      "accepted": [
+       "Ich fühle dich gestresst.",
+       "Ich fühle dich auch gestresst.",
+       "Du fühlst mich gestresst."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "**fühlen** ile kişi kendini anlatır: **Ich fühle mich**, **du fühlst dich**. Tobi'ye cevap ver: **Das verstehe ich.**"
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Danke, du bist super. Bis Donnerstag!",
+    "tr": "Sağ ol, harikasın. Perşembe görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Gün, saat ve yer ayarladın: **Wann treffen wir uns?**, **Um sechs treffen wir uns …** Tobi'nin stresine de sıcak bir cevap verdin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Tobi'ye gelen ödeme uyarısı",
+  "metin_de": "Mahnung vom Fitnessstudio VilsFit. Sehr geehrter Herr Lechner, leider haben wir Ihr Geld für Januar noch nicht bekommen. Die Rechnung war 49 Euro, die Frist war am 15.02.2027. Bitte machen Sie bis zum 01.03.2027 eine Überweisung. Sie können auch im Fitnessstudio an der Kasse mit Bankkarte bezahlen. Haben Sie schon bezahlt? Dann ist alles in Ordnung. Mit freundlichen Grüßen, Ihr VilsFit-Team.",
+  "metin_tr": "VilsFit spor salonundan ödeme uyarısı. Sayın Herr Lechner, ocak ayı paranızı maalesef henüz almadık. Fatura 49 avroydu, son gün 15.02.2027 idi. Lütfen 01.03.2027 tarihine kadar bir havale yapın. Salonda kasada banka kartıyla da ödeyebilirsiniz. Ödediniz mi? O zaman her şey yolunda. Saygılarımızla, VilsFit ekibi.",
+  "sorular": [
+   {
+    "id": "m1:93:o1",
+    "kind": "gist",
+    "q_tr": "Mektup ne istiyor?",
+    "opts": [
+     "Ocak ayının parasını ödemesini",
+     "Spor salonuna yeniden kaydolmasını",
+     "Yeni bir banka kartı almasını"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     3
+    ]
+   },
+   {
+    "id": "m1:93:o2",
+    "kind": "detail",
+    "q_tr": "Fatura ne kadardı?",
+    "opts": [
+     "49 avro",
+     "19 avro",
+     "94 avro"
+    ],
+    "ans": 1,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:93:o3",
+    "kind": "detail",
+    "q_tr": "Tobi en geç ne zamana kadar ödemeli?",
+    "opts": [
+     "1 Mart 2027",
+     "15 Şubat 2027",
+     "31 Ocak 2027"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:93:o4",
+    "kind": "detail",
+    "q_tr": "Havale dışında nasıl ödeyebilir?",
+    "opts": [
+     "Salonda kasada banka kartıyla",
+     "Postayla para göndererek",
+     "Telefonla"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:93:o5",
+    "k": "guided_response",
+    "situation_tr": "Tobi mektubu gösteriyor ve ne yapması gerektiğini soruyor. Bugün havale yapmasını söyle; o zaman iş halolur.",
+    "prompt_de": "Was soll ich jetzt machen?",
+    "accepted": [
+     "Mach heute eine Überweisung, dann ist das erledigt.",
+     "Mach eine Überweisung. Dann ist alles erledigt.",
+     "Du kannst heute eine Überweisung machen. Das ist leicht.",
+     "Mach die Überweisung heute online, das ist leicht.",
+     "Bezahl im Studio mit der Bankkarte, dann ist das erledigt.",
+     "Mach bitte heute eine Überweisung."
+    ],
+    "why_tr": "Arkadaşına öneri: **Mach heute eine Überweisung.** **dann ist das erledigt**: o zaman iş halolur."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Tobi'ye kısa bir mesaj yaz: yarın saat kaçta ve nerede buluşacağınızı ve ne halledeceğinizi yaz.",
+   "ornek_de": "Hallo Tobi, wir treffen uns morgen um fünf am Geldautomaten. Wir machen die Überweisung zusammen. Dann ist alles erledigt.",
+   "zorunlu": [
+    "treffen uns",
+    "erledigt"
+   ],
+   "accepted_kaliplar": [
+    "Hallo Tobi, wir treffen uns ___.",
+    "Wir machen ___ zusammen.",
+    "Dann ist alles erledigt."
+   ],
+   "kontrol_tr": [
+    "Saat ve yer yazdın mı?",
+    "**wir treffen uns** ya da **treffen wir uns** var mı? **uns** **wir** kelimesinin arkasında mı?",
+    "Ne halledeceğinizi yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:93:s",
+  "maddeler": [
+   {
+    "id": "m1:93:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Wir treffen uns um fünf am Geldautomaten.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir treffen uns um fünf am Geldautomaten.",
+     "wir treffen uns um fünf am geldautomaten",
+     "Wir treffen uns um fünf am Geldautomaten"
+    ],
+    "why_tr": "**wir treffen uns**: buluşuyoruz."
+   },
+   {
+    "id": "m1:93:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Tobi fühlt sich heute gestresst.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Tobi fühlt sich heute gestresst.",
+     "tobi fühlt sich heute gestresst",
+     "Tobi fühlt sich heute gestresst"
+    ],
+    "why_tr": "**er fühlt sich**: kendini … hissediyor."
+   },
+   {
+    "id": "m1:93:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Die Frist war am Freitag.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Frist war am Freitag.",
+     "die frist war am freitag",
+     "Die Frist war am Freitag"
+    ],
+    "why_tr": "**Frist**: son gün, süre."
+   },
+   {
+    "id": "m1:93:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Nach der Überweisung ist alles erledigt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Nach der Überweisung ist alles erledigt.",
+     "nach der überweisung ist alles erledigt",
+     "Nach der Überweisung ist alles erledigt"
+    ],
+    "why_tr": "**erledigt**: halloldu."
+   },
+   {
+    "id": "m1:93:s5",
+    "k": "tr_de",
+    "tr": "Yarın saat altıda belediye binasının önünde buluşuyoruz.",
+    "accepted": [
+     "Wir treffen uns morgen um sechs am Rathaus.",
+     "Morgen um sechs treffen wir uns am Rathaus.",
+     "Morgen treffen wir uns um sechs am Rathaus."
+    ],
+    "why_tr": "Zamanla başlarsan: **Morgen treffen wir uns …** — **treffen** ikinci yerde, **wir uns** arkasında."
+   },
+   {
+    "id": "m1:93:s6",
+    "k": "tr_de",
+    "tr": "Bugün kendimi çok yorgun hissediyorum.",
+    "accepted": [
+     "Heute fühle ich mich sehr müde.",
+     "Ich fühle mich heute sehr müde.",
+     "Heute fühle ich mich so müde."
+    ],
+    "why_tr": "**Heute fühle ich mich …**: **fühle** ikinci yerde, **ich mich** arkasında."
+   },
+   {
+    "id": "m1:93:s7",
+    "k": "tr_de",
+    "tr": "Banka kartımı unuttum, sinirleniyorum.",
+    "accepted": [
+     "Ich habe meine Bankkarte vergessen, ich ärgere mich.",
+     "Ich habe meine Bankkarte vergessen. Ich ärgere mich.",
+     "Ich ärgere mich, ich habe meine Bankkarte vergessen."
+    ],
+    "why_tr": "Dünkü kalıp: **ich ärgere mich**."
+   },
+   {
+    "id": "m1:93:s8",
+    "k": "tr_de",
+    "tr": "Havaleyi bugün internetten yapıyorum.",
+    "accepted": [
+     "Ich mache die Überweisung heute online.",
+     "Heute mache ich die Überweisung online.",
+     "Ich mache heute die Überweisung online."
+    ],
+    "why_tr": "**eine Überweisung machen**: havale yapmak."
+   },
+   {
+    "id": "m1:93:s9",
+    "k": "guided_response",
+    "situation_tr": "Ioana soruyor: ne zaman buluşalım? Perşembe saat yedide kursun önünde buluşmayı öner.",
+    "prompt_de": "Wann treffen wir uns zum Üben?",
+    "accepted": [
+     "Am Donnerstag um sieben vor dem Kurs.",
+     "Wir treffen uns am Donnerstag um sieben vor dem Kurs.",
+     "Treffen wir uns am Donnerstag um sieben vor dem Kurs?",
+     "Am Donnerstag um sieben treffen wir uns vor dem Kurs.",
+     "Donnerstag um sieben, vor dem Kurs."
+    ],
+    "why_tr": "Gün ve saat: **am Donnerstag um sieben**. **Treffen wir uns …?** ile öneri yaparsın."
+   },
+   {
+    "id": "m1:93:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wie fühlst du dich heute?",
+    "speed": "normal",
+    "situation_tr": "Derya soruyor. Kendini iyi hissettiğini ama biraz yorgun olduğunu söyle.",
+    "accepted": [
+     "Ich fühle mich gut, aber ein bisschen müde.",
+     "Gut, danke. Ich bin aber ein bisschen müde.",
+     "Ich fühle mich gut. Aber ich bin ein bisschen müde.",
+     "Danke, ich fühle mich gut, nur ein bisschen müde.",
+     "Ganz gut, aber ich bin müde."
+    ],
+    "why_tr": "**Ich fühle mich gut**: kendimi iyi hissediyorum. **müde**: yorgun."
+   },
+   {
+    "id": "m1:93:s11",
+    "k": "guided_response",
+    "situation_tr": "Tobi soruyor: bankada ne zaman ve nerede buluşalım? Saat beşte bankamatiğin önünde buluşmayı öner.",
+    "prompt_de": "Wann und wo treffen wir uns?",
+    "accepted": [
+     "Wir treffen uns um fünf am Geldautomaten.",
+     "Um fünf am Geldautomaten.",
+     "Um fünf treffen wir uns am Geldautomaten.",
+     "Treffen wir uns um fünf am Geldautomaten?",
+     "Am Geldautomaten, um fünf Uhr.",
+     "Wir treffen uns um fünf Uhr am Geldautomaten vor der Bank."
+    ],
+    "why_tr": "Saat ve yer: **um fünf am Geldautomaten**. **wir treffen uns** ya da **treffen wir uns**."
+   }
+  ],
+  "sesli": [
+   "m1:93:s9",
+   "m1:93:s10"
+  ],
+  "dikte": [
+   "m1:93:s1",
+   "m1:93:s2",
+   "m1:93:s3",
+   "m1:93:s4"
+  ]
+ }
+}

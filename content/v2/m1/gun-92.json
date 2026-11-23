@@ -1,0 +1,1741 @@
+{
+ "schema": 1,
+ "id": "m1:gun:92",
+ "day": 92,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Sevinmek ve kızmak: Ich freue mich, er ärgert sich",
+ "goal_tr": "Neye sevindiğini ve neye kızdığını söyler, otelde bir sorunu kibarca şikâyet edersin.",
+ "can_do": {
+  "id": "cd:m1:92",
+  "tr": "Neye sevindiğimi ve neye kızdığımı söyler, otelde bir sorunu kibarca şikâyet ederim."
+ },
+ "unit": "u:a2:resmi-1",
+ "arm": "pazar",
+ "place": "pl:firma",
+ "characters": [
+  "ch:aksoy",
+  "ch:lechner",
+  "ch:wimmer"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-05:t1"
+ ],
+ "yeni_kartlar": [
+  "lx:Doppelzimmer",
+  "lx:Einzelzimmer",
+  "lx:Übernachtung",
+  "lx:Rezeption",
+  "lx:sich_beschweren",
+  "lx:Fluss",
+  "lx:Strand",
+  "lx:Berg",
+  "lx:um_…_herum"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:92:h1",
+   "title_tr": "Pazartesi sabahı: Derya'nın otel macerası",
+   "kartlar": [
+    "lx:Doppelzimmer",
+    "lx:Einzelzimmer",
+    "lx:Übernachtung",
+    "lx:Rezeption",
+    "lx:sich_beschweren"
+   ],
+   "kaliplar": [
+    {
+     "de": "ich freue mich – du freust dich – er freut sich – wir freuen uns – Wir freuen uns für dich.",
+     "tr": "seviniyorum – seviniyorsun – seviniyor – seviniyoruz – Senin adına seviniyoruz."
+    },
+    {
+     "de": "ich ärgere mich – du ärgerst dich – sie ärgert sich – Ich habe mich so geärgert!",
+     "tr": "kızıyorum – kızıyorsun – kızıyor – Öyle sinirlendim ki!"
+    },
+    {
+     "de": "Ich möchte mich beschweren. – Hast du dich beschwert? – Wir haben uns beschwert.",
+     "tr": "Şikâyet etmek istiyorum. – Şikâyet ettin mi? – Şikâyet ettik."
+    },
+    {
+     "de": "Wir haben ein Zimmer reserviert. – Sie haben uns ein Einzelzimmer gegeben.",
+     "tr": "Bir oda ayırttık. – Bize tek kişilik oda verdiler."
+    },
+    {
+     "de": "eine Nacht – zwei Nächte – mit Frühstück – Das kostet siebzig Euro.",
+     "tr": "bir gece – iki gece – kahvaltılı – Bu yetmiş avro tutuyor."
+    },
+    {
+     "de": "an der Rezeption – zur Rezeption gehen",
+     "tr": "resepsiyonda – resepsiyona gitmek"
+    },
+    {
+     "de": "Das Zimmer war zu klein. – Es war laut.",
+     "tr": "Oda çok küçüktü. – Gürültülüydü."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Doppelzimmer",
+     "de": "Derya hat ein Doppelzimmer reserviert.",
+     "tr": "Derya çift kişilik oda ayırtmış.",
+     "accepted": [
+      "Derya hat ein Doppelzimmer reserviert.",
+      "Derya hat im Hotel ein Doppelzimmer reserviert.",
+      "Derya hat für zwei Nächte ein Doppelzimmer reserviert."
+     ]
+    },
+    {
+     "kart": "lx:Doppelzimmer",
+     "de": "Das Doppelzimmer ist groß und hell, wir freuen uns.",
+     "tr": "Çift kişilik oda büyük ve aydınlık, seviniyoruz.",
+     "accepted": [
+      "Das Doppelzimmer ist groß und hell, wir freuen uns.",
+      "Das Doppelzimmer ist groß und hell. Wir freuen uns.",
+      "Wir freuen uns, das Doppelzimmer ist groß und hell."
+     ]
+    },
+    {
+     "kart": "lx:Einzelzimmer",
+     "de": "Sie haben uns ein Einzelzimmer gegeben, kein Doppelzimmer.",
+     "tr": "Bize çift kişilik değil, tek kişilik oda verdiler.",
+     "accepted": [
+      "Sie haben uns ein Einzelzimmer gegeben, kein Doppelzimmer.",
+      "Sie haben uns ein Einzelzimmer gegeben und kein Doppelzimmer.",
+      "Wir haben ein Einzelzimmer bekommen, kein Doppelzimmer."
+     ]
+    },
+    {
+     "kart": "lx:Einzelzimmer",
+     "de": "Derya ärgert sich, das Einzelzimmer ist zu klein.",
+     "tr": "Derya sinirleniyor, tek kişilik oda çok küçük.",
+     "accepted": [
+      "Derya ärgert sich, das Einzelzimmer ist zu klein.",
+      "Derya ärgert sich, weil das Einzelzimmer zu klein ist.",
+      "Das Einzelzimmer ist zu klein. Derya ärgert sich."
+     ]
+    },
+    {
+     "kart": "lx:Übernachtung",
+     "de": "Eine Übernachtung mit Frühstück kostet siebzig Euro.",
+     "tr": "Kahvaltılı bir gece yetmiş avro tutuyor.",
+     "accepted": [
+      "Eine Übernachtung mit Frühstück kostet siebzig Euro.",
+      "Die Übernachtung mit Frühstück kostet siebzig Euro.",
+      "Eine Übernachtung kostet mit Frühstück siebzig Euro."
+     ]
+    },
+    {
+     "kart": "lx:Übernachtung",
+     "de": "Zwei Übernachtungen, und das Zimmer war laut. Ich ärgere mich.",
+     "tr": "İki gece, ve oda gürültülüydü. Sinirleniyorum.",
+     "accepted": [
+      "Zwei Übernachtungen, und das Zimmer war laut. Ich ärgere mich.",
+      "Zwei Übernachtungen und das Zimmer war laut, ich ärgere mich.",
+      "Ich ärgere mich. Zwei Übernachtungen, und das Zimmer war laut."
+     ]
+    },
+    {
+     "kart": "lx:Rezeption",
+     "de": "Derya geht zur Rezeption und beschwert sich.",
+     "tr": "Derya resepsiyona gidiyor ve şikâyet ediyor.",
+     "accepted": [
+      "Derya geht zur Rezeption und beschwert sich.",
+      "Derya geht an die Rezeption und beschwert sich.",
+      "Derya geht zur Rezeption. Sie beschwert sich."
+     ]
+    },
+    {
+     "kart": "lx:Rezeption",
+     "de": "An der Rezeption ist niemand, ich ärgere mich.",
+     "tr": "Resepsiyonda kimse yok, sinirleniyorum.",
+     "accepted": [
+      "An der Rezeption ist niemand, ich ärgere mich.",
+      "An der Rezeption ist niemand. Ich ärgere mich.",
+      "Ich ärgere mich, an der Rezeption ist niemand."
+     ]
+    },
+    {
+     "kart": "lx:sich_beschweren",
+     "de": "Ich möchte mich beschweren, das Zimmer ist zu laut.",
+     "tr": "Şikâyet etmek istiyorum, oda çok gürültülü.",
+     "accepted": [
+      "Ich möchte mich beschweren, das Zimmer ist zu laut.",
+      "Ich möchte mich beschweren. Das Zimmer ist zu laut.",
+      "Das Zimmer ist zu laut, ich möchte mich beschweren."
+     ]
+    },
+    {
+     "kart": "lx:sich_beschweren",
+     "de": "Hast du dich an der Rezeption beschwert?",
+     "tr": "Resepsiyona şikâyet ettin mi?",
+     "accepted": [
+      "Hast du dich an der Rezeption beschwert?",
+      "Hast du dich an der Rezeption schon beschwert?",
+      "Hast du dich beschwert?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Pazartesi sabahı ofiste. Derya telefonundaki otel fotoğraflarını gösteriyor.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Hier, das ist unser Hotel. Und das hier ist das Einzelzimmer.",
+      "tr": "Bak, bu bizim otelimiz. Bu da tek kişilik oda."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ein Einzelzimmer? Für zwei Personen?",
+      "tr": "Tek kişilik oda mı? İki kişi için mi?"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Ja! Wir haben ein Doppelzimmer reserviert. Ich habe mich so geärgert.",
+      "tr": "Evet! Çift kişilik oda ayırtmıştık. Öyle sinirlendim ki."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Wirklich? Hast du dich an der Rezeption beschwert?",
+      "tr": "Gerçekten mi? Resepsiyona şikâyet ettin mi?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya ne ayırtmıştı?",
+     "opts": [
+      "Çift kişilik oda",
+      "Tek kişilik oda",
+      "İki ayrı otel"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:92:h2",
+   "title_tr": "Dağ, nehir, göl ve Tobi'nin haberi",
+   "kartlar": [
+    "lx:Fluss",
+    "lx:Strand",
+    "lx:Berg",
+    "lx:um_…_herum"
+   ],
+   "kaliplar": [
+    {
+     "de": "in die Berge fahren – in den Bergen – am Fluss – am Strand – am Meer",
+     "tr": "dağlara gitmek – dağlarda – nehir kenarında – plajda – deniz kenarında"
+    },
+    {
+     "de": "um den See herum – um das Hotel herum",
+     "tr": "gölün çevresinde – otelin çevresinde"
+    },
+    {
+     "de": "Hamburg – nach Hamburg – in Hamburg – Hamburg liegt an einem großen Fluss.",
+     "tr": "Hamburg – Hamburg'a – Hamburg'da – Hamburg büyük bir nehrin kıyısında."
+    },
+    {
+     "de": "ich ziehe um – du ziehst um – er zieht um – Tobi zieht nach Hamburg.",
+     "tr": "taşınıyorum – taşınıyorsun – taşınıyor – Tobi Hamburg'a taşınıyor."
+    },
+    {
+     "de": "es gibt – In Hamburg gibt es keine Berge. – er liebt die Berge",
+     "tr": "var – Hamburg'da dağ yok. – dağları çok seviyor"
+    },
+    {
+     "de": "letzter – mein letzter Tag – Am Freitag ist mein letzter Tag.",
+     "tr": "son – son günüm – Cuma son günüm."
+    },
+    {
+     "de": "Wir freuen uns für ihn. – Ich freue mich für dich.",
+     "tr": "Onun adına seviniyoruz. – Senin adına seviniyorum."
+    },
+    {
+     "de": "schade – Das ist schade. – weit weg",
+     "tr": "yazık – Bu çok yazık. – çok uzak"
+    },
+    {
+     "de": "Wir sind gewandert. – Wir waren in den Bergen.",
+     "tr": "Yürüyüş yaptık. – Dağlardaydık."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Fluss",
+     "de": "Tobi freut sich, seine neue Wohnung ist am Fluss.",
+     "tr": "Tobi seviniyor, yeni dairesi nehrin kenarında.",
+     "accepted": [
+      "Tobi freut sich, seine neue Wohnung ist am Fluss.",
+      "Tobi freut sich. Seine neue Wohnung ist am Fluss.",
+      "Seine neue Wohnung ist am Fluss, Tobi freut sich."
+     ]
+    },
+    {
+     "kart": "lx:Fluss",
+     "de": "Am Sonntag sind wir am Fluss gewandert.",
+     "tr": "Pazar günü nehrin kenarında yürüyüş yaptık.",
+     "accepted": [
+      "Am Sonntag sind wir am Fluss gewandert.",
+      "Wir sind am Sonntag am Fluss gewandert.",
+      "Am Sonntag sind wir zusammen am Fluss gewandert."
+     ]
+    },
+    {
+     "kart": "lx:Strand",
+     "de": "Im Sommer sind wir am Strand, die Kinder freuen sich.",
+     "tr": "Yazın plajdayız, çocuklar seviniyor.",
+     "accepted": [
+      "Im Sommer sind wir am Strand, die Kinder freuen sich.",
+      "Im Sommer sind wir am Strand. Die Kinder freuen sich.",
+      "Die Kinder freuen sich, im Sommer sind wir am Strand."
+     ]
+    },
+    {
+     "kart": "lx:Strand",
+     "de": "Am Strand war es zu kalt, Derya hat sich geärgert.",
+     "tr": "Plajda hava çok soğuktu, Derya sinirlendi.",
+     "accepted": [
+      "Am Strand war es zu kalt, Derya hat sich geärgert.",
+      "Am Strand war es zu kalt. Derya hat sich geärgert.",
+      "Derya hat sich geärgert, am Strand war es zu kalt."
+     ]
+    },
+    {
+     "kart": "lx:Berg",
+     "de": "Am Wochenende waren wir in den Bergen, ich habe mich so gefreut.",
+     "tr": "Hafta sonu dağlardaydık, öyle sevindim ki.",
+     "accepted": [
+      "Am Wochenende waren wir in den Bergen, ich habe mich so gefreut.",
+      "Am Wochenende waren wir in den Bergen. Ich habe mich so gefreut.",
+      "Wir waren am Wochenende in den Bergen, ich habe mich so gefreut."
+     ]
+    },
+    {
+     "kart": "lx:Berg",
+     "de": "Tobi liebt die Berge, aber in Hamburg gibt es keine Berge.",
+     "tr": "Tobi dağları çok sever ama Hamburg'da dağ yok.",
+     "accepted": [
+      "Tobi liebt die Berge, aber in Hamburg gibt es keine Berge.",
+      "Tobi liebt die Berge. Aber in Hamburg gibt es keine Berge.",
+      "In Hamburg gibt es keine Berge, aber Tobi liebt die Berge."
+     ]
+    },
+    {
+     "kart": "lx:um_…_herum",
+     "de": "Wir sind um den See herum gewandert.",
+     "tr": "Gölün çevresinde yürüyüş yaptık.",
+     "accepted": [
+      "Wir sind um den See herum gewandert.",
+      "Wir sind um den ganzen See herum gewandert.",
+      "Am Sonntag sind wir um den See herum gewandert."
+     ]
+    },
+    {
+     "kart": "lx:um_…_herum",
+     "de": "Um das Hotel herum gibt es Berge und einen See.",
+     "tr": "Otelin çevresinde dağlar ve bir göl var.",
+     "accepted": [
+      "Um das Hotel herum gibt es Berge und einen See.",
+      "Um das Hotel herum gibt es einen See und Berge.",
+      "Es gibt um das Hotel herum Berge und einen See."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Öğle molası, mutfakta. Tobi yanına geliyor, biraz heyecanlı.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Du, ich habe eine Nachricht für dich. Ich ziehe nach Hamburg.",
+      "tr": "Bak, sana bir haberim var. Hamburg'a taşınıyorum."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nach Hamburg? Ich freue mich für dich! Aber das ist schade.",
+      "tr": "Hamburg'a mı? Senin adına seviniyorum! Ama çok yazık."
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Danke. Am Samstag ziehe ich um. Ich freue mich, aber Hamburg ist weit weg.",
+      "tr": "Sağ ol. Cumartesi taşınıyorum. Seviniyorum ama Hamburg çok uzak."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Wann ziehst du um?",
+      "tr": "Ne zaman taşınıyorsun?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi ne zaman taşınıyor?",
+     "opts": [
+      "Cumartesi",
+      "Cuma",
+      "Gelecek ay"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:92:v1",
+  "title_tr": "Pazartesi: otel şikâyeti ve Tobi'nin büyük haberi",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Pazartesi, Firma Kerschbaum, kahve makinesinin önü. Tobi elinde fincanla Derya'ya dönüyor.",
+    "de": "Servus, Derya! Wie war dein Wochenende in den Bergen?",
+    "tr": "Selam Derya! Dağdaki hafta sonun nasıldı?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya başını sallıyor, yüzü bir an asılıyor.",
+    "de": "Die Berge waren schön. Aber das Hotel! Ich habe mich so geärgert.",
+    "tr": "Dağlar güzeldi. Ama o otel! Öyle sinirlendim ki."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kaşlarını kaldırıyor.",
+    "de": "Echt jetzt? Warum denn?",
+    "tr": "Cidden mi? Neden?"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya telefonundaki fotoğrafı gösteriyor: iki dar yatak, iki ayrı oda.",
+    "de": "Wir haben ein Doppelzimmer reserviert. Aber an der Rezeption haben sie uns zwei Einzelzimmer gegeben.",
+    "tr": "Çift kişilik oda ayırtmıştık. Ama resepsiyonda bize iki tek kişilik oda verdiler."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya parmaklarıyla iki sayıyor.",
+    "de": "Und die Zimmer waren klein und laut. Zwei Übernachtungen, und es war immer laut.",
+    "tr": "Odalar da küçük ve gürültülüydü. İki gece, ve hep gürültü vardı."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kahvesinden bir yudum alıyor.",
+    "de": "Hast du dich beschwert?",
+    "tr": "Şikâyet ettin mi?"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülümsüyor, telefonda göl fotoğrafını açıyor.",
+    "de": "Natürlich. Jetzt bekommen wir dreißig Euro zurück. Und am Sonntag sind wir um den See herum gewandert. Das war toll.",
+    "tr": "Tabii. Şimdi otuz avro geri alıyoruz. Pazar günü de gölün çevresinde yürüdük. Çok güzeldi."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi fincanı bırakıyor, biraz ciddileşiyor.",
+    "de": "Ich habe auch eine Nachricht. Ich habe eine neue Stelle, in Hamburg.",
+    "tr": "Benim de bir haberim var. Yeni bir işim var, Hamburg'da."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya şaşkın.",
+    "de": "In Hamburg? Das ist ja weit weg!",
+    "tr": "Hamburg'da mı? Bu çok uzak!"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi duvardaki takvimi gösteriyor.",
+    "de": "Ja. Am Samstag ziehe ich um. Am Freitag ist mein letzter Tag hier.",
+    "tr": "Evet. Cumartesi taşınıyorum. Cuma burada son günüm."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer odasından çıkıyor, Tobi'nin elini sıkıyor.",
+    "de": "Herzlichen Glückwunsch, Herr Lechner. Wir freuen uns für Sie. Aber schade ist es auch.",
+    "tr": "Tebrikler Herr Lechner. Sizin adınıza seviniyoruz. Ama yazık da oluyor."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi gülümsüyor ama sesi biraz kısık.",
+    "de": "Danke, Herr Wimmer. Ich freue mich, aber es ist auch schwer für mich.",
+    "tr": "Teşekkürler Herr Wimmer. Seviniyorum ama benim için de zor."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya ellerini çırpıyor.",
+    "de": "Dann machen wir am Freitag eine kleine Feier für dich!",
+    "tr": "O zaman cuma senin için küçük bir kutlama yapalım!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Derya hafta sonunu nasıl anlatıyor?",
+     "opts": [
+      "Otelde sorun oldu, şikâyet etti; göl yürüyüşü güzeldi",
+      "Hafta sonu hastaydı, evden çıkmadı",
+      "Otel çok iyiydi, hiçbir sorun olmadı"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s4",
+      "s6",
+      "s7"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Resepsiyonda onlara ne verdiler?",
+      "opts": [
+       "İki tek kişilik oda",
+       "Bir çift kişilik oda",
+       "Hiç oda vermediler"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Odalar nasıldı?",
+      "opts": [
+       "Küçük ve gürültülü",
+       "Büyük ve sessiz",
+       "Soğuk ama güzel"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya ne kadar para geri alıyor?",
+      "opts": [
+       "Otuz avro",
+       "Yirmi avro",
+       "Yetmiş avro"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s7"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi oda türünü duydun?",
+      "opts": [
+       "Einzelzimmer",
+       "Hotelzimmer",
+       "Wohnzimmer"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s2",
+      "seviye": "orta",
+      "de": "Die Berge waren schön. Aber das Hotel! Ich habe mich so ___.",
+      "accepted": [
+       "geärgert",
+       "Geärgert",
+       "geärgert."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s6",
+      "seviye": "zor",
+      "banka": [
+       "Hast",
+       "du",
+       "dich",
+       "beschwert",
+       "mich",
+       "gefreut"
+      ],
+      "accepted": [
+       "Hast du dich beschwert?",
+       "hast du dich beschwert",
+       "Hast du dich beschwert"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Wir haben ein Doppelzimmer reserviert. Aber an der Rezeption haben sie uns zwei Einzelzimmer gegeben.",
+       "wir haben ein doppelzimmer reserviert aber an der rezeption haben sie uns zwei einzelzimmer gegeben",
+       "Wir haben ein Doppelzimmer reserviert. Aber an der Rezeption haben sie uns zwei Einzelzimmer gegeben"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Derya'nın otelde ne yaşadığını Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Derya hat ein Doppelzimmer reserviert. Sie hat sich an der Rezeption beschwert.",
+      "zorunlu": [
+       "Doppelzimmer",
+       "beschwert"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s6"
+    ],
+    "cevapla": {
+     "id": "m1:92:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Akşam kursta Ioana Derya'yı soruyor. Derya'nın otelde sinirlendiğini ve şikâyet ettiğini anlat.",
+     "prompt_de": "Und Derya? Wie war ihr Wochenende?",
+     "accepted": [
+      "Sie hat sich im Hotel geärgert. Sie hat sich an der Rezeption beschwert.",
+      "Derya hat sich im Hotel geärgert und hat sich beschwert.",
+      "Nicht so gut. Sie hat sich geärgert, das Zimmer war zu klein.",
+      "Sie hat sich geärgert. Sie hat ein Doppelzimmer reserviert, aber ein Einzelzimmer bekommen.",
+      "Derya hat sich beschwert, das Hotel war nicht gut.",
+      "Sie hat sich so geärgert! Aber jetzt bekommt sie dreißig Euro zurück."
+     ],
+     "why_tr": "Geçmişi anlatırken **hat sich geärgert**, **hat sich beschwert** dersin. **sich** hep **hat** kelimesinin arkasında durur."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Tobi'nin haberi ne?",
+     "opts": [
+      "Hamburg'da yeni bir işi var, taşınıyor",
+      "Tatile çıkıyor",
+      "Başka bir bölüme geçiyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s8",
+      "s10"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Tobi ne zaman taşınıyor?",
+      "opts": [
+       "Cumartesi",
+       "Cuma",
+       "Pazar"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Herr Wimmer ne diyor?",
+      "opts": [
+       "Onun adına seviniyorlar ama yazık oluyor",
+       "Tobi'nin gitmesine izin vermiyor",
+       "Tobi'ye yeni bir iş öneriyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya ne öneriyor?",
+      "opts": [
+       "Cuma günü küçük bir kutlama",
+       "Cumartesi taşınmaya yardım",
+       "Hamburg'a birlikte gitmek"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s13"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s10",
+      "seviye": "kolay",
+      "q_tr": "Hangi günü duydun?",
+      "opts": [
+       "Samstag",
+       "Sonntag",
+       "Montag"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s11",
+      "seviye": "orta",
+      "de": "Herzlichen Glückwunsch, Herr Lechner. Wir ___ uns für Sie. Aber schade ist es auch.",
+      "accepted": [
+       "freuen",
+       "Freuen",
+       "freuen."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s9",
+      "seviye": "zor",
+      "banka": [
+       "In",
+       "Hamburg",
+       "Das",
+       "ist",
+       "ja",
+       "weit",
+       "weg",
+       "nah",
+       "hier"
+      ],
+      "accepted": [
+       "In Hamburg? Das ist ja weit weg!",
+       "in hamburg das ist ja weit weg",
+       "In Hamburg? Das ist ja weit weg"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s12",
+      "seviye": "usta",
+      "accepted": [
+       "Danke, Herr Wimmer. Ich freue mich, aber es ist auch schwer für mich.",
+       "danke herr wimmer ich freue mich aber es ist auch schwer für mich",
+       "Danke, Herr Wimmer. Ich freue mich, aber es ist auch schwer für mich"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Tobi'nin haberini Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Tobi zieht am Samstag nach Hamburg. Wir freuen uns für ihn.",
+      "zorunlu": [
+       "Hamburg",
+       "freuen uns"
+      ]
+     }
+    ],
+    "golge": [
+     "s11",
+     "s13"
+    ],
+    "cevapla": {
+     "id": "m1:92:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Tobi sana taşınacağını söylüyor. Ona adına sevindiğini ama yazık olduğunu söyle.",
+     "prompt_de": "Ich ziehe am Samstag nach Hamburg.",
+     "accepted": [
+      "Ich freue mich für dich! Aber das ist schade.",
+      "Nach Hamburg? Ich freue mich für dich.",
+      "Das ist schade! Aber ich freue mich für dich.",
+      "Herzlichen Glückwunsch! Ich freue mich für dich.",
+      "Ich freue mich für dich, aber Hamburg ist weit weg.",
+      "Echt? Ich freue mich für dich, Tobi!"
+     ],
+     "why_tr": "**Ich freue mich für dich**: senin adına seviniyorum. **mich** kelimesi **ich** ile gelir."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:92:a1",
+   "tur": "anons",
+   "title_tr": "Otelin telesekreteri",
+   "ortam_tr": "Akşam saat on bir. Bir otelde oda ayırtmak için arıyorsun. Kimse açmıyor, kayıtlı bir mesaj çalıyor.",
+   "speaker": "Hotel am Fluss",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist das Hotel am Fluss.",
+     "tr": "İyi günler, burası Hotel am Fluss."
+    },
+    {
+     "id": "c2",
+     "de": "Im Moment ist leider niemand an der Rezeption.",
+     "tr": "Şu anda maalesef resepsiyonda kimse yok."
+    },
+    {
+     "id": "c3",
+     "de": "Wir sind jeden Tag von sieben bis zweiundzwanzig Uhr für Sie da.",
+     "tr": "Her gün saat yediden yirmi ikiye kadar sizin için buradayız."
+    },
+    {
+     "id": "c4",
+     "de": "Ein Einzelzimmer kostet siebzig Euro, ein Doppelzimmer neunzig Euro für eine Nacht.",
+     "tr": "Tek kişilik oda bir gece için yetmiş avro, çift kişilik oda doksan avro."
+    },
+    {
+     "id": "c5",
+     "de": "Das Frühstück ist inklusive.",
+     "tr": "Kahvaltı fiyata dahil."
+    },
+    {
+     "id": "c6",
+     "de": "Sie möchten sich beschweren? Dann rufen Sie bitte morgen ab sieben Uhr wieder an.",
+     "tr": "Şikâyet mi etmek istiyorsunuz? O zaman lütfen yarın saat yediden sonra tekrar arayın."
+    },
+    {
+     "id": "c7",
+     "de": "Vielen Dank und auf Wiederhören.",
+     "tr": "Çok teşekkürler, iyi günler."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Mesaj ne söylüyor?",
+      "opts": [
+       "Şu an resepsiyonda kimse yok; saatler ve fiyatlar bunlar",
+       "Otel bu hafta kapalı",
+       "Bütün odalar dolu"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Resepsiyon saat kaça kadar açık?",
+       "opts": [
+        "Yirmi ikiye kadar",
+        "Yirmiye kadar",
+        "Gece yarısına kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Çift kişilik oda bir gece kaç avro?",
+       "opts": [
+        "Doksan",
+        "Yetmiş",
+        "Otuz"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Şikâyet etmek isteyen ne yapmalı?",
+       "opts": [
+        "Yarın saat yediden sonra tekrar aramalı",
+        "Hemen otele gelmeli",
+        "Bir mektup yazmalı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c6"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi sayıyı duydun?",
+       "opts": [
+        "neunzehn",
+        "neunzig",
+        "neun"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Das Frühstück ist ___.",
+       "accepted": [
+        "inklusive",
+        "Inklusive",
+        "inklusive."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Im",
+        "Moment",
+        "ist",
+        "leider",
+        "niemand",
+        "an",
+        "der",
+        "Rezeption",
+        "hier",
+        "Hotel"
+       ],
+       "accepted": [
+        "Im Moment ist leider niemand an der Rezeption.",
+        "im moment ist leider niemand an der rezeption",
+        "Im Moment ist leider niemand an der Rezeption"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c6",
+       "seviye": "usta",
+       "accepted": [
+        "Sie möchten sich beschweren? Dann rufen Sie bitte morgen ab sieben Uhr wieder an.",
+        "sie möchten sich beschweren dann rufen sie bitte morgen ab sieben uhr wieder an",
+        "Sie möchten sich beschweren? Dann rufen Sie bitte morgen ab sieben Uhr wieder an"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Ein Doppelzimmer kostet neunzig Euro. Das Frühstück ist inklusive.",
+       "zorunlu": [
+        "Doppelzimmer",
+        "Frühstück"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:92:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Ertesi sabah otel seni geri arıyor. Kahvaltılı çift kişilik oda istediğini söyle.",
+      "prompt_de": "Hotel am Fluss, guten Morgen. Was kann ich für Sie tun?",
+      "accepted": [
+       "Guten Morgen. Ich möchte ein Doppelzimmer reservieren, mit Frühstück.",
+       "Guten Morgen, ich möchte ein Doppelzimmer mit Frühstück.",
+       "Ich möchte bitte ein Doppelzimmer für eine Nacht reservieren.",
+       "Guten Morgen. Haben Sie ein Doppelzimmer mit Frühstück?",
+       "Ein Doppelzimmer, bitte. Ist das Frühstück inklusive?",
+       "Guten Morgen. Ich möchte ein Doppelzimmer reservieren."
+      ],
+      "why_tr": "**Ich möchte … reservieren** ile kibarca ayırtırsın. **mit Frühstück**: kahvaltılı."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:92:a1:e1",
+    "k": "pick",
+    "q_tr": "Şimdi ne yapmalısın?",
+    "opts": [
+     "Yarın sabah yediden sonra tekrar ara",
+     "Hemen otele git",
+     "On dakika sonra tekrar ara"
+    ],
+    "ans": 0,
+    "why_tr": "Resepsiyon her gün saat yediden yirmi ikiye kadar açık. Şimdi saat on bir (23.00).",
+    "kanit": [
+     "c2",
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:92:a2",
+   "tur": "radyo",
+   "title_tr": "Radyoda hafta sonu havası",
+   "ortam_tr": "Cuma akşamı mutfakta radyo açık. Tobi hafta sonu dağa gitmek istiyor; sen de hava durumunu dinliyorsun.",
+   "speaker": "der Radiosprecher",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Und jetzt das Wetter für das Wochenende.",
+     "tr": "Şimdi de hafta sonu için hava durumu."
+    },
+    {
+     "id": "c2",
+     "de": "Am Samstag ist das Wetter in den Bergen sehr gut.",
+     "tr": "Cumartesi dağlarda hava çok iyi."
+    },
+    {
+     "id": "c3",
+     "de": "Am Sonntag regnet es, auch am Fluss und in der Stadt.",
+     "tr": "Pazar günü yağmur yağıyor; nehir kenarında ve şehirde de."
+    },
+    {
+     "id": "c4",
+     "de": "Sie wollen wandern? Dann fahren Sie am besten am Samstag.",
+     "tr": "Yürüyüş mü yapmak istiyorsunuz? O zaman en iyisi cumartesi gidin."
+    },
+    {
+     "id": "c5",
+     "de": "Um den See herum ist es aber noch sehr kalt.",
+     "tr": "Ama gölün çevresinde hava hâlâ çok soğuk."
+    },
+    {
+     "id": "c6",
+     "de": "Bitte nehmen Sie eine Jacke mit.",
+     "tr": "Lütfen yanınıza bir ceket alın."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne söylüyor?",
+      "opts": [
+       "Cumartesi dağlarda hava iyi, pazar yağmurlu",
+       "Bütün hafta sonu kar yağacak",
+       "Pazar günü hava çok sıcak"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Yürüyüş için en iyi gün hangisi?",
+       "opts": [
+        "Cumartesi",
+        "Pazar",
+        "Pazartesi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Gölün çevresinde hava nasıl?",
+       "opts": [
+        "Hâlâ çok soğuk",
+        "Sıcak",
+        "Yağmurlu"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Radyo ne almanı söylüyor?",
+       "opts": [
+        "Bir ceket",
+        "Bir şemsiye",
+        "Yiyecek"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c6"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Bergen",
+        "Bäckern",
+        "Briefen"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Um den See herum ist es aber noch sehr ___.",
+       "accepted": [
+        "kalt",
+        "Kalt",
+        "kalt."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Am",
+        "Sonntag",
+        "regnet",
+        "es",
+        "auch",
+        "am",
+        "Fluss",
+        "und",
+        "in",
+        "der",
+        "Stadt",
+        "schneit",
+        "Dorf"
+       ],
+       "accepted": [
+        "Am Sonntag regnet es, auch am Fluss und in der Stadt.",
+        "am sonntag regnet es auch am fluss und in der stadt",
+        "Am Sonntag regnet es, auch am Fluss und in der Stadt"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Sie wollen wandern? Dann fahren Sie am besten am Samstag.",
+        "sie wollen wandern dann fahren sie am besten am samstag",
+        "Sie wollen wandern? Dann fahren Sie am besten am Samstag"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Hafta sonu havasını Almanca iki kısa cümleyle anlat.",
+       "ornek_de": "Am Samstag ist das Wetter in den Bergen gut. Am Sonntag regnet es.",
+       "zorunlu": [
+        "Samstag",
+        "Bergen"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:92:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi soruyor: hangi gün dağa gidelim? Radyonun cumartesi dediğini söyle.",
+      "prompt_de": "Wann fahren wir in die Berge, Samstag oder Sonntag?",
+      "accepted": [
+       "Am Samstag. Am Sonntag regnet es.",
+       "Lieber am Samstag, da ist das Wetter in den Bergen gut.",
+       "Am Samstag. Das Wetter ist in den Bergen sehr gut.",
+       "Samstag! Am Sonntag regnet es.",
+       "Am Samstag, und nimm eine Jacke mit.",
+       "Fahren wir am Samstag, am Sonntag regnet es."
+      ],
+      "why_tr": "Gün söylerken **am**: **am Samstag**. **in den Bergen**: dağlarda."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:92:a2:e1",
+    "k": "pick",
+    "q_tr": "Tobi'ye ne önerirsin?",
+    "opts": [
+     "Cumartesi gitsin, yanına bir ceket alsın",
+     "Pazar gitsin",
+     "Hiç gitmesin, bütün hafta sonu yağmur var"
+    ],
+    "ans": 0,
+    "why_tr": "Cumartesi dağlarda hava iyi, gölün çevresi hâlâ soğuk.",
+    "kanit": [
+     "c4",
+     "c5",
+     "c6"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:92:g1",
+   "de": "Doppelzimmer",
+   "dogru_img": "hotel room with one double bed",
+   "celdirici_img": [
+    "hotel room with one single bed",
+    "hotel reception desk",
+    "hotel breakfast room"
+   ]
+  },
+  {
+   "id": "m1:92:g2",
+   "de": "Berg",
+   "dogru_img": "high mountain with snow on top",
+   "celdirici_img": [
+    "calm lake",
+    "sandy beach",
+    "river in a town"
+   ]
+  },
+  {
+   "id": "m1:92:g3",
+   "de": "Strand",
+   "dogru_img": "sandy beach with sea",
+   "celdirici_img": [
+    "mountain path",
+    "city street",
+    "forest"
+   ]
+  },
+  {
+   "id": "m1:92:g4",
+   "de": "Rezeption",
+   "dogru_img": "hotel reception desk with receptionist",
+   "celdirici_img": [
+    "hotel room",
+    "train station platform",
+    "bank counter"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:92:p1",
+  "title_tr": "Otel resepsiyonuna telefonla şikâyet",
+  "durum_tr": "Bir iş gezisi için bir otelde kalıyorsun, akşam odana geldin. Çift kişilik oda ayırtmıştın, ama oda küçük bir tek kişilik oda. Odadan resepsiyonu arıyorsun.",
+  "karsi": "die Frau an der Rezeption",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Rezeption, guten Abend. Was kann ich für Sie tun?",
+    "tr": "Resepsiyon, iyi akşamlar. Sizin için ne yapabilirim?",
+    "secenekler": [
+     {
+      "de": "Guten Abend, mein Name ist {name}. Ich habe ein Problem mit meinem Zimmer.",
+      "tr": "İyi akşamlar, adım {name}. Odamla ilgili bir sorunum var.",
+      "accepted": [
+       "Guten Abend, mein Name ist {name}. Ich habe ein Problem mit meinem Zimmer.",
+       "Guten Abend. Mein Name ist {name}. Ich habe ein Problem mit dem Zimmer.",
+       "Guten Abend, hier ist {name}. Ich habe ein Problem mit meinem Zimmer.",
+       "Mein Name ist {name}, ich habe ein Problem mit meinem Zimmer."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Önce adını, sonra sorunu söyledin. Kibar ve net.",
+      "de_adsiz": "Guten Abend. Ich habe ein Problem mit meinem Zimmer.",
+      "tr_adsiz": "İyi akşamlar. Odamla ilgili bir sorunum var.",
+      "accepted_adsiz": [
+       "Guten Abend. Ich habe ein Problem mit meinem Zimmer.",
+       "Guten Abend, ich habe ein Problem mit meinem Zimmer.",
+       "Guten Abend. Ich habe ein Problem mit dem Zimmer.",
+       "Ich habe ein Problem mit meinem Zimmer."
+      ]
+     },
+     {
+      "de": "Guten Abend. Ich möchte mich beschweren.",
+      "tr": "İyi akşamlar. Şikâyet etmek istiyorum.",
+      "accepted": [
+       "Guten Abend. Ich möchte mich beschweren.",
+       "Guten Abend, ich möchte mich beschweren.",
+       "Ich möchte mich bitte beschweren.",
+       "Guten Abend. Ich möchte mich über das Zimmer beschweren."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğrudan söyledin: **Ich möchte mich beschweren.** **mich** kelimesi **ich** ile gelir."
+     },
+     {
+      "de": "Ich möchte ein Zimmer reservieren.",
+      "tr": "(yanlış) Bir oda ayırtmak istiyorum.",
+      "accepted": [
+       "Ich möchte ein Zimmer reservieren.",
+       "Ich möchte ein Doppelzimmer reservieren.",
+       "Ein Zimmer, bitte."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Odan zaten var. Sorunu söyle: **Ich habe ein Problem mit meinem Zimmer.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Das tut mir leid. Was ist das Problem?",
+    "tr": "Üzgünüm. Sorun ne?",
+    "secenekler": [
+     {
+      "de": "Ich habe ein Doppelzimmer reserviert, aber das ist ein Einzelzimmer.",
+      "tr": "Çift kişilik oda ayırttım ama bu tek kişilik oda.",
+      "accepted": [
+       "Ich habe ein Doppelzimmer reserviert, aber das ist ein Einzelzimmer.",
+       "Ich habe ein Doppelzimmer reserviert. Das ist aber ein Einzelzimmer.",
+       "Ich habe ein Doppelzimmer reserviert, aber ich habe ein Einzelzimmer bekommen.",
+       "Das ist ein Einzelzimmer, aber ich habe ein Doppelzimmer reserviert."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: ne ayırttığını ve ne aldığını söyledin."
+     },
+     {
+      "de": "Das Zimmer ist zu klein, ich ärgere mich. Ich habe ein Doppelzimmer reserviert.",
+      "tr": "Oda çok küçük, sinirleniyorum. Çift kişilik oda ayırtmıştım.",
+      "accepted": [
+       "Das Zimmer ist zu klein, ich ärgere mich. Ich habe ein Doppelzimmer reserviert.",
+       "Das Zimmer ist zu klein. Ich habe ein Doppelzimmer reserviert.",
+       "Das Zimmer ist zu klein, ich habe ein Doppelzimmer reserviert.",
+       "Ich ärgere mich, das Zimmer ist zu klein."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Duygunu da söyledin: **ich ärgere mich**. Ses tonun sakin kalsın."
+     },
+     {
+      "de": "Ich freue mich, das Zimmer ist zu klein.",
+      "tr": "(yanlış) Seviniyorum, oda çok küçük.",
+      "accepted": [
+       "Ich freue mich, das Zimmer ist zu klein.",
+       "Ich freue mich. Das Zimmer ist zu klein.",
+       "Das Zimmer ist zu klein, ich freue mich."
+      ],
+      "sonraki": "n2b",
+      "uygun": false,
+      "geri_bildirim_tr": "**sich freuen** sevinmek demek. Kızgınsan: **Ich ärgere mich.**"
+     }
+    ]
+   },
+   {
+    "id": "n2b",
+    "de": "Wie bitte? Sie freuen sich?",
+    "tr": "Efendim? Seviniyor musunuz?",
+    "secenekler": [
+     {
+      "de": "Nein, Entschuldigung. Ich ärgere mich. Das Zimmer ist zu klein.",
+      "tr": "Hayır, pardon. Sinirleniyorum. Oda çok küçük.",
+      "accepted": [
+       "Nein, Entschuldigung. Ich ärgere mich. Das Zimmer ist zu klein.",
+       "Nein, ich ärgere mich. Das Zimmer ist zu klein.",
+       "Entschuldigung, nein. Das Zimmer ist zu klein.",
+       "Nein. Ich habe ein Doppelzimmer reserviert, das Zimmer ist zu klein."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Düzelttin: **ich ärgere mich** kızıyorum demek."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Heute ist leider kein Doppelzimmer mehr frei. Aber morgen geht es.",
+    "tr": "Bugün maalesef boş çift kişilik oda kalmadı. Ama yarın olur.",
+    "secenekler": [
+     {
+      "de": "Gut, dann morgen. Muss ich heute das Doppelzimmer bezahlen?",
+      "tr": "Peki, o zaman yarın. Bugün çift kişilik odanın parasını ödemem gerekiyor mu?",
+      "accepted": [
+       "Gut, dann morgen. Muss ich heute das Doppelzimmer bezahlen?",
+       "Okay, dann morgen. Muss ich für heute das Doppelzimmer bezahlen?",
+       "Gut. Und muss ich heute das Doppelzimmer bezahlen?",
+       "Dann morgen. Muss ich das Doppelzimmer heute bezahlen?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Akıllı soru: bugünün fiyatını sordun."
+     },
+     {
+      "de": "Okay, morgen ist gut. Danke.",
+      "tr": "Tamam, yarın olur. Teşekkürler.",
+      "accepted": [
+       "Okay, morgen ist gut. Danke.",
+       "Gut, morgen ist okay. Danke.",
+       "Okay, dann morgen. Danke.",
+       "Morgen ist gut, danke."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibarca kabul ettin."
+     },
+     {
+      "de": "Ärgern Sie sich nicht!",
+      "tr": "(yanlış) Sinirlenmeyin!",
+      "accepted": [
+       "Ärgern Sie sich nicht!",
+       "Ärgern Sie sich nicht.",
+       "Bitte ärgern Sie sich nicht!"
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Kızgın olan sensin, resepsiyondaki kadın değil. Cevap ver: **Gut, dann morgen.**"
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Nein, für heute bezahlen Sie nur das Einzelzimmer. Morgen bekommen Sie ein Doppelzimmer.",
+    "tr": "Hayır, bugün için yalnızca tek kişilik odayı ödersiniz. Yarın çift kişilik oda alırsınız.",
+    "secenekler": [
+     {
+      "de": "Vielen Dank, das ist gut. Dann freue ich mich auf morgen.",
+      "tr": "Çok teşekkürler, bu iyi. O zaman yarını bekliyorum.",
+      "accepted": [
+       "Vielen Dank, das ist gut. Dann freue ich mich auf morgen.",
+       "Danke, das ist gut.",
+       "Vielen Dank! Das ist sehr nett.",
+       "Danke schön, das ist gut so."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel bir kapanış. **Vielen Dank** kibar bir teşekkürdür."
+     },
+     {
+      "de": "Super, danke. Schönen Abend noch!",
+      "tr": "Harika, teşekkürler. İyi akşamlar!",
+      "accepted": [
+       "Super, danke. Schönen Abend noch!",
+       "Super, danke!",
+       "Danke, schönen Abend noch!",
+       "Gut, danke. Schönen Abend!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve sıcak bir kapanış."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Gern. Schönen Abend noch!",
+    "tr": "Rica ederim. İyi akşamlar!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Sorunu sakin ve kibar anlattın: ne ayırttın, ne aldın. **Ich möchte mich beschweren** ve **ich ärgere mich** artık senin cümlelerin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "İnternette bir otel yorumu",
+  "metin_de": "Hotel am Fluss – zwei Übernachtungen im Februar. Das Hotel liegt sehr schön am Fluss, und um das Hotel herum gibt es nur Berge. Wir haben ein Doppelzimmer reserviert, aber an der Rezeption haben wir nur ein Einzelzimmer bekommen. Wir haben uns beschwert. Die Frau an der Rezeption war sehr nett und hat uns am zweiten Tag ein Doppelzimmer gegeben. Das Frühstück war gut, aber das Zimmer war am Abend sehr laut. Aber wir haben uns gefreut. Im Sommer kommen wir wieder.",
+  "metin_tr": "Hotel am Fluss – şubatta iki gece. Otel nehrin kenarında çok güzel bir yerde, otelin çevresinde yalnızca dağlar var. Çift kişilik oda ayırtmıştık ama resepsiyonda yalnızca tek kişilik oda aldık. Şikâyet ettik. Resepsiyondaki kadın çok nazikti ve ikinci gün bize çift kişilik oda verdi. Kahvaltı iyiydi ama oda akşamları çok gürültülüydü. Ama sevindik. Yazın yine geliyoruz.",
+  "sorular": [
+   {
+    "id": "m1:92:o1",
+    "kind": "gist",
+    "q_tr": "Yorumu yazan kişi oteli nasıl buluyor?",
+    "opts": [
+     "Sorunlar oldu ama genel olarak memnun",
+     "Hiç memnun değil, bir daha gelmeyecek",
+     "Her şey mükemmeldi"
+    ],
+    "ans": 0,
+    "kanit": [
+     3,
+     4,
+     6,
+     7
+    ]
+   },
+   {
+    "id": "m1:92:o2",
+    "kind": "detail",
+    "q_tr": "Kaç gece kalmışlar?",
+    "opts": [
+     "İki",
+     "Bir",
+     "Üç"
+    ],
+    "ans": 1,
+    "kanit": [
+     0
+    ]
+   },
+   {
+    "id": "m1:92:o3",
+    "kind": "detail",
+    "q_tr": "İkinci gün ne oldu?",
+    "opts": [
+     "Çift kişilik oda verdiler",
+     "Otelden ayrıldılar",
+     "Para geri aldılar"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:92:o4",
+    "kind": "detail",
+    "q_tr": "Ne iyi değildi?",
+    "opts": [
+     "Akşamları oda gürültülüydü",
+     "Kahvaltı",
+     "Resepsiyondaki kadın"
+    ],
+    "ans": 1,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:92:o5",
+    "k": "guided_response",
+    "situation_tr": "Derya bu otele gitmek istiyor. Ona yorumda ne yazdığını kısaca söyle: insanlar şikâyet etmiş ama sevinmişler.",
+    "prompt_de": "Ist das Hotel am Fluss gut?",
+    "accepted": [
+     "Ja. Die Leute haben sich beschwert, aber sie haben sich auch gefreut.",
+     "Es ist schön, aber das Zimmer war laut. Sie haben sich beschwert.",
+     "Ja, aber am Abend ist es laut.",
+     "Das Hotel liegt schön am Fluss. Aber sie haben nur ein Einzelzimmer bekommen und haben sich beschwert.",
+     "Ja, es ist gut. Die Frau an der Rezeption war sehr nett.",
+     "Es geht. Sie haben sich beschwert, aber am Ende haben sie sich gefreut."
+    ],
+    "why_tr": "Başkalarını anlatırken **sie haben sich beschwert**, **sie haben sich gefreut** dersin."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Kaldığın (ya da kalmak istediğin) bir otel için kısa bir yorum yaz: ne güzeldi, neye kızdın, şikâyet ettin mi?",
+   "ornek_de": "Das Hotel liegt schön in den Bergen. Aber das Zimmer war zu klein, ich habe mich geärgert. Ich habe mich an der Rezeption beschwert.",
+   "zorunlu": [
+    "mich",
+    "beschwert"
+   ],
+   "accepted_kaliplar": [
+    "Das Hotel liegt ___.",
+    "Aber das Zimmer war ___, ich habe mich geärgert.",
+    "Ich habe mich ___ beschwert."
+   ],
+   "kontrol_tr": [
+    "Otelde güzel olan bir şeyi yazdın mı?",
+    "**ich habe mich geärgert** ya da **ich habe mich beschwert** gibi **mich** ile bir cümle var mı?",
+    "**mich** kelimesi **habe** kelimesinin hemen arkasında mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:92:s",
+  "maddeler": [
+   {
+    "id": "m1:92:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Derya hat sich im Hotel geärgert.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Derya hat sich im Hotel geärgert.",
+     "derya hat sich im hotel geärgert",
+     "Derya hat sich im Hotel geärgert"
+    ],
+    "why_tr": "**hat sich geärgert**: sinirlendi. **sich** **hat** kelimesinin arkasında."
+   },
+   {
+    "id": "m1:92:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Wir freuen uns für dich, Tobi.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir freuen uns für dich, Tobi.",
+     "wir freuen uns für dich tobi",
+     "Wir freuen uns für dich, Tobi"
+    ],
+    "why_tr": "**wir** ile **uns** gelir: **wir freuen uns**."
+   },
+   {
+    "id": "m1:92:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Das Einzelzimmer war klein und laut.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Einzelzimmer war klein und laut.",
+     "das einzelzimmer war klein und laut",
+     "Das Einzelzimmer war klein und laut"
+    ],
+    "why_tr": "**Einzelzimmer**: tek kişilik oda."
+   },
+   {
+    "id": "m1:92:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Wir sind um den See herum gewandert.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir sind um den See herum gewandert.",
+     "wir sind um den see herum gewandert",
+     "Wir sind um den See herum gewandert"
+    ],
+    "why_tr": "**um den See herum**: gölün çevresinde."
+   },
+   {
+    "id": "m1:92:s5",
+    "k": "tr_de",
+    "tr": "Sinirleniyorum, oda çok küçük.",
+    "accepted": [
+     "Ich ärgere mich, das Zimmer ist zu klein.",
+     "Ich ärgere mich. Das Zimmer ist zu klein.",
+     "Das Zimmer ist zu klein, ich ärgere mich."
+    ],
+    "why_tr": "**ich** ile **mich**: **ich ärgere mich**."
+   },
+   {
+    "id": "m1:92:s6",
+    "k": "tr_de",
+    "tr": "Resepsiyona şikâyet etmek istiyorum.",
+    "accepted": [
+     "Ich möchte mich an der Rezeption beschweren.",
+     "Ich möchte mich bei der Rezeption beschweren.",
+     "Ich will mich an der Rezeption beschweren."
+    ],
+    "why_tr": "**Ich möchte mich beschweren**: **beschweren** en sonda, **mich** **möchte** kelimesinin arkasında."
+   },
+   {
+    "id": "m1:92:s7",
+    "k": "tr_de",
+    "tr": "Tobi Hamburg'a taşınıyor, onun adına seviniyoruz.",
+    "accepted": [
+     "Tobi zieht nach Hamburg, wir freuen uns für ihn.",
+     "Tobi zieht nach Hamburg. Wir freuen uns für ihn.",
+     "Wir freuen uns für Tobi, er zieht nach Hamburg."
+    ],
+    "why_tr": "**wir freuen uns für ihn**: onun adına seviniyoruz."
+   },
+   {
+    "id": "m1:92:s8",
+    "k": "tr_de",
+    "tr": "Hafta sonu nehir kenarındaydık, çok sevindik.",
+    "accepted": [
+     "Am Wochenende waren wir am Fluss, wir haben uns sehr gefreut.",
+     "Am Wochenende waren wir am Fluss. Wir haben uns sehr gefreut.",
+     "Wir waren am Wochenende am Fluss, wir haben uns sehr gefreut."
+    ],
+    "why_tr": "Geçmiş: **wir haben uns gefreut**. **am Fluss**: nehir kenarında."
+   },
+   {
+    "id": "m1:92:s9",
+    "k": "guided_response",
+    "situation_tr": "Tobi neden sinirli olduğunu soruyor. Otelde odanın çok gürültülü olduğuna kızdığını söyle.",
+    "prompt_de": "Warum ärgerst du dich?",
+    "accepted": [
+     "Ich ärgere mich, das Zimmer im Hotel ist zu laut.",
+     "Das Zimmer ist zu laut. Ich ärgere mich.",
+     "Ich ärgere mich, weil das Zimmer zu laut ist.",
+     "Im Hotel ist das Zimmer zu laut, ich ärgere mich.",
+     "Das Hotelzimmer ist so laut, ich ärgere mich."
+    ],
+    "why_tr": "**Warum ärgerst du dich?** sorusuna **Ich ärgere mich, …** ile cevap verirsin. **du – dich**, **ich – mich**."
+   },
+   {
+    "id": "m1:92:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Ich habe eine neue Stelle in Hamburg. Am Samstag ziehe ich um.",
+    "speed": "normal",
+    "situation_tr": "Tobi haberini veriyor. Ona adına sevindiğini söyle.",
+    "accepted": [
+     "Ich freue mich für dich!",
+     "Herzlichen Glückwunsch! Ich freue mich für dich.",
+     "Toll! Wir freuen uns für dich.",
+     "Ich freue mich für dich, aber das ist schade.",
+     "Das ist schade, aber ich freue mich für dich."
+    ],
+    "why_tr": "**Ich freue mich für dich**: senin adına seviniyorum."
+   },
+   {
+    "id": "m1:92:s11",
+    "k": "guided_response",
+    "situation_tr": "Otel resepsiyonundasın. Çift kişilik oda ayırtmıştın ama tek kişilik oda aldın. Kibarca şikâyet et.",
+    "prompt_de": "Guten Abend. Was kann ich für Sie tun?",
+    "accepted": [
+     "Guten Abend. Ich möchte mich beschweren. Ich habe ein Doppelzimmer reserviert, aber ich habe ein Einzelzimmer bekommen.",
+     "Guten Abend. Ich habe ein Doppelzimmer reserviert, aber das ist ein Einzelzimmer.",
+     "Ich möchte mich beschweren. Ich habe ein Doppelzimmer reserviert, das ist aber ein Einzelzimmer.",
+     "Guten Abend, ich habe ein Problem. Ich habe ein Doppelzimmer reserviert und ein Einzelzimmer bekommen.",
+     "Entschuldigung, ich habe ein Doppelzimmer reserviert. Mein Zimmer ist ein Einzelzimmer.",
+     "Guten Abend. Mein Zimmer ist zu klein, ich habe ein Doppelzimmer reserviert."
+    ],
+    "why_tr": "Önce **Ich möchte mich beschweren** ya da **Ich habe ein Problem**, sonra ne ayırttığını söylersin."
+   }
+  ],
+  "sesli": [
+   "m1:92:s9",
+   "m1:92:s10"
+  ],
+  "dikte": [
+   "m1:92:s1",
+   "m1:92:s2",
+   "m1:92:s3",
+   "m1:92:s4"
+  ]
+ }
+}
