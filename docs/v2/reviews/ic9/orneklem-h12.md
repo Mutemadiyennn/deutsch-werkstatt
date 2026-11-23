@@ -144,3 +144,9 @@ Dilbilimci düzeltmeleri: `g2` durum_tr; `g5` (molada Derya), `g6` (spor salonun
 **g7 için öneri:** Kalıp ve beceri aynı kalsın, kişi ve yer yeni olsun. Örnek: Pazar günü Bereitschaftspraxis'te nöbetçi doktor (`der Arzt im Bereitschaftsdienst`, adsız) soruyor: "Was fehlt Ihnen, und seit wann?" Beklenen kabul: "Ich habe seit gestern Bauchschmerzen, deshalb bin ich hier." gibi ≥ 3 biçim. Yeniden kurulunca K(t) aynı yöntemle yeniden koşulmalı. Tıbbi güvenlik için: sağ alt karın ağrısı gibi alarm belirtisi yazılmamalı; yazılırsa 112 ya da acil servis yönlendirmesi gerekir.
 
 KARAR: GERİ (g7: kişi ve durum `m1:81:p1` ve `m1:84:t10` ile aynı, `cd:m1:84` ölçülmüyor; öneri yukarıda; g5 C takip)
+
+## 3. tur (yalnız g7)
+
+3. tur — g7 (nöbetçi muayenehane, adsız doktor). Almanca doğru ve doğal; 5 kabulün hepsi doğru ve aynı anlamda; seit + şimdiki zaman doğru; `cd:m1:84` ölçülüyor. Tıbben güvenli: baş ağrısı ve baş dönmesi için hafta sonu nöbetçi muayenehane uygun, alarm belirtisi yok. Derste ve hafta testinde aynen geçen biçim yok (0). K(t) aynı yöntemle (84. gün sonu, `prompt_de` + bütün `accepted`) ölçüldü: 5 kabulde 0 bilinmeyen. **`prompt_de`'de 1 bilinmeyen var: "fehlt"** (`lx:fehlen`, 15. hafta, 103. gün). Bu sözcüğü 2. turdaki kendi önerim getirdi. Öneri: `prompt_de` → "Was haben Sie denn, und seit wann?" Bu biçim aynı denetimde 0 bilinmeyen verdi.
+
+KARAR: GERİ (g7 `prompt_de`: "fehlt" öğretilmemiş; öneri "Was haben Sie denn, und seit wann?"; tek sözcüklük düzeltme, sonrası GEÇTİ)
