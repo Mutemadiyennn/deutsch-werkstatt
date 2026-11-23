@@ -1,0 +1,1756 @@
+{
+ "schema": 1,
+ "id": "m1:gun:10",
+ "day": 10,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Bir, hiç: ein, kein",
+ "goal_tr": "Bir şeyin olup olmadığını ein ve kein ile söylersin. Telefonda boş randevu sorar, yavaş konuşmalarını istersin.",
+ "can_do": {
+  "id": "cd:m1:10",
+  "tr": "Bir şeyin olup olmadığını söylerim, telefonda boş randevu sorarım."
+ },
+ "unit": "u:a1:10",
+ "arm": "pazar",
+ "place": "pl:firma",
+ "characters": [
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:wimmer",
+  "ch:huber",
+  "ch:popescu",
+  "ch:brandl",
+  "ch:pichler"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/halka/h2-dilbilimci-1.md; dil incelemesi kapandı. Okur (OD-9) ve medya paketinden sonra reviewed olur."
+ },
+ "dersler": [
+  "gr:a1-03:t1",
+  "gr:a1-03:t2"
+ ],
+ "yeni_kartlar": [
+  "lx:anrufen",
+  "lx:Firma",
+  "lx:anfangen",
+  "lx:frei",
+  "lx:langsam",
+  "lx:Schuh",
+  "lx:Hose",
+  "lx:kaufen",
+  "lx:kaputt",
+  "lx:schenken",
+  "lx:Wort",
+  "lx:bedeuten",
+  "lx:Entschuldigung",
+  "lx:stark",
+  "lx:links",
+  "lx:rechts",
+  "lx:einladen",
+  "lx:heiß"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:10:h1",
+   "title_tr": "Sizi arıyorum. Ne zaman başlıyoruz?",
+   "kartlar": [
+    "lx:anrufen",
+    "lx:Firma",
+    "lx:anfangen",
+    "lx:frei",
+    "lx:langsam"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich rufe … an. – Rufen Sie … an?",
+     "tr": "… arıyorum. – … arıyor musunuz?"
+    },
+    {
+     "de": "Wann fängt … an? – Wir fangen um … an.",
+     "tr": "… ne zaman başlıyor? – Saat …ta başlıyoruz."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:anrufen",
+     "de": "Ich rufe Frau Huber morgen an.",
+     "tr": "Huber Hanım'ı yarın arıyorum.",
+     "accepted": [
+      "Ich rufe Frau Huber morgen an.",
+      "Morgen rufe ich Frau Huber an.",
+      "Ich rufe morgen Frau Huber an."
+     ]
+    },
+    {
+     "kart": "lx:anrufen",
+     "de": "Kann ich Sie heute Abend anrufen, Herr Wimmer?",
+     "tr": "Sizi bu akşam arayabilir miyim Wimmer Bey?",
+     "accepted": [
+      "Kann ich Sie heute Abend anrufen, Herr Wimmer?",
+      "Herr Wimmer, kann ich Sie heute Abend anrufen?",
+      "Darf ich Sie heute Abend anrufen, Herr Wimmer?"
+     ]
+    },
+    {
+     "kart": "lx:Firma",
+     "de": "Die Firma ist hier in Wendlfing.",
+     "tr": "Firma burada, Wendlfing'de.",
+     "accepted": [
+      "Die Firma ist hier in Wendlfing.",
+      "Die Firma ist in Wendlfing.",
+      "Hier in Wendlfing ist die Firma."
+     ]
+    },
+    {
+     "kart": "lx:Firma",
+     "de": "Ich bin heute nicht in der Firma.",
+     "tr": "Bugün firmada değilim.",
+     "accepted": [
+      "Ich bin heute nicht in der Firma.",
+      "Heute bin ich nicht in der Firma.",
+      "Ich bin heute leider nicht in der Firma."
+     ]
+    },
+    {
+     "kart": "lx:anfangen",
+     "de": "Wann fängt der Termin an?",
+     "tr": "Randevu ne zaman başlıyor?",
+     "accepted": [
+      "Wann fängt der Termin an?",
+      "Um wie viel Uhr fängt der Termin an?",
+      "Wann fängt der Termin heute an?"
+     ]
+    },
+    {
+     "kart": "lx:anfangen",
+     "de": "Wir fangen um sieben an, Tobi.",
+     "tr": "Saat yedide başlıyoruz Tobi.",
+     "accepted": [
+      "Wir fangen um sieben an, Tobi.",
+      "Tobi, wir fangen um sieben an.",
+      "Um sieben fangen wir an, Tobi."
+     ]
+    },
+    {
+     "kart": "lx:frei",
+     "de": "Haben Sie am Montag einen Termin frei?",
+     "tr": "Pazartesi boş randevunuz var mı?",
+     "accepted": [
+      "Haben Sie am Montag einen Termin frei?",
+      "Haben Sie am Montag noch einen Termin frei?",
+      "Ist am Montag ein Termin frei?"
+     ]
+    },
+    {
+     "kart": "lx:frei",
+     "de": "Ist hier noch frei?",
+     "tr": "Burası boş mu?",
+     "accepted": [
+      "Ist hier noch frei?",
+      "Ist hier frei?",
+      "Entschuldigung, ist hier noch frei?"
+     ]
+    },
+    {
+     "kart": "lx:langsam",
+     "de": "Bitte langsam, Frau Huber!",
+     "tr": "Yavaş lütfen Huber Hanım!",
+     "accepted": [
+      "Bitte langsam, Frau Huber!",
+      "Langsam, bitte, Frau Huber!",
+      "Frau Huber, bitte langsam!"
+     ]
+    },
+    {
+     "kart": "lx:langsam",
+     "de": "Können Sie bitte langsam sprechen?",
+     "tr": "Lütfen yavaş konuşabilir misiniz?",
+     "accepted": [
+      "Können Sie bitte langsam sprechen?",
+      "Können Sie bitte langsamer sprechen?",
+      "Können Sie langsam sprechen, bitte?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Muayenehaneyi arıyorsun. Frau Huber hızlı konuşuyor.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Guten Tag! Ist heute noch ein Termin frei?",
+      "tr": "İyi günler! Bugün hâlâ boş bir randevu var mı?"
+     },
+     {
+      "r": "ch:huber",
+      "de": "Heute? Nein, heute ist alles voll. Morgen um zehn?",
+      "tr": "Bugün mü? Hayır, bugün hepsi dolu. Yarın onda?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Bitte langsam, Frau Huber!",
+      "tr": "Yavaş lütfen Huber Hanım!"
+     },
+     {
+      "r": "ch:huber",
+      "de": "Morgen. Um zehn Uhr. Passt das?",
+      "tr": "Yarın. Saat onda. Uyar mı?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Frau Huber ne zaman randevu veriyor?",
+     "opts": [
+      "Bugün saat onda",
+      "Yarın saat ikide",
+      "Yarın saat onda"
+     ],
+     "ans": 2
+    }
+   }
+  },
+  {
+   "id": "m1:10:h2",
+   "title_tr": "Ayakkabı ve pantolon: bir tane, hiç yok",
+   "kartlar": [
+    "lx:Schuh",
+    "lx:Hose",
+    "lx:kaufen",
+    "lx:kaputt",
+    "lx:schenken"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich schenke … – Was schenkst du …?",
+     "tr": "… hediye ediyorum. – … ne hediye ediyorsun?"
+    },
+    {
+     "de": "Ich brauche … – ein Schuh, zwei Schuhe – keine Schuhe",
+     "tr": "… ihtiyacım var – bir ayakkabı, iki ayakkabı – hiç ayakkabı yok"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Schuh",
+     "de": "Ich brauche Schuhe.",
+     "tr": "Ayakkabıya ihtiyacım var.",
+     "accepted": [
+      "Ich brauche Schuhe.",
+      "Ich brauche neue Schuhe.",
+      "Ich brauche Schuhe, bitte."
+     ]
+    },
+    {
+     "kart": "lx:Schuh",
+     "de": "Hier sind keine Schuhe, nur eine Hose.",
+     "tr": "Burada hiç ayakkabı yok, yalnızca bir pantolon var.",
+     "accepted": [
+      "Hier sind keine Schuhe, nur eine Hose.",
+      "Hier sind keine Schuhe. Nur eine Hose.",
+      "Keine Schuhe hier, nur eine Hose."
+     ]
+    },
+    {
+     "kart": "lx:Hose",
+     "de": "Ich brauche eine Hose.",
+     "tr": "Bir pantolona ihtiyacım var.",
+     "accepted": [
+      "Ich brauche eine Hose.",
+      "Ich brauche eine Hose, bitte.",
+      "Ich brauche eine neue Hose."
+     ]
+    },
+    {
+     "kart": "lx:Hose",
+     "de": "Ich habe keine Hose mehr.",
+     "tr": "Artık hiç pantolonum yok.",
+     "accepted": [
+      "Ich habe keine Hose mehr.",
+      "Ich habe keine Hose mehr!",
+      "Ich habe leider keine Hose mehr."
+     ]
+    },
+    {
+     "kart": "lx:kaufen",
+     "de": "Ich möchte eine Hose kaufen.",
+     "tr": "Bir pantolon almak istiyorum.",
+     "accepted": [
+      "Ich möchte eine Hose kaufen.",
+      "Ich will eine Hose kaufen.",
+      "Ich möchte heute eine Hose kaufen."
+     ]
+    },
+    {
+     "kart": "lx:kaufen",
+     "de": "Wir kaufen heute keine Schuhe.",
+     "tr": "Bugün ayakkabı almıyoruz.",
+     "accepted": [
+      "Wir kaufen heute keine Schuhe.",
+      "Heute kaufen wir keine Schuhe.",
+      "Wir kaufen heute keine Schuhe, Derya."
+     ]
+    },
+    {
+     "kart": "lx:kaputt",
+     "de": "Mein Schuh ist kaputt.",
+     "tr": "Ayakkabım yırtıldı.",
+     "accepted": [
+      "Mein Schuh ist kaputt.",
+      "Mein Schuh ist leider kaputt.",
+      "Der Schuh ist kaputt."
+     ]
+    },
+    {
+     "kart": "lx:kaputt",
+     "de": "Die Tüte ist kaputt!",
+     "tr": "Poşet yırtıldı!",
+     "accepted": [
+      "Die Tüte ist kaputt!",
+      "Die Tüte ist kaputt.",
+      "Oh, die Tüte ist kaputt!"
+     ]
+    },
+    {
+     "kart": "lx:schenken",
+     "de": "Was schenkst du Ioana?",
+     "tr": "Ioana'ya ne hediye ediyorsun?",
+     "accepted": [
+      "Was schenkst du Ioana?",
+      "Was schenkst du Ioana zum Geburtstag?",
+      "Und was schenkst du Ioana?"
+     ]
+    },
+    {
+     "kart": "lx:schenken",
+     "de": "Ich schenke Frau Brandl einen Kuchen.",
+     "tr": "Brandl Hanım'a bir kek hediye ediyorum.",
+     "accepted": [
+      "Ich schenke Frau Brandl einen Kuchen.",
+      "Frau Brandl schenke ich einen Kuchen.",
+      "Ich schenke Frau Brandl Kuchen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Firmada mola. Derya senin ayakkabına bakıyor.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Ist der Schuh kaputt?",
+      "tr": "Ayakkabı yırtıldı mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, ich brauche Schuhe.",
+      "tr": "Evet, ayakkabıya ihtiyacım var."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Dann kaufen wir heute Schuhe!",
+      "tr": "O zaman bugün ayakkabı alalım!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Heute? Ich habe keine Zeit.",
+      "tr": "Bugün mü? Vaktim yok."
+     }
+    ],
+    "soru": {
+     "q_tr": "Neden bugün ayakkabı almıyorsun?",
+     "opts": [
+      "Vaktin yok",
+      "Paran yok",
+      "Dükkân kapalı"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:10:h3",
+   "title_tr": "Bu kelime ne demek?",
+   "kartlar": [
+    "lx:Wort",
+    "lx:bedeuten",
+    "lx:Entschuldigung",
+    "lx:stark"
+   ],
+   "kaliplar": [
+    {
+     "de": "Was bedeutet …? – Das bedeutet …",
+     "tr": "… ne demek? – Bu … demek."
+    },
+    {
+     "de": "Ich verstehe … – Verstehen Sie …?",
+     "tr": "… anlıyorum. – … anlıyor musunuz?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Wort",
+     "de": "Ich verstehe kein Wort.",
+     "tr": "Tek kelime anlamıyorum.",
+     "accepted": [
+      "Ich verstehe kein Wort.",
+      "Ich verstehe leider kein Wort.",
+      "Entschuldigung, ich verstehe kein Wort."
+     ]
+    },
+    {
+     "kart": "lx:Wort",
+     "de": "Ist das ein Wort?",
+     "tr": "Bu bir kelime mi?",
+     "accepted": [
+      "Ist das ein Wort?",
+      "Ist das wirklich ein Wort?",
+      "Ist das ein Wort, Ioana?"
+     ]
+    },
+    {
+     "kart": "lx:bedeuten",
+     "de": "Was bedeutet das Wort?",
+     "tr": "Bu kelime ne demek?",
+     "accepted": [
+      "Was bedeutet das Wort?",
+      "Was bedeutet das Wort, bitte?",
+      "Entschuldigung, was bedeutet das Wort?",
+      "Was bedeutet dieses Wort?"
+     ]
+    },
+    {
+     "kart": "lx:bedeuten",
+     "de": "Was bedeutet das, Frau Brandl?",
+     "tr": "Bu ne demek Brandl Hanım?",
+     "accepted": [
+      "Was bedeutet das, Frau Brandl?",
+      "Frau Brandl, was bedeutet das?",
+      "Entschuldigung, was bedeutet das, Frau Brandl?"
+     ]
+    },
+    {
+     "kart": "lx:Entschuldigung",
+     "de": "Entschuldigung, ist hier frei?",
+     "tr": "Affedersiniz, burası boş mu?",
+     "accepted": [
+      "Entschuldigung, ist hier frei?",
+      "Entschuldigung, ist hier noch frei?",
+      "Entschuldigung! Ist hier frei?"
+     ]
+    },
+    {
+     "kart": "lx:Entschuldigung",
+     "de": "Entschuldigung, ich verstehe kein Wort.",
+     "tr": "Affedersiniz, tek kelime anlamıyorum.",
+     "accepted": [
+      "Entschuldigung, ich verstehe kein Wort.",
+      "Entschuldigung, ich verstehe das nicht.",
+      "Entschuldigung, aber ich verstehe kein Wort."
+     ]
+    },
+    {
+     "kart": "lx:stark",
+     "de": "Tobi ist sehr stark.",
+     "tr": "Tobi çok güçlü.",
+     "accepted": [
+      "Tobi ist sehr stark.",
+      "Tobi ist echt stark.",
+      "Tobi ist stark."
+     ]
+    },
+    {
+     "kart": "lx:stark",
+     "de": "Herr Pichler ist alt, aber sehr stark.",
+     "tr": "Pichler Bey yaşlı ama çok güçlü.",
+     "accepted": [
+      "Herr Pichler ist alt, aber sehr stark.",
+      "Herr Pichler ist alt, aber stark.",
+      "Herr Pichler ist alt, aber noch sehr stark."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Akşam kursu. Ioana elinde kâğıtla geliyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Entschuldigung, was bedeutet stark?",
+      "tr": "Affedersin, stark ne demek?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Stark? Das ist wie Tobi: sehr stark!",
+      "tr": "Stark mı? Tobi gibi: çok güçlü!"
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Ah, alles klar! Danke!",
+      "tr": "Ha, tamamdır! Sağ ol!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Ioana hangi kelimeyi soruyor?",
+     "opts": [
+      "schnell",
+      "stark",
+      "kaputt"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:10:h4",
+   "title_tr": "Sağda mı, solda mı? Ben ısmarlıyorum!",
+   "kartlar": [
+    "lx:links",
+    "lx:rechts",
+    "lx:einladen",
+    "lx:heiß"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich lade dich ein! – Ich lade Sie ein.",
+     "tr": "Ben ısmarlıyorum! – Ben ısmarlıyorum (size)."
+    },
+    {
+     "de": "links – rechts – Ist … links oder rechts?",
+     "tr": "solda – sağda – … solda mı, sağda mı?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:links",
+     "de": "Die Küche ist links.",
+     "tr": "Mutfak solda.",
+     "accepted": [
+      "Die Küche ist links.",
+      "Links ist die Küche.",
+      "Die Küche ist hier links."
+     ]
+    },
+    {
+     "kart": "lx:links",
+     "de": "Links ist kein Büro, nur die Küche.",
+     "tr": "Solda ofis yok, yalnızca mutfak var.",
+     "accepted": [
+      "Links ist kein Büro, nur die Küche.",
+      "Links ist kein Büro. Nur die Küche.",
+      "Links ist nur die Küche, kein Büro."
+     ]
+    },
+    {
+     "kart": "lx:links",
+     "de": "Ist die Küche links oder rechts?",
+     "tr": "Mutfak solda mı, sağda mı?",
+     "accepted": [
+      "Ist die Küche links oder rechts?",
+      "Entschuldigung, ist die Küche links oder rechts?",
+      "Ist die Küche hier links oder rechts?"
+     ]
+    },
+    {
+     "kart": "lx:rechts",
+     "de": "Die Praxis ist rechts, Ioana.",
+     "tr": "Muayenehane sağda Ioana.",
+     "accepted": [
+      "Die Praxis ist rechts, Ioana.",
+      "Ioana, die Praxis ist rechts.",
+      "Rechts ist die Praxis, Ioana."
+     ]
+    },
+    {
+     "kart": "lx:rechts",
+     "de": "Rechts ist ein Büro.",
+     "tr": "Sağda bir ofis var.",
+     "accepted": [
+      "Rechts ist ein Büro.",
+      "Rechts ist das Büro.",
+      "Hier rechts ist ein Büro."
+     ]
+    },
+    {
+     "kart": "lx:einladen",
+     "de": "Heute lade ich dich ein, Ioana!",
+     "tr": "Bugün ben ısmarlıyorum Ioana!",
+     "accepted": [
+      "Heute lade ich dich ein, Ioana!",
+      "Ioana, heute lade ich dich ein!",
+      "Ich lade dich heute ein, Ioana!"
+     ]
+    },
+    {
+     "kart": "lx:einladen",
+     "de": "Ich lade Sie ein, Frau Brandl.",
+     "tr": "Ben ısmarlıyorum Brandl Hanım.",
+     "accepted": [
+      "Ich lade Sie ein, Frau Brandl.",
+      "Frau Brandl, ich lade Sie ein.",
+      "Heute lade ich Sie ein, Frau Brandl."
+     ]
+    },
+    {
+     "kart": "lx:heiß",
+     "de": "Der Kuchen ist noch heiß!",
+     "tr": "Kek hâlâ sıcak!",
+     "accepted": [
+      "Der Kuchen ist noch heiß!",
+      "Der Kuchen ist noch heiß.",
+      "Achtung, der Kuchen ist noch heiß!"
+     ]
+    },
+    {
+     "kart": "lx:heiß",
+     "de": "Hier ist es sehr heiß.",
+     "tr": "Burası çok sıcak.",
+     "accepted": [
+      "Hier ist es sehr heiß.",
+      "Es ist hier sehr heiß.",
+      "Hier ist es echt heiß."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Apartmanın önünde Ioana'ya rastlıyorsun. Elinde bir kâğıt var.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Hallo! Wo ist die Praxis Dr. Weber?",
+      "tr": "Merhaba! Dr. Weber muayenehanesi nerede?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Die Praxis ist rechts, Ioana. Nur zwei Minuten.",
+      "tr": "Muayenehane sağda Ioana. Yalnızca iki dakika."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Rechts? Danke! Und heute lade ich dich ein: Kuchen!",
+      "tr": "Sağda mı? Sağ ol! Bugün de ben ısmarlıyorum: kek!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Ioana sana ne ısmarlıyor?",
+     "opts": [
+      "Ekmek",
+      "Hiçbir şey",
+      "Kek"
+     ],
+     "ans": 2
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:10:v1",
+  "title_tr": "Firmada: Tobi'nin daveti",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Firma, öğleden sonra. Tobi Derya'nın masasına yaslanıyor.",
+    "de": "Derya, hast du heute Abend Zeit? Ich lade dich ein.",
+    "tr": "Derya, bu akşam vaktin var mı? Ben ısmarlıyorum."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya ekrandan başını kaldırıyor.",
+    "de": "Echt? Wohin?",
+    "tr": "Cidden mi? Nereye?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi pencereden meydandaki ışıkları gösteriyor.",
+    "de": "Zum Weihnachtsmarkt! Um sechs.",
+    "tr": "Noel pazarına! Altıda."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya ayağını kaldırıp ayakkabısının tabanını gösteriyor.",
+    "de": "Gern! Aber mein Schuh ist kaputt.",
+    "tr": "Seve seve! Ama ayakkabım yırtıldı."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi gülüyor.",
+    "de": "Dann musst du Schuhe kaufen!",
+    "tr": "O zaman ayakkabı alman lazım!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya iç çekiyor.",
+    "de": "Heute? Ich habe keine Zeit für Schuhe.",
+    "tr": "Bugün mü? Ayakkabıya ayıracak vaktim yok."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya'nın telefonu çalıyor. Ekranda Herr Wimmer'in adı var.",
+    "de": "Entschuldigung, Herr Wimmer ruft an.",
+    "tr": "Affedersin, Wimmer Bey arıyor."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya telefonu açıyor, kaşları çatılıyor.",
+    "de": "Ja, Herr Wimmer? Morgen? Schon um sieben?",
+    "tr": "Evet Wimmer Bey? Yarın mı? Daha yedide mi?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya telefonu kapatıp Tobi'ye dönüyor.",
+    "de": "Morgen fangen wir schon um sieben an.",
+    "tr": "Yarın daha yedide başlıyoruz."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi ellerini iki yana açıyor.",
+    "de": "Um sieben? Dann nur eine Stunde Weihnachtsmarkt!",
+    "tr": "Yedide mi? O zaman Noel pazarına yalnızca bir saat!"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülüp başını sallıyor.",
+    "de": "Gut, eine Stunde. Bis um sechs!",
+    "tr": "Tamam, bir saat. Altıda görüşürüz!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Tobi ne istiyor?",
+     "opts": [
+      "Derya'yı bu akşam bir yere davet ediyor, parayı o ödüyor",
+      "Derya'dan para istiyor",
+      "Yarın işe gelmeyeceğini söylüyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Derya'nın sorunu ne?",
+      "opts": [
+       "Başı ağrıyor",
+       "Ayakkabısı yırtık",
+       "Telefonu bozuk"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya'yı kim arıyor?",
+      "opts": [
+       "Frau Huber",
+       "Ioana",
+       "Herr Wimmer"
+      ],
+      "ans": 2,
+      "kanit": [
+       "s7"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Yarın iş kaçta başlıyor?",
+      "opts": [
+       "yedide",
+       "sekizde",
+       "altıda"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Kopf",
+       "Schuh",
+       "Brot"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s9",
+      "seviye": "orta",
+      "de": "Morgen fangen wir schon um ___ an.",
+      "accepted": [
+       "sieben",
+       "Sieben",
+       "sieben."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s1",
+      "seviye": "zor",
+      "banka": [
+       "Ich",
+       "lade",
+       "dich",
+       "ein",
+       "mich",
+       "eine"
+      ],
+      "accepted": [
+       "Ich lade dich ein.",
+       "ich lade dich ein",
+       "Ich lade dich ein"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s7",
+      "seviye": "usta",
+      "accepted": [
+       "Entschuldigung, Herr Wimmer ruft an.",
+       "entschuldigung herr wimmer ruft an",
+       "Entschuldigung, Herr Wimmer ruft an"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Tobi hat heute Abend Zeit. Der Schuh von Derya ist kaputt.",
+      "zorunlu": [
+       "Schuh",
+       "kaputt"
+      ]
+     }
+    ],
+    "golge": [
+     "s4",
+     "s7"
+    ],
+    "cevapla": {
+     "id": "m1:10:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Tobi sana da dönüyor. Daveti kabul et, teşekkür et.",
+     "prompt_de": "Und du? Kommst du mit? Ich lade dich ein!",
+     "accepted": [
+      "Ja, gern! Danke, Tobi.",
+      "Ja, gern! Um sechs?",
+      "Danke, gern!",
+      "Ja, klar! Bis um sechs!",
+      "Gern, danke! Bis um sechs."
+     ],
+     "why_tr": "Kabul ederken **Ja, gern** dersin. Teşekkür etmeyi unutma."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:10:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Herr Wimmer'den sesli mesaj",
+   "ortam_tr": "Öğle arasında telefonuna bakıyorsun. Şefin Herr Wimmer bir mesaj bırakmış.",
+   "speaker": "ch:wimmer",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier spricht Wimmer.",
+     "tr": "İyi günler, ben Wimmer."
+    },
+    {
+     "id": "c2",
+     "de": "Morgen um neun haben wir einen Termin.",
+     "tr": "Yarın saat dokuzda bir randevumuz var."
+    },
+    {
+     "id": "c3",
+     "de": "Bitte rufen Sie heute noch Frau Aksoy an.",
+     "tr": "Lütfen bugün içinde Aksoy Hanım'ı arayın."
+    },
+    {
+     "id": "c4",
+     "de": "Frau Aksoy ist bis fünf Uhr im Büro.",
+     "tr": "Aksoy Hanım saat beşe kadar ofiste."
+    },
+    {
+     "id": "c5",
+     "de": "Danke schön!",
+     "tr": "Çok teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Herr Wimmer ne istiyor?",
+      "opts": [
+       "Yarın işe gelmemeni",
+       "Ona bir kek getirmeni",
+       "Bugün Frau Aksoy'u aramanı"
+      ],
+      "ans": 2,
+      "kanit": [
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Yarın saat kaçta randevu var?",
+       "opts": [
+        "dokuzda",
+        "beşte",
+        "sekizde"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Frau Aksoy saat kaça kadar ofiste?",
+       "opts": [
+        "dokuza kadar",
+        "beşe kadar",
+        "altıya kadar"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "neunzehn",
+        "zehn",
+        "neun"
+       ],
+       "ans": 2
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Frau Aksoy ist bis ___ Uhr im Büro.",
+       "accepted": [
+        "fünf",
+        "Fünf",
+        "fünf."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Bitte",
+        "rufen",
+        "Sie",
+        "heute",
+        "noch",
+        "Frau",
+        "Aksoy",
+        "an",
+        "auf",
+        "morgen"
+       ],
+       "accepted": [
+        "Bitte rufen Sie heute noch Frau Aksoy an.",
+        "bitte rufen sie heute noch frau aksoy an",
+        "Bitte rufen Sie heute noch Frau Aksoy an"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Morgen um neun haben wir einen Termin.",
+        "morgen um neun haben wir einen termin",
+        "Morgen um neun haben wir einen Termin"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Ich rufe heute Frau Aksoy an. Morgen um neun haben wir einen Termin.",
+       "zorunlu": [
+        "Aksoy",
+        "Termin"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:10:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "İş arkadaşın Derya Aksoy'u arıyorsun. Adını söyle, yarın dokuzda randevu olduğunu söyle.",
+      "prompt_de": "Hallo? Hier ist Derya.",
+      "accepted": [
+       "Hallo Derya, hier ist {name}. Morgen um neun haben wir einen Termin.",
+       "Hallo Derya! Hier ist {name}. Morgen um neun ist ein Termin.",
+       "Hallo, hier ist {name}. Wir haben morgen um neun einen Termin.",
+       "Hallo Derya, {name} hier. Morgen um neun haben wir einen Termin."
+      ],
+      "accepted_adsiz": [
+       "Hallo Derya! Morgen um neun haben wir einen Termin.",
+       "Hallo Derya! Morgen um neun ist ein Termin.",
+       "Hallo! Wir haben morgen um neun einen Termin."
+      ],
+      "why_tr": "Telefonda önce **Hier ist** ve adını söyle. Sonra haberi ver."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:10:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Bugün saat beşten önce Frau Aksoy'u ara.",
+     "Yarın dokuzda Herr Wimmer'i ara.",
+     "Yarın beşte ofise git."
+    ],
+    "ans": 0,
+    "why_tr": "Herr Wimmer bugün Frau Aksoy'u aramanı istiyor. Frau Aksoy beşe kadar ofiste.",
+    "kanit": [
+     "c3",
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:10:a2",
+   "tur": "radyo",
+   "title_tr": "Sabah radyosu",
+   "ortam_tr": "Sabah kahvaltıda yerel radyo açık. Sunucu bu akşamki Noel pazarından söz ediyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen, es ist halb sieben.",
+     "tr": "Günaydın, saat altı buçuk."
+    },
+    {
+     "id": "c2",
+     "de": "Heute ist Mittwoch, der zweite Dezember.",
+     "tr": "Bugün çarşamba, iki aralık."
+    },
+    {
+     "id": "c3",
+     "de": "Der Weihnachtsmarkt ist heute von vier bis zehn Uhr offen.",
+     "tr": "Noel pazarı bugün dörtten ona kadar açık."
+    },
+    {
+     "id": "c4",
+     "de": "Am Montag ist der Weihnachtsmarkt geschlossen.",
+     "tr": "Pazartesi Noel pazarı kapalı."
+    },
+    {
+     "id": "c5",
+     "de": "Viel Spaß heute!",
+     "tr": "Bugün iyi eğlenceler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne söylüyor?",
+      "opts": [
+       "Hava durumunu",
+       "Saati, günü ve Noel pazarının saatlerini",
+       "Bir dükkânın indirimini"
+      ],
+      "ans": 1,
+      "kanit": [
+       "c1",
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Bugün ayın kaçı?",
+       "opts": [
+        "Bir aralık",
+        "Üç aralık",
+        "İki aralık"
+       ],
+       "ans": 2,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Noel pazarı hangi gün kapalı?",
+       "opts": [
+        "pazartesi",
+        "çarşamba",
+        "cuma"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c1",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Viertel",
+        "halb",
+        "zehn"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Heute ist Mittwoch, der ___ Dezember.",
+       "accepted": [
+        "zweite",
+        "Zweite",
+        "zweite."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Heute",
+        "ist",
+        "Mittwoch",
+        "der",
+        "zweite",
+        "Dezember",
+        "Montag",
+        "erste"
+       ],
+       "accepted": [
+        "Heute ist Mittwoch, der zweite Dezember.",
+        "heute ist mittwoch der zweite dezember",
+        "Heute ist Mittwoch, der zweite Dezember"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c1",
+       "seviye": "usta",
+       "accepted": [
+        "Guten Morgen, es ist halb sieben.",
+        "guten morgen es ist halb sieben",
+        "Guten Morgen, es ist halb sieben"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyoda ne dendiğini Almanca iki kısa cümleyle söyle.",
+       "ornek_de": "Heute ist Mittwoch, der zweite Dezember. Es ist halb sieben.",
+       "zorunlu": [
+        "Mittwoch",
+        "zweite"
+       ]
+      }
+     ],
+     "golge": [
+      "c1",
+      "c2"
+     ],
+     "cevapla": {
+      "id": "m1:10:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi Noel pazarının bugün kaça kadar açık olduğunu soruyor. Radyoda duydun.",
+      "prompt_de": "Bis wann ist der heute offen?",
+      "accepted": [
+       "Bis zehn Uhr.",
+       "Bis zehn.",
+       "Heute bis zehn Uhr.",
+       "Von vier bis zehn Uhr.",
+       "Er ist bis zehn Uhr offen."
+      ],
+      "why_tr": "Kaça kadar derken **bis** dersin: **bis zehn Uhr**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:10:a2:e1",
+    "k": "pick",
+    "q_tr": "Akşam dokuzda Noel pazarına gitmek istiyorsun. Olur mu?",
+    "opts": [
+     "Hayır, pazar dörtte kapanıyor.",
+     "Hayır, pazar bugün kapalı.",
+     "Evet, pazar bugün ona kadar açık."
+    ],
+    "ans": 2,
+    "why_tr": "Pazar bugün dörtten ona kadar açık. Yalnızca pazartesi kapalı.",
+    "kanit": [
+     "c3",
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:10:g1",
+   "de": "ein Schuh",
+   "dogru_img": "one single shoe on the floor",
+   "celdirici_img": [
+    "a pair of shoes",
+    "a pair of trousers",
+    "a winter boot pair"
+   ]
+  },
+  {
+   "id": "m1:10:g2",
+   "de": "eine Hose",
+   "dogru_img": "a pair of trousers on a hanger",
+   "celdirici_img": [
+    "a shirt on a hanger",
+    "a pair of shoes",
+    "a jacket on a hanger"
+   ]
+  },
+  {
+   "id": "m1:10:g3",
+   "de": "links",
+   "dogru_img": "a sign with an arrow pointing left",
+   "celdirici_img": [
+    "a sign with an arrow pointing right",
+    "a sign with an arrow pointing up",
+    "a stop sign"
+   ]
+  },
+  {
+   "id": "m1:10:g4",
+   "de": "rechts",
+   "dogru_img": "a sign with an arrow pointing right",
+   "celdirici_img": [
+    "a sign with an arrow pointing left",
+    "a sign with an arrow pointing down",
+    "a no entry sign"
+   ]
+  },
+  {
+   "id": "m1:10:g5",
+   "de": "Der Schuh ist kaputt.",
+   "dogru_img": "an old shoe with a torn sole",
+   "celdirici_img": [
+    "a new shoe in a box",
+    "a clean shoe on a shelf",
+    "a shoe on a foot"
+   ]
+  },
+  {
+   "id": "m1:10:g6",
+   "de": "heiß",
+   "dogru_img": "a steaming hot cup of tea",
+   "celdirici_img": [
+    "a glass of iced water",
+    "a snowman",
+    "an ice cream cone"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:10:p1",
+  "title_tr": "Muayenehaneyi aramak: cuma olmuyor",
+  "durum_tr": "Cuma dokuz buçukta Dr. Weber'de randevun var ama o gün gelemiyorsun. Muayenehaneyi arıyorsun. Pazartesi boş randevu istiyorsun.",
+  "karsi": "ch:huber",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Praxis Dr. Weber, Huber, guten Tag?",
+    "tr": "Dr. Weber muayenehanesi, Huber, iyi günler?",
+    "secenekler": [
+     {
+      "de": "Guten Tag, hier ist {name}. Ich habe am Freitag einen Termin.",
+      "de_adsiz": "Guten Tag! Ich habe am Freitag einen Termin.",
+      "tr": "İyi günler, ben {name}. Cuma günü randevum var.",
+      "tr_adsiz": "İyi günler! Cuma günü randevum var.",
+      "accepted": [
+       "Guten Tag, hier ist {name}. Ich habe am Freitag einen Termin.",
+       "Guten Tag, {name} hier. Ich habe am Freitag einen Termin.",
+       "Guten Tag! Hier ist {name}. Am Freitag habe ich einen Termin."
+      ],
+      "accepted_adsiz": [
+       "Guten Tag! Ich habe am Freitag einen Termin.",
+       "Guten Tag, ich habe am Freitag einen Termin.",
+       "Guten Tag! Am Freitag habe ich einen Termin."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Önce kendini tanıttın, sonra randevunu söyledin."
+     },
+     {
+      "de": "Guten Tag! Entschuldigung, am Freitag kann ich nicht.",
+      "tr": "İyi günler! Affedersiniz, cuma gelemiyorum.",
+      "accepted": [
+       "Guten Tag! Entschuldigung, am Freitag kann ich nicht.",
+       "Entschuldigung, am Freitag kann ich nicht.",
+       "Guten Tag, am Freitag kann ich leider nicht."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Hemen konuya girdin."
+     },
+     {
+      "de": "Termin!",
+      "tr": "Randevu!",
+      "accepted": [
+       "Termin!",
+       "Termin."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Tek sözcük yetmez. Önce selam ver, sonra cuma günkü randevunu söyle."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Ja, Freitag um halb zehn. Und?",
+    "tr": "Evet, cuma dokuz buçuk. Eee?",
+    "secenekler": [
+     {
+      "de": "Am Freitag kann ich leider nicht. Haben Sie am Montag einen Termin frei?",
+      "tr": "Cuma maalesef gelemiyorum. Pazartesi boş randevunuz var mı?",
+      "accepted": [
+       "Am Freitag kann ich leider nicht. Haben Sie am Montag einen Termin frei?",
+       "Freitag geht leider nicht. Haben Sie am Montag einen Termin frei?",
+       "Am Freitag kann ich nicht. Ist am Montag ein Termin frei?",
+       "Haben Sie am Montag einen Termin frei?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **einen Termin frei** boş randevu demek."
+     },
+     {
+      "de": "Entschuldigung, langsam, bitte!",
+      "tr": "Affedersiniz, yavaş lütfen!",
+      "accepted": [
+       "Entschuldigung, langsam, bitte!",
+       "Bitte langsam!",
+       "Können Sie bitte langsam sprechen?",
+       "Entschuldigung, bitte langsam!"
+      ],
+      "sonraki": "n2b",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Anlamayınca yavaşlamasını istemek en iyi yol."
+     },
+     {
+      "de": "Ich kann nicht.",
+      "tr": "Gelemiyorum.",
+      "accepted": [
+       "Ich kann nicht.",
+       "Ich kann nicht!"
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Neyi yapamıyorsun? **Am Freitag** de ve başka bir gün sor."
+     }
+    ]
+   },
+   {
+    "id": "n2b",
+    "de": "Gut. Ihr Termin ist am Freitag. Um halb zehn. Passt das nicht?",
+    "tr": "Peki. Randevunuz cuma. Dokuz buçukta. Uymuyor mu?",
+    "secenekler": [
+     {
+      "de": "Nein, das passt leider nicht. Haben Sie am Montag einen Termin frei?",
+      "tr": "Hayır, maalesef uymuyor. Pazartesi boş randevunuz var mı?",
+      "accepted": [
+       "Nein, das passt leider nicht. Haben Sie am Montag einen Termin frei?",
+       "Nein, leider nicht. Haben Sie am Montag einen Termin frei?",
+       "Das passt leider nicht. Ist am Montag ein Termin frei?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Şimdi anladın ve yeni bir gün sordun."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Montag? Moment. Nein, am Montag ist leider kein Termin frei. Dienstag um acht?",
+    "tr": "Pazartesi mi? Bir dakika. Hayır, pazartesi maalesef boş randevu yok. Salı sekizde?",
+    "secenekler": [
+     {
+      "de": "Dienstag um acht passt gut.",
+      "tr": "Salı sekiz iyi olur.",
+      "accepted": [
+       "Dienstag um acht passt gut.",
+       "Ja, Dienstag um acht passt.",
+       "Dienstag um acht ist gut.",
+       "Ja, das passt."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Kabul ettin."
+     },
+     {
+      "de": "Kein Termin am Montag? Dann Dienstag um acht, bitte.",
+      "tr": "Pazartesi boş randevu yok mu? O zaman salı sekizde, lütfen.",
+      "accepted": [
+       "Kein Termin am Montag? Dann Dienstag um acht, bitte.",
+       "Dann Dienstag um acht, bitte.",
+       "Dann bitte Dienstag um acht.",
+       "Gut, dann Dienstag um acht."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **kein Termin** ile duyduğunu tekrar ettin."
+     },
+     {
+      "de": "Montag, bitte!",
+      "tr": "Pazartesi, lütfen!",
+      "accepted": [
+       "Montag, bitte!",
+       "Am Montag, bitte!"
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Pazartesi boş randevu yok: **kein Termin frei**. Salıyı kabul et ya da başka gün sor."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gut, Dienstag um acht. Bis Dienstag!",
+    "tr": "Tamam, salı sekizde. Salı görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Pazartesi boş randevu yoktu. Randevunu telefonda salı sabahı sekize aldın."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Tobi'den mesaj",
+  "metin_de": "Hallo {name}, hier ist Tobi! Heute Abend Weihnachtsmarkt? Ich lade dich ein! Wir gehen um sechs. Herr Wimmer kommt nicht, er hat keine Zeit. Kannst du mich um fünf anrufen?",
+  "metin_de_adsiz": "Hallo, hier ist Tobi! Heute Abend Weihnachtsmarkt? Ich lade dich ein! Wir gehen um sechs. Herr Wimmer kommt nicht, er hat keine Zeit. Kannst du mich um fünf anrufen?",
+  "metin_tr": "Merhaba {name}, ben Tobi! Bu akşam Noel pazarı? Ben ısmarlıyorum! Altıda gidiyoruz. Wimmer Bey gelmiyor, vakti yok. Beni beşte arayabilir misin?",
+  "metin_tr_adsiz": "Merhaba, ben Tobi! Bu akşam Noel pazarı? Ben ısmarlıyorum! Altıda gidiyoruz. Wimmer Bey gelmiyor, vakti yok. Beni beşte arayabilir misin?",
+  "sorular": [
+   {
+    "id": "m1:10:o1",
+    "kind": "gist",
+    "q_tr": "Tobi ne istiyor?",
+    "opts": [
+     "Seni bu akşam davet ediyor, parayı o ödüyor",
+     "Senden para istiyor",
+     "Bugün işe gelmiyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:10:o2",
+    "kind": "detail",
+    "q_tr": "Saat kaçta gidiyorsunuz?",
+    "opts": [
+     "beşte",
+     "altıda",
+     "yedide"
+    ],
+    "ans": 1,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:10:o3",
+    "kind": "detail",
+    "q_tr": "Herr Wimmer neden gelmiyor?",
+    "opts": [
+     "Hasta",
+     "Ofiste değil",
+     "Vakti yok"
+    ],
+    "ans": 2,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:10:o4",
+    "kind": "detail",
+    "q_tr": "Tobi'yi saat kaçta aramalısın?",
+    "opts": [
+     "beşte",
+     "altıda",
+     "dörtte"
+    ],
+    "ans": 0,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:10:o5",
+    "k": "guided_response",
+    "situation_tr": "Tobi'ye cevap yaz. Bu akşam gelemiyorsun, vaktin yok.",
+    "prompt_de": "Ich lade dich ein!",
+    "accepted": [
+     "Danke, Tobi! Aber ich habe heute leider keine Zeit.",
+     "Danke, aber heute habe ich keine Zeit.",
+     "Leider nicht, ich habe keine Zeit. Danke!",
+     "Danke! Heute geht es leider nicht.",
+     "Danke, Tobi, aber ich habe heute keine Zeit."
+    ],
+    "why_tr": "Vaktin yoksa **keine Zeit** dersin. Önce **Danke** de."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:10:s",
+  "maddeler": [
+   {
+    "id": "m1:10:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Mein Schuh ist kaputt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Mein Schuh ist kaputt.",
+     "mein schuh ist kaputt",
+     "Mein Schuh ist kaputt"
+    ],
+    "why_tr": "**kaputt** bozuk ya da yırtık demek."
+   },
+   {
+    "id": "m1:10:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Was bedeutet das Wort?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Was bedeutet das Wort?",
+     "was bedeutet das wort",
+     "Was bedeutet das Wort"
+    ],
+    "why_tr": "Bir kelimenin anlamını **Was bedeutet** ile sorarsın."
+   },
+   {
+    "id": "m1:10:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Die Küche ist links.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Küche ist links.",
+     "die küche ist links",
+     "Die Küche ist links"
+    ],
+    "why_tr": "**links** solda, **rechts** sağda."
+   },
+   {
+    "id": "m1:10:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ich rufe Frau Huber morgen an.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich rufe Frau Huber morgen an.",
+     "ich rufe frau huber morgen an",
+     "Ich rufe Frau Huber morgen an"
+    ],
+    "why_tr": "**an** cümlenin sonunda duruyor."
+   },
+   {
+    "id": "m1:10:s5",
+    "k": "tr_de",
+    "tr": "Tek kelime anlamıyorum.",
+    "accepted": [
+     "Ich verstehe kein Wort.",
+     "Ich verstehe leider kein Wort.",
+     "Entschuldigung, ich verstehe kein Wort.",
+     "Ich verstehe kein Wort!"
+    ],
+    "why_tr": "Tek kelime anlamıyorum derken **kein Wort** dersin."
+   },
+   {
+    "id": "m1:10:s6",
+    "k": "tr_de",
+    "tr": "Pazartesi boş randevunuz var mı?",
+    "accepted": [
+     "Haben Sie am Montag einen Termin frei?",
+     "Haben Sie am Montag noch einen Termin frei?",
+     "Ist am Montag ein Termin frei?",
+     "Haben Sie Montag einen Termin frei?"
+    ],
+    "why_tr": "Boş randevu **ein Termin frei** diye söylenir."
+   },
+   {
+    "id": "m1:10:s7",
+    "k": "tr_de",
+    "tr": "Affedersiniz, yavaş lütfen!",
+    "accepted": [
+     "Entschuldigung, langsam, bitte!",
+     "Entschuldigung, bitte langsam!",
+     "Entschuldigung, langsam bitte!",
+     "Entschuldigung! Bitte langsam!"
+    ],
+    "why_tr": "Önce **Entschuldigung**, sonra **langsam, bitte** dersin."
+   },
+   {
+    "id": "m1:10:s8",
+    "k": "tr_de",
+    "tr": "Bir pantolon almak istiyorum.",
+    "accepted": [
+     "Ich möchte eine Hose kaufen.",
+     "Ich will eine Hose kaufen.",
+     "Ich möchte gern eine Hose kaufen.",
+     "Ich möchte mir eine Hose kaufen."
+    ],
+    "why_tr": "Pantolon **die Hose**, bu yüzden **eine Hose** dersin."
+   },
+   {
+    "id": "m1:10:s9",
+    "k": "guided_response",
+    "situation_tr": "Tobi seni davet ediyor. Bugün vaktin yok, kibarca hayır de.",
+    "prompt_de": "Kommst du heute mit? Ich lade dich ein!",
+    "accepted": [
+     "Danke, aber ich habe heute keine Zeit.",
+     "Danke, Tobi! Aber heute habe ich leider keine Zeit.",
+     "Leider nicht, ich habe keine Zeit.",
+     "Heute nicht, ich habe keine Zeit. Danke!",
+     "Danke, aber heute geht es leider nicht."
+    ],
+    "why_tr": "Kibarca hayır derken **Danke, aber** ile başlarsın."
+   },
+   {
+    "id": "m1:10:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Ist das eine Hose?",
+    "speed": "normal",
+    "situation_tr": "Ioana bir resim gösteriyor. Resimde bir ayakkabı var. Cevap ver.",
+    "accepted": [
+     "Nein, das ist keine Hose. Das ist ein Schuh.",
+     "Nein, das ist ein Schuh.",
+     "Nein, keine Hose. Ein Schuh.",
+     "Nein, das ist keine Hose, das ist ein Schuh.",
+     "Das ist keine Hose, das ist ein Schuh."
+    ],
+    "why_tr": "Değil derken **keine Hose** dersin, sonra **ein Schuh**."
+   },
+   {
+    "id": "m1:10:s11",
+    "k": "guided_response",
+    "situation_tr": "Muayenehaneyi arıyorsun. Kendini tanıt ve pazartesi boş randevu olup olmadığını sor.",
+    "prompt_de": "Praxis Dr. Weber, guten Tag?",
+    "accepted": [
+     "Guten Tag, hier ist {name}. Haben Sie am Montag einen Termin frei?",
+     "Guten Tag, {name} hier. Ist am Montag ein Termin frei?",
+     "Guten Tag! Hier ist {name}. Haben Sie am Montag noch einen Termin frei?",
+     "Hallo, hier ist {name}. Haben Sie am Montag einen Termin frei?"
+    ],
+    "accepted_adsiz": [
+     "Guten Tag! Haben Sie am Montag einen Termin frei?",
+     "Guten Tag, ist am Montag ein Termin frei?",
+     "Guten Tag! Haben Sie am Montag noch einen Termin frei?"
+    ],
+    "why_tr": "Önce **Hier ist** ve adını söyle. Sonra **einen Termin frei** diye sor."
+   }
+  ],
+  "sesli": [
+   "m1:10:s9",
+   "m1:10:s10"
+  ],
+  "dikte": [
+   "m1:10:s1",
+   "m1:10:s2",
+   "m1:10:s3",
+   "m1:10:s4"
+  ]
+ }
+}

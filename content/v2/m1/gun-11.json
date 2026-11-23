@@ -1,0 +1,1557 @@
+{
+ "schema": 1,
+ "id": "m1:gun:11",
+ "day": 11,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "İki tane istemek: Ich möchte zwei Brötchen",
+ "goal_tr": "Fırında birden çok şeyi kibarca istersin. Birden çok şeyin adını söylersin: zwei Semmeln, zwei Flaschen.",
+ "can_do": {
+  "id": "cd:m1:11",
+  "tr": "Fırında kaç tane istediğimi kibarca söylerim: Ich möchte zehn Semmeln."
+ },
+ "unit": "u:a1:11",
+ "arm": "pazar",
+ "place": "pl:baeckerei",
+ "characters": [
+  "ch:stadler",
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:wimmer",
+  "ch:popescu",
+  "ch:pichler",
+  "ch:brandl"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/halka/h2-dilbilimci-1.md; dil incelemesi kapandı. Okur (OD-9) ve medya paketinden sonra reviewed olur."
+ },
+ "dersler": [
+  "gr:a1-03:t3",
+  "gr:a1-03:t4"
+ ],
+ "yeni_kartlar": [
+  "lx:aufstehen",
+  "lx:frühstücken",
+  "lx:Bus",
+  "lx:fahren",
+  "lx:Flasche",
+  "lx:warm",
+  "lx:sehen",
+  "lx:Gast",
+  "lx:Glückwunsch",
+  "lx:unterschreiben",
+  "lx:reparieren",
+  "lx:fernsehen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:11:h1",
+   "title_tr": "Sabah: kalkmak, kahvaltı, otobüs",
+   "kartlar": [
+    "lx:aufstehen",
+    "lx:frühstücken",
+    "lx:Bus",
+    "lx:fahren"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich stehe … auf. – Wann stehst du … auf?",
+     "tr": "…ta kalkıyorum. – … kaçta kalkıyorsun?"
+    },
+    {
+     "de": "Ich fahre mit dem Bus. – Fährst du …?",
+     "tr": "Otobüsle gidiyorum. – … gidiyor musun?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:aufstehen",
+     "de": "Ich stehe morgen um fünf auf.",
+     "tr": "Yarın beşte kalkıyorum.",
+     "accepted": [
+      "Ich stehe morgen um fünf auf.",
+      "Morgen stehe ich um fünf auf.",
+      "Ich stehe morgen um fünf Uhr auf."
+     ]
+    },
+    {
+     "kart": "lx:aufstehen",
+     "de": "Wann stehst du morgen auf, Tobi?",
+     "tr": "Yarın kaçta kalkıyorsun Tobi?",
+     "accepted": [
+      "Wann stehst du morgen auf, Tobi?",
+      "Tobi, wann stehst du morgen auf?",
+      "Um wie viel Uhr stehst du morgen auf, Tobi?"
+     ]
+    },
+    {
+     "kart": "lx:frühstücken",
+     "de": "Frühstücken wir um halb acht?",
+     "tr": "Yedi buçukta kahvaltı edelim mi?",
+     "accepted": [
+      "Frühstücken wir um halb acht?",
+      "Frühstücken wir heute um halb acht?",
+      "Um halb acht frühstücken wir?"
+     ]
+    },
+    {
+     "kart": "lx:frühstücken",
+     "de": "Heute frühstücken wir nicht, wir haben keine Zeit.",
+     "tr": "Bugün kahvaltı etmiyoruz, vaktimiz yok.",
+     "accepted": [
+      "Heute frühstücken wir nicht, wir haben keine Zeit.",
+      "Wir frühstücken heute nicht, wir haben keine Zeit.",
+      "Heute frühstücken wir nicht. Wir haben keine Zeit."
+     ]
+    },
+    {
+     "kart": "lx:Bus",
+     "de": "Da kommt ein Bus!",
+     "tr": "İşte bir otobüs geliyor!",
+     "accepted": [
+      "Da kommt ein Bus!",
+      "Da kommt der Bus!",
+      "Schau, da kommt ein Bus!"
+     ]
+    },
+    {
+     "kart": "lx:Bus",
+     "de": "Der Bus kommt gleich.",
+     "tr": "Otobüs birazdan geliyor.",
+     "accepted": [
+      "Der Bus kommt gleich.",
+      "Der Bus kommt gleich!",
+      "Gleich kommt der Bus."
+     ]
+    },
+    {
+     "kart": "lx:fahren",
+     "de": "Ich fahre mit dem Bus in die Firma.",
+     "tr": "Firmaya otobüsle gidiyorum.",
+     "accepted": [
+      "Ich fahre mit dem Bus in die Firma.",
+      "Ich fahre mit dem Bus zur Firma.",
+      "In die Firma fahre ich mit dem Bus."
+     ]
+    },
+    {
+     "kart": "lx:fahren",
+     "de": "Fährst du heute mit dem Bus, Tobi?",
+     "tr": "Bugün otobüsle mi gidiyorsun Tobi?",
+     "accepted": [
+      "Fährst du heute mit dem Bus, Tobi?",
+      "Tobi, fährst du heute mit dem Bus?",
+      "Fährst du heute auch mit dem Bus, Tobi?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Sabah, otobüs durağı. Tobi elleri cebinde bekliyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Morgen! Fährst du mit dem Bus?",
+      "tr": "Günaydın! Otobüsle mi gidiyorsun?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja. Der Bus kommt um sieben.",
+      "tr": "Evet. Otobüs yedide geliyor."
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Gut. Ich stehe um fünf auf und frühstücke nicht!",
+      "tr": "Güzel. Ben beşte kalkıyorum ve kahvaltı etmiyorum!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Dann frühstücken wir im Büro!",
+      "tr": "O zaman ofiste kahvaltı ederiz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Otobüs kaçta geliyor?",
+     "opts": [
+      "yedide",
+      "altı buçukta",
+      "sekizde"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:11:h2",
+   "title_tr": "Fırında: iki tane, on tane",
+   "kartlar": [
+    "lx:Flasche",
+    "lx:warm",
+    "lx:sehen",
+    "lx:Gast"
+   ],
+   "kaliplar": [
+    {
+     "de": "eine Semmel – zwei Semmeln – Das sind …",
+     "tr": "bir küçük ekmek – iki küçük ekmek – Bunlar …"
+    },
+    {
+     "de": "Ich sehe … – Siehst du …?",
+     "tr": "… görüyorum. – … görüyor musun?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Flasche",
+     "de": "Was kostet eine Flasche? Und zwei Flaschen?",
+     "tr": "Bir şişe ne kadar? Ya iki şişe?",
+     "accepted": [
+      "Was kostet eine Flasche? Und zwei Flaschen?",
+      "Wie viel kostet eine Flasche? Und zwei Flaschen?",
+      "Was kostet eine Flasche? Und was kosten zwei Flaschen?"
+     ]
+    },
+    {
+     "kart": "lx:Flasche",
+     "de": "Ich möchte zwei Flaschen, bitte.",
+     "tr": "İki şişe istiyorum, lütfen.",
+     "accepted": [
+      "Ich möchte zwei Flaschen, bitte.",
+      "Ich möchte bitte zwei Flaschen.",
+      "Zwei Flaschen, bitte."
+     ]
+    },
+    {
+     "kart": "lx:Flasche",
+     "de": "Das sind drei Flaschen, nicht zwei.",
+     "tr": "Bunlar iki değil, üç şişe.",
+     "accepted": [
+      "Das sind drei Flaschen, nicht zwei.",
+      "Das sind nicht zwei, das sind drei Flaschen.",
+      "Das sind drei Flaschen und nicht zwei."
+     ]
+    },
+    {
+     "kart": "lx:warm",
+     "de": "Sind die Semmeln noch warm?",
+     "tr": "Küçük ekmekler hâlâ sıcak mı?",
+     "accepted": [
+      "Sind die Semmeln noch warm?",
+      "Sind die Semmeln heute noch warm?",
+      "Sind die Semmeln warm?"
+     ]
+    },
+    {
+     "kart": "lx:warm",
+     "de": "Möchten Sie Kuchen? Er ist noch warm.",
+     "tr": "Kek ister misiniz? Hâlâ sıcak.",
+     "accepted": [
+      "Möchten Sie Kuchen? Er ist noch warm.",
+      "Möchten Sie Kuchen? Der Kuchen ist noch warm.",
+      "Möchten Sie Kuchen? Er ist noch ganz warm."
+     ]
+    },
+    {
+     "kart": "lx:sehen",
+     "de": "Ich sehe keine Semmeln mehr.",
+     "tr": "Artık hiç küçük ekmek göremiyorum.",
+     "accepted": [
+      "Ich sehe keine Semmeln mehr.",
+      "Ich sehe hier keine Semmeln mehr.",
+      "Ich sehe leider keine Semmeln mehr."
+     ]
+    },
+    {
+     "kart": "lx:sehen",
+     "de": "Siehst du die Flaschen, Tobi?",
+     "tr": "Şişeleri görüyor musun Tobi?",
+     "accepted": [
+      "Siehst du die Flaschen, Tobi?",
+      "Tobi, siehst du die Flaschen?",
+      "Siehst du die Flaschen da, Tobi?"
+     ]
+    },
+    {
+     "kart": "lx:Gast",
+     "de": "Ich habe heute Abend Gäste. Ich möchte zehn Semmeln.",
+     "tr": "Bu akşam misafirlerim var. On küçük ekmek istiyorum.",
+     "accepted": [
+      "Ich habe heute Abend Gäste. Ich möchte zehn Semmeln.",
+      "Heute Abend habe ich Gäste. Ich möchte zehn Semmeln.",
+      "Ich habe heute Abend Gäste. Zehn Semmeln, bitte."
+     ]
+    },
+    {
+     "kart": "lx:Gast",
+     "de": "Kommen heute Gäste, Derya?",
+     "tr": "Bugün misafir geliyor mu Derya?",
+     "accepted": [
+      "Kommen heute Gäste, Derya?",
+      "Derya, kommen heute Gäste?",
+      "Kommen heute Abend Gäste, Derya?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Stadler fırını, akşamüstü. Bu akşam evinde misafir var.",
+    "satirlar": [
+     {
+      "r": "ch:stadler",
+      "de": "Guten Tag! Wie immer, zwei Semmeln?",
+      "tr": "İyi günler! Her zamanki gibi, iki küçük ekmek mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nein, heute zehn Semmeln. Ich habe Gäste.",
+      "tr": "Hayır, bugün on küçük ekmek. Misafirlerim var."
+     },
+     {
+      "r": "ch:stadler",
+      "de": "Zehn? Gut! Die Semmeln sind noch warm.",
+      "tr": "On mu? Peki! Küçük ekmekler hâlâ sıcak."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Sehr gut! Was macht das?",
+      "tr": "Çok iyi! Ne kadar tutuyor?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Bugün kaç küçük ekmek alıyorsun?",
+     "opts": [
+      "iki",
+      "on",
+      "altı"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:11:h3",
+   "title_tr": "İmza, tamir, televizyon, tebrik",
+   "kartlar": [
+    "lx:Glückwunsch",
+    "lx:unterschreiben",
+    "lx:reparieren",
+    "lx:fernsehen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Herzlichen Glückwunsch! – Herzlichen Glückwunsch zum Geburtstag!",
+     "tr": "Tebrikler! – Doğum günün kutlu olsun!"
+    },
+    {
+     "de": "Möchtest du …? – Möchten Sie …?",
+     "tr": "… ister misin? – … ister misiniz?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Glückwunsch",
+     "de": "Herzlichen Glückwunsch zum Geburtstag!",
+     "tr": "Doğum günün kutlu olsun!",
+     "accepted": [
+      "Herzlichen Glückwunsch zum Geburtstag!",
+      "Alles Gute zum Geburtstag!",
+      "Herzlichen Glückwunsch!"
+     ]
+    },
+    {
+     "kart": "lx:Glückwunsch",
+     "de": "Herzlichen Glückwunsch! Möchten Sie Kuchen?",
+     "tr": "Tebrikler! Kek ister misiniz?",
+     "accepted": [
+      "Herzlichen Glückwunsch! Möchten Sie Kuchen?",
+      "Herzlichen Glückwunsch! Möchten Sie auch Kuchen?",
+      "Glückwunsch! Möchten Sie Kuchen?"
+     ]
+    },
+    {
+     "kart": "lx:unterschreiben",
+     "de": "Wo muss ich unterschreiben?",
+     "tr": "Nereyi imzalamam gerekiyor?",
+     "accepted": [
+      "Wo muss ich unterschreiben?",
+      "Wo muss ich hier unterschreiben?",
+      "Entschuldigung, wo muss ich unterschreiben?"
+     ]
+    },
+    {
+     "kart": "lx:unterschreiben",
+     "de": "Muss ich hier unterschreiben?",
+     "tr": "Burayı mı imzalamam gerekiyor?",
+     "accepted": [
+      "Muss ich hier unterschreiben?",
+      "Muss ich auch hier unterschreiben?",
+      "Hier unterschreiben?"
+     ]
+    },
+    {
+     "kart": "lx:reparieren",
+     "de": "Können Sie das reparieren?",
+     "tr": "Bunu tamir edebilir misiniz?",
+     "accepted": [
+      "Können Sie das reparieren?",
+      "Können Sie das bitte reparieren?",
+      "Können Sie das heute reparieren?"
+     ]
+    },
+    {
+     "kart": "lx:reparieren",
+     "de": "Herr Pichler möchte das heute reparieren.",
+     "tr": "Pichler Bey bunu bugün tamir etmek istiyor.",
+     "accepted": [
+      "Herr Pichler möchte das heute reparieren.",
+      "Heute möchte Herr Pichler das reparieren.",
+      "Herr Pichler möchte das heute noch reparieren."
+     ]
+    },
+    {
+     "kart": "lx:fernsehen",
+     "de": "Möchtest du fernsehen?",
+     "tr": "Televizyon izlemek ister misin?",
+     "accepted": [
+      "Möchtest du fernsehen?",
+      "Möchtest du jetzt fernsehen?",
+      "Willst du fernsehen?"
+     ]
+    },
+    {
+     "kart": "lx:fernsehen",
+     "de": "Ich möchte heute Abend nicht fernsehen.",
+     "tr": "Bu akşam televizyon izlemek istemiyorum.",
+     "accepted": [
+      "Ich möchte heute Abend nicht fernsehen.",
+      "Heute Abend möchte ich nicht fernsehen.",
+      "Ich will heute Abend nicht fernsehen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Firmada öğle arası. Bir iş arkadaşının doğum günü, mutfakta kek var.",
+    "satirlar": [
+     {
+      "r": "ch:wimmer",
+      "de": "Bitte unterschreiben Sie hier.",
+      "tr": "Lütfen burayı imzalayın."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Hier? Gut.",
+      "tr": "Burayı mı? Tamam."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Heute hat eine Kollegin Geburtstag. Möchtest du Kuchen?",
+      "tr": "Bugün bir iş arkadaşımızın doğum günü. Kek ister misin?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, gern! Danke, Derya!",
+      "tr": "Evet, seve seve! Sağ ol Derya!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Mutfakta neden kek var?",
+     "opts": [
+      "Noel kutlanıyor",
+      "Herr Wimmer kek getirmiş",
+      "Bir iş arkadaşının doğum günü"
+     ],
+     "ans": 2
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:11:v1",
+  "title_tr": "Otobüs gecikiyor: Tobi'nin kahvaltısı",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Otobüs durağı, sabah altı buçuk. Hava karanlık ve soğuk. Tobi uykulu.",
+    "de": "Morgen! Ich stehe um fünf auf und der Bus kommt nicht!",
+    "tr": "Günaydın! Beşte kalkıyorum, otobüs de gelmiyor!"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi yolun sonuna bakıyor.",
+    "de": "Siehst du da einen Bus?",
+    "tr": "Orada bir otobüs görüyor musun?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi telefonuna bakıp iç çekiyor.",
+    "de": "Ach, der Bus kommt erst um Viertel vor sieben.",
+    "tr": "Of, otobüs ancak yediye çeyrek kala geliyor."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi karnını tutuyor.",
+    "de": "Heute frühstücke ich nicht. Keine Zeit!",
+    "tr": "Bugün kahvaltı etmiyorum. Vakit yok!"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi köşedeki fırını gösteriyor.",
+    "de": "Da ist die Bäckerei Stadler. Komm!",
+    "tr": "İşte Stadler fırını. Gel!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Fırının içi sıcak. Frau Stadler gülümsüyor.",
+    "de": "Guten Morgen! Was möchten Sie?",
+    "tr": "Günaydın! Ne istersiniz?"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi tezgâha eğiliyor.",
+    "de": "Zwei Semmeln, bitte. Sind die Semmeln warm?",
+    "tr": "İki küçük ekmek, lütfen. Küçük ekmekler sıcak mı?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler sepetten küçük ekmekleri alıyor.",
+    "de": "Ja, die Semmeln sind noch warm.",
+    "tr": "Evet, küçük ekmekler hâlâ sıcak."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi sana göz kırpıyor.",
+    "de": "Und noch zwei Semmeln. Für dich!",
+    "tr": "Bir de iki küçük ekmek daha. Senin için!"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler kese kâğıdını uzatıyor.",
+    "de": "Das sind vier Semmeln. Das macht zwei Euro vierzig.",
+    "tr": "Dört küçük ekmek oldu. İki avro kırk tutuyor."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi pencereden dışarı bakıp kapıya koşuyor.",
+    "de": "Oh! Da kommt der Bus! Schnell!",
+    "tr": "Aa! Otobüs geliyor! Çabuk!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu sahnede ne oluyor?",
+     "opts": [
+      "Otobüs gecikiyor, Tobi fırından kahvaltılık alıyor",
+      "Tobi otobüsü kaçırıyor",
+      "Fırın kapalı, Tobi aç kalıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s3",
+      "s7"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Otobüs kaçta geliyor?",
+      "opts": [
+       "yedide",
+       "yediye çeyrek kala",
+       "yedi buçukta"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s3"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi toplam kaç küçük ekmek alıyor?",
+      "opts": [
+       "iki",
+       "altı",
+       "dört"
+      ],
+      "ans": 2,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Ne kadar ödüyor?",
+      "opts": [
+       "iki avro kırk",
+       "dört avro",
+       "bir avro yirmi"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s8",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "heiß",
+       "warm",
+       "kalt"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s3",
+      "seviye": "orta",
+      "de": "Ach, der Bus kommt erst um Viertel vor ___.",
+      "accepted": [
+       "sieben",
+       "Sieben",
+       "sieben."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s10",
+      "seviye": "zor",
+      "banka": [
+       "Das",
+       "sind",
+       "vier",
+       "Semmeln",
+       "ist",
+       "Semmel"
+      ],
+      "accepted": [
+       "Das sind vier Semmeln.",
+       "das sind vier semmeln",
+       "Das sind vier Semmeln"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s2",
+      "seviye": "usta",
+      "accepted": [
+       "Siehst du da einen Bus?",
+       "siehst du da einen bus",
+       "Siehst du da einen Bus"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Der Bus kommt erst um Viertel vor sieben. Tobi kauft vier Semmeln.",
+      "zorunlu": [
+       "Bus",
+       "Semmeln"
+      ]
+     }
+    ],
+    "golge": [
+     "s8",
+     "s10"
+    ],
+    "cevapla": {
+     "id": "m1:11:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Frau Stadler sana da soruyor. Sen de iki küçük ekmek istiyorsun.",
+     "prompt_de": "Und Sie? Was möchten Sie?",
+     "accepted": [
+      "Ich möchte zwei Semmeln, bitte.",
+      "Zwei Semmeln, bitte.",
+      "Ich möchte bitte zwei Semmeln.",
+      "Für mich zwei Semmeln, bitte.",
+      "Ich möchte auch zwei Semmeln."
+     ],
+     "why_tr": "Kibarca isterken **Ich möchte** dersin. Birden çok için **Semmeln**."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:11:a1",
+   "tur": "anons",
+   "title_tr": "Otobüs durağında anons",
+   "ortam_tr": "Sabah otobüs durağındasın. Her gün 5 numaralı otobüse biniyorsun. Hoparlörden bir anons geliyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Der Bus Nummer fünf fährt heute nicht.",
+     "tr": "5 numaralı otobüs bugün çalışmıyor."
+    },
+    {
+     "id": "c2",
+     "de": "Bitte fahren Sie mit Bus Nummer sieben.",
+     "tr": "Lütfen 7 numaralı otobüse binin."
+    },
+    {
+     "id": "c3",
+     "de": "Der Bus Nummer sieben fährt um sieben Uhr zwanzig.",
+     "tr": "7 numaralı otobüs yediyi yirmi geçe kalkıyor."
+    },
+    {
+     "id": "c4",
+     "de": "Der Bus Nummer drei kommt heute erst um acht.",
+     "tr": "3 numaralı otobüs bugün ancak sekizde geliyor."
+    },
+    {
+     "id": "c5",
+     "de": "Danke!",
+     "tr": "Teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Anons ne diyor?",
+      "opts": [
+       "Bütün otobüsler bugün erken geliyor",
+       "Otobüs bileti pahalandı",
+       "5 numaralı otobüs bugün çalışmıyor, 7'ye bin"
+      ],
+      "ans": 2,
+      "kanit": [
+       "c1",
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "7 numaralı otobüs kaçta kalkıyor?",
+       "opts": [
+        "yediyi yirmi geçe",
+        "yedide",
+        "sekizde"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "3 numaralı otobüs bugün kaçta geliyor?",
+       "opts": [
+        "yedide",
+        "sekizde",
+        "on ikide"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "zwölf",
+        "zehn",
+        "zwanzig"
+       ],
+       "ans": 2
+      },
+      {
+       "id": "d2",
+       "cumle": "c1",
+       "seviye": "orta",
+       "de": "Der Bus Nummer fünf fährt heute ___.",
+       "accepted": [
+        "nicht",
+        "Nicht",
+        "nicht."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Der",
+        "Bus",
+        "Nummer",
+        "drei",
+        "kommt",
+        "heute",
+        "erst",
+        "um",
+        "acht",
+        "noch",
+        "neun"
+       ],
+       "accepted": [
+        "Der Bus Nummer drei kommt heute erst um acht.",
+        "der bus nummer drei kommt heute erst um acht",
+        "Der Bus Nummer drei kommt heute erst um acht"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Bitte fahren Sie mit Bus Nummer sieben.",
+        "bitte fahren sie mit bus nummer sieben",
+        "Bitte fahren Sie mit Bus Nummer sieben"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Anonsta ne dendiğini Almanca iki kısa cümleyle söyle.",
+       "ornek_de": "Der Bus Nummer fünf fährt heute nicht. Ich fahre mit Bus Nummer sieben.",
+       "zorunlu": [
+        "fünf",
+        "sieben"
+       ]
+      }
+     ],
+     "golge": [
+      "c1",
+      "c2"
+     ],
+     "cevapla": {
+      "id": "m1:11:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi seni arıyor, anonsu duymamış. Ona söyle.",
+      "prompt_de": "Fährt der Bus Nummer fünf heute?",
+      "accepted": [
+       "Nein, heute nicht. Wir fahren mit Bus Nummer sieben.",
+       "Nein, der Bus Nummer fünf fährt heute nicht.",
+       "Nein. Bus Nummer sieben, um sieben Uhr zwanzig.",
+       "Nein, heute nicht. Der Bus Nummer sieben fährt um sieben Uhr zwanzig.",
+       "Nein, wir fahren heute mit Bus Nummer sieben."
+      ],
+      "why_tr": "Önce **Nein, heute nicht** de. Sonra hangi otobüse bineceğinizi söyle."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:11:a1:e1",
+    "k": "pick",
+    "q_tr": "Her gün 5 numaralı otobüse biniyorsun. Ne yapmalısın?",
+    "opts": [
+     "Yediyi yirmi geçe 7 numaralı otobüse bin.",
+     "5 numaralı otobüsü bekle.",
+     "Saat sekizde 3 numaralı otobüse bin."
+    ],
+    "ans": 0,
+    "why_tr": "5 numaralı otobüs bugün yok. Anons 7 numaralı otobüse binmeni söylüyor.",
+    "kanit": [
+     "c1",
+     "c2",
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:11:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Tobi'den sesli mesaj",
+   "ortam_tr": "Akşam telefonuna bakıyorsun. Tobi hızlı bir mesaj bırakmış.",
+   "speaker": "ch:lechner",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Servus, hier ist Tobi!",
+     "tr": "Selam, ben Tobi!"
+    },
+    {
+     "id": "c2",
+     "de": "Morgen fahre ich nicht mit dem Bus.",
+     "tr": "Yarın otobüsle gitmiyorum."
+    },
+    {
+     "id": "c3",
+     "de": "Ich fahre mit Derya, um halb sieben.",
+     "tr": "Derya'yla gidiyorum, altı buçukta."
+    },
+    {
+     "id": "c4",
+     "de": "Kommst du morgen mit?",
+     "tr": "Yarın sen de geliyor musun?"
+    },
+    {
+     "id": "c5",
+     "de": "Ruf mich bitte heute Abend an!",
+     "tr": "Lütfen bu akşam beni ara!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Tobi ne diyor?",
+      "opts": [
+       "Yarın işe gelmiyor",
+       "Yarın Derya'yla gidiyor, seni de çağırıyor",
+       "Otobüsü kaçırdı"
+      ],
+      "ans": 1,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Yarın saat kaçta gidiyorlar?",
+       "opts": [
+        "altıda",
+        "yedide",
+        "altı buçukta"
+       ],
+       "ans": 2,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Tobi senden ne istiyor?",
+       "opts": [
+        "Bu akşam onu araman",
+        "Ona kek getirmen",
+        "Yarın erken kalkman"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Viertel",
+        "halb",
+        "acht"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Morgen fahre ich nicht mit dem ___.",
+       "accepted": [
+        "Bus",
+        "bus",
+        "Bus."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Morgen",
+        "fahre",
+        "ich",
+        "nicht",
+        "mit",
+        "dem",
+        "Bus",
+        "heute",
+        "kein"
+       ],
+       "accepted": [
+        "Morgen fahre ich nicht mit dem Bus.",
+        "morgen fahre ich nicht mit dem bus",
+        "Morgen fahre ich nicht mit dem Bus"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Kommst du morgen mit?",
+        "kommst du morgen mit",
+        "Kommst du morgen mit"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Morgen fährt Tobi nicht mit dem Bus. Ich rufe Tobi heute Abend an.",
+       "zorunlu": [
+        "Bus",
+        "Tobi"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:11:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi'yi arıyorsun. Yarın onlarla gelmek istiyorsun.",
+      "prompt_de": "Und? Kommst du morgen mit?",
+      "accepted": [
+       "Ja, gern! Bis um halb sieben!",
+       "Ja, gern! Ich komme mit.",
+       "Ja, klar! Dann bis morgen um halb sieben.",
+       "Ja, gern, danke! Bis morgen!",
+       "Ja! Um halb sieben, gut."
+      ],
+      "why_tr": "Kabul ederken **Ja, gern** dersin, sonra saati tekrar edersin."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:11:a2:e1",
+    "k": "pick",
+    "q_tr": "Yarın Tobi ve Derya'yla gitmek istiyorsun. Ne yapmalısın?",
+    "opts": [
+     "Yarın sabah otobüsü bekle.",
+     "Derya'yı yarın sabah yedide ara.",
+     "Bu akşam Tobi'yi ara, yarın altı buçukta hazır ol."
+    ],
+    "ans": 2,
+    "why_tr": "Tobi bu akşam aranmak istiyor. Derya altı buçukta yola çıkıyor.",
+    "kanit": [
+     "c3",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:11:g1",
+   "de": "zwei Flaschen",
+   "dogru_img": "two glass bottles on a table",
+   "celdirici_img": [
+    "one glass bottle on a table",
+    "three glass bottles on a table",
+    "two drinking glasses on a table"
+   ]
+  },
+  {
+   "id": "m1:11:g2",
+   "de": "der Bus",
+   "dogru_img": "a city bus at a bus stop",
+   "celdirici_img": [
+    "a train at a platform",
+    "a small car on a street",
+    "a bicycle at a fence"
+   ]
+  },
+  {
+   "id": "m1:11:g3",
+   "de": "fernsehen",
+   "dogru_img": "a person on a sofa watching television",
+   "celdirici_img": [
+    "a person reading a book",
+    "a person cooking in a kitchen",
+    "a person sleeping in bed"
+   ]
+  },
+  {
+   "id": "m1:11:g4",
+   "de": "aufstehen",
+   "dogru_img": "a person getting out of bed in the morning",
+   "celdirici_img": [
+    "a person going to bed at night",
+    "a person sitting at a desk",
+    "a person running in a park"
+   ]
+  },
+  {
+   "id": "m1:11:g5",
+   "de": "frühstücken",
+   "dogru_img": "two people eating breakfast with bread rolls and coffee",
+   "celdirici_img": [
+    "people eating dinner with candles",
+    "people in an office meeting",
+    "people waiting in a bakery queue"
+   ]
+  },
+  {
+   "id": "m1:11:g6",
+   "de": "unterschreiben",
+   "dogru_img": "a hand signing a paper form with a pen",
+   "celdirici_img": [
+    "a hand writing a shopping list",
+    "hands typing on a keyboard",
+    "a hand paying with a bank card"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:11:p1",
+  "title_tr": "Misafir için fırın alışverişi",
+  "durum_tr": "Bu akşam evinde misafir var. Stadler fırınındasın, on küçük ekmek istiyorsun.",
+  "karsi": "ch:stadler",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Grüß Gott! Was möchten Sie?",
+    "tr": "İyi günler! Ne istersiniz?",
+    "secenekler": [
+     {
+      "de": "Ich möchte zehn Semmeln, bitte. Ich habe heute Gäste.",
+      "tr": "On küçük ekmek istiyorum, lütfen. Bugün misafirlerim var.",
+      "accepted": [
+       "Ich möchte zehn Semmeln, bitte. Ich habe heute Gäste.",
+       "Ich möchte zehn Semmeln, bitte.",
+       "Zehn Semmeln, bitte. Ich habe Gäste.",
+       "Ich möchte bitte zehn Semmeln."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **Ich möchte** kibar, **Semmeln** doğru çokluk."
+     },
+     {
+      "de": "Zehn Semmeln, bitte.",
+      "tr": "On küçük ekmek, lütfen.",
+      "accepted": [
+       "Zehn Semmeln, bitte.",
+       "Bitte zehn Semmeln.",
+       "Zehn Semmeln, bitte schön."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Kısa ve kibar."
+     },
+     {
+      "de": "Ich will zehn Semmeln!",
+      "tr": "On küçük ekmek istiyorum!",
+      "accepted": [
+       "Ich will zehn Semmeln!",
+       "Ich will zehn Semmeln."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Fırında **Ich will** kaba duyulur. **Ich möchte** de."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Zehn? Leider nur noch acht Semmeln. Möchten Sie auch ein Brot?",
+    "tr": "On mu? Maalesef yalnızca sekiz küçük ekmek kaldı. Bir ekmek de ister misiniz?",
+    "secenekler": [
+     {
+      "de": "Gut, dann acht Semmeln und ein Brot.",
+      "tr": "Peki, o zaman sekiz küçük ekmek ve bir ekmek.",
+      "accepted": [
+       "Gut, dann acht Semmeln und ein Brot.",
+       "Dann acht Semmeln und ein Brot, bitte.",
+       "Ja, acht Semmeln und ein Brot, bitte.",
+       "Gut, ich möchte acht Semmeln und ein Brot."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Eksik kalanı ekmekle tamamladın."
+     },
+     {
+      "de": "Nur acht? Gut, dann nur acht Semmeln.",
+      "tr": "Yalnızca sekiz mi? Peki, o zaman yalnızca sekiz küçük ekmek.",
+      "accepted": [
+       "Nur acht? Gut, dann nur acht Semmeln.",
+       "Dann acht Semmeln, bitte.",
+       "Gut, acht Semmeln.",
+       "Nein, danke. Nur acht Semmeln."
+      ],
+      "sonraki": "n3b",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. **nur** ile yalnızca sekiz istedin."
+     },
+     {
+      "de": "Ich möchte zehn!",
+      "tr": "On istiyorum!",
+      "accepted": [
+       "Ich möchte zehn!",
+       "Ich möchte zehn Semmeln!"
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Yalnızca sekiz tane kalmış. Sekizi al ya da başka bir şey iste."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Acht Semmeln und ein Brot: acht Euro siebzig. Bar oder mit Karte?",
+    "tr": "Sekiz küçük ekmek ve bir ekmek: sekiz avro yetmiş. Nakit mi, kartla mı?",
+    "secenekler": [
+     {
+      "de": "Bar, bitte. Hier sind zehn Euro.",
+      "tr": "Nakit, lütfen. Buyurun, on avro.",
+      "accepted": [
+       "Bar, bitte. Hier sind zehn Euro.",
+       "Bar, bitte.",
+       "Hier sind zehn Euro.",
+       "Ich zahle bar."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Bir avro otuz sent para üstü alırsın."
+     },
+     {
+      "de": "Mit Karte, bitte.",
+      "tr": "Kartla, lütfen.",
+      "accepted": [
+       "Mit Karte, bitte.",
+       "Mit Karte.",
+       "Karte, bitte."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Tamam."
+     }
+    ]
+   },
+   {
+    "id": "n3b",
+    "de": "Acht Semmeln: vier Euro achtzig. Bar oder mit Karte?",
+    "tr": "Sekiz küçük ekmek: dört avro seksen. Nakit mi, kartla mı?",
+    "secenekler": [
+     {
+      "de": "Bar, bitte. Hier sind fünf Euro.",
+      "tr": "Nakit, lütfen. Buyurun, beş avro.",
+      "accepted": [
+       "Bar, bitte. Hier sind fünf Euro.",
+       "Bar, bitte.",
+       "Hier sind fünf Euro.",
+       "Ich zahle bar."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Yirmi sent para üstü alırsın."
+     },
+     {
+      "de": "Mit Karte, bitte.",
+      "tr": "Kartla, lütfen.",
+      "accepted": [
+       "Mit Karte, bitte.",
+       "Mit Karte.",
+       "Karte, bitte."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Tamam."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Danke schön! Schönen Abend!",
+    "tr": "Çok teşekkürler! İyi akşamlar!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Kaç tane istediğini kibarca söyledin, sekiz küçük ekmek aldın ve ödedin."
+ },
+ "okuma_yazma": {
+  "tur": "yazma",
+  "title_tr": "Tobi fırında: ne istiyorsun?",
+  "metin_de": "Hallo {name}, ich bin jetzt in der Bäckerei. Was möchtest du? Brot oder Semmeln? Wie viele?",
+  "metin_de_adsiz": "Hallo, ich bin jetzt in der Bäckerei. Was möchtest du? Brot oder Semmeln? Wie viele?",
+  "metin_tr": "Merhaba {name}, şu an fırındayım. Ne istersin? Ekmek mi, küçük ekmek mi? Kaç tane?",
+  "metin_tr_adsiz": "Merhaba, şu an fırındayım. Ne istersin? Ekmek mi, küçük ekmek mi? Kaç tane?",
+  "sorular": [
+   {
+    "id": "m1:11:o1",
+    "kind": "detail",
+    "q_tr": "Tobi şu an nerede?",
+    "opts": [
+     "fırında",
+     "otobüste",
+     "evde"
+    ],
+    "ans": 0,
+    "kanit": [
+     0
+    ]
+   },
+   {
+    "id": "m1:11:o2",
+    "kind": "detail",
+    "q_tr": "Tobi ne soruyor?",
+    "opts": [
+     "Saat kaçta kalktığını",
+     "Ne istediğini ve kaç tane",
+     "Nerede oturduğunu"
+    ],
+    "ans": 1,
+    "kanit": [
+     1,
+     3
+    ]
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Bu akşam misafirlerin var. Tobi'ye Almanca kısa bir cevap yaz. Ne istediğini ve kaç tane istediğini söyle. Sayıları kelimeyle yaz.",
+   "ornek_de": "Hallo Tobi! Ich möchte zehn Semmeln und zwei Brote. Ich habe heute Abend Gäste. Danke!",
+   "zorunlu": [
+    "möchte",
+    "Semmeln"
+   ],
+   "accepted_kaliplar": [
+    "Hallo ___!",
+    "Hallo ___, hier ist ___.",
+    "Ich möchte ___ Semmeln.",
+    "Ich möchte ___ Semmeln und ___ Brote.",
+    "Ich möchte ___ Semmeln und ein Brot.",
+    "Ich möchte ein Brot.",
+    "Ich möchte ___ Brote.",
+    "Ich habe heute Abend Gäste.",
+    "Ich habe heute Gäste.",
+    "Danke!",
+    "Danke, Tobi!",
+    "Bis heute Abend!"
+   ],
+   "kontrol_tr": [
+    "İsteğini **Ich möchte** ile yazdın mı?",
+    "Birden çok şey için çokluk biçimini yazdın mı: **Semmeln**, **Brote**?",
+    "Sayıları kelimeyle yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:11:s",
+  "maddeler": [
+   {
+    "id": "m1:11:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Das sind vier Semmeln.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das sind vier Semmeln.",
+     "das sind vier semmeln",
+     "Das sind vier Semmeln"
+    ],
+    "why_tr": "Birden çok şey için **Das sind** dersin."
+   },
+   {
+    "id": "m1:11:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Der Bus kommt um sieben.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Bus kommt um sieben.",
+     "der bus kommt um sieben",
+     "Der Bus kommt um sieben"
+    ],
+    "why_tr": "**der Bus**: otobüs için **der** dersin."
+   },
+   {
+    "id": "m1:11:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Ich möchte zwei Flaschen, bitte.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich möchte zwei Flaschen, bitte.",
+     "ich möchte zwei flaschen bitte",
+     "Ich möchte zwei Flaschen bitte"
+    ],
+    "why_tr": "**die Flasche**, çoklukta **die Flaschen**."
+   },
+   {
+    "id": "m1:11:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Wo muss ich unterschreiben?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wo muss ich unterschreiben?",
+     "wo muss ich unterschreiben",
+     "Wo muss ich unterschreiben"
+    ],
+    "why_tr": "**unterschreiben** cümlenin sonunda duruyor."
+   },
+   {
+    "id": "m1:11:s5",
+    "k": "tr_de",
+    "tr": "İki küçük ekmek istiyorum, lütfen.",
+    "accepted": [
+     "Ich möchte zwei Semmeln, bitte.",
+     "Ich möchte bitte zwei Semmeln.",
+     "Zwei Semmeln, bitte.",
+     "Ich möchte gern zwei Semmeln."
+    ],
+    "why_tr": "Kibarca **Ich möchte** dersin. **die Semmel**, çoklukta **Semmeln**."
+   },
+   {
+    "id": "m1:11:s6",
+    "k": "tr_de",
+    "tr": "Küçük ekmekler hâlâ sıcak mı?",
+    "accepted": [
+     "Sind die Semmeln noch warm?",
+     "Sind die Semmeln warm?",
+     "Sind die Semmeln noch heiß?",
+     "Sind die Semmeln heute noch warm?"
+    ],
+    "why_tr": "Birden çok şey için **sind** dersin: **Sind die Semmeln**."
+   },
+   {
+    "id": "m1:11:s7",
+    "k": "tr_de",
+    "tr": "Bu akşam televizyon izlemek istemiyorum.",
+    "accepted": [
+     "Ich möchte heute Abend nicht fernsehen.",
+     "Heute Abend möchte ich nicht fernsehen.",
+     "Ich will heute Abend nicht fernsehen.",
+     "Ich möchte heute Abend nicht fernsehen, danke."
+    ],
+    "why_tr": "**möchte** ikinci yerde, **fernsehen** en sonda."
+   },
+   {
+    "id": "m1:11:s8",
+    "k": "tr_de",
+    "tr": "Bunu tamir edebilir misiniz?",
+    "accepted": [
+     "Können Sie das reparieren?",
+     "Können Sie das bitte reparieren?",
+     "Können Sie das heute reparieren?",
+     "Kann man das reparieren?"
+    ],
+    "why_tr": "**Können Sie** ile kibarca sorarsın, **reparieren** sona gider."
+   },
+   {
+    "id": "m1:11:s9",
+    "k": "guided_response",
+    "situation_tr": "Frau Stadler her zamanki siparişini soruyor. Bu akşam misafirin var, on küçük ekmek istiyorsun.",
+    "prompt_de": "Wie immer? Zwei Semmeln?",
+    "accepted": [
+     "Nein, heute zehn Semmeln, bitte. Ich habe Gäste.",
+     "Nein, heute möchte ich zehn Semmeln.",
+     "Heute zehn Semmeln, bitte.",
+     "Nein, zehn Semmeln, bitte. Ich habe heute Gäste.",
+     "Nein, ich möchte zehn Semmeln, bitte."
+    ],
+    "why_tr": "**zehn Semmeln** de, nedenini **Ich habe Gäste** ile söyle."
+   },
+   {
+    "id": "m1:11:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Möchtest du fernsehen?",
+    "speed": "normal",
+    "situation_tr": "Ioana soruyor. İstemiyorsun, ders çalışmak istiyorsun. Cevap ver.",
+    "accepted": [
+     "Nein, danke. Ich möchte lernen.",
+     "Nein, ich möchte lernen.",
+     "Nein, danke, ich möchte jetzt lernen.",
+     "Nein, heute nicht. Ich möchte lernen.",
+     "Nein, danke. Ich muss lernen."
+    ],
+    "why_tr": "Kibarca **Nein, danke** de, sonra **Ich möchte lernen**."
+   },
+   {
+    "id": "m1:11:s11",
+    "k": "guided_response",
+    "situation_tr": "Fırındasın. Misafirlerin var. Kibarca on küçük ekmek ve iki ekmek iste.",
+    "prompt_de": "Guten Morgen! Was möchten Sie?",
+    "accepted": [
+     "Ich möchte zehn Semmeln und zwei Brote, bitte.",
+     "Zehn Semmeln und zwei Brote, bitte.",
+     "Guten Morgen! Ich möchte zehn Semmeln und zwei Brote.",
+     "Ich möchte bitte zehn Semmeln und zwei Brote.",
+     "Guten Morgen! Zehn Semmeln und zwei Brote, bitte. Ich habe Gäste."
+    ],
+    "why_tr": "**Ich möchte** ile iste. **Brot**, çoklukta **Brote**."
+   }
+  ],
+  "sesli": [
+   "m1:11:s9",
+   "m1:11:s10"
+  ],
+  "dikte": [
+   "m1:11:s1",
+   "m1:11:s2",
+   "m1:11:s3",
+   "m1:11:s4"
+  ]
+ }
+}

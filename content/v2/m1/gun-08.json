@@ -1,0 +1,1644 @@
+{
+ "schema": 1,
+ "id": "m1:gun:08",
+ "day": 8,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Sık duyulan küçük sözcükler: noch, schon, nur",
+ "goal_tr": "Fırında fiyat sorarsın. Birazdan, yalnızca, ancak, artık yok gibi kısa cevapları anlar ve söylersin.",
+ "can_do": {
+  "id": "cd:m1:08",
+  "tr": "Fırında fiyat sorar, birazdan, yalnızca ve artık yok gibi kısa cevapları anlar ve söylerim."
+ },
+ "unit": "u:a1:08",
+ "arm": "pazar",
+ "place": "pl:baeckerei",
+ "characters": [
+  "ch:stadler",
+  "ch:popescu",
+  "ch:wimmer",
+  "ch:lechner",
+  "ch:huber",
+  "ch:brandl",
+  "ch:pichler"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/halka/h2-dilbilimci-1.md; dil incelemesi kapandı. Okur (OD-9) ve medya paketinden sonra reviewed olur."
+ },
+ "dersler": [
+  "gr:a1-03:t5",
+  "dn:kucuk-sozcukler"
+ ],
+ "yeni_kartlar": [
+  "lx:jetzt",
+  "lx:Zeit",
+  "lx:kurz",
+  "lx:gleich",
+  "lx:lange",
+  "lx:immer",
+  "lx:erst",
+  "lx:viel",
+  "lx:mehr",
+  "lx:gut",
+  "lx:klar",
+  "lx:echt",
+  "lx:ganz"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:08:h1",
+   "title_tr": "Şimdi mi, birazdan mı? Bir dakikanız var mı?",
+   "kartlar": [
+    "lx:jetzt",
+    "lx:Zeit",
+    "lx:kurz",
+    "lx:gleich",
+    "lx:lange"
+   ],
+   "kaliplar": [
+    {
+     "de": "Haben Sie kurz Zeit? – Ich komme gleich.",
+     "tr": "Bir dakikanız var mı? – Birazdan geliyorum."
+    },
+    {
+     "de": "Wie lange …? – Nicht lange.",
+     "tr": "Ne kadar süre …? – Uzun değil."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:jetzt",
+     "de": "Jetzt? Nein, jetzt geht es leider nicht.",
+     "tr": "Şimdi mi? Hayır, şimdi maalesef olmuyor.",
+     "accepted": [
+      "Jetzt? Nein, jetzt geht es leider nicht.",
+      "Jetzt? Nein, leider geht es jetzt nicht.",
+      "Jetzt? Nein, leider nicht jetzt."
+     ]
+    },
+    {
+     "kart": "lx:jetzt",
+     "de": "Ich bin jetzt im Büro, Tobi.",
+     "tr": "Şu an ofisteyim Tobi.",
+     "accepted": [
+      "Ich bin jetzt im Büro, Tobi.",
+      "Tobi, ich bin jetzt im Büro.",
+      "Jetzt bin ich im Büro, Tobi."
+     ]
+    },
+    {
+     "kart": "lx:jetzt",
+     "de": "Ich muss jetzt arbeiten, Tobi.",
+     "tr": "Şimdi çalışmam gerekiyor Tobi.",
+     "accepted": [
+      "Ich muss jetzt arbeiten, Tobi.",
+      "Tobi, ich muss jetzt arbeiten.",
+      "Jetzt muss ich arbeiten, Tobi."
+     ]
+    },
+    {
+     "kart": "lx:Zeit",
+     "de": "Ich habe jetzt keine Zeit, Tobi.",
+     "tr": "Şu an vaktim yok Tobi.",
+     "accepted": [
+      "Ich habe jetzt keine Zeit, Tobi.",
+      "Tobi, ich habe jetzt keine Zeit.",
+      "Jetzt habe ich keine Zeit, Tobi."
+     ]
+    },
+    {
+     "kart": "lx:Zeit",
+     "de": "Wann haben Sie Zeit, Herr Wimmer?",
+     "tr": "Ne zaman vaktiniz var Wimmer Bey?",
+     "accepted": [
+      "Wann haben Sie Zeit, Herr Wimmer?",
+      "Herr Wimmer, wann haben Sie Zeit?",
+      "Wann haben Sie heute Zeit, Herr Wimmer?"
+     ]
+    },
+    {
+     "kart": "lx:kurz",
+     "de": "Haben Sie kurz Zeit, Herr Wimmer?",
+     "tr": "Bir dakikanız var mı Wimmer Bey?",
+     "accepted": [
+      "Haben Sie kurz Zeit, Herr Wimmer?",
+      "Herr Wimmer, haben Sie kurz Zeit?",
+      "Haben Sie eine Minute Zeit, Herr Wimmer?"
+     ]
+    },
+    {
+     "kart": "lx:kurz",
+     "de": "Können Sie kurz warten, Frau Huber?",
+     "tr": "Kısa bir süre bekleyebilir misiniz Huber Hanım?",
+     "accepted": [
+      "Können Sie kurz warten, Frau Huber?",
+      "Frau Huber, können Sie kurz warten?",
+      "Können Sie bitte kurz warten, Frau Huber?"
+     ]
+    },
+    {
+     "kart": "lx:gleich",
+     "de": "Ich komme gleich, Herr Wimmer!",
+     "tr": "Birazdan geliyorum Wimmer Bey!",
+     "accepted": [
+      "Ich komme gleich, Herr Wimmer!",
+      "Herr Wimmer, ich komme gleich!",
+      "Ich bin gleich da, Herr Wimmer!"
+     ]
+    },
+    {
+     "kart": "lx:gleich",
+     "de": "Dann bis gleich, Tobi!",
+     "tr": "O zaman birazdan görüşürüz Tobi!",
+     "accepted": [
+      "Dann bis gleich, Tobi!",
+      "Tobi, dann bis gleich!",
+      "Also dann bis gleich, Tobi!"
+     ]
+    },
+    {
+     "kart": "lx:lange",
+     "de": "Wie lange warten Sie schon?",
+     "tr": "Ne kadar süredir bekliyorsunuz?",
+     "accepted": [
+      "Wie lange warten Sie schon?",
+      "Warten Sie schon lange?",
+      "Wie lange warten Sie schon hier?"
+     ]
+    },
+    {
+     "kart": "lx:lange",
+     "de": "Nicht lange, nur zehn Minuten.",
+     "tr": "Uzun değil, yalnızca on dakika.",
+     "accepted": [
+      "Nicht lange, nur zehn Minuten.",
+      "Nur zehn Minuten, nicht lange.",
+      "Nicht lange, zehn Minuten."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Sabah, Stadler fırını. Tezgâhta ekmek kalmamış.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Guten Tag, Frau Stadler! Ein Brot, bitte.",
+      "tr": "İyi günler Stadler Hanım! Bir ekmek, lütfen."
+     },
+     {
+      "r": "ch:stadler",
+      "de": "Das Brot kommt gleich, um acht. Jetzt ist es Viertel vor acht. Können Sie warten?",
+      "tr": "Ekmek birazdan geliyor, saat sekizde. Şu an sekize çeyrek var. Bekleyebilir misiniz?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, ich habe heute Zeit.",
+      "tr": "Evet, bugün vaktim var."
+     },
+     {
+      "r": "ch:stadler",
+      "de": "Danke! Dann bis gleich.",
+      "tr": "Teşekkürler! O zaman birazdan görüşürüz."
+     }
+    ],
+    "soru": {
+     "q_tr": "Ekmek için ne kadar bekliyorsun?",
+     "opts": [
+      "On beş dakika",
+      "Bir saat",
+      "Hiç beklemiyorsun, ekmek hazır",
+      "Kırk beş dakika"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:08:h2",
+   "title_tr": "Her zamanki gibi mi? Küçük ekmek kalmadı",
+   "kartlar": [
+    "lx:immer",
+    "lx:erst",
+    "lx:viel",
+    "lx:mehr"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wie immer? – Ja, wie immer.",
+     "tr": "Her zamanki gibi mi? – Evet, her zamanki gibi."
+    },
+    {
+     "de": "… nicht mehr – kein … mehr – keine … mehr",
+     "tr": "artık … değil – artık … yok"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:immer",
+     "de": "Wie immer, Frau Stadler: zwei Semmeln, bitte.",
+     "tr": "Her zamanki gibi Stadler Hanım: iki küçük ekmek, lütfen.",
+     "accepted": [
+      "Wie immer, Frau Stadler: zwei Semmeln, bitte.",
+      "Frau Stadler, wie immer: zwei Semmeln, bitte.",
+      "Zwei Semmeln, bitte, Frau Stadler. Wie immer."
+     ]
+    },
+    {
+     "kart": "lx:immer",
+     "de": "Was kostet das Brot? Wie immer drei Euro siebzig?",
+     "tr": "Ekmek ne kadar? Her zamanki gibi üç avro yetmiş mi?",
+     "accepted": [
+      "Was kostet das Brot? Wie immer drei Euro siebzig?",
+      "Wie viel kostet das Brot? Wie immer drei Euro siebzig?",
+      "Was kostet das Brot? Drei Euro siebzig, wie immer?"
+     ]
+    },
+    {
+     "kart": "lx:erst",
+     "de": "Das Brot kommt erst um acht.",
+     "tr": "Ekmek ancak saat sekizde geliyor.",
+     "accepted": [
+      "Das Brot kommt erst um acht.",
+      "Erst um acht kommt das Brot.",
+      "Das Brot kommt erst um acht Uhr."
+     ]
+    },
+    {
+     "kart": "lx:erst",
+     "de": "Mein Termin ist erst am Freitag.",
+     "tr": "Randevum ancak cuma günü.",
+     "accepted": [
+      "Mein Termin ist erst am Freitag.",
+      "Erst am Freitag ist mein Termin.",
+      "Ich habe erst am Freitag einen Termin."
+     ]
+    },
+    {
+     "kart": "lx:viel",
+     "de": "Heute habe ich nicht viel Zeit.",
+     "tr": "Bugün çok vaktim yok.",
+     "accepted": [
+      "Heute habe ich nicht viel Zeit.",
+      "Ich habe heute nicht viel Zeit.",
+      "Viel Zeit habe ich heute nicht."
+     ]
+    },
+    {
+     "kart": "lx:viel",
+     "de": "Drei Euro für zwei Semmeln? Das ist viel!",
+     "tr": "İki küçük ekmeğe üç avro mu? Bu çok!",
+     "accepted": [
+      "Drei Euro für zwei Semmeln? Das ist viel!",
+      "Zwei Semmeln für drei Euro? Das ist viel!",
+      "Drei Euro für zwei Semmeln? Das ist aber viel!"
+     ]
+    },
+    {
+     "kart": "lx:mehr",
+     "de": "Keine Semmeln mehr? Dann ein Brot, bitte.",
+     "tr": "Artık küçük ekmek yok mu? O zaman bir ekmek, lütfen.",
+     "accepted": [
+      "Keine Semmeln mehr? Dann ein Brot, bitte.",
+      "Keine Semmeln mehr? Dann bitte ein Brot.",
+      "Sie haben keine Semmeln mehr? Dann ein Brot, bitte."
+     ]
+    },
+    {
+     "kart": "lx:mehr",
+     "de": "Eine Semmel kostet jetzt sechzig Cent, nicht mehr fünfzig.",
+     "tr": "Bir küçük ekmek artık elli değil, altmış sent.",
+     "accepted": [
+      "Eine Semmel kostet jetzt sechzig Cent, nicht mehr fünfzig.",
+      "Eine Semmel kostet jetzt sechzig Cent, nicht mehr fünfzig Cent.",
+      "Die Semmel kostet jetzt sechzig Cent, nicht mehr fünfzig."
+     ]
+    },
+    {
+     "kart": "lx:mehr",
+     "de": "Dr. Weber ist heute nicht mehr da.",
+     "tr": "Dr. Weber bugün artık burada değil.",
+     "accepted": [
+      "Dr. Weber ist heute nicht mehr da.",
+      "Heute ist Dr. Weber nicht mehr da.",
+      "Dr. Weber ist heute leider nicht mehr da."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Başka bir sabah, saat dokuz. Stadler fırını.",
+    "satirlar": [
+     {
+      "r": "ch:stadler",
+      "de": "Guten Tag! Wie immer? Zwei Semmeln?",
+      "tr": "İyi günler! Her zamanki gibi mi? İki küçük ekmek mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, wie immer. Und ein Brot, bitte.",
+      "tr": "Evet, her zamanki gibi. Bir de ekmek, lütfen."
+     },
+     {
+      "r": "ch:stadler",
+      "de": "Leider kein Brot mehr. Erst wieder um zehn.",
+      "tr": "Maalesef artık ekmek yok. Ancak saat onda yine olur."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Erst um zehn? Dann nur die Semmeln, bitte.",
+      "tr": "Ancak onda mı? O zaman yalnızca küçük ekmekler, lütfen."
+     }
+    ],
+    "soru": {
+     "q_tr": "Bugün fırından ne alıyorsun?",
+     "opts": [
+      "İki küçük ekmek ve bir ekmek",
+      "Yalnızca iki küçük ekmek",
+      "Saat onda bir ekmek",
+      "Yalnızca bir ekmek"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:08:h3",
+   "title_tr": "Cidden mi? Fena değil!",
+   "kartlar": [
+    "lx:gut",
+    "lx:klar",
+    "lx:echt",
+    "lx:ganz"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wie geht es Ihnen? – Mir geht es gut.",
+     "tr": "Nasılsınız? – İyiyim."
+    },
+    {
+     "de": "Alles klar! – Na klar!",
+     "tr": "Tamamdır! – Tabii ki!"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:gut",
+     "de": "Mir geht es gut, danke. Und Ihnen, Frau Brandl?",
+     "tr": "İyiyim, teşekkürler. Ya siz Brandl Hanım?",
+     "accepted": [
+      "Mir geht es gut, danke. Und Ihnen, Frau Brandl?",
+      "Danke, mir geht es gut. Und Ihnen, Frau Brandl?",
+      "Gut, danke. Und Ihnen, Frau Brandl?"
+     ]
+    },
+    {
+     "kart": "lx:gut",
+     "de": "Die Semmeln sind heute sehr gut, Frau Stadler!",
+     "tr": "Küçük ekmekler bugün çok iyi Stadler Hanım!",
+     "accepted": [
+      "Die Semmeln sind heute sehr gut, Frau Stadler!",
+      "Frau Stadler, die Semmeln sind heute sehr gut!",
+      "Heute sind die Semmeln sehr gut, Frau Stadler!"
+     ]
+    },
+    {
+     "kart": "lx:gut",
+     "de": "Gut, und was kosten die Semmeln?",
+     "tr": "İyi, peki küçük ekmekler ne kadar?",
+     "accepted": [
+      "Gut, und was kosten die Semmeln?",
+      "Gut, und wie viel kosten die Semmeln?",
+      "Gut. Und was kosten die Semmeln?"
+     ]
+    },
+    {
+     "kart": "lx:klar",
+     "de": "Alles klar, Frau Stadler! Was macht das?",
+     "tr": "Tamamdır Stadler Hanım! Ne kadar tutuyor?",
+     "accepted": [
+      "Alles klar, Frau Stadler! Was macht das?",
+      "Frau Stadler, alles klar! Was macht das?",
+      "Alles klar, Frau Stadler! Was kostet das?"
+     ]
+    },
+    {
+     "kart": "lx:klar",
+     "de": "Klar, ich kann um acht kommen.",
+     "tr": "Tabii, saat sekizde gelebilirim.",
+     "accepted": [
+      "Klar, ich kann um acht kommen.",
+      "Na klar, ich kann um acht kommen.",
+      "Klar, um acht kann ich kommen."
+     ]
+    },
+    {
+     "kart": "lx:echt",
+     "de": "Echt? Nur fünfzig Cent?",
+     "tr": "Cidden mi? Yalnızca elli sent mi?",
+     "accepted": [
+      "Echt? Nur fünfzig Cent?",
+      "Nur fünfzig Cent? Echt?",
+      "Echt? Nur fünfzig Cent? Gut!"
+     ]
+    },
+    {
+     "kart": "lx:echt",
+     "de": "Der Käse ist echt teuer, Ioana!",
+     "tr": "Peynir gerçekten pahalı Ioana!",
+     "accepted": [
+      "Der Käse ist echt teuer, Ioana!",
+      "Ioana, der Käse ist echt teuer!",
+      "Der Käse ist echt sehr teuer, Ioana!"
+     ]
+    },
+    {
+     "kart": "lx:ganz",
+     "de": "Ganz gut, danke, Herr Pichler.",
+     "tr": "Fena değil, teşekkürler Pichler Bey.",
+     "accepted": [
+      "Ganz gut, danke, Herr Pichler.",
+      "Danke, ganz gut, Herr Pichler.",
+      "Mir geht es ganz gut, danke, Herr Pichler."
+     ]
+    },
+    {
+     "kart": "lx:ganz",
+     "de": "Das Brot ist ganz gut, aber teuer.",
+     "tr": "Ekmek fena değil ama pahalı.",
+     "accepted": [
+      "Das Brot ist ganz gut, aber teuer.",
+      "Das Brot ist teuer, aber ganz gut.",
+      "Das Brot ist ganz gut, aber es ist teuer."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Stadler fırını. Kurstan arkadaşın Ioana da orada.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Das Brot von Frau Stadler ist echt gut!",
+      "tr": "Stadler Hanım'ın ekmeği gerçekten iyi!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, ganz gut. Aber wie viel kostet das Brot?",
+      "tr": "Evet, fena değil. Ama ekmek ne kadar?"
+     },
+     {
+      "r": "ch:stadler",
+      "de": "Drei Euro neunzig. Und eine Semmel sechzig Cent.",
+      "tr": "Üç avro doksan. Bir küçük ekmek de altmış sent."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Alles klar! Ein Brot und zwei Semmeln, bitte.",
+      "tr": "Tamamdır! Bir ekmek ve iki küçük ekmek, lütfen."
+     }
+    ],
+    "soru": {
+     "q_tr": "Kasada ne kadar ödüyorsun?",
+     "opts": [
+      "Üç avro doksan",
+      "Dört avro kırk",
+      "Beş avro on",
+      "Beş avro doksan"
+     ],
+     "ans": 2
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:08:v1",
+  "title_tr": "Pazartesi sabahı fırında: küçük ekmek nerede?",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Stadler fırını, sabah yedi buçuk. Gerti Stadler tezgâhın arkasında gülümsüyor.",
+    "de": "Guten Morgen! Was darf es sein?",
+    "tr": "Günaydın! Ne alırsınız?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana senden önce sırada. Saatine bakıyor.",
+    "de": "Guten Morgen, Frau Stadler. Zwei Semmeln, bitte.",
+    "tr": "Günaydın Stadler Hanım. İki küçük ekmek, lütfen."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler boş sepeti gösteriyor.",
+    "de": "Leider nur noch eine Semmel. Die Semmeln kommen gleich.",
+    "tr": "Maalesef yalnızca bir küçük ekmek kaldı. Küçük ekmekler birazdan geliyor."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana kaşlarını kaldırıyor.",
+    "de": "Gleich? Wie lange?",
+    "tr": "Birazdan mı? Ne kadar sürer?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler fırının kapısına bakıyor.",
+    "de": "Nicht lange, nur zehn Minuten.",
+    "tr": "Uzun sürmez, yalnızca on dakika."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana başını sallıyor, çantasını omzuna alıyor.",
+    "de": "Zehn Minuten? Ich habe keine Zeit. Dann nur eine Semmel.",
+    "tr": "On dakika mı? Vaktim yok. O zaman yalnızca bir küçük ekmek."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler son küçük ekmeği kese kâğıdına koyuyor.",
+    "de": "Gut. Eine Semmel, sechzig Cent.",
+    "tr": "Peki. Bir küçük ekmek, altmış sent."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana şaşırıp elindeki bozukluklara bakıyor.",
+    "de": "Echt? Sechzig Cent? Nicht mehr fünfzig?",
+    "tr": "Cidden mi? Altmış sent mi? Artık elli değil mi?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler omuz silkiyor.",
+    "de": "Nein, jetzt sechzig. Alles ist teuer.",
+    "tr": "Hayır, artık altmış. Her şey pahalı."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana parayı bırakıp sana el sallıyor, kapıya koşuyor.",
+    "de": "Ich muss jetzt arbeiten. Bis morgen!",
+    "tr": "Şimdi çalışmam lazım. Yarın görüşürüz!"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler sana dönüyor.",
+    "de": "Und Sie? Wie immer, zwei Semmeln?",
+    "tr": "Ya siz? Her zamanki gibi, iki küçük ekmek mi?"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Fırının arka kapısından sıcak ekmek kokusu geliyor.",
+    "de": "Können Sie zehn Minuten warten?",
+    "tr": "On dakika bekleyebilir misiniz?"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:stadler",
+    "sahne_tr": "On dakika sonra. Frau Stadler sıcak küçük ekmekleri kese kâğıdına koyuyor.",
+    "de": "Bitte, zwei Semmeln. Das macht einen Euro zwanzig.",
+    "tr": "Buyurun, iki küçük ekmek. Bir avro yirmi tutuyor."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu sahnede ne oluyor?",
+     "opts": [
+      "Küçük ekmekler henüz gelmemiş, fiyatı da artmış",
+      "Fırın bugün kapalı",
+      "Ioana fırında çalışmaya başlıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s3",
+      "s8"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Küçük ekmekler ne zaman geliyor?",
+      "opts": [
+       "Bir saat sonra",
+       "On dakika sonra",
+       "Yarın sabah"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Bir küçük ekmek şimdi kaç sent?",
+      "opts": [
+       "elli",
+       "yetmiş",
+       "altmış"
+      ],
+      "ans": 2,
+      "kanit": [
+       "s7"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Sen kasada ne kadar ödüyorsun?",
+      "opts": [
+       "bir avro yirmi",
+       "altmış sent",
+       "iki avro"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s13"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s5",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "zwölf",
+       "zehn",
+       "zwanzig"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s8",
+      "seviye": "orta",
+      "de": "Echt? Sechzig Cent? Nicht ___ fünfzig?",
+      "accepted": [
+       "mehr",
+       "Mehr",
+       "mehr."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s3",
+      "seviye": "zor",
+      "banka": [
+       "Die",
+       "Semmeln",
+       "kommen",
+       "gleich",
+       "jetzt",
+       "immer"
+      ],
+      "accepted": [
+       "Die Semmeln kommen gleich.",
+       "die semmeln kommen gleich",
+       "Die Semmeln kommen gleich"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s12",
+      "seviye": "usta",
+      "accepted": [
+       "Können Sie zehn Minuten warten?",
+       "können sie zehn minuten warten",
+       "Können Sie zehn Minuten warten"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Die Semmeln kommen gleich. Eine Semmel kostet jetzt sechzig Cent.",
+      "zorunlu": [
+       "Semmel",
+       "sechzig"
+      ]
+     }
+    ],
+    "golge": [
+     "s5",
+     "s9"
+    ],
+    "cevapla": {
+     "id": "m1:08:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Frau Stadler sana soruyor. Her zamanki gibi iki küçük ekmek istiyorsun.",
+     "prompt_de": "Und Sie? Wie immer, zwei Semmeln?",
+     "accepted": [
+      "Ja, wie immer. Zwei Semmeln, bitte.",
+      "Ja, zwei Semmeln, bitte.",
+      "Ja, wie immer, bitte.",
+      "Ja, gern. Zwei Semmeln, bitte.",
+      "Ja, bitte. Wie immer.",
+      "Ja, wie immer, zwei Semmeln."
+     ],
+     "why_tr": "Kısa cevap yeter: **Ja, wie immer.** Sonra **bitte** de."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:08:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Muayenehaneden sesli mesaj",
+   "ortam_tr": "Öğlen telefonuna bakıyorsun. Dr. Weber'in muayenehanesinden Frau Huber bir mesaj bırakmış.",
+   "speaker": "ch:huber",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist die Praxis Dr. Weber, Huber.",
+     "tr": "İyi günler, burası Dr. Weber muayenehanesi, ben Huber."
+    },
+    {
+     "id": "c2",
+     "de": "Ihr Termin am Mittwoch geht leider nicht.",
+     "tr": "Çarşamba günkü randevunuz maalesef olmuyor."
+    },
+    {
+     "id": "c3",
+     "de": "Dr. Weber ist am Mittwoch nicht da.",
+     "tr": "Dr. Weber çarşamba burada değil."
+    },
+    {
+     "id": "c4",
+     "de": "Geht Freitag um halb zehn?",
+     "tr": "Cuma dokuz buçuk olur mu?"
+    },
+    {
+     "id": "c5",
+     "de": "Bitte kommen Sie zehn Minuten früher.",
+     "tr": "Lütfen on dakika erken gelin."
+    },
+    {
+     "id": "c6",
+     "de": "Danke, bis Freitag!",
+     "tr": "Teşekkürler, cuma görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Frau Huber neden arıyor?",
+      "opts": [
+       "Muayenehane yarın kapalı",
+       "Bir ilacın hazır",
+       "Randevun değişiyor"
+      ],
+      "ans": 2,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Yeni randevu ne zaman?",
+       "opts": [
+        "Cuma dokuz buçukta",
+        "Çarşamba dokuz buçukta",
+        "Cuma on buçukta"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Çarşamba neden olmuyor?",
+       "opts": [
+        "Frau Huber hasta",
+        "Dr. Weber çarşamba orada değil",
+        "Muayenehane taşınıyor"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Viertel",
+        "acht",
+        "halb"
+       ],
+       "ans": 2
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Dr. Weber ist am ___ nicht da.",
+       "accepted": [
+        "Mittwoch",
+        "mittwoch",
+        "Mittwoch."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Ihr",
+        "Termin",
+        "am",
+        "Mittwoch",
+        "geht",
+        "leider",
+        "nicht",
+        "Freitag",
+        "heute"
+       ],
+       "accepted": [
+        "Ihr Termin am Mittwoch geht leider nicht.",
+        "ihr termin am mittwoch geht leider nicht",
+        "Ihr Termin am Mittwoch geht leider nicht"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Geht Freitag um halb zehn?",
+        "geht freitag um halb zehn",
+        "Geht Freitag um halb zehn"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Der Termin ist nicht am Mittwoch. Er ist am Freitag um halb zehn.",
+       "zorunlu": [
+        "Freitag",
+        "halb zehn"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:08:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Frau Huber'i geri arıyorsun. Cuma dokuz buçuk sana uyuyor.",
+      "prompt_de": "Passt Ihnen Freitag um halb zehn?",
+      "accepted": [
+       "Ja, Freitag um halb zehn passt.",
+       "Ja, das passt.",
+       "Ja, Freitag passt gut.",
+       "Ja, klar, das passt.",
+       "Ja, das passt. Danke!",
+       "Ja, halb zehn passt gut."
+      ],
+      "why_tr": "Uyuyorsa kısaca **Ja, das passt** de."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:08:a1:e1",
+    "k": "pick",
+    "q_tr": "Cuma günü ne yapmalısın?",
+    "opts": [
+     "Dokuzu yirmi geçe muayenehanede ol.",
+     "Çarşamba dokuz buçukta git.",
+     "On buçukta muayenehaneyi ara."
+    ],
+    "ans": 0,
+    "why_tr": "Randevu dokuz buçukta. Frau Huber on dakika erken gelmeni istiyor.",
+    "kanit": [
+     "c4",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:08:a2",
+   "tur": "bekleme-anonsu",
+   "title_tr": "Telefonda bekleme anonsu",
+   "ortam_tr": "Muayenehaneyi arıyorsun. Kimse açmıyor, bir kayıt konuşuyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Praxis Dr. Weber, guten Tag.",
+     "tr": "Dr. Weber muayenehanesi, iyi günler."
+    },
+    {
+     "id": "c2",
+     "de": "Bitte warten Sie kurz.",
+     "tr": "Lütfen kısa bir süre bekleyin."
+    },
+    {
+     "id": "c3",
+     "de": "Sie sind Nummer vier.",
+     "tr": "Dördüncü sıradasınız."
+    },
+    {
+     "id": "c4",
+     "de": "Die Praxis ist heute bis zwölf Uhr offen.",
+     "tr": "Muayenehane bugün saat on ikiye kadar açık."
+    },
+    {
+     "id": "c5",
+     "de": "Am Nachmittag ist die Praxis geschlossen.",
+     "tr": "Öğleden sonra muayenehane kapalı."
+    },
+    {
+     "id": "c6",
+     "de": "Bitte warten Sie. Danke!",
+     "tr": "Lütfen bekleyin. Teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Kayıt sana ne diyor?",
+      "opts": [
+       "Muayenehane bugün kapalı",
+       "Bekle, sıra sende değil",
+       "Yarın tekrar ara"
+      ],
+      "ans": 1,
+      "kanit": [
+       "c3",
+       "c6"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Sırada kaçıncısın?",
+       "opts": [
+        "ikinci",
+        "onuncu",
+        "dördüncü"
+       ],
+       "ans": 2,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Muayenehane bugün saat kaça kadar açık?",
+       "opts": [
+        "on ikiye kadar",
+        "akşama kadar",
+        "on bire kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "drei",
+        "vier",
+        "zehn"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Die Praxis ist heute bis zwölf Uhr ___.",
+       "accepted": [
+        "offen",
+        "Offen",
+        "offen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Am",
+        "Nachmittag",
+        "ist",
+        "die",
+        "Praxis",
+        "geschlossen",
+        "offen",
+        "Abend"
+       ],
+       "accepted": [
+        "Am Nachmittag ist die Praxis geschlossen.",
+        "am nachmittag ist die praxis geschlossen",
+        "Am Nachmittag ist die Praxis geschlossen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Bitte warten Sie kurz.",
+        "bitte warten sie kurz",
+        "Bitte warten Sie kurz"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kayıtta ne dendiğini Almanca iki kısa cümleyle söyle.",
+       "ornek_de": "Ich bin Nummer vier. Die Praxis ist bis zwölf Uhr offen.",
+       "zorunlu": [
+        "Nummer vier",
+        "zwölf"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:08:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Sonunda Frau Huber açıyor. Adını söyle, bugün randevu olup olmadığını sor.",
+      "prompt_de": "Praxis Dr. Weber, Huber, guten Tag?",
+      "accepted": [
+       "Guten Tag, hier ist {name}. Haben Sie heute noch einen Termin?",
+       "Guten Tag, {name} hier. Haben Sie heute noch einen Termin?",
+       "Guten Tag, hier ist {name}. Geht heute noch ein Termin?",
+       "Guten Tag! Hier ist {name}. Ich brauche heute einen Termin.",
+       "Hallo, hier ist {name}. Haben Sie heute noch einen Termin?"
+      ],
+      "why_tr": "Önce adını söyle: **Hier ist** ve adın. Sonra kısaca sor.",
+      "accepted_adsiz": [
+       "Guten Tag. Haben Sie heute noch einen Termin?",
+       "Guten Tag! Ich brauche heute einen Termin.",
+       "Hallo! Haben Sie heute noch einen Termin?"
+      ]
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:08:a2:e1",
+    "k": "pick",
+    "q_tr": "Saat on bir buçuk. Ne yapmalısın?",
+    "opts": [
+     "Kapat, öğleden sonra yeniden ara.",
+     "Kapat, yarın ara.",
+     "Hatta bekle, muayenehane hâlâ açık."
+    ],
+    "ans": 2,
+    "why_tr": "Muayenehane on ikiye kadar açık, öğleden sonra kapalı. Beklemen gerekir.",
+    "kanit": [
+     "c4",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:08:g1",
+   "de": "nur eine Semmel",
+   "dogru_img": "a single bread roll on a bakery counter",
+   "celdirici_img": [
+    "a basket full of bread rolls",
+    "a loaf of bread",
+    "two pretzels on a plate"
+   ]
+  },
+  {
+   "id": "m1:08:g2",
+   "de": "viel Käse",
+   "dogru_img": "a big pile of cheese wheels at a market stall",
+   "celdirici_img": [
+    "one thin slice of cheese",
+    "a red apple",
+    "a loaf of bread"
+   ]
+  },
+  {
+   "id": "m1:08:g3",
+   "de": "kein Brot mehr",
+   "dogru_img": "an empty bread shelf in a bakery",
+   "celdirici_img": [
+    "a bakery shelf full of bread",
+    "a bread roll in a paper bag",
+    "a closed shop door"
+   ]
+  },
+  {
+   "id": "m1:08:g4",
+   "de": "zwei Semmeln und ein Brot",
+   "dogru_img": "two bread rolls and one loaf of bread on a counter",
+   "celdirici_img": [
+    "one bread roll and two loaves of bread",
+    "three bread rolls",
+    "two loaves of bread"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:08:p1",
+  "title_tr": "Fırında her zamanki sabah",
+  "durum_tr": "Sabah sekize çeyrek var. Stadler fırınındasın. Küçük ekmekler henüz gelmemiş.",
+  "karsi": "ch:stadler",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Guten Morgen! Wie immer? Zwei Semmeln und ein Brot?",
+    "tr": "Günaydın! Her zamanki gibi mi? İki küçük ekmek ve bir ekmek?",
+    "secenekler": [
+     {
+      "de": "Ja, wie immer, bitte.",
+      "tr": "Evet, her zamanki gibi, lütfen.",
+      "accepted": [
+       "Ja, wie immer, bitte.",
+       "Ja, wie immer.",
+       "Ja, bitte. Wie immer.",
+       "Guten Morgen! Ja, wie immer."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Kısa ve net."
+     },
+     {
+      "de": "Guten Morgen! Ja, zwei Semmeln und ein Brot, bitte.",
+      "tr": "Günaydın! Evet, iki küçük ekmek ve bir ekmek, lütfen.",
+      "accepted": [
+       "Guten Morgen! Ja, zwei Semmeln und ein Brot, bitte.",
+       "Ja, zwei Semmeln und ein Brot, bitte.",
+       "Guten Morgen! Zwei Semmeln und ein Brot, bitte.",
+       "Ja, bitte. Zwei Semmeln und ein Brot."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Siparişini kendin de söyledin."
+     },
+     {
+      "de": "Jetzt keine Zeit!",
+      "tr": "Şimdi vakit yok!",
+      "accepted": [
+       "Jetzt keine Zeit!",
+       "Ich habe jetzt keine Zeit!",
+       "Keine Zeit!"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Frau Stadler sipariş soruyor. Önce ne istediğini söyle."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Die Semmeln kommen leider erst um acht. Jetzt ist es Viertel vor acht.",
+    "tr": "Küçük ekmekler maalesef ancak sekizde geliyor. Şu an sekize çeyrek var.",
+    "secenekler": [
+     {
+      "de": "Gut, ich warte.",
+      "tr": "Peki, beklerim.",
+      "accepted": [
+       "Gut, ich warte.",
+       "Gut, ich kann warten.",
+       "Ja, ich warte gern.",
+       "Kein Problem, ich warte."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. On beş dakika beklemek sorun değil."
+     },
+     {
+      "de": "Erst um acht? Gut, ich habe Zeit.",
+      "tr": "Ancak sekizde mi? Peki, vaktim var.",
+      "accepted": [
+       "Erst um acht? Gut, ich habe Zeit.",
+       "Gut, ich habe Zeit.",
+       "Erst um acht? Das geht, ich habe Zeit.",
+       "Ich habe Zeit, ich warte."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. **Erst um acht?** ile duyduğunu tekrar ettin."
+     },
+     {
+      "de": "Wie viel kostet das?",
+      "tr": "Bu ne kadar?",
+      "accepted": [
+       "Wie viel kostet das?",
+       "Was kostet das?",
+       "Was macht das?"
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Frau Stadler bekleyip beklemeyeceğini soruyor. Önce onu söyle."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Gut! Und das Brot kostet jetzt drei Euro neunzig.",
+    "tr": "Peki! Bir de ekmek artık üç avro doksan.",
+    "secenekler": [
+     {
+      "de": "Echt? Nicht mehr drei Euro siebzig?",
+      "tr": "Cidden mi? Artık üç avro yetmiş değil mi?",
+      "accepted": [
+       "Echt? Nicht mehr drei Euro siebzig?",
+       "Echt? Nicht mehr drei siebzig?",
+       "Drei Euro neunzig? Echt?",
+       "Echt jetzt? Nicht mehr drei Euro siebzig?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel tepki. **nicht mehr** artık değil demek."
+     },
+     {
+      "de": "Alles klar. Was macht das?",
+      "tr": "Tamamdır. Ne kadar tutuyor?",
+      "accepted": [
+       "Alles klar. Was macht das?",
+       "Alles klar. Was macht das zusammen?",
+       "Gut. Was macht das?",
+       "Alles klar. Wie viel kostet das?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Toplamı **Was macht das?** diye sorarsın."
+     },
+     {
+      "de": "Nein, danke. Tschüss.",
+      "tr": "Hayır, teşekkürler. Hoşça kalın.",
+      "accepted": [
+       "Nein, danke. Tschüss.",
+       "Nein, danke.",
+       "Nein danke, tschüss."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Henüz ödemedin, vedalaşmak için erken. Fiyata tepki ver ya da toplamı sor."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Ja, alles ist teuer. Das macht fünf Euro zehn. Bar oder mit Karte?",
+    "tr": "Evet, her şey pahalı. Beş avro on tutuyor. Nakit mi, kartla mı?",
+    "secenekler": [
+     {
+      "de": "Mit Karte, bitte.",
+      "tr": "Kartla, lütfen.",
+      "accepted": [
+       "Mit Karte, bitte.",
+       "Mit Karte.",
+       "Karte, bitte.",
+       "Ich zahle mit Karte."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Tamam. Kısa cevap yeter."
+     },
+     {
+      "de": "Bar, bitte.",
+      "tr": "Nakit, lütfen.",
+      "accepted": [
+       "Bar, bitte.",
+       "Bar.",
+       "Ich zahle bar.",
+       "Bar, bitte schön."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Tamam. Nakit ödüyorsun."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Danke schön! Schönen Tag noch!",
+    "tr": "Çok teşekkürler! İyi günler!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Her zamanki siparişini verdin, beklemeyi kabul ettin ve yeni fiyata tepki verdin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Derya'dan mesaj",
+  "metin_de": "Hallo {name}! Ich bin jetzt im Büro. Die Semmel kostet jetzt sechzig Cent, nicht mehr fünfzig! Echt teuer. Hast du heute Abend Zeit? Ich komme um sechs Uhr. Dann bis heute Abend!",
+  "metin_de_adsiz": "Hallo! Ich bin jetzt im Büro. Die Semmel kostet jetzt sechzig Cent, nicht mehr fünfzig! Echt teuer. Hast du heute Abend Zeit? Ich komme um sechs Uhr. Dann bis heute Abend!",
+  "metin_tr": "Merhaba {name}! Şu an ofisteyim. Küçük ekmek artık elli değil, altmış sent! Gerçekten pahalı. Bu akşam vaktin var mı? Saat altıda geliyorum. O zaman akşam görüşürüz!",
+  "metin_tr_adsiz": "Merhaba! Şu an ofisteyim. Küçük ekmek artık elli değil, altmış sent! Gerçekten pahalı. Bu akşam vaktin var mı? Saat altıda geliyorum. O zaman akşam görüşürüz!",
+  "sorular": [
+   {
+    "id": "m1:08:o1",
+    "kind": "gist",
+    "q_tr": "Derya sana ne soruyor?",
+    "opts": [
+     "Bu akşam vaktin var mı",
+     "Fırın açık mı",
+     "Ekmek aldın mı"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:08:o2",
+    "kind": "detail",
+    "q_tr": "Küçük ekmek şimdi kaç sent?",
+    "opts": [
+     "elli",
+     "altmış",
+     "seksen"
+    ],
+    "ans": 1,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:08:o3",
+    "kind": "detail",
+    "q_tr": "Derya şu an nerede?",
+    "opts": [
+     "fırında",
+     "evde",
+     "ofiste"
+    ],
+    "ans": 2,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:08:o4",
+    "kind": "detail",
+    "q_tr": "Derya saat kaçta geliyor?",
+    "opts": [
+     "altıda",
+     "sekizde",
+     "yedide"
+    ],
+    "ans": 0,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:08:o5",
+    "k": "guided_response",
+    "situation_tr": "Derya'ya kısa bir cevap yaz. Bu akşam vaktin var.",
+    "prompt_de": "Hast du heute Abend Zeit?",
+    "accepted": [
+     "Ja, ich habe heute Abend Zeit.",
+     "Ja, klar! Bis heute Abend!",
+     "Ja, ich habe Zeit. Bis um sechs!",
+     "Ja, heute Abend habe ich Zeit.",
+     "Klar, bis heute Abend!"
+    ],
+    "why_tr": "Vaktin varsa **Ja, ich habe Zeit** dersin."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:08:s",
+  "maddeler": [
+   {
+    "id": "m1:08:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Die Semmeln kommen erst um acht.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Semmeln kommen erst um acht.",
+     "die semmeln kommen erst um acht",
+     "Die Semmeln kommen erst um acht"
+    ],
+    "why_tr": "**erst um acht** ancak sekizde demek."
+   },
+   {
+    "id": "m1:08:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Ich habe jetzt leider keine Zeit.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich habe jetzt leider keine Zeit.",
+     "ich habe jetzt leider keine zeit",
+     "Ich habe jetzt leider keine Zeit"
+    ],
+    "why_tr": "Vaktin yoksa **keine Zeit** dersin."
+   },
+   {
+    "id": "m1:08:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Eine Semmel kostet sechzig Cent.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Eine Semmel kostet sechzig Cent.",
+     "eine semmel kostet sechzig cent",
+     "Eine Semmel kostet sechzig Cent"
+    ],
+    "why_tr": "Fiyatı **kostet** ile söylersin."
+   },
+   {
+    "id": "m1:08:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Warten Sie schon lange?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Warten Sie schon lange?",
+     "warten sie schon lange",
+     "Warten Sie schon lange"
+    ],
+    "why_tr": "**schon lange** uzun zamandır demek."
+   },
+   {
+    "id": "m1:08:s5",
+    "k": "tr_de",
+    "tr": "Artık küçük ekmek yok mu?",
+    "accepted": [
+     "Keine Semmeln mehr?",
+     "Haben Sie keine Semmeln mehr?",
+     "Gibt es keine Semmeln mehr?",
+     "Keine Semmeln mehr da?"
+    ],
+    "why_tr": "Artık yok derken **kein** ya da **keine** ile **mehr** dersin."
+   },
+   {
+    "id": "m1:08:s6",
+    "k": "tr_de",
+    "tr": "Bir dakikanız var mı Wimmer Bey?",
+    "accepted": [
+     "Haben Sie kurz Zeit, Herr Wimmer?",
+     "Herr Wimmer, haben Sie kurz Zeit?",
+     "Haben Sie eine Minute Zeit, Herr Wimmer?",
+     "Haben Sie mal kurz Zeit, Herr Wimmer?"
+    ],
+    "why_tr": "Bir dakikanız var mı derken **Haben Sie kurz Zeit?** dersin."
+   },
+   {
+    "id": "m1:08:s7",
+    "k": "tr_de",
+    "tr": "Ekmek ne kadar? Hâlâ üç avro doksan mı?",
+    "accepted": [
+     "Was kostet das Brot? Noch drei Euro neunzig?",
+     "Wie viel kostet das Brot? Noch drei Euro neunzig?",
+     "Was kostet das Brot? Immer noch drei Euro neunzig?",
+     "Was kostet das Brot? Kostet es noch drei Euro neunzig?"
+    ],
+    "why_tr": "Hâlâ derken **noch** dersin."
+   },
+   {
+    "id": "m1:08:s8",
+    "k": "tr_de",
+    "tr": "Fena değil, teşekkürler.",
+    "accepted": [
+     "Ganz gut, danke.",
+     "Danke, ganz gut.",
+     "Mir geht es ganz gut, danke.",
+     "Ganz gut, danke schön."
+    ],
+    "why_tr": "Fena değil derken **ganz gut** dersin."
+   },
+   {
+    "id": "m1:08:s9",
+    "k": "guided_response",
+    "situation_tr": "Frau Stadler her zamanki siparişini soruyor. Bugün yalnızca bir küçük ekmek istiyorsun.",
+    "prompt_de": "Wie immer? Zwei Semmeln?",
+    "accepted": [
+     "Nein, heute nur eine Semmel, bitte.",
+     "Heute nur eine Semmel, bitte.",
+     "Nein, nur eine Semmel, bitte.",
+     "Nein, danke. Heute nur eine Semmel.",
+     "Nur eine Semmel heute, bitte."
+    ],
+    "why_tr": "Yalnızca bir tane derken **nur eine Semmel** dersin."
+   },
+   {
+    "id": "m1:08:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Haben Sie kurz Zeit?",
+    "speed": "normal",
+    "situation_tr": "Herr Wimmer soruyor. Birazdan gelebilirsin.",
+    "accepted": [
+     "Ja, ich komme gleich.",
+     "Ja, gleich!",
+     "Ich komme gleich, Herr Wimmer.",
+     "Ja, klar. Ich komme gleich.",
+     "Gleich, Herr Wimmer!"
+    ],
+    "why_tr": "Birazdan geliyorum derken **Ich komme gleich** dersin."
+   },
+   {
+    "id": "m1:08:s11",
+    "k": "guided_response",
+    "situation_tr": "Fırındasın. İki küçük ekmek iste ve fiyatını sor.",
+    "prompt_de": "Guten Morgen! Was darf es sein?",
+    "accepted": [
+     "Zwei Semmeln, bitte. Was kostet das?",
+     "Guten Morgen! Zwei Semmeln, bitte. Was macht das?",
+     "Zwei Semmeln, bitte. Wie viel kostet das?",
+     "Guten Morgen! Zwei Semmeln, bitte. Was kosten die Semmeln?",
+     "Zwei Semmeln, bitte. Was macht das?"
+    ],
+    "why_tr": "Önce ne istediğini söyle, sonra **Was kostet das?** diye sor."
+   }
+  ],
+  "sesli": [
+   "m1:08:s9",
+   "m1:08:s10"
+  ],
+  "dikte": [
+   "m1:08:s1",
+   "m1:08:s2",
+   "m1:08:s3",
+   "m1:08:s4"
+  ]
+ }
+}
