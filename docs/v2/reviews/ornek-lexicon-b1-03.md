@@ -152,3 +152,56 @@ Oran eşiğin altında olduğu için örneklem dışı tarama zorunlu değildi. 
 - Oran **0/86 = %0 ≤ %2** → **GEÇTİ** (örneklem katmanı).
 - Örnek cümle, çeviri, eşdizim, ad ve fiil biçimleri, hata notları ve boşluklar örneklemde hatasız. Önceki partilerin GERİ nedenleri bu partide görülmedi: eksik doğru cevap (yön a) yok, başka anlamlı ya da artikeli uymayan kabul (yön b) yok, kartın kendi öğrettiğiyle çelişen not yok.
 - Okur kapısı geçti (2. tur 3/3). Bu örneklemle iki dosya `reviewed` olabilir; yukarıdaki üç takip notu engel değil.
+
+## 03c (2026-11-23, tam bakış)
+
+Girdi: `batch-b1-03c.json`, 5 yedek kart (lx:Zaun, lx:Schatten, lx:Straßenfest, lx:knapp, lx:Festnetz), dilbilimcinin "03c incelemesi" düzeltmeleri işlenmiş hâli. Kart sayısı az olduğu için örneklem alınmadı, bütün alanlar okundu. Ölçütler 1. turla aynı.
+
+### Kapsam
+
+| tür | madde | hata |
+|---|---|---|
+| örnek cümle + çeviri | 25 | 0 |
+| eşdizim | 15 | 0 |
+| boşluk (cümle, cevap, `also_ok`, çeviri, ipucu) | 20 | 0 |
+| hata notu | 10 | 0 |
+| ad: `art` + `pl` + `tr` | 4 | 0 |
+| **toplam** | **74** | **0** |
+
+Ayrıca 22 açıklama alanı okundu (5 `tr`, 5 `anlam_tr`, 5 `ne_zaman_tr`, 5 `ipucu_tr`, 2 kartta `parcalar`). Sıfat lx:knapp'ın çekim alanı yok.
+
+### Kart kart
+
+| kart | sonuç | bakılanlar |
+|---|---|---|
+| lx:Zaun | D | der / Zäune. `also_ok: Gartenzaun` dört cümlede **am / ein niedriger / über den / an den** ile uyuyor, anlam aynı. Eksik doğru cevap yok. Not 1 (**auf dem Zaun reden**) ve not 2 (**Zaune**) kartın doğrularıyla çelişmiyor |
+| lx:Schatten | D | der / Schatten. Boşluklarda `also_ok` yok, gerek de yok. Not 1: **sich in den Schatten setzen** doğru, ö4 ile aynı. Not 2: **viel Schatten** ö2 ve boşluk 2 ile aynı. **30 Grad im Schatten**, **hat's** yerinde |
+| lx:Straßenfest | D | das / Straßenfeste. `also_ok: Fest` **ein / zum / beim** ile uyuyor. Notta **das Fest** açıklama olarak geçiyor, yanlış diye gösterilmiyor. Not 2'deki **beim / auf dem Straßenfest** doğru. "Im Juli" 32. hafta (WORLD takvimiyle yaz) ile uyumlu |
+| lx:knapp | D | `also_ok: bündig` (**kurz und bündig**) üç boşlukta doğru ve aynı anlamda. forms[2] **fast zehn Minuten** çeviriyle ("on dakikaya yakın") aynı. Not 1 ile çelişmiyor, not "tam on değil" diyor |
+| lx:Festnetz | D | das / `-`. Not 1'in **vom Festnetz** / **auf dem Festnetz** ayrımı Almancada doğru. Çeviriler artık tek anlama çekilmiş (ö4 "sabit hattınızdan"). **das Haustelefon** "dahili telefon, diafon" diye anlaşılır; not doğru |
+
+### Taramalar
+
+- `also_ok` ↔ aynı kartın `mistakes_tr`'si: 12 girdi, 4 eşleşme (lx:Straßenfest **Fest**, notta "Son parça **das Fest**" diye açıklama), gerçek çelişki **0**.
+- Açıklama ve çeviri alanlarında dilbilgisi terimi, İngilizce sözcük, kurs ya da kitap adı, `{name}`, `=`, `;`, `…` ve 14 kelimeyi aşan cümle yok. Tek eşleşme yanlış pozitif ("Of" ünlemi). Öğrencinin ağzında sabit cinsiyet yok. Olgu iddiası yok (30 derece, hava sözü).
+- Yinelenen kimlik: 03c'nin beş kartı kayıtta başka partide yok.
+
+### 03a silmesinin doğrulanması
+
+- `batch-b1-03a.json` 21 kart. lx:Gegend, lx:deutlich, lx:neugierig, lx:Hof, lx:Schnee bu ağacın `registry/lexicon/` klasöründe hiçbir partide yok.
+- 03a + 03b + 03c'nin notları, ipuçları, boşluk ipuçları, cevapları, `also_ok` listeleri ve eşdizimleri beş sözcük ve `lx:` kimlikleri için makinede tarandı: gönderme **yok**. Sözcük olarak yalnız örnek ve boşluk cümlelerinde geçiyor: **im Hof** (lx:bellen ö5, lx:Wäsche ö4 ve forms[2]). Kart A2 hattında daha önce geldiği için sorun değil, dilbilimcinin kaydıyla aynı.
+- Önceki örneklemin 11 maddesi silinen beş karta aitti (#1, 2, 6, 7, 8, 26, 29, 42, 48, 50, 82). Hepsi D idi. Kalan örneklem 0/75; oran ve karar değişmez.
+- Örneklemin takip notundaki lx:leise forms[3] düzeltildi: ipucu "Sesin az geliyor derken **du bist leise** denir.", forms[3] ve ö5 çevirisi "sesin çok az geliyor". Telefonda doğal, **heiser** anlamı kalktı. Kapandı.
+
+### Takip (engel değil)
+
+1. lx:knapp `tr` ve `anlam_tr` "kısa ve öz, (vakit) dar" diyor. Kart üçüncü anlamı da öğretiyor: **knapp zehn Minuten** "on dakikaya yakın" (ö4, eşdizim 3, forms[2], not 1). `tr`'ye "(sayıyla) -e yakın" eklenebilir. İpucu ve not anlamı veriyor, öğrenci boşlukta kalmıyor.
+2. lx:Festnetz not 1'in Türkçesi: "Seni sabit hattında arasın istiyorsan" yerine "Seni sabit hattından arasın istiyorsan" daha doğal. Okur bakacak.
+3. lx:Zaun ö1, ö5: Frau Brandl için WORLD'de bahçe tanımlı değil (alt kat komşusu). Çit başında sohbet olay değil alışkanlık. "Geveze" kişiliğiyle uyumlu; dilbilimci kararıyla bırakılabilir.
+4. lx:knapp (33. hafta) **kurz und knapp** ile b1-04c'deki lx:sachlich **kurz und sachlich** birbirine yakın. Çeviriler ayırıyor ("kısa ve öz" / "kısa ve konuya odaklı"); iki kart da öbürünü kabul etmiyor. Tutarlı ama bilgi için.
+
+### 03c kararı
+
+- **74/74 doğru, hata 0 (%0) → GEÇTİ.**
+- `reviewed` için kalan: 03c'nin açıklama ve çeviri alanları ile lx:leise'nin değişen üç alanı okurdan geçmedi.
+- `npm run content:validate` (wt-03) → **0 hata, 154 uyarı**; uyarıların hiçbiri b1-03 dosyalarına ait değil.

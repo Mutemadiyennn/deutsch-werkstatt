@@ -132,3 +132,34 @@ Takip notu (engel değil): yeni bulgu yok.
 - Okunan: 3 alan · GEÇTİ: 3 · GERİ: 0
 
 `batch-b1-03a.json` ve `batch-b1-03b.json`'da okur GERİ'si yok.
+
+## 03c (yedek kartlar, tam okuma)
+
+Girdi: `content/v2/registry/lexicon/batch-b1-03c.json` (5 kart, `review.status: draft`). Her kartta öğrenciye görünen alanların hepsi okundu: kartın `tr`'si, `exp.*` (parçalar çip çip), `mistakes_tr`, `forms[].hint_tr`, `forms[].tr`, örneklerin ve eşdizimlerin `tr`'si. Toplam 114 alan (açıklama 54 + çeviri 60).
+
+Mekanik tarama: `=`, `;`, `…`, tırnak, 14 kelimeden uzun cümle ve dilbilgisi terimi yok. Ölçü 1. turla aynı.
+
+| kart | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| lx:Zaun | hepsi | | bahçeyi ayıran tahta ya da tel çit; çitin üstünden über den Zaun, çoğu zaman Zäune | GEÇTİ | |
+| lx:Schatten | diğerleri | | güneşin gelmediği serin yer, gölge; gölgede im Schatten, gölgeye in den Schatten | GEÇTİ | |
+| lx:Schatten | exp.ipucu_tr | Oturuyorsan **im Schatten**, oraya gidiyorsan **in den Schatten**. | oturuyorsam im Schatten derim | GERİ | aynı kartın notuyla çelişiyor: mistakes_tr[0] ve 4. örnek **gölgeye oturmak** için **in den Schatten** diyor. Ayrım fiile (oturmak, gitmek) bağlanmış, -de / -e farkına değil. Tek okumada oturunca hep im sandım |
+| lx:Straßenfest | hepsi | | bir sokakta oturanların birlikte yaptığı şenlik; şenliğe zum, şenlikte beim | GEÇTİ | |
+| lx:knapp | hepsi | | kısa ve öz; knapp zehn Minuten on dakikadan biraz az | GEÇTİ | |
+| lx:Festnetz | diğerleri | | evdeki, işteki kablolu telefon, sabit hat | GEÇTİ | |
+| lx:Festnetz | mistakes_tr[0] | Türkçede sabit hattan ara sözü iki anlama gelebilir. **Ruf mich vom Festnetz an** yalnız kendi sabit hattından ara demektir. Seni sabit hattında arasın istiyorsan **Ruf mich auf dem Festnetz an** de. | vom ile arayanın hattı, auf dem ile benim hattım; ancak ikinci okumada çıkardım | GERİ | tek okumada anlaşılmadı: **kendi** sabit hattı kimin, arayanın mı benim mi belli değil. Üç cümle, iki ayrı durum ve bir Türkçe açıklama tek kutuda |
+
+"hepsi" ve "diğerleri": o kartın bütün açıklama ve çeviri alanları tek tek okundu ve geçti (GERİ satırındaki alan hariç).
+
+Sınırda geçenler (kararı etkilemedi):
+- lx:knapp `exp.anlam_tr`: yalnız kısa ve öz anlamını veriyor; **vakit dar** ve **biraz az** anlamları kartın `tr`'sinde, eşdiziminde ve notunda var. Çelişki yok.
+- lx:knapp `mistakes_tr[0]`: yanlış bir söz yazmıyor, anlamı açıklıyor. Kartın kelimesini anlatıyor, açık.
+- lx:Zaun `forms[3].hint_tr` (Çite gel: **an den Zaun**): emir gibi okunuyor ama boşluk cümlesiyle hemen örtüşüyor.
+
+### 03c sonucu
+
+- Okunan: 114 alan · GEÇTİ: 112 · GERİ: 2
+  - lx:Schatten exp.ipucu_tr
+  - lx:Festnetz mistakes_tr[0]
+
+Bu GERİ'ler yüzünden `batch-b1-03c.json` "reviewed" sayılamaz (OD-9.4).
