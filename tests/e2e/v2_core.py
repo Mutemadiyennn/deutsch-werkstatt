@@ -185,7 +185,7 @@ def main():
             draft = STRAT_REVIEW != "reviewed"
             check(("Deneme dersi" in na) == draft, f"inceleme etiketi içerik durumuna uygun ({STRAT_REVIEW})")
         # M1'de Bugün = yol: "Tekrar edilecekler" Öğren'de, günlük süre Odak'ta (PM 7015070303-E)
-        if M1: page.goto(f"http://127.0.0.1:{PORT}/#/learn")
+        if M1: page.goto(f"http://127.0.0.1:{PORT}/#/koy/bahce")
         page.wait_for_selector("[data-test=weak] li")
         weak = page.inner_text("[data-test=weak]")
         check("Seviye tespitinde" not in weak and "Şu an listede kelime yok" not in weak, "bilinmeyen kelimeler zayıflık listesinde")
@@ -278,8 +278,8 @@ def main():
         page.wait_for_selector("[data-test=exam-badge]")
         check("gün" in page.inner_text("[data-test=exam-badge]"), "B1 açıkken Bugün'de sınav rozeti (kalan gün)")
 
-        print("8) Köy (bugünkü Öğren ekranı)")
-        page.click("[data-tab=koy]")
+        print("8) Köy → Pazar meydanı: gerçek hayat durumları")
+        page.click("[data-tab=koy]"); page.click("[data-mekan=pazar]")
         page.wait_for_selector("[data-domain=telefon]")
         check(page.locator("[data-domain]").count() == 20, "20 gerçek hayat alanı listeleniyor")
         check(page.locator("[data-domain]").first.get_attribute("data-domain") == "strategie" and page.locator("[data-domain]").nth(1).get_attribute("data-domain") == "telefon", "alanlar öncelik sırasına göre (strateji, telefon)")
