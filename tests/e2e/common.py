@@ -108,7 +108,7 @@ def default_ai(task, v):
     if task == "equiv_check":
         return 200, {"ok": False, "reason_tr": "Fiil biçimi yanlış."}
     if task == "explain_tr":
-        return 200, {"tr": "Tekrar eder misiniz?", "note_tr": "Kibar rica."}
+        return 200, {"tr": "Tekrar eder misiniz?", "note_tr": "Kibar rica.", "examples": []}  # şemadaki zorunlu alan (istemci de denetler, PM-087 A.4)
     if task == "say_it_de":
         return 200, {"de_simple": "Ich brauche einen Termin.", "note_tr": "Basit ve doğal."}
     if task == "roleplay_turn":

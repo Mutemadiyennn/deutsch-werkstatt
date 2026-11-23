@@ -13,7 +13,7 @@ from common import (GEC, check, serve, launch, new_page, login_onboard, default_
 PORT = 4183
 SC = "sc:telefon:01-arzttermin"
 IZ = "BOZUK-CIKTI-7Q"   # bozuk çıktının izi: ekranda asla görünmemeli
-TR_HARF = re.compile(r"[çğıöşüÇĞİÖŞÜ]")
+TR_HARF = re.compile(r"[çğıöşüÇĞİÖŞÜ]|\b(bir|hata|oldu|dene|tekrar|sunucu\w*)\b", re.I)  # Türkçe harf ya da sözcük
 SINIR = {"error": {"code": "quota_user", "message_tr": "Bugünkü yapay zekâ hakkın doldu. Yapay zekâsız alıştırmalarla devam edebilirsin.", "retryable": False}}
 DURUMLAR = ["500", "bozuk", "sema", "gec15", "sinir", "ag"]
 GOREVLER = ["roleplay_turn", "feedback_tr", "explain_tr", "say_it_de", "equiv_check"]
@@ -235,13 +235,14 @@ def main():
     durumlar = [arg("--durum")] if arg("--durum") else DURUMLAR
     with sync_playwright() as p:
         for g in gorevler:
-            b, ctx = launch(p)
-            pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.close()
-            print(f"== {g} [{b.browser_type.name}]")
+            print(f"== {g}")
             for d in durumlar:
+                # her durum temiz bağlamda: önbellek (IndexedDB) ve devre kesici önceki durumdan taşınmaz
+                b, ctx = launch(p)
+                pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.close()
                 try: globals()[g](ctx, d)
                 except Exception as e: check(False, f"{g}/{d}: beklenmeyen hata ({str(e)[:120]})")
-            b.close()
+                b.close()
     srv.shutdown()
     satirlar = ["| görev | durum | seçenek süresi | ekrandaki mesaj | yapay zekâsız yol | yeniden deneme |", "|---|---|---|---|---|---|"]
     for g, d, dt, m, y, r in TABLO:
