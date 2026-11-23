@@ -42,6 +42,13 @@ def sayfa(ctx, srv):
     pg.goto(f"http://127.0.0.1:{PORT}/#/today"); pg.wait_for_selector("[data-tab=today]")
     return pg
 
+def kapat(pg):
+    """bekleyen geç yanıtlar (gec15) sayfa kapanırken hata vermesin: yönlendirmeler önce kaldırılır (devir 7090637496 takibi)"""
+    GEC.clear()
+    try: pg.unroute_all(behavior="ignoreErrors")
+    except Exception: pass
+    pg.close()
+
 def metin(pg, sel):
     return pg.inner_text(sel) if pg.locator(sel).count() else ""
 
@@ -121,7 +128,7 @@ def roleplay_turn(ctx, durum):
     yedek = bitir_offline(pg, ad)
     iz_yok(pg, ad)
     satir("roleplay_turn", durum, dt, msg, yedek, yeniden)
-    GEC.clear(); pg.close()
+    kapat(pg)
 
 def bitir_offline(pg, ad):
     once = rp_kayit(pg)[0]
@@ -168,7 +175,7 @@ def feedback_tr(ctx, durum):
                       f"{ad}: kendim değerlendirirken gelen geç rapor yok sayıldı (kayıt 0, işaretleme ekranı duruyor)")
             yedek = bitir_rapor_kendim(pg, ad, once)
         iz_yok(pg, ad)
-        GEC.clear(); pg.close()
+        kapat(pg)
     satir("feedback_tr", durum, dt, msg, yedek, yeniden)
 
 def bitir_rapor_kendim(pg, ad, once):
@@ -200,7 +207,7 @@ def feedback_yaris(ctx):
     check(geldi and pg.locator("[data-test=rp-self]").count() == 0 and pg.locator("[role=alert]").count() == 0, f"{ad}: geç rapor gelince hata kartı ve 'Kendim değerlendireyim' kalktı")
     if geldi:
         pg.click("[data-test=back-to-scenario]"); bolum_kayitli(pg, ad, once)
-    GEC.clear(); pg.close()
+    kapat(pg)
 
 def explain_tr(ctx, durum):
     ad = f"explain_tr/{durum}"; srv = Sunucu("explain_tr", durum); RP_STATE["n"] = 0
@@ -229,7 +236,7 @@ def explain_tr(ctx, durum):
     if durum == "gec15": gec_birak(pg, 15)
     iz_yok(pg, ad)
     satir("explain_tr", durum, dt, msg, yedek, yeniden)
-    GEC.clear(); pg.close()
+    kapat(pg)
 
 def say_it_de(ctx, durum):
     ad = f"say_it_de/{durum}"; srv = Sunucu("say_it_de", durum); RP_STATE["n"] = 0
@@ -252,7 +259,7 @@ def say_it_de(ctx, durum):
     if durum == "gec15": gec_birak(pg, 15)
     iz_yok(pg, ad)
     satir("say_it_de", durum, dt, msg, yedek, yeniden)
-    GEC.clear(); pg.close()
+    kapat(pg)
 
 def equiv_check(ctx, durum):
     ad = f"equiv_check/{durum}"; srv = Sunucu("equiv_check", durum)
@@ -286,7 +293,86 @@ def equiv_check(ctx, durum):
         yeniden = False; check(False, f"{ad}: aynı madde yeniden gelmedi; yeniden deneme sınanamadı")
     iz_yok(pg, ad)
     satir("equiv_check", durum, dt, msg, yedek, yeniden)
-    GEC.clear(); pg.close()
+    kapat(pg)
+
+# ---------------------------------------------------------------- takipler (PM finali #218, devir 7090637496)
+def ileri(pg):
+    """geri bildirimden sonraki maddeye geç: eski geri bildirim kalkana kadar bekle (yarış: aynı düğmeye iki kez basılmasın)"""
+    pg.click("[data-test=next]")
+    pg.wait_for_function("() => !document.querySelector('[data-test=feedback]')", timeout=8000)
+
+def assess_denetim(ctx, durum):
+    """Seviye tespitinde 'Almanca söyle' cevabı yapay zekâyla denetlenemezse yanlış sayılmaz: 'denetleyemedi' + puana sayılmaz"""
+    ad = f"assess equiv_check/{durum}"; srv = Sunucu("equiv_check", durum)
+    pg = sayfa(ctx, srv)
+    pg.goto(f"http://127.0.0.1:{PORT}/#/assess"); pg.wait_for_selector("[data-test=assess-begin]"); pg.click("[data-test=assess-begin]")
+    dt = None; gordu = 0; sonra = None
+    for _ in range(60):
+        pg.wait_for_selector("[data-test=feedback], [data-test=dunno], [data-test=overall]", timeout=8000)
+        if pg.locator("[data-test=overall]").count(): break
+        if pg.locator("[data-test=feedback]").count(): ileri(pg); continue
+        if "almanca söyle" in pg.inner_text("main").lower() and pg.locator("[data-test=answer]").count():
+            pg.fill("[data-test=answer]", "Ich habe heute leider keine Zeit gehabt."); t0 = time.time(); pg.press("[data-test=answer]", "Enter")
+            pg.wait_for_selector("[data-test=feedback]", timeout=16000)
+            fb = metin(pg, "[data-test=feedback]")
+            if gordu == 0:
+                dt = time.time() - t0
+                check(dt <= 12.0, f"{ad}: karar {dt:.1f} sn'de (≤ 12)")
+                check(pg.get_attribute("[data-test=feedback]", "data-unchecked") == "1" and "denetleyemedi" in fb and "Bu sefer olmadı" not in fb and "puanına sayılmadı" in fb,
+                      f"{ad}: 'Uygulama bu cevabı denetleyemedi' · yanlış denmedi · puana sayılmadı ({fb.splitlines()[0][:60]!r})")
+                check(not re.search(r"sunucu|hata kodu", fb, re.I), f"{ad}: öğrenci dilinde (sunucu/hata kodu yok)")
+                iz_yok(pg, ad)
+                kayit = pg.evaluate("""async () => { const dbs = await indexedDB.databases(); let u = 0;
+                  for (const d of dbs) { const db = await new Promise(r => { const q = indexedDB.open(d.name); q.onsuccess = () => r(q.result); });
+                    for (const st of db.objectStoreNames) { const all = await new Promise(r => { const q = db.transaction(st).objectStore(st).getAll(); q.onsuccess = () => r(q.result); });
+                      for (const x of all) u += (JSON.stringify(x).match(/"unchecked":true/g) || []).length; } db.close(); } return u; }""")
+                check(kayit == 1, f"{ad}: cevap 'denetlenemedi' olarak kaydedildi ({kayit} = 1)")
+                srv.bozuk = False; gordu = 1
+                if durum == "gec15": gec_birak(pg, 15)
+            else:
+                sonra = "Bu sefer olmadı" in fb and pg.get_attribute("[data-test=feedback]", "data-unchecked") is None
+                check(sonra, f"{ad}: sunucu düzelince sıradaki cevap öğretmenle denetlendi ({fb.splitlines()[0][:40]!r})")
+                break
+            ileri(pg); continue
+        pg.click("[data-test=dunno]"); pg.wait_for_selector("[data-test=feedback]", timeout=5000)
+    check(gordu == 1, f"{ad}: konuşma maddesi geldi ve denendi")
+    satir("assess equiv_check", durum, dt, "", gordu == 1, sonra)
+    kapat(pg)
+
+def bos_bitir(ctx):
+    """Cümle kurmadan 'Konuşmayı bitir' boş rapor açmaz: uyarı + Konuşmaya dön / Kaydetmeden çık; hiçbir şey kaydedilmez"""
+    ad = "roleplay/boş bitir"; RP_STATE["n"] = 0
+    pg = sayfa(ctx, default_ai); rp_baslat(pg)
+    once = rp_kayit(pg)[0]
+    pg.click("[data-test=rp-end]")
+    try: pg.wait_for_selector("[data-test=rp-bos]", timeout=4000); kart = True
+    except Exception: kart = False
+    check(kart and pg.locator("[data-test=rp-report]").count() == 0 and pg.locator("[data-test=rp-chat]").count() == 1, f"{ad}: boş rapor yok, uyarı kartı, konuşma ekranı duruyor")
+    pg.click("[data-test=rp-bos-don]")
+    check(pg.locator("[data-test=rp-bos]").count() == 0, f"{ad}: 'Konuşmaya dön' kartı kapatır")
+    pg.click("[data-test=rp-end]"); pg.wait_for_selector("[data-test=rp-bos-cik]")
+    pg.click("[data-test=rp-bos-cik]")
+    try: pg.wait_for_selector("[data-section=roleplay]", timeout=6000); cikti = True
+    except Exception: cikti = False
+    check(cikti and rp_kayit(pg)[0] == once, f"{ad}: 'Kaydetmeden çık' senaryo sayfasına döner, kayıt yok")
+    # bir cümleden sonra bitir: rapor yolu (uyarı yok)
+    rp_baslat(pg); gonder(pg, "Guten Tag, ich brauche einen Termin.")
+    pg.wait_for_function(f"() => document.querySelectorAll('{CEVAP}').length >= 2", timeout=8000)
+    pg.click("[data-test=rp-end]")
+    try: pg.wait_for_selector("[data-test=back-to-scenario]", timeout=8000); rapor = True
+    except Exception: rapor = False
+    check(rapor and pg.locator("[data-test=rp-bos]").count() == 0, f"{ad}: cümleden sonra bitir → rapor")
+    kapat(pg)
+
+def kalip_aciklama(ctx):
+    """'Bu ne demek?' yapay zekâsız yedek: cümledeki kalıp bütün açıklanır ('grüß Gott' = Merhaba, 'der Gott — Tanrı' değil)"""
+    ad = "explain/kalıp"; RP_STATE["n"] = 0
+    pg = sayfa(ctx, default_ai); rp_baslat(pg)
+    pg.locator("[data-test=explain]").first.click()
+    pg.wait_for_selector("[data-test=yerel-kelimeler], [data-test=yerel-cevap], [data-test=yerel-yok]", timeout=10000)
+    t = metin(pg, "[data-test=explain-out]")
+    check("Grüß Gott" in t and "Tanrı" not in t, f"{ad}: 'grüß Gott' kalıp olarak açıklandı ({t.splitlines()[:3]!r})")
+    kapat(pg)
 
 def main():
     srv = serve(PORT)
@@ -302,10 +388,23 @@ def main():
                 try: globals()[g](ctx, d)
                 except Exception as e: check(False, f"{g}/{d}: beklenmeyen hata ({str(e)[:120]})")
                 b.close()
+            if g == "equiv_check":
+                for d in ([arg("--durum")] if arg("--durum") else ["500", "gec15"]):
+                    b, ctx = launch(p); pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.close()
+                    try: assess_denetim(ctx, d)
+                    except Exception as e: check(False, f"assess equiv_check/{d}: beklenmeyen hata ({str(e)[:120]})")
+                    b.close()
             if g == "feedback_tr" and not arg("--durum"):
                 b, ctx = launch(p); pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.close()
                 try: feedback_yaris(ctx)
                 except Exception as e: check(False, f"feedback_tr/yarış: beklenmeyen hata ({str(e)[:120]})")
+                b.close()
+        if not arg("--gorev"):
+            for f in (bos_bitir, kalip_aciklama):
+                print(f"== {f.__name__}")
+                b, ctx = launch(p); pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.close()
+                try: f(ctx)
+                except Exception as e: check(False, f"{f.__name__}: beklenmeyen hata ({str(e)[:120]})")
                 b.close()
     srv.shutdown()
     satirlar = ["| görev | durum | seçenek süresi | ekrandaki mesaj | yapay zekâsız yol | yeniden deneme |", "|---|---|---|---|---|---|"]
