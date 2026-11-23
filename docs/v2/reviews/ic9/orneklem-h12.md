@@ -120,3 +120,27 @@ Ek okuma (örneklem dışı): `gr:a2-07:t1`–`t4` metinleri, tabloları ve örn
 - Sözlüğe 5 kayıt (lex) girince gun-84'teki 3 "öğretilmemiş" uyarısı yeniden denetlenmeli.
 
 KARAR: GEÇTİ (A = 0, B = 0; 2 C takip işi)
+
+## 2. tur (yalnız düzeltme ve getirdiği kusur)
+
+Dilbilimci düzeltmeleri: `g2` durum_tr; `g5` (molada Derya), `g6` (spor salonunda Basti), `g7` (telefonda Herr Wimmer) yeniden kuruldu.
+
+**K(t), 84. günün sonu.** Dikiş makinesi (`dikisDenetle`, içinde `bilinmeyenler()`) bu dosyayı okumuyor. Bu yüzden bellekte gun-84'ün halkaları korundu, halka dışı bölümleri boşaltıldı ve `gun_sinavi` yerine 7 durumun `prompt_de`si ile **bütün** `accepted` biçimleri madde olarak kondu (dosyaya yazılmadı; betik: scratchpad `gor-kt.ts`, tablo `/tmp/claude-0/s/tablo.json`, kaynak `/home/claude/h12/content/v2/m1`).
+- 7 `prompt_de`: 0 bilinmeyen. 7 `accepted[0]`: 0 bilinmeyen.
+- Yan kabul biçimlerinde 2 bilinmeyen var, ikisi de düzeltilmemiş durumlarda: `g1` a4 "davon" (tabloda yok), `g4` a2 "danach" (15. hafta). Bunlar istenen sözcük değil, yalnız kabul ediliyor; engel değil.
+- Makinenin doğru çalıştığı da görüldü: aynı koşu bu iki sözcüğü yakaladı.
+
+**Derste aynen geçen öğrenci biçimi:** 0. Betik `accepted` biçimlerini 12. haftanın görev cümlesi, dikte, gölge, prova, gün sınavı ve hafta testiyle karşılaştırdı.
+
+**Almanca ve `accepted`:**
+
+| durum | sonuç | not |
+|---|---|---|
+| g2 | OK | "Basti senin telefonundaki fotoğrafı…" ile belirsizlik giderilmiş. |
+| g5 | OK (dil) · C | Almanca, 5 kabul ve Türkçe doğru; du doğru, seit + şimdiki zaman doğru. Ama Derya (`ch:aksoy`) bu haftanın 7 dersinin hepsinde var, yani "başka kişi" tutmuyor. Öneri: adsız bir iş arkadaşı (ör. "eine Kollegin"). |
+| g6 | OK | Basti hiçbir derste yok; yer (`pl:fitness`) yeni. "Mach jetzt zehn Minuten Pause und trink viel Wasser!" doğal; 5 kabul doğru ve aynı anlamda. Doktor talimatını başka bir konuşmacıya aktarma becerisi doğru ölçülüyor. |
+| g7 | **GERİ** | Almanca ve 5 kabul doğru (seit + şimdiki zaman, deshalb + fiil 2. yerde, Herr Wimmer'e Sie). Ama düzeltme asıl bulguyu gidermiyor, yeni bir kusur getiriyor. (1) Herr Wimmer'i arayıp hastalık bildirmek 81. günün provasının **aynı kişi ve aynı durumu** (`m1:81:p1` n1: "Guten Morgen, Herr Wimmer. Ich bin noch krank und bleibe heute zu Hause."). Hafta testi `m1:84:t10` da aynı ("Leider nicht, ich bin krank. Deshalb bleibe ich zu Hause."). 3. kabul ("Guten Morgen, Herr Wimmer. … deshalb bleibe ich heute zu Hause.") neredeyse ders cümlesi; aktarım ölçülmüyor. (2) `cd:m1:84` ("Dr. Weber'in sorularına cevap verip şikâyetimi ayrıntılı anlatırım") bir doktor sorusuna yanıt ister; patronun "Was ist los?" sorusu bu beceriyi ölçmüyor. |
+
+**g7 için öneri:** Kalıp ve beceri aynı kalsın, kişi ve yer yeni olsun. Örnek: Pazar günü Bereitschaftspraxis'te nöbetçi doktor (`der Arzt im Bereitschaftsdienst`, adsız) soruyor: "Was fehlt Ihnen, und seit wann?" Beklenen kabul: "Ich habe seit gestern Bauchschmerzen, deshalb bin ich hier." gibi ≥ 3 biçim. Yeniden kurulunca K(t) aynı yöntemle yeniden koşulmalı. Tıbbi güvenlik için: sağ alt karın ağrısı gibi alarm belirtisi yazılmamalı; yazılırsa 112 ya da acil servis yönlendirmesi gerekir.
+
+KARAR: GERİ (g7: kişi ve durum `m1:81:p1` ve `m1:84:t10` ile aynı, `cd:m1:84` ölçülmüyor; öneri yukarıda; g5 C takip)
