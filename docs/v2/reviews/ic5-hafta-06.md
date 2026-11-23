@@ -130,3 +130,77 @@ Tablonun son satırı: **Sie sind zu Hause geblieben.** → **Tobi und Derya sin
 - Örneklemin isteğe bağlı notları (gun-40 "O zaman Wendlfing daha küçüktü", gun-38 v1 d5 örneği, gun-42 "Benim gibi!", g3 ve g5 `why_tr`) bu turda kapsam dışı bırakıldı.
 
 **Karar: ONAY.** Örneklemin üç maddelik düzeltme listesi kapandı. Yeniden çekiliş gerekmez; değişen alanların fark kontrolü yeterli.
+
+## İnceleme dönüşü (İÇ-10, #238 1. tur)
+
+Tarih: 2026-11-23 · dayanak: PR #238 "[İNCELEME] 1. tur `50067ed`" (1 P0, 5 P1, 11 P2). Bu turda P1-1, P1-2, P1-3, P1-5 ve P2'nin 2, 4, 5, 7, 9, 10 numaraları kapatıldı. P0-1'e dokunulmadı (PM kararı bekleniyor). P1-4 okurun işi. Yeni sözcük ya da gösterilmemiş çekim eklenmedi: her yeni cümle hafta kapısının süzgecinden önce tek tek, sonra bütün olarak geçirildi.
+
+### P1-1 · Gösterilmemiş biçimler (`alle`, `meiner`, `ihrer`, `ins`, `seine`)
+Hepsinde cümle bilinen biçimle yeniden kuruldu; kalıp satırına yeni biçim eklenmedi.
+
+| Yer | Önce | Sonra | Birlikte değişen |
+|---|---|---|---|
+| gun-36 · m1:36:a2 · c5 | **Bitte kommen Sie alle in die Küche.** · "Lütfen hepiniz mutfağa gelin." | **Bitte kommen Sie in die Küche.** · "Lütfen mutfağa gelin." | d2 boşluk cümlesi. ayrinti[1] ve eylem aynı kaldı (kanıt artık temiz). |
+| gun-38 · m1:38:a1 · c4 | **Die U-Bahn fährt alle fünf Minuten.** · "Metro beş dakikada bir geliyor." | **Die nächste U-Bahn kommt in fünf Minuten.** · "Bir sonraki metro beş dakika sonra geliyor." | d2 boşluk cümlesi; ayrinti[1] sorusu "Bir sonraki metro ne zaman geliyor?", seçenekler "beş dakika sonra / bir saat sonra / on beş dakika sonra". |
+| gun-38 · m1:38:a2 · c2 | **Ich fahre am Freitag zu meiner Tochter.** · "Cuma günü kızıma gidiyorum." | **Ich besuche am Freitag meine Tochter.** · "Cuma günü kızımı ziyaret ediyorum." | d4 kabulleri (üç yazım biçimi); d5 örneği **Frau Brandl besucht ihre Tochter. Sie ist bis Montag weg.**; ana_fikir doğru seçeneği "Hafta sonu kızını ziyaret ediyor, haber veriyor". **Tochter** yerinde kaldı (P0-1 kararına dokunmamak için). |
+| gun-39 · sahne s8 | **Im Winter waren wir alle in der Küche.** · "Kışın hepimiz mutfaktaydık." | **Im Winter waren wir in der Küche.** · "Kışın mutfaktaydık." | d3 bankasından **alle** çıktı, kabuller; d5 örneği **… Im Winter war sie in der Küche.**; ayrinti[1] sorusu "Eskiden kışın neredeydiler?". Gölge s8 yeni cümleyle. |
+| gun-41 · m1:41:a2 · c3 | **Er kommt bis Mittwoch nicht ins Büro.** · "… ofise gelmiyor." | **Er kommt bis Mittwoch nicht zur Arbeit.** · "Çarşambaya kadar işe gelmiyor." | d2: **… nicht zur ___.**, kabul **Arbeit** / **arbeit** / **Arbeit.** |
+| gun-41 · m1:41:a2 · c4 | **Frau Aksoy macht diese Woche seine Arbeit.** | **Frau Aksoy macht diese Woche die Arbeit für ihn.** · "Bu hafta işi onun yerine Aksoy Hanım yapıyor." | d3 bankası (**die**, **für**, **ihn** girdi, **seine** çıktı; çeldiriciler **Tag**, **meine**) ve kabulleri; d5 örneği **Tobi ist krank. Derya macht diese Woche die Arbeit.**; cevapla kabullerinin sırası: örnek cevap artık **Derya macht das.** (`why_tr` ile aynı). **seine**'li iki kabul listede duruyor, haksız ret olmasın diye. |
+
+c4 için incelemenin önerisi **die Arbeit von Tobi** idi. Herr Wimmer herkese **Sie** diyor ve aynı anonsta **Herr Lechner** diyor; ardından ön adla anmak ağız değiştirmek olurdu. **von Herrn Lechner** ise gösterilmemiş bir çekim. **für ihn** bilinen biçim (süzgeçten geçti) ve anonsun diliyle uyumlu.
+
+Sonuç (bütünleşik ağaçta hafta kapısı): süzülen medya maddesi 9 → 0, kanıtında yeni biçim olan anlama sorusu 8 → 0.
+
+### P1-2 · 39. gün ev yılı
+- sahne s6: **Im Jahr 1960 hatten wir keine Heizung im Haus.** → **Im Jahr 1970 hatten wir keine Heizung im Haus.** · "1970 yılında evde kaloriferimiz yoktu."
+- 1960 bu sahnenin dikte, soru ve gölgesinde geçmiyordu. Günün kalan yılları tutarlı: okul 1960'ta vardı ve 1965'te yeniydi; ev 1970'te yeni; kalorifer 1985'ten.
+
+### P1-3 · 41. gün h2[4]
+- **In der Firma duzen wir uns alle.** → **Im Kurs duzen wir uns alle.** · "Kursta hepimiz birbirimize sen diyoruz." Kabuller: **Im Kurs duzen wir uns alle.** / **Wir duzen uns alle im Kurs.** / **Im Kurs duzen sich alle.**
+- **Kurs** 13. günden beri biliniyor. **alle** bu günün kalıbında gösteriliyor (**… duzen wir uns alle.**).
+
+### P1-5 · Üçüncü kabul yalnız noktalama farkıydı (D-064)
+| Madde | Çıkan | Giren |
+|---|---|---|
+| gun-38 · m1:38:s5 | **Ich bin mit der Straßenbahn gefahren!** | **Ich bin Straßenbahn gefahren.** |
+| gun-40 · m1:40:s7 | **Eine Sekunde bitte!** | **Sekunde, bitte!** |
+| gun-42 · m1:42:s8 | **Der Film war super.** | **Der Film war echt super!** (**echt** bu kullanımla 8. günden beri biliniyor: **echt teuer**, **echt gut**, **echt toll**) |
+| hafta-sonu-testi-06 · m1:42:t05 | **Wir sind mit dem Bus zum Bahnhof gefahren!** | **Mit dem Bus sind wir zum Bahnhof gefahren.** |
+
+Dört maddede de ilk kabul değişmedi.
+
+### P2'ler
+- **(2)** gun-42 · m1:42:a1 · ayrinti[1]: kanıt `c4` → `c3`, `c4` (günü söyleyen cümle eklendi).
+- **(4)** gun-40 · prova `durum_tr`: "Bugün saat üçte … Öğleden sonra yağmur başladı, otobüs gelmiyor." → "Birkaç gün sonra, yağmurlu bir gün. Saat üçte aile hekiminde randevun var ama otobüs gelmiyor. Frau Huber'i ara." Radyo o gün için **warm und schön** diyor; prova başka bir güne alındı. Öğrencinin **Es regnet und der Bus kommt nicht.** satırı ve **heute um drei** aynı kaldı.
+- **(5)** Hava için **warm** her yerde "sıcak": gun-40 kalıp ("Hava sıcak."), görev cümlesi ("Hava sıcak. Dışarıda ayakta kahve içiyoruz."), sahne s2 ("… hâlâ sıcak."), m1:40:a1 c2 ("Bugün hava sıcak ve güzel."), c5 ("Ama artık o kadar sıcak değil."), ayrinti[0] seçenekleri ("sıcak ve güzel / kötü / yağmurlu"); gun-42 m1:42:a1 c3 ("Pazar günü hava sıcaktı."), ayrinti[0] seçenekleri ("kötü / sıcak / çok güzel"), eylem seçeneği ("Hayır, bugün yirmi derece."). Seçeneklerde "sıcak" ile "çok sıcak" yan yana kalmasın diye çeldiriciler değişti. Yan etki kapatıldı: m1:40:s5 ("Bugün hava çok sıcak.") kabullerine **Heute ist es sehr warm.** eklendi; ilk kabul **Heute ist es sehr heiß.** aynı.
+- **(7)** gun-42 · h1[4]: **Seit Montag funktioniert die Heizung wieder. Super!** → **Seit Donnerstag …** · "Perşembeden beri kalorifer yine çalışıyor. Süper!" (üç kabul aynı günle). 39. günde tamir perşembe bitiyor.
+- **(9)** gun-36 · h2[4]: **Am Sonntag habe ich meine Freundin besucht.** kabulü çıktı (belirli bir kişi, çoğu zaman sevgili anlamı); yerine **Eine Freundin habe ich am Sonntag besucht.**
+- **(10)** gun-39 · m1:39:s3: **Der Bus war heute sehr spät.** → **Der Bus ist heute sehr spät gekommen.** (ses, üç yazım kabulü). `why_tr`: "Gelmek geçmişte **ist** ile kurulur: **ist spät gekommen**, geç geldi." **gekommen** 38. günden beri biliniyor.
+
+Bu turda yapılmayanlar: P2-1 (54 seçenekte kabul dolgusu), 3, 6, 8, 11 takip işi olarak duruyor.
+
+### Okur fark turu için değişen Türkçe alanlar
+- gun-36: m1:36:a2 c5 `tr`
+- gun-38: m1:38:a1 c4 `tr`, ayrinti[1] `q_tr` ve seçenekler; m1:38:a2 c2 `tr`, ana_fikir seçenek 0
+- gun-39: sahne s6 `tr`, s8 `tr`, ayrinti[1] `q_tr`; m1:39:s3 `why_tr`
+- gun-40: m1:40:h1 kalıp `tr` ve görev cümlesi `tr` (hava); sahne s2 `tr`; m1:40:a1 c2 `tr`, c5 `tr`, ayrinti[0] seçenekler; prova `durum_tr`
+- gun-41: m1:41:h2 görev cümlesi [4] `tr`; m1:41:a2 c3 `tr`, c4 `tr`
+- gun-42: m1:42:h1 görev cümlesi [4] `tr`; m1:42:a1 c3 `tr`, ayrinti[0] seçenekler, eylem seçenek 2
+
+### Denetim (düzeltmelerden sonra)
+Bütünleşik ağacın (1.–56. gün) geçici bir kopyasında, 6. hafta dosyaları bu ağaçtakilerle değiştirilerek koşuldu:
+- `hafta-kapisi-kos.ts --hafta 6`: GEÇTİ. 36–42. günlerin bütün adımları tamam (82, 80, 79, 77, 75, 74, 69). Öğretilmeden istenen 0, kanıtta yeni 0, süzülen 0. Test 12/12, görülmemiş 7/7.
+- `dikis-kos.ts --hafta 6`: 36.–42. gün satırları 0 / 0 / 0 / 0 / 0.
+- `content:validate`: 6. hafta dosyalarında 0 hata (çıkan 7 hata 50.–56. gün dosyalarında, bu dalın dışında). Yalnız bu ağaçta doğrulayıcı koşulamadı: 8.–28. gün dosyaları ve bağımlılıklar burada yok.
+- `kdenet.ts 29 42`: 36–42 için bilinmeyenli görev cümlesi 0; TEKRAR, HALKA HATA, KALIP ÖRNEKSİZ yok.
+- Değişen yedi dosya (gun-36, 38, 39, 40, 41, 42 ve hafta-sonu-testi-06) geçerli JSON; biçim korunarak yazıldı. gun-37 değişmedi.
+
+### Kalan şüpheler
+1. P0-1 açık: Frau Brandl'ın kızı, Derya'nın akrabaları. Karar adsız kişiye çekmek olursa 38. gün a2'de c2, d1 (seçenekler **Tochter / Mutter / Schwester**), d4, d5 ve ana fikir birlikte değişir.
+2. 40. gün provası "Birkaç gün sonra" diye başka güne alındı; radyonun pazartesi için **wieder schön** demesiyle çelişmesin diye gün adı verilmedi.
+3. "sıcak" artık hem **warm** hem **heiß** karşılığı. Türkçeden Almancaya çeviride ikisi de kabul edilmeli; 6. haftada bu durumda olan tek madde m1:40:s5, o kapatıldı.
+4. Bu turda yanlışlıkla iki salt okunur git komutu çalıştırıldı (durum ve kayıt listesi). Depoda hiçbir şey değişmedi.
+
+`review` alanı bütün dosyalarda `draft` kaldı (okur fark turu ve P0-1 kararı sırada).
+
+**Karar: ONAY** (P1-1, P1-2, P1-3, P1-5 kapandı; 2. tur için hazır). Açık kalan: P0-1 (PM), P1-4 (okur fark turu).

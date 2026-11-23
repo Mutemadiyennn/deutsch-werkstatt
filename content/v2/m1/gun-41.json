@@ -250,12 +250,12 @@
     },
     {
      "kart": "lx:duzen",
-     "de": "In der Firma duzen wir uns alle.",
-     "tr": "Firmada hepimiz birbirimize sen diyoruz.",
+     "de": "Im Kurs duzen wir uns alle.",
+     "tr": "Kursta hepimiz birbirimize sen diyoruz.",
      "accepted": [
-      "In der Firma duzen wir uns alle.",
-      "Wir duzen uns alle in der Firma.",
-      "In der Firma duzen sich alle."
+      "Im Kurs duzen wir uns alle.",
+      "Wir duzen uns alle im Kurs.",
+      "Im Kurs duzen sich alle."
      ]
     },
     {
@@ -763,13 +763,13 @@
     },
     {
      "id": "c3",
-     "de": "Er kommt bis Mittwoch nicht ins Büro.",
-     "tr": "Çarşambaya kadar ofise gelmiyor."
+     "de": "Er kommt bis Mittwoch nicht zur Arbeit.",
+     "tr": "Çarşambaya kadar işe gelmiyor."
     },
     {
      "id": "c4",
-     "de": "Frau Aksoy macht diese Woche seine Arbeit.",
-     "tr": "Bu hafta onun işini Aksoy Hanım yapıyor."
+     "de": "Frau Aksoy macht diese Woche die Arbeit für ihn.",
+     "tr": "Bu hafta işi onun yerine Aksoy Hanım yapıyor."
     },
     {
      "id": "c5",
@@ -846,11 +846,11 @@
        "id": "d2",
        "cumle": "c3",
        "seviye": "orta",
-       "de": "Er kommt bis Mittwoch nicht ins ___.",
+       "de": "Er kommt bis Mittwoch nicht zur ___.",
        "accepted": [
-        "Büro",
-        "büro",
-        "Büro."
+        "Arbeit",
+        "arbeit",
+        "Arbeit."
        ]
       },
       {
@@ -863,15 +863,17 @@
         "macht",
         "diese",
         "Woche",
-        "seine",
+        "die",
         "Arbeit",
+        "für",
+        "ihn",
         "Tag",
         "meine"
        ],
        "accepted": [
-        "Frau Aksoy macht diese Woche seine Arbeit.",
-        "frau aksoy macht diese woche seine arbeit",
-        "Frau Aksoy macht diese Woche seine Arbeit"
+        "Frau Aksoy macht diese Woche die Arbeit für ihn.",
+        "frau aksoy macht diese woche die arbeit für ihn",
+        "Frau Aksoy macht diese Woche die Arbeit für ihn"
        ]
       },
       {
@@ -888,7 +890,7 @@
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Anonsu Ioana'ya Almanca iki kısa cümleyle anlat.",
-       "ornek_de": "Tobi ist krank. Derya macht seine Arbeit.",
+       "ornek_de": "Tobi ist krank. Derya macht diese Woche die Arbeit.",
        "zorunlu": [
         "krank"
        ]
@@ -904,10 +906,11 @@
       "situation_tr": "Bir iş arkadaşın Tobi'nin işini soruyor. Bu hafta Derya yapıyor.",
       "prompt_de": "Wer macht jetzt die Arbeit von Tobi?",
       "accepted": [
-       "Frau Aksoy macht seine Arbeit.",
-       "Derya macht diese Woche seine Arbeit.",
        "Derya macht das.",
        "Diese Woche macht Derya die Arbeit.",
+       "Frau Aksoy macht die Arbeit für ihn.",
+       "Frau Aksoy macht seine Arbeit.",
+       "Derya macht diese Woche seine Arbeit.",
        "Frau Aksoy, bis Mittwoch."
       ],
       "why_tr": "Kim yapıyor sorusuna kişi adıyla başla: **Derya macht das.**"
