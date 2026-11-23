@@ -122,3 +122,7 @@ Okur raporu: `docs/v2/reviews/okur/lexicon-batch-015.md` (378 alan, 7 GERİ). Ye
 Öteki kartlarda aynı Türkçe sözün tekrarlandığı ipuçları (lx:Anrufbeantworter, lx:Durchwahl, lx:Lohn, lx:Schichtplan, lx:Abfahrt, lx:Warteschleife) her seferinde aynı biçimi veriyor ve cümleyle örtüşüyor; dokunulmadı.
 
 `content:validate`: 0 hata, 147 uyarı.
+
+**Okur 2. tur (2026-11-23), 2 alan:** lx:Bahnsteig `forms[4].hint_tr` → Perondaki bir bankta derken **auf einer Bank am Bahnsteig** denir. (ipucu cümledeki biçimi birebir veriyor) · lx:Zugausfall `forms[5].hint_tr` → Tren iptal oldu derken **es gibt einen Zugausfall** denir. (önceki metin genel kural gibi okunuyordu ve yanlıştı: **Es gibt ein Problem** doğru; yeni metin boşluğun Türkçe çevirisiyle aynı sözü kullanıyor). `content:validate`: 0 hata, 147 uyarı. `review` draft.
+
+**Okur 3. tur (2026-11-23), 1 alan:** lx:Zugausfall `forms[5].hint_tr` → İptal var derken **es gibt einen Zugausfall** denir. (2. turdaki "Tren iptal oldu derken" sözü kartın hata notuyla aynıydı ve orada **Der Zug ist ausgefallen** karşılığını veriyordu; yeni söz kartta başka hiçbir alanın başlangıcıyla çakışmıyor). `content:validate`: 0 hata, 147 uyarı. `review` draft.

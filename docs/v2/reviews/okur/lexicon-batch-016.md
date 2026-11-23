@@ -81,3 +81,47 @@
 GERİ kimlikleri: `lx:Mietvertrag.forms[0].hint_tr`, `lx:zustellen.forms[0].hint_tr`, `lx:zustellen.forms[3].hint_tr`, `lx:zustellen.forms[4].hint_tr`, `lx:zustellen.forms[5].hint_tr`, `lx:Arbeitsvertrag.forms[4].hint_tr`, `lx:Arbeitsunfall.forms[1].hint_tr`, `lx:Kassenbon.forms[1].hint_tr`, `lx:Quittung.forms[3].hint_tr`, `lx:Quittung.forms[5].hint_tr`, `lx:Umtausch.forms[1].hint_tr`, `lx:Umtausch.forms[4].hint_tr`, `lx:umtauschen.forms[1].hint_tr`, `lx:umtauschen.forms[4].hint_tr`, `lx:umtauschen.forms[5].hint_tr`, `lx:Kündigung.exp.ipucu_tr`, `lx:Rettungswagen.forms[4].hint_tr`, `lx:Haarschnitt.mistakes_tr[0]`, `lx:färben.forms[1].hint_tr`, `lx:färben.forms[5].hint_tr`
 
 Dosyada GERİ olduğu için "reviewed" sayılamaz (OD-9.4).
+
+---
+
+## 2. tur (2026-11-23): yalnız düzeltilen alanlar
+
+- Girdi: `content/v2/registry/lexicon/batch-016.json`, dilbilimcinin "Okur GERİ düzeltmesi (2026-11-23)" bölümündeki 23 alan (1. turun 20 GERİ'si ve aynı türden 3 ek alan).
+- Eski ve yeni hâl karşılaştırıldı. Öğrenciye görünen alanlarda bu 23 alandan başka değişiklik yok.
+- Her düzeltme kendi kartının öteki alanlarıyla birlikte okundu: aynı kartta yeni bir çelişki çıkıyor mu, ona bakıldı.
+
+| öğe kimliği | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| `lx:Mietvertrag` | `forms[0].hint_tr` | Kira sözleşmesini derken **den Mietvertrag** denir. | Kira sözleşmesini **den Mietvertrag** ile söylerim. | GEÇTİ | Artık `forms[2]` ile aynı ve cümleyle örtüşüyor. |
+| `lx:zustellen` | `forms[0].hint_tr` | **Die Post** ile söylerken **stellt** denir, **zu** sona gider. | Posta için **stellt** derim, **zu** en sona gider. | GEÇTİ | |
+| `lx:zustellen` | `forms[3].hint_tr` | Paket çoktan gelmiş derken **ist schon zugestellt** denir. | Paket çoktan geldiyse **ist schon zugestellt** derim. | GEÇTİ | Eşdizimdeki **wurde zugestellt** artık başka bir Türkçe sözle eşleşiyor, çelişki kalmadı. |
+| `lx:zustellen` | `forms[4].hint_tr` | **Wir** ile söylerken **stellen** denir, **zu** sona gider. | Biz derken **stellen** derim, **zu** sona gider. | GEÇTİ | |
+| `lx:zustellen` | `forms[5].hint_tr` | **zu** cümlenin sonuna gider: **stellt hier um elf zu**. | **zu** en sona geliyor. | GEÇTİ | |
+| `lx:Arbeitsvertrag` | `forms[4].hint_tr` | İmzaladım derken **Ich habe** ile başlarsın, **unterschrieben** sona gelir. | İmzaladım derken başa **Ich habe**, sona **unterschrieben** koyarım. | GEÇTİ | |
+| `lx:Arbeitsunfall` | `forms[0].hint_tr` | Bir iş kazası geçirdim derken **einen Arbeitsunfall** denir. | Kaza geçirdim derken **einen Arbeitsunfall** derim. | GEÇTİ | |
+| `lx:Arbeitsunfall` | `forms[1].hint_tr` | Bu bir iş kazasıydı derken **ein Arbeitsunfall** denir. | Bu bir iş kazasıydı derken **ein Arbeitsunfall** derim. | GEÇTİ | Türkçe sözler artık ayrı; iki kutu birbirini tutuyor. |
+| `lx:Kassenbon` | `forms[1].hint_tr` | Fiş sizde mi diye sorarken **den Kassenbon** denir. | Fiş sizde mi diye sorarken **den Kassenbon** derim. | GEÇTİ | |
+| `lx:Quittung` | `forms[2].hint_tr` | Bir makbuz derken **eine Quittung** denir. | Bir makbuz **eine Quittung**. | GEÇTİ | |
+| `lx:Quittung` | `forms[3].hint_tr` | Belli bir makbuzu sorarken **die Quittung** denir. | Bilinen, o makbuzu sorarken **die Quittung** derim. | GEÇTİ | |
+| `lx:Quittung` | `forms[5].hint_tr` | Bir makbuz derken **eine Quittung** denir. | Bir makbuz yine **eine Quittung**. | GEÇTİ | Kartta bir makbuz hep **eine**, belli makbuz **die**; çelişki yok. |
+| `lx:Umtausch` | `forms[0].hint_tr` | Değişim mümkün mü derken **ein Umtausch** denir. | Değişim olur mu diye sorarken **ein Umtausch** derim. | GEÇTİ | |
+| `lx:Umtausch` | `forms[1].hint_tr` | Tabelada kısaca yalnız **Umtausch** yazar. | Tabelada önünde bir şey olmadan **Umtausch** yazıyor. | GEÇTİ | |
+| `lx:Umtausch` | `forms[4].hint_tr` | Yapılmış belli bir değişim için **der Umtausch** denir. | Olmuş, bilinen bir değişim için **der Umtausch** derim. | GEÇTİ | Üç kutu artık üç ayrı durumu anlatıyor. |
+| `lx:umtauschen` | `forms[1].hint_tr` | **Ich** ile söylerken **tausche** denir, **um** sona gider. | Ben derken **tausche** derim, **um** sona gider. | GEÇTİ | |
+| `lx:umtauschen` | `forms[4].hint_tr` | **um** cümlenin sonuna gider: **Ich tausche die Jacke um**. | **um** en sona geliyor. | GEÇTİ | |
+| `lx:umtauschen` | `forms[5].hint_tr` | **Ioana** ile söylerken **tauscht** denir, **um** sona gider. | Ioana için **tauscht** derim, **um** sona gider. | GEÇTİ | |
+| `lx:Kündigung` | `exp.ipucu_tr` | Sözleşmeyi sen bitiriyorsan **kündigen** dersin: **Ich habe gekündigt**. | Sözleşmeyi ben bitirirsem **Ich habe gekündigt** derim. | GEÇTİ | |
+| `lx:Rettungswagen` | `forms[4].hint_tr` | Ambulans duruyor derken **ein Rettungswagen**, çağırırken **einen Rettungswagen** denir. | Ambulans bir yerde duruyorsa **ein**, çağırıyorsam **einen** derim. | GEÇTİ | Tek fikir: iki durumun farkı. Öteki kutularla (çağırırken **einen**) örtüşüyor. |
+| `lx:Haarschnitt` | `mistakes_tr[0]` | Saçımı kestirdim derken **Ich habe Haarschnitt gemacht** yanlış. Doğrusu **Ich habe einen neuen Haarschnitt**. | Saçımı kestirdim demek için yeni bir saç kesimim var derim. | GEÇTİ | Artık kartın kelimesini anlatıyor. |
+| `lx:färben` | `forms[1].hint_tr` | Boyadın mı diye sorarken **Hast du** ile başlarsın, **gefärbt** sona gelir. | Boyadın mı diye sorarken başa **Hast du**, sona **gefärbt** koyarım. | GEÇTİ | |
+| `lx:färben` | `forms[5].hint_tr` | **lassen** varsa **gefärbt** olmaz, **färben** kalır: **färben lassen**. | **lassen** varsa **gefärbt** demem, **färben** derim. | GEÇTİ | Hata kutusundaki **färben lassen** ile örtüşüyor. |
+
+Karar değiştirmeyen bir not: `lx:Rettungswagen.mistakes_tr[0]` hâlâ "**der Rettungswagen** olduğu için **einen** denir" diyor. `forms[4]` farkı artık açıkça söylediği için kafam karışmadı. Bu kutu 1. turda da GEÇTİ almıştı.
+
+### 2. tur sayıları
+
+- Yeniden okunan: 23
+- GEÇTİ: 23
+- GERİ: 0
+
+Parti durumu: 909 alanın 909'u GEÇTİ. Okur kapısı (OD-9.3) açısından dosya "reviewed" olabilir.
