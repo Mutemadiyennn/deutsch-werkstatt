@@ -25,7 +25,7 @@ export type Route =
   | { name: "rehber"; day: number }
   | { name: "gorevler" }
   | { name: "odak" }
-  | { name: "m1medya"; day: number; id: string }
+  | { name: "m1medya"; day: number; id: string; tur?: "ilk" | "ikinci" }
   | { name: "akis"; day: number }
   | { name: "ders"; id: string }
   | { name: "prova"; day: number }
@@ -60,7 +60,8 @@ export function parseHash(h: string): Route {
     case "odak": return { name: "odak" };
     case "kalip": return { name: "kalip", id: p[1] || undefined };
     case "akis": return { name: "akis", day: Number(p[1]) || 1 };
-    case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2] } : { name: "m1day", day: Number(p[1]) || 1 };
+    // #/m1/<gün>/<kayıt>[/1|/2]: akışta sesin ilk ya da ikinci turu (PM-097 md. 1); ek yoksa bütün adımlar
+    case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2], ...(p[3] === "1" ? { tur: "ilk" as const } : p[3] === "2" ? { tur: "ikinci" as const } : {}) } : { name: "m1day", day: Number(p[1]) || 1 };
     default: return { name: "today" };
   }
 }

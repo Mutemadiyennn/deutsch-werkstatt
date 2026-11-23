@@ -63,6 +63,20 @@ def main():
             except Exception as e: print("    tanı koşmadı:", e)
         check(worst_dom <= 300, f"ekran geçişi DOM'a giriş en kötü {worst_dom:.0f} ms (≤ 300, her geçiş)")
         check(worst_med <= 300, f"ekran geçişi ilk kare (5 ölçümün en iyi 3'ünün ortancası) en kötü sekmede {worst_med:.0f} ms (≤ 300; PM-060.1)")
+        # bayrak PR'ı md. 9 (PM 7061394696 md. 5): akış ekranı (ayrı parça, `import()`) açılışı — "sonra ≤ 1 sn" (phases/05 md. 5).
+        # İlk açılış parçayı da yükler (rapora yazılır); sonraki 4 açılışın ortancası ve en kötüsü ≤ 1000 ms; hedef 1. günün akışı
+        akis = []
+        for _ in range(5):
+            pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=next-activity]"); pg.wait_for_timeout(200)
+            akis.append(pg.evaluate("""async () => { const t0 = performance.now();
+              const seen = new Promise((r) => { const mo = new MutationObserver(() => { if (document.querySelector('[data-test=akis], [data-test=akis-degil]')) { mo.disconnect(); r(); } });
+                mo.observe(document.body, { childList: true, subtree: true }); });
+              location.hash = '#/akis/1'; await seen; await new Promise((r) => requestAnimationFrame(() => r()));
+              return [performance.now() - t0, !!document.querySelector('[data-test=akis]')]; }"""))
+        print("    akış açılışı (ms):", ", ".join(f"{t:.0f}" for t, _ in akis))
+        sonra = sorted(t for t, _ in akis[1:])
+        check(all(ok for _, ok in akis), "akış ekranı 1. günün akışıyla açıldı (akis-degil değil)")
+        check(sonra[len(sonra) // 2] <= 1000 and sonra[-1] <= 1000, f"akış ekranı sonraki açılışlarda ≤ 1 sn (ortanca {sonra[len(sonra) // 2]:.0f}, en kötü {sonra[-1]:.0f} ms; ilk {akis[0][0]:.0f} ms)")
         b.close()
         # 3) içerik isteği takılırsa: ≤ 10 sn içinde hata + "Tekrar dene" (servis işçisi kapalı: önbellek olmayan ilk kullanım)
         b, ctx = launch(p, service_workers="block"); pg = new_page(ctx)
