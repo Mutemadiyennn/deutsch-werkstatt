@@ -1272,43 +1272,42 @@
       },
       {
        "id": "d2",
-       "cumle": "c3",
+       "cumle": "c4",
        "seviye": "orta",
-       "de": "Ein Brot mit Käse kostet ___ Euro.",
+       "de": "Zwei Semmeln kosten nur ___ Cent.",
        "accepted": [
-        "vier",
-        "Vier",
-        "vier."
+        "neunzig",
+        "Neunzig",
+        "neunzig."
        ]
       },
       {
        "id": "d3",
-       "cumle": "c4",
+       "cumle": "c1",
        "seviye": "zor",
        "banka": [
-        "neunzig",
-        "Euro",
-        "Cent",
-        "Zwei",
-        "neunzehn",
-        "kosten",
-        "Semmeln",
-        "nur"
+        "und",
+        "Tag",
+        "Hallo",
+        "guten",
+        "Morgen",
+        "oder",
+        "bitte"
        ],
        "accepted": [
-        "Zwei Semmeln kosten nur neunzig Cent.",
-        "zwei semmeln kosten nur neunzig cent",
-        "Zwei Semmeln kosten nur neunzig Cent"
+        "Hallo und guten Tag!",
+        "hallo und guten tag",
+        "Hallo und guten Tag"
        ]
       },
       {
        "id": "d4",
-       "cumle": "c2",
+       "cumle": "c3",
        "seviye": "usta",
        "accepted": [
-        "Heute kostet eine Semmel nur fünfzig Cent.",
-        "heute kostet eine semmel nur fünfzig cent",
-        "Heute kostet eine Semmel nur fünfzig Cent"
+        "Ein Brot mit Käse kostet vier Euro.",
+        "ein brot mit käse kostet vier euro",
+        "Ein Brot mit Käse kostet vier Euro"
        ]
       },
       {
@@ -1323,14 +1322,13 @@
       }
      ],
      "golge": [
-      "c2",
-      "c4"
+      "c3"
      ],
      "cevapla": {
       "id": "m1:04:a1:c1",
       "k": "guided_response",
       "situation_tr": "Arkadaşın bir **Semmel** (küçük ekmek) kaç para diye soruyor. Duyduğun fiyatı söyle.",
-      "prompt_de": "Was kostet eine Semmel?",
+      "prompt_de": "Wie viel kostet eine Semmel?",
       "accepted": [
        "Eine Semmel kostet fünfzig Cent.",
        "Fünfzig Cent.",
@@ -1512,7 +1510,7 @@
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Mesajda ne dendiğini Almanca bir iki kısa cümleyle özetle.",
-       "ornek_de": "Der Termin ist am Freitag. Das kostet fünfunddreißig Euro.",
+       "ornek_de": "Das ist am Freitag. Das kostet fünfunddreißig Euro.",
        "zorunlu": [
         "Freitag",
         "fünfunddreißig Euro"
@@ -1863,9 +1861,10 @@
     "tr": "Yetmiş dokuz yaşındayım!",
     "secenekler": [
      {
-      "de": "Neunundsiebzig? Das ist schön!",
-      "tr": "Yetmiş dokuz mu? Bu çok güzel!",
+      "de": "Neunundsiebzig Jahre alt?",
+      "tr": "Yetmiş dokuz yaşında mı?",
       "accepted": [
+       "Neunundsiebzig Jahre alt?",
        "Neunundsiebzig? Das ist schön!",
        "Neunundsiebzig? Schön!",
        "Neunundsiebzig? Super!",
@@ -2201,8 +2200,8 @@
     "situation_tr": "Meyve tezgâhında elma alıyorsun. Satıcıya bir kilonun fiyatını sor.",
     "prompt_de": "Guten Tag!",
     "accepted": [
-     "Was kostet ein Kilo Äpfel?",
      "Wie viel kostet ein Kilo Äpfel?",
+     "Was kostet ein Kilo Äpfel?",
      "Was kostet das Kilo Äpfel?",
      "Guten Tag! Was kostet ein Kilo Äpfel?",
      "Guten Tag, was kostet ein Kilo Äpfel, bitte?",
@@ -2226,7 +2225,7 @@
      "Was kostet das Kilo?",
      "Guten Tag! Was kostet das Kilo?"
     ],
-    "why_tr": "Bir kilo elma kaç para derken **Was kostet ein Kilo Äpfel?** dersin.",
+    "why_tr": "Bir kilo elma kaç para derken **Wie viel kostet ein Kilo Äpfel?** dersin.",
     "strictNumberWords": true
    }
   ],

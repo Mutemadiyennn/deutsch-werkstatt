@@ -1245,6 +1245,17 @@
       },
       {
        "id": "d3",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Nummer vierzehn, bitte in Zimmer ___.",
+       "accepted": [
+        "zwölf",
+        "Zwölf",
+        "zwölf."
+       ]
+      },
+      {
+       "id": "d4",
        "cumle": "c2",
        "seviye": "zor",
        "banka": [
@@ -1264,20 +1275,10 @@
        ]
       },
       {
-       "id": "d4",
-       "cumle": "c3",
-       "seviye": "usta",
-       "accepted": [
-        "Nummer vierzehn, bitte in Zimmer zwölf.",
-        "nummer vierzehn bitte in zimmer zwölf",
-        "Nummer vierzehn, bitte in Zimmer zwölf"
-       ]
-      },
-      {
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Duyuruda ne dendiğini Almanca bir iki kısa cümleyle özetle.",
-       "ornek_de": "Nummer vierzehn, Zimmer zwölf.",
+       "ornek_de": "Nummer vierzehn, bitte in Nummer zwölf.",
        "zorunlu": [
         "vierzehn",
         "zwölf"
@@ -1285,14 +1286,13 @@
       }
      ],
      "golge": [
-      "c2",
-      "c3"
+      "c2"
      ],
      "cevapla": {
       "id": "m1:03:a1:c1",
       "k": "guided_response",
       "situation_tr": "Görevli sıra numaranı soruyor. Numaran on dört. Sayıyı söyle.",
-      "prompt_de": "Wie ist die Nummer, bitte?",
+      "prompt_de": "Wie ist Ihre Nummer, bitte?",
       "accepted": [
        "Nummer vierzehn.",
        "Vierzehn.",
@@ -1483,7 +1483,7 @@
       "id": "m1:03:a2:c1",
       "k": "guided_response",
       "situation_tr": "Frau Brandl, Herr Pichler'in yeni numarasını soruyor. Numara: 089 99998 307. Rakam rakam söyle.",
-      "prompt_de": "Wie ist die Nummer?",
+      "prompt_de": "Und die neue Nummer?",
       "accepted": [
        "Die Nummer ist null acht neun, neun neun neun neun acht, drei null sieben.",
        "Null acht neun, neun neun neun neun acht, drei null sieben.",
@@ -2177,7 +2177,7 @@
     "id": "m1:03:s11",
     "k": "guided_response",
     "situation_tr": "Herr Pichler yeni telefon numaranı soruyor. Numaran 0176 3581. Rakam rakam söyle.",
-    "prompt_de": "Wie ist Ihre neue Nummer?",
+    "prompt_de": "Wie ist Ihre Nummer?",
     "accepted": [
      "Meine Nummer ist null eins sieben sechs, drei fünf acht eins.",
      "Null eins sieben sechs, drei fünf acht eins.",
