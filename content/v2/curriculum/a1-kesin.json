@@ -1,0 +1,2064 @@
+{
+ "schema": 1,
+ "review": {
+  "status": "draft"
+ },
+ "note_tr": "A1 kesin kelime tablosu (PM-089 eki, PM-090 md. 1): 8.–56. gün için gün → kesin K1 kart kimlikleri. İçerik hatları yalnız kendi günlerinin kimliklerini öğretir; K(t) = ogretilmis_sayilan + tablodaki önceki bütün günler. Tablo omurgadan (haftalar[].kelime.k1_aralik, gunler[].kelime.adet) ve k1.json sırasından betikle üretilir, elle kart seçilmez. Gün içi sıra: önce günün dersine ve başlığına ait kartlar, sonra K1 sırası. Değişiklik isteği: #12'ye [İÇ-BEKLİYOR] tablo: … (hatlar tabloyu değiştirmez).",
+ "kaynak": {
+  "omurga": "content/v2/curriculum/omurga.json",
+  "k1": "content/v2/curriculum/k1.json",
+  "main": "987f6ae",
+  "halka_dali": "content/halka-gun-06-07",
+  "halka_commit": "1b34846"
+ },
+ "kural_tr": [
+  "1. Öğretilmiş: main'deki gun-01…07 yeni_kartlar + halka dalındaki bilinen takaslar (takaslar alanı).",
+  "2. Hafta: omurganın her k1_aralik grubu için o grubun, sıra aralığındaki, öğretilmemiş, daha önce atanmamış, takvim kolunda olmayan kartları; K1 sırasıyla; adet kadar. r0 grubu r0:* gruplarının tamamıdır. 2. haftanın ilk grubu omurganın 8. gün listesidir.",
+  "3. Gün: gunler[].kelime.adet kadar. Önce günün başlığında ya da derslerinin grammar.json kaydında (başlık, tablo, örnek cümle; Türkçe açıklama sayılmaz) tam sözcük olarak geçen kartlar ve dersin K1 grubundaki kartlar (r0:10-buchstabieren ↔ r0:heceleme), en erken uyan güne; kalanı K1 sırasıyla, gün sırasıyla. 8. gün omurgadaki listesinin kalanını öğretir.",
+  "4. Dilbilimci gün sırası denetimi: bulgular yalnız aynı hafta içinde gün değiştirerek düzeltilir (duzeltmeler alanı)."
+ ],
+ "takaslar": {
+  "not_tr": "main'deki gun-0N.json dosyalarında takas yok; bilinen takaslar halka dalında duruyor (PM-090 md. 1: tablo onları hesaba katar). one_gelen kartlar 1. haftada öğretilmiş sayılır ve 8. günden düşer. hafta_ici takaslar 1. haftanın içinde kalır, tabloyu değiştirmez.",
+  "one_gelen": [
+   {
+    "kart": "lx:Euro",
+    "gun": 4,
+    "k1": false
+   },
+   {
+    "kart": "lx:Cent",
+    "gun": 4,
+    "k1": false
+   },
+   {
+    "kart": "lx:noch",
+    "gun": 4,
+    "k1": true
+   },
+   {
+    "kart": "lx:schon",
+    "gun": 5,
+    "k1": true
+   },
+   {
+    "kart": "lx:nur",
+    "gun": 5,
+    "k1": true
+   },
+   {
+    "kart": "lx:gern",
+    "gun": 5,
+    "k1": true
+   },
+   {
+    "kart": "lx:dann",
+    "gun": 5,
+    "k1": true
+   },
+   {
+    "kart": "lx:oft",
+    "gun": 6,
+    "k1": true
+   },
+   {
+    "kart": "lx:sehr",
+    "gun": 6,
+    "k1": true
+   }
+  ],
+  "hafta_ici": [
+   {
+    "kart": "lx:kommen",
+    "main_gun": 5,
+    "halka_gun": 2
+   },
+   {
+    "kart": "lx:wohnen",
+    "main_gun": 3,
+    "halka_gun": 2
+   },
+   {
+    "kart": "lx:offen",
+    "main_gun": 2,
+    "halka_gun": 3
+   }
+  ]
+ },
+ "ogretilmis_sayilan": {
+  "adet": 164,
+  "main_adet": 155,
+  "k1_disi": [
+   "lx:Euro",
+   "lx:Cent",
+   "lx:müde"
+  ],
+  "gunler": {
+   "1": [
+    "lx:Montag",
+    "lx:Dienstag",
+    "lx:Mittwoch",
+    "lx:Donnerstag",
+    "lx:Freitag",
+    "lx:Samstag",
+    "lx:Sonntag",
+    "lx:Wochenende",
+    "lx:Woche",
+    "lx:Tag",
+    "lx:heute",
+    "lx:morgen",
+    "lx:gestern",
+    "lx:übermorgen",
+    "lx:vorgestern",
+    "lx:gehen",
+    "lx:hallo",
+    "lx:danke",
+    "lx:bitte",
+    "lx:ja",
+    "lx:nein",
+    "lx:Frau",
+    "lx:Praxis",
+    "lx:geschlossen",
+    "lx:Herr"
+   ],
+   "2": [
+    "lx:Januar",
+    "lx:Februar",
+    "lx:März",
+    "lx:April",
+    "lx:Mai",
+    "lx:Juni",
+    "lx:Juli",
+    "lx:August",
+    "lx:September",
+    "lx:Oktober",
+    "lx:November",
+    "lx:Dezember",
+    "lx:Monat",
+    "lx:Jahr",
+    "lx:Frühling",
+    "lx:Sommer",
+    "lx:Herbst",
+    "lx:Winter",
+    "lx:haben",
+    "lx:Urlaub",
+    "lx:Geburtstag",
+    "lx:Anfang",
+    "lx:Ende",
+    "lx:kommen",
+    "lx:wohnen",
+    "lx:wann"
+   ],
+   "3": [
+    "lx:null",
+    "lx:eins",
+    "lx:zwei",
+    "lx:drei",
+    "lx:vier",
+    "lx:fünf",
+    "lx:sechs",
+    "lx:sieben",
+    "lx:acht",
+    "lx:neun",
+    "lx:zehn",
+    "lx:elf",
+    "lx:zwölf",
+    "lx:dreizehn",
+    "lx:vierzehn",
+    "lx:fünfzehn",
+    "lx:sechzehn",
+    "lx:siebzehn",
+    "lx:achtzehn",
+    "lx:neunzehn",
+    "lx:zwanzig",
+    "lx:Nummer",
+    "lx:offen",
+    "lx:neu",
+    "lx:Büro"
+   ],
+   "4": [
+    "lx:einundzwanzig",
+    "lx:fünfzig",
+    "lx:dreißig",
+    "lx:vierzig",
+    "lx:sechzig",
+    "lx:siebzig",
+    "lx:achtzig",
+    "lx:neunzig",
+    "lx:hundert",
+    "lx:kosten",
+    "lx:machen",
+    "lx:alt",
+    "lx:Kilo",
+    "lx:Semmel",
+    "lx:Tüte",
+    "lx:bar",
+    "lx:Karte",
+    "lx:Brot",
+    "lx:Apfel",
+    "lx:Käse",
+    "lx:teuer",
+    "lx:zahlen",
+    "lx:Euro",
+    "lx:Cent",
+    "lx:noch"
+   ],
+   "5": [
+    "lx:Uhr",
+    "lx:Uhrzeit",
+    "lx:Stunde",
+    "lx:Minute",
+    "lx:spät",
+    "lx:früh",
+    "lx:halb",
+    "lx:Viertel",
+    "lx:also",
+    "lx:Vormittag",
+    "lx:Mittag",
+    "lx:Nachmittag",
+    "lx:Abend",
+    "lx:Nacht",
+    "lx:Termin",
+    "lx:Arzt",
+    "lx:passen#2",
+    "lx:leider",
+    "lx:wieder",
+    "lx:da",
+    "lx:schon",
+    "lx:nur",
+    "lx:gern",
+    "lx:dann"
+   ],
+   "6": [
+    "lx:erster",
+    "lx:zweiter",
+    "lx:dritter",
+    "lx:vierter",
+    "lx:Datum",
+    "lx:Geburtsdatum",
+    "lx:wo",
+    "lx:wohin",
+    "lx:woher",
+    "lx:warum",
+    "lx:wie",
+    "lx:wie_viel",
+    "lx:wer",
+    "lx:was",
+    "lx:heißen",
+    "lx:Vorname",
+    "lx:Nachname",
+    "lx:Adresse",
+    "lx:Telefonnummer",
+    "lx:brauchen",
+    "lx:oft",
+    "lx:sehr"
+   ],
+   "7": [
+    "lx:sein",
+    "lx:können",
+    "lx:müssen",
+    "lx:dürfen",
+    "lx:wollen",
+    "lx:sollen",
+    "lx:möchten",
+    "lx:essen",
+    "lx:Hausarzt",
+    "lx:Fieber",
+    "lx:verstehen",
+    "lx:wiederholen",
+    "lx:sagen",
+    "lx:sprechen",
+    "lx:warten",
+    "lx:arbeiten",
+    "lx:müde"
+   ]
+  }
+ },
+ "haftalar": [
+  {
+   "no": 1,
+   "gunler": [
+    1,
+    7
+   ],
+   "adet": 164,
+   "planlanan_yeni": 155,
+   "fark": 9,
+   "birikimli": 164,
+   "omurga_birikimli": 155,
+   "birikimli_fark": 9,
+   "neden_tr": "PM kararı F2: 9 kart 8. günden 4.–6. güne çıktı (halka dalı). Tablo 1.–7. güne kart atamaz, bu satır yalnız sayım içindir."
+  },
+  {
+   "no": 2,
+   "gunler": [
+    8,
+    14
+   ],
+   "adet": 106,
+   "planlanan_yeni": 115,
+   "fark": -9,
+   "birikimli": 270,
+   "omurga_birikimli": 270,
+   "birikimli_fark": 0,
+   "gruplar": [
+    {
+     "grup": "öne çekilen küçük sözcükler (gün 8)",
+     "sira": [
+      624,
+      909
+     ],
+     "omurga_adet": 20,
+     "aralikta_aday": 13,
+     "alinan": 13
+    },
+    {
+     "grup": "senaryo",
+     "sira": [
+      110,
+      142
+     ],
+     "omurga_adet": 25,
+     "aralikta_aday": 25,
+     "alinan": 25
+    },
+    {
+     "grup": "siklik-A1",
+     "sira": [
+      600,
+      664
+     ],
+     "omurga_adet": 45,
+     "aralikta_aday": 45,
+     "alinan": 45
+    },
+    {
+     "grup": "v1-A1",
+     "sira": [
+      221,
+      263
+     ],
+     "omurga_adet": 23,
+     "aralikta_aday": 23,
+     "alinan": 23
+    }
+   ],
+   "neden_tr": "Fark -9: omurganın 8. gün listesindeki 9 kart (noch, schon, nur, gern, dann, oft, sehr, Euro, Cent) PM kararı F2 ile 4.–6. güne çıktı; 8. güne yerine kart konmadı (uydurma yok). Euro ve Cent K1 dışıdır (omurga k1_disi 2). Birikimli sayı değişmez."
+  },
+  {
+   "no": 3,
+   "gunler": [
+    15,
+    21
+   ],
+   "adet": 95,
+   "planlanan_yeni": 95,
+   "fark": 0,
+   "birikimli": 365,
+   "omurga_birikimli": 365,
+   "birikimli_fark": 0,
+   "gruplar": [
+    {
+     "grup": "r0",
+     "sira": [
+      9,
+      109
+     ],
+     "omurga_adet": 7,
+     "aralikta_aday": 7,
+     "alinan": 7
+    },
+    {
+     "grup": "ihtiyac:telefon",
+     "sira": [
+      484,
+      582
+     ],
+     "omurga_adet": 7,
+     "aralikta_aday": 7,
+     "alinan": 7
+    },
+    {
+     "grup": "senaryo",
+     "sira": [
+      145,
+      170
+     ],
+     "omurga_adet": 20,
+     "aralikta_aday": 20,
+     "alinan": 20
+    },
+    {
+     "grup": "siklik-A1",
+     "sira": [
+      665,
+      724
+     ],
+     "omurga_adet": 40,
+     "aralikta_aday": 40,
+     "alinan": 40
+    },
+    {
+     "grup": "v1-A1",
+     "sira": [
+      265,
+      308
+     ],
+     "omurga_adet": 21,
+     "aralikta_aday": 21,
+     "alinan": 21
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "gunler": [
+    22,
+    28
+   ],
+   "adet": 90,
+   "planlanan_yeni": 90,
+   "fark": 0,
+   "birikimli": 455,
+   "omurga_birikimli": 455,
+   "birikimli_fark": 0,
+   "gruplar": [
+    {
+     "grup": "ihtiyac:wohnen",
+     "sira": [
+      487,
+      551
+     ],
+     "omurga_adet": 8,
+     "aralikta_aday": 8,
+     "alinan": 8
+    },
+    {
+     "grup": "senaryo",
+     "sira": [
+      171,
+      187
+     ],
+     "omurga_adet": 12,
+     "aralikta_aday": 12,
+     "alinan": 12
+    },
+    {
+     "grup": "siklik-A1",
+     "sira": [
+      726,
+      808
+     ],
+     "omurga_adet": 45,
+     "aralikta_aday": 45,
+     "alinan": 45
+    },
+    {
+     "grup": "v1-A1",
+     "sira": [
+      311,
+      360
+     ],
+     "omurga_adet": 25,
+     "aralikta_aday": 25,
+     "alinan": 25
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "gunler": [
+    29,
+    35
+   ],
+   "adet": 85,
+   "planlanan_yeni": 85,
+   "fark": 0,
+   "birikimli": 540,
+   "omurga_birikimli": 540,
+   "birikimli_fark": 0,
+   "gruplar": [
+    {
+     "grup": "ihtiyac:verkehr",
+     "sira": [
+      497,
+      587
+     ],
+     "omurga_adet": 8,
+     "aralikta_aday": 8,
+     "alinan": 8
+    },
+    {
+     "grup": "ihtiyac:arbeit",
+     "sira": [
+      506,
+      567
+     ],
+     "omurga_adet": 5,
+     "aralikta_aday": 5,
+     "alinan": 5
+    },
+    {
+     "grup": "senaryo",
+     "sira": [
+      188,
+      204
+     ],
+     "omurga_adet": 10,
+     "aralikta_aday": 10,
+     "alinan": 10
+    },
+    {
+     "grup": "siklik-A1",
+     "sira": [
+      809,
+      889
+     ],
+     "omurga_adet": 42,
+     "aralikta_aday": 42,
+     "alinan": 42
+    },
+    {
+     "grup": "v1-A1",
+     "sira": [
+      361,
+      381
+     ],
+     "omurga_adet": 20,
+     "aralikta_aday": 20,
+     "alinan": 20
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "gunler": [
+    36,
+    42
+   ],
+   "adet": 60,
+   "planlanan_yeni": 60,
+   "fark": 0,
+   "birikimli": 600,
+   "omurga_birikimli": 600,
+   "birikimli_fark": 0,
+   "gruplar": [
+    {
+     "grup": "senaryo",
+     "sira": [
+      206,
+      213
+     ],
+     "omurga_adet": 5,
+     "aralikta_aday": 5,
+     "alinan": 5
+    },
+    {
+     "grup": "siklik-A1",
+     "sira": [
+      893,
+      1020
+     ],
+     "omurga_adet": 40,
+     "aralikta_aday": 40,
+     "alinan": 40
+    },
+    {
+     "grup": "v1-A1",
+     "sira": [
+      382,
+      393
+     ],
+     "omurga_adet": 11,
+     "aralikta_aday": 11,
+     "alinan": 11
+    },
+    {
+     "grup": "v1-A2",
+     "sira": [
+      219,
+      226
+     ],
+     "omurga_adet": 4,
+     "aralikta_aday": 4,
+     "alinan": 4
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "gunler": [
+    43,
+    49
+   ],
+   "adet": 80,
+   "planlanan_yeni": 80,
+   "fark": 0,
+   "birikimli": 680,
+   "omurga_birikimli": 680,
+   "birikimli_fark": 0,
+   "gruplar": [
+    {
+     "grup": "ihtiyac:arzt",
+     "sira": [
+      491,
+      522
+     ],
+     "omurga_adet": 12,
+     "aralikta_aday": 12,
+     "alinan": 12
+    },
+    {
+     "grup": "senaryo",
+     "sira": [
+      214,
+      218
+     ],
+     "omurga_adet": 5,
+     "aralikta_aday": 5,
+     "alinan": 5
+    },
+    {
+     "grup": "siklik-A1",
+     "sira": [
+      1021,
+      1089
+     ],
+     "omurga_adet": 24,
+     "aralikta_aday": 24,
+     "alinan": 24
+    },
+    {
+     "grup": "v1-A2",
+     "sira": [
+      227,
+      310
+     ],
+     "omurga_adet": 39,
+     "aralikta_aday": 39,
+     "alinan": 39
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "gunler": [
+    50,
+    56
+   ],
+   "adet": 15,
+   "planlanan_yeni": 15,
+   "fark": 0,
+   "birikimli": 695,
+   "omurga_birikimli": 695,
+   "birikimli_fark": 0,
+   "gruplar": [
+    {
+     "grup": "v1-A2",
+     "sira": [
+      314,
+      335
+     ],
+     "omurga_adet": 15,
+     "aralikta_aday": 15,
+     "alinan": 15
+    }
+   ]
+  }
+ ],
+ "gunler": [
+  {
+   "day": 8,
+   "hafta": 2,
+   "id": "om:gun:08",
+   "title_tr": "Sık duyulan küçük sözcükler: noch, schon, nur",
+   "dersler": [
+    "gr:a1-03:t5",
+    "dn:kucuk-sozcukler"
+   ],
+   "adet": 13,
+   "omurga_adet": 22,
+   "derse_ait": 13,
+   "kartlar": [
+    "lx:lange",
+    "lx:erst",
+    "lx:viel",
+    "lx:gleich",
+    "lx:echt",
+    "lx:Zeit",
+    "lx:gut",
+    "lx:klar",
+    "lx:kurz",
+    "lx:immer",
+    "lx:jetzt",
+    "lx:mehr",
+    "lx:ganz"
+   ]
+  },
+  {
+   "day": 9,
+   "hafta": 2,
+   "id": "om:gun:09",
+   "title_tr": "Fırında der, die, das: das Brot, die Semmel, der Kuchen",
+   "dersler": [
+    "gr:a1-04:t1"
+   ],
+   "adet": 20,
+   "omurga_adet": 20,
+   "derse_ait": 5,
+   "kartlar": [
+    "lx:Küche",
+    "lx:Kuchen",
+    "lx:der",
+    "lx:ein",
+    "lx:hier",
+    "lx:werden",
+    "lx:nehmen",
+    "lx:einfach",
+    "lx:bringen",
+    "lx:kennen",
+    "lx:fahren",
+    "lx:bekommen",
+    "lx:schnell",
+    "lx:seit",
+    "lx:meinen",
+    "lx:ziehen",
+    "lx:Familie",
+    "lx:Kopf",
+    "lx:schlimm",
+    "lx:lernen"
+   ]
+  },
+  {
+   "day": 10,
+   "hafta": 2,
+   "id": "om:gun:10",
+   "title_tr": "Bir, hiç: ein, kein",
+   "dersler": [
+    "gr:a1-03:t1",
+    "gr:a1-03:t2"
+   ],
+   "adet": 20,
+   "omurga_adet": 20,
+   "derse_ait": 1,
+   "kartlar": [
+    "lx:kein",
+    "lx:anrufen",
+    "lx:heiß",
+    "lx:kaufen",
+    "lx:bedeuten",
+    "lx:frei",
+    "lx:Wort",
+    "lx:stark",
+    "lx:Entschuldigung",
+    "lx:anfangen",
+    "lx:langsam",
+    "lx:Schuh",
+    "lx:Firma",
+    "lx:schenken",
+    "lx:einladen",
+    "lx:links",
+    "lx:kaputt",
+    "lx:Hose",
+    "lx:rechts",
+    "lx:Flasche"
+   ]
+  },
+  {
+   "day": 11,
+   "hafta": 2,
+   "id": "om:gun:11",
+   "title_tr": "İki tane istemek: Ich möchte zwei Brötchen",
+   "dersler": [
+    "gr:a1-03:t3",
+    "gr:a1-03:t4"
+   ],
+   "adet": 18,
+   "omurga_adet": 18,
+   "derse_ait": 8,
+   "kartlar": [
+    "lx:ich",
+    "lx:du",
+    "lx:sie",
+    "lx:es",
+    "lx:wir",
+    "lx:er",
+    "lx:ihr",
+    "lx:oder",
+    "lx:Glückwunsch",
+    "lx:aufstehen",
+    "lx:warm",
+    "lx:frühstücken",
+    "lx:unterschreiben",
+    "lx:fernsehen",
+    "lx:Bus",
+    "lx:reparieren",
+    "lx:Gast",
+    "lx:sehen"
+   ]
+  },
+  {
+   "day": 12,
+   "hafta": 2,
+   "id": "om:gun:12",
+   "title_tr": "Kibarca istemek: Ich hätte gern einen Kaffee",
+   "dersler": [
+    "gr:a1-12:t2",
+    "gr:a1-06:t1",
+    "gr:a1-01:t1"
+   ],
+   "adet": 16,
+   "omurga_adet": 16,
+   "derse_ait": 1,
+   "kartlar": [
+    "lx:Rechnung",
+    "lx:schwimmen",
+    "lx:sein#2",
+    "lx:sie#2",
+    "lx:nicht",
+    "lx:und",
+    "lx:zu",
+    "lx:zu#2",
+    "lx:ihr#2",
+    "lx:mit",
+    "lx:auf",
+    "lx:aber",
+    "lx:so",
+    "lx:für",
+    "lx:von",
+    "lx:alle"
+   ]
+  },
+  {
+   "day": 13,
+   "hafta": 2,
+   "id": "om:gun:13",
+   "title_tr": "Benim ve senin: mein, dein",
+   "dersler": [
+    "gr:a1-02:t1",
+    "dn:kisaltma-1"
+   ],
+   "adet": 14,
+   "omurga_adet": 14,
+   "derse_ait": 3,
+   "kartlar": [
+    "lx:in",
+    "lx:mein",
+    "lx:dein",
+    "lx:Kurs",
+    "lx:wissen",
+    "lx:an",
+    "lx:dieser",
+    "lx:tun",
+    "lx:auch",
+    "lx:geben",
+    "lx:mal",
+    "lx:Mal",
+    "lx:aus",
+    "lx:im"
+   ]
+  },
+  {
+   "day": 14,
+   "hafta": 2,
+   "id": "om:gun:14",
+   "title_tr": "Haftanın sınavı: fırında alışveriş",
+   "dersler": [],
+   "adet": 5,
+   "omurga_adet": 5,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:doch",
+    "lx:hören",
+    "lx:nichts",
+    "lx:denken",
+    "lx:etwas"
+   ]
+  },
+  {
+   "day": 15,
+   "hafta": 3,
+   "id": "om:gun:15",
+   "title_tr": "Evet ya da hayır soruları: Haben Sie Zeit?",
+   "dersler": [
+    "gr:a1-02:t3"
+   ],
+   "adet": 20,
+   "omurga_adet": 20,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:vor",
+    "lx:welcher",
+    "lx:krank",
+    "lx:nochmal",
+    "lx:Schmerz",
+    "lx:Stand",
+    "lx:Geschenk",
+    "lx:Bescheid",
+    "lx:feiern",
+    "lx:Chef",
+    "lx:Rücken",
+    "lx:Ohr",
+    "lx:Patient",
+    "lx:übel",
+    "lx:Lust",
+    "lx:Fuß",
+    "lx:Kollege",
+    "lx:wehtun",
+    "lx:mitkommen",
+    "lx:üben"
+   ]
+  },
+  {
+   "day": 16,
+   "hafta": 3,
+   "id": "om:gun:16",
+   "title_tr": "Telefonda kendini tanıtmak ve adını hecelemek",
+   "dersler": [
+    "gr:a1-12:t5",
+    "r0:10-buchstabieren"
+   ],
+   "adet": 16,
+   "omurga_adet": 16,
+   "derse_ait": 3,
+   "kartlar": [
+    "lx:Name",
+    "lx:Buchstabe",
+    "lx:buchstabieren",
+    "lx:schlucken",
+    "lx:Stuhl",
+    "lx:Sprache",
+    "lx:Milch",
+    "lx:Hemd",
+    "lx:Kleid",
+    "lx:gratulieren",
+    "lx:Jacke",
+    "lx:billig",
+    "lx:hell",
+    "lx:Mantel",
+    "lx:Schrank",
+    "lx:na"
+   ]
+  },
+  {
+   "day": 17,
+   "hafta": 3,
+   "id": "om:gun:17",
+   "title_tr": "Kibar rica: Könnten Sie das wiederholen?",
+   "dersler": [
+    "gr:a1-12:t1"
+   ],
+   "adet": 16,
+   "omurga_adet": 16,
+   "derse_ait": 1,
+   "kartlar": [
+    "lx:am",
+    "lx:aussteigen",
+    "lx:Prüfung",
+    "lx:Ausweis",
+    "lx:einkaufen",
+    "lx:Hausaufgabe",
+    "lx:Fahrrad",
+    "lx:Bahnhof",
+    "lx:verbinden",
+    "lx:auflegen",
+    "lx:zurückrufen",
+    "lx:Anrufbeantworter",
+    "lx:Durchwahl",
+    "lx:Rückruf",
+    "lx:Haus",
+    "lx:zurück"
+   ]
+  },
+  {
+   "day": 18,
+   "hafta": 3,
+   "id": "om:gun:18",
+   "title_tr": "Ne zaman? um, am, im",
+   "dersler": [
+    "gr:a1-05:t3",
+    "gr:a1-12:t3"
+   ],
+   "adet": 14,
+   "omurga_adet": 14,
+   "derse_ait": 2,
+   "kartlar": [
+    "lx:um",
+    "lx:bis",
+    "lx:Warteschleife",
+    "lx:bei",
+    "lx:unser",
+    "lx:glauben",
+    "lx:los",
+    "lx:finden",
+    "lx:anderer",
+    "lx:denn",
+    "lx:Mann",
+    "lx:zum",
+    "lx:leben",
+    "lx:vielleicht"
+   ]
+  },
+  {
+   "day": 19,
+   "hafta": 3,
+   "id": "om:gun:19",
+   "title_tr": "Sen ve o derken değişen harf: du sprichst, er fährt",
+   "dersler": [
+    "gr:a1-02:t4",
+    "gr:a1-06:t2"
+   ],
+   "adet": 13,
+   "omurga_adet": 13,
+   "derse_ait": 2,
+   "kartlar": [
+    "lx:nach",
+    "lx:Deutsch",
+    "lx:mögen",
+    "lx:mögen#2",
+    "lx:okay",
+    "lx:wirklich",
+    "lx:nie",
+    "lx:weg",
+    "lx:Weg",
+    "lx:reden",
+    "lx:schön",
+    "lx:jeder",
+    "lx:bleiben"
+   ]
+  },
+  {
+   "day": 20,
+   "hafta": 3,
+   "id": "om:gun:20",
+   "title_tr": "Ayın kaçında? am ersten Mai",
+   "dersler": [
+    "gr:a1-12:t4"
+   ],
+   "adet": 12,
+   "omurga_adet": 12,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Größe",
+    "lx:Ei",
+    "lx:regnen",
+    "lx:fragen",
+    "lx:sicher",
+    "lx:helfen",
+    "lx:lieben",
+    "lx:leid",
+    "lx:klein",
+    "lx:groß",
+    "lx:stehen",
+    "lx:Kind"
+   ]
+  },
+  {
+   "day": 21,
+   "hafta": 3,
+   "id": "om:gun:21",
+   "title_tr": "Haftanın sınavı: muayenehaneyi aramak",
+   "dersler": [],
+   "adet": 4,
+   "omurga_adet": 4,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:genau",
+    "lx:Vater",
+    "lx:zur",
+    "lx:passieren"
+   ]
+  },
+  {
+   "day": 22,
+   "hafta": 4,
+   "id": "om:gun:22",
+   "title_tr": "Evdeki eşyalar: Wo ist der Schlüssel? Er ist hier",
+   "dersler": [
+    "gr:a1-04:t2"
+   ],
+   "adet": 19,
+   "omurga_adet": 19,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Einladung",
+    "lx:Zahl",
+    "lx:Tasse",
+    "lx:Husten",
+    "lx:absagen",
+    "lx:zurückgeben",
+    "lx:backen",
+    "lx:Tablette",
+    "lx:aufschreiben",
+    "lx:Feierabend",
+    "lx:Bauch",
+    "lx:aufräumen",
+    "lx:Führerschein",
+    "lx:Rezept",
+    "lx:Amt",
+    "lx:Unterschrift",
+    "lx:Werkstatt",
+    "lx:Gemüse",
+    "lx:Mensch"
+   ]
+  },
+  {
+   "day": 23,
+   "hafta": 4,
+   "id": "om:gun:23",
+   "title_tr": "Eşyayı tarif etmek: Er ist groß und weiß",
+   "dersler": [
+    "gr:a1-04:t3"
+   ],
+   "adet": 15,
+   "omurga_adet": 15,
+   "derse_ait": 2,
+   "kartlar": [
+    "lx:Flur",
+    "lx:Sofa",
+    "lx:Banane",
+    "lx:Feiertag",
+    "lx:Hobby",
+    "lx:Kollegin",
+    "lx:Geschwister",
+    "lx:Freizeit",
+    "lx:Verkäufer",
+    "lx:arbeitslos",
+    "lx:Tomate",
+    "lx:Techniker",
+    "lx:Freut_mich!",
+    "lx:Nachbar",
+    "lx:Arbeit"
+   ]
+  },
+  {
+   "day": 24,
+   "hafta": 4,
+   "id": "om:gun:24",
+   "title_tr": "Çok, fazla, değil: sehr, zu, nicht",
+   "dersler": [
+    "gr:a1-04:t4"
+   ],
+   "adet": 15,
+   "omurga_adet": 15,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:geradeaus",
+    "lx:Störung",
+    "lx:Kaution",
+    "lx:Hausmeister",
+    "lx:Nachbarin",
+    "lx:Vermieter",
+    "lx:Schimmel",
+    "lx:Morgen",
+    "lx:richtig",
+    "lx:Leute",
+    "lx:jung",
+    "lx:ab",
+    "lx:gerade",
+    "lx:Geld",
+    "lx:Mutter"
+   ]
+  },
+  {
+   "day": 25,
+   "hafta": 4,
+   "id": "om:gun:25",
+   "title_tr": "Hangisi? Daha ucuz",
+   "dersler": [
+    "gr:a1-13:t1",
+    "gr:a1-13:t2"
+   ],
+   "adet": 13,
+   "omurga_adet": 13,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:euer",
+    "lx:Paar",
+    "lx:paar",
+    "lx:wieso",
+    "lx:lieb",
+    "lx:erzählen",
+    "lx:stimmen",
+    "lx:laufen",
+    "lx:ohne",
+    "lx:suchen",
+    "lx:holen",
+    "lx:natürlich",
+    "lx:treffen"
+   ]
+  },
+  {
+   "day": 26,
+   "hafta": 4,
+   "id": "om:gun:26",
+   "title_tr": "Ev ilanında en ucuzunu bulmak",
+   "dersler": [
+    "gr:a1-13:t3",
+    "gr:a1-04:t5"
+   ],
+   "adet": 13,
+   "omurga_adet": 13,
+   "derse_ait": 2,
+   "kartlar": [
+    "lx:Balkon",
+    "lx:Nebenkosten",
+    "lx:ach",
+    "lx:ins",
+    "lx:dort",
+    "lx:Ordnung",
+    "lx:vom",
+    "lx:Problem",
+    "lx:vergessen",
+    "lx:zeigen",
+    "lx:Mädchen",
+    "lx:Freund",
+    "lx:weit"
+   ]
+  },
+  {
+   "day": 27,
+   "hafta": 4,
+   "id": "om:gun:27",
+   "title_tr": "Nerede? in, an, auf, neben",
+   "dersler": [
+    "gr:a1-11:t1",
+    "gr:a1-11:t2"
+   ],
+   "adet": 11,
+   "omurga_adet": 11,
+   "derse_ait": 4,
+   "kartlar": [
+    "lx:Rathaus",
+    "lx:Supermarkt",
+    "lx:Apotheke",
+    "lx:spielen",
+    "lx:zusammen",
+    "lx:schlafen",
+    "lx:Hand",
+    "lx:liegen",
+    "lx:lang",
+    "lx:Moment",
+    "lx:schauen"
+   ]
+  },
+  {
+   "day": 28,
+   "hafta": 4,
+   "id": "om:gun:28",
+   "title_tr": "Haftanın sınavı: merdivende komşuyla",
+   "dersler": [],
+   "adet": 4,
+   "omurga_adet": 4,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Garantie",
+    "lx:Bruder",
+    "lx:Musik",
+    "lx:Sohn"
+   ]
+  },
+  {
+   "day": 29,
+   "hafta": 5,
+   "id": "om:gun:29",
+   "title_tr": "Sabah kalkmak: Ich stehe um sieben auf",
+   "dersler": [
+    "gr:a1-05:t4"
+   ],
+   "adet": 18,
+   "omurga_adet": 18,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Bratwurst",
+    "lx:Dialekt",
+    "lx:Erkältung",
+    "lx:Hals",
+    "lx:Krankenkasse",
+    "lx:Krankschreibung",
+    "lx:Pfand",
+    "lx:Schnupfen",
+    "lx:Senf",
+    "lx:Sprechstunde",
+    "lx:ledig",
+    "lx:Fleisch",
+    "lx:Bäckerei",
+    "lx:Bad",
+    "lx:Lampe",
+    "lx:Miete",
+    "lx:Wie_spät_ist_es?",
+    "lx:schreiben"
+   ]
+  },
+  {
+   "day": 30,
+   "hafta": 5,
+   "id": "om:gun:30",
+   "title_tr": "Cümleye zamanla başlamak: Am Montag arbeite ich",
+   "dersler": [
+    "gr:a1-05:t5"
+   ],
+   "adet": 14,
+   "omurga_adet": 14,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Wetter",
+    "lx:noch_nicht",
+    "lx:Formular",
+    "lx:Anmeldung",
+    "lx:Pass",
+    "lx:ausfüllen",
+    "lx:Gute_Besserung!",
+    "lx:U-Bahn",
+    "lx:Ankunft",
+    "lx:Parkplatz",
+    "lx:Gehalt",
+    "lx:Tankstelle",
+    "lx:Vorgesetzte",
+    "lx:Lohn"
+   ]
+  },
+  {
+   "day": 31,
+   "hafta": 5,
+   "id": "om:gun:31",
+   "title_tr": "Meslek sormak: Was sind Sie von Beruf?",
+   "dersler": [
+    "gr:a1-08:t1",
+    "gr:a1-08:t2"
+   ],
+   "adet": 14,
+   "omurga_adet": 14,
+   "derse_ait": 2,
+   "kartlar": [
+    "lx:Beruf",
+    "lx:Schwester",
+    "lx:Gehaltsabrechnung",
+    "lx:Schichtplan",
+    "lx:Bahnsteig",
+    "lx:Fahrplan",
+    "lx:Abfahrt",
+    "lx:Fahrschein",
+    "lx:Zugausfall",
+    "lx:sofort",
+    "lx:entschuldigen",
+    "lx:toll",
+    "lx:einmal",
+    "lx:passen"
+   ]
+  },
+  {
+   "day": 32,
+   "hafta": 5,
+   "id": "om:gun:32",
+   "title_tr": "Sevdiğini söylemek: gern, lieber",
+   "dersler": [
+    "gr:a1-06:t3"
+   ],
+   "adet": 14,
+   "omurga_adet": 14,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Wand",
+    "lx:letzter",
+    "lx:Auge",
+    "lx:fertig",
+    "lx:allein",
+    "lx:beim",
+    "lx:schlecht",
+    "lx:Hilfe",
+    "lx:wichtig",
+    "lx:trinken",
+    "lx:nett",
+    "lx:Baby",
+    "lx:Dank",
+    "lx:egal"
+   ]
+  },
+  {
+   "day": 33,
+   "hafta": 5,
+   "id": "om:gun:33",
+   "title_tr": "Doğum gününe davet etmek",
+   "dersler": [
+    "gr:a1-14:t4",
+    "gr:a1-14:t5"
+   ],
+   "adet": 12,
+   "omurga_adet": 12,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Stadt",
+    "lx:sitzen",
+    "lx:Tür",
+    "lx:falsch",
+    "lx:Glück",
+    "lx:schwer",
+    "lx:Land",
+    "lx:bald",
+    "lx:bisschen",
+    "lx:Idee",
+    "lx:lesen",
+    "lx:draußen"
+   ]
+  },
+  {
+   "day": 34,
+   "hafta": 5,
+   "id": "om:gun:34",
+   "title_tr": "Yol tarif etmek: die zweite Straße links",
+   "dersler": [
+    "gr:a1-11:t3",
+    "gr:a1-11:t4",
+    "gr:a1-11:t5"
+   ],
+   "adet": 10,
+   "omurga_adet": 10,
+   "derse_ait": 5,
+   "kartlar": [
+    "lx:Haltestelle",
+    "lx:Kreuzung",
+    "lx:Ampel",
+    "lx:nah",
+    "lx:Auto",
+    "lx:Junge",
+    "lx:Polizei",
+    "lx:Tochter",
+    "lx:Arm",
+    "lx:Bett"
+   ]
+  },
+  {
+   "day": 35,
+   "hafta": 5,
+   "id": "om:gun:35",
+   "title_tr": "Haftanın sınavı: molada sohbet",
+   "dersler": [],
+   "adet": 3,
+   "omurga_adet": 3,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Job",
+    "lx:Mama",
+    "lx:gefallen"
+   ]
+  },
+  {
+   "day": 36,
+   "hafta": 6,
+   "id": "om:gun:36",
+   "title_tr": "Dün ne yaptığını söylemek: Ich habe gekocht",
+   "dersler": [
+    "gr:a1-07:t2"
+   ],
+   "adet": 13,
+   "omurga_adet": 13,
+   "derse_ait": 1,
+   "kartlar": [
+    "lx:Film",
+    "lx:Versichertenkarte",
+    "lx:dringend",
+    "lx:duzen",
+    "lx:ein_bisschen",
+    "lx:erkältet",
+    "lx:stehen#2",
+    "lx:Versprechen",
+    "lx:unbedingt",
+    "lx:fremd",
+    "lx:Fahrkarte",
+    "lx:abbiegen",
+    "lx:Foto"
+   ]
+  },
+  {
+   "day": 37,
+   "hafta": 6,
+   "id": "om:gun:37",
+   "title_tr": "Kelimeyi geçmişe çevirmek: kaufen, gekauft",
+   "dersler": [
+    "gr:a1-07:t3",
+    "dn:sesli-kurma"
+   ],
+   "adet": 10,
+   "omurga_adet": 10,
+   "derse_ait": 1,
+   "kartlar": [
+    "lx:besuchen",
+    "lx:umsteigen",
+    "lx:Heizung",
+    "lx:Waschmaschine",
+    "lx:geöffnet",
+    "lx:Rock",
+    "lx:Pullover",
+    "lx:Umkleidekabine",
+    "lx:anprobieren",
+    "lx:endlich"
+   ]
+  },
+  {
+   "day": 38,
+   "hafta": 6,
+   "id": "om:gun:38",
+   "title_tr": "Gitmek ve gelmek geçmişte: Ich bin gegangen",
+   "dersler": [
+    "gr:a1-07:t4",
+    "gr:a2-01:t1",
+    "dn:kaydet-dinle"
+   ],
+   "adet": 10,
+   "omurga_adet": 10,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Freundin",
+    "lx:Wasser",
+    "lx:bezahlen",
+    "lx:Spaß",
+    "lx:Zimmer",
+    "lx:schicken",
+    "lx:manchmal",
+    "lx:Schule",
+    "lx:Hund",
+    "lx:Wiedersehen"
+   ]
+  },
+  {
+   "day": 39,
+   "hafta": 6,
+   "id": "om:gun:39",
+   "title_tr": "Eskiden nasıldı: Ich war, ich hatte",
+   "dersler": [
+    "gr:a1-08:t3",
+    "gr:a1-14:t3"
+   ],
+   "adet": 10,
+   "omurga_adet": 10,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Nachricht",
+    "lx:funktionieren",
+    "lx:voll",
+    "lx:Eltern",
+    "lx:laut",
+    "lx:Platz",
+    "lx:Papa",
+    "lx:dauern",
+    "lx:Telefon",
+    "lx:Fehler"
+   ]
+  },
+  {
+   "day": 40,
+   "hafta": 6,
+   "id": "om:gun:40",
+   "title_tr": "İki kelimeden bir kelime: Hausarzt",
+   "dersler": [
+    "dn:kelime-ailesi-1",
+    "gr:a1-06:t4"
+   ],
+   "adet": 8,
+   "omurga_adet": 8,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Straßenbahn",
+    "lx:Straße",
+    "lx:willkommen",
+    "lx:süß",
+    "lx:Sekunde",
+    "lx:schwarz",
+    "lx:Laden",
+    "lx:Buch"
+   ]
+  },
+  {
+   "day": 41,
+   "hafta": 6,
+   "id": "om:gun:41",
+   "title_tr": "Dinlediğini kendi sözlerinle anlatmak",
+   "dersler": [
+    "dn:yeniden-anlatma",
+    "gr:a1-08:t4"
+   ],
+   "adet": 7,
+   "omurga_adet": 7,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Doktor",
+    "lx:Stück",
+    "lx:Party",
+    "lx:Person",
+    "lx:Kaffee",
+    "lx:Onkel",
+    "lx:super"
+   ]
+  },
+  {
+   "day": 42,
+   "hafta": 6,
+   "id": "om:gun:42",
+   "title_tr": "Haftanın sınavı: hafta sonunu anlatmak",
+   "dersler": [],
+   "adet": 2,
+   "omurga_adet": 2,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:lustig",
+    "lx:Haar"
+   ]
+  },
+  {
+   "day": 43,
+   "hafta": 7,
+   "id": "om:gun:43",
+   "title_tr": "Başım ağrıyor",
+   "dersler": [
+    "gr:a1-10:t1"
+   ],
+   "adet": 17,
+   "omurga_adet": 17,
+   "derse_ait": 1,
+   "kartlar": [
+    "lx:weh",
+    "lx:lieber",
+    "lx:schwindelig",
+    "lx:sich_treffen",
+    "lx:siezen",
+    "lx:zusagen",
+    "lx:vermissen",
+    "lx:Gericht",
+    "lx:gesund",
+    "lx:gegenüber",
+    "lx:ankommen",
+    "lx:Kunde",
+    "lx:Aufgabe",
+    "lx:Insel",
+    "lx:Messer",
+    "lx:bestellen",
+    "lx:See"
+   ]
+  },
+  {
+   "day": 44,
+   "hafta": 7,
+   "id": "om:gun:44",
+   "title_tr": "Gerek yok mu, yasak mı: nicht müssen, nicht dürfen",
+   "dersler": [
+    "gr:a1-09:t2",
+    "gr:a1-09:t3"
+   ],
+   "adet": 14,
+   "omurga_adet": 14,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:entlang",
+    "lx:Restaurant",
+    "lx:Meer",
+    "lx:studieren",
+    "lx:scharf",
+    "lx:Wunsch",
+    "lx:streng",
+    "lx:Freundschaft",
+    "lx:ausgeben",
+    "lx:abnehmen",
+    "lx:leihen",
+    "lx:empfehlen",
+    "lx:lecker",
+    "lx:Durst"
+   ]
+  },
+  {
+   "day": 45,
+   "hafta": 7,
+   "id": "om:gun:45",
+   "title_tr": "Doktorun talimatı: Nehmen Sie die Tabletten",
+   "dersler": [
+    "gr:a1-09:t4",
+    "gr:a1-10:t4"
+   ],
+   "adet": 13,
+   "omurga_adet": 13,
+   "derse_ait": 1,
+   "kartlar": [
+    "lx:pünktlich",
+    "lx:Vorschlag",
+    "lx:Heimat",
+    "lx:umziehen",
+    "lx:Konto",
+    "lx:eröffnen",
+    "lx:aufwachsen",
+    "lx:Tunnel",
+    "lx:Training",
+    "lx:Kindheit",
+    "lx:Jugend",
+    "lx:vorschlagen",
+    "lx:Note"
+   ]
+  },
+  {
+   "day": 46,
+   "hafta": 7,
+   "id": "om:gun:46",
+   "title_tr": "Form doldurmak: Vorname, Geburtsdatum",
+   "dersler": [
+    "gr:a1-10:t2",
+    "gr:a1-09:t5"
+   ],
+   "adet": 12,
+   "omurga_adet": 12,
+   "derse_ait": 1,
+   "kartlar": [
+    "lx:verheiratet",
+    "lx:Ausbildung",
+    "lx:Krankenwagen",
+    "lx:Patientin",
+    "lx:Tropfen",
+    "lx:Blutdruck",
+    "lx:Notaufnahme",
+    "lx:Zahnarzt",
+    "lx:Wartezimmer",
+    "lx:Krankmeldung",
+    "lx:Attest",
+    "lx:Allergie"
+   ]
+  },
+  {
+   "day": 47,
+   "hafta": 7,
+   "id": "om:gun:47",
+   "title_tr": "Beğendiğini söylemek: Das gefällt mir",
+   "dersler": [
+    "gr:a1-13:t4",
+    "gr:a1-13:t5"
+   ],
+   "adet": 11,
+   "omurga_adet": 11,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Impfung",
+    "lx:Salbe",
+    "lx:Bild",
+    "lx:Wohnung",
+    "lx:Bein",
+    "lx:Schlüssel",
+    "lx:Krankenhaus",
+    "lx:rot",
+    "lx:Klasse",
+    "lx:weiß",
+    "lx:Handy"
+   ]
+  },
+  {
+   "day": 48,
+   "hafta": 7,
+   "id": "om:gun:48",
+   "title_tr": "Bir arkadaşa öğüt vermek: Trink viel Wasser!",
+   "dersler": [
+    "gr:a1-14:t1",
+    "gr:a1-14:t2",
+    "gr:a1-10:t3"
+   ],
+   "adet": 10,
+   "omurga_adet": 10,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Nähe",
+    "lx:kalt",
+    "lx:Tier",
+    "lx:Hotel",
+    "lx:interessant",
+    "lx:Tisch",
+    "lx:deutsch",
+    "lx:kennenlernen",
+    "lx:Tasche",
+    "lx:Fenster"
+   ]
+  },
+  {
+   "day": 49,
+   "hafta": 7,
+   "id": "om:gun:49",
+   "title_tr": "Haftanın sınavı: doktorda muayene",
+   "dersler": [],
+   "adet": 3,
+   "omurga_adet": 3,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:kochen",
+    "lx:Zug",
+    "lx:Bier"
+   ]
+  },
+  {
+   "day": 50,
+   "hafta": 8,
+   "id": "om:gun:50",
+   "title_tr": "Pekiştirme: telefon ve randevu",
+   "dersler": [],
+   "adet": 3,
+   "omurga_adet": 3,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Aussicht",
+    "lx:Teppich",
+    "lx:schüchtern"
+   ]
+  },
+  {
+   "day": 51,
+   "hafta": 8,
+   "id": "om:gun:51",
+   "title_tr": "Pekiştirme: alışveriş ve fiyat",
+   "dersler": [],
+   "adet": 3,
+   "omurga_adet": 3,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Ausflug",
+    "lx:vorhaben",
+    "lx:Verspätung"
+   ]
+  },
+  {
+   "day": 52,
+   "hafta": 8,
+   "id": "om:gun:52",
+   "title_tr": "Pekiştirme: mahallede konuşmak",
+   "dersler": [],
+   "adet": 3,
+   "omurga_adet": 3,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Mannschaft",
+    "lx:Bargeld",
+    "lx:wandern"
+   ]
+  },
+  {
+   "day": 53,
+   "hafta": 8,
+   "id": "om:gun:53",
+   "title_tr": "Pekiştirme: dün ve hafta sonu",
+   "dersler": [],
+   "adet": 3,
+   "omurga_adet": 3,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Beschwerde",
+    "lx:ausfallen",
+    "lx:Trinkgeld"
+   ]
+  },
+  {
+   "day": 54,
+   "hafta": 8,
+   "id": "om:gun:54",
+   "title_tr": "Pekiştirme: doktor ve eczane",
+   "dersler": [],
+   "adet": 3,
+   "omurga_adet": 3,
+   "derse_ait": 0,
+   "kartlar": [
+    "lx:Rente",
+    "lx:einpacken",
+    "lx:reservieren"
+   ]
+  },
+  {
+   "day": 55,
+   "hafta": 8,
+   "id": "om:gun:55",
+   "title_tr": "A1 sınavı: duyduğunu ve okuduğunu anlamak",
+   "dersler": [],
+   "adet": 0,
+   "omurga_adet": 0,
+   "derse_ait": 0,
+   "kartlar": []
+  },
+  {
+   "day": 56,
+   "hafta": 8,
+   "id": "om:gun:56",
+   "title_tr": "A1 sınavı: üç yeni durumda konuşmak",
+   "dersler": [],
+   "adet": 0,
+   "omurga_adet": 0,
+   "derse_ait": 0,
+   "kartlar": []
+  }
+ ],
+ "duzeltmeler": [
+  {
+   "kart": "lx:sehen",
+   "onceki_gun": 13,
+   "yeni_gun": 11,
+   "neden_tr": "fernsehen (11. gün) sehen'den (13. gün) önce geliyor; sehen 11. güne, günün son ve bağımsız kartı Kurs 13. güne.",
+   "karsilik": "lx:Kurs"
+  },
+  {
+   "kart": "lx:zurück",
+   "onceki_gun": 20,
+   "yeni_gun": 17,
+   "neden_tr": "zurückrufen (17. gün) zurück'ten (20. gün) önce geliyor; Rückruf da 17. günde olduğu için bağımlı kart değil ön koşul öne alınır; Ei 20. güne.",
+   "karsilik": "lx:Ei"
+  },
+  {
+   "kart": "lx:Haus",
+   "onceki_gun": 20,
+   "yeni_gun": 17,
+   "neden_tr": "Hausaufgabe (17. gün) Haus'tan (20. gün) önce geliyor; Haus 17. güne, regnen 20. güne. (Aufgabe ayrıca B'de.)",
+   "karsilik": "lx:regnen"
+  },
+  {
+   "kart": "lx:Größe",
+   "onceki_gun": 16,
+   "yeni_gun": 20,
+   "neden_tr": "Größe (16. gün) groß'tan (20. gün) önce geliyor; groß/klein çifti bölünmesin diye Größe 20. güne, na 16. güne.",
+   "karsilik": "lx:na"
+  },
+  {
+   "kart": "lx:Arbeit",
+   "onceki_gun": 28,
+   "yeni_gun": 23,
+   "neden_tr": "arbeitslos (23. gün) Arbeit'tan (28. gün) önce geliyor (arbeiten 7. günde biliniyor, ama bileşiğin parçası isim); Arbeit 23. güne, Garantie 28. güne.",
+   "karsilik": "lx:Garantie"
+  },
+  {
+   "kart": "lx:geradeaus",
+   "onceki_gun": 22,
+   "yeni_gun": 24,
+   "neden_tr": "geradeaus (22. gün) gerade'den (24. gün; kartta 'düz' anlamı da var) önce geliyor; geradeaus 24. güne, günün son kartı Mensch 22. güne.",
+   "karsilik": "lx:Mensch"
+  },
+  {
+   "kart": "lx:schreiben",
+   "onceki_gun": 32,
+   "yeni_gun": 29,
+   "neden_tr": "Krankschreibung (29. gün) schreiben'den (32. gün) önce geliyor; schreiben 29. güne, Wand 32. güne.",
+   "karsilik": "lx:Wand"
+  },
+  {
+   "kart": "lx:Straßenbahn",
+   "onceki_gun": 36,
+   "yeni_gun": 40,
+   "neden_tr": "Straßenbahn (36. gün) Straße'den (40. gün) önce geliyor; Straßenbahn 40. güne (günün konusu 'iki kelimeden bir kelime', örnek olarak da uyar), günün son kartı Foto 36. güne.",
+   "karsilik": "lx:Foto"
+  },
+  {
+   "kart": "lx:Vorschlag",
+   "onceki_gun": 44,
+   "yeni_gun": 45,
+   "neden_tr": "Vorschlag (44. gün) vorschlagen'dan (45. gün) önce geliyor; Vorschlag 45. güne, günün son kartı Durst 44. güne.",
+   "karsilik": "lx:Durst"
+  }
+ ],
+ "hafta_siniri_notlari": {
+  "not_tr": "Dilbilimci gün sırası denetimi (docs/v2/reviews/a1-kesin-gun-sirasi.md): ön koşul kart daha sonraki haftada. Hafta sınırı aşılmadı, yalnız not; hat bu kartı parçasına dayanmadan öğretir.",
+  "bulgular": [
+   {
+    "kart": "lx:Glückwunsch",
+    "gun": 11,
+    "on_kosul": "lx:Glück",
+    "on_kosul_gun": 33,
+    "neden_tr": "Bileşik sözcük parçasından önce (Glück 5. haftada)."
+   },
+   {
+    "kart": "lx:Glückwunsch",
+    "gun": 11,
+    "on_kosul": "lx:Wunsch",
+    "on_kosul_gun": 44,
+    "neden_tr": "Bileşik sözcük parçasından önce (Wunsch 7. haftada)."
+   },
+   {
+    "kart": "lx:aufstehen",
+    "gun": 11,
+    "on_kosul": "lx:stehen#2",
+    "on_kosul_gun": 36,
+    "neden_tr": "Ön ekli fiil yalın fiilden önce; 'ayakta durmak' anlamı stehen#2 kartında (6. hafta). stehen#1 (20. gün) 'yazılı olmak, yakışmak' anlamında, o da 3. haftada."
+   },
+   {
+    "kart": "lx:unterschreiben",
+    "gun": 11,
+    "on_kosul": "lx:schreiben",
+    "on_kosul_gun": 32,
+    "neden_tr": "Ön ekli fiil yalın fiilden önce (schreiben 5. haftada; A önerisi uygulanınca 29. gün, yine 5. hafta)."
+   },
+   {
+    "kart": "lx:wehtun",
+    "gun": 15,
+    "on_kosul": "lx:weh",
+    "on_kosul_gun": 43,
+    "neden_tr": "wehtun, 'weh (tun)' kartından 4 hafta önce; iki kart neredeyse aynı şeyi öğretiyor (çift kart şüphesi)."
+   },
+   {
+    "kart": "lx:Hausaufgabe",
+    "gun": 17,
+    "on_kosul": "lx:Aufgabe",
+    "on_kosul_gun": 43,
+    "neden_tr": "Bileşik sözcük parçasından önce (Aufgabe 7. haftada). Haus için A önerisi var."
+   },
+   {
+    "kart": "lx:aufschreiben",
+    "gun": 22,
+    "on_kosul": "lx:schreiben",
+    "on_kosul_gun": 32,
+    "neden_tr": "Ön ekli fiil yalın fiilden önce (schreiben 5. haftada)."
+   },
+   {
+    "kart": "lx:Vermieter",
+    "gun": 24,
+    "on_kosul": "lx:Miete",
+    "on_kosul_gun": 29,
+    "neden_tr": "Türemiş sözcük kökünden önce (Miete 5. haftada; vermieten/mieten tabloda yok)."
+   },
+   {
+    "kart": "lx:Erkältung",
+    "gun": 29,
+    "on_kosul": "lx:kalt",
+    "on_kosul_gun": 48,
+    "neden_tr": "Zayıf: türemiş sözcük kök sıfattan (kalt, 7. hafta) çok önce; Erkältung bütün olarak da öğrenilebilir."
+   },
+   {
+    "kart": "lx:erkältet",
+    "gun": 36,
+    "on_kosul": "lx:kalt",
+    "on_kosul_gun": 48,
+    "neden_tr": "Zayıf: aynı kök (kalt 7. haftada)."
+   },
+   {
+    "kart": "lx:Ankunft",
+    "gun": 30,
+    "on_kosul": "lx:ankommen",
+    "on_kosul_gun": 43,
+    "neden_tr": "Türemiş isim fiilinden önce (ankommen 7. haftada)."
+   },
+   {
+    "kart": "lx:Parkplatz",
+    "gun": 30,
+    "on_kosul": "lx:Platz",
+    "on_kosul_gun": 39,
+    "neden_tr": "Bileşik sözcük parçasından önce (Platz 6. haftada; parken tabloda yok)."
+   },
+   {
+    "kart": "lx:Zugausfall",
+    "gun": 31,
+    "on_kosul": "lx:Zug",
+    "on_kosul_gun": 49,
+    "neden_tr": "Bileşik sözcük parçasından önce (Zug 7. haftada)."
+   },
+   {
+    "kart": "lx:Zugausfall",
+    "gun": 31,
+    "on_kosul": "lx:ausfallen",
+    "on_kosul_gun": 53,
+    "neden_tr": "Türemiş parça fiilinden önce (ausfallen 8. haftada)."
+   }
+  ]
+ },
+ "denetim": {
+  "iki_gune_atanmis_kart": 0,
+  "ilk_haftada_ogretilmisi_yeniden_atama": 0,
+  "k1_de_olmayan_kimlik": 0,
+  "haftalik_toplam_farki_aciklanmamis": 0,
+  "haftalik_toplam_farki_aciklanan": {
+   "2": -9
+  }
+ }
+}
