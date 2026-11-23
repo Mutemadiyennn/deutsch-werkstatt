@@ -156,6 +156,34 @@ Dosyalar: `content/v2/m1/gun-64…70.json`, `hafta-sonu-testi-10.json`, `gorulme
 7. **70 a1:** "Den Termin am Montag sagen wir ab." Muayenehane için alışılmış söz "streichen"; öğretilmiş sözcüklerle daha iyisini kuramadım, bıraktım.
 8. **OD-9, grammar t1–t5:** metinler dilce doğru, ama uzun paragraf, tırnak içinde Almanca, ok işareti ve terim (Dativ, Akkusativ, Perfekt) içeriyor. Bütün dilbilgisi kaydı bu biçimde; okur turunun işi.
 
+## Okur geri dönüşleri (2. tur, yalnız geri dönenler)
+
+Kaynak: `docs/v2/reviews/okur/a2-hafta-10.md` (24 GERİ). Hepsi kapatıldı; ayrıca 1. turun B1'i kapandı.
+
+**Gün dosyaları ve test (11)**
+1. 70 sınav m[0] ve test t11 "Sonra normal cümle gelir." → "Ardından cümle değişmeden gelir: **am Freitag geht es**." / "… **das Wetter ist schön**."
+2. 70 sınav m[7]: açıklamadaki sıra kabulde yoktu → "Am Dienstag von neun bis zwölf gibt es kein Wasser." kabule eklendi (doğru Almanca); açıklama "Su yok: **es gibt kein Wasser**. Ne zaman: **am Dienstag von neun bis zwölf**."
+3. 65 sahne `cevapla.why_tr` → "Hayır de, sonra planını söyle: **Ich gehe nach Hause.**" (cevaptaki söz, tek fikir).
+4. 66 prova n6 geri bildirim → "Nereye sorusunda **an der Wand** olmaz. Resmi kanepeye koy: **auf das Sofa**."
+5. 69 sesler[1] `cevapla.situation_tr`: 22 sözcük, parantez, eylem sorusuyla çelişki → beş kısa cümle; "Önce adını söyle. Doğum tarihini sonra söylersin." (eylem sorusuyla aynı).
+6. Test t01 → "Tobi'nin telefonunu masaya koydun."
+7. 64 sınav m[2] (benim 1. turdaki "…" kusurum) → "**fängt** ve **an** birlikte başlıyor demek. **an** en sonda."
+8. 67 sınav m[4], m[10] (üç fikir) → "**gelegt** en sonda durur." / "**gestellt** en sonda durur."
+9. Test t07 "Onun için" → "Komşun için **ärgert sich** dersin."
+
+**Okurun dilbilimciye notları**
+- 70 m[8] `why_tr`: "Önce … Sonra …" yanlış sıra çağrıştırıyordu → "Ne zaman: … Ne oluyor: …".
+- 66 m[10] "Günün provası" etiketi (provada musluk mutfakta, priz banyoda) kaldırıldı.
+- 70 a2 "wegen meinem Termin": 1. turdaki karar geçerli (konuşma biçimi; yazı biçimi kabulde).
+- 70 yazma denetimindeki **hat nicht gepasst** yalnız örnek metinde geçiyor; zorunlu değil, dokunulmadı (takip).
+
+**Dil noktaları gr:a2-02:t1–t5 (13 alan)**
+9. haftadaki a2-01 biçimi: `h_tr`, `tr`, `table.head` terimsiz, sembolsüz, her cümle ≤14 sözcük; örnekle anlatım (masada → auf dem Tisch, masaya → auf den Tisch). Tablo satırları ve örnekler aynı; yalnız t2'de iki satır etiketi "Wo? (Dativ)" → "Wo? Nerede?", "Wohin? (Akkusativ)" → "Wohin? Nereye?". Başlıklar: t1 "Nerede, nereye: auf dem Tisch, auf den Tisch", t2 "Kısa biçimler: im, ins, am, ans", t3 "Koymak ve durmak: stellen, stehen, legen, liegen", t4 "Koydum, astım: gestellt, gelegt, gehängt". t4'ten "gehangen" notu çıktı (bu hafta istenmiyor).
+
+**B1 kapandı (havuz).** 67 radyosu "Wegen der Kälte … zu" → "Wegen der **Heizung** ist das Schwimmbad am Samstag und Sonntag **noch** zu." Böylece 65'teki "ab Samstag wieder offen" haberinin ertelendiği anlaşılıyor; sebep ocakta inandırıcı. Heizung 59–60'ta öğretilmiş. Birlikte güncellenenler: çeviri, orta dikte, ayrıntı sorusunun seçenekleri, cevap görevinin durumu, üç kabulü ve açıklaması, sınav m[2] sesi ("Wegen der Heizung bleibe ich heute zu Hause."), kabulleri ve açıklaması. Haftada "Kälte" kalmadı.
+
+Denetimler (2. tur sonu): dikiş `İhlal: 0`; val.sh yalnız üç izinli sınıf (156 satır); content:validate yalnız iki şema sınıfı.
+
 ## Sonuç
 
-**AÇIK.** Dil yönünden kapandı: bulunan 97 hatanın hepsi düzeltildi, üç denetim temiz. Açık kalan B1 (havuz) ve B4 (dikte) karar bekliyor; B2, B3 ve B5–B8 takip işi.
+**ONAY (dil ve okur geri dönüşleri kapandı).** 1. turda 97, 2. turda 24 geri dönüş ve B1 düzeltildi. Baş geliştiricide kalan: B4 (dikte, kod ya da satır bölme), B3 (67 başlığı a2-kesin.json'da), B2 ve B5–B7 takip. B8 (dil noktalarının biçimi) bu turda kapandı.

@@ -802,8 +802,8 @@
     },
     {
      "id": "c2",
-     "de": "Wegen der Kälte ist das Schwimmbad am Samstag und Sonntag zu.",
-     "tr": "Soğuk yüzünden yüzme havuzu cumartesi ve pazar kapalı."
+     "de": "Wegen der Heizung ist das Schwimmbad am Samstag und Sonntag noch zu.",
+     "tr": "Kalorifer yüzünden yüzme havuzu cumartesi ve pazar hâlâ kapalı."
     },
     {
      "id": "c3",
@@ -850,8 +850,8 @@
        "kind": "detail",
        "q_tr": "Yüzme havuzu neden kapalı?",
        "opts": [
+        "Kalorifer yüzünden",
         "Soğuk yüzünden",
-        "Tamir yüzünden",
         "Bayram yüzünden"
        ],
        "ans": 0,
@@ -890,7 +890,7 @@
        "id": "d2",
        "cumle": "c2",
        "seviye": "orta",
-       "de": "Wegen der Kälte ist das ___ am Samstag und Sonntag zu.",
+       "de": "Wegen der Heizung ist das ___ am Samstag und Sonntag noch zu.",
        "accepted": [
         "Schwimmbad",
         "schwimmbad",
@@ -948,16 +948,16 @@
      "cevapla": {
       "id": "m1:67:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Ioana arıyor: Cumartesi yüzmeye gidelim mi? Havuz soğuk yüzünden kapalı. Sergiyi öner.",
+      "situation_tr": "Ioana arıyor: Cumartesi yüzmeye gidelim mi? Havuz kalorifer yüzünden kapalı. Sergiyi öner.",
       "prompt_de": "Gehen wir am Samstag ins Schwimmbad?",
       "accepted": [
-       "Das Schwimmbad ist wegen der Kälte zu. Gehen wir in die Ausstellung im Rathaus?",
+       "Das Schwimmbad ist wegen der Heizung zu. Gehen wir in die Ausstellung im Rathaus?",
        "Das geht nicht, das Schwimmbad ist zu. Gehen wir lieber in die Ausstellung?",
-       "Wegen der Kälte ist das Schwimmbad zu. Wir können in die Ausstellung gehen.",
+       "Wegen der Heizung ist das Schwimmbad zu. Wir können in die Ausstellung gehen.",
        "Leider ist das Schwimmbad zu. Gehen wir ins Rathaus in die Ausstellung?",
        "Nein, das Schwimmbad ist zu. Aber im Rathaus gibt es eine Ausstellung."
       ],
-      "why_tr": "Sebebi **wegen der Kälte** ile söyle, sonra başka bir yer öner."
+      "why_tr": "Sebebi **wegen der Heizung** ile söyle, sonra başka bir yer öner."
      }
     }
    ],
@@ -1268,15 +1268,15 @@
    {
     "id": "m1:67:s3",
     "k": "listen_and_respond",
-    "audio_de": "Wegen der Kälte bleibe ich heute zu Hause.",
+    "audio_de": "Wegen der Heizung bleibe ich heute zu Hause.",
     "speed": "normal",
     "situation_tr": "Duyduğunu yaz.",
     "accepted": [
-     "Wegen der Kälte bleibe ich heute zu Hause.",
-     "wegen der kälte bleibe ich heute zu hause",
-     "Wegen der Kälte bleibe ich heute zu Hause"
+     "Wegen der Heizung bleibe ich heute zu Hause.",
+     "wegen der heizung bleibe ich heute zu hause",
+     "Wegen der Heizung bleibe ich heute zu Hause"
     ],
-    "why_tr": "**wegen der Kälte**: soğuk yüzünden."
+    "why_tr": "**wegen der Heizung**: kalorifer yüzünden."
    },
    {
     "id": "m1:67:s4",
@@ -1300,7 +1300,7 @@
      "Wo hast du meinen Schlüssel hingelegt?",
      "Wohin hast du denn meinen Schlüssel gelegt?"
     ],
-    "why_tr": "Nereye: **wohin**. Koydun: **hast gelegt**. **gelegt** en sonda."
+    "why_tr": "**gelegt** en sonda durur."
    },
    {
     "id": "m1:67:s6",
@@ -1377,7 +1377,7 @@
      "Das Fahrrad habe ich in den Keller gestellt.",
      "Das habe ich in den Keller gestellt."
     ],
-    "why_tr": "Koydum: **habe gestellt**. **gestellt** en sonda. Nereye: **in den Keller**."
+    "why_tr": "**gestellt** en sonda durur."
    }
   ],
   "sesli": [
