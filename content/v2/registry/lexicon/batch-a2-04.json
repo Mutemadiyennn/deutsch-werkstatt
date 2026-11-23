@@ -1,7 +1,10 @@
 {
   "batch": "a2-04",
   "review": {
-    "status": "draft"
+    "status": "draft",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "Dilbilimci turu tamam: docs/v2/reviews/lexicon-batch-a2-04.md. Okur bekliyor."
   },
   "items": [
     {
@@ -69,7 +72,7 @@
         {
           "id": "lx:frisch:5",
           "de": "– Haben Sie noch frisches Brot? – Ja, das hier ist von heute Morgen.",
-          "tr": "– Hâlâ taze ekmeğiniz var mı? – Evet, bu bu sabahın.",
+          "tr": "– Hâlâ taze ekmeğiniz var mı? – Evet, buradaki bu sabah çıktı.",
           "layer": "hd",
           "dialog": true
         },
@@ -146,7 +149,7 @@
         },
         {
           "de": "sauer werden",
-          "tr": "kızmak"
+          "tr": "kızmak, (süt) ekşimek"
         }
       ],
       "patterns": [
@@ -237,7 +240,8 @@
           "tr": "Hâlâ bana kızgın mısın?",
           "hint_tr": "Bana kızgın mısın derken **sauer auf mich** denir.",
           "also_ok": [
-            "böse"
+            "böse",
+            "wütend"
           ]
         },
         {
@@ -252,7 +256,8 @@
           "tr": "Neden bu kadar kızgın?",
           "hint_tr": "Bu kadar kızgın derken **so sauer** denir.",
           "also_ok": [
-            "böse"
+            "böse",
+            "wütend"
           ]
         }
       ]
@@ -294,7 +299,7 @@
       ],
       "mistakes_tr": [
         "Bir çay istiyorum derken **Ich möchte ein Tee** yanlış. Doğrusu **Ich möchte einen Tee**.",
-        "Kafede yalnızca **Tee** dersen hangi çayı istediğin sorulur. Bizim bildiğimiz çay **schwarzer Tee** olur."
+        "Kafede yalnızca **Tee** dersen hangi çayı istediğin sorulur. Bizim bildiğimiz çayın adı **schwarzer Tee**."
       ],
       "examples": [
         {
@@ -307,14 +312,14 @@
         {
           "id": "lx:Tee:2",
           "de": "Im Winter trinke ich viel grünen Tee.",
-          "tr": "Kışın çok yeşil çay içerim.",
+          "tr": "Kışın bol bol yeşil çay içerim.",
           "layer": "hd",
           "img": "green tea in glass cup"
         },
         {
           "id": "lx:Tee:3",
           "de": "Ich mach uns schnell 'nen Tee.",
-          "tr": "Hemen ikimize bir çay yapayım.",
+          "tr": "Hemen bize bir çay yapayım.",
           "layer": "alltag",
           "img": "kettle and tea cups"
         },
@@ -372,14 +377,14 @@
         {
           "de": "Im Winter trinke ich viel grünen ___.",
           "answer": "Tee",
-          "tr": "Kışın çok yeşil çay içerim.",
-          "hint_tr": "Çok yeşil çay içerim derken **trinke ich viel grünen Tee** denir."
+          "tr": "Kışın bol bol yeşil çay içerim.",
+          "hint_tr": "Bol bol yeşil çay içerim derken **trinke ich viel grünen Tee** denir."
         },
         {
           "de": "Ich mache uns schnell einen ___.",
           "answer": "Tee",
-          "tr": "Hemen ikimize bir çay yapayım.",
-          "hint_tr": "Hemen ikimize bir çay yapayım derken **Ich mache uns schnell einen Tee** denir."
+          "tr": "Hemen bize bir çay yapayım.",
+          "hint_tr": "Hemen bize bir çay yapayım derken **Ich mache uns schnell einen Tee** denir."
         },
         {
           "de": "Möchten Sie ___ oder Kaffee?",
@@ -563,7 +568,7 @@
         "lx:Obst"
       ],
       "mistakes_tr": [
-        "Meyve suyu derken **Fruchtwasser** yanlış, o anne karnındaki sudur. Doğrusu **Saft**."
+        "Meyve suyu derken **Obstwasser** yanlış. Türkçedeki su burada **Wasser** olmaz. Doğrusu **Saft**."
       ],
       "examples": [
         {
@@ -675,7 +680,7 @@
         },
         {
           "de": "ein Stück Obst",
-          "tr": "bir parça meyve"
+          "tr": "bir meyve"
         },
         {
           "de": "viel Obst essen",
@@ -707,7 +712,7 @@
         {
           "id": "lx:Obst:2",
           "de": "Ich esse jeden Tag ein Stück Obst.",
-          "tr": "Her gün bir parça meyve yerim.",
+          "tr": "Her gün bir meyve yerim.",
           "layer": "hd",
           "img": "piece of fruit on desk"
         },
@@ -764,8 +769,8 @@
         {
           "de": "Ich esse jeden Tag ein Stück ___.",
           "answer": "Obst",
-          "tr": "Her gün bir parça meyve yerim.",
-          "hint_tr": "Bir parça meyve derken **ein Stück Obst** denir."
+          "tr": "Her gün bir meyve yerim.",
+          "hint_tr": "Bir meyve derken **ein Stück Obst** denir."
         },
         {
           "de": "Wo finde ich ___ und Gemüse?",
@@ -1106,14 +1111,14 @@
         {
           "id": "lx:Schnee:3",
           "de": "Wow, guck mal, alles voller Schnee!",
-          "tr": "Vay, baksana, her yer kar dolu!",
+          "tr": "Vay, baksana, her yer karla kaplı!",
           "layer": "alltag",
           "img": "everything covered in snow"
         },
         {
           "id": "lx:Schnee:4",
           "de": "– Liegt bei euch schon Schnee? – Ja, seit gestern, so zehn Zentimeter.",
-          "tr": "– Sizde kar var mı? – Evet, dünden beri, on santim kadar.",
+          "tr": "– Sizde şimdiden kar var mı? – Evet, dünden beri, on santim kadar.",
           "layer": "alltag",
           "dialog": true,
           "img": "snow on garden"
@@ -1349,7 +1354,7 @@
         "lx:Verspätung"
       ],
       "mistakes_tr": [
-        "Yoğun siste derken **bei dichter Nebel** yanlış. Doğrusu **bei dichtem Nebel**. **Nebel** kelimesi **der** ile gelir."
+        "Yoğun siste derken **bei dichter Nebel** yanlış. Doğrusu **bei dichtem Nebel**. **bei** gelince **dicht** sonuna **em** alır."
       ],
       "examples": [
         {
@@ -1376,7 +1381,7 @@
         {
           "id": "lx:Nebel:4",
           "de": "– Siehst du was? – Fast nichts, der Nebel ist echt dicht heute.",
-          "tr": "– Bir şey görüyor musun? – Neredeyse hiç, sis bugün gerçekten yoğun.",
+          "tr": "– Bir şey görüyor musun? – Neredeyse hiçbir şey, sis bugün gerçekten yoğun.",
           "layer": "alltag",
           "dialog": true,
           "img": "people walking in fog"
@@ -1432,7 +1437,10 @@
           "de": "Wegen ___ kommt der Bus etwas später.",
           "answer": "Nebel",
           "tr": "Sis yüzünden otobüs biraz geç geliyor.",
-          "hint_tr": "Sis yüzünden derken **Wegen Nebel** denir."
+          "hint_tr": "Sis yüzünden derken **Wegen Nebel** denir.",
+          "also_ok": [
+            "Nebels"
+          ]
         },
         {
           "de": "Der ___ ist heute echt dicht.",
@@ -1478,7 +1486,7 @@
       ],
       "mistakes_tr": [
         "Bugün hava kaç derece derken **Wie viel Grad ist das Wetter heute?** yanlış. Doğrusu **Wie viel Grad haben wir heute?**",
-        "Otuz derece derken **dreißig Grade** yanlış. Sayıdan sonra da **Grad** kalır: **dreißig Grad**."
+        "Otuz derece derken **dreißig Grade** yanlış. Sayıdan sonra **Grad** değişmez: **dreißig Grad**."
       ],
       "examples": [
         {
@@ -1529,7 +1537,7 @@
       ],
       "exp": {
         "anlam_tr": "**der Grad** sıcaklığı söylerken kullanılan ölçüdür: derece.",
-        "ne_zaman_tr": "Hava durumunda, ateşte ya da fırında sıcaklık söylerken.",
+        "ne_zaman_tr": "Havanın, ateşinin ya da fırının kaç derece olduğunu söylerken.",
         "parcalar": [],
         "ipucu_tr": "Sayıdan sonra hep **Grad** kalır: **dreißig Grad**."
       },
@@ -1770,7 +1778,7 @@
         {
           "id": "lx:Koffer:5",
           "de": "– Kann ich Ihnen mit dem Koffer helfen? – Ja, gern, vielen Dank!",
-          "tr": "– Bavulla size yardım edebilir miyim? – Evet, memnuniyetle, çok teşekkürler!",
+          "tr": "– Bavulla size yardım edebilir miyim? – Evet, sevinirim, çok teşekkürler!",
           "layer": "hd",
           "dialog": true,
           "img": "helping with suitcase on stairs"
@@ -1899,7 +1907,7 @@
         {
           "id": "lx:einsteigen:4",
           "de": "– Wo bist du denn eingestiegen? – Na, am Bahnhof, ganz vorn.",
-          "tr": "– Sen nereden bindin? – Garda tabii, en önden.",
+          "tr": "– Sen nereden bindin? – Gardan tabii, en önden.",
           "layer": "alltag",
           "dialog": true
         },
@@ -1993,8 +2001,8 @@
           "tr": "demiryollarında çalışmak"
         },
         {
-          "de": "mit der S-Bahn",
-          "tr": "banliyö treniyle"
+          "de": "die Bahn nehmen",
+          "tr": "trene binmek"
         }
       ],
       "patterns": [
@@ -2144,7 +2152,7 @@
         "lx:Fahrkarte"
       ],
       "mistakes_tr": [
-        "İyi yolculuklar derken **Gute Fahrten** yanlış. Doğrusu **Gute Fahrt!** Türkçedeki gibi çok yolculuk denmez."
+        "İyi yolculuklar derken **Gute Fahrten** yanlış. Doğrusu **Gute Fahrt!** Almancada burada tek yolculuk söylenir."
       ],
       "examples": [
         {
@@ -2205,7 +2213,8 @@
           "tr": "Münih yolculuğu yaklaşık bir saat sürüyor.",
           "hint_tr": "Münih yolculuğu derken **Die Fahrt nach München** denir.",
           "also_ok": [
-            "Zugfahrt"
+            "Zugfahrt",
+            "Reise"
           ]
         },
         {
@@ -2317,7 +2326,7 @@
         },
         {
           "id": "lx:Ticket:5",
-          "de": "– Zeigen Sie mir bitte Ihr Ticket. – Moment, ich hab es auf dem Handy.",
+          "de": "– Zeigen Sie mir bitte Ihr Ticket. – Moment, ich habe es auf dem Handy.",
           "tr": "– Biletinizi gösterir misiniz lütfen? – Bir dakika, telefonumda.",
           "layer": "hd",
           "dialog": true,
@@ -2478,7 +2487,7 @@
         "parcalar": [
           {
             "de": "Sitz",
-            "tr": "oturak"
+            "tr": "oturma"
           },
           {
             "de": "platz",
@@ -2576,8 +2585,8 @@
       "examples": [
         {
           "id": "lx:Kontrolle:1",
-          "de": "Im Zug gibt es heute eine Kontrolle.",
-          "tr": "Trende bugün kontrol var.",
+          "de": "Im Zug gibt es oft eine Kontrolle.",
+          "tr": "Trende sık sık kontrol oluyor.",
           "layer": "hd"
         },
         {
@@ -2628,10 +2637,14 @@
       },
       "forms": [
         {
-          "de": "Im Zug gibt es heute eine ___.",
+          "de": "Im Zug gibt es oft eine ___.",
           "answer": "Kontrolle",
-          "tr": "Trende bugün kontrol var.",
-          "hint_tr": "Trende bugün kontrol var derken **Im Zug gibt es heute eine Kontrolle** denir."
+          "tr": "Trende sık sık kontrol oluyor.",
+          "hint_tr": "Trende sık sık kontrol oluyor derken **Im Zug gibt es oft eine Kontrolle** denir.",
+          "also_ok": [
+            "Fahrkartenkontrolle",
+            "Ticketkontrolle"
+          ]
         },
         {
           "de": "Kommen Sie in zwei Wochen zur ___.",
