@@ -408,7 +408,15 @@ export function AkisEkrani({ day }: { day: number }) {
   }, [day]);
   if (hata) return <ErrorPanel message={hata} onRetry={() => location.reload()} />;
   if (!v) return <Loading />;
-  if (v === "degil") return <section class="stack"><ProgressHeader title={`${day}. gün`} back="#/" /><p class="card small" data-test="akis-degil">Bu gün henüz yeni akışla açılmıyor.</p></section>;
+  // halkasız gün (ör. Yol'da atlanan haftadan "Gir"; inceleme #245 2. tur P1-1): çıkmaz sokak değil, günün parçalarına yol
+  if (v === "degil") return (
+    <section class="stack"><ProgressHeader title={`${day}. gün`} back="#/yol" />
+      <div class="card stack" data-test="akis-degil"><p class="small" style={{ margin: 0 }}>Bu gün henüz yeni akışla açılmıyor. Parçalarına buradan girebilirsin:</p>
+        <a class="btn block" href={`#/garden/${day}`} data-test="degil-bahce">Kelime Bahçesi</a>
+        <a class="btn block" href={`#/m1/${day}`} data-test="degil-kayitlar">Günün kayıtları</a>
+        <a class="btn block" href={`#/rehber/${day}`} data-test="degil-rehber">Rehber</a>
+        <a class="btn ghost block" href="#/yol" data-test="degil-yol">Yol'a dön</a></div>
+    </section>);
   const kaydet = async (k: AkisKaydi, eski: string | null, atla = false) => {
     // yeni sonuçlar kart kaydına: son ilerleme ile önceki arasındaki fark
     const yeni = k.sonuclar.slice(v.kayit.sonuclar.length);

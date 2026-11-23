@@ -123,6 +123,16 @@ def main():
         check(pg.get_attribute("[data-test=gir-1]", "href") == "#/akis/1", "'Gir' atlanan günün akışına gider")
         pg.click("[data-test=gir-1]"); pg.wait_for_selector("[data-test=gun-kilitli], [data-test=akis]", timeout=20000)
         check(pg.locator("[data-test=akis]").count() == 1 and pg.locator("[data-test=gun-kilitli]").count() == 0, "atlanan gün kilitli değil, akışı açılır: isteyen döner")
+        # halkasız atlanan gün (e2e paketinde halka önerisi olmayan gün; yoksa atlanır): çıkmaz sokak yok (inceleme #245 2. tur P1-1)
+        halkasiz = pg.evaluate("""async () => { const v = (await (await fetch('content/current.json')).json()).version;
+          for (const g of [2, 3, 4, 5, 6, 7, 8, 9, 15]) { const r = await fetch('content/' + v + '/m1/gun-' + String(g).padStart(2, '0') + '.json'); if (!r.ok) continue; const d = await r.json(); if (!d.halkalar || !d.halkalar.length) return g; } return null; }""")
+        if halkasiz:
+            pg.goto(base + f"#/akis/{halkasiz}"); pg.wait_for_selector("[data-test=akis-degil], [data-test=gun-kilitli]", timeout=20000)
+            check(pg.locator("[data-test=akis-degil]").count() == 1 and all(pg.locator(f"[data-test={x}]").count() == 1 for x in ("degil-bahce", "degil-kayitlar", "degil-rehber", "degil-yol")),
+                  f"halkasız atlanan gün ({halkasiz}): Bahçe, kayıtlar, Rehber, Yol'a dön")
+            pg.click("[data-test=degil-bahce]"); pg.wait_for_selector("[data-test=garden-intro], [data-test^=gq-], [data-test=garden-done], [data-test=garden-empty], [data-test=hizli-oneri], [data-test=gun-kilitli]", timeout=20000)
+            check(pg.locator("[data-test=gun-kilitli]").count() == 0, f"halkasız atlanan günün ({halkasiz}) Bahçe'si açılır")
+        else: print("   (e2e paketinde halkasız gün yok; sınama atlandı)")
         pg.goto(base + "#/akis/57"); pg.wait_for_selector("[data-test=akis], [data-test=gun-kilitli]", timeout=20000)
         check(pg.locator("[data-test=akis]").count() == 1, "57. günün akışı açılır")
         # 57. gün oynanır (PM-114 md. 5): ses durağı bitmiş sayılır, sonra akışın adımları geçilir; akış kaydı ilerler

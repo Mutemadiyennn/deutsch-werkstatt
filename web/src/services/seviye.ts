@@ -54,7 +54,8 @@ async function gunKartlari(index: ContentIndex, gunler: Iterable<number>): Promi
  * "biliniyor" diye girmiş ama artık atlanmayan günün DOKUNULMAMIŞ kartı çıkar (geri dönüş: A1 gününde yeniden tanıtılır).
  * Öğrencinin gerçek kanıtı, biten günleri ve XP'si değişmez.
  */
-export async function baslangicYaz(gun: number, index: ContentIndex, yanlisMaddeler: readonly Drill[] = []): Promise<void> {
+/** Döner: uygulanan başlangıç günü (paket izin vermezse 1) */
+export async function baslangicYaz(gun: number, index: ContentIndex, yanlisMaddeler: readonly Drill[] = []): Promise<number> {
   const days = index.m1.map((g) => g.day);
   const bas = etkinBaslangic(days, gun);
   const bitenler = await gunBitisleri();
@@ -73,4 +74,5 @@ export async function baslangicYaz(gun: number, index: ContentIndex, yanlisMadde
   if (cikan.length) await db.items.bulkDelete(cikan);
   await putItems(degisen);
   await setMeta(ANAHTAR, { gun: bas, at: now.toISOString() } satisfies Baslangic);
+  return bas;
 }

@@ -44,7 +44,8 @@ function useBasla() {
   const basla = async (gun: number, yanlis: readonly Drill[] = []) => {
     if (!index || mesgul) return;
     setMesgul(true);
-    try { await baslangicYaz(gun, index, yanlis); toast(gun <= 1 ? "1. günden başlıyorsun" : `${haftaOf(gun)}. haftadan başlıyorsun`); go("today"); }
+    // bildirim uygulanan başlangıcı söyler (paket izin vermezse baştan; inceleme #245 2. tur T2-2)
+    try { const b = await baslangicYaz(gun, index, yanlis); toast(b <= 1 ? "1. günden başlıyorsun" : `${haftaOf(b)}. haftadan başlıyorsun`); go("today"); }
     catch { toast("Kaydedilemedi; tekrar dene."); setMesgul(false); }
   };
   return { basla, mesgul };
@@ -132,7 +133,7 @@ export function SeviyeYoklama() {
     const y = r === "wrong" ? [...yanlis, m.d.id] : yanlis;
     const d = dogru + (r === "wrong" ? 0 : 1);
     setYanlis(y); setDogru(d); window.scrollTo(0, 0);
-    if (q + 1 >= toplam) { setBitti(true); void yoklamaSonYaz({ dogru: d, toplam, yanlis: y, maddeler: maddeler.map((x) => x.d.id) }).then(() => go("seviye/sonuc"), () => { setBitti(false); toast("Sonuç kaydedilemedi; son soruyu yeniden cevapla."); }); }
+    if (q + 1 >= toplam) { setBitti(true); void yoklamaSonYaz({ dogru: d, toplam, yanlis: y, maddeler: maddeler.map((x) => x.d.id) }).then(() => go("seviye/sonuc"), () => { setYanlis(yanlis); setDogru(dogru); setBitti(false); toast("Sonuç kaydedilemedi; son soruyu yeniden cevapla."); }); }
     else setQ(q + 1);
   };
   return (

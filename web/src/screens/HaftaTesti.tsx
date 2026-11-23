@@ -28,7 +28,7 @@ function Kilitli({ ust, baslik, metin, test = "gun-kilitli", ek, back = "#/today
     <div class="stack" data-test={test}>
       <ProgressHeader title={ust} back={back} />
       <section class="card stack"><h2>{baslik}</h2><p>{metin}</p>{ek}</section>
-      <ActionBar><a class="btn primary block" href={back} data-test="bugune-don">{back === "#/today" ? "Bugüne dön" : "Geri dön"}</a></ActionBar>
+      <ActionBar><a class="btn primary block" href={back} data-test={back === "#/today" ? "bugune-don" : "geri-don"}>{back === "#/today" ? "Bugüne dön" : "Geri dön"}</a></ActionBar>
     </div>
   );
 }
