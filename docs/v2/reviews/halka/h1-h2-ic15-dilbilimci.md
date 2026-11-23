@@ -47,3 +47,8 @@ Kapsam: yalnız `git diff 1253c79c 687efd01` (yazar kaydı: `h1-h2-ic15-yazar.md
 Hata oranı: 5 bulgu / 26 madde = 0,19.
 
 Karar: **DÜZELTİLDİ-ONAY**
+
+## Okur fark turu dönüşü (İÇ-15)
+Okur (docs/v2/reviews/okur/h1-h2-ic15.md): 25 alan, 24 GEÇTİ, 1 GERİ.
+- gun-10 · m1:10:h1 · kaliplar[0]: üçüncü parçada boşluğa gelen kişi arayan, ilk ikisinde aranan; Türkçe iki türlü okunuyordu. Okurun önerisi (somut ad) uygulandı: **… ruft an.** / "… arıyor." → **Herr Wimmer ruft an.** / "Wimmer Bey arıyor." (sahnedeki cümlenin çekirdeği; Herr Wimmer 1. günden beri biliniyor). Okur yalnız bu alanı yeniden okur.
+- Not (engel değil, takip): 11. ve 14. gün provasında **Grüß Gott** "İyi günler!" diye çevrili, 11. gün kalıbında "Merhaba! (Bavyera'da en yaygın selam)". Birleştirme takip işi.
