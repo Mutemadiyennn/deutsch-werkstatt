@@ -44,5 +44,11 @@ Sözlük kartlarında (batch-*.json) geçen olgusal bilgiler ve kaynakları.
 | Jobcenter, geçimini sağlayamayan çalışabilir kişilere bakar | lx:Jobcenter | https://www.betanet.de/jobcenter.html |
 | Dolmetscher sözlü, Übersetzer yazılı çevirir | lx:Dolmetscher | https://www.duden.de/rechtschreibung/Dolmetscher · https://wissen.de/artikel/dolmetscher-in-oder-uebersetzer-in |
 | Silvester, 31 Aralık | lx:Silvester | https://www.duden.de/rechtschreibung/Silvester_Tag |
+| **Servus** samimi selam ve vedalaşma, yalnızca du ilişkisinde; **gell** soru sonunda değil mi; **Passt scho** tamam, sorun yok; **Ja mei** ne yapalım, öyle işte (parti a2-01 örneklerinde yalnızca anlamı sorulan söz olarak geçer, kart değildir) | lx:bayerisch, lx:Hochdeutsch, lx:Frage, lx:Bedeutung, lx:Ausdruck#2, lx:typisch, lx:Unterschied | `docs/v2/WORLD.md` §5: https://www.thelocal.de/20190927/bavarian-words-you-need-to-survive-down-south-language-bayerisch-bairisch-german-munich · https://www.fes.de/fes-in-bayern/angebote-ausstellungen/ausstellung-passt-scho · https://www.muenchenwiki.de/wiki/Bairisch-Lexikon_J |
+| **Grüß Gott** güneyde sıradan selamdır | lx:grüßen, lx:Beispiel, lx:typisch, lx:Unterschied | yukarıdaki lx:Gott satırı (Duden, Goethe-Institut) · `docs/v2/WORLD.md` §5 |
+| **halb neun** 8:30 demektir | lx:verwechseln | Duden, halb maddesi: https://www.duden.de/rechtschreibung/halb (ağ yok, URL çevrimdışı doğrulanamadı; dilbilimci kontrol etsin) |
+| **Bank** iki anlam: para kurumu ve oturulan sıra | lx:Bedeutung | https://www.duden.de/rechtschreibung/Bank_Sitzgelegenheit · https://www.duden.de/rechtschreibung/Bank_Geldinstitut (çevrimdışı doğrulanamadı) |
+| **Nebenkosten** kiraya ek giderler (su, ısınma) | lx:Beispiel | yukarıdaki lx:Miete satırı (Warmmiete, Duden) · https://www.duden.de/rechtschreibung/Nebenkosten (çevrimdışı doğrulanamadı) |
+| **Abkürzung** hem kısaltma hem kestirme yol; **MwSt.** Mehrwertsteuer, **z. B.** zum Beispiel, **Tel.** Telefon, **Mo.–Fr.** Montag bis Freitag | lx:Abkürzung | Duden, Abkürzung maddesi ve kısaltma maddeleri (URL çevrimdışı doğrulanamadı; dilbilimci kontrol etsin) |
 
 Sıklık verisi: FrequencyWords 2018 de (OpenSubtitles), H. Dave, CC BY-SA 4.0 — bkz. registry/frequency/lemmas.json.
