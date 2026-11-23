@@ -261,5 +261,88 @@ export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: I
   return out;
 }
 
+/**
+ * Düzenli çekim (PM-097 md. 2). Kartı bilinen fiilin DÜZENLİ biçimi (kök + ek: schlafe, nehme, warte) o kişinin çekim tablosu
+ * daha önce bir dil noktasında (ders tablosu ya da `teach`, `gr:`/`dn:` tablosu) sunulmuşsa serbesttir. Tablo sunulmamışsa ya da
+ * biçim düzensizse (kök değişimi: nimmst, schläft; ayrılan önek: rufe … an) engeldir. Denetçi (dikiş) ve hafta kapısı aynı ölçüyü kullanır.
+ *  - Kişi sınıfları: 1t ich · 2t du · 3t er/sie/es/man · 1c wir · 2c ihr · 3c sie/Sie; geçmiş ortaç (ge…t) "p2".
+ *  - Düzenli biçim yalnız -en / -eln / -ern mastarlarından türetilir (sein, tun türetilmez). Ara -e- (arbeitest, rechnet) ve
+ *    s/ß/z sonrası 2t (heißt) kuraldır. p2 yalnız ayrılmayan önekte ve -ieren'de (bestellt, telefoniert) ya da ge+kök+t.
+ *  - Cümlede kişi zamirle (hemen önce ya da sonra) belirlenir; zamir yoksa biçimin olabileceği herhangi bir kişi yeter.
+ */
+export type CekimSinifi = "1t" | "2t" | "3t" | "1c" | "2c" | "3c" | "p2";
+const AYRILMAZ = /^(be|emp|ent|er|ge|miss|ver|zer)/;
+/** Fiil mastarının düzenli biçimleri: biçim → sınıflar (mastarın kendisi dahil değildir; o zaten gösterilen biçimdir) */
+export function duzenliBicimler(mastar: string): Map<string, Set<CekimSinifi>> {
+  const out = new Map<string, Set<CekimSinifi>>();
+  const m = mastar.toLowerCase();
+  let kok: string;
+  if (/[^e](el|er)n$/.test(m)) kok = m.slice(0, -1);
+  else if (/en$/.test(m) && m.length > 3) kok = m.slice(0, -2);
+  else return out;
+  const ekle = (b: string, s: CekimSinifi) => { if (b === m) return; let x = out.get(b); if (!x) out.set(b, (x = new Set())); x.add(s); };
+  const araE = /[dt]$/.test(kok) || /[^lrmnh][mn]$/.test(kok);
+  const sz = /(s|ß|z|x)$/.test(kok);
+  ekle(kok + "e", "1t");
+  ekle(kok + (araE ? "est" : sz ? "t" : "st"), "2t");
+  for (const s of ["3t", "2c"] as const) ekle(kok + (araE ? "et" : "t"), s);
+  if (AYRILMAZ.test(m) || /ieren$/.test(m)) ekle(kok + (araE ? "et" : "t"), "p2");
+  else ekle("ge" + kok + (araE ? "et" : "t"), "p2");
+  return out;
+}
+const ZAMIR: Record<string, CekimSinifi[]> = { ich: ["1t"], du: ["2t"], er: ["3t"], es: ["3t"], man: ["3t"], wir: ["1c"], ihr: ["2c"], sie: ["3t", "3c"] };
+/** Fiil kartı → düzenli biçim dizini (bir kez): biçim → [kart, sınıflar] */
+const duzenliOnbellek = new WeakMap<KumeDizini, Map<string, { kart: string; sinif: Set<CekimSinifi> }[]>>();
+function duzenliDizin(d: KumeDizini) {
+  let x = duzenliOnbellek.get(d); if (x) return x;
+  x = new Map();
+  for (const l of d.kartlar.values()) {
+    if (l.pos !== "verb" || d.cerceve.has(l.id)) continue;
+    const t = toks(l.de); const mastar = t[t.length - 1]; if (!mastar || (t.length > 1 && t[0] !== "sich")) continue;
+    for (const [b, s] of duzenliBicimler(mastar)) { let v = x.get(b); if (!v) x.set(b, (v = [])); v.push({ kart: l.id, sinif: s }); }
+  }
+  duzenliOnbellek.set(d, x); return x;
+}
+/** Bir tablonun (satırlar) ya da örnek cümlenin SUNDUĞU düzenli çekim sınıfları: satırın kişisi (ilk hücre zamir) ya da hücre içinde
+ *  "zamir + biçim" ikilisi; biçim sözlükteki bir fiilin düzenli biçimi ve sınıfı kişiyle tutuyorsa o sınıf sunulmuştur. ge…t → p2. */
+export function sunulanCekim(d: KumeDizini, satirlar: readonly (readonly string[])[], hedef: Set<CekimSinifi> = new Set()): Set<CekimSinifi> {
+  const dz = duzenliDizin(d);
+  const siniflar = (w: string) => new Set((dz.get(w) ?? []).flatMap((x) => [...x.sinif]));
+  for (const row of satirlar) {
+    const ilk = toks(row[0]);
+    const satirKisi = ilk.length && ilk.every((t) => ZAMIR[t] || t === "siz") ? (ilk.some((t) => t === "er" || t === "es") ? ["3t"] : ilk.flatMap((t) => (t === "sie" ? ["3c"] : ZAMIR[t] ?? []))) as CekimSinifi[] : [];
+    for (const cell of row) {
+      const tt = toks(cell);
+      tt.forEach((w, j) => {
+        const s = siniflar(w); if (!s.size) return;
+        if (s.has("p2")) hedef.add("p2");
+        const kisi = new Set<CekimSinifi>([...satirKisi, ...(ZAMIR[tt[j - 1] ?? ""] ?? []), ...(ZAMIR[tt[j + 1] ?? ""] ?? [])]);
+        for (const k of kisi) if (s.has(k)) hedef.add(k);
+      });
+    }
+  }
+  return hedef;
+}
+export type CekimKarari = { karar: "serbest" | "engel"; kart: string; neden: string } | null;
+/**
+ * Cümlenin j. sözcüğü bilinen bir fiil kartının çekimli biçimi mi (PM-097 md. 2)?
+ *  - serbest: bilinen fiilin düzenli biçimi ve (zamirin gösterdiği) kişinin sınıfı sunulmuş;
+ *  - engel: bilinen fiilin düzenli biçimi ama sınıfı sunulmamış, ya da bilinen fiile eşlenen düzensiz biçim (`adaylar` fiil);
+ *  - null: fiil çekimi değil (öteki biçim türleri eski sınıfta kalır).
+ */
+export function cekimKarari(d: KumeDizini, tt: readonly string[], j: number, bilinenKart: ReadonlySet<string>, sunulan: ReadonlySet<CekimSinifi>, adaylar: readonly string[] = []): CekimKarari {
+  const w = tt[j]!;
+  const zamir = new Set<CekimSinifi>([...(ZAMIR[tt[j - 1] ?? ""] ?? []), ...(ZAMIR[tt[j + 1] ?? ""] ?? [])]);
+  const uyan = (duzenliDizin(d).get(w) ?? []).filter((x) => bilinenKart.has(x.kart));
+  for (const x of uyan) {
+    const aday = [...x.sinif].filter((s) => s === "p2" || !zamir.size || zamir.has(s));
+    if (aday.some((s) => sunulan.has(s))) return { karar: "serbest", kart: x.kart, neden: `düzenli ${aday.filter((s) => sunulan.has(s)).join("/")}` };
+  }
+  if (uyan.length) return { karar: "engel", kart: uyan[0]!.kart, neden: `düzenli ama çekim tablosu sunulmadı (${[...uyan[0]!.sinif].join("/")})` };
+  const fiil = adaylar.find((i) => bilinenKart.has(i) && d.kartlar.get(i)?.pos === "verb" && !d.cerceve.has(i));
+  if (fiil) return { karar: "engel", kart: fiil, neden: "düzensiz biçim gösterilmedi" };
+  return null;
+}
+
 /** Rapor için kısa gösterim: kart eksik "x", biçim eksik "~x", eşlenemeyen "?x" */
 export const bilinmeyenYazi = (u: Bilinmeyen[]) => u.map((x) => (x.tur === "kart" ? "" : x.tur === "bicim" ? "~" : "?") + x.sozcuk);
