@@ -41,20 +41,27 @@ export const bahceAnahtari = (day: number) => `m1:bahce:${day}`;
 /** Adımın etiketi: seansın adı; Seans 4'te okuma/yazma kendi adıyla */
 export const adimAdi = (a: Pick<Adim, "seans" | "tur">) => (a.tur === "okuma" ? "Okuma ve yazma" : SEANS_TR[a.seans]);
 
-/** Bayraklı günler (`policy.akis.gunler`). Yalnız e2e paketinde `sessionStorage["e2e-akis-gunler"]` (JSON dizi) geçersiz kılar:
- *  eski düzenin testleri (v2_bugun, v2_yol) 1. günü bayraksız sınar; üretimde okunmaz */
-export function bayrakliGunler(): readonly number[] {
-  if (import.meta.env.MODE === "e2e") { try { const x: unknown = JSON.parse(sessionStorage.getItem("e2e-akis-gunler") ?? "null"); if (Array.isArray(x)) return x as number[]; } catch { /* geçersiz: policy */ } }
-  return POLICY.akis.gunler;
+/** Akış bayrağı: gün listesi ya da "hepsi" (halkası olan her gün; PM-090 md. 3 "akışın bütün günlere açılması") */
+export type AkisGunleri = readonly number[] | "hepsi";
+/** Politikadaki değer: dizi ya da "hepsi"; başka her şey kapalı sayılır (bozuk politika akışı açmaz) */
+export const akisGunleriOku = (x: unknown): AkisGunleri | null =>
+  x === "hepsi" ? "hepsi" : Array.isArray(x) && x.every((n) => Number.isInteger(n)) ? (x as number[]) : null;
+/** Gün bayraklı mı */
+export const bayrakli = (day: number, gunler: AkisGunleri = bayrakliGunler()): boolean => gunler === "hepsi" || gunler.includes(day);
+/** Bayraklı günler (`policy.akis.gunler`). Yalnız e2e paketinde `sessionStorage["e2e-akis-gunler"]` (JSON: dizi ya da "hepsi") geçersiz kılar:
+ *  testler bayrağın varsayılanına yaslanmaz (tests/e2e/common.py taban değeri yazar); üretimde okunmaz */
+export function bayrakliGunler(): AkisGunleri {
+  if (import.meta.env.MODE === "e2e") { try { const x = akisGunleriOku(JSON.parse(sessionStorage.getItem("e2e-akis-gunler") ?? "null")); if (x) return x; } catch { /* geçersiz: policy */ } }
+  return akisGunleriOku(POLICY.akis.gunler) ?? [];
 }
 /** AKIS AK-6 pilot bayrağı (`policy.akis.gunler`): halkası olan bayraklı gün akışla açılır; eski düzenle başlanmış gün eski düzenle biter */
-export function akisAcik(g: Gun, ilr: Ilerleme, gunler: readonly number[] = bayrakliGunler()): boolean {
-  if (!gunler.includes(g.day) || !g.halkalar?.length) return false;
+export function akisAcik(g: Gun, ilr: Ilerleme, gunler: AkisGunleri = bayrakliGunler()): boolean {
+  if (!bayrakli(g.day, gunler) || !g.halkalar?.length) return false;
   if (ilr.akisBasladi?.has(g.day)) return true;
   return !ilr.bahceBitti.has(g.day) && !g.dersler.some((d) => ilr.dersBitti.has(d));
 }
 
-export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<string, string> = {}, akisGunler: readonly number[] = bayrakliGunler()): GunDurum {
+export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<string, string> = {}, akisGunler: AkisGunleri = bayrakliGunler()): GunDurum {
   const a: Adim[] = [];
   const bahceBitti = ilr.bahceBitti.has(g.day);
   const kalan = bahceBitti ? 0 : g.yeni_kartlar.filter((id) => (!ilr.kartlar || ilr.kartlar.has(id)) && !ilr.tanitilan?.has(id)).length;
