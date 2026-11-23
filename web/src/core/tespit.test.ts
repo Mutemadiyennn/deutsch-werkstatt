@@ -1,6 +1,15 @@
 import { describe, it, expect } from "vitest";
 import type { TespitCozulen, TespitPaket } from "@dw/shared";
-import { taramaPlani, haftaDurumu, derinPlani, tespitPlani, tespitRaporu, tespitKarari, kelimeOrnegi, TESPIT, BECERILER, type Sonuc } from "./tespit.ts";
+import { taramaPlani as tp, haftaDurumu as hdu, derinPlani as dp, tespitPlani as tpl, tespitRaporu as tr, tespitKarari as tk, kelimeOrnegi, TESPIT as TESPIT8, BECERILER, type Sonuc, type Cevaplar } from "./tespit.ts";
+
+/** fikstür paketi iki haftalık: A1 = 2 hafta sayılır (gerçek politika 8; eksik hafta ayrı testte) */
+const TESPIT = { ...TESPIT8, a1_hafta: 2 };
+const taramaPlani = (p: TespitPaket) => tp(p, TESPIT);
+const haftaDurumu = (p: TespitPaket, w: number, c: Cevaplar) => hdu(p, w, c, TESPIT);
+const derinPlani = (p: TespitPaket, z: number[]) => dp(p, z, TESPIT);
+const tespitPlani = (p: TespitPaket, c: Cevaplar) => tpl(p, c, TESPIT);
+const tespitRaporu = (p: TespitPaket, c: Cevaplar) => tr(p, c, TESPIT);
+const tespitKarari = (b: Parameters<typeof tk>[0], h: Parameters<typeof tk>[1], g: number) => tk(b, h, g, TESPIT);
 
 const m = (id: string, x: Partial<TespitCozulen>): TespitCozulen => ({ id, kaynak: "gun_sinavi", tur: "tr_de", hafta: 1, asama: "derin", beceri: "yazma", can_do: [], dil_noktasi: [], uretim: true, madde: { id, k: "tr_de" }, ...x });
 const kartlar = (on: string) => Array.from({ length: 20 }, (_, i) => `lx:${on}${i + 1}`);
@@ -60,6 +69,7 @@ describe("seviye tespiti motoru (PM-115)", () => {
   });
   it("oturmuş hafta: tarama maddeleri doğru ve kelimede en çok 1 yanlış; 'Bilmiyorum' yanlış sayılır", () => {
     const k1 = taramaPlani(PAKET).filter((a) => a.hafta === 1 && a.kart).map((a) => a.id);
+    expect(k1.every((id) => id.startsWith("kelime:1:lx:"))).toBe(true);
     expect(haftaDurumu(PAKET, 1, taramaHepsi({ [k1[0]!]: "yanlis" }))).toBe("oturmus");
     expect(haftaDurumu(PAKET, 1, taramaHepsi({ [k1[0]!]: "yanlis", [k1[1]!]: "bilmiyorum" }))).toBe("zayif");
     expect(haftaDurumu(PAKET, 1, taramaHepsi({ t1b: "bilmiyorum" }))).toBe("zayif");
@@ -89,9 +99,12 @@ describe("seviye tespiti motoru (PM-115)", () => {
     ]);
     expect(r.zayifDilNoktasi.map((x) => [x.id, x.dogru, x.toplam])).toEqual([["r0:a", 1, 2]]);
     expect(r.sorulan).toEqual(expect.arrayContaining(["d1", "d2", "t1a", "c:din"]));
-    // seçmeli p1 derin seçime girmez (yalnız üretim); cevabı olsa da rapora girmez
-    const r2 = tespitRaporu(PAKET, new Map([...c0, ...hepsi(d), ["t1b", "dogru"], ["p1", "yanlis"]]));
-    expect(r2.zayifCanDo).toEqual([]);
+    // seçmeli p1 (cd1) derin seçime girmez: yalnız üretim maddesi sorulur
+    expect(d.some((a) => a.id === "p1")).toBe(false);
+    // rapor süzgeci: seçmeli tarama maddesi (savunma; doğrulayıcı tarama maddesini üretim ister) can_do kanıtına girmez
+    const sec = { ...PAKET, maddeler: PAKET.maddeler.map((x) => (x.id === "t1a" ? { ...x, uretim: false, tur: "pick" } : x)) };
+    const cs = new Map([...taramaPlani(sec).map((a) => [a.id, "dogru"] as [string, Sonuc]), ["t1a", "yanlis"] as [string, Sonuc]]);
+    expect(tespitRaporu(sec, new Map([...cs, ...hepsi(tespitPlani(sec, cs).adimlar.filter((a) => !cs.has(a.id)))])).zayifCanDo).toEqual([]);
   });
   it("yarıda bırak / sürdür: plan cevaplardan yeniden kurulur, sıradaki ilk cevapsız adım, kalan süre", () => {
     const t = taramaPlani(PAKET);
@@ -105,11 +118,11 @@ describe("seviye tespiti motoru (PM-115)", () => {
   it("karar: konuşma < %70 → A2 değil (genel yüksek olsa da); hafta < %60 → tamamla; genel < %40 → baştan", () => {
     const o = (d: number, t: number) => ({ dogru: d, toplam: t, oran: d / t });
     const tam = Object.fromEntries(BECERILER.map((b) => [b, o(10, 10)])) as Parameters<typeof tespitKarari>[0];
-    const h = [{ hafta: 1, oran: o(10, 10) }];
+    const h = [{ hafta: 1, oran: o(10, 10) }, { hafta: 2, oran: o(10, 10) }];
     expect(tespitKarari(tam, h, 1).karar).toBe("a2");
     const k = tespitKarari({ ...tam, konusma: o(6, 10) }, h, 0.93);
     expect(k).toEqual({ karar: "tamamla", nedenler: [{ tur: "beceri", ad: "konusma", oran: 0.6, esik: TESPIT.karar.a2_beceri_min }] });
-    expect(tespitKarari(tam, [{ hafta: 3, oran: o(5, 10) }], 0.95).nedenler).toEqual([{ tur: "hafta", ad: "3", oran: 0.5, esik: TESPIT.karar.a2_hafta_min }]);
+    expect(tespitKarari(tam, [h[0]!, { hafta: 2, oran: o(5, 10) }], 0.95).nedenler).toEqual([{ tur: "hafta", ad: "2", oran: 0.5, esik: TESPIT.karar.a2_hafta_min }]);
     expect(tespitKarari(tam, h, 0.39).karar).toBe("bastan");
     expect(tespitKarari(tam, h, 0.79).karar).toBe("tamamla");
   });
@@ -127,6 +140,36 @@ describe("seviye tespiti motoru (PM-115)", () => {
     const r2 = tespitRaporu(PAKET, c2);
     expect(r2.karar).toBe("tamamla");
     expect(r2.hafta.map((x) => x.durum)).toEqual(["zayif", "zayif"]);
+  });
+  it("eşik tam eşitlikte geçer (kayan nokta): 4/5, 3/4, 3/4, 9/10 ortalaması %80; %40 baştan değil", () => {
+    const o = (d: number, t: number) => ({ dogru: d, toplam: t, oran: d / t });
+    const yok = { dogru: 0, toplam: 0, oran: null };
+    const b = { dinleme: o(4, 5), okuma: o(3, 4), yazma: o(3, 4), konusma: o(9, 10), kelime: yok, dil: yok };
+    const g = (0.8 + 0.75 + 0.75 + 0.9) / 4;
+    expect(g).toBeLessThan(0.8); // 0.7999999999999999
+    const h = [{ hafta: 1, oran: o(6, 10) }, { hafta: 2, oran: o(7, 10) }];
+    expect(tespitKarari(b, h, g).karar).toBe("a2");
+    expect(tespitKarari(b, h, (0.3 + 0.5) / 2).karar).not.toBe("bastan");
+    expect(tespitKarari({ ...b, okuma: o(7, 10) }, h, 0.8).karar).toBe("a2"); // beceri tam %70
+  });
+  it("hafta oranı yalnız üretim maddelerinden: kelime doğruları zayıf üretimi örtmez", () => {
+    const c = taramaHepsi({ t1a: "yanlis", t1b: "yanlis" });
+    const p = tespitPlani(PAKET, c);
+    for (const a of p.adimlar) if (!c.has(a.id)) c.set(a.id, a.kart ? "dogru" : (a.id === "d1" ? "dogru" : "yanlis"));
+    const r = tespitRaporu(PAKET, c);
+    const h1 = r.hafta.find((x) => x.hafta === 1)!;
+    expect(h1.oran).toEqual({ dogru: 1, toplam: 4, oran: 0.25 }); // t1a, t1b, d1, d2 (18 kelime sayılmaz)
+    expect(r.karar).toBe("tamamla");
+  });
+  it("ölçülmeyen ya da pakette olmayan hafta A2'yi açmaz; yarıda kalan raporda karar yok", () => {
+    const c = taramaHepsi();
+    const r8 = tr(PAKET, c); // gerçek politika: 8 hafta, pakette 2
+    expect(r8.karar).toBe("tamamla");
+    expect(r8.nedenler.filter((n) => n.tur === "olcum").map((n) => n.ad)).toEqual(["3", "4", "5", "6", "7", "8"]);
+    const yarim = tespitRaporu(PAKET, hepsi(taramaPlani(PAKET).slice(0, 6)));
+    expect(yarim.bitti).toBe(false);
+    expect(yarim.karar).toBeNull();
+    expect(yarim.hafta.map((h) => h.durum)).toEqual(["eksik", "eksik"]);
   });
   it("derinPlani: birden çok haftada aynı madde bir kez; kelime örneği kararlı", () => {
     const iki = { ...PAKET, maddeler: [...PAKET.maddeler, m("x", { hafta: 2, can_do: ["cd:m1:01", "cd:m1:08"], dil_noktasi: ["r0:a", "gr:b"] })] };

@@ -45,7 +45,9 @@ export interface TespitGirdi {
   denemeler: ReadonlySet<string>;
   politika?: TespitPolitika;
 }
-export interface TespitSonuc { hata: string[]; uyari: string[]; cozulen: TespitCozulen[]; cekirdek?: TespitCozulen[]; muaf?: string[] }
+/** Haftanın derin bakış hedefleri (kapsam kuralı, paket ve motor bu tek listeden) */
+export interface HaftaHedef { w: number; can_do: string[]; dil_noktasi: string[] }
+export interface TespitSonuc { hata: string[]; uyari: string[]; cozulen: TespitCozulen[]; cekirdek?: TespitCozulen[]; muaf?: string[]; hedefler?: HaftaHedef[]; derinSecim?: string[] }
 
 const haftaOf = (gun: number) => Math.ceil(gun / 7);
 const nesne = (x: unknown): Record<string, unknown> => (x && typeof x === "object" && !Array.isArray(x) ? (x as Record<string, unknown>) : {});
@@ -246,7 +248,7 @@ export function tespitDenetle(g: TespitGirdi): TespitSonuc {
   const [tMin, tMax] = H.tarama_hafta as [number, number];
   const cdMin = D.can_do_madde + cikis, dnMin = D.dil_noktasi_madde + cikis;
   const sorulan = new Set<TespitCozulen>();
-  const hedefler: { w: number; can_do: string[]; dil_noktasi: string[] }[] = [];
+  const hedefler: HaftaHedef[] = [];
   for (const w of [...haftalar].sort((a, b) => a - b)) {
     const gunlerW = a1.filter((x) => haftaOf(x.day) === w);
     const eksikGun = Array.from({ length: 7 }, (_, i) => (w - 1) * 7 + i + 1).filter((d) => !gunMap.has(d));
@@ -270,7 +272,7 @@ export function tespitDenetle(g: TespitGirdi): TespitSonuc {
     const dar = [...hd.can_do, ...hd.dil_noktasi].map((t) => [t, kalan(t)] as const).filter(([t, n]) => n < cikis && say((y) => y.can_do.includes(t) || y.dil_noktasi.includes(t)) >= (t.startsWith("cd:") ? cdMin : dnMin));
     if (dar.length) hata.push(`seviye tespiti ${hd.w}. hafta: derin seçimden sonra çıkış yoklamasına en az ${cikis} sorulmamış madde kalmıyor (maddeler başka hedeflerle paylaşılıyor; bu hedefe ayrı madde ekle): ${dar.map(([t, n]) => `${t} (${n})`).join(", ")}`);
   }
-  return { hata, uyari, cozulen, cekirdek, muaf: [...muaf] };
+  return { hata, uyari, cozulen, cekirdek, muaf: [...muaf], hedefler, derinSecim: [...sorulan].map((x) => x.id) };
 }
 
 /** Havuz dosyası yoksa null (henüz yazılmadı: sessiz); varsa kaynak dizini + kurallar */
@@ -282,7 +284,7 @@ export function tespitYukle(dir: string, politika: TespitPolitika = TESPIT_POLIT
   if (havuz === null) return { hata, uyari: [], cozulen: [] };
   const k = tespitKaynaklari(dir);
   const r = tespitDenetle({ havuz, kaynaklar: k.kaynaklar, gunler: k.gunler, denemeler: k.denemeler, politika });
-  return { hata: [...k.hata, ...r.hata.map((x) => (x.startsWith("seviye tespiti") ? x : `${TESPIT_DOSYA}: ${x}`))], uyari: r.uyari, cozulen: r.cozulen, cekirdek: r.cekirdek, muaf: r.muaf };
+  return { hata: [...k.hata, ...r.hata.map((x) => (x.startsWith("seviye tespiti") ? x : `${TESPIT_DOSYA}: ${x}`))], uyari: r.uyari, cozulen: r.cozulen, cekirdek: r.cekirdek, muaf: r.muaf, hedefler: r.hedefler, derinSecim: r.derinSecim };
 }
 
 /**
@@ -294,19 +296,18 @@ export function tespitPaketi(dir: string, adlar: ReadonlyMap<string, string>, ke
   const t = tespitYukle(dir, politika);
   if (!t || t.hata.length) return null;
   const gunler = tespitKaynaklari(dir).gunler.filter((g) => g.level === "A1" && g.day >= 1 && g.day <= politika.a1_hafta * 7);
-  const ilk = new Map<string, number>();
-  for (const g of gunler) for (const d of g.dersler) if (!ilk.has(d)) ilk.set(d, haftaOf(g.day));
-  const muaf = new Set(t.muaf ?? []);
-  const haftalar = [...new Set(gunler.map((g) => haftaOf(g.day)))].sort((a, b) => a - b).map((w) => {
-    const gw = gunler.filter((g) => haftaOf(g.day) === w);
+  const cdGun = new Map(gunler.filter((g) => g.can_do).map((g) => [g.can_do!, g] as const));
+  // hedefler doğrulayıcının döndürdüğü listeden (inceleme #260 P2: tek türetme)
+  const haftalar = (t.hedefler ?? []).map((hd) => {
     const kartlar: string[] = [];
-    for (let d = (w - 1) * 7 + 1; d <= w * 7; d++) for (const k of gw.find((g) => g.day === d)?.yeni_kartlar ?? kesin[String(d)]?.kartlar ?? []) if (!kartlar.includes(k)) kartlar.push(k);
+    for (let d = (hd.w - 1) * 7 + 1; d <= hd.w * 7; d++) for (const k of gunler.find((g) => g.day === d)?.yeni_kartlar ?? kesin[String(d)]?.kartlar ?? []) if (!kartlar.includes(k)) kartlar.push(k);
     return {
-      hafta: w,
-      can_do: gw.filter((g) => !g.sinav && g.can_do).map((g) => ({ id: g.can_do!, tr: g.can_do_tr ?? "", gun: g.day })),
-      dil_noktasi: [...ilk].filter(([d, hw]) => hw === w && !muaf.has(d)).map(([d]) => ({ id: d, ad_tr: adlar.get(d) ?? d })),
+      hafta: hd.w,
+      can_do: hd.can_do.map((id) => ({ id, tr: cdGun.get(id)?.can_do_tr ?? "", gun: cdGun.get(id)?.day ?? 0 })),
+      // adı bulunmayan dil noktası boş adla gelir (ekran ham kimliği göstermez; derleme uyarı yazar)
+      dil_noktasi: hd.dil_noktasi.map((id) => ({ id, ad_tr: adlar.get(id) ?? "" })),
       kartlar
     };
   });
-  return { id: "tespit:a1:1", maddeler: t.cozulen, cekirdek: t.cekirdek ?? [], haftalar, muaf_dil_noktasi: [...muaf] };
+  return { id: "tespit:a1:1", maddeler: t.cozulen, cekirdek: t.cekirdek ?? [], haftalar, muaf_dil_noktasi: t.muaf ?? [] };
 }

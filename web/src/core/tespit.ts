@@ -18,7 +18,7 @@ export type Sonuc = "dogru" | "yanlis" | "bilmiyorum";
 export type Cevaplar = ReadonlyMap<string, Sonuc>;
 export const BECERILER: readonly TespitBeceri[] = ["dinleme", "okuma", "yazma", "konusma", "kelime", "dil"];
 
-/** Planın bir adımı: havuz maddesi ya da kelime örneği (`kelime:<kart>`) */
+/** Planın bir adımı: havuz maddesi ya da kelime örneği (`kelime:<hafta>:<kart>`; aynı kart iki haftada geçse de kimlik çakışmaz) */
 export interface Adim {
   id: string;
   /** "cekirdek" | "tarama" | "derin" */
@@ -36,7 +36,7 @@ const karma = (s: string) => { let h = 2166136261; for (let i = 0; i < s.length;
 export function kelimeOrnegi(kartlar: readonly string[], n: number, haric: ReadonlySet<string> = new Set()): string[] {
   return [...new Set(kartlar)].filter((k) => !haric.has(k)).sort((a, b) => karma(a) - karma(b) || (a < b ? -1 : 1)).slice(0, n);
 }
-const kelimeAdimi = (kart: string, hafta: number, asama: "tarama" | "derin"): Adim => ({ id: `kelime:${kart}`, asama, hafta, beceri: "kelime", uretim: false, kart });
+const kelimeAdimi = (kart: string, hafta: number, asama: "tarama" | "derin"): Adim => ({ id: `kelime:${hafta}:${kart}`, asama, hafta, beceri: "kelime", uretim: false, kart });
 const maddeAdimi = (m: TespitCozulen): Adim => ({ id: m.id, asama: m.asama, hafta: m.asama === "cekirdek" ? null : m.hafta, beceri: m.beceri, uretim: m.uretim, madde: m });
 
 /** Aşama 1: çekirdek (dinleme, okuma, yazma, konuşma sırasıyla) + hafta hafta tarama maddeleri ve kelime örneği */
@@ -108,11 +108,16 @@ const oran = (dogru: number, toplam: number): Oran => ({ dogru, toplam, oran: to
 export interface ZayifCanDo { id: string; tr: string; gun: number; dogru: number; toplam: number }
 export interface ZayifDilNoktasi { id: string; ad_tr: string; hafta: number; dogru: number; toplam: number }
 export type Karar = "a2" | "tamamla" | "bastan";
-/** Kararın gerekçesi: tutmayan (ya da a2'de tutan) eşikler; ekran cümleyi buradan kurar */
-export interface KararNedeni { tur: "genel" | "beceri" | "hafta"; ad: string; oran: number; esik: number }
+/** Kararın gerekçesi: tutmayan (ya da a2'de tutan) eşikler; ekran cümleyi buradan kurar. `olcum`: hafta pakette yok ya da
+ *  üretim maddesiyle ölçülmedi (ölçülmeyen hafta A2'yi açmaz; oran 0) */
+export interface KararNedeni { tur: "genel" | "beceri" | "hafta" | "olcum"; ad: string; oran: number; esik: number }
+/** Eşik karşılaştırması: oranlar kayan noktalı ortalama, tam eşitlik geçer (4/5, 3/4, 3/4, 9/10 → %80) */
+const EPS = 1e-9;
+const enAz = (o: number, esik: number) => o >= esik - EPS;
 export interface TespitRaporu {
   beceri: Record<TespitBeceri, Oran>;
-  hafta: { hafta: number; oran: Oran; durum: "oturmus" | "zayif" }[];
+  /** hafta oranı yalnız ÜRETİM maddelerinden (kelime ve seçmeli sulandırmaz; PM-115 md. 1) */
+  hafta: { hafta: number; oran: Oran; durum: "eksik" | "oturmus" | "zayif" }[];
   /** ölçülen becerilerin ortalaması (madde sayısı çok olan beceri baskın olmasın) */
   genel: number;
   zayifCanDo: ZayifCanDo[];
@@ -121,17 +126,24 @@ export interface TespitRaporu {
   bilinmeyenKelime: string[];
   /** sorulan bütün madde kimlikleri (çıkış yoklaması bunları ikinci kez sormaz) */
   sorulan: string[];
-  karar: Karar;
+  /** plan bitti mi; bitmemişse karar null (yarıda kalan rapor karar göstermez) */
+  bitti: boolean;
+  karar: Karar | null;
   nedenler: KararNedeni[];
 }
 
+/** Karar: `hafta` A1'in bütün haftalarını (1…a1_hafta) kapsamalı; eksik ya da ölçülmemiş hafta A2'yi açmaz */
 export function tespitKarari(beceri: Record<TespitBeceri, Oran>, hafta: { hafta: number; oran: Oran }[], genel: number, P: TespitPolitika = TESPIT): { karar: Karar; nedenler: KararNedeni[] } {
   const K = P.karar;
-  if (genel < K.bastan_genel_alti) return { karar: "bastan", nedenler: [{ tur: "genel", ad: "genel", oran: genel, esik: K.bastan_genel_alti }] };
+  if (!enAz(genel, K.bastan_genel_alti)) return { karar: "bastan", nedenler: [{ tur: "genel", ad: "genel", oran: genel, esik: K.bastan_genel_alti }] };
   const nedenler: KararNedeni[] = [];
-  if (genel < K.a2_genel_min) nedenler.push({ tur: "genel", ad: "genel", oran: genel, esik: K.a2_genel_min });
-  for (const b of BECERILER) { const o = beceri[b].oran; if (o !== null && o < K.a2_beceri_min) nedenler.push({ tur: "beceri", ad: b, oran: o, esik: K.a2_beceri_min }); }
-  for (const h of hafta) { const o = h.oran.oran; if (o !== null && o < K.a2_hafta_min) nedenler.push({ tur: "hafta", ad: String(h.hafta), oran: o, esik: K.a2_hafta_min }); }
+  if (!enAz(genel, K.a2_genel_min)) nedenler.push({ tur: "genel", ad: "genel", oran: genel, esik: K.a2_genel_min });
+  for (const b of BECERILER) { const o = beceri[b].oran; if (o !== null && !enAz(o, K.a2_beceri_min)) nedenler.push({ tur: "beceri", ad: b, oran: o, esik: K.a2_beceri_min }); }
+  for (let w = 1; w <= P.a1_hafta; w++) {
+    const o = hafta.find((h) => h.hafta === w)?.oran.oran ?? null;
+    if (o === null) nedenler.push({ tur: "olcum", ad: String(w), oran: 0, esik: K.a2_hafta_min });
+    else if (!enAz(o, K.a2_hafta_min)) nedenler.push({ tur: "hafta", ad: String(w), oran: o, esik: K.a2_hafta_min });
+  }
   return nedenler.length ? { karar: "tamamla", nedenler } : { karar: "a2", nedenler: [{ tur: "genel", ad: "genel", oran: genel, esik: K.a2_genel_min }] };
 }
 
@@ -142,8 +154,8 @@ export function tespitRaporu(p: TespitPaket, c: Cevaplar, P: TespitPolitika = TE
   const ok = (a: Adim) => c.get(a.id) === "dogru";
   const beceri = Object.fromEntries(BECERILER.map((b) => { const x = cevapli.filter((a) => a.beceri === b); return [b, oran(x.filter(ok).length, x.length)]; })) as Record<TespitBeceri, Oran>;
   const hafta = p.haftalar.map((h) => {
-    const x = cevapli.filter((a) => a.asama !== "cekirdek" && a.hafta === h.hafta);
-    return { hafta: h.hafta, oran: oran(x.filter(ok).length, x.length), durum: (plan.zayifHaftalar.includes(h.hafta) ? "zayif" : "oturmus") as "oturmus" | "zayif" };
+    const x = cevapli.filter((a) => a.asama !== "cekirdek" && a.hafta === h.hafta && a.madde && a.uretim);
+    return { hafta: h.hafta, oran: oran(x.filter(ok).length, x.length), durum: haftaDurumu(p, h.hafta, c, P) };
   });
   const olculen = BECERILER.map((b) => beceri[b].oran).filter((o): o is number => o !== null);
   const genel = olculen.length ? olculen.reduce((s, o) => s + o, 0) / olculen.length : 0;
@@ -161,7 +173,8 @@ export function tespitRaporu(p: TespitPaket, c: Cevaplar, P: TespitPolitika = TE
     const d = x.filter(ok).length;
     if (x.length && d < x.length) zayifDilNoktasi.push({ id: dn.id, ad_tr: dn.ad_tr, hafta: h.hafta, dogru: d, toplam: x.length });
   }
-  const bilinmeyenKelime = cevapli.filter((a) => a.kart && !ok(a)).map((a) => a.kart!);
-  const k = tespitKarari(beceri, hafta, genel, P);
-  return { beceri, hafta, genel, zayifCanDo: zayifCanDo.sort((a, b) => a.gun - b.gun), zayifDilNoktasi, bilinmeyenKelime, sorulan: cevapli.filter((a) => a.madde).map((a) => a.id), ...k };
+  const bilinmeyenKelime = [...new Set(cevapli.filter((a) => a.kart && !ok(a)).map((a) => a.kart!))];
+  const bitti = plan.asama === "bitti";
+  const k = bitti ? tespitKarari(beceri, hafta, genel, P) : { karar: null, nedenler: [] };
+  return { beceri, hafta, genel, zayifCanDo: zayifCanDo.sort((a, b) => a.gun - b.gun), zayifDilNoktasi, bilinmeyenKelime, sorulan: cevapli.filter((a) => a.madde).map((a) => a.id), bitti, ...k };
 }

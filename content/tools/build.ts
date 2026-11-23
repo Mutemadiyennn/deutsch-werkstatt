@@ -61,8 +61,12 @@ try {
 // PM-115 PR 2: A1 seviye tespiti paketi (havuz dosyası varsa; e2e paketinde içerikte yoksa fikstür havuzu). Hatalı havuz
 // pakete girmez (doğrulayıcı zaten durdurur). Gün dosyası olmayan günün kartları kesin tablodan gelir (tablo paketi #231 zinciriyle).
 const tespitAdlar = new Map<string, string>([...c.grammar.map((g) => [g.id, g.h_tr] as [string, string]), ...c.dn.flatMap((x) => x.data).map((d) => [d.id, d.h_tr] as [string, string]), ...c.temel.map((t) => [t.data.id, t.data.title_tr] as [string, string])]);
+if (existsSync(join(ROOT, "content/v2/assess/a1-seviye-tespiti.json")) && !tespitPaketi(join(ROOT, "content/v2"), tespitAdlar)) {
+  console.error("seviye tespiti havuzu hatalı: npm run content:validate"); process.exit(1);
+}
 const tespitPkt = tespitPaketi(join(ROOT, "content/v2"), tespitAdlar)
   ?? (process.env.DW_E2E_FIXTURES === "1" ? tespitPaketi(join(ROOT, "content/tools/fixtures/tespit"), tespitAdlar) : null);
+for (const h of tespitPkt?.haftalar ?? []) for (const d of h.dil_noktasi) if (!d.ad_tr) console.log(`uyarı: seviye tespiti: ${d.id} dil noktasının adı yok (grammar.json / dn-HH.json / temel)`);
 const payload = {
   tespit: tespitPkt,
   m1: days.map((d) => d.data),
