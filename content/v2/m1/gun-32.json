@@ -27,7 +27,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic5-hafta-05.md"
  },
  "dersler": [
   "gr:a1-06:t3"
@@ -323,13 +326,13 @@
     "satirlar": [
      {
       "r": "ch:aksoy",
-      "de": "Hier, das ist das Baby von meiner Schwester.",
-      "tr": "Bak, bu kız kardeşimin bebeği."
+      "de": "Hier, das ist das Baby von meinem Bruder.",
+      "tr": "Bak, bu erkek kardeşimin bebeği."
      },
      {
       "r": "ogrenci",
       "de": "Ach, wie schön! Wie alt ist das Baby?",
-      "tr": "Ay, ne güzel! Bebek kaç yaşında?"
+      "tr": "Ay, ne güzel! Bebek ne kadarlık?"
      },
      {
       "r": "ch:aksoy",
@@ -926,7 +929,7 @@
    "id": "m1:32:a2",
    "tur": "sesli-mesaj",
    "title_tr": "Tobi'den sesli mesaj",
-   "ortam_tr": "Öğlene doğru telefonuna Tobi'den bir mesaj geliyor.",
+   "ortam_tr": "Sabah telefonuna Tobi'den bir mesaj geliyor.",
    "speaker": "ch:lechner",
    "hizlar": [
     "slow",
@@ -945,8 +948,8 @@
     },
     {
      "id": "c3",
-     "de": "Ich bin um zwei wieder da.",
-     "tr": "Saat ikide dönmüş olurum."
+     "de": "Ich bin um zwölf wieder da.",
+     "tr": "Saat on ikide dönmüş olurum."
     },
     {
      "id": "c4",
@@ -1000,7 +1003,7 @@
        "kind": "detail",
        "q_tr": "Tobi saat kaçta geri geliyor?",
        "opts": [
-        "ikide",
+        "on ikide",
         "birde",
         "üçte"
        ],
@@ -1018,8 +1021,8 @@
        "q_tr": "Hangi sayıyı duydun?",
        "opts": [
         "drei",
-        "zwei",
-        "zwölf"
+        "zwölf",
+        "zehn"
        ],
        "ans": 1
       },
@@ -1060,9 +1063,9 @@
        "cumle": "c3",
        "seviye": "usta",
        "accepted": [
-        "Ich bin um zwei wieder da.",
-        "ich bin um zwei wieder da",
-        "Ich bin um zwei wieder da"
+        "Ich bin um zwölf wieder da.",
+        "ich bin um zwölf wieder da",
+        "Ich bin um zwölf wieder da"
        ]
       },
       {
@@ -1106,7 +1109,7 @@
     "opts": [
      "Kantinden onun için bir sosis al.",
      "Onu doktora götür.",
-     "Saat ikide onu ara."
+     "Saat on ikide onu ara."
     ],
     "ans": 0,
     "why_tr": "Tobi doktorda. Senden bir sosis almanı istiyor.",
@@ -1252,8 +1255,8 @@
    },
    {
     "id": "n3",
-    "de": "Und was trinkst du gern?",
-    "tr": "Peki ne içmeyi seversin?",
+    "de": "Und was trinkst du?",
+    "tr": "Peki ne içersin?",
     "secenekler": [
      {
       "de": "Egal, danke.",
@@ -1291,7 +1294,7 @@
       ],
       "sonraki": "n3",
       "uygun": false,
-      "geri_bildirim_tr": "Tobi ne içtiğini soruyor. Bir içecek söyle ya da **egal** de."
+      "geri_bildirim_tr": "Tobi ne içeceğini soruyor. Bir içecek söyle ya da **egal** de."
      }
     ]
    },
@@ -1352,8 +1355,8 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Kantinin bu haftaki listesi",
-  "metin_de": "Montag: Bratwurst mit Senf und Brot. Dienstag: Fleisch mit Gemüse. Mittwoch: Gemüse mit Käse. Donnerstag: Fleisch mit Semmel. Freitag: Apfelkuchen.",
-  "metin_tr": "Pazartesi: hardallı sosis ve ekmek. Salı: sebzeli et. Çarşamba: peynirli sebze. Perşembe: etli sandviç. Cuma: elmalı kek.",
+  "metin_de": "Montag: Bratwurst mit Senf und Brot. Dienstag: Fleisch mit Gemüse. Mittwoch: Gemüse mit Käse. Donnerstag: Fisch mit Gemüse. Freitag: Apfelkuchen.",
+  "metin_tr": "Pazartesi: hardallı sosis ve ekmek. Salı: sebzeli et. Çarşamba: peynirli sebze. Perşembe: sebzeli balık. Cuma: elmalı kek.",
   "sorular": [
    {
     "id": "m1:32:o1",
@@ -1378,7 +1381,7 @@
     "opts": [
      "çarşamba",
      "salı",
-     "perşembe"
+     "pazartesi"
     ],
     "ans": 0,
     "kanit": [
@@ -1464,8 +1467,7 @@
     "accepted": [
      "Derya isst lieber Gemüse.",
      "derya isst lieber gemüse",
-     "Derya isst lieber Gemüse",
-     "Derya isst lieber Gemuese."
+     "Derya isst lieber Gemüse"
     ],
     "why_tr": "**lieber** daha çok severek demek."
    },
@@ -1504,8 +1506,7 @@
     "accepted": [
      "Vielen Dank für die Hilfe, Tobi!",
      "vielen dank für die hilfe tobi",
-     "Vielen Dank für die Hilfe, Tobi",
-     "Vielen Dank fuer die Hilfe, Tobi!"
+     "Vielen Dank für die Hilfe, Tobi"
     ],
     "why_tr": "**Vielen Dank** çok teşekkürler demek."
    },
