@@ -26,7 +26,7 @@ def main():
         # Hedef 3 sekmeleri (PM-084 md. 3): Köy, Ben, Yol, Bugün. Yol'un haritası Bugün'de de (yalnız bugünle) çizilir; Yol'a özgü
         # işaret, başlığın hemen altındaki haritadır. Ayarlar artık sekme değil: Ben'deki "Ayarlar" düğmesinden açılır, aynı bütçeyle ölçülür.
         # her satır: (ad, dokunulan öğe, hedef ekranın işareti, ölçümden önce durulan sekme)
-        TABS = [("koy", "[data-tab=koy]", "[data-test=koy]", "today"), ("ben", "[data-tab=ben]", "[data-test=panel-focus]", "today"),
+        TABS = [("koy", "[data-tab=koy]", "[data-test=koy]", "today"), ("ben", "[data-tab=ben]", "[data-test=ben]", "today"),
                 ("yol", "[data-tab=yol]", ".topbar + [data-test=yol]", "koy"), ("ayarlar", "[data-test=ayarlar-ac]", "[data-test=goal]", "ben"),
                 ("today", "[data-tab=today]", "[data-test=next-activity]", "koy")]
         # Kapı (PM-044.7, D-096): her sekme için 5 geçiş; DOM'a giriş sert sınır (≤300 ms, her geçiş), ilk kare 5 geçişin
