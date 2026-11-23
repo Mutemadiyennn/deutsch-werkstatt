@@ -28,7 +28,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic9/dilbilimci-h12.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [
   "gr:a2-07:t2"
@@ -75,6 +78,7 @@
      "tr": "Acil çağrı numarası 112.",
      "accepted": [
       "Die Nummer vom Notruf ist eins, eins, zwei.",
+      "Die Nummer vom Notruf ist 112.",
       "Der Notruf ist eins, eins, zwei.",
       "Die Notrufnummer ist eins, eins, zwei."
      ]
@@ -145,7 +149,7 @@
      "tr": "Apartman görevlisi itfaiyeye bodrumu göstermeli.",
      "accepted": [
       "Der Hausmeister soll der Feuerwehr den Keller zeigen.",
-      "Herr Pichler soll der Feuerwehr den Keller zeigen.",
+      "Der Hausmeister soll der Feuerwehr bitte den Keller zeigen.",
       "Der Hausmeister muss der Feuerwehr den Keller zeigen."
      ]
     }
@@ -165,8 +169,8 @@
      },
      {
       "r": "ch:lechner",
-      "de": "Nein, der Notruf ist für einen Unfall. Ruf den Bereitschaftsdienst an!",
-      "tr": "Hayır, acil numara kaza için. Nöbetçi hekimi ara!"
+      "de": "Nein, der Notruf ist für einen Unfall oder wenn es ganz schlimm ist. Ruf den Bereitschaftsdienst an!",
+      "tr": "Hayır, acil numara kaza ya da çok ciddi durumlar için. Nöbetçi hekimi ara!"
      }
     ],
     "soru": {
@@ -555,8 +559,8 @@
     "cevapla": {
      "id": "m1:79:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Tobi sana dönüp ne yapması gerektiğini soruyor. Senin yerinde olsam hemen polise giderdim de.",
-     "prompt_de": "Und du? Was würdest du machen?",
+     "situation_tr": "Akşam kurstan bir arkadaşın yazıyor: onun da bisikleti çalınmış, ne yapacağını bilmiyor. Senin yerinde olsam hemen polise giderdim de.",
+     "prompt_de": "Mein Fahrrad ist auch weg! Was würdest du machen?",
      "accepted": [
       "An deiner Stelle würde ich sofort zur Polizei gehen.",
       "An deiner Stelle würde ich zur Polizei gehen.",
@@ -707,7 +711,7 @@
     "cevapla": {
      "id": "m1:79:v1:c2",
      "k": "guided_response",
-     "situation_tr": "Herr Pichler anahtarı sana uzatıyor; anahtar Frau Brandl'ın. Ona hemen götüreceğini söyle.",
+     "situation_tr": "Birkaç gün sonra Herr Pichler seni merdivende durduruyor ve bodrum anahtarını uzatıyor: Frau Brandl'a götürmeni istiyor. Hemen götüreceğini söyle.",
      "prompt_de": "Frau Brandl braucht den Kellerschlüssel. Können Sie ihn ihr bringen?",
      "accepted": [
       "Ja, ich bringe ihn ihr gleich.",
@@ -926,7 +930,7 @@
      "Sabahı bekle, eczaneye git"
     ],
     "ans": 0,
-    "why_tr": "Radyo: muayenehane kapalıysa nöbetçi hekim 116117. 112 kaza ve acil durum için.",
+    "why_tr": "Radyo: muayenehane kapalıysa nöbetçi hekim 116117. 112 kaza ve hayati tehlike için: nefes darlığı, göğüs ağrısı, ağır yaralanma.",
     "kanit": [
      "c5",
      "c6"
@@ -960,8 +964,8 @@
     },
     {
      "id": "c4",
-     "de": "Ist es ein Unfall? Dann rufen Sie bitte eins, eins, zwei an.",
-     "tr": "Bir kaza mı? O zaman lütfen 112'yi arayın."
+     "de": "Ist es ein Unfall oder sehr schlimm? Dann rufen Sie bitte eins, eins, zwei an.",
+     "tr": "Kaza mı, ya da durum çok mu ciddi? O zaman lütfen 112'yi arayın."
     },
     {
      "id": "c5",
@@ -1100,14 +1104,14 @@
      "cevapla": {
       "id": "m1:79:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Sonunda biri açıyor ve kartını soruyor. Kartın elinde, numarayı ona vereceksin.",
+      "situation_tr": "Sonunda biri açıyor ve kartını soruyor. Kartın elinde.",
       "prompt_de": "Haben Sie Ihre Versichertenkarte da?",
       "accepted": [
        "Ja, ich habe sie hier.",
        "Ja, sie ist hier.",
        "Ja, ich habe sie da.",
        "Ja, hier ist sie.",
-       "Ja, ich habe sie hier. Die Nummer ist …",
+       "Ja, die habe ich hier.",
        "Ja, ich habe die Karte hier."
       ],
       "why_tr": "Kart: **die Karte**, kısaca **sie**: **Ich habe sie hier.**"
@@ -1408,7 +1412,7 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Tabletin kutusundaki kâğıt",
-  "metin_de": "Halstabletten. Nehmen Sie drei Tabletten am Tag, nicht mehr. Kinder unter zwölf Jahren: nur mit dem Arzt. Nebenwirkungen: Manchmal ist man ein bisschen müde. Haben Sie Fieber über drei Tage? Dann gehen Sie bitte zum Arzt.",
+  "metin_de": "Halstabletten. Nehmen Sie drei Tabletten am Tag, nicht mehr. Kinder unter zwölf Jahren: nur mit dem Arzt. Nebenwirkungen: Manchmal ist man ein bisschen müde. Haben Sie mehr als drei Tage Fieber? Dann gehen Sie bitte zum Arzt.",
   "metin_tr": "Boğaz tabletleri. Günde üç tablet alın, fazla değil. On iki yaşından küçük çocuklar: yalnızca doktorla. Yan etkiler: bazen insan biraz yorgun olur. Üç günden uzun ateşiniz mi var? O zaman lütfen doktora gidin.",
   "sorular": [
    {
@@ -1642,7 +1646,7 @@
      "Nein, ich rufe eins, eins, sechs, eins, eins, sieben an.",
      "Nein. Der Notruf ist für einen Unfall. Ich rufe den Bereitschaftsdienst an."
     ],
-    "why_tr": "Gece ateş için **Bereitschaftsdienst** (116117); 112 acil durum için."
+    "why_tr": "Gece ateş için **Bereitschaftsdienst** (116117). 112 kaza ve hayati tehlike için: nefes darlığı, göğüs ağrısı, ağır yaralanma."
    }
   ],
   "sesli": [

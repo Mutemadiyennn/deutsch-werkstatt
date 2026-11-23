@@ -21,7 +21,7 @@ Olgu kaynakları: 116117 nöbetçi hekim, 112 acil: https://www.bundesgesundheit
 ## Görülmemiş durumlar (`gorulmemis-12.json`, 7 durum; derste kullanılmaz)
 1. cd:m1:78 · `pl:baeckerei`, Gerti Stadler: Geben Sie mir bitte drei Semmeln. Eine ist für Frau Brandl.
 2. cd:m1:79 · `pl:fitness`, Basti: Zeigst du es mir? → Klar, ich zeige es dir.
-3. cd:m1:80 · `pl:buergerbuero`, Frau Schneider: Seit wann wohnen Sie in Wendlfing? → Seit einem Jahr.
+3. cd:m1:80 · `pl:buergerbuero`, Frau Schneider: Seit wann wohnen Sie in Wendlfing? → Seit November.
 4. cd:m1:81 · telefon, Derya: Wo bist du gerade? → Ich bin bei Luka. Dann gehe ich nach Hause.
 5. cd:m1:82 · nöbetçi muayenehane (adsız doktor): Seit gestern habe ich Bauchschmerzen, auf der rechten Seite …
 6. cd:m1:83 · `pl:apotheke`, adsız eczacı hızlı talimat: Zwei Tabletten am Abend und viel Wasser trinken.
