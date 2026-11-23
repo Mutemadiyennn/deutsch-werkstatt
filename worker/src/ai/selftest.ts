@@ -89,9 +89,10 @@ export interface OzSinama {
   /** bir önceki UTC günü (A.5 ölçümü gün bitince de okunabilsin) */
   dun: Ozet;
 }
-/** `dil_onarim`: dil güvencesinin devreye girdiği koşu sayısı (model sapması görünür kalsın; PM-112 A.1) */
-export interface Ozet { gun: string; kosu: number; gorev: Record<string, { gecti: number; toplam: number; ortanca_ms: number; en_uzun_ms: number; dil_onarim: number }> }
-type Kayit = { t: string; g: [AiTaskName, 0 | 1, number, (0 | 1)?][] };
+/** `dil_yeniden` / `dil_yedek`: dil güvencesinin devreye girdiği koşu sayısı (model sapması görünür kalsın; PM-112 A.1) */
+export interface Ozet { gun: string; kosu: number; gorev: Record<string, { gecti: number; toplam: number; ortanca_ms: number; en_uzun_ms: number; dil_yeniden: number; dil_yedek: number }> }
+/** dördüncü öğe: 0 yok · 1 yeniden · 2 yedek */
+type Kayit = { t: string; g: [AiTaskName, 0 | 1, number, (0 | 1 | 2)?][] };
 type Son = { ok: boolean; zaman: string; sonraki: string; surum: string; gorevler: GorevSonucu[] };
 /** Durable Object deposu (state.storage) ya da testte bellek */
 export interface Depo { get<T>(k: string): Promise<T | undefined>; put(k: string, v: unknown): Promise<void>; delete(k: string): Promise<boolean> }
@@ -101,7 +102,7 @@ export function ozet(gun: string, k: Kayit[]): Ozet {
   const g: Ozet["gorev"] = {};
   for (const { gorev } of ORNEKLER) {
     const ms = k.flatMap((x) => x.g.filter((y) => y[0] === gorev).map((y) => y[2]));
-    g[gorev] = { gecti: k.reduce((n, x) => n + x.g.filter((y) => y[0] === gorev && y[1]).length, 0), toplam: ms.length, ortanca_ms: ortanca(ms), en_uzun_ms: ms.length ? Math.max(...ms) : 0, dil_onarim: k.reduce((n, x) => n + x.g.filter((y) => y[0] === gorev && y[3]).length, 0) };
+    g[gorev] = { gecti: k.reduce((n, x) => n + x.g.filter((y) => y[0] === gorev && y[1]).length, 0), toplam: ms.length, ortanca_ms: ortanca(ms), en_uzun_ms: ms.length ? Math.max(...ms) : 0, dil_yeniden: k.reduce((n, x) => n + x.g.filter((y) => y[0] === gorev && y[3] === 1).length, 0), dil_yedek: k.reduce((n, x) => n + x.g.filter((y) => y[0] === gorev && y[3] === 2).length, 0) };
   }
   return { gun, kosu: k.length, gorev: g };
 }
@@ -112,6 +113,8 @@ export async function gorevSina(env: Env, o: (typeof ORNEKLER)[number], simdi = 
   try {
     const r = await runTask(env, o.gorev, o.vars);
     const ms = simdi() - t0, onarim = r.dil ?? null;
+    // yedek devreye girdiyse model iki kez saptı: öğrenci Türkçe gördü ama öz-sınama KALIR (inceleme #248 P1-2)
+    if (onarim === "yedek") return { gorev: o.gorev, gecti: false, ms, model: r.model, neden: `dil_yedek:${(r.dil_alanlar ?? []).join(",")}`, dil: onarim };
     for (const [alan, deger, dil] of o.alanlar(r.output)) {
       if (!deger) continue;
       const h = dilHatasi(deger, dil);
@@ -120,6 +123,8 @@ export async function gorevSina(env: Env, o: (typeof ORNEKLER)[number], simdi = 
     if (ms > ST.gecme_ms) return { gorev: o.gorev, gecti: false, ms, model: r.model, neden: "sure", dil: onarim };
     return { gorev: o.gorev, gecti: true, ms, model: r.model, neden: null, dil: onarim };
   } catch (e) {
+    // dil yedeği yok (explain_tr asıl karşılığı iki kez Türkçe değil) → öğrenci yapay zekâsız yola düştü
+    if (e instanceof HttpError && e.code === "bad_output" && e.detail === "dil") return { gorev: o.gorev, gecti: false, ms: simdi() - t0, model: null, neden: "dil_yedek_yok", dil: "yedek" };
     const kod = e instanceof HttpError ? (e.code === "bad_output" ? "sema" : e.code) : "internal";
     return { gorev: o.gorev, gecti: false, ms: simdi() - t0, model: null, neden: `hata:${kod}`, dil: null };
   }
@@ -172,7 +177,7 @@ export class OzSinamaCekirdek {
     const ok = gorevler.every((g) => g.gecti);
     // koşu bitince yazılır: yarıda kalan koşu (örnek düştü) boş kırmızı bırakmaz, sonraki istek yeniden koşar
     const onceki = (await this.depo.get<Kayit[]>(`gun:${gun}`)) ?? [];
-    const yeni = [...onceki, { t: zaman, g: gorevler.map((g) => [g.gorev, g.gecti ? 1 : 0, g.ms, g.dil ? 1 : 0] as Kayit["g"][number]) }];
+    const yeni = [...onceki, { t: zaman, g: gorevler.map((g) => [g.gorev, g.gecti ? 1 : 0, g.ms, g.dil === "yedek" ? 2 : g.dil ? 1 : 0] as Kayit["g"][number]) }];
     await this.depo.put("son", { ok, zaman, sonraki, surum, gorevler } satisfies Son);
     this.sonKosu = { zaman: Date.parse(zaman), surum };
     await this.depo.put(`gun:${gun}`, yeni);

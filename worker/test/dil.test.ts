@@ -8,6 +8,9 @@ import type { Env, KV } from "../src/env.ts";
 import { runTask, dilGuvencesi, TEMPLATES } from "../src/ai/tasks.ts";
 import { ORNEKLER, OzSinamaCekirdek, ST, type Depo } from "../src/ai/selftest.ts";
 import { HttpError } from "../src/http.ts";
+import { readFileSync, readdirSync, statSync } from "node:fs";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 function memKV(): KV {
   const data = new Map<string, string>();
@@ -64,6 +67,8 @@ describe("dilYedegi: kural tabanlı Türkçe, şemaya uyar", () => {
     expect(y.fixes[0]!.why_tr).toBe(DIL_YEDEK.why_tr);
     expect(y.fixes[0]!.better).toBe("Wie oft soll ich es nehmen?");
     expect(y.summary_tr).toBe("2 hedeften 1 tanesini yaptın; kalanı bir dahaki konuşmada dene.");
+    const sifir = dilYedegi("feedback_tr", { ...FB_HEPSI_ALMANCA, goals: [{ id: "g1", done: false }] }, ["summary_tr"]) as typeof FB_IYI;
+    expect(sifir.summary_tr).toBe("Bu konuşmada hedeflere henüz ulaşamadın; bir dahaki sefere yeniden dene.");
     expect(y.goals).toEqual(FB_HEPSI_ALMANCA.goals); // karar modelindir, yedek değiştirmez
     expect(dilBozuk("feedback_tr", y)).toEqual([]);
   });
@@ -152,39 +157,91 @@ describe("istem sıkılaştı (PM-112 A.1)", () => {
   });
 });
 
+const IYI_DIGER: Record<string, unknown> = {
+  equiv_check: { ok: true, reason_tr: "Anlam aynı ve cümle doğru." },
+  explain_tr: { tr: "mesai sonu", note_tr: "Akşam işten çıkınca kullanılır.", examples: [] },
+  say_it_de: { de_simple: "Ich möchte mein Rezept abholen." },
+  roleplay_turn: { reply_de: "Gern. Haben Sie Allergien?", end: false }
+};
+const gorevi = (sys: string) => sys.includes("faire Deutschlehrerin") ? "equiv_check" : sys.includes("erklärst") ? "explain_tr" : sys.includes("möchte etwas sagen") ? "say_it_de" : sys.includes("GENAU EINE Figur") ? "roleplay_turn" : "feedback_tr";
+
 describe("öz-sınama 20 ardışık koşu: feedback_tr dil hatası 0 (PM-112 A.1)", () => {
-  it("model her koşuda ilk cevapta Almanca güçlü yan verse de 20 koşunun 20'si geçer; onarım sayılır", async () => {
-    // her koşuda feedback_tr'nin ilk çağrısı Almanca, yeniden soru Türkçe; tek koşularda yeniden soru da Almanca (yedek)
-    let fb = 0, kosu = 0;
-    const IYI: Record<string, unknown> = {
-      equiv_check: { ok: true, reason_tr: "Anlam aynı ve cümle doğru." },
-      explain_tr: { tr: "mesai sonu", note_tr: "Akşam işten çıkınca kullanılır.", examples: [] },
-      say_it_de: { de_simple: "Ich möchte mein Rezept abholen." },
-      roleplay_turn: { reply_de: "Gern. Haben Sie Allergien?", end: false }
-    };
-    const gorevi = (sys: string) => sys.includes("faire Deutschlehrerin") ? "equiv_check" : sys.includes("erklärst") ? "explain_tr" : sys.includes("möchte etwas sagen") ? "say_it_de" : sys.includes("GENAU EINE Figur") ? "roleplay_turn" : "feedback_tr";
+  it("model her koşuda ilk cevapta Almanca güçlü yan verir, yeniden soruda Türkçe: 20/20 geçer, 20 'yeniden' sayılır", async () => {
+    let fb = 0;
     const { AI } = sahte([(sys: string) => {
       const g = gorevi(sys);
-      if (g !== "feedback_tr") return IYI[g];
+      if (g !== "feedback_tr") return IYI_DIGER[g];
       fb++;
-      const yeniden = sys.includes("ACHTUNG");
-      if (!yeniden) kosu++;
-      return !yeniden ? FB_ALMANCA : kosu % 2 ? FB_HEPSI_ALMANCA : FB_IYI;
+      return sys.includes("ACHTUNG") ? FB_IYI : FB_ALMANCA;
     }]);
     let t = Date.parse("2026-11-23T00:00:00Z");
     const c = new OzSinamaCekirdek(memDepo(), env(AI), () => t);
-    let dilHatasiSay = 0, onarim = 0;
+    let dilHatasiSay = 0, son: Awaited<ReturnType<typeof c.oku>> | null = null;
     for (let k = 0; k < 20; k++) {
-      const j = await c.oku();
-      expect(j.durum).toBe("kostu");
-      const g = j.gorevler.find((x) => x.gorev === "feedback_tr")!;
-      if (g.neden?.startsWith("dil:")) dilHatasiSay++;
-      if (g.dil) onarim++;
-      expect(g.gecti).toBe(true);
+      son = await c.oku();
+      expect(son.durum).toBe("kostu");
+      const g = son.gorevler.find((x) => x.gorev === "feedback_tr")!;
+      if (g.neden?.startsWith("dil")) dilHatasiSay++;
+      expect(g).toMatchObject({ gecti: true, dil: "yeniden" });
       t += ST.aralik_dk * 60_000 + 1;
     }
-    expect(dilHatasiSay).toBe(0);
-    expect(onarim).toBe(20);
-    expect(fb).toBe(40);
+    expect(dilHatasiSay).toBe(0); expect(fb).toBe(40);
+    expect(son!.bugun.gorev.feedback_tr).toMatchObject({ gecti: 20, toplam: 20, dil_yeniden: 20, dil_yedek: 0 });
+  });
+  it("kalıcı sapma (yeniden soru da Almanca): öğrenciye Türkçe yedek gider ama öz-sınama KALIR, alan adıyla (inceleme #248 P1-2)", async () => {
+    const { AI } = sahte([(sys: string) => { const g = gorevi(sys); return g === "feedback_tr" ? FB_HEPSI_ALMANCA : IYI_DIGER[g]; }]);
+    const j = await new OzSinamaCekirdek(memDepo(), env(AI), () => Date.parse("2026-11-23T00:00:00Z")).oku();
+    const g = j.gorevler.find((x) => x.gorev === "feedback_tr")!;
+    expect(j.ok).toBe(false);
+    expect(g).toMatchObject({ gecti: false, dil: "yedek", neden: "dil_yedek:strengths_tr.0,fixes.0.why_tr,summary_tr" });
+    expect(j.bugun.gorev.feedback_tr).toMatchObject({ dil_yedek: 1 });
+  });
+  it("explain_tr'nin asıl karşılığına yedek yoksa öz-sınama 'dil_yedek_yok' der", async () => {
+    const bozuk = { tr: "Das Ende des Arbeitstages, man hat frei.", note_tr: "Man sagt das nach der Arbeit.", examples: [] };
+    const { AI } = sahte([(sys: string) => { const g = gorevi(sys); return g === "explain_tr" ? bozuk : g === "feedback_tr" ? FB_IYI : IYI_DIGER[g]; }]);
+    const j = await new OzSinamaCekirdek(memDepo(), env(AI), () => Date.parse("2026-11-23T00:00:00Z")).oku();
+    expect(j.gorevler.find((x) => x.gorev === "explain_tr")).toMatchObject({ gecti: false, neden: "dil_yedek_yok" });
+  });
+});
+
+describe("inceleme #248: yeniden soru, kararlar, bütçe, ölçü", () => {
+  it("yeniden soru önceki cevabı gösterir; karar (equiv_check.ok, feedback_tr hedefleri) yeniden soruda değişmez", async () => {
+    const { AI, istem } = sahte([{ ok: true, reason_tr: "Correct, same meaning as expected." }, { ok: false, reason_tr: "Anlam aynı, cümle doğru." }]);
+    const r = await runTask(env(AI), "equiv_check", { prompt_tr: "Randevu almak istiyorum.", expected: ["Ich möchte einen Termin machen."], answer: "Ich hätte gern einen Termin." });
+    expect(r).toMatchObject({ dil: "yeniden", output: { ok: true, reason_tr: "Anlam aynı, cümle doğru." } });
+    expect(istem[1]).toContain("Deine letzte Antwort"); expect(istem[1]).toContain("Correct, same meaning");
+    const fb = sahte([FB_ALMANCA, { ...FB_IYI, goals: [{ id: "g1", done: false }, { id: "g2", done: false }], english_fallbacks: 3 }]);
+    const f = await runTask(env(fb.AI), "feedback_tr", FB_VARS);
+    expect((f.output as typeof FB_IYI).goals).toEqual(FB_ALMANCA.goals);
+    expect((f.output as any).english_fallbacks).toBe(0);
+  });
+  it("hızlı görev (explain_tr): yeniden soru tutar (dil: yeniden), ilk modelin bütçesi içinde", async () => {
+    const { AI, istem } = sahte([{ tr: "Das Ende der Arbeit.", note_tr: "Man sagt das abends.", examples: [] }, { tr: "mesai sonu", note_tr: "Akşam işten çıkınca söylenir.", examples: [] }]);
+    const r = await runTask(env(AI), "explain_tr", { de: "Feierabend" });
+    expect(r).toMatchObject({ dil: "yeniden", dil_alanlar: ["tr", "note_tr"], output: { tr: "mesai sonu" } });
+    expect(istem.length).toBe(2);
+  });
+  it("yedek model yolu (ilk model meşgul): dil güvencesi orada da çalışır", async () => {
+    const { AI, istem } = sahte([new Error("down"), new Error("down"), FB_ALMANCA, FB_IYI]);
+    const r = await runTask(env(AI), "feedback_tr", FB_VARS);
+    expect(r).toMatchObject({ dil: "yeniden", output: FB_IYI });
+    expect(istem.length).toBe(4);
+  });
+  it("alanın tamamı kalın/tırnaklı Almanca ise de yakalanır (P2-1)", () => {
+    expect(dilHatasi("**Gut gemacht!**", "tr")).toBe("de");
+    expect(dilHatasi("„Du hast das sehr gut gesagt.“", "tr")).toBe("de");
+  });
+  it("içerikteki Türkçe açıklamalar Almanca sanılmaz (yanlış pozitif gerileme testi; P1-1)", () => {
+    for (const s of ["Das passt mir denir, das passt mich denmez.", "Zurück cümlenin sonuna gider: Ich gebe die Tasse zurück.", "Kibarca istemek: Ich hätte gern einen Kaffee",
+      "Lindenstraße'de oturmak", "Almanya'da kiralık dairelerde bir 'Hausordnung' (apartman yönetmeliği) vardır.", "Für die Einladung denir, für der Einladung denmez."])
+      expect(dilHatasi(s, "tr"), s).toBeNull();
+    // bütün içerik derlemi: *_tr / tr alanlarında yanlış pozitif ‰1'in altında (ölçüldüğünde 55 301 alanda 23; kalanlar Almanca terim listesi başlıkları)
+    const alan: string[] = [];
+    const topla = (o: any, k = ""): void => { if (typeof o === "string") { if (/(^|_)tr$/.test(k)) alan.push(o); } else if (Array.isArray(o)) o.forEach((x) => topla(x, k)); else if (o && typeof o === "object") for (const [kk, v] of Object.entries(o)) topla(v, kk); };
+    const gez = (d: string): void => { for (const f of readdirSync(d)) { const p = join(d, f); if (statSync(p).isDirectory()) gez(p); else if (p.endsWith(".json")) topla(JSON.parse(readFileSync(p, "utf8"))); } };
+    gez(fileURLToPath(new URL("../../content/v2", import.meta.url)));
+    expect(alan.length).toBeGreaterThan(10_000);
+    const yanlis = alan.filter((x) => dilHatasi(x, "tr"));
+    expect(yanlis.length / alan.length).toBeLessThan(0.001);
   });
 });

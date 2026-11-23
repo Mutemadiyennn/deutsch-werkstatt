@@ -100,11 +100,22 @@ export function schemaOf(name: AiTaskName): object {
   try { const j = z.toJSONSchema(AiTasks[name].output) as Record<string, unknown>; delete j.$schema; return j; } catch { return {}; }
 }
 
-/** `dil`: dil güvencesi devreye girdiyse ("yeniden": ikinci soruda tuttu · "yedek": kural tabanlı Türkçe); öz-sınama okur */
-export interface GorevCiktisi { output: unknown; model: string; dil?: "yeniden" | "yedek" }
+/**
+ * `dil`: dil güvencesi devreye girdiyse ("yeniden": ikinci soruda tuttu · "yedek": kural tabanlı Türkçe); `dil_alanlar`: ilk
+ * çıktıda Türkçe tutmayan alanlar. Öz-sınama okur: "yedek" kaldı sayılır (sapma görünür kalır; inceleme #248 P1-2).
+ */
+export interface GorevCiktisi { output: unknown; model: string; dil?: "yeniden" | "yedek"; dil_alanlar?: string[] }
 
-/** Yeniden soruda istemin sonuna eklenen uyarı: hangi alanlar Türkçe değildi */
-export const dilUyarisi = (bozuk: string[]) => `\nACHTUNG: In deiner letzten Antwort waren diese Felder NICHT Türkisch: ${bozuk.join(", ")}. Schreibe sie jetzt auf Türkisch (Türkçe). Alles andere unverändert.`;
+/** Yeniden soruda istemin sonuna eklenen uyarı: hangi alanlar Türkçe değildi + önceki cevap (yalnız o alanlar değişsin; inceleme #248 P2-2) */
+export const dilUyarisi = (bozuk: string[], onceki: unknown) =>
+  `\nACHTUNG: In deiner letzten Antwort waren diese Felder NICHT Türkisch: ${bozuk.join(", ")}. Schreibe sie jetzt auf Türkisch (Türkçe). Alles andere unverändert.\nDeine letzte Antwort: ${J(onceki).slice(0, 3000)}`;
+
+/** Yeniden soruda kararlar değişmez: ilk cevabın kararı korunur (equiv_check.ok; feedback_tr hedefleri ve sayaçlar) */
+function kararKoru(name: AiTaskName, ilk: any, yeni: any): unknown {
+  if (name === "equiv_check") return { ...yeni, ok: ilk.ok };
+  if (name === "feedback_tr") return { ...yeni, goals: ilk.goals, english_fallbacks: ilk.english_fallbacks, gaps_de: ilk.gaps_de };
+  return yeni;
+}
 
 export async function runTask(env: Env, taskName: string, vars: unknown): Promise<GorevCiktisi> {
   if (!(taskName in AiTasks)) throw new HttpError("invalid_request", "unknown task");
@@ -174,10 +185,11 @@ export async function dilGuvencesi(
   const kalan = kalanMs();
   if (kalan > DIL_YENIDEN_EN_AZ_MS) {
     try {
-      const p = sema.safeParse(safeJson(await yenidenSor(dilUyarisi(bozuk), kalan)));
-      if (p.success) {
-        const yeni = kisa(name, p.data), yb = dilBozuk(name, yeni);
-        if (!yb.length) return { output: yeni, model, dil: "yeniden" };
+      const p = sema.safeParse(safeJson(await yenidenSor(dilUyarisi(bozuk, out), kalan)));
+      const yeni = p.success ? kararKoru(name, out, kisa(name, p.data)) : null;
+      if (yeni && sema.safeParse(yeni).success) {
+        const yb = dilBozuk(name, yeni);
+        if (!yb.length) return { output: yeni, model, dil: "yeniden", dil_alanlar: bozuk };
         son = yeni; sonBozuk = yb;
       }
     } catch (e) {
@@ -187,7 +199,7 @@ export async function dilGuvencesi(
   }
   const y = dilYedegi(name, son, sonBozuk);
   if (y === null || !sema.safeParse(y).success) throw new HttpError("bad_output", "dil");
-  return { output: y, model, dil: "yedek" };
+  return { output: y, model, dil: "yedek", dil_alanlar: bozuk };
 }
 
 /** Rol oyunu cevabı en çok WA.reply_max_words kelime (PM 7022002310-5) */

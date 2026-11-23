@@ -168,7 +168,7 @@ describe("GET /v1/ai/selftest (PM-087 A)", () => {
     const j = await (await handle(new Request("https://api.test/v1/ai/selftest"), env({ AI: iyiAI().AI }))).json();
     expect(j).toMatchObject({ durum: "kapali", ok: false, taze: false });
   });
-  it("bozuk çıktı → sema; İngilizce Türkçe alan → çalışma anı güvencesi onarır (dil: yedek); sağlayıcı hatası → kod; hata ayrıntısı sızmaz", async () => {
+  it("bozuk çıktı → sema; iki kez İngilizce Türkçe alan → öğrenciye yedek gider ama öz-sınama KALIR (dil_yedek); sağlayıcı hatası → kod; hata ayrıntısı sızmaz", async () => {
     const { AI } = sahteAI((sys) => {
       const g = gorevi(sys);
       if (g === "equiv_check") return { response: "kein json" };
@@ -181,10 +181,10 @@ describe("GET /v1/ai/selftest (PM-087 A)", () => {
     expect(j).toMatchObject({ ok: false, taze: true });
     const n = Object.fromEntries(j.gorevler.map((g: any) => [g.gorev, g.neden]));
     expect(n.equiv_check).toBe("hata:sema");
-    // PM-112 A.1: öğrenci İngilizce not görmez; öz-sınama geçer ama onarımı gösterir (sapma görünür kalır)
-    expect(n.explain_tr).toBeNull();
+    // PM-112 A.1: öğrenci İngilizce not görmez (yedek); model iki kez saptığı için öz-sınama kalır (inceleme #248 P1-2)
+    expect(n.explain_tr).toBe("dil_yedek:note_tr");
     expect(j.gorevler.find((g: any) => g.gorev === "explain_tr").dil).toBe("yedek");
-    expect(j.bugun.gorev.explain_tr).toMatchObject({ gecti: 1, dil_onarim: 1 });
+    expect(j.bugun.gorev.explain_tr).toMatchObject({ gecti: 0, dil_yeniden: 0, dil_yedek: 1 });
     expect(n.say_it_de).toBe("hata:upstream_busy");
     expect(n.roleplay_turn).toBeNull();
     expect(t).not.toContain("secret-detail");
@@ -198,6 +198,6 @@ describe("GET /v1/ai/selftest (PM-087 A)", () => {
   });
   it("özet: ortanca ve en uzun", () => {
     const o = ozet("2026-11-23", [{ t: "a", g: [["equiv_check", 1, 100]] }, { t: "b", g: [["equiv_check", 0, 300]] }, { t: "c", g: [["equiv_check", 1, 200]] }]);
-    expect(o.gorev.equiv_check).toEqual({ gecti: 2, toplam: 3, ortanca_ms: 200, en_uzun_ms: 300, dil_onarim: 0 });
+    expect(o.gorev.equiv_check).toEqual({ gecti: 2, toplam: 3, ortanca_ms: 200, en_uzun_ms: 300, dil_yeniden: 0, dil_yedek: 0 });
   });
 });

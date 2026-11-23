@@ -30,6 +30,7 @@ Biçim: **Kimlik · tarih · karar** — gerekçe. Kaynak: proje sahibi (PS) ya 
   - p95 ≤ 8 sn hedefi yalnızca hızlı görevler içindir (equiv_check, explain_tr, say_it_de; sunucu bütçesi 8+4 sn, istemci 12 sn).
   - Süre ölçümü: istemci görev başına son 200 yanıt süresini cihazda tutar (`latencyStats()` → p50/p95); gerçek değerler ancak Worker anahtarla çalışınca ölçülebilir.
 - **D-022 · 2026-11-17 · Anahtarlar yalnızca Cloudflare secret'ında; dağıtım GitHub Actions + şifreli secret (PS, H2).** Geliştirici anahtarı görmez.
+- **D-127 · 2026-11-23 · Yapay zekâ dil güvencesi çalışma anında (PM-112 A.1, #248).** `*_tr` alanı Türkçe değilse (ölçü öz-sınamayla aynı, `packages/shared/src/dil.ts`) aynı modele **bir kez**, önceki cevap ve tutmayan alanlarla yeniden sorulur; kararlar (equiv_check.ok, feedback_tr hedefleri) yeniden soruda değişmez. Yine tutmazsa kural tabanlı Türkçe yedek; yedeği olmayan alan (explain_tr'nin asıl karşılığı) `bad_output` → istemci yapay zekâsız yol. Dil hatasından sonra **yedek modele geçilmez** (öğrenci beklemez; hızlı görev 8+4 sn bütçesi aşılmaz). Öz-sınamada "yeniden" geçer, "yedek" **kalır** (model sapması KAPI'da kırmızı görünür).
 
 ## İçerik
 - **D-030 · 2026-11-17 · Sıklık kaynağı: FrequencyWords 2018 (de) + simplemma; 5.000 lemma, K1 ≤2000, K2 ≤5000 (BG, H3).** Goethe/telc listeleri yalnızca karşılaştırma referansı; depoya kopyalanmaz.
