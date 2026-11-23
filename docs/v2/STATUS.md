@@ -18,7 +18,8 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 
 ## Hat H (ANA-H): A1 seviye tespiti (PM-115, PM-117 C; 2026-11-23)
 - **#257** (dal `v2/seviye-tespiti-sema`, PR 1/3): madde havuzu şeması (`packages/shared/src/tespit.ts`), çözücü + doğrulayıcı (`content/tools/tespit.ts`, `content:validate` dosya varsa), `derinSec` (motorla ortak derin seçim), `policy.json` → `seviye_tespiti`; biçim `content/v2/assess/TESPIT_FORMAT.md`, [BİÇİM] #12 7111346629. Havuzu (`assess/a1-seviye-tespiti.json`) içerik oturumu yazar.
-- Sıradaki: PR 2/3 iki aşamalı tespit + rapor + karar (#245'in üstüne; `Seviye.tsx`, `yoklamaSec` yeniden), PR 3/3 A1 tamamlama planı + çıkış yoklaması + kapı.
+- **#260** (dal `v2/tespit-motor`, #257 üstünde, PR 2a/3, arayüzsüz): motor `web/src/core/tespit.ts` (tarama → oturmuş hafta → derin yalnız zayıf haftada → rapor → karar; eşitlik geçer, hafta oranı yalnız üretimden, ölçülmeyen hafta A2'yi açmaz) + derleme paketi `tespit.json`.
+- Sıradaki: PR 2b ekranlar (hedef ekran istendi #12 7112036319; #245'in üstüne, `Seviye.tsx`/`yoklamaSec` yerine; cevaplar paket sürümüyle saklanır), PR 3/3 A1 tamamlama planı + çıkış yoklaması + kapı.
 
 ## Hat E (ANA-E): yapay zekâ güvencesi (PM-112 A; 2026-11-23)
 - **#248** (dal `ai/dil-guvencesi`): dil güvencesi çalışma anında (D-127). Öz-sınama satırında `dil` (yeniden/yedek), günlük özette `dil_yeniden` / `dil_yedek`; canlı 20 koşu ölçümü birleşip dağıtılınca `node worker/scripts/oz-sinama.mjs <adres>`.

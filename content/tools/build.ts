@@ -15,6 +15,7 @@ import { klipVideolari } from "./klip.ts";
 import { notoDosya, notoSvg } from "./emoji.ts";
 import { tmpdir } from "node:os";
 import { fotoPaketle, type FotoKaydi } from "./medya.ts";
+import { tespitPaketi } from "./tespit.ts";
 
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
@@ -57,7 +58,17 @@ try {
   }
 } catch (e) { console.error(String(e)); process.exit(1); }
 
+// PM-115 PR 2: A1 seviye tespiti paketi (havuz dosyası varsa; e2e paketinde içerikte yoksa fikstür havuzu). Hatalı havuz
+// pakete girmez (doğrulayıcı zaten durdurur). Gün dosyası olmayan günün kartları kesin tablodan gelir (tablo paketi #231 zinciriyle).
+const tespitAdlar = new Map<string, string>([...c.grammar.map((g) => [g.id, g.h_tr] as [string, string]), ...c.dn.flatMap((x) => x.data).map((d) => [d.id, d.h_tr] as [string, string]), ...c.temel.map((t) => [t.data.id, t.data.title_tr] as [string, string])]);
+if (existsSync(join(ROOT, "content/v2/assess/a1-seviye-tespiti.json")) && !tespitPaketi(join(ROOT, "content/v2"), tespitAdlar)) {
+  console.error("seviye tespiti havuzu hatalı: npm run content:validate"); process.exit(1);
+}
+const tespitPkt = tespitPaketi(join(ROOT, "content/v2"), tespitAdlar)
+  ?? (process.env.DW_E2E_FIXTURES === "1" ? tespitPaketi(join(ROOT, "content/tools/fixtures/tespit"), tespitAdlar) : null);
+for (const h of tespitPkt?.haftalar ?? []) for (const d of h.dil_noktasi) if (!d.ad_tr) console.log(`uyarı: seviye tespiti: ${d.id} dil noktasının adı yok (grammar.json / dn-HH.json / temel)`);
 const payload = {
+  tespit: tespitPkt,
   m1: days.map((d) => d.data),
   temel: c.temel.map((t) => t.data),
   lexemes: c.lexemes,
@@ -160,9 +171,10 @@ const index: ContentIndex = {
     kartlar: g.yeni_kartlar.filter((id) => { const l = lexById.get(id); return !!l && kartMi(l); }), medya: medyalar(g).map((m) => ({ id: m.id, kind: m.kind, title_tr: m.title_tr })) })),
   temel: temel.map((t) => ({ id: t.id, order: t.order, title_tr: t.title_tr, title_de: t.title_de, review: t.review.status })),
   counts: { lexemes: c.lexemes.length, grammar: c.grammar.length, assess: c.assess.length, scenarios: c.scenarios.length },
-  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}), ...(resimHarita ? { resim: "resim.json" } : {}), genelAdlar: "genel-adlar.json" }
+  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}), ...(resimHarita ? { resim: "resim.json" } : {}), genelAdlar: "genel-adlar.json", ...(tespitPkt ? { tespit: "tespit.json" } : {}) }
 };
 w("genel-adlar.json", genelAdlar);
+if (tespitPkt) w("tespit.json", tespitPkt);
 w("index.json", index);
 writeFileSync(join(base, "current.json"), JSON.stringify({ version }));
 console.log(`içerik paketi ${version} → web/public/content/${version}/ (${c.scenarios.length} senaryo, ${c.lexemes.length} kelime, ${c.assess.length} tespit maddesi)`);

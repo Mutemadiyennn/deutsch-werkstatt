@@ -71,7 +71,8 @@ export interface TespitCozulen {
   /** gövdenin türü: Drill `k`'si, görülmemiş durumda "durum", denemede `pick` / `form` / `mesaj` / konuşma türü */
   tur: string;
   hafta: number;
-  asama: TespitAsama;
+  /** çekirdek maddesi (dört beceri, haftadan bağımsız) pakette `cekirdek` aşamasıyla gelir */
+  asama: TespitAsama | "cekirdek";
   beceri: HavuzBeceri;
   can_do: string[];
   dil_noktasi: string[];
@@ -110,3 +111,30 @@ export function derinSec(maddeler: readonly TespitCozulen[], hedef: DerinHedef, 
   }
   return { secilen, eksik: [...ihtiyac].filter(([, n]) => n > 0).map(([id, kalan]) => ({ id, kalan })) };
 }
+
+/**
+ * Derleme paketi `tespit.json` (havuz dosyası varsa yazılır): çözülmüş maddeler havuz sırasıyla (`derinSec` doğrulayıcıyla aynı
+ * sırayı görsün), çekirdek ve hafta → derin bakış hedefleri + kelime örneğinin kartları.
+ */
+export const TespitPaketHafta = z.object({
+  hafta: z.number().int().min(1),
+  can_do: z.array(z.object({ id: z.string(), tr: z.string(), gun: z.number().int() })),
+  dil_noktasi: z.array(z.object({ id: z.string(), ad_tr: z.string() })),
+  /** haftanın yeni kartları (gün dosyası varsa `yeni_kartlar`, yoksa kesin tablo) */
+  kartlar: z.array(z.string())
+});
+export type TespitPaketHafta = z.infer<typeof TespitPaketHafta>;
+const CozulenZ = z.object({
+  id: z.string(), kaynak: z.enum(["gorulmemis", "hafta_testi", "gun_sinavi", "temel", "deneme", "yeni"]), tur: z.string(),
+  hafta: z.number().int(), asama: z.enum(["tarama", "derin", "cekirdek"]), beceri: HavuzBeceri,
+  can_do: z.array(z.string()), dil_noktasi: z.array(z.string()), uretim: z.boolean(), madde: z.record(z.string(), z.unknown())
+});
+export const TespitPaket = z.object({
+  id: z.string(),
+  maddeler: z.array(CozulenZ),
+  cekirdek: z.array(CozulenZ),
+  haftalar: z.array(TespitPaketHafta),
+  /** muaf dil noktaları derin bakışa girmez */
+  muaf_dil_noktasi: z.array(z.string()).default([])
+});
+export type TespitPaket = z.infer<typeof TespitPaket>;
