@@ -5,7 +5,7 @@ Dil noktası durağı (PM-092 md. 1, PM 7087668356 md. 7; inceleme #231 P1-1/P1-
   - "örnek…" sütunu satırın altında; başlık, açıklama, her örnekte dinle düğmesi, tek birincil "Anladım", soru yok
   - ekranda ham ** ya da çıplak yer tutucu yok
 Gövde e2e paketinin `#/__dil-noktasi/<id>` rotasıyla tek başına çizilir (planlayıcıdaki yeri akis.test.ts sınar).
-python3 tests/e2e/v2_dil_noktasi.py [--browser webkit] [--device "iPhone 15"] [--scheme dark] [--shots DIR] [--seviye A1]
+python3 tests/e2e/v2_dil_noktasi.py [--browser webkit] [--device "iPhone 15"] [--scheme dark] [--shots DIR] [--seviye A1] [--ts 1.3] [--genislik 320]
 """
 import json, os
 from playwright.sync_api import sync_playwright
@@ -13,6 +13,8 @@ from common import serve, launch, new_page, login_onboard, check, finish, shot, 
 
 PORT = 4251
 SEVIYE = (arg("--seviye") or "").lower()
+TS = float(arg("--ts") or 1)
+GENISLIK = int(arg("--genislik") or 0)
 
 def notlar():
     v = json.load(open(os.path.join(DIST, "content", "current.json")))["version"]
@@ -31,10 +33,12 @@ def main():
     tasan, bolunen, govde, ham = [], [], [], []
     tablolu = 0
     with sync_playwright() as p:
-        b, ctx = launch(p, color_scheme=sema); pg = new_page(ctx)
+        b, ctx = launch(p, color_scheme=sema, viewport={"width": GENISLIK, "height": 568} if GENISLIK else None); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         for i, n in enumerate(liste):
             pg.goto(base + "#/__dil-noktasi/" + n["id"]); pg.wait_for_selector("[data-test=akis-dil-noktasi]", timeout=15000)
+            # uygulamanın yazı boyutu ayarı (--ts; v2_baslik/v2_ders ile aynı yöntem): EK2 md. 3 büyük yazıda da taşma yok
+            if TS != 1: pg.evaluate("(ts) => { document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts', String(ts)); }", TS); pg.wait_for_timeout(80)
             r = pg.evaluate("""() => { const s = document.querySelector('[data-test=akis-dil-noktasi]'); const t = s.querySelector('[data-test=akis-tablo-t]');
               const tr = t ? t.getBoundingClientRect() : null;
               return { w: innerWidth, sw: document.documentElement.scrollWidth, sol: tr ? tr.left : null, sag: tr ? tr.right : null,
@@ -55,7 +59,7 @@ def main():
             if "**" in r["metin"] or ("{" in r["metin"] and "}" in r["metin"]): ham.append(n["id"])
             if n["id"] == "gr:a1-05:t5": shot(pg, f"dil-noktasi-cumle-dizilisi-{sema}", full=False)
         b.close()
-    check(not tasan, f"{tablolu} tablonun hepsi ekrana sığar, sayfa yatay kaymaz (taşan {len(tasan)}: {tasan[:8]})")
+    check(not tasan, f"yazı %{round(TS * 100)}{f', {GENISLIK} pt' if GENISLIK else ''}: {tablolu} tablonun hepsi ekrana sığar, sayfa yatay kaymaz (taşan {len(tasan)}: {tasan[:8]})")
     check(not bolunen, f"tablo bölünmez: sütun seçici yok, bütün sütunlar görünür (bölünen {len(bolunen)}: {bolunen[:8]})")
     check(not govde, f"her durakta başlık, sesli örnekler, tek 'Anladım', soru yok (eksik {len(govde)}: {govde[:5]})")
     check(not ham, f"ekranda ham ** ya da yer tutucu yok ({ham[:5]})")

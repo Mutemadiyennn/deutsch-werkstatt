@@ -7,7 +7,7 @@
  * `policy.akis.gunler` bayrağı ve Yol/Bugün bağlaması, kart kayıtları `srs.review` (source "drill", session "akis@…"),
  * halka sonu ekranı (TARGET3b 6), mini sahne (Ders `Diyalog`), seans halkası (K9).
  */
-import { useEffect, useMemo, useRef, useState } from "preact/hooks";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Rich } from "../ui/rich.tsx";
 import { hucreDili, sikTablo, tabloBol } from "../core/tablo.ts";
 import { bilinmeyenler, kalipOrtu, kalipSecenekleri, kalipToks, kumeDizini, toks, YUVA, type Drill, type Lexeme, type LearnerItem } from "@dw/shared";
@@ -503,12 +503,24 @@ function AkisTablo({ sutunlar, satirlar, alt, dar }: { sutunlar: string[]; satir
   const bol = bol0 && { sabit: bol0.sabit.map((i) => ana[i]!), secilebilir: bol0.secilebilir.map((i) => ana[i]!) };
   const [sec, setSec] = useState(bol?.secilebilir[0] ?? -1);
   const goster = bol ? [...bol.sabit, sec] : ana;
+  // dil noktası tablosu büyük yazıda ya da dar ekranda (320 pt, %130) yine taşarsa sözcük içinden de kırılır (inceleme #231 2. tur P1-1);
+  // normal durumda sözcükler bütün kalır ("fern." bölünmesin)
+  const tref = useRef<HTMLTableElement>(null);
+  const [kir, setKir] = useState(false);
+  useLayoutEffect(() => {
+    const t = tref.current; const ust = t?.parentElement;
+    if (!dar || !t || !ust || typeof ResizeObserver === "undefined") return;
+    const olc = () => { if (t.getBoundingClientRect().width > ust.getBoundingClientRect().width + 0.5) setKir(true); };
+    olc();
+    const ro = new ResizeObserver(olc); ro.observe(t); ro.observe(ust);
+    return () => ro.disconnect();
+  }, [dar]);
   return (
     <>
       {bol && <div class="row akis-tablo-sec" role="group" aria-label="Sütun seç" data-test="akis-tablo-sec">
         {bol.secilebilir.map((i) => <button type="button" lang="de" class={`chip${i === sec ? " on" : ""}`} aria-pressed={i === sec} data-sutun={i} onClick={() => setSec(i)}>{sutunlar[i]}</button>)}
       </div>}
-      <table class={`akis-tablo-t${dar ? " dar" : ""}${dar && sikTablo(sutunlar, satirlar, ana) ? " genis" : ""}`} data-test="akis-tablo-t"><thead><tr>{goster.map((i) => <th lang={bol && !bol.sabit.includes(i) ? "de" : undefined}>{sutunlar[i]}</th>)}</tr></thead>
+      <table ref={tref} class={`akis-tablo-t${dar ? " dar" : ""}${dar && sikTablo(sutunlar, satirlar, ana) ? " genis" : ""}${kir ? " kir" : ""}`} data-test="akis-tablo-t"><thead><tr>{goster.map((i) => <th lang={bol && !bol.sabit.includes(i) ? "de" : undefined}>{sutunlar[i]}</th>)}</tr></thead>
         <tbody>{satirlar.map((r) => alt !== undefined && r[alt]
           ? <><tr class="ust">{goster.map((i) => <td lang={hucreDili(sutunlar[i] ?? "")}>{r[i]}</td>)}</tr>
               <tr class="alt"><td colSpan={goster.length} lang="de" data-test="akis-tablo-ornek">{r[alt]}</td></tr></>
