@@ -449,7 +449,7 @@ export function M1Gun({ day }: { day: number }) {
   const ad = { video: "Video", ses: "Dinle", sahne: "Köy dizisi" } as const;
   return (
     <div class="stack" data-test="m1-gun">
-      <ProgressHeader title={`${gun.day}. gün: ${plain(gun.title_tr)}`} back="#/learn" />
+      <ProgressHeader title={`${gun.day}. gün: ${plain(gun.title_tr)}`} back="#/koy" />
       <p class="small"><Rich text={gun.goal_tr} /></p>
       <ul class="list card">{medyalar(gun).map((m) => (
         <li><a class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }} href={`#/m1/${gun.day}/${encodeURIComponent(m.id)}`} data-test={`medya-${m.kind}`}>

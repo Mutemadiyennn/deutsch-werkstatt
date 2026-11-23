@@ -56,7 +56,7 @@ export function Progress() {
 
   return (
     <div class="stack">
-      <TopBar title="İlerlemem" />
+      <TopBar title="İlerlemem"><a class="btn sm" href="#/ben/ayarlar" data-test="ayarlar-ac">Ayarlar</a></TopBar>
       {/* Şölen 1 XP ve seri kartı (Bugün'den taşındı; durum çubuğu her ekranda) ve B11b "Geçen haftaki sen" */}
       {xp && <XpSeri xp={xp} href="#/yol" />}
       <GecenHaftakiSen />
