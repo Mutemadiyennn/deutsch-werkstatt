@@ -204,3 +204,73 @@ Bütünleşik ağacın (1.–56. gün) geçici bir kopyasında, 6. hafta dosyala
 `review` alanı bütün dosyalarda `draft` kaldı (okur fark turu ve P0-1 kararı sırada).
 
 **Karar: ONAY** (P1-1, P1-2, P1-3, P1-5 kapandı; 2. tur için hazır). Açık kalan: P0-1 (PM), P1-4 (okur fark turu).
+
+## P0-1 dönüşü (İÇ-15, #238)
+
+Kural (WORLD §3, İÇ 7013446061): kalıcı karakterlere WORLD'de olmayan akraba ya da geçmiş eklenmez; gerekirse adsız kişi ("eine Freundin", "eine Kollegin"). Aile kartları (lx:Eltern, lx:Papa, lx:Onkel, lx:Hund, lx:Freundin) yerinde kaldı; kart kümesi ve `yeni_kartlar` değişmedi. Yeni sözcük ya da yeni çekim eklenmedi: **eine Freundin** (36. gün), **von einer Freundin** (36. gün), **dein** (13. günden beri), **habe … besucht** (36. gün).
+
+Tarama (Schwester, Eltern, Onkel, Hund, Papa, Mama, Familie, Tochter, München, Freundin, kardeş, anne, baba, amca, köpek): 36–42. gün ve üç hafta dosyası.
+
+| Yer | Önce | Sonra | Birlikte değişen |
+|---|---|---|---|
+| gun-37 · m1:37:a1 · c2 | **Ich brauche ein Geschenk für meine Schwester.** · "Kız kardeşim için …" | **Ich brauche ein Geschenk für eine Freundin.** · "Bir kız arkadaşım için bir hediyeye ihtiyacım var." | d2 boşluğu **… für eine Freundin.** (kabul aynı: **Geschenk**); gölge c2 cümleyi izliyor |
+| gun-37 · m1:37:a1 · c3 | "Cuma günü doğum günü." | "Cuma günü onun doğum günü." (Almanca aynı: **Sie hat am Freitag Geburtstag.**) | doğum günü artık adsız arkadaşın |
+| gun-37 · m1:37:a1 · ayrinti[0] | seçenek "kız kardeşi için" | "bir arkadaşı için" | kanıt c2 aynı |
+| gun-37 · m1:37:a1 · eylem | çeldirici "Cuma günü Derya'nın kız kardeşini ara." | "Cuma günü Derya'nın arkadaşını ara." | — |
+| gun-37 · okuma | **Ich habe ihn für meine Schwester gekauft!** · "Onu kız kardeşim için aldım!" | **Ich habe ihn für eine Freundin gekauft!** · "Onu bir kız arkadaşım için aldım!" | m1:37:o1 seçenek 0: "Bir arkadaşına kazak aldığını ve seni beklediğini"; kanıt 4, 6 aynı |
+| gun-38 · m1:38:h1 · başlık | "Derya annesiyle babasının yanında" | "Hafta sonu aile yanında" | görev cümleleri (genel örnek, **Ich bin am Samstag zu meinen Eltern gefahren.** vb.) aynı |
+| gun-38 · m1:38:h1 · sahne | Derya: **Am Sonntag war ich bei meinen Eltern.** / **Mein Onkel und sein Hund. …** | Aynı cümleleri **eine Kollegin** söylüyor; ortam "Başka bölümden bir iş arkadaşı pazar gününü anlatıyor." | soru: "İş arkadaşının anne babasının yanında başka kim vardı?" (seçenekler aynı) |
+| gun-38 · m1:38:h2 · sahne ortamı | "Derya devam ediyor, …" | "Şimdi Derya anlatıyor, ellerini açıp gülüyor." | h2 satırları aynı (aile yok) |
+| gun-38 · m1:38:v1 · s2 | **Ich bin zu meinen Eltern nach München gefahren. Wir haben zusammen gegessen.** | **Ich habe in München eine Freundin besucht. Wir haben zusammen gegessen.** · "Münih'te bir kız arkadaşımı ziyaret ettim. Birlikte yemek yedik." | ana fikir seçenek 0: "Münih'te bir arkadaşını ziyaret etti" (kanıt s2); d5 örneği **Derya hat in München eine Freundin besucht. Sie ist mit der Straßenbahn gefahren.** (zorunlu **gefahren** aynı) |
+| gun-38 · m1:38:v1 · s6 | **Echt? Du bist doch in München nicht fremd!** (Derya'ya Münih geçmişi veriyordu) | **Echt? Bist du in München fremd?** · "Gerçekten mi? Münih'in yabancısı mısın?" | s7 **Na ja, die Straße war neu für mich.** artık doğrudan cevap |
+| gun-38 · m1:38:v1 · s8 | **Mein Onkel ist dann mit dem Hund gekommen.** · "Sonra amcam köpekle geldi." | **Meine Freundin ist dann mit dem Hund gekommen.** · "Sonra arkadaşım köpekle geldi." | s9 **Mit dem Hund? Toll!** aynı; gölge s8 cümleyi izliyor; d3 bankası **Meine, Freundin, ist, dann, mit, dem, Hund, gekommen** + çeldirici **hat, Onkel**, üç kabul yeni cümleyle; ayrinti[1] "Sonunda kim geldi?" seçenekler "Arkadaşı, köpekle / Tobi / Bir taksi" (çıkan "Babası" çeldiricisi de bir akraba ima ediyordu) |
+| gun-40 · m1:40:h2 · sahne | öğrenci: **Wie süß! Ist das der Hund von deinem Onkel?** · Derya: **Ja! Und das Wetter …** | öğrenci: **Wie süß! Ist das dein Hund?** · "Ne tatlı! Bu senin köpeğin mi?" · Derya: **Nein, von einer Freundin. Und das Wetter war so schön, es waren zwanzig Grad.** · "Hayır, bir arkadaşımın. Hava da çok güzeldi, yirmi dereceydi." | soru (hava) ve seçenekler aynı; 38. gündeki arkadaşın köpeğiyle tutarlı |
+| gun-41 · m1:41:a1 · ayrinti[0] | çeldirici "annesinde" (Tobi'ye anne ima ediyordu) | "eczanede" | kanıt c3 aynı |
+
+Dokunulmayanlar ve gerekçesi:
+- gun-36: Derya'nın cumartesi doğum günü partisi WORLD'le uyumlu (doğum günü 7 Mart; parti 33. günde duyuruldu). **Der Kuchen war von einer Freundin.** ve **Ist das eine Freundin von Derya?** adsız arkadaş; WORLD kuralının verdiği örnek. **Ich habe meine Familie besucht.** genel örnek.
+- gun-38 · m1:38:a2: Frau Brandl'ın kızı (adsız akraba; İÇ-15 md. 3). d1 seçenekleri **Tochter / Mutter / Schwester** yalnız sözcük ayırt etme.
+- gun-38 görev cümleleri ve m1:38:s2 (**Mein Onkel ist mit dem Auto gekommen.**), m1:38:s11 kabulü (**… zu meinen Eltern gefahren.**), m1:41:s7 (**Ich fahre für eine Woche zu meinen Eltern.**): sahibi olmayan genel örnek ya da öğrencinin seçebileceği bir cevap varyantı; kalıcı karaktere bağlı değil.
+- gun-42: Frau Brandl **zu einer Freundin**, Ioana **mit einer Freundin**: adsız.
+- Yıllar (gun-39, 40, hafta-sonu-testi-06): okul 1960'ta var, 1965'te hâlâ yeni, bugün yok ("früher war hier eine Schule"); ev 1970'te yeni ve kaloriferi yok; kalorifer 1985'ten; Frau Brandl 1970'te 23 yaşında. Kendi içinde tutarlı, değişiklik yok.
+- hafta-sonu-testi-06, gorulmemis-06, dn-06: taranan sözcüklerden hiçbiri kalıcı bir karaktere bağlı geçmiyor; değişmedi.
+
+### Okur fark turu için değişen Türkçe alanlar
+- gun-37 · m1:37:a1 · c2 `tr`
+- gun-37 · m1:37:a1 · c3 `tr`
+- gun-37 · m1:37:a1 · ayrinti[0] `opts[0]`
+- gun-37 · m1:37:a1:e1 · `opts[1]`
+- gun-37 · okuma_yazma · `metin_tr`
+- gun-37 · m1:37:o1 · `opts[0]`
+- gun-38 · m1:38:h1 · `title_tr`
+- gun-38 · m1:38:h1 · sahne `ortam_tr`
+- gun-38 · m1:38:h1 · sahne soru `q_tr`
+- gun-38 · m1:38:h2 · sahne `ortam_tr`
+- gun-38 · m1:38:v1 · s2 `tr`
+- gun-38 · m1:38:v1 · s6 `tr`
+- gun-38 · m1:38:v1 · s8 `tr`
+- gun-38 · m1:38:v1 · ana_fikir `opts[0]`
+- gun-38 · m1:38:v1 · ayrinti[1] `opts` (üçü)
+- gun-40 · m1:40:h2 · sahne satır 1 `tr`
+- gun-40 · m1:40:h2 · sahne satır 2 `tr`
+- gun-41 · m1:41:a1 · ayrinti[0] `opts[2]`
+
+### Ölçü (`olc.sh 6`, bütünleşik ağaç)
+- 6. hafta kapısı GEÇTİ: öğretilmeden istenen 0 (kesin 0, sınırda 0), anlaşılmayan karşı soru 0, kanıtta yeni sözcük 0, süzülen medya 0; hafta sonu testi %100 (12/12); görülmemiş 7/7.
+- Dikiş: 12 ihlalin hepsi 2., 3., 10., 11., 55., 56. günde (değişiklik öncesiyle aynı); 36–42. gün 0.
+- validate: 7 HATA, hepsi 50–56. gün dosyalarında; 6. hafta dosyalarında 0. Uyarı sayısı değişmedi (278).
+- Değişen dosyalar: gun-37, gun-38, gun-40, gun-41 (biçim korunarak yazıldı, geçerli JSON).
+
+### Kalan şüpheler
+1. 38. gün s8 **Meine Freundin** (bir kadının ağzından): s2'deki **eine Freundin**'e dönüyor, "arkadaşım" anlamı açık. "Sevgili" okuması mümkün ama bağlamda zayıf; okur isterse **Sie ist dann mit dem Hund gekommen.** seçeneği var (ama **sie** s7'deki **die Straße**'ye de dönebilir, A1 için bulanık).
+2. h1 sahnesinde konuşan etiketi **eine Kollegin** (serbest metin; **eine Frau**, **ein Mann** gibi). Arayüzde nasıl göründüğü ekran sınamasında bakılmalı.
+3. 36–40. günlerde Derya'nın üç farklı adsız arkadaş anışı var (pasta, hediye, Münih). Aynı kişi de olabilir; WORLD'e yazılmadı, yazılmamalı.
+
+`review` alanları bütün dosyalarda `draft` kaldı.
+
+**Karar: P0-1 KAPANDI** (okur fark turu sırada: 18 Türkçe alan).
+
+### Okur fark turu dönüşü (İÇ-15)
+Okur fark turu (docs/v2/reviews/okur/ic5-hafta-06.md, "Fark turu (İÇ-15, #238)"): 45 alan, 44 GEÇTİ, 1 GERİ.
+- gun-39 · m1:39:s3 · `why_tr`: «Gelmek geçmişte **ist** ile kurulur: …» → okurun önerisi aynen: «Otobüs için **ist** gelir: **ist spät gekommen**, geç geldi.» (genel kural gibi okunuyordu; ben için **bin**). Okur yalnız bu alanı yeniden okur.
+- m1:38:v1 s8 **Meine Freundin**: okur "bir arkadaşım" diye anlıyor; değişiklik yok.

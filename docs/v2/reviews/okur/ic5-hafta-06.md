@@ -1225,3 +1225,100 @@ GEÇTİ satırlarında kendi sözlerim yazılmadı: anlattığım şey açıklam
 | `gr:a1-08:t4.h_tr` | Ne zamandan beri? seit, vor, für | GEÇTİ |
 | `gr:a1-08:t4.tr` | **seit** ne zamandan beri demektir ve iş hâlâ sürüyor. **Ich wohne seit einem Jahr hier**. Bir yıldır burada oturuyorum. Burada fiil bugünkü biçimde kalır. **vor** önce demektir ve sözün başına gelir. **vor einer Woche** bir hafta önce demektir. **für** bir süre için demektir: **für zwei Wochen**. | **GERİ** (anlam örtüşmüyor: seit ne zamandan beri değil) |
 | `gr:a1-08:t4.table.head` | (boş) · seit (-dır) · vor (… önce) · für (… süreliğine) | **GERİ** (sembol: `…`) |
+
+## Fark turu (İÇ-15, #238)
+
+Tarih: 2026-11-23 · okur (OD-9.3) · inceleme P1-4 · taş: M1
+
+Kapsam: yalnız 1. okur turundan sonra yeni ya da değişen Türkçe alanlar. Üç kaynak:
+1. `docs/v2/reviews/ic5-hafta-06.md` · "İnceleme dönüşü (İÇ-10, #238 1. tur)" · "Okur fark turu için değişen Türkçe alanlar" (24 satır).
+2. Aynı dosya · "P0-1 dönüşü (İÇ-15, #238)" listesi (18 alan).
+3. `dn-06.json` · `dn:kelime-ailesi-1.tr`, `dn:yeniden-anlatma.tr` ve `grammar.json` · `gr:a1-07:t3.tr`.
+
+Yöntem: alanlar bugünkü dosyalardan okundu; her biri Almanca satırla, sesli metinle ve doğru cevapla karşılaştırıldı. git komutu çalıştırılmadı (okur kuralı). Fark, dilbilimci raporundaki önce/sonra tablolarından alındı.
+Bir şık grubunu (aynı sorunun seçenekleri) tek satır saydım.
+
+Yer notu: 1. listede "m1:40:h1 kalıp `tr` ve görev cümlesi `tr` (hava)" yazıyor. Hava kalıbı ve cümlesi dosyada `m1:40:h2` içinde (`kaliplar[0]`, `gorev_cumleleri[7]`). Aşağıda doğru yoluyla okundu.
+
+### 1. İÇ-10 1. tur dönüşü
+
+| # | öğe kimliği | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|---|
+| F1 | gun-36 · m1:36:a2 · c5 | `tr` | Lütfen mutfağa gelin. | Şef herkesi mutfağa çağırıyor. | GEÇTİ | |
+| F2 | gun-38 · m1:38:a1 · c4 | `tr` | Bir sonraki metro beş dakika sonra geliyor. | Sıradaki metro beş dakikaya burada. | GEÇTİ | |
+| F3 | gun-38 · m1:38:a1 · ayrinti[1] | `q_tr` | Bir sonraki metro ne zaman geliyor? | Sıradaki metro kaç dakika sonra gelir, diye soruyor. | GEÇTİ | |
+| F4 | gun-38 · m1:38:a1 · ayrinti[1] | `opts` | beş dakika sonra / bir saat sonra / on beş dakika sonra | Üç süre var, doğrusu beş dakika. | GEÇTİ | |
+| F5 | gun-38 · m1:38:a2 · c2 | `tr` | Cuma günü kızımı ziyaret ediyorum. | Frau Brandl cuma kızına gidiyor. | GEÇTİ | |
+| F6 | gun-38 · m1:38:a2 · ana_fikir | `opts[0]` | Hafta sonu kızını ziyaret ediyor, haber veriyor | Hafta sonu kızında olacak, bunu bana bildiriyor. | GEÇTİ | Mesaj "cuma"dan "pazartesi"ye kadar diyor, "hafta sonu" ana fikir için yeterli. |
+| F7 | gun-39 · m1:39:v1 · s6 | `tr` | 1970 yılında evde kaloriferimiz yoktu. | 1970'te evde ısıtma yoktu. | GEÇTİ | |
+| F8 | gun-39 · m1:39:v1 · s8 | `tr` | Kışın mutfaktaydık. | Kışın mutfakta otururduk. | GEÇTİ | Pichler "neyiniz vardı" diye soruyor, cevap "mutfaktaydık". Dolaylı ama sahne notu (mutfak kapısını gösteriyor) bağı kuruyor. |
+| F9 | gun-39 · m1:39:v1 · ayrinti[1] | `q_tr` | Eskiden kışın neredeydiler? | Eskiden kışın evin neresinde dururlardı? | GEÇTİ | |
+| F10 | gun-39 · gun_sinavi · m1:39:s3 | `why_tr` | Gelmek geçmişte **ist** ile kurulur: **ist spät gekommen**, geç geldi. | Geçmişte "geldi" derken hep **ist** kullanırım. | **GERİ** | İfadenin kendisini değil, yanlış bir genel kuralı anlatıyor. **ist** yalnız otobüs, o için doğru. Ben için **bin**: aynı hafta g3 "Gelmekte **bin** gelir" diyor, `gr:a2-01:t1` de **Ich bin**. Okuyunca **Ich ist gekommen** kurabilirim. |
+| F11 | gun-40 · m1:40:h2 · kaliplar[0] | `tr` | Hava nasıl? – Yağmur yağıyor. – Hava sıcak. – Hava … derece. | Havayı sorma ve söyleme yolları, sıcak da var. | GEÇTİ | Kalıp satırı (1. turda sayılmayan tür). `…` sayının yeri, kalıpta beklenen yer tutucu. Değişen kelime "sıcak" açık. |
+| F12 | gun-40 · m1:40:h2 · gorev_cumleleri[7] | `tr` | Hava sıcak. Dışarıda ayakta kahve içiyoruz. | Hava ılık, dışarıda ayakta kahve içiyoruz. | GEÇTİ | |
+| F13 | gun-40 · m1:40:v1 · s2 | `tr` | Evet, maalesef. Ama bugün hava hâlâ sıcak. | Hafta sonu yağmur var ama bugün daha sıcak. | GEÇTİ | |
+| F14 | gun-40 · m1:40:a1 · c2 | `tr` | Bugün hava sıcak ve güzel. | Bugün hava güzel ve sıcak. | GEÇTİ | |
+| F15 | gun-40 · m1:40:a1 · c5 | `tr` | Ama artık o kadar sıcak değil. | Pazartesi güzel ama daha serin. | GEÇTİ | |
+| F16 | gun-40 · m1:40:a1 · ayrinti[0] | `opts` | sıcak ve güzel / kötü / yağmurlu | Bugünkü hava için üç seçenek, doğrusu sıcak ve güzel. | GEÇTİ | |
+| F17 | gun-40 · prova | `durum_tr` | Birkaç gün sonra, yağmurlu bir gün. Saat üçte aile hekiminde randevun var ama otobüs gelmiyor. Frau Huber'i ara. | Başka bir gün, yağmur yağıyor. Saat üçte doktorum var, otobüs yok. Muayenehaneyi arayacağım. | GEÇTİ | Üç cümle tek bir durumu anlatıyor, hepsi 14 kelimenin altında. |
+| F18 | gun-41 · m1:41:h2 · gorev_cumleleri[4] | `tr` | Kursta hepimiz birbirimize sen diyoruz. | Kursta herkes birbirine "sen" diye hitap ediyor. | GEÇTİ | |
+| F19 | gun-41 · m1:41:a2 · c3 | `tr` | Çarşambaya kadar işe gelmiyor. | Tobi çarşambaya kadar yok. | GEÇTİ | |
+| F20 | gun-41 · m1:41:a2 · c4 | `tr` | Bu hafta işi onun yerine Aksoy Hanım yapıyor. | Bu hafta Tobi'nin işini Derya yapıyor. | GEÇTİ | |
+| F21 | gun-42 · m1:42:h1 · gorev_cumleleri[4] | `tr` | Perşembeden beri kalorifer yine çalışıyor. Süper! | Kalorifer perşembe düzeldi, hâlâ çalışıyor. | GEÇTİ | |
+| F22 | gun-42 · m1:42:a1 · c3 | `tr` | Pazar günü hava sıcaktı. | Pazar hava sıcaktı. | GEÇTİ | |
+| F23 | gun-42 · m1:42:a1 · ayrinti[0] | `opts` | kötü / sıcak / çok güzel | Cumartesinin havası için üç seçenek, doğrusu kötü. | GEÇTİ | |
+| F24 | gun-42 · m1:42:a1:e1 | `opts[2]` | Hayır, bugün yirmi derece. | Ceket gerekmez, bugün yirmi derece, diye cevap veriyorum. | GEÇTİ | Çeldirici. Radyo on iki diyor, yanlış olduğu açık. |
+
+### 2. P0-1 dönüşü (18 alan)
+
+| # | öğe kimliği | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|---|
+| F25 | gun-37 · m1:37:a1 · c2 | `tr` | Bir kız arkadaşım için bir hediyeye ihtiyacım var. | Derya bir arkadaşına hediye arıyor. | GEÇTİ | Bir kadının ağzından "bir kız arkadaşım" sıradan arkadaş demek. "bir" bunu daha da açık yapıyor. |
+| F26 | gun-37 · m1:37:a1 · c3 | `tr` | Cuma günü onun doğum günü. | O arkadaşın doğum günü cuma. | GEÇTİ | |
+| F27 | gun-37 · m1:37:a1 · ayrinti[0] | `opts[0]` | bir arkadaşı için | Hediye Derya'nın bir arkadaşı için. | GEÇTİ | |
+| F28 | gun-37 · m1:37:a1:e1 | `opts[1]` | Cuma günü Derya'nın arkadaşını ara. | Cuma Derya'nın arkadaşına telefon et. | GEÇTİ | Çeldirici, anlaşılıyor. |
+| F29 | gun-37 · okuma_yazma | `metin_tr` | … Onu bir kız arkadaşım için aldım! … | Derya siyah kazağı bir arkadaşına aldı. | GEÇTİ | Yalnız değişen cümle okundu. |
+| F30 | gun-37 · m1:37:o1 | `opts[0]` | Bir arkadaşına kazak aldığını ve seni beklediğini | Derya arkadaşına kazak aldı, beni dükkâna çağırıyor. | GEÇTİ | "seni beklediğini" metindeki "Sen de geliyor musun?" ile örtüşüyor. |
+| F31 | gun-38 · m1:38:h1 | `title_tr` | Hafta sonu aile yanında | Hafta sonu ailenin yanına gitmek. | GEÇTİ | |
+| F32 | gun-38 · m1:38:h1 · sahne | `ortam_tr` | Çarşamba molası. Başka bölümden bir iş arkadaşı pazar gününü anlatıyor. | Molada başka bölümden bir kadın pazarını anlatıyor. | GEÇTİ | Not (karar değil): konuşan etiketi Almanca **eine Kollegin**. A2 okur bunu "bir iş arkadaşı" diye tanır. Ekranda nasıl göründüğüne bakılmadı. |
+| F33 | gun-38 · m1:38:h1 · sahne soru | `q_tr` | İş arkadaşının anne babasının yanında başka kim vardı? | Kadın annesiyle babasındaydı, orada başka kim vardı? | GEÇTİ | İki "-nın" arka arkaya biraz ağır ama tek okumada çözülüyor. |
+| F34 | gun-38 · m1:38:h2 · sahne | `ortam_tr` | Şimdi Derya anlatıyor, ellerini açıp gülüyor. | Sıra Derya'da, gülerek anlatıyor. | GEÇTİ | |
+| F35 | gun-38 · m1:38:v1 · s2 | `tr` | Münih'te bir kız arkadaşımı ziyaret ettim. Birlikte yemek yedik. | Derya Münih'te bir arkadaşına gitti, beraber yemek yediler. | GEÇTİ | |
+| F36 | gun-38 · m1:38:v1 · s6 | `tr` | Gerçekten mi? Münih'in yabancısı mısın? | Tobi gülüyor: Münih'i bilmiyor musun? | GEÇTİ | h2'de öğretilen "buranın yabancısıyım" ile aynı söz. |
+| F37 | gun-38 · m1:38:v1 · s8 | `tr` | Sonra arkadaşım köpekle geldi. | Sonra ziyaret ettiği arkadaş köpekle onu almaya geldi. | GEÇTİ | Aşağıdaki "Freundin" notuna bakın. |
+| F38 | gun-38 · m1:38:v1 · ana_fikir | `opts[0]` | Münih'te bir arkadaşını ziyaret etti | Derya Münih'te bir arkadaşına gitti. | GEÇTİ | |
+| F39 | gun-38 · m1:38:v1 · ayrinti[1] | `opts` | Arkadaşı, köpekle / Tobi / Bir taksi | Sonunda gelen: arkadaşı ve köpek. Diğer ikisi yanlış. | GEÇTİ | "Bir taksi" "kim geldi" sorusuna tam uymuyor ama çeldirici olarak hemen eleniyor. |
+| F40 | gun-40 · m1:40:h2 · sahne satır 1 | `tr` | Ne tatlı! Bu senin köpeğin mi? | Fotoğraftaki köpeği beğeniyorum, Derya'nın mı diye soruyorum. | GEÇTİ | |
+| F41 | gun-40 · m1:40:h2 · sahne satır 2 | `tr` | Hayır, bir arkadaşımın. Hava da çok güzeldi, yirmi dereceydi. | Köpek bir arkadaşının. O gün hava güzel ve yirmi dereceydi. | GEÇTİ | 38. gündeki arkadaşın köpeğiyle uyumlu. |
+| F42 | gun-41 · m1:41:a1 · ayrinti[0] | `opts[2]` | eczanede | Tobi cuma eczanedeydi (yanlış şık). | GEÇTİ | |
+
+### 3. Dil noktaları ve dilbilgisi
+
+| # | öğe kimliği | alan | değişen kısım | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|---|
+| F43 | dn-06 · `dn:kelime-ailesi-1` | `tr` | "Birinci parça fiilse sonundaki **en** düşer: **fahren**, **Fahrkarte**." ve "**Bahn** tren ya da raylı yol, …" | İlk kelime fahren gibi bir eylemse, sonundaki en atılır: Fahrkarte. Bahn tren ya da ray demek. | GEÇTİ | Tablodaki iki satırı (fahren, waschen) doğru açıklıyor. "fiil" 1. turdaki kararımla GERİ nedeni değil. "raylı yol" ile Almanca **hat** karışması kalktı. |
+| F44 | dn-06 · `dn:yeniden-anlatma` | `tr` | "**wir** yerine adları söylersin, **sind** aynı kalır." | "Biz" diyen kişileri adlarıyla söylerim, sind değişmez. | GEÇTİ | Tablonun son satırı (**Tobi und Derya sind …**) bunu gösteriyor. Tobi'nin "wir"inin Derya'yı içerdiğini okur kendisi varsayıyor. Küçük bir soru işareti ama anlamı bozmuyor. |
+| F45 | grammar · `gr:a1-07:t3` | `tr` | "**arbeiten** gibi fiillerde sona **et** gelir: **gearbeitet**." | arbeiten'in geçmişi gearbeitet, sona et gelir. | GEÇTİ | 1. turdaki GERİ (terim: kök) kapandı, cümle 1. turdaki öneriyle aynı. Not: "gibi" hangi fiillerin benzediğini söylemiyor. Bu haftanın tek örneği arbeiten olduğu için engel değil. |
+
+`dn:yeniden-anlatma` tablosunun değişen son satırı iki sütunda da Almanca, Türkçe alan değil; sayılmadı.
+
+### Açık soru: m1:38:v1 s8 **Meine Freundin ist dann mit dem Hund gekommen.**
+
+- Türkçesini okuyan öğrenci "sevgilim" diye anlamaz, "bir arkadaşım" diye anlar. Türkçe satırda "kız" yok, yalnız "arkadaşım" var. Türkçede bu düz bir arkadaş sözü.
+- Hangi arkadaş olduğu da açık: s2 "Münih'te bir kız arkadaşımı ziyaret ettim" diyor. s8'deki "arkadaşım" o kişiye dönüyor ("köpekle onu almaya geldi").
+- s2'deki "bir kız arkadaşım" bile bir kadının ağzından Türkçede "sevgili" çağrıştırmıyor. Bu çağrışım daha çok bir erkek "kız arkadaşım" deyince doğar.
+- **Sie ist dann …** seçeneğine okur açısından gerek yok. Türkçe satır şimdiki hâliyle açık. Dilbilimcinin dediği gibi **sie** s7'deki **die Straße**'ye de dönebilir, bu da daha bulanık olur.
+- Bilgi notu (karar değil, dilbilimci için): öğrenci bu cümleyi gölge ve d3'te kendi ağzıyla kuruyor. Öğrenci erkekse ve bir kadın arkadaşı için **meine Freundin** derse Almanca dinleyen "sevgili" anlayabilir. Bu, Türkçe açıklamanın değil Almanca kullanımın sorusu. Okur ölçütünü etkilemiyor.
+
+### Fark turu sayıları
+
+- Okunan: **45** (1. liste 24 · 2. liste 18 · dn/dilbilgisi 3)
+- GEÇTİ: **44**
+- GERİ: **1**
+
+GERİ:
+- `content/v2/m1/gun-39.json` · `gun_sinavi.maddeler[m1:39:s3].why_tr` · «Gelmek geçmişte **ist** ile kurulur: **ist spät gekommen**, geç geldi.» · **Neden:** genel kural gibi okunuyor, ama yalnız otobüs için doğru (ben için **bin**). Aynı haftanın g3 açıklamasıyla çelişiyor. · **Öneri:** Otobüs için **ist** gelir: **ist spät gekommen**, geç geldi.
+
+Yan gözlem (kapsam dışı, karar değil): 1. turun 28 GERİ alanından bir kısmına bugünkü dosyalarda baktım (`can_do.tr` 36/39/40, `goal_tr` 38, `kontrol_tr[1]` 38/40, 41 a2 `ayrinti[1].q_tr`, 42 `prova.title_tr`, 42 s11 `why_tr`, `gr:a1-08:t4`). Hepsi 1. turdaki öneri yönünde düzelmiş. Açıklama alanlarında `…` kalmamış.
+
+**Karar (OD-9.4):** `gun-39.json` bu fark turunda tek GERİ yüzünden "reviewed" sayılamaz. Bu turda okunan alanlara göre `gun-36`, `gun-37`, `gun-38`, `gun-40`, `gun-41`, `gun-42`, `dn-06` ve `grammar.json` (`gr:a1-07:t3`) için okur engeli kalmadı. F10 düzelince yalnız o alan yeniden okunur.
