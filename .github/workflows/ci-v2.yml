@@ -127,6 +127,8 @@ jobs:
         run: cd tests/e2e && python v2_sekme.py --shots /tmp/shots
       - name: "Köy (PM-084 md. 4, Hedef 3): dükkân ızgarası, kilitli dükkânlar, gerçek sayılar, Telefonun kartı, eski Öğren girişleri ≤ 2 dokunuş"
         run: cd tests/e2e && python v2_koy.py --shots /tmp/shots
+      - name: "Ben (PM-084 md. 5, Hedef 3): Ne kazandım, kanıttan noktalar, bu hafta, çalışma düzenim, ayarlar"
+        run: cd tests/e2e && python v2_ben.py --shots /tmp/shots
       - name: "Seçilmiş açık fotoğraf (#58 B12 3. parça): kartta atıfla, kayıt yoksa alan yok"
         run: cd tests/e2e && python v2_foto.py
       - name: "Ses ve mikrofon (#58 B15 1. adım, PM-064): karaktere göre ses, Yavaş yalnızca hız, mikrofon yolu ve Türkçe hata türleri"
