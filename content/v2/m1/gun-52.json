@@ -95,7 +95,7 @@
           "k": "guided_response",
           "situation_tr": "Sen de Luka'dasın, saçın kesildi. Luka nakit istiyor. Sende nakit var.",
           "prompt_de": "Das macht zwanzig Euro. Nur Bargeld, bitte.",
-          "accepted": ["Kein Problem, ich habe Bargeld.", "Okay, ich habe Bargeld. Hier, bitte.", "Kein Problem. Hier sind zwanzig Euro.", "Ja, ich habe Bargeld.", "Hier, bitte. Zwanzig Euro.", "Kein Problem, hier, bitte."],
+          "accepted": ["Kein Problem, ich habe Bargeld.", "Okay, ich habe Bargeld. Hier, bitte.", "Kein Problem. Hier sind zwanzig Euro.", "Ja, ich habe Bargeld.", "Hier, bitte. Zwanzig Euro.", "Kein Problem, hier, bitte.", "Hier sind zwanzig Euro.", "Kein Problem, ich habe Bargeld. Hier, bitte.", "Okay, hier, bitte."],
           "why_tr": "Nakdin varsa **Ich habe Bargeld** dersin."
         }
       }
@@ -137,7 +137,7 @@
             "k": "guided_response",
             "situation_tr": "Komşun duyuruyu kaçırmış. Maçın gününü ve saatini söyle.",
             "prompt_de": "Wann spielt die Mannschaft?",
-            "accepted": ["Am Samstag um drei Uhr.", "Die Mannschaft spielt am Samstag um drei Uhr.", "Am Samstag um drei.", "Samstag um drei Uhr.", "Am Samstag, um drei Uhr.", "Sie spielt am Samstag um drei."],
+            "accepted": ["Am Samstag um drei Uhr.", "Die Mannschaft spielt am Samstag um drei Uhr.", "Am Samstag um drei.", "Samstag um drei Uhr.", "Am Samstag, um drei Uhr.", "Sie spielt am Samstag um drei.", "Am Samstag um fünfzehn Uhr.", "Die Mannschaft spielt am Samstag um drei.", "Sie spielt am Samstag um drei Uhr.", "Samstag um drei.", "Die Mannschaft spielt Samstag um drei Uhr."],
             "why_tr": "Önce günü, sonra saati söyle: **am Samstag um drei Uhr**."
           }
         }
@@ -180,7 +180,7 @@
             "k": "guided_response",
             "situation_tr": "Frau Brandl'ın kapısındasın. Parayı verirken söyle.",
             "prompt_de": "Ach, da sind Sie ja!",
-            "accepted": ["Hier sind zwanzig Euro, Frau Brandl.", "Hallo, Frau Brandl! Hier sind zwanzig Euro.", "Hier, bitte. Zwanzig Euro.", "Bitte, Frau Brandl, zwanzig Euro.", "Hier sind zwanzig Euro Bargeld.", "Kein Problem, hier sind zwanzig Euro."],
+            "accepted": ["Hier sind zwanzig Euro, Frau Brandl.", "Hallo, Frau Brandl! Hier sind zwanzig Euro.", "Hier, bitte. Zwanzig Euro.", "Bitte, Frau Brandl, zwanzig Euro.", "Hier sind zwanzig Euro Bargeld.", "Kein Problem, hier sind zwanzig Euro.", "Hier sind zwanzig Euro.", "Hier sind die zwanzig Euro.", "Hier sind die zwanzig Euro, Frau Brandl.", "Hier, zwanzig Euro.", "Guten Tag, Frau Brandl! Hier sind zwanzig Euro.", "Hier, bitte. Zwanzig Euro, Frau Brandl.", "Hier, bitte, Frau Brandl. Zwanzig Euro.", "Hallo, Frau Brandl! Hier sind die zwanzig Euro.", "Hier, bitte."],
             "why_tr": "Parayı uzatırken **Hier sind zwanzig Euro** dersin."
           }
         }
@@ -207,10 +207,10 @@
         "tr": "Merhaba! Cumartesi vaktin var mı?",
         "secenekler": [
           { "de": "Ja, am Samstag habe ich nichts vor.", "tr": "Evet, cumartesi bir planım yok.",
-            "accepted": ["Ja, am Samstag habe ich nichts vor.", "Ja, am Samstag habe ich Zeit.", "Ja, ich habe am Samstag nichts vor.", "Ja, Samstag habe ich nichts vor."],
+            "accepted": ["Ja, am Samstag habe ich nichts vor.", "Ja, am Samstag habe ich Zeit.", "Ja, ich habe am Samstag nichts vor.", "Ja, Samstag habe ich nichts vor.", "Ja, ich habe Zeit.", "Ja, ich habe am Samstag Zeit.", "Ja, ich habe nichts vor.", "Ja, Samstag habe ich Zeit."],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Açık bir cevap. Basti planını anlatacak." },
           { "de": "Warum? Was ist am Samstag?", "tr": "Neden? Cumartesi ne var?",
-            "accepted": ["Warum? Was ist am Samstag?", "Warum? Was ist denn am Samstag?", "Was ist am Samstag?"],
+            "accepted": ["Warum? Was ist am Samstag?", "Warum? Was ist denn am Samstag?", "Was ist am Samstag?", "Warum?"],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Önce sormak da doğal. Basti anlatacak." }
         ]
       },
@@ -220,10 +220,10 @@
         "tr": "Takımım üçte oynuyor. Sen de geliyor musun?",
         "secenekler": [
           { "de": "Ja, klar! Was kostet die Karte?", "tr": "Evet, tabii! Bilet ne kadar?",
-            "accepted": ["Ja, klar! Was kostet die Karte?", "Ja, klar! Wie viel kostet die Karte?", "Klar! Was kostet die Karte?", "Ja! Was kostet das?"],
+            "accepted": ["Ja, klar! Was kostet die Karte?", "Ja, klar! Wie viel kostet die Karte?", "Klar! Was kostet die Karte?", "Ja! Was kostet das?", "Ja, gern! Was kostet die Karte?", "Ja, ich komme mit. Was kostet die Karte?", "Klar, ich komme mit! Was kostet die Karte?", "Ja, klar! Was kostet das?", "Ja, klar! Wie viel kostet das?", "Ja, klar. Was kostet eine Karte?", "Ja, ich komme. Was kostet die Karte?"],
             "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Kabul ettin ve önemli bir şey sordun: fiyat." },
           { "de": "Um drei? Da gehe ich wandern.", "tr": "Üçte mi? O saatte doğa yürüyüşüne gidiyorum.",
-            "accepted": ["Um drei? Da gehe ich wandern.", "Um drei gehe ich wandern.", "Leider nicht, da gehe ich wandern."],
+            "accepted": ["Um drei? Da gehe ich wandern.", "Um drei gehe ich wandern.", "Leider nicht, da gehe ich wandern.", "Am Samstag gehe ich wandern.", "Um drei? Leider gehe ich da wandern."],
             "sonraki": "n2b", "uygun": true, "geri_bildirim_tr": "Kibarca hayır dedin ve nedenini söyledin." },
           { "de": "Nein.", "tr": "Hayır.",
             "accepted": ["Nein.", "Nee.", "Nein, nein."],
@@ -236,7 +236,7 @@
         "tr": "Yazık! Yürüyüşe pazar da gidebilirsin. Cumartesi takımım oynuyor!",
         "secenekler": [
           { "de": "Okay, ich komme mit. Was kostet die Karte?", "tr": "Tamam, geliyorum. Bilet ne kadar?",
-            "accepted": ["Okay, ich komme mit. Was kostet die Karte?", "Okay, ich komme. Was kostet die Karte?", "Gut, ich komme mit. Was kostet die Karte?", "Okay, ich komme mit. Wie viel kostet die Karte?"],
+            "accepted": ["Okay, ich komme mit. Was kostet die Karte?", "Okay, ich komme. Was kostet die Karte?", "Gut, ich komme mit. Was kostet die Karte?", "Okay, ich komme mit. Wie viel kostet die Karte?", "Okay, ich komme mit. Was kostet das?", "Okay! Was kostet die Karte?", "Okay, dann komme ich mit. Was kostet die Karte?", "Gut, ich komme. Was kostet die Karte?", "Okay, ich komme mit. Was kostet eine Karte?"],
             "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Planını değiştirdin, kabul ettin ve fiyatı sordun." }
         ]
       },
@@ -246,7 +246,7 @@
         "tr": "Beş avro. Ama orada sadece nakit geçiyor!",
         "secenekler": [
           { "de": "Kein Problem. Ich hole morgen Geld.", "tr": "Sorun değil. Yarın gidip para çekerim.",
-            "accepted": ["Kein Problem. Ich hole morgen Geld.", "Kein Problem, ich hole morgen Bargeld.", "Okay, ich hole morgen Geld.", "Kein Problem. Ich hole vorher Geld."],
+            "accepted": ["Kein Problem. Ich hole morgen Geld.", "Kein Problem, ich hole morgen Bargeld.", "Okay, ich hole morgen Geld.", "Kein Problem. Ich hole vorher Geld.", "Ich hole morgen Bargeld.", "Kein Problem. Ich hole Bargeld.", "Okay, ich hole Geld."],
             "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Çözümü kendin buldun: **Ich hole morgen Geld**." },
           { "de": "Okay, ich habe Bargeld.", "tr": "Tamam, bende nakit var.",
             "accepted": ["Okay, ich habe Bargeld.", "Kein Problem, ich habe Bargeld.", "Ich habe Bargeld, kein Problem."],
@@ -262,7 +262,7 @@
         "tr": "Süper! Sonra da birlikte sosis yeriz.",
         "secenekler": [
           { "de": "Super! Bis Samstag!", "tr": "Süper! Cumartesi görüşürüz!",
-            "accepted": ["Super! Bis Samstag!", "Gute Idee! Bis Samstag!", "Super Idee! Bis Samstag!", "Gern! Bis Samstag!"],
+            "accepted": ["Super! Bis Samstag!", "Gute Idee! Bis Samstag!", "Super Idee! Bis Samstag!", "Gern! Bis Samstag!", "Super! Bis Samstag um drei!", "Super!"],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Sıcak bir kapanış." }
         ]
       },
@@ -280,7 +280,7 @@
       { "id": "m1:52:o2", "kind": "detail", "q_tr": "Hafta sonu ne yapıyor?", "opts": ["Doğa yürüyüşüne gidiyor", "Maça gidiyor", "Çalışıyor"], "ans": 0, "kanit": [2] },
       { "id": "m1:52:o3", "kind": "detail", "q_tr": "Bir şey bozulursa ne yapmalısın?", "opts": ["Ona mesaj yazmalısın", "Frau Brandl'ı aramalısın", "Hiçbir şey, pazartesi beklemelisin"], "ans": 0, "kanit": [4, 5] },
       { "id": "m1:52:o4", "k": "guided_response", "situation_tr": "Pazar günü banyoda bir şey bozuldu. Herr Pichler'e kısa bir mesaj yaz.", "prompt_de": "Ist etwas kaputt?",
-        "accepted": ["Ja, im Bad ist etwas kaputt.", "Ja, das Bad ist kaputt.", "Hallo Herr Pichler, im Bad ist etwas kaputt.", "Im Bad ist etwas kaputt, Herr Pichler.", "Ja, bei mir im Bad ist etwas kaputt."],
+        "accepted": ["Ja, im Bad ist etwas kaputt.", "Ja, das Bad ist kaputt.", "Hallo Herr Pichler, im Bad ist etwas kaputt.", "Im Bad ist etwas kaputt, Herr Pichler.", "Ja, bei mir im Bad ist etwas kaputt.", "Guten Tag, Herr Pichler, im Bad ist etwas kaputt.", "Ja, etwas ist im Bad kaputt.", "Ja, im Bad ist was kaputt.", "Ja, Herr Pichler, im Bad ist etwas kaputt.", "Ja, im Bad."],
         "why_tr": "Bozuk bir şey için **kaputt** dersin, yeri de **im Bad** diye söylersin." }
     ]
   },
@@ -298,19 +298,19 @@
       { "id": "m1:52:s5", "k": "tr_de", "tr": "Yanımda nakit yok.",
         "accepted": ["Ich habe kein Bargeld.", "Ich habe kein Bargeld dabei.", "Ich habe kein Bargeld bei mir.", "Ich hab kein Bargeld."], "why_tr": "Olmayan şey için **kein** dersin: **kein Bargeld**." },
       { "id": "m1:52:s6", "k": "tr_de", "tr": "Pazar günü doğa yürüyüşü yapmak ister misin?",
-        "accepted": ["Möchtest du am Sonntag wandern?", "Möchtest du am Sonntag wandern gehen?", "Willst du am Sonntag wandern?", "Möchtest du Sonntag wandern?"], "why_tr": "**Möchtest du** ile teklif edersin ve **wandern** en sona gelir." },
+        "accepted": ["Möchtest du am Sonntag wandern?", "Möchtest du am Sonntag wandern gehen?", "Willst du am Sonntag wandern?", "Möchtest du Sonntag wandern?", "Willst du am Sonntag wandern gehen?", "Möchtest du Sonntag wandern gehen?"], "why_tr": "**Möchtest du** ile teklif edersin ve **wandern** en sona gelir." },
       { "id": "m1:52:s7", "k": "tr_de", "tr": "Takım bugün oynuyor.",
         "accepted": ["Die Mannschaft spielt heute.", "Heute spielt die Mannschaft.", "Unsere Mannschaft spielt heute."], "why_tr": "**spielt** oynuyor demektir." },
       { "id": "m1:52:s8", "k": "tr_de", "tr": "Bana on avro ödünç verebilir misin?",
         "accepted": ["Kannst du mir zehn Euro leihen?", "Kannst du mir bitte zehn Euro leihen?", "Kannst du mir 10 Euro leihen?", "Kannst du mir zehn Euro borgen?"], "why_tr": "Ödünç isterken **Kannst du mir zehn Euro leihen?** dersin." },
       { "id": "m1:52:s9", "k": "guided_response", "situation_tr": "Kuaförde ödeme sırası. Luka sadece nakit alıyor, sende yok. Yarın ödeyip ödeyemeyeceğini sor.", "prompt_de": "Bei mir nur Bargeld, bitte.",
-        "accepted": ["Ich habe kein Bargeld. Kann ich morgen zahlen?", "Ich habe leider kein Bargeld. Kann ich morgen zahlen?", "Oh, kein Bargeld. Kann ich morgen zahlen?", "Ich habe kein Bargeld. Geht morgen?", "Ich habe kein Bargeld. Ich hole schnell Geld."],
+        "accepted": ["Ich habe kein Bargeld. Kann ich morgen zahlen?", "Ich habe leider kein Bargeld. Kann ich morgen zahlen?", "Oh, kein Bargeld. Kann ich morgen zahlen?", "Ich habe kein Bargeld. Geht morgen?", "Kann ich morgen zahlen?", "Ich habe kein Bargeld. Kann ich morgen bezahlen?", "Ich habe kein Bargeld. Geht es morgen?", "Ich habe kein Bargeld. Kann ich auch morgen zahlen?", "Ich habe nur eine Karte. Kann ich morgen zahlen?", "Leider habe ich kein Bargeld. Kann ich morgen zahlen?", "Kann ich morgen zahlen? Ich habe kein Bargeld."],
         "why_tr": "Önce **Ich habe kein Bargeld** de, sonra **Kann ich morgen zahlen?** diye sor." },
       { "id": "m1:52:s10", "k": "guided_response", "situation_tr": "Komşun hafta sonu planını soruyor. Pazar doğa yürüyüşüne gidiyorsun.", "prompt_de": "Was haben Sie am Wochenende vor?",
-        "accepted": ["Am Sonntag gehe ich wandern.", "Ich gehe am Sonntag wandern.", "Am Sonntag wandere ich.", "Am Sonntag möchte ich wandern.", "Sonntag gehe ich wandern."],
+        "accepted": ["Am Sonntag gehe ich wandern.", "Ich gehe am Sonntag wandern.", "Am Sonntag wandere ich.", "Am Sonntag möchte ich wandern.", "Sonntag gehe ich wandern.", "Am Sonntag will ich wandern."],
         "why_tr": "Planı söylerken **gehe ich wandern** dersin." },
       { "id": "m1:52:s11", "k": "guided_response", "situation_tr": "Basti seni cumartesi maçına çağırıyor. Kabul et ve saatini sor.", "prompt_de": "Meine Mannschaft spielt am Samstag. Kommst du?",
-        "accepted": ["Ja, klar! Um wie viel Uhr?", "Ja, ich komme! Um wie viel Uhr?", "Klar! Wann spielt die Mannschaft?", "Ja, gern! Um wie viel Uhr?", "Ja, ich komme mit. Wann?"],
+        "accepted": ["Ja, klar! Um wie viel Uhr?", "Ja, ich komme! Um wie viel Uhr?", "Klar! Wann spielt die Mannschaft?", "Ja, gern! Um wie viel Uhr?", "Ja, ich komme mit. Wann?", "Ja, gern! Wann?", "Ja, klar! Wann?", "Ja, ich komme mit. Um wie viel Uhr?", "Ja! Um wie viel Uhr?", "Ja, ich komme gern. Um wie viel Uhr?", "Ja, klar, ich komme. Um wie viel Uhr?", "Ja, gern. Wann spielt die Mannschaft?", "Ja, ich komme. Wann?", "Ja, klar! Wann spielt deine Mannschaft?", "Ja, klar! Um wie viel Uhr spielt die Mannschaft?", "Ja, klar. Wann spielt ihr?", "Ja, ich komme mit. Wann spielt die Mannschaft?"],
         "why_tr": "Kabul et, sonra saati **Um wie viel Uhr?** ile sor." }
     ],
     "sesli": ["m1:52:s9", "m1:52:s10"],

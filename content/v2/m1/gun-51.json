@@ -101,7 +101,7 @@
           "k": "guided_response",
           "situation_tr": "Pazarda sen de alışveriş yapıyorsun. Satıcı peynirin bittiğini söylüyor. O zaman elma al.",
           "prompt_de": "Käse haben wir leider nicht mehr.",
-          "accepted": ["Dann nehme ich Äpfel.", "Okay, dann nehme ich Äpfel.", "Dann Äpfel, bitte.", "Gut, dann nehme ich Äpfel, bitte.", "Schade. Dann nehme ich Äpfel.", "Dann nehme ich ein Kilo Äpfel."],
+          "accepted": ["Dann nehme ich Äpfel.", "Okay, dann nehme ich Äpfel.", "Dann Äpfel, bitte.", "Gut, dann nehme ich Äpfel, bitte.", "Schade. Dann nehme ich Äpfel.", "Dann nehme ich ein Kilo Äpfel.", "Dann möchte ich Äpfel.", "Dann nehme ich die Äpfel.", "Dann bitte Äpfel.", "Dann Äpfel.", "Ich nehme Äpfel.", "Schade. Dann Äpfel, bitte.", "Äpfel, bitte.", "Dann hätte ich gern Äpfel."],
           "why_tr": "İstediğin şey yoksa **Dann nehme ich Äpfel** gibi başka bir şey seç."
         }
       }
@@ -143,7 +143,7 @@
             "k": "guided_response",
             "situation_tr": "Tobi telefon ediyor, otobüsü soruyor. Ne zaman geldiğini söyle.",
             "prompt_de": "Wo ist der Bus?",
-            "accepted": ["Der Bus hat Verspätung. Er kommt um neun Uhr fünfundzwanzig.", "Er hat Verspätung. Er kommt um neun Uhr fünfundzwanzig.", "Der Bus hat fünfundzwanzig Minuten Verspätung.", "Er kommt um neun Uhr fünfundzwanzig.", "Der Bus kommt um neun Uhr fünfundzwanzig.", "Der Bus hat Verspätung, er kommt um 9 Uhr 25."],
+            "accepted": ["Der Bus hat Verspätung. Er kommt um neun Uhr fünfundzwanzig.", "Er hat Verspätung. Er kommt um neun Uhr fünfundzwanzig.", "Der Bus hat fünfundzwanzig Minuten Verspätung.", "Er kommt um neun Uhr fünfundzwanzig.", "Der Bus kommt um neun Uhr fünfundzwanzig.", "Der Bus hat Verspätung, er kommt um 9 Uhr 25.", "Der Bus kommt erst um neun Uhr fünfundzwanzig.", "Er kommt erst um neun Uhr fünfundzwanzig.", "Der Bus hat Verspätung. Er kommt erst um neun Uhr fünfundzwanzig.", "Um neun Uhr fünfundzwanzig.", "Der Bus hat Verspätung. Der Bus kommt um neun Uhr fünfundzwanzig.", "Er hat Verspätung und kommt um neun Uhr fünfundzwanzig.", "Der Bus hat fünfundzwanzig Minuten Verspätung. Er kommt um neun Uhr fünfundzwanzig.", "Er hat fünfundzwanzig Minuten Verspätung."],
             "why_tr": "Önce **Der Bus hat Verspätung** de, sonra yeni saati söyle."
           }
         }
@@ -186,7 +186,7 @@
             "k": "guided_response",
             "situation_tr": "Ioana'ya kısa bir sesli mesajla cevap ver: bekliyorsunuz.",
             "prompt_de": "Könnt ihr warten?",
-            "accepted": ["Ja, wir warten.", "Kein Problem, wir warten.", "Ja, klar, wir warten auf dich.", "Klar, wir warten!", "Ja, wir warten am Bahnhof.", "Kein Problem, Ioana. Wir warten."],
+            "accepted": ["Ja, wir warten.", "Kein Problem, wir warten.", "Ja, klar, wir warten auf dich.", "Klar, wir warten!", "Ja, wir warten am Bahnhof.", "Kein Problem, Ioana. Wir warten.", "Ja, wir warten auf dich.", "Kein Problem, wir warten auf dich.", "Ja, klar. Wir warten am Bahnhof."],
             "why_tr": "**wir warten** biz bekliyoruz demektir."
           }
         }
@@ -213,7 +213,7 @@
         "tr": "Günaydın! Ne istersiniz?",
         "secenekler": [
           { "de": "Guten Morgen! Sechs Semmeln, bitte.", "tr": "Günaydın! Altı küçük ekmek, lütfen.",
-            "accepted": ["Guten Morgen! Sechs Semmeln, bitte.", "Guten Morgen, sechs Semmeln, bitte.", "Guten Morgen! Ich möchte sechs Semmeln, bitte.", "Grüß Gott! Sechs Semmeln, bitte."],
+            "accepted": ["Guten Morgen! Sechs Semmeln, bitte.", "Guten Morgen, sechs Semmeln, bitte.", "Guten Morgen! Ich möchte sechs Semmeln, bitte.", "Grüß Gott! Sechs Semmeln, bitte.", "Guten Morgen! Ich hätte gern sechs Semmeln.", "Guten Morgen, Frau Stadler! Sechs Semmeln, bitte.", "Guten Morgen! Ich möchte sechs Semmeln.", "Guten Morgen! Ich nehme sechs Semmeln.", "Guten Tag! Sechs Semmeln, bitte.", "Hallo! Sechs Semmeln, bitte."],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Selam verdin ve ne istediğini kısa söyledin." },
           { "de": "Ich möchte sechs Semmeln. Wir machen einen Ausflug.", "tr": "Altı küçük ekmek istiyorum. Bir gezi yapıyoruz.",
             "accepted": ["Ich möchte sechs Semmeln. Wir machen einen Ausflug.", "Ich möchte bitte sechs Semmeln. Wir machen einen Ausflug.", "Sechs Semmeln, bitte. Wir machen einen Ausflug."],
@@ -229,7 +229,7 @@
         "tr": "Küçük ekmek, tamam. Kaç tane?",
         "secenekler": [
           { "de": "Sechs, bitte.", "tr": "Altı, lütfen.",
-            "accepted": ["Sechs, bitte.", "Sechs Semmeln, bitte.", "Bitte sechs."],
+            "accepted": ["Sechs, bitte.", "Sechs Semmeln, bitte.", "Bitte sechs.", "Sechs Stück, bitte.", "Ich möchte sechs Semmeln, bitte."],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Şimdi oldu. Sayıyı ve **bitte** kelimesini söyledin." }
         ]
       },
@@ -239,10 +239,10 @@
         "tr": "Ah, maalesef sadece dört küçük ekmeğim var.",
         "secenekler": [
           { "de": "Dann nehme ich vier Semmeln und ein Brot.", "tr": "O zaman dört küçük ekmek ve bir ekmek alayım.",
-            "accepted": ["Dann nehme ich vier Semmeln und ein Brot.", "Okay, dann nehme ich vier Semmeln und ein Brot.", "Dann vier Semmeln und ein Brot, bitte.", "Gut, dann nehme ich vier Semmeln und ein Brot."],
+            "accepted": ["Dann nehme ich vier Semmeln und ein Brot.", "Okay, dann nehme ich vier Semmeln und ein Brot.", "Dann vier Semmeln und ein Brot, bitte.", "Gut, dann nehme ich vier Semmeln und ein Brot.", "Okay, dann vier Semmeln und ein Brot.", "Schade. Dann nehme ich vier Semmeln und ein Brot.", "Dann nehme ich vier und ein Brot.", "Kein Problem. Dann nehme ich vier Semmeln und ein Brot."],
             "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Harika. Eksik olanın yerine başka bir şey seçtin." },
           { "de": "Okay, vier, bitte. Und ein Brot.", "tr": "Tamam, dört, lütfen. Bir de ekmek.",
-            "accepted": ["Okay, vier, bitte. Und ein Brot.", "Gut, dann vier. Und ein Brot, bitte.", "Dann vier, bitte. Und ein Brot."],
+            "accepted": ["Okay, vier, bitte. Und ein Brot.", "Gut, dann vier. Und ein Brot, bitte.", "Dann vier, bitte. Und ein Brot.", "Okay, vier Semmeln und ein Brot, bitte.", "Okay, vier. Und ein Brot, bitte.", "Okay, vier Semmeln und ein Brot."],
             "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Kısa ve açık. Frau Stadler hemen hazırlıyor." },
           { "de": "Nein, sechs Semmeln!", "tr": "Hayır, altı küçük ekmek!",
             "accepted": ["Nein, sechs Semmeln!", "Ich möchte sechs Semmeln!", "Nein, sechs, bitte!"],
@@ -255,7 +255,7 @@
         "tr": "Evet, hepsi altı avro on.",
         "secenekler": [
           { "de": "Sechs Euro zehn? Hier, bitte.", "tr": "Altı avro on mu? Buyurun.",
-            "accepted": ["Sechs Euro zehn? Hier, bitte.", "Sechs Euro zehn, hier bitte.", "Hier, bitte. Sechs Euro zehn.", "Okay, sechs Euro zehn. Hier, bitte."],
+            "accepted": ["Sechs Euro zehn? Hier, bitte.", "Sechs Euro zehn, hier bitte.", "Hier, bitte. Sechs Euro zehn.", "Okay, sechs Euro zehn. Hier, bitte.", "Hier sind sechs Euro zehn.", "Sechs Euro zehn? Bitte.", "Sechs Euro zehn?"],
             "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Fiyatı tekrar ederek doğruladın." },
           { "de": "Sechzehn Euro? Das ist teuer!", "tr": "On altı avro mu? Bu pahalı!",
             "accepted": ["Sechzehn Euro? Das ist teuer!", "Sechzehn Euro? Das ist aber teuer!", "Sechzehn? Das ist teuer!"],
@@ -268,7 +268,7 @@
         "tr": "Hayır, hayır! On altı değil. Altı avro on!",
         "secenekler": [
           { "de": "Ach so, sechs Euro zehn. Hier, bitte.", "tr": "Ha, altı avro on. Buyurun.",
-            "accepted": ["Ach so, sechs Euro zehn. Hier, bitte.", "Ach so! Hier, bitte.", "Ah, sechs Euro zehn. Hier, bitte."],
+            "accepted": ["Ach so, sechs Euro zehn. Hier, bitte.", "Ach so! Hier, bitte.", "Ah, sechs Euro zehn. Hier, bitte.", "Ach so, sechs Euro zehn.", "Entschuldigung! Sechs Euro zehn. Hier, bitte."],
             "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "İyi toparladın. Doğru fiyatı tekrar ettin." }
         ]
       },
@@ -278,10 +278,10 @@
         "tr": "Teşekkürler! Gezi nereye?",
         "secenekler": [
           { "de": "An den See. Mit dem Bus.", "tr": "Göle. Otobüsle.",
-            "accepted": ["An den See. Mit dem Bus.", "An den See, mit dem Bus.", "Wir fahren mit dem Bus an den See."],
+            "accepted": ["An den See. Mit dem Bus.", "An den See, mit dem Bus.", "Wir fahren mit dem Bus an den See.", "An den See.", "Zum See.", "An den See. Wir fahren mit dem Bus."],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Kısa ve doğal bir cevap." },
           { "de": "Wir fahren an den See.", "tr": "Göle gidiyoruz.",
-            "accepted": ["Wir fahren an den See.", "Wir fahren heute an den See.", "Wir gehen an den See."],
+            "accepted": ["Wir fahren an den See.", "Wir fahren heute an den See.", "Wir gehen an den See.", "Wir fahren zum See.", "Wir machen einen Ausflug an den See.", "Der Ausflug geht an den See."],
             "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Tam bir cümle kurdun." }
         ]
       },
@@ -317,7 +317,7 @@
       { "id": "m1:51:s4", "k": "listen_and_respond", "audio_de": "Ein halbes Kilo Käse, bitte.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
         "accepted": ["Ein halbes Kilo Käse, bitte.", "ein halbes kilo käse bitte", "Ein halbes Kilo Kaese, bitte."], "why_tr": "**ein halbes Kilo** yarım kilo demektir." },
       { "id": "m1:51:s5", "k": "tr_de", "tr": "Gezi için ekmek ve su lazım.",
-        "accepted": ["Für den Ausflug brauchen wir Brot und Wasser.", "Wir brauchen Brot und Wasser für den Ausflug.", "Für den Ausflug brauchen wir Wasser und Brot.", "Für den Ausflug brauche ich Brot und Wasser."], "why_tr": "**brauchen** ihtiyacı olmak demektir." },
+        "accepted": ["Für den Ausflug brauchen wir Brot und Wasser.", "Wir brauchen Brot und Wasser für den Ausflug.", "Für den Ausflug brauchen wir Wasser und Brot.", "Für den Ausflug brauche ich Brot und Wasser.", "Wir brauchen für den Ausflug Brot und Wasser.", "Ich brauche Brot und Wasser für den Ausflug.", "Ich brauche für den Ausflug Brot und Wasser.", "Wir brauchen Wasser und Brot für den Ausflug.", "Für den Ausflug brauche ich Wasser und Brot."], "why_tr": "**brauchen** ihtiyacı olmak demektir." },
       { "id": "m1:51:s6", "k": "tr_de", "tr": "Peynir fazla pahalı.",
         "accepted": ["Der Käse ist zu teuer.", "Käse ist zu teuer.", "Der Käse ist mir zu teuer.", "Der Käse ist echt zu teuer."], "why_tr": "Fazla pahalı derken **zu teuer** dersin." },
       { "id": "m1:51:s7", "k": "tr_de", "tr": "Pazar günü hiçbir planım yok.",
@@ -325,13 +325,13 @@
       { "id": "m1:51:s8", "k": "tr_de", "tr": "Otobüs otuz dakika gecikmeli.",
         "accepted": ["Der Bus hat dreißig Minuten Verspätung.", "Der Bus hat 30 Minuten Verspätung.", "Der Bus hat eine halbe Stunde Verspätung.", "Der Bus hat dreissig Minuten Verspätung."], "why_tr": "Gecikmeyi **hat dreißig Minuten Verspätung** diye söylersin." },
       { "id": "m1:51:s9", "k": "guided_response", "situation_tr": "Pazarda elma kalmamış. O zaman muz al.", "prompt_de": "Äpfel habe ich leider nicht mehr.",
-        "accepted": ["Dann nehme ich Bananen.", "Okay, dann nehme ich Bananen.", "Dann Bananen, bitte.", "Gut, dann nehme ich Bananen, bitte.", "Schade. Dann nehme ich Bananen.", "Dann nehme ich ein Kilo Bananen."],
+        "accepted": ["Dann nehme ich Bananen.", "Okay, dann nehme ich Bananen.", "Dann Bananen, bitte.", "Gut, dann nehme ich Bananen, bitte.", "Schade. Dann nehme ich Bananen.", "Dann nehme ich ein Kilo Bananen.", "Dann möchte ich Bananen.", "Dann nehme ich die Bananen.", "Dann bitte Bananen.", "Dann Bananen.", "Ich nehme Bananen.", "Schade. Dann Bananen, bitte.", "Bananen, bitte."],
         "why_tr": "Başka bir şey seçerken **Dann nehme ich Bananen** dersin." },
       { "id": "m1:51:s10", "k": "guided_response", "situation_tr": "Fiyatı tam duymadın: altı mı, on altı mı? Sor.", "prompt_de": "Das macht sechs Euro zehn.",
-        "accepted": ["Sechs oder sechzehn?", "Wie bitte? Sechs oder sechzehn?", "Sechs Euro zehn oder sechzehn Euro?", "Entschuldigung, sechs oder sechzehn?", "Sechs Euro zehn?", "Sechs oder sechzehn Euro?"],
+        "accepted": ["Sechs oder sechzehn?", "Wie bitte? Sechs oder sechzehn?", "Sechs Euro zehn oder sechzehn Euro?", "Entschuldigung, sechs oder sechzehn?", "Sechs Euro zehn?", "Sechs oder sechzehn Euro?", "Sechs Euro oder sechzehn Euro?", "Sechs Euro zehn oder sechzehn?", "Sechzehn oder sechs?", "Wie bitte? Sechs Euro zehn?", "Wie bitte? Sechs oder sechzehn Euro?", "Sechs Euro oder sechzehn?", "Sechzehn Euro?", "Wie viel? Sechs oder sechzehn?"],
         "why_tr": "Emin değilsen iki sayıyı da söyleyip sor." },
       { "id": "m1:51:s11", "k": "guided_response", "situation_tr": "Pazar tezgâhındasın. Peynirin fiyatını sor ve yarım kilo iste.", "prompt_de": "Guten Tag! Was möchten Sie?",
-        "accepted": ["Was kostet der Käse? Ein halbes Kilo, bitte.", "Was kostet der Käse? Ich möchte ein halbes Kilo.", "Wie viel kostet der Käse? Ein halbes Kilo, bitte.", "Ein halbes Kilo Käse, bitte. Was kostet das?", "Guten Tag! Was kostet der Käse? Ein halbes Kilo, bitte."],
+        "accepted": ["Was kostet der Käse? Ein halbes Kilo, bitte.", "Was kostet der Käse? Ich möchte ein halbes Kilo.", "Wie viel kostet der Käse? Ein halbes Kilo, bitte.", "Ein halbes Kilo Käse, bitte. Was kostet das?", "Guten Tag! Was kostet der Käse? Ein halbes Kilo, bitte.", "Was kostet der Käse? Ein halbes Kilo Käse, bitte.", "Guten Tag! Was kostet der Käse? Ich möchte ein halbes Kilo.", "Was kostet der Käse? Ich nehme ein halbes Kilo.", "Wie viel kostet der Käse? Ich möchte ein halbes Kilo.", "Guten Tag! Wie viel kostet der Käse? Ein halbes Kilo, bitte.", "Was kostet der Käse? Ich möchte ein halbes Kilo Käse.", "Was kostet der Käse? Ein halbes Kilo.", "Guten Tag! Ein halbes Kilo Käse, bitte. Was kostet das?", "Ich möchte ein halbes Kilo Käse. Was kostet das?", "Was kostet der Käse? Ich brauche ein halbes Kilo."],
         "why_tr": "Fiyatı **Was kostet der Käse?** diye sor, miktarı **ein halbes Kilo** diye söyle." }
     ],
     "sesli": ["m1:51:s9", "m1:51:s10"],

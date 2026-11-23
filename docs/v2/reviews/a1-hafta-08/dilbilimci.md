@@ -109,3 +109,51 @@ Kapsam: `gun-50.json` … `gun-54.json` içindeki 10 ses kaydının 10 `ana_fiki
 `sim.sh … 50 gun-5[0-4].json gorulmemis-08.json`: 5 hata, hepsi bilinen `3 kart (4–6)`; 50–54 için "öğretilmemiş", "bilinmeyen", "accepted" uyarısı 0; `dikis.out` 50–54 satırları ihlalsiz.
 
 Sonuç: 3 düzeltme / 40 soru. PM-097 md. 1 açısından KAPANDI.
+
+## Örneklem dönüşü (dilbilimci-ajan, 2026-11-23)
+
+Örneklem GERİ döndü (4/37, `docs/v2/qa/orneklem/a1-hafta-08.md`). Bu ek tam tur değildir: H1–H4 düzeltmesi ve kabul listelerinin hedefli taraması. Değişen alanlar: yalnız `accepted` listeleri ve bir `why_tr` (50 o4). Almanca satır, Türkçe metin, `ans`/`kanit` ve dikteye dokunulmadı.
+
+### H1–H4
+| # | Yer | Önce | Sonra |
+|---|---|---|---|
+| H1 | 50 `o4` | `Ja, um neun geht.` (accepted[0]), `Klar, um neun Uhr geht.`, `Kein Problem, um neun geht.`: özne yok. `why_tr`: `**geht** ile onayla`. | Üçü çıktı. accepted[0] `Ja, um neun geht es.`; yerlerine `Klar, neun Uhr geht.`, `Kein Problem, um neun geht es.`; ayrıca `Ja, um neun geht's.` ve 10 doğal cevap. `why_tr`: `Saati tekrar et ve **geht es** ile onayla.` |
+| H2 | 53 a1 `cevapla` | `Der Zug fällt aus, wir müssen den Bus nehmen.` (saat yok, görev saat istiyor) | Çıktı; yerine `Der Zug fällt aus. Wir müssen den Bus um achtzehn Uhr zwanzig nehmen.` ve `… Der Bus fährt um achtzehn Uhr zwanzig.` (+11 saatli biçim). Saatsiz cevap artık doğru çıkmıyor. |
+| H3 | görülmemiş `g2` | `Wo ist die Milch?` (kendi `why_tr` cümlesi) kabul edilmiyordu | `Wo ist die Milch?`, `Wo finde ich die Milch?`, `Ich suche die Milch.` ve 5 biçim eklendi; `Entschuldigung, wo finde ich die Milch?` dolgu kuralıyla doğru çıkıyor. `Ja, danke. Haben Sie Milch? Wo ist sie?` çıkarıldı (yardım teklifine **Ja, danke** oturmuyor, cümle de doğal değil). |
+| H4 | görülmemiş `g3` | `Ich bin {name}. Freut mich!` kabul edilmiyordu | `Ich bin {name}. Freut mich!`, `Hallo, ich bin {name}.`, `Ich bin {name}.`, **heiße**'li ve **Lena**'lı biçimler (+13). `Hallo! Ich bin {name}. Freut mich!` dolgu kuralıyla doğru çıkıyor. |
+
+"Hata sayılmayan notlar"daki üç cevap da eklendi (hepsi K(t) içinde): 51 a1 `Der Bus kommt erst um neun Uhr fünfundzwanzig.` (**erst** 8. gün kartı), 53 s11 `Am Sonntag war ich am See. Der Zug ist ausgefallen.`, 54 s10 `Ich habe seit gestern Schmerzen.`
+
+### Hedefli tarama
+Kapsam: **134 madde** (cevapla 18, prova seçeneği 57, gün sınavı üretim maddesi 55, görülmemiş 4).
+Yöntem: her madde için doğal cevap adayları yazıldı (cevapla, sınav ve görülmemiş için 564, prova için 330 aday) ve `web/src/core/answer.ts` `ruleVerdict` ile sınandı (Node 22, `--experimental-strip-types`, `{name}` yerine sahte ad). Doğru olup `correct` çıkmayan cevaplar eklendi. Provada cevap düğümün bütün seçeneklerine karşı sınandı: eklenen hiçbir cevap başka bir seçenekle eşleşmiyor.
+
+**(a) Model cümle ve `why_tr` biçimi:** H1 dışında hata yok. Öznesiz **geht** yalnız 50 o4'teydi. `Freitag um Viertel nach acht geht`, `Montag um halb fünf geht` doğru (özne gün). `Am Sonntag ist geschlossen` (54 a2) ve `Um acht ist zu früh` (50 s9) gündelik dilde yerleşik, bırakıldı.
+
+**(c) Kabul görevin istediğini taşıyor mu:** H2 dışında **2 yeni hata**:
+- 52 `s9`: görev "yarın ödeyip ödeyemeyeceğini sor"; `Ich habe kein Bargeld. Ich hole schnell Geld.` sormuyor. Çıkarıldı.
+- 54 `s9`: görev "sipariş edip edemeyeceğini sor"; `Können Sie die Salbe für mich reservieren?` (eczanede olmayan ürün ayrılamaz) ve `Wann ist die Salbe da?` bunu sormuyor. İkisi de çıkarıldı. (Provada bunlar ayrı seçenek olarak duruyor, orada doğru.)
+
+**(b) Yapay zekâsız ölçüt:** ilk sınamada doğru adayların büyük bölümü `ask_ai` çıktı, üçü `wrong` (50 o4 `Kein Problem.`, 53 s9 `Am Samstag? Ich war nicht zu Hause.`, 54 o5 `Abends.`). Neden: dolgu kuralı yalnız birkaç kelimeyi tanıyor (bitte, danke, Entschuldigung, Hallo, ja, okay…). Selam (`Guten Tag`), hitap (`Frau Brandl`), ad kalıbının öbür biçimi, `um drei` ile `um drei Uhr`, `der Bus kommt` ile `der Bus fährt` ayrı cevap sayılıyor. Düzeltme: 83 listeye **476 kabul eklendi, 8 kabul çıkarıldı** (gün 50: +86 −3, 51: +75, 52: +68 −1, 53: +87 −1, 54: +118 −2, görülmemiş: +42 −1). En uzun liste 21.
+
+Eklenenlerin ölçütü: doğru Almanca, görevin istediği bilgiyi taşıyor, provada seçeneğin geri bildirim cümlesiyle çelişmiyor (ör. geri bildirim "selam verdin" diyorsa selamsız cevap eklenmedi). K(t): eklenen her cevap doğrulayıcının `ogretilmemis` işleviyle günün `taught` kümesine karşı sınandı; küme dışı kelime yok (tek istisna **Lena**: karşı tarafın `prompt_de`'de söylediği ad).
+
+Bilerek eklenmeyenler (sınamada `ask_ai`, yani "kontrol edilemedi" kalıyor): saati ya da günü eksik cevaplar (`Am Dienstag.`, `Der Bus hat Verspätung.`, günsüz masa ayırtma), öznesiz **geht**, küme dışı kelimeli biçimler (**dabei**, **zuhause**, **Samstagabend**), Türkçesinden sapan çeviriler.
+
+### Sınama
+`SIM=/tmp/claude-0/sim8d OUT=/tmp/claude-0/s8d … sim.sh a1k-h7.json 50 gun-5[0-4].json gorulmemis-08.json`:
+- `→ 5 hata, 276 uyarı`; 5 hata bilinen `3 kart (4–6)`.
+- 50–54 için "öğretilmemiş", "bilinmeyen" uyarısı 0; AK-3 `50. gün 0/24, 51. gün 0/23, 52. gün 0/21, 53. gün 0/21, 54. gün 0/23`. 8. hafta dosyalarına ait uyarı satırları düzeltme öncesiyle birebir aynı (kalanlar: `yeni_kartlar 3 kart`, video yok, B7 `_adsiz`).
+- `dikis.out` 50–54 satırları `0 | 0 | 0 | 0 | 0`.
+- H1–H4 yeniden sınandı: önerilen cevapların hepsi `correct`; çıkarılan dört hatalı kabul artık `correct` değil.
+
+### Kalan açık noktalar
+1. **Kök neden kodda, içerikte değil.** Selam, hitap ve `Uhr` gibi değişkenler dolgu sayılmadığı için her üretim maddesi 10–20 kabul istiyor; bu liste yine de bütün birleşimleri kapsamaz (provada 330 adaydan 75'i hâlâ "karar öğrencide" kalıyor, çoğu bilerek). Öneri (baş geliştirici, #12): `containsWithFiller` içinde baştaki selamlar (`Guten Tag/Morgen/Abend`, `Grüß Gott`) ve virgülle ayrılmış hitap (`Frau/Herr X`) dolgu sayılsın; `um drei` = `um drei Uhr`.
+2. **Yanlış cevap "yanlış" çıkmıyor.** Yakın ama yanlış cevaplar (`Wo ist das Brot?`, saatsiz cevap) `ruleVerdict`'te `ask_ai`, yapay zekâsız kipte "kontrol edilemedi" oluyor. Doğru sayılmıyor (D-097), ama öğrenci "yanlış" geri bildirimi de almıyor. İçerikle çözülmez.
+3. **Yargıya bağlı bırakılan kabuller:** 51 a1 `Der Bus hat fünfundzwanzig Minuten Verspätung.` (saat yerine gecikme süresi; örneklem de geçirdi), 53 v1 havadan söz etmeyen cevaplar (durum hava için "söyle" demiyor), 50 o4 `Ja, das geht.` ve `Kein Problem.` (saat soruda geçiyor).
+4. **Eski kabullerde küme dışı kelimeler** (dabei, daheim, borgen, Nee, würde, Rentnerin, Rest): doğru Almanca, öğrenciden istenmiyor, yalnız bilen için kabul. Dokunulmadı.
+5. 1. turdaki açık noktalar (1–6) aynen duruyor; `review.status` "draft".
+
+Sonuç: örneklemin 4 hatası ve taramada çıkan 2 hata kapandı. Bu turun hata oranı: (a)/(c) türünden 4 madde / 134 = %3,0 (H1, H2, 52 s9, 54 s9); (b) türünden haksız ret riski 83 listede giderildi.
+
+KARAR: ONAY (örnekleme yeniden hazır)
