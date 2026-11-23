@@ -26,8 +26,9 @@
  },
  "review": {
   "status": "draft",
-  "by": "yazar-ajan",
-  "at": "2026-11-23"
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic17/dilbilimci-h15.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [
   "gr:a2-06:t4"
@@ -81,7 +82,7 @@
      "accepted": [
       "Hast du das Hotel für August gebucht?",
       "Hast du für August das Hotel gebucht?",
-      "Hast du das Hotel im August gebucht?"
+      "Hast du das Hotel schon für August gebucht?"
      ]
     },
     {
@@ -301,7 +302,7 @@
     "speaker": "die Kursleiterin",
     "sahne_tr": "Öğretmen sınıfa dönüyor.",
     "de": "Was mussten Sie als Kind machen? Was durften Sie nicht?",
-    "tr": "Çocukken ne yapmak zorundaydınız? Neyi yapamazdınız?"
+    "tr": "Çocukken ne yapmak zorundaydınız? Neye izniniz yoktu?"
    },
    {
     "id": "s3",
@@ -322,7 +323,7 @@
     "speaker": "die Kursleiterin",
     "sahne_tr": "Öğretmen merakla soruyor.",
     "de": "Und durften Sie fernsehen?",
-    "tr": "Peki televizyon izleyebiliyor muydunuz?"
+    "tr": "Peki televizyon izlemenize izin var mıydı?"
    },
    {
     "id": "s6",
@@ -629,14 +630,14 @@
     "cevapla": {
      "id": "m1:102:v1:c2",
      "k": "guided_response",
-     "situation_tr": "Ceket senin değil; Lena'nın olabilir, onun ceketine benziyor.",
+     "situation_tr": "Ceket senin değil; öğretmenin olabilir, onun ceketine benziyor.",
      "prompt_de": "Wem gehört die Jacke hier? Ist das deine?",
      "accepted": [
-      "Nein, die gehört mir nicht. Vielleicht gehört sie Lena.",
-      "Nein, das ist nicht meine. Vielleicht gehört sie Lena.",
+      "Nein, die gehört mir nicht. Vielleicht gehört sie der Lehrerin.",
+      "Nein, das ist nicht meine. Vielleicht gehört sie der Lehrerin.",
       "Nein, die gehört mir nicht.",
-      "Nein. Ich glaube, die Jacke gehört Lena.",
-      "Nein, nicht meine. Die gehört vielleicht Lena."
+      "Nein. Ich glaube, die Jacke gehört der Lehrerin.",
+      "Nein, nicht meine. Die gehört vielleicht der Lehrerin."
      ],
      "why_tr": "Sahiplik: **Die Jacke gehört mir (nicht).** Kimin olduğu **gehört** + kişi."
     }
@@ -820,8 +821,8 @@
       "prompt_de": "Hast du die Nachricht von der Lehrerin bekommen?",
       "accepted": [
        "Ja! Wir sollen ein Foto von früher mitbringen. Der Kurs ist um halb sieben.",
-       "Ja. Wir sollen ein Foto mitbringen, als Kind. Und der Kurs ist um halb sieben.",
-       "Ja, wir sollen ein Foto als Kind mitbringen.",
+       "Ja. Wir sollen ein Foto von früher mitbringen. Und der Kurs ist heute um halb sieben.",
+       "Ja, wir sollen ein Foto von uns als Kind mitbringen.",
        "Ja! Bring ein Foto von früher mit. Der Kurs ist heute um halb sieben.",
        "Ja, der Kurs ist um halb sieben. Wir sollen ein Foto mitbringen."
       ],
@@ -860,13 +861,13 @@
    "script": [
     {
      "id": "c1",
-     "de": "Willkommen! Heute geht es um früher.",
-     "tr": "Hoş geldiniz! Bugünün konusu eski zamanlar."
+     "de": "Hallo! Ich rufe aus Wendlfing an.",
+     "tr": "Merhaba! Wendlfing'den arıyorum."
     },
     {
      "id": "c2",
-     "de": "Heute ruft ein Mann aus Wendlfing an.",
-     "tr": "Bugün Wendlfing'den bir adam arıyor."
+     "de": "Sie fragen heute: Wie war das früher?",
+     "tr": "Bugün soruyorsunuz: Eskiden nasıldı?"
     },
     {
      "id": "c3",
@@ -1037,7 +1038,7 @@
     "k": "pick",
     "q_tr": "Adam çocukken neyi yapamıyordu?",
     "opts": [
-     "Telefonla konuşamıyordu, telefonu yoktu",
+     "Cep telefonu kullanamıyordu; telefonu yoktu",
      "Dışarı çıkamıyordu",
      "Okula gidemiyordu"
     ],
@@ -1134,7 +1135,7 @@
       "tr": "(yanlış) Çocukken erken uyumak zorundayım.",
       "accepted": [
        "Als Kind muss ich früh schlafen.",
-       "Als Kind muss ich früh schlafen.",
+       "Als Kind muss ich früh ins Bett gehen.",
        "Als Kind muss ich früh ins Bett.",
        "Als Kind muss ich schlafen."
       ],
@@ -1167,7 +1168,7 @@
       "tr": "Evet, zorundayım.",
       "accepted": [
        "Ja, ich muss.",
-       "Ja, ich muss.",
+       "Ich muss.",
        "Ich muss, ja.",
        "Ja, muss ich."
       ],
@@ -1213,7 +1214,7 @@
       "tr": "(yanlış) Televizyon izlemek zorunda değildim.",
       "accepted": [
        "Ich musste nicht fernsehen.",
-       "Ich musste nicht fernsehen.",
+       "Am Abend musste ich nicht fernsehen.",
        "Ich musste am Abend nicht fernsehen.",
        "Fernsehen musste ich nicht."
       ],
@@ -1498,12 +1499,12 @@
     "prompt_de": "Erzählen Sie: Wie war das früher bei Ihnen?",
     "accepted": [
      "Als Kind musste ich zu Fuß in die Schule gehen. Aber ich konnte draußen viel spielen.",
-     "Früher musste ich zu Fuß in die Schule gehen. Trotzdem konnte ich viel draußen spielen.",
+     "Früher musste ich zu Fuß in die Schule gehen. Aber ich konnte viel draußen spielen.",
      "Ich musste zu Fuß in die Schule gehen, aber ich konnte draußen spielen.",
      "Als Kind musste ich zu Fuß in die Schule gehen. Ich konnte aber viel draußen spielen.",
      "Früher musste ich zu Fuß gehen, aber ich konnte draußen viel spielen."
     ],
-    "why_tr": "Bir zorunluluk (**musste**), bir olanak (**konnte**). İkisini **aber** ya da **trotzdem** bağlar."
+    "why_tr": "Bir zorunluluk (**musste**), bir olanak (**konnte**). İkisini **aber** bağlar."
    }
   ],
   "sesli": [

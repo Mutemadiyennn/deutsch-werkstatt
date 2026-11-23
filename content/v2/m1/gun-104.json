@@ -28,9 +28,9 @@
  },
  "review": {
   "status": "draft",
-  "by": "yazar-ajan",
+  "by": "dilbilimci-ajan",
   "at": "2026-11-23",
-  "notes": "Olgu: 116 116 Almanya'da merkezi kart kapatma hattı (Sperr-Notruf): https://www.vzhh.de/themen/finanzen/konto/karte-gestohlen-verloren-das-ist-zu-tun · şifreyi telefonda soran dolandırıcılar için uyarı: https://www.test.de/Anrufe-vom-Sperr-Notruf-6274234-0/ . Banka adı yazılmadı (bankanın telefon bandı kurgusal)."
+  "notes": "docs/v2/reviews/ic17/dilbilimci-h15.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft. Önceki not: Olgu: 116 116 Almanya'da merkezi kart kapatma hattı (Sperr-Notruf): https://www.vzhh.de/themen/finanzen/konto/karte-gestohlen-verloren-das-ist-zu-tun · şifreyi telefonda soran dolandırıcılar için uyarı: https://www.test.de/Anrufe-vom-Sperr-Notruf-6274234-0/ . Banka adı yazılmadı (bankanın telefon bandı kurgusal)."
  },
  "dersler": [],
  "yeni_kartlar": [
@@ -312,8 +312,8 @@
      },
      {
       "r": "ch:brandl",
-      "de": "Früher bin ich überall zu Fuß gegangen. Das war auch schön.",
-      "tr": "Eskiden her yere yürüyerek giderdim. O da güzeldi."
+      "de": "Früher bin ich überall mit dem Fahrrad gefahren. Jetzt gehe ich zu Fuß. Das ist auch schön.",
+      "tr": "Eskiden her yere bisikletle giderdim. Şimdi yürüyorum. O da güzel."
      },
      {
       "r": "ogrenci",
@@ -324,7 +324,7 @@
     "soru": {
      "q_tr": "Frau Brandl ne öneriyor gibi?",
      "opts": [
-      "Yürüyerek gitmeyi; eskiden o da her yere yürürmüş",
+      "Yürüyerek gitmeyi; kendisi de artık yürüyor",
       "Taksiye binmeyi",
       "Bisikleti tamir ettirmeyi"
      ],
@@ -340,7 +340,7 @@
    {
     "id": "s1",
     "speaker": "ch:brandl",
-    "sahne_tr": "Cumartesi öğleden sonra, apartmanın girişi. Frau Brandl elinde alışveriş çantasıyla duruyor, bisikletinin lastiğine bakıyor.",
+    "sahne_tr": "Cumartesi öğleden sonra, apartmanın girişi. Frau Brandl elinde alışveriş çantasıyla duruyor, senin bisikletinin lastiğine bakıyor.",
     "de": "Keine Luft, das sieht man gleich.",
     "tr": "Havası yok, hemen belli oluyor."
    },
@@ -916,7 +916,7 @@
      "cevapla": {
       "id": "m1:104:a1:c1",
       "k": "guided_response",
-      "situation_tr": "Derya mesaj yazıyor: Bankayı aradın mı? Ne dediler? Kısaca söyle: bugün kapalı, pazartesi yeniden arayacaksın.",
+      "situation_tr": "Lena mesaj yazıyor: Bankayı aradın mı? Ne dediler? Kısaca söyle: bugün kapalı, pazartesi yeniden arayacaksın.",
       "prompt_de": "Hast du die Bank angerufen?",
       "accepted": [
        "Ja, aber das Büro ist heute geschlossen. Ich rufe am Montag wieder an.",
@@ -939,7 +939,7 @@
      "Şifreni telefona söyle"
     ],
     "ans": 0,
-    "why_tr": "Havale hatası için kayıt **am Montag ab acht Uhr** diyor. 116 116 yalnızca kart kaybolunca, kartı kapatmak için.",
+    "why_tr": "Havale hatası için kayıt **am Montag ab acht Uhr** diyor. 116 116 kart kaybolunca ya da çalınınca, kartı kapatmak için.",
     "kanit": [
      "c2",
      "c3"
@@ -1368,8 +1368,8 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Lena'nın grup mesajı ve senin mesajın",
-  "metin_de": "Hallo zusammen! Für Derya kaufen wir einen Blumenstrauß und einen Gutschein. Für den Blumenstrauß fehlen fünf Euro von jedem. Bitte überweist mir das Geld bis Samstag. Und bitte nichts zu Derya sagen! Danke, Lena",
-  "metin_tr": "Herkese merhaba! Derya için bir buket çiçek ve bir hediye çeki alıyoruz. Çiçek için herkesten beşer euro eksik. Lütfen parayı cumartesiye kadar bana havale edin. Ve lütfen Derya'ya bir şey söylemeyin! Teşekkürler, Lena",
+  "metin_de": "Hallo zusammen! Für Derya kaufen wir einen Blumenstrauß und einen Gutschein. Für den Blumenstrauß fehlt noch Geld: fünf Euro von jedem. Bitte überweist mir das Geld bis Samstag. Und bitte nichts zu Derya sagen! Danke, Lena",
+  "metin_tr": "Herkese merhaba! Derya için bir buket çiçek ve bir hediye çeki alıyoruz. Çiçek için hâlâ para eksik: herkesten beşer euro. Lütfen parayı cumartesiye kadar bana havale edin. Ve lütfen Derya'ya bir şey söylemeyin! Teşekkürler, Lena",
   "sorular": [
    {
     "id": "m1:104:o1",
@@ -1594,14 +1594,14 @@
    {
     "id": "m1:104:s11",
     "k": "guided_response",
-    "situation_tr": "Frau Brandl'a kısaca anlat: önce bisikletin lastiği inikti, ondan sonra otobüsü bekledin, bu yüzden geç kaldın.",
-    "prompt_de": "Warum sind Sie so spät?",
+    "situation_tr": "Pazar akşamı Frau Brandl merdivende soruyor. Kısaca anlat: önce bisikletin lastiği inikti, ondan sonra otobüsü bekledin, bu yüzden geç kaldın.",
+    "prompt_de": "Und? Waren Sie pünktlich bei Derya?",
     "accepted": [
-     "Zuerst hatte mein Fahrrad keine Luft. Danach habe ich auf den Bus gewartet. Deswegen bin ich so spät.",
-     "Zuerst hatte mein Fahrrad keine Luft, danach habe ich auf den Bus gewartet. Deswegen bin ich spät.",
-     "Mein Fahrrad hatte keine Luft. Danach habe ich lange auf den Bus gewartet, deswegen bin ich spät.",
-     "Zuerst hatte das Fahrrad keine Luft, danach habe ich auf den Bus gewartet, deswegen bin ich zu spät.",
-     "Kurz gesagt: Fahrrad ohne Luft, deswegen bin ich spät."
+     "Nein. Zuerst hatte mein Fahrrad keine Luft. Danach habe ich auf den Bus gewartet. Deswegen war ich zu spät.",
+     "Zuerst hatte mein Fahrrad keine Luft, danach habe ich auf den Bus gewartet. Deswegen war ich zu spät.",
+     "Nein, leider nicht. Mein Fahrrad hatte keine Luft. Danach habe ich lange auf den Bus gewartet, deswegen war ich zu spät.",
+     "Zuerst hatte das Fahrrad keine Luft, danach habe ich auf den Bus gewartet, deswegen bin ich zu spät gekommen.",
+     "Kurz gesagt: Fahrrad ohne Luft, deswegen war ich zu spät."
     ],
     "why_tr": "Sıra sözcükleri: **Zuerst … Danach … Deswegen …**; her birinden sonra fiil hemen gelir."
    }
