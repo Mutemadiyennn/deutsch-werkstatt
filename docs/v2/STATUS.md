@@ -16,6 +16,10 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 - **Köy** (dal `v2/koy`, #195'in üstünde): `#/koy` = köyün adı + dükkân ızgarası (Bahçe · Sinema · Radyo · Atölye · Kütüphane · Pazar meydanı; kilitli: Kafe · Tiyatro · Gazete bayisi) + yalnız dinlenmemiş ses kaydı varken "Telefonun" kartı. Mekân sayfaları `#/koy/<bahce|sinema|radyo|kutuphane|pazar>` eski Öğren ekranının girişlerini taşır (Öğren ekranı kalktı; `#/learn` Köy'e yönlenir). Sayılar cihazdaki gerçek veriden (`core/koy.ts`). Sınama: `core/koy.test.ts`, `tests/e2e/v2_koy.py`.
 - Sıradaki (aynı hat, yığınlı PR): Ben (PM-084 md. 5); ardından PM-086 "Kendi kelimem". Birleştirme sırası hat A'da (`[TOPLU-ADAY]`).
 
+## Hat E (ANA-E): yapay zekâ güvencesi (PM-112 A; 2026-11-23)
+- **#248** (dal `ai/dil-guvencesi`): dil güvencesi çalışma anında (D-127). Öz-sınama satırında `dil` (yeniden/yedek), günlük özette `dil_yeniden` / `dil_yedek`; canlı 20 koşu ölçümü birleşip dağıtılınca `node worker/scripts/oz-sinama.mjs <adres>`.
+- **#218 takipleri** (dal `web/yz-hata-takip`, #218'in üstünde): öğrenci dilinde hata metinleri, "Bu ne demek?" yedeğinde kalıp bütün, seviye tespitinde denetim hatası "yanlış" sayılmaz.
+
 ## Sıradaki adım (PM-050: "İlk Hafta" dikey dilimi önce; 2026-11-18 23:45 UTC)
 **İmza yol haritası:** [`docs/v2/IMZA_YOL_HARITASI.md`](IMZA_YOL_HARITASI.md) — #54'ün her satırı için ekran tarifi ve sıra (PM-048).
 1. Birleştirme sırası: #61 (veri). Birleşenler: #60 (02:30), #64 (02:12), #59 (01:57), #43 (01:37), #55 (00:27), #52 (23:05), #48 (23:07), #50 (23:34), #51 (23:54), #49 (23:54).
