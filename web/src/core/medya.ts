@@ -11,7 +11,21 @@ export const ADIM_TR: Record<Adim, string> = {
   dinle: "Baştan sona dinle", ana: "Ana fikir", ayrinti: "Ayrıntılar", cumle: "Cümle cümle", dikte: "Duyduğunu yaz",
   transkript: "Metin ve kelimeler", golge: "Dinle ve aynısını söyle", cevapla: "Sen ne derdin?"
 };
-export function adimlar(b: Bolum): Adim[] {
+/** PM-097 md. 1: sesin iki turu. İlk tur "önce duy" (dinle, anlama, cümle cümle, metin); ikinci tur üretim (dikte, gölge, cevapla) */
+export const IKINCI_TUR: readonly Adim[] = ["dikte", "golge", "cevapla"];
+export function adimlar(b: Bolum, tur?: Medya["tur"]): Adim[] {
+  const hepsi = tumAdimlar(b);
+  return !tur ? hepsi : hepsi.filter((a) => IKINCI_TUR.includes(a) === (tur === "ikinci"));
+}
+/** Kaydın yalnız o turun adımı olan bölümleri (ikinci turda üretim maddesi olmayan bölüm düşer) */
+export function turaGore(m: Medya, tur: NonNullable<Medya["tur"]>): Medya {
+  // eylem sorusu ("ne yapacaksın?") yalnız ilk turun sonunda: aynı soru iki kez sorulmaz (döngüsüzlük; inceleme #207 P1-2)
+  const { eylem, ...geri } = m;
+  return { ...geri, ...(tur === "ilk" && eylem ? { eylem } : {}), tur, bolumler: m.bolumler.filter((b) => adimlar(b, tur).length > 0) };
+}
+/** Kayıtta ikinci tur (dikte, gölge, cevapla) var mı */
+export const ikinciTurVar = (m: Pick<Medya, "bolumler">) => m.bolumler.some((b) => adimlar(b, "ikinci").length > 0);
+function tumAdimlar(b: Bolum): Adim[] {
   const out: Adim[] = ["dinle", "ana"];
   if (b.ayrinti.length) out.push("ayrinti");
   out.push("cumle");
@@ -103,13 +117,14 @@ export function kartBul(word: string, lex: Lexeme[]): Lexeme | undefined {
 /** Kaldığı yer (her seans yarıda bırakılıp sürdürülebilir; #58 "Öğrencinin bir günü") */
 /** `ilkBitti`: en az bir kez bitirildi — "Baştan çalış" bunu korur; yol ve Bugün tamamlanan adımı yeniden önermez (inceleme #66 P1-2) */
 export interface MedyaIlerleme { b: number; s: number; k: number; dogru: number; toplam: number; bitti?: boolean; ilkBitti?: boolean; eylem?: boolean }
-export const ilerlemeAnahtari = (medyaId: string) => `m1:medya:${medyaId}`;
+/** ilerleme kaydı: eski düzen `m1:medya:<id>`; akışın iki turu ayrı (`…:1`, `…:2`) — eski kayıt akış turunu bitmiş saymaz */
+export const ilerlemeAnahtari = (medyaId: string, tur?: Medya["tur"]) => `m1:medya:${medyaId}${tur === "ilk" ? ":1" : tur === "ikinci" ? ":2" : ""}`;
 export const BASLANGIC: MedyaIlerleme = { b: 0, s: 0, k: 0, dogru: 0, toplam: 0 };
 
 /** Bir sonraki konum: aynı adımda sonraki alt madde → sonraki adım → sonraki bölüm → bitti (eylem ayrı) */
 export function ileri(p: MedyaIlerleme, m: Medya, altSayisi: number): MedyaIlerleme {
   if (p.k + 1 < altSayisi) return { ...p, k: p.k + 1 };
-  const steps = adimlar(m.bolumler[p.b]!);
+  const steps = adimlar(m.bolumler[p.b]!, m.tur);
   if (p.s + 1 < steps.length) return { ...p, s: p.s + 1, k: 0 };
   if (p.b + 1 < m.bolumler.length) return { ...p, b: p.b + 1, s: 0, k: 0 };
   return { ...p, bitti: true, ilkBitti: true };
@@ -130,7 +145,7 @@ export function gecerliKonum(p: MedyaIlerleme | undefined, m: Medya): MedyaIlerl
   const bas = { ...BASLANGIC, ...(p.ilkBitti ? { ilkBitti: true } : {}) };
   const b = m.bolumler[p.b];
   if (!b) return bas;
-  const steps = adimlar(b);
+  const steps = adimlar(b, m.tur);
   const step = steps[p.s];
   if (!step) return bas;
   const n = step === "ayrinti" ? b.ayrinti.length : step === "dikte" ? b.dikte.length : step === "golge" ? b.golge.length : 1;

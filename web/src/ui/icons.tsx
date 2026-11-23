@@ -26,7 +26,12 @@ const P: Record<string, string> = {
   target: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z|M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z|M12 12h.01",
   up: "M18 15l-6-6-6 6",
   down: "M6 9l6 6 6-6",
-  keyboard: "M3 6h18v12H3z|M7 10h.01|M11 10h.01|M15 10h.01|M8 14h8"
+  keyboard: "M3 6h18v12H3z|M7 10h.01|M11 10h.01|M15 10h.01|M8 14h8",
+  // Hedef 3 sekme simgeleri (design/TARGET3.html; projeye özgü çizim)
+  saat: "M12 3a9 9 0 1 0 9 9|M12 7v5l3 2",
+  yol: "M5 20c4-1 2-7 7-8s4-6 7-8|M3.5 20a1.5 1.5 0 1 0 3 0 1.5 1.5 0 1 0-3 0|M17.5 4a1.5 1.5 0 1 0 3 0 1.5 1.5 0 1 0-3 0",
+  koy: "M3 21h18|M5 21V10l7-5 7 5v11|M10 21v-6h4v6",
+  ben: "M8 8a4 4 0 1 0 8 0 4 4 0 1 0-8 0|M4 21c1-4 4-6 8-6s7 2 8 6"
 };
 export type IconName = keyof typeof P | "play";
 

@@ -23,3 +23,16 @@ binding = "AI"
 [[kv_namespaces]]
 binding = "QUOTA"
 id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# PM-087 A: yapay zekâ öz-sınamasının kilidi ve kaydı (tek örnek; SQLite depolu sınıf Workers Free'de ücretsiz)
+[[durable_objects.bindings]]
+name = "OZ_SINAMA"
+class_name = "OzSinamaDO"
+
+[[migrations]]
+tag = "v1-oz-sinama"
+new_sqlite_classes = ["OzSinamaDO"]
+
+# Dağıtım sürümü: öz-sınama önbelleği yeni sürümde geçersiz (inceleme #209 P1-2)
+[version_metadata]
+binding = "CF_VERSION_METADATA"

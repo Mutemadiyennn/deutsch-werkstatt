@@ -29,6 +29,10 @@ export interface Env {
   AI_PROVIDER?: string;
   /** Workers AI bağlamı (wrangler.toml [ai]); anahtar gerekmez, ücretsiz pay (PM 7022002310-5) */
   AI?: { run(model: string, input: unknown): Promise<any> };
+  /** Yapay zekâ öz-sınamasının tek örnekli Durable Object'i (PM-087 A; wrangler.toml) */
+  OZ_SINAMA?: { idFromName(ad: string): unknown; get(id: unknown): { fetch(req: Request): Promise<Response> } };
+  /** Dağıtım sürümü (wrangler.toml [version_metadata]; gizli değil) */
+  CF_VERSION_METADATA?: { id: string; tag?: string; timestamp?: string };
   /** Kota sayaçları */
   QUOTA: KV;
 }

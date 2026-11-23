@@ -225,6 +225,9 @@ export type Gun = z.infer<typeof Gun>;
 /** Medya oynatıcısının tek arayüzü: video, köy dizisi sahnesi ve ses aynı akışı kullanır (PM-053 §6) */
 export interface Medya {
   id: string;
+  /** akış gününde ses iki turda oynar (PM-097 md. 1): "ilk" = dinle + anlama (önce duy), "ikinci" = dikte, gölge, "Sen ne derdin?"
+   *  (son halkadan sonra; günün kartları bilinir). Yoksa bütün adımlar (eski düzen) */
+  tur?: "ilk" | "ikinci";
   kind: "video" | "sahne" | "ses";
   title_tr: string;
   ortam_tr?: string;
