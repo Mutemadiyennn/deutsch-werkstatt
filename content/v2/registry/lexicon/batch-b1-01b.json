@@ -1,7 +1,10 @@
 {
  "batch": "b1-01b",
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/lexicon-b1-01.md"
  },
  "items": [
   {
@@ -103,9 +106,9 @@
      "hint_tr": "Tedavi görmek **in Behandlung sein** ile söylenir."
     },
     {
-     "de": "Nach drei ___ geht es mir besser.",
+     "de": "Es gibt zwei verschiedene ___.",
      "answer": "Behandlungen",
-     "tr": "Üç tedaviden sonra daha iyiyim.",
+     "tr": "İki farklı tedavi var.",
      "hint_tr": "Birden çok tedavi: **Behandlungen**."
     }
    ]
@@ -141,7 +144,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Muayene yapmak derken **eine Untersuchung tun** yanlış. Doğrusu **eine Untersuchung machen**.",
+    "Muayenehane için **Untersuchung** denmez, **Praxis** denir. **Untersuchung** doktorun yaptığı muayenedir.",
     "Muayeneye gelmek derken **zu Untersuchung kommen** yanlış. Doğrusu **zur Untersuchung kommen**."
    ],
    "examples": [
@@ -187,7 +190,7 @@
    "exp": {
     "anlam_tr": "Doktorun vücudunu kontrol etmesini ya da yapılan tahlili anlatır.",
     "parcalar": [],
-    "ipucu_tr": "**-ung** ile biten kelimeler hep **die** alır."
+    "ipucu_tr": "**-ung** ile biten kelimeler neredeyse hep **die** alır."
    },
    "forms": [
     {
@@ -621,7 +624,10 @@
      "de": "Wie soll ich die Tabletten ___?",
      "answer": "einnehmen",
      "tr": "Hapları nasıl almalıyım?",
-     "hint_tr": "Almak, kullanmak **einnehmen** ile söylenir."
+     "hint_tr": "Almak, kullanmak **einnehmen** ile söylenir.",
+     "also_ok": [
+      "nehmen"
+     ]
     },
     {
      "de": "___ Sie das Medikament vor dem Essen ein.",
@@ -633,13 +639,16 @@
      "de": "Haben Sie heute schon etwas ___?",
      "answer": "eingenommen",
      "tr": "Bugün bir şey aldınız mı?",
-     "hint_tr": "Geçmişte **hat eingenommen** denir."
+     "hint_tr": "Geçmişte **hat eingenommen** denir.",
+     "also_ok": [
+      "genommen"
+     ]
     },
     {
-     "de": "Sie ___ die Tabletten jeden Morgen ein.",
+     "de": "Meine Mutter ___ die Tabletten jeden Morgen ein.",
      "answer": "nimmt",
-     "tr": "Hapları her sabah alıyor.",
-     "hint_tr": "**sie** tek kişi ise **nimmt ein** olur."
+     "tr": "Annem hapları her sabah alıyor.",
+     "hint_tr": "**meine Mutter** ile **nimmt ein** olur."
     }
    ]
   },
@@ -858,10 +867,10 @@
      "hint_tr": "**nachfragen** ikiye ayrılır: **fragen Sie** ortada, **nach** sonda."
     },
     {
-     "de": "Sie ___ in der Apotheke nach.",
+     "de": "Er ___ in der Apotheke nach.",
      "answer": "fragt",
      "tr": "Eczaneye soruyor.",
-     "hint_tr": "**sie** tek kişi ise **fragt nach** olur."
+     "hint_tr": "**er** ile **fragt nach** olur."
     }
    ]
   },
@@ -1003,7 +1012,8 @@
    "register": "neutral",
    "mistakes_tr": [
     "Uzman doktora gitmek derken **zu Facharzt gehen** yanlış. Doğrusu **zum Facharzt gehen**.",
-    "Uzman doktorlar derken **die Facharzte** yanlış. Doğrusu **die Fachärzte**."
+    "Uzman doktorlar derken **die Facharzte** yanlış. Doğrusu **die Fachärzte**.",
+    "Uzman doktor derken **Experte** denmez. Doğrusu **Facharzt** ya da **Fachärztin.**"
    ],
    "examples": [
     {
@@ -1026,8 +1036,8 @@
     },
     {
      "id": "lx:Facharzt:4",
-     "de": "– Brauche ich eine Überweisung zum Facharzt? – Ja, die bekommen Sie gleich vorne bei Frau Huber.",
-     "tr": "– Uzman doktor için sevk gerekiyor mu? – Evet, onu hemen girişte Huber Hanım'dan alırsınız.",
+     "de": "– Bekomme ich eine Überweisung zum Facharzt? – Ja, die bekommen Sie gleich vorne bei Frau Huber.",
+     "tr": "– Uzman doktor için sevk alabilir miyim? – Evet, onu hemen girişte Huber Hanım'dan alırsınız.",
      "layer": "hd",
      "dialog": true
     },
@@ -1121,7 +1131,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Göz doktorundayım derken **Ich bin im Augenarzt** yanlış. Doğrusu **Ich bin beim Augenarzt.**",
-    "Göz doktoru derken **Augedoktor** yanlış. Doğrusu **Augenarzt**."
+    "Göz doktorunu arıyorum derken **Ich rufe zum Augenarzt an** yanlış. Doğrusu **Ich rufe beim Augenarzt an.**"
    ],
    "examples": [
     {
@@ -1144,8 +1154,8 @@
     },
     {
      "id": "lx:Augenarzt:4",
-     "de": "– Ich brauche einen Termin beim Augenarzt. – Waren Sie schon einmal bei uns?",
-     "tr": "– Göz doktorundan randevu almam lazım. – Daha önce bize geldiniz mi?",
+     "de": "– Ich brauche einen Termin beim Augenarzt. – Haben Sie dort schon angerufen?",
+     "tr": "– Göz doktorundan randevu almam lazım. – Orayı aradınız mı?",
      "layer": "hd",
      "dialog": true
     },
@@ -1346,7 +1356,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "En erken randevu derken **frühestens Termin** yanlış. Doğrusu **der früheste Termin**.",
-    "**frühestens** ile **spätestens** karışmasın. **spätestens** en geç demektir."
+    "En erken martta derken **am frühesten im März** yanlış. Doğrusu **frühestens im März.**"
    ],
    "examples": [
     {
@@ -1635,9 +1645,9 @@
      "hint_tr": "**die Praxis** ile **nimmt auf** olur."
     },
     {
-     "de": "Können Sie mich als neuen Patienten ___?",
+     "de": "Können Sie meine Mutter als neue Patientin ___?",
      "answer": "aufnehmen",
-     "tr": "Beni yeni hasta olarak alabilir misiniz?",
+     "tr": "Annemi yeni hasta olarak alabilir misiniz?",
      "hint_tr": "**können** ile fiil sonda tam hâliyle durur: **aufnehmen**."
     }
    ]
@@ -1730,25 +1740,38 @@
      "de": "Moment, ich ___ mal im Kalender nach.",
      "answer": "sehe",
      "tr": "Bir dakika, takvime bir bakayım.",
-     "hint_tr": "**ich** ile **sehe nach** olur."
+     "hint_tr": "**ich** ile **sehe nach** olur.",
+     "also_ok": [
+      "schaue",
+      "schau"
+     ]
     },
     {
      "de": "Können Sie bitte ___, ob noch ein Termin frei ist?",
      "answer": "nachsehen",
      "tr": "Boş randevu var mı, bakabilir misiniz lütfen?",
-     "hint_tr": "**können** ile fiil sonda tam hâliyle durur: **nachsehen**."
+     "hint_tr": "**können** ile fiil sonda tam hâliyle durur: **nachsehen**.",
+     "also_ok": [
+      "nachschauen"
+     ]
     },
     {
-     "de": "Haben Sie schon ___?",
+     "de": "Haben Sie schon im Kalender ___?",
      "answer": "nachgesehen",
-     "tr": "Baktınız mı?",
-     "hint_tr": "Geçmişte **hat nachgesehen** denir."
+     "tr": "Takvime baktınız mı?",
+     "hint_tr": "Geçmişte **hat nachgesehen** denir.",
+     "also_ok": [
+      "nachgeschaut"
+     ]
     },
     {
      "de": "Frau Huber ___ im Computer nach.",
      "answer": "sieht",
      "tr": "Huber Hanım bilgisayara bakıyor.",
-     "hint_tr": "**Frau Huber** ile **sieht nach** olur."
+     "hint_tr": "**Frau Huber** ile **sieht nach** olur.",
+     "also_ok": [
+      "schaut"
+     ]
     }
    ]
   },
@@ -2599,7 +2622,10 @@
      "de": "Ah, danke für den ___!",
      "answer": "Hinweis",
      "tr": "Aa, uyardığın için sağ ol!",
-     "hint_tr": "**für** ile **den Hinweis** olur."
+     "hint_tr": "**für** ile **den Hinweis** olur.",
+     "also_ok": [
+      "Tipp"
+     ]
     },
     {
      "de": "Er hat mir einen guten ___ gegeben.",

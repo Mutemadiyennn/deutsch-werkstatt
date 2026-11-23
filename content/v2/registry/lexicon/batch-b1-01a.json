@@ -1,7 +1,10 @@
 {
   "batch": "b1-01a",
   "review": {
-    "status": "draft"
+    "status": "draft",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "docs/v2/reviews/lexicon-b1-01.md"
   },
   "items": [
     {
@@ -334,25 +337,37 @@
           "de": "Meiner ___ nach ist das zu teuer.",
           "answer": "Ansicht",
           "tr": "Bence bu çok pahalı.",
-          "hint_tr": "Bence derken **meiner Ansicht nach** denir."
+          "hint_tr": "Bence derken **meiner Ansicht nach** denir.",
+          "also_ok": [
+            "Meinung"
+          ]
         },
         {
           "de": "Ich bin der ___, dass wir mehr Busse brauchen.",
           "answer": "Ansicht",
           "tr": "Daha çok otobüse ihtiyacımız olduğu görüşündeyim.",
-          "hint_tr": "Görüşündeyim derken **Ich bin der Ansicht** denir."
+          "hint_tr": "Görüşündeyim derken **Ich bin der Ansicht** denir.",
+          "also_ok": [
+            "Meinung"
+          ]
         },
         {
           "de": "Tobi ist da anderer ___.",
           "answer": "Ansicht",
           "tr": "Tobi bu konuda farklı düşünüyor.",
-          "hint_tr": "Farklı düşünmek derken **anderer Ansicht sein** denir."
+          "hint_tr": "Farklı düşünmek derken **anderer Ansicht sein** denir.",
+          "also_ok": [
+            "Meinung"
+          ]
         },
         {
           "de": "Die ___ sind sehr verschieden.",
           "answer": "Ansichten",
           "tr": "Görüşler çok farklı.",
-          "hint_tr": "Birden çok görüş için **Ansichten** denir."
+          "hint_tr": "Birden çok görüş için **Ansichten** denir.",
+          "also_ok": [
+            "Meinungen"
+          ]
         }
       ]
     },
@@ -372,7 +387,7 @@
         },
         {
           "de": "Es ist sinnvoll, … zu …",
-          "tr": "… mantıklı"
+          "tr": "… yapmak mantıklı"
         },
         {
           "de": "nicht sehr sinnvoll",
@@ -504,7 +519,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Tartıştık derken **Wir haben gediskutiert** yanlış. Doğrusu **Wir haben diskutiert**, başa **ge** gelmez.",
-        "Kavga eder gibi tartışmak için **diskutieren** değil **streiten** denir. **diskutieren** sakin bir fikir alışverişidir."
+        "**diskutieren** sakin bir fikir alışverişidir. Kavga etmek anlamındaki tartışmak için kullanılmaz."
       ],
       "examples": [
         {
@@ -616,7 +631,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Ankete katıldım derken **Ich habe in einer Umfrage teilgenommen** yanlış. Doğrusu **an einer Umfrage.**",
-        "**nach der Umfrage** anketten sonra demektir. Ankete göre derken **laut der Umfrage** denir."
+        "Bir ankete göre derken **laut eine Umfrage** yanlış. Doğrusu **laut einer Umfrage.**"
       ],
       "examples": [
         {
@@ -955,7 +970,7 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "Haber aldım derken **Ich habe eine Meldung bekommen** doğal değil. Doğrusu **Ich habe Bescheid bekommen.**"
+        "Arkadaşından gelen mesaj için **Meldung** denmez, **Nachricht** denir. **Meldung** gazetedeki ya da radyodaki kısa haberdir."
       ],
       "examples": [
         {
@@ -1013,7 +1028,10 @@
           "de": "Ich habe eine kurze ___ in der Zeitung gelesen.",
           "answer": "Meldung",
           "tr": "Gazetede kısa bir haber okudum.",
-          "hint_tr": "Kısa haber için **Meldung** denir."
+          "hint_tr": "Kısa haber için **Meldung** denir.",
+          "also_ok": [
+            "Nachricht"
+          ]
         },
         {
           "de": "Laut einer ___ ist die Straße heute gesperrt.",
@@ -1025,13 +1043,19 @@
           "de": "Gibt es neue ___?",
           "answer": "Meldungen",
           "tr": "Yeni haber var mı?",
-          "hint_tr": "Birden çok haber için **Meldungen** denir."
+          "hint_tr": "Birden çok haber için **Meldungen** denir.",
+          "also_ok": [
+            "Nachrichten"
+          ]
         },
         {
           "de": "Die ___ kommt von der Polizei.",
           "answer": "Meldung",
           "tr": "Haber polisten geliyor.",
-          "hint_tr": "Kısa haber için **Meldung** denir."
+          "hint_tr": "Kısa haber için **Meldung** denir.",
+          "also_ok": [
+            "Nachricht"
+          ]
         }
       ]
     },
@@ -1065,7 +1089,7 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "Rapor yazmak derken **einen Bericht machen** pek doğal değil. Doğrusu **einen Bericht schreiben.**",
+        "Doktordan alınan iş göremezlik raporu **Bericht** değildir. Onun adı **Krankmeldung.**",
         "**die Bericht** yanlış. Doğrusu **der Bericht**, çoğulu **die Berichte.**"
       ],
       "examples": [
@@ -1285,7 +1309,7 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "Olay şu derken **Das Ereignis ist** yanlış. Doğrusu **Die Sache ist die.** **Ereignis** yaşanan önemli bir olaydır.",
+        "Kötü ve beklenmedik bir olay için çoğu zaman **Vorfall** denir. **Ereignis** önemli ya da özel bir olaydır.",
         "Çoğulu **die Ereignisse**, sonda iki **s** yazılır."
       ],
       "examples": [
@@ -1508,7 +1532,8 @@
       "register": "neutral",
       "mistakes_tr": [
         "Güncel haberler derken **die aktuell Nachrichten** yanlış. Doğrusu **die aktuellen Nachrichten.**",
-        "Şu an vaktim yok derken **Aktuell ich habe keine Zeit** yanlış. Doğrusu **Aktuell habe ich keine Zeit.**"
+        "Şu an vaktim yok derken **Aktuell ich habe keine Zeit** yanlış. Doğrusu **Aktuell habe ich keine Zeit.**",
+        "İngilizcedeki actually ile karıştırma. **aktuell** güncel demektir, aslında demek değildir."
       ],
       "examples": [
         {
@@ -1630,7 +1655,7 @@
         {
           "id": "lx:angeblich:2",
           "de": "Der Zug ist angeblich schon unterwegs.",
-          "tr": "Tren güya yoldaymış.",
+          "tr": "Tren güya çoktan yoldaymış.",
           "layer": "hd"
         },
         {
@@ -1682,7 +1707,7 @@
         {
           "de": "Der Zug ist ___ schon unterwegs.",
           "answer": "angeblich",
-          "tr": "Tren güya yoldaymış.",
+          "tr": "Tren güya çoktan yoldaymış.",
           "hint_tr": "Güya derken **angeblich** denir."
         },
         {
@@ -2116,8 +2141,8 @@
         },
         {
           "id": "lx:festnehmen:4",
-          "de": "– Was war denn da los? – Keine Ahnung, die nehmen wohl jemanden fest.",
-          "tr": "– Orada ne oluyordu? – Bilmiyorum, galiba birini gözaltına alıyorlar.",
+          "de": "– Was ist denn da los? – Keine Ahnung, die nehmen wohl jemanden fest.",
+          "tr": "– Orada ne oluyor? – Bilmiyorum, galiba birini gözaltına alıyorlar.",
           "layer": "alltag",
           "dialog": true
         },
@@ -2200,7 +2225,7 @@
         }
       ],
       "patterns": [
-        "pt:ich-war"
+        "pt:es-gibt"
       ],
       "register": "neutral",
       "mistakes_tr": [
@@ -2216,8 +2241,8 @@
         },
         {
           "id": "lx:Zeuge:2",
-          "de": "Ich war Zeuge, ich habe alles gesehen.",
-          "tr": "Tanıktım, her şeyi gördüm.",
+          "de": "Mein Nachbar war Zeuge, er hat alles gesehen.",
+          "tr": "Komşum tanıktı, her şeyi gördü.",
           "layer": "hd"
         },
         {
@@ -2266,13 +2291,10 @@
           "hint_tr": "Birden çok tanık için **Zeugen** denir."
         },
         {
-          "de": "Ich war ___, ich habe alles gesehen.",
+          "de": "Mein Nachbar war ___, er hat alles gesehen.",
           "answer": "Zeuge",
-          "tr": "Tanıktım, her şeyi gördüm.",
-          "hint_tr": "Tanık için **Zeuge** denir.",
-          "also_ok": [
-            "Zeugin"
-          ]
+          "tr": "Komşum tanıktı, her şeyi gördü.",
+          "hint_tr": "Tanık için **Zeuge** denir."
         },
         {
           "de": "Die Frau da war ___.",
@@ -2882,7 +2904,7 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "Uzman doktor derken **Experte** denmez. Doğrusu **Facharzt** ya da **Fachärztin.**",
+        "Uzman doktor için **Experte** denmez. **Experte** bir konuyu çok iyi bilen kişidir, doktor unvanı değildir.",
         "Uzmana sordum derken **Ich habe den Experte gefragt** yanlış. Doğrusu **den Experten.**"
       ],
       "examples": [
@@ -2906,8 +2928,8 @@
         },
         {
           "id": "lx:Experte:4",
-          "de": "– Kennst du dich mit Autos aus? – Nee, ich bin kein Experte.",
-          "tr": "– Arabalardan anlar mısın? – Yok, uzman değilim.",
+          "de": "– Kennst du dich mit Autos aus? – Nee, da ist mein Bruder der Experte.",
+          "tr": "– Arabalardan anlar mısın? – Yok, o işin uzmanı abim.",
           "layer": "alltag",
           "dialog": true
         },
@@ -2957,9 +2979,9 @@
           "hint_tr": "**einen** ile **Experte**, **Experten** olur."
         },
         {
-          "de": "Nee, ich bin kein ___.",
+          "de": "Nee, da ist mein Bruder der ___.",
           "answer": "Experte",
-          "tr": "Yok, uzman değilim.",
+          "tr": "Yok, o işin uzmanı abim.",
           "hint_tr": "Uzman için **Experte** denir."
         }
       ]
