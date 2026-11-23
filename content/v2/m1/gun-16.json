@@ -1,0 +1,1880 @@
+{
+ "schema": 1,
+ "id": "m1:gun:16",
+ "day": 16,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Telefonda kendini tanıtmak ve adını hecelemek",
+ "goal_tr": "Telefonda kendini tanıtır, bir adı ve sokağı harf harf söyler, vedalaşırsın.",
+ "can_do": {
+  "id": "cd:m1:16",
+  "tr": "Telefonda adımı söyler, harf harf hecelerim."
+ },
+ "unit": "u:m1:16",
+ "arm": "pazar",
+ "place": "pl:haus",
+ "characters": [
+  "ch:huber",
+  "ch:aksoy",
+  "ch:brandl",
+  "ch:stadler"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:bitte",
+   "lx:danke",
+   "lx:Frau",
+   "lx:gehen",
+   "lx:geschlossen",
+   "lx:hallo",
+   "lx:Herr",
+   "lx:heute",
+   "lx:ja",
+   "lx:nein",
+   "lx:Praxis",
+   "lx:Samstag",
+   "lx:Tag",
+   "lx:Ende",
+   "lx:haben",
+   "lx:kommen",
+   "lx:acht",
+   "lx:drei",
+   "lx:eins",
+   "lx:elf",
+   "lx:fünf",
+   "lx:neu",
+   "lx:null",
+   "lx:Nummer",
+   "lx:sieben",
+   "lx:vier",
+   "lx:zwanzig",
+   "lx:zwei",
+   "lx:zwölf",
+   "lx:alt",
+   "lx:dreißig",
+   "lx:fünfzig",
+   "lx:kosten",
+   "lx:noch",
+   "lx:sechzig",
+   "lx:Abend",
+   "lx:da",
+   "lx:gern",
+   "lx:leider",
+   "lx:nur",
+   "lx:Termin",
+   "lx:Uhr",
+   "lx:Adresse",
+   "lx:heißen",
+   "lx:Vorname",
+   "lx:was",
+   "lx:wer",
+   "lx:wie",
+   "lx:Fieber",
+   "lx:können",
+   "lx:möchten",
+   "lx:müssen",
+   "lx:sein",
+   "lx:ganz",
+   "lx:gut",
+   "lx:jetzt",
+   "lx:viel",
+   "lx:hier",
+   "lx:lernen",
+   "lx:meinen",
+   "lx:anrufen",
+   "lx:er",
+   "lx:es",
+   "lx:ich",
+   "lx:ihr",
+   "lx:oder",
+   "lx:sie",
+   "lx:warm",
+   "lx:wir",
+   "lx:aber",
+   "lx:auf",
+   "lx:für",
+   "lx:mit",
+   "lx:nicht",
+   "lx:sie#2",
+   "lx:und",
+   "lx:auch",
+   "lx:mal",
+   "lx:Mal",
+   "lx:Geschenk",
+   "lx:nochmal"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-03.md"
+ },
+ "dersler": [
+  "gr:a1-12:t5",
+  "r0:10-buchstabieren"
+ ],
+ "yeni_kartlar": [
+  "lx:Name",
+  "lx:Buchstabe",
+  "lx:buchstabieren",
+  "lx:schlucken",
+  "lx:Stuhl",
+  "lx:Sprache",
+  "lx:Milch",
+  "lx:Hemd",
+  "lx:Kleid",
+  "lx:gratulieren",
+  "lx:Jacke",
+  "lx:billig",
+  "lx:hell",
+  "lx:Mantel",
+  "lx:Schrank"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:16:h1",
+   "title_tr": "Telefonda harf harf. Dil ve yutkunmak",
+   "kartlar": [
+    "lx:Name",
+    "lx:Buchstabe",
+    "lx:buchstabieren",
+    "lx:Sprache",
+    "lx:schlucken"
+   ],
+   "kaliplar": [
+    {
+     "de": "Guten Tag, hier ist …",
+     "tr": "İyi günler, ben …"
+    },
+    {
+     "de": "B wie Berta – B wie Berlin",
+     "tr": "Berta'daki B – Berlin'deki B"
+    },
+    {
+     "de": "mit Doppel-N – mit Doppel-L",
+     "tr": "iki N ile – iki L ile"
+    },
+    {
+     "de": "Na gut!",
+     "tr": "Peki, tamam!"
+    },
+    {
+     "de": "Auf welchen Namen?",
+     "tr": "Kimin adına?"
+    },
+    {
+     "de": "Ich möchte …",
+     "tr": "… istiyorum"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Name",
+     "de": "Hallo, mein Name ist {name}.",
+     "tr": "Merhaba, benim adım {name}.",
+     "accepted": [
+      "Hallo, mein Name ist {name}.",
+      "Hallo, ich heiße {name}.",
+      "Hallo, ich bin {name}."
+     ]
+    },
+    {
+     "kart": "lx:Name",
+     "de": "Wie war Ihr Name, bitte?",
+     "tr": "Adınız neydi, lütfen?",
+     "accepted": [
+      "Wie war Ihr Name, bitte?",
+      "Wie war Ihr Name noch mal?",
+      "Wie war nochmal Ihr Name?"
+     ]
+    },
+    {
+     "kart": "lx:Buchstabe",
+     "de": "Der erste Buchstabe ist B, nicht P.",
+     "tr": "İlk harf B, P değil.",
+     "accepted": [
+      "Der erste Buchstabe ist B, nicht P.",
+      "Der erste Buchstabe ist ein B, nicht P.",
+      "Der erste Buchstabe ist B, kein P."
+     ]
+    },
+    {
+     "kart": "lx:Buchstabe",
+     "de": "Brunnengasse hat zwölf Buchstaben.",
+     "tr": "Brunnengasse on iki harfli.",
+     "accepted": [
+      "Brunnengasse hat zwölf Buchstaben.",
+      "Die Brunnengasse hat zwölf Buchstaben.",
+      "Brunnengasse hat 12 Buchstaben."
+     ]
+    },
+    {
+     "kart": "lx:buchstabieren",
+     "de": "Können Sie den Namen bitte buchstabieren?",
+     "tr": "Adı harf harf söyleyebilir misiniz lütfen?",
+     "accepted": [
+      "Können Sie den Namen bitte buchstabieren?",
+      "Können Sie bitte den Namen buchstabieren?",
+      "Bitte buchstabieren Sie den Namen."
+     ]
+    },
+    {
+     "kart": "lx:buchstabieren",
+     "de": "Guten Tag, hier ist {name}. Ich buchstabiere meinen Namen.",
+     "tr": "İyi günler, ben {name}. Adımı harf harf söylüyorum.",
+     "accepted": [
+      "Guten Tag, hier ist {name}. Ich buchstabiere meinen Namen.",
+      "Guten Tag, hier ist {name}, ich buchstabiere meinen Namen.",
+      "Guten Tag, {name} hier. Ich buchstabiere meinen Namen."
+     ]
+    },
+    {
+     "kart": "lx:buchstabieren",
+     "de": "Na gut, ich buchstabiere nochmal.",
+     "tr": "Peki, bir daha harf harf söylüyorum.",
+     "accepted": [
+      "Na gut, ich buchstabiere nochmal.",
+      "Na gut, ich buchstabiere noch mal.",
+      "Na gut, nochmal: ich buchstabiere."
+     ]
+    },
+    {
+     "kart": "lx:Sprache",
+     "de": "Welche Sprache ist das?",
+     "tr": "Bu hangi dil?",
+     "accepted": [
+      "Welche Sprache ist das?",
+      "Was für eine Sprache ist das?",
+      "Welche Sprache ist das, bitte?"
+     ]
+    },
+    {
+     "kart": "lx:Sprache",
+     "de": "Ich möchte die Sprache lernen.",
+     "tr": "Bu dili öğrenmek istiyorum.",
+     "accepted": [
+      "Ich möchte die Sprache lernen.",
+      "Ich möchte diese Sprache lernen.",
+      "Die Sprache möchte ich lernen."
+     ]
+    },
+    {
+     "kart": "lx:schlucken",
+     "de": "Ich kann nicht gut schlucken.",
+     "tr": "İyi yutkunamıyorum.",
+     "accepted": [
+      "Ich kann nicht gut schlucken.",
+      "Ich kann nicht richtig schlucken.",
+      "Ich kann schlecht schlucken."
+     ]
+    },
+    {
+     "kart": "lx:schlucken",
+     "de": "Schlucken geht nicht gut.",
+     "tr": "Yutkunmak pek olmuyor.",
+     "accepted": [
+      "Schlucken geht nicht gut.",
+      "Schlucken geht nicht.",
+      "Das Schlucken geht nicht gut."
+     ]
+    },
+    {
+     "kart": "lx:Buchstabe",
+     "de": "Der erste Buchstabe ist B wie Berta.",
+     "tr": "İlk harf Berta'daki B.",
+     "accepted": [
+      "Der erste Buchstabe ist B wie Berta.",
+      "Der erste Buchstabe ist ein B wie Berta.",
+      "Der erste Buchstabe ist B wie Berlin."
+     ]
+    },
+    {
+     "kart": "lx:buchstabieren",
+     "de": "Ich buchstabiere: B wie Berlin.",
+     "tr": "Harf harf söylüyorum: Berlin'deki B.",
+     "accepted": [
+      "Ich buchstabiere: B wie Berlin.",
+      "Ich buchstabiere: B wie Berta.",
+      "Ich buchstabiere, B wie Berlin."
+     ]
+    },
+    {
+     "kart": "lx:buchstabieren",
+     "de": "Ich buchstabiere: Brunnengasse, mit Doppel-N.",
+     "tr": "Harf harf söylüyorum: Brunnengasse, iki N ile.",
+     "accepted": [
+      "Ich buchstabiere: Brunnengasse, mit Doppel-N.",
+      "Ich buchstabiere: Brunnengasse mit Doppel-N.",
+      "Brunnengasse, mit Doppel-N, ich buchstabiere."
+     ]
+    },
+    {
+     "kart": "lx:Name",
+     "de": "Ist der Name mit Doppel-L?",
+     "tr": "Ad iki L ile mi?",
+     "accepted": [
+      "Ist der Name mit Doppel-L?",
+      "Ist der Name mit Doppel-L geschrieben?",
+      "Mit Doppel-L, der Name?"
+     ]
+    },
+    {
+     "kart": "lx:Name",
+     "de": "Auf welchen Namen ist der Termin?",
+     "tr": "Randevu kimin adına?",
+     "accepted": [
+      "Auf welchen Namen ist der Termin?",
+      "Auf welchen Namen ist der Termin, bitte?",
+      "Der Termin ist auf welchen Namen?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Dr. Weber'in muayenehanesini arıyorsun. Boğazın ağrıyor.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Praxis Dr. Weber, Huber, guten Tag.",
+      "tr": "Dr. Weber muayenehanesi, ben Huber, iyi günler."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Guten Tag, hier ist {name}. Ich möchte einen Termin.",
+      "tr": "İyi günler, ben {name}. Randevu istiyorum."
+     },
+     {
+      "r": "ch:huber",
+      "de": "Gern. Wie ist Ihr Name? Können Sie das buchstabieren?",
+      "tr": "Tabii. Adınız ne? Harf harf söyleyebilir misiniz?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Huber Hanım senden ne istiyor?",
+     "opts": [
+      "Adını harf harf söylemeni",
+      "Yarın gelmeni",
+      "Telefon numaranı",
+      "Adresini"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:16:h2",
+   "title_tr": "Ceket, palto, gömlek, elbise ve süt",
+   "kartlar": [
+    "lx:Jacke",
+    "lx:Mantel",
+    "lx:Hemd",
+    "lx:Kleid",
+    "lx:Milch"
+   ],
+   "kaliplar": [
+    {
+     "de": "Haben Sie … noch?",
+     "tr": "… hâlâ sizde var mı?"
+    },
+    {
+     "de": "Ist … noch da?",
+     "tr": "… hâlâ duruyor mu?"
+    },
+    {
+     "de": "Auf Wiederhören!",
+     "tr": "Telefonda: hoşça kalın!"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Jacke",
+     "de": "Guten Tag, hier ist {name}. Haben Sie die Jacke noch?",
+     "tr": "İyi günler, ben {name}. Ceket hâlâ sizde mi?",
+     "accepted": [
+      "Guten Tag, hier ist {name}. Haben Sie die Jacke noch?",
+      "Guten Tag, {name} hier. Haben Sie die Jacke noch?",
+      "Guten Tag, hier ist {name}. Ist die Jacke noch da?"
+     ]
+    },
+    {
+     "kart": "lx:Jacke",
+     "de": "Ist die Jacke warm?",
+     "tr": "Ceket sıcak tutuyor mu?",
+     "accepted": [
+      "Ist die Jacke warm?",
+      "Die Jacke ist warm?",
+      "Ist die Jacke denn warm?"
+     ]
+    },
+    {
+     "kart": "lx:Mantel",
+     "de": "Ist der Mantel noch da?",
+     "tr": "Palto hâlâ duruyor mu?",
+     "accepted": [
+      "Ist der Mantel noch da?",
+      "Haben Sie den Mantel noch?",
+      "Ist der Mantel noch hier?"
+     ]
+    },
+    {
+     "kart": "lx:Mantel",
+     "de": "Der Mantel kostet sechzig Euro.",
+     "tr": "Palto altmış euro.",
+     "accepted": [
+      "Der Mantel kostet sechzig Euro.",
+      "Sechzig Euro kostet der Mantel.",
+      "Der Mantel kostet 60 Euro."
+     ]
+    },
+    {
+     "kart": "lx:Hemd",
+     "de": "Was kostet das Hemd?",
+     "tr": "Gömlek ne kadar?",
+     "accepted": [
+      "Was kostet das Hemd?",
+      "Wie viel kostet das Hemd?",
+      "Was kostet das Hemd, bitte?"
+     ]
+    },
+    {
+     "kart": "lx:Hemd",
+     "de": "Das Hemd ist ein Geschenk.",
+     "tr": "Gömlek bir hediye.",
+     "accepted": [
+      "Das Hemd ist ein Geschenk.",
+      "Das Hemd ist mein Geschenk.",
+      "Das Hemd ist ein Geschenk für Tobi."
+     ]
+    },
+    {
+     "kart": "lx:Kleid",
+     "de": "Ist das Kleid neu?",
+     "tr": "Elbise yeni mi?",
+     "accepted": [
+      "Ist das Kleid neu?",
+      "Ist das Kleid ganz neu?",
+      "Ist das ein neues Kleid?"
+     ]
+    },
+    {
+     "kart": "lx:Kleid",
+     "de": "Das Kleid ist für Ioana.",
+     "tr": "Elbise Ioana için.",
+     "accepted": [
+      "Das Kleid ist für Ioana.",
+      "Das ist das Kleid für Ioana.",
+      "Für Ioana ist das Kleid."
+     ]
+    },
+    {
+     "kart": "lx:Milch",
+     "de": "Hallo, Frau Stadler, hier ist {name}. Haben Sie noch Milch?",
+     "tr": "Merhaba Stadler Hanım, ben {name}. Hâlâ sütünüz var mı?",
+     "accepted": [
+      "Hallo, Frau Stadler, hier ist {name}. Haben Sie noch Milch?",
+      "Hallo, Frau Stadler, {name} hier. Haben Sie noch Milch?",
+      "Guten Tag, Frau Stadler, hier ist {name}. Haben Sie noch Milch?"
+     ]
+    },
+    {
+     "kart": "lx:Milch",
+     "de": "Mit Milch, bitte.",
+     "tr": "Sütlü, lütfen.",
+     "accepted": [
+      "Mit Milch, bitte.",
+      "Bitte mit Milch.",
+      "Mit Milch, bitte schön."
+     ]
+    },
+    {
+     "kart": "lx:Mantel",
+     "de": "Gut, dann den Mantel am Samstag. Auf Wiederhören!",
+     "tr": "Tamam, o zaman palto cumartesi. Hoşça kalın!",
+     "accepted": [
+      "Gut, dann den Mantel am Samstag. Auf Wiederhören!",
+      "Gut, den Mantel dann am Samstag. Auf Wiederhören!",
+      "Dann den Mantel am Samstag. Auf Wiederhören!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Komşun Brandl Hanım eski giysilerini veriyor.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Hallo, Frau Brandl, hier ist {name}. Ist der Mantel noch da?",
+      "tr": "Merhaba Brandl Hanım, ben {name}. Palto hâlâ duruyor mu?"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Der Mantel? Nein, leider nicht. Aber die Jacke ist noch da.",
+      "tr": "Palto mu? Hayır, maalesef. Ama ceket hâlâ duruyor."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Die Jacke? Gut, danke!",
+      "tr": "Ceket mi? Güzel, teşekkürler!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Brandl Hanım'da hâlâ ne var?",
+     "opts": [
+      "Ceket",
+      "Palto",
+      "Elbise",
+      "Gömlek"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:16:h3",
+   "title_tr": "Ucuz mu? Açık renk mi? Bir de tebrik",
+   "kartlar": [
+    "lx:billig",
+    "lx:hell",
+    "lx:Schrank",
+    "lx:Stuhl",
+    "lx:gratulieren"
+   ],
+   "kaliplar": [
+    {
+     "de": "… ist billig. – Ist … billig?",
+     "tr": "… ucuz. – … ucuz mu?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:billig",
+     "de": "Ist der Mantel billig?",
+     "tr": "Palto ucuz mu?",
+     "accepted": [
+      "Ist der Mantel billig?",
+      "Der Mantel ist billig?",
+      "Ist der Mantel denn billig?"
+     ]
+    },
+    {
+     "kart": "lx:billig",
+     "de": "Zwanzig Euro? Das ist billig!",
+     "tr": "Yirmi euro mu? Bu ucuz!",
+     "accepted": [
+      "Zwanzig Euro? Das ist billig!",
+      "Zwanzig Euro? Das ist aber billig!",
+      "Das ist billig! Zwanzig Euro?"
+     ]
+    },
+    {
+     "kart": "lx:hell",
+     "de": "Ist die Jacke hell?",
+     "tr": "Ceket açık renk mi?",
+     "accepted": [
+      "Ist die Jacke hell?",
+      "Die Jacke ist hell?",
+      "Ist die Jacke denn hell?"
+     ]
+    },
+    {
+     "kart": "lx:hell",
+     "de": "Ja, der Mantel ist hell.",
+     "tr": "Evet, palto açık renk.",
+     "accepted": [
+      "Ja, der Mantel ist hell.",
+      "Ja, der Mantel ist ganz hell.",
+      "Der Mantel ist hell, ja."
+     ]
+    },
+    {
+     "kart": "lx:Schrank",
+     "de": "Haben Sie noch einen Schrank?",
+     "tr": "Bir dolabınız daha var mı?",
+     "accepted": [
+      "Haben Sie noch einen Schrank?",
+      "Haben Sie denn noch einen Schrank?",
+      "Haben Sie noch einen Schrank da?"
+     ]
+    },
+    {
+     "kart": "lx:Schrank",
+     "de": "Der Schrank ist alt, aber gut.",
+     "tr": "Dolap eski ama iyi.",
+     "accepted": [
+      "Der Schrank ist alt, aber gut.",
+      "Alt ist der Schrank, aber gut.",
+      "Der Schrank ist alt, aber er ist gut."
+     ]
+    },
+    {
+     "kart": "lx:Stuhl",
+     "de": "Haben Sie auch Stühle?",
+     "tr": "Sandalyeleriniz de var mı?",
+     "accepted": [
+      "Haben Sie auch Stühle?",
+      "Haben Sie auch einen Stuhl?",
+      "Und haben Sie auch Stühle?"
+     ]
+    },
+    {
+     "kart": "lx:Stuhl",
+     "de": "Der Stuhl kostet fünf Euro.",
+     "tr": "Sandalye beş euro.",
+     "accepted": [
+      "Der Stuhl kostet fünf Euro.",
+      "Fünf Euro kostet der Stuhl.",
+      "Der Stuhl kostet 5 Euro."
+     ]
+    },
+    {
+     "kart": "lx:gratulieren",
+     "de": "Hallo Derya, hier ist {name}. Ich möchte gratulieren!",
+     "tr": "Merhaba Derya, ben {name}. Tebrik etmek istiyorum!",
+     "accepted": [
+      "Hallo Derya, hier ist {name}. Ich möchte gratulieren!",
+      "Hallo Derya, {name} hier. Ich möchte gratulieren!",
+      "Hallo Derya, hier ist {name}. Ich möchte dir gratulieren!"
+     ]
+    },
+    {
+     "kart": "lx:gratulieren",
+     "de": "Wir gratulieren, Ioana!",
+     "tr": "Tebrikler Ioana!",
+     "accepted": [
+      "Wir gratulieren, Ioana!",
+      "Ioana, wir gratulieren!",
+      "Wir gratulieren dir, Ioana!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Brandl Hanım eşyalarını da veriyor.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Hallo, Frau Brandl! Ist der Schrank noch da?",
+      "tr": "Merhaba Brandl Hanım! Dolap hâlâ duruyor mu?"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Der Schrank? Ja! Er ist alt, aber billig. Zwanzig Euro.",
+      "tr": "Dolap mı? Evet! Eski ama ucuz. Yirmi euro."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Zwanzig Euro? Gut! Und der Stuhl?",
+      "tr": "Yirmi euro mu? Güzel! Peki sandalye?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Dolap kaç euro?",
+     "opts": [
+      "Yirmi",
+      "On iki",
+      "Otuz",
+      "İki"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:16:v1",
+  "title_tr": "Derya muayenehaneyi arıyor: adını harf harf söylüyor",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:huber",
+    "sahne_tr": "Muayenehanenin kabulü. Huber Hanım telefonu açıyor, önünde bilgisayar.",
+    "de": "Praxis Dr. Weber, Huber, guten Tag.",
+    "tr": "Dr. Weber muayenehanesi, ben Huber, iyi günler."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya evde, boynunda atkı, sesi kısık.",
+    "de": "Guten Tag, hier ist Derya Aksoy.",
+    "tr": "İyi günler, ben Derya Aksoy."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım kaşlarını çatıyor, telefonu kulağına bastırıyor.",
+    "de": "Wie bitte? Wie ist Ihr Name?",
+    "tr": "Efendim? Adınız ne?"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya yavaş ve net konuşuyor.",
+    "de": "Aksoy. Ich buchstabiere.",
+    "tr": "Aksoy. Harf harf söylüyorum."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya parmaklarıyla harfleri sayıyor.",
+    "de": "A wie Anton, K wie Kaufmann, S wie Samuel.",
+    "tr": "Anton'daki A, Kaufmann'daki K, Samuel'deki S."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya iki harfi daha söylüyor.",
+    "de": "O wie Otto, Y wie Ypsilon.",
+    "tr": "Otto'daki O, Ypsilon'daki Y."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım ekrana yazıyor, sonra bir kez daha soruyor.",
+    "de": "A, K, S, O, Y. Mit Y am Ende?",
+    "tr": "A, K, S, O, Y. Sonda Y mi var?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya başını sallıyor.",
+    "de": "Ja, mit Y am Ende.",
+    "tr": "Evet, sonda Y var."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım gülümsüyor.",
+    "de": "Danke. Und Ihr Vorname?",
+    "tr": "Teşekkürler. Peki ön adınız?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülüyor.",
+    "de": "Derya. D wie Dora, E, R, Y, A.",
+    "tr": "Derya. Dora'daki D, E, R, Y, A."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım klavyeden başını kaldırıyor.",
+    "de": "Gut, Frau Aksoy. Was kann ich für Sie tun?",
+    "tr": "Tamam Aksoy Hanım. Sizin için ne yapabilirim?"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya boğazını gösteriyor.",
+    "de": "Ich kann nicht schlucken. Ich habe auch Fieber.",
+    "tr": "Yutkunamıyorum. Ateşim de var."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım takvime bakıyor.",
+    "de": "Können Sie heute um elf kommen?",
+    "tr": "Bugün saat on birde gelebilir misiniz?"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya rahatlıyor.",
+    "de": "Um elf? Ja, das geht. Danke!",
+    "tr": "On birde mi? Evet, olur. Teşekkürler!"
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım telefonu kapatmaya hazırlanıyor.",
+    "de": "Gern. Auf Wiederhören, Frau Aksoy!",
+    "tr": "Rica ederim. Hoşça kalın Aksoy Hanım!"
+   },
+   {
+    "id": "s16",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya telefonu kapatıyor ve kanepeye uzanıyor.",
+    "de": "Auf Wiederhören!",
+    "tr": "Hoşça kalın!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15",
+     "s16"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Derya neden arıyor?",
+     "opts": [
+      "Doktordan randevu almak için",
+      "Adresini değiştirmek için",
+      "Bir ceket ayırtmak için"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s12",
+      "s13"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Derya'nın soyadının son harfi ne?",
+      "opts": [
+       "Y",
+       "S",
+       "A"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s7",
+       "s8"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Randevu saat kaçta?",
+      "opts": [
+       "on birde",
+       "onda",
+       "on ikide"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s13",
+       "s14"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s5",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Kaufmann",
+       "Paula",
+       "Berta"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s9",
+      "seviye": "orta",
+      "de": "Danke. Und Ihr ___?",
+      "accepted": [
+       "Vorname",
+       "vorname",
+       "Vorname."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s8",
+      "seviye": "zor",
+      "banka": [
+       "Ja",
+       "mit",
+       "Y",
+       "am",
+       "Ende",
+       "im",
+       "K"
+      ],
+      "accepted": [
+       "Ja, mit Y am Ende.",
+       "ja mit y am ende",
+       "Ja, mit Y am Ende"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s13",
+      "seviye": "usta",
+      "accepted": [
+       "Können Sie heute um elf kommen?",
+       "können sie heute um elf kommen",
+       "Können Sie heute um elf kommen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede duyduklarını Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Derya kann nicht schlucken. Sie hat um elf einen Termin.",
+      "zorunlu": [
+       "schlucken",
+       "elf"
+      ]
+     }
+    ],
+    "golge": [
+     "s12",
+     "s16"
+    ],
+    "cevapla": {
+     "id": "m1:16:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Huber Hanım sana da adını soruyor. Adını söyle.",
+     "prompt_de": "Und wie ist Ihr Name?",
+     "accepted": [
+      "Mein Name ist {name}. Ich buchstabiere.",
+      "Mein Name ist {name}.",
+      "Ich heiße {name}.",
+      "{name}.",
+      "Ich bin {name}.",
+      "{name}, ich buchstabiere.",
+      "Ich heiße {name}. Ich buchstabiere."
+     ],
+     "why_tr": "Adını **Mein Name ist** ile söyle. Gerekirse **Ich buchstabiere** de."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:16:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Huber Hanım'dan sesli mesaj: bu nasıl yazılıyor?",
+   "ortam_tr": "Telefonunda bir sesli mesaj var. Muayenehaneden Huber Hanım aramış.",
+   "speaker": "ch:huber",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist Sabine Huber, Praxis Dr. Weber.",
+     "tr": "İyi günler, ben Sabine Huber, Dr. Weber muayenehanesi."
+    },
+    {
+     "id": "c2",
+     "de": "Ich habe hier Ihren Namen, aber wie schreibt man das?",
+     "tr": "Adınız burada bende ama nasıl yazılıyor?"
+    },
+    {
+     "id": "c3",
+     "de": "Mit B oder mit P?",
+     "tr": "B ile mi, P ile mi?"
+    },
+    {
+     "id": "c4",
+     "de": "Können Sie heute noch anrufen?",
+     "tr": "Bugün içinde arayabilir misiniz?"
+    },
+    {
+     "id": "c5",
+     "de": "Die Nummer ist null, acht, sieben, eins, vier, zwei, drei.",
+     "tr": "Numara sıfır, sekiz, yedi, bir, dört, iki, üç."
+    },
+    {
+     "id": "c6",
+     "de": "Danke, auf Wiederhören!",
+     "tr": "Teşekkürler, hoşça kalın!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Huber Hanım neden arıyor?",
+      "opts": [
+       "Adının nasıl yazıldığını soruyor",
+       "Randevuyu iptal ediyor",
+       "Bir ceketi soruyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Huber Hanım hangi iki harfi karıştırıyor?",
+       "opts": [
+        "B ve P",
+        "D ve T",
+        "M ve N"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ne zaman geri aramalısın?",
+       "opts": [
+        "bugün",
+        "yarın",
+        "pazartesi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "morgen",
+        "heute",
+        "Montag"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Ich habe hier Ihren ___, aber wie schreibt man das?",
+       "accepted": [
+        "Namen",
+        "namen",
+        "Namen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Mit",
+        "B",
+        "oder",
+        "mit",
+        "P",
+        "und",
+        "D"
+       ],
+       "accepted": [
+        "Mit B oder mit P?",
+        "mit b oder mit p",
+        "Mit B oder mit P"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Können Sie heute noch anrufen?",
+        "können sie heute noch anrufen",
+        "Können Sie heute noch anrufen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajda ne dendiğini Almanca bir iki kısa cümleyle özetle.",
+       "ornek_de": "Wie schreibt man meinen Namen? Ich muss heute anrufen.",
+       "zorunlu": [
+        "Namen",
+        "heute"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:16:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Huber Hanım'ı geri arıyorsun. Selam ver, kendini tanıt ve adını harf harf söyleyeceğini söyle.",
+      "prompt_de": "Praxis Dr. Weber, Sabine Huber, guten Tag.",
+      "accepted": [
+       "Guten Tag, Frau Huber, hier ist {name}. Ich buchstabiere jetzt.",
+       "Guten Tag, hier ist {name}. Ich buchstabiere meinen Namen.",
+       "Guten Tag, Frau Huber, hier ist {name}. Ich buchstabiere.",
+       "Guten Tag, hier ist {name}. Ich buchstabiere.",
+       "Guten Tag, Frau Huber, {name} hier. Ich buchstabiere.",
+       "Grüß Gott, Frau Huber, hier ist {name}. Ich buchstabiere.",
+       "Guten Tag, mein Name ist {name}. Ich buchstabiere."
+      ],
+      "why_tr": "Önce **hier ist** ve adın. Sonra **Ich buchstabiere** de."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:16:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Bugün muayenehaneyi ara, adını harf harf söyle.",
+     "Yarın muayenehaneye git.",
+     "Bir şey yapma, o yine arar."
+    ],
+    "ans": 0,
+    "why_tr": "Huber Hanım adının yazılışını soruyor. Bugün aramanı istiyor.",
+    "kanit": [
+     "c2",
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:16:a2",
+   "tur": "anons",
+   "title_tr": "Mağazada hoparlör anonsu",
+   "ortam_tr": "Şehirde bir giyim mağazasındasın. Hoparlörden bir anons geliyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag!",
+     "tr": "İyi günler!"
+    },
+    {
+     "id": "c2",
+     "de": "Heute sind alle Jacken und Mäntel billig.",
+     "tr": "Bugün bütün ceketler ve paltolar ucuz."
+    },
+    {
+     "id": "c3",
+     "de": "Ein Mantel kostet nur fünfzig Euro.",
+     "tr": "Bir palto sadece elli euro."
+    },
+    {
+     "id": "c4",
+     "de": "Hemden und Kleider kosten nur zwanzig Euro.",
+     "tr": "Gömlekler ve elbiseler sadece yirmi euro."
+    },
+    {
+     "id": "c5",
+     "de": "Heute Abend um acht Uhr ist alles geschlossen.",
+     "tr": "Bu akşam saat sekizde her yer kapalı."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Anons ne söylüyor?",
+      "opts": [
+       "Bugün giysiler ucuz",
+       "Mağaza taşınıyor",
+       "Bir çocuk kayboldu"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Bir palto kaç euro?",
+       "opts": [
+        "elli",
+        "yirmi",
+        "on beş"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Mağaza ne zaman kapanıyor?",
+       "opts": [
+        "bu akşam sekizde",
+        "yarın sabah",
+        "öğlen"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Jacke",
+        "Mantel",
+        "Kleid"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Hemden und Kleider kosten nur ___ Euro.",
+       "accepted": [
+        "zwanzig",
+        "Zwanzig",
+        "zwanzig."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Heute",
+        "sind",
+        "alle",
+        "Jacken",
+        "und",
+        "Mäntel",
+        "billig",
+        "teuer",
+        "ist"
+       ],
+       "accepted": [
+        "Heute sind alle Jacken und Mäntel billig.",
+        "heute sind alle jacken und mäntel billig",
+        "Heute sind alle Jacken und Mäntel billig"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Ein Mantel kostet nur fünfzig Euro.",
+        "ein mantel kostet nur fünfzig euro",
+        "Ein Mantel kostet nur fünfzig Euro"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Anonsta ne dendiğini Almanca bir iki kısa cümleyle özetle.",
+       "ornek_de": "Jacken und Mäntel sind heute billig. Um acht ist alles geschlossen.",
+       "zorunlu": [
+        "Jacken",
+        "billig"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:16:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Arkadaşın telefonda soruyor. Paltolar bugün ucuz, elli euro.",
+      "prompt_de": "Sind die Mäntel heute billig?",
+      "accepted": [
+       "Ja, ein Mantel kostet nur fünfzig Euro.",
+       "Ja, sie sind billig.",
+       "Ja, nur fünfzig Euro.",
+       "Ja, heute sind sie billig.",
+       "Ja, fünfzig Euro.",
+       "Ja, die Mäntel sind heute billig."
+      ],
+      "why_tr": "Soru **Sind** ile başlıyor. Cevaba **Ja** ile başla, sonra fiyatı söyle."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:16:a2:e1",
+    "k": "pick",
+    "q_tr": "Ucuz bir palto istiyorsun. Ne yapmalısın?",
+    "opts": [
+     "Bugün akşam sekizden önce al.",
+     "Yarın gel.",
+     "Pazartesiyi bekle."
+    ],
+    "ans": 0,
+    "why_tr": "Paltolar bugün ucuz. Akşam sekizde mağaza kapanıyor.",
+    "kanit": [
+     "c2",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:16:g1",
+   "de": "Jacke",
+   "dogru_img": "short winter jacket on a hanger",
+   "celdirici_img": [
+    "long wool coat on a hanger",
+    "white dress shirt on a hanger",
+    "summer dress on a hanger"
+   ]
+  },
+  {
+   "id": "m1:16:g2",
+   "de": "Mantel",
+   "dogru_img": "long wool coat on a hanger",
+   "celdirici_img": [
+    "short winter jacket on a hanger",
+    "knitted sweater folded",
+    "pair of trousers folded"
+   ]
+  },
+  {
+   "id": "m1:16:g3",
+   "de": "Hemd",
+   "dogru_img": "white button-up shirt on a hanger",
+   "celdirici_img": [
+    "t-shirt folded",
+    "summer dress on a hanger",
+    "long wool coat on a hanger"
+   ]
+  },
+  {
+   "id": "m1:16:g4",
+   "de": "Kleid",
+   "dogru_img": "summer dress on a hanger",
+   "celdirici_img": [
+    "skirt on a hanger",
+    "white button-up shirt on a hanger",
+    "short winter jacket on a hanger"
+   ]
+  },
+  {
+   "id": "m1:16:g5",
+   "de": "Stuhl",
+   "dogru_img": "single wooden chair",
+   "celdirici_img": [
+    "wooden table",
+    "wardrobe cupboard",
+    "sofa"
+   ]
+  },
+  {
+   "id": "m1:16:g6",
+   "de": "Schrank",
+   "dogru_img": "tall wooden wardrobe cupboard",
+   "celdirici_img": [
+    "single wooden chair",
+    "bed with pillow",
+    "bookshelf without doors"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:16:p1",
+  "title_tr": "Huber Hanım'ı geri arıyorsun",
+  "durum_tr": "Huber Hanım adının ve adresinin yazılışını soruyor. Onu geri arıyorsun. Adresin Brunnengasse 7.",
+  "karsi": "ch:huber",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Praxis Dr. Weber, Huber, guten Tag.",
+    "tr": "Dr. Weber muayenehanesi, ben Huber, iyi günler.",
+    "secenekler": [
+     {
+      "de": "Hallo, Frau Huber, hier ist {name}.",
+      "tr": "Merhaba Huber Hanım, ben {name}.",
+      "accepted": [
+       "Hallo, Frau Huber, hier ist {name}.",
+       "Guten Tag, Frau Huber, hier ist {name}.",
+       "Guten Tag, hier ist {name}.",
+       "Guten Tag, Frau Huber, {name} hier.",
+       "Guten Tag, mein Name ist {name}.",
+       "Grüß Gott, Frau Huber, hier ist {name}."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Önce selam, sonra **hier ist** ve adın."
+     },
+     {
+      "de": "Hallo? Wer ist da?",
+      "tr": "Alo? Kim o?",
+      "accepted": [
+       "Hallo? Wer ist da?",
+       "Hallo, wer ist da?",
+       "Wer ist da?"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Arayan sensin. Önce kendini tanıt: **hier ist** ve adın."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Gut! Wie schreibt man Ihren Namen?",
+    "tr": "Güzel! Adınız nasıl yazılıyor?",
+    "secenekler": [
+     {
+      "de": "Gern, ich buchstabiere.",
+      "tr": "Memnuniyetle, harf harf söylüyorum.",
+      "accepted": [
+       "Gern, ich buchstabiere.",
+       "Ich buchstabiere.",
+       "Gern, ich buchstabiere meinen Namen.",
+       "Ja, ich buchstabiere."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Sonra adını harf harf, yavaşça söylersin."
+     },
+     {
+      "de": "Mein Name ist {name}.",
+      "tr": "Benim adım {name}.",
+      "accepted": [
+       "Mein Name ist {name}.",
+       "Ich heiße {name}.",
+       "Ich bin {name}."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Adını biliyor, yazılışını soruyor. **Ich buchstabiere** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Danke, jetzt habe ich alles. Und die Adresse? Brunnengasse sieben?",
+    "tr": "Teşekkürler, şimdi hepsi tamam. Peki adres? Brunnengasse yedi mi?",
+    "secenekler": [
+     {
+      "de": "Ja, Brunnengasse sieben.",
+      "tr": "Evet, Brunnengasse yedi.",
+      "accepted": [
+       "Ja, Brunnengasse sieben.",
+       "Ja, genau, Brunnengasse sieben.",
+       "Ja, Brunnengasse 7.",
+       "Ja, sieben."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Adresi tekrar ettin. Huber Hanım emin olur."
+     },
+     {
+      "de": "Ja, Brunnengasse zwölf.",
+      "tr": "Evet, Brunnengasse on iki.",
+      "accepted": [
+       "Ja, Brunnengasse zwölf.",
+       "Brunnengasse zwölf.",
+       "Ja, zwölf."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Senin evin Brunnengasse 7. **sieben** de."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Brunnengasse, mit B oder mit P?",
+    "tr": "Brunnengasse, B ile mi, P ile mi?",
+    "secenekler": [
+     {
+      "de": "Mit B. B wie Berta.",
+      "tr": "B ile. Berta'daki B.",
+      "accepted": [
+       "Mit B. B wie Berta.",
+       "Mit B, B wie Berlin.",
+       "Mit B wie Berta.",
+       "B wie Berta.",
+       "Mit B wie Berlin.",
+       "Mit B."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Harfi bir adla söyledin. Telefonda en güvenli yol bu."
+     },
+     {
+      "de": "Mit P. P wie Paula.",
+      "tr": "P ile. Paula'daki P.",
+      "accepted": [
+       "Mit P. P wie Paula.",
+       "Mit P wie Paula.",
+       "P wie Paula."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Brunnengasse **B** ile başlar. **B wie Berta** de."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Und mit Doppel-N?",
+    "tr": "Peki iki N ile mi?",
+    "secenekler": [
+     {
+      "de": "Ja, mit Doppel-N.",
+      "tr": "Evet, iki N ile.",
+      "accepted": [
+       "Ja, mit Doppel-N.",
+       "Ja, Doppel-N.",
+       "Ja, mit zwei N.",
+       "Ja, zwei N."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **Brunnen** kelimesinde iki **N** var."
+     },
+     {
+      "de": "Nein, mit einem N.",
+      "tr": "Hayır, bir N ile.",
+      "accepted": [
+       "Nein, mit einem N.",
+       "Nein, ein N.",
+       "Nur ein N."
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "**Brunnen** kelimesinde iki **N** var. **Ja, mit Doppel-N** de."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Danke, {Herr|Frau} {name}. Auf Wiederhören!",
+    "tr": "Teşekkürler {Herr|Frau} {name}. Hoşça kalın!",
+    "secenekler": [
+     {
+      "de": "Gut, danke, Frau Huber. Auf Wiederhören!",
+      "tr": "Tamam, teşekkürler Huber Hanım. Hoşça kalın!",
+      "accepted": [
+       "Gut, danke, Frau Huber. Auf Wiederhören!",
+       "Danke, Frau Huber. Auf Wiederhören!",
+       "Vielen Dank, auf Wiederhören!",
+       "Auf Wiederhören, Frau Huber!"
+      ],
+      "sonraki": "n7",
+      "uygun": true,
+      "geri_bildirim_tr": "Telefonda **Auf Wiederhören** dersin. Çok doğal oldu."
+     },
+     {
+      "de": "Hallo!",
+      "tr": "Merhaba!",
+      "accepted": [
+       "Hallo!",
+       "Hallo, Frau Huber!"
+      ],
+      "sonraki": "n6",
+      "uygun": false,
+      "geri_bildirim_tr": "**Hallo** selamdır. Telefonu kapatırken **Auf Wiederhören** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n7",
+    "de": "Auf Wiederhören!",
+    "tr": "Hoşça kalın!",
+    "son": true,
+    "secenekler": []
+   }
+  ],
+  "kapanis_tr": "Telefonda kendini tanıttın, adını ve sokağını harf harf doğruladın."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Brandl Hanım'ın merdivendeki notu",
+  "metin_de": "Hallo! Ich habe einen Schrank, zwei Stühle und einen Mantel. Alles ist billig. Der Schrank kostet zwanzig Euro, ein Stuhl kostet fünf Euro. Der Mantel ist hell und warm. Am Samstag bin ich da. Rosa Brandl",
+  "metin_tr": "Merhaba! Bir dolabım, iki sandalyem ve bir paltom var. Hepsi ucuz. Dolap yirmi euro, bir sandalye beş euro. Palto açık renk ve sıcak tutuyor. Cumartesi evdeyim. Rosa Brandl",
+  "sorular": [
+   {
+    "id": "m1:16:o1",
+    "kind": "gist",
+    "q_tr": "Brandl Hanım notta ne yazıyor?",
+    "opts": [
+     "Eski eşyalarını ucuza veriyor",
+     "Taşınıyor",
+     "Bir hediye arıyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:16:o2",
+    "kind": "detail",
+    "q_tr": "Bir sandalye kaç euro?",
+    "opts": [
+     "beş",
+     "yirmi",
+     "on"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:16:o3",
+    "kind": "detail",
+    "q_tr": "Palto nasıl?",
+    "opts": [
+     "açık renk ve sıcak",
+     "koyu ve ince",
+     "yeni ve pahalı"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:16:o4",
+    "kind": "detail",
+    "q_tr": "Brandl Hanım ne zaman evde?",
+    "opts": [
+     "cumartesi",
+     "pazar",
+     "cuma"
+    ],
+    "ans": 0,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:16:o5",
+    "k": "guided_response",
+    "situation_tr": "Brandl Hanım'ı arıyorsun. Kendini tanıt ve palto hâlâ duruyor mu diye sor.",
+    "prompt_de": "Brandl, hallo?",
+    "accepted": [
+     "Hallo, Frau Brandl, hier ist {name}. Haben Sie den Mantel noch?",
+     "Guten Tag, Frau Brandl, hier ist {name}. Haben Sie den Mantel noch?",
+     "Hallo, hier ist {name}. Haben Sie den Mantel noch?",
+     "Hallo, Frau Brandl, hier ist {name}. Ist der Mantel noch da?",
+     "Guten Tag, hier ist {name}. Ist der Mantel noch da?",
+     "Hallo, Frau Brandl, {name} hier. Ist der Mantel noch da?"
+    ],
+    "why_tr": "Önce **hier ist** ve adın. Sonra soruyu **Haben Sie** ile başlat."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Brandl Hanım'a kısa bir mesaj yaz. Kendini tanıt, dolabı sor ve ne zaman geleceğini yaz.",
+   "ornek_de": "Guten Tag, Frau Brandl, hier ist {name}. Ist der Schrank noch da? Ich komme am Samstag.",
+   "zorunlu": [
+    "hier ist",
+    "Schrank"
+   ],
+   "accepted_kaliplar": [
+    "Guten Tag, Frau Brandl, hier ist ___.",
+    "Hallo, Frau Brandl, hier ist ___.",
+    "Ist der Schrank noch da?",
+    "Ich komme am ___."
+   ],
+   "kontrol_tr": [
+    "Kendini **hier ist** ile tanıttın mı?",
+    "Soruyu **Ist** ile başlattın mı?",
+    "Ne zaman geleceğini yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:16:s",
+  "maddeler": [
+   {
+    "id": "m1:16:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Wie schreibt man Ihren Namen?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wie schreibt man Ihren Namen?",
+     "wie schreibt man ihren namen",
+     "Wie schreibt man Ihren Namen"
+    ],
+    "why_tr": "**Wie schreibt man** bir kelimenin nasıl yazıldığını sorar."
+   },
+   {
+    "id": "m1:16:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Der Mantel ist hell und billig.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Mantel ist hell und billig.",
+     "der mantel ist hell und billig",
+     "Der Mantel ist hell und billig"
+    ],
+    "why_tr": "**hell** açık renk, **billig** ucuz demektir."
+   },
+   {
+    "id": "m1:16:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Ich buchstabiere: B wie Berta.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich buchstabiere: B wie Berta.",
+     "ich buchstabiere b wie berta",
+     "Ich buchstabiere: B wie Berta"
+    ],
+    "why_tr": "**B wie Berta** harfi bir adla netleştirir."
+   },
+   {
+    "id": "m1:16:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Das Kleid kostet dreißig Euro.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Kleid kostet dreißig Euro.",
+     "das kleid kostet dreißig euro",
+     "Das Kleid kostet dreißig Euro"
+    ],
+    "why_tr": "**Kleid** elbise demektir."
+   },
+   {
+    "id": "m1:16:s5",
+    "k": "tr_de",
+    "tr": "İyi günler Stadler Hanım, ben {name}.",
+    "accepted": [
+     "Guten Tag, Frau Stadler, hier ist {name}.",
+     "Guten Tag, Frau Stadler, {name} hier.",
+     "Guten Tag, Frau Stadler, mein Name ist {name}.",
+     "Grüß Gott, Frau Stadler, hier ist {name}."
+    ],
+    "why_tr": "Telefonda kendini **hier ist** ve adınla tanıtırsın."
+   },
+   {
+    "id": "m1:16:s6",
+    "k": "tr_de",
+    "tr": "Adınızı harf harf söyleyebilir misiniz lütfen?",
+    "accepted": [
+     "Können Sie Ihren Namen bitte buchstabieren?",
+     "Können Sie bitte Ihren Namen buchstabieren?",
+     "Können Sie Ihren Namen buchstabieren?",
+     "Könnten Sie Ihren Namen bitte buchstabieren?",
+     "Bitte buchstabieren Sie Ihren Namen."
+    ],
+    "why_tr": "Harf harf söylemek **buchstabieren** demektir."
+   },
+   {
+    "id": "m1:16:s7",
+    "k": "tr_de",
+    "tr": "Ceket açık renk ve ucuz.",
+    "accepted": [
+     "Die Jacke ist hell und billig.",
+     "Die Jacke ist billig und hell.",
+     "Die Jacke ist hell und auch billig."
+    ],
+    "why_tr": "Açık renk **hell**, ucuz **billig** demektir."
+   },
+   {
+    "id": "m1:16:s8",
+    "k": "tr_de",
+    "tr": "Teşekkürler, hoşça kalın! Bunu telefonda söylüyorsun.",
+    "accepted": [
+     "Danke, auf Wiederhören!",
+     "Vielen Dank, auf Wiederhören!",
+     "Danke schön, auf Wiederhören!",
+     "Danke und auf Wiederhören!"
+    ],
+    "why_tr": "Telefonda vedalaşırken **Auf Wiederhören** dersin."
+   },
+   {
+    "id": "m1:16:s9",
+    "k": "guided_response",
+    "situation_tr": "Satıcı ayırttığın ceket için kimin adına diye soruyor.",
+    "prompt_de": "Auf welchen Namen, bitte?",
+    "accepted": [
+     "Auf den Namen {name}.",
+     "Auf {name}.",
+     "{name}, bitte.",
+     "Mein Name ist {name}.",
+     "Auf meinen Namen, {name}.",
+     "Auf den Namen {name}, bitte."
+    ],
+    "why_tr": "Kimin adına sorusuna **Auf den Namen** ve adınla cevap verirsin."
+   },
+   {
+    "id": "m1:16:s10",
+    "k": "guided_response",
+    "situation_tr": "Huber Hanım sokağının ilk harfini soruyor. Brunnengasse'nin ilk harfini bir adla söyle.",
+    "prompt_de": "Brunnengasse? Wie ist der erste Buchstabe?",
+    "accepted": [
+     "Mit B wie Berta.",
+     "Mit B. B wie Berta.",
+     "B wie Berta.",
+     "Mit B wie Berlin.",
+     "B wie Berlin.",
+     "Mit B, B wie Berta.",
+     "Mit B, B wie Berlin."
+    ],
+    "why_tr": "Telefonda harfi bir adla söylersin: **B wie Berta** ya da **B wie Berlin**."
+   },
+   {
+    "id": "m1:16:s11",
+    "k": "guided_response",
+    "situation_tr": "Bir dükkânı arıyorsun. Kendini tanıt ve gömlek hâlâ duruyor mu diye sor.",
+    "prompt_de": "Ja, hallo?",
+    "accepted": [
+     "Guten Tag, hier ist {name}. Ist das Hemd noch da?",
+     "Guten Tag, hier ist {name}. Haben Sie das Hemd noch?",
+     "Guten Tag, {name} hier. Ist das Hemd noch da?",
+     "Hallo, hier ist {name}. Ist das Hemd noch da?",
+     "Guten Tag, mein Name ist {name}. Ist das Hemd noch da?",
+     "Grüß Gott, hier ist {name}. Ist das Hemd noch da?"
+    ],
+    "why_tr": "Önce **hier ist** ve adın. Sonra **Ist das Hemd noch da?** diye sor."
+   }
+  ],
+  "sesli": [
+   "m1:16:s9",
+   "m1:16:s10"
+  ],
+  "dikte": [
+   "m1:16:s1",
+   "m1:16:s2",
+   "m1:16:s3",
+   "m1:16:s4"
+  ]
+ }
+}

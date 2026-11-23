@@ -1,0 +1,1794 @@
+{
+ "schema": 1,
+ "id": "m1:gun:19",
+ "day": 19,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Sen ve o derken değişen harf: du sprichst, er fährt",
+ "goal_tr": "Kurstan sonra durakta kimin hangi dili konuştuğunu, kimin nereye gittiğini ve kimin kaldığını söylersin.",
+ "can_do": {
+  "id": "cd:m1:19",
+  "tr": "Başkasının ne yaptığını söylerim: er spricht, sie fährt."
+ },
+ "unit": "u:m1:19",
+ "arm": "pazar",
+ "place": "pl:bahnhof",
+ "characters": [
+  "ch:popescu",
+  "ch:kraus"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:Montag",
+   "lx:Freitag",
+   "lx:Wochenende",
+   "lx:Tag",
+   "lx:heute",
+   "lx:morgen",
+   "lx:hallo",
+   "lx:danke",
+   "lx:bitte",
+   "lx:ja",
+   "lx:nein",
+   "lx:Frau",
+   "lx:Herr",
+   "lx:kommen",
+   "lx:wann",
+   "lx:sieben",
+   "lx:acht",
+   "lx:neun",
+   "lx:Brot",
+   "lx:noch",
+   "lx:spät",
+   "lx:halb",
+   "lx:Viertel",
+   "lx:Abend",
+   "lx:wieder",
+   "lx:da",
+   "lx:schon",
+   "lx:nur",
+   "lx:gern",
+   "lx:dann",
+   "lx:wohin",
+   "lx:wie",
+   "lx:wie_viel",
+   "lx:was",
+   "lx:sehr",
+   "lx:sein",
+   "lx:möchten",
+   "lx:essen",
+   "lx:sprechen",
+   "lx:warten",
+   "lx:erst",
+   "lx:gleich",
+   "lx:gut",
+   "lx:klar",
+   "lx:kurz",
+   "lx:immer",
+   "lx:jetzt",
+   "lx:mehr",
+   "lx:ganz",
+   "lx:Kuchen",
+   "lx:hier",
+   "lx:fahren",
+   "lx:schnell",
+   "lx:langsam",
+   "lx:einladen",
+   "lx:kaputt",
+   "lx:fernsehen",
+   "lx:Bus",
+   "lx:sehen",
+   "lx:zu#2",
+   "lx:so",
+   "lx:Kurs",
+   "lx:auch",
+   "lx:mitkommen",
+   "lx:aussteigen",
+   "lx:einkaufen",
+   "lx:Fahrrad",
+   "lx:Bahnhof",
+   "lx:Haus"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-03.md"
+ },
+ "dersler": [
+  "gr:a1-02:t4",
+  "gr:a1-06:t2"
+ ],
+ "yeni_kartlar": [
+  "lx:Deutsch",
+  "lx:mögen",
+  "lx:mögen#2",
+  "lx:wirklich",
+  "lx:nie",
+  "lx:weg",
+  "lx:Weg",
+  "lx:reden",
+  "lx:schön",
+  "lx:bleiben"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:19:h1",
+   "title_tr": "Kim hangi dili konuşuyor?",
+   "kartlar": [
+    "lx:Deutsch",
+    "lx:reden",
+    "lx:wirklich",
+    "lx:nie"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "ich spreche – du sprichst – er spricht",
+     "tr": "konuşuyorum – konuşuyorsun – konuşuyor"
+    },
+    {
+     "de": "Sprichst du Englisch? – Nein, nur Deutsch!",
+     "tr": "İngilizce konuşuyor musun? – Hayır, sadece Almanca!"
+    },
+    {
+     "de": "Derya spricht auch Türkisch.",
+     "tr": "Derya Türkçe de konuşuyor."
+    },
+    {
+     "de": "Okay! – Okay?",
+     "tr": "Tamam! – Tamam mı?"
+    },
+    {
+     "de": "jeder – jeden Tag",
+     "tr": "herkes – her gün"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Deutsch",
+     "de": "Ioana spricht schon gut Deutsch.",
+     "tr": "Ioana artık iyi Almanca konuşuyor.",
+     "accepted": [
+      "Ioana spricht schon gut Deutsch.",
+      "Ioana spricht schon sehr gut Deutsch.",
+      "Ioana spricht gut Deutsch."
+     ]
+    },
+    {
+     "kart": "lx:Deutsch",
+     "de": "Sprichst du mit Basti Deutsch?",
+     "tr": "Basti'yle Almanca mı konuşuyorsun?",
+     "accepted": [
+      "Sprichst du mit Basti Deutsch?",
+      "Sprichst du Deutsch mit Basti?",
+      "Mit Basti sprichst du Deutsch?"
+     ]
+    },
+    {
+     "kart": "lx:reden",
+     "de": "Wir reden nur Deutsch, okay?",
+     "tr": "Sadece Almanca konuşuyoruz, tamam mı?",
+     "accepted": [
+      "Wir reden nur Deutsch, okay?",
+      "Okay? Wir reden nur Deutsch.",
+      "Wir reden nur Deutsch, ja?"
+     ]
+    },
+    {
+     "kart": "lx:reden",
+     "de": "Reden wir am Freitag?",
+     "tr": "Cuma günü konuşalım mı?",
+     "accepted": [
+      "Reden wir am Freitag?",
+      "Am Freitag reden wir?",
+      "Reden wir dann am Freitag?"
+     ]
+    },
+    {
+     "kart": "lx:wirklich",
+     "de": "Wirklich? Du sprichst Englisch?",
+     "tr": "Gerçekten mi? İngilizce konuşuyor musun?",
+     "accepted": [
+      "Wirklich? Du sprichst Englisch?",
+      "Du sprichst Englisch? Wirklich?",
+      "Wirklich? Sprichst du Englisch?"
+     ]
+    },
+    {
+     "kart": "lx:wirklich",
+     "de": "Basti spricht wirklich schnell.",
+     "tr": "Basti gerçekten hızlı konuşuyor.",
+     "accepted": [
+      "Basti spricht wirklich schnell.",
+      "Basti spricht wirklich sehr schnell.",
+      "Wirklich, Basti spricht schnell."
+     ]
+    },
+    {
+     "kart": "lx:nie",
+     "de": "Ich spreche nie Englisch!",
+     "tr": "Hiç İngilizce konuşmam!",
+     "accepted": [
+      "Ich spreche nie Englisch!",
+      "Englisch spreche ich nie!",
+      "Ich rede nie Englisch!"
+     ]
+    },
+    {
+     "kart": "lx:nie",
+     "de": "Basti spricht nie langsam.",
+     "tr": "Basti hiç yavaş konuşmaz.",
+     "accepted": [
+      "Basti spricht nie langsam.",
+      "Basti spricht ja nie langsam.",
+      "Basti spricht wirklich nie langsam."
+     ]
+    },
+    {
+     "kart": "lx:Deutsch",
+     "de": "Okay, nur Deutsch!",
+     "tr": "Tamam, sadece Almanca!",
+     "accepted": [
+      "Okay, nur Deutsch!",
+      "Okay! Nur Deutsch!",
+      "Nur Deutsch, okay!"
+     ]
+    },
+    {
+     "kart": "lx:Deutsch",
+     "de": "Jeder spricht hier Deutsch.",
+     "tr": "Burada herkes Almanca konuşuyor.",
+     "accepted": [
+      "Jeder spricht hier Deutsch.",
+      "Hier spricht jeder Deutsch.",
+      "Jeder redet hier Deutsch."
+     ]
+    },
+    {
+     "kart": "lx:wirklich",
+     "de": "Er spricht wirklich gut Deutsch.",
+     "tr": "Gerçekten iyi Almanca konuşuyor.",
+     "accepted": [
+      "Er spricht wirklich gut Deutsch.",
+      "Er spricht wirklich sehr gut Deutsch.",
+      "Wirklich, er spricht gut Deutsch."
+     ]
+    },
+    {
+     "kart": "lx:wirklich",
+     "de": "Nein, nur Deutsch, wirklich!",
+     "tr": "Hayır, sadece Almanca, gerçekten!",
+     "accepted": [
+      "Nein, nur Deutsch, wirklich!",
+      "Nein, wirklich nur Deutsch!",
+      "Wirklich, nein, nur Deutsch!"
+     ]
+    },
+    {
+     "kart": "lx:wirklich",
+     "de": "Wirklich? Derya spricht auch Türkisch.",
+     "tr": "Gerçekten mi? Derya Türkçe de konuşuyor.",
+     "accepted": [
+      "Wirklich? Derya spricht auch Türkisch.",
+      "Derya spricht auch Türkisch? Wirklich?",
+      "Wirklich? Derya spricht auch Türkisch?"
+     ]
+    },
+    {
+     "kart": "lx:Deutsch",
+     "de": "Ich spreche jeden Tag Deutsch.",
+     "tr": "Her gün Almanca konuşuyorum.",
+     "accepted": [
+      "Ich spreche jeden Tag Deutsch.",
+      "Jeden Tag spreche ich Deutsch.",
+      "Deutsch spreche ich jeden Tag."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Kurs arası. Ioana iş arkadaşın Derya'dan söz ediyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Derya spricht auch Türkisch, wirklich!",
+      "tr": "Derya Türkçe de konuşuyor, gerçekten!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Wirklich? Aber mit mir spricht sie nur Deutsch.",
+      "tr": "Gerçekten mi? Ama benimle sadece Almanca konuşuyor."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Ja, mit uns auch. Nur Deutsch!",
+      "tr": "Evet, bizimle de. Sadece Almanca!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya seninle hangi dilde konuşuyor?",
+     "opts": [
+      "Yalnızca Almanca",
+      "Türkçe",
+      "Almanca ve Türkçe"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:19:h2",
+   "title_tr": "Kim gidiyor, kim kalıyor, ne seviyor?",
+   "kartlar": [
+    "lx:Weg",
+    "lx:weg",
+    "lx:bleiben",
+    "lx:mögen",
+    "lx:mögen#2",
+    "lx:schön"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "ich fahre – du fährst – er fährt",
+     "tr": "gidiyorum – gidiyorsun – gidiyor (araçla)"
+    },
+    {
+     "de": "nach Hause – zu Hause",
+     "tr": "eve – evde"
+    },
+    {
+     "de": "Ich bleibe … – Bleibst du …? – Er bleibt …",
+     "tr": "… kalıyorum – … kalıyor musun? – … kalıyor"
+    },
+    {
+     "de": "zum Bahnhof",
+     "tr": "istasyona"
+    },
+    {
+     "de": "ich esse – du isst – er isst",
+     "tr": "yiyorum – yiyorsun – yiyor"
+    },
+    {
+     "de": "ich sehe – du siehst – er sieht",
+     "tr": "görüyorum – görüyorsun – görüyor"
+    },
+    {
+     "de": "Ich mag … – Magst du …?",
+     "tr": "…'i severim – …'i sever misin?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Weg",
+     "de": "Ist das der Weg zum Bahnhof?",
+     "tr": "İstasyonun yolu bu mu?",
+     "accepted": [
+      "Ist das der Weg zum Bahnhof?",
+      "Ist das hier der Weg zum Bahnhof?",
+      "Das ist der Weg zum Bahnhof?"
+     ]
+    },
+    {
+     "kart": "lx:Weg",
+     "de": "Der Weg zum Bahnhof ist kurz.",
+     "tr": "İstasyonun yolu kısa.",
+     "accepted": [
+      "Der Weg zum Bahnhof ist kurz.",
+      "Der Weg zum Bahnhof ist ganz kurz.",
+      "Zum Bahnhof ist der Weg kurz."
+     ]
+    },
+    {
+     "kart": "lx:weg",
+     "de": "Der Bus ist weg. Wir warten bis halb neun.",
+     "tr": "Otobüs gitti. Sekiz buçuğa kadar bekliyoruz.",
+     "accepted": [
+      "Der Bus ist weg. Wir warten bis halb neun.",
+      "Der Bus ist weg. Bis halb neun warten wir.",
+      "Der Bus ist weg, wir warten bis halb neun."
+     ]
+    },
+    {
+     "kart": "lx:weg",
+     "de": "Ioana ist schon weg, sie fährt mit dem Bus.",
+     "tr": "Ioana gitti bile, otobüsle gidiyor.",
+     "accepted": [
+      "Ioana ist schon weg, sie fährt mit dem Bus.",
+      "Ioana ist schon weg. Sie fährt mit dem Bus.",
+      "Ioana ist weg, sie fährt mit dem Bus."
+     ]
+    },
+    {
+     "kart": "lx:bleiben",
+     "de": "Ich bleibe am Wochenende hier.",
+     "tr": "Hafta sonu burada kalıyorum.",
+     "accepted": [
+      "Ich bleibe am Wochenende hier.",
+      "Am Wochenende bleibe ich hier.",
+      "Hier bleibe ich am Wochenende."
+     ]
+    },
+    {
+     "kart": "lx:bleiben",
+     "de": "Du fährst, ich bleibe hier.",
+     "tr": "Sen gidiyorsun, ben burada kalıyorum.",
+     "accepted": [
+      "Du fährst, ich bleibe hier.",
+      "Du fährst und ich bleibe hier.",
+      "Du fährst, aber ich bleibe hier."
+     ]
+    },
+    {
+     "kart": "lx:mögen",
+     "de": "Magst du Kuchen?",
+     "tr": "Pasta sever misin?",
+     "accepted": [
+      "Magst du Kuchen?",
+      "Und du, magst du Kuchen?",
+      "Du magst Kuchen?"
+     ]
+    },
+    {
+     "kart": "lx:mögen",
+     "de": "Ich mag Wendlfing.",
+     "tr": "Wendlfing'i seviyorum.",
+     "accepted": [
+      "Ich mag Wendlfing.",
+      "Ich mag Wendlfing sehr.",
+      "Wendlfing mag ich."
+     ]
+    },
+    {
+     "kart": "lx:mögen#2",
+     "de": "Möchtest du ein Brot?",
+     "tr": "Bir ekmek ister misin?",
+     "accepted": [
+      "Möchtest du ein Brot?",
+      "Du möchtest ein Brot?",
+      "Möchtest du ein Brot, Ioana?"
+     ]
+    },
+    {
+     "kart": "lx:mögen#2",
+     "de": "Was möchtest du essen?",
+     "tr": "Ne yemek istersin?",
+     "accepted": [
+      "Was möchtest du essen?",
+      "Was möchtest du denn essen?",
+      "Und was möchtest du essen?"
+     ]
+    },
+    {
+     "kart": "lx:schön",
+     "de": "Siehst du? Hier ist es schön.",
+     "tr": "Görüyor musun? Burası güzel.",
+     "accepted": [
+      "Siehst du? Hier ist es schön.",
+      "Siehst du? Hier ist es so schön.",
+      "Siehst du? Es ist schön hier."
+     ]
+    },
+    {
+     "kart": "lx:schön",
+     "de": "Schön, du isst mit uns!",
+     "tr": "Ne güzel, bizimle yiyorsun!",
+     "accepted": [
+      "Schön, du isst mit uns!",
+      "Schön! Du isst mit uns!",
+      "Schön, dann isst du mit uns!"
+     ]
+    },
+    {
+     "kart": "lx:bleiben",
+     "de": "Ich fahre, er bleibt hier.",
+     "tr": "Ben gidiyorum, o burada kalıyor.",
+     "accepted": [
+      "Ich fahre, er bleibt hier.",
+      "Ich fahre und er bleibt hier.",
+      "Ich fahre, aber er bleibt hier."
+     ]
+    },
+    {
+     "kart": "lx:bleiben",
+     "de": "Bleibst du zu Hause?",
+     "tr": "Evde mi kalıyorsun?",
+     "accepted": [
+      "Bleibst du zu Hause?",
+      "Du bleibst zu Hause?",
+      "Bleibst du daheim?"
+     ]
+    },
+    {
+     "kart": "lx:weg",
+     "de": "Tobi ist weg, er fährt nach Hause.",
+     "tr": "Tobi gitti, eve gidiyor.",
+     "accepted": [
+      "Tobi ist weg, er fährt nach Hause.",
+      "Tobi ist weg und fährt nach Hause.",
+      "Tobi ist weg. Er fährt nach Hause."
+     ]
+    },
+    {
+     "kart": "lx:mögen",
+     "de": "Er isst Kuchen, ich esse Brot. Magst du Brot?",
+     "tr": "O pasta yiyor, ben ekmek yiyorum. Ekmek sever misin?",
+     "accepted": [
+      "Er isst Kuchen, ich esse Brot. Magst du Brot?",
+      "Er isst Kuchen und ich esse Brot. Magst du Brot?",
+      "Ich esse Brot, er isst Kuchen. Magst du Brot?"
+     ]
+    },
+    {
+     "kart": "lx:schön",
+     "de": "Er sieht den Kuchen, ich sehe ihn auch. Schön!",
+     "tr": "O pastayı görüyor, ben de görüyorum. Güzel!",
+     "accepted": [
+      "Er sieht den Kuchen, ich sehe ihn auch. Schön!",
+      "Ich sehe den Kuchen, er sieht ihn auch. Schön!",
+      "Er sieht den Kuchen und ich sehe ihn auch. Schön!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Kurs bitti, istasyonun önündeki durak. Basti bisikletiyle yanına geliyor.",
+    "satirlar": [
+     {
+      "r": "ch:kraus",
+      "de": "Fährst du auch nach Hause?",
+      "tr": "Sen de eve mi gidiyorsun?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nein, ich bleibe noch hier. Der Bus ist weg!",
+      "tr": "Hayır, biraz daha buradayım. Otobüs gitti!"
+     },
+     {
+      "r": "ch:kraus",
+      "de": "Ich fahre mit dem Fahrrad. Bis morgen!",
+      "tr": "Ben bisikletle gidiyorum. Yarın görüşürüz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Basti eve nasıl gidiyor?",
+     "opts": [
+      "Bisikletle",
+      "Otobüsle",
+      "Yürüyerek"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:19:v1",
+  "title_tr": "Durakta: kim nereye gidiyor?",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Akşam, istasyonun önündeki otobüs durağı. Basti bisikletiyle Ioana'nın önünde duruyor.",
+    "de": "Hallo, Ioana! Wohin fährst du?",
+    "tr": "Merhaba Ioana! Nereye gidiyorsun?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana çantasını omzuna alıyor, otobüs tabelasını gösteriyor.",
+    "de": "Hallo, Basti! Ich fahre nach Hause. Und du?",
+    "tr": "Merhaba Basti! Eve gidiyorum. Ya sen?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti bisikletini direğe yaslıyor, büfeyi gösteriyor.",
+    "de": "Ich fahre nicht, ich bleibe hier.",
+    "tr": "Ben gitmiyorum, burada kalıyorum."
+   },
+   {
+    "id": "s3b",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti büfedeki sandviçleri gösteriyor.",
+    "de": "Ich esse noch etwas.",
+    "tr": "Bir şeyler daha yiyeceğim."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana saatine bakıp şaşırıyor.",
+    "de": "Du isst jetzt? Es ist schon neun!",
+    "tr": "Şimdi mi yiyorsun? Saat dokuz oldu!"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti omuz silkip gülüyor.",
+    "de": "Ja, ich esse immer spät.",
+    "tr": "Evet, ben hep geç yerim."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti merakla Ioana'ya dönüyor.",
+    "de": "Sprichst du auch Englisch?",
+    "tr": "İngilizce de konuşuyor musun?"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana parmağını sallıyor, ciddi ama gülümseyerek.",
+    "de": "Ja, aber hier spreche ich nur Deutsch. Nie Englisch!",
+    "tr": "Evet, ama burada sadece Almanca konuşuyorum. Asla İngilizce değil!"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti başparmağını kaldırıyor.",
+    "de": "Wirklich? Gut so!",
+    "tr": "Gerçekten mi? Böyle iyi!"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana elini kulağına götürüyor, yorgun bir yüz yapıyor.",
+    "de": "Und du sprichst so schnell, Basti!",
+    "tr": "Sen de çok hızlı konuşuyorsun Basti!"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti iki elini kaldırıp masum bir yüz takınıyor.",
+    "de": "Ich? Schnell? Nein, nein!",
+    "tr": "Ben mi? Hızlı mı? Yok, yok!"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana başını sallıyor ve elleriyle yavaşla işareti yapıyor.",
+    "de": "Doch! Langsam, bitte!",
+    "tr": "Evet, öyle! Yavaş, lütfen!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti abartarak, her kelimede durarak konuşuyor.",
+    "de": "Okay. Ich. Spreche. Langsam.",
+    "tr": "Tamam. Ben. Yavaş. Konuşuyorum."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana gülüyor, sonra yoldan gelen otobüsü gösteriyor.",
+    "de": "Schön! Siehst du? Da ist mein Bus.",
+    "tr": "Güzel! Görüyor musun? İşte otobüsüm."
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti durak tabelasındaki saate bakıyor.",
+    "de": "Dein Bus fährt um neun?",
+    "tr": "Otobüsün dokuzda mı kalkıyor?"
+   },
+   {
+    "id": "s14b",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti eliyle otobüsü gösteriyor, acele ettiriyor.",
+    "de": "Dann schnell!",
+    "tr": "O zaman acele et!"
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana koşarak otobüse biniyor, kapıdan el sallıyor.",
+    "de": "Ja! Bis morgen, Basti!",
+    "tr": "Evet! Yarın görüşürüz Basti!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s3b",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s14b",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Ioana ile Basti ne konuşuyor?",
+     "opts": [
+      "Kimin nereye gittiğini ve hangi dili konuştuğunu",
+      "Kursun fiyatını",
+      "Hafta sonu planlarını"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s3",
+      "s7"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Basti şimdi ne yapıyor?",
+      "opts": [
+       "Burada kalıp bir şey yiyor",
+       "Eve gidiyor",
+       "Otobüse biniyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s3",
+       "s3b"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Ioana burada hangi dili konuşuyor?",
+      "opts": [
+       "Yalnızca Almanca",
+       "Almanca ve İngilizce",
+       "Yalnızca İngilizce"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s7"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s5",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "spät",
+       "früh",
+       "gern"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s9",
+      "seviye": "orta",
+      "de": "Und du ___ so schnell, Basti!",
+      "accepted": [
+       "sprichst",
+       "Sprichst",
+       "sprichst."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s3b",
+      "seviye": "zor",
+      "banka": [
+       "Ich",
+       "esse",
+       "noch",
+       "etwas",
+       "isst",
+       "nicht"
+      ],
+      "accepted": [
+       "Ich esse noch etwas.",
+       "ich esse noch etwas",
+       "Ich esse noch etwas"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s14",
+      "seviye": "usta",
+      "accepted": [
+       "Dein Bus fährt um neun?",
+       "dein bus fährt um neun",
+       "Dein Bus fährt um neun"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Ioana ne yapıyor, Basti ne yapıyor? İki kısa cümleyle yaz.",
+      "ornek_de": "Ioana fährt nach Hause. Basti bleibt hier und isst noch etwas.",
+      "zorunlu": [
+       "fährt",
+       "isst"
+      ]
+     }
+    ],
+    "golge": [
+     "s6",
+     "s13"
+    ],
+    "cevapla": {
+     "id": "m1:19:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Basti seni de soruyor. Sen otobüsle eve gidiyorsun.",
+     "prompt_de": "Und du? Wohin fährst du?",
+     "accepted": [
+      "Ich fahre mit dem Bus nach Hause.",
+      "Ich fahre nach Hause, mit dem Bus.",
+      "Nach Hause, mit dem Bus.",
+      "Mit dem Bus nach Hause.",
+      "Ich fahre auch nach Hause, mit dem Bus.",
+      "Ich fahre mit dem Bus nach Hause. Und du?",
+      "Nach Hause. Ich fahre mit dem Bus.",
+      "Ich fahre nach Hause.",
+      "Nach Hause."
+     ],
+     "why_tr": "Soru **du fährst** ile gelir. Sen **ich fahre** dersin, harf değişmez."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:19:a1",
+   "tur": "anons",
+   "title_tr": "İstasyonda otobüs anonsu",
+   "ortam_tr": "Akşam istasyonun önündesin. Hoparlörden bir anons geliyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Abend am Bahnhof Wendlfing.",
+     "tr": "Wendlfing istasyonundan iyi akşamlar."
+    },
+    {
+     "id": "c2",
+     "de": "Der Bus zum Brunnenviertel fährt heute nicht um acht.",
+     "tr": "Brunnenviertel otobüsü bugün sekizde kalkmıyor."
+    },
+    {
+     "id": "c3",
+     "de": "Er fährt erst um halb neun.",
+     "tr": "Ancak sekiz buçukta kalkıyor."
+    },
+    {
+     "id": "c4",
+     "de": "Ab Montag fährt der Bus wieder um acht.",
+     "tr": "Pazartesiden itibaren otobüs yine sekizde kalkıyor."
+    },
+    {
+     "id": "c5",
+     "de": "Danke!",
+     "tr": "Teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Anons ne söylüyor?",
+      "opts": [
+       "Brunnenviertel otobüsü bugün daha geç kalkıyor.",
+       "Bugün hiç otobüs yok.",
+       "Otobüs bileti pahalandı."
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Otobüs bugün saat kaçta kalkıyor?",
+       "opts": [
+        "Sekiz buçukta",
+        "Sekizde",
+        "Dokuzda"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Pazartesiden itibaren otobüs saat kaçta?",
+       "opts": [
+        "Sekizde",
+        "Sekiz buçukta",
+        "Dokuz buçukta"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "neun",
+        "acht",
+        "zehn"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Der Bus zum Brunnenviertel ___ heute nicht um acht.",
+       "accepted": [
+        "fährt",
+        "Fährt",
+        "fährt."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Ab",
+        "Montag",
+        "fährt",
+        "der",
+        "Bus",
+        "wieder",
+        "um",
+        "acht",
+        "am",
+        "fahre"
+       ],
+       "accepted": [
+        "Ab Montag fährt der Bus wieder um acht.",
+        "ab montag fährt der bus wieder um acht",
+        "Ab Montag fährt der Bus wieder um acht"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Der Bus zum Brunnenviertel fährt heute nicht um acht.",
+        "der bus zum brunnenviertel fährt heute nicht um acht",
+        "Der Bus zum Brunnenviertel fährt heute nicht um acht"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Anonsu Almanca bir kısa cümleyle özetle.",
+       "ornek_de": "Heute fährt der Bus erst um halb neun.",
+       "zorunlu": [
+        "fährt",
+        "halb neun"
+       ]
+      }
+     ],
+     "golge": [
+      "c1",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:19:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana anonsu duymadı, soruyor. Otobüs bugün sekiz buçukta.",
+      "prompt_de": "Wann fährt der Bus heute?",
+      "accepted": [
+       "Heute fährt er erst um halb neun.",
+       "Um halb neun.",
+       "Erst um halb neun.",
+       "Der Bus fährt heute um halb neun.",
+       "Er fährt heute erst um halb neun.",
+       "Heute erst um halb neun.",
+       "Er fährt um halb neun.",
+       "Heute um halb neun.",
+       "Der Bus fährt heute erst um halb neun."
+      ],
+      "why_tr": "Otobüs için **er fährt** dersin. **erst** daha geç demek."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:19:a1:e1",
+    "k": "pick",
+    "q_tr": "Bu akşam otobüsle Brunnenviertel'e gideceksin. Ne yapmalısın?",
+    "opts": [
+     "Saat sekizdeki otobüsü bekle.",
+     "Sekiz buçuktaki otobüse bin.",
+     "Pazartesiye kadar bekle."
+    ],
+    "ans": 1,
+    "why_tr": "Bugün sekizde otobüs yok. Otobüs sekiz buçukta kalkıyor.",
+    "kanit": [
+     "c2",
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:19:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Basti'den sesli mesaj",
+   "ortam_tr": "Akşam telefonuna Basti'den bir sesli mesaj gelmiş.",
+   "speaker": "ch:kraus",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Basti!",
+     "tr": "Merhaba, ben Basti!"
+    },
+    {
+     "id": "c2",
+     "de": "Mein Fahrrad ist kaputt.",
+     "tr": "Bisikletim bozuk."
+    },
+    {
+     "id": "c3",
+     "de": "Fährst du morgen mit dem Bus zum Bahnhof?",
+     "tr": "Yarın otobüsle istasyona gidiyor musun?"
+    },
+    {
+     "id": "c4",
+     "de": "Ich fahre um Viertel nach sieben.",
+     "tr": "Ben yediyi çeyrek geçe gidiyorum."
+    },
+    {
+     "id": "c5",
+     "de": "Ioana fährt nicht mit, sie bleibt zu Hause.",
+     "tr": "Ioana gelmiyor, evde kalıyor."
+    },
+    {
+     "id": "c6",
+     "de": "Okay, bis morgen!",
+     "tr": "Tamam, yarın görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Basti neden mesaj bırakıyor?",
+      "opts": [
+       "Yarın birlikte otobüsle gitmek için",
+       "Bisikletini satmak için",
+       "Seni yemeğe çağırmak için"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Basti saat kaçta gidiyor?",
+       "opts": [
+        "Yediyi çeyrek geçe",
+        "Yedi buçukta",
+        "Sekizi çeyrek geçe"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ioana yarın ne yapıyor?",
+       "opts": [
+        "Evde kalıyor",
+        "Bisikletle gidiyor",
+        "Otobüsle geliyor"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "kaputt",
+        "neu",
+        "alt"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Ich fahre um ___ nach sieben.",
+       "accepted": [
+        "Viertel",
+        "viertel",
+        "Viertel."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Ioana",
+        "fährt",
+        "nicht",
+        "mit",
+        "sie",
+        "bleibt",
+        "zu",
+        "Hause",
+        "fahre",
+        "nach"
+       ],
+       "accepted": [
+        "Ioana fährt nicht mit, sie bleibt zu Hause.",
+        "ioana fährt nicht mit sie bleibt zu hause",
+        "Ioana fährt nicht mit sie bleibt zu Hause"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Fährst du morgen mit dem Bus zum Bahnhof?",
+        "fährst du morgen mit dem bus zum bahnhof",
+        "Fährst du morgen mit dem Bus zum Bahnhof"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Basti'nin mesajını Almanca bir kısa cümleyle özetle.",
+       "ornek_de": "Basti fährt morgen um Viertel nach sieben mit dem Bus.",
+       "zorunlu": [
+        "fährt",
+        "Viertel nach sieben"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:19:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Basti'ye cevap ver. Evet, sen de yarın otobüsle gidiyorsun.",
+      "prompt_de": "Fährst du morgen auch mit dem Bus?",
+      "accepted": [
+       "Ja, ich fahre morgen auch mit dem Bus.",
+       "Ja, ich fahre auch mit dem Bus.",
+       "Ja, ich fahre mit dem Bus.",
+       "Ja, morgen fahre ich auch mit dem Bus.",
+       "Ja, ich fahre auch mit.",
+       "Ja, auch mit dem Bus.",
+       "Ja, um Viertel nach sieben.",
+       "Ja, ich fahre auch um Viertel nach sieben.",
+       "Ja, klar! Ich fahre auch mit dem Bus."
+      ],
+      "why_tr": "Soru **Fährst du** ile gelir. Cevapta **ich fahre** dersin."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:19:a2:e1",
+    "k": "pick",
+    "q_tr": "Mesajdan sonra ne yapmalısın?",
+    "opts": [
+     "Yarın yediyi çeyrek geçe otobüs için durakta ol.",
+     "Ioana'yla bisikletle git.",
+     "Basti'nin bisikletini tamir et."
+    ],
+    "ans": 0,
+    "why_tr": "Basti yarın yediyi çeyrek geçe otobüsle gidiyor ve seni soruyor.",
+    "kanit": [
+     "c3",
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:19:g1",
+   "de": "Der Bus ist schon weg.",
+   "dogru_img": "empty bus stop, bus driving away in the distance, person arriving too late",
+   "celdirici_img": [
+    "bus standing at the stop with open doors",
+    "people getting into a bus",
+    "bus stop sign with a timetable, no bus"
+   ]
+  },
+  {
+   "id": "m1:19:g2",
+   "de": "mit dem Fahrrad",
+   "dogru_img": "woman riding a bicycle on a city street",
+   "celdirici_img": [
+    "woman sitting in a bus",
+    "woman walking on the pavement",
+    "man driving a car"
+   ]
+  },
+  {
+   "id": "m1:19:g3",
+   "de": "Er isst.",
+   "dogru_img": "young man eating a sandwich",
+   "celdirici_img": [
+    "young man drinking from a cup",
+    "young man sleeping on a sofa",
+    "young man reading a book"
+   ]
+  },
+  {
+   "id": "m1:19:g4",
+   "de": "der Weg",
+   "dogru_img": "narrow footpath through a park",
+   "celdirici_img": [
+    "kitchen interior",
+    "bus interior with seats",
+    "shop counter"
+   ]
+  },
+  {
+   "id": "m1:19:g5",
+   "de": "Er sieht den Bus.",
+   "dogru_img": "man at a bus stop looking at an approaching bus",
+   "celdirici_img": [
+    "man at a bus stop looking at his phone",
+    "man at a bus stop with eyes closed",
+    "man at a bus stop looking at his watch"
+   ]
+  },
+  {
+   "id": "m1:19:g6",
+   "de": "Sie bleibt zu Hause.",
+   "dogru_img": "woman sitting on a sofa at home with tea, window behind her",
+   "celdirici_img": [
+    "woman leaving the house with a bag",
+    "woman waiting at a bus stop",
+    "woman riding a bicycle"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:19:p1",
+  "title_tr": "Durakta Ioana ile",
+  "durum_tr": "Kurs bitti. Ioana ile istasyonun önündesiniz. Ioana kimin nereye gittiğini, kimin hangi dili konuştuğunu soruyor.",
+  "karsi": "ch:popescu",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Der Kurs ist aus! Fährst du jetzt nach Hause?",
+    "tr": "Kurs bitti! Şimdi eve mi gidiyorsun?",
+    "secenekler": [
+     {
+      "de": "Nein, ich bleibe noch hier. Und du?",
+      "tr": "Hayır, biraz daha buradayım. Ya sen?",
+      "accepted": [
+       "Nein, ich bleibe noch hier. Und du?",
+       "Nein, ich bleibe hier. Und du?",
+       "Nein, ich bleibe noch hier.",
+       "Nein, noch nicht. Ich bleibe hier. Und du?",
+       "Nein, ich bleibe noch. Und du?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Cevap verdin ve soruyu geri sordun."
+     },
+     {
+      "de": "Ja, ich fahre mit dem Bus. Und du?",
+      "tr": "Evet, otobüsle gidiyorum. Ya sen?",
+      "accepted": [
+       "Ja, ich fahre mit dem Bus. Und du?",
+       "Ja, mit dem Bus. Und du?",
+       "Ja, ich fahre mit dem Bus nach Hause. Und du?",
+       "Ja, ich fahre jetzt mit dem Bus. Und du?",
+       "Ja, ich fahre mit dem Bus."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **ich** ile **fahre** dedin."
+     },
+     {
+      "de": "Ja, ich fährt mit dem Bus.",
+      "tr": "Evet, otobüsle gidiyorum. (yanlış)",
+      "accepted": [
+       "Ja, ich fährt mit dem Bus.",
+       "Ich fährt mit dem Bus.",
+       "Ja, ich fährst mit dem Bus."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "**ich** ile **fahre** dersin. **fährt** yalnızca o için."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Ich fahre mit dem Fahrrad. Basti fährt auch mit dem Fahrrad. Und mit Basti? Sprichst du mit ihm Deutsch?",
+    "tr": "Ben bisikletle gidiyorum. Basti de bisikletle gidiyor. Peki Basti'yle? Onunla Almanca mı konuşuyorsun?",
+    "secenekler": [
+     {
+      "de": "Ja, aber er spricht sehr schnell.",
+      "tr": "Evet, ama çok hızlı konuşuyor.",
+      "accepted": [
+       "Ja, aber er spricht sehr schnell.",
+       "Ja, aber er spricht so schnell.",
+       "Ja, aber Basti spricht sehr schnell.",
+       "Ja, er spricht aber sehr schnell.",
+       "Ja, aber er spricht wirklich schnell."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Basti için **er spricht** dedin."
+     },
+     {
+      "de": "Ja, wir reden immer Deutsch.",
+      "tr": "Evet, hep Almanca konuşuyoruz.",
+      "accepted": [
+       "Ja, wir reden immer Deutsch.",
+       "Ja, wir sprechen immer Deutsch.",
+       "Ja, wir reden nur Deutsch.",
+       "Ja, wir sprechen nur Deutsch.",
+       "Ja, immer Deutsch."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **wir** ile kelime değişmez: **wir reden**, **wir sprechen**."
+     },
+     {
+      "de": "Ja, aber er sprichst sehr schnell.",
+      "tr": "Evet, ama çok hızlı konuşuyor. (yanlış)",
+      "accepted": [
+       "Ja, aber er sprichst sehr schnell.",
+       "Ja, er sprichst sehr schnell.",
+       "Er sprichst sehr schnell."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "**er** ile **spricht** dersin. **sprichst** yalnızca **du** için."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Ja, wirklich schnell! Und mit Tobi? Sprichst du mit Tobi Englisch?",
+    "tr": "Evet, gerçekten hızlı! Peki Tobi'yle? Tobi'yle İngilizce mi konuşuyorsun?",
+    "secenekler": [
+     {
+      "de": "Nein, nie! Nur Deutsch!",
+      "tr": "Hayır, asla! Sadece Almanca!",
+      "accepted": [
+       "Nein, nie! Nur Deutsch!",
+       "Nein, nie. Nur Deutsch.",
+       "Nie! Nur Deutsch!",
+       "Nein, ich spreche nie Englisch. Nur Deutsch!",
+       "Nein, nur Deutsch!"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Anlaşmanızı hatırladın."
+     },
+     {
+      "de": "Englisch? Nein, mit Tobi spreche ich nur Deutsch.",
+      "tr": "İngilizce mi? Hayır, Tobi'yle sadece Almanca konuşuyorum.",
+      "accepted": [
+       "Englisch? Nein, mit Tobi spreche ich nur Deutsch.",
+       "Nein, mit Tobi spreche ich nur Deutsch.",
+       "Nein, ich spreche mit Tobi nur Deutsch.",
+       "Nein, mit Tobi rede ich nur Deutsch.",
+       "Englisch? Nein, nur Deutsch."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **ich spreche** dedin, harf değişmedi."
+     },
+     {
+      "de": "Ja, mit Tobi spreche ich Englisch.",
+      "tr": "Evet, Tobi'yle İngilizce konuşuyorum.",
+      "accepted": [
+       "Ja, mit Tobi spreche ich Englisch.",
+       "Ja, ich spreche mit Tobi Englisch.",
+       "Ja, Englisch."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Anlaşmanızı hatırla. Ioana sana hemen **Nur Deutsch!** der."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gut so! Ich esse jetzt noch einen Kuchen. Möchtest du auch einen?",
+    "tr": "Böyle iyi! Ben şimdi bir pasta daha yiyorum. Sen de ister misin?",
+    "secenekler": [
+     {
+      "de": "Ja, gern! Ich esse auch einen.",
+      "tr": "Evet, memnuniyetle! Ben de bir tane yiyorum.",
+      "accepted": [
+       "Ja, gern! Ich esse auch einen.",
+       "Ja, gern!",
+       "Ja, gern, ich esse auch einen.",
+       "Ja, bitte! Ich esse auch einen.",
+       "Gern! Ich esse auch einen Kuchen."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **ich** ile **esse** dedin."
+     },
+     {
+      "de": "Nein, danke. Ich mag keinen Kuchen.",
+      "tr": "Hayır, teşekkürler. Pasta sevmem.",
+      "accepted": [
+       "Nein, danke. Ich mag keinen Kuchen.",
+       "Nein, danke, ich mag keinen Kuchen.",
+       "Nein, danke.",
+       "Danke, nein. Ich mag keinen Kuchen.",
+       "Nein, danke. Ich mag Kuchen nicht."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar bir hayır. **Ich mag** ile ne sevdiğini söylersin."
+     },
+     {
+      "de": "Ja, ich isst auch einen.",
+      "tr": "Evet, ben de bir tane yiyorum. (yanlış)",
+      "accepted": [
+       "Ja, ich isst auch einen.",
+       "Ich isst auch einen.",
+       "Ja, gern, ich isst auch einen."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "**ich** ile **esse** dersin. **isst** yalnızca **du** ve **er** için."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Siehst du? Dein Bus ist weg!",
+    "tr": "Görüyor musun? Otobüsün gitti!",
+    "secenekler": [
+     {
+      "de": "Okay, dann bleibe ich noch hier.",
+      "tr": "Tamam, o zaman biraz daha burada kalıyorum.",
+      "accepted": [
+       "Okay, dann bleibe ich noch hier.",
+       "Okay, dann bleibe ich hier.",
+       "Dann bleibe ich noch hier.",
+       "Okay, ich bleibe noch hier.",
+       "Gut, dann bleibe ich noch hier."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Sakin bir cevap. **ich bleibe** doğru."
+     },
+     {
+      "de": "Wirklich? Dann fahre ich um halb neun.",
+      "tr": "Gerçekten mi? O zaman sekiz buçukta giderim.",
+      "accepted": [
+       "Wirklich? Dann fahre ich um halb neun.",
+       "Dann fahre ich um halb neun.",
+       "Wirklich? Dann fahre ich erst um halb neun.",
+       "Okay, dann fahre ich um halb neun."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Saat için **um** dedin, **ich fahre** de doğru."
+     },
+     {
+      "de": "Ja, ich siehst den Bus.",
+      "tr": "Evet, otobüsü görüyorum. (yanlış)",
+      "accepted": [
+       "Ja, ich siehst den Bus.",
+       "Ich siehst den Bus.",
+       "Ja, ich sieht den Bus."
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "**ich** ile **sehe** dersin. Hem de otobüs gitti, artık görünmüyor."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Schön! Dann reden wir noch Deutsch!",
+    "tr": "Güzel! O zaman biraz daha Almanca konuşuruz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Nereye gittiğini, kimin nasıl konuştuğunu söyledin. **du** ve **er** biçimlerini karıştırmadın."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Ioana'dan mesaj",
+  "metin_de": "Hallo {name}! Am Freitag fahre ich nicht mit dem Bus. Ich fahre mit dem Fahrrad, das ist schön. Basti fährt auch mit dem Fahrrad. Nach dem Kurs essen wir noch etwas. Isst du mit uns?",
+  "metin_tr": "Merhaba {name}! Cuma günü otobüsle gitmiyorum. Bisikletle gidiyorum, bu güzel. Basti de bisikletle gidiyor. Kurstan sonra bir şeyler yiyeceğiz. Bizimle yer misin?",
+  "sorular": [
+   {
+    "id": "m1:19:o1",
+    "kind": "detail",
+    "q_tr": "Ioana cuma günü nasıl gidiyor?",
+    "opts": [
+     "Bisikletle",
+     "Otobüsle",
+     "Yürüyerek"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:19:o2",
+    "kind": "detail",
+    "q_tr": "Basti cuma günü nasıl gidiyor?",
+    "opts": [
+     "Bisikletle",
+     "Otobüsle",
+     "Arabayla"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:19:o3",
+    "kind": "detail",
+    "q_tr": "Kurstan sonra ne yapıyorlar?",
+    "opts": [
+     "Bir şeyler yiyorlar",
+     "Hemen eve gidiyorlar",
+     "Spora gidiyorlar"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:19:o4",
+    "k": "guided_response",
+    "situation_tr": "Ioana'ya cevap ver. Evet, sen de geliyorsun, ama otobüsle.",
+    "prompt_de": "Isst du mit uns?",
+    "accepted": [
+     "Ja, gern! Aber ich fahre mit dem Bus.",
+     "Ja, gern. Ich fahre aber mit dem Bus.",
+     "Ja! Ich fahre mit dem Bus.",
+     "Ja, gern, aber ich fahre mit dem Bus.",
+     "Ja, ich esse mit. Aber ich fahre mit dem Bus.",
+     "Gern! Aber ich fahre mit dem Bus.",
+     "Ja, gern. Ich komme mit dem Bus."
+    ],
+    "why_tr": "Önce evet de. Sonra **ich fahre** ile nasıl geldiğini söyle."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:19:s",
+  "maddeler": [
+   {
+    "id": "m1:19:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Frau Huber spricht sehr schnell.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Frau Huber spricht sehr schnell.",
+     "frau huber spricht sehr schnell",
+     "Frau Huber spricht sehr schnell"
+    ],
+    "why_tr": "**sie spricht** onun konuştuğunu söyler."
+   },
+   {
+    "id": "m1:19:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Er sieht den Bus nicht.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Er sieht den Bus nicht.",
+     "er sieht den bus nicht",
+     "Er sieht den Bus nicht"
+    ],
+    "why_tr": "**er sieht** onun gördüğünü söyler. Yazılışta **ie** var."
+   },
+   {
+    "id": "m1:19:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Tobi isst jeden Tag Kuchen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Tobi isst jeden Tag Kuchen.",
+     "tobi isst jeden tag kuchen",
+     "Tobi isst jeden Tag Kuchen"
+    ],
+    "why_tr": "**er isst** iki s ile yazılır."
+   },
+   {
+    "id": "m1:19:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ioana bleibt am Wochenende zu Hause.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ioana bleibt am Wochenende zu Hause.",
+     "ioana bleibt am wochenende zu hause",
+     "Ioana bleibt am Wochenende zu Hause"
+    ],
+    "why_tr": "**zu Hause** evde demektir."
+   },
+   {
+    "id": "m1:19:s5",
+    "k": "tr_de",
+    "tr": "Dr. Weber yavaş konuşuyor.",
+    "accepted": [
+     "Dr. Weber spricht langsam.",
+     "Doktor Weber spricht langsam.",
+     "Dr. Weber spricht sehr langsam.",
+     "Herr Dr. Weber spricht langsam."
+    ],
+    "why_tr": "O konuşuyor derken **spricht** dersin."
+   },
+   {
+    "id": "m1:19:s6",
+    "k": "tr_de",
+    "tr": "Otobüsle mi gidiyorsun?",
+    "accepted": [
+     "Fährst du mit dem Bus?",
+     "Fährst du mit dem Bus nach Hause?",
+     "Du fährst mit dem Bus?",
+     "Fährst du jetzt mit dem Bus?"
+    ],
+    "why_tr": "Sen gidiyorsun derken **du fährst** dersin."
+   },
+   {
+    "id": "m1:19:s7",
+    "k": "tr_de",
+    "tr": "Sen de pasta yiyor musun?",
+    "accepted": [
+     "Isst du auch Kuchen?",
+     "Isst du auch einen Kuchen?",
+     "Isst du auch ein Stück Kuchen?",
+     "Du isst auch Kuchen?"
+    ],
+    "why_tr": "Sen yiyorsun derken **du isst** dersin."
+   },
+   {
+    "id": "m1:19:s8",
+    "k": "tr_de",
+    "tr": "Ioana hiç İngilizce konuşmuyor.",
+    "accepted": [
+     "Ioana spricht nie Englisch.",
+     "Ioana spricht nie Englisch, nur Deutsch.",
+     "Ioana spricht kein Englisch.",
+     "Ioana redet nie Englisch."
+    ],
+    "why_tr": "Hiç derken **nie** dersin. Ioana için **spricht** gelir."
+   },
+   {
+    "id": "m1:19:s9",
+    "k": "guided_response",
+    "situation_tr": "Ioana Basti'nin nasıl konuştuğunu soruyor. Çok hızlı konuşuyor.",
+    "prompt_de": "Und wie spricht Basti?",
+    "accepted": [
+     "Er spricht sehr schnell.",
+     "Basti spricht sehr schnell.",
+     "Sehr schnell.",
+     "Er spricht so schnell!",
+     "Er spricht wirklich schnell.",
+     "Er spricht immer sehr schnell.",
+     "Schnell, sehr schnell.",
+     "Basti spricht so schnell."
+    ],
+    "why_tr": "Basti için **er spricht** dersin."
+   },
+   {
+    "id": "m1:19:s10",
+    "k": "guided_response",
+    "situation_tr": "Tobi hafta sonunu soruyor. Bir yere gitmiyorsun, evde kalıyorsun.",
+    "prompt_de": "Fährst du am Wochenende weg?",
+    "accepted": [
+     "Nein, ich bleibe zu Hause.",
+     "Nein, ich bleibe hier.",
+     "Nein, am Wochenende bleibe ich zu Hause.",
+     "Nein, ich bleibe am Wochenende zu Hause.",
+     "Nein, ich bleibe in Wendlfing.",
+     "Nein, ich fahre nicht weg. Ich bleibe zu Hause.",
+     "Nein, ich bleibe hier in Wendlfing.",
+     "Nein, ich bleibe da."
+    ],
+    "why_tr": "Kalıyorum derken **ich bleibe** dersin."
+   },
+   {
+    "id": "m1:19:s11",
+    "k": "guided_response",
+    "situation_tr": "Kurs bitti. Ioana soruyor. Sen eve gidiyorsun, Basti burada kalıyor. İkisini de söyle.",
+    "prompt_de": "Fährst du nach Hause? Und Basti?",
+    "accepted": [
+     "Ja, ich fahre nach Hause, aber Basti bleibt hier.",
+     "Ja, ich fahre nach Hause. Basti bleibt hier.",
+     "Ich fahre nach Hause, Basti bleibt hier.",
+     "Ja, ich fahre nach Hause und Basti bleibt hier.",
+     "Ja, ich fahre mit dem Bus nach Hause. Basti bleibt hier.",
+     "Ja. Basti bleibt hier, aber ich fahre nach Hause.",
+     "Ich fahre nach Hause. Basti bleibt noch hier.",
+     "Ja, ich fahre nach Hause. Und Basti bleibt hier."
+    ],
+    "why_tr": "Kendin için **ich fahre**, Basti için **er bleibt** dersin."
+   }
+  ],
+  "sesli": [
+   "m1:19:s9",
+   "m1:19:s10"
+  ],
+  "dikte": [
+   "m1:19:s1",
+   "m1:19:s2",
+   "m1:19:s3",
+   "m1:19:s4"
+  ]
+ }
+}
