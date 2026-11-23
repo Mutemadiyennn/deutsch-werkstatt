@@ -56,3 +56,22 @@ Bütün alanları tek okumada anladım ve anladığım şey Almancasıyla örtü
 - GERİ: 0
 
 GERİ yok. Okur kapısı (OD-9.3) açısından batch-a2-02 "reviewed" olabilir.
+
+---
+
+## #210 sonrası (2026-11-23): `lx:langweilig.exp.parcalar`
+
+- Girdi: `content/v2/registry/lexicon/batch-a2-02.json`. 1. turla karşılaştırınca yalnız `lx:langweilig.exp.parcalar` değişmiş: iki çip (**lang** uzun, **weilig** süren) kaldırılmış, alan boş. Öğrenciye görünen başka bir alan değişmemiş.
+- Kart çipsiz okundu: `anlam_tr` ("**langweilig** ilgini çekmeyen, sıkan şeyi ya da kişiyi anlatır") tek başına anlaşılıyor. Kartın öteki alanlarında çiplere dayanan bir açıklama yok, eksik kalan bir şey görmedim.
+
+| öğe kimliği | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| `lx:langweilig` | `exp.parcalar` | (boş) | Kelime parçalara ayrılmıyor; anlamını üstteki kutudan anladım: sıkıcı. | GEÇTİ | Okunacak metin kalmadı. Çipsiz kart kendi başına anlaşılıyor. |
+
+### Parti durumu (bütün turlar)
+
+- Toplam: 626 (iki çip çıktı)
+- GEÇTİ: 626
+- GERİ: 0
+
+Okur kapısı (OD-9.3) açısından batch-a2-02 "reviewed" olabilir.

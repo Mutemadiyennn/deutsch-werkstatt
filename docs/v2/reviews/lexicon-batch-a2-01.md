@@ -3,11 +3,14 @@
 Tarih: 2026-11-23 · İnceleyen: dilbilimci-ajan · Dosya: `content/v2/registry/lexicon/batch-a2-01.json` · Görev: İÇ-K2, tam tur
 
 ## İncelenen kimlikler (25)
-Abkürzung, Hochdeutsch, bayerisch, Akzent, Gegend, grüßen, Frage, Bedeutung, Beispiel, Erklärung, korrigieren, verwechseln, notieren, Zettel, deutlich, unterbrechen, zuhören, kapieren, Satz, Ausdruck#2, typisch, Unterschied, gewöhnen, aussprechen, Geduld.
+Abkürzung, Hochdeutsch, bayerisch, Akzent, Gegend, grüßen, Frage, Bedeutung, Beispiel, Erklärung, korrigieren, verwechseln, notieren, Zettel, deutlich, unterbrechen, zuhören, kapieren, Satz, Ausdruck#2, typisch, Unterschied, Süden, aussprechen, Geduld.
+
+lx:gewöhnen ilk turda incelendi, sonra partiden çıktı (PR #210 P1: B1'deki v1 kartıyla aynı sözcük); yerine lex 118. gün için lx:Süden yazdı, o da tam turla incelendi.
 
 Her kartın her alanı okundu: 150 örnek, 128 boşluk, 100 eşdizim, 50 hata notu, 75 açıklama alanı.
 
-## Düzeltmeler: 22 kartta 82 düzeltme
+## Düzeltmeler: 22 kartta 92 düzeltme
+Sayı partinin bugünkü 25 kartı içindir: ilk tur 81 (çıkan gewöhnen kartındaki 1 düzeltme sayılmaz), Tobi kararı 2, okur geri dönüşü 5, Süden turu 2, kapieren katmanı 2.
 Dokunulmayan kartlar: Frage, Erklärung, typisch.
 
 **Almanca (10)**
@@ -24,7 +27,9 @@ Dokunulmayan kartlar: Frage, Erklärung, typisch.
 - unterbrechen 5. boşluk: **Tobi unterbricht mich ständig** → **Mein Kollege …** (karaktere olumsuz alışkanlık ekliyordu).
 - Bırakılanlar WORLD'deki tanımla örtüşüyor: Weber standart Almanca ve sabır, Schneider net açıklama, Derya sabırlı ve örnekle açıklıyor, Ioana ile karşılıklı düzeltme, Pichler ve Brandl'ın ağzı, paket Brandl'da (17. hafta), Wimmer'e soru sormak (13. hafta). **Herr Pichler kennt jede Straße** karakter çizgisinde, olay değil; bırakıldı.
 - BG kararı (2026-11-23, tur sonrası): Tobi 14. haftadan sonra yalnız sesli mesajla görünür, parti 17. haftada; kapieren 6 ve boşluğu (**Tobi kapiert alles sofort**) **Mein Kollege …** oldu (çeviri ve ipucu dahil). Partide Tobi satırı kalmadı.
-- Okur geri dönüşü (2026-11-23, 4 alan + aynı türden 1): korrigieren ve notieren hata notlarında **hat ge-** → **Ich habe …** (Türkçe söz "ben"); notieren 1. hata notu "Bunu not alıyorum", 4. boşluk ipucu yeniden yazıldı (aynı söz iki biçim veriyordu); Zettel **auf dem Zettel stehen** → "kâğıtta yazılı olmak". Toplam 89 düzeltme.
+- Okur geri dönüşü (2026-11-23, 4 alan + aynı türden 1): korrigieren ve notieren hata notlarında **hat ge-** → **Ich habe …** (Türkçe söz "ben"); notieren 1. hata notu "Bunu not alıyorum", 4. boşluk ipucu yeniden yazıldı (aynı söz iki biçim veriyordu); Zettel **auf dem Zettel stehen** → "kâğıtta yazılı olmak".
+- Süden turu (2026-11-23): olgular doğru (Grüß Gott özellikle güneyde, Bavyera Almanya'nın güneyinde, gell ve Servus güney sözleri; SOURCES satırları kartı kapsıyor); ipuçları cümledeki biçimi gösteriyor, aynı Türkçe söz tek biçim veriyor. İki düzeltme: 2. hata notu tam cümle oldu (**Im Süden man sagt so** → **Im Süden sagt man so**); 5. örnekte **vor allem** "daha çok" → "özellikle".
+- P2 (2026-11-23): kapieren 1. ve 6. örnek katmanı `hd` → `alltag` (sözcük samimi; doğrulayıcı kabul etti). Ayrıca `batch-a2-02.json` lx:langweilig `parcalar` boşaltıldı (**weilig** tek başına sözcük değil), BG isteğiyle.
 
 **Boşluklar, also_ok (17)**
 - bayerisch 1–5: **bayrisch-** yazımı eklendi (Duden iki yazımı da verir; duyduğu gibi yazan öğrenci haksız ret alırdı).
@@ -63,17 +68,15 @@ Dokunulmayan kartlar: Frage, Erklärung, typisch.
    - `rechtschreibung/Bank_Sitzgelegenheit` ve `rechtschreibung/Nebenkosten`: doğrulanamadı.
    - Sayfa içerikleri okunamadığı için hiçbir satır "doğrulandı" sayılmaz. SOURCES.md lex dosyası, dokunulmadı.
 
-## Açık noktalar
-1. Duden satırları (8. madde) ağ izniyle yeniden doğrulanmalı; **halb** adresi düzeltilmeli.
-2. Seviye kararı (5. madde).
-3. Abkürzung'un günü (7. madde).
-4. **bayerisch / bairisch:** dilbilimde ağzın adı **bairisch**, eyalete ait olan **bayerisch**. Gündelik dilde **bayerischer Dialekt** yaygın, kart böyle kaldı. İstenirse ipucuna tek cümle eklenebilir.
-5. kapieren 1 ve 6. örnek `hd` katmanında ama kelimenin kendisi samimi; katman dağılımı kuralı yüzünden böyle bırakıldı.
-6. Hochdeutsch kartında beş boşluğun cevabı da kelimenin kendisi; çekim sınamıyor. Bırakıldı.
-7. `content:explain-audit` çalışırken `docs/v2/reports/aciklama-tarama.md` dosyasını yeniden üretti (dilbilimci yolu dışında); geri alınmadı, commit'e eklenmemeli ya da BG karar versin.
+## Açık noktaların kapanışı
+1. Abkürzung: BG tabloda 115. güne aldı; kartta değişiklik yok. Kapandı.
+2. Duden: **halb** ve **Abkürzung** adresleri SOURCES'ta BG tarafından düzeltildi. Kapandı. `Bank_Sitzgelegenheit` ve `Nebenkosten` adresleri bu turda doğrulanamadı; takip.
+3. Seviye: `level` alanları A2 bırakıldı (BG kararı); B1 şüphesi takip işi.
+4. kapieren katmanı: düzeltildi. Kapandı.
+5. Takip, engel değil: bayerisch / bairisch ayrımı için ipucu cümlesi; Hochdeutsch ve Süden boşluklarının cevabı hep kelimenin kendisi; lx:Ausdruck (çıktı) kartı yazılınca karşılıklı `related`.
+6. `content:explain-audit` `docs/v2/reports/aciklama-tarama.md` dosyasını yeniden üretti (dilbilimci yolu dışında); commit kararı BG'de.
 
 ## Doğrulama
-`npm run content:validate` → 0 hata, 146 uyarı (a2-01 için uyarı yok). `review` alanı: draft, okur bekliyor.
+`npm run content:validate` → 0 hata, 146 uyarı (a2-01 için uyarı yok). `review` alanı draft.
 
-## Sonuç
-AÇIK: dil hataları kapandı; 1.–3. noktalar lex ve BG kararı, ardından okur kapısı.
+Sonuç: KAPALI — okur bekliyor (yalnız lx:Süden)

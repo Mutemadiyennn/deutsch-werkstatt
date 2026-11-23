@@ -94,3 +94,34 @@ Dosyada GERİ olduğu için "reviewed" sayılamaz (OD-9.4).
 - GERİ: 0
 
 Okur kapısı (OD-9.3) açısından batch-a2-01 "reviewed" olabilir.
+
+---
+
+## #210 sonrası (2026-11-23): yeni kart `lx:Süden` (`lx:gewöhnen` çıktı)
+
+- Girdi: `content/v2/registry/lexicon/batch-a2-01.json`. 2. turla karşılaştırınca `lx:gewöhnen`'in 26 alanı çıkmış, `lx:Süden`'in 26 alanı girmiş. Öğrenciye görünen başka bir alan değişmemiş.
+- `lx:Süden`'in bütün alanları okundu: başlık, 4 eşdizim, 2 hata notu, 6 örnek, `anlam_tr`, `ne_zaman_tr`, `ipucu_tr`, 5 boşluk ve 5 ipucu.
+
+| öğe kimliği | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| `lx:Süden` | `exp.anlam_tr` | Haritada aşağıda kalan yönü, güneyi söyler. | Güney yönü. | GEÇTİ | |
+| `lx:Süden` | `exp.ne_zaman_tr` | Bir sözün ya da kişinin nereden geldiğini konuşurken. | Bir söz ya da biri nereden diye konuşurken. | GEÇTİ | |
+| `lx:Süden` | `exp.ipucu_tr` | **im Süden** güneyde, **aus dem Süden** güneyden demektir. | Güneyde için **im Süden**, güneyden için **aus dem Süden**. | GEÇTİ | Tek fikir: iki sözün farkı. Kartın bütün ipuçlarıyla örtüşüyor. |
+| `lx:Süden` | `mistakes_tr[0]` | Güneyde derken **in Süden** yanlış. Doğrusu **im Süden**. | Güneyde için **im** derim. | GEÇTİ | |
+| `lx:Süden` | `mistakes_tr[1]` | Güneyde böyle denir derken **Im Süden man sagt so** yanlış. Doğrusu **Im Süden sagt man so**. | **sagt** önce, **man** sonra gelir. | GEÇTİ | |
+| `lx:Süden` | `forms[0..4].hint_tr` | Güneyde → **im Süden** · Almanya'nın güneyinde → **im Süden von Deutschland** · Güneyden → **aus dem Süden** · Güneye doğru → **Richtung Süden** · Burada, güneyde → **hier im Süden** | Her ipucu kendi cümlesindeki sözü veriyor. | GEÇTİ | Aynı Türkçe söz hep aynı Almancayı veriyor (güneyde hep **im Süden**). Cümlelerle örtüşüyor. |
+| `lx:Süden` | `tr`, `collocations[0..3].tr`, `examples[0..5].tr`, `forms[0..4].tr` | güney · güneyde · güneyden · Almanya'nın güneyinde · güneye doğru · 6 örnek ve 5 boşluk çevirisi | Almancalarıyla örtüşüyor. | GEÇTİ | 16 alan. |
+
+### #210 sonrası sayıları
+
+- Okunan: 26 (`lx:Süden`)
+- GEÇTİ: 26
+- GERİ: 0
+
+### Parti durumu (bütün turlar)
+
+- Toplam: 656 (`lx:gewöhnen` çıktı, `lx:Süden` girdi)
+- GEÇTİ: 656
+- GERİ: 0
+
+Okur kapısı (OD-9.3) açısından batch-a2-01 "reviewed" olabilir.
