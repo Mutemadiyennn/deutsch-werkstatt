@@ -12,7 +12,7 @@ import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import { Domain, Lexeme, LexiconBatch, Pattern, GrammarNote, Scenario, AssessItem, World, TemelDers, PRODUCTION_DRILLS, productionCount } from "../../packages/shared/src/content.ts";
-import { Gun } from "../../packages/shared/src/m1.ts";
+import { Gun, DilNoktasi, gunDosyaNo, gunNo } from "../../packages/shared/src/m1.ts";
 import { checkGun } from "./m1check.ts";
 import { explanationIssues, textIssues } from "../../packages/shared/src/explain.ts";
 import { adsizDenetle, adsizTasi } from "../../packages/shared/src/adsiz.ts";
@@ -34,6 +34,8 @@ export interface Loaded {
   temel: { file: string; data: TemelDers }[];
   /** M1 İlk Hafta günleri (content/v2/m1/gun-NN.json; #58 A2/A4) */
   m1: { file: string; data: Gun }[];
+  /** haftanın dil noktaları (content/v2/m1/dn-HH.json; PM-092 md. 1): grammar.json biçiminde dizi */
+  dn: { file: string; hafta: number; data: DilNoktasi[] }[];
   /** K1 seçim listesi (content/v2/curriculum/k1.json) */
   k1?: { cekirdek: string[]; pasif: string[] } | null;
   /** #58 B4 tabanı ve incelenmiş hassas konular (content/tools/b4-taban.json; yalnızca depo içeriği yüklenince) */
@@ -123,17 +125,24 @@ export function loadContent(dir = CDIR): Loaded {
     .filter((f) => /\/r0-\d{2}-[^/]+\.json$/.test(f))
     .map((f) => ({ file: rel(f), data: parseFile(f, TemelDers, errors) }))
     .filter((x): x is { file: string; data: TemelDers } => !!x.data);
-  const m1 = walk(join(dir, "m1"))
-    .filter((f) => /\/gun-\d{2}\.json$/.test(f))
+  // bütün günler (01…364; PM 7088043877 md. 1): ad gunDosyaNo'dan geçmeyen gun-*.json hatadır, sessizce atlanmaz
+  const m1Dosya = walk(join(dir, "m1")).filter((f) => /\/gun-[^/]*\.json$/.test(f) && !/\/video\//.test(f));
+  for (const f of m1Dosya) if (gunDosyaNo(f) === null) errors.push(`${rel(f)}: gün dosyası adı geçersiz (gun-01.json … gun-99.json, gun-100.json … gun-364.json)`);
+  const m1 = m1Dosya
+    .filter((f) => gunDosyaNo(f) !== null)
     .map((f) => ({ file: rel(f), data: parseFile(f, Gun, errors) }))
     .filter((x): x is { file: string; data: Gun } => !!x.data);
+  const dn = walk(join(dir, "m1"))
+    .filter((f) => /\/dn-\d{2}\.json$/.test(f))
+    .map((f) => ({ file: rel(f), hafta: Number(/dn-(\d{2})\.json$/.exec(f)![1]), data: parseFile(f, z.array(DilNoktasi), errors) }))
+    .filter((x): x is { file: string; hafta: number; data: DilNoktasi[] } => !!x.data);
   const k1File = join(dir, "curriculum/k1.json");
   const K1 = z.object({ schema: z.number(), review: ReviewStateLoose, note_tr: z.string().optional(), cekirdek: z.array(z.object({ id: z.string() }).passthrough()), pasif: z.array(z.object({ id: z.string() }).passthrough()).default([]) });
   const k1raw = existsSync(k1File) ? parseFile(k1File, K1, errors) : null;
   const k1 = k1raw ? { cekirdek: k1raw.cekirdek.map((x) => x.id), pasif: k1raw.pasif.map((x) => x.id) } : null;
   const tabanDosya = join(ROOT, "content/tools/b4-taban.json");
   const b4Taban = dir === CDIR && existsSync(tabanDosya) ? (JSON.parse(readFileSync(tabanDosya, "utf8")) as B4Taban) : undefined;
-  return { domains, lexemes: [...byId.values()], lexiconBatches, patterns, grammar, scenarios, assess, world, temel, m1, k1, b4Taban, errors, warnings };
+  return { domains, lexemes: [...byId.values()], lexiconBatches, patterns, grammar, scenarios, assess, world, temel, m1, dn, k1, b4Taban, errors, warnings };
 }
 
 /** PEDAGOGY.md §2: derin (K1) ve hafif (K2) kart zorunlu alanları */
@@ -365,9 +374,9 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
     const taught = baseTaught(c);
     for (const { file, data: g } of [...c.m1].sort((a, b) => a.data.day - b.data.day)) {
       addDayTaught(taught, g, c);
-      const nn = /gun-(\d{2})\.json$/.exec(file)?.[1];
+      const no = gunDosyaNo(file), nn = no === null ? null : gunNo(no);
       if (nn && g.id !== `m1:gun:${nn}`) errors.push(`${file}: kimlik ${g.id} dosya adıyla uyuşmuyor (m1:gun:${nn})`);
-      if (nn && g.day !== Number(nn)) errors.push(`${file}: day ${g.day} dosya adıyla uyuşmuyor`);
+      if (nn && g.day !== no) errors.push(`${file}: day ${g.day} dosya adıyla uyuşmuyor`);
       if (days.has(g.day)) errors.push(`${file}: tekrar eden gün ${g.day}`); days.add(g.day);
       const r = checkGun(g, { lexicon: lx, temel: temelIds, taught });
       errors.push(...r.errors.map((e) => `${file}: ${e}`));
@@ -407,6 +416,9 @@ function addDayTaught(t: Set<string>, g: Gun, c: Loaded) {
     for (const s of [l.de, l.pl, l.verb?.praesens3, l.verb?.praeteritum, l.verb?.perfekt, ...l.forms.map((f) => f.answer), ...l.collocations.map((x) => x.de)]) if (s) for (const w of toks(s)) t.add(w);
   }
   for (const did of g.dersler) {
+    // dil noktası (gr:/dn:): tablo biçimleri sunulduktan sonra bilinir (PM-092 md. 1); örnekler yalnız gösterilir, öğretim sayılmaz
+    const dn = did.startsWith("gr:") ? c.grammar.find((x) => x.id === did) : did.startsWith("dn:") ? c.dn.flatMap((x) => x.data).find((x) => x.id === did) : undefined;
+    for (const row of dn?.table?.rows ?? []) for (const cell of row) for (const w of toks(cell)) t.add(w);
     const d = c.temel.find((x) => x.data.id === did)?.data; if (!d) continue;
     for (const x of d.teach) for (const w of toks(x.de)) t.add(w);
     for (const row of d.table?.satirlar ?? []) for (const cell of row) for (const w of toks(cell)) t.add(w);

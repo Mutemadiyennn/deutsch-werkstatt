@@ -9,7 +9,7 @@ import { bilinmeyenler, bilinmeyenYazi, genelAdlarAyikla, kalipOrtu, kalipSecene
 
 const c = loadContent();
 const genel = genelAdlarAyikla(readFileSync(join(ROOT, "docs/v2/reviews/genel-adlar.md"), "utf8"));
-const d = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genel);
+const d = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genel, [...c.grammar, ...c.dn.flatMap((x) => x.data)]);
 const yaz = (s: string, kart: string[], biten: string[] = [], kaliplar: string[] = []) =>
   bilinmeyenYazi(bilinmeyenler(d, s, { kart: new Set(kart), biten: new Set(biten), kaliplar: kaliplar.flatMap(kalipSecenekleri) }));
 const var_ = (id: string) => c.lexemes.some((l) => l.id === id);

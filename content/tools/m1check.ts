@@ -31,7 +31,8 @@ export function ogretilmemis(text: string, taught: Set<string>): string[] {
 export function checkGun(g: Gun, ctx: { lexicon: Set<string>; temel: Set<string>; taught?: Set<string> }): { errors: string[]; warnings: string[] } {
   const errors: string[] = [], warnings: string[] = [];
   const ist = (where: string, text: string) => { if (!ctx.taught) return; const u = ogretilmemis(text, ctx.taught); if (u.length) warnings.push(`${where}: öğretilmemiş kelime isteniyor: ${u.slice(0, 6).join(", ")}`); };
-  for (const d of g.dersler) if (!ctx.temel.has(d)) errors.push(`dersler: ${d} temel pakette yok`);
+  // r0: tam temel ders → temel paket; gr:/dn: dil noktası → var mı denetimi hat D'de (grammar.json, dn-HH.json; PM 7087668356 md. 4)
+  for (const d of g.dersler) if (d.startsWith("r0:") && !ctx.temel.has(d)) errors.push(`dersler: ${d} temel pakette yok`);
   const missing = g.yeni_kartlar.filter((id) => !ctx.lexicon.has(id));
   if (missing.length) warnings.push(`yeni_kartlar: sözlükte olmayan ${missing.length} kart (ilk: ${missing.slice(0, 5).join(", ")})`);
   if (g.yeni_kartlar.length && (g.yeni_kartlar.length < 15 || g.yeni_kartlar.length > 25)) warnings.push(`yeni_kartlar: ${g.yeni_kartlar.length} kart (hedef 15–25)`);

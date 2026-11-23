@@ -124,13 +124,17 @@ export interface KumeDizini {
   yuzey: Map<string, Set<string>>;
   cerceve: Set<string>;
   adlar: Set<string>;
-  /** ders → öğrettiği biçimler, bağladığı kartlar ve çok sözcüklü kalıpları */
-  dersler: Map<string, { bicim: Set<string>; kart: Set<string>; kaliplar: string[][] }>;
+  /** ders → öğrettiği biçimler, bağladığı kartlar ve çok sözcüklü kalıpları. Dil noktası (`gr:`, `dn:`) yalnız `tablo` taşır:
+   *  tablosundaki çekim ve parça biçimleri (PM-092 md. 1) — kartı bilinen ya da kartsız (çerçeve) biçimdir */
+  dersler: Map<string, { bicim: Set<string>; kart: Set<string>; kaliplar: string[][]; tablo?: Set<string> }>;
   kartlar: Map<string, Lexeme>;
 }
 
 /** Sözlük, temel dersler ve dünyadan sayaç dizinini kurar (bir kez; sonra her cümle için `bilinmeyenler`) */
-export function kumeDizini(lex: readonly Lexeme[], temel: readonly TemelDers[], world?: World | null, genelAdlar: readonly string[] = []): KumeDizini {
+/** Dil noktası durağı (registry/grammar.json `gr:` ve haftanın dn-HH.json'ı `dn:`): kume yalnız kimliğe ve tabloya bakar */
+export interface DilNoktasiTablo { id: string; table?: { rows: readonly (readonly string[])[] } }
+
+export function kumeDizini(lex: readonly Lexeme[], temel: readonly TemelDers[], world?: World | null, genelAdlar: readonly string[] = [], dilNoktalari: readonly DilNoktasiTablo[] = []): KumeDizini {
   const kartlar = new Map(lex.map((l) => [l.id, l] as const));
   const idx = new Map<string, Set<string>>(), gost = new Map<string, Set<string>>(), yuzey = new Map<string, Set<string>>();
   const gostAsil = new Map<string, Set<string>>(), coklu = new Map<string, string[][]>();
@@ -182,7 +186,20 @@ export function kumeDizini(lex: readonly Lexeme[], temel: readonly TemelDers[], 
   }
   const d: KumeDizini = { idx, gost, gostAsil, coklu, yuzey, cerceve, adlar, dersler: new Map(), kartlar };
   for (const t of temel) d.dersler.set(t.id, dersBicimi(d, t));
+  for (const n of dilNoktalari) if (!d.dersler.has(n.id)) d.dersler.set(n.id, { bicim: new Set(), kart: new Set(), kaliplar: [], tablo: tabloBicimi(d, n) });
   return d;
+}
+
+/**
+ * Dil noktasının tablo biçimleri (PM-092 md. 1: "sunulan dil noktasının tablo biçimleri o andan itibaren bilinen biçim"):
+ * dizinde olan ve hiçbir gerçek kartın tanıtımda GÖSTERDİĞİ başlık olmayan hücre sözcükleri (gehst, bin, an, kommst).
+ * Başlık sözcüğü (gehen, Arzt) tablo yüzünden bilinmez: kart tanıtılmadan sözcük bilinmez. Biçim de ancak kartı bilinince
+ * (ya da kartsız çerçeve sözcüğüyse) bilinir — `bilinmeyenler` buna bakar. Türkçe sütun dizinde olmadığı için girmez.
+ */
+function tabloBicimi(d: KumeDizini, n: DilNoktasiTablo): Set<string> {
+  const out = new Set<string>();
+  for (const row of n.table?.rows ?? []) for (const cell of row) for (const s of toks(cell)) if (d.idx.has(s) && !kendiKarti(d, s).length) out.add(s);
+  return out;
 }
 
 /** Sözcüğü başlık olarak taşıyan, fiil olmayan gerçek (card:true) kartlar: "ja" → lx:ja, "hier" → lx:hier */
@@ -229,8 +246,8 @@ export type Bilinmeyen = { tur: "kart" | "bicim" | "eslenemedi"; sozcuk: string;
 /** Cümlede K(t) dışında kalan sözcükler. `haric`: boşluğun cevabı gibi sayılmayacak sözcükler */
 export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: Iterable<string> = []): Bilinmeyen[] {
   const ta = toksAsil(cumle); const tt = ta.map((x) => x.t); const har = new Set(haric);
-  const kart = new Set(k.kart); const bicim = new Set<string>();
-  for (const id of k.biten) { const b = d.dersler.get(id); if (b) { for (const s of b.bicim) bicim.add(s); for (const x of b.kart) kart.add(x); } }
+  const kart = new Set(k.kart); const bicim = new Set<string>(); const tablo = new Set<string>();
+  for (const id of k.biten) { const b = d.dersler.get(id); if (b) { for (const s of b.bicim) bicim.add(s); for (const x of b.kart) kart.add(x); for (const s of b.tablo ?? []) tablo.add(s); } }
   // kalıplar bütün olarak: biten derslerin kalıpları, halkanın kalıpları, tanıtılmış kartların çok sözcüklü başlıkları
   const ortu = new Set<number>();
   // halkanın öğrettiği kalıpların KARTSIZ çerçeve sözcükleri bilinir (dersle aynı istisna); kartlı sözcük yalnız kendi kartıyla
@@ -247,6 +264,8 @@ export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: I
     const aday = d.idx.get(t);
     if (!aday?.size) { out.push({ tur: "eslenemedi", sozcuk: t }); return; }
     const bilinenAday = [...aday].filter((i) => kart.has(i));
+    // sunulmuş dil noktasının tablo biçimi: kartı bilinen ya da kartsız (çerçeve) biçim bilinir
+    if (tablo.has(t) && (bilinenAday.length || [...aday].every((i) => d.cerceve.has(i)))) return;
     // gösterilen biçim: cümle ortasında harf büyüklüğü de tutmalı; cümle başında aynı sözcüğü gösteren bütün kartlar tanıtılmış olmalı
     const asil = ta[j]!;
     // cümle başında büyük harf ayırt edici değil: küçük harfle gösteren kart varsa o (öncelikli okunuş) bilinmeli; yoksa büyük harfli kart

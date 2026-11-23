@@ -20,7 +20,7 @@ if (bos.length) {
 {
   const ga = join(ROOT, "docs/v2/reviews/genel-adlar.md");
   const genel = existsSync(ga) ? genelAdlarAyikla(readFileSync(ga, "utf8")) : [];
-  const d = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genel);
+  const d = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genel, [...c.grammar, ...c.dn.flatMap((x) => x.data)]);
   const h = halkaDenetle(c.m1, new Map(c.temel.map((t) => [t.data.id, t.data])), d);
   c.errors.push(...h.errors); c.warnings.push(...h.warnings);
 }

@@ -54,3 +54,23 @@ describe("bilinen küme ve cümle kapısı (AKIS AK-3)", () => {
     expect(bilinmeyenYazi(bilinmeyenler(d, "Das ist gut.", { kart: new Set(), biten: new Set() }, ["ist"]))).toEqual(["?gut"]);
   });
 });
+
+describe("dil noktası tablo biçimleri (PM-092 md. 1; PR A)", () => {
+  const DN = [{ id: "gr:a1-03:t1", table: { rows: [["ich", "gehe", "giderim"], ["er", "geht", "gider"], ["", "gehen", ""]] } }];
+  const dz = kumeDizini(LEX, DERS, W, ["Ioana"], DN);
+  const y = (s: string, kart: string[], biten: string[] = []) => bilinmeyenYazi(bilinmeyenler(dz, s, { kart: new Set(kart), biten: new Set(biten) }));
+  it("sunulmadan önce tablo biçimi bilinmez; sunulunca kartı bilinen biçim bilinir", () => {
+    expect(y("gehe", ["lx:gehen"])).toEqual(["~gehe"]);
+    expect(y("gehe", ["lx:gehen"], ["gr:a1-03:t1"])).toEqual([]);
+  });
+  it("tablo kartın kendisini öğretmez: kart tanıtılmadan ne başlık ne biçim bilinir", () => {
+    expect(y("gehen", [], ["gr:a1-03:t1"])).toEqual(["gehen"]);
+    expect(y("gehe", [], ["gr:a1-03:t1"])).toEqual(["gehe"]);
+  });
+  it("dil noktası kart bağlamaz, kalıp taşımaz; temel ders aynı kalır", () => {
+    expect(dz.dersler.get("gr:a1-03:t1")?.kart.size).toBe(0);
+    expect(dz.dersler.get("gr:a1-03:t1")?.tablo?.has("gehe")).toBe(true);
+    expect(dz.dersler.get("gr:a1-03:t1")?.tablo?.has("gehen")).toBe(false);
+    expect([...(dz.dersler.get("r0:01-tage")?.bicim ?? [])].sort()).toEqual([...(d.dersler.get("r0:01-tage")?.bicim ?? [])].sort());
+  });
+});
