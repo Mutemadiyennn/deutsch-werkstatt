@@ -212,11 +212,11 @@
     "soru": {
      "q_tr": "Trenin rötarı ne kadar?",
      "opts": [
+      "Rötar yok",
       "On dakika",
-      "Yarım saat",
-      "Rötar yok"
+      "Yarım saat"
      ],
-     "ans": 0
+     "ans": 1
     }
    }
   },
@@ -369,11 +369,11 @@
     "soru": {
      "q_tr": "Adamın aktarması ne olacak?",
      "opts": [
-      "Beklemiyor, 8.05'te başka bir tren var",
       "Regensburg'da onu bekliyor",
-      "Bugün Münih'e hiç tren yok"
+      "Bugün Münih'e hiç tren yok",
+      "Beklemiyor, 8.05'te başka bir tren var"
      ],
-     "ans": 0
+     "ans": 2
     }
    }
   }
@@ -489,11 +489,11 @@
      "kind": "gist",
      "q_tr": "Peronda ne oluyor?",
      "opts": [
-      "Tren başka perondan kalkıyor ve rötarlı, kadın aktarmasını kaçıracak",
       "Tren iptal oldu, herkes otobüse biniyor",
-      "Kadın yanlış trene binmiş"
+      "Kadın yanlış trene binmiş",
+      "Tren başka perondan kalkıyor ve rötarlı, kadın aktarmasını kaçıracak"
      ],
-     "ans": 0,
+     "ans": 2,
      "kanit": [
       "s2",
       "s4",
@@ -505,11 +505,11 @@
       "kind": "detail",
       "q_tr": "Regensburg treni bugün hangi perondan kalkıyor?",
       "opts": [
+       "8. perondan",
        "2. perondan",
-       "5. perondan",
-       "8. perondan"
+       "5. perondan"
       ],
-      "ans": 1,
+      "ans": 2,
       "kanit": [
        "s2"
       ]
@@ -518,11 +518,11 @@
       "kind": "detail",
       "q_tr": "Trenin rötarı ne kadar?",
       "opts": [
+       "Bir saat",
        "Yaklaşık beş dakika",
-       "Yaklaşık on dakika",
-       "Bir saat"
+       "Yaklaşık on dakika"
       ],
-      "ans": 1,
+      "ans": 2,
       "kanit": [
        "s4"
       ]
@@ -531,11 +531,11 @@
       "kind": "detail",
       "q_tr": "Kadın Münih'e hangi trenle gidebilir?",
       "opts": [
-       "8.05 treniyle",
        "7.12 treniyle",
-       "Bugün gidemez"
+       "Bugün gidemez",
+       "8.05 treniyle"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s6"
       ]
@@ -668,11 +668,11 @@
       "kind": "detail",
       "q_tr": "Yeni iş arkadaşı ne zaman başlıyor?",
       "opts": [
-       "Pazartesi",
        "Çarşamba",
-       "Perşembe"
+       "Perşembe",
+       "Pazartesi"
       ],
-      "ans": 1,
+      "ans": 0,
       "kanit": [
        "s10"
       ]
@@ -681,11 +681,11 @@
       "kind": "detail",
       "q_tr": "Kantin bu hafta saat kaçta kapanıyor?",
       "opts": [
-       "İkide",
        "On ikide",
-       "Dokuzda"
+       "Dokuzda",
+       "İkide"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s12"
       ]
@@ -852,11 +852,11 @@
       "kind": "gist",
       "q_tr": "Anons ne söylüyor?",
       "opts": [
+       "Tren bugün erken kalkıyor",
        "Tren bugün başka perondan kalkıyor ve geç geliyor",
-       "Tren bugün hiç yok, otobüse binin",
-       "Tren bugün erken kalkıyor"
+       "Tren bugün hiç yok, otobüse binin"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "c2",
        "c3",
@@ -868,11 +868,11 @@
        "kind": "detail",
        "q_tr": "Tren bugün hangi perondan kalkıyor?",
        "opts": [
-        "2. perondan",
         "5. perondan",
-        "7. perondan"
+        "7. perondan",
+        "2. perondan"
        ],
-       "ans": 1,
+       "ans": 0,
        "kanit": [
         "c3"
        ]
@@ -881,11 +881,11 @@
        "kind": "detail",
        "q_tr": "Neden?",
        "opts": [
-        "Bir kaza yüzünden",
         "Bir yol çalışması yüzünden",
-        "Kar yüzünden"
+        "Kar yüzünden",
+        "Bir kaza yüzünden"
        ],
-       "ans": 1,
+       "ans": 0,
        "kanit": [
         "c4"
        ]
@@ -912,11 +912,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi peron numarasını duydun?",
        "opts": [
+        "vier",
         "fünf",
-        "zwei",
-        "vier"
+        "zwei"
        ],
-       "ans": 0
+       "ans": 1
       },
       {
        "id": "d2",
@@ -995,11 +995,11 @@
     "k": "pick",
     "q_tr": "Şimdi ne yapmalısın?",
     "opts": [
+     "Eve dön, bugün tren yok",
      "5. perona git, tren yaklaşık on dakika geç gelecek",
-     "2. peronda beklemeye devam et",
-     "Eve dön, bugün tren yok"
+     "2. peronda beklemeye devam et"
     ],
-    "ans": 0,
+    "ans": 1,
     "why_tr": "Anons 5. perona gitmeni söylüyor. Tren on dakika rötarlı.",
     "kanit": [
      "c3",
@@ -1065,11 +1065,11 @@
       "kind": "gist",
       "q_tr": "Tobi neden mesaj bırakıyor?",
       "opts": [
-       "Trafikte sıkışmış, geç gelecek",
        "Hasta, bugün gelmeyecek",
-       "Treni kaçırmış"
+       "Treni kaçırmış",
+       "Trafikte sıkışmış, geç gelecek"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "c2",
        "c4"
@@ -1093,11 +1093,11 @@
        "kind": "detail",
        "q_tr": "Tobi senden ne istiyor?",
        "opts": [
-        "Şefe sekiz buçukta geleceğini söylemeni",
         "Onu hemen geri aramanı",
-        "Onu istasyondan almanı"
+        "Onu istasyondan almanı",
+        "Şefe sekiz buçukta geleceğini söylemeni"
        ],
-       "ans": 0,
+       "ans": 2,
        "kanit": [
         "c4"
        ]
@@ -1106,11 +1106,11 @@
        "kind": "detail",
        "q_tr": "Tobi'yi neden aramamalısın?",
        "opts": [
-        "Araba kullanıyor",
         "Toplantıda",
-        "Telefonu bozuk"
+        "Telefonu bozuk",
+        "Araba kullanıyor"
        ],
-       "ans": 0,
+       "ans": 2,
        "kanit": [
         "c5"
        ]
@@ -1205,11 +1205,11 @@
     "k": "pick",
     "q_tr": "Şimdi ne yapmalısın?",
     "opts": [
-     "Herr Wimmer'e Tobi'nin trafikte olduğunu ve sekiz buçukta geleceğini söyle",
      "Tobi'yi hemen ara",
-     "Toplantıyı iptal et"
+     "Toplantıyı iptal et",
+     "Herr Wimmer'e Tobi'nin trafikte olduğunu ve sekiz buçukta geleceğini söyle"
     ],
-    "ans": 0,
+    "ans": 2,
     "why_tr": "Tobi şefe haber vermeni istiyor ve aranmak istemiyor.",
     "kanit": [
      "c4",
@@ -1519,11 +1519,11 @@
     "kind": "gist",
     "q_tr": "Bildirim ne hakkında?",
     "opts": [
-     "Trenin bugün rötarlı olduğu ve başka perondan kalktığı",
      "Biletinin iptal edildiği",
-     "Yeni bir tren hattının açıldığı"
+     "Yeni bir tren hattının açıldığı",
+     "Trenin bugün rötarlı olduğu ve başka perondan kalktığı"
     ],
-    "ans": 0,
+    "ans": 2,
     "kanit": [
      1,
      2
@@ -1548,11 +1548,11 @@
     "kind": "detail",
     "q_tr": "Tren ne zamandan itibaren yine 2. perondan kalkacak?",
     "opts": [
-     "Yarından itibaren",
      "Çarşambadan itibaren",
-     "Gelecek aydan itibaren"
+     "Gelecek aydan itibaren",
+     "Yarından itibaren"
     ],
-    "ans": 1,
+    "ans": 0,
     "kanit": [
      5
     ]
@@ -1562,11 +1562,11 @@
     "kind": "detail",
     "q_tr": "Münih'e gidenler Regensburg'da ne yapmalı?",
     "opts": [
+     "Otobüse binmeli",
      "Saat 8.05 trenine binmeli",
-     "Aktarma trenini beklemeli",
-     "Otobüse binmeli"
+     "Aktarma trenini beklemeli"
     ],
-    "ans": 0,
+    "ans": 1,
     "kanit": [
      3,
      4

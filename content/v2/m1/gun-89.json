@@ -327,11 +327,11 @@
     "soru": {
      "q_tr": "Perşembe kim hangi vardiyada?",
      "opts": [
-      "Sen akşam, Tobi sabah",
       "Sen sabah, Tobi akşam",
-      "İkiniz de izinlisiniz"
+      "İkiniz de izinlisiniz",
+      "Sen akşam, Tobi sabah"
      ],
-     "ans": 0
+     "ans": 2
     }
    }
   }
@@ -469,11 +469,11 @@
       "kind": "detail",
       "q_tr": "Herr Wimmer ne yapıyor?",
       "opts": [
-       "Kazayı not ediyor",
        "Seni eve gönderiyor",
-       "Ambulans çağırıyor"
+       "Ambulans çağırıyor",
+       "Kazayı not ediyor"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s5"
       ]
@@ -482,11 +482,11 @@
       "kind": "detail",
       "q_tr": "Yarın hâlâ ağrırsa ne yapmalısın?",
       "opts": [
-       "Doktora git",
        "İşe gelme",
-       "Derya'yı ara"
+       "Derya'yı ara",
+       "Doktora git"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s6"
       ]
@@ -499,11 +499,11 @@
       "seviye": "kolay",
       "q_tr": "Hangi günü duydun?",
       "opts": [
+       "Samstag",
        "morgen",
-       "Montag",
-       "Samstag"
+       "Montag"
       ],
-      "ans": 0
+      "ans": 1
      },
      {
       "id": "d2",
@@ -606,11 +606,11 @@
       "kind": "detail",
       "q_tr": "Tobi bu hafta kaç saat fazla mesai yaptı?",
       "opts": [
-       "On",
        "Üç",
-       "Yirmi"
+       "Yirmi",
+       "On"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s7"
       ]
@@ -619,11 +619,11 @@
       "kind": "detail",
       "q_tr": "Starkbierfest ne zaman?",
       "opts": [
-       "Martta",
        "Şubatta",
-       "Mayısta"
+       "Mayısta",
+       "Martta"
       ],
-      "ans": 0,
+      "ans": 2,
       "kanit": [
        "s9"
       ]
@@ -792,11 +792,11 @@
        "kind": "detail",
        "q_tr": "Pazartesiden çarşambaya hangi vardiyadasın?",
        "opts": [
+        "İzinlisin",
         "Akşam vardiyası, 14–22",
-        "Sabah vardiyası",
-        "İzinlisin"
+        "Sabah vardiyası"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c2"
        ]
@@ -805,11 +805,11 @@
        "kind": "detail",
        "q_tr": "Değişiklik için ne zamana kadar haber vermelisin?",
        "opts": [
+        "Akşama kadar",
         "Bugün saat üçe kadar",
-        "Pazartesiye kadar",
-        "Akşama kadar"
+        "Pazartesiye kadar"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c4"
        ]
@@ -908,11 +908,11 @@
     "k": "pick",
     "q_tr": "Vardiyayı değiştirmek istiyorsun. Ne yapmalısın?",
     "opts": [
-     "Bugün saat üçe kadar Herr Wimmer'e haber ver",
      "Pazartesi sabah söyle",
-     "Hiçbir şey, Tobi halleder"
+     "Hiçbir şey, Tobi halleder",
+     "Bugün saat üçe kadar Herr Wimmer'e haber ver"
     ],
-    "ans": 0,
+    "ans": 2,
     "why_tr": "Herr Wimmer bugün saat üçe kadar haber istiyor.",
     "kanit": [
      "c4"
@@ -969,11 +969,11 @@
       "kind": "gist",
       "q_tr": "Radyoda ne anlatılıyor?",
       "opts": [
+       "Şenlik programı",
        "Hasta olunca ve kazada işte ne yapılır",
-       "Hava durumu",
-       "Şenlik programı"
+       "Hava durumu"
       ],
-      "ans": 0,
+      "ans": 1,
       "kanit": [
        "c1",
        "c2",
@@ -985,11 +985,11 @@
        "kind": "detail",
        "q_tr": "Ne zaman doktor raporu gerekir?",
        "opts": [
+        "Hiçbir zaman",
         "Üç günden fazla hastaysan",
-        "Her zaman ilk saatte",
-        "Hiçbir zaman"
+        "Her zaman ilk saatte"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c3"
        ]
@@ -998,11 +998,11 @@
        "kind": "detail",
        "q_tr": "Şef raporu ne zaman isteyebilir?",
        "opts": [
+        "Hiç istemez",
         "İlk gün de",
-        "Yalnızca bir hafta sonra",
-        "Hiç istemez"
+        "Yalnızca bir hafta sonra"
        ],
-       "ans": 0,
+       "ans": 1,
        "kanit": [
         "c4"
        ]
@@ -1015,11 +1015,11 @@
        "seviye": "kolay",
        "q_tr": "Hangi sayıyı duydun?",
        "opts": [
-        "drei",
         "zwei",
-        "zehn"
+        "zehn",
+        "drei"
        ],
-       "ans": 0
+       "ans": 2
       },
       {
        "id": "d2",
@@ -1375,11 +1375,11 @@
     "kind": "gist",
     "q_tr": "Bu duyuru ne hakkında?",
     "opts": [
-     "Vardiya planı ve iş kazası kuralı",
      "Starkbierfest",
-     "Maaşlar"
+     "Maaşlar",
+     "Vardiya planı ve iş kazası kuralı"
     ],
-    "ans": 0,
+    "ans": 2,
     "kanit": [
      0,
      4
@@ -1390,11 +1390,11 @@
     "kind": "detail",
     "q_tr": "Akşam vardiyası saat kaçta?",
     "opts": [
-     "14–22",
      "6–14",
-     "8–16"
+     "8–16",
+     "14–22"
     ],
-    "ans": 0,
+    "ans": 2,
     "kanit": [
      1
     ]
@@ -1404,11 +1404,11 @@
     "kind": "detail",
     "q_tr": "Vardiyanı değiştirmek istiyorsan ne zamana kadar haber verirsin?",
     "opts": [
+     "Cumaya kadar",
      "Bugün saat 15'e kadar",
-     "Çarşambaya kadar",
-     "Cumaya kadar"
+     "Çarşambaya kadar"
     ],
-    "ans": 0,
+    "ans": 1,
     "kanit": [
      2,
      3
