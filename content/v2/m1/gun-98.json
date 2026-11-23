@@ -1,0 +1,1444 @@
+{
+ "schema": 1,
+ "id": "m1:gun:98",
+ "day": 98,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Haftanın sınavı: Bürgerbüro'da sıra ve belgeler",
+ "goal_tr": "Vatandaş bürosunda numaranın çağrıldığını ve memurun istediğini duyarsın; işini anlatır, eksik bir belge için ne yapacağını sorarsın.",
+ "can_do": {
+  "id": "cd:m1:98",
+  "tr": "Bürgerbüro'da işimi anlatır, eksik bir belge için ne yapacağımı sorarım."
+ },
+ "unit": "u:a2:resmi-2",
+ "arm": "pazar",
+ "place": "pl:buergerbuero",
+ "characters": [
+  "ch:schneider",
+  "ch:brandl",
+  "ch:popescu",
+  "ch:aksoy",
+  "ch:lechner"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:verletzen",
+  "lx:Dame"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:98:h1",
+   "title_tr": "Pazar: Tobi'nin eli, nazik hanımefendi ve yarınki iş",
+   "kartlar": [
+    "lx:verletzen",
+    "lx:Dame"
+   ],
+   "kaliplar": [
+    {
+     "de": "sich verletzen – Ich habe mich verletzt. – Er hat sich an der Hand verletzt. – beim Tragen – beim Umzug",
+     "tr": "yaralanmak – Yaralandım. – Elinden yaralandı. – taşırken – taşınırken"
+    },
+    {
+     "de": "Ist es schlimm? – Nein, es ist nicht schlimm. – Gute Besserung!",
+     "tr": "Kötü mü? – Hayır, kötü değil. – Geçmiş olsun!"
+    },
+    {
+     "de": "die Dame – die Dame am Platz drei – Meine Damen und Herren",
+     "tr": "hanımefendi – 3 numaralı masadaki hanımefendi – Bayanlar baylar"
+    },
+    {
+     "de": "Das Bürgerbüro schließt in zehn Minuten. – es schließt",
+     "tr": "Vatandaş bürosu on dakika sonra kapanıyor. – kapanıyor"
+    },
+    {
+     "de": "Grüß Gott! – Liebe Frau Brandl – Viele Grüße",
+     "tr": "Merhaba! (Bavyera'da) – Sevgili Frau Brandl – Selamlar"
+    },
+    {
+     "de": "eine Meldebescheinigung für Frau Brandl – für die Bank – für meine Nachbarin",
+     "tr": "Frau Brandl için bir ikamet belgesi – banka için – komşum için"
+    },
+    {
+     "de": "eine andere Person – die Vollmacht – eine Vollmacht von Frau Brandl – eine Kopie vom Ausweis",
+     "tr": "başka bir kişi – vekâletname – Frau Brandl'dan bir vekâletname – kimliğin bir kopyası"
+    },
+    {
+     "de": "der Name von der anderen Person – ihren eigenen Ausweis",
+     "tr": "öbür kişinin adı – kendi kimliğini"
+    },
+    {
+     "de": "Was kann ich jetzt machen? – Kann ich heute Nachmittag wieder kommen? – Brauche ich einen neuen Termin?",
+     "tr": "Şimdi ne yapabilirim? – Bugün öğleden sonra tekrar gelebilir miyim? – Yeni bir randevu lazım mı?"
+    },
+    {
+     "de": "ohne Termin – Ziehen Sie dann einfach eine neue Wartenummer. – Ich habe keine Vollmacht.",
+     "tr": "randevusuz – O zaman sadece yeni bir sıra numarası alın. – Vekâletnamem yok."
+    },
+    {
+     "de": "Ich kann nicht gut laufen. – Können Sie morgen für mich ins Bürgerbüro gehen?",
+     "tr": "İyi yürüyemiyorum. – Yarın benim için vatandaş bürosuna gidebilir misiniz?"
+    },
+    {
+     "de": "ich bin angekommen – Er ist gut angekommen. – Meldet euch mal!",
+     "tr": "vardım – İyi vardı. – Bir ara haber verin!"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:verletzen",
+     "de": "Tobi hat sich beim Umzug an der Hand verletzt.",
+     "tr": "Tobi taşınırken elinden yaralandı.",
+     "accepted": [
+      "Tobi hat sich beim Umzug an der Hand verletzt.",
+      "Tobi hat sich beim Umzug an der Hand verletzt, aber es ist nicht schlimm.",
+      "Beim Umzug hat sich Tobi an der Hand verletzt."
+     ]
+    },
+    {
+     "kart": "lx:verletzen",
+     "de": "Hast du dich verletzt? Ist es schlimm?",
+     "tr": "Yaralandın mı? Kötü mü?",
+     "accepted": [
+      "Hast du dich verletzt? Ist es schlimm?",
+      "Hast du dich verletzt? Ist das schlimm?",
+      "Tobi, hast du dich verletzt? Ist es schlimm?"
+     ]
+    },
+    {
+     "kart": "lx:Dame",
+     "de": "Die Dame am Platz drei war wirklich nett.",
+     "tr": "3 numaralı masadaki hanımefendi gerçekten çok nazikti.",
+     "accepted": [
+      "Die Dame am Platz drei war wirklich nett.",
+      "Die Dame am Platz drei war sehr nett.",
+      "Die Dame am Platz drei war sehr freundlich."
+     ]
+    },
+    {
+     "kart": "lx:Dame",
+     "de": "Meine Damen und Herren, das Bürgerbüro schließt in zehn Minuten.",
+     "tr": "Bayanlar baylar, vatandaş bürosu on dakika sonra kapanıyor.",
+     "accepted": [
+      "Meine Damen und Herren, das Bürgerbüro schließt in zehn Minuten.",
+      "Meine Damen und Herren, in zehn Minuten schließt das Bürgerbüro.",
+      "Meine Damen und Herren, das Bürgerbüro schließt gleich."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Pazar sabahı. Tobi Hamburg'dan seni arıyor; sesi yorgun.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Ich bin gut angekommen. Aber ich habe mich beim Tragen an der Hand verletzt.",
+      "tr": "İyi vardım. Ama taşırken elimden yaralandım."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Hast du dich verletzt? Ist es schlimm?",
+      "tr": "Yaralandın mı? Kötü mü?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Nein, es ist nicht schlimm. Und wie war es im Bürgerbüro?",
+      "tr": "Hayır, kötü değil. Vatandaş bürosu nasıldı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Gut. Die Dame am Platz drei war sehr nett.",
+      "tr": "İyiydi. 3 numaralı masadaki hanımefendi çok nazikti."
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi'ye ne oldu?",
+     "opts": [
+      "Taşırken elinden yaralandı",
+      "Hastalandı",
+      "Trenini kaçırdı"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:98:v1",
+  "title_tr": "Pazar: kafede Ioana ve Derya, merdivende Frau Brandl",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Pazar saat on bir, Stadtplatz'ta bir kafe. Ioana ve Derya kahve içiyor.",
+    "de": "Gestern war ich im Bürgerbüro. Die Dame am Platz drei war wirklich nett.",
+    "tr": "Dün vatandaş bürosundaydım. 3 numaralı masadaki hanımefendi gerçekten çok nazikti."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülümsüyor.",
+    "de": "Frau Schneider? Ja, sie spricht immer langsam und klar.",
+    "tr": "Frau Schneider mi? Evet, hep yavaş ve açık konuşur."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya telefonunda bir ilan gösteriyor.",
+    "de": "Ich ziehe im Sommer vielleicht auch um, in eine Wohnung am Fluss.",
+    "tr": "Ben de yazın belki taşınıyorum, nehir kenarında bir daireye."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana ilana bakıyor.",
+    "de": "Hier in Wendlfing? Dann meldest du dich nur um.",
+    "tr": "Burada, Wendlfing'de mi? O zaman yeni adresini kaydettirirsin."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya kaşlarını kaldırıyor.",
+    "de": "Und muss ich mich auch abmelden?",
+    "tr": "Peki kaydımı da sildirmem gerekiyor mu?"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana gülerek başını sallıyor.",
+    "de": "Nein! Nicht ab, sondern um. Abmelden musst du dich nur, wenn du ins Ausland ziehst.",
+    "tr": "Hayır! Sildirmek değil, adres değişikliği. Kaydını yalnızca yurt dışına taşınırsan sildirirsin."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Pazar öğleden sonra. Apartmanın merdiveninde Frau Brandl bastonuyla duruyor.",
+    "de": "Grüß Gott! Haben Sie kurz Zeit?",
+    "tr": "Merhaba! Biraz vaktiniz var mı?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl elinde bir mektup tutuyor.",
+    "de": "Ich brauche eine Meldebescheinigung für die Bank. Aber ich kann im Moment nicht gut laufen.",
+    "tr": "Banka için bir ikamet belgesine ihtiyacım var. Ama şu an iyi yürüyemiyorum."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl sana umutla bakıyor.",
+    "de": "Können Sie morgen für mich ins Bürgerbüro gehen?",
+    "tr": "Yarın benim için vatandaş bürosuna gidebilir misiniz?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl çantasından kimliğini çıkarıp uzatıyor.",
+    "de": "Hier ist mein Ausweis. Den brauchen Sie bestimmt.",
+    "tr": "İşte kimliğim. Ona kesin ihtiyacınız olur."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl saatine bakıyor.",
+    "de": "Das Bürgerbüro öffnet um acht. Am Vormittag ist es nicht so voll.",
+    "tr": "Vatandaş bürosu sekizde açılıyor. Öğleden önce o kadar kalabalık değil."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl elini kalbine koyuyor.",
+    "de": "Vielen Dank! Sie sind wirklich sehr nett.",
+    "tr": "Çok teşekkürler! Gerçekten çok naziksiniz."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Kafede ne konuşuluyor?",
+     "opts": [
+      "Vatandaş bürosu ve Derya'nın taşınınca ne yapacağı",
+      "Tobi'nin yeni işi",
+      "Hafta sonu havası"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s4",
+      "s6"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Frau Schneider nasıl konuşuyor?",
+      "opts": [
+       "Yavaş ve açık",
+       "Hızlı ve sert",
+       "Lehçeyle"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya nereye taşınabilir?",
+      "opts": [
+       "Wendlfing'de nehir kenarında bir daireye",
+       "Hamburg'a",
+       "Yurt dışına"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s3",
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Ioana'ya göre kim kaydını sildirir?",
+      "opts": [
+       "Yurt dışına taşınan",
+       "Aynı şehirde taşınan",
+       "Herkes"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s2",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "langsam",
+       "leise",
+       "laut"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s1",
+      "seviye": "orta",
+      "de": "Gestern war ich im Bürgerbüro. Die ___ am Platz drei war wirklich nett.",
+      "accepted": [
+       "Dame",
+       "dame",
+       "Dame."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s5",
+      "seviye": "zor",
+      "banka": [
+       "Und",
+       "muss",
+       "ich",
+       "mich",
+       "auch",
+       "abmelden",
+       "an",
+       "Wohnung"
+      ],
+      "accepted": [
+       "Und muss ich mich auch abmelden?",
+       "und muss ich mich auch abmelden",
+       "Und muss ich mich auch abmelden"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s3",
+      "seviye": "usta",
+      "accepted": [
+       "Ich ziehe im Sommer vielleicht auch um, in eine Wohnung am Fluss.",
+       "ich ziehe im sommer vielleicht auch um in eine wohnung am fluss",
+       "Ich ziehe im Sommer vielleicht auch um, in eine Wohnung am Fluss"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Ioana'nın Derya'ya söylediğini Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Derya zieht in Wendlfing um. Sie meldet sich um, nicht ab.",
+      "zorunlu": [
+       "meldet sich um",
+       "nicht ab"
+      ]
+     }
+    ],
+    "golge": [
+     "s1",
+     "s4"
+    ],
+    "cevapla": {
+     "id": "m1:98:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya sana da soruyor: Wendlfing içinde taşınırsam kaydımı sildirmem lazım mı? Hayır de; yeni adresini kaydettirir.",
+     "prompt_de": "Muss ich mich abmelden?",
+     "accepted": [
+      "Nein, du meldest dich um.",
+      "Nein, nicht ab, sondern um.",
+      "Nein. Du musst dich nur ummelden.",
+      "Nein, du ziehst in Wendlfing um, also meldest du dich um.",
+      "Nein, abmelden musst du dich nicht. Du meldest dich um."
+     ],
+     "why_tr": "Aynı şehirde: **sich ummelden**. **nicht ab, sondern um**."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Frau Brandl ne istiyor?",
+     "opts": [
+      "Yarın onun için vatandaş bürosuna gitmeni",
+      "Bankaya birlikte gitmeyi",
+      "Ona yemek yapmanı"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s8",
+      "s9"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "İkamet belgesi ne için lazım?",
+      "opts": [
+       "Banka için",
+       "Doktor için",
+       "Yeni daire için"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s8"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Frau Brandl sana ne veriyor?",
+      "opts": [
+       "Kimliğini",
+       "Banka kartını",
+       "Bir mektubu"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Vatandaş bürosu saat kaçta açılıyor?",
+      "opts": [
+       "Sekizde",
+       "Dokuzda",
+       "Onda"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s11",
+      "seviye": "kolay",
+      "q_tr": "Hangi saati duydun?",
+      "opts": [
+       "acht",
+       "neun",
+       "zehn"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s8",
+      "seviye": "orta",
+      "de": "Ich brauche eine Meldebescheinigung für die Bank. Aber ich kann im Moment nicht gut ___.",
+      "accepted": [
+       "laufen",
+       "Laufen",
+       "laufen."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s9",
+      "seviye": "zor",
+      "banka": [
+       "Können",
+       "Sie",
+       "morgen",
+       "für",
+       "mich",
+       "ins",
+       "Bürgerbüro",
+       "gehen",
+       "Rathaus",
+       "heute"
+      ],
+      "accepted": [
+       "Können Sie morgen für mich ins Bürgerbüro gehen?",
+       "können sie morgen für mich ins bürgerbüro gehen",
+       "Können Sie morgen für mich ins Bürgerbüro gehen"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Hier ist mein Ausweis. Den brauchen Sie bestimmt.",
+       "hier ist mein ausweis den brauchen sie bestimmt",
+       "Hier ist mein Ausweis. Den brauchen Sie bestimmt"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Frau Brandl'ın ricasını Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Frau Brandl braucht eine Meldebescheinigung. Morgen gehe ich für sie ins Bürgerbüro.",
+      "zorunlu": [
+       "Meldebescheinigung",
+       "Bürgerbüro"
+      ]
+     }
+    ],
+    "golge": [
+     "s9",
+     "s11"
+    ],
+    "cevapla": {
+     "id": "m1:98:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Frau Brandl'a cevap ver: tabii, yarın sabah sekizde gidiyorsun.",
+     "prompt_de": "Können Sie morgen für mich ins Bürgerbüro gehen?",
+     "accepted": [
+      "Ja, natürlich. Ich gehe morgen um acht ins Bürgerbüro.",
+      "Gern! Morgen um acht gehe ich hin.",
+      "Ja, klar. Morgen früh um acht bin ich im Bürgerbüro.",
+      "Natürlich, Frau Brandl. Ich gehe morgen um acht.",
+      "Ja, gern. Ich gehe morgen früh für Sie ins Bürgerbüro."
+     ],
+     "why_tr": "Frau Brandl'a **Sie** ile konuşursun: **für Sie**."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:98:a1",
+   "tur": "anons",
+   "title_tr": "Kulak kapısı: numara anonsu ve memurun isteği",
+   "ortam_tr": "Pazartesi sabahı vatandaş bürosundasın; Frau Brandl'ın işi için geldin. Elinde 52 numara var. Anonslar ve memur doğal hızda konuşuyor.",
+   "speaker": "die Ansage",
+   "hizlar": [
+    "natural",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Nummer einundfünfzig bitte zu Platz zwei.",
+     "tr": "51 numara lütfen 2 numaralı masaya."
+    },
+    {
+     "id": "c2",
+     "de": "Nummer zweiundfünfzig bitte zu Platz vier.",
+     "tr": "52 numara lütfen 4 numaralı masaya."
+    },
+    {
+     "id": "c3",
+     "de": "Guten Morgen. Bitte nehmen Sie Platz. Was kann ich für Sie tun?",
+     "tr": "Günaydın. Lütfen oturun. Sizin için ne yapabilirim?"
+    },
+    {
+     "id": "c4",
+     "de": "Eine Meldebescheinigung? Gern. Zuerst brauche ich Ihren Ausweis oder Pass.",
+     "tr": "İkamet belgesi mi? Memnuniyetle. Önce kimliğinizi ya da pasaportunuzu istiyorum."
+    },
+    {
+     "id": "c5",
+     "de": "Und füllen Sie bitte dieses Formular aus. Unterschreiben Sie unten.",
+     "tr": "Bir de lütfen bu formu doldurun. Alta imza atın."
+    },
+    {
+     "id": "c6",
+     "de": "Bezahlen können Sie hier mit Karte.",
+     "tr": "Burada kartla ödeyebilirsiniz."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Ne duyuyorsun?",
+      "opts": [
+       "Numaranın çağrıldığını ve memurun belge istediğini",
+       "Büronun kapandığını",
+       "Randevunun iptal edildiğini"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "52 numara hangi masaya?",
+       "opts": [
+        "4 numaralı masaya",
+        "2 numaralı masaya",
+        "5 numaralı masaya"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Memur önce ne istiyor?",
+       "opts": [
+        "Kimlik ya da pasaport",
+        "Banka kartı",
+        "Sıra numarası"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Formu doldurduktan sonra ne yapmalısın?",
+       "opts": [
+        "Altına imza atmalısın",
+        "Fotoğraf eklemelisin",
+        "Postaya vermelisin"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi masa numarasını duydun?",
+       "opts": [
+        "vier",
+        "eins",
+        "drei"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Eine Meldebescheinigung? Gern. Zuerst brauche ich Ihren ___ oder Pass.",
+       "accepted": [
+        "Ausweis",
+        "ausweis",
+        "Ausweis."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Bezahlen",
+        "können",
+        "Sie",
+        "hier",
+        "mit",
+        "Karte",
+        "Geld",
+        "dort"
+       ],
+       "accepted": [
+        "Bezahlen können Sie hier mit Karte.",
+        "bezahlen können sie hier mit karte",
+        "Bezahlen können Sie hier mit Karte"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Und füllen Sie bitte dieses Formular aus. Unterschreiben Sie unten.",
+        "und füllen sie bitte dieses formular aus unterschreiben sie unten",
+        "Und füllen Sie bitte dieses Formular aus. Unterschreiben Sie unten"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Duyduğunu Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Meine Nummer ist zweiundfünfzig, ich gehe zu Platz vier. Zuerst braucht sie meinen Ausweis.",
+       "zorunlu": [
+        "Platz vier",
+        "Ausweis"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:98:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Frau Brandl telefonda soruyor: memur ne istiyor? Önce kimliğini ya da pasaportunu istediğini söyle.",
+      "prompt_de": "Was braucht die Dame?",
+      "accepted": [
+       "Zuerst braucht sie meinen Ausweis oder Pass.",
+       "Sie braucht zuerst meinen Ausweis.",
+       "Zuerst meinen Ausweis oder meinen Pass.",
+       "Meinen Ausweis oder Pass. Dann fülle ich ein Formular aus.",
+       "Sie braucht zuerst meinen Ausweis, dann unterschreibe ich das Formular."
+      ],
+      "why_tr": "Memurun istediğini aktar: **Zuerst braucht sie meinen Ausweis.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:98:a1:e1",
+    "k": "pick",
+    "q_tr": "Numaran 52. Ne yaparsın?",
+    "opts": [
+     "4 numaralı masaya gidip kimliğimi veririm",
+     "2 numaralı masaya giderim",
+     "Yeni bir numara alırım"
+    ],
+    "ans": 0,
+    "why_tr": "52 numara 4 numaralı masaya çağrıldı; memur önce kimlik ya da pasaport istiyor.",
+    "kanit": [
+     "c2",
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:98:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Tobi'nin Hamburg'dan mesajı",
+   "ortam_tr": "Pazar akşamı. Tobi Hamburg'dan bir sesli mesaj bırakmış.",
+   "speaker": "ch:lechner",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Tobi aus Hamburg!",
+     "tr": "Merhaba, Hamburg'dan ben Tobi!"
+    },
+    {
+     "id": "c2",
+     "de": "Ich bin gut angekommen. Die Wohnung ist hübsch, aber noch voll mit Zeug.",
+     "tr": "İyi vardım. Daire çok hoş ama hâlâ eşyayla dolu."
+    },
+    {
+     "id": "c3",
+     "de": "Beim Tragen habe ich mich an der Hand verletzt. Es ist aber nicht schlimm.",
+     "tr": "Taşırken elimden yaralandım. Ama kötü değil."
+    },
+    {
+     "id": "c4",
+     "de": "Morgen um neun melde ich mich im Bürgerbüro an. Den Termin habe ich schon.",
+     "tr": "Yarın saat dokuzda vatandaş bürosunda kayıt yaptırıyorum. Randevum hazır."
+    },
+    {
+     "id": "c5",
+     "de": "Danke noch mal für eure Hilfe gestern. Ohne euch war das nicht leicht.",
+     "tr": "Dünkü yardımınız için bir kez daha teşekkürler. Sizsiz kolay olmazdı."
+    },
+    {
+     "id": "c6",
+     "de": "Meldet euch mal, ja? Tschüss!",
+     "tr": "Bir ara haber verin, olur mu? Hoşça kal!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Tobi ne anlatıyor?",
+      "opts": [
+       "İyi vardığını, hafif yaralandığını ve yarın kayıt yaptıracağını",
+       "Wendlfing'e geri döndüğünü",
+       "Yeni dairesini beğenmediğini"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Tobi nasıl yaralandı?",
+       "opts": [
+        "Taşırken, elinden",
+        "Spor yaparken, bacağından",
+        "Mutfakta, parmağından"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Tobi yarın saat kaçta vatandaş bürosunda?",
+       "opts": [
+        "Dokuzda",
+        "Sekizde",
+        "On birde"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Daire nasıl?",
+       "opts": [
+        "Hoş ama hâlâ eşyayla dolu",
+        "Küçük ve karanlık",
+        "Boş ve soğuk"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Hand",
+        "Hund",
+        "Haus"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Beim Tragen habe ich mich an der Hand ___. Es ist aber nicht schlimm.",
+       "accepted": [
+        "verletzt",
+        "Verletzt",
+        "verletzt."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Meldet",
+        "euch",
+        "mal",
+        "ja",
+        "Tschüss",
+        "Hallo",
+        "uns"
+       ],
+       "accepted": [
+        "Meldet euch mal, ja? Tschüss!",
+        "meldet euch mal ja tschüss",
+        "Meldet euch mal, ja? Tschüss"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Morgen um neun melde ich mich im Bürgerbüro an. Den Termin habe ich schon.",
+        "morgen um neun melde ich mich im bürgerbüro an den termin habe ich schon",
+        "Morgen um neun melde ich mich im Bürgerbüro an. Den Termin habe ich schon"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Tobi'nin mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Tobi hat sich an der Hand verletzt. Morgen meldet er sich in Hamburg an.",
+       "zorunlu": [
+        "verletzt",
+        "meldet"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:98:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi'ye kısa cevap ver: geçmiş olsun de ve yarın kayıt için bol şans dile.",
+      "prompt_de": "Morgen um neun melde ich mich im Bürgerbüro an.",
+      "accepted": [
+       "Gute Besserung! Und viel Glück morgen im Bürgerbüro.",
+       "Gute Besserung, Tobi! Viel Glück morgen.",
+       "Gute Besserung! Viel Glück bei der Anmeldung.",
+       "Gute Besserung für deine Hand! Und viel Glück morgen.",
+       "Viel Glück morgen! Und gute Besserung."
+      ],
+      "why_tr": "**Gute Besserung!**: geçmiş olsun. **Viel Glück!**: bol şans."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:98:a2:e1",
+    "k": "pick",
+    "q_tr": "Tobi pazartesi ne yapıyor?",
+    "opts": [
+     "Hamburg'da vatandaş bürosunda kayıt yaptırıyor",
+     "Wendlfing'de kaydını sildiriyor",
+     "Doktora gidiyor"
+    ],
+    "ans": 0,
+    "why_tr": "Almanya içinde taşınan yeni şehirde kayıt yaptırır: **Ich melde mich an.**",
+    "kanit": [
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:98:g1",
+   "de": "verletzen",
+   "dogru_img": "man with a bandaged hand next to moving boxes",
+   "celdirici_img": [
+    "man laughing with friends",
+    "man sleeping on a sofa",
+    "man cooking"
+   ]
+  },
+  {
+   "id": "m1:98:g2",
+   "de": "Dame",
+   "dogru_img": "friendly woman clerk at an office counter",
+   "celdirici_img": [
+    "young boy with a ball",
+    "old man with a hat",
+    "baby in a pram"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:98:p1",
+  "title_tr": "Haftanın kapısı: Bürgerbüro'da işini anlat, eksik belgeyi sor",
+  "durum_tr": "Pazartesi sabahı vatandaş bürosundasın. Numaran çağrıldı; 4 numaralı masada Frau Schneider var. Komşun Frau Brandl banka için bir ikamet belgesi istiyor; kimliği yanında. İşini anlat. Dikkat: bir belge eksik çıkabilir; o zaman ne yapacağını sor.",
+  "karsi": "ch:schneider",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Guten Morgen. Bitte nehmen Sie Platz. Was kann ich für Sie tun?",
+    "tr": "Günaydın. Lütfen oturun. Sizin için ne yapabilirim?",
+    "secenekler": [
+     {
+      "de": "Guten Morgen. Ich brauche eine Meldebescheinigung für meine Nachbarin, Frau Brandl.",
+      "tr": "Günaydın. Komşum Frau Brandl için bir ikamet belgesi lazım.",
+      "accepted": [
+       "Guten Morgen. Ich brauche eine Meldebescheinigung für meine Nachbarin, Frau Brandl.",
+       "Guten Morgen. Ich brauche eine Meldebescheinigung für meine Nachbarin.",
+       "Ich brauche eine Meldebescheinigung für Frau Brandl.",
+       "Guten Morgen, ich brauche eine Meldebescheinigung für meine Nachbarin, Frau Brandl."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: ne istediğini ve kimin için olduğunu söyledin."
+     },
+     {
+      "de": "Guten Morgen, mein Name ist {name}. Meine Nachbarin braucht eine Meldebescheinigung für die Bank.",
+      "tr": "Günaydın, adım {name}. Komşumun banka için bir ikamet belgesine ihtiyacı var.",
+      "accepted": [
+       "Guten Morgen, mein Name ist {name}. Meine Nachbarin braucht eine Meldebescheinigung für die Bank.",
+       "Guten Morgen, mein Name ist {name}. Meine Nachbarin braucht eine Meldebescheinigung.",
+       "Mein Name ist {name}. Frau Brandl braucht eine Meldebescheinigung für die Bank.",
+       "Guten Morgen, ich bin {name}. Meine Nachbarin braucht eine Meldebescheinigung für die Bank."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika: adın, iş ve neden.",
+      "de_adsiz": "Guten Morgen. Meine Nachbarin braucht eine Meldebescheinigung für die Bank.",
+      "tr_adsiz": "Günaydın. Komşumun banka için bir ikamet belgesine ihtiyacı var.",
+      "accepted_adsiz": [
+       "Guten Morgen. Meine Nachbarin braucht eine Meldebescheinigung für die Bank.",
+       "Meine Nachbarin braucht eine Meldebescheinigung für die Bank.",
+       "Guten Morgen. Frau Brandl braucht eine Meldebescheinigung für die Bank.",
+       "Guten Morgen, meine Nachbarin braucht eine Meldebescheinigung."
+      ]
+     },
+     {
+      "de": "Ich möchte mich ummelden.",
+      "tr": "(yanlış) Yeni adresimi kaydettirmek istiyorum.",
+      "accepted": [
+       "Ich möchte mich ummelden.",
+       "Ich melde mich um.",
+       "Ich möchte mich anmelden."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Bugün iş başka: Frau Brandl için **eine Meldebescheinigung**."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Für eine andere Person? Dann brauche ich eine Vollmacht von Frau Brandl. Haben Sie eine Vollmacht?",
+    "tr": "Başka bir kişi için mi? O zaman Frau Brandl'dan bir vekâletname lazım. Vekâletnameniz var mı?",
+    "secenekler": [
+     {
+      "de": "Nein, leider nicht. Was kann ich jetzt machen?",
+      "tr": "Hayır, maalesef yok. Şimdi ne yapabilirim?",
+      "accepted": [
+       "Nein, leider nicht. Was kann ich jetzt machen?",
+       "Leider nicht. Was kann ich jetzt machen?",
+       "Nein, ich habe keine Vollmacht. Was kann ich jetzt machen?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Sürprize sakin cevap: dürüstçe söyledin ve ne yapacağını sordun."
+     },
+     {
+      "de": "Eine Vollmacht? Nein. Ich habe nur ihren Ausweis. Was brauche ich genau?",
+      "tr": "Vekâletname mi? Hayır. Yalnızca kimliği bende. Tam olarak ne lazım?",
+      "accepted": [
+       "Eine Vollmacht? Nein. Ich habe nur ihren Ausweis. Was brauche ich genau?",
+       "Nein, ich habe nur ihren Ausweis. Was brauche ich genau?",
+       "Eine Vollmacht? Ich habe keine. Was brauche ich genau?",
+       "Nein. Hier ist ihr Ausweis. Was brauche ich noch?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: elinde olanı söyledin ve tam olarak neyin gerektiğini sordun."
+     },
+     {
+      "de": "Das ist egal, sie ist meine Nachbarin.",
+      "tr": "(uygun değil) Fark etmez, o benim komşum.",
+      "accepted": [
+       "Das ist egal, sie ist meine Nachbarin.",
+       "Das ist egal.",
+       "Sie ist doch meine Nachbarin."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Kurum kuralı uygular; tartışma. Sor: **Was kann ich jetzt machen?**"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Frau Brandl schreibt die Vollmacht und unterschreibt. Dann bringen Sie die Vollmacht, ihren Ausweis und Ihren Ausweis.",
+    "tr": "Frau Brandl vekâletnameyi yazar ve imzalar. Sonra vekâletnameyi, onun kimliğini ve kendi kimliğinizi getirirsiniz.",
+    "secenekler": [
+     {
+      "de": "Gut. Brauche ich dann einen neuen Termin?",
+      "tr": "Tamam. O zaman yeni bir randevu lazım mı?",
+      "accepted": [
+       "Gut. Brauche ich dann einen neuen Termin?",
+       "Brauche ich dann einen neuen Termin?",
+       "Gut, brauche ich einen neuen Termin?",
+       "Okay. Brauche ich dann einen neuen Termin?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Önemli bir soru: randevu."
+     },
+     {
+      "de": "Kann ich heute Nachmittag wieder kommen?",
+      "tr": "Bugün öğleden sonra tekrar gelebilir miyim?",
+      "accepted": [
+       "Kann ich heute Nachmittag wieder kommen?",
+       "Gut. Kann ich heute Nachmittag wieder kommen?",
+       "Kann ich heute Nachmittag noch einmal kommen?",
+       "Kann ich am Nachmittag wieder kommen?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Somut bir soru: ne zaman tekrar gelebileceğini sordun."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Ja, das geht auch ohne Termin. Ziehen Sie dann einfach eine neue Wartenummer.",
+    "tr": "Evet, randevusuz da olur. O zaman sadece yeni bir sıra numarası alın.",
+    "secenekler": [
+     {
+      "de": "Danke! Dann komme ich heute Nachmittag mit der Vollmacht wieder.",
+      "tr": "Teşekkürler! O zaman bugün öğleden sonra vekâletnameyle tekrar gelirim.",
+      "accepted": [
+       "Danke! Dann komme ich heute Nachmittag mit der Vollmacht wieder.",
+       "Danke! Dann komme ich heute Nachmittag wieder.",
+       "Vielen Dank. Ich komme heute Nachmittag mit der Vollmacht wieder.",
+       "Danke, dann bis heute Nachmittag!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Planı tekrar ettin: ne zaman ve neyle geleceksin."
+     },
+     {
+      "de": "Vielen Dank. Also: Vollmacht, ihr Ausweis und mein Ausweis.",
+      "tr": "Çok teşekkürler. Yani: vekâletname, onun kimliği ve benim kimliğim.",
+      "accepted": [
+       "Vielen Dank. Also: Vollmacht, ihr Ausweis und mein Ausweis.",
+       "Danke. Also: Vollmacht, ihr Ausweis und mein Ausweis.",
+       "Vielen Dank. Die Vollmacht, ihr Ausweis und mein Ausweis.",
+       "Also die Vollmacht und zwei Ausweise. Danke!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Mükemmel: listeyi tekrar ederek kontrol ettin."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Genau. Bis später!",
+    "tr": "Aynen. Sonra görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "İşini anlattın, eksik belgede tartışmadın: **Was kann ich jetzt machen?** diye sordun, randevuyu sordun ve planını tekrar ettin. Bürgerbüro'da işini tek başına halledebilirsin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Vatandaş bürosu: ikamet belgesi ve vekâletname (kurgu)",
+  "metin_de": "Bürgerbüro Wendlfing: Meldebescheinigung. Eine Meldebescheinigung bekommen Sie im Bürgerbüro. Sie brauchen Ihren Ausweis oder Pass. Die Meldebescheinigung kostet Geld, Sie können mit Karte bezahlen. Sie können nicht selbst kommen? Dann kann eine andere Person für Sie kommen. Diese Person braucht eine Vollmacht von Ihnen, Ihren Ausweis und ihren eigenen Ausweis. In der Vollmacht stehen Ihr Name, der Name von der anderen Person und Ihre Unterschrift. Für die Meldebescheinigung brauchen Sie keinen Termin. Ziehen Sie einfach eine Wartenummer.",
+  "metin_tr": "Wendlfing vatandaş bürosu: ikamet belgesi. İkamet belgesini vatandaş bürosundan alırsınız. Kimliğiniz ya da pasaportunuz gerekir. İkamet belgesi ücretlidir, kartla ödeyebilirsiniz. Kendiniz gelemiyor musunuz? O zaman sizin için başka biri gelebilir. Bu kişinin sizden bir vekâletnameye, sizin kimliğinize ve kendi kimliğine ihtiyacı var. Vekâletnamede sizin adınız, öbür kişinin adı ve sizin imzanız bulunur. İkamet belgesi için randevu gerekmez. Sadece bir sıra numarası alın.",
+  "sorular": [
+   {
+    "id": "m1:98:o1",
+    "kind": "gist",
+    "q_tr": "Metin ne anlatıyor?",
+    "opts": [
+     "İkamet belgesinin nasıl alınacağını, başkası için de",
+     "Adres kaydının nasıl yapılacağını",
+     "Büronun açılış saatlerini"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     5
+    ]
+   },
+   {
+    "id": "m1:98:o2",
+    "kind": "detail",
+    "q_tr": "Başkası için gelen kişiye ne lazım?",
+    "opts": [
+     "Vekâletname, iki kimlik",
+     "Yalnızca kendi kimliği",
+     "Bir randevu"
+    ],
+    "ans": 0,
+    "kanit": [
+     6
+    ]
+   },
+   {
+    "id": "m1:98:o3",
+    "kind": "detail",
+    "q_tr": "Vekâletnamede ne olmalı?",
+    "opts": [
+     "İki kişinin adı ve imza",
+     "Adres ve telefon",
+     "Doğum yeri"
+    ],
+    "ans": 0,
+    "kanit": [
+     7
+    ]
+   },
+   {
+    "id": "m1:98:o4",
+    "kind": "detail",
+    "q_tr": "İkamet belgesi için randevu lazım mı?",
+    "opts": [
+     "Hayır, sıra numarası yeter",
+     "Evet, her zaman",
+     "Yalnızca cumartesi"
+    ],
+    "ans": 0,
+    "kanit": [
+     8,
+     9
+    ]
+   },
+   {
+    "id": "m1:98:o5",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl soruyor: vekâletnameye ne yazayım? Kendi adını, senin adını ve imzasını yazmasını söyle.",
+    "prompt_de": "Was schreibe ich in die Vollmacht?",
+    "accepted": [
+     "Ihren Namen, meinen Namen und Ihre Unterschrift.",
+     "Sie schreiben Ihren Namen und meinen Namen. Und Sie unterschreiben.",
+     "Ihren Namen, meinen Namen, und dann unterschreiben Sie.",
+     "Da stehen Ihr Name, mein Name und Ihre Unterschrift.",
+     "Ihren Namen und meinen Namen. Dann unterschreiben Sie bitte."
+    ],
+    "why_tr": "Vekâletname: iki ad ve imza. Frau Brandl'a **Sie / Ihr** ile."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Frau Brandl'a kısa bir not yaz: vatandaş bürosunda vekâletname gerekiyor; yazıp imzalamasını rica et ve öğleden sonra tekrar gideceğini yaz.",
+   "ornek_de": "Liebe Frau Brandl, im Bürgerbüro brauche ich eine Vollmacht von Ihnen. Bitte schreiben und unterschreiben Sie die Vollmacht. Heute Nachmittag gehe ich noch einmal hin. Viele Grüße",
+   "zorunlu": [
+    "Vollmacht",
+    "unterschreiben"
+   ],
+   "accepted_kaliplar": [
+    "Liebe Frau Brandl, im Bürgerbüro brauche ich eine Vollmacht von Ihnen.",
+    "Bitte schreiben und unterschreiben Sie die Vollmacht.",
+    "___ gehe ich noch einmal hin.",
+    "Viele Grüße"
+   ],
+   "kontrol_tr": [
+    "**Vollmacht** kelimesini yazdın mı?",
+    "Frau Brandl'a **Sie** ile mi yazdın?",
+    "Ne zaman tekrar gideceğini yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:98:s",
+  "maddeler": [
+   {
+    "id": "m1:98:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Nummer zweiundfünfzig bitte zu Platz vier.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Nummer zweiundfünfzig bitte zu Platz vier.",
+     "nummer zweiundfünfzig bitte zu platz vier",
+     "Nummer zweiundfünfzig bitte zu Platz vier"
+    ],
+    "why_tr": "Numara ve masa: **zu Platz vier**."
+   },
+   {
+    "id": "m1:98:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Für eine andere Person brauche ich eine Vollmacht.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Für eine andere Person brauche ich eine Vollmacht.",
+     "für eine andere person brauche ich eine vollmacht",
+     "Für eine andere Person brauche ich eine Vollmacht"
+    ],
+    "why_tr": "**eine Vollmacht**: vekâletname."
+   },
+   {
+    "id": "m1:98:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Tobi hat sich an der Hand verletzt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Tobi hat sich an der Hand verletzt.",
+     "tobi hat sich an der hand verletzt",
+     "Tobi hat sich an der Hand verletzt"
+    ],
+    "why_tr": "**sich verletzen**: **hat sich … verletzt**."
+   },
+   {
+    "id": "m1:98:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Die Dame am Platz vier war wirklich nett.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Dame am Platz vier war wirklich nett.",
+     "die dame am platz vier war wirklich nett",
+     "Die Dame am Platz vier war wirklich nett"
+    ],
+    "why_tr": "**die Dame**: hanımefendi."
+   },
+   {
+    "id": "m1:98:s5",
+    "k": "tr_de",
+    "tr": "Şimdi ne yapabilirim?",
+    "accepted": [
+     "Was kann ich jetzt machen?",
+     "Was kann ich jetzt tun?",
+     "Was mache ich jetzt?"
+    ],
+    "why_tr": "Eksik belgede ilk soru: **Was kann ich jetzt machen?**"
+   },
+   {
+    "id": "m1:98:s6",
+    "k": "tr_de",
+    "tr": "Yeni bir randevu lazım mı?",
+    "accepted": [
+     "Brauche ich einen neuen Termin?",
+     "Brauche ich dann einen neuen Termin?",
+     "Brauche ich wieder einen Termin?"
+    ],
+    "why_tr": "**brauchen** başta: evet-hayır sorusu."
+   },
+   {
+    "id": "m1:98:s7",
+    "k": "tr_de",
+    "tr": "Komşum için bir ikamet belgesi lazım.",
+    "accepted": [
+     "Ich brauche eine Meldebescheinigung für meine Nachbarin.",
+     "Ich brauche für meine Nachbarin eine Meldebescheinigung.",
+     "Für meine Nachbarin brauche ich eine Meldebescheinigung."
+    ],
+    "why_tr": "İşini tek cümlede söyle: **Ich brauche … für …**"
+   },
+   {
+    "id": "m1:98:s8",
+    "k": "tr_de",
+    "tr": "Yaralandın mı?",
+    "accepted": [
+     "Hast du dich verletzt?",
+     "Hast du dich verletzt, Tobi?",
+     "Hast du dich denn verletzt?"
+    ],
+    "why_tr": "**sich verletzen**: **Hast du dich verletzt?**"
+   },
+   {
+    "id": "m1:98:s9",
+    "k": "guided_response",
+    "situation_tr": "Frau Schneider vekâletname istiyor; sende yok. Dürüstçe söyle ve ne yapacağını sor.",
+    "prompt_de": "Haben Sie eine Vollmacht?",
+    "accepted": [
+     "Nein, leider nicht. Was kann ich jetzt machen?",
+     "Leider nicht. Was kann ich jetzt machen?",
+     "Nein, ich habe keine Vollmacht. Was kann ich jetzt machen?",
+     "Nein. Was kann ich jetzt machen?",
+     "Leider habe ich keine Vollmacht. Was mache ich jetzt?"
+    ],
+    "why_tr": "Eksik belge: tartışma; **Was kann ich jetzt machen?** diye sor."
+   },
+   {
+    "id": "m1:98:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Zuerst brauche ich Ihren Ausweis oder Pass.",
+    "speed": "normal",
+    "situation_tr": "Memur bunu söyledi. Frau Brandl telefonda; ona memurun ne istediğini söyle.",
+    "accepted": [
+     "Sie braucht zuerst meinen Ausweis oder Pass.",
+     "Zuerst braucht sie meinen Ausweis.",
+     "Meinen Ausweis oder meinen Pass.",
+     "Sie braucht zuerst meinen Ausweis oder meinen Pass.",
+     "Zuerst meinen Ausweis, sagt sie."
+    ],
+    "why_tr": "Aktarırken **Ihren** → **meinen**: **Sie braucht meinen Ausweis.**"
+   },
+   {
+    "id": "m1:98:s11",
+    "k": "guided_response",
+    "situation_tr": "Haftanın kapısı, kısa: Frau Schneider'e Frau Brandl için ikamet belgesi istediğini söyle; vekâletname yoksa ne yapacağını sor.",
+    "prompt_de": "Was kann ich für Sie tun?",
+    "accepted": [
+     "Ich brauche eine Meldebescheinigung für Frau Brandl. Ich habe keine Vollmacht. Was kann ich jetzt machen?",
+     "Eine Meldebescheinigung für meine Nachbarin, bitte. Aber ich habe keine Vollmacht. Was kann ich jetzt machen?",
+     "Meine Nachbarin braucht eine Meldebescheinigung. Eine Vollmacht habe ich leider nicht. Was kann ich machen?",
+     "Ich brauche eine Meldebescheinigung für Frau Brandl, aber ich habe keine Vollmacht. Was mache ich jetzt?"
+    ],
+    "why_tr": "Önce iş, sonra eksik belge, sonra soru."
+   }
+  ],
+  "sesli": [
+   "m1:98:s9",
+   "m1:98:s10"
+  ],
+  "dikte": [
+   "m1:98:s1",
+   "m1:98:s2",
+   "m1:98:s3",
+   "m1:98:s4"
+  ]
+ }
+}
