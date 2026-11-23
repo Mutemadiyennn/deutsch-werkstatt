@@ -175,3 +175,7 @@ Girdi: `content/v2/registry/lexicon/batch-b1-04c.json` (3 kart, 34. hafta yedekl
 Denetlenenler: **der Gruß, die Grüße**, **Mit freundlichen Grüßen**, **Viele / Schöne Grüße an, von**; **beantwortet, beantwortete, hat beantwortet**. Sayılan her kalıp bir örnekte geçiyor. Açıklamalarda dilbilgisi terimi, `=`, `;`, `…`, 14 kelimeyi aşan cümle yok. `also_ok`: 12 boşlukta girdi yok, makine taraması boş; eksik doğru cevap aramasında eklenecek sözcük çıkmadı (öbür adaylar çeviriyle çelişiyor). WORLD: Derya, Herr Wimmer, Frau Brandl, Frau Schneider uyumlu. Bairisch, olgu iddiası, sabit cinsiyet, sonraki haftaya gönderme yok; ö5'teki **höflich** artık A2 kartı.
 
 Küçük not: lx:Gruß not 2 "sonda **-n** gelir" diyor; terim yok, bırakıldı. `npm run content:validate` → 0 hata. `review` üç dosyada `draft`.
+
+## Kapanış (2026-11-23)
+
+Okur 04c ve lx:Kenntnis düzeltmesini geçirdi (69/69); örneklem 2. turu ve 04c'yi geçirdi (0 hata). Koordinatörün bildirdiği bu sonuçlara dayanarak üç dosyada (b1-04a 22 kart, b1-04b 25 kart, b1-04c 3 kart; toplam 50) `review.status` **reviewed**, `okur: passed` yapıldı. **KAPANDI.** Açık kalan takipler karta ait değil: "yüklemek" denetim sorunu (ANA) ve lx:E-Mail / lx:Antwort haftadaki sırası (PR).
