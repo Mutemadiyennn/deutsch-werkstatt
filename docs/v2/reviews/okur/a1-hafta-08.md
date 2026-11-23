@@ -401,3 +401,33 @@ Dosya durumu (OD-9.4): `gun-50`, `gun-52`, `gun-53`, `gun-54` bu hâliyle "revie
 - Bu tur ses anlama sorularında başka bir ajan küçük düzeltme yapıyor olabilir. Okuduğum hâl, okuma anındaki dosyalardır.
 
 OKUR: GERİ — 8 madde
+
+---
+
+## 2. tur (yalnız düzeltmeler)
+
+Kapsam: 1. turda GERİ dönen 8 madde ve gün 50 `okuma_yazma.sorular[m1:50:o4].why_tr`'nin yeni hâli. Yeni tam okuma yapılmadı. Düzeltmenin çevresinde yeni bir anlaşılmazlık doğup doğmadığına da bakıldı.
+
+### Sonuç
+
+| | |
+|---|---|
+| Okunan madde | 9 (8 geri dönen + 50 o4 `why_tr`) |
+| GEÇTİ | 9 |
+| GERİ | 0 |
+
+| # | Yer | Yeni metin | Kendi sözlerimle | Karar | Not |
+|---|---|---|---|---|---|
+| 1 | `gun-50` `halkalar[m1:50:h1].kaliplar[0].tr` (de: Es geht um …) | Konu şu: … | Ne hakkında aradığımı söylüyorum: konu bu. | GEÇTİ | Tek karşılık kaldı. |
+| 2 | `gun-50` `sahne.bolumler[b1].ayrinti[0].q_tr` | Frau Brandl günü önce yanlış anlıyor. Hangi günü anlıyor? | Brandl Hanım önce günü yanlış duyuyor; yanlış duyduğu gün hangisi? | GEÇTİ | Beklenen cevap (perşembe) artık sorudan çıkıyor; salı diye okumadım. |
+| 3 | `gun-52` `halkalar[m1:52:h1].kaliplar[2].tr` (de: Bei mir nur …) | Bende yalnız … geçer. | Benim dükkânımda yalnız şu geçer (ör. yalnız nakit). | GEÇTİ | "geçer" sözü bunu "Bende on avro var"dan ayırıyor. |
+| 4 | `gun-52` `gun_sinavi.maddeler[m1:52:s2].why_tr` | **wollen** ikinci sırada durur, **wandern** en sona gider. | **wollen** cümlenin ikinci kelimesi, **wandern** son kelimesi. | GEÇTİ | Duyulan cümleyle (**Wir wollen am Samstag wandern**) örtüşüyor. Terim yok. |
+| 5 | `gun-53` `prova.kapanis_tr` | Yeni biriyle iş yerinde tanıştın ve hafta sonunda ne yaptığını anlattın. | İşte biriyle tanıştım, hafta sonu ne yaptığımı anlattım. | GEÇTİ | "Geçmiş zaman" çıktı. 11 kelime. |
+| 6 | `gun-54` `goal_tr` | Eczanede komşunun ilacını alır, eksik ürünü ayırtır, ilacı ne zaman içeceğini sorarsın. | Komşumun ilacını alırım, eksik olanı ayırtırım, ilacın ne zaman içileceğini sorarım. | GEÇTİ | 12 kelime. "Almak" tek anlamda kaldı, kullanım "içmek" ile söylendi. |
+| 7 | `gun-54` `can_do.tr` | Eczanede eksik bir ilacı ayırtır, ilacı ne zaman içeceğimi sorarım. | Eksik ilacı ayırtırım, onu günün hangi saatinde içeceğimi sorarım. | GEÇTİ | "Ne zaman teslim alırım" diye okunmuyor artık. |
+| 8 | `gun-54` `gun_sinavi.maddeler[m1:54:s8].why_tr` | **muss** ikinci sırada durur, **nehmen** en sona gider. | **muss** ikinci kelime, **nehmen** son kelime. | GEÇTİ | **Wann muss ich die Tabletten nehmen?** ile örtüşüyor. |
+| 9 | `gun-50` `okuma_yazma.sorular[m1:50:o4].why_tr` | Saati tekrar et ve **geht es** ile onayla. | Saati yeniden söyle, **geht es** diyerek olur de. | GEÇTİ | 7 kelime. Not (karar değil): kabul listesinde **geht es** geçmeyen cevaplar da var (ör. **Ja, klar.**); açıklama tek yolu anlatıyor, öğrenciyi yanlışa götürmüyor. |
+
+Dosya durumu (OD-9.4): 2. turdan sonra `gun-50` … `gun-54` dosyalarında okur GERİ'si kalmadı.
+
+OKUR: GEÇTİ
