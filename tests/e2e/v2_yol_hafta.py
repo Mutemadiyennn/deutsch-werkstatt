@@ -5,6 +5,9 @@
   - yükleme: Yol açılışında yalnız 2. haftanın gün dosyaları istenir (1.–7. gün dosyası yüklenmez)
   - gün kilidi: 9. gün adresle (#/akis/9, #/garden/9, #/prova/9) açılmaz → "henüz kilitli" + "Bugüne dön"; 8. gün açılır
   - hafta sonu testi (1. hafta): Yol'dan açılır, maddeler sırayla, sonuç ekranı, `m1:hafta:1` yazılır, Yol satırında sonuç
+  - #243 PM finali takip a: ilk çözüm %80'in altında → "geçtin" yok, zayıf "yapabiliyorum" cümleleri, tek dokunuş tekrar turu,
+    "Testi yeniden çöz"; ikinci çözüm geçer, en iyi sonuç kalır. Takip b: üstte "Çöz" satırı dururken açık hafta satırında ikinci
+    giriş yok. Takip c: 3. hafta (fikstür 15. gün) kilitli tek satır
   - 2. haftanın testi kilitli (hafta bitmedi)
   - Bugün sekmesi yalnız bugünün günü (8)
 python3 tests/e2e/v2_yol_hafta.py [--browser webkit] [--device "iPhone 15"] [--scheme dark] [--shots DIR]
@@ -34,6 +37,16 @@ def coz(pg):
     pg.locator("[data-test=next]").first.click()
 
 
+def yanlis(pg):
+    """yazılı maddeyi yanlış cevapla (seçme ve sıralama maddesi doğru çözülür)"""
+    if pg.locator("[data-test=drill-pick]").count() or pg.locator("[data-test=drill-order]").count():
+        return coz(pg) or False
+    pg.fill("[data-test=answer]", "Quatsch quatsch."); pg.click("[data-test=submit]")
+    pg.wait_for_selector("[data-test=next], [data-test=claim]")
+    pg.locator("[data-test=next]").first.click()
+    return True
+
+
 def main():
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
     sema = arg("--scheme") or "light"
@@ -59,7 +72,12 @@ def main():
         shot(pg, f"yol-hafta-2-{sema}", full=False)
         pg.click("[data-test=hafta-1] .hafta-satir-btn")
         n = pg.locator("[data-test=hafta-1-gunler] li").count()
-        check(n == 7 and pg.locator("[data-test=hafta-1] [data-test=hafta-testi-1]").count() == 1, f"1. hafta satırı dokununca 7 günü ve testi açtı ({n})")
+        check(n == 7, f"1. hafta satırı dokununca 7 günü açtı ({n})")
+        check(pg.locator("[data-test=hafta-1] [data-test=hafta-testi-1]").count() == 0 and pg.locator("[data-test=hafta-testi-1]").count() == 1,
+              "üstte 'Çöz' satırı dururken açık hafta satırında aynı teste ikinci giriş yok (takip b)")
+        check(pg.get_attribute("[data-test=hafta-testi-hazir] [data-test=hafta-testi-1]", "aria-label") == "İlk Hafta sonu testini çöz", "'Çöz' düğmesinin erişilebilir adı testi söyler")
+        k3 = pg.evaluate("() => { const s = document.querySelector('[data-test=hafta-3]'); return s ? { d: s.dataset.durum, t: s.innerText } : null; }")
+        check(bool(k3) and k3["d"] == "kilitli" and "önceki hafta bitince açılır" in k3["t"], f"3. hafta kilitli tek satır (takip c; {k3})")
         shot(pg, f"yol-hafta-1-acik-{sema}", full=False)
 
         # gün kilidi: 9. gün adresle açılmaz
@@ -75,15 +93,50 @@ def main():
         # 2. haftanın testi kilitli; 1. haftanın testi baştan sona
         pg.goto(base + "#/hafta/2"); pg.wait_for_selector("[data-test=gun-kilitli], [data-test=hafta-testi]", timeout=15000)
         check(pg.locator("[data-test=gun-kilitli]").count() == 1, "2. hafta bitmeden 2. haftanın testi açılmaz")
-        pg.goto(base + "#/yol"); pg.wait_for_selector("[data-test=hafta-1] .hafta-satir-btn")
-        pg.click("[data-test=hafta-1] .hafta-satir-btn"); pg.click("[data-test=hafta-1] [data-test=hafta-testi-1]")
+        pg.goto(base + "#/yol"); pg.wait_for_selector("[data-test=hafta-testi-hazir] [data-test=hafta-testi-1]")
+        pg.click("[data-test=hafta-testi-hazir] [data-test=hafta-testi-1]")
         pg.wait_for_selector("[data-test=hafta-testi]", timeout=15000)
         shot(pg, f"hafta-testi-{sema}", full=False)
+
+        # düşük sonuç yolu (takip a): ilk dört yazılı madde yanlış
+        sayac = yanlisN = 0
+        while pg.locator("[data-test=hafta-testi]").count() and sayac < 20:
+            if yanlisN < 4:
+                if yanlis(pg): yanlisN += 1
+            else:
+                coz(pg)
+            sayac += 1; pg.wait_for_selector("[data-test=hafta-testi], [data-test=hafta-testi-sonuc]")
+        d0 = pg.evaluate("""() => { const s = document.querySelector('[data-test=hafta-testi-sonuc]');
+          return s ? { d: +s.dataset.dogru, t: +s.dataset.toplam, g: s.dataset.gecti, metin: s.innerText, z: [...s.querySelectorAll('[data-test^=zayif-]')].map((x) => x.dataset.test) } : null; }""")
+        check(bool(d0) and d0["g"] == "0" and d0["d"] / d0["t"] < 0.8, f"ilk çözüm %80'in altında ({d0 and (d0['d'], d0['t'])})")
+        check(bool(d0) and "kullanabiliyorsun" not in d0["metin"] and "zorlandın" in d0["metin"], "düşük sonuçta 'geçtin' denmez; zorlanılan cümleler söylenir")
+        zgun = [x for x in (d0 or {}).get("z", []) if x[len("zayif-"):].isdigit()]
+        check(len(zgun) >= 1 and pg.locator("[data-test=zayif-tekrar]").count() == 1, f"zayıf 'yapabiliyorum' cümleleri listelendi, tek düğme tekrar ({zgun})")
+        no_overflow(pg, "hafta sonu testi düşük sonuç")
+        shot(pg, f"hafta-testi-dusuk-{sema}", full=False)
+        m0 = pg.evaluate(META, "m1:hafta:1")
+        check(bool(m0) and m0.get("dogru") == d0["d"], f"düşük sonuç da kaydedilir, öğrenci kilitlenmez ({m0})")
+        href = pg.get_attribute("[data-test=zayif-tekrar]", "href") or ""
+        check(href == "#/hafta/1/tekrar/" + ",".join(x[len("zayif-"):] for x in zgun), f"tekrar düğmesi bütün zayıf günlere gider ({href})")
+        pg.click("[data-test=zayif-tekrar]"); pg.wait_for_selector("[data-test=hafta-tekrar]", timeout=15000)
+        gunler_ = set()
+        shot(pg, f"hafta-tekrar-{sema}", full=False)
+        t = cumlesiz = 0
+        while pg.locator("[data-test=hafta-tekrar]").count() and t < 30:
+            gunler_.add(pg.get_attribute("[data-test=hafta-tekrar]", "data-gun"))
+            cumlesiz += pg.locator("[data-test=tekrar-cumle]").count() != 1
+            coz(pg); t += 1; pg.wait_for_selector("[data-test=hafta-tekrar], [data-test=hafta-tekrar-sonuc]")
+        check(pg.locator("[data-test=hafta-tekrar-sonuc]").count() == 1 and sorted(gunler_) == sorted(x[len("zayif-"):] for x in zgun) and 1 <= t <= 4 * len(zgun),
+              f"tekrar turu zayıf günlerin gün sınavından ({t} madde, günler {sorted(gunler_)})")
+        check(cumlesiz == 0, "her tekrar maddesinin üstünde günün 'yapabiliyorum' cümlesi")
+        shot(pg, f"hafta-tekrar-sonuc-{sema}", full=False)
+        pg.click("[data-test=testi-yeniden]"); pg.wait_for_selector("[data-test=hafta-testi]", timeout=15000)
         sayac = 0
         while pg.locator("[data-test=hafta-testi]").count() and sayac < 20:
             coz(pg); sayac += 1; pg.wait_for_selector("[data-test=hafta-testi], [data-test=hafta-testi-sonuc]")
         r = pg.evaluate("() => { const s = document.querySelector('[data-test=hafta-testi-sonuc]'); return s ? { d: +s.dataset.dogru, t: +s.dataset.toplam } : null; }")
         check(bool(r) and r["t"] == sayac and r["d"] >= r["t"] - 2, f"1. hafta sonu testi bitti, sonuç ekranı ({r}, {sayac} madde)")
+        check(pg.get_attribute("[data-test=hafta-testi-sonuc]", "data-gecti") == "1" and pg.locator("[data-test=zayif-liste]").count() == 0, "ikinci çözüm geçti: zayıf liste yok")
         no_overflow(pg, "hafta sonu testi sonucu")
         shot(pg, f"hafta-testi-sonuc-{sema}", full=False)
         m = pg.evaluate(META, "m1:hafta:1")
