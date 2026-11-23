@@ -87,7 +87,8 @@ export function HaftaSonucEkrani({ hafta }: { hafta: number }) {
   }, [index?.version, hafta, n]);
   if (err) return <div class="stack"><ProgressHeader title={`${hafta}. hafta sonu testi`} back="#/today" /><ErrorPanel message={err} onRetry={() => setN((x) => x + 1)} /></div>;
   if (!v) return <Loading />;
-  if (v === "yok") return <Kilitli ust={`${hafta}. hafta sonu testi`} baslik="Henüz sonuç yok" metin="Bu haftanın testini henüz çözmedin." test="hafta-sonuc-yok" />;
+  if (v === "yok") return <Kilitli ust={`${hafta}. hafta sonu testi`} baslik="Henüz sonuç yok" metin="Bu haftanın testini henüz çözmedin." test="hafta-sonuc-yok"
+    ek={<a class="btn sm" href={`#/hafta/${hafta}`} data-test="testi-coz">Testi çöz</a>} />;
   return <SonucKarti hafta={hafta} son={v.son} beceriler={v.test.beceriler} />;
 }
 

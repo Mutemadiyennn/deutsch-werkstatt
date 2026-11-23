@@ -65,7 +65,7 @@ describe("test maddesi → 'yapabiliyorum' cümlesi (#243 PM finali takip a)", (
 });
 
 describe("gerçek 1. hafta testi (inceleme #244 P1-1)", () => {
-  it("ay maddesi ayın gününe, numara maddesi sayı gününe; bağlanamayan yok", () => {
+  it("12 maddenin hepsi cevabın kartlarının ilk gününe (ay → 2, numara → 3, sıra sayısı boşluğu → 6, kendini tanıtma → 7); yedek yok", () => {
     const c = loadContent();
     const ga = join(ROOT, "docs/v2/reviews/genel-adlar.md");
     const dz = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, existsSync(ga) ? genelAdlarAyikla(readFileSync(ga, "utf8")) : [], [...c.grammar, ...c.dn.flatMap((x) => x.data)] as never);
@@ -73,8 +73,8 @@ describe("gerçek 1. hafta testi (inceleme #244 P1-1)", () => {
     const r = beceriEsle(t.maddeler, c.m1.map((g) => g.data).filter((g) => g.day <= 7), dz, t.bag);
     const gunu = (id: string) => r.beceriler.find((b) => b.maddeler.includes(id))?.gun;
     expect(r.yedek).toEqual([]);
-    if (!t.bag?.["m1:07:t12"]) expect(gunu("m1:07:t12")).toBe(2);   // Im Mai
-    if (!t.bag?.["m1:07:t11"]) expect(gunu("m1:07:t11")).toBe(3);   // Null drei fünf sieben
-    if (!t.bag?.["m1:07:t06"]) expect(gunu("m1:07:t06")).toBe(6);   // der dritte Mai
+    // içerik açık can_do yazınca bu sabitler yerini ona bırakır (bağlı madde atlanır)
+    const BEKLENEN: Record<string, number> = { t01: 7, t02: 7, t03: 7, t04: 5, t05: 7, t06: 6, t07: 7, t08: 7, t09: 7, t10: 4, t11: 3, t12: 2 };
+    for (const [k, g] of Object.entries(BEKLENEN)) if (!t.bag?.[`m1:07:${k}`]) expect([k, gunu(`m1:07:${k}`)]).toEqual([k, g]);
   });
 });

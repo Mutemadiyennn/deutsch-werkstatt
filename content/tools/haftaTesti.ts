@@ -37,17 +37,13 @@ export function haftaTestleri(m1Kok: string): HaftaTestiPaket {
 /** Beceri eşlemesi için günün gereken alanları */
 export interface BeceriGunu { day: number; can_do: { id: string; tr: string }; yeni_kartlar: string[]; dersler: string[] }
 
-/** Maddenin beklenen cevapları, kanonik sırayla: seçmede doğru şık boşluğa yerleşir; boşluklu cümlede kabul edilenler yerleşir */
+/** Maddenin beklenen cevapları, kanonik sırayla. Boşluklu maddede (seçme ya da yazma) istenen yalnız boşluğa giren sözcüktür:
+ *  cümlenin geri kalanı verilmiştir (inceleme #244 2. tur: "Heute ist der ___ Mai." sein'e değil sıra sayısına bağlanır). */
 function cevaplar(m: Drill): string[] {
   const o = m as Record<string, unknown>;
   const acc = (Array.isArray(o.accepted) ? o.accepted : []).filter((x): x is string => typeof x === "string").slice(0, 60);
-  const de = typeof o.de === "string" ? o.de : "";
-  const bos = /_{3,}/;
-  if (Array.isArray(o.opts) && typeof o.ans === "number" && typeof o.opts[o.ans] === "string") {
-    const dogru = o.opts[o.ans] as string;
-    return [bos.test(de) ? de.replace(bos, dogru) : dogru];
-  }
-  return bos.test(de) ? acc.map((a) => de.replace(bos, a)) : acc;
+  if (Array.isArray(o.opts) && typeof o.ans === "number" && typeof o.opts[o.ans] === "string") return [o.opts[o.ans] as string];
+  return acc;
 }
 
 /** Türetmenin sonucu: madde → gün; `yedek` hiçbir günle bağlanamayıp haftanın son gününe düşen maddeler */
@@ -55,21 +51,21 @@ export interface BeceriSonuc { beceriler: Beceri[]; turetilen: string[]; yedek: 
 
 /**
  * Test maddelerini haftanın "yapabiliyorum" cümlelerine bağlar (#243 PM finali takip a). Önce açık bağ (`can_do` alanı; haftada
- * olmayan kimlik HATA). Yoksa yapay zekâsız türetme (inceleme #244 P1-1): maddenin beklenen cevabı (kabul listesinin sırasıyla;
- * seçmede doğru şık) kendi kart sözcüklerini içeren ilk seçenek alınır; madde, o cevabın kart sözcüklerinin hepsinin tanıtıldığı
- * İLK güne bağlanır (soru metni değil cevap: test cevabı ister; eşlenemeyen sözcük ve rakam sayılmaz). Hiçbir seçenek bağlanamazsa
- * haftanın son günü (`yedek`; derleme uyarı yazar). Önceki haftaların kartları ve dersleri `onceki` ile verilir.
+ * olmayan kimlik HATA). Yoksa yapay zekâsız türetme (inceleme #244 P1-1 ve 2. tur): maddenin beklenen cevabı (kabul listesinin
+ * sırasıyla; boşlukta yalnız boşluğa giren sözcük) BU HAFTANIN kartlarına düşen sözcük içeren ilk seçenek alınır; madde, o
+ * sözcüklerin kartlarının hepsinin tanıtıldığı İLK güne bağlanır. Yalnız kart sayılır: bir dersin biçimi önden göstermesi
+ * (4. günün "bin"i) maddeyi o güne çekmez; eşlenemeyen sözcük, rakam ve önceki haftaların kartları sayılmaz. Hiçbir seçenek
+ * bağlanamazsa haftanın son günü (`yedek`; derleme ve doğrulayıcı uyarı yazar). Önceki haftaların kartları `onceki` ile verilir.
  */
 export function beceriEsle(maddeler: Drill[], gunler: BeceriGunu[], d: KumeDizini, bag: Record<string, string> = {}, onceki: { kart: string[]; ders: string[] } = { kart: [], ders: [] }): BeceriSonuc {
   const sirali = [...gunler].sort((a, b) => a.day - b.day);
   if (!sirali.length) return { beceriler: [], turetilen: [], yedek: [] };
   const cdGun = new Map(sirali.map((g) => [g.can_do.id, g] as const));
-  const bos = { kart: new Set(onceki.kart), biten: new Set(onceki.ders) };
-  const bilgi = sirali.map((_, i) => ({
-    kart: new Set([...onceki.kart, ...sirali.slice(0, i + 1).flatMap((g) => g.yeni_kartlar)]),
-    biten: new Set([...onceki.ders, ...sirali.slice(0, i + 1).flatMap((g) => g.dersler)])
-  }));
-  const eksik = (a: string, k: { kart: Set<string>; biten: Set<string> }) => bilinmeyenler(d, a, k).filter((x) => x.tur !== "eslenemedi").length;
+  const hafta = new Set(sirali.flatMap((g) => g.yeni_kartlar));
+  const bos = new Set(onceki.kart);
+  const bilgi = sirali.map((_, i) => new Set([...onceki.kart, ...sirali.slice(0, i + 1).flatMap((g) => g.yeni_kartlar)]));
+  // bu haftanın tanıtılmamış kartına düşen sözcük sayısı (dersle gösterilen biçim sayılmaz: biten boş)
+  const eksik = (a: string, kart: Set<string>) => bilinmeyenler(d, a, { kart, biten: new Set() }).filter((x) => x.tur === "kart" && x.adaylar?.some((id) => hafta.has(id))).length;
   const gunOf = new Map<string, BeceriGunu>();
   const turetilen: string[] = [], yedek: string[] = [];
   for (const m of maddeler) {
@@ -82,7 +78,7 @@ export function beceriEsle(maddeler: Drill[], gunler: BeceriGunu[], d: KumeDizin
     turetilen.push(m.id);
     let gun: BeceriGunu | undefined;
     for (const a of cevaplar(m)) {
-      if (!eksik(a, bos)) continue;            // bu haftanın kart sözcüğü yok (rakam, ad, önceki hafta): sonraki seçenek
+      if (!eksik(a, bos)) continue;            // bu haftanın kart sözcüğü yok (rakam, ad, çerçeve, önceki hafta): sonraki seçenek
       const i = bilgi.findIndex((k) => !eksik(a, k));
       if (i >= 0) { gun = sirali[i]; break; }
     }
