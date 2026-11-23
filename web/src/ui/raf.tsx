@@ -4,7 +4,7 @@
  */
 import { useEffect, useState } from "preact/hooks";
 import { fotoSifirla } from "../services/content.ts";
-import { PAROLA_EN_AZ, RAF_DURUM_TR, rafOku, rafSina, rafYaz, type RafDurum } from "../services/raf.ts";
+import { PAROLA_EN_AZ, RAF_DURUM_TR, rafKayitCek, rafOku, rafSina, rafYaz, type RafDurum } from "../services/raf.ts";
 
 export function MedyaRafi() {
   const [adres, setAdres] = useState("");
@@ -12,6 +12,7 @@ export function MedyaRafi() {
   const [durum, setDurum] = useState<RafDurum | null>(null);
   const [mesgul, setMesgul] = useState(false);
   const [hazir, setHazir] = useState(false);
+  const [sayi, setSayi] = useState<number | null>(null);
   useEffect(() => { void rafOku().then((r) => { if (r) { setAdres(r.adres); setAnahtar(r.anahtar); } }).finally(() => setHazir(true)); }, []);
   const sina = async () => {
     setMesgul(true);
@@ -21,11 +22,14 @@ export function MedyaRafi() {
       // kısa parola girerken söylenir; hiçbir şey kaydedilmez ve rafa istek gitmez (PM 7020257764)
       if (anahtar.trim().length < PAROLA_EN_AZ) { setDurum("parola-kisa"); return; }
       if (!(await rafYaz({ adres, anahtar }))) { setDurum("adres-gecersiz"); return; }
-      fotoSifirla();
-      setDurum(await rafSina());
+      fotoSifirla(); setSayi(null);
+      const d = await rafSina();
+      setDurum(d);
+      // kelime fotoğrafı kaydı şimdi çekilir (kartlar beklemeden raftan açılsın); kaç kelimede fotoğraf olduğu görünür (inceleme #204 P1-1)
+      if (d === "bagli") { const n = await rafKayitCek(); fotoSifirla(); setSayi(n); }
     } catch { setDurum("ulasilamiyor"); } finally { setMesgul(false); }
   };
-  const sil = async () => { setAdres(""); setAnahtar(""); setDurum(null); await rafYaz(null); fotoSifirla(); };
+  const sil = async () => { setAdres(""); setAnahtar(""); setDurum(null); await rafYaz(null); fotoSifirla(); setSayi(null); };
   return (
     <div class="stack" style={{ gap: 8 }} data-test="medya-rafi" data-hazir={hazir ? "1" : undefined}>
       <p class="small muted" id="raf-bilgi">Sana özel fotoğraflar. Adres ve parola yalnız bu cihazda. Boşsa herkese açık görseller.</p>
@@ -40,7 +44,7 @@ export function MedyaRafi() {
         {(adres || anahtar) && <button class="btn sm ghost" onClick={() => void sil()} data-test="raf-sil">Sil</button>}
       </div>
       {/* canlı bölge baştan var: VoiceOver sonradan eklenen role=status'u okumayabilir (inceleme #98 P2) */}
-      <p class={`small ${durum === "bagli" ? "goalhit" : ""}`} role="status" aria-live="polite" data-test="raf-durum" data-durum={durum ?? undefined}>{durum ? RAF_DURUM_TR[durum] : ""}</p>
+      <p class={`small ${durum === "bagli" ? "goalhit" : ""}`} role="status" aria-live="polite" data-test="raf-durum" data-durum={durum ?? undefined}>{durum ? RAF_DURUM_TR[durum] : ""}{durum === "bagli" && sayi !== null ? ` Rafta ${sayi} kelimenin fotoğrafı var.` : ""}</p>
     </div>
   );
 }

@@ -213,3 +213,13 @@ def tanitim_gec(pg):
     pg.click("[data-test=garden-intro] [data-test=next]")
     pg.wait_for_function("(eski) => { const t = document.querySelector('[data-test=garden-intro] .de-xl'); return !t || t.innerText !== eski; }", arg=eski)
     pg.wait_for_selector("[data-test^=gq-], [data-test=garden-intro], [data-test=garden-done], [data-test=hizli-oneri]")
+
+RAF_PAROLA = "sahte-test-anahtari-0123456789abcdef-01234"
+def raf_bagla(page, base, adres, parola=RAF_PAROLA):
+    """PM 7088230583 md. 3: Profil → Medya rafı'ndan "Kaydet ve rafı sına" (kelime fotoğrafı kaydı da o an çekilir). Durum kodunu döndürür.
+    Sahte raf `saglik.txt` isteğine 200 + `X-Raf: 1` (ve `Access-Control-Expose-Headers: X-Raf`) vermeli."""
+    page.goto(base + "#/profile"); page.wait_for_selector("[data-test=medya-rafi][data-hazir='1']")
+    page.fill("[data-test=raf-adres]", adres); page.fill("[data-test=raf-anahtar]", parola)
+    page.click("[data-test=raf-sina]"); page.wait_for_selector("[data-test=raf-durum][data-durum]", timeout=15000)
+    page.wait_for_selector("[data-test=raf-sina]:not([disabled])", timeout=15000)
+    return page.get_attribute("[data-test=raf-durum]", "data-durum")

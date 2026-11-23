@@ -8,7 +8,7 @@ python3 tests/e2e/v2_foto.py [--browser webkit] [--device "iPhone 15"]
 """
 import base64, json, os
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish
+from common import serve, launch, new_page, login_onboard, check, finish, raf_bagla, RAF_PAROLA
 
 PORT = 4214
 JPEG = base64.b64decode("/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/yQALCAABAAEBAREA/8wABgAQEAX/2gAIAQEAAD8A0s8g/9k=")
@@ -84,6 +84,8 @@ def main():
             def raf(r, _istek=None, durum=durum):   # Playwright işleyiciye (route, request) verir
                 yetkiler.append(r.request.headers.get("authorization"))
                 if durum == "raf-yok": return r.abort()
+                if r.request.url.endswith("/saglik.txt"):
+                    return r.fulfill(status=200, headers={"Access-Control-Allow-Origin": "*", "Access-Control-Expose-Headers": "X-Raf", "X-Raf": "1"}, body="ok")
                 if r.request.url.endswith("/kayit.json"):
                     return r.fulfill(status=200, content_type="application/json", headers={"Access-Control-Allow-Origin": "*"}, body=json.dumps({"surum": 1, "kart": {"lx:Montag#kart": {"dosya": "foto/m.jpg", "yazar": "Raf Yazarı", "lisans": "Pixabay İçerik Lisansı", "sayfa": "https://raf-kaynak.example/1", "sinif": "kapali"}}}))
                 if durum == "dosya-yok": return r.fulfill(status=404, headers={"Access-Control-Allow-Origin": "*"}, body="")
@@ -91,9 +93,10 @@ def main():
             rafk = f"https://raf-{durum}.test"   # her durumun kendi adresi: önbellek anahtarları karışmasın
             pg.route(f"{rafk}/**", raf)
             login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-            pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
-              await new Promise((ok) => { const t = d.transaction('meta', 'readwrite'); t.objectStore('meta').put({ key: 'raf', value: { adres: '""" + rafk + """', anahtar: 'sahte-test-anahtari-0123456789abcdef-01234' } }); t.oncomplete = ok; }); d.close();}""")
-            pg.reload(); pg.wait_for_selector("[data-tab=today]")
+            d = raf_bagla(pg, base, rafk)
+            satir = pg.inner_text("[data-test=raf-durum]")
+            if durum == "raf-yok": check(d == "ulasilamiyor", f"raf-yok: Profil 'Ulaşılamıyor' ({d})")
+            else: check(d == "bagli" and "Rafta 1 kelimenin fotoğrafı var." in satir, f"{durum}: Profil 'Bağlandı' + kelime fotoğrafı sayısı ({satir!r})")
             pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden-intro]")
             try: pg.wait_for_selector("[data-test=garden-intro] [data-test=foto] img", timeout=8000)
             except Exception: pass
@@ -103,7 +106,7 @@ def main():
             if durum == "raf":
                 check(f.get_attribute("data-kaynak") == "raf" and (src or "").startswith("blob:") and "Raf Yazarı" in cap and "Pixabay İçerik Lisansı" in cap and cap.startswith("Fotoğraf:"),
                       f"raf açık: kartın fotoğrafı raftan, atıf rafın ({f.get_attribute('data-kaynak') if f.count() else None}, {src}, {cap!r})")
-                check(yetkiler and all(y == "Bearer sahte-test-anahtari-0123456789abcdef-01234" for y in yetkiler), f"raf istekleri parolayla ({len(yetkiler)})")
+                check(yetkiler and all(y == f"Bearer {RAF_PAROLA}" for y in yetkiler), f"raf istekleri parolayla ({len(yetkiler)})")
                 # çevrimdışı: raf ulaşılamazken bir kez görülen fotoğraf ve kayıt kapalı önbellekten
                 pg.unroute(f"{rafk}/**"); pg.route(f"{rafk}/**", lambda r: r.abort())
                 pg.goto(base + "#/today"); pg.reload()

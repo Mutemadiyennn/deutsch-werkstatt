@@ -122,42 +122,79 @@ export function rafYol(dosya: unknown): string | null {
   return y.includes("/") ? y : `foto/${y}`;
 }
 const metin = (x: unknown) => (typeof x === "string" && x.trim() ? x.trim().slice(0, 200) : null);
-/** `kayit.json`'un `kart` bölümünü süzer: geçersiz yol ya da lisanssız kayıt atlanır (atıf kuralı: yazar + lisans) */
+type Atif = Omit<RafKart, "dosya">;
+/** Doldurma hattının `sorgular[*].adaylar[]` kayıtları (dosya → yazar, lisans, sayfa): kart kaydında atıf yoksa buradan */
+function adayAtiflari(ham: unknown): Map<string, Atif> {
+  const m = new Map<string, Atif>();
+  const sorgular = (ham as { sorgular?: unknown } | null)?.sorgular;
+  if (!sorgular || typeof sorgular !== "object") return m;
+  for (const v of Object.values(sorgular as Record<string, unknown>)) {
+    const adaylar = (v as { adaylar?: unknown } | null)?.adaylar;
+    if (!Array.isArray(adaylar)) continue;
+    for (const a of adaylar as Record<string, unknown>[]) {
+      const d = a && rafYol(a.dosya), lisans = a && metin(a.lisans);
+      if (d && lisans && !m.has(d)) m.set(d, { lisans, yazar: metin(a.yazar), lisans_url: metin(a.lisans_url), sayfa: metin(a.sayfa) });
+    }
+  }
+  return m;
+}
+/**
+ * `kayit.json`'un `kart` bölümünü süzer. Atıf (yazar, lisans, sayfa) kart kaydında yoksa aynı dosyanın `sorgular` adayından
+ * alınır (inceleme #204 P1-1). Geçersiz yol ya da hiçbir yerde lisansı olmayan kayıt atlanır (atıf kuralı: lisans ekranda).
+ */
 export function rafKartSuz(ham: unknown): Record<string, RafKart> {
   const kart = (ham as { kart?: unknown } | null)?.kart;
   const out: Record<string, RafKart> = {};
   if (!kart || typeof kart !== "object") return out;
+  let aday: Map<string, Atif> | null = null;
   for (const [k, v] of Object.entries(kart as Record<string, unknown>)) {
     if (!/^lx:[^#\s]+#(kart|ornek\d+)$/.test(k) || !v || typeof v !== "object") continue;
     const x = v as Record<string, unknown>;
-    const dosya = rafYol(x.dosya), lisans = metin(x.lisans);
-    if (!dosya || !lisans) continue;
-    out[k] = { dosya, lisans, yazar: metin(x.yazar), lisans_url: metin(x.lisans_url), sayfa: metin(x.sayfa) };
+    const dosya = rafYol(x.dosya);
+    if (!dosya) continue;
+    const lisans = metin(x.lisans);
+    const a: Atif | undefined = lisans ? { lisans, yazar: metin(x.yazar), lisans_url: metin(x.lisans_url), sayfa: metin(x.sayfa) } : (aday ??= adayAtiflari(ham)).get(dosya);
+    if (!a) continue;
+    out[k] = { dosya, ...a };
   }
   return out;
 }
-let kayitSoz: Promise<Record<string, RafKart>> | null = null;
+export interface RafKayit { kart: Record<string, RafKart>; /** önbellekte kayıt yoktu: ağdan arkada çekiliyor, sonuç sonraki istekte */ gecici: boolean }
+let kayitSoz: Promise<RafKayit> | null = null;
 /**
- * Rafın kart kaydı; raf yoksa boş. Önbellekte varsa beklemeden o (arkada tazelenir, sonraki açılışta yeni hâli);
- * yoksa ağdan kısa süreyle. Ulaşılamazsa boş: ekran açık fotoğrafa düşer, beklemez. Oturumda bir kez çözülür.
+ * Rafın kart kaydı; raf yoksa boş. Önbellekte varsa beklemeden o (arkada tazelenir, sonraki açılışta yeni hâli).
+ * Önbellek boşsa ekran beklemez (ilk açılış bütçesi, inceleme #204 P2-2): boş + `gecici` döner, kayıt arkada çekilir ve
+ * önbelleğe girer; sonuç ne olursa olsun bir sonraki istek yeniden bakar (geçici ağ hatası oturum boyunca saklanmaz).
+ * Profil'de "Kaydet ve rafı sına" kaydı önceden çeker (`rafKayitCek`).
  */
-export function rafKayit(): Promise<Record<string, RafKart>> {
-  return (kayitSoz ??= (async () => {
+export function rafKayit(): Promise<RafKayit> {
+  const soz = (kayitSoz ??= (async (): Promise<RafKayit> => {
     const ayar = await rafOku();
-    if (!ayar) return {};
-    const anahtarUrl = `${ayar.adres}/${RAF_KAYIT}`;
-    let c: Cache | null = null;
-    try { c = typeof caches !== "undefined" ? await caches.open(ONBELLEK) : null; } catch { c = null; }
-    const tazele = async (zaman: number) => {
-      const y = await istek(ayar, RAF_KAYIT, zaman);
-      if (!y.ok) return null;
-      if (c) await c.put(anahtarUrl, y.clone());
-      return rafKartSuz(await y.json());
-    };
+    if (!ayar) return { kart: {}, gecici: false };
+    const c = await onbellek();
     try {
-      const eski = c ? await c.match(anahtarUrl) : undefined;
-      if (eski) { void tazele(15_000).catch(() => null); return rafKartSuz(await eski.json()); }
-      return (await tazele(4_000)) ?? {};
-    } catch { return {}; }
+      const eski = c ? await c.match(`${ayar.adres}/${RAF_KAYIT}`) : undefined;
+      if (eski) { void kayitCek(ayar, c).catch(() => null); return { kart: rafKartSuz(await eski.json()), gecici: false }; }
+    } catch { /* bozuk önbellek: ağdan */ }
+    void kayitCek(ayar, c).catch(() => null).finally(() => { if (kayitSoz === soz) kayitSoz = null; });
+    return { kart: {}, gecici: true };
   })());
+  return soz;
+}
+const onbellek = async (): Promise<Cache | null> => { try { return typeof caches !== "undefined" ? await caches.open(ONBELLEK) : null; } catch { return null; } };
+async function kayitCek(ayar: RafAyar, c: Cache | null, zaman = 15_000): Promise<Record<string, RafKart> | null> {
+  const y = await istek(ayar, RAF_KAYIT, zaman);
+  if (!y.ok) return null;
+  if (c) await c.put(`${ayar.adres}/${RAF_KAYIT}`, y.clone());
+  return rafKartSuz(await y.json());
+}
+/** Profil → "Kaydet ve rafı sına": kaydı şimdi çeker ve önbelleğe koyar; kelime fotoğrafı sayısı (ulaşılamazsa null) */
+export async function rafKayitCek(): Promise<number | null> {
+  const ayar = await rafOku();
+  if (!ayar) return null;
+  try {
+    const k = await kayitCek(ayar, await onbellek(), 10_000);
+    kayitSoz = null;
+    return k ? Object.keys(k).filter((x) => x.endsWith("#kart")).length : null;
+  } catch { return null; }
 }

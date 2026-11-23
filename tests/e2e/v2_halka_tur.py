@@ -12,7 +12,7 @@ import io, json
 from urllib.parse import unquote
 from playwright.sync_api import sync_playwright
 from PIL import Image
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, raf_bagla
 
 PORT = 4232
 KARTLAR = ["Winter", "Frühling", "Herbst", "Nacht", "Apfel", "Käse", "Frau", "Urlaub"]
@@ -165,15 +165,15 @@ def main():
         RAFK = {"lx:Herbst#kart": {"dosya": "foto/herbst.jpg", "yazar": "Raf Yazarı H", "lisans": "Pixabay İçerik Lisansı"},
                 "lx:Nacht#kart": {"dosya": "nacht.jpg", "yazar": "Raf Yazarı N", "lisans": "Pixabay İçerik Lisansı"}}
         def raf(r, _istek=None):
+            if r.request.url.endswith("/saglik.txt"):
+                return r.fulfill(status=200, headers={"Access-Control-Allow-Origin": "*", "Access-Control-Expose-Headers": "X-Raf", "X-Raf": "1"}, body="ok")
             if r.request.url.endswith("/kayit.json"):
                 return r.fulfill(status=200, content_type="application/json", headers={"Access-Control-Allow-Origin": "*"}, body=json.dumps({"surum": 1, "kart": RAFK}))
             ad = r.request.url.rsplit("/", 1)[-1].removesuffix(".jpg")
             r.fulfill(status=200, content_type="image/jpeg", headers={"Access-Control-Allow-Origin": "*"}, body=GORSEL.get(ad, GORSEL["winter"]))
         pg.route("https://raf-halka.test/**", raf)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-        pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
-          await new Promise((ok) => { const t = d.transaction('meta', 'readwrite'); t.objectStore('meta').put({ key: 'raf', value: { adres: 'https://raf-halka.test', anahtar: 'sahte-test-anahtari-0123456789abcdef-01234' } }); t.oncomplete = ok; }); d.close(); }""")
-        pg.reload(); pg.wait_for_selector("[data-tab=today]")
+        check(raf_bagla(pg, base, "https://raf-halka.test") == "bagli", "resimden seç: raf Profil'den bağlandı")
         pg.goto(base + "#/__halka-turleri/resim/lx:Herbst"); pg.wait_for_selector("[data-test=resim-sec][data-kart='lx:Herbst']", timeout=8000)
         pg.wait_for_function("() => [...document.querySelectorAll('[data-test=resim-secenek] img')].length === 4 && [...document.querySelectorAll('[data-test=resim-secenek] img')].every((i) => i.complete && i.naturalWidth > 0)", timeout=8000)
         dogru = pg.locator("[data-test=resim-secenek][data-right] img").get_attribute("src") or ""
