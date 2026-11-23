@@ -192,7 +192,7 @@
     "anlam_tr": "Bir süreliğine evden ayrılıp tatile ya da yolculuğa çıkmayı anlatır.",
     "ne_zaman_tr": "Komşuya ya da iş arkadaşına yaz planını anlatırken.",
     "parcalar": [],
-    "ipucu_tr": "Evde değilsen **Ich bin verreist** dersin."
+    "ipucu_tr": "Yolculuktaysan, şehir dışındaysan **Ich bin verreist** dersin."
    },
    "forms": [
     {
@@ -205,7 +205,7 @@
      "de": "Könnten Sie nach meiner Wohnung schauen, wenn ich ___ bin?",
      "answer": "verreist",
      "tr": "Ben yokken evime göz atabilir misiniz?",
-     "hint_tr": "Evde değilsen **verreist** dersin.",
+     "hint_tr": "Yolculukta, şehir dışında olan **verreist** olur.",
      "also_ok": [
       "weg",
       "im Urlaub"
@@ -215,7 +215,7 @@
      "de": "Die Nachbarn sind ___, deswegen ist es so ruhig.",
      "answer": "verreist",
      "tr": "Komşular seyahatte, o yüzden ortalık bu kadar sessiz.",
-     "hint_tr": "Evde olmayanlar için **verreist** denir.",
+     "hint_tr": "Yolculukta, şehir dışında olanlar için **verreist** denir.",
      "also_ok": [
       "weg",
       "im Urlaub"
@@ -802,7 +802,7 @@
      "de": "Ich habe ___ viel Mühe gegeben.",
      "answer": "mir",
      "tr": "Çok uğraştım.",
-     "hint_tr": "Hep birlikte söylenir: **Ich habe mir Mühe gegeben.**"
+     "hint_tr": "**Mühe geben** önüne **mir** gelir: **Ich habe mir Mühe gegeben.**"
     }
    ]
   },
@@ -2092,7 +2092,7 @@
      "de": "Welche ___ haben Sie?",
      "answer": "Sprachkenntnisse",
      "tr": "Hangi dilleri biliyorsunuz?",
-     "hint_tr": "Dil bilgisi **Sprachkenntnisse** olur."
+     "hint_tr": "Dil bilmek **Sprachkenntnisse haben** ile söylenir."
     },
     {
      "de": "Ich habe gute ___ in Deutsch.",
@@ -2247,7 +2247,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "**Ich bin Team fähig** yanlış, ayrı yazılmaz. Doğrusu **Ich bin teamfähig.**",
-    "Ekipte çalışabilirim derken **Ich kann Team arbeiten** yanlış. Doğrusu **Ich kann gut im Team arbeiten.**"
+    "Ekip çalışmasına yatkınım derken **Ich bin fähig für Team** olmaz. Doğrusu **Ich bin teamfähig.**"
    ],
    "examples": [
     {
@@ -2358,7 +2358,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Maaş beklentisi derken **Gehalt Vorstellung** ayrı yazılmaz. Araya **s** girer: **Gehaltsvorstellung**.",
-    "**Meine Gehaltsvorstellung liegt in 2.800 Euro** yanlış. Doğrusu **liegt bei 2.800 Euro**."
+    "Maaş beklentimi sordular derken **meine Gehaltsvorstellung gefragt** eksik. Doğrusu **nach meiner Gehaltsvorstellung gefragt**."
    ],
    "examples": [
     {
@@ -2369,8 +2369,8 @@
     },
     {
      "id": "lx:Gehaltsvorstellung:2",
-     "de": "Meine Gehaltsvorstellung liegt bei 2.800 Euro brutto im Monat.",
-     "tr": "Maaş beklentim aylık brüt 2.800 avro civarında.",
+     "de": "Bitte nennen Sie in Ihrer Bewerbung auch Ihre Gehaltsvorstellung.",
+     "tr": "Lütfen başvurunuzda maaş beklentinizi de belirtin.",
      "layer": "hd"
     },
     {
@@ -2412,7 +2412,7 @@
       "tr": "düşünce, beklenti"
      }
     ],
-    "ipucu_tr": "Rakamdan sonra **brutto** dersen kesintilerden önceki parayı söylersin."
+    "ipucu_tr": "Görüşmede şöyle sorulur: **Was ist Ihre Gehaltsvorstellung?**"
    },
    "forms": [
     {
@@ -2425,9 +2425,9 @@
      ]
     },
     {
-     "de": "Meine ___ liegt bei 2.800 Euro brutto.",
+     "de": "Bitte nennen Sie in Ihrer Bewerbung auch Ihre ___.",
      "answer": "Gehaltsvorstellung",
-     "tr": "Maaş beklentim brüt 2.800 avro civarında.",
+     "tr": "Lütfen başvurunuzda maaş beklentinizi de belirtin.",
      "hint_tr": "Maaş beklentisi **die Gehaltsvorstellung** olur.",
      "also_ok": [
       "Gehaltserwartung"
@@ -2443,10 +2443,10 @@
      ]
     },
     {
-     "de": "Meine Gehaltsvorstellung liegt bei 2.800 Euro ___ im Monat.",
-     "answer": "brutto",
-     "tr": "Maaş beklentim aylık brüt 2.800 avro civarında.",
-     "hint_tr": "Brüt **brutto** olur."
+     "de": "Die haben sofort ___ meiner Gehaltsvorstellung gefragt.",
+     "answer": "nach",
+     "tr": "Hemen maaş beklentimi sordular.",
+     "hint_tr": "Bir şeyi sormak **fragen nach** ile söylenir."
     }
    ]
   },

@@ -114,3 +114,28 @@ Türkçe çevirilerde tırnak içinde Almanca kalmadı. Kalan beş tırnak Türk
 ## Sonuç
 
 **Dil incelemesi KAPANDI (ONAY).** Açık kalan üç madde B'de. `reviewed` için okur ve örneklem kapısı bekleniyor; bu turda değişen 24 açıklama alanı (13 not, 5 ipucu, 3 karşılık, 3 parça) okura ilk kez gidiyor.
+
+## B kararları (baş geliştirici, 2026-11-23)
+
+Bu bölüm yukarıdaki B maddelerinin yerine geçer.
+
+1. **Maaş rakamı.** Rakam olmayacak. lx:Gehaltsvorstellung'dan rakam ve **brutto** tamamen çıkarıldı: ö2 ve boşluk 2 **Bitte nennen Sie in Ihrer Bewerbung auch Ihre Gehaltsvorstellung.** · boşluk 4 **Die haben sofort ___ meiner Gehaltsvorstellung gefragt.** (cevap **nach**) · not 2 **meine Gehaltsvorstellung gefragt** eksik, doğrusu **nach meiner Gehaltsvorstellung gefragt**. A-1 ve A-2'deki rakamlı satırlar artık geçersiz.
+2. **"yüklemek".** Denetim sorunu ANA'ya bildirilecek. lx:hochladen karşılığı şimdilik **(dosyayı siteye) yükleyip göndermek** olarak kalıyor.
+3. **Sıra.** lx:E-Mail ve lx:Antwort'un haftadaki sırası PR'da yazılacak. Kartlara dokunulmadı.
+
+## Okur düzeltmeleri (2026-11-23, okur raporu: `docs/v2/reviews/okur/lexicon-b1-04.md`, 8 GERİ)
+
+Yalnız geri dönen 8 alan değişti (b1-04a 1, b1-04b 7). Okur bu alanları yeniden okumadı.
+
+| Kart | Alan | Sonra | Neyi çözüyor |
+|---|---|---|---|
+| lx:verspätet | mistakes_tr[0] | Geç kaldım derken **Ich habe verspätet** yanlış, **mich** eksik. Doğrusu **Ich habe mich verspätet.** | Tek fikir; yanlış söz yazıldı, çelişen ikinci cümle kalktı. |
+| lx:verreisen | exp.ipucu_tr | Yolculuktaysan, şehir dışındaysan **Ich bin verreist** dersin. | "Evde değilsen" fazla genişti. |
+| lx:verreisen | forms[1].hint_tr | Yolculukta, şehir dışında olan **verreist** olur. | Aynı. |
+| lx:verreisen | forms[2].hint_tr | Yolculukta, şehir dışında olanlar için **verreist** denir. | Aynı. |
+| lx:Mühe | forms[3].hint_tr | **Mühe geben** önüne **mir** gelir: **Ich habe mir Mühe gegeben.** | "Hep birlikte" yanlış okunuyordu; boşluğa gelen **mir** artık anılıyor. |
+| lx:Kenntnis | forms[2].hint_tr | Dil bilmek **Sprachkenntnisse haben** ile söylenir. | "Dil bilgisi" gramer diye okunuyordu. |
+| lx:teamfähig | mistakes_tr[1] | Ekip çalışmasına yatkınım derken **Ich bin fähig für Team** olmaz. Doğrusu **Ich bin teamfähig.** | Not artık kartın kendi sözcüğünü anlatıyor. |
+| lx:Gehaltsvorstellung | exp.ipucu_tr | Görüşmede şöyle sorulur: **Was ist Ihre Gehaltsvorstellung?** | İpucu **brutto** sözcüğünü anlatıyordu. |
+
+Okurun takip notu (lx:verreisen eşdizim 3 çevirisi "seyahatte olmak, evde olmamak") GERİ değildi, dokunulmadı. `npm run content:validate` → **0 hata, 156 uyarı**. `review` iki dosyada `draft`.
