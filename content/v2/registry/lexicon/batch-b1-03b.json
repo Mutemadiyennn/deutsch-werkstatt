@@ -1,7 +1,12 @@
 {
   "batch": "b1-03b",
   "review": {
-    "status": "draft"
+    "status": "reviewed",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "docs/v2/reviews/lexicon-b1-03.md; okur: docs/v2/reviews/okur/lexicon-b1-03.md; örneklem: docs/v2/reviews/ornek-lexicon-b1-03.md",
+    "okur": "passed",
+    "okur_at": "2026-11-23"
   },
   "items": [
     {
@@ -10,7 +15,7 @@
       "tr": "dosya numarası (resmî yazıda)",
       "pos": "noun",
       "art": "das",
-      "pl": "-",
+      "pl": "Aktenzeichen",
       "collocations": [
         {
           "de": "das Aktenzeichen nennen",
@@ -33,7 +38,7 @@
       "register": "formal",
       "mistakes_tr": [
         "Dosya numarası derken **die Dateinummer** demek Türkçeden çeviridir. Resmî yazıda doğrusu **das Aktenzeichen**.",
-        "**der Aktenzeichen** yanlış. Doğrusu **das Aktenzeichen**."
+        "**Der Aktenzeichen steht oben** yanlış. Doğrusu **Das Aktenzeichen steht oben.**"
       ],
       "examples": [
         {
@@ -147,8 +152,8 @@
       "examples": [
         {
           "id": "lx:hiermit:1",
-          "de": "Hiermit beantrage ich einen neuen Termin.",
-          "tr": "Bu yazıyla yeni bir randevu talep ediyorum.",
+          "de": "Hiermit beantrage ich eine Meldebescheinigung.",
+          "tr": "Bu yazıyla bir ikamet belgesi için başvuruyorum.",
           "layer": "hd"
         },
         {
@@ -160,7 +165,7 @@
         {
           "id": "lx:hiermit:3",
           "de": "Ich fang einfach mit „Hiermit beantrage ich“ an, klingt voll offiziell, oder?",
-          "tr": "Doğrudan «Hiermit beantrage ich» diye başlıyorum, çok resmî duruyor, değil mi?",
+          "tr": "Doğrudan resmî başvuru cümlesiyle başlıyorum, kulağa çok resmî geliyor, değil mi?",
           "layer": "alltag"
         },
         {
@@ -201,9 +206,9 @@
       },
       "forms": [
         {
-          "de": "___ beantrage ich einen neuen Termin.",
+          "de": "___ beantrage ich eine Meldebescheinigung.",
           "answer": "Hiermit",
-          "tr": "Bu yazıyla yeni bir randevu talep ediyorum.",
+          "tr": "Bu yazıyla bir ikamet belgesi için başvuruyorum.",
           "hint_tr": "Resmî yazıda ilk cümle çoğu zaman **Hiermit** ile başlar."
         },
         {
@@ -376,7 +381,7 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "Türkçedeki gibi **Kopya** demek anlaşılmaz. Almancası **die Kopie**, sonu uzun **i** ile okunur.",
+        "Türkçedeki kopya gibi okunmaz. **die Kopie** sonda uzun **i** ile söylenir.",
         "Birden çok fotokopi derken **Kopies** yanlış. Doğrusu **Kopien**."
       ],
       "examples": [
@@ -492,8 +497,8 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "Aslını getirin derken **Bringen Sie das richtige Dokument mit** deme. Bu, doğru belgeyi getirin demektir. Doğrusu **Bringen Sie das Original mit.**",
-        "**der Original** yanlış. Doğrusu **das Original**."
+        "Belgenin aslı derken **das echte Dokument** denmez. Doğrusu **das Original**.",
+        "**Wir brauchen den Original** yanlış. Doğrusu **Wir brauchen das Original.**"
       ],
       "examples": [
         {
@@ -614,7 +619,7 @@
         },
         {
           "id": "lx:Anlage:3",
-          "de": "Guck mal, hinten sind noch die Anlagen, das Formular ist auch dabei.",
+          "de": "Schau mal, hinten sind noch die Anlagen, das Formular ist auch dabei.",
           "tr": "Bak, arkada ekler de var, form da orada.",
           "layer": "alltag"
         },
@@ -662,10 +667,7 @@
           "de": "Haben Sie alle ___ mitgeschickt?",
           "answer": "Anlagen",
           "tr": "Bütün ekleri de gönderdiniz mi?",
-          "hint_tr": "Ekler **die Anlagen** olur.",
-          "also_ok": [
-            "Unterlagen"
-          ]
+          "hint_tr": "Ekler **die Anlagen** olur."
         },
         {
           "de": "Schau mal bei den ___, ganz hinten.",
@@ -766,7 +768,10 @@
           "de": "Ich ___ eine Kopie von meinem Ausweis bei.",
           "answer": "lege",
           "tr": "Kimliğimin bir fotokopisini ekliyorum.",
-          "hint_tr": "**ich** ile **lege** gelir, **bei** sonda kalır."
+          "hint_tr": "**ich** ile **lege** gelir, **bei** sonda kalır.",
+          "also_ok": [
+            "füge"
+          ]
         },
         {
           "de": "Ich habe dem Brief alle Unterlagen ___.",
@@ -855,7 +860,7 @@
         },
         {
           "id": "lx:vollständig:5",
-          "de": "– Hast du alles? – Ich glaub, es ist vollständig, aber guck noch mal.",
+          "de": "– Hast du alles? – Ich glaub, es ist vollständig, aber schau noch mal.",
           "tr": "– Her şey var mı? – Bence eksiksiz, ama sen de bir bak.",
           "layer": "alltag",
           "dialog": true
@@ -908,8 +913,7 @@
           "tr": "Şimdi her şey eksiksiz, nihayet!",
           "hint_tr": "Eksiksiz **vollständig** olur.",
           "also_ok": [
-            "komplett",
-            "da"
+            "komplett"
           ]
         }
       ]
@@ -936,7 +940,7 @@
         },
         {
           "de": "bis Freitag nachreichen",
-          "tr": "cumaya kadar sonradan vermek"
+          "tr": "cumaya kadar sonradan teslim etmek"
         },
         {
           "de": "per Post nachreichen",
@@ -951,7 +955,7 @@
       "register": "formal",
       "mistakes_tr": [
         "**Ich nachreiche die Kopie** yanlış. Doğrusu **Ich reiche die Kopie nach.**",
-        "**nachreichen** konuşmada az duyulur. Konuşurken **Ich bringe das später vorbei** da diyebilirsin."
+        "Sonra veririm derken **Ich gebe das nach** yanlış. **nachgeben** pes etmek demektir. Doğrusu **Ich reiche das nach.**"
       ],
       "examples": [
         {
@@ -1018,10 +1022,7 @@
           "de": "Kann ich die Kopie vom Mietvertrag ___?",
           "answer": "nachreichen",
           "tr": "Kira sözleşmesinin fotokopisini sonradan verebilir miyim?",
-          "hint_tr": "**Kann ich** ile **nachreichen** bitişik sona gelir.",
-          "also_ok": [
-            "nachschicken"
-          ]
+          "hint_tr": "**Kann ich** ile **nachreichen** bitişik sona gelir."
         },
         {
           "de": "Die können Sie per Post ___.",
@@ -1036,17 +1037,14 @@
           "de": "Ich muss nur noch ein Foto ___.",
           "answer": "nachreichen",
           "tr": "Sadece bir fotoğrafı sonradan vermem lazım.",
-          "hint_tr": "**muss** ile **nachreichen** bitişik sona gelir.",
-          "also_ok": [
-            "nachschicken"
-          ]
+          "hint_tr": "**muss** ile **nachreichen** bitişik sona gelir."
         }
       ]
     },
     {
       "id": "lx:vorlegen",
       "de": "vorlegen",
-      "tr": "(belgeyi) ibraz etmek, sunmak",
+      "tr": "(belgeyi) göstermek, ibraz etmek",
       "pos": "verb",
       "verb": {
         "praesens3": "legt vor",
@@ -1112,7 +1110,7 @@
         {
           "id": "lx:vorlegen:5",
           "de": "– Was heißt „vorlegen“ hier? – Na, du musst das beim Termin zeigen.",
-          "tr": "– Burada «vorlegen» ne demek? – Eh, onu randevuda göstermen lazım.",
+          "tr": "– Buradaki bu kelime ne demek? – Eh, onu randevuda göstermen lazım.",
           "layer": "alltag",
           "dialog": true
         }
@@ -1126,7 +1124,7 @@
         "anlam_tr": "Bir belgeyi daireye resmî olarak göstermeyi ya da vermeyi anlatır.",
         "ne_zaman_tr": "Mektupta hangi belgeyi getirmen gerektiği yazdığında.",
         "parcalar": [],
-        "ipucu_tr": "Konuşurken çoğu zaman aynı şey için **zeigen** dersin."
+        "ipucu_tr": "Cümlede **vor** sona gider: **Legen Sie den Pass vor.**"
       },
       "forms": [
         {
@@ -1348,7 +1346,7 @@
         {
           "id": "lx:rechtzeitig:3",
           "de": "Puh, gerade noch rechtzeitig abgegeben!",
-          "tr": "Oh, tam zamanında teslim ettim!",
+          "tr": "Oh, ucu ucuna zamanında teslim ettim!",
           "layer": "alltag"
         },
         {
@@ -1377,7 +1375,7 @@
         "anlam_tr": "Bir süre bitmeden, geç kalmadan yapmayı anlatır.",
         "ne_zaman_tr": "Bir son tarih ya da süre olduğunda.",
         "parcalar": [],
-        "ipucu_tr": "Tam saatinde olmak ise **pünktlich** ile söylenir."
+        "ipucu_tr": "**gerade noch rechtzeitig** ucu ucuna yetişmek demektir."
       },
       "forms": [
         {
@@ -1465,8 +1463,8 @@
         },
         {
           "id": "lx:bearbeiten:4",
-          "de": "– Wie lange dauert es, bis mein Antrag bearbeitet ist? – Das kann ein paar Wochen dauern.",
-          "tr": "– Başvurumun işlenmesi ne kadar sürer? – Birkaç hafta sürebilir.",
+          "de": "– Wie lange dauert es, bis mein Antrag bearbeitet ist? – Das kann ich Ihnen leider nicht genau sagen.",
+          "tr": "– Başvurumun işlenmesi ne kadar sürer? – Maalesef bunu size tam olarak söyleyemem.",
           "layer": "hd",
           "dialog": true
         },
@@ -1558,7 +1556,7 @@
         {
           "id": "lx:Sachbearbeiter:2",
           "de": "Der Name der Sachbearbeiterin steht oben auf dem Brief.",
-          "tr": "Sorumlu memurun adı mektubun üstünde yazıyor.",
+          "tr": "Sorumlu memur hanımın adı mektubun üstünde yazıyor.",
           "layer": "hd"
         },
         {
@@ -1570,7 +1568,7 @@
         {
           "id": "lx:Sachbearbeiter:4",
           "de": "– Wer ist für meinen Antrag zuständig? – Ihr Sachbearbeiter ist Herr Yıldız, Zimmer 12.",
-          "tr": "– Başvuruma kim bakıyor? – Dosyanızdan sorumlu memur Bay Yıldız, oda 12.",
+          "tr": "– Başvuruma kim bakıyor? – Dosyanızdan sorumlu memur Herr Yıldız, oda 12.",
           "layer": "hd",
           "dialog": true
         },
@@ -1618,7 +1616,7 @@
         {
           "de": "Ihr ___ ist Herr Yıldız, Zimmer 12.",
           "answer": "Sachbearbeiter",
-          "tr": "Dosyanızdan sorumlu memur Bay Yıldız, oda 12.",
+          "tr": "Dosyanızdan sorumlu memur Herr Yıldız, oda 12.",
           "hint_tr": "Dosyana bakan memur **der Sachbearbeiter** olur."
         },
         {
@@ -1656,7 +1654,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Süresi doldu derken **Der Pass ist fertig** yanlış anlaşılır. Doğrusu **Der Pass ist nicht mehr gültig.**",
-        "Geçerli değil derken **nicht gilt** yanlış. Doğrusu **nicht gültig**."
+        "Geçerli bir pasaport derken **ein gültig Pass** eksik. Doğrusu **ein gültiger Pass**."
       ],
       "examples": [
         {
@@ -2094,7 +2092,7 @@
       "register": "formal",
       "mistakes_tr": [
         "Süreye dikkat edin derken **Bitte beachten Sie auf die Frist** yanlış. Doğrusu **Bitte beachten Sie die Frist.**",
-        "**beachten** daha çok yazıda geçer. Konuşurken çoğu zaman **Pass auf!** duyarsın."
+        "Tehlikeye dikkat etmek **aufpassen** olur. Kurala ya da süreye dikkat etmek **beachten** olur."
       ],
       "examples": [
         {
@@ -2197,7 +2195,7 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "**der Einschreiben** yanlış. Doğrusu **das Einschreiben**.",
+        "**Der Einschreiben ist da** yanlış. Doğrusu **Das Einschreiben ist da.**",
         "Küçük harfle **sich einschreiben** başka anlama gelir: kayıt olmak. Taahhütlü mektup **das Einschreiben** olur."
       ],
       "examples": [
@@ -2300,7 +2298,7 @@
       ],
       "register": "formal",
       "mistakes_tr": [
-        "**Rückfrage** her soru değildir, bir mektup ya da iş hakkında sonradan sorulan sorudur. Yolda saati sorarken **Frage** dersin."
+        "Sorunuz olursa derken **wenn Rückfragen** eksik. Doğrusu **bei Rückfragen**."
       ],
       "examples": [
         {
@@ -2436,7 +2434,7 @@
         {
           "id": "lx:Verständnis:2",
           "de": "Ich bitte um Verständnis, dass meine Antwort so spät kommt.",
-          "tr": "Cevabımın bu kadar geç geldiği için anlayışınızı rica ediyorum.",
+          "tr": "Cevabım bu kadar geç geldiği için anlayışınızı rica ediyorum.",
           "layer": "hd"
         },
         {
@@ -2483,7 +2481,7 @@
         {
           "de": "Ich bitte um ___, dass meine Antwort so spät kommt.",
           "answer": "Verständnis",
-          "tr": "Cevabımın bu kadar geç geldiği için anlayışınızı rica ediyorum.",
+          "tr": "Cevabım bu kadar geç geldiği için anlayışınızı rica ediyorum.",
           "hint_tr": "Anlayış rica etmek **um Verständnis bitten** olur."
         },
         {
@@ -2582,25 +2580,37 @@
           "de": "Vielen Dank für Ihre ___.",
           "answer": "Anfrage",
           "tr": "Sorunuz için çok teşekkür ederiz.",
-          "hint_tr": "Yazılı soru **die Anfrage** olur."
+          "hint_tr": "Yazılı soru **die Anfrage** olur.",
+          "also_ok": [
+            "Frage"
+          ]
         },
         {
           "de": "Ich habe letzte Woche eine ___ per E-Mail geschickt.",
           "answer": "Anfrage",
           "tr": "Geçen hafta e-postayla bir bilgi isteği gönderdim.",
-          "hint_tr": "Yazılı soru **die Anfrage** olur."
+          "hint_tr": "Yazılı soru **die Anfrage** olur.",
+          "also_ok": [
+            "Frage"
+          ]
         },
         {
           "de": "Haben Sie meine ___ bekommen?",
           "answer": "Anfrage",
           "tr": "Gönderdiğim soruyu aldınız mı?",
-          "hint_tr": "Yazılı soru **Anfrage** ile söylenir."
+          "hint_tr": "Yazılı soru **Anfrage** ile söylenir.",
+          "also_ok": [
+            "Frage"
+          ]
         },
         {
           "de": "Ich habe dem Vermieter eine ___ geschickt.",
           "answer": "Anfrage",
           "tr": "Ev sahibine bir soru gönderdim.",
-          "hint_tr": "Yazılı soru **die Anfrage** olur."
+          "hint_tr": "Yazılı soru **die Anfrage** olur.",
+          "also_ok": [
+            "Frage"
+          ]
         }
       ]
     },
@@ -2633,7 +2643,7 @@
       "register": "formal",
       "mistakes_tr": [
         "Geri dönüş derken **Rückkehr** yanlış anlaşılır, o eve ya da ülkeye geri dönmektir. Doğrusu **die Rückmeldung**.",
-        "Cevabınızı bekliyorum derken **Ich warte für Ihre Rückmeldung** yanlış. Doğrusu **Ich warte auf Ihre Rückmeldung.**"
+        "Cevabınızı bekliyorum derken **Ich warte Ihre Rückmeldung** eksik. Doğrusu **Ich warte auf Ihre Rückmeldung.**"
       ],
       "examples": [
         {
