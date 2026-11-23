@@ -1,13 +1,16 @@
 {
  "batch": "b1-04a",
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/lexicon-b1-04.md"
  },
  "items": [
   {
    "id": "lx:sich_beziehen",
    "de": "sich beziehen",
-   "tr": "(bir yazıya, bir konuya) dayanmak, ilgili olmak",
+   "tr": "(bir yazıyla, bir konuşmayla) ilgili olmak, ona istinaden yazmak",
    "pos": "verb",
    "verb": {
     "praesens3": "bezieht sich",
@@ -22,11 +25,11 @@
    "collocations": [
     {
      "de": "sich auf Ihre E-Mail beziehen",
-     "tr": "e-postanıza dayanarak yazmak"
+     "tr": "e-postanıza istinaden yazmak"
     },
     {
      "de": "sich auf unser Gespräch beziehen",
-     "tr": "görüşmemize dayanarak yazmak"
+     "tr": "görüşmemize istinaden yazmak"
     },
     {
      "de": "sich auf die Rechnung beziehen",
@@ -176,7 +179,7 @@
     {
      "id": "lx:betreffen:4",
      "de": "– Betrifft das auch meinen Antrag? – Nein, nur die Anträge ab Juli.",
-     "tr": "– Bu benim başvurumu da ilgilendiriyor mu? – Hayır, yalnızca temmuzdan sonraki başvuruları.",
+     "tr": "– Bu benim başvurumu da ilgilendiriyor mu? – Hayır, yalnızca temmuzdan itibaren yapılan başvuruları.",
      "layer": "hd",
      "dialog": true
     },
@@ -265,7 +268,7 @@
    ],
    "register": "formal",
    "mistakes_tr": [
-    "**Ich erkundige mich über den Termin** yanlış. Doğrusu **Ich erkundige mich nach dem Termin.**",
+    "Randevuyu sormak derken **Ich erkundige den Termin** yanlış. Doğrusu **Ich erkundige mich nach dem Termin.**",
     "**Ich bin mich erkundigt** yanlış. Doğrusu **Ich habe mich erkundigt.**"
    ],
    "examples": [
@@ -278,7 +281,7 @@
     {
      "id": "lx:sich_erkundigen:2",
      "de": "Ich habe mich bei der Stadt nach einem Kurs erkundigt.",
-     "tr": "Belediyeye bir kursu sorup bilgi aldım.",
+     "tr": "Belediyeden bir kurs hakkında bilgi aldım.",
      "layer": "hd"
     },
     {
@@ -324,7 +327,7 @@
     {
      "de": "Ich habe mich bei der Stadt nach einem Kurs ___.",
      "answer": "erkundigt",
-     "tr": "Belediyeye bir kursu sorup bilgi aldım.",
+     "tr": "Belediyeden bir kurs hakkında bilgi aldım.",
      "hint_tr": "Geçmişte **hat sich erkundigt** denir."
     },
     {
@@ -380,7 +383,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Sizi bilgilendirmek derken **Ihnen informieren** yanlış. Doğrusu **Sie informieren**.",
-    "Bir şey hakkında derken **von** değil **über** gelir: **über den Termin informieren**."
+    "Bir şey hakkında derken **über dem Termin** yanlış. Doğrusu **über den Termin informieren**."
    ],
    "examples": [
     {
@@ -404,7 +407,7 @@
     {
      "id": "lx:informieren:4",
      "de": "– Wann bekomme ich eine Antwort? – Wir informieren Sie per E-Mail, sobald alles bearbeitet ist.",
-     "tr": "– Ne zaman cevap alacağım? – Her şey işlenince size e-postayla bilgi vereceğiz.",
+     "tr": "– Ne zaman cevap alacağım? – İşleminiz biter bitmez size e-postayla bilgi vereceğiz.",
      "layer": "hd",
      "dialog": true
     },
@@ -449,7 +452,10 @@
      "de": "Ich hab mich vorher im Internet ___.",
      "answer": "informiert",
      "tr": "Önceden internetten bilgi aldım.",
-     "hint_tr": "Geçmişte **hat sich informiert** denir."
+     "hint_tr": "Geçmişte **hat sich informiert** denir.",
+     "also_ok": [
+      "erkundigt"
+     ]
     },
     {
      "de": "Ja, ich hab ihn heute Morgen ___.",
@@ -509,14 +515,14 @@
     {
      "id": "lx:dankbar:4",
      "de": "– Ich schicke Ihnen das Formular heute noch. – Vielen Dank, dafür bin ich Ihnen sehr dankbar.",
-     "tr": "– Formu size bugün gönderiyorum. – Çok teşekkürler, bunun için size çok minnettarım.",
+     "tr": "– Formu size bugün içinde gönderiyorum. – Çok teşekkürler, bunun için size çok minnettarım.",
      "layer": "hd",
      "dialog": true
     },
     {
      "id": "lx:dankbar:5",
      "de": "– Soll ich deine Mail noch mal lesen? – Ja, bitte, da wär ich dir echt dankbar.",
-     "tr": "– E-postanı bir daha okuyayım mı? – Evet lütfen, buna gerçekten çok sevinirim.",
+     "tr": "– E-postanı bir daha okuyayım mı? – Evet lütfen, sana gerçekten minnettar olurum.",
      "layer": "alltag",
      "dialog": true
     }
@@ -707,7 +713,7 @@
    ],
    "register": "formal",
    "mistakes_tr": [
-    "Destek istemek derken **für Unterstützung fragen** yanlış. Doğrusu **um Unterstützung bitten**.",
+    "Destek istemek derken **Unterstützung fragen** yanlış. Doğrusu **um Unterstützung bitten**.",
     "Desteğiniz derken **Ihr Unterstützung** yanlış. Doğrusu **Ihre Unterstützung**."
    ],
    "examples": [
@@ -862,7 +868,7 @@
     {
      "id": "lx:sich_bedanken:5",
      "de": "– Hat sich der Kunde gemeldet? – Ja, er hat sich sogar bei uns bedankt.",
-     "tr": "– Müşteri geri döndü mü? – Evet, hatta bize teşekkür etti.",
+     "tr": "– Müşteriden haber var mı? – Evet, hatta bize teşekkür etti.",
      "layer": "alltag",
      "dialog": true
     }
@@ -1005,7 +1011,10 @@
      "de": "Danke schon mal ___!",
      "answer": "im Voraus",
      "tr": "Şimdiden sağ ol!",
-     "hint_tr": "Şimdiden **im Voraus** ile söylenir."
+     "hint_tr": "Şimdiden **im Voraus** ile söylenir.",
+     "also_ok": [
+      "vorab"
+     ]
     }
    ]
   },
@@ -1194,7 +1203,7 @@
     },
     {
      "id": "lx:ausdrucken:4",
-     "de": "– Muss ich die Bestätigung ausdrucken? – Nein, auf dem Handy reicht das.",
+     "de": "– Muss ich die Bestätigung ausdrucken? – Nein, es reicht auf dem Handy.",
      "tr": "– Onay belgesinin çıktısını almam gerekiyor mu? – Hayır, telefonda olması yeterli.",
      "layer": "hd",
      "dialog": true
@@ -1307,7 +1316,7 @@
     {
      "id": "lx:Zeitpunkt:4",
      "de": "– Passt Ihnen dieser Zeitpunkt? – Ja, Dienstag um zehn passt mir gut.",
-     "tr": "– Bu zaman size uyar mı? – Evet, salı saat on bana uyar.",
+     "tr": "– Bu saat size uyar mı? – Evet, salı saat on bana uyar.",
      "layer": "hd",
      "dialog": true
     },
@@ -1355,12 +1364,15 @@
      "de": "Zu diesem ___ bin ich leider im Urlaub.",
      "answer": "Zeitpunkt",
      "tr": "O tarihte maalesef izindeyim.",
-     "hint_tr": "Belli bir an **der Zeitpunkt** olur."
+     "hint_tr": "Belli bir an **der Zeitpunkt** olur.",
+     "also_ok": [
+      "Termin"
+     ]
     },
     {
      "de": "Passt Ihnen dieser ___?",
      "answer": "Zeitpunkt",
-     "tr": "Bu zaman size uyar mı?",
+     "tr": "Bu saat size uyar mı?",
      "hint_tr": "Belli bir an **der Zeitpunkt** olur.",
      "also_ok": [
       "Termin"
@@ -1399,7 +1411,7 @@
    ],
    "register": "formal",
    "mistakes_tr": [
-    "**Ich bin verspätet** Almancada doğal değil. Geç kaldım derken **Ich habe mich verspätet** denir.",
+    "Geç kaldım derken **Ich habe mich verspätet** dersin. **verspätet** daha çok cevap, mektup ve tren için gelir.",
     "**Entschuldigen Sie meine verspätet Antwort** yanlış. Doğrusu **meine verspätete Antwort**."
    ],
    "examples": [
@@ -1464,7 +1476,8 @@
      "tr": "Mektup maalesef geç ulaştı.",
      "hint_tr": "Geç ulaşmak **verspätet ankommen** olur.",
      "also_ok": [
-      "zu spät"
+      "zu spät",
+      "spät"
      ]
     },
     {
@@ -1620,7 +1633,7 @@
    ],
    "register": "formal",
    "mistakes_tr": [
-    "Tren gecikti derken **Der Zug hat eine Verzögerung** denmez. Doğrusu **Der Zug hat Verspätung.**",
+    "Tren gecikti derken **Der Zug hat Verzögerung** denmez. Doğrusu **Der Zug hat Verspätung.** Geciken iş için **Verzögerung** denir.",
     "Gecikmeler derken **Verzögerungs** yanlış. Doğrusu **Verzögerungen**."
    ],
    "examples": [
@@ -1633,13 +1646,13 @@
     {
      "id": "lx:Verzögerung:2",
      "de": "Wegen vieler Anfragen kann es zu Verzögerungen kommen.",
-     "tr": "Çok sayıda başvuru nedeniyle gecikmeler olabilir.",
+     "tr": "Çok sayıda soru geldiği için gecikmeler olabilir.",
      "layer": "hd"
     },
     {
      "id": "lx:Verzögerung:3",
-     "de": "Kleine Verzögerung, ich bin in zehn Minuten da.",
-     "tr": "Küçük bir gecikme var, on dakikaya oradayım.",
+     "de": "Kleine Verzögerung, das Essen ist erst in zehn Minuten fertig.",
+     "tr": "Küçük bir gecikme var, yemek ancak on dakikaya hazır.",
      "layer": "alltag"
     },
     {
@@ -1671,18 +1684,15 @@
    },
    "forms": [
     {
-     "de": "Bitte entschuldigen Sie die ___.",
+     "de": "Bitte entschuldigen Sie die ___ bei Ihrem Antrag.",
      "answer": "Verzögerung",
-     "tr": "Gecikme için lütfen kusura bakmayın.",
-     "hint_tr": "Gecikme **die Verzögerung** olur.",
-     "also_ok": [
-      "Verspätung"
-     ]
+     "tr": "Başvurunuzdaki gecikme için lütfen kusura bakmayın.",
+     "hint_tr": "Gecikme **die Verzögerung** olur."
     },
     {
      "de": "Wegen vieler Anfragen kann es zu ___ kommen.",
      "answer": "Verzögerungen",
-     "tr": "Çok sayıda başvuru nedeniyle gecikmeler olabilir.",
+     "tr": "Çok sayıda soru geldiği için gecikmeler olabilir.",
      "hint_tr": "Birden çok gecikme: **Verzögerungen**."
     },
     {
@@ -1692,13 +1702,10 @@
      "hint_tr": "Gecikme **die Verzögerung** olur."
     },
     {
-     "de": "Kleine ___, ich bin in zehn Minuten da.",
+     "de": "Kleine ___, das Essen ist erst in zehn Minuten fertig.",
      "answer": "Verzögerung",
-     "tr": "Küçük bir gecikme var, on dakikaya oradayım.",
-     "hint_tr": "Gecikme **Verzögerung** ile söylenir.",
-     "also_ok": [
-      "Verspätung"
-     ]
+     "tr": "Küçük bir gecikme var, yemek ancak on dakikaya hazır.",
+     "hint_tr": "Gecikme **Verzögerung** ile söylenir."
     }
    ]
   },
@@ -1957,7 +1964,7 @@
     {
      "id": "lx:zurückschreiben:2",
      "de": "Die Sachbearbeiterin hat mir noch nicht zurückgeschrieben.",
-     "tr": "Görevli bana henüz cevap yazmadı.",
+     "tr": "Memur hanım bana henüz cevap yazmadı.",
      "layer": "hd"
     },
     {
@@ -1969,7 +1976,7 @@
     {
      "id": "lx:zurückschreiben:4",
      "de": "– Haben Sie meine E-Mail bekommen? – Ja, ich schreibe Ihnen heute noch zurück.",
-     "tr": "– E-postamı aldınız mı? – Evet, bugün size cevap yazacağım.",
+     "tr": "– E-postamı aldınız mı? – Evet, bugün içinde size cevap yazacağım.",
      "layer": "hd",
      "dialog": true
     },
@@ -2012,7 +2019,7 @@
     {
      "de": "Die Sachbearbeiterin hat mir noch nicht ___.",
      "answer": "zurückgeschrieben",
-     "tr": "Görevli bana henüz cevap yazmadı.",
+     "tr": "Memur hanım bana henüz cevap yazmadı.",
      "hint_tr": "Geçmişte **hat zurückgeschrieben** denir.",
      "also_ok": [
       "geantwortet"
@@ -2038,7 +2045,7 @@
   {
    "id": "lx:Verfügung",
    "de": "Verfügung",
-   "tr": "hizmet, kullanım (zur Verfügung stehen: hazır olmak)",
+   "tr": "kullanıma, yardıma hazır olma",
    "pos": "noun",
    "art": "die",
    "pl": "-",
@@ -2062,7 +2069,7 @@
    ],
    "register": "formal",
    "mistakes_tr": [
-    "Hizmetinizdeyim derken **Ich stehe zu Ihrer Verfügung** yanlış. Doğrusu **Ich stehe Ihnen zur Verfügung.**",
+    "Hizmetinizdeyim derken **Ich stehe Sie zur Verfügung** yanlış. Doğrusu **Ich stehe Ihnen zur Verfügung.**",
     "Kalıp sabittir. **in Verfügung** ya da **an Verfügung** denmez, hep **zur Verfügung** denir."
    ],
    "examples": [
@@ -2216,7 +2223,7 @@
     "parcalar": [
      {
       "de": "ansprechen",
-      "tr": "hitap etmek"
+      "tr": "birine konuşmak"
      },
      {
       "de": "Partner",
@@ -2312,14 +2319,14 @@
     {
      "id": "lx:kontaktieren:4",
      "de": "– Wie kann ich Sie am besten kontaktieren? – Am besten per E-Mail oder ab neun Uhr am Telefon.",
-     "tr": "– Size en iyi nasıl ulaşabilirim? – En iyisi e-postayla ya da saat dokuzdan sonra telefonla.",
+     "tr": "– Size en iyi nasıl ulaşabilirim? – En iyisi e-postayla ya da saat dokuzdan itibaren telefonla.",
      "layer": "hd",
      "dialog": true
     },
     {
      "id": "lx:kontaktieren:5",
      "de": "– Hast du den Hausmeister schon kontaktiert? – Ja, ich hab ihm heute Morgen 'ne Nachricht geschickt.",
-     "tr": "– Kapıcıyla iletişime geçtin mi? – Evet, bu sabah ona bir mesaj attım.",
+     "tr": "– Apartman görevlisiyle iletişime geçtin mi? – Evet, bu sabah ona bir mesaj attım.",
      "layer": "alltag",
      "dialog": true
     }
@@ -2359,7 +2366,7 @@
     {
      "de": "Hast du den Hausmeister schon ___?",
      "answer": "kontaktiert",
-     "tr": "Kapıcıyla iletişime geçtin mi?",
+     "tr": "Apartman görevlisiyle iletişime geçtin mi?",
      "hint_tr": "Geçmişte **hast kontaktiert** denir."
     }
    ]
@@ -2456,14 +2463,18 @@
      "hint_tr": "**kann** ile **formulieren** sona gelir.",
      "also_ok": [
       "sagen",
-      "schreiben"
+      "schreiben",
+      "ausdrücken"
      ]
     },
     {
      "de": "Bitte ___ Sie Ihre Frage kurz und klar.",
      "answer": "formulieren",
      "tr": "Lütfen sorunuzu kısa ve net yazın.",
-     "hint_tr": "**Bitte** ve **Sie** arasına **formulieren** gelir."
+     "hint_tr": "**Bitte** ve **Sie** arasına **formulieren** gelir.",
+     "also_ok": [
+      "schreiben"
+     ]
     },
     {
      "de": "Hm, das hab ich blöd ___.",
@@ -2481,7 +2492,7 @@
      "hint_tr": "**Könnten Sie** ile **formulieren** sona gelir.",
      "also_ok": [
       "sagen",
-      "erklären"
+      "ausdrücken"
      ]
     }
    ]
@@ -2513,7 +2524,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "**Das war eine höflich E-Mail** yanlış. Doğrusu **Das war eine höfliche E-Mail.**",
-    "İstiyorum derken **Ich will** kaba durur. Kibarı **Ich möchte** ya da **Ich hätte gern**."
+    "Daha kibar derken **mehr höflich** yanlış. Doğrusu **höflicher**: **Schreib es höflicher.**"
    ],
    "examples": [
     {
@@ -2536,15 +2547,15 @@
     },
     {
      "id": "lx:höflich:4",
-     "de": "– Ist das so höflich genug? – Ja, aber schreiben Sie lieber „Könnten Sie“ statt „Können Sie“.",
-     "tr": "– Böyle yeterince kibar mı? – Evet, ama «Können Sie» yerine «Könnten Sie» yazın, daha iyi olur.",
+     "de": "– Ist meine E-Mail so höflich genug? – Ja, sogar sehr höflich. So können Sie sie schicken.",
+     "tr": "– E-postam böyle yeterince kibar mı? – Evet, hatta çok kibar. Böyle gönderebilirsiniz.",
      "layer": "hd",
      "dialog": true
     },
     {
      "id": "lx:höflich:5",
      "de": "– Wie findest du meine Mail? – Gut, aber ein bisschen zu direkt. Schreib's mal höflicher.",
-     "tr": "– E-postamı nasıl buldun? – İyi, ama biraz fazla dolaysız. Biraz daha kibar yaz.",
+     "tr": "– E-postamı nasıl buldun? – İyi, ama biraz fazla doğrudan. Biraz daha kibar yaz.",
      "layer": "alltag",
      "dialog": true
     }
@@ -2560,7 +2571,7 @@
     "anlam_tr": "Başkalarına saygılı ve kurallara uygun davranmayı anlatır.",
     "ne_zaman_tr": "Resmî yazı ve konuşmanın tonunu anlatırken.",
     "parcalar": [],
-    "ipucu_tr": "Rica ederken **Könnten Sie** ve **Würden Sie** daha kibar durur."
+    "ipucu_tr": "Başına **un** gelince tersi olur: **unhöflich**, yani kaba."
    },
    "forms": [
     {
@@ -2569,8 +2580,7 @@
      "tr": "Cevap kısaydı ama çok kibardı.",
      "hint_tr": "Kibar **höflich** olur.",
      "also_ok": [
-      "freundlich",
-      "nett"
+      "freundlich"
      ]
     },
     {
@@ -2598,8 +2608,7 @@
      "tr": "Kibar bir e-postaydı.",
      "hint_tr": "**eine** ile **höfliche** olur.",
      "also_ok": [
-      "freundliche",
-      "nette"
+      "freundliche"
      ]
     }
    ]
@@ -2721,7 +2730,8 @@
      "hint_tr": "**musst** ile **ergänzen** sona gelir.",
      "also_ok": [
       "angeben",
-      "eintragen"
+      "eintragen",
+      "hinzufügen"
      ]
     }
    ]

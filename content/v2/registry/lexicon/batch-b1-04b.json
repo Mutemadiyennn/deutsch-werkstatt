@@ -1,7 +1,10 @@
 {
  "batch": "b1-04b",
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/lexicon-b1-04.md"
  },
  "items": [
   {
@@ -57,13 +60,13 @@
     {
      "id": "lx:Gewitter:4",
      "de": "– Haben Sie das Gewitter heute Nacht gehört? – Ja, ich konnte kaum schlafen.",
-     "tr": "– Bu gece fırtınayı duydunuz mu? – Evet, neredeyse hiç uyuyamadım.",
+     "tr": "– Dün gece fırtınayı duydunuz mu? – Evet, neredeyse hiç uyuyamadım.",
      "layer": "hd",
      "dialog": true
     },
     {
      "id": "lx:Gewitter:5",
-     "de": "– Das Gewitter hat meine ganzen Tomaten kaputt gemacht. – Oh nein, so ein Pech!",
+     "de": "– Das Gewitter hat meine ganzen Tomaten kaputtgemacht. – Oh nein, so ein Pech!",
      "tr": "– Fırtına bütün domateslerimi mahvetti. – Hay aksi, ne kötü şans!",
      "layer": "alltag",
      "dialog": true
@@ -91,7 +94,7 @@
     {
      "de": "Haben Sie das ___ heute Nacht gehört?",
      "answer": "Gewitter",
-     "tr": "Bu gece fırtınayı duydunuz mu?",
+     "tr": "Dün gece fırtınayı duydunuz mu?",
      "hint_tr": "Gök gürültülü fırtına **das Gewitter** olur."
     },
     {
@@ -444,7 +447,7 @@
     {
      "de": "Ich freue mich auf Ihre ___.",
      "answer": "Antwort",
-     "tr": "Cevabınızı bekliyorum.",
+     "tr": "Cevabınızı memnuniyetle bekliyorum.",
      "hint_tr": "E-postanın son cümlesi: **auf Ihre Antwort**.",
      "also_ok": [
       "Rückmeldung"
@@ -555,13 +558,19 @@
      "de": "Ich habe den Fehler schon ___.",
      "answer": "korrigiert",
      "tr": "Hatayı çoktan düzelttim.",
-     "hint_tr": "Geçmişte **korrigiert** olur, başında **ge** yok."
+     "hint_tr": "Geçmişte **korrigiert** olur, başında **ge** yok.",
+     "also_ok": [
+      "verbessert"
+     ]
     },
     {
      "de": "Du darfst mich gern ___.",
      "answer": "korrigieren",
      "tr": "Beni rahatça düzeltebilirsin.",
-     "hint_tr": "**darfst** ile **korrigieren** sona gelir."
+     "hint_tr": "**darfst** ile **korrigieren** sona gelir.",
+     "also_ok": [
+      "verbessern"
+     ]
     },
     {
      "de": "Ich möchte meine Adresse ___.",
@@ -719,7 +728,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Zahmet etmeyin derken **Machen Sie keine Mühe** yanlış, **sich** eksik. Doğrusu **Machen Sie sich keine Mühe.**",
-    "Çok uğraştım derken **mir** unutulmaz: **Ich habe mir viel Mühe gegeben.**"
+    "Çok uğraştım derken **Ich habe viel Mühe gegeben** eksik. Doğrusu **Ich habe mir viel Mühe gegeben.**"
    ],
    "examples": [
     {
@@ -800,7 +809,7 @@
   {
    "id": "lx:hochladen",
    "de": "hochladen",
-   "tr": "internete koymak, siteye göndermek",
+   "tr": "(dosyayı siteye) yükleyip göndermek",
    "pos": "verb",
    "verb": {
     "praesens3": "lädt hoch",
@@ -866,7 +875,7 @@
     {
      "id": "lx:hochladen:5",
      "de": "– Hast du den Lebenslauf schon hochgeladen? – Ja, aber das hat ewig gedauert.",
-     "tr": "– Özgeçmişi yükledin mi? – Evet, ama bir ömür sürdü.",
+     "tr": "– Özgeçmişi yükledin mi? – Evet, ama bitmek bilmedi.",
      "layer": "alltag",
      "dialog": true
     }
@@ -970,8 +979,8 @@
     },
     {
      "id": "lx:baldig:5",
-     "de": "– Klingt „baldige Antwort“ nicht komisch? – Nee, in einer Mail an ein Amt passt das gut.",
-     "tr": "– «baldige Antwort» tuhaf durmuyor mu? – Yok, resmî bir daireye yazılan mailde gayet uyar.",
+     "de": "– Hat die Firma schon geantwortet? – Nee. Ich hab sogar um baldige Antwort gebeten, aber nix.",
+     "tr": "– Şirket cevap verdi mi? – Yok. Hatta en kısa zamanda cevap rica etmiştim, ama hiçbir şey yok.",
      "layer": "alltag",
      "dialog": true
     }
@@ -1039,7 +1048,7 @@
     },
     {
      "de": "die Abwesenheitsnotiz",
-     "tr": "otomatik yokum cevabı"
+     "tr": "yokum diyen otomatik cevap"
     }
    ],
    "patterns": [
@@ -1055,7 +1064,7 @@
     {
      "id": "lx:Abwesenheit:1",
      "de": "Während meiner Abwesenheit kontaktieren Sie bitte Frau Aksoy.",
-     "tr": "Ben yokken lütfen Aksoy Hanım'a ulaşın.",
+     "tr": "Ben yokken lütfen Frau Aksoy'a ulaşın.",
      "layer": "hd"
     },
     {
@@ -1067,13 +1076,13 @@
     {
      "id": "lx:Abwesenheit:3",
      "de": "Der Chef ist im Urlaub, ich hab nur seine Abwesenheitsnotiz gekriegt.",
-     "tr": "Şef izinde, ben sadece otomatik «yokum» cevabını aldım.",
+     "tr": "Şef izinde, ben sadece otomatik cevabını aldım.",
      "layer": "alltag"
     },
     {
      "id": "lx:Abwesenheit:4",
      "de": "– Wer hilft mir in Ihrer Abwesenheit? – Frau Aksoy, sie kennt alle Unterlagen.",
-     "tr": "– Siz yokken bana kim yardım eder? – Aksoy Hanım, bütün belgeleri biliyor.",
+     "tr": "– Siz yokken bana kim yardım eder? – Frau Aksoy, bütün belgeleri biliyor.",
      "layer": "hd",
      "dialog": true
     },
@@ -1102,7 +1111,7 @@
     {
      "de": "Während meiner ___ kontaktieren Sie bitte Frau Aksoy.",
      "answer": "Abwesenheit",
-     "tr": "Ben yokken lütfen Aksoy Hanım'a ulaşın.",
+     "tr": "Ben yokken lütfen Frau Aksoy'a ulaşın.",
      "hint_tr": "Yokluk **die Abwesenheit** olur."
     },
     {
@@ -1153,7 +1162,7 @@
    "register": "formal",
    "mistakes_tr": [
     "Türkçede rahatsızlık hastalık da demektir. Bu sözcük hastalık için kullanılmaz.",
-    "**Entschuldigen Sie** ile **für** gelmez. Doğrusu **Entschuldigen Sie die Unannehmlichkeiten.**"
+    "**Entschuldigen Sie für die Unannehmlichkeiten** yanlış. Doğrusu **Entschuldigen Sie die Unannehmlichkeiten.**"
    ],
    "examples": [
     {
@@ -1208,7 +1217,8 @@
      "tr": "Verdiğim rahatsızlık için lütfen kusura bakmayın.",
      "hint_tr": "Özürde **die Unannehmlichkeiten** denir.",
      "also_ok": [
-      "Unannehmlichkeit"
+      "Unannehmlichkeit",
+      "Störung"
      ]
     },
     {
@@ -1221,7 +1231,10 @@
      "de": "Wir bitten um Entschuldigung für die ___.",
      "answer": "Unannehmlichkeiten",
      "tr": "Yaşanan aksaklık için özür dileriz.",
-     "hint_tr": "Anonslarda sık: **für die Unannehmlichkeiten**."
+     "hint_tr": "Anonslarda sık: **für die Unannehmlichkeiten**.",
+     "also_ok": [
+      "Störung"
+     ]
     },
     {
      "de": "___ Sie die Unannehmlichkeiten.",
@@ -1412,7 +1425,7 @@
     "anlam_tr": "Birinin iyi yapamadığı ya da geliştirmesi gereken yanını anlatır.",
     "ne_zaman_tr": "İş görüşmesinde kendini dürüstçe anlatırken.",
     "parcalar": [],
-    "ipucu_tr": "Bir zayıf yön söyle ve ne yaptığını ekle."
+    "ipucu_tr": "Görüşmede çoğu zaman ikisi birlikte sorulur: **Stärken und Schwächen**."
    },
    "forms": [
     {
@@ -1470,7 +1483,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Sorumluluk almak derken **Verantwortung nehmen** yanlış. Doğrusu **Verantwortung übernehmen.**",
-    "Neyin sorumluluğu olduğunu söylerken **für** gelir: **die Verantwortung für die Kasse**."
+    "Kasanın sorumluluğu derken **die Verantwortung von der Kasse** olmaz. Doğrusu **die Verantwortung für die Kasse**."
    ],
    "examples": [
     {
@@ -1815,7 +1828,7 @@
     {
      "id": "lx:Mitarbeiter:5",
      "de": "– Kennst du die neue Mitarbeiterin? – Ja, kurz. Sie ist echt nett.",
-     "tr": "– Yeni çalışanı tanıyor musun? – Evet, biraz. Çok tatlı biri.",
+     "tr": "– Yeni çalışanı tanıyor musun? – Evet, biraz. Gerçekten iyi biri.",
      "layer": "alltag",
      "dialog": true
     }
@@ -1836,7 +1849,7 @@
      },
      {
       "de": "Arbeiter",
-      "tr": "çalışan"
+      "tr": "işçi"
      }
     ],
     "ipucu_tr": "Kadın çalışan için **die Mitarbeiterin** dersin."
@@ -2008,7 +2021,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Türkçede bilgi hem haber hem beceridir. Beceri için **Informationen** değil **Kenntnisse** denir.",
-    "Dil ve bilgisayar için hep **Kenntnisse** duyarsın: **gute Deutschkenntnisse**."
+    "Almanca bilgim iyi derken **eine gute Deutschkenntnis** denmez. Hep **gute Deutschkenntnisse** denir."
    ],
    "examples": [
     {
@@ -2061,13 +2074,19 @@
      "de": "Für die Stelle brauchen Sie gute ___.",
      "answer": "Computerkenntnisse",
      "tr": "Bu iş için iyi bilgisayar bilgisi gerekiyor.",
-     "hint_tr": "Bilgisayar bilgisi **Computerkenntnisse** olur."
+     "hint_tr": "Bilgisayar bilgisi **Computerkenntnisse** olur.",
+     "also_ok": [
+      "PC-Kenntnisse"
+     ]
     },
     {
      "de": "Meine ___ werden jeden Tag besser.",
      "answer": "Deutschkenntnisse",
      "tr": "Almancam her gün daha iyi oluyor.",
-     "hint_tr": "Almanca bilgisi **Deutschkenntnisse** olur."
+     "hint_tr": "Almanca bilgisi **Deutschkenntnisse** olur.",
+     "also_ok": [
+      "Sprachkenntnisse"
+     ]
     },
     {
      "de": "Welche ___ haben Sie?",
@@ -2078,7 +2097,7 @@
     {
      "de": "Ich habe gute ___ in Deutsch.",
      "answer": "Kenntnisse",
-     "tr": "Almancada iyi bilgim var.",
+     "tr": "Almanca bilgim iyi.",
      "hint_tr": "Bilgi **die Kenntnisse** ile söylenir."
     }
    ]
@@ -2161,7 +2180,7 @@
      },
      {
       "de": "ständig",
-      "tr": "sürekli"
+      "tr": "duran"
      }
     ],
     "ipucu_tr": "**sich selbstständig machen** kendi işini kurmaktır."
@@ -2282,7 +2301,7 @@
       "tr": "yapabilen"
      }
     ],
-    "ipucu_tr": "Ardından küçük bir örnek ver: **Ich helfe gern im Team.**"
+    "ipucu_tr": "**Ich bin teamfähig** dedikten sonra bir örnek ekle: **Ich helfe gern im Team.**"
    },
    "forms": [
     {
@@ -2338,8 +2357,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Beklentiyi **warten** ile kurma. **Gehaltswarten** diye bir şey yok, **Gehaltsvorstellung** denir.",
-    "Rakamı söylerken **brutto** mu **netto** mu olduğunu da söyle."
+    "Maaş beklentisi derken **Gehalt Vorstellung** ayrı yazılmaz. Araya **s** girer: **Gehaltsvorstellung**.",
+    "**Meine Gehaltsvorstellung liegt in 2.800 Euro** yanlış. Doğrusu **liegt bei 2.800 Euro**."
    ],
    "examples": [
     {
@@ -2362,8 +2381,8 @@
     },
     {
      "id": "lx:Gehaltsvorstellung:4",
-     "de": "– Haben Sie eine Gehaltsvorstellung? – Ja, etwa 2.600 Euro brutto.",
-     "tr": "– Bir maaş beklentiniz var mı? – Evet, brüt yaklaşık 2.600 avro.",
+     "de": "– Haben Sie eine Gehaltsvorstellung? – Ja, sie steht auch in meiner Bewerbung.",
+     "tr": "– Bir maaş beklentiniz var mı? – Evet, başvurumda da yazıyor.",
      "layer": "hd",
      "dialog": true
     },
@@ -2393,7 +2412,7 @@
       "tr": "düşünce, beklenti"
      }
     ],
-    "ipucu_tr": "Rakamla cevap ver ve **brutto** ekle."
+    "ipucu_tr": "Rakamdan sonra **brutto** dersen kesintilerden önceki parayı söylersin."
    },
    "forms": [
     {
@@ -2402,8 +2421,7 @@
      "tr": "Maaş beklentiniz nedir?",
      "hint_tr": "Maaş beklentisi **die Gehaltsvorstellung** olur.",
      "also_ok": [
-      "Gehaltserwartung",
-      "Gehaltswunsch"
+      "Gehaltserwartung"
      ]
     },
     {
@@ -2412,8 +2430,7 @@
      "tr": "Maaş beklentim brüt 2.800 avro civarında.",
      "hint_tr": "Maaş beklentisi **die Gehaltsvorstellung** olur.",
      "also_ok": [
-      "Gehaltserwartung",
-      "Gehaltswunsch"
+      "Gehaltserwartung"
      ]
     },
     {
@@ -2422,8 +2439,7 @@
      "tr": "Bir maaş beklentiniz var mı?",
      "hint_tr": "Maaş beklentisi **die Gehaltsvorstellung** olur.",
      "also_ok": [
-      "Gehaltserwartung",
-      "Gehaltswunsch"
+      "Gehaltserwartung"
      ]
     },
     {
@@ -2615,7 +2631,7 @@
     "anlam_tr": "Bir şeyi iyi yapabilme gücünü, becerini anlatır.",
     "ne_zaman_tr": "İş görüşmesinde ne yapabildiğini anlatırken.",
     "parcalar": [],
-    "ipucu_tr": "Görüşmede bir örnekle anlat: **Ich bleibe ruhig, auch wenn viel los ist.**"
+    "ipucu_tr": "Görüşmede çoğu zaman şöyle sorulur: **Welche Fähigkeiten haben Sie?**"
    },
    "forms": [
     {
@@ -2742,7 +2758,10 @@
      "de": "Ich bin sehr ___ und pünktlich.",
      "answer": "sorgfältig",
      "tr": "Çok özenli ve dakik biriyim.",
-     "hint_tr": "Özenli **sorgfältig** olur."
+     "hint_tr": "Özenli **sorgfältig** olur.",
+     "also_ok": [
+      "genau"
+     ]
     },
     {
      "de": "Mach das lieber ___, sonst musst du's nochmal machen.",
