@@ -129,6 +129,9 @@ def main():
                         check(g == [gun1["day"]], f"{m}: soğuk açılışta (yeniden yükleme) kilitli gün bir an bile çizilmez (görülen: {g})")
                     git("radyo", "[data-test=m1-gun-1]", "[data-test=m1-gun]"); check(True, "Radyo → gün sayfası (eski 'İlk Hafta' girişi; 2 dokunuş)")
                     git("atolye", bekle="[data-test=kalip-liste]"); check(pg.evaluate("location.hash") == "#/kalip", "Atölye → Kalıplar (1 dokunuş)")
+                    BASLIK = "(() => { const h = document.querySelector('main h1'); const r = h.getBoundingClientRect(); const cs = getComputedStyle(h); return [Math.round(r.left), Math.round(r.top), cs.fontSize, cs.fontWeight]; })()"
+                    kb = pg.evaluate(BASLIK); git("sinema", bekle="[data-test=mekan-sinema] [data-test^=kayit-]"); sb = pg.evaluate(BASLIK)
+                    check(kb == sb, f"Kalıplar başlığı mekân sayfalarıyla aynı ölçü ve hizada (Kalıplar {kb}, Sinema {sb}; #200 PM finali takip c)")
                     git("kutuphane", "[data-test=sozluk-ac]", "[data-test=sozluk-q]"); check(True, "Kütüphane → Sözlük (2 dokunuş)")
                     git("kutuphane", "[data-test=temel-ders]", "[data-test=ders], [data-test=ders-diyalog]"); check(True, "Kütüphane → temel ders (2 dokunuş)")
                     git("kutuphane", bekle="[data-test=temel-liste]")

@@ -12,7 +12,7 @@ import { DONUSUM_SIRA, DONUSUM_TR, kalipSirasi, ornekteGecer } from "../core/kal
 import { ListenButton, ProgressHeader } from "../ui/kit.tsx";
 import { yerelAcikla } from "../core/sozluk.ts";
 import { Icon } from "../ui/icons.tsx";
-import { ErrorPanel, Loading } from "../ui/components.tsx";
+import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 import { Rich } from "../ui/rich.tsx";
 import { ayracBagla } from "../core/ayrac.ts";
 
@@ -34,7 +34,7 @@ const geriAdres = () => { try { return sessionStorage.getItem(KALIP_GERI) || "#/
 
 export function KalipEkrani({ id }: { id?: string }) {
   const { ps, lex, err } = useKaliplar();
-  if (err) return <div class="stack"><ProgressHeader title="Kalıplar" back="#/koy" /><ErrorPanel message={err} onRetry={() => location.reload()} /></div>;
+  if (err) return <div class="stack koy-sayfa"><TopBar title="Kalıplar" back="#/koy" /><ErrorPanel message={err} onRetry={() => location.reload()} /></div>;
   if (!ps) return <Loading />;
   if (!id) return <KalipListesi ps={ps} />;
   const p = ps.find((x) => x.id === id);
@@ -44,8 +44,9 @@ export function KalipEkrani({ id }: { id?: string }) {
 
 function KalipListesi({ ps }: { ps: Pattern[] }) {
   return (
-    <div class="stack" data-test="kalip-liste">
-      <ProgressHeader title="Kalıplar" back="#/koy" />
+    // Atölye'nin açtığı sayfa mekân sayfalarıyla aynı başlık ölçüsü ve hizasında (#200 PM finali takip c)
+    <div class="stack koy-sayfa" data-test="kalip-liste">
+      <TopBar title="Kalıplar" back="#/koy" />
       <p class="small muted">Cümle kurmanın kalıpları: kuralı, örnekleri, boşluğa ne gelir, başka biçimleri.</p>
       <ul class="list card">{kalipSirasi(ps).map((p) => (
         <li key={p.id}><a href={`#/kalip/${encodeURIComponent(p.id)}`} onClick={() => { try { sessionStorage.removeItem(KALIP_GERI); } catch { /* yok */ } }} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }} data-test="kalip-satir">

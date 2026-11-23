@@ -111,7 +111,8 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | AKIS AK-10 3. adım: `resimden_sec`, `eslestir` (TARGET3b 3–4) | `v2/halka-turleri` | PR #183: çekirdek + bileşenler + e2e (`v2_halka_tur.py`); yalnız e2e'de `#/__halka-turleri`; görülen fotoğraf servis işçisi önbelleğinde (`dw2-foto`); ekrana bağlanması #184 |
 | Ses: kabukta yavaş kademeleri duraklarla, hız ölçümü (gecikme + üç kademe), üst güvenli alan şeridi (PM 7061304527, 7061337043) | `v2/ses-olcum` | PR #194: 1. tur DEĞİŞİKLİK GEREKLİ (7063836097) → P1-1 taşma, P1-2 kabukta karar/uyarı, P1-3 STATUS düzeltildi; fark doğrulaması |
 | Hedef 3 · Ben: Ne kazandım, kanıttan noktalar, bu hafta, Çalışma düzenim (eski İlerlemem, sıfırsız) (PM-084 md. 5; hat B, ANA-B2) | `v2/ben` (#200 üstünde) | PR açık, inceleme 1. tur. İmza: ANA-B2 |
-| Köy takip a + Ben takip d: Sinema ve Radyo yalnız açılmış günleri listeler; "rafı bağla" Medya rafı kartına iner (#200 ve #208 PM finalleri; hat B, ANA-B3) | `v2/sinema-acik-gun` (#208 üstünde) | PR açık, inceleme bekliyor. İmza: ANA-B3 |
+| Köy takip a + Ben takip d: Sinema ve Radyo yalnız açılmış günleri listeler; "rafı bağla" Medya rafı kartına iner (#200 ve #208 PM finalleri; hat B, ANA-B3) | `v2/sinema-acik-gun` (#208 üstünde) | PR #224, inceleme ONAY, PM finali bekliyor. İmza: ANA-B3 |
+| Köy takip c: Atölye'nin açtığı Kalıplar başlığı mekân sayfalarıyla aynı ölçü/hizada (#200 PM finali; hat B, ANA-B3) | `v2/kalip-baslik` (#224 üstünde) | PR açık. İmza: ANA-B3 |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-20
 | Seviye | Kelime kartı | Kalıp | Senaryo (tam) | Mini senaryo | Diyalog grafiği | Okuma | Dinleme | Haber | Madde bankası |
