@@ -5,7 +5,7 @@
   "level": "A1",
   "format": "gun",
   "title_tr": "Arkadaşa öğüt",
-  "goal_tr": "Tobi gripli. Ona telefonda öğüt verirsin, onun için yemek yapmayı önerirsin, sensiz ve senin için gibi sözleri kullanırsın.",
+  "goal_tr": "Tobi gripli. Ona telefonda öğüt verir, onun için yemek yapmayı önerirsin. **ohne dich** (sensiz) ve **für dich** (senin için) dersin.",
   "can_do": { "id": "cd:m1:48", "tr": "Hasta bir arkadaşa öğüt veririm." },
   "unit": "u:m1:48",
   "arm": "pazar",
@@ -148,7 +148,7 @@
           "situation_tr": "Tobi sana da soruyor: Ne yapayım? Ona iki öğüt ver.",
           "prompt_de": "Und du? Was soll ich machen?",
           "accepted": ["Trink viel Wasser und schlaf viel!", "Bleib im Bett und trink viel Wasser!", "Schlaf viel und geh zum Arzt!", "Trink viel Wasser! Bleib im Bett!", "Nimm eine Tablette und schlaf viel!"],
-          "why_tr": "Arkadaşa öğütte fiil başa gelir ve **du** söylenmez: **Trink**, **Schlaf**, **Bleib**."
+          "why_tr": "Arkadaşa öğütte **Trink**, **Schlaf**, **Bleib** öne gelir. **du** söylenmez."
         }
       }
     ]
@@ -359,7 +359,7 @@
       ],
       "kontrol_tr": [
         "**Gute Besserung** yazdın mı?",
-        "Öğütlerde fiil başta mı, **du** yok mu? Örnek: **Trink**, **Bleib**.",
+        "Öğütler **Trink**, **Bleib** gibi başlıyor mu, **du** yok mu?",
         "**für dich** ile onun için ne yapacağını yazdın mı?"
       ]
     }
@@ -376,7 +376,7 @@
       { "id": "m1:48:s4", "k": "listen_and_respond", "audio_de": "Ich vermisse meine Familie.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
         "accepted": ["Ich vermisse meine Familie.", "ich vermisse meine familie", "Ich vermisse meine Familie"], "why_tr": "**vermissen** özlemek demektir." },
       { "id": "m1:48:s5", "k": "tr_de", "tr": "Yatakta kal ve bol uyu!",
-        "accepted": ["Bleib im Bett und schlaf viel!", "Bleib im Bett und schlaf viel.", "Schlaf viel und bleib im Bett!"], "why_tr": "Arkadaşa öğütte fiil başa gelir: **Bleib**, **schlaf**." },
+        "accepted": ["Bleib im Bett und schlaf viel!", "Bleib im Bett und schlaf viel.", "Schlaf viel und bleib im Bett!"], "why_tr": "Arkadaşa öğütte **Bleib** ve **schlaf** öne gelir." },
       { "id": "m1:48:s6", "k": "tr_de", "tr": "Seni özlüyoruz.",
         "accepted": ["Wir vermissen dich.", "Wir vermissen dich!", "Wir vermissen dich, Tobi."], "why_tr": "Özlenen kişi **dich** olur." },
       { "id": "m1:48:s7", "k": "tr_de", "tr": "Bensiz gitme!",
@@ -384,7 +384,7 @@
       { "id": "m1:48:s8", "k": "tr_de", "tr": "Onun (erkek) kız arkadaşıyla tanışmak istiyorum.",
         "accepted": ["Ich möchte seine Freundin kennenlernen.", "Ich will seine Freundin kennenlernen.", "Seine Freundin möchte ich kennenlernen."], "why_tr": "Erkeğin kız arkadaşı için **seine Freundin** dersin. **kennenlernen** sona gelir." },
       { "id": "m1:48:s9", "k": "guided_response", "situation_tr": "Tobi telefonda başının çok ağrıdığını söylüyor. Ona iki öğüt ver.", "prompt_de": "Mein Kopf tut so weh!",
-        "accepted": ["Nimm eine Tablette und schlaf viel!", "Geh zum Arzt und bleib im Bett!", "Nimm eine Tablette! Trink viel Wasser!", "Bleib im Bett und nimm eine Tablette!", "Trink viel Wasser und geh zum Arzt!"], "why_tr": "Öğüt verirken fiil başa gelir: **Nimm eine Tablette!**" },
+        "accepted": ["Nimm eine Tablette und schlaf viel!", "Geh zum Arzt und bleib im Bett!", "Nimm eine Tablette! Trink viel Wasser!", "Bleib im Bett und nimm eine Tablette!", "Trink viel Wasser und geh zum Arzt!"], "why_tr": "Öğüt **Nimm**, **Geh** gibi bir kelimeyle başlar: **Nimm eine Tablette!**" },
       { "id": "m1:48:s10", "k": "guided_response", "situation_tr": "Derya soruyor: cumartesi buluşalım mı? Sana uyduğunu söyle.", "prompt_de": "Treffen wir uns am Samstag?",
         "accepted": ["Ja, Samstag passt mir.", "Ja, am Samstag passt es mir.", "Ja, Samstag passt.", "Ja, wir treffen uns am Samstag.", "Klar, Samstag passt mir gut."], "why_tr": "Uyduğunu **passt mir** ile söylersin." },
       { "id": "m1:48:s11", "k": "guided_response", "situation_tr": "Tobi gripli, seni arıyor. Ona öğüt ver ve onun için yemek yapacağını söyle.", "prompt_de": "Ich bin krank und kann nicht kochen.",
