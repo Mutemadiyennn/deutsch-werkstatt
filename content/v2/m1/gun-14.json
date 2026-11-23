@@ -29,7 +29,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/halka/h2-dilbilimci-2.md; dilbilimci turu KAPANDI. Okur (OD-9) ve örneklem kontrolünden sonra reviewed olur."
  },
  "dersler": [],
  "yeni_kartlar": [
@@ -89,7 +92,8 @@
       "Gibst du mir mal die Tüte?",
       "Gibst du mir bitte die Tüte?",
       "Gibst du mir mal bitte die Tüte?",
-      "Gibst du mir die Tüte?"
+      "Gibst du mir die Tüte?",
+      "Kannst du mir mal die Tüte geben?"
      ]
     },
     {
@@ -111,7 +115,9 @@
       "Ich möchte auch eine Semmel.",
       "Ich möchte auch eine Semmel, bitte.",
       "Ich hätte auch gern eine Semmel.",
-      "Ich möchte bitte auch eine Semmel."
+      "Ich möchte bitte auch eine Semmel.",
+      "Ich hätte auch gerne eine Semmel.",
+      "Ich hätte gern auch eine Semmel."
      ]
     },
     {
@@ -166,7 +172,8 @@
       "Frau Brandl kann nicht mehr so gut hören.",
       "Frau Brandl kann nicht mehr gut hören.",
       "Frau Brandl kann nicht mehr so gut hören!",
-      "Frau Brandl kann jetzt nicht mehr so gut hören."
+      "Frau Brandl kann jetzt nicht mehr so gut hören.",
+      "Frau Brandl hört nicht mehr so gut."
      ]
     },
     {
@@ -313,7 +320,7 @@
     "speaker": "ch:stadler",
     "sahne_tr": "Frau Stadler büyük pastayı gösteriyor.",
     "de": "Der Kuchen kostet zwölf Euro fünfzig.",
-    "tr": "Pasta on iki euro elli."
+    "tr": "Pasta on iki avro elli."
    },
    {
     "id": "s8",
@@ -327,7 +334,7 @@
     "speaker": "ch:stadler",
     "sahne_tr": "Frau Stadler küçük bir pastayı gösteriyor.",
     "de": "Der Kuchen hier kostet nur vier Euro.",
-    "tr": "Buradaki pasta yalnızca dört euro."
+    "tr": "Buradaki pasta yalnızca dört avro."
    },
    {
     "id": "s10",
@@ -341,7 +348,7 @@
     "speaker": "ch:stadler",
     "sahne_tr": "Frau Stadler kasaya bakıyor.",
     "de": "Das macht sieben Euro achtzig. Noch etwas?",
-    "tr": "Toplam yedi euro seksen. Başka bir şey?"
+    "tr": "Toplam yedi avro seksen. Başka bir şey?"
    },
    {
     "id": "s12",
@@ -402,7 +409,7 @@
     "ayrinti": [
      {
       "kind": "detail",
-      "q_tr": "Büyük pasta kaç euro?",
+      "q_tr": "Büyük pasta kaç avro?",
       "opts": [
        "On iki euro elli",
        "Dört euro",
@@ -888,9 +895,19 @@
        "Guten Tag, hier ist {name}. Ich hätte gern heute einen Termin.",
        "Guten Tag! Hier ist {name}. Haben Sie heute einen Termin frei?",
        "Guten Tag, Frau Huber. Hier ist {name}. Ich möchte heute einen Termin.",
-       "Guten Tag, hier ist {name}. Geht heute ein Termin?"
+       "Guten Tag, hier ist {name}. Geht heute ein Termin?",
+       "Guten Tag, Frau Huber! Hier ist {name}. Ich hätte gern einen Termin für heute.",
+       "Guten Tag, hier ist {name}. Ich hätte heute gern einen Termin.",
+       "Guten Tag, hier ist {name}. Ich hätte gerne heute einen Termin."
       ],
-      "why_tr": "Telefonda önce adını söyle. Sonra **Ich hätte gern einen Termin** de."
+      "why_tr": "Telefonda önce selam ver. Sonra **Ich hätte gern einen Termin** de.",
+      "accepted_adsiz": [
+       "Guten Tag, Frau Huber! Ich hätte gern heute einen Termin.",
+       "Guten Tag! Ich hätte gern einen Termin für heute.",
+       "Guten Tag! Ich hätte heute gern einen Termin.",
+       "Guten Tag! Haben Sie heute einen Termin frei?",
+       "Guten Tag, Frau Huber. Ich möchte heute einen Termin."
+      ]
      }
     }
    ],
@@ -1047,20 +1064,20 @@
        "Das ist alles, danke.",
        "Nein, danke, das ist alles."
       ],
-      "sonraki": "n4",
-      "uygun": true,
-      "geri_bildirim_tr": "Olur. Ama bugün pasta da almak istiyordun."
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Cümle doğru. Ama bugün pasta da alacaktın. Şimdi pastayı sor."
      }
     ]
    },
    {
     "id": "n3",
     "de": "Der Kuchen hier kostet zwölf Euro. Der da nur vier Euro.",
-    "tr": "Buradaki pasta on iki euro. Şuradaki yalnızca dört euro.",
+    "tr": "Buradaki pasta on iki avro. Şuradaki yalnızca dört avro.",
     "secenekler": [
      {
       "de": "Zwölf Euro? Das ist zu teuer. Ich hätte gern den Kuchen für vier Euro.",
-      "tr": "On iki euro mu? Bu fazla pahalı. Dört euroluk pastayı rica ediyorum.",
+      "tr": "On iki avro mu? Bu fazla pahalı. Dört avroluk pastayı rica ediyorum.",
       "accepted": [
        "Zwölf Euro? Das ist zu teuer. Ich hätte gern den Kuchen für vier Euro.",
        "Zwölf Euro ist zu teuer. Ich hätte gern den Kuchen für vier Euro.",
@@ -1073,7 +1090,7 @@
      },
      {
       "de": "Ich denke, der Kuchen für vier Euro ist gut.",
-      "tr": "Bence dört euroluk pasta iyi.",
+      "tr": "Bence dört avroluk pasta iyi.",
       "accepted": [
        "Ich denke, der Kuchen für vier Euro ist gut.",
        "Ich denke, der für vier Euro ist gut.",
@@ -1102,11 +1119,11 @@
    {
     "id": "n4",
     "de": "Das macht sieben Euro achtzig. Bar oder mit Karte?",
-    "tr": "Toplam yedi euro seksen. Nakit mi, kartla mı?",
+    "tr": "Toplam yedi avro seksen. Nakit mi, kartla mı?",
     "secenekler": [
      {
       "de": "Bar, bitte. Hier sind zehn Euro.",
-      "tr": "Nakit, lütfen. Buyurun on euro.",
+      "tr": "Nakit, lütfen. Buyurun on avro.",
       "accepted": [
        "Bar, bitte. Hier sind zehn Euro.",
        "Bar. Hier sind zehn Euro.",
@@ -1148,7 +1165,7 @@
    {
     "id": "n4b",
     "de": "Sieben Euro achtzig! Bar oder mit Karte?",
-    "tr": "Yedi euro seksen! Nakit mi, kartla mı?",
+    "tr": "Yedi avro seksen! Nakit mi, kartla mı?",
     "secenekler": [
      {
       "de": "Ach so! Bar, bitte.",
@@ -1223,8 +1240,8 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Fırının kapısındaki not",
-  "metin_de": "Heute ist Sonntag. Wir haben von acht bis elf Uhr offen. Eine Semmel kostet fünfzig Cent. Ein Brot kostet drei Euro zwanzig. Der Kuchen kostet heute nur zehn Euro. Kuchen gibt es nur bis zehn Uhr.",
-  "metin_tr": "Bugün pazar. Sekizden on bire kadar açığız. Bir küçük ekmek elli sent. Bir ekmek üç euro yirmi. Pasta bugün yalnızca on euro. Pasta yalnızca saat ona kadar var.",
+  "metin_de": "Heute ist Sonntag. Wir haben von acht bis elf Uhr offen. Eine Semmel kostet sechzig Cent. Ein Brot kostet drei Euro neunzig. Der Kuchen kostet heute nur zehn Euro. Kuchen gibt es nur bis zehn Uhr.",
+  "metin_tr": "Bugün pazar. Sekizden on bire kadar açığız. Bir küçük ekmek altmış sent. Bir ekmek üç avro doksan. Pasta bugün yalnızca on avro. Pasta yalnızca saat ona kadar var.",
   "sorular": [
    {
     "id": "m1:14:o1",
@@ -1246,8 +1263,8 @@
     "kind": "detail",
     "q_tr": "Bir küçük ekmek ne kadar?",
     "opts": [
-     "Elli sent",
-     "Bir euro",
+     "Altmış sent",
+     "Bir avro",
      "Yirmi sent"
     ],
     "ans": 0,
@@ -1285,8 +1302,8 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Derya'ya kısa bir mesaj yaz. Fırından on küçük ekmek aldın. Toplam beş euro tuttu.",
-   "ornek_de": "Hallo Derya! Ich habe zehn Semmeln. Das macht fünf Euro.",
+   "gorev_tr": "Derya'ya kısa bir mesaj yaz. Fırından on küçük ekmek aldın. Toplam altı avro tuttu.",
+   "ornek_de": "Hallo Derya! Ich habe zehn Semmeln. Das macht sechs Euro.",
    "zorunlu": [
     "Semmeln",
     "Euro"
@@ -1298,7 +1315,7 @@
    ],
    "kontrol_tr": [
     "Selamla başladın mı?",
-    "Çoğulu **Semmeln** diye yazdın mı?",
+    "Birden çok küçük ekmeği **Semmeln** diye yazdın mı?",
     "Fiyatı **Das macht** ile yazdın mı?"
    ]
   }
@@ -1366,7 +1383,9 @@
      "Ich möchte auch eine Semmel.",
      "Ich hätte auch gern eine Semmel.",
      "Ich möchte auch eine Semmel, bitte.",
-     "Ich hätte gern auch eine Semmel."
+     "Ich hätte gern auch eine Semmel.",
+     "Ich hätte auch gerne eine Semmel.",
+     "Ich hätte gerne auch eine Semmel."
     ],
     "why_tr": "Ben de derken **auch** fiilden sonra gelir: **Ich möchte auch …**"
    },
@@ -1377,7 +1396,9 @@
     "accepted": [
      "Ich denke schon.",
      "Ich denke, ja.",
-     "Ich denke schon!"
+     "Ich denke schon!",
+     "Ich glaube schon.",
+     "Ja, ich denke schon."
     ],
     "why_tr": "Kısa onay: **Ich denke schon.**"
    },
@@ -1391,7 +1412,7 @@
      "Bitte geben Sie mir zwei Brote.",
      "Zwei Brote, bitte."
     ],
-    "why_tr": "**Brot** çoğulda **Brote** olur."
+    "why_tr": "Birden çok ekmek için **Brote** dersin: **zwei Brote**."
    },
    {
     "id": "m1:14:s8",
@@ -1400,7 +1421,9 @@
     "accepted": [
      "Ich habe auch keine Zeit.",
      "Ich hab auch keine Zeit.",
-     "Auch ich habe keine Zeit."
+     "Auch ich habe keine Zeit.",
+     "Ich habe leider auch keine Zeit.",
+     "Ich hab leider auch keine Zeit."
     ],
     "why_tr": "Vakit yok derken **keine Zeit** dersin."
    },
@@ -1423,14 +1446,14 @@
     "k": "listen_and_respond",
     "audio_de": "Was kostet das Brot heute?",
     "speed": "normal",
-    "situation_tr": "Fırında bir müşteri sana soruyor. Notta ekmek üç euro yirmi yazıyor.",
+    "situation_tr": "Fırında bir müşteri sana soruyor. Notta ekmek üç avro doksan yazıyor.",
     "accepted": [
-     "Drei Euro zwanzig.",
-     "Das Brot kostet drei Euro zwanzig.",
-     "Es kostet drei Euro zwanzig.",
-     "Heute drei Euro zwanzig."
+     "Drei Euro neunzig.",
+     "Das Brot kostet drei Euro neunzig.",
+     "Es kostet drei Euro neunzig.",
+     "Heute drei Euro neunzig."
     ],
-    "why_tr": "Fiyatı söylerken virgül okunmaz: **drei Euro zwanzig**."
+    "why_tr": "Fiyatı söylerken virgül okunmaz: **drei Euro neunzig**."
    },
    {
     "id": "m1:14:s11",
@@ -1442,7 +1465,9 @@
      "Guten Tag! Einen Kuchen, bitte. Was kostet der?",
      "Guten Tag! Geben Sie mir bitte einen Kuchen. Was kostet das?",
      "Guten Tag, ich hätte gern einen Kuchen. Was kostet er?",
-     "Guten Tag! Ich möchte einen Kuchen. Wie viel kostet der Kuchen?"
+     "Guten Tag! Ich möchte einen Kuchen. Wie viel kostet der Kuchen?",
+     "Guten Tag! Ich hätte gerne einen Kuchen. Was kostet der Kuchen?",
+     "Guten Tag! Ich hätte gern einen Kuchen. Was kostet der?"
     ],
     "why_tr": "Önce selam, sonra istek: **einen Kuchen**. Fiyat için **Was kostet …?**"
    }

@@ -31,7 +31,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/halka/h2-dilbilimci-2.md; dilbilimci turu KAPANDI. Okur (OD-9) ve örneklem kontrolünden sonra reviewed olur."
  },
  "dersler": [
   "gr:a1-12:t2",
@@ -113,18 +116,19 @@
     {
      "kart": "lx:zu#2",
      "de": "Ich hätte gern einen Kuchen, aber sechzig Euro sind zu viel.",
-     "tr": "Bir pasta istiyorum ama altmış euro fazla.",
+     "tr": "Bir pasta istiyorum ama altmış avro fazla.",
      "accepted": [
       "Ich hätte gern einen Kuchen, aber sechzig Euro sind zu viel.",
       "Ich hätte gern einen Kuchen, aber sechzig Euro ist zu viel.",
       "Ich hätte gerne einen Kuchen, aber sechzig Euro sind zu viel.",
-      "Ich möchte einen Kuchen, aber sechzig Euro sind zu viel."
+      "Ich möchte einen Kuchen, aber sechzig Euro sind zu viel.",
+      "Ich hätte gern einen Kuchen, aber sechzig Euro sind zu teuer."
      ]
     },
     {
      "kart": "lx:zu#2",
      "de": "Guten Tag! Haben Sie keinen Termin am Vormittag? Vier Uhr ist zu spät.",
-     "tr": "İyi günler! Öğleden önce randevunuz yok mu? Saat dört çok geç.",
+     "tr": "İyi günler! Öğleden önce randevunuz yok mu? Saat dört fazla geç.",
      "accepted": [
       "Guten Tag! Haben Sie keinen Termin am Vormittag? Vier Uhr ist zu spät.",
       "Guten Tag! Haben Sie keinen Termin am Vormittag? Um vier ist zu spät.",
@@ -179,12 +183,13 @@
     {
      "kart": "lx:so",
      "de": "Ich hätte gern einen Termin, aber nicht so früh.",
-     "tr": "Bir randevu rica ediyorum ama o kadar erken değil.",
+     "tr": "Bir randevu rica ediyorum ama o kadar erken olmasın.",
      "accepted": [
       "Ich hätte gern einen Termin, aber nicht so früh.",
       "Ich hätte gerne einen Termin, aber nicht so früh.",
       "Ich hätte gern einen Termin, aber bitte nicht so früh.",
-      "Ich möchte einen Termin, aber nicht so früh."
+      "Ich möchte einen Termin, aber nicht so früh.",
+      "Ich hätte gern einen Termin, aber nicht zu früh."
      ]
     },
     {
@@ -206,7 +211,9 @@
       "Ich möchte am Samstag schwimmen gehen.",
       "Am Samstag möchte ich schwimmen gehen.",
       "Ich möchte am Samstag schwimmen.",
-      "Ich will am Samstag schwimmen gehen."
+      "Ich will am Samstag schwimmen gehen.",
+      "Ich möchte am Samstag gern schwimmen gehen.",
+      "Am Samstag möchte ich schwimmen."
      ]
     },
     {
@@ -295,21 +302,21 @@
     "speaker": "ch:stadler",
     "sahne_tr": "Frau Stadler büyük, süslü bir pastayı gösteriyor.",
     "de": "Ach so! Der Kuchen hier kostet zweiunddreißig Euro.",
-    "tr": "Anladım! Buradaki pasta otuz iki euro."
+    "tr": "Anladım! Buradaki pasta otuz iki avro."
    },
    {
     "id": "s6",
     "speaker": "ch:aksoy",
     "sahne_tr": "Derya kaşlarını kaldırıyor.",
     "de": "Zweiunddreißig Euro? Das ist zu teuer.",
-    "tr": "Otuz iki euro mu? Bu fazla pahalı."
+    "tr": "Otuz iki avro mu? Bu fazla pahalı."
    },
    {
     "id": "s7",
     "speaker": "ch:stadler",
     "sahne_tr": "Frau Stadler daha sade bir elmalı pastayı gösteriyor.",
     "de": "Der Kuchen da kostet nur zwanzig Euro.",
-    "tr": "Şuradaki pasta yalnızca yirmi euro."
+    "tr": "Şuradaki pasta yalnızca yirmi avro."
    },
    {
     "id": "s8",
@@ -714,9 +721,18 @@
        "Guten Tag, hier ist {name}. Am Dienstag um Viertel nach zehn passt.",
        "Guten Tag! Hier ist {name}. Dienstag, Viertel nach zehn, das passt.",
        "Guten Tag, Frau Huber. Hier ist {name}. Dienstag passt.",
-       "Guten Tag, hier ist {name}. Der Termin am Dienstag passt."
+       "Guten Tag, hier ist {name}. Der Termin am Dienstag passt.",
+       "Guten Tag, hier ist {name}. Dienstag um Viertel nach zehn passt.",
+       "Guten Tag, Frau Huber, hier ist {name}. Dienstag um Viertel nach zehn passt gut."
       ],
-      "why_tr": "Telefonda önce selam ver ve adını söyle: **Guten Tag, hier ist …**"
+      "why_tr": "Telefonda önce selam ver, sonra günü ve saati söyle: **Dienstag passt**.",
+      "accepted_adsiz": [
+       "Guten Tag! Dienstag um Viertel nach zehn passt gut.",
+       "Guten Tag! Am Dienstag um Viertel nach zehn passt.",
+       "Guten Tag, Frau Huber. Dienstag, Viertel nach zehn, das passt.",
+       "Guten Tag, Frau Huber. Dienstag passt.",
+       "Guten Tag! Der Termin am Dienstag passt."
+      ]
      }
     }
    ],
@@ -990,16 +1006,27 @@
     "secenekler": [
      {
       "de": "Guten Tag, hier ist {name}. Ich hätte gern einen Termin.",
+      "de_adsiz": "Guten Tag! Ich hätte gern einen Termin.",
       "tr": "İyi günler, ben {name}. Bir randevu rica ediyorum.",
+      "tr_adsiz": "İyi günler! Bir randevu rica ediyorum.",
       "accepted": [
        "Guten Tag, hier ist {name}. Ich hätte gern einen Termin.",
        "Guten Tag! Hier ist {name}. Ich hätte gern einen Termin.",
        "Guten Tag, hier ist {name}. Ich hätte gern einen Termin, bitte.",
-       "Guten Tag, hier ist {name}. Ich möchte einen Termin."
+       "Guten Tag, hier ist {name}. Ich möchte einen Termin.",
+       "Guten Tag, hier ist {name}. Ich hätte gerne einen Termin.",
+       "Guten Tag, Frau Huber. Hier ist {name}. Ich hätte gern einen Termin."
+      ],
+      "accepted_adsiz": [
+       "Guten Tag! Ich hätte gern einen Termin.",
+       "Guten Tag, Frau Huber. Ich hätte gern einen Termin.",
+       "Guten Tag! Ich hätte gerne einen Termin.",
+       "Guten Tag! Ich möchte einen Termin.",
+       "Guten Tag! Ich hätte gern einen Termin, bitte."
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Çok iyi. Selam, adın ve isteğin bir arada."
+      "geri_bildirim_tr": "Çok iyi. Selam ve kibar istek bir arada."
      },
      {
       "de": "Guten Tag, Frau Huber. Haben Sie einen Termin frei?",
@@ -1036,25 +1063,41 @@
     "secenekler": [
      {
       "de": "Entschuldigung! Hier ist {name}. Ich hätte gern einen Termin.",
+      "de_adsiz": "Entschuldigung! Ich hätte gern einen Termin.",
       "tr": "Affedersiniz! Ben {name}. Bir randevu rica ediyorum.",
+      "tr_adsiz": "Affedersiniz! Bir randevu rica ediyorum.",
       "accepted": [
        "Entschuldigung! Hier ist {name}. Ich hätte gern einen Termin.",
        "Entschuldigung, hier ist {name}. Ich hätte gern einen Termin.",
        "Entschuldigung! Hier ist {name}. Ich möchte einen Termin.",
        "Entschuldigung, Frau Huber. Hier ist {name}. Ich hätte gern einen Termin."
       ],
+      "accepted_adsiz": [
+       "Entschuldigung! Ich hätte gern einen Termin.",
+       "Entschuldigung, Frau Huber. Ich hätte gern einen Termin.",
+       "Entschuldigung! Ich möchte einen Termin.",
+       "Entschuldigung! Ich hätte gerne einen Termin."
+      ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Şimdi oldu: özür, adın ve isteğin."
+      "geri_bildirim_tr": "Şimdi oldu: önce özür, sonra kibar istek."
      },
      {
       "de": "Hier ist {name}. Und wie geht es dir?",
+      "de_adsiz": "Gut, danke. Und wie geht es dir?",
       "tr": "Ben {name}. Ya sen nasılsın?",
+      "tr_adsiz": "İyiyim, teşekkürler. Ya sen nasılsın?",
       "accepted": [
        "Hier ist {name}. Und wie geht es dir?",
        "Hier ist {name}. Wie geht es dir?",
        "{name}. Und dir?",
        "Hier ist {name}. Und dir?"
+      ],
+      "accepted_adsiz": [
+       "Gut, danke. Und wie geht es dir?",
+       "Und wie geht es dir?",
+       "Gut. Und dir?",
+       "Und dir?"
       ],
       "sonraki": "n1b",
       "uygun": false,
@@ -1115,16 +1158,24 @@
     "secenekler": [
      {
       "de": "Mein Nachname ist {name}.",
+      "de_adsiz": "Moment, bitte.",
       "tr": "Soyadım {name}.",
+      "tr_adsiz": "Bir dakika lütfen.",
       "accepted": [
        "Mein Nachname ist {name}.",
        "{name}.",
        "Ich heiße {name}.",
-       "Mein Nachname ist {name}, bitte."
+       "Mein Name ist {name}."
+      ],
+      "accepted_adsiz": [
+       "Moment, bitte.",
+       "Einen Moment, bitte.",
+       "Moment.",
+       "Moment bitte, Frau Huber."
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Doğru. Soyadını sorunca yalnızca soyadını söylemen de yeter."
+      "geri_bildirim_tr": "Olur. Soyadın sorulunca kısa bir cevap yeter."
      },
      {
       "de": "Wie bitte? Können Sie das wiederholen?",
@@ -1181,13 +1232,15 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Muayenehaneyi aradın, kibarca randevu istedin, saati değiştirdin ve resmî vedalaştın."
+  "kapanis_tr": "Muayenehaneyi aradın, kibarca randevu istedin, saati konuştun ve resmî vedalaştın."
  },
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Tobi'den mesaj",
   "metin_de": "Hallo {name}! Wie geht es dir? Basti und ich gehen morgen um zehn schwimmen. Kommst du mit? Dann gehen wir Kuchen essen. Ich zahle die Rechnung!",
+  "metin_de_adsiz": "Hallo! Wie geht es dir? Basti und ich gehen morgen um zehn schwimmen. Kommst du mit? Dann gehen wir Kuchen essen. Ich zahle die Rechnung!",
   "metin_tr": "Selam {name}! Nasılsın? Basti'yle ben yarın saat onda yüzmeye gidiyoruz. Sen de geliyor musun? Sonra pasta yemeye gidiyoruz. Hesabı ben ödüyorum!",
+  "metin_tr_adsiz": "Selam! Nasılsın? Basti'yle ben yarın saat onda yüzmeye gidiyoruz. Sen de geliyor musun? Sonra pasta yemeye gidiyoruz. Hesabı ben ödüyorum!",
   "sorular": [
    {
     "id": "m1:12:o1",
@@ -1327,7 +1380,10 @@
      "Ich hätte gern einen Termin am Montag.",
      "Ich hätte gerne einen Termin am Montag.",
      "Für Montag hätte ich gern einen Termin.",
-     "Ich möchte einen Termin für Montag."
+     "Ich möchte einen Termin für Montag.",
+     "Ich hätte gerne einen Termin für Montag.",
+     "Ich hätte am Montag gern einen Termin.",
+     "Ich möchte einen Termin am Montag."
     ],
     "why_tr": "Kibar istek için **Ich hätte gern** ve **einen Termin** dersin."
    },
@@ -1339,7 +1395,9 @@
      "Wir hätten gern die Rechnung.",
      "Wir hätten gerne die Rechnung.",
      "Wir hätten gern die Rechnung, bitte.",
-     "Die Rechnung, bitte."
+     "Die Rechnung, bitte.",
+     "Wir möchten die Rechnung, bitte.",
+     "Wir möchten bitte die Rechnung."
     ],
     "why_tr": "**wir** ile **hätten** dersin: **Wir hätten gern …**"
    },
@@ -1351,7 +1409,10 @@
      "Sieben Uhr ist zu früh.",
      "Um sieben ist zu früh.",
      "Sieben ist zu früh.",
-     "Sieben Uhr ist leider zu früh."
+     "Sieben Uhr ist leider zu früh.",
+     "Um sieben Uhr ist zu früh.",
+     "Sieben Uhr ist mir zu früh.",
+     "Um sieben ist es zu früh."
     ],
     "why_tr": "İstemediğin fazlalık için **zu** dersin: **zu früh**."
    },
@@ -1362,7 +1423,9 @@
     "accepted": [
      "Wie geht es Ihnen, Frau Huber?",
      "Frau Huber, wie geht es Ihnen?",
-     "Guten Tag, Frau Huber! Wie geht es Ihnen?"
+     "Guten Tag, Frau Huber! Wie geht es Ihnen?",
+     "Wie geht's Ihnen, Frau Huber?",
+     "Und wie geht es Ihnen, Frau Huber?"
     ],
     "why_tr": "**Sie** dediğin kişiye **Wie geht es Ihnen?** diye sorarsın."
    },
@@ -1376,7 +1439,11 @@
      "Ich hätte gern einen Kuchen, bitte.",
      "Einen Kuchen, bitte.",
      "Guten Tag, ich hätte gern einen Kuchen.",
-     "Ich möchte einen Kuchen, bitte."
+     "Ich möchte einen Kuchen, bitte.",
+     "Ich hätte gerne einen Kuchen.",
+     "Guten Tag! Ich hätte gerne einen Kuchen, bitte.",
+     "Guten Tag! Einen Kuchen, bitte.",
+     "Guten Tag! Ich möchte einen Kuchen."
     ],
     "why_tr": "Önce selam ver, sonra **Ich hätte gern …** de."
    },
@@ -1391,7 +1458,10 @@
      "Gut, danke! Und dir?",
      "Danke, gut! Wie geht es dir?",
      "Gut! Und dir, Tobi?",
-     "Mir geht es gut. Und dir?"
+     "Mir geht es gut. Und dir?",
+     "Gut, und dir?",
+     "Danke, gut. Und wie geht es dir?",
+     "Sehr gut, danke. Und dir?"
     ],
     "why_tr": "Arkadaşına karşı soru **Und dir?** olur."
    },
@@ -1405,7 +1475,9 @@
      "Nein, danke. Die Rechnung, bitte. Kann ich mit Karte zahlen?",
      "Nein, danke. Ich hätte gern die Rechnung. Mit Karte, bitte.",
      "Nein danke, die Rechnung bitte. Mit Karte.",
-     "Die Rechnung, bitte. Kann ich mit Karte zahlen?"
+     "Die Rechnung, bitte. Kann ich mit Karte zahlen?",
+     "Nein, danke. Ich hätte gern die Rechnung. Kann ich mit Karte zahlen?",
+     "Nein, danke. Die Rechnung, bitte. Ich möchte mit Karte zahlen."
     ],
     "why_tr": "Önce kibarca hayır de. Sonra hesabı iste: **Die Rechnung, bitte.**"
    }

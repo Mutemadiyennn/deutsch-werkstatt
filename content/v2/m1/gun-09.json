@@ -31,7 +31,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/halka/h2-dilbilimci-1.md; dil incelemesi kapandı. Okur (OD-9) ve medya paketinden sonra reviewed olur."
  },
  "dersler": [
   "gr:a1-04:t1"
@@ -255,7 +258,7 @@
     {
      "kart": "lx:bringen",
      "de": "Ich bringe morgen Kuchen, Tobi.",
-     "tr": "Yarın ben kek getiriyorum Tobi.",
+     "tr": "Yarın kek getiriyorum Tobi.",
      "accepted": [
       "Ich bringe morgen Kuchen, Tobi.",
       "Tobi, ich bringe morgen Kuchen.",
@@ -265,7 +268,7 @@
     {
      "kart": "lx:bringen",
      "de": "Bringst du die Semmeln, Ioana?",
-     "tr": "Küçük ekmekleri sen getiriyor musun Ioana?",
+     "tr": "Küçük ekmekleri getiriyor musun Ioana?",
      "accepted": [
       "Bringst du die Semmeln, Ioana?",
       "Ioana, bringst du die Semmeln?",
@@ -299,7 +302,7 @@
      {
       "r": "ch:aksoy",
       "de": "Hier ist Kuchen. Der Kuchen ist von mir.",
-      "tr": "Kek burada. Kek benden."
+      "tr": "Burada kek var. Kek benden."
      },
      {
       "r": "ogrenci",
@@ -431,7 +434,7 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Akşam kursu, ders arası. Ioana yanına geliyor.",
+    "ortam_tr": "Başka bir gün, kurstan önce. Ioana yanına geliyor.",
     "satirlar": [
      {
       "r": "ch:popescu",
@@ -548,12 +551,13 @@
     },
     {
      "kart": "lx:schlimm",
-     "de": "Ist es schlimm, Dr. Weber?",
+     "de": "Ist es schlimm, Herr Dr. Weber?",
      "tr": "Kötü mü Dr. Weber?",
      "accepted": [
+      "Ist es schlimm, Herr Dr. Weber?",
+      "Herr Dr. Weber, ist es schlimm?",
       "Ist es schlimm, Dr. Weber?",
-      "Dr. Weber, ist es schlimm?",
-      "Ist das schlimm, Dr. Weber?"
+      "Ist das schlimm, Herr Dr. Weber?"
      ]
     },
     {
@@ -892,8 +896,8 @@
     },
     {
      "id": "c5",
-     "de": "Ich wohne in Nummer zwei.",
-     "tr": "İki numarada oturuyorum."
+     "de": "Bitte kommen Sie nicht zu spät.",
+     "tr": "Lütfen geç kalmayın."
     },
     {
      "id": "c6",
@@ -922,8 +926,8 @@
       ],
       "ans": 0,
       "kanit": [
-       "c4",
-       "c5"
+       "c3",
+       "c4"
       ]
      },
      "ayrinti": [
@@ -942,11 +946,11 @@
       },
       {
        "kind": "detail",
-       "q_tr": "Frau Brandl hangi dairede oturuyor?",
+       "q_tr": "Frau Brandl senden ne rica ediyor?",
        "opts": [
-        "iki numarada",
-        "on iki numarada",
-        "üç numarada"
+        "Geç kalmamanı",
+        "Kek getirmeni",
+        "Onu aramanı"
        ],
        "ans": 0,
        "kanit": [
@@ -1001,9 +1005,9 @@
        "cumle": "c5",
        "seviye": "usta",
        "accepted": [
-        "Ich wohne in Nummer zwei.",
-        "ich wohne in nummer zwei",
-        "Ich wohne in Nummer zwei"
+        "Bitte kommen Sie nicht zu spät.",
+        "bitte kommen sie nicht zu spät",
+        "Bitte kommen Sie nicht zu spät"
        ]
       },
       {
@@ -1042,12 +1046,12 @@
     "k": "pick",
     "q_tr": "Bu akşam ne yapmalısın?",
     "opts": [
-     "Saat altıda iki numaralı daireye git.",
+     "Saat altıda Frau Brandl'ın dairesine git.",
      "Yarın sabah fırına git.",
      "Saat sekizde Frau Brandl'ı ara."
     ],
     "ans": 0,
-    "why_tr": "Frau Brandl seni altıda bekliyor. İki numarada oturuyor.",
+    "why_tr": "Frau Brandl seni altıda bekliyor. Geç kalmamanı istiyor.",
     "kanit": [
      "c4",
      "c5"
@@ -1208,7 +1212,7 @@
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Anonsta ne dendiğini Almanca iki kısa cümleyle söyle.",
-       "ornek_de": "Heute ist nur bis zwölf Uhr offen. Am Freitag sind sie von acht bis zwölf Uhr da.",
+       "ornek_de": "Das Büro ist heute nur bis zwölf Uhr offen. Am Freitag ist es von acht bis zwölf Uhr offen.",
        "zorunlu": [
         "zwölf",
         "Freitag"
@@ -1436,17 +1440,18 @@
     "tr": "İşte, buyurun. Poşet ister misiniz?",
     "secenekler": [
      {
-      "de": "Ja, bekomme ich eine Tüte?",
-      "tr": "Evet, bir poşet alabilir miyim?",
+      "de": "Ja, gern. Eine Tüte, bitte.",
+      "tr": "Evet, lütfen. Bir poşet, lütfen.",
       "accepted": [
-       "Ja, bekomme ich eine Tüte?",
+       "Ja, gern. Eine Tüte, bitte.",
        "Ja, bitte. Eine Tüte, bitte.",
        "Ja, eine Tüte, bitte.",
-       "Ja, bitte."
+       "Ja, bitte.",
+       "Ja, gern."
       ],
       "sonraki": "n5",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel. **Bekomme ich** kibar bir istek."
+      "geri_bildirim_tr": "Güzel. **Ja, gern** ile kibarca kabul ettin."
      },
      {
       "de": "Nein, danke. Ich habe eine Tüte.",
@@ -1578,7 +1583,7 @@
      "kennen sie frau brandl",
      "Kennen Sie Frau Brandl"
     ],
-    "why_tr": "Biriyle tanışıp tanışmadığını **Kennen Sie** ile sorarsın."
+    "why_tr": "Birini tanıyıp tanımadığını **Kennen Sie** ile sorarsın."
    },
    {
     "id": "m1:09:s4",
@@ -1665,7 +1670,7 @@
      "Nein, der Kuchen ist von Derya.",
      "Nein, von Derya.",
      "Nein, der ist von Derya.",
-     "Nein, Derya bringt den Kuchen.",
+     "Nein, er ist von Derya.",
      "Nein, der Kuchen ist von Derya, nicht von Frau Stadler."
     ],
     "why_tr": "Kimden olduğunu **von** ile söylersin: **von Derya**."

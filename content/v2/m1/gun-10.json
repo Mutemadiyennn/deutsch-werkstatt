@@ -31,7 +31,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/halka/h2-dilbilimci-1.md; dil incelemesi kapandı. Okur (OD-9) ve medya paketinden sonra reviewed olur."
  },
  "dersler": [
   "gr:a1-03:t1",
@@ -191,7 +194,7 @@
      {
       "r": "ch:huber",
       "de": "Heute? Nein, heute ist alles voll. Morgen um zehn?",
-      "tr": "Bugün mü? Hayır, bugün her yer dolu. Yarın onda?"
+      "tr": "Bugün mü? Hayır, bugün hepsi dolu. Yarın onda?"
      },
      {
       "r": "ogrenci",
@@ -300,7 +303,7 @@
     {
      "kart": "lx:kaputt",
      "de": "Mein Schuh ist kaputt.",
-     "tr": "Ayakkabım bozuldu.",
+     "tr": "Ayakkabım yırtıldı.",
      "accepted": [
       "Mein Schuh ist kaputt.",
       "Mein Schuh ist leider kaputt.",
@@ -344,7 +347,7 @@
      {
       "r": "ch:aksoy",
       "de": "Ist der Schuh kaputt?",
-      "tr": "Ayakkabı bozuldu mu?"
+      "tr": "Ayakkabı yırtıldı mı?"
      },
      {
       "r": "ogrenci",
@@ -421,7 +424,8 @@
      "accepted": [
       "Was bedeutet das Wort?",
       "Was bedeutet das Wort, bitte?",
-      "Entschuldigung, was bedeutet das Wort?"
+      "Entschuldigung, was bedeutet das Wort?",
+      "Was bedeutet dieses Wort?"
      ]
     },
     {
@@ -627,8 +631,8 @@
      },
      {
       "r": "ogrenci",
-      "de": "Die Praxis ist rechts, Ioana. Nummer sieben.",
-      "tr": "Muayenehane sağda Ioana. Yedi numara."
+      "de": "Die Praxis ist rechts, Ioana. Nur zwei Minuten.",
+      "tr": "Muayenehane sağda Ioana. Yalnızca iki dakika."
      },
      {
       "r": "ch:popescu",
@@ -678,7 +682,7 @@
     "speaker": "ch:aksoy",
     "sahne_tr": "Derya ayağını kaldırıp ayakkabısının tabanını gösteriyor.",
     "de": "Gern! Aber mein Schuh ist kaputt.",
-    "tr": "Seve seve! Ama ayakkabım bozuldu."
+    "tr": "Seve seve! Ama ayakkabım yırtıldı."
    },
    {
     "id": "s5",
@@ -705,8 +709,8 @@
     "id": "s8",
     "speaker": "ch:aksoy",
     "sahne_tr": "Derya telefonu açıyor, kaşları çatılıyor.",
-    "de": "Ja, Herr Wimmer? Bitte langsam!",
-    "tr": "Evet Wimmer Bey? Yavaş lütfen!"
+    "de": "Ja, Herr Wimmer? Morgen? Schon um sieben?",
+    "tr": "Evet Wimmer Bey? Yarın mı? Daha yedide mi?"
    },
    {
     "id": "s9",
@@ -764,7 +768,7 @@
       "kind": "detail",
       "q_tr": "Derya'nın sorunu ne?",
       "opts": [
-       "Ayakkabısı bozuk",
+       "Ayakkabısı yırtık",
        "Başı ağrıyor",
        "Telefonu bozuk"
       ],
@@ -909,7 +913,7 @@
     {
      "id": "c3",
      "de": "Bitte rufen Sie heute noch Frau Aksoy an.",
-     "tr": "Lütfen bugün Aksoy Hanım'ı arayın."
+     "tr": "Lütfen bugün içinde Aksoy Hanım'ı arayın."
     },
     {
      "id": "c4",
@@ -1093,8 +1097,8 @@
    "script": [
     {
      "id": "c1",
-     "de": "Guten Morgen! Es ist halb sieben.",
-     "tr": "Günaydın! Saat altı buçuk."
+     "de": "Guten Morgen, es ist halb sieben.",
+     "tr": "Günaydın, saat altı buçuk."
     },
     {
      "id": "c2",
@@ -1219,9 +1223,9 @@
        "cumle": "c1",
        "seviye": "usta",
        "accepted": [
-        "Es ist halb sieben.",
-        "es ist halb sieben",
-        "Es ist halb sieben"
+        "Guten Morgen, es ist halb sieben.",
+        "guten morgen es ist halb sieben",
+        "Guten Morgen, es ist halb sieben"
        ]
       },
       {
@@ -1510,10 +1514,10 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Tobi'den mesaj",
-  "metin_de": "Hallo {name}, hier ist Tobi! Heute Abend Weihnachtsmarkt? Ich lade dich ein! Wir fangen um sechs an. Derya kommt nicht, sie hat keine Zeit. Kannst du mich um fünf anrufen?",
-  "metin_de_adsiz": "Hallo, hier ist Tobi! Heute Abend Weihnachtsmarkt? Ich lade dich ein! Wir fangen um sechs an. Derya kommt nicht, sie hat keine Zeit. Kannst du mich um fünf anrufen?",
-  "metin_tr": "Merhaba {name}, ben Tobi! Bu akşam Noel pazarı? Ben ısmarlıyorum! Altıda başlıyoruz. Derya gelmiyor, vakti yok. Beni beşte arayabilir misin?",
-  "metin_tr_adsiz": "Merhaba, ben Tobi! Bu akşam Noel pazarı? Ben ısmarlıyorum! Altıda başlıyoruz. Derya gelmiyor, vakti yok. Beni beşte arayabilir misin?",
+  "metin_de": "Hallo {name}, hier ist Tobi! Heute Abend Weihnachtsmarkt? Ich lade dich ein! Wir fangen um sechs an. Herr Wimmer kommt nicht, er hat keine Zeit. Kannst du mich um fünf anrufen?",
+  "metin_de_adsiz": "Hallo, hier ist Tobi! Heute Abend Weihnachtsmarkt? Ich lade dich ein! Wir fangen um sechs an. Herr Wimmer kommt nicht, er hat keine Zeit. Kannst du mich um fünf anrufen?",
+  "metin_tr": "Merhaba {name}, ben Tobi! Bu akşam Noel pazarı? Ben ısmarlıyorum! Altıda başlıyoruz. Wimmer Bey gelmiyor, vakti yok. Beni beşte arayabilir misin?",
+  "metin_tr_adsiz": "Merhaba, ben Tobi! Bu akşam Noel pazarı? Ben ısmarlıyorum! Altıda başlıyoruz. Wimmer Bey gelmiyor, vakti yok. Beni beşte arayabilir misin?",
   "sorular": [
    {
     "id": "m1:10:o1",
@@ -1546,11 +1550,11 @@
    {
     "id": "m1:10:o3",
     "kind": "detail",
-    "q_tr": "Derya neden gelmiyor?",
+    "q_tr": "Herr Wimmer neden gelmiyor?",
     "opts": [
      "Vakti yok",
      "Hasta",
-     "Ayakkabısı bozuk"
+     "Ofiste değil"
     ],
     "ans": 0,
     "kanit": [
@@ -1601,7 +1605,7 @@
      "mein schuh ist kaputt",
      "Mein Schuh ist kaputt"
     ],
-    "why_tr": "**kaputt** bozuk demek."
+    "why_tr": "**kaputt** bozuk ya da yırtık demek."
    },
    {
     "id": "m1:10:s2",
@@ -1686,7 +1690,7 @@
      "Ich möchte eine Hose kaufen.",
      "Ich will eine Hose kaufen.",
      "Ich möchte gern eine Hose kaufen.",
-     "Ich brauche eine Hose."
+     "Ich möchte mir eine Hose kaufen."
     ],
     "why_tr": "Pantolon **die Hose**, bu yüzden **eine Hose** dersin."
    },

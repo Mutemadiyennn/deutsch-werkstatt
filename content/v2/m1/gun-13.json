@@ -27,7 +27,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/halka/h2-dilbilimci-2.md; dilbilimci turu KAPANDI. Okur (OD-9) ve örneklem kontrolünden sonra reviewed olur."
  },
  "dersler": [
   "gr:a1-02:t1",
@@ -113,7 +116,9 @@
       "Weißt du meine Nummer?",
       "Weißt du meine Telefonnummer?",
       "Weißt du meine Nummer schon?",
-      "Du, weißt du meine Nummer?"
+      "Du, weißt du meine Nummer?",
+      "Hast du meine Nummer?",
+      "Kennst du meine Nummer?"
      ]
     },
     {
@@ -124,7 +129,10 @@
       "Ich weiß deine Nummer leider nicht.",
       "Ich weiß leider deine Nummer nicht.",
       "Deine Nummer weiß ich leider nicht.",
-      "Ich weiß deine Telefonnummer leider nicht."
+      "Ich weiß deine Telefonnummer leider nicht.",
+      "Ich hab deine Nummer leider nicht.",
+      "Ich habe deine Nummer leider nicht.",
+      "Ich kenne deine Nummer leider nicht."
      ]
     },
     {
@@ -135,7 +143,8 @@
       "Wissen Sie die Adresse von Dr. Weber?",
       "Wissen Sie die Adresse von Doktor Weber?",
       "Entschuldigung, wissen Sie die Adresse von Dr. Weber?",
-      "Wissen Sie bitte die Adresse von Dr. Weber?"
+      "Wissen Sie bitte die Adresse von Dr. Weber?",
+      "Kennen Sie die Adresse von Dr. Weber?"
      ]
     },
     {
@@ -201,7 +210,8 @@
       "Ich bin zum ersten Mal hier.",
       "Ich bin das erste Mal hier.",
       "Ich bin heute zum ersten Mal hier.",
-      "Zum ersten Mal bin ich hier."
+      "Zum ersten Mal bin ich hier.",
+      "Ich bin hier zum ersten Mal."
      ]
     },
     {
@@ -218,7 +228,7 @@
     {
      "kart": "lx:Mal",
      "de": "Dieses Mal geh ich schwimmen.",
-     "tr": "Bu sefer ben yüzmeye gidiyorum.",
+     "tr": "Bu sefer yüzmeye gidiyorum.",
      "accepted": [
       "Dieses Mal geh ich schwimmen.",
       "Dieses Mal gehe ich schwimmen.",
@@ -333,14 +343,14 @@
     "speaker": "ch:kraus",
     "sahne_tr": "Basti tezgâhtaki fiyat kartını okuyor.",
     "de": "Ah, hier, auf der Karte: zwanzig Euro im Monat.",
-    "tr": "Ha, burada, kartta yazıyor: ayda yirmi euro."
+    "tr": "Ha, burada, kartta yazıyor: ayda yirmi avro."
    },
    {
     "id": "s9",
     "speaker": "ch:popescu",
     "sahne_tr": "Ioana rahatlıyor.",
     "de": "Zwanzig Euro? Das geht. Was muss ich tun?",
-    "tr": "Yirmi euro mu? Olur. Ne yapmam gerekiyor?"
+    "tr": "Yirmi avro mu? Olur. Ne yapmam gerekiyor?"
    },
    {
     "id": "s10",
@@ -559,7 +569,7 @@
     {
      "id": "c4",
      "de": "Weißt du das schon?",
-     "tr": "Bunu zaten biliyor musun?"
+     "tr": "Bunu biliyor muydun?"
     },
     {
      "id": "c5",
@@ -702,7 +712,10 @@
        "Ja, am Mittwoch habe ich Zeit.",
        "Ja, Mittwoch geht.",
        "Ja, ich habe am Mittwoch Zeit.",
-       "Ja, klar! Am Mittwoch hab ich Zeit."
+       "Ja, klar! Am Mittwoch hab ich Zeit.",
+       "Ja, ich hab Zeit.",
+       "Ja, ich habe Zeit.",
+       "Ja, am Mittwoch hab ich Zeit."
       ],
       "why_tr": "Konuşmada **ich hab**, yazarken **ich habe**."
      }
@@ -965,15 +978,15 @@
  ],
  "prova": {
   "id": "m1:13:p1",
-  "title_tr": "Ioana'yla telefonda",
-  "durum_tr": "Cumartesi öğleden sonra. Kurstan arkadaşın Ioana seni arıyor. Ioana hızlı konuşuyor ve kısa biçimler kullanıyor.",
+  "title_tr": "Ioana'yla Stadtplatz'ta",
+  "durum_tr": "Cumartesi öğleden sonra Stadtplatz'ta kurstan arkadaşın Ioana'yla karşılaşıyorsun. Ioana rahat konuşuyor ve kısa biçimler kullanıyor.",
   "karsi": "ch:popescu",
   "baslangic": "n1",
   "dugumler": [
    {
     "id": "n1",
-    "de": "Hallo, hier ist Ioana! Na, wie geht's?",
-    "tr": "Merhaba, ben Ioana! Eee, nasıl gidiyor?",
+    "de": "Hallo! Na, wie geht's?",
+    "tr": "Selam! Eee, nasıl gidiyor?",
     "secenekler": [
      {
       "de": "Hallo Ioana! Gut, danke. Und dir?",
@@ -1018,8 +1031,8 @@
    },
    {
     "id": "n2",
-    "de": "Gut! Du, der Kurs ist am Montag nicht. Erst am Mittwoch. Weißt du das?",
-    "tr": "İyi! Bak, kurs pazartesi yok. Ancak çarşamba. Bunu biliyor musun?",
+    "de": "Gut! Du, am Montag ist kein Kurs. Erst am Mittwoch. Weißt du das schon?",
+    "tr": "İyi! Bak, pazartesi kurs yok. Ancak çarşamba. Bunu biliyor muydun?",
     "secenekler": [
      {
       "de": "Nein, das weiß ich nicht. Am Mittwoch um sieben?",
@@ -1145,7 +1158,7 @@
       "accepted": [
        "Nein.",
        "Nein!",
-       "Nein, nicht.",
+       "Nein, ich komme nicht.",
        "Nein, danke."
       ],
       "sonraki": "n4",
@@ -1166,8 +1179,10 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Basti'den mesaj",
-  "metin_de": "Hallo {name}! Wie geht's? Ich hab heute um zehn Kurs. Komm doch mit! Der Kurs kostet zwanzig Euro im Monat. Das erste Mal ist frei. Dann geh ich schwimmen.",
-  "metin_tr": "Selam {name}! Nasıl gidiyor? Bugün onda kursum var. Sen de gelsene! Kurs ayda yirmi euro. İlk sefer ücretsiz. Sonra yüzmeye gidiyorum.",
+  "metin_de": "Hallo {name}! Wie geht's? Ich hab heute um zehn Kurs. Komm doch mit! Der Kurs kostet zwanzig Euro im Monat. Das erste Mal kostet nichts. Dann geh ich schwimmen.",
+  "metin_de_adsiz": "Hallo! Wie geht's? Ich hab heute um zehn Kurs. Komm doch mit! Der Kurs kostet zwanzig Euro im Monat. Das erste Mal kostet nichts. Dann geh ich schwimmen.",
+  "metin_tr": "Selam {name}! Nasıl gidiyor? Bugün onda kursum var. Sen de gelsene! Kurs ayda yirmi avro. İlk sefer ücretsiz. Sonra yüzmeye gidiyorum.",
+  "metin_tr_adsiz": "Selam! Nasıl gidiyor? Bugün onda kursum var. Sen de gelsene! Kurs ayda yirmi avro. İlk sefer ücretsiz. Sonra yüzmeye gidiyorum.",
   "sorular": [
    {
     "id": "m1:13:o1",
@@ -1187,7 +1202,7 @@
    {
     "id": "m1:13:o2",
     "kind": "detail",
-    "q_tr": "Kurs ayda kaç euro?",
+    "q_tr": "Kurs ayda kaç avro?",
     "opts": [
      "Yirmi",
      "On",
@@ -1229,7 +1244,7 @@
   ],
   "yazma": {
    "gorev_tr": "Basti'ye kısa bir cevap yaz. Geliyorsun. İlk kez geldiğini ve saat onda orada olacağını söyle.",
-   "ornek_de": "Hallo Basti! Ich komme mit. Das ist mein erstes Mal. Ich bin um zehn da.",
+   "ornek_de": "Hallo Basti! Ich komme mit. Ich komme zum ersten Mal. Ich bin um zehn da.",
    "zorunlu": [
     "Mal",
     "zehn"
@@ -1237,6 +1252,9 @@
    "accepted_kaliplar": [
     "Hallo ___!",
     "Ich komme mit.",
+    "Ich komme zum ersten Mal.",
+    "Ich bin zum ersten Mal ___.",
+    "Das ist das erste Mal.",
     "Das ist mein erstes Mal.",
     "Ich bin um ___ da."
    ],
@@ -1261,7 +1279,7 @@
      "mein kurs ist am mittwoch um sieben",
      "Mein Kurs ist am Mittwoch um sieben"
     ],
-    "why_tr": "**der Kurs** alan isimde **mein Kurs** dersin."
+    "why_tr": "**der** alan isimde **mein** dersin: **mein Kurs**."
    },
    {
     "id": "m1:13:s2",
@@ -1309,7 +1327,9 @@
     "accepted": [
      "Wann ist dein Kurs?",
      "Wann ist denn dein Kurs?",
-     "Und wann ist dein Kurs?"
+     "Und wann ist dein Kurs?",
+     "Wann hast du Kurs?",
+     "Wann ist dein Kurs denn?"
     ],
     "why_tr": "Senin derken **dein** dersin: **dein Kurs**."
    },
@@ -1321,7 +1341,9 @@
      "Ich weiß es nicht.",
      "Ich weiß nicht.",
      "Das weiß ich nicht.",
-     "Weiß ich nicht."
+     "Weiß ich nicht.",
+     "Ich weiß das nicht.",
+     "Nein, ich weiß es nicht."
     ],
     "why_tr": "**ich** ile **weiß** dersin, sonda **nicht**."
    },
@@ -1332,9 +1354,11 @@
     "accepted": [
      "Das ist meine Karte.",
      "Das ist meine Karte!",
-     "Das hier ist meine Karte."
+     "Das hier ist meine Karte.",
+     "Das ist meine Karte hier.",
+     "Die Karte hier ist meine."
     ],
-    "why_tr": "**die Karte** alan isimde **meine Karte** dersin."
+    "why_tr": "**die** alan isimde **meine** dersin: **meine Karte**."
    },
    {
     "id": "m1:13:s8",
@@ -1373,7 +1397,11 @@
      "Am Samstag um zehn.",
      "Mein Kurs ist Samstag um zehn Uhr.",
      "Am Samstag um zehn Uhr.",
-     "Samstag um zehn."
+     "Samstag um zehn.",
+     "Mein Kurs ist am Samstag um zehn Uhr.",
+     "Mein Kurs ist Samstag um zehn.",
+     "Ich hab am Samstag um zehn Kurs.",
+     "Ich habe am Samstag um zehn Kurs."
     ],
     "why_tr": "**dein Kurs** sorusuna **mein Kurs** ile cevap verirsin."
    },

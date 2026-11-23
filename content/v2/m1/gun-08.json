@@ -31,7 +31,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/halka/h2-dilbilimci-1.md; dil incelemesi kapandı. Okur (OD-9) ve medya paketinden sonra reviewed olur."
  },
  "dersler": [
   "gr:a1-03:t5",
@@ -70,7 +73,7 @@
     },
     {
      "de": "Wie lange …? – Nicht lange.",
-     "tr": "Ne kadar süre …? – Uzun sürmez."
+     "tr": "Ne kadar süre …? – Uzun değil."
     }
    ],
    "gorev_cumleleri": [
@@ -177,7 +180,7 @@
     {
      "kart": "lx:lange",
      "de": "Nicht lange, nur zehn Minuten.",
-     "tr": "Uzun sürmez, yalnızca on dakika.",
+     "tr": "Uzun değil, yalnızca on dakika.",
      "accepted": [
       "Nicht lange, nur zehn Minuten.",
       "Nur zehn Minuten, nicht lange.",
@@ -195,13 +198,13 @@
      },
      {
       "r": "ch:stadler",
-      "de": "Das Brot kommt gleich, um acht. Jetzt ist es Viertel vor acht.",
-      "tr": "Ekmek birazdan geliyor, saat sekizde. Şu an sekize çeyrek var."
+      "de": "Das Brot kommt gleich, um acht. Jetzt ist es Viertel vor acht. Können Sie warten?",
+      "tr": "Ekmek birazdan geliyor, saat sekizde. Şu an sekize çeyrek var. Bekleyebilir misiniz?"
      },
      {
       "r": "ogrenci",
       "de": "Ja, ich habe heute Zeit.",
-      "tr": "Olur, bugün vaktim var."
+      "tr": "Evet, bugün vaktim var."
      },
      {
       "r": "ch:stadler",
@@ -318,7 +321,7 @@
      "tr": "Bir küçük ekmek artık elli değil, altmış sent.",
      "accepted": [
       "Eine Semmel kostet jetzt sechzig Cent, nicht mehr fünfzig.",
-      "Eine Semmel kostet nicht mehr fünfzig Cent, jetzt sechzig.",
+      "Eine Semmel kostet jetzt sechzig Cent, nicht mehr fünfzig Cent.",
       "Die Semmel kostet jetzt sechzig Cent, nicht mehr fünfzig."
      ]
     },
@@ -349,7 +352,7 @@
      {
       "r": "ch:stadler",
       "de": "Leider kein Brot mehr. Erst wieder um zehn.",
-      "tr": "Maalesef artık ekmek yok. Ancak saat onda yine var."
+      "tr": "Maalesef artık ekmek yok. Ancak saat onda yine olur."
      },
      {
       "r": "ogrenci",
@@ -496,8 +499,8 @@
      },
      {
       "r": "ch:stadler",
-      "de": "Drei Euro neunzig. Und eine Semmel fünfzig Cent.",
-      "tr": "Üç avro doksan. Bir küçük ekmek de elli sent."
+      "de": "Drei Euro neunzig. Und eine Semmel sechzig Cent.",
+      "tr": "Üç avro doksan. Bir küçük ekmek de altmış sent."
      },
      {
       "r": "ogrenci",
@@ -509,7 +512,7 @@
      "q_tr": "Kasada ne kadar ödüyorsun?",
      "opts": [
       "Üç avro doksan",
-      "Dört avro doksan",
+      "Beş avro on",
       "Dört avro kırk",
       "Beş avro doksan"
      ],
@@ -610,7 +613,7 @@
     "id": "s13",
     "speaker": "ch:stadler",
     "sahne_tr": "On dakika sonra. Frau Stadler sıcak küçük ekmekleri kese kâğıdına koyuyor.",
-    "de": "Bitte, zwei Semmeln. Das macht ein Euro zwanzig.",
+    "de": "Bitte, zwei Semmeln. Das macht einen Euro zwanzig.",
     "tr": "Buyurun, iki küçük ekmek. Bir avro yirmi tutuyor."
    }
   ],
@@ -806,7 +809,7 @@
     },
     {
      "id": "c5",
-     "de": "Bitte kommen Sie zehn Minuten früh.",
+     "de": "Bitte kommen Sie zehn Minuten früher.",
      "tr": "Lütfen on dakika erken gelin."
     },
     {
@@ -915,12 +918,12 @@
       },
       {
        "id": "d4",
-       "cumle": "c5",
+       "cumle": "c4",
        "seviye": "usta",
        "accepted": [
-        "Bitte kommen Sie zehn Minuten früh.",
-        "bitte kommen sie zehn minuten früh",
-        "Bitte kommen Sie zehn Minuten früh"
+        "Geht Freitag um halb zehn?",
+        "geht freitag um halb zehn",
+        "Geht Freitag um halb zehn"
        ]
       },
       {
@@ -1225,16 +1228,16 @@
   "dugumler": [
    {
     "id": "n1",
-    "de": "Guten Morgen! Wie immer?",
-    "tr": "Günaydın! Her zamanki gibi mi?",
+    "de": "Guten Morgen! Wie immer? Zwei Semmeln und ein Brot?",
+    "tr": "Günaydın! Her zamanki gibi mi? İki küçük ekmek ve bir ekmek?",
     "secenekler": [
      {
-      "de": "Ja, wie immer. Zwei Semmeln, bitte.",
-      "tr": "Evet, her zamanki gibi. İki küçük ekmek, lütfen.",
+      "de": "Ja, wie immer, bitte.",
+      "tr": "Evet, her zamanki gibi, lütfen.",
       "accepted": [
-       "Ja, wie immer. Zwei Semmeln, bitte.",
        "Ja, wie immer, bitte.",
-       "Ja, zwei Semmeln, bitte.",
+       "Ja, wie immer.",
+       "Ja, bitte. Wie immer.",
        "Guten Morgen! Ja, wie immer."
       ],
       "sonraki": "n2",
@@ -1242,17 +1245,17 @@
       "geri_bildirim_tr": "Güzel. Kısa ve net."
      },
      {
-      "de": "Guten Morgen! Heute nur eine Semmel, bitte.",
-      "tr": "Günaydın! Bugün yalnızca bir küçük ekmek, lütfen.",
+      "de": "Guten Morgen! Ja, zwei Semmeln und ein Brot, bitte.",
+      "tr": "Günaydın! Evet, iki küçük ekmek ve bir ekmek, lütfen.",
       "accepted": [
-       "Guten Morgen! Heute nur eine Semmel, bitte.",
-       "Heute nur eine Semmel, bitte.",
-       "Nur eine Semmel, bitte.",
-       "Guten Morgen! Nur eine Semmel heute, bitte."
+       "Guten Morgen! Ja, zwei Semmeln und ein Brot, bitte.",
+       "Ja, zwei Semmeln und ein Brot, bitte.",
+       "Guten Morgen! Zwei Semmeln und ein Brot, bitte.",
+       "Ja, bitte. Zwei Semmeln und ein Brot."
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Olur. **nur** ile yalnızca bir tane istedin."
+      "geri_bildirim_tr": "Olur. Siparişini kendin de söyledin."
      },
      {
       "de": "Jetzt keine Zeit!",
@@ -1287,17 +1290,17 @@
       "geri_bildirim_tr": "Çok iyi. On beş dakika beklemek sorun değil."
      },
      {
-      "de": "Erst um acht? Dann ein Brot, bitte.",
-      "tr": "Ancak sekizde mi? O zaman bir ekmek, lütfen.",
+      "de": "Erst um acht? Gut, ich habe Zeit.",
+      "tr": "Ancak sekizde mi? Peki, vaktim var.",
       "accepted": [
-       "Erst um acht? Dann ein Brot, bitte.",
-       "Dann ein Brot, bitte.",
-       "Erst um acht? Dann bitte ein Brot.",
-       "Dann nehme ich ein Brot."
+       "Erst um acht? Gut, ich habe Zeit.",
+       "Gut, ich habe Zeit.",
+       "Erst um acht? Das geht, ich habe Zeit.",
+       "Ich habe Zeit, ich warte."
       ],
       "sonraki": "n3",
       "uygun": true,
-      "geri_bildirim_tr": "Olur. **Dann** ile başka bir şey seçtin."
+      "geri_bildirim_tr": "Olur. **Erst um acht?** ile duyduğunu tekrar ettin."
      },
      {
       "de": "Wie viel kostet das?",
@@ -1309,7 +1312,7 @@
       ],
       "sonraki": "n2",
       "uygun": false,
-      "geri_bildirim_tr": "Henüz bir şey seçmedin. Önce bekleyecek misin, onu söyle."
+      "geri_bildirim_tr": "Frau Stadler bekleyip beklemeyeceğini soruyor. Önce onu söyle."
      }
     ]
    },
@@ -1360,8 +1363,8 @@
    },
    {
     "id": "n4",
-    "de": "Ja, alles ist teuer. Das macht vier Euro neunzig. Bar oder mit Karte?",
-    "tr": "Evet, her şey pahalı. Dört avro doksan tutuyor. Nakit mi, kartla mı?",
+    "de": "Ja, alles ist teuer. Das macht fünf Euro zehn. Bar oder mit Karte?",
+    "tr": "Evet, her şey pahalı. Beş avro on tutuyor. Nakit mi, kartla mı?",
     "secenekler": [
      {
       "de": "Mit Karte, bitte.",
@@ -1377,24 +1380,24 @@
       "geri_bildirim_tr": "Tamam. Kısa cevap yeter."
      },
      {
-      "de": "Bar, bitte. Das sind fünf Euro.",
-      "tr": "Nakit, lütfen. Bu beş avro.",
+      "de": "Bar, bitte.",
+      "tr": "Nakit, lütfen.",
       "accepted": [
-       "Bar, bitte. Das sind fünf Euro.",
        "Bar, bitte.",
-       "Bar. Fünf Euro, bitte.",
-       "Ich zahle bar."
+       "Bar.",
+       "Ich zahle bar.",
+       "Bar, bitte schön."
       ],
       "sonraki": "n5",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel. Beş avro verdin, on sent üstün var."
+      "geri_bildirim_tr": "Tamam. Nakit ödüyorsun."
      }
     ]
    },
    {
     "id": "n5",
-    "de": "Danke schön! Zehn Cent zurück. Schönen Tag noch!",
-    "tr": "Çok teşekkürler! On sent para üstü. İyi günler!",
+    "de": "Danke schön! Schönen Tag noch!",
+    "tr": "Çok teşekkürler! İyi günler!",
     "son": true
    }
   ],
@@ -1567,7 +1570,7 @@
      "Was kostet das Brot? Noch drei Euro neunzig?",
      "Wie viel kostet das Brot? Noch drei Euro neunzig?",
      "Was kostet das Brot? Immer noch drei Euro neunzig?",
-     "Was kostet das Brot? Ist es noch drei Euro neunzig?"
+     "Was kostet das Brot? Kostet es noch drei Euro neunzig?"
     ],
     "why_tr": "Hâlâ derken **noch** dersin."
    },
