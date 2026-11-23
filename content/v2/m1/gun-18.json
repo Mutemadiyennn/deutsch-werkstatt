@@ -197,7 +197,7 @@
      "accepted": [
       "Ich muss los!",
       "Ich muss jetzt los!",
-      "Ich muss gleich los!"
+      "Ich muss gehen!"
      ]
     },
     {
@@ -473,21 +473,21 @@
      },
      {
       "r": "ogrenci",
-      "de": "Vielleicht am Montag?",
-      "tr": "Belki pazartesi?"
+      "de": "Vielleicht am Samstag?",
+      "tr": "Belki cumartesi?"
      },
      {
       "r": "ch:petrovic",
-      "de": "Montag? Ja, ich glaube, Montag geht.",
-      "tr": "Pazartesi mi? Evet, sanırım pazartesi olur."
+      "de": "Samstag? Ja, ich glaube, Samstag geht.",
+      "tr": "Cumartesi mi? Evet, sanırım cumartesi olur."
      }
     ],
     "soru": {
      "q_tr": "Luka hangi günün olabileceğini düşünüyor?",
      "opts": [
       "Cuma",
-      "Pazartesi",
-      "Cumartesi"
+      "Cumartesi",
+      "Pazartesi"
      ],
      "ans": 1
     }
@@ -545,15 +545,15 @@
     "id": "s7",
     "speaker": "ch:popescu",
     "sahne_tr": "Ioana kaşlarını kaldırıyor.",
-    "de": "Und am Samstag?",
-    "tr": "Peki cumartesi?"
+    "de": "Und am Samstag am Nachmittag?",
+    "tr": "Peki cumartesi öğleden sonra?"
    },
    {
     "id": "s8",
     "speaker": "ch:petrovic",
-    "sahne_tr": "Luka cumartesi sayfasını çeviriyor: sayfa isimlerle dolu.",
-    "de": "Am Samstag habe ich keine Zeit.",
-    "tr": "Cumartesi vaktim yok."
+    "sahne_tr": "Luka cumartesi sayfasını çeviriyor: öğleden sonrası boş ve çizili.",
+    "de": "Am Samstag bin ich nur bis zwölf hier.",
+    "tr": "Cumartesi yalnızca on ikiye kadar buradayım."
    },
    {
     "id": "s9",
@@ -752,19 +752,19 @@
     "cevapla": {
      "id": "m1:18:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Luka sana da soruyor. Cuma günü saat dörtte gelebilirsin.",
+     "situation_tr": "Luka sana da soruyor. Cuma saat dört olmuyor. Sen cumartesi saat onda gelebilirsin.",
      "prompt_de": "Und Sie? Wann haben Sie Zeit?",
      "accepted": [
-      "Am Freitag um vier.",
-      "Am Freitag um vier Uhr.",
-      "Ich habe am Freitag um vier Zeit.",
-      "Am Freitag um vier habe ich Zeit.",
-      "Freitag um vier.",
-      "Am Freitag, um vier.",
-      "Freitag um vier Uhr.",
-      "Ich habe am Freitag um vier Uhr Zeit.",
-      "Am Freitag um vier, bitte.",
-      "Vielleicht am Freitag um vier?"
+      "Am Samstag um zehn.",
+      "Am Samstag um zehn Uhr.",
+      "Ich habe am Samstag um zehn Zeit.",
+      "Am Samstag um zehn habe ich Zeit.",
+      "Samstag um zehn.",
+      "Am Samstag, um zehn.",
+      "Samstag um zehn Uhr.",
+      "Ich habe am Samstag um zehn Uhr Zeit.",
+      "Am Samstag um zehn, bitte.",
+      "Vielleicht am Samstag um zehn?"
      ],
      "why_tr": "Önce günü **am** ile, sonra saati **um** ile söyle."
     }
@@ -988,7 +988,7 @@
    "id": "m1:18:a2",
    "tur": "sesli-mesaj",
    "title_tr": "Luka'dan sesli mesaj",
-   "ortam_tr": "Cuma günü saat dörtte Luka'da randevun var. Luka telefonuna mesaj bırakmış.",
+   "ortam_tr": "Luka'dan cuma günü saat dört için randevu istemiştin. Luka telefonuna mesaj bırakmış.",
    "speaker": "ch:petrovic",
    "hizlar": [
     "slow",
@@ -1007,8 +1007,8 @@
     },
     {
      "id": "c3",
-     "de": "Am Freitag bin ich nicht da.",
-     "tr": "Cuma günü burada değilim."
+     "de": "Am Freitag bin ich nur bis zwölf da.",
+     "tr": "Cuma günü yalnızca on ikiye kadar buradayım."
     },
     {
      "id": "c4",
@@ -1041,7 +1041,7 @@
       "kind": "gist",
       "q_tr": "Luka neden mesaj bırakıyor?",
       "opts": [
-       "Randevunu değiştirmek için",
+       "Sana başka bir zaman önermek için",
        "Fiyatı söylemek için",
        "Seni kahveye çağırmak için"
       ],
@@ -1177,12 +1177,12 @@
     "k": "pick",
     "q_tr": "Mesajdan sonra ne yapmalısın?",
     "opts": [
-     "Cuma saat dörtte yine de salona git.",
-     "Luka'yı ara, cumartesi saat onu ya da salıdan sonra bir öğleden sonrayı seç.",
-     "Bir şey yapma, randevun aynı."
+     "Cuma sabah haber vermeden salona git.",
+     "Luka'yı ara, cumartesi saat onu ya da salıdan itibaren bir öğleden sonrayı seç.",
+     "Bir şey yapma, cuma saat dörtte git."
     ],
     "ans": 1,
-    "why_tr": "Cuma olmuyor. Luka cumartesi saat onu ya da salıdan sonrasını öneriyor.",
+    "why_tr": "Cuma saat dört olmuyor. Luka cumartesi saat onu ya da salıdan itibaren öğleden sonrayı öneriyor.",
     "kanit": [
      "c2",
      "c4",
@@ -1256,7 +1256,7 @@
  "prova": {
   "id": "m1:18:p1",
   "title_tr": "Luka'dan randevu alıyorsun",
-  "durum_tr": "Salon Haarwerk'i aradın, bekleme hattında uzun bekledin. Sonunda Luka açıyor. Cuma günü saat dört senin için en iyisi.",
+  "durum_tr": "Luka'nın mesajını dinledin, ama cuma günü saat dört senin için en iyisi. Bir kez daha sormak için Salon Haarwerk'i aradın, bekleme hattında uzun bekledin. Sonunda Luka açıyor.",
   "karsi": "ch:petrovic",
   "baslangic": "n1",
   "dugumler": [
@@ -1368,8 +1368,8 @@
    },
    {
     "id": "n3",
-    "de": "Am Freitag um vier? Nein, am Freitag bin ich nur bis zwei da. Geht auch ein anderer Tag?",
-    "tr": "Cuma saat dört mü? Hayır, cuma günü yalnızca ikiye kadar buradayım. Başka bir gün de olur mu?",
+    "de": "Am Freitag um vier? Nein, am Freitag bin ich nur bis zwölf da. Geht auch ein anderer Tag?",
+    "tr": "Cuma saat dört mü? Hayır, cuma günü yalnızca on ikiye kadar buradayım. Başka bir gün de olur mu?",
     "secenekler": [
      {
       "de": "Vielleicht am Samstag am Vormittag?",
@@ -1416,8 +1416,8 @@
    },
    {
     "id": "n3b",
-    "de": "Am Freitag bin ich nur bis zwei Uhr da. Nur bis zwei. Geht ein anderer Tag?",
-    "tr": "Cuma günü yalnızca saat ikiye kadar buradayım. Yalnızca ikiye kadar. Başka bir gün olur mu?",
+    "de": "Am Freitag bin ich nur bis zwölf Uhr da. Nur bis zwölf. Geht ein anderer Tag?",
+    "tr": "Cuma günü yalnızca saat on ikiye kadar buradayım. Yalnızca on ikiye kadar. Başka bir gün olur mu?",
     "secenekler": [
      {
       "de": "Geht es am Samstag am Vormittag?",
@@ -1434,16 +1434,16 @@
       "geri_bildirim_tr": "Saati anladın ve başka bir gün önerdin."
      },
      {
-      "de": "Um zwei? Ja, um zwei geht.",
-      "tr": "Saat ikide mi? Evet, ikide olur.",
+      "de": "Um zwölf? Ja, um zwölf geht.",
+      "tr": "Saat on ikide mi? Evet, on ikide olur.",
       "accepted": [
-       "Um zwei? Ja, um zwei geht.",
-       "Um zwei geht.",
-       "Ja, um zwei geht es."
+       "Um zwölf? Ja, um zwölf geht.",
+       "Um zwölf geht.",
+       "Ja, um zwölf geht es."
       ],
       "sonraki": "n3b",
       "uygun": false,
-      "geri_bildirim_tr": "**bis zwei** saat ikiye kadar demek. Saat ikide Luka gidiyor."
+      "geri_bildirim_tr": "**bis zwölf** saat on ikiye kadar demek. Saat on ikide Luka gidiyor."
      }
     ]
    },
@@ -1575,10 +1575,10 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Ioana'ya cevap yaz. Senin de Luka'da randevun var: cuma günü saat dörtte.",
-   "ornek_de": "Hallo Ioana! Ja, ich habe auch einen Termin bei Luka. Er ist am Freitag um vier. Bis Montag im Kurs!",
+   "gorev_tr": "Ioana'ya cevap yaz. Senin de Luka'da randevun var: cumartesi saat onda.",
+   "ornek_de": "Hallo Ioana! Ja, ich habe auch einen Termin bei Luka. Er ist am Samstag um zehn. Bis Montag im Kurs!",
    "zorunlu": [
-    "Freitag",
+    "Samstag",
     "um"
    ],
    "accepted_kaliplar": [
@@ -1733,8 +1733,8 @@
    {
     "id": "m1:18:s10",
     "k": "guided_response",
-    "situation_tr": "Luka cumartesi saat onu soruyor. Saat on olmuyor, öğleden sonra olur.",
-    "prompt_de": "Kommen Sie am Samstag um zehn?",
+    "situation_tr": "Luka salı saat onu soruyor. Saat on olmuyor, öğleden sonra olur.",
+    "prompt_de": "Kommen Sie am Dienstag um zehn?",
     "accepted": [
      "Nein, um zehn geht es nicht. Vielleicht am Nachmittag?",
      "Um zehn geht es nicht. Vielleicht am Nachmittag?",
@@ -1743,7 +1743,7 @@
      "Um zehn geht es leider nicht. Geht es am Nachmittag?",
      "Nein, um zehn nicht. Aber am Nachmittag geht es.",
      "Nein, um zehn geht es nicht, aber am Nachmittag.",
-     "Nein, am Samstag um zehn geht es nicht. Vielleicht am Nachmittag?",
+     "Nein, am Dienstag um zehn geht es nicht. Vielleicht am Nachmittag?",
      "Um zehn geht es nicht, aber am Nachmittag geht es."
     ],
     "why_tr": "Önce olmayan saati söyle, sonra **am Nachmittag** öner."

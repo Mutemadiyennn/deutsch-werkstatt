@@ -206,3 +206,37 @@ Kapsam: `git diff 1c84763 content/ic4-hafta-04` (gün 22–28, `hafta-sonu-testi
 Sınama (`sina.sh 4`): kalan HATA 0 · İhlal 0 · öğretilmeden istenen 0 · hafta sonu testi 12/12 · görülmemiş 7/7 · sınanmayan can_do yok.
 
 ## KARAR: ONAY
+
+## Örneklem geri dönüşü (23.11)
+Kaynak: `docs/v2/qa/orneklem-ic4-hafta-04.md` (%3,0; 4/134). Dört hatalı madde düzeltildi, aynı hata sınıfları yedi günün tamamında tarandı.
+
+### Hatalı 4 madde
+1. `m1:26:v1` ayrıntı: çeldirici **Balkonu yok** (ilana göre doğru) → **Mutfağı yok**.
+2. `m1:28:g5`: **second floor** sorgusu kat sayımını karıştırıyordu → zemin + üç kat, **zeminin iki üstü** işaretli; çeldiriciler zeminin bir üstü, zemin, müstakil ev. **top floor** kalktı.
+3. `m1:22:yazma`: **er, sie, es kullan** → **er ve sie kullan** (görevde **es** ile anlatılacak eşya yok).
+4. `m1:28:s9`: 5. kabul memnuniyeti söylemiyordu → sonuna **Freut mich!** eklendi.
+
+### Sınıf taraması
+- **Kat ve sıra sayısı geçen görsel sorguları:** 15.–28. günlerde başka yok (`m1:20:g5` takvim günü, doğru).
+- **Eksik cevabı kabul eden gün sınavı listeleri:** 22. gün `s11` **er ve sie ile söyle** diyordu, üç kabul yalnız isimle kuruluydu; üçü de **er**/**sie** içeren biçimle değişti. 23.–28. gün sınavlarında ve testte başka bulunmadı.
+- **Başka bölümde doğru olan çeldiriciler (3):**
+  - 22. gün okuma: fincanı **Ioana** geri veriyordu, `a2` ve 3. halkada ise sen. Not **Gibst du sie morgen zurück?** oldu, soru **Fincanı yarın kim geri verecek?**, cevap **Sen**. Aynı düzeltme **gleich** / **morgen** uyumsuzluğunu ve **Danke für den Kuchen!** tökezlemesini de kapattı (**Danke für den Abend!**).
+  - 24. gün 2. halka: ofis arızası **ab zehn** bitiyordu; `a1` sorusunun çeldiricisi **Ondan itibaren** böylece doğru görünüyordu → **ab elf**. Çeldirici **Pazartesiden itibaren** aynı halkanın görev cümlesinde doğruydu → **Yarından itibaren**.
+  - 26. gün 1. halka sahnesi: **2 Zi.** ilanı **am billigsten** deniyordu; ilana göre en ucuzu **1 Zi.** → **Hier, 1 Zi., Kü., Blk.!**
+- **Anlam ekleyen halka kabulleri (13):** 3. haftadaki ölçüyle (zaman, sınır, ekleme sözü yok; dolgu ve derece sözü serbest). 22. gün 4 · 23. gün 2 · 24. gün 1 · 26. gün 1 · 27. gün 3 · 28. gün 2. Örnekler: **Hat das Sofa auch Garantie?** (Türkçesi **hâlâ**) → **Hat das Sofa immer noch Garantie?** · **Frau Brandl schläft immer am Nachmittag.** → **Frau Brandl schläft nachmittags.** · **Ich gebe sie morgen Frau Brandl zurück.** → **Die gebe ich Frau Brandl zurück.**
+
+### P3 ve takip notları
+- 22. gün 2. halka kalıbı **Es ist weg**: **Yok** → **Kayıp** (günün öbür satırlarıyla aynı).
+- 25. gün **Laufen ist schöner als Bus fahren.**: **Busfahren** yazımı kabul edildi; Türkçesi **otobüse binmekten daha güzel**.
+- 25. gün `a1` eylemi: zaten meydandasın → **Bugün saat dörtten önce bir sandalye al.**
+- 25. gün prova `n1`: durum tek fincan diyordu, uygun seçenek **Ein paar Tassen, bitte.** → **Ich möchte eine Tasse, bitte.**
+- 27. gün `a2` ortamı **Cumartesi.** ile başlıyor (Derya'nın notuyla aynı gün).
+- Yapılmadı: ev zinciri (24 → 26 → 27; Brunnengasse 7 ile Brunnenviertel bağı). Hikâye kararı; WORLD ve baş geliştirici işi.
+
+### Kalanlar (engel değil)
+- 22. günde iki ayrı fincan hikâyesi var (sahnede Ioana'nın mutfağında, mesajda ve notta sende). Çelişki değil, ama okur turunda bakılmalı.
+- Değişen Türkçe satırlar okurdan geçmedi.
+
+Sınama (`sina.sh 4`): kalan HATA 0 · İhlal 0 · öğretilmeden istenen 0 · test 12/12 · görülmemiş 7/7 · sınanmayan can_do yok.
+
+**Sonuç:** 4 hatalı madde + sınıf taramasında 23 yer düzeltildi. Yeni örnekleme hazır.
