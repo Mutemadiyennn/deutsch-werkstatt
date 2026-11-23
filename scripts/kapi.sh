@@ -6,7 +6,7 @@
 #   → Worker paketleme → WebKit uçtan uca (iPhone 15, iPhone 15 Pro Max, iPhone 16 Pro Max) → yerleşim bekçisi.
 # Yol süzgeci (PM-079 md. 5) içeride: değişen dosyalara göre
 #   docs    (yalnız docs/, kökteki *.md, PR şablonu, ajan tanımları) → tip + içerik kapısı
-#   icerik  (yalnız content/, content/tools HARİÇ)       → içerik kapısı + içerik testleri + tek cihaz duman (iPhone 15, v2_core)
+#   icerik  (yalnız content/, content/tools HARİÇ)       → içerik kapısı + dikiş denetçisi + içerik testleri + tek cihaz duman (iPhone 15, v2_core)
 #   kod     (web/, worker/, packages/, tests/, scripts/, .github/, content/tools/ ya da başka her şey) → tam
 # Kural: kabul koşusunu işi yazan değil KAPI oturumu koşar (temiz worktree; PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI";
 #   CLAUDE.md "WebKit kabul ölçütüdür"). Motorlar aynı betiği yerelde öz-denetim için koşabilir; WebKit yoksa sonuç ENGEL olur.
@@ -186,6 +186,10 @@ if [ "$SINIF" = docs ]; then
   atla "Birim, derleme, WebKit" "yol süzgeci: yalnız docs"
 elif [ "$SINIF" = icerik ]; then
   kos "İçerik kapısı (0 hata)" "npm run content:validate"
+  # dikiş denetçisi (PM-090 md. 2.1): komut ci-v2.yml'deki adımdan okunur (tek kaynak); adım yoksa DÜŞTÜ
+  DIKIS=$(awk -F'\t' '$1=="check" && $2 ~ /^Dikiş denetçisi/ {print $3; exit}' "$ADIMLAR")
+  if [ -n "$DIKIS" ]; then kos "Dikiş denetçisi (PM-090 md. 2.1)" "$(printf %s "$DIKIS" | base64 -d)"
+  else N=$((N+1)); DUSEN=$((DUSEN+1)); SATIRLAR+=("Dikiş denetçisi|0|DÜŞTÜ|ci-v2.yml'de 'Dikiş denetçisi' adımı yok"); fi
   kos "İçerik testleri" "npx vitest run content/"
   kos "e2e derlemesi" "DW_E2E_FIXTURES=1 npm run content:build && (cd web && npx vite build --mode e2e --outDir dist-e2e)"
 else
