@@ -1,7 +1,10 @@
 {
   "batch": "a2-02",
   "review": {
-    "status": "draft"
+    "status": "draft",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "Dilbilimci turu tamam: docs/v2/reviews/lexicon-batch-a2-02.md. Okur bekliyor."
   },
   "items": [
     {
@@ -115,7 +118,7 @@
           "de": "Danke, das ist sehr ___ von Ihnen.",
           "answer": "freundlich",
           "tr": "Teşekkürler, çok naziksiniz.",
-          "hint_tr": "Çok naziksiniz derken **Das ist sehr freundlich von Ihnen** denir.",
+          "hint_tr": "Çok naziksiniz derken **das ist sehr freundlich von Ihnen** denir.",
           "also_ok": [
             "nett"
           ]
@@ -172,7 +175,7 @@
         "lx:Café"
       ],
       "mistakes_tr": [
-        "Rahat bir koltuk için **gemütlich** değil, **bequem** dersin. **gemütlich** bir yerin sıcak havasını anlatır.",
+        "Rahat ayakkabı için **gemütlich** değil, **bequem** dersin. **gemütlich** bir yerin sıcak havasını anlatır.",
         "Sıcak, şirin kafe derken **das gemütlich Café** yanlış. Doğrusu **das gemütliche Café**."
       ],
       "examples": [
@@ -227,7 +230,7 @@
         "anlam_tr": "**gemütlich** sıcak, rahat ve huzurlu bir yeri ya da anı anlatır.",
         "ne_zaman_tr": "Bir kafeyi, evi ya da akşamı anlatırken.",
         "parcalar": [],
-        "ipucu_tr": "Rahat bir koltuk için **gemütlich** değil, **bequem** dersin."
+        "ipucu_tr": "Rahat ayakkabı için **gemütlich** değil, **bequem** dersin."
       },
       "forms": [
         {
@@ -240,7 +243,7 @@
           "de": "Das ___ Café am Stadtplatz ist heute voll.",
           "answer": "gemütliche",
           "tr": "Meydandaki o şirin kafe bugün dolu.",
-          "hint_tr": "O sıcak, şirin kafe derken **das gemütliche Café** denir."
+          "hint_tr": "O sıcak, şirin kafe derken **Das gemütliche Café** denir."
         },
         {
           "de": "Heute Abend mache ich es mir ___.",
@@ -297,14 +300,14 @@
         "lx:Witz"
       ],
       "mistakes_tr": [
-        "Tobi esprili bir iş arkadaşı derken **ein witzig Kollege** yanlış. Doğrusu **ein witziger Kollege**.",
+        "O esprili bir iş arkadaşı derken **ein witzig Kollege** yanlış. Doğrusu **ein witziger Kollege**.",
         "Soğuk bir sesle **Sehr witzig!** denirse alaydır. Anlamı hiç komik değil olur."
       ],
       "examples": [
         {
           "id": "lx:witzig:1",
-          "de": "Tobi ist ein sehr witziger Kollege.",
-          "tr": "Tobi çok esprili bir iş arkadaşı.",
+          "de": "Er ist ein sehr witziger Kollege.",
+          "tr": "O çok esprili bir iş arkadaşı.",
           "layer": "hd"
         },
         {
@@ -329,7 +332,7 @@
         {
           "id": "lx:witzig:5",
           "de": "– Haben Sie das Foto gesehen? – Ja, das ist ein witziges Foto!",
-          "tr": "– Fotoğrafı gördünüz mü? – Evet, çok komik bir fotoğraf!",
+          "tr": "– Fotoğrafı gördünüz mü? – Evet, komik bir fotoğraf!",
           "layer": "hd",
           "dialog": true
         },
@@ -355,10 +358,10 @@
       },
       "forms": [
         {
-          "de": "Tobi ist ein ___ Kollege.",
+          "de": "Er ist ein ___ Kollege.",
           "answer": "witziger",
-          "tr": "Tobi esprili bir iş arkadaşı.",
-          "hint_tr": "Tobi esprili bir iş arkadaşı derken **ein witziger Kollege** denir.",
+          "tr": "O esprili bir iş arkadaşı.",
+          "hint_tr": "O esprili bir iş arkadaşı derken **ein witziger Kollege** denir.",
           "also_ok": [
             "lustiger"
           ]
@@ -561,7 +564,7 @@
         "lx:fragen"
       ],
       "mistakes_tr": [
-        "Merak etme derken **Sei nicht neugierig** yanlış. Türkçede bu endişelenme demektir. Doğrusu **Keine Sorge!**",
+        "Endişelenme anlamında merak etme derken **Sei nicht neugierig** yanlış. Bu her şeyi sorma demektir. Doğrusu **Keine Sorge**.",
         "Meraklı bir komşu derken **eine neugierig Nachbarin** yanlış. Doğrusu **eine neugierige Nachbarin**."
       ],
       "examples": [
@@ -625,7 +628,7 @@
             "tr": "hevesli"
           }
         ],
-        "ipucu_tr": "Endişelenme anlamındaki merak etme için **Keine Sorge!** dersin."
+        "ipucu_tr": "Endişelenme anlamındaki merak etme için **Keine Sorge** dersin."
       },
       "forms": [
         {
@@ -716,8 +719,8 @@
         },
         {
           "id": "lx:höflich:3",
-          "de": "Der war echt nicht sehr höflich, ne?",
-          "tr": "Adam pek kibar değildi, değil mi?",
+          "de": "Der war echt nicht sehr höflich, oder?",
+          "tr": "Adam gerçekten pek kibar değildi, değil mi?",
           "layer": "alltag"
         },
         {
@@ -760,31 +763,50 @@
           "de": "Herr Wimmer ist ein ___ Chef.",
           "answer": "höflicher",
           "tr": "Wimmer Bey kibar bir şef.",
-          "hint_tr": "Wimmer Bey kibar bir şef derken **ein höflicher Chef** denir."
+          "hint_tr": "Wimmer Bey kibar bir şef derken **ein höflicher Chef** denir.",
+          "also_ok": [
+            "freundlicher",
+            "netter"
+          ]
         },
         {
           "de": "Am Telefon bin ich immer ___.",
           "answer": "höflich",
           "tr": "Telefonda hep kibarımdır.",
-          "hint_tr": "Telefonda hep kibarımdır derken **bin ich immer höflich** denir."
+          "hint_tr": "Telefonda hep kibarımdır derken **bin ich immer höflich** denir.",
+          "also_ok": [
+            "freundlich",
+            "nett"
+          ]
         },
         {
           "de": "Eine ___ Bitte hilft fast immer.",
           "answer": "höfliche",
           "tr": "Kibar bir rica neredeyse her zaman işe yarar.",
-          "hint_tr": "Kibar bir rica derken **Eine höfliche Bitte** denir."
+          "hint_tr": "Kibar bir rica derken **Eine höfliche Bitte** denir.",
+          "also_ok": [
+            "freundliche"
+          ]
         },
         {
           "de": "Der Mann am Telefon war sehr ___.",
           "answer": "höflich",
           "tr": "Telefondaki adam çok kibardı.",
-          "hint_tr": "Adam çok kibardı derken **war sehr höflich** denir."
+          "hint_tr": "Adam çok kibardı derken **war sehr höflich** denir.",
+          "also_ok": [
+            "freundlich",
+            "nett"
+          ]
         },
         {
           "de": "Wir haben einen sehr ___ Nachbarn.",
           "answer": "höflichen",
           "tr": "Çok kibar bir komşumuz var.",
-          "hint_tr": "Çok kibar bir komşumuz var derken **haben** ile **einen sehr höflichen Nachbarn** denir."
+          "hint_tr": "Çok kibar bir komşumuz var derken **haben** ile **einen sehr höflichen Nachbarn** denir.",
+          "also_ok": [
+            "freundlichen",
+            "netten"
+          ]
         }
       ]
     },
@@ -890,16 +912,19 @@
           "hint_tr": "Çalışkan bir iş arkadaşımız var derken **eine fleißige Kollegin** denir."
         },
         {
-          "de": "Er ist ein ___ Kollege.",
+          "de": "Er ist ein sehr ___ junger Mann.",
           "answer": "fleißiger",
-          "tr": "O çalışkan bir iş arkadaşı.",
-          "hint_tr": "O çalışkan bir iş arkadaşı derken **ein fleißiger Kollege** denir."
+          "tr": "O çok çalışkan bir genç.",
+          "hint_tr": "Çok çalışkan bir genç derken **ein sehr fleißiger junger Mann** denir."
         },
         {
           "de": "Wir üben ___ für die Prüfung.",
           "answer": "fleißig",
           "tr": "Sınav için sıkı pratik yapıyoruz.",
-          "hint_tr": "Sıkı pratik yapıyoruz derken **üben fleißig** denir."
+          "hint_tr": "Sıkı pratik yapıyoruz derken **üben fleißig** denir.",
+          "also_ok": [
+            "viel"
+          ]
         },
         {
           "de": "Du warst heute echt ___!",
@@ -1000,16 +1025,23 @@
       },
       "forms": [
         {
-          "de": "Ioana hat oft eine ___ Idee.",
+          "de": "Das war eine sehr ___ Idee von dir.",
           "answer": "kluge",
-          "tr": "Ioana'nın sık sık akıllıca bir fikri olur.",
-          "hint_tr": "Akıllıca bir fikir derken **eine kluge Idee** denir."
+          "tr": "Bu çok akıllıca bir fikirdi.",
+          "hint_tr": "Çok akıllıca bir fikir derken **eine sehr kluge Idee** denir.",
+          "also_ok": [
+            "schlaue"
+          ]
         },
         {
           "de": "Ein ___ Mensch fragt, wenn er etwas nicht versteht.",
           "answer": "kluger",
           "tr": "Akıllı insan bir şeyi anlamazsa sorar.",
-          "hint_tr": "Akıllı insan derken **Ein kluger Mensch** denir."
+          "hint_tr": "Akıllı insan derken **Ein kluger Mensch** denir.",
+          "also_ok": [
+            "schlauer",
+            "intelligenter"
+          ]
         },
         {
           "de": "Meine Freundin ist sehr ___, sie spricht vier Sprachen.",
@@ -1017,20 +1049,28 @@
           "tr": "Arkadaşım çok akıllı, dört dil konuşuyor.",
           "hint_tr": "Çok akıllı derken **sehr klug** denir.",
           "also_ok": [
-            "intelligent"
+            "intelligent",
+            "schlau"
           ]
         },
         {
-          "de": "Der ___ gibt nach.",
-          "answer": "Klügere",
-          "tr": "Akıllı olan geri adım atar.",
-          "hint_tr": "Akıllı olan geri adım atar derken **Der Klügere gibt nach** denir."
+          "de": "Echt ___ von dir, dass du gefragt hast.",
+          "answer": "klug",
+          "tr": "Sorman gerçekten akıllıcaydı.",
+          "hint_tr": "Sorman akıllıcaydı derken **Echt klug von dir** denir.",
+          "also_ok": [
+            "schlau"
+          ]
         },
         {
           "de": "Sie ist ___ als ich.",
           "answer": "klüger",
           "tr": "O benden akıllı.",
-          "hint_tr": "Benden akıllı derken **klüger als ich** denir."
+          "hint_tr": "Benden akıllı derken **klüger als ich** denir.",
+          "also_ok": [
+            "schlauer",
+            "intelligenter"
+          ]
         }
       ]
     },
@@ -1496,7 +1536,7 @@
         {
           "id": "lx:Farbe:3",
           "de": "Die Farbe steht dir echt gut!",
-          "tr": "Bu renk sana gerçekten çok yakışıyor!",
+          "tr": "Bu renk sana gerçekten yakışıyor!",
           "layer": "alltag",
           "img": "woman trying on colorful sweater"
         },
@@ -1560,7 +1600,7 @@
           "de": "Mit der neuen ___ sieht das Zimmer größer aus.",
           "answer": "Farbe",
           "tr": "Yeni boyayla oda daha büyük görünüyor.",
-          "hint_tr": "Yeni boyayla derken **mit der neuen Farbe** denir."
+          "hint_tr": "Yeni boyayla derken **Mit der neuen Farbe** denir."
         },
         {
           "de": "Hm, beide ___ sind schön.",
@@ -1606,7 +1646,7 @@
         "lx:Wohnung"
       ],
       "mistakes_tr": [
-        "Mobilyalar yeni derken **Das Möbel ist neu** yanlış. Doğrusu **Die Möbel sind neu**.",
+        "Mobilya yeni derken **Die Möbel ist neu** yanlış. Doğrusu **Die Möbel sind neu**. Türkçede mobilya tek, Almancada hep çok.",
         "Eski mobilyalarla derken **mit alten Möbel** yanlış. Sona **n** gelir: **mit alten Möbeln**."
       ],
       "examples": [
@@ -1795,13 +1835,16 @@
           "de": "Mit den ___ Schuhen kann ich den ganzen Tag laufen.",
           "answer": "bequemen",
           "tr": "Bu rahat ayakkabılarla bütün gün yürüyebilirim.",
-          "hint_tr": "Bu rahat ayakkabılarla derken **mit den bequemen Schuhen** denir."
+          "hint_tr": "Bu rahat ayakkabılarla derken **Mit den bequemen Schuhen** denir."
         },
         {
           "de": "Das Sofa ist sehr ___.",
           "answer": "bequem",
           "tr": "Kanepe çok rahat.",
-          "hint_tr": "Kanepe çok rahat derken **ist sehr bequem** denir."
+          "hint_tr": "Kanepe çok rahat derken **ist sehr bequem** denir.",
+          "also_ok": [
+            "gemütlich"
+          ]
         },
         {
           "de": "Setz dich und mach es dir ___!",
@@ -1822,7 +1865,10 @@
           "de": "Ich sitze gern auf dem ___ Sofa.",
           "answer": "bequemen",
           "tr": "Rahat kanepede oturmayı severim.",
-          "hint_tr": "Rahat kanepede derken **auf dem bequemen Sofa** denir."
+          "hint_tr": "Rahat kanepede derken **auf dem bequemen Sofa** denir.",
+          "also_ok": [
+            "gemütlichen"
+          ]
         }
       ]
     },
@@ -1883,7 +1929,7 @@
         {
           "id": "lx:modern:4",
           "de": "– Wie ist die neue Praxis? – Sehr schön, mit modernen Geräten.",
-          "tr": "– Yeni muayenehane nasıl? – Çok güzel, cihazlar modern.",
+          "tr": "– Yeni muayenehane nasıl? – Çok güzel, modern cihazları var.",
           "layer": "hd",
           "dialog": true
         },
@@ -1966,8 +2012,8 @@
           "tr": "koyu bir renk"
         },
         {
-          "de": "dunkelblau",
-          "tr": "lacivert"
+          "de": "ein dunkles Zimmer",
+          "tr": "karanlık bir oda"
         }
       ],
       "patterns": [
@@ -1981,20 +2027,20 @@
         "lx:Farbe"
       ],
       "mistakes_tr": [
-        "Hava karardı derken **Das Wetter ist dunkel** yanlış. Doğrusu **Es ist dunkel**.",
+        "Hava karanlık derken **Das Wetter ist dunkel** yanlış. Doğrusu **Es ist dunkel**.",
         "Koyu bir renk derken **eine dunkele Farbe** yanlış. Doğrusu **eine dunkle Farbe**, ortadaki **e** düşer."
       ],
       "examples": [
         {
           "id": "lx:dunkel:1",
           "de": "Im Winter ist es um fünf Uhr schon dunkel.",
-          "tr": "Kışın saat beşte hava çoktan kararıyor.",
+          "tr": "Kışın saat beşte hava çoktan karanlık.",
           "layer": "hd"
         },
         {
           "id": "lx:dunkel:2",
-          "de": "Haben Sie die Hose auch in Dunkelblau?",
-          "tr": "Bu pantolonun lacivert rengi de var mı?",
+          "de": "Die Hose ist mir zu dunkel. Haben Sie sie auch in einer anderen Farbe?",
+          "tr": "Bu pantolon bana fazla koyu. Başka bir rengi de var mı?",
           "layer": "hd"
         },
         {
@@ -2039,10 +2085,10 @@
       },
       "forms": [
         {
-          "de": "Im Winter ist es früh ___.",
+          "de": "Im Winter wird es früh ___.",
           "answer": "dunkel",
           "tr": "Kışın hava erken kararır.",
-          "hint_tr": "Kışın hava erken kararır derken **ist es früh dunkel** denir."
+          "hint_tr": "Hava erken kararır derken **wird es früh dunkel** denir."
         },
         {
           "de": "Ich wohne in einer ___ Wohnung.",
@@ -2170,7 +2216,7 @@
           "de": "Mit der ___ Tasche habe ich die Hände frei.",
           "answer": "praktischen",
           "tr": "Bu kullanışlı çantayla ellerim boşta kalıyor.",
-          "hint_tr": "Bu kullanışlı çantayla derken **mit der praktischen Tasche** denir."
+          "hint_tr": "Bu kullanışlı çantayla derken **Mit der praktischen Tasche** denir."
         },
         {
           "de": "Die Haltestelle direkt vor dem Haus ist sehr ___.",
@@ -2248,7 +2294,7 @@
         },
         {
           "id": "lx:Erinnerung:2",
-          "de": "Die Praxis schickt eine Erinnerung an den Termin per SMS.",
+          "de": "Die Praxis schickt per SMS eine Erinnerung an den Termin.",
           "tr": "Muayenehane randevu hatırlatmasını SMS ile gönderiyor.",
           "layer": "hd"
         },
@@ -2274,7 +2320,7 @@
         },
         {
           "id": "lx:Erinnerung:6",
-          "de": "Als ich die alten Fotos gesehen habe, kamen viele Erinnerungen zurück.",
+          "de": "Als ich die alten Fotos gesehen habe, sind viele Erinnerungen zurückgekommen.",
           "tr": "Eski fotoğrafları görünce birçok anı geri geldi.",
           "layer": "hd"
         }
@@ -2322,7 +2368,10 @@
           "de": "Ich habe keine ___ an diesen Tag.",
           "answer": "Erinnerung",
           "tr": "O günü hiç hatırlamıyorum.",
-          "hint_tr": "O günü hiç hatırlamıyorum derken **keine Erinnerung an** denir."
+          "hint_tr": "O günü hiç hatırlamıyorum derken **keine Erinnerung an** denir.",
+          "also_ok": [
+            "Erinnerungen"
+          ]
         }
       ]
     },
@@ -2345,7 +2394,7 @@
         },
         {
           "de": "Oma und Opa",
-          "tr": "büyükannem ve büyükbabam"
+          "tr": "büyükanne ve büyükbaba"
         },
         {
           "de": "zu Oma fahren",
@@ -2486,8 +2535,8 @@
           "tr": "sert bir öğretmen"
         },
         {
-          "de": "die Lehrerin",
-          "tr": "kadın öğretmen"
+          "de": "den Lehrer fragen",
+          "tr": "öğretmene sormak"
         },
         {
           "de": "Lehrer werden",
@@ -2504,7 +2553,7 @@
         "lx:Kurs"
       ],
       "mistakes_tr": [
-        "Türkçedeki gibi öğretmenim diye seslenilmez. Soyadıyla seslenirsin: **Frau Bauer**, **Herr Kaya**.",
+        "Öğretmene **Lehrer** diye seslenilmez. **Frau** ya da **Herr** ile soyadını söylersin: **Frau Bauer**, **Herr Kaya**.",
         "Kadın öğretmen için **die Lehrer** yanlış. Doğrusu **die Lehrerin**."
       ],
       "examples": [
@@ -2539,7 +2588,7 @@
         },
         {
           "id": "lx:Lehrer:5",
-          "de": "– Wer hat Ihnen das erklärt? – Der Lehrer im Kurs.",
+          "de": "– Wer hat Ihnen das erklärt? – Die Lehrerin im Kurs.",
           "tr": "– Bunu size kim açıkladı? – Kurstaki öğretmen.",
           "layer": "hd",
           "dialog": true,
@@ -2576,7 +2625,7 @@
         {
           "de": "Die ___ im Kurs ist eine sehr nette Frau.",
           "answer": "Lehrerin",
-          "tr": "Kurstaki öğretmen çok tatlı bir kadın.",
+          "tr": "Kurstaki öğretmen çok hoş bir kadın.",
           "hint_tr": "Öğretmen kadınsa **die Lehrerin** denir."
         },
         {
@@ -2728,7 +2777,7 @@
           "de": "Zwischen den ___ fährt nur zweimal am Tag ein Bus.",
           "answer": "Dörfern",
           "tr": "Köyler arasında günde sadece iki kez otobüs var.",
-          "hint_tr": "Köyler arasında derken **zwischen den Dörfern** denir."
+          "hint_tr": "Köyler arasında derken **Zwischen den Dörfern** denir."
         }
       ]
     },
@@ -2803,8 +2852,8 @@
         },
         {
           "id": "lx:Spielzeug:5",
-          "de": "– Was war dein Lieblingsspielzeug? – Ein kleines rotes Auto, das hab ich immer noch.",
-          "tr": "– En sevdiğin oyuncak neydi? – Küçük kırmızı bir araba, hâlâ bende.",
+          "de": "– Was war früher dein liebstes Spielzeug? – Ein kleines rotes Auto, das hab ich immer noch.",
+          "tr": "– Eskiden en sevdiğin oyuncak neydi? – Küçük kırmızı bir araba, hâlâ bende.",
           "layer": "alltag",
           "dialog": true,
           "img": "small red toy car"
@@ -2862,7 +2911,10 @@
           "de": "Wo finde ich hier ___ für Kinder?",
           "answer": "Spielzeug",
           "tr": "Burada çocuk oyuncaklarını nerede bulabilirim?",
-          "hint_tr": "Çocuk oyuncakları derken **Spielzeug für Kinder** denir."
+          "hint_tr": "Çocuk oyuncakları derken **Spielzeug für Kinder** denir.",
+          "also_ok": [
+            "Spielsachen"
+          ]
         },
         {
           "de": "Wir schenken dem Kind ein ___ zum Geburtstag.",
@@ -2893,8 +2945,8 @@
           "tr": "İyi tatiller!"
         },
         {
-          "de": "die Sommerferien",
-          "tr": "yaz tatili"
+          "de": "nach den Ferien",
+          "tr": "tatilden sonra"
         }
       ],
       "patterns": [
@@ -2931,14 +2983,14 @@
         {
           "id": "lx:Ferien:4",
           "de": "– Was habt ihr in den Ferien gemacht? – Nicht viel, wir waren meistens zu Hause.",
-          "tr": "– Tatilde ne yaptınız? – Pek bir şey, çoğu zaman evdeydik.",
+          "tr": "– Tatilde ne yaptınız? – Pek bir şey yapmadık, çoğu zaman evdeydik.",
           "layer": "alltag",
           "dialog": true
         },
         {
           "id": "lx:Ferien:5",
-          "de": "– Haben Sie im August geöffnet? – Nein, in den Ferien ist die Praxis zwei Wochen geschlossen.",
-          "tr": "– Ağustosta açık mısınız? – Hayır, tatilde muayenehane iki hafta kapalı.",
+          "de": "– Fahren Sie in den Ferien weg? – Nein, wir bleiben dieses Jahr zu Hause.",
+          "tr": "– Tatilde bir yere gidiyor musunuz? – Hayır, bu yıl evde kalıyoruz.",
           "layer": "hd",
           "dialog": true
         },
@@ -2957,8 +3009,8 @@
         "smalltalk"
       ],
       "exp": {
-        "anlam_tr": "**die Ferien** okulların ya da bir yerin kapalı olduğu tatil zamanıdır.",
-        "ne_zaman_tr": "Okul tatilini, çocukluğunu ya da kapalı günleri konuşurken.",
+        "anlam_tr": "**die Ferien** okulların kapalı olduğu tatil zamanıdır.",
+        "ne_zaman_tr": "Okul tatilini ya da çocukluğunu anlatırken.",
         "parcalar": [],
         "ipucu_tr": "İşten izin için **Urlaub**, okul tatili için **Ferien** dersin."
       },
@@ -3037,7 +3089,7 @@
       ],
       "mistakes_tr": [
         "Tırmandım derken **Ich habe geklettert** yanlış. Doğrusu **Ich bin geklettert**.",
-        "Ağaca tırmanmak derken Türkçedeki **-e** için **auf** kullanılır: **auf einen Baum klettern**."
+        "Ağaca tırmanmak derken **zu einem Baum klettern** yanlış. Doğrusu **auf einen Baum klettern**."
       ],
       "examples": [
         {
@@ -3097,7 +3149,10 @@
           "de": "Als ich klein war, bin ich oft auf Bäume ___.",
           "answer": "geklettert",
           "tr": "Küçükken sık sık ağaçlara tırmanırdım.",
-          "hint_tr": "Küçükken tırmanırdım derken **bin** kullanılır, sona **geklettert** gelir."
+          "hint_tr": "Küçükken tırmanırdım derken **bin** kullanılır, sona **geklettert** gelir.",
+          "also_ok": [
+            "gestiegen"
+          ]
         },
         {
           "de": "Mein Kollege geht am Wochenende oft ___.",
@@ -3109,7 +3164,10 @@
           "de": "Das Kind ___ auf den Stuhl.",
           "answer": "klettert",
           "tr": "Çocuk sandalyeye tırmanıyor.",
-          "hint_tr": "**Das Kind** ile söylerken **klettert** denir."
+          "hint_tr": "**Das Kind** ile söylerken **klettert** denir.",
+          "also_ok": [
+            "steigt"
+          ]
         },
         {
           "de": "Als Kind bin ich gern ___.",

@@ -1,7 +1,10 @@
 {
   "batch": "a2-01",
   "review": {
-    "status": "draft"
+    "status": "draft",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "Dilbilimci turu tamam: docs/v2/reviews/lexicon-batch-a2-01.md. Okur bekliyor."
   },
   "items": [
     {
@@ -53,7 +56,7 @@
         },
         {
           "id": "lx:Abkürzung:3",
-          "de": "Keine Ahnung, was die Abkürzung heißt. Frag mal Derya.",
+          "de": "Keine Ahnung, was die Abkürzung bedeutet. Frag mal Derya.",
           "tr": "Kısaltma ne demek hiç bilmiyorum. Derya'ya bir sor.",
           "layer": "alltag"
         },
@@ -112,7 +115,7 @@
         {
           "de": "Können Sie mir die ___ erklären?",
           "answer": "Abkürzung",
-          "tr": "Bana bu kısaltmayı açıklayabilir misiniz?",
+          "tr": "Bana kısaltmayı açıklayabilir misiniz?",
           "hint_tr": "Kısaltmayı açıklamak derken **die Abkürzung erklären** denir."
         },
         {
@@ -155,7 +158,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Almancada derken **in Deutsch** değil **auf Deutsch** dersin. **auf Hochdeutsch** da böyledir.",
-        "**hoch** burada kibar ya da yüksek ses demek değildir. **Hochdeutsch** herkesin anladığı standart Almancadır."
+        "**hoch** yüksek demektir ama **Hochdeutsch** yüksek sesli ya da kibar Almanca değildir."
       ],
       "examples": [
         {
@@ -205,9 +208,9 @@
       ],
       "exp": {
         "anlam_tr": "Lehçesiz, herkesin anladığı standart Almancadır.",
-        "ne_zaman_tr": "Karşındakinden ağızsız konuşmasını isterken.",
+        "ne_zaman_tr": "Karşındakinden lehçesiz konuşmasını isterken.",
         "parcalar": [],
-        "ipucu_tr": "Ağzı anlamazsan **Auf Hochdeutsch, bitte?** diye rica edebilirsin."
+        "ipucu_tr": "Lehçeyi anlamazsan **Auf Hochdeutsch, bitte?** diye rica edebilirsin."
       },
       "forms": [
         {
@@ -220,19 +223,19 @@
           "de": "Was heißt das auf ___?",
           "answer": "Hochdeutsch",
           "tr": "Bunun standart Almancası ne?",
-          "hint_tr": "Standart Almancayla derken **auf Hochdeutsch** denir."
+          "hint_tr": "Bunun standart Almancası ne derken **Was heißt das auf Hochdeutsch?** denir."
         },
         {
           "de": "Dr. Weber spricht fast immer ___.",
           "answer": "Hochdeutsch",
           "tr": "Dr. Weber neredeyse hep standart Almanca konuşur.",
-          "hint_tr": "Standart Almanca konuşur derken **spricht Hochdeutsch** denir."
+          "hint_tr": "Neredeyse hep standart Almanca derken **fast immer Hochdeutsch** denir."
         },
         {
           "de": "Im Sprachkurs lernen wir ___.",
           "answer": "Hochdeutsch",
           "tr": "Kursta standart Almanca öğreniyoruz.",
-          "hint_tr": "Standart Almanca öğreniyoruz derken **lernen Hochdeutsch** denir."
+          "hint_tr": "Standart Almanca öğreniyoruz derken **lernen wir Hochdeutsch** denir."
         },
         {
           "de": "Das ist kein ___, das ist Dialekt.",
@@ -331,31 +334,46 @@
           "de": "„Servus“ ist ein ___ Wort.",
           "answer": "bayerisches",
           "tr": "Servus, Bavyera'ya özgü bir kelime.",
-          "hint_tr": "Bavyera'ya özgü bir kelime derken **ein bayerisches Wort** denir."
+          "hint_tr": "Bavyera'ya özgü bir kelime derken **ein bayerisches Wort** denir.",
+          "also_ok": [
+            "bayrisches"
+          ]
         },
         {
           "de": "Ich finde die ___ Küche sehr lecker.",
           "answer": "bayerische",
           "tr": "Bavyera mutfağını çok lezzetli buluyorum.",
-          "hint_tr": "Bavyera mutfağı derken **die bayerische Küche** denir."
+          "hint_tr": "Bavyera mutfağı derken **die bayerische Küche** denir.",
+          "also_ok": [
+            "bayrische"
+          ]
         },
         {
           "de": "Derya versteht den ___ Dialekt sehr gut.",
           "answer": "bayerischen",
           "tr": "Derya Bavyera lehçesini çok iyi anlıyor.",
-          "hint_tr": "Bavyera lehçesini derken **den bayerischen Dialekt** denir."
+          "hint_tr": "Bavyera lehçesini derken **den bayerischen Dialekt** denir.",
+          "also_ok": [
+            "bayrischen"
+          ]
         },
         {
           "de": "Ist das ein ___ Ausdruck?",
           "answer": "bayerischer",
           "tr": "Bu Bavyera'ya özgü bir ifade mi?",
-          "hint_tr": "Bavyera'ya özgü bir ifade derken **ein bayerischer Ausdruck** denir."
+          "hint_tr": "Bavyera'ya özgü bir ifade derken **ein bayerischer Ausdruck** denir.",
+          "also_ok": [
+            "bayrischer"
+          ]
         },
         {
           "de": "Das ist typisch ___.",
           "answer": "bayerisch",
           "tr": "Bu tam Bavyera'ya özgü.",
-          "hint_tr": "Tam Bavyera'ya özgü derken **typisch bayerisch** denir."
+          "hint_tr": "Tam Bavyera'ya özgü derken **typisch bayerisch** denir.",
+          "also_ok": [
+            "bayrisch"
+          ]
         }
       ]
     },
@@ -422,7 +440,7 @@
         {
           "id": "lx:Akzent:5",
           "de": "– Sie haben einen bayerischen Akzent, oder? – Ja, ich komme aus der Gegend.",
-          "tr": "– Bavyera aksanınız var, değil mi? – Evet, bu taraflıyım.",
+          "tr": "– Bavyera aksanınız var, değil mi? – Evet, buralıyım.",
           "layer": "hd",
           "dialog": true
         },
@@ -529,14 +547,14 @@
         {
           "id": "lx:Gegend:3",
           "de": "– Kommst du aus der Gegend? – Nee, ich wohn erst seit ein paar Monaten hier.",
-          "tr": "– Buralı mısın? – Yok, birkaç aydır burada oturuyorum.",
+          "tr": "– Buralı mısın? – Yok, daha birkaç aydır burada oturuyorum.",
           "layer": "alltag",
           "dialog": true
         },
         {
           "id": "lx:Gegend:4",
           "de": "Schöne Gegend hier, oder?",
-          "tr": "Burası güzel bir yer, değil mi?",
+          "tr": "Güzel bir yöre burası, değil mi?",
           "layer": "alltag"
         },
         {
@@ -573,26 +591,33 @@
           "tr": "Buralarda bir eczane var mı?",
           "hint_tr": "Buralarda derken **hier in der Gegend** denir.",
           "also_ok": [
-            "Nähe"
+            "Nähe",
+            "Umgebung"
           ]
         },
         {
           "de": "In dieser ___ sprechen viele Leute Dialekt.",
           "answer": "Gegend",
           "tr": "Bu yörede birçok insan lehçe konuşur.",
-          "hint_tr": "Bu yörede derken **in dieser Gegend** denir."
+          "hint_tr": "Bu yörede derken **in dieser Gegend** denir.",
+          "also_ok": [
+            "Region"
+          ]
         },
         {
           "de": "Kommst du aus der ___?",
           "answer": "Gegend",
           "tr": "Buralı mısın?",
-          "hint_tr": "Buralı mısın derken **Kommst du aus der Gegend?** denir."
+          "hint_tr": "Buralı mısın derken **Kommst du aus der Gegend?** denir.",
+          "also_ok": [
+            "Nähe"
+          ]
         },
         {
           "de": "Schöne ___ hier, oder?",
           "answer": "Gegend",
-          "tr": "Burası güzel bir yer, değil mi?",
-          "hint_tr": "Güzel bir yer derken **schöne Gegend** denir."
+          "tr": "Güzel bir yöre burası, değil mi?",
+          "hint_tr": "Güzel bir yöre derken burada kısaca **schöne Gegend** denir."
         },
         {
           "de": "Herr Pichler kennt jede Straße in der ___.",
@@ -600,7 +625,8 @@
           "tr": "Pichler Bey civardaki her sokağı bilir.",
           "hint_tr": "Civardaki derken **in der Gegend** denir.",
           "also_ok": [
-            "Nähe"
+            "Nähe",
+            "Umgebung"
           ]
         }
       ]
@@ -709,13 +735,19 @@
           "de": "Frau Stadler ___ jeden Kunden mit „Grüß Gott“.",
           "answer": "grüßt",
           "tr": "Stadler Hanım her müşteriye Grüß Gott diye selam verir.",
-          "hint_tr": "**Frau Stadler** ile söylerken **grüßen**, **grüßt** olur."
+          "hint_tr": "**Frau Stadler** ile söylerken **grüßen**, **grüßt** olur.",
+          "also_ok": [
+            "begrüßt"
+          ]
         },
         {
           "de": "___ dich! Lang nicht gesehen.",
           "answer": "Grüß",
           "tr": "Selam! Görüşmeyeli uzun zaman oldu.",
-          "hint_tr": "Arkadaşa selam verirken **Grüß dich!** denir."
+          "hint_tr": "Arkadaşa selam verirken **Grüß dich!** denir.",
+          "also_ok": [
+            "Grüße"
+          ]
         },
         {
           "de": "Ioana lässt dich ___.",
@@ -727,7 +759,7 @@
           "de": "Ich habe ihn gestern im Bus ___.",
           "answer": "gegrüßt",
           "tr": "Dün otobüste ona selam verdim.",
-          "hint_tr": "Selam verdim derken **Ich habe ihn gegrüßt** denir."
+          "hint_tr": "Selam verdim derken **Ich habe** ile başlar, sonda **gegrüßt** gelir."
         }
       ]
     },
@@ -911,22 +943,22 @@
         },
         {
           "id": "lx:Bedeutung:4",
-          "de": "– Was ist hier die Bedeutung von „gell“? – So viel wie „oder?“.",
-          "tr": "– Buradaki gell ne anlama geliyor? – Aşağı yukarı değil mi demek.",
+          "de": "– Kennst du die Bedeutung von „gell“? – Klar, so viel wie „oder?“.",
+          "tr": "– Gell sözünün anlamını biliyor musun? – Tabii, aşağı yukarı değil mi demek.",
           "layer": "alltag",
           "dialog": true
         },
         {
           "id": "lx:Bedeutung:5",
-          "de": "– Hat „Bank“ nur eine Bedeutung? – Nein, zwei: Geld und Sitzen.",
-          "tr": "– Bank kelimesinin tek anlamı mı var? – Hayır, iki. Para ve oturmak.",
+          "de": "– Hat „Bank“ nur eine Bedeutung? – Nein, zwei: die Bank für Geld und die Bank zum Sitzen.",
+          "tr": "– Bank kelimesinin tek anlamı mı var? – Hayır, iki. Para işleri için banka ve oturulan sıra.",
           "layer": "hd",
           "dialog": true
         },
         {
           "id": "lx:Bedeutung:6",
-          "de": "Ioana schreibt neue Wörter mit der Bedeutung auf einen Zettel.",
-          "tr": "Ioana yeni kelimeleri anlamlarıyla bir kâğıda yazıyor.",
+          "de": "Ich schreibe neue Wörter mit der Bedeutung auf einen Zettel.",
+          "tr": "Yeni kelimeleri anlamlarıyla bir kâğıda yazıyorum.",
           "layer": "hd"
         }
       ],
@@ -953,13 +985,13 @@
           "de": "Ich kenne die ___ von diesem Wort nicht.",
           "answer": "Bedeutung",
           "tr": "Bu kelimenin anlamını bilmiyorum.",
-          "hint_tr": "Anlamını bilmiyorum derken **Ich kenne die Bedeutung nicht** denir."
+          "hint_tr": "Bu kelimenin anlamı derken **die Bedeutung von diesem Wort** denir."
         },
         {
           "de": "Die ___ schau ich gleich im Handy nach.",
           "answer": "Bedeutung",
           "tr": "Anlamına hemen telefondan bakarım.",
-          "hint_tr": "Anlamına bakmak derken **die Bedeutung nachschauen** denir."
+          "hint_tr": "Anlamına derken burada **die Bedeutung** denir."
         },
         {
           "de": "Hat „Bank“ nur eine ___?",
@@ -968,9 +1000,9 @@
           "hint_tr": "Tek anlamı derken **nur eine Bedeutung** denir."
         },
         {
-          "de": "Was ist hier die ___ von „gell“?",
+          "de": "Kennst du die ___ von „gell“?",
           "answer": "Bedeutung",
-          "tr": "Buradaki gell ne anlama geliyor?",
+          "tr": "Gell sözünün anlamını biliyor musun?",
           "hint_tr": "Gell sözünün anlamı derken **die Bedeutung von gell** denir."
         }
       ]
@@ -1037,8 +1069,8 @@
         },
         {
           "id": "lx:Beispiel:5",
-          "de": "– Was heißt „Nebenkosten“? – Zum Beispiel Wasser und Heizung.",
-          "tr": "– Nebenkosten ne demek? – Örneğin su ve ısınma.",
+          "de": "– Was sind „Nebenkosten“? – Zum Beispiel Wasser und Heizung.",
+          "tr": "– Nebenkosten nedir? – Örneğin su ve ısınma.",
           "layer": "hd",
           "dialog": true
         },
@@ -1072,7 +1104,7 @@
           "de": "Im Süden sagt man zum ___ „Grüß Gott“.",
           "answer": "Beispiel",
           "tr": "Güneyde mesela Grüß Gott denir.",
-          "hint_tr": "Örneğin derken **zum Beispiel** denir."
+          "hint_tr": "Mesela derken **zum Beispiel** denir."
         },
         {
           "de": "Das ist ein gutes ___.",
@@ -1283,8 +1315,8 @@
         },
         {
           "id": "lx:korrigieren:5",
-          "de": "– Also am Montag um neun? – Ich korrigiere: am Dienstag um neun.",
-          "tr": "– Yani pazartesi saat dokuzda mı? – Düzelteyim, salı saat dokuzda.",
+          "de": "– Also am Montag um neun? – Nein, ich korrigiere mich: am Dienstag um neun.",
+          "tr": "– Yani pazartesi saat dokuzda mı? – Hayır, düzeltiyorum, salı saat dokuzda.",
           "layer": "hd",
           "dialog": true
         },
@@ -1313,38 +1345,53 @@
           "de": "___ Sie mich bitte, wenn ich etwas falsch sage.",
           "answer": "Korrigieren",
           "tr": "Yanlış bir şey söylersem lütfen beni düzeltin.",
-          "hint_tr": "Beni düzeltin derken **Korrigieren Sie mich** denir."
+          "hint_tr": "Beni düzeltin derken **Korrigieren Sie mich** denir.",
+          "also_ok": [
+            "Verbessern"
+          ]
         },
         {
           "de": "Ich habe den Fehler schon ___.",
           "answer": "korrigiert",
           "tr": "Hatayı çoktan düzelttim.",
-          "hint_tr": "Düzelttim derken **Ich habe korrigiert** denir."
+          "hint_tr": "Düzelttim derken **Ich habe** ile başlar, sonda **korrigiert** gelir.",
+          "also_ok": [
+            "verbessert"
+          ]
         },
         {
           "de": "Ioana ___ mich, und ich korrigiere sie.",
           "answer": "korrigiert",
           "tr": "Ioana beni düzeltiyor, ben de onu.",
-          "hint_tr": "**Ioana** ile söylerken **korrigieren**, **korrigiert** olur."
+          "hint_tr": "**Ioana** ile söylerken **korrigieren**, **korrigiert** olur.",
+          "also_ok": [
+            "verbessert"
+          ]
         },
         {
           "de": "___ du mich, wenn ich Fehler mache?",
           "answer": "Korrigierst",
           "tr": "Hata yaparsam beni düzeltir misin?",
-          "hint_tr": "**du** ile söylerken **korrigieren**, **Korrigierst** olur."
+          "hint_tr": "**du** ile söylerken **korrigieren**, **Korrigierst** olur.",
+          "also_ok": [
+            "Verbesserst"
+          ]
         },
         {
-          "de": "Ich ___: am Dienstag um neun.",
+          "de": "Nein, ich ___ mich: am Dienstag um neun.",
           "answer": "korrigiere",
-          "tr": "Düzelteyim, salı saat dokuzda.",
-          "hint_tr": "**Ich** ile söylerken **korrigieren**, **korrigiere** olur."
+          "tr": "Hayır, düzeltiyorum, salı saat dokuzda.",
+          "hint_tr": "**Ich** ile söylerken **korrigieren**, **korrigiere** olur.",
+          "also_ok": [
+            "verbessere"
+          ]
         }
       ]
     },
     {
       "id": "lx:verwechseln",
       "de": "verwechseln",
-      "tr": "karıştırmak, birbirine benzetmek",
+      "tr": "karıştırmak, başkasına benzetmek",
       "pos": "verb",
       "verb": {
         "praesens3": "verwechselt",
@@ -1382,8 +1429,8 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "Günleri karıştırdım derken **Ich habe die Tage gemischt** yanlış. **mischen** yemek ya da kart karıştırmaktır.",
-        "Doğrusu **Ich habe die Tage verwechselt**. Biriyle karıştırınca **mit** gelir: **Ich habe Sie mit jemandem verwechselt**."
+        "Günleri karıştırdım derken **Ich habe die Tage gemischt** yanlış. Doğrusu **Ich habe die Tage verwechselt**.",
+        "Sizi biriyle karıştırdım derken **mit** gelir: **Ich habe Sie mit jemandem verwechselt**."
       ],
       "examples": [
         {
@@ -1436,14 +1483,14 @@
         "anlam_tr": "İki şeyi ya da iki kişiyi birbirinin yerine koymayı söyler.",
         "ne_zaman_tr": "Gün, saat ya da sayı yanlış anlaşılınca.",
         "parcalar": [],
-        "ipucu_tr": "Çorba karıştırmak için değil, iki şeyi şaşırınca kullanılır."
+        "ipucu_tr": "Yemeği karıştırmak **mischen** olur, **verwechseln** yalnızca iki şeyi şaşırınca kullanılır."
       },
       "forms": [
         {
           "de": "Tut mir leid, ich habe Dienstag und Donnerstag ___.",
           "answer": "verwechselt",
           "tr": "Kusura bakmayın, salıyla perşembeyi karıştırdım.",
-          "hint_tr": "Karıştırdım derken **ich habe verwechselt** denir."
+          "hint_tr": "Karıştırdım derken **ich habe** ile başlar, sonda **verwechselt** gelir."
         },
         {
           "de": "Du ___ das immer.",
@@ -1579,7 +1626,7 @@
           "de": "Haben Sie die Nummer ___?",
           "answer": "notiert",
           "tr": "Numarayı not aldınız mı?",
-          "hint_tr": "Not aldınız mı derken **Haben Sie notiert?** denir.",
+          "hint_tr": "Not aldınız mı derken **Haben Sie** ile başlar, sonda **notiert** gelir.",
           "also_ok": [
             "aufgeschrieben"
           ]
@@ -1600,7 +1647,7 @@
           "de": "Hast du dir die Adresse ___?",
           "answer": "notiert",
           "tr": "Adresi not aldın mı?",
-          "hint_tr": "**du** ile sorarken **Hast du dir das notiert?** denir.",
+          "hint_tr": "Adresi not aldın mı derken **Hast du dir die Adresse notiert?** denir.",
           "also_ok": [
             "aufgeschrieben"
           ]
@@ -1698,7 +1745,7 @@
         "anlam_tr": "Üstüne kısa bir şey yazılan küçük kâğıt parçasıdır.",
         "ne_zaman_tr": "Adres, saat ya da numarayı yazdırmak isterken.",
         "parcalar": [],
-        "ipucu_tr": "Anlamadığın adı **auf einen Zettel schreiben** diye rica edip yazdırabilirsin."
+        "ipucu_tr": "Anlamadığın adı yazdırmak için **Können Sie das auf einen Zettel schreiben?** de."
       },
       "forms": [
         {
@@ -1711,7 +1758,7 @@
           "de": "Im Briefkasten liegt ein ___ vom Paketdienst.",
           "answer": "Zettel",
           "tr": "Posta kutusunda kargo şirketinden bir not var.",
-          "hint_tr": "Posta kutusunda bir not derken **ein Zettel im Briefkasten** denir."
+          "hint_tr": "Bir not derken burada **ein Zettel** denir."
         },
         {
           "de": "Hast du den ___ noch?",
@@ -1774,8 +1821,8 @@
         },
         {
           "id": "lx:deutlich:2",
-          "de": "Am Telefon spricht Dr. Weber immer langsam und deutlich.",
-          "tr": "Dr. Weber telefonda hep yavaş ve net konuşur.",
+          "de": "Frau Schneider spricht immer langsam und deutlich.",
+          "tr": "Schneider Hanım hep yavaş ve net konuşur.",
           "layer": "hd"
         },
         {
@@ -1826,16 +1873,19 @@
           "hint_tr": "Daha anlaşılır derken **deutlicher** denir."
         },
         {
-          "de": "Dr. Weber spricht immer langsam und ___.",
+          "de": "Frau Schneider spricht immer langsam und ___.",
           "answer": "deutlich",
-          "tr": "Dr. Weber hep yavaş ve net konuşur.",
-          "hint_tr": "Yavaş ve net derken **langsam und deutlich** denir."
+          "tr": "Schneider Hanım hep yavaş ve net konuşur.",
+          "hint_tr": "Yavaş ve net derken **langsam und deutlich** denir.",
+          "also_ok": [
+            "klar"
+          ]
         },
         {
           "de": "Sag's noch mal, aber bitte ___, ja?",
           "answer": "deutlich",
           "tr": "Bir daha söyle ama lütfen net, tamam mı?",
-          "hint_tr": "Net söyle derken **bitte deutlich** denir."
+          "hint_tr": "Lütfen net derken **bitte deutlich** denir."
         },
         {
           "de": "Ja, viel ___, danke!",
@@ -1847,13 +1897,19 @@
           "de": "Bitte schreiben Sie den Namen ___.",
           "answer": "deutlich",
           "tr": "Lütfen adı okunaklı yazın.",
-          "hint_tr": "Okunaklı yazın derken **deutlich schreiben** denir."
+          "hint_tr": "Okunaklı derken burada **deutlich** denir.",
+          "also_ok": [
+            "leserlich"
+          ]
         },
         {
           "de": "Der redet nicht sehr ___.",
           "answer": "deutlich",
           "tr": "Adam pek anlaşılır konuşmuyor.",
-          "hint_tr": "Pek anlaşılır değil derken **nicht sehr deutlich** denir."
+          "hint_tr": "Pek anlaşılır değil derken **nicht sehr deutlich** denir.",
+          "also_ok": [
+            "klar"
+          ]
         }
       ]
     },
@@ -1968,19 +2024,19 @@
           "de": "Ich muss dich mal kurz ___.",
           "answer": "unterbrechen",
           "tr": "Sözünü bir saniye kesmem lazım.",
-          "hint_tr": "Sözünü kesmem lazım derken **muss dich unterbrechen** denir."
+          "hint_tr": "Sözünü kesmem lazım derken **Ich muss dich** ile başlar, sonda **unterbrechen** gelir."
         },
         {
           "de": "Ich habe Sie leider ___.",
           "answer": "unterbrochen",
           "tr": "Maalesef sözünüzü kestim.",
-          "hint_tr": "Sözünüzü kestim derken **Ich habe Sie unterbrochen** denir."
+          "hint_tr": "Sözünüzü kestim derken **Ich habe Sie** ile başlar, sonda **unterbrochen** gelir."
         },
         {
-          "de": "Tobi ___ mich ständig.",
+          "de": "Mein Kollege ___ mich ständig.",
           "answer": "unterbricht",
-          "tr": "Tobi sürekli sözümü kesiyor.",
-          "hint_tr": "**Tobi** ile söylerken **unterbrechen**, **unterbricht** olur."
+          "tr": "İş arkadaşım sürekli sözümü kesiyor.",
+          "hint_tr": "**Mein Kollege** ile söylerken **unterbrechen**, **unterbricht** olur."
         }
       ]
     },
@@ -2107,13 +2163,13 @@
           "de": "Derya ___ geduldig ___.",
           "answer": "hört … zu",
           "tr": "Derya sabırla dinler.",
-          "hint_tr": "**Derya** ile söylerken **hört zu** denir."
+          "hint_tr": "**Derya** ile söylerken **hört** denir, **zu** sona gider."
         },
         {
           "de": "Du ___ mir gar nicht ___!",
           "answer": "hörst … zu",
           "tr": "Beni hiç dinlemiyorsun!",
-          "hint_tr": "**du** ile söylerken **hörst zu** denir."
+          "hint_tr": "**du** ile söylerken **hörst** denir, **zu** sona gider."
         }
       ]
     },
@@ -2142,7 +2198,7 @@
         },
         {
           "de": "Ich kapier das nicht.",
-          "tr": "Bunu çakmıyorum."
+          "tr": "Bunu anlamıyorum."
         },
         {
           "de": "endlich kapiert",
@@ -2193,8 +2249,8 @@
         },
         {
           "id": "lx:kapieren:6",
-          "de": "Tobi kapiert alles sofort.",
-          "tr": "Tobi her şeyi hemen anlar.",
+          "de": "Mein Kollege kapiert alles sofort.",
+          "tr": "İş arkadaşım her şeyi hemen anlar.",
           "layer": "hd"
         }
       ],
@@ -2241,10 +2297,10 @@
           ]
         },
         {
-          "de": "Tobi ___ alles sofort.",
+          "de": "Mein Kollege ___ alles sofort.",
           "answer": "kapiert",
-          "tr": "Tobi her şeyi hemen anlar.",
-          "hint_tr": "**Tobi** ile söylerken **kapieren**, **kapiert** olur.",
+          "tr": "İş arkadaşım her şeyi hemen anlar.",
+          "hint_tr": "**Mein Kollege** ile söylerken **kapieren**, **kapiert** olur.",
           "also_ok": [
             "versteht"
           ]
@@ -2329,8 +2385,8 @@
         },
         {
           "id": "lx:Satz:6",
-          "de": "Ioana schreibt jeden Tag drei Sätze auf Deutsch.",
-          "tr": "Ioana her gün Almanca üç cümle yazıyor.",
+          "de": "Ich schreibe jeden Tag drei Sätze auf Deutsch.",
+          "tr": "Her gün Almanca üç cümle yazıyorum.",
           "layer": "hd"
         }
       ],
@@ -2366,9 +2422,9 @@
           "hint_tr": "Tek cümleyle derken **in einem Satz** denir."
         },
         {
-          "de": "Ioana schreibt jeden Tag drei ___ auf Deutsch.",
+          "de": "Ich schreibe jeden Tag drei ___ auf Deutsch.",
           "answer": "Sätze",
-          "tr": "Ioana her gün Almanca üç cümle yazıyor.",
+          "tr": "Her gün Almanca üç cümle yazıyorum.",
           "hint_tr": "Üç cümle derken **drei Sätze** denir."
         },
         {
@@ -2449,7 +2505,7 @@
         {
           "id": "lx:Ausdruck#2:6",
           "de": "Frau Brandl benutzt viele bayerische Ausdrücke.",
-          "tr": "Brandl Hanım birçok Bavyera ifadesi kullanır.",
+          "tr": "Brandl Hanım Bavyera'ya özgü birçok ifade kullanır.",
           "layer": "hd"
         }
       ],
@@ -2464,14 +2520,14 @@
         "anlam_tr": "Bir şeyi söylemenin belli bir biçimi, bir deyiştir.",
         "ne_zaman_tr": "Duyduğun bir sözün anlamını ya da nereden geldiğini sorarken.",
         "parcalar": [],
-        "ipucu_tr": "Yazıcıdan çıkan kâğıda da **Ausdruck** denir, bağlamdan anlarsın."
+        "ipucu_tr": "Yazıcıdan çıkan kâğıda da **Ausdruck** denir, hangisi olduğunu cümleden anlarsın."
       },
       "forms": [
         {
           "de": "Was bedeutet der ___ „Ja mei“?",
           "answer": "Ausdruck",
           "tr": "Ja mei ifadesi ne demek?",
-          "hint_tr": "Bu ifade ne demek derken **Was bedeutet der Ausdruck?** denir."
+          "hint_tr": "Ja mei ifadesi derken **der Ausdruck Ja mei** denir."
         },
         {
           "de": "„Passt scho“ ist ein typischer ___ aus Bayern.",
@@ -2482,14 +2538,14 @@
         {
           "de": "Frau Brandl benutzt viele bayerische ___.",
           "answer": "Ausdrücke",
-          "tr": "Brandl Hanım birçok Bavyera ifadesi kullanır.",
-          "hint_tr": "Birçok ifade derken **viele Ausdrücke** denir."
+          "tr": "Brandl Hanım Bavyera'ya özgü birçok ifade kullanır.",
+          "hint_tr": "Bavyera'ya özgü birçok ifade derken **viele bayerische Ausdrücke** denir."
         },
         {
           "de": "Den ___ hör ich hier dauernd.",
           "answer": "Ausdruck",
           "tr": "Bu ifadeyi burada durmadan duyuyorum.",
-          "hint_tr": "İfadeyi duymak derken **den Ausdruck hören** denir."
+          "hint_tr": "Bu ifadeyi derken burada **den Ausdruck** denir."
         },
         {
           "de": "Was ist das für ein ___?",
@@ -2718,7 +2774,7 @@
           "de": "Ich höre da keinen ___.",
           "answer": "Unterschied",
           "tr": "Ben burada hiç fark duymuyorum.",
-          "hint_tr": "Hiç fark duymuyorum derken **keinen Unterschied hören** denir."
+          "hint_tr": "Hiç fark derken **keinen Unterschied** denir."
         },
         {
           "de": "Gibt es einen ___?",
@@ -2730,7 +2786,7 @@
           "de": "Den ___ höre ich jetzt besser.",
           "answer": "Unterschied",
           "tr": "Farkı artık daha iyi duyuyorum.",
-          "hint_tr": "Farkı duymak derken **den Unterschied hören** denir."
+          "hint_tr": "Farkı derken **den Unterschied** denir."
         }
       ]
     },
@@ -2858,7 +2914,7 @@
           "de": "Wir müssen uns an das Tempo ___.",
           "answer": "gewöhnen",
           "tr": "Hıza alışmamız lazım.",
-          "hint_tr": "Alışmamız lazım derken **müssen uns gewöhnen** denir."
+          "hint_tr": "Alışmamız lazım derken **Wir müssen uns** ile başlar, sonda **gewöhnen** gelir."
         }
       ]
     },
@@ -2902,7 +2958,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Nasıl telaffuz edilir derken **Wie aussprechen man das?** yanlış. Doğrusu **Wie spricht man das aus?**",
-        "**aussprechen** bir kelimenin sesini çıkarmaktır. Sadece konuşmak için **sprechen** dersin."
+        "**aussprechen** bir kelimeyi sesli söylemektir. Sadece konuşmak için **sprechen** dersin."
       ],
       "examples": [
         {
@@ -2939,8 +2995,8 @@
         },
         {
           "id": "lx:aussprechen:6",
-          "de": "Ioana spricht das „ü“ schon sehr gut aus.",
-          "tr": "Ioana ü sesini şimdiden çok iyi telaffuz ediyor.",
+          "de": "Viele sprechen meinen Namen falsch aus.",
+          "tr": "Birçok kişi adımı yanlış telaffuz ediyor.",
           "layer": "hd"
         }
       ],
@@ -2951,7 +3007,7 @@
         "strategie"
       ],
       "exp": {
-        "anlam_tr": "Bir kelimenin sesini nasıl çıkardığını söyler.",
+        "anlam_tr": "Bir kelimenin ağızdan nasıl söylendiğini anlatır.",
         "ne_zaman_tr": "Bir kelimenin nasıl okunduğunu sorarken.",
         "parcalar": [],
         "ipucu_tr": "**Wie spricht man das aus?** sorusunda **aus** en sona gider."
@@ -2961,13 +3017,13 @@
           "de": "Wie ___ man dieses Wort ___?",
           "answer": "spricht … aus",
           "tr": "Bu kelime nasıl telaffuz edilir?",
-          "hint_tr": "Nasıl telaffuz edilir derken **Wie spricht man das aus?** denir."
+          "hint_tr": "Nasıl telaffuz edilir derken **Wie spricht man** ile başlar, **aus** sona gider."
         },
         {
           "de": "In Bayern ___ man viele Wörter anders ___.",
           "answer": "spricht … aus",
           "tr": "Bavyera'da birçok kelime farklı telaffuz edilir.",
-          "hint_tr": "Farklı telaffuz edilir derken **spricht man anders aus** denir."
+          "hint_tr": "Farklı telaffuz edilir derken **spricht man** denir, sonda **anders aus** gelir."
         },
         {
           "de": "Habe ich das richtig ___?",
@@ -2979,13 +3035,13 @@
           "de": "Wie ___ du deinen Namen ___?",
           "answer": "sprichst … aus",
           "tr": "Adını nasıl telaffuz ediyorsun?",
-          "hint_tr": "**du** ile söylerken **sprichst aus** denir."
+          "hint_tr": "**du** ile söylerken **sprichst** denir, **aus** sona gider."
         },
         {
           "de": "Ich kann dieses Wort nicht ___.",
           "answer": "aussprechen",
           "tr": "Bu kelimeyi telaffuz edemiyorum.",
-          "hint_tr": "Telaffuz edemiyorum derken **kann nicht aussprechen** denir."
+          "hint_tr": "Telaffuz edemiyorum derken **Ich kann** ile başlar, sonda **nicht aussprechen** gelir."
         }
       ]
     },
@@ -3021,13 +3077,13 @@
       "register": "neutral",
       "mistakes_tr": [
         "Sabırlı ol derken **Sei Geduld** yanlış. Doğrusu **Hab Geduld**.",
-        "Bana sabredin derken **für mich** değil **mit mir** gelir: **Haben Sie Geduld mit mir**."
+        "Bana karşı sabırlı olun derken **für mich** değil **mit mir** gelir. Doğrusu **Haben Sie Geduld mit mir**."
       ],
       "examples": [
         {
           "id": "lx:Geduld:1",
           "de": "Haben Sie bitte etwas Geduld mit mir, mein Deutsch ist noch nicht so gut.",
-          "tr": "Lütfen bana biraz sabredin, Almancam henüz o kadar iyi değil.",
+          "tr": "Lütfen bana karşı biraz sabırlı olun, Almancam henüz o kadar iyi değil.",
           "layer": "hd"
         },
         {
@@ -3080,8 +3136,8 @@
         {
           "de": "Haben Sie bitte etwas ___ mit mir.",
           "answer": "Geduld",
-          "tr": "Lütfen bana biraz sabredin.",
-          "hint_tr": "Bana sabredin derken **Haben Sie Geduld mit mir** denir."
+          "tr": "Lütfen bana karşı biraz sabırlı olun.",
+          "hint_tr": "Bana karşı sabırlı olun derken **Geduld mit mir** denir."
         },
         {
           "de": "Danke für Ihre ___!",
