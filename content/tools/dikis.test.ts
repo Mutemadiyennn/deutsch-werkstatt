@@ -7,7 +7,7 @@ import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
-import { acikEsdizimler, dikisDenetle, haftaOf, tabloGunleri, type DikisGirdi, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
+import { acikEsdizimler, dikisDenetle, dilNoktasiMetni, haftaOf, tabloCerceve, tabloGunleri, type DikisGirdi, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
 import { esdizimler } from "../../web/src/core/garden.ts";
 import { loadContent, ROOT } from "./load.ts";
 
@@ -136,6 +136,85 @@ describe("(b) tanıtılmadan sorulan kart", () => {
   });
 });
 
+describe("(b) kalıp örtüsü konuma göre (inceleme #199 2. tur takibi)", () => {
+  it("kalıbın kapsadığı geçiş örtülür, aynı sözcüğün kalıp dışındaki geçişi kırmızı", () => {
+    const g = kopya(); halka(g, 3).gorev_cumleleri[0]!.de = "Schönes Wochenende! Hallo, schönes!";
+    expect(kural(kos([g]), "b").map((i) => i.mesaj.slice(0, 9))).toEqual(['"schönes"']);
+    const g2 = kopya(); halka(g2, 3).gorev_cumleleri[0]!.de = "Schönes Wochenende! Schönes Wochenende!";
+    expect(kural(kos([g2]), "b")).toEqual([]);
+  });
+});
+
+describe("(b, çerçeve) çerçeve sözcüğü gösterilmeden kullanılamaz (PM 7088230583 md. 1)", () => {
+  /** tablo + hafta çerçevesi */
+  const cTablo = (h: Record<number, string[]>, gun?: { day: number; cerceve: string[] }): KesinTablo => {
+    const t = structuredClone(tablo);
+    t.haftalar = Object.entries(h).map(([no, cerceve]) => ({ no: Number(no), cerceve }));
+    if (gun) t.gunler = t.gunler.map((x) => (x.day === gun.day ? { ...x, cerceve: gun.cerceve } : x));
+    return t;
+  };
+  const ckos = (gunler: GunHam[], t: KesinTablo, o: Partial<DikisGirdi> = {}) => kos(gunler, { tablo: t, ...o });
+  const cer = (r: ReturnType<typeof kos>, gun: number) => kural(r, "b", gun).filter((i) => i.mesaj.includes("çerçeve sözcüğü"));
+  const g8 = (de: string, h: Record<string, unknown> = {}): GunHam => {
+    const g = sahte(8); (g.halkalar as Record<string, unknown>[])[0] = { ...(g.halkalar as Record<string, unknown>[])[0], gorev_cumleleri: [{ kart: T.get(8)![0]!, de, accepted: [de] }], ...h };
+    return g;
+  };
+  it("tabloCerceve: haftalar[].cerceve ∪ gunler[].cerceve (gün → haftası)", () => {
+    expect([...tabloCerceve(cTablo({ 2: ["lx:mit"] }, { day: 16, cerceve: ["weil"] }))]).toEqual([[2, ["lx:mit"]], [3, ["weil"]]]);
+    expect(tabloCerceve(tablo).size).toBe(0);
+  });
+  it("kendi haftasında gösterilmeden kullanılan çerçeve sözcüğü kırmızı; liste yoksa kural kapalı", () => {
+    const r = cer(ckos([g8("Hallo, mit Zeit!")], cTablo({ 2: ["lx:mit"] })), 8);
+    expect(r).toHaveLength(1);
+    expect(r[0]!.yer).toMatch(/^halka h8 /);
+    expect(r[0]!.mesaj).toMatch(/^"mit" çerçeve sözcüğü \(lx:mit → 2\. hafta\) kalıpta ya da dil noktasında gösterilmeden kullanılıyor/);
+    expect(cer(kos([g8("Hallo, mit Zeit!")]), 8)).toEqual([]);
+  });
+  it("yalın sözcük girdisi sözlükteki çerçeve kimliğine çözülür", () => {
+    expect(cer(ckos([g8("Hallo, mit Zeit!")], cTablo({ 2: ["mit"] })), 8)).toHaveLength(1);
+  });
+  it("halkanın kalıbında gösterilince yeşil; sonraki halkanın kalıbı önceki halkayı örtmez", () => {
+    expect(cer(ckos([g8("Hallo, mit Zeit!", { kaliplar: [{ de: "mit …" }] })], cTablo({ 2: ["lx:mit"] })), 8)).toEqual([]);
+    const g = g8("Hallo, mit Zeit!"); (g.halkalar as Record<string, unknown>[]).push({ id: "h8b", kartlar: [], gorev_cumleleri: [], kaliplar: [{ de: "mit …" }] });
+    expect(cer(ckos([g], cTablo({ 2: ["lx:mit"] })), 8)).toHaveLength(1);
+  });
+  it("bir biçimi gösterilen sözcüğün öteki biçimleri de bilinir (sözlük girdisi üzerinden)", () => {
+    expect(cer(ckos([g8("Hallo, keinen Termin!", { kaliplar: [{ de: "Ich habe kein …" }] })], cTablo({ 2: ["lx:kein"] })), 8)).toEqual([]);
+  });
+  it("önceki günün halka kalıbı ve önceki günün dil noktası gösterir", () => {
+    const g9 = (de: string) => { const g = sahte(9); (g.halkalar as Record<string, unknown>[])[0]!.gorev_cumleleri = [{ kart: T.get(9)![0]!, de, accepted: [de] }]; return g; };
+    const onceki = sahte(8); (onceki.halkalar as Record<string, unknown>[])[0]!.kaliplar = [{ de: "Ich komme mit …" }];
+    expect(cer(ckos([onceki, g9("Hallo, mit Zeit!")], cTablo({ 2: ["lx:mit"] })), 9)).toEqual([]);
+    expect(cer(ckos([sahte(8), g9("Hallo, mit Zeit!")], cTablo({ 2: ["lx:mit"] })), 9)).toHaveLength(1);
+    const dn = new Map([[omDers(8)[0]!, ["Ich fahre mit dem Bus."]]]);
+    expect(cer(ckos([sahte(8), g9("Hallo, mit Zeit!")], cTablo({ 2: ["lx:mit"] }), { dilNoktalari: dn }), 9)).toEqual([]);
+  });
+  it("aynı günün dil noktası yalnız dersten_sonra halkada ve halka dışı adımda gösterir", () => {
+    const dn = new Map([[omDers(8)[0]!, ["Ich fahre mit dem Bus."]]]);
+    expect(cer(ckos([g8("Hallo, mit Zeit!")], cTablo({ 2: ["lx:mit"] }), { dilNoktalari: dn }), 8)).toHaveLength(1);
+    expect(cer(ckos([g8("Hallo, mit Zeit!", { dersten_sonra: true })], cTablo({ 2: ["lx:mit"] }), { dilNoktalari: dn }), 8)).toEqual([]);
+  });
+  it("önceki haftanın çerçevesi bilinir; sonraki haftanın çerçevesi kırmızı", () => {
+    expect(cer(ckos([g8("Hallo, mit Zeit!")], cTablo({ 1: ["lx:mit"] })), 8)).toEqual([]);
+    expect(cer(ckos([g8("Hallo, mit Zeit!")], cTablo({ 3: ["lx:mit"] })), 8)).toHaveLength(1);
+  });
+  it("kalıp BÜTÜNÜ içinde geçen çerçeve sözcüğü kullanım sayılmaz", () => {
+    // "seit gestern": 1. günün kartı lx:gestern'in açık eşdizimi (gösterilmiş kalıp)
+    expect(cer(ckos([g8("Hallo, seit gestern!")], cTablo({ 2: ["lx:seit"] })), 8)).toEqual([]);
+    expect(cer(ckos([g8("Hallo, seit gestern! Seit Zeit!")], cTablo({ 2: ["lx:seit"] })), 8).map((i) => i.mesaj.slice(0, 6))).toEqual(['"seit"']);
+  });
+  it("1. haftanın dersinde gösterilmiş sözcük (und) sonraki haftanın listesinde olsa da bilinir", () => {
+    expect(cer(ckos([g8("Hallo und Zeit!")], cTablo({ 2: ["lx:und"] })), 8)).toEqual([]);
+  });
+  it("(a) çerçeve sözcüğü yeni_kartlar'a yazılmaz; hafta kümesinden ve günlük adetten düşer", () => {
+    const t = cTablo({ 2: ["lx:mit"] });
+    const g = sahte(8); g.yeni_kartlar = [...(g.yeni_kartlar as string[]), "lx:mit"];
+    expect(kural(ckos([g], t), "a", 8).map((i) => i.mesaj)).toContain("çerçeve sözcüğü lx:mit yeni_kartlar'a yazılmaz (tabloda 2. haftanın çerçevesi)");
+    const t2 = structuredClone(t); t2.gunler = t2.gunler.map((x) => (x.day === 8 ? { ...x, kartlar: [...x.kartlar, "lx:mit"] } : x));
+    expect(kural(ckos([sahte(8)], t2), "a", 8)).toEqual([]);
+  });
+});
+
 describe("(c) dersler = omurga; sonraki haftanın dersi yok", () => {
   it("yanlış ders: eksik ve fazla kırmızı", () => {
     const g = kopya(); g.dersler = ["r0:02-monate"];
@@ -181,9 +260,34 @@ describe("biçim ve sağlamlık", () => {
     const g = kopya(); delete g.halkalar;
     expect(kos([g]).ihlaller.map((i) => i.mesaj)).toEqual(["hiç gün denetlenmedi"]);
   });
+  it("day tamsayı değilse gün sessizce düşmez: kırmızı, dosya adıyla (inceleme #199 2. tur takibi)", () => {
+    for (const day of ["8", null, 8.5, 0, undefined]) {
+      const r = dikisDenetle({ gunler: [{ file: "content/v2/m1/gun-08.json", data: { ...sahte(8), day } as unknown as GunHam }, { file: "gun-01.json", data: kopya() }], tablo, omurga, dizin, dersler, yarim: true });
+      expect(r.ihlaller.filter((i) => i.kural === "bicim").map((i) => `${i.gun} ${i.yer}`)).toEqual(["0 content/v2/m1/gun-08.json"]);
+      expect(r.toplam).toBeGreaterThan(0);
+    }
+  });
+  it("dosya adındaki gün day ile tutmazsa ve aynı gün iki dosya varsa kırmızı", () => {
+    const r = dikisDenetle({ gunler: [{ file: "content/v2/m1/gun-09.json", data: sahte(8) }], tablo, omurga, dizin, dersler, yarim: true });
+    expect(kural(r, "bicim", 8).map((i) => i.mesaj)).toEqual(['dosya adı 9. gün, "day" 8']);
+    const r2 = dikisDenetle({ gunler: [{ file: "a/gun-08.json", data: sahte(8) }, { file: "b/gun-08.json", data: sahte(8) }], tablo, omurga, dizin, dersler, yarim: true });
+    expect(kural(r2, "bicim", 8).map((i) => i.mesaj)).toEqual(["aynı gün iki dosya: a/gun-08.json, b/gun-08.json (ilki denetlendi)"]);
+    expect(r2.satirlar).toHaveLength(1);
+  });
   it("bozuk alan tipleri istisna atmaz", () => {
     const g = sahte(8); g.yeni_kartlar = "lx:Zeit"; g.dersler = null; g.sesler = {}; (g as Record<string, unknown>).requires = 5;
     expect(() => kos([g])).not.toThrow();
+  });
+});
+
+describe("dil noktası metni", () => {
+  it("tablo hücreleri, örnekler ve açıklamadaki tırnaklı Almanca; düz Türkçe alınmaz", () => {
+    const n = c.grammar.find((x) => x.id === "gr:a1-01:t1")!;
+    const m = dilNoktasiMetni(n);
+    expect(m).toContain("Auf Wiedersehen!");
+    expect(m).toContain(n.ex[0]!.de);
+    expect(m).toContain("Sie");
+    expect(m.join(" ")).not.toContain("dersin");
   });
 });
 

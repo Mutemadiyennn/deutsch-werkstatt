@@ -17,16 +17,25 @@
  *  (c) günün `dersler` = omurganın o günkü dersleri (sıra önemsiz; boş bırakılamaz, PM-092 md. 5). `dersler` ya da
  *      `requires.gramer`daki hiçbir kimlik sonraki haftanın dersi olamaz; `requires.gramer`daki `r0:`/`gr:`/`dn:` kimliği omurgada olmalı.
  *  (d) haftalar arası aynı ÜRETİM cümlesi yok (öğrencinin yazdığı/söylediği; karşı tarafın sorusu sayılmaz; `sade`, ≥ 3 sözcük).
- *  (biçim) 8. gün ve sonrası halka biçiminde olmalı (`halkalar` boş olamaz); hiç gün denetlenmezse ihlal.
+ *  (b, çerçeve) PM 7088230583 md. 1: tablonun `cerceve` listesindeki işlev sözcüğü (ich, du, nicht, mit …; sözlükte `card:false`)
+ *      `yeni_kartlar`a yazılmaz ((a) "çerçeve sözcüğü") ve kendi haftasında (ya da daha önce) bir KALIPTA (halkanın `kaliplar`ı) ya da
+ *      DİL NOKTASINDA (biten `r0:` dersi; `gr:` grammar.json, `dn:` dn-HH.json: tablo, örnekler, açıklamadaki tırnaklı Almanca)
+ *      gösterilmeden kullanılamaz. Sözcüğün bütün biçimleri sözlük girdisi üzerinden sayılır (ich gösterildiyse mich de). Gösterilmiş
+ *      kalıbın BÜTÜNÜ içinde geçen çerçeve sözcüğü kullanılmış sayılmaz. Kısıt yalnız o haftanın ve sonraki haftaların listesindedir;
+ *      önceki haftaların çerçevesi bilinir. Tablo listeyi `haftalar[].cerceve` (`no` = hafta) ya da `gunler[].cerceve` ile verir.
+ *  (biçim) 8. gün ve sonrası halka biçiminde olmalı (`halkalar` boş olamaz); hiç gün denetlenmezse ihlal. `day` tamsayı değilse ya da
+ *      dosya adındaki gün (`gun-NN.json`) `day` ile tutmazsa ihlal (sessizce düşülmez; inceleme #199 2. tur takibi).
+ * Kalıp örtüsü KONUMA göredir (inceleme #199 2. tur takibi): kalıbın kapsadığı geçiş örtülür, aynı sözcüğün kalıp dışındaki geçişi değil.
  * 1. haftanın halkasız (eski biçim) günleri "atlandı" görünür ve sayılmaz; `tum: true` ile denetlenir. Böyle bir gün varken
  * 1. haftanın küme eşitliği (a) kurulamaz (o günler tablo öncesi dağılımı taşır): satıra not düşülür; halkaya geçince sayılır.
  */
-import { bilinmeyenler, kalipOrtu, kalipSecenekleri, toks, type Bilinen, type KumeDizini } from "../../packages/shared/src/kume.ts";
+import { YUVA, YUVA_AD, bilinmeyenler, kalipOrtu, kalipSecenekleri, toks, toksAsil, type Bilinen, type KumeDizini } from "../../packages/shared/src/kume.ts";
 import type { Lexeme, TemelDers } from "../../packages/shared/src/index.ts";
 
 export interface KesinTablo {
   ogretilmis_sayilan?: { gunler?: Record<string, string[]> };
-  gunler: { day: number; hafta?: number; kartlar: string[]; dersler?: string[] }[];
+  haftalar?: { no: number; kartlar?: string[]; cerceve?: string[] }[];
+  gunler: { day: number; hafta?: number; kartlar: string[]; cerceve?: string[]; dersler?: string[] }[];
 }
 export interface Omurga { gunler: { day: number; dersler?: string[] }[] }
 export type GunHam = Record<string, unknown> & { day: number };
@@ -53,6 +62,34 @@ export function tabloGunleri(t: KesinTablo): Map<number, string[]> {
   for (const [k, v] of Object.entries(t.ogretilmis_sayilan?.gunler ?? {})) m.set(Number(k), yazilar(v));
   for (const g of dizi(t.gunler)) { const x = nesne(g); if (typeof x.day === "number") m.set(x.day, yazilar(x.kartlar)); }
   return m;
+}
+
+/** Tablo: hafta → çerçeve sözcükleri (`haftalar[].cerceve` ∪ o haftanın `gunler[].cerceve`); kimlik (lx:…) ya da yalın sözcük */
+export function tabloCerceve(t: KesinTablo): Map<number, string[]> {
+  const m = new Map<number, string[]>();
+  const ekle = (h: number, l: string[]) => { if (l.length) m.set(h, [...new Set([...(m.get(h) ?? []), ...l])]); };
+  for (const h of dizi(t.haftalar)) { const x = nesne(h); if (typeof x.no === "number") ekle(x.no, yazilar(x.cerceve)); }
+  for (const g of dizi(t.gunler)) { const x = nesne(g); if (typeof x.day === "number") ekle(haftaOf(x.day), yazilar(x.cerceve)); }
+  return m;
+}
+
+/** Bir dil noktasının (grammar.json / dn-HH.json biçimi) öğrenciye gösterdiği Almanca: tablo hücreleri, örnekler, açıklamadaki tırnaklı parçalar */
+export function dilNoktasiMetni(n: unknown): string[] {
+  const x = nesne(n); const out: string[] = [];
+  for (const r of dizi(nesne(x.table).rows)) out.push(...yazilar(r));
+  for (const e of dizi(x.ex)) { const d = yazi(nesne(e).de); if (d) out.push(d); }
+  for (const m of String(x.tr ?? "").matchAll(/'([^']+)'|‘([^’]+)’|„([^“”]+)[“”]|“([^”]+)”|"([^"]+)"|»([^«]+)«/g)) out.push(m.slice(1).find(Boolean)!);
+  return out;
+}
+
+/** bilinmeyenler()'in kendi içinde örttüğü konumlar (aynı kurallar: halkanın kalıpları, biten derslerin kalıpları, bilinen kartların çok sözcüklü başlıkları) */
+function icOrtu(d: KumeDizini, tt: readonly string[], k: Bilinen): Set<number> {
+  const kart = new Set(k.kart); for (const id of k.biten) for (const x of d.dersler.get(id)?.kart ?? []) kart.add(x);
+  const duz: (readonly string[])[] = [...(k.kaliplar ?? [])];
+  for (const id of k.biten) duz.push(...(d.dersler.get(id)?.kaliplar ?? []));
+  for (const id of kart) duz.push(...(d.coklu.get(id) ?? []));
+  const o = new Set<number>(); for (const kp of duz) for (const j of kalipOrtu(tt, kp)) o.add(j);
+  return o;
 }
 
 /** Öğrencinin ürettiği/seçtiği (uretim) ya da cevap için anlaması gereken (soru) Almanca */
@@ -127,6 +164,8 @@ export interface DikisGirdi {
   dizin: KumeDizini;
   /** temel dersler (`exp.parcalar` kalıpları için) */
   dersler?: ReadonlyMap<string, TemelDers>;
+  /** `gr:`/`dn:` dil noktası → gösterdiği Almanca metinler (dilNoktasiMetni); çerçeve kuralı için */
+  dilNoktalari?: ReadonlyMap<string, readonly string[]>;
   /** yalnız bu günler denetlenir (boşsa hepsi); (a) ve (d) için bütün günler yine okunur */
   sadece?: number[];
   /** 1. haftanın halkasız günlerini de denetle */
@@ -145,18 +184,60 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
   const nerede = (k: string) => (kartGunu.has(k) ? `${haftaOf(kartGunu.get(k)!)}. hafta, ${kartGunu.get(k)}. gün` : "tabloda yok");
 
   const ihlaller: Ihlal[] = [], satirlar: GunSatiri[] = [];
-  const sirali = [...g.gunler].filter((x) => typeof x.data?.day === "number").sort((a, b) => a.data.day - b.data.day);
-  const dosyaGun = new Map(sirali.map((x) => [x.data.day, x.data] as const));
+  // biçim: `day` tamsayı değilse gün düşülmez, kırmızı; dosya adı ile `day` tutmalı; aynı gün iki dosya olamaz
+  const adUyumsuz = new Map<number, string[]>();
+  const gecerli = g.gunler.filter((x) => {
+    const day = (x.data as { day?: unknown } | null | undefined)?.day;
+    if (typeof day !== "number" || !Number.isInteger(day) || day < 1) {
+      ihlaller.push({ gun: 0, kural: "bicim", yer: x.file, mesaj: `"day" pozitif tamsayı değil (${JSON.stringify(day) ?? "yok"}); gün denetlenemedi` });
+      return false;
+    }
+    const ad = /gun-(\d{2,3})\.json$/.exec(x.file)?.[1];
+    if (ad !== undefined && Number(ad) !== day) adUyumsuz.set(day, [...(adUyumsuz.get(day) ?? []), `dosya adı ${Number(ad)}. gün, "day" ${day}`]);
+    return true;
+  });
+  const sirali = [...gecerli].sort((a, b) => a.data.day - b.data.day);
+  for (let i = 1; i < sirali.length; i++) if (sirali[i]!.data.day === sirali[i - 1]!.data.day) {
+    const d = sirali[i]!.data.day; adUyumsuz.set(d, [...(adUyumsuz.get(d) ?? []), `aynı gün iki dosya: ${sirali[i - 1]!.file}, ${sirali[i]!.file} (ilki denetlendi)`]);
+  }
+  const tekil = sirali.filter((x, i) => i === 0 || x.data.day !== sirali[i - 1]!.data.day);
+  const dosyaGun = new Map(tekil.map((x) => [x.data.day, x.data] as const));
+
+  // çerçeve sözcükleri (PM 7088230583 md. 1): kimlik → tablodaki haftası
+  const cerceveHafta = new Map<string, number>();
+  const cerceveKimlik = (x: string): string[] => {
+    if (x.startsWith("lx:")) return [x];
+    const ids = [...(g.dizin.idx.get(x.toLowerCase()) ?? [])].filter((i) => g.dizin.cerceve.has(i));
+    return ids.length ? ids : [`söz:${x.toLowerCase()}`];
+  };
+  for (const [h, l] of [...tabloCerceve(g.tablo)].sort((a, b) => a[0] - b[0])) for (const x of l) for (const id of cerceveKimlik(x)) if (!cerceveHafta.has(id)) cerceveHafta.set(id, h);
+  /** sözcüğün çerçeve okunuşları: sözlükteki card:false girdileri + tablodaki yalın sözcük */
+  const cerceveOkunus = (t: string): string[] => [...[...(g.dizin.idx.get(t) ?? [])].filter((i) => g.dizin.cerceve.has(i)), ...(cerceveHafta.has(`söz:${t}`) ? [`söz:${t}`] : [])];
+  const goster = (S: Set<string>, metin: string | undefined) => { for (const t of toks(metin)) for (const id of cerceveOkunus(t)) S.add(id); };
+  const dersGoster = (S: Set<string>, id: string) => {
+    const b = g.dizin.dersler.get(id);
+    for (const s of b?.bicim ?? []) goster(S, s);
+    for (const kp of b?.kaliplar ?? []) goster(S, kp.filter((x) => x !== YUVA).join(" "));
+    const t = g.dersler?.get(id);
+    for (const x of t?.teach ?? []) {
+      goster(S, x.de);
+      for (const p of (x as unknown as { exp?: { parcalar?: { de?: string }[] } }).exp?.parcalar ?? []) goster(S, p.de);
+    }
+    for (const row of t?.table?.satirlar ?? []) for (const cell of row) goster(S, cell);
+    for (const m of g.dilNoktalari?.get(id) ?? []) goster(S, m);
+  };
+  const halkaGoster = (S: Set<string>, h: Record<string, unknown>) => { for (const kp of dizi(h.kaliplar)) goster(S, String(nesne(kp).de ?? "")); };
   const gorulen = new Map<string, { hafta: number; gun: number; yer: string }[]>();
   const satirOf = new Map<number, GunSatiri>();
   const ihlal = (s: GunSatiri, kural: Kural, yer: string, mesaj: string) => { ihlaller.push({ gun: s.gun, kural, yer, mesaj }); s.sayi[kural]++; };
   const bos = (): Record<Kural, number> => ({ a: 0, b: 0, c: 0, d: 0, bicim: 0 });
 
-  for (const { file, data: gun } of sirali) {
+  for (const { file, data: gun } of tekil) {
     const n = gun.day, hafta = haftaOf(n);
     const halkalar = dizi(gun.halkalar).map(nesne);
     const satir: GunSatiri = { gun: n, hafta, dosya: file, durum: "denetlendi", sayi: bos(), not: [] };
     satirOf.set(n, satir);
+    for (const m of adUyumsuz.get(n) ?? []) ihlal(satir, "bicim", file, m);
     for (const c of [...halkalar.flatMap(halkaGorevleri), ...halkaDisiGorevler(gun)]) {
       if (!c.uretim) continue;
       const s = sade(c.de); if (s.split(" ").length < 3) continue;
@@ -170,7 +251,7 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
     const yeni = yazilar(gun.yeni_kartlar);
 
     // (a) günlük adet ±2 (küme eşitliği hafta düzeyinde, aşağıda)
-    const bekl = tablo.get(n);
+    const bekl = tablo.get(n)?.filter((k) => !cerceveHafta.has(k));
     if (!bekl) ihlal(satir, "a", "yeni_kartlar", `tabloda ${n}. gün yok`);
     else if (Math.abs(yeni.length - bekl.length) > 2) ihlal(satir, "a", "yeni_kartlar", `${yeni.length} kart; tabloda ${bekl.length} (±2)`);
 
@@ -202,28 +283,56 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
     if (tablodanAlinan.length) satir.not.push(`dosyası olmayan önceki gün tablodan: ${tablodanAlinan.join(", ")}`);
     const bugunDers = new Set(dersler);
     const bugunDersKart = [...bugunDers].flatMap((id) => [...(g.dizin.dersler.get(id)?.kart ?? [])]);
+    // çerçeve: bu adıma kadar gösterilenler (önceki günler: dosya varsa dersleri + halka kalıpları, yoksa omurganın dersleri)
+    const cerceveVar = cerceveHafta.size > 0;
+    const onceGoster = new Set<string>();
+    if (cerceveVar) for (let gn = 1; gn < n; gn++) {
+      const f = dosyaGun.get(gn);
+      if (f) { for (const x of yazilar(f.dersler)) dersGoster(onceGoster, x); for (const h of dizi(f.halkalar)) halkaGoster(onceGoster, nesne(h)); }
+      else for (const x of omurgaDers.get(gn) ?? []) dersGoster(onceGoster, x);
+    }
     let ortulen = 0;
-    const denetle = (c: Cumle, k: Bilinen, gosterilen: string[][]) => {
-      const tt = toks(c.de); const ort = new Set<string>();
-      for (const kp of gosterilen) for (const j of kalipOrtu(tt, kp)) ort.add(tt[j]!);
+    const denetle = (c: Cumle, k: Bilinen, gosterilen: string[][], S: ReadonlySet<string>) => {
+      const tt = toksAsil(c.de).map((x) => x.t);
+      const ic = icOrtu(g.dizin, tt, k), dis = new Set<number>();
+      for (const kp of gosterilen) for (const j of kalipOrtu(tt, kp)) dis.add(j);
+      // konuma göre: sözcüğün bilinmeyen geçiş sayısı, kalıp dışında kalan geçiş sayısını aşamaz (bilinmeyenler sırayla, konumsuz döner)
       const u0 = bilinmeyenler(g.dizin, c.de, k).filter((u) => u.tur === "kart");
-      const u = u0.filter((x) => !ort.has(x.sozcuk));
+      const sozler = new Map<string, typeof u0>();
+      for (const x of u0) sozler.set(x.sozcuk, [...(sozler.get(x.sozcuk) ?? []), x]);
+      const u = [...sozler].flatMap(([w, l]) => l.slice(0, Math.min(l.length, tt.filter((t, j) => t === w && !ic.has(j) && !dis.has(j)).length)));
       if (u.length < u0.length) ortulen++;
       for (const x of u) ihlal(satir, "b", c.yer, `"${x.sozcuk}" tanıtılmadan soruluyor (${(x.adaylar ?? []).map((a) => `${a} → ${nerede(a)}`).join("; ")}): ${c.de}`);
+      if (!cerceveVar) return;
+      const bildirilen = new Set<string>();
+      tt.forEach((t, j) => {
+        if (t === YUVA_AD || ic.has(j) || dis.has(j) || bildirilen.has(t)) return;
+        const ok = cerceveOkunus(t); if (!ok.length) return;
+        const kisitli = (i: string) => cerceveHafta.has(i) && cerceveHafta.get(i)! >= hafta && !S.has(i);
+        if (!ok.every(kisitli)) return;
+        // sözcüğü başlık olarak gösteren, bilinen gerçek kart varsa kartın sözcüğüdür
+        if ([...(g.dizin.idx.get(t) ?? [])].some((i) => !g.dizin.cerceve.has(i) && k.kart.has(i) && g.dizin.gost.get(i)?.has(t))) return;
+        bildirilen.add(t);
+        ihlal(satir, "b", c.yer, `"${t}" çerçeve sözcüğü (${ok.map((i) => `${i} → ${cerceveHafta.get(i)}. hafta`).join("; ")}) kalıpta ya da dil noktasında gösterilmeden kullanılıyor: ${c.de}`);
+      });
     };
     const yeniSet = new Set(yeni), gorulenKart = new Set<string>(); const kaliplar: string[][] = [];
+    const gunGoster = new Set(onceGoster);
     for (const h of halkalar) {
       for (const kp of dizi(h.kaliplar)) kaliplar.push(...kalipSecenekleri(String(nesne(kp).de ?? "")));
+      if (cerceveVar) halkaGoster(gunGoster, h);
       const kartlar = yazilar(h.kartlar).filter((x) => yeniSet.has(x));
       const sonra = h.dersten_sonra === true;
       const kart = new Set([...onceKart, ...gorulenKart, ...kartlar, ...(sonra ? bugunDersKart : [])]), biten = new Set([...onceDers, ...(sonra ? bugunDers : [])]);
       const gos = gosterilenKaliplar(g.dizin, kart, biten, g.dersler);
-      for (const c of halkaGorevleri(h)) denetle(c, { kart, biten, kaliplar: [...kaliplar] }, gos);
+      const S = new Set(gunGoster); if (cerceveVar && sonra) for (const x of bugunDers) dersGoster(S, x);
+      for (const c of halkaGorevleri(h)) denetle(c, { kart, biten, kaliplar: [...kaliplar] }, gos, S);
       for (const x of kartlar) gorulenKart.add(x);
     }
     const kartG = new Set([...onceKart, ...yeni, ...bugunDersKart]), bitenG = new Set([...onceDers, ...bugunDers]);
     const gosG = gosterilenKaliplar(g.dizin, kartG, bitenG, g.dersler);
-    for (const c of halkaDisiGorevler(gun)) denetle(c, { kart: kartG, biten: bitenG, kaliplar }, gosG);
+    if (cerceveVar) for (const x of bugunDers) dersGoster(gunGoster, x);
+    for (const c of halkaDisiGorevler(gun)) denetle(c, { kart: kartG, biten: bitenG, kaliplar }, gosG, gunGoster);
     if (ortulen) satir.not.push(`${ortulen} adım gösterilmiş kalıpla (eşdizim/ders parçası) geçti`);
     satirlar.push(satir);
   }
@@ -236,11 +345,14 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
     // 1. haftada eski biçim (atlanan) gün varken hafta kümesi kurulamaz: o günler tablodan önceki dağılımı taşır
     const eski = g.tum ? [] : gunler.filter((gn) => gn <= 7 && dosyaGun.has(gn) && !dizi(dosyaGun.get(gn)!.halkalar).length);
     if (eski.length) { ilkSatir.not.push(`${h}. hafta kümesi sayılmadı: eski biçim gün ${eski.join(", ")}`); continue; }
-    const beklenen = gunler.flatMap((gn) => tablo.get(gn) ?? []);
+    const beklenen = gunler.flatMap((gn) => tablo.get(gn) ?? []).filter((k) => !cerceveHafta.has(k));
     const yazilan = gunler.filter((gn) => dosyaGun.has(gn)).flatMap((gn) => yazilar(dosyaGun.get(gn)!.yeni_kartlar).map((k) => ({ k, gn })));
     const b = new Set(beklenen), y = new Set(yazilan.map((x) => x.k));
     const hedef = (gn: number) => (satirOf.get(gn)?.durum === "denetlendi" ? satirOf.get(gn)! : ilkSatir);
-    for (const { k, gn } of yazilan) if (!b.has(k)) ihlal(hedef(gn), "a", `${h}. hafta`, `fazla ${k} (${nerede(k)})`);
+    for (const { k, gn } of yazilan) {
+      if (cerceveHafta.has(k)) ihlal(hedef(gn), "a", `${h}. hafta`, `çerçeve sözcüğü ${k} yeni_kartlar'a yazılmaz (tabloda ${cerceveHafta.get(k)}. haftanın çerçevesi)`);
+      else if (!b.has(k)) ihlal(hedef(gn), "a", `${h}. hafta`, `fazla ${k} (${nerede(k)})`);
+    }
     const goruldu = new Map<string, number>();
     for (const { k, gn } of yazilan) { if (goruldu.has(k)) ihlal(hedef(gn), "a", `${h}. hafta`, `iki kez ${k} (${goruldu.get(k)}. ve ${gn}. gün)`); else goruldu.set(k, gn); }
     const eksik = beklenen.filter((k) => !y.has(k));
