@@ -102,3 +102,26 @@ Terim ölçüsü önceki okur raporlarıyla aynı: `çoğul`, `tekil`, `isim`, `
   - lx:Hitze mistakes_tr[0]
 
 GERİ olduğu için iki parti de "reviewed" sayılamaz (OD-9.4): `batch-b1-02a.json` 3 GERİ (Anliegen, Kundennummer, einspringen), `batch-b1-02b.json` 5 GERİ (Warmmiete, Mieterhöhung ×2, Hitze ×2).
+
+## 2. tur (yalnız doğrulama, PM-079 md. 3)
+
+Girdi: dilbilimcinin düzeltme listesi (`docs/v2/reviews/lexicon-b1-02.md`, "Okur düzeltmeleri (2026-11-23)"). Metinler listeden değil, iki içerik dosyasından okundu; liste ile dosya aynı. Yalnız 1. turda geri dönen 8 alan okundu; çelişki için aynı kartın örnekleri, eşdizimleri ve parçaları da okundu.
+
+| kart | alan | yeni açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| lx:Anliegen | mistakes_tr[0] | Bir isteğim var derken **Ich habe eine Anliegen** yanlış. Doğrusu **Ich habe ein Anliegen.** | bir isteğim var derken eine değil ein | GEÇTİ | |
+| lx:Kundennummer | mistakes_tr[1] | **Kundenummer** diye yazmak kolay. Doğrusu iki **n** ile **Kundennummer**. | ortada iki n yazılır | GEÇTİ | |
+| lx:einspringen | exp.ipucu_tr | Geçmişi anlatırken **bin** ya da **ist** ile söylenir: **Ich bin eingesprungen.** | yerine çalıştım derken habe değil bin, ist | GEÇTİ | 2. boşluk ipucuyla (**ist eingesprungen**) uyumlu |
+| lx:Warmmiete | mistakes_tr[1] | Isınma hariç kiranın adı **Kaltmiete** olur. **Warmmiete** ile karıştırma, ikisi aynı para değildir. | ısınmasız kira Kaltmiete, ısınmalı kira Warmmiete; ayrı tutarlar | GEÇTİ | |
+| lx:Mieterhöhung | exp.ipucu_tr | Son parça **die Erhöhung** olduğu için **die Mieterhöhung** denir. | son parça die olduğu için başına die gelir | GEÇTİ | **Erhöhung** kartın parçalarında artış diye duruyor |
+| lx:Mieterhöhung | mistakes_tr[1] | Kira artışı yazısı aldık derken **eine Mieterhöhung nehmen** denmez. Doğrusu **eine Mieterhöhung bekommen**. | yazıyı almak için nehmen değil bekommen | GEÇTİ | |
+| lx:Hitze | exp.ipucu_tr | Bu sıcakta demek için **bei der Hitze** denir. | bu sıcakta bei der Hitze | GEÇTİ | |
+| lx:Hitze | mistakes_tr[0] | Sıcaktan uyuyamıyorum derken **von der Hitze** denmez. Doğrusu **wegen der Hitze** ya da **bei der Hitze**. | sıcaktan derken von değil wegen ya da bei | GEÇTİ | kartın 2. örneğiyle (**bei dieser Hitze nicht schlafen**) uyumlu |
+
+Takip notu (engel değil): 2. turda eski alanlarda yeni bulgu yok.
+
+### 2. tur sonucu
+
+- Okunan: 8 alan · GEÇTİ: 8 · GERİ: 0
+
+`batch-b1-02a.json` ve `batch-b1-02b.json`'da okur GERİ'si kalmadı (OD-9.3 okur katmanı geçti).
