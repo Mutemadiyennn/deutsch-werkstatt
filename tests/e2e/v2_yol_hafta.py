@@ -63,11 +63,17 @@ def main():
         shot(pg, f"yol-hafta-1-acik-{sema}", full=False)
 
         # gün kilidi: 9. gün adresle açılmaz
+        # GunKapisi her adreste yeniden kurulur (key = adres, önce yükleniyor): bekleme önceki adresin kapısını yakalamasın diye
+        # eski kapının ayrılması beklenir (#231'deki WebKit yarışının aynısı; inceleme #243 fark turu)
+        def git(adres):
+            eski = pg.query_selector("[data-test=gun-kilitli]")
+            pg.goto(base + adres)
+            if eski: eski.wait_for_element_state("hidden", timeout=15000)
         for adres in ("#/akis/9", "#/garden/9", "#/prova/9", "#/okuma/9", "#/m1/9/x"):
-            pg.goto(base + adres); pg.wait_for_selector("[data-test=gun-kilitli], [data-test=akis], [data-test=garden], [data-test=prova], [data-test=okuma], [data-test=medya]", timeout=15000)
+            git(adres); pg.wait_for_selector("[data-test=gun-kilitli], [data-test=akis], [data-test=garden], [data-test=prova], [data-test=okuma], [data-test=medya]", timeout=15000)
             check(pg.locator("[data-test=gun-kilitli]").count() == 1 and pg.locator("[data-test=bugune-don]").count() == 1, f"{adres}: kilitli gün kapanır, 'Bugüne dön' var")
         shot(pg, f"gun-kilitli-{sema}", full=False)
-        pg.goto(base + "#/akis/8"); pg.wait_for_selector("[data-test=akis], [data-test=gun-kilitli]", timeout=20000)
+        git("#/akis/8"); pg.wait_for_selector("[data-test=akis], [data-test=gun-kilitli]", timeout=20000)
         check(pg.locator("[data-test=akis]").count() == 1, "8. gün (şimdiki) adresle açılır")
         pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=next-activity]", timeout=15000)
         check(pg.locator("[data-test=hafta-testi-hazir]").count() == 1, "çözülmemiş 1. hafta testi Bugün'de de tek satır")
