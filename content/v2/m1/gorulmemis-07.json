@@ -4,7 +4,7 @@
   "durumlar": [
     {
       "id": "m1:h07:g1",
-      "can_do": "cd:m1:hafta07",
+      "can_do": "cd:m1:43",
       "durum_tr": "İş yerindesin. Dünden beri sırtın ağrıyor. Şefin Wimmer Bey yüzüne bakıp soruyor. Ne olduğunu ve ne zamandan beri olduğunu söyle.",
       "karsi": "ch:wimmer",
       "yer": "pl:firma",
@@ -35,7 +35,7 @@
     },
     {
       "id": "m1:h07:g2",
-      "can_do": "cd:m1:hafta07",
+      "can_do": "cd:m1:43",
       "durum_tr": "Kuaförde koltuktasın. Birden başın dönüyor. Luka aynada yüzünü görüp soruyor. Başının döndüğünü söyle ve su iste.",
       "karsi": "ch:petrovic",
       "yer": "pl:friseur",
@@ -62,7 +62,7 @@
     },
     {
       "id": "m1:h07:g3",
-      "can_do": "cd:m1:hafta07",
+      "can_do": "cd:m1:45",
       "durum_tr": "Başka bir şehirdesin, gözün kaşınıyor. Bir eczaneden göz damlası aldın. Eczacı nasıl kullanacağını söylüyor. Doğru anladığını göstermek için tekrar et.",
       "karsi": "ein Apotheker",
       "yer": "başka bir şehirde bir eczane",
@@ -91,7 +91,7 @@
     },
     {
       "id": "m1:h07:g4",
-      "can_do": "cd:m1:hafta07",
+      "can_do": "cd:m1:48",
       "durum_tr": "Apartmanın merdiveninde Pichler Bey öksürüyor. Pazartesiden beri öksürdüğünü söylüyor. Ona kibarca (Sie ile) bir öğüt ver.",
       "karsi": "ch:pichler",
       "yer": "pl:haus",
@@ -120,7 +120,7 @@
     },
     {
       "id": "m1:h07:g5",
-      "can_do": "cd:m1:hafta07",
+      "can_do": "cd:m1:46",
       "durum_tr": "Belediyedeki vatandaş bürosundasın. Schneider Hanım bir formu dolduruyor ve adresini soruyor. Oturduğun apartmanın adresini söyle.",
       "karsi": "ch:schneider",
       "yer": "pl:buergerbuero",
@@ -146,6 +146,85 @@
       ],
       "kalip": "Meine Adresse ist … – Ich wohne in …",
       "why_tr": "**Meine Adresse ist …** ya da **Ich wohne in …** ile cevap verirsin."
+    },
+    {
+      "id": "m1:h07:g6",
+      "can_do": "cd:m1:44",
+      "durum_tr": "Tren istasyonunun bekleme salonundasın. Elinde bir kahve ve yiyecek var, ama duvardaki tabelayı anlamadın. Bir görevli yanına geliyor. Burada yemenin serbest olup olmadığını ya da dışarıda mı yemen gerektiğini kibarca sor.",
+      "karsi": "eine Mitarbeiterin vom Bahnhof",
+      "yer": "pl:bahnhof",
+      "prompt_de": "Guten Tag! Kann ich Ihnen helfen?",
+      "accepted": [
+        "Ja, bitte. Darf man hier essen?",
+        "Entschuldigung, darf man hier essen?",
+        "Ja, bitte. Darf ich hier essen?",
+        "Darf man hier essen?",
+        "Darf ich hier essen?",
+        "Darf ich hier bitte essen?",
+        "Darf ich hier essen, bitte?",
+        "Ja, bitte. Darf ich hier essen? Oder muss ich draußen essen?",
+        "Ja, bitte. Darf man hier essen oder muss ich draußen essen?",
+        "Entschuldigung, darf man hier essen? Oder muss ich draußen essen?",
+        "Ja, bitte. Darf man hier essen und Kaffee trinken?",
+        "Darf man hier Kaffee trinken und essen?",
+        "Ja, bitte. Muss ich draußen essen?",
+        "Muss ich draußen essen?",
+        "Darf ich hier meinen Kaffee trinken?"
+      ],
+      "kalip": "Darf man hier …? – Muss ich …?",
+      "why_tr": "İzni **Darf man hier essen?** ile sorarsın, gerekip gerekmediğini **Muss ich draußen essen?** ile."
+    },
+    {
+      "id": "m1:h07:g7",
+      "can_do": "cd:m1:47",
+      "durum_tr": "Fırına giriyorsun. Gerti Stadler dükkânı yeni boyatmış: her yer kırmızı. Gururla soruyor. Kırmızı hoşuna gidiyor, bunu söyle.",
+      "karsi": "ch:stadler",
+      "yer": "pl:baeckerei",
+      "prompt_de": "Schauen Sie, alles ist jetzt rot! Wie gefällt Ihnen das?",
+      "accepted": [
+        "Rot gefällt mir gut, Frau Stadler!",
+        "Das gefällt mir gut, Frau Stadler!",
+        "Rot gefällt mir sehr gut!",
+        "Das Rot gefällt mir.",
+        "Das Rot gefällt mir gut.",
+        "Mir gefällt das Rot gut.",
+        "Mir gefällt Rot gut.",
+        "Klasse! Rot gefällt mir.",
+        "Klasse! Das Rot gefällt mir sehr gut.",
+        "Schön! Rot gefällt mir.",
+        "Schön! Das gefällt mir sehr gut, Frau Stadler.",
+        "Rot? Das gefällt mir gut!",
+        "Die Bäckerei gefällt mir jetzt sehr gut.",
+        "Ja, das Rot gefällt mir gut, Frau Stadler.",
+        "Das gefällt mir sehr gut!",
+        "Es gefällt mir sehr gut, Frau Stadler."
+      ],
+      "kalip": "Wie gefällt Ihnen …? – … gefällt mir.",
+      "why_tr": "Beğendiğin şeyi **gefällt mir** ile söylersin: **Rot gefällt mir gut**."
+    },
+    {
+      "id": "m1:h07:g8",
+      "can_do": "cd:m1:49",
+      "durum_tr": "Cumartesi. Dr. Weber'in muayenehanesi kapalı, sen komşu kasabadaki hafta sonu nöbetçi muayenehanesindesin. Perşembeden beri karnın ağrıyor. Doktor bir ilaç yazdı: günde üç kez, yemekten önce bir tablet. Şimdi soruyor. Ne zamandan beri ağrıdığını söyle, talimatı da tekrar ederek doğrula.",
+      "karsi": "eine Ärztin",
+      "yer": "komşu kasabada hafta sonu nöbetçi muayenehanesi",
+      "prompt_de": "So, hier ist ein Rezept. Seit wann tut der Bauch weh?",
+      "accepted": [
+        "Seit Donnerstag. Ich soll dreimal am Tag vor dem Essen eine Tablette nehmen, richtig?",
+        "Seit Donnerstag. Ich soll die Tabletten dreimal am Tag vor dem Essen nehmen?",
+        "Mir tut seit Donnerstag der Bauch weh. Also dreimal am Tag vor dem Essen?",
+        "Seit Donnerstag. Also dreimal am Tag eine Tablette vor dem Essen?",
+        "Seit Donnerstag tut mir der Bauch weh. Ich soll dreimal am Tag eine Tablette nehmen?",
+        "Ich habe seit Donnerstag Bauchschmerzen. Ich soll dreimal am Tag vor dem Essen eine Tablette nehmen?",
+        "Mein Bauch tut seit Donnerstag weh. Dreimal am Tag vor dem Essen, richtig?",
+        "Seit Donnerstag. Dreimal am Tag vor dem Essen eine Tablette, richtig?",
+        "Seit Donnerstag. Und ich soll dreimal am Tag eine Tablette nehmen, vor dem Essen?",
+        "Seit Donnerstag. Also ich soll dreimal am Tag vor dem Essen eine Tablette nehmen?",
+        "Seit Donnerstag. Ich soll vor dem Essen eine Tablette nehmen, dreimal am Tag?",
+        "Seit drei Tagen. Ich soll dreimal am Tag vor dem Essen eine Tablette nehmen?"
+      ],
+      "kalip": "Seit … – Ich soll … nehmen?",
+      "why_tr": "Süreyi **seit Donnerstag** ile söylersin, talimatı **Ich soll …** ile tekrar edip doğrularsın."
     }
   ]
 }
