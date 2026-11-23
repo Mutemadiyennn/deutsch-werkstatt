@@ -2,7 +2,7 @@
  * Hafta kapısı (PM-087 B.1, 7087286882, PM-096): her şart bilerek bozulmuş örnekte kırmızı, düzgün haftada yeşil.
  * Girdi: gerçek sözlük, temel dersler, omurga; tablo fikstürü fixtures/dikis-tablo.json (#198 1.–21. gün); 2. hafta yapay günlerle.
  */
-import { afterAll, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { spawnSync } from "node:child_process";
 import { copyFileSync, mkdtempSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -159,8 +159,11 @@ describe("hafta kapısı: 2. hafta (önceki hafta öğretilmiş)", () => {
 describe("komut satırı", () => {
   const cli = (...a: string[]) => spawnSync(process.execPath, ["--experimental-strip-types", "--no-warnings", join(ROOT, "content/tools/hafta-kapisi-kos.ts"), ...a], { encoding: "utf8" });
   /** Yalnız 1. haftanın gün dosyaları: içerik ağacında hangi haftalar olursa olsun aynı sonuç (PM-117 A.1, KAPI-İŞ 7104231689) */
-  const hafta1 = mkdtempSync(join(tmpdir(), "dw-kapi-h1-"));
-  for (const f of readdirSync(join(ROOT, "content/v2/m1")).filter((x) => /^gun-0[1-7]\.json$/.test(x))) copyFileSync(join(ROOT, "content/v2/m1", f), join(hafta1, f));
+  let hafta1 = "";
+  beforeAll(() => {
+    hafta1 = mkdtempSync(join(tmpdir(), "dw-kapi-h1-"));
+    for (const f of readdirSync(join(ROOT, "content/v2/m1")).filter((x) => /^gun-0[1-7]\.json$/.test(x))) copyFileSync(join(ROOT, "content/v2/m1", f), join(hafta1, f));
+  });
   afterAll(() => rmSync(hafta1, { recursive: true, force: true }));
   it("--hafta yoksa çıkış 2; tablo yoksa çıkış 2", () => {
     expect(cli().status).toBe(2);
