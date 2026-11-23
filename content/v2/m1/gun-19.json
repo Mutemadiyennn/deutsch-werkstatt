@@ -106,18 +106,15 @@
   "gr:a1-06:t2"
  ],
  "yeni_kartlar": [
-  "lx:nach",
   "lx:Deutsch",
   "lx:mögen",
   "lx:mögen#2",
-  "lx:okay",
   "lx:wirklich",
   "lx:nie",
   "lx:weg",
   "lx:Weg",
   "lx:reden",
   "lx:schön",
-  "lx:jeder",
   "lx:bleiben"
  ],
  "halkalar": [
@@ -128,8 +125,7 @@
     "lx:Deutsch",
     "lx:reden",
     "lx:wirklich",
-    "lx:nie",
-    "lx:okay"
+    "lx:nie"
    ],
    "dersten_sonra": true,
    "kaliplar": [
@@ -144,6 +140,14 @@
     {
      "de": "Derya spricht auch Türkisch.",
      "tr": "Derya Türkçe de konuşuyor."
+    },
+    {
+     "de": "Okay! – Okay?",
+     "tr": "Tamam! – Tamam mı?"
+    },
+    {
+     "de": "jeder – jeden Tag",
+     "tr": "herkes – her gün"
     }
    ],
    "gorev_cumleleri": [
@@ -228,7 +232,7 @@
      ]
     },
     {
-     "kart": "lx:okay",
+     "kart": "lx:Deutsch",
      "de": "Okay, nur Deutsch!",
      "tr": "Tamam, sadece Almanca!",
      "accepted": [
@@ -238,13 +242,13 @@
      ]
     },
     {
-     "kart": "lx:okay",
-     "de": "Okay, wir sprechen morgen.",
-     "tr": "Tamam, yarın konuşuruz.",
+     "kart": "lx:Deutsch",
+     "de": "Jeder spricht hier Deutsch.",
+     "tr": "Burada herkes Almanca konuşuyor.",
      "accepted": [
-      "Okay, wir sprechen morgen.",
-      "Okay, morgen sprechen wir.",
-      "Okay, dann sprechen wir morgen."
+      "Jeder spricht hier Deutsch.",
+      "Hier spricht jeder Deutsch.",
+      "Jeder spricht hier nur Deutsch."
      ]
     }
    ],
@@ -280,12 +284,14 @@
   },
   {
    "id": "m1:19:h2",
-   "title_tr": "Kim gidiyor, kim kalıyor?",
+   "title_tr": "Kim gidiyor, kim kalıyor, ne seviyor?",
    "kartlar": [
-    "lx:nach",
     "lx:Weg",
     "lx:weg",
-    "lx:bleiben"
+    "lx:bleiben",
+    "lx:mögen",
+    "lx:mögen#2",
+    "lx:schön"
    ],
    "dersten_sonra": true,
    "kaliplar": [
@@ -300,29 +306,25 @@
     {
      "de": "Ich bleibe … – Bleibst du …? – Er bleibt …",
      "tr": "… kalıyorum – … kalıyor musun? – … kalıyor"
+    },
+    {
+     "de": "zum Bahnhof",
+     "tr": "istasyona"
+    },
+    {
+     "de": "ich esse – du isst – er isst",
+     "tr": "yiyorum – yiyorsun – yiyor"
+    },
+    {
+     "de": "ich sehe – du siehst – er sieht",
+     "tr": "görüyorum – görüyorsun – görüyor"
+    },
+    {
+     "de": "Ich mag … – Magst du …?",
+     "tr": "…'i severim – …'i sever misin?"
     }
    ],
    "gorev_cumleleri": [
-    {
-     "kart": "lx:nach",
-     "de": "Fährst du jetzt nach Hause?",
-     "tr": "Şimdi eve mi gidiyorsun?",
-     "accepted": [
-      "Fährst du jetzt nach Hause?",
-      "Fährst du nach Hause?",
-      "Fährst du jetzt schon nach Hause?"
-     ]
-    },
-    {
-     "kart": "lx:nach",
-     "de": "Nach dem Kurs fährt Ioana nach Hause.",
-     "tr": "Kurstan sonra Ioana eve gidiyor.",
-     "accepted": [
-      "Nach dem Kurs fährt Ioana nach Hause.",
-      "Ioana fährt nach dem Kurs nach Hause.",
-      "Nach dem Kurs fährt Ioana gleich nach Hause."
-     ]
-    },
     {
      "kart": "lx:Weg",
      "de": "Ist das der Weg zum Bahnhof?",
@@ -382,63 +384,7 @@
       "Du fährst und ich bleibe hier.",
       "Du fährst, aber ich bleibe hier."
      ]
-    }
-   ],
-   "sahne": {
-    "ortam_tr": "Kurs bitti, istasyonun önündeki durak. Basti bisikletiyle yanına geliyor.",
-    "satirlar": [
-     {
-      "r": "ch:kraus",
-      "de": "Fährst du auch nach Hause?",
-      "tr": "Sen de eve mi gidiyorsun?"
-     },
-     {
-      "r": "ogrenci",
-      "de": "Nein, ich bleibe noch hier. Der Bus ist weg!",
-      "tr": "Hayır, biraz daha buradayım. Otobüs gitti!"
-     },
-     {
-      "r": "ch:kraus",
-      "de": "Ich fahre mit dem Fahrrad. Bis morgen!",
-      "tr": "Ben bisikletle gidiyorum. Yarın görüşürüz!"
-     }
-    ],
-    "soru": {
-     "q_tr": "Basti eve nasıl gidiyor?",
-     "opts": [
-      "Bisikletle",
-      "Otobüsle",
-      "Yürüyerek"
-     ],
-     "ans": 0
-    }
-   }
-  },
-  {
-   "id": "m1:19:h3",
-   "title_tr": "Yemek, görmek, sevmek",
-   "kartlar": [
-    "lx:mögen",
-    "lx:mögen#2",
-    "lx:schön",
-    "lx:jeder"
-   ],
-   "dersten_sonra": true,
-   "kaliplar": [
-    {
-     "de": "ich esse – du isst – er isst",
-     "tr": "yiyorum – yiyorsun – yiyor"
     },
-    {
-     "de": "ich sehe – du siehst – er sieht",
-     "tr": "görüyorum – görüyorsun – görüyor"
-    },
-    {
-     "de": "Ich mag … – Magst du …?",
-     "tr": "…'i severim – …'i sever misin?"
-    }
-   ],
-   "gorev_cumleleri": [
     {
      "kart": "lx:mögen",
      "de": "Magst du Kuchen?",
@@ -498,53 +444,33 @@
       "Schön! Du isst mit uns!",
       "Schön, dann isst du mit uns!"
      ]
-    },
-    {
-     "kart": "lx:jeder",
-     "de": "Isst du jeden Tag Brot?",
-     "tr": "Her gün ekmek yer misin?",
-     "accepted": [
-      "Isst du jeden Tag Brot?",
-      "Isst du Brot jeden Tag?",
-      "Isst du wirklich jeden Tag Brot?"
-     ]
-    },
-    {
-     "kart": "lx:jeder",
-     "de": "Jeder spricht hier Deutsch.",
-     "tr": "Burada herkes Almanca konuşuyor.",
-     "accepted": [
-      "Jeder spricht hier Deutsch.",
-      "Hier spricht jeder Deutsch.",
-      "Jeder spricht hier nur Deutsch."
-     ]
     }
    ],
    "sahne": {
-    "ortam_tr": "İstasyondaki küçük büfenin vitrini. Ioana bir pastayı gösteriyor.",
+    "ortam_tr": "Kurs bitti, istasyonun önündeki durak. Basti bisikletiyle yanına geliyor.",
     "satirlar": [
      {
-      "r": "ch:popescu",
-      "de": "Siehst du den Kuchen da? Schön, ja?",
-      "tr": "Şuradaki pastayı görüyor musun? Güzel, değil mi?"
+      "r": "ch:kraus",
+      "de": "Fährst du auch nach Hause?",
+      "tr": "Sen de eve mi gidiyorsun?"
      },
      {
       "r": "ogrenci",
-      "de": "Ja! Magst du Kuchen?",
-      "tr": "Evet! Pasta sever misin?"
+      "de": "Nein, ich bleibe noch hier. Der Bus ist weg!",
+      "tr": "Hayır, biraz daha buradayım. Otobüs gitti!"
      },
      {
-      "r": "ch:popescu",
-      "de": "Ich? Ich esse jeden Tag Kuchen!",
-      "tr": "Ben mi? Her gün pasta yerim!"
+      "r": "ch:kraus",
+      "de": "Ich fahre mit dem Fahrrad. Bis morgen!",
+      "tr": "Ben bisikletle gidiyorum. Yarın görüşürüz!"
      }
     ],
     "soru": {
-     "q_tr": "Ioana ne sıklıkla pasta yiyor?",
+     "q_tr": "Basti eve nasıl gidiyor?",
      "opts": [
-      "Her gün",
-      "Hiç",
-      "Yalnızca hafta sonu"
+      "Bisikletle",
+      "Otobüsle",
+      "Yürüyerek"
      ],
      "ans": 0
     }

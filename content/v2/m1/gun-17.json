@@ -131,7 +131,6 @@
   "gr:a1-12:t1"
  ],
  "yeni_kartlar": [
-  "lx:am",
   "lx:aussteigen",
   "lx:Prüfung",
   "lx:Ausweis",
@@ -156,7 +155,8 @@
     "lx:verbinden",
     "lx:Durchwahl",
     "lx:zurückrufen",
-    "lx:Rückruf"
+    "lx:Rückruf",
+    "lx:Bahnhof"
    ],
    "kaliplar": [
     {
@@ -166,6 +166,10 @@
     {
      "de": "Einen Moment, ich verbinde.",
      "tr": "Bir dakika, bağlıyorum."
+    },
+    {
+     "de": "am Bahnhof – am Freitag",
+     "tr": "garda – cuma günü"
     }
    ],
    "dersten_sonra": true,
@@ -249,6 +253,26 @@
       "Ich hätte gern einen Rückruf.",
       "Einen Rückruf, bitte."
      ]
+    },
+    {
+     "kart": "lx:Bahnhof",
+     "de": "Ich bin jetzt am Bahnhof.",
+     "tr": "Şimdi istasyondayım.",
+     "accepted": [
+      "Ich bin jetzt am Bahnhof.",
+      "Jetzt bin ich am Bahnhof.",
+      "Ich bin schon am Bahnhof."
+     ]
+    },
+    {
+     "kart": "lx:Bahnhof",
+     "de": "Wo ist hier der Bahnhof?",
+     "tr": "Buralarda istasyon nerede?",
+     "accepted": [
+      "Wo ist hier der Bahnhof?",
+      "Wo ist der Bahnhof hier?",
+      "Entschuldigung, wo ist hier der Bahnhof?"
+     ]
     }
    ],
    "sahne": {
@@ -289,7 +313,8 @@
     "lx:Anrufbeantworter",
     "lx:auflegen",
     "lx:zurück",
-    "lx:Haus"
+    "lx:Haus",
+    "lx:aussteigen"
    ],
    "kaliplar": [
     {
@@ -385,6 +410,26 @@
       "Ist Herr Pichler heute im Haus?",
       "Ist Herr Pichler da?"
      ]
+    },
+    {
+     "kart": "lx:aussteigen",
+     "de": "Muss ich hier aussteigen?",
+     "tr": "Burada mı inmem lazım?",
+     "accepted": [
+      "Muss ich hier aussteigen?",
+      "Muss ich hier schon aussteigen?",
+      "Muss ich jetzt aussteigen?"
+     ]
+    },
+    {
+     "kart": "lx:aussteigen",
+     "de": "Ich muss am Bahnhof aussteigen.",
+     "tr": "İstasyonda inmem lazım.",
+     "accepted": [
+      "Ich muss am Bahnhof aussteigen.",
+      "Am Bahnhof muss ich aussteigen.",
+      "Ich muss beim Bahnhof aussteigen."
+     ]
     }
    ],
    "sahne": {
@@ -425,7 +470,8 @@
     "lx:Ausweis",
     "lx:Prüfung",
     "lx:Hausaufgabe",
-    "lx:einkaufen"
+    "lx:einkaufen",
+    "lx:Fahrrad"
    ],
    "kaliplar": [
     {
@@ -513,6 +559,36 @@
       "Kommst du mit zum Einkaufen?",
       "Gehst du mit einkaufen?"
      ]
+    },
+    {
+     "kart": "lx:einkaufen",
+     "de": "Am Samstag gehe ich einkaufen.",
+     "tr": "Cumartesi alışverişe gidiyorum.",
+     "accepted": [
+      "Am Samstag gehe ich einkaufen.",
+      "Ich gehe am Samstag einkaufen.",
+      "Am Samstag gehe ich immer einkaufen."
+     ]
+    },
+    {
+     "kart": "lx:Fahrrad",
+     "de": "Das Fahrrad ist kaputt.",
+     "tr": "Bisiklet bozuk.",
+     "accepted": [
+      "Das Fahrrad ist kaputt.",
+      "Das Fahrrad ist leider kaputt.",
+      "Mein Fahrrad ist kaputt."
+     ]
+    },
+    {
+     "kart": "lx:Fahrrad",
+     "de": "Ist das dein Fahrrad?",
+     "tr": "Bu senin bisikletin mi?",
+     "accepted": [
+      "Ist das dein Fahrrad?",
+      "Ist das dein Fahrrad, Ioana?",
+      "Ist das Fahrrad von dir?"
+     ]
     }
    ],
    "sahne": {
@@ -541,134 +617,6 @@
       "Ödevini",
       "Bisikletini",
       "Bir hediye"
-     ],
-     "ans": 0
-    }
-   }
-  },
-  {
-   "id": "m1:17:h4",
-   "title_tr": "Bisiklet, istasyon, inmek",
-   "kartlar": [
-    "lx:Fahrrad",
-    "lx:Bahnhof",
-    "lx:aussteigen",
-    "lx:am"
-   ],
-   "kaliplar": [
-    {
-     "de": "am Bahnhof – am Freitag",
-     "tr": "istasyonda – cuma günü"
-    }
-   ],
-   "gorev_cumleleri": [
-    {
-     "kart": "lx:Fahrrad",
-     "de": "Das Fahrrad ist kaputt.",
-     "tr": "Bisiklet bozuk.",
-     "accepted": [
-      "Das Fahrrad ist kaputt.",
-      "Das Fahrrad ist leider kaputt.",
-      "Mein Fahrrad ist kaputt."
-     ]
-    },
-    {
-     "kart": "lx:Fahrrad",
-     "de": "Ist das dein Fahrrad?",
-     "tr": "Bu senin bisikletin mi?",
-     "accepted": [
-      "Ist das dein Fahrrad?",
-      "Ist das dein Fahrrad, Ioana?",
-      "Ist das Fahrrad von dir?"
-     ]
-    },
-    {
-     "kart": "lx:Bahnhof",
-     "de": "Ich bin jetzt am Bahnhof.",
-     "tr": "Şimdi istasyondayım.",
-     "accepted": [
-      "Ich bin jetzt am Bahnhof.",
-      "Jetzt bin ich am Bahnhof.",
-      "Ich bin schon am Bahnhof."
-     ]
-    },
-    {
-     "kart": "lx:Bahnhof",
-     "de": "Wo ist hier der Bahnhof?",
-     "tr": "Buralarda istasyon nerede?",
-     "accepted": [
-      "Wo ist hier der Bahnhof?",
-      "Wo ist der Bahnhof hier?",
-      "Entschuldigung, wo ist hier der Bahnhof?"
-     ]
-    },
-    {
-     "kart": "lx:aussteigen",
-     "de": "Muss ich hier aussteigen?",
-     "tr": "Burada mı inmem lazım?",
-     "accepted": [
-      "Muss ich hier aussteigen?",
-      "Muss ich hier schon aussteigen?",
-      "Muss ich jetzt aussteigen?"
-     ]
-    },
-    {
-     "kart": "lx:aussteigen",
-     "de": "Ich muss am Bahnhof aussteigen.",
-     "tr": "İstasyonda inmem lazım.",
-     "accepted": [
-      "Ich muss am Bahnhof aussteigen.",
-      "Am Bahnhof muss ich aussteigen.",
-      "Ich muss beim Bahnhof aussteigen."
-     ]
-    },
-    {
-     "kart": "lx:am",
-     "de": "Am Samstag gehe ich einkaufen.",
-     "tr": "Cumartesi alışverişe gidiyorum.",
-     "accepted": [
-      "Am Samstag gehe ich einkaufen.",
-      "Ich gehe am Samstag einkaufen.",
-      "Am Samstag gehe ich immer einkaufen."
-     ]
-    },
-    {
-     "kart": "lx:am",
-     "de": "Am Vormittag bin ich im Büro.",
-     "tr": "Öğleden önce ofisteyim.",
-     "accepted": [
-      "Am Vormittag bin ich im Büro.",
-      "Ich bin am Vormittag im Büro.",
-      "Am Vormittag bin ich immer im Büro."
-     ]
-    }
-   ],
-   "sahne": {
-    "ortam_tr": "Telefon. Ioana ilk kez otobüsle sana geliyor.",
-    "satirlar": [
-     {
-      "r": "ch:popescu",
-      "de": "Ich bin am Bahnhof. Muss ich hier aussteigen?",
-      "tr": "İstasyondayım. Burada mı inmem lazım?"
-     },
-     {
-      "r": "ogrenci",
-      "de": "Nein, nicht am Bahnhof. Am Stadtplatz.",
-      "tr": "Hayır, istasyonda değil. Meydanda."
-     },
-     {
-      "r": "ch:popescu",
-      "de": "Gut, danke!",
-      "tr": "Tamam, sağ ol!"
-     }
-    ],
-    "soru": {
-     "q_tr": "Ioana nerede inmeli?",
-     "opts": [
-      "Meydanda",
-      "İstasyonda",
-      "Evin önünde",
-      "Muayenehanede"
      ],
      "ans": 0
     }
@@ -1383,8 +1331,8 @@
   "dugumler": [
    {
     "id": "n1",
-    "de": "Bürgerbüro, Schneider, guten Tag.",
-    "tr": "Bürgerbüro, ben Schneider, iyi günler.",
+    "de": "Schneider, guten Tag. Was kann ich für Sie tun?",
+    "tr": "Schneider, iyi günler. Sizin için ne yapabilirim?",
     "secenekler": [
      {
       "de": "Guten Tag, Frau Schneider, hier ist {name}. Ich möchte einen Termin für den Ausweis.",
@@ -1496,8 +1444,8 @@
    },
    {
     "id": "n4",
-    "de": "Gut. Bringen Sie bitte den alten Ausweis mit.",
-    "tr": "Tamam. Lütfen eski kimliğinizi getirin.",
+    "de": "Gut. Bringen Sie bitte den Ausweis mit.",
+    "tr": "Tamam. Lütfen kimliğinizi getirin.",
     "secenekler": [
      {
       "de": "Ja, gut. Haben Sie auch eine Durchwahl?",
@@ -1807,7 +1755,7 @@
     "id": "m1:17:s11",
     "k": "guided_response",
     "situation_tr": "Belediye santralini arıyorsun. Kendini tanıt ve kibarca Schneider Hanım'a bağlanmak iste.",
-    "prompt_de": "Guten Tag, Zentrale.",
+    "prompt_de": "Guten Tag! Was kann ich für Sie tun?",
     "accepted": [
      "Guten Tag, hier ist {name}. Könnten Sie mich bitte mit Frau Schneider verbinden?",
      "Guten Tag, hier ist {name}. Könnten Sie mich mit Frau Schneider verbinden?",

@@ -122,31 +122,24 @@
   "gr:a1-12:t3"
  ],
  "yeni_kartlar": [
-  "lx:um",
-  "lx:bis",
   "lx:Warteschleife",
-  "lx:bei",
-  "lx:unser",
   "lx:glauben",
   "lx:los",
   "lx:finden",
   "lx:anderer",
-  "lx:denn",
   "lx:Mann",
-  "lx:zum",
   "lx:leben",
   "lx:vielleicht"
  ],
  "halkalar": [
   {
    "id": "m1:18:h1",
-   "title_tr": "Bekleme hattında",
+   "title_tr": "Bekleme hattında: belki başka gün",
    "kartlar": [
     "lx:Warteschleife",
     "lx:los",
-    "lx:denn",
     "lx:Mann",
-    "lx:bei"
+    "lx:vielleicht"
    ],
    "kaliplar": [
     {
@@ -156,6 +149,14 @@
     {
      "de": "Was ist los? – Was ist denn los?",
      "tr": "Ne oldu? – Ne oldu ki?"
+    },
+    {
+     "de": "bei Luka – bei uns",
+     "tr": "Luka'da – bizde"
+    },
+    {
+     "de": "am … um … – im …",
+     "tr": "… günü saat …'de – … ayında"
     }
    ],
    "gorev_cumleleri": [
@@ -200,26 +201,6 @@
      ]
     },
     {
-     "kart": "lx:denn",
-     "de": "Wo bist du denn?",
-     "tr": "Neredesin ki?",
-     "accepted": [
-      "Wo bist du denn?",
-      "Wo bist du denn jetzt?",
-      "Und wo bist du denn?"
-     ]
-    },
-    {
-     "kart": "lx:denn",
-     "de": "Wann hast du denn Zeit?",
-     "tr": "Peki ne zaman vaktin var?",
-     "accepted": [
-      "Wann hast du denn Zeit?",
-      "Und wann hast du denn Zeit?",
-      "Wann hast du Zeit?"
-     ]
-    },
-    {
      "kart": "lx:Mann",
      "de": "Wer ist der Mann da?",
      "tr": "Şuradaki adam kim?",
@@ -240,23 +221,33 @@
      ]
     },
     {
-     "kart": "lx:bei",
-     "de": "Ioana ist heute bei Luka.",
-     "tr": "Ioana bugün Luka'da.",
+     "kart": "lx:vielleicht",
+     "de": "Vielleicht am Samstag?",
+     "tr": "Belki cumartesi günü?",
      "accepted": [
-      "Ioana ist heute bei Luka.",
-      "Heute ist Ioana bei Luka.",
-      "Ioana ist heute bei Luka, ja."
+      "Vielleicht am Samstag?",
+      "Am Samstag vielleicht?",
+      "Vielleicht Samstag?"
      ]
     },
     {
-     "kart": "lx:bei",
-     "de": "Bist du noch bei Luka?",
-     "tr": "Hâlâ Luka'da mısın?",
+     "kart": "lx:vielleicht",
+     "de": "Vielleicht geht es im Januar.",
+     "tr": "Belki ocakta olur.",
      "accepted": [
-      "Bist du noch bei Luka?",
-      "Bist du jetzt noch bei Luka?",
-      "Du bist noch bei Luka?"
+      "Vielleicht geht es im Januar.",
+      "Im Januar geht es vielleicht.",
+      "Vielleicht geht es dann im Januar."
+     ]
+    },
+    {
+     "kart": "lx:Mann",
+     "de": "Der Mann kommt am Dienstag um neun.",
+     "tr": "Adam salı saat dokuzda geliyor.",
+     "accepted": [
+      "Der Mann kommt am Dienstag um neun.",
+      "Am Dienstag um neun kommt der Mann.",
+      "Der Mann kommt am Dienstag um neun Uhr."
      ]
     }
    ],
@@ -289,13 +280,13 @@
      ],
      "ans": 0
     }
-   }
+   },
+   "dersten_sonra": true
   },
   {
    "id": "m1:18:h2",
    "title_tr": "Belki başka bir gün",
    "kartlar": [
-    "lx:vielleicht",
     "lx:anderer",
     "lx:glauben",
     "lx:finden",
@@ -321,29 +312,21 @@
     {
      "de": "Könnten Sie … ?",
      "tr": "… -abilir misiniz?"
+    },
+    {
+     "de": "von … bis … – ab …",
+     "tr": "…'den …'e kadar – …'den itibaren"
+    },
+    {
+     "de": "zum Arzt – zum Kurs",
+     "tr": "doktora – kursa"
+    },
+    {
+     "de": "unser Kurs – unser Chef",
+     "tr": "kursumuz – şefimiz"
     }
    ],
    "gorev_cumleleri": [
-    {
-     "kart": "lx:vielleicht",
-     "de": "Vielleicht am Samstag?",
-     "tr": "Belki cumartesi günü?",
-     "accepted": [
-      "Vielleicht am Samstag?",
-      "Am Samstag vielleicht?",
-      "Vielleicht Samstag?"
-     ]
-    },
-    {
-     "kart": "lx:vielleicht",
-     "de": "Vielleicht geht es morgen.",
-     "tr": "Belki yarın olur.",
-     "accepted": [
-      "Vielleicht geht es morgen.",
-      "Morgen geht es vielleicht.",
-      "Vielleicht geht morgen."
-     ]
-    },
     {
      "kart": "lx:anderer",
      "de": "Geht auch ein anderer Tag?",
@@ -423,6 +406,56 @@
       "Lebst du hier gern?",
       "Und du, lebst du gern hier?"
      ]
+    },
+    {
+     "kart": "lx:anderer",
+     "de": "Haben Sie einen anderen Termin, vielleicht am Montag um zehn?",
+     "tr": "Başka bir randevunuz var mı, belki pazartesi saat onda?",
+     "accepted": [
+      "Haben Sie einen anderen Termin, vielleicht am Montag um zehn?",
+      "Haben Sie vielleicht einen anderen Termin am Montag um zehn?",
+      "Haben Sie einen anderen Termin, am Montag um zehn vielleicht?"
+     ]
+    },
+    {
+     "kart": "lx:glauben",
+     "de": "Ich glaube, ich komme am Freitag um vier.",
+     "tr": "Sanırım cuma saat dörtte geliyorum.",
+     "accepted": [
+      "Ich glaube, ich komme am Freitag um vier.",
+      "Ich komme am Freitag um vier, glaube ich.",
+      "Ich glaube, ich komme am Freitag um vier Uhr."
+     ]
+    },
+    {
+     "kart": "lx:glauben",
+     "de": "Ich glaube, ab Januar ist unser Kurs am Mittwoch.",
+     "tr": "Sanırım ocaktan itibaren kursumuz çarşamba.",
+     "accepted": [
+      "Ich glaube, ab Januar ist unser Kurs am Mittwoch.",
+      "Unser Kurs ist ab Januar am Mittwoch, glaube ich.",
+      "Ich glaube, unser Kurs ist ab Januar am Mittwoch."
+     ]
+    },
+    {
+     "kart": "lx:finden",
+     "de": "Ich finde keinen Termin im Januar.",
+     "tr": "Ocakta randevu bulamıyorum.",
+     "accepted": [
+      "Ich finde keinen Termin im Januar.",
+      "Im Januar finde ich keinen Termin.",
+      "Ich finde im Januar keinen Termin."
+     ]
+    },
+    {
+     "kart": "lx:glauben",
+     "de": "Ich glaube, am Abend gehe ich zum Kurs.",
+     "tr": "Sanırım akşam kursa gidiyorum.",
+     "accepted": [
+      "Ich glaube, am Abend gehe ich zum Kurs.",
+      "Am Abend gehe ich zum Kurs, glaube ich.",
+      "Ich glaube, ich gehe am Abend zum Kurs."
+     ]
     }
    ],
    "sahne": {
@@ -458,139 +491,8 @@
      ],
      "ans": 1
     }
-   }
-  },
-  {
-   "id": "m1:18:h3",
-   "title_tr": "Saat, gün, ay: um, am, im",
-   "kartlar": [
-    "lx:um",
-    "lx:bis",
-    "lx:zum",
-    "lx:unser"
-   ],
-   "dersten_sonra": true,
-   "kaliplar": [
-    {
-     "de": "am … um … – im …",
-     "tr": "… günü saat …'de – … ayında"
-    },
-    {
-     "de": "von … bis … – ab …",
-     "tr": "…'den …'e kadar – …'den itibaren"
-    }
-   ],
-   "gorev_cumleleri": [
-    {
-     "kart": "lx:um",
-     "de": "Ich komme am Freitag um vier.",
-     "tr": "Cuma günü saat dörtte geliyorum.",
-     "accepted": [
-      "Ich komme am Freitag um vier.",
-      "Am Freitag um vier komme ich.",
-      "Ich komme am Freitag um vier Uhr."
-     ]
-    },
-    {
-     "kart": "lx:um",
-     "de": "Um halb sechs bin ich bei Luka.",
-     "tr": "Beş buçukta Luka'dayım.",
-     "accepted": [
-      "Um halb sechs bin ich bei Luka.",
-      "Ich bin um halb sechs bei Luka.",
-      "Um halb sechs bin ich bei Luka, ja."
-     ]
-    },
-    {
-     "kart": "lx:bis",
-     "de": "Luka ist von neun bis sechs da.",
-     "tr": "Luka dokuzdan altıya kadar orada.",
-     "accepted": [
-      "Luka ist von neun bis sechs da.",
-      "Von neun bis sechs ist Luka da.",
-      "Luka ist von neun bis sechs Uhr da."
-     ]
-    },
-    {
-     "kart": "lx:bis",
-     "de": "Könnten Sie bis halb fünf warten?",
-     "tr": "Dört buçuğa kadar bekleyebilir misiniz?",
-     "accepted": [
-      "Könnten Sie bis halb fünf warten?",
-      "Könnten Sie bitte bis halb fünf warten?",
-      "Könnten Sie vielleicht bis halb fünf warten?"
-     ]
-    },
-    {
-     "kart": "lx:zum",
-     "de": "Am Freitag um vier gehe ich zum Arzt.",
-     "tr": "Cuma günü saat dörtte doktora gidiyorum.",
-     "accepted": [
-      "Am Freitag um vier gehe ich zum Arzt.",
-      "Ich gehe am Freitag um vier zum Arzt.",
-      "Am Freitag um vier Uhr gehe ich zum Arzt."
-     ]
-    },
-    {
-     "kart": "lx:zum",
-     "de": "Ich gehe am Abend zum Kurs.",
-     "tr": "Akşam kursa gidiyorum.",
-     "accepted": [
-      "Ich gehe am Abend zum Kurs.",
-      "Am Abend gehe ich zum Kurs.",
-      "Ich gehe heute Abend zum Kurs."
-     ]
-    },
-    {
-     "kart": "lx:unser",
-     "de": "Ab Januar ist unser Kurs am Mittwoch.",
-     "tr": "Ocaktan itibaren kursumuz çarşamba günü.",
-     "accepted": [
-      "Ab Januar ist unser Kurs am Mittwoch.",
-      "Unser Kurs ist ab Januar am Mittwoch.",
-      "Ab Januar ist unser Kurs immer am Mittwoch."
-     ]
-    },
-    {
-     "kart": "lx:unser",
-     "de": "Unser Chef hat im Januar Urlaub.",
-     "tr": "Şefimiz ocakta izinde.",
-     "accepted": [
-      "Unser Chef hat im Januar Urlaub.",
-      "Im Januar hat unser Chef Urlaub.",
-      "Unser Chef hat Urlaub im Januar."
-     ]
-    }
-   ],
-   "sahne": {
-    "ortam_tr": "Luka randevu defterine bakıyor. Saati birlikte ayarlıyorsunuz.",
-    "satirlar": [
-     {
-      "r": "ch:petrovic",
-      "de": "Also, am Montag um halb drei.",
-      "tr": "Peki, pazartesi günü iki buçukta."
-     },
-     {
-      "r": "ogrenci",
-      "de": "Um halb drei? Ich bin bis zwei im Büro.",
-      "tr": "İki buçukta mı? Saat ikiye kadar ofisteyim."
-     },
-     {
-      "r": "ch:petrovic",
-      "de": "Gut, dann um halb vier.",
-      "tr": "İyi, o zaman üç buçukta."
-     }
-    ],
-    "soru": {
-     "q_tr": "Randevu sonunda saat kaçta?",
-     "opts": [
-      "İki buçukta",
-      "Üç buçukta",
-      "Saat ikide"
-     ],
-     "ans": 1
-    }
-   }
+   },
+   "dersten_sonra": true
   }
  ],
  "sahne": {

@@ -134,8 +134,7 @@
   "lx:billig",
   "lx:hell",
   "lx:Mantel",
-  "lx:Schrank",
-  "lx:na"
+  "lx:Schrank"
  ],
  "halkalar": [
   {
@@ -145,7 +144,8 @@
     "lx:Name",
     "lx:Buchstabe",
     "lx:buchstabieren",
-    "lx:na"
+    "lx:Sprache",
+    "lx:schlucken"
    ],
    "kaliplar": [
     {
@@ -163,6 +163,18 @@
     {
      "de": "Auf Wiederhören!",
      "tr": "Telefonda: hoşça kalın!"
+    },
+    {
+     "de": "Na gut!",
+     "tr": "Peki, tamam!"
+    },
+    {
+     "de": "Auf welchen Namen?",
+     "tr": "Kimin adına?"
+    },
+    {
+     "de": "Ich möchte …",
+     "tr": "… istiyorum"
     }
    ],
    "dersten_sonra": true,
@@ -228,7 +240,7 @@
      ]
     },
     {
-     "kart": "lx:na",
+     "kart": "lx:buchstabieren",
      "de": "Na gut, ich buchstabiere nochmal.",
      "tr": "Peki, bir daha harf harf söylüyorum.",
      "accepted": [
@@ -238,14 +250,43 @@
      ]
     },
     {
-     "kart": "lx:na",
-     "de": "Na, wie geht's, Ioana?",
-     "tr": "Eee, nasılsın Ioana?",
+     "kart": "lx:Sprache",
+     "de": "Welche Sprache ist das?",
+     "tr": "Bu hangi dil?",
      "accepted": [
-      "Na, wie geht's, Ioana?",
-      "Na, wie geht es, Ioana?",
-      "Na, Ioana, wie geht's?",
-      "Na, wie geht es dir, Ioana?"
+      "Welche Sprache ist das?",
+      "Was für eine Sprache ist das?",
+      "Welche Sprache ist das, bitte?"
+     ]
+    },
+    {
+     "kart": "lx:Sprache",
+     "de": "Ich möchte die Sprache lernen.",
+     "tr": "Bu dili öğrenmek istiyorum.",
+     "accepted": [
+      "Ich möchte die Sprache lernen.",
+      "Ich möchte diese Sprache lernen.",
+      "Die Sprache möchte ich lernen."
+     ]
+    },
+    {
+     "kart": "lx:schlucken",
+     "de": "Ich kann nicht gut schlucken.",
+     "tr": "İyi yutkunamıyorum.",
+     "accepted": [
+      "Ich kann nicht gut schlucken.",
+      "Ich kann nicht richtig schlucken.",
+      "Ich kann schlecht schlucken."
+     ]
+    },
+    {
+     "kart": "lx:schlucken",
+     "de": "Schlucken geht nicht gut.",
+     "tr": "Yutkunmak pek olmuyor.",
+     "accepted": [
+      "Schlucken geht nicht gut.",
+      "Schlucken geht nicht.",
+      "Das Schlucken geht nicht gut."
      ]
     }
    ],
@@ -287,7 +328,8 @@
     "lx:Jacke",
     "lx:Mantel",
     "lx:Hemd",
-    "lx:Kleid"
+    "lx:Kleid",
+    "lx:Milch"
    ],
    "kaliplar": [
     {
@@ -379,6 +421,26 @@
       "Das ist das Kleid für Ioana.",
       "Für Ioana ist das Kleid."
      ]
+    },
+    {
+     "kart": "lx:Milch",
+     "de": "Hallo, Frau Stadler, hier ist {name}. Haben Sie noch Milch?",
+     "tr": "Merhaba Stadler Hanım, ben {name}. Hâlâ sütünüz var mı?",
+     "accepted": [
+      "Hallo, Frau Stadler, hier ist {name}. Haben Sie noch Milch?",
+      "Hallo, Frau Stadler, {name} hier. Haben Sie noch Milch?",
+      "Guten Tag, Frau Stadler, hier ist {name}. Haben Sie noch Milch?"
+     ]
+    },
+    {
+     "kart": "lx:Milch",
+     "de": "Mit Milch, bitte.",
+     "tr": "Sütlü, lütfen.",
+     "accepted": [
+      "Mit Milch, bitte.",
+      "Bitte mit Milch.",
+      "Mit Milch, bitte schön."
+     ]
     }
    ],
    "sahne": {
@@ -419,7 +481,8 @@
     "lx:billig",
     "lx:hell",
     "lx:Schrank",
-    "lx:Stuhl"
+    "lx:Stuhl",
+    "lx:gratulieren"
    ],
    "kaliplar": [
     {
@@ -507,6 +570,26 @@
       "Fünf Euro kostet der Stuhl.",
       "Der Stuhl kostet 5 Euro."
      ]
+    },
+    {
+     "kart": "lx:gratulieren",
+     "de": "Hallo Derya, hier ist {name}. Ich möchte gratulieren!",
+     "tr": "Merhaba Derya, ben {name}. Tebrik etmek istiyorum!",
+     "accepted": [
+      "Hallo Derya, hier ist {name}. Ich möchte gratulieren!",
+      "Hallo Derya, {name} hier. Ich möchte gratulieren!",
+      "Hallo Derya, hier ist {name}. Ich möchte dir gratulieren!"
+     ]
+    },
+    {
+     "kart": "lx:gratulieren",
+     "de": "Wir gratulieren, Ioana!",
+     "tr": "Tebrikler Ioana!",
+     "accepted": [
+      "Wir gratulieren, Ioana!",
+      "Ioana, wir gratulieren!",
+      "Wir gratulieren dir, Ioana!"
+     ]
     }
    ],
    "sahne": {
@@ -535,134 +618,6 @@
       "On iki",
       "Otuz",
       "İki"
-     ],
-     "ans": 0
-    }
-   }
-  },
-  {
-   "id": "m1:16:h4",
-   "title_tr": "Dil, süt, yutkunmak, tebrik",
-   "kartlar": [
-    "lx:Sprache",
-    "lx:Milch",
-    "lx:schlucken",
-    "lx:gratulieren"
-   ],
-   "kaliplar": [
-    {
-     "de": "Ich möchte …",
-     "tr": "… istiyorum"
-    }
-   ],
-   "gorev_cumleleri": [
-    {
-     "kart": "lx:Sprache",
-     "de": "Welche Sprache ist das?",
-     "tr": "Bu hangi dil?",
-     "accepted": [
-      "Welche Sprache ist das?",
-      "Was für eine Sprache ist das?",
-      "Welche Sprache ist das, bitte?"
-     ]
-    },
-    {
-     "kart": "lx:Sprache",
-     "de": "Ich möchte die Sprache lernen.",
-     "tr": "Bu dili öğrenmek istiyorum.",
-     "accepted": [
-      "Ich möchte die Sprache lernen.",
-      "Ich möchte diese Sprache lernen.",
-      "Die Sprache möchte ich lernen."
-     ]
-    },
-    {
-     "kart": "lx:Milch",
-     "de": "Hallo, Frau Stadler, hier ist {name}. Haben Sie noch Milch?",
-     "tr": "Merhaba Stadler Hanım, ben {name}. Hâlâ sütünüz var mı?",
-     "accepted": [
-      "Hallo, Frau Stadler, hier ist {name}. Haben Sie noch Milch?",
-      "Hallo, Frau Stadler, {name} hier. Haben Sie noch Milch?",
-      "Guten Tag, Frau Stadler, hier ist {name}. Haben Sie noch Milch?"
-     ]
-    },
-    {
-     "kart": "lx:Milch",
-     "de": "Mit Milch, bitte.",
-     "tr": "Sütlü, lütfen.",
-     "accepted": [
-      "Mit Milch, bitte.",
-      "Bitte mit Milch.",
-      "Mit Milch, bitte schön."
-     ]
-    },
-    {
-     "kart": "lx:schlucken",
-     "de": "Ich kann nicht gut schlucken.",
-     "tr": "İyi yutkunamıyorum.",
-     "accepted": [
-      "Ich kann nicht gut schlucken.",
-      "Ich kann nicht richtig schlucken.",
-      "Ich kann schlecht schlucken."
-     ]
-    },
-    {
-     "kart": "lx:schlucken",
-     "de": "Schlucken geht nicht gut.",
-     "tr": "Yutkunmak pek olmuyor.",
-     "accepted": [
-      "Schlucken geht nicht gut.",
-      "Schlucken geht nicht.",
-      "Das Schlucken geht nicht gut."
-     ]
-    },
-    {
-     "kart": "lx:gratulieren",
-     "de": "Hallo Derya, hier ist {name}. Ich möchte gratulieren!",
-     "tr": "Merhaba Derya, ben {name}. Tebrik etmek istiyorum!",
-     "accepted": [
-      "Hallo Derya, hier ist {name}. Ich möchte gratulieren!",
-      "Hallo Derya, {name} hier. Ich möchte gratulieren!",
-      "Hallo Derya, hier ist {name}. Ich möchte dir gratulieren!"
-     ]
-    },
-    {
-     "kart": "lx:gratulieren",
-     "de": "Wir gratulieren, Ioana!",
-     "tr": "Tebrikler Ioana!",
-     "accepted": [
-      "Wir gratulieren, Ioana!",
-      "Ioana, wir gratulieren!",
-      "Wir gratulieren dir, Ioana!"
-     ]
-    }
-   ],
-   "sahne": {
-    "ortam_tr": "Telefon. Muayenehaneyi arıyorsun, Huber Hanım açıyor.",
-    "satirlar": [
-     {
-      "r": "ch:huber",
-      "de": "Praxis Dr. Weber, guten Tag.",
-      "tr": "Dr. Weber muayenehanesi, iyi günler."
-     },
-     {
-      "r": "ogrenci",
-      "de": "Guten Tag, hier ist {name}. Ich kann nicht gut schlucken.",
-      "tr": "İyi günler, ben {name}. İyi yutkunamıyorum."
-     },
-     {
-      "r": "ch:huber",
-      "de": "Haben Sie auch Fieber?",
-      "tr": "Ateşiniz de var mı?"
-     }
-    ],
-    "soru": {
-     "q_tr": "Muayenehaneyi neden arıyorsun?",
-     "opts": [
-      "Yutkunamıyorsun",
-      "Randevuyu iptal ediyorsun",
-      "Adresini değiştiriyorsun",
-      "Bir ceket arıyorsun"
      ],
      "ans": 0
     }
