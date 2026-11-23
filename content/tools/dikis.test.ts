@@ -167,7 +167,7 @@ describe("(b, çerçeve) çerçeve sözcüğü gösterilmeden kullanılamaz (PM 
     const r = cer(ckos([g8("Hallo, mit Zeit!")], cTablo({ 2: ["lx:mit"] })), 8);
     expect(r).toHaveLength(1);
     expect(r[0]!.yer).toMatch(/^halka h8 /);
-    expect(r[0]!.mesaj).toMatch(/^"mit" çerçeve sözcüğü \(lx:mit → 2\. hafta\) kalıpta ya da dil noktasında gösterilmeden kullanılıyor/);
+    expect(r[0]!.mesaj).toMatch(/^"mit" çerçeve sözcüğü \(lx:mit → 2\. hafta\) biçimi kalıpta, tanıtımda ya da dil noktası tablosunda gösterilmeden kullanılıyor/);
     expect(cer(kos([g8("Hallo, mit Zeit!")]), 8)).toEqual([]);
   });
   it("yalın sözcük girdisi sözlükteki çerçeve kimliğine çözülür", () => {
@@ -178,8 +178,11 @@ describe("(b, çerçeve) çerçeve sözcüğü gösterilmeden kullanılamaz (PM 
     const g = g8("Hallo, mit Zeit!"); (g.halkalar as Record<string, unknown>[]).push({ id: "h8b", kartlar: [], gorev_cumleleri: [], kaliplar: [{ de: "mit …" }] });
     expect(cer(ckos([g], cTablo({ 2: ["lx:mit"] })), 8)).toHaveLength(1);
   });
-  it("bir biçimi gösterilen sözcüğün öteki biçimleri de bilinir (sözlük girdisi üzerinden)", () => {
-    expect(cer(ckos([g8("Hallo, keinen Termin!", { kaliplar: [{ de: "Ich habe kein …" }] })], cTablo({ 2: ["lx:kein"] })), 8)).toEqual([]);
+  it("ayrı biçim, ayrı gösterim (PM 7088563328 md. 1): kein gösterildi diye keinen serbest değil; tablodaki bütün biçimler gösterilir", () => {
+    expect(cer(ckos([g8("Hallo, keinen Termin!", { kaliplar: [{ de: "Ich habe kein …" }] })], cTablo({ 2: ["lx:kein"] })), 8).map((i) => i.mesaj.slice(0, 8))).toEqual(['"keinen"']);
+    expect(cer(ckos([g8("Hallo, kein Termin!", { kaliplar: [{ de: "Ich habe kein …" }] })], cTablo({ 2: ["lx:kein"] })), 8)).toEqual([]);
+    const dn = new Map([[omDers(8)[0]!, dilNoktasiMetni({ table: { head: ["", ""], rows: [["Nominativ", "kein"], ["Akkusativ", "keinen"]] } })]]);
+    expect(cer(ckos([g8("Hallo, keinen Termin!", { dersten_sonra: true })], cTablo({ 2: ["lx:kein"] }), { dilNoktalari: dn }), 8)).toEqual([]);
   });
   it("önceki günün halka kalıbı ve önceki günün dil noktası gösterir", () => {
     const g9 = (de: string) => { const g = sahte(9); (g.halkalar as Record<string, unknown>[])[0]!.gorev_cumleleri = [{ kart: T.get(9)![0]!, de, accepted: [de] }]; return g; };
@@ -194,9 +197,8 @@ describe("(b, çerçeve) çerçeve sözcüğü gösterilmeden kullanılamaz (PM 
     expect(cer(ckos([g8("Hallo, mit Zeit!")], cTablo({ 2: ["lx:mit"] }), { dilNoktalari: dn }), 8)).toHaveLength(1);
     expect(cer(ckos([g8("Hallo, mit Zeit!", { dersten_sonra: true })], cTablo({ 2: ["lx:mit"] }), { dilNoktalari: dn }), 8)).toEqual([]);
   });
-  it("dil noktasının Türkçe metni çerçeve sözcüğünü göstermez (yanlış yeşil yok; inceleme 7088496013 P1-1)", () => {
-    const n = c.grammar.find((x) => /ŞU AN/.test(x.tr));
-    const dn = new Map([[omDers(8)[0]!, dilNoktasiMetni(n ?? { tr: "Bunu ŞU AN söylersin; 'jetzt' dersin." })]]);
+  it("dil noktasının açıklaması ve örnekleri gösterim değil (yalnız tablo)", () => {
+    const dn = new Map([[omDers(8)[0]!, dilNoktasiMetni({ tr: "Bunu ŞU AN söylersin; 'an' dersin.", ex: [{ de: "an der Tür", tr: "" }] })]]);
     expect(cer(ckos([g8("Hallo, an Zeit!", { dersten_sonra: true })], cTablo({ 2: ["lx:an"] }), { dilNoktalari: dn }), 8)).toHaveLength(1);
   });
   it("metni olmayan dil noktası satırda not; sözlükte olmayan çerçeve kimliği yalın sözcükle denetlenir; kart kimliği tablo hatası", () => {
@@ -210,6 +212,11 @@ describe("(b, çerçeve) çerçeve sözcüğü gösterilmeden kullanılamaz (PM 
   it("çok okunuşlu biçim: okunuşlardan biri listede yoksa denetlenmez (bilinçli)", () => {
     expect(cer(ckos([g8("Hallo, als Zeit!")], cTablo({ 2: ["lx:als"] })), 8)).toEqual([]);
     expect(cer(ckos([g8("Hallo, als Zeit!")], cTablo({ 2: ["lx:als", "lx:als#2"] })), 8)).toHaveLength(1);
+  });
+  it("1. hafta tablo öncesidir: 2. haftanın çerçevesini gösterilmeden kullanması ihlal değil, satırda not", () => {
+    const r = ckos([kopya()], cTablo({ 2: ["lx:und", "lx:der"] }));
+    expect(cer(r, 1)).toEqual([]);
+    expect(r.satirlar[0]!.not.join(";")).toMatch(/1\. hafta \(tablo öncesi, sayılmadı\): \d+ çerçeve biçimi/);
   });
   it("önceki haftanın çerçevesi bilinir; sonraki haftanın çerçevesi kırmızı", () => {
     expect(cer(ckos([g8("Hallo, mit Zeit!")], cTablo({ 1: ["lx:mit"] })), 8)).toEqual([]);
@@ -301,21 +308,10 @@ describe("biçim ve sağlamlık", () => {
 });
 
 describe("dil noktası metni", () => {
-  it("tablo hücreleri, örnekler ve açıklamadaki tırnaklı Almanca; düz Türkçe alınmaz", () => {
+  it("yalnız tablo hücreleri; örnek ve açıklama gösterim sayılmaz (PM 7088563328 md. 1)", () => {
     const n = c.grammar.find((x) => x.id === "gr:a1-01:t1")!;
-    const m = dilNoktasiMetni(n);
-    expect(m).toContain("Auf Wiedersehen!");
-    expect(m).toContain(n.ex[0]!.de);
-    // tablo satırları bütün olarak (ilk sütun Türkçe durum adı; sözlükte çerçeve biçimi değil), örnekler, tırnaklı Almanca
-    const tirnakli = m.slice(n.table!.rows.flat().length + n.ex.length);
-    expect(tirnakli).toEqual(expect.arrayContaining(["Sie", "du", "Grüß Gott!", "Servus!", "Guten Tag!", "Hallo!", "Wie geht es Ihnen?", "Wie geht's?", "Und Ihnen?", "Und dir?"]));
-    expect(tirnakli.filter((p) => /\p{L}'(da|de|ta|te|dir|dır|ya|ye|yı|yi|nın|nin|ın|in)\b/u.test(p))).toEqual([]);
-  });
-  it("Türkçe ek kesmesi (Bavyera'da, 2+1'dir) tırnak sayılmaz (inceleme 7088496013 P1-1)", () => {
-    expect(dilNoktasiMetni({ tr: "Bavyera'da 'Servus!' dersin; şu an 2+1'dir, 'Wie geht's?' sorulur." })).toEqual(["Servus!", "Wie geht's?"]);
-    // bütün grammar.json: Türkçe'ye özgü harf taşıyan tırnaklı parça yalnız gerçekten Türkçe tırnaklanmış olabilir; ek kesmesi kaymaz
-    const kayma = c.grammar.flatMap((x) => dilNoktasiMetni({ tr: x.tr })).filter((p) => /\p{L}'(da|de|ta|te|dir|dır|ya|ye|yı|yi|nın|nin|ın|in)\b/u.test(p));
-    expect(kayma).toEqual([]);
+    expect(dilNoktasiMetni(n)).toEqual(n.table!.rows.flat());
+    expect(dilNoktasiMetni({ tr: "'mit' dersin", ex: [{ de: "mit dem Bus", tr: "" }] })).toEqual([]);
   });
 });
 

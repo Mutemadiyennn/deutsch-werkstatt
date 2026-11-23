@@ -18,11 +18,11 @@
  *      `requires.gramer`daki hiçbir kimlik sonraki haftanın dersi olamaz; `requires.gramer`daki `r0:`/`gr:`/`dn:` kimliği omurgada olmalı.
  *  (d) haftalar arası aynı ÜRETİM cümlesi yok (öğrencinin yazdığı/söylediği; karşı tarafın sorusu sayılmaz; `sade`, ≥ 3 sözcük).
  *  (b, çerçeve) PM 7088230583 md. 1: tablonun `cerceve` listesindeki işlev sözcüğü (ich, du, nicht, mit …; sözlükte `card:false`)
- *      `yeni_kartlar`a yazılmaz ((a) "çerçeve sözcüğü") ve kendi haftasında (ya da daha önce) bir KALIPTA (halkanın `kaliplar`ı) ya da
- *      DİL NOKTASINDA (biten `r0:` dersi; `gr:` grammar.json, `dn:` dn-HH.json: tablo, örnekler, açıklamadaki tırnaklı Almanca)
- *      gösterilmeden kullanılamaz. Sözcüğün bütün biçimleri sözlük girdisi üzerinden sayılır (ich gösterildiyse mich de). Gösterilmiş
- *      kalıbın BÜTÜNÜ içinde geçen çerçeve sözcüğü kullanılmış sayılmaz. Kısıt yalnız o haftanın ve sonraki haftaların listesindedir;
- *      önceki haftaların çerçevesi bilinir. Tablo listeyi `haftalar[].cerceve` (`no` = hafta) ya da `gunler[].cerceve` ile verir.
+ *      `yeni_kartlar`a yazılmaz ((a) "çerçeve sözcüğü") ve kullanılan her BİÇİMİ (PM 7088563328 md. 1: ayrı biçim, ayrı gösterim;
+ *      ich gösterildi diye mir serbest değil) önce gösterilmiş olmalı: KALIP satırı (halkanın `kaliplar`ı), TANITIM (biten `r0:` dersinin
+ *      `teach`'i ve tablosu) ya da sunulmuş DİL NOKTASININ TABLOSU (`gr:` grammar.json, `dn:` dn-HH.json; tablodaki bütün biçimler).
+ *      Gösterilmiş kalıbın BÜTÜNÜ içinde geçen çerçeve sözcüğü kullanılmış sayılmaz. Kısıt o haftanın ve sonraki haftaların listesindedir;
+ *      önceki haftaların çerçevesi bilinir (paralel hatta önceki haftanın dosyaları dalda olmayabilir; o haftayı kendi koşusu denetler). Tablo listeyi `haftalar[].cerceve` (`no` = hafta) ya da `gunler[].cerceve` ile verir.
  *  (biçim) 8. gün ve sonrası halka biçiminde olmalı (`halkalar` boş olamaz); hiç gün denetlenmezse ihlal. `day` tamsayı değilse ya da
  *      dosya adındaki gün (`gun-NN.json`) `day` ile tutmazsa ihlal (sessizce düşülmez; inceleme #199 2. tur takibi).
  * Kalıp örtüsü KONUMA göredir (inceleme #199 2. tur takibi): kalıbın kapsadığı geçiş örtülür, aynı sözcüğün kalıp dışındaki geçişi değil.
@@ -73,39 +73,10 @@ export function tabloCerceve(t: KesinTablo): Map<number, string[]> {
   return m;
 }
 
-/** Bir dil noktasının (grammar.json / dn-HH.json biçimi) öğrenciye gösterdiği Almanca: tablo hücreleri, örnekler, açıklamadaki tırnaklı parçalar */
+/** Bir dil noktasının (grammar.json / dn-HH.json biçimi) GÖSTERDİĞİ biçimler: yalnız tablo hücreleri (PM 7088563328 md. 1: "sunulmuş dil
+ *  noktasının tablosu"; örnek cümle ve açıklama gösterim sayılmaz) */
 export function dilNoktasiMetni(n: unknown): string[] {
-  const x = nesne(n); const out: string[] = [];
-  for (const r of dizi(nesne(x.table).rows)) out.push(...yazilar(r));
-  for (const e of dizi(x.ex)) { const d = yazi(nesne(e).de); if (d) out.push(d); }
-  const tr = String(x.tr ?? ""), tirnak: string[] = [...tekTirnak(tr)];
-  for (const m of tr.matchAll(/‘([^’]+)’|„([^“”]+)[“”]|“([^”]+)”|"([^"]+)"|»([^«]+)«/gu)) tirnak.push(m.slice(1).find(Boolean)!);
-  // Türkçeye özgü harf taşıyan tırnaklı parça Türkçe örnektir (“Regensburg'da geçen dizi”), gösterilen Almanca değil
-  out.push(...tirnak.filter((p) => !/[ıİşŞğĞçÇ]/.test(p)));
-  return out;
-}
-
-/** Türkçe ek (kesmeden sonra): 'fernsehen'de, 'die'dir, Bavyera'da */
-const TR_EK = /^(?:d[aeıiuü]\p{L}*|t[aeıiuü]\p{L}*|y[aeıiuü]\p{L}*|n[ıiuü]n\p{L}*|[ıiuü]n\p{L}*|[ıiuüae]|l[ae]\p{L}*|[ıiuü]m\p{L}*|s[ıiuü]\p{L}*|k[ıi]\p{L}*)(?![\p{L}\d])/u;
-/**
- * Açıklamadaki tek tırnaklı parçalar (inceleme 7088496013 P1-1). Açılış: önünde harf/rakam olmayan kesme (Bavyera'da, 2+1'dir açılış
- * değildir). Kapanış: arkasında harf olmayan ya da Türkçe ek gelen ilk kesme ('fernsehen'de → fernsehen); Almanca içteki kesme
- * (geht's) kapanış değildir.
- */
-export function tekTirnak(tr: string): string[] {
-  const out: string[] = []; const harf = /[\p{L}\d]/u;
-  for (let i = 0; i < tr.length; i++) {
-    if (tr[i] !== "'" || (i > 0 && harf.test(tr[i - 1]!))) continue;
-    for (let j = i + 1; j < tr.length; j++) {
-      if (tr[j] !== "'") continue;
-      const sonra = tr.slice(j + 1);
-      if (!sonra || !harf.test(sonra[0]!) || TR_EK.test(sonra)) {
-        const p = tr.slice(i + 1, j).trim(); if (p) out.push(p);
-        i = j; break;
-      }
-    }
-  }
-  return out;
+  return dizi(nesne(nesne(n).table).rows).flatMap((r) => yazilar(r));
 }
 
 /** bilinmeyenler()'in kendi içinde örttüğü konumlar (aynı kurallar: halkanın kalıpları, biten derslerin kalıpları, bilinen kartların çok sözcüklü başlıkları) */
@@ -246,7 +217,8 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
   for (const [h, l] of [...tabloCerceve(g.tablo)].sort((a, b) => a[0] - b[0])) for (const x of l) for (const id of cerceveKimlik(x)) if (!cerceveHafta.has(id)) cerceveHafta.set(id, h);
   /** sözcüğün çerçeve okunuşları: sözlükteki card:false girdileri + tablodaki yalın sözcük */
   const cerceveOkunus = (t: string): string[] => [...[...(g.dizin.idx.get(t) ?? [])].filter((i) => g.dizin.cerceve.has(i)), ...(cerceveHafta.has(`söz:${t}`) ? [`söz:${t}`] : [])];
-  const goster = (S: Set<string>, metin: string | undefined) => { for (const t of toks(metin)) for (const id of cerceveOkunus(t)) S.add(id); };
+  /** gösterilen BİÇİMLER (küçük harfli sözcük; PM 7088563328 md. 1) */
+  const goster = (S: Set<string>, metin: string | undefined) => { for (const t of toks(metin)) S.add(t); };
   const metinsiz = new Set<string>();
   const dersGoster = (S: Set<string>, id: string) => {
     if (/^(gr|dn):/.test(id) && !g.dilNoktalari?.has(id)) metinsiz.add(id);
@@ -326,8 +298,9 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
       const f = dosyaGun.get(gn);
       if (f) { for (const x of yazilar(f.dersler)) dersGoster(onceGoster, x); for (const h of dizi(f.halkalar)) halkaGoster(onceGoster, nesne(h)); }
       else for (const x of omurgaDers.get(gn) ?? []) dersGoster(onceGoster, x);
+      if (gn === ilkGun - 1) metinsiz.clear();   // metinsiz notu yalnız bu haftanın dil noktaları için
     }
-    let ortulen = 0;
+    let ortulen = 0, cerceve1 = 0;
     const denetle = (c: Cumle, k: Bilinen, gosterilen: string[][], S: ReadonlySet<string>) => {
       const tt = toksAsil(c.de).map((x) => x.t);
       const ic = icOrtu(g.dizin, tt, k), dis = new Set<number>();
@@ -344,15 +317,18 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
       tt.forEach((t, j) => {
         if (t === YUVA_AD || ic.has(j) || dis.has(j) || bildirilen.has(t)) return;
         const ok = cerceveOkunus(t); if (!ok.length) return;
-        const kisitli = (i: string) => cerceveHafta.has(i) && cerceveHafta.get(i)! >= hafta && !S.has(i);
-        // çok okunuşlu biçim (ihr: lx:ihr / lx:ihr#2): okunuşlardan biri serbestse (listede yok, önceki hafta ya da gösterilmiş)
+        if (S.has(t)) return;
+        const kisitli = (i: string) => cerceveHafta.has(i) && cerceveHafta.get(i)! >= hafta;
+        // çok okunuşlu biçim (ihr: lx:ihr / lx:ihr#2): okunuşlardan biri serbestse (listede yok ya da önceki haftanın)
         // cümlede o okunuş olabilir; makine anlamı ayırt edemez, kırmızı yalnız bütün okunuşlar kısıtlıyken (bilinçli; yanlış kırmızıdan kaçınır)
         if (!ok.every(kisitli)) return;
         // sözcüğü başlık olarak gösteren, bilinen gerçek kart (tanıtılmış ya da biten dersin kartı) varsa kartın sözcüğüdür
         const bilinenKart = new Set(k.kart); for (const id of k.biten) for (const x of g.dizin.dersler.get(id)?.kart ?? []) bilinenKart.add(x);
         if ([...(g.dizin.idx.get(t) ?? [])].some((i) => !g.dizin.cerceve.has(i) && bilinenKart.has(i) && g.dizin.gost.get(i)?.has(t))) return;
         bildirilen.add(t);
-        ihlal(satir, "b", c.yer, `"${t}" çerçeve sözcüğü (${ok.map((i) => `${i} → ${cerceveHafta.get(i)}. hafta`).join("; ")}) kalıpta ya da dil noktasında gösterilmeden kullanılıyor: ${c.de}`);
+        // 1. hafta tablodan öncedir (tablo 1.–7. güne atama yapmaz, `ogretilmis_sayilan`): bulgu sayılmaz, satıra not
+        if (hafta === 1) { cerceve1++; return; }
+        ihlal(satir, "b", c.yer, `"${t}" çerçeve sözcüğü (${ok.map((i) => `${i} → ${cerceveHafta.get(i)}. hafta`).join("; ")}) biçimi kalıpta, tanıtımda ya da dil noktası tablosunda gösterilmeden kullanılıyor: ${c.de}`);
       });
     };
     const yeniSet = new Set(yeni), gorulenKart = new Set<string>(); const kaliplar: string[][] = [];
@@ -373,6 +349,7 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
     if (cerceveVar) for (const x of bugunDers) dersGoster(gunGoster, x);
     for (const c of halkaDisiGorevler(gun)) denetle(c, { kart: kartG, biten: bitenG, kaliplar }, gosG, gunGoster);
     if (ortulen) satir.not.push(`${ortulen} adım gösterilmiş kalıpla (eşdizim/ders parçası) geçti`);
+    if (cerceve1) satir.not.push(`1. hafta (tablo öncesi, sayılmadı): ${cerceve1} çerçeve biçimi gösterilmeden kullanılıyor`);
     if (cerceveVar && metinsiz.size) { satir.not.push(`metni olmayan dil noktası (çerçeve için hiçbir şey göstermez): ${[...metinsiz].sort().join(", ")}`); metinsiz.clear(); }
     satirlar.push(satir);
   }
