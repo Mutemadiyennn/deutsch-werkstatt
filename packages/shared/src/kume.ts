@@ -167,14 +167,21 @@ export function kumeDizini(lex: readonly Lexeme[], temel: readonly TemelDers[], 
       }
     }
   }
-  // Çoğunluk yalnız ikinci geçiş adayları arasında: sözcük bir kartın başlığı/çoğuluysa (1. geçiş: "Frage") o kart zaten sahibidir,
-  // sayıma girmez; yoksa sesteş fiilin kendi çekimi ("ich frage" → lx:fragen) isimin sayısına yenilir (PM-117 A.3 ön sınama)
+  // Sesteş isim/fiil (PM-117 A.3, inceleme #261 P1-1): sözcük bir kartın başlığı/çoğuluysa ("Frage") ve başlığı aynı kökle BAŞLAYAN
+  // bir fiil de onu kendi çekimi olarak veriyorsa ("ich frage" → lx:fragen; ≥ 4 harf, ilk 3 harf başlığın başı, ayrılan ön ek değil),
+  // fiil de sahip olur.
+  // Öbür bütün durumlarda eski kural: en çok geçtiği kart (sahte aday — "wenn"/schneien, "melden"/Schimmel — sahibe yenilir).
   const ilk = new Map([...yuzey].map(([id, s]) => [id, new Set(s)] as const));
+  const sesTes = (id: string, x: string) => {
+    const l = kartlar.get(id); if (l?.pos !== "verb" || x.length < 4 || ilk.get(id)?.has(x)) return false;
+    const t = umlautsuz(toks(l.de).filter((w) => w !== "sich").join("")), u = umlautsuz(x);
+    // "frage"/fragen, "fahrt"/fahren: çekim; "nach"/nachfragen, "zurück"/zurückkommen: ayrılan ön ek (başlığın başı, sonrası uzun) değil
+    return t.startsWith(u) ? t.length - u.length <= 2 : t.startsWith(u.slice(0, 3));
+  };
   for (const [x, m] of sayac) {
-    const aday = [...m].filter(([id]) => !ilk.get(id)?.has(x));
-    if (!aday.length) continue;
-    const en = Math.max(...aday.map(([, n]) => n));
-    for (const [id, n] of aday) if (n === en) { ekle(yuzey, id, x); ekle(idx, x, id); }
+    const en = Math.max(...m.values());
+    const sahipVar = [...m.keys()].some((id) => ilk.get(id)?.has(x));
+    for (const [id, n] of m) if (n === en || (sahipVar && sesTes(id, x))) { ekle(yuzey, id, x); ekle(idx, x, id); }
   }
   const cerceve = new Set(lex.filter((l) => l.card === false).map((l) => l.id));
   for (const l of lex) {
@@ -297,11 +304,17 @@ export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: I
     // PM 7088563328 md. 1) tablo onların gösterim yeridir
     const tb = tablo.get(t);
     if (tb && ([...tb].some((i) => kart.has(i)) || [...tb].every((i) => d.cerceve.has(i)))) return;
-    const aday = d.idx.get(t);
+    const asil = ta[j]!;
+    let aday = d.idx.get(t);
     if (!aday?.size) { out.push({ tur: "eslenemedi", sozcuk: t }); return; }
+    // sesteş isim/fiil (Frage/fragen, Reise/reisen): cümle ortasında büyük harf isim, küçük harf fiil okunuşudur (#261 P1-1)
+    const pos = (i: string) => d.kartlar.get(i)?.pos;
+    if (!asil.bas && [...aday].some((i) => pos(i) === "noun") && [...aday].some((i) => pos(i) === "verb")) {
+      const buyuk = /^\p{Lu}/u.test(asil.o), f = [...aday].filter((i) => (pos(i) === "noun") === buyuk);
+      if (f.length) aday = new Set(f);
+    }
     const bilinenAday = [...aday].filter((i) => kart.has(i));
     // gösterilen biçim: cümle ortasında harf büyüklüğü de tutmalı; cümle başında aynı sözcüğü gösteren bütün kartlar tanıtılmış olmalı
-    const asil = ta[j]!;
     // cümle başında büyük harf ayırt edici değil: küçük harfle gösteren kart varsa o (öncelikli okunuş) bilinmeli; yoksa büyük harfli kart
     const kucuk = asil.o.charAt(0).toLowerCase() + asil.o.slice(1);
     const kucukKart = asil.bas ? kendiKarti(d, t).filter((i) => d.gostAsil.get(i)?.has(kucuk)) : [];

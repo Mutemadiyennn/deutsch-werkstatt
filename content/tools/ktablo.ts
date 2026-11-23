@@ -90,6 +90,7 @@ export function kesinTabloBirlesik(cdir: string, errors: string[] = []): { tablo
     const f = join(cdir, "curriculum", ad); if (!existsSync(f)) continue;
     let t: Record<string, unknown>;
     try { t = nesne(JSON.parse(readFileSync(f, "utf8"))); } catch (e) { errors.push(`curriculum/${ad}: JSON okunamadı (${(e as Error).message})`); continue; }
+    if (!Array.isArray(t.gunler)) { errors.push(`curriculum/${ad}: "gunler" dizisi yok`); continue; }
     dosyalar.push(`curriculum/${ad}`);
     if (tablo.ogretilmis_sayilan === undefined && t.ogretilmis_sayilan !== undefined) tablo.ogretilmis_sayilan = t.ogretilmis_sayilan;
     for (const g of dizi(t.gunler)) {
@@ -103,5 +104,6 @@ export function kesinTabloBirlesik(cdir: string, errors: string[] = []): { tablo
       haftalar.set(no, ad); tablo.haftalar.push(h);
     }
   }
+  if (!dosyalar.includes("curriculum/a1-kesin.json")) errors.push("curriculum/a1-kesin.json yok (1.–56. gün ve ogretilmis_sayilan bu tablodan)");
   return { tablo, dosyalar };
 }
