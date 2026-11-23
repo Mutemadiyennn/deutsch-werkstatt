@@ -36,6 +36,8 @@ export function createApi(d: ApiDeps) {
         if (p.success) throw new ApiError(p.data.error.code, p.data.error.message_tr, p.data.error.retryable);
         throw err(r.status === 503 ? "upstream_busy" : r.status === 429 ? "quota_upstream" : r.status === 502 ? "bad_output" : r.status === 504 ? "timeout" : "internal");
       }
+      // 200 ama gövde JSON değil (yarım kalan ya da bozuk yanıt): öğrenciye bozuk çıktı gösterilmez (PM-087 A.4)
+      if (body === null || typeof body !== "object") throw err("bad_output");
       return body as T;
     } catch (e) {
       if (e instanceof ApiError) throw e;

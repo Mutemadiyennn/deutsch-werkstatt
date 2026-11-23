@@ -23,7 +23,7 @@ if (bos.length) {
   const ga = join(ROOT, "docs/v2/reviews/genel-adlar.md");
   const genel = existsSync(ga) ? genelAdlarAyikla(readFileSync(ga, "utf8")) : [];
   const d = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genel, [...c.grammar, ...c.dn.flatMap((x) => x.data)]);
-  const h = halkaDenetle(c.m1, new Map(c.temel.map((t) => [t.data.id, t.data])), d);
+  const h = halkaDenetle(c.m1, new Map(c.temel.map((t) => [t.data.id, t.data])), d, c.kesin);
   c.errors.push(...h.errors); c.warnings.push(...h.warnings);
   // #243 takip a / inceleme #244 P2-4: hafta sonu testi maddesinin açık `can_do` bağı haftanın bir gününde olmalı (hata)
   try {
