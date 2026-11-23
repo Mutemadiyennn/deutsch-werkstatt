@@ -1,12 +1,10 @@
 {
   "batch": "a2-01",
   "review": {
-    "status": "reviewed",
+    "status": "draft",
     "by": "dilbilimci-ajan",
     "at": "2026-11-23",
-    "notes": "docs/v2/reviews/lexicon-batch-a2-01.md; okur: docs/v2/reviews/okur/lexicon-batch-a2-01.md",
-    "okur": "passed",
-    "okur_at": "2026-11-23"
+    "notes": "lx:Süden (lx:gewöhnen yerine, #210 P1) dilbilimci ve okur bekliyor; öteki 24 kart docs/v2/reviews/lexicon-batch-a2-01.md, okur 656/656."
   },
   "items": [
     {
@@ -2793,130 +2791,122 @@
       ]
     },
     {
-      "id": "lx:gewöhnen",
-      "de": "gewöhnen",
-      "tr": "alışmak",
-      "pos": "verb",
-      "verb": {
-        "praesens3": "gewöhnt sich",
-        "praeteritum": "gewöhnte sich",
-        "perfekt": "hat sich gewöhnt",
-        "aux": "haben",
-        "reflexive": true,
-        "prep": [
-          "an+Akk"
-        ]
-      },
+      "id": "lx:Süden",
+      "de": "Süden",
+      "tr": "güney",
+      "pos": "noun",
+      "art": "der",
+      "pl": "-",
       "collocations": [
         {
-          "de": "sich an etwas gewöhnen",
-          "tr": "bir şeye alışmak"
+          "de": "im Süden",
+          "tr": "güneyde"
         },
         {
-          "de": "sich an den Dialekt gewöhnen",
-          "tr": "lehçeye alışmak"
+          "de": "aus dem Süden",
+          "tr": "güneyden"
         },
         {
-          "de": "Man gewöhnt sich dran.",
-          "tr": "İnsan alışıyor."
+          "de": "im Süden von Deutschland",
+          "tr": "Almanya'nın güneyinde"
         },
         {
-          "de": "sich schnell gewöhnen",
-          "tr": "çabuk alışmak"
+          "de": "Richtung Süden",
+          "tr": "güneye doğru"
         }
       ],
       "patterns": [
-        "pt:reflexiv",
-        "pt:verb-praep"
+        "pt:verb-zweite-stelle",
+        "pt:w-frage"
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "Lehçeye alıştım derken **Ich habe zum Dialekt gewöhnt** yanlış. Doğrusu **Ich habe mich an den Dialekt gewöhnt**.",
-        "Alışmak derken **mich** ya da **dich** unutulmaz: **Ich gewöhne mich**, **Du gewöhnst dich**."
+        "Güneyde derken **in Süden** yanlış. Doğrusu **im Süden**.",
+        "Güneyde böyle denir derken **Im Süden man sagt** yanlış. Doğrusu **Im Süden sagt man**."
       ],
       "examples": [
         {
-          "id": "lx:gewöhnen:1",
-          "de": "Ich gewöhne mich langsam an den Dialekt.",
-          "tr": "Lehçeye yavaş yavaş alışıyorum.",
+          "id": "lx:Süden:1",
+          "de": "Im Süden sagt man oft „Grüß Gott“.",
+          "tr": "Güneyde çoğu zaman Grüß Gott denir.",
           "layer": "hd"
         },
         {
-          "id": "lx:gewöhnen:2",
-          "de": "An das Tempo am Telefon habe ich mich schon gewöhnt.",
-          "tr": "Telefondaki hıza artık alıştım.",
+          "id": "lx:Süden:2",
+          "de": "Bayern liegt im Süden von Deutschland.",
+          "tr": "Bavyera, Almanya'nın güneyinde.",
           "layer": "hd"
         },
         {
-          "id": "lx:gewöhnen:3",
-          "de": "Keine Sorge, man gewöhnt sich dran.",
-          "tr": "Merak etme, insan alışıyor.",
+          "id": "lx:Süden:3",
+          "de": "„Servus“? Das hörst du hier im Süden dauernd.",
+          "tr": "Servus mu? Burada, güneyde bunu durmadan duyarsın.",
           "layer": "alltag"
         },
         {
-          "id": "lx:gewöhnen:4",
-          "de": "– Verstehst du Frau Brandl jetzt? – Ja, ich hab mich dran gewöhnt.",
-          "tr": "– Brandl Hanım'ı artık anlıyor musun? – Evet, alıştım.",
+          "id": "lx:Süden:4",
+          "de": "– Woher kommt denn das Wort „gell“? – Aus dem Süden, hier sagen das viele.",
+          "tr": "– Gell kelimesi nereden geliyor? – Güneyden, burada bunu çok kişi söyler.",
           "layer": "alltag",
           "dialog": true
         },
         {
-          "id": "lx:gewöhnen:5",
-          "de": "– Ist der Dialekt noch schwer für Sie? – Es geht, ich gewöhne mich daran.",
-          "tr": "– Lehçe sizin için hâlâ zor mu? – İdare eder, alışıyorum.",
+          "id": "lx:Süden:5",
+          "de": "– Sagt man „Grüß Gott“ überall in Deutschland? – Nein, vor allem im Süden.",
+          "tr": "– Grüß Gott Almanya'nın her yerinde mi denir? – Hayır, daha çok güneyde.",
           "layer": "hd",
           "dialog": true
         },
         {
-          "id": "lx:gewöhnen:6",
-          "de": "Derya sagt: „Daran gewöhnst du dich schnell.“",
-          "tr": "Derya, buna çabuk alışırsın diyor.",
+          "id": "lx:Süden:6",
+          "de": "Hier im Süden hört man viel Dialekt.",
+          "tr": "Burada, güneyde çok lehçe duyulur.",
           "layer": "hd"
         }
       ],
       "level": "A2",
       "tier": "K1",
-      "freqRank": 1477,
+      "freqRank": 1991,
       "domains": [
-        "gefuehle",
+        "smalltalk",
         "strategie"
       ],
       "exp": {
-        "anlam_tr": "Yeni bir şeyin zamanla sana normal gelmeye başladığını söyler.",
-        "ne_zaman_tr": "Zor gelen bir şeyin zamanla kolaylaştığını söylerken.",
+        "anlam_tr": "Haritada aşağıda kalan yönü, güneyi söyler.",
+        "ne_zaman_tr": "Bir sözün ya da kişinin nereden geldiğini konuşurken.",
         "parcalar": [],
-        "ipucu_tr": "**Man gewöhnt sich dran** zor anlarda çok duyduğun bir teselli sözüdür."
+        "ipucu_tr": "**im Süden** güneyde, **aus dem Süden** güneyden demektir."
       },
       "forms": [
         {
-          "de": "Ich ___ mich langsam an den Dialekt.",
-          "answer": "gewöhne",
-          "tr": "Lehçeye yavaş yavaş alışıyorum.",
-          "hint_tr": "**Ich** ile söylerken **gewöhnen**, **gewöhne** olur."
+          "de": "Im ___ sagt man oft „Grüß Gott“.",
+          "answer": "Süden",
+          "tr": "Güneyde çoğu zaman Grüß Gott denir.",
+          "hint_tr": "Güneyde derken **im Süden** denir."
         },
         {
-          "de": "Keine Sorge, man ___ sich dran.",
-          "answer": "gewöhnt",
-          "tr": "Merak etme, insan alışıyor.",
-          "hint_tr": "**man** ile söylerken **gewöhnen**, **gewöhnt** olur."
+          "de": "Bayern liegt im ___ von Deutschland.",
+          "answer": "Süden",
+          "tr": "Bavyera, Almanya'nın güneyinde.",
+          "hint_tr": "Almanya'nın güneyinde derken **im Süden von Deutschland** denir."
         },
         {
-          "de": "Ja, ich habe mich daran ___.",
-          "answer": "gewöhnt",
-          "tr": "Evet, buna alıştım.",
-          "hint_tr": "Alıştım derken **Ich habe mich daran gewöhnt** denir."
+          "de": "Das Wort „gell“ kommt aus dem ___.",
+          "answer": "Süden",
+          "tr": "Gell kelimesi güneyden geliyor.",
+          "hint_tr": "Güneyden derken **aus dem Süden** denir."
         },
         {
-          "de": "Daran ___ du dich schnell.",
-          "answer": "gewöhnst",
-          "tr": "Buna çabuk alışırsın.",
-          "hint_tr": "**du** ile söylerken **gewöhnen**, **gewöhnst** olur."
+          "de": "Wir fahren Richtung ___.",
+          "answer": "Süden",
+          "tr": "Güneye doğru gidiyoruz.",
+          "hint_tr": "Güneye doğru derken **Richtung Süden** denir."
         },
         {
-          "de": "Wir müssen uns an das Tempo ___.",
-          "answer": "gewöhnen",
-          "tr": "Hıza alışmamız lazım.",
-          "hint_tr": "Alışmamız lazım derken **Wir müssen uns** ile başlar, sonda **gewöhnen** gelir."
+          "de": "Hier im ___ hört man viel Dialekt.",
+          "answer": "Süden",
+          "tr": "Burada, güneyde çok lehçe duyulur.",
+          "hint_tr": "Burada, güneyde derken **hier im Süden** denir."
         }
       ]
     },

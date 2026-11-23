@@ -3,7 +3,7 @@
  "review": {
   "status": "draft"
  },
- "note_tr": "A2 kesin kelime tablosu (PM-094, İÇ-P): 9.–24. hafta (57.–168. gün) için hafta → kesin kart kimlikleri. Bağlayıcı olan HAFTADIR (PM 7087835391 md. 2): haftanın kümesi haftalar[].kartlar; gunler[] yalnız öneridir, hat kartları haftası içinde konuya göre günlere dağıtabilir (günlük adet omurgadaki gunler[].kelime.adet ±2, haftalık toplam sabit). Haftalar arası taşıma yasak: [İÇ-BEKLİYOR] tablo: … ile PM'e. Tablo omurgadan (haftalar[].kelime), k1.json sırasından ve sözlük kayıtlarından betikle üretilir, elle kart seçilmez. K(t) = A1 tablosu (ogretilmis_sayilan + a1-kesin gunler) + bu tablodaki önceki haftalar + aynı haftanın o adıma kadar dosyalarda tanıtılanlar. k1_disi_bekleyen: omurganın K1 dışı yuvası için sözlükte henüz kart yok (lex işi); kart yazılınca yalnız o yuva doldurulur, haftanın sayısı değişmez.",
+ "note_tr": "A2 kesin kelime tablosu (PM-094, İÇ-P): 9.–24. hafta (57.–168. gün) için hafta → kesin kart kimlikleri. Bağlayıcı olan HAFTADIR (PM 7087835391 md. 2): haftanın kümesi haftalar[].kartlar; gunler[] yalnız öneridir, hat kartları haftası içinde konuya göre günlere dağıtabilir (günlük adet omurgadaki gunler[].kelime.adet ±2, haftalık toplam sabit). Haftalar arası taşıma yasak: [İÇ-BEKLİYOR] tablo: … ile PM'e. Tablo omurgadan (haftalar[].kelime), k1.json sırasından ve sözlük kayıtlarından betikle üretilir, elle kart seçilmez; yalnız kimliksiz bekleyen yuvalar lex hattında konuya göre seçilen kartlarla doldurulur (kural 7, lex_doldurma). K(t) = A1 tablosu (ogretilmis_sayilan + a1-kesin gunler) + bu tablodaki önceki haftalar + aynı haftanın o adıma kadar dosyalarda tanıtılanlar. k1_disi_bekleyen: omurganın K1 dışı yuvası için sözlükte henüz kart yok (lex işi); kart yazılınca yalnız o yuva doldurulur, haftanın sayısı değişmez.",
  "kaynak": {
   "omurga": "content/v2/curriculum/omurga.json",
   "k1": "content/v2/curriculum/k1.json",
@@ -877,10 +877,10 @@
     "lx:Finger",
     "lx:Hochzeit",
     "lx:wach",
-    "lx:aussprechen",
+    "lx:deutlich",
     "lx:Hochdeutsch",
-    "lx:bayerisch",
-    "lx:Akzent",
+    "lx:typisch",
+    "lx:Ausdruck#2",
     "lx:Gegend",
     "lx:grüßen",
     "lx:Abkürzung",
@@ -891,15 +891,15 @@
     "lx:verwechseln",
     "lx:notieren",
     "lx:Zettel",
-    "lx:deutlich",
+    "lx:aussprechen",
     "lx:unterbrechen",
     "lx:zuhören",
     "lx:kapieren",
     "lx:Satz",
-    "lx:Ausdruck#2",
-    "lx:typisch",
+    "lx:Akzent",
+    "lx:bayerisch",
     "lx:Unterschied",
-    "lx:gewöhnen",
+    "lx:Süden",
     "lx:Bedeutung",
     "lx:Geduld"
    ],
@@ -950,17 +950,16 @@
    "omurga_birikimli": 1130,
    "kart_sayisi": 45,
    "kartlar": [
-    "lx:schneiden",
     "lx:Friseur",
+    "lx:schneiden",
     "lx:Haarschnitt",
     "lx:Friseurin",
     "lx:färben",
     "lx:Mitgliedschaft",
     "lx:Geräte",
-    "lx:Umkleide",
-    "lx:freundlich",
+    "lx:Café",
     "lx:gemütlich",
-    "lx:witzig",
+    "lx:praktisch",
     "lx:langweilig",
     "lx:neugierig",
     "lx:höflich",
@@ -968,20 +967,21 @@
     "lx:klug",
     "lx:nervös",
     "lx:faul",
-    "lx:Café",
+    "lx:freundlich",
     "lx:Farbe",
-    "lx:Möbel",
+    "lx:Oma",
     "lx:bequem",
     "lx:modern",
     "lx:dunkel",
-    "lx:praktisch",
+    "lx:witzig",
     "lx:Erinnerung",
-    "lx:Oma",
+    "lx:Möbel",
     "lx:Lehrer",
     "lx:Dorf",
     "lx:Spielzeug",
     "lx:Ferien",
-    "lx:klettern"
+    "lx:klettern",
+    "lx:Umkleide"
    ],
    "cerceve": [],
    "sozlukte_yok": [
@@ -2637,7 +2637,7 @@
     "lx:Finger",
     "lx:Hochzeit",
     "lx:wach",
-    "lx:aussprechen"
+    "lx:deutlich"
    ],
    "cerceve": [
     "lx:fürs"
@@ -2660,8 +2660,8 @@
    "derse_ait": 0,
    "kartlar": [
     "lx:Hochdeutsch",
-    "lx:bayerisch",
-    "lx:Akzent",
+    "lx:typisch",
+    "lx:Ausdruck#2",
     "lx:Gegend",
     "lx:grüßen"
    ],
@@ -2723,7 +2723,7 @@
    "bekleyen": 0,
    "derse_ait": 0,
    "kartlar": [
-    "lx:deutlich",
+    "lx:aussprechen",
     "lx:unterbrechen",
     "lx:zuhören",
     "lx:kapieren",
@@ -2745,10 +2745,10 @@
    "bekleyen": 0,
    "derse_ait": 0,
    "kartlar": [
-    "lx:Ausdruck#2",
-    "lx:typisch",
+    "lx:Akzent",
+    "lx:bayerisch",
     "lx:Unterschied",
-    "lx:gewöhnen",
+    "lx:Süden",
     "lx:Bedeutung"
    ],
    "cerceve": [],
@@ -2794,7 +2794,7 @@
     "lx:färben",
     "lx:Mitgliedschaft",
     "lx:Geräte",
-    "lx:freundlich",
+    "lx:Café",
     "lx:gemütlich"
    ],
    "cerceve": [],
@@ -2821,7 +2821,7 @@
    "bekleyen": 0,
    "derse_ait": 0,
    "kartlar": [
-    "lx:witzig",
+    "lx:praktisch",
     "lx:langweilig",
     "lx:neugierig",
     "lx:höflich",
@@ -2848,13 +2848,13 @@
    "bekleyen": 0,
    "derse_ait": 0,
    "kartlar": [
-    "lx:Café",
+    "lx:freundlich",
     "lx:Farbe",
-    "lx:Möbel",
+    "lx:Oma",
     "lx:bequem",
     "lx:modern",
     "lx:dunkel",
-    "lx:praktisch"
+    "lx:witzig"
    ],
    "cerceve": [],
    "sozlukte_yok": []
@@ -2875,7 +2875,7 @@
    "derse_ait": 0,
    "kartlar": [
     "lx:Erinnerung",
-    "lx:Oma",
+    "lx:Möbel",
     "lx:Lehrer",
     "lx:Dorf",
     "lx:Spielzeug",
@@ -4033,7 +4033,7 @@
     "lx:krankmelden",
     "lx:zustellen"
    ],
-   "k1_disi_bekleyen_toplam": 285,
+   "k1_disi_bekleyen_toplam": 236,
    "dagitilmamis_k1_karti": 156,
    "birim_haftasindan_tasinan_k1_disi": []
   },
@@ -4047,12 +4047,12 @@
     "batch": "a2-01",
     "gunler": {
      "113": [
-      "lx:aussprechen"
+      "lx:deutlich"
      ],
      "114": [
       "lx:Hochdeutsch",
-      "lx:bayerisch",
-      "lx:Akzent",
+      "lx:typisch",
+      "lx:Ausdruck#2",
       "lx:Gegend",
       "lx:grüßen"
      ],
@@ -4069,17 +4069,17 @@
       "lx:Zettel"
      ],
      "117": [
-      "lx:deutlich",
+      "lx:aussprechen",
       "lx:unterbrechen",
       "lx:zuhören",
       "lx:kapieren",
       "lx:Satz"
      ],
      "118": [
-      "lx:Ausdruck#2",
-      "lx:typisch",
+      "lx:Akzent",
+      "lx:bayerisch",
       "lx:Unterschied",
-      "lx:gewöhnen",
+      "lx:Süden",
       "lx:Bedeutung"
      ],
      "119": [
@@ -4091,11 +4091,11 @@
     "batch": "a2-02",
     "gunler": {
      "120": [
-      "lx:freundlich",
+      "lx:Café",
       "lx:gemütlich"
      ],
      "121": [
-      "lx:witzig",
+      "lx:praktisch",
       "lx:langweilig",
       "lx:neugierig",
       "lx:höflich",
@@ -4105,17 +4105,17 @@
       "lx:faul"
      ],
      "122": [
-      "lx:Café",
+      "lx:freundlich",
       "lx:Farbe",
-      "lx:Möbel",
+      "lx:Oma",
       "lx:bequem",
       "lx:modern",
       "lx:dunkel",
-      "lx:praktisch"
+      "lx:witzig"
      ],
      "123": [
       "lx:Erinnerung",
-      "lx:Oma",
+      "lx:Möbel",
       "lx:Lehrer",
       "lx:Dorf",
       "lx:Spielzeug",
@@ -4125,6 +4125,7 @@
     }
    }
   ],
-  "kalan_bekleyen": 236
+  "kalan_bekleyen": 236,
+  "gun_sirasi_notu_tr": "İnceleme #210 P2: hafta içi ileri göndermeyi azaltmak için gün takası (öneri): bayerisch↔typisch, Akzent↔Ausdruck#2 (114/118), aussprechen↔deutlich (113/117), freundlich↔Café (120/122), witzig↔praktisch (121/122), Möbel↔Oma (122/123). lx:gewöhnen (B1'deki v1 kartıyla aynı sözcük) çıktı, yerine lx:Süden."
  }
 }
