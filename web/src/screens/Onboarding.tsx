@@ -1,10 +1,11 @@
-/** İlk kurulum: zorlandığın durumlar → alan önceliği → günlük hedef ve Pomodoro → dinleme ve hedefler → seviye tespiti */
+/** İlk kurulum: zorlandığın durumlar → alan önceliği → günlük hedef ve Pomodoro → nereden başlayalım (PM-114 B) → dinleme ve hedefler → seviye tespiti ya da kısa yoklama */
 import { Icon } from "../ui/icons.tsx";
 import { useState } from "preact/hooks";
 import type { Profile } from "@dw/shared";
 import { migrateDomainPriority } from "@dw/shared";
 import { useApp, go } from "../state.ts";
 import { ACTIVITY_TR } from "../core/planner.ts";
+import { BaslangicSecimi } from "./Seviye.tsx";
 
 type Struggle = Profile["struggles"][number];
 const STRUGGLES: [Struggle, string][] = [
@@ -35,12 +36,14 @@ export function Onboarding() {
   const [p, setLocal] = useState<Profile>(structuredClone(profile));
   const set = (f: (x: Profile) => void) => setLocal((old) => { const n = structuredClone(old); f(n); return n; });
   const dTitle = (id: string) => index?.domains.find((d) => d.id === id)?.title_tr || id;
-  const steps = 5;
+  const steps = 6;
+  // PM-114 B md. 1: "Nereden başlayalım?" — "A2'den" seçilirse kurulum kısa yoklamayla biter (karar sonuç ekranında öğrencinin)
+  const [baslangic, setBaslangic] = useState<"a1" | "a2">("a1");
 
-  const finish = async (toAssess: boolean) => {
+  const finish = async (hedef: "assess" | "today" | "seviye") => {
     // yazarken boşluk korunur ("Anna Maria"); kenar boşlukları yalnızca kayıtta atılır (redact adı tam bulmalı, D-061)
     await setProfile({ ...p, displayName: p.displayName?.trim() || undefined, onboardedAt: new Date().toISOString() });
-    go(toAssess ? "assess" : "today");
+    go(hedef);
   };
 
   return (
@@ -136,6 +139,14 @@ export function Onboarding() {
       )}
 
       {step === 4 && (
+        <section class="stack" data-test="kurulum-baslangic">
+          <h1>Nereden başlayalım?</h1>
+          <p class="muted small">Sonra Ayarlar'dan değiştirebilirsin.</p>
+          <BaslangicSecimi kurulum secili={baslangic} onSec={(x) => { setBaslangic(x); setStep(5); }} />
+        </section>
+      )}
+
+      {step === 5 && (
         <section class="stack">
           <h1>Son ayarlar</h1>
           <label class="lbl">Dinlemeye hangi hızla başlayalım?</label>
@@ -154,11 +165,20 @@ export function Onboarding() {
               <input id="exam" class="input" type="date" value={p.goals.examB1.date || ""} onInput={(e) => set((x) => { x.goals.examB1.date = (e.target as HTMLInputElement).value || undefined; })} />
             </div>
           )}
-          <div class="card small">
-            <b>Seviye tespiti.</b> Seviyeni varsaymıyoruz: 12–15 dakikalık pratik görevlerle (kelime, dinleme, cümle kurma, konuşma) başlangıç noktanı bulalım. Bilmediğin soruda "Bilmiyorum" demek tamamen normal.
-          </div>
-          <button class="btn primary block" onClick={() => finish(true)} data-test="start-assess">Seviye tespitine başla</button>
-          <button class="btn ghost block" onClick={() => finish(false)}>Sonra yaparım</button>
+          {baslangic === "a2"
+            ? <>
+                <div class="card small">
+                  <b>Kısa yoklama.</b> A1'in hafta sonu testlerinden 5–7 dakikalık birkaç soru. Sonuç yalnız bir öneri; nereden başlayacağına sen karar verirsin.
+                </div>
+                <button class="btn primary block" onClick={() => finish("seviye")} data-test="yoklama-git">Kısa yoklamaya başla</button>
+              </>
+            : <>
+                <div class="card small">
+                  <b>Seviye tespiti.</b> Seviyeni varsaymıyoruz: 12–15 dakikalık pratik görevlerle (kelime, dinleme, cümle kurma, konuşma) başlangıç noktanı bulalım. Bilmediğin soruda "Bilmiyorum" demek tamamen normal.
+                </div>
+                <button class="btn primary block" onClick={() => finish("assess")} data-test="start-assess">Seviye tespitine başla</button>
+                <button class="btn ghost block" onClick={() => finish("today")}>Sonra yaparım</button>
+              </>}
         </section>
       )}
     </div>

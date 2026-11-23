@@ -134,6 +134,10 @@ def main():
         page.click("text=Devam")
         check(page.input_value("#goal") == "100", "varsayılan günlük hedef 100 dk")
         page.click("text=Devam")
+        # PM-114 B: "Nereden başlayalım?" tek soru; baştan (A1) → eski seviye tespiti adımı
+        page.wait_for_selector("[data-test=kurulum-baslangic]")
+        check(page.locator("[data-test=baslangic-a1]").count() == 1 and page.locator("[data-test=baslangic-a2]").count() == 1, "kurulum: 'Nereden başlayalım?' iki seçenek")
+        page.click("[data-test=baslangic-a1]")
         page.click("[data-test=start-assess]")
 
         print("3) seviye tespiti (yarıda yeniden yükleyip devam)")

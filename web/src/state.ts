@@ -28,6 +28,9 @@ export type Route =
   | { name: "hafta"; hafta: number }
   | { name: "haftaTekrar"; hafta: number; gunler: number[] }
   | { name: "haftaSonuc"; hafta: number }
+  | { name: "seviye" }
+  | { name: "seviyeSonuc" }
+  | { name: "seviyeTekrar"; gunler: number[] }
   | { name: "ders"; id: string }
   | { name: "prova"; day: number }
   | { name: "okuma"; day: number }
@@ -62,6 +65,8 @@ export function parseHash(h: string): Route {
     case "kalip": return { name: "kalip", id: p[1] || undefined };
     case "akis": return { name: "akis", day: Number(p[1]) || 1 };
     // #/hafta/<H>/tekrar/<g,g,…>: düşük sonuçta zayıf "yapabiliyorum" cümlelerinin tekrarı (#243 takip a)
+    // PM-114 B: #/seviye (kısa yoklama), #/seviye/sonuc, #/seviye/tekrar/<g,g,…>
+    case "seviye": return p[1] === "sonuc" ? { name: "seviyeSonuc" } : p[1] === "tekrar" ? { name: "seviyeTekrar", gunler: (p[2] ?? "").split(",").map(Number).filter((n) => Number.isInteger(n) && n > 0) } : { name: "seviye" };
     case "hafta": return p[2] === "sonuc" ? { name: "haftaSonuc", hafta: Number(p[1]) || 1 } : p[2] === "tekrar" ? { name: "haftaTekrar", hafta: Number(p[1]) || 1, gunler: (p[3] ?? "").split(",").map(Number).filter((n) => Number.isInteger(n) && n > 0) } : { name: "hafta", hafta: Number(p[1]) || 1 };
     // #/m1/<gün>/<kayıt>[/1|/2]: akışta sesin ilk ya da ikinci turu (PM-097 md. 1); ek yoksa bütün adımlar
     case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2], ...(p[3] === "1" ? { tur: "ilk" as const } : p[3] === "2" ? { tur: "ikinci" as const } : {}) } : { name: "m1day", day: Number(p[1]) || 1 };
@@ -78,7 +83,7 @@ export function yeniAdres(h: string): string | null {
 export const go = (path: string) => { location.hash = "#/" + path.replace(/^#?\/?/, ""); };
 
 /** Öğrenme ekranları: odak süresi yalnızca bunlarda sayılır (v1: menü ekranları sayılmaz) */
-export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section", "garden", "m1medya", "ders", "prova", "okuma", "akis", "hafta", "haftaTekrar"]);
+export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section", "garden", "m1medya", "ders", "prova", "okuma", "akis", "hafta", "haftaTekrar", "seviye", "seviyeTekrar"]);
 
 export interface AppCtx {
   user: AuthUser | null;

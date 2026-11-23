@@ -10,7 +10,8 @@ import { Sandik } from "../ui/gorev.tsx";
 import type { Gun } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadM1Gun } from "../services/content.ts";
-import { gunBitisleri, gunBittiYaz, haftaSonuclari, ilerlemeOku, xpOku, type HaftaSonuc } from "../services/ilerleme.ts";
+import { gunBittiYaz, haftaSonuclari, ilerlemeOku, xpOku, type HaftaSonuc } from "../services/ilerleme.ts";
+import { gecilenGunler } from "../services/seviye.ts";
 import { adimAdi, gunAdimlari, gunOzeti, haftaBitti, haftaOf, haftalara, haftaSonuMu, seri, siradaki, yol, yolGunleri, yuklenecekHafta, type Adim, type GunDurum, type XpKayit } from "../core/gun.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
@@ -41,12 +42,13 @@ export function usePlan(): { plan: Plan | null; err: string | null; yok: boolean
     (async () => {
       const ozet = new Map(index.m1.map((g) => [g.day, g]));
       const days = yolGunleri(index.m1.map((g) => g.day));
-      const [bitenler, sonuclar, xp] = await Promise.all([gunBitisleri(), haftaSonuclari(), xpOku()]);
+      // PM-114 B: başlangıçtan önceki bitmemiş günler "atlandı" — yüklenecek hafta geçilen (biten ∪ atlanan) kümeden; test yalnız gerçek bitişten
+      const [{ bitenler, atlanan, gecilen }, sonuclar, xp] = await Promise.all([gecilenGunler(days), haftaSonuclari(), xpOku()]);
       const basliklar = Object.fromEntries(index.temel.map((t) => [t.id, t.title_tr]));
       // Bugün'deki "N yeni kelime" Bahçe'nin gerçekten getireceği kart sayısı; derlemede indekse yazılır, plan 2 MB'lık
       // sözlüğü yüklemez (inceleme #66 2. ve 3. tur)
       const kartlar = new Set(index.m1.flatMap((g) => g.kartlar));
-      let hafta = yuklenecekHafta(days, bitenler)!;
+      let hafta = yuklenecekHafta(days, gecilen)!;
       let durumlar: GunDurum[] = [], eksik = -1;
       for (;;) {
         const hDays = days.filter((d) => haftaOf(d) === hafta);
@@ -64,7 +66,7 @@ export function usePlan(): { plan: Plan | null; err: string | null; yok: boolean
         break;
       }
       const ilkGun = durumlar[0]!.day;
-      const once = days.filter((d) => d < ilkGun).map((d) => gunOzeti(d, ozet.get(d)!.title_tr, true));
+      const once = days.filter((d) => d < ilkGun).map((d) => gunOzeti(d, ozet.get(d)!.title_tr, true, atlanan.has(d)));
       // eksik dosya: o günden sonrası yola girmez (ileri gün atlanmaz); yoksa sonraki haftalar kilitli özet
       const sonra = eksik >= 0 ? [] : days.filter((d) => haftaOf(d) > hafta).map((d) => gunOzeti(d, ozet.get(d)!.title_tr, false));
       const y = yol([...once, ...durumlar, ...sonra]);
@@ -209,14 +211,18 @@ export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Pla
       <section class="card row hafta-satir kilitli" data-test={`hafta-${h.hafta}`} data-durum="kilitli" style={{ "--vurgu": haftaRengi(h.hafta) } as Record<string, string>}>
         <span class="grow"><b>{h.hafta}. hafta</b> <span class="small muted">· {h.gunler.length} gün · önceki hafta bitince açılır</span></span><Icon name="lock" size={18} label="kilitli" />
       </section>);
+    // PM-114 B md. 4: başlangıçtan önceki hafta "atlandı" (tamam değil); günleri açılır, her gün Rehber ve "Gir"le açık (isteyen döner)
+    const atl = h.gunler.filter((g) => g.atlandi).length;
+    const ozet = atl === 0 ? "tamam" : atl === h.gunler.length ? "atlandı" : `${h.gunler.length - atl} gün bitti · gerisi atlandı`;
     return (
-      <section class="card stack hafta-satir bitti" data-test={`hafta-${h.hafta}`} data-durum="bitti" data-acik={ac ? "1" : "0"} style={{ "--vurgu": haftaRengi(h.hafta) } as Record<string, string>}>
+      <section class={`card stack hafta-satir bitti${atl ? " atlandi" : ""}`} data-test={`hafta-${h.hafta}`} data-durum="bitti" data-atlandi={atl ? "1" : "0"} data-acik={ac ? "1" : "0"} style={{ "--vurgu": haftaRengi(h.hafta) } as Record<string, string>}>
         <button class="row hafta-satir-btn" aria-expanded={ac} onClick={() => { const x = new Set(acikHafta); ac ? x.delete(h.hafta) : x.add(h.hafta); setAcikHafta(x); }}>
-          <span class="grow"><b>{h.hafta === 1 ? "İlk Hafta" : `${h.hafta}. hafta`}</b> <span class="small muted">· tamam{plan.sonuclar.get(h.hafta) ? ` · test ${plan.sonuclar.get(h.hafta)!.dogru}/${plan.sonuclar.get(h.hafta)!.toplam}` : ""}</span></span>
-          <Icon name="check" size={18} stroke={3} />
+          <span class="grow"><b>{h.hafta === 1 ? "İlk Hafta" : `${h.hafta}. hafta`}</b> <span class="small muted">· {ozet}{plan.sonuclar.get(h.hafta) ? ` · test ${plan.sonuclar.get(h.hafta)!.dogru}/${plan.sonuclar.get(h.hafta)!.toplam}` : ""}</span></span>
+          {atl === h.gunler.length ? <Icon name="next" size={18} stroke={2.5} label="atlandı" /> : <Icon name="check" size={18} stroke={3} />}
         </button>
         {ac && <ol class="hafta-gunler" data-test={`hafta-${h.hafta}-gunler`}>{h.gunler.map((g) => (
-          <li class="row" data-test={`gun-${g.day}`} data-durum="bitti"><span class="grow"><span class="tiny muted">GÜN {g.day}</span> {g.title_tr}</span>
+          <li class="row" data-test={`gun-${g.day}`} data-durum={g.atlandi ? "atlandi" : "bitti"}><span class="grow"><span class="tiny muted">GÜN {g.day}{g.atlandi ? " · ATLANDI" : ""}</span> {g.title_tr}</span>
+            {g.atlandi && <a class="rehber-btn" href={`#/m1/${g.day}`} data-test={`gir-${g.day}`} aria-label={`${g.day}. güne gir`}>Gir</a>}
             <a class="rehber-btn" href={`#/rehber/${g.day}`} aria-label={`${g.day}. günün rehberi`}>Rehber</a></li>))}</ol>}
         {/* üstte "… sonu testi hazır → Çöz" satırı dururken aynı teste ikinci giriş yok (#243 PM finali takip b) */}
         {ac && testAcik(h.hafta) && !bekleyenTest.includes(h.hafta) && <div class="row">{testDugum(h.hafta)}</div>}

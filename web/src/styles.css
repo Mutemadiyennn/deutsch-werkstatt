@@ -583,6 +583,12 @@ main { overflow-x: clip; }
 .yolgun { display: grid; gap: 6px; }
 .hafta-satir { border-left: 6px solid var(--vurgu, var(--hafta-1)); padding: 12px 14px; }
 .hafta-satir.kilitli { border-left-color: var(--line); color: var(--muted); }
+/* PM-114 B: başlangıçtan önceki hafta "atlandı" — çizgi soluk, satır okunur (kilitli değil: açılır) */
+.hafta-satir.atlandi { border-left-style: dashed; }
+.baslangic .opt + .opt { margin-top: 0; }
+.baslangic-ic { display: grid; gap: 2px; }
+.baslangic-opt .small { font-weight: 400; }
+.baslangic-opt:disabled { opacity: .6; cursor: default; }
 .hafta-satir-btn { width: 100%; min-height: 44px; background: none; border: 0; padding: 0; color: inherit; font: inherit; text-align: left; gap: 10px; cursor: pointer; }
 .hafta-satir-btn .ico { color: var(--vurgu, var(--hafta-1)); flex: none; }
 .hafta-gunler { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }

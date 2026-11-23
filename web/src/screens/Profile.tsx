@@ -13,6 +13,7 @@ import { EskiyeDon } from "../ui/EskiyeDon.tsx";
 import { ApiError } from "../services/api.ts";
 import { aiState, onAiState } from "../services/ai.ts";
 import { TopBar } from "../ui/components.tsx";
+import { BaslangicSecimi } from "./Seviye.tsx";
 
 const ACTS = Activity.options.filter((a) => a !== "assess" && a !== "other");
 
@@ -67,6 +68,12 @@ export function ProfileView() {
   return (
     <div class="stack">
       <TopBar title="Profil ve ayarlar" back="#/ben" />
+
+      {/* PM-114 B md. 1: ilk kurulumdaki tek soru burada da; "A2'den" kısa yoklamaya gider, "Baştan (A1)" tek onayla */}
+      <section class="card stack" data-test="ayar-baslangic">
+        <h2>Nereden başlayalım?</h2>
+        <BaslangicSecimi />
+      </section>
 
       <section class="card">
         <h2>Odak ve Pomodoro</h2>

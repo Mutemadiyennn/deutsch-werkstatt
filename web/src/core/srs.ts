@@ -75,6 +75,17 @@ export function hizliGecis(prev: LearnerItem | undefined, itemId: string, sessio
   return it;
 }
 
+/**
+ * "A2'den başla" (PM-114 B md. 4): atlanan günün kartı için tanıma yolunun FSRS durumu — Review, kararlılık `gun`, ilk vade
+ * `gun` gün sonra (0: şimdi vadeli). Tekrar sayısı 0: öğrencinin kanıtı yoktur, yalnız "biliniyor" varsayımı.
+ */
+export function biliniyorFsrs(now: Date, gun: number): FsrsState {
+  const c = createEmptyCard(now);
+  c.state = State.Review; c.stability = Math.max(1, gun); c.difficulty = 5; c.scheduled_days = gun; c.reps = 0;
+  c.due = new Date(now.getTime() + gun * 86400_000);
+  return toState(c);
+}
+
 /** Oturum kimliği: "<seans id>@<başlangıç ms>" (kalıcılık kuralı ≥3 sa arayı buradan ölçer) */
 export const sessionKey = (id: string, startedAt: number) => `${id}@${startedAt}`;
 

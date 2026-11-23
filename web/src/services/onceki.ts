@@ -10,6 +10,7 @@ import type { AkisKaydi } from "../core/akisKayit.ts";
 import { akisAnahtar } from "../core/akisKayit.ts";
 import { akisDersBitti, oncekiKume, type OncekiKume } from "../core/onceki.ts";
 import { loadIndex, loadKesin, loadM1Gun } from "./content.ts";
+import { gecilenGunler } from "./seviye.ts";
 
 /** Yalnız e2e paketi: `localStorage["dw-e2e-onceki"] = "hepsi"` → dosyalı önceki günler oynanmış sayılır (29. günün dikey dilimi) */
 function hepsiOynandi(): boolean {
@@ -22,14 +23,17 @@ export async function oncekiBilinen(day: number, items: ReadonlyMap<string, Lear
   const dosyali = idx.m1.filter((g) => g.day < day);
   const hepsi = hepsiOynandi();
   const biten: string[] = [];
+  // PM-114 B: atlanan günün dosyası yüklenmez (A2'den başlayan öğrencinin 57. günü 56 dosya indirmez); kesin tablo + kartlar
+  const { atlanan } = await gecilenGunler(idx.m1.map((g) => g.day)).catch(() => ({ atlanan: new Set<number>() }));
   for (const g of dosyali) {
+    if (atlanan.has(g.day)) continue;
     try {
       const d = await loadM1Gun(g.day);
       const akis = await getMeta<AkisKaydi>(akisAnahtar(g.day));
       for (const id of d.dersler) if (hepsi || (await dersBitti(id)) || (akis && akisDersBitti(akis, id))) biten.push(id);
     } catch { /* gün yüklenemedi: dersleri bilinmez sayılır */ }
   }
-  return oncekiKume({ day, dosyali, kesin, gorulmus: (k) => !!items.get(k)?.passive?.fsrs, bitenDosyali: biten, hepsiOynandi: hepsi });
+  return oncekiKume({ day, dosyali, kesin, gorulmus: (k) => !!items.get(k)?.passive?.fsrs, bitenDosyali: biten, hepsiOynandi: hepsi, atlanan });
 }
 
 /** `ders:<id>` kaydı gerçekten bitmiş mi (yarıda bırakılan ders bitmiş sayılmaz) */

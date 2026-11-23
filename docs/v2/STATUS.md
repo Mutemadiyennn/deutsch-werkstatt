@@ -11,6 +11,9 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 - **GitHub Actions bu depoda GitHub tarafından kapalı** (16:53 UTC'den beri). Kabul **KAPI oturumunda** (PM 7047288255): temiz worktree, `ci-v2.yml` sırası, WebKit üç cihaz; PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI". Ortak betik `scripts/kapi.sh` (dal `kapi/betik`). Yayın ve medya hatları durdu; kod PR'ları KAPI sırasıyla birleşir.
 - **Hedef ekranlar:** `design/TARGET3c` (kalıp, yapboz + K10, söyle, gün sonu sınaması, Yol, Bahçe boş hâli; TASARIM "Hedef 3c").
 
+## Hat H (ANA-H): "A2'den başla" (PM-114 B; 2026-11-23)
+- PR #245 (dal `v2/a2den-basla`, #244 yığınının üstünde): kurulum + Ayarlar'da "Nereden başlayalım?", kısa yoklama `#/seviye` (A1 hafta sonu testlerinden haftada 2 madde), sonuç #244 diliyle (≥ %80 → 9. hafta; altında zayıf cümleler + tekrar + iki seçenek), atlanan günler "atlandı" (bitiş yazılmaz), gün kilidi/yüklenecek hafta geçilen kümeden, A1 kartları Bahçe'de "biliniyor" (seyrek, sayaçsız), geri dönüş. Kabul listesi `docs/v2/qa/a2den-basla.md`, e2e `tests/e2e/v2_seviye.py`. Eşikler `policy.json` `seviye`.
+
 ## Hat B (ANA-B): Hedef 3 kabuğu (PM-084; 2026-11-22)
 - **Sekme çerçevesi** (dal `v2/sekme-cercevesi`): dört sekme **Bugün · Yol · Köy · Ben** (`#/today`, `#/yol`, `#/koy`, `#/ben`; ayarlar `#/ben/ayarlar`), simgeler ve etkin durum `design/TARGET3`. Eski `#/learn`, `#/progress`, `#/profile` adresleri yeni yerlerine yönlenir. Köy ve Ben ekranları gelene kadar sekmeler bugünkü Öğren ve İlerlemem ekranlarını açar. Sınama: `tests/e2e/v2_sekme.py`.
 - Sıradaki (aynı hat, yığınlı PR'lar): Köy (PM-084 md. 4) → Ben (md. 5). Birleştirme sırası hat A'da (`[TOPLU-ADAY]`).

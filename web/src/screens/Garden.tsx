@@ -7,7 +7,8 @@ import { gorevSay } from "../services/gorev.ts";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
-import { loadFoto, loadLexicon, loadM1Gun } from "../services/content.ts";
+import { loadFoto, loadIndex, loadLexicon, loadM1Gun } from "../services/content.ts";
+import { gecilenGunler } from "../services/seviye.ts";
 import { bahceTamam, xpOku, xpVer } from "../services/ilerleme.ts";
 import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri, yerelGun } from "../core/gun.ts";
@@ -71,7 +72,9 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       const items = await itemsMap(lexemes.map((l) => l.id));
       // yeni kart sırası: önce M1 gününün yeni kartları (A5b), sonra K1 derin kartlar sıklık sırasıyla
       const k1 = lexemes.filter((l) => l.tier === "K1" && isCard(l)).sort((a, b) => (a.freqRank ?? 9e9) - (b.freqRank ?? 9e9)).map((l) => l.id);
-      const gunler = day ? await Promise.all(Array.from({ length: day }, (_, k) => loadM1Gun(k + 1).catch(() => null))) : [];
+      // PM-114 B: atlanan günlerin kartları "biliniyor" diye cihazda; o günlerin dosyaları yüklenmez (A2'nin 57. günü 56 dosya indirmez)
+      const atl = day ? (await gecilenGunler((await loadIndex()).m1.map((g) => g.day)).catch(() => null))?.atlanan ?? new Set<number>() : new Set<number>();
+      const gunler = day ? await Promise.all(Array.from({ length: day }, (_, k) => (atl.has(k + 1) ? Promise.resolve(null) : loadM1Gun(k + 1).catch(() => null)))) : [];
       const gunKartlari = [...new Set(gunler.flatMap((g) => g?.yeni_kartlar ?? []))].filter((id) => lex.has(id) && isCard(lex.get(id)!));
       const kalan = gunKartlari.filter((id) => !items.has(id));
       const pool = [...kalan, ...k1.filter((id) => !kalan.includes(id))];
