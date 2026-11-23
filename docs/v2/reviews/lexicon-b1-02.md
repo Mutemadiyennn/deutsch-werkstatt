@@ -138,3 +138,29 @@ Bu bölüm yukarıdaki B maddelerinin yerine geçer. Uygulamadan sonra `npm run 
 5. **lx:fällig ö4, boşluk 2.** **– Wann ist die Kaution fällig? – Bevor Sie einziehen.** → **– Wann ist die Rechnung fällig? – Das steht unten auf der Rechnung.** Olgu iddiası kalmadı. Örnek artık **bevor** içermediği için `pt:bevor-nachdem` karttan çıkarıldı.
 
 C'deki "lx:Abteilung ö5 (Tobi ...)" notu bu değişiklikle kapandı.
+
+## Okur düzeltmeleri (2026-11-23, okur raporu: `docs/v2/reviews/okur/lexicon-b1-02.md`, 8 GERİ)
+
+Yalnız geri dönen 8 alan değişti. Okur bu alanları yeniden okumadı.
+
+| Kart | Alan | Sonra | Neyi çözüyor |
+|---|---|---|---|
+| lx:Anliegen | mistakes_tr[0] | Bir isteğim var derken **Ich habe eine Anliegen** yanlış. Doğrusu **Ich habe ein Anliegen.** | **konum** yer anlamında okunuyordu. |
+| lx:Kundennummer | mistakes_tr[1] | **Kundenummer** diye yazmak kolay. Doğrusu iki **n** ile **Kundennummer**. | Eski not sayı söylemeyi anlatıyordu, kartın sözcüğü yoktu. |
+| lx:einspringen | exp.ipucu_tr | Geçmişi anlatırken **bin** ya da **ist** ile söylenir: **Ich bin eingesprungen.** | **sein** cümlede görünmüyordu. |
+| lx:Warmmiete | mistakes_tr[1] | Isınma hariç kiranın adı **Kaltmiete** olur. **Warmmiete** ile karıştırma, ikisi aynı para değildir. | **kalt** açıklanmıyordu, kimin sorduğu belirsizdi. |
+| lx:Mieterhöhung | exp.ipucu_tr | Son parça **die Erhöhung** olduğu için **die Mieterhöhung** denir. | Kartın sözcüğüne bağlandı. |
+| lx:Mieterhöhung | mistakes_tr[1] | Kira artışı yazısı aldık derken **eine Mieterhöhung nehmen** denmez. Doğrusu **eine Mieterhöhung bekommen**. | Kartın sözcüğüne bağlandı (Türkçedeki **almak**). |
+| lx:Hitze | exp.ipucu_tr | Bu sıcakta demek için **bei der Hitze** denir. | Kartın sözcüğüne bağlandı. |
+| lx:Hitze | mistakes_tr[0] | Sıcaktan uyuyamıyorum derken **von der Hitze** denmez. Doğrusu **wegen der Hitze** ya da **bei der Hitze**. | Kartın sözcüğüne bağlandı (Türkçedeki **-den**). |
+
+## also_ok taraması (2026-11-23)
+
+İki dosyadaki 200 boşluğun hepsi tek soruyla tarandı: boşluğa doğru ve sık söylenen başka bir cevap giriyor mu? Sonuç: **83 boşluğa `also_ok` eklendi, 22 boşluğun cümlesi tek cevaba çekildi**, 95 boşluk olduğu gibi kaldı. Ölçüt: aynı anlama gelen cevap kabul edilir; anlamı değiştiren sık cevap için cümleye bağlam eklenir.
+
+- **Eş ya da üst anlamlı cevap eklendi:** lx:zuständig (**verantwortlich**, dört boşluk) · lx:Kundennummer (**Nummer**) · lx:Sperrmüll (**Müll**) · lx:Frühschicht, lx:Spätschicht, lx:Nachtschicht (**Schicht**, **Schichten**; ayrıca **Nacht**, **spät**, **abends**) · lx:Warmmiete (**Miete**) · lx:Abrechnung, lx:Nachzahlung (**Rechnung**) · lx:Heizkosten (**Nebenkosten**, **Kosten**) · lx:Guthaben (**Geld**) · lx:Personalabteilung (**Personalbüro**) · lx:Abteilung (**Stelle**) · lx:Zuschlag (**Bonus**, **Lohn**) · lx:genehmigen (**erlaubt**, **bestätigt**) · lx:absprechen (**klären**, **geklärt**) · lx:freinehmen (**Urlaub nehmen**) · lx:Urlaubstag (**Tage Urlaub**, **Tag frei**) · lx:abbauen (**abfeiern** biçimleri) · lx:einspringen (**arbeiten**, **gekommen**) · lx:Arbeitszeit (**Zeiten**, **Schicht**) · lx:Befund (**Bericht**) · lx:abbuchen (**überwiesen**, **bezahlt**) · lx:Verbrauch (**Stromverbrauch**) · lx:nebenan (**daneben**) · tek tek: lx:mitteilen, lx:Anliegen, lx:klären, lx:Lösung, lx:auszahlen, lx:eintragen, lx:Betrag, lx:ausleihen.
+- **Cümle tek cevaba çekildi** (anlamı değiştiren sık cevap giriyordu): lx:abbauen boşluk 2, 3 (**Überstunden machen** ters anlam) · lx:stempeln dört boşluk (**gegessen**, **kommt**, **arbeitet**) · lx:grillen dört boşluk (**rauchen**, **feiern**, **gearbeitet**) · lx:eintragen boşluk 2, 4 (**genommen**, **geplant**) · lx:Frühschicht boşluk 2, 3 ve lx:Nachtschicht boşluk 2 (**frei**, **Urlaub**, **Zeit**) · lx:Brückentag boşluk 4 (**Feiertage**) · lx:Mieterhöhung boşluk 1, 2 (**Rechnung**, **Abrechnung**) · lx:Strom boşluk 4 ve lx:Heizkosten boşluk 3 (**Geld**) · lx:fällig boşluk 2 (**da**, **fertig**) · lx:tauschen boşluk 3 (**Gehen wir?**).
+- **Kalan sınırlılık:** bazı boşluklar yine yalnızca Türkçe çeviriyle tek cevaba iner (ör. lx:Hitze **Bei der ___ bleibe ich lieber zu Hause.**, lx:Garten **im ___**, lx:Guthaben boşluk 1, lx:Abteilung boşluk 2). Bunlarda giren öbür sözcükler farklı anlamda ve çeviriyle çelişiyor; eklenmedi. lx:freinehmen'de **frei genommen** kabul edilmedi, çünkü kartın kendi notu bu yazımı yanlış sayıyor.
+- Cümlesi değişen boşluklar artık örnek cümlelerle birebir aynı değil; ipuçları yeni cümlelerle uyumlu.
+
+`npm run content:validate` → **0 hata, 150 uyarı**.

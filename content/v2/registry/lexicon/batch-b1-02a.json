@@ -325,7 +325,10 @@
      "de": "Der ___ ist noch nicht da.",
      "answer": "Befund",
      "tr": "Sonuç henüz gelmedi.",
-     "hint_tr": "Sonuç **der Befund** olur."
+     "hint_tr": "Sonuç **der Befund** olur.",
+     "also_ok": [
+      "Bericht"
+     ]
     },
     {
      "de": "Haben Sie die ___ vom Hausarzt dabei?",
@@ -340,7 +343,10 @@
      "de": "Wann ist der ___ von der Untersuchung da?",
      "answer": "Befund",
      "tr": "Muayenenin sonucu ne zaman çıkar?",
-     "hint_tr": "Tek sonuç **der Befund** olur."
+     "hint_tr": "Tek sonuç **der Befund** olur.",
+     "also_ok": [
+      "Bericht"
+     ]
     }
    ]
   },
@@ -550,7 +556,9 @@
      "tr": "Saati de bana bildirebilir misiniz?",
      "hint_tr": "**Könnten Sie** ile birlikte **mitteilen** sona gelir.",
      "also_ok": [
-      "sagen"
+      "sagen",
+      "nennen",
+      "schicken"
      ]
     },
     {
@@ -651,25 +659,37 @@
      "de": "Wer ist bei Ihnen für Rechnungen ___?",
      "answer": "zuständig",
      "tr": "Sizde faturalara kim bakıyor?",
-     "hint_tr": "Bir işe bakmak **für etwas zuständig sein** ile söylenir."
+     "hint_tr": "Bir işe bakmak **für etwas zuständig sein** ile söylenir.",
+     "also_ok": [
+      "verantwortlich"
+     ]
     },
     {
      "de": "Dafür bin ich leider nicht ___.",
      "answer": "zuständig",
      "tr": "Maalesef bu işe ben bakmıyorum.",
-     "hint_tr": "Bir işe bakmak **zuständig sein** ile söylenir."
+     "hint_tr": "Bir işe bakmak **zuständig sein** ile söylenir.",
+     "also_ok": [
+      "verantwortlich"
+     ]
     },
     {
      "de": "Ich verbinde Sie mit der ___ Kollegin.",
      "answer": "zuständigen",
      "tr": "Sizi bu işe bakan arkadaşıma bağlıyorum.",
-     "hint_tr": "**der** ile **Kollegin** arasında **zuständigen** olur."
+     "hint_tr": "**der** ile **Kollegin** arasında **zuständigen** olur.",
+     "also_ok": [
+      "verantwortlichen"
+     ]
     },
     {
      "de": "Wer ist hier für Termine ___?",
      "answer": "zuständig",
      "tr": "Burada randevulara kim bakıyor?",
-     "hint_tr": "Bir işe bakmak **zuständig sein** ile söylenir."
+     "hint_tr": "Bir işe bakmak **zuständig sein** ile söylenir.",
+     "also_ok": [
+      "verantwortlich"
+     ]
     }
    ]
   },
@@ -755,7 +775,10 @@
      "de": "Ich verbinde Sie mit der richtigen ___.",
      "answer": "Abteilung",
      "tr": "Sizi doğru bölüme bağlıyorum.",
-     "hint_tr": "Bölüm **die Abteilung** olur."
+     "hint_tr": "Bölüm **die Abteilung** olur.",
+     "also_ok": [
+      "Stelle"
+     ]
     },
     {
      "de": "In welcher ___ arbeiten Sie?",
@@ -767,7 +790,10 @@
      "de": "Ist das die ___ für Rechnungen?",
      "answer": "Abteilung",
      "tr": "Faturalara bakan bölüm burası mı?",
-     "hint_tr": "Bölüm **die Abteilung** olur."
+     "hint_tr": "Bölüm **die Abteilung** olur.",
+     "also_ok": [
+      "Stelle"
+     ]
     },
     {
      "de": "Die Firma hat vier ___.",
@@ -804,7 +830,7 @@
    ],
    "register": "formal",
    "mistakes_tr": [
-    "Bir konum var derken **Ich habe eine Anliegen** yanlış. Doğrusu **Ich habe ein Anliegen.**",
+    "Bir isteğim var derken **Ich habe eine Anliegen** yanlış. Doğrusu **Ich habe ein Anliegen.**",
     "Birden çok konu için de **die Anliegen** denir. **die Anliegens** yanlış."
    ],
    "examples": [
@@ -858,7 +884,10 @@
      "de": "Was ist Ihr ___?",
      "answer": "Anliegen",
      "tr": "Konunuz nedir?",
-     "hint_tr": "Aramanın sebebi **das Anliegen** olur."
+     "hint_tr": "Aramanın sebebi **das Anliegen** olur.",
+     "also_ok": [
+      "Problem"
+     ]
     },
     {
      "de": "Ich habe ein ___ wegen meiner Rechnung.",
@@ -917,7 +946,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Numaram şu derken **Mein Kundennummer ist** yanlış. Doğrusu **Meine Kundennummer ist**.",
-    "Numarada **42** derken Türkçedeki sırayla **vierzig zwei** denmez. Doğrusu **zweiundvierzig**."
+    "**Kundenummer** diye yazmak kolay. Doğrusu iki **n** ile **Kundennummer**."
    ],
    "examples": [
     {
@@ -979,25 +1008,37 @@
      "de": "Wie ist Ihre ___, bitte?",
      "answer": "Kundennummer",
      "tr": "Müşteri numaranız nedir, lütfen?",
-     "hint_tr": "Müşteri numarası **die Kundennummer** olur."
+     "hint_tr": "Müşteri numarası **die Kundennummer** olur.",
+     "also_ok": [
+      "Nummer"
+     ]
     },
     {
      "de": "Die ___ steht oben auf der Rechnung.",
      "answer": "Kundennummer",
      "tr": "Müşteri numarası faturanın üstünde yazıyor.",
-     "hint_tr": "Müşteri numarası **Kundennummer** ile söylenir."
+     "hint_tr": "Müşteri numarası **Kundennummer** ile söylenir.",
+     "also_ok": [
+      "Nummer"
+     ]
     },
     {
      "de": "Haben Sie Ihre ___?",
      "answer": "Kundennummer",
      "tr": "Müşteri numaranız yanınızda mı?",
-     "hint_tr": "Müşteri numarası **Kundennummer** ile söylenir."
+     "hint_tr": "Müşteri numarası **Kundennummer** ile söylenir.",
+     "also_ok": [
+      "Nummer"
+     ]
     },
     {
      "de": "Ich habe zwei ___, eine für das Handy und eine für das Internet.",
      "answer": "Kundennummern",
      "tr": "İki müşteri numaram var, biri telefon, biri internet için.",
-     "hint_tr": "Birden çok numara: **Kundennummern**."
+     "hint_tr": "Birden çok numara: **Kundennummern**.",
+     "also_ok": [
+      "Nummern"
+     ]
     }
    ]
   },
@@ -1103,7 +1144,8 @@
      "tr": "Tamam, o zaman bu iş halloldu.",
      "hint_tr": "Halloldu **ist geklärt** ile söylenir.",
      "also_ok": [
-      "erledigt"
+      "erledigt",
+      "klar"
      ]
     },
     {
@@ -1209,7 +1251,10 @@
      "de": "Wir finden sicher eine ___.",
      "answer": "Lösung",
      "tr": "Mutlaka bir çözüm buluruz.",
-     "hint_tr": "Çözüm **die Lösung** olur."
+     "hint_tr": "Çözüm **die Lösung** olur.",
+     "also_ok": [
+      "Möglichkeit"
+     ]
     },
     {
      "de": "Gibt es eine andere ___?",
@@ -1330,7 +1375,10 @@
      "de": "Sie haben diesen Monat zu viel ___.",
      "answer": "abgebucht",
      "tr": "Bu ay fazla para çektiniz.",
-     "hint_tr": "Geçmişte **hat abgebucht** denir."
+     "hint_tr": "Geçmişte **hat abgebucht** denir.",
+     "also_ok": [
+      "berechnet"
+     ]
     },
     {
      "de": "Wann ___ Sie das Geld ab?",
@@ -1348,7 +1396,11 @@
      "de": "Das Geld wird am Anfang des Monats ___.",
      "answer": "abgebucht",
      "tr": "Para ay başında hesaptan çekiliyor.",
-     "hint_tr": "**wird** ile **abgebucht** gelir."
+     "hint_tr": "**wird** ile **abgebucht** gelir.",
+     "also_ok": [
+      "überwiesen",
+      "bezahlt"
+     ]
     }
    ]
   },
@@ -1440,19 +1492,28 @@
      "de": "Der alte Schrank ist ___.",
      "answer": "Sperrmüll",
      "tr": "Eski dolap büyük eşya çöpü sayılır.",
-     "hint_tr": "Büyük eşya çöpü **Sperrmüll** ile söylenir."
+     "hint_tr": "Büyük eşya çöpü **Sperrmüll** ile söylenir.",
+     "also_ok": [
+      "Müll"
+     ]
     },
     {
      "de": "Das alte Sofa kommt zum ___.",
      "answer": "Sperrmüll",
      "tr": "Eski kanepe büyük eşya çöpüne gidiyor.",
-     "hint_tr": "**zum** ile **Sperrmüll** gelir."
+     "hint_tr": "**zum** ile **Sperrmüll** gelir.",
+     "also_ok": [
+      "Müll"
+     ]
     },
     {
      "de": "Wann kommt der ___?",
      "answer": "Sperrmüll",
      "tr": "Büyük eşya çöpü ne zaman alınıyor?",
-     "hint_tr": "Büyük eşya çöpü **der Sperrmüll** olur."
+     "hint_tr": "Büyük eşya çöpü **der Sperrmüll** olur.",
+     "also_ok": [
+      "Müll"
+     ]
     }
    ]
   },
@@ -1545,25 +1606,31 @@
      "de": "Die ___ beginnt um sechs Uhr.",
      "answer": "Frühschicht",
      "tr": "Sabah vardiyası saat altıda başlıyor.",
-     "hint_tr": "Sabah vardiyası **die Frühschicht** olur."
+     "hint_tr": "Sabah vardiyası **die Frühschicht** olur.",
+     "also_ok": [
+      "Schicht"
+     ]
     },
     {
-     "de": "Diese Woche habe ich ___.",
+     "de": "Diese Woche habe ich ___ und muss um vier aufstehen.",
      "answer": "Frühschicht",
-     "tr": "Bu hafta sabah vardiyasındayım.",
+     "tr": "Bu hafta sabah vardiyasındayım ve dörtte kalkmam lazım.",
      "hint_tr": "Vardiyada olmak **Frühschicht haben** ile söylenir, araya **die** girmez."
     },
     {
-     "de": "Nee, ich hab morgen ___.",
+     "de": "Nee, ich hab morgen ___, ich muss früh ins Bett.",
      "answer": "Frühschicht",
-     "tr": "Yok, yarın sabah vardiyam var.",
+     "tr": "Yok, yarın sabah vardiyam var, erken yatmam lazım.",
      "hint_tr": "Sabah vardiyası **Frühschicht** ile söylenir."
     },
     {
      "de": "Ich habe nächste Woche drei ___.",
      "answer": "Frühschichten",
      "tr": "Gelecek hafta üç sabah vardiyam var.",
-     "hint_tr": "Birden çok vardiya: **Frühschichten**."
+     "hint_tr": "Birden çok vardiya: **Frühschichten**.",
+     "also_ok": [
+      "Schichten"
+     ]
     }
    ]
   },
@@ -1656,25 +1723,40 @@
      "de": "Die ___ geht bis zehn Uhr abends.",
      "answer": "Spätschicht",
      "tr": "Akşam vardiyası akşam saat ona kadar sürüyor.",
-     "hint_tr": "Akşam vardiyası **die Spätschicht** olur."
+     "hint_tr": "Akşam vardiyası **die Spätschicht** olur.",
+     "also_ok": [
+      "Schicht"
+     ]
     },
     {
      "de": "Ich arbeite lieber ___, dann kann ich morgens länger schlafen.",
      "answer": "Spätschicht",
      "tr": "Akşam vardiyasında çalışmayı tercih ederim, o zaman sabahları daha uzun uyuyabilirim.",
-     "hint_tr": "Akşam vardiyası **Spätschicht** ile söylenir."
+     "hint_tr": "Akşam vardiyası **Spätschicht** ile söylenir.",
+     "also_ok": [
+      "spät",
+      "abends",
+      "nachmittags",
+      "Nachtschicht"
+     ]
     },
     {
      "de": "Können Sie am Freitag die ___ übernehmen?",
      "answer": "Spätschicht",
      "tr": "Cuma günü akşam vardiyasını üstlenebilir misiniz?",
-     "hint_tr": "Akşam vardiyası **die Spätschicht** olur."
+     "hint_tr": "Akşam vardiyası **die Spätschicht** olur.",
+     "also_ok": [
+      "Schicht"
+     ]
     },
     {
      "de": "Im Mai habe ich viele ___.",
      "answer": "Spätschichten",
      "tr": "Mayısta çok akşam vardiyam var.",
-     "hint_tr": "Birden çok vardiya: **Spätschichten**."
+     "hint_tr": "Birden çok vardiya: **Spätschichten**.",
+     "also_ok": [
+      "Schichten"
+     ]
     }
    ]
   },
@@ -1767,25 +1849,35 @@
      "de": "Nach der ___ schlafe ich bis Mittag.",
      "answer": "Nachtschicht",
      "tr": "Gece vardiyasından sonra öğlene kadar uyurum.",
-     "hint_tr": "Gece vardiyası **die Nachtschicht** olur."
+     "hint_tr": "Gece vardiyası **die Nachtschicht** olur.",
+     "also_ok": [
+      "Schicht"
+     ]
     },
     {
-     "de": "Wie oft haben Sie ___?",
+     "de": "Wie oft haben Sie ___ und arbeiten bis zum Morgen?",
      "answer": "Nachtschicht",
-     "tr": "Ne sıklıkla gece vardiyanız oluyor?",
+     "tr": "Ne sıklıkla gece vardiyanız oluyor ve sabaha kadar çalışıyorsunuz?",
      "hint_tr": "Vardiyada olmak **Nachtschicht haben** ile söylenir, araya **die** girmez."
     },
     {
      "de": "Wer arbeitet diese Woche in der ___?",
      "answer": "Nachtschicht",
      "tr": "Bu hafta gece vardiyasında kim çalışıyor?",
-     "hint_tr": "Gece vardiyası **die Nachtschicht** olur."
+     "hint_tr": "Gece vardiyası **die Nachtschicht** olur.",
+     "also_ok": [
+      "Nacht",
+      "Schicht"
+     ]
     },
     {
      "de": "Ich hatte diese Woche drei ___.",
      "answer": "Nachtschichten",
      "tr": "Bu hafta üç gece vardiyam oldu.",
-     "hint_tr": "Birden çok vardiya: **Nachtschichten**."
+     "hint_tr": "Birden çok vardiya: **Nachtschichten**.",
+     "also_ok": [
+      "Schichten"
+     ]
     }
    ]
   },
@@ -1890,10 +1982,13 @@
      "hint_tr": "Geçmişte **hat getauscht** denir."
     },
     {
-     "de": "___ wir? Du nimmst Freitag, ich Samstag.",
+     "de": "___ wir die Schichten? Du nimmst Freitag, ich Samstag.",
      "answer": "Tauschen",
-     "tr": "Değiştirelim mi? Sen cumayı al, ben cumartesiyi.",
-     "hint_tr": "**wir** ile **tauschen** olur."
+     "tr": "Vardiyaları değiştirelim mi? Sen cumayı al, ben cumartesiyi.",
+     "hint_tr": "**wir** ile **tauschen** olur.",
+     "also_ok": [
+      "Wechseln"
+     ]
     },
     {
      "de": "Derya ___ gern die Schicht mit dir.",
@@ -1985,20 +2080,26 @@
     "anlam_tr": "Biri gelemeyince kısa süreliğine onun yerine çalışmayı anlatır.",
     "ne_zaman_tr": "Hasta ya da izinli bir iş arkadaşının yerine çalışırken.",
     "parcalar": [],
-    "ipucu_tr": "Geçmişte **sein** ile kurulur: **Ich bin eingesprungen.**"
+    "ipucu_tr": "Geçmişi anlatırken **bin** ya da **ist** ile söylenir: **Ich bin eingesprungen.**"
    },
    "forms": [
     {
      "de": "Könnten Sie morgen für Frau Aksoy ___?",
      "answer": "einspringen",
      "tr": "Yarın Aksoy Hanım'ın yerine çalışabilir misiniz?",
-     "hint_tr": "**Könnten Sie** ile birlikte **einspringen** sona gelir."
+     "hint_tr": "**Könnten Sie** ile birlikte **einspringen** sona gelir.",
+     "also_ok": [
+      "arbeiten"
+     ]
     },
     {
      "de": "Derya ist gestern für mich ___.",
      "answer": "eingesprungen",
      "tr": "Derya dün benim yerime çalıştı.",
-     "hint_tr": "Geçmişte **ist eingesprungen** denir."
+     "hint_tr": "Geçmişte **ist eingesprungen** denir.",
+     "also_ok": [
+      "gekommen"
+     ]
     },
     {
      "de": "Na gut, dann ___ ich halt ein.",
@@ -2107,13 +2208,19 @@
      "de": "Ich möchte mir am Freitag ___.",
      "answer": "freinehmen",
      "tr": "Cuma günü izin almak istiyorum.",
-     "hint_tr": "**möchte** ile birlikte **freinehmen** sona gelir."
+     "hint_tr": "**möchte** ile birlikte **freinehmen** sona gelir.",
+     "also_ok": [
+      "Urlaub nehmen"
+     ]
     },
     {
      "de": "Mein Kollege hat sich die ganze Woche ___.",
      "answer": "freigenommen",
      "tr": "İş arkadaşım bütün hafta izin aldı.",
-     "hint_tr": "Geçmişte **hat freigenommen** denir."
+     "hint_tr": "Geçmişte **hat freigenommen** denir.",
+     "also_ok": [
+      "Urlaub genommen"
+     ]
     },
     {
      "de": "Morgen ___ ich mir frei.",
@@ -2344,25 +2451,39 @@
      "de": "Herr Wimmer hat meinen Urlaub ___.",
      "answer": "genehmigt",
      "tr": "Wimmer Bey iznimi onayladı.",
-     "hint_tr": "Geçmişte **hat genehmigt** denir."
+     "hint_tr": "Geçmişte **hat genehmigt** denir.",
+     "also_ok": [
+      "erlaubt",
+      "bestätigt"
+     ]
     },
     {
      "de": "Der Antrag ist noch nicht ___.",
      "answer": "genehmigt",
      "tr": "Dilekçe henüz onaylanmadı.",
-     "hint_tr": "Onaylanmak **ist genehmigt** ile söylenir."
+     "hint_tr": "Onaylanmak **ist genehmigt** ile söylenir.",
+     "also_ok": [
+      "bestätigt"
+     ]
     },
     {
      "de": "Wenn der Chef das ___, fahre ich im Juli weg.",
      "answer": "genehmigt",
      "tr": "Şef onaylarsa temmuzda bir yere giderim.",
-     "hint_tr": "**der Chef** ile **genehmigt** olur."
+     "hint_tr": "**der Chef** ile **genehmigt** olur.",
+     "also_ok": [
+      "erlaubt"
+     ]
     },
     {
      "de": "Können Sie meinen Urlaub ___?",
      "answer": "genehmigen",
      "tr": "İznimi onaylayabilir misiniz?",
-     "hint_tr": "**können** ile birlikte **genehmigen** sona gelir."
+     "hint_tr": "**können** ile birlikte **genehmigen** sona gelir.",
+     "also_ok": [
+      "erlauben",
+      "bestätigen"
+     ]
     }
    ]
   },
@@ -2455,25 +2576,38 @@
      "de": "Wie sind Ihre ___?",
      "answer": "Arbeitszeiten",
      "tr": "Çalışma saatleriniz nasıl?",
-     "hint_tr": "Birden çok saat: **Arbeitszeiten**."
+     "hint_tr": "Birden çok saat: **Arbeitszeiten**.",
+     "also_ok": [
+      "Zeiten"
+     ]
     },
     {
      "de": "Meine ___ ist von acht bis halb fünf.",
      "answer": "Arbeitszeit",
      "tr": "Çalışma saatim sekizden dört buçuğa kadar.",
-     "hint_tr": "**ist** ile **Arbeitszeit** gelir, sonuna **-en** eklenmez."
+     "hint_tr": "**ist** ile **Arbeitszeit** gelir, sonuna **-en** eklenmez.",
+     "also_ok": [
+      "Schicht",
+      "Arbeit"
+     ]
     },
     {
      "de": "Haben Sie feste ___?",
      "answer": "Arbeitszeiten",
      "tr": "Sabit çalışma saatleriniz var mı?",
-     "hint_tr": "Birden çok saat: **Arbeitszeiten**."
+     "hint_tr": "Birden çok saat: **Arbeitszeiten**.",
+     "also_ok": [
+      "Zeiten"
+     ]
     },
     {
      "de": "Diese Woche sind meine ___ anders.",
      "answer": "Arbeitszeiten",
      "tr": "Bu hafta çalışma saatlerim farklı.",
-     "hint_tr": "**sind** ile **Arbeitszeiten** gelir."
+     "hint_tr": "**sind** ile **Arbeitszeiten** gelir.",
+     "also_ok": [
+      "Zeiten"
+     ]
     }
    ]
   },
@@ -2566,19 +2700,29 @@
      "de": "Ich habe noch drei ___.",
      "answer": "Urlaubstage",
      "tr": "Daha üç izin günüm var.",
-     "hint_tr": "Birden çok gün: **Urlaubstage**."
+     "hint_tr": "Birden çok gün: **Urlaubstage**.",
+     "also_ok": [
+      "Tage Urlaub"
+     ]
     },
     {
      "de": "Für den Umzug nehme ich einen ___.",
      "answer": "Urlaubstag",
      "tr": "Taşınma için bir izin günü kullanıyorum.",
-     "hint_tr": "**einen** ile tek gün: **Urlaubstag**."
+     "hint_tr": "**einen** ile tek gün: **Urlaubstag**.",
+     "also_ok": [
+      "Tag Urlaub",
+      "Tag frei"
+     ]
     },
     {
      "de": "Wie viele ___ haben Sie noch?",
      "answer": "Urlaubstage",
      "tr": "Kaç izin gününüz kaldı?",
-     "hint_tr": "Birden çok gün: **Urlaubstage**."
+     "hint_tr": "Birden çok gün: **Urlaubstage**.",
+     "also_ok": [
+      "Tage Urlaub"
+     ]
     },
     {
      "de": "Ich habe keine ___ mehr.",
@@ -2678,20 +2822,28 @@
      "tr": "Ağustosta fazla mesai saatlerimi izin olarak kullanıyorum.",
      "hint_tr": "**ich** ile **baue ab** olur.",
      "also_ok": [
-      "bau"
+      "bau",
+      "feiere",
+      "feier"
      ]
     },
     {
-     "de": "Kann ich nächste Woche Überstunden ___?",
+     "de": "Kann ich nächste Woche Überstunden ___ und zwei Tage zu Hause bleiben?",
      "answer": "abbauen",
-     "tr": "Gelecek hafta fazla mesaimi izin olarak kullanabilir miyim?",
-     "hint_tr": "**kann** ile birlikte **abbauen** sona gelir."
+     "tr": "Gelecek hafta fazla mesaimi izin olarak kullanıp iki gün evde kalabilir miyim?",
+     "hint_tr": "**kann** ile birlikte **abbauen** sona gelir.",
+     "also_ok": [
+      "abfeiern"
+     ]
     },
     {
-     "de": "Derya hat letzte Woche Überstunden ___.",
+     "de": "Derya hat ihre Überstunden letzte Woche ___ und war drei Tage zu Hause.",
      "answer": "abgebaut",
-     "tr": "Derya geçen hafta fazla mesaisini izin olarak kullandı.",
-     "hint_tr": "Geçmişte **hat abgebaut** denir."
+     "tr": "Derya geçen hafta fazla mesaisini izin olarak kullandı ve üç gün evdeydi.",
+     "hint_tr": "Geçmişte **hat abgebaut** denir.",
+     "also_ok": [
+      "abgefeiert"
+     ]
     },
     {
      "de": "Sport hilft mir, Stress ___.",
