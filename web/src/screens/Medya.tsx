@@ -13,7 +13,7 @@ import { adimXpVer, xpVer } from "../services/ilerleme.ts";
 import { XP, bayrakli } from "../core/gun.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { loadDilNoktalari, loadIndex, loadLexicon, loadM1Gun, contentUrl, loadTemeller, loadWorld, loadGenelAdlar } from "../services/content.ts";
-import { oncekiBilinen } from "../services/onceki.ts";
+import { dersBitti, oncekiBilinen } from "../services/onceki.ts";
 import { addClaim, getMeta, itemsMap, setMeta } from "../data/db.ts";
 import { plain, Rich } from "../ui/rich.tsx";
 import { ADIM_TR, BASLANGIC, dikteSuz, adimlar, turaGore, ikinciTurVar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
@@ -120,7 +120,7 @@ export function MedyaEkrani({ day, id, tur }: { day: number; id: string; tur?: M
         const onceki = await oncekiBilinen(day, items);
         const kart = new Set([...[...items].filter(([, x]) => x.passive?.fsrs).map(([k]) => k), ...onceki.kartlar]);
         const biten = new Set(onceki.dersler);
-        for (const id of gun.dersler) if (await getMeta(`ders:${id}`)) biten.add(id);
+        for (const id of gun.dersler) if (await dersBitti(id)) biten.add(id);
         mm = dikteSuz(m, (de) => bilinmeyenler(dizin, de, { kart, biten }).length > 0);
         // ikinci turda süzülen bölüm adımsız kalabilir: o bölüm düşer; hiç madde kalmadıysa tur bitmiş sayılır (akış ilerler)
         if (tur) mm = turaGore(mm, tur);

@@ -70,10 +70,11 @@ export async function loadDilNoktalari(): Promise<Map<string, DilNoktasi | Gramm
   const [gr, dn] = await Promise.all([loadGrammar(), i.files.dn ? within(file(i.files.dn, z.array(DilNoktasi))) : Promise.resolve([] as DilNoktasi[])]);
   return new Map<string, DilNoktasi | GrammarNote>([...gr.map((g) => [g.id, g] as const), ...dn.map((d) => [d.id, d] as const)]);
 }
-/** Kesin kelime tablosu (PM-100 md. 2): gün → kartlar, dersler. Yalnız önceki günün dosyası pakette yoksa kullanılır; yoksa boş */
+/** Kesin kelime tablosu (PM-100 md. 2): gün → kartlar, dersler. Yalnız önceki günün dosyası pakette yoksa kullanılır. Pakette yoksa boş;
+ *  pakette olup okunamazsa HATA (boş K(t) ile plan kurulup kalıcı yazılmasın; ekran "Tekrar dene" gösterir; inceleme #231 P2-3) */
 export const loadKesin = (): Promise<Map<number, { kartlar: string[]; dersler: string[] }>> => loadIndex().then((i) => i.files.kesin
   ? within(file(i.files.kesin, z.object({ gunler: z.record(z.string(), z.object({ kartlar: z.array(z.string()), dersler: z.array(z.string()) })) })))
-    .then((k) => new Map(Object.entries(k.gunler).map(([g, v]) => [Number(g), v]))).catch(() => new Map())
+    .then((k) => new Map(Object.entries(k.gunler).map(([g, v]) => [Number(g), v])))
   : new Map());
 export function loadScenario(id: string): Promise<Scenario> {
   return within((async () => {

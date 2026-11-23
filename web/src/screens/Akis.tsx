@@ -9,7 +9,7 @@
  */
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Rich } from "../ui/rich.tsx";
-import { hucreDili, tabloBol } from "../core/tablo.ts";
+import { hucreDili, sikTablo, tabloBol } from "../core/tablo.ts";
 import { bilinmeyenler, kalipOrtu, kalipSecenekleri, kalipToks, kumeDizini, toks, YUVA, type Drill, type Lexeme, type LearnerItem } from "@dw/shared";
 import { loadDilNoktalari, loadFoto, loadGenelAdlar, loadResim, loadLexicon, loadM1Gun, loadTemeller, loadWorld, type FotoKayit } from "../services/content.ts";
 import { oncekiBilinen } from "../services/onceki.ts";
@@ -498,7 +498,8 @@ function HalkaSonu({ ozet, lex, sonraki, seans, devam, mola }: { ozet: ReturnTyp
  */
 function AkisTablo({ sutunlar, satirlar, alt, dar }: { sutunlar: string[]; satirlar: string[][]; /** dil noktası: başlık satır kırar, hücre boşluğu dar */ dar?: boolean; /** bu sütun (dil noktasının "örnek" cümlesi) satırın altında tam genişlikte */ alt?: number }) {
   const ana = sutunlar.map((_, i) => i).filter((i) => i !== alt);
-  const bol0 = tabloBol(ana.map((i) => sutunlar[i]!));
+  // dil noktası tablosu bölünmez (5 sütunlu cümle dizilişi tek bakışta okunmalı; inceleme #231 P1-2): hücre satır kırar
+  const bol0 = dar ? null : tabloBol(ana.map((i) => sutunlar[i]!));
   const bol = bol0 && { sabit: bol0.sabit.map((i) => ana[i]!), secilebilir: bol0.secilebilir.map((i) => ana[i]!) };
   const [sec, setSec] = useState(bol?.secilebilir[0] ?? -1);
   const goster = bol ? [...bol.sabit, sec] : ana;
@@ -507,13 +508,21 @@ function AkisTablo({ sutunlar, satirlar, alt, dar }: { sutunlar: string[]; satir
       {bol && <div class="row akis-tablo-sec" role="group" aria-label="Sütun seç" data-test="akis-tablo-sec">
         {bol.secilebilir.map((i) => <button type="button" lang="de" class={`chip${i === sec ? " on" : ""}`} aria-pressed={i === sec} data-sutun={i} onClick={() => setSec(i)}>{sutunlar[i]}</button>)}
       </div>}
-      <table class={`akis-tablo-t${dar ? " dar" : ""}`} data-test="akis-tablo-t"><thead><tr>{goster.map((i) => <th lang={bol && !bol.sabit.includes(i) ? "de" : undefined}>{sutunlar[i]}</th>)}</tr></thead>
+      <table class={`akis-tablo-t${dar ? " dar" : ""}${dar && sikTablo(sutunlar, satirlar, ana) ? " genis" : ""}`} data-test="akis-tablo-t"><thead><tr>{goster.map((i) => <th lang={bol && !bol.sabit.includes(i) ? "de" : undefined}>{sutunlar[i]}</th>)}</tr></thead>
         <tbody>{satirlar.map((r) => alt !== undefined && r[alt]
           ? <><tr class="ust">{goster.map((i) => <td lang={hucreDili(sutunlar[i] ?? "")}>{r[i]}</td>)}</tr>
               <tr class="alt"><td colSpan={goster.length} lang="de" data-test="akis-tablo-ornek">{r[alt]}</td></tr></>
           : <tr>{goster.map((i) => <td lang={hucreDili(sutunlar[i] ?? "")}>{r[i]}</td>)}</tr>)}</tbody></table>
     </>
   );
+}
+
+/** yalnız e2e: dil noktası durağının gövdesi tek başına (`#/__dil-noktasi/<id>`) */
+export function DilNoktasiVitrin({ id }: { id: string }) {
+  const [n, setN] = useState<DilNoktasiVeri | null | "yok">(null);
+  useEffect(() => { void loadDilNoktalari().then((m) => { const x = m.get(id); setN(x ? { h_tr: x.h_tr, tr: x.tr, ...(x.table ? { table: x.table } : {}), ex: x.ex } : "yok"); }); }, [id]);
+  if (n === "yok") return <p data-test="dil-noktasi-yok">yok</p>;
+  return n ? <section class="stack" data-test="akis"><DilNoktasiAdimi n={n} onBitti={() => undefined} /></section> : <Loading />;
 }
 
 /** dil noktası tablosunun örnek cümle sütunu ("örnek", "örnek cevap", "örnek (Wo?)"); yoksa undefined */

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { oncekiKume } from "./onceki.ts";
+import { akisDersBitti, oncekiKume } from "./onceki.ts";
 
 const kesin = new Map([
   [1, { kartlar: ["lx:a"], dersler: [] }], [2, { kartlar: ["lx:b"], dersler: ["r0:02-x"] }],
@@ -22,5 +22,14 @@ describe("önceki günlerin K(t)'si (PM-100 md. 2)", () => {
   it("sınama kipi: dosyalı günlerin kartları görülmüş sayılır", () => {
     const k = oncekiKume({ day: 9, dosyali, kesin, gorulmus: () => false, bitenDosyali: [], hepsiOynandi: true });
     expect([...k.kartlar].sort()).toEqual(["lx:a", "lx:b", "lx:b2", "lx:c", "lx:d"]);
+  });
+});
+
+describe("akış kaydından biten ders (inceleme #231 P2-1)", () => {
+  it("tek parçalı ya da 2. parçası biten dil durağı; 1. parça ve bitmemiş durak sayılmaz", () => {
+    expect(akisDersBitti({ biten: ["m1:8:h1", "dil:gr:a1-03:t5"] }, "gr:a1-03:t5")).toBe(true);
+    expect(akisDersBitti({ biten: ["dil:r0:02-monate:1", "dil:r0:02-monate:2"] }, "r0:02-monate")).toBe(true);
+    expect(akisDersBitti({ biten: ["dil:r0:02-monate:1"] }, "r0:02-monate")).toBe(false);
+    expect(akisDersBitti({ biten: ["m1:8:h1"] }, "dn:kucuk")).toBe(false);
   });
 });

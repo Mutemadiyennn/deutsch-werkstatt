@@ -32,3 +32,7 @@ export function oncekiKume(g: OncekiGirdi): OncekiKume {
   }
   return { kartlar, dersler, tablodan };
 }
+
+/** akış kaydında dersin dil durağı bitmiş mi: tek parçalı durak ya da 2. parça (`dil:<id>`, `dil:<id>:2`) `biten` listesinde.
+ *  1. parça yetmez (dersin kalanı henüz sunulmadı); yarıda kalan durak bitmiş sayılmaz. */
+export const akisDersBitti = (k: { biten: readonly string[] }, id: string): boolean => k.biten.includes(`dil:${id}`) || k.biten.includes(`dil:${id}:2`);

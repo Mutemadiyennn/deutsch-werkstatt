@@ -71,7 +71,7 @@ export interface AkisPolitikasi {
   /** yapboz (order) için en az sözcük */
   yapboz_min_sozcuk: number;
   adim_sn: Record<AdimTuru, number>;
-  sabit_dk: { ses: number; prova: number; okuma: number; gunsonu_ek: number };
+  sabit_dk: { ses: number; prova: number; okuma: number; gunsonu_ek: number; /** dil noktası durağı: açıklama + tablo + sesli örnekler (inceleme #231 P2-6) */ dil_noktasi: number };
   video: { kat: number; min_dk: number; max_dk: number };
 }
 const ikili = (a: readonly number[]): [number, number] => [a[0] ?? NaN, a[1] ?? NaN];
@@ -92,7 +92,7 @@ export function politikaHatalari(p: AkisPolitikasi): string[] {
   for (const k of ["seans_dk", "durak_dk", "gun_dk", "halka_kart", "halka_tekrar"] as const) aralik(k, p[k]);
   if (!(p.isinma_dk >= 0)) h.push("isinma_dk ≥ 0 olmalı");
   for (const t of ADIM_TURLERI) if (!(p.adim_sn?.[t]! > 0)) h.push(`adim_sn.${t} > 0 olmalı`);
-  for (const k of ["ses", "prova", "okuma", "gunsonu_ek"] as const) if (!(p.sabit_dk?.[k] >= 0)) h.push(`sabit_dk.${k} ≥ 0 olmalı`);
+  for (const k of ["ses", "prova", "okuma", "gunsonu_ek", "dil_noktasi"] as const) if (!(p.sabit_dk?.[k] >= 0)) h.push(`sabit_dk.${k} ≥ 0 olmalı`);
   if (!(p.video?.kat > 0) || !(p.video.min_dk <= p.video.max_dk)) h.push("video {kat > 0, min_dk ≤ max_dk} olmalı");
   return h;
 }
@@ -111,7 +111,7 @@ export interface PlanGirdi {
   /** görseli olan kartlar (seçilmiş açık fotoğraf ya da Noto Emoji): `resimden_sec` yalnız bunlarda (PM 7059008858 md. 5) */
   gorselli?: ReadonlySet<string>;
   /** dil noktaları (`gr:` grammar.json, `dn:` dn-HH.json; PM-092 md. 1): günün `dersler`indeki bu kimlikler dil noktası durağı olur */
-  dilNoktalari?: ReadonlyMap<string, unknown>;
+  dilNoktalari?: ReadonlyMap<string, { h_tr: string }>;
 }
 
 /** Dil noktası kimliği mi (`gr:` / `dn:`; tam temel ders `r0:` değil) */
@@ -569,7 +569,9 @@ class Planlayici {
     const yer = `dil:${id}`;
     const adim = this.cik({ tur: "tablo", kartlar: [], kaynak: "ders", ders: { id, oge: DIL_NOKTASI }, neden: "dil noktası: kuralı bir bakışta gör, örnekleri dinle" }, yer);
     this.biten.add(id);
-    return { id: yer, tur: "dil", seans: 0, title_tr: "Dil noktası", tahmini_dk: dk([adim]), adimlar: [adim], eski_anahtar: `ders:${id}`, neden: "yapı: bugünün dil noktası, alıştırması halkada" };
+    // başlık: konunun kısa adı ("İki parçalı fiiller: …" → "Dil noktası: İki parçalı fiiller"); süre politikadan (adım saniyesi değil)
+    const ad = (this.g.dilNoktalari?.get(id)?.h_tr ?? "").split(":")[0]!.trim();
+    return { id: yer, tur: "dil", seans: 0, title_tr: ad && ad.length <= 40 ? `Dil noktası: ${ad}` : "Dil noktası", tahmini_dk: this.pol.sabit_dk.dil_noktasi, adimlar: [adim], eski_anahtar: `ders:${id}`, neden: "yapı: bugünün dil noktası, alıştırması halkada" };
   }
 
   // ---------- gün ----------
