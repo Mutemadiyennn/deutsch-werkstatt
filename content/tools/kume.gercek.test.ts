@@ -56,3 +56,15 @@ describe("AK-3 kapısı, gerçek içerik (inceleme #168 P1-2…P1-8)", () => {
     expect(yaz("Guten Morgen!", [], [], ["Guten Tag"])).toEqual(["morgen"]);
   });
 });
+
+describe("dil noktası tablosu, gerçek grammar.json (#205 P1-1)", () => {
+  const kart = ["lx:sein", "lx:haben", "lx:sprechen", "lx:Zeit", "lx:hier", "lx:Deutsch", "lx:ihr"].filter(var_);
+  it("sein/haben ve sprechen tablosu sunulmadan çekim bilinmez; sunulunca bilinir", () => {
+    if (!var_("lx:sein") || !var_("lx:haben") || !var_("lx:sprechen") || !c.grammar.some((g) => g.id === "gr:a1-02:t2")) return;
+    for (const s of ["seid", "habt"]) expect(yaz(s, kart).length, s).toBeGreaterThan(0);
+    expect(yaz("sprecht", kart).length).toBeGreaterThan(0);
+    expect(yaz("seid habt", kart, ["gr:a1-02:t2"])).toEqual([]);
+    expect(yaz("sprecht", kart, ["gr:a1-02:t4"])).toEqual([]);
+    expect(yaz("sprichst", kart, ["gr:a1-02:t4"])).toEqual([]);
+  });
+});

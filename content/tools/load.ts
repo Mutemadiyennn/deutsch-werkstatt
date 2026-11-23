@@ -125,16 +125,22 @@ export function loadContent(dir = CDIR): Loaded {
     .filter((f) => /\/r0-\d{2}-[^/]+\.json$/.test(f))
     .map((f) => ({ file: rel(f), data: parseFile(f, TemelDers, errors) }))
     .filter((x): x is { file: string; data: TemelDers } => !!x.data);
-  // bütün günler (01…364; PM 7088043877 md. 1): ad gunDosyaNo'dan geçmeyen gun-*.json hatadır, sessizce atlanmaz
-  const m1Dosya = walk(join(dir, "m1")).filter((f) => /\/gun-[^/]*\.json$/.test(f) && !/\/video\//.test(f));
+  // bütün günler (01…364; PM 7088043877 md. 1): ad gunDosyaNo'dan geçmeyen gun-*.json hatadır, sessizce atlanmaz.
+  // Gün dosyaları m1/ kökündedir; alt klasörler (video/ klipleri vb.) gün dosyası taşımaz, oradaki gun-*.json da hata (#205 P2-3)
+  const m1Kok = join(dir, "m1");
+  const m1Dosya = walk(m1Kok).filter((f) => /\/gun-[^/]*\.json$/.test(f));
+  for (const f of m1Dosya) if (dirname(f) !== m1Kok) errors.push(`${rel(f)}: gün dosyası m1/ kökünde olmalı`);
   for (const f of m1Dosya) if (gunDosyaNo(f) === null) errors.push(`${rel(f)}: gün dosyası adı geçersiz (gun-01.json … gun-99.json, gun-100.json … gun-364.json)`);
   const m1 = m1Dosya
-    .filter((f) => gunDosyaNo(f) !== null)
+    .filter((f) => gunDosyaNo(f) !== null && dirname(f) === m1Kok)
     .map((f) => ({ file: rel(f), data: parseFile(f, Gun, errors) }))
     .filter((x): x is { file: string; data: Gun } => !!x.data);
-  const dn = walk(join(dir, "m1"))
-    .filter((f) => /\/dn-\d{2}\.json$/.test(f))
-    .map((f) => ({ file: rel(f), hafta: Number(/dn-(\d{2})\.json$/.exec(f)![1]), data: parseFile(f, z.array(DilNoktasi), errors) }))
+  // dil noktaları: dn-HH.json, HH = 01…52 iki hane; başka dn-*.json adı hata (sessizce atlanmaz; #205 P2-2)
+  const dnHafta = (f: string) => { const m = /\/dn-(\d{2})\.json$/.exec(f); const n = m ? Number(m[1]) : 0; return dirname(f) === m1Kok && n >= 1 && n <= 52 ? n : null; };
+  const dnDosya = walk(m1Kok).filter((f) => /\/dn-[^/]*\.json$/.test(f));
+  for (const f of dnDosya) if (dnHafta(f) === null) errors.push(`${rel(f)}: dil noktası dosyası adı geçersiz (m1/dn-01.json … m1/dn-52.json)`);
+  const dn = dnDosya.filter((f) => dnHafta(f) !== null)
+    .map((f) => ({ file: rel(f), hafta: dnHafta(f)!, data: parseFile(f, z.array(DilNoktasi), errors) }))
     .filter((x): x is { file: string; hafta: number; data: DilNoktasi[] } => !!x.data);
   const k1File = join(dir, "curriculum/k1.json");
   const K1 = z.object({ schema: z.number(), review: ReviewStateLoose, note_tr: z.string().optional(), cekirdek: z.array(z.object({ id: z.string() }).passthrough()), pasif: z.array(z.object({ id: z.string() }).passthrough()).default([]) });
@@ -261,6 +267,8 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
   const pt = dupes(c.patterns.map((p) => p.id), "kalıp");
   const ptById = new Map(c.patterns.map((p) => [p.id, p]));
   dupes(c.grammar.map((g) => g.id), "dilbilgisi");
+  // dil noktası kimliği bütün dn-HH.json dosyalarında tek (aynı kimlik iki dosyada olursa kume ve taught sessizce ilkini alırdı; #205 P1-2)
+  dupes(c.dn.flatMap((x) => x.data.map((n) => n.id)), "dil noktası");
   dupes(c.assess.map((a) => a.id), "seviye tespiti");
   dupes(c.scenarios.map((s) => s.data.id), "senaryo");
   const units = new Set(c.grammar.map((g) => g.unit));
@@ -377,6 +385,7 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
       const no = gunDosyaNo(file), nn = no === null ? null : gunNo(no);
       if (nn && g.id !== `m1:gun:${nn}`) errors.push(`${file}: kimlik ${g.id} dosya adıyla uyuşmuyor (m1:gun:${nn})`);
       if (nn && g.day !== no) errors.push(`${file}: day ${g.day} dosya adıyla uyuşmuyor`);
+      if (nn) for (const h of g.halkalar ?? []) if (!h.id.startsWith(`m1:${nn}:`)) errors.push(`${file}: halka ${h.id} günün önekini taşımıyor (m1:${nn}:hN)`);
       if (days.has(g.day)) errors.push(`${file}: tekrar eden gün ${g.day}`); days.add(g.day);
       const r = checkGun(g, { lexicon: lx, temel: temelIds, taught });
       errors.push(...r.errors.map((e) => `${file}: ${e}`));
@@ -480,13 +489,14 @@ export function guvenlikTara(t: string, trAlan: boolean): { tur: GuvenlikTur; k:
     ?? de(DE_HASSAS, "hassas") ?? (krieg ? { tur: "hassas" as const, k: krieg } : null) ?? trr(TR_HASSAS, "hassas");
 }
 export type B4Taban = { uyari?: Record<string, number>; hassas_onay?: string[] };
-export function icerikGuvenligi(c: Pick<Loaded, "lexemes" | "scenarios" | "temel" | "m1" | "patterns"> & Partial<Pick<Loaded, "world" | "assess" | "grammar" | "domains" | "k1">>, taban: B4Taban = {}): { hata: string[]; uyari: string[] } {
+export function icerikGuvenligi(c: Pick<Loaded, "lexemes" | "scenarios" | "temel" | "m1" | "patterns"> & Partial<Pick<Loaded, "world" | "assess" | "grammar" | "dn" | "domains" | "k1">>, taban: B4Taban = {}): { hata: string[]; uyari: string[] } {
   const hata: string[] = [], uyari: string[] = [];
   const kaynaklar: [string, unknown][] = [
     ...c.lexemes.map((l) => [l.id, l] as [string, unknown]), ...c.patterns.map((p) => [p.id, p] as [string, unknown]),
     ...c.scenarios.map((s) => [s.file, s.data] as [string, unknown]), ...c.temel.map((t) => [t.file, t.data] as [string, unknown]), ...c.m1.map((g) => [g.file, g.data] as [string, unknown]),
     ...(c.world ? [["world/world.json", c.world] as [string, unknown]] : []),
-    ...(c.assess ?? []).map((a) => [a.id, a] as [string, unknown]), ...(c.grammar ?? []).map((g) => [g.id, g] as [string, unknown]), ...(c.domains ?? []).map((d) => [`alan ${d.id}`, d] as [string, unknown])
+    ...(c.assess ?? []).map((a) => [a.id, a] as [string, unknown]), ...(c.grammar ?? []).map((g) => [g.id, g] as [string, unknown]),
+    ...(c.dn ?? []).flatMap((f) => f.data.map((n) => [`${f.file}: ${n.id}`, n] as [string, unknown])), ...(c.domains ?? []).map((d) => [`alan ${d.id}`, d] as [string, unknown])
   ];
   const pasif = new Set(c.lexemes.filter((l) => l.tier === "passive").map((l) => l.id));
   const onay = new Set(taban.hassas_onay ?? []);

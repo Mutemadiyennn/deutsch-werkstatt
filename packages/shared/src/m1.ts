@@ -8,6 +8,9 @@
 import { z } from "zod";
 import { Audio, Drill, Level, LexemeId, ReviewState, Speed } from "./content.ts";
 
+/** gün numarası alt deseni: 01…99 iki hane, 100…364 üç hane (PM 7088043877 md. 1; #205 P2-1) */
+export const GUN_NN = "(0[1-9]|[1-9]\\d|[12]\\d{2}|3[0-5]\\d|36[0-4])";
+
 /** Ortam cümlesi: transkript satırı. `t0`/`t1` (saniye) hizalamadan gelir (A9, sapma > 300 ms olan cümle yayına girmez). */
 export const MedyaCumle = z.object({
   id: z.string().min(1),
@@ -149,7 +152,7 @@ export const HalkaSahne = z.object({
   soru: z.object({ q_tr: z.string().min(1), opts: z.array(z.string().min(1)).min(2).max(4), ans: z.number().int().min(0) }).refine((q) => q.ans < q.opts.length, "cevap şıklarda yok")
 });
 export const Halka = z.object({
-  id: z.string().regex(/^m1:(\d{2}|[1-3]\d{2}):h\d+$/),
+  id: z.string().regex(new RegExp(`^m1:${GUN_NN}:h\\d+$`)),
   title_tr: z.string().min(1),
   kartlar: z.array(LexemeId).min(1).max(8),
   /** halkanın öğrettiği kalıplar: bütün olarak bilinir, parçaları tek tek bilinmez ("Guten Tag", "Für …") */
@@ -162,8 +165,10 @@ export type Halka = z.infer<typeof Halka>;
 
 /** gün kimliği ve dosya adı numarası: 01…99 iki hane, 100…364 üç hane */
 export const GUN_SON = 364;
-export const GUN_ID = /^m1:gun:(0[1-9]|[1-9]\d|[1-3]\d{2})$/;
-export const DERS_ID = /^(r0:\d{2}-[a-z0-9-]+|gr:[ab][12]-\d\d:t\d+|dn:[a-z0-9][a-z0-9:-]*)$/;
+export const GUN_ID = new RegExp(`^m1:gun:${GUN_NN}$`);
+/** dil noktası kimliği: dn: + küçük harf/rakam parçaları, aralarında tek - ya da : (dn:08-trennbar, dn:a1-08:t1) */
+const DN_ID = "dn:[a-z0-9]+(?:[-:][a-z0-9]+)*";
+export const DERS_ID = new RegExp(`^(r0:\\d{2}-[a-z0-9-]+|gr:[ab][12]-\\d\\d:t\\d+|${DN_ID})$`);
 /** gün numarasından dosya adı numarası: 8 → "08", 120 → "120" */
 export const gunNo = (day: number) => String(day).padStart(2, "0");
 /** dosya adı gun-NN.json → gün numarası (geçersiz adlar null; "gun-8.json", "gun-008.json" geçersiz) */
@@ -173,7 +178,7 @@ export function gunDosyaNo(dosya: string): number | null {
 }
 /** dil noktası durağı (`gr:` ve `dn:`): grammar.json biçimi; tablo biçimleri sunulduktan sonra bilinen biçimdir (kume.ts) */
 export const DilNoktasi = z.object({
-  id: z.string().regex(/^dn:[a-z0-9][a-z0-9:-]*$/),
+  id: z.string().regex(new RegExp(`^${DN_ID}$`)),
   h_tr: z.string().min(1),
   tr: z.string().min(1),
   table: z.object({ head: z.array(z.string()), rows: z.array(z.array(z.string())) }).optional(),
