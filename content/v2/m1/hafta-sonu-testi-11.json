@@ -1,0 +1,182 @@
+{
+ "id": "m1:hafta-sonu-testi:11",
+ "day": 77,
+ "maddeler": [
+  {
+   "id": "m1:77:t01",
+   "k": "listen_and_respond",
+   "audio_de": "Was machst du, wenn du müde bist?",
+   "speed": "normal",
+   "situation_tr": "Derya soruyor. Yorgun olunca kahve içiyorsun.",
+   "accepted": [
+    "Wenn ich müde bin, trinke ich einen Kaffee.",
+    "Ich trinke einen Kaffee.",
+    "Dann trinke ich einen Kaffee.",
+    "Wenn ich müde bin, trinke ich Kaffee.",
+    "Ich trinke Kaffee, wenn ich müde bin.",
+    "Einen Kaffee!"
+   ],
+   "why_tr": "wenn başta olunca fiil hemen gelir: **…, trinke ich**."
+  },
+  {
+   "id": "m1:77:t02",
+   "k": "order",
+   "de": "kaufe ich / eine Semmel / Wenn / Hunger habe, / ich",
+   "tr": "Acıkınca bir Semmel alırım.",
+   "accepted": [
+    "Wenn ich Hunger habe, kaufe ich eine Semmel.",
+    "Ich kaufe eine Semmel, wenn ich Hunger habe.",
+    "Wenn ich Hunger habe, dann kaufe ich eine Semmel."
+   ],
+   "why_tr": "wenn başta: virgülden sonra **kaufe ich**."
+  },
+  {
+   "id": "m1:77:t03",
+   "k": "gap",
+   "de": "Hast du einen Löffel? – Nein, ich habe ___.",
+   "tr": "Kaşığın var mı? – Hayır, yok.",
+   "accepted": [
+    "keinen",
+    "Keinen",
+    "keinen."
+   ],
+   "opts": [
+    "keinen",
+    "keine",
+    "keins"
+   ],
+   "why_tr": "**der Löffel** için **keinen** dersin."
+  },
+  {
+   "id": "m1:77:t04",
+   "k": "listen_and_respond",
+   "audio_de": "Zusammen oder getrennt?",
+   "speed": "normal",
+   "situation_tr": "Ioana'yı davet ediyorsun. Hesabı sen ödüyorsun.",
+   "accepted": [
+    "Zusammen, bitte. Ich zahle für beide.",
+    "Zusammen, bitte.",
+    "Zusammen. Ich lade sie ein.",
+    "Zusammen, ich zahle.",
+    "Bitte zusammen.",
+    "Zusammen, bitte, ich zahle alles."
+   ],
+   "why_tr": "Birlikte: **zusammen**."
+  },
+  {
+   "id": "m1:77:t05",
+   "k": "guided_response",
+   "situation_tr": "Derya ne içmek istediğini soruyor. Kibarca sütlü bir kahve iste.",
+   "prompt_de": "Was möchtest du trinken?",
+   "accepted": [
+    "Ich hätte gern einen Kaffee mit Milch.",
+    "Ich hätte gerne einen Kaffee mit Milch.",
+    "Einen Kaffee mit Milch, bitte.",
+    "Ich hätte gern einen Kaffee mit Milch, bitte.",
+    "Ich würde gern einen Kaffee mit Milch trinken.",
+    "Einen Kaffee mit Milch, gern."
+   ],
+   "why_tr": "Bir şey isterken **Ich hätte gern …**"
+  },
+  {
+   "id": "m1:77:t06",
+   "k": "transform",
+   "instr_tr": "Cümleye **Wenn** ile başla.",
+   "from_de": "Ich bleibe zu Hause, wenn es regnet.",
+   "accepted": [
+    "Wenn es regnet, bleibe ich zu Hause.",
+    "Wenn es regnet, dann bleibe ich zu Hause.",
+    "Wenn es regnet, bleibe ich daheim."
+   ],
+   "why_tr": "wenn parçası başa geçince **bleibe ich** olur."
+  },
+  {
+   "id": "m1:77:t07",
+   "k": "listen_and_respond",
+   "audio_de": "Liebe Kunden, heute sind Äpfel im Angebot: das Kilo nur ein Euro fünfzig.",
+   "speed": "normal",
+   "situation_tr": "Anonsu duydun. Ioana 'Ne indirimde?' diye soruyor.",
+   "accepted": [
+    "Äpfel sind im Angebot.",
+    "Heute sind Äpfel im Angebot.",
+    "Die Äpfel sind im Angebot, das Kilo ein Euro fünfzig.",
+    "Äpfel, das Kilo nur ein Euro fünfzig.",
+    "Die Äpfel.",
+    "Äpfel sind heute im Angebot."
+   ],
+   "why_tr": "İndirim: **im Angebot**."
+  },
+  {
+   "id": "m1:77:t08",
+   "k": "order",
+   "de": "Würden Sie / die Rechnung / bitte / mir / bringen?",
+   "tr": "Bana hesabı getirir misiniz lütfen?",
+   "accepted": [
+    "Würden Sie mir bitte die Rechnung bringen?",
+    "Würden Sie mir die Rechnung bitte bringen?",
+    "Würden Sie bitte mir die Rechnung bringen?"
+   ],
+   "why_tr": "**Würden** başta, **bringen** en sonda."
+  },
+  {
+   "id": "m1:77:t09",
+   "k": "tr_de",
+   "tr": "Kartım çalışmıyor. Nakit ödeyebilir miyim?",
+   "accepted": [
+    "Meine Karte geht nicht. Kann ich bar zahlen?",
+    "Meine Karte geht nicht. Kann ich auch bar zahlen?",
+    "Meine Karte funktioniert nicht. Kann ich bar zahlen?",
+    "Meine Karte geht nicht. Kann ich bar bezahlen?"
+   ],
+   "why_tr": "Çalışmıyor: **geht nicht**. Nakit: **bar**."
+  },
+  {
+   "id": "m1:77:t10",
+   "k": "gap",
+   "de": "Ich möchte die Jacke ___. Sie ist zu klein.",
+   "tr": "Ceketi değiştirmek istiyorum. Küçük geldi.",
+   "accepted": [
+    "umtauschen",
+    "Umtauschen",
+    "umtauschen."
+   ],
+   "opts": [
+    "umtauschen",
+    "tausche",
+    "umtausche"
+   ],
+   "why_tr": "**möchte** ile fiil en sonda bütün kalır: **umtauschen**."
+  },
+  {
+   "id": "m1:77:t11",
+   "k": "listen_and_respond",
+   "audio_de": "Möchten Sie eine Quittung?",
+   "speed": "normal",
+   "situation_tr": "Evet, iş için lazım.",
+   "accepted": [
+    "Ja, bitte, die brauche ich für die Arbeit.",
+    "Ja, bitte.",
+    "Ja, bitte, für die Arbeit.",
+    "Ja, gern, ich brauche eine.",
+    "Ja, ich brauche eine für die Arbeit.",
+    "Ja, bitte. Für die Arbeit."
+   ],
+   "why_tr": "**eine Quittung** yerine **eine** diyebilirsin."
+  },
+  {
+   "id": "m1:77:t12",
+   "k": "guided_response",
+   "situation_tr": "Kapı: kasiyer depozitolu fiyatı söylüyor. Depozitonun ne kadar olduğunu sor ve kartla ödemek istediğini söyle.",
+   "prompt_de": "Das macht zwölf Euro, mit Pfand.",
+   "accepted": [
+    "Wie viel Pfand ist das? Ich zahle mit Karte.",
+    "Wie viel Pfand ist dabei? Ich zahle mit Karte.",
+    "Wie viel ist das Pfand? Ich möchte mit Karte zahlen.",
+    "Wie viel Pfand ist das, bitte? Ich zahle mit Karte.",
+    "Wie viel Pfand? Ich zahle mit Karte.",
+    "Wie viel Pfand ist das? Mit Karte, bitte."
+   ],
+   "why_tr": "Önce **Wie viel Pfand …?**, sonra ödeme yolu."
+  }
+ ]
+}

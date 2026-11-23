@@ -1,0 +1,1400 @@
+{
+ "schema": 1,
+ "id": "m1:gun:77",
+ "day": 77,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Haftanın sınavı: kafede ve markette istemek",
+ "goal_tr": "Kasada kartın çalışmayınca başka bir ödeme yolu sorar, depozitoyu sorarsın; haftayı sınavla bitirirsin.",
+ "can_do": {
+  "id": "cd:m1:77",
+  "tr": "Kasada kartım çalışmayınca başka bir ödeme yolu sorarım."
+ },
+ "unit": "u:a2:hizmet-2",
+ "arm": "pazar",
+ "place": "pl:bahnhof",
+ "characters": [
+  "ch:lechner",
+  "ch:wimmer",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:lachen",
+  "lx:Quittung",
+  "lx:Umtausch",
+  "lx:Einkaufswagen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:77:h1",
+   "title_tr": "Alaydan önce istasyondaki market",
+   "kartlar": [
+    "lx:lachen",
+    "lx:Quittung",
+    "lx:Umtausch",
+    "lx:Einkaufswagen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wir haben viel gelacht. – Er lacht.",
+     "tr": "Çok güldük. – O gülüyor."
+    },
+    {
+     "de": "Brauchen Sie eine Quittung?",
+     "tr": "Fiş ister misiniz?"
+    },
+    {
+     "de": "Umtausch nur mit Kassenbon.",
+     "tr": "Değişim sadece fişle."
+    },
+    {
+     "de": "Ich nehme einen Einkaufswagen.",
+     "tr": "Bir alışveriş arabası alıyorum."
+    },
+    {
+     "de": "Kann ich auch bar zahlen?",
+     "tr": "Nakit de ödeyebilir miyim?"
+    },
+    {
+     "de": "Wie viel Pfand ist das?",
+     "tr": "Depozito ne kadar?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:lachen",
+     "de": "Heute haben wir viel gelacht.",
+     "tr": "Bugün çok güldük.",
+     "accepted": [
+      "Heute haben wir viel gelacht.",
+      "Wir haben heute viel gelacht.",
+      "Heute haben wir so viel gelacht."
+     ]
+    },
+    {
+     "kart": "lx:lachen",
+     "de": "Herr Wimmer lacht heute viel.",
+     "tr": "Herr Wimmer bugün çok gülüyor.",
+     "accepted": [
+      "Herr Wimmer lacht heute viel.",
+      "Heute lacht Herr Wimmer viel.",
+      "Herr Wimmer lacht heute sehr viel."
+     ]
+    },
+    {
+     "kart": "lx:Quittung",
+     "de": "Ich brauche bitte eine Quittung.",
+     "tr": "Bir fiş lütfen, ihtiyacım var.",
+     "accepted": [
+      "Ich brauche bitte eine Quittung.",
+      "Ich brauche eine Quittung, bitte.",
+      "Ich hätte gern eine Quittung."
+     ]
+    },
+    {
+     "kart": "lx:Quittung",
+     "de": "Eine Quittung? Ja, ich brauche eine.",
+     "tr": "Fiş mi? Evet, istiyorum.",
+     "accepted": [
+      "Eine Quittung? Ja, ich brauche eine.",
+      "Eine Quittung? Ja, bitte, ich brauche eine.",
+      "Eine Quittung? Ja, eine brauche ich."
+     ]
+    },
+    {
+     "kart": "lx:Umtausch",
+     "de": "Ist ein Umtausch ohne Kassenbon auch okay?",
+     "tr": "Fişsiz değişim de olur mu?",
+     "accepted": [
+      "Ist ein Umtausch ohne Kassenbon auch okay?",
+      "Geht ein Umtausch auch ohne Kassenbon?",
+      "Ist ein Umtausch auch ohne Kassenbon okay?"
+     ]
+    },
+    {
+     "kart": "lx:Umtausch",
+     "de": "Hier steht: Umtausch nur mit Kassenbon.",
+     "tr": "Burada yazıyor: değişim sadece fişle.",
+     "accepted": [
+      "Hier steht: Umtausch nur mit Kassenbon.",
+      "Hier steht, Umtausch nur mit Kassenbon.",
+      "Da steht: Umtausch nur mit Kassenbon."
+     ]
+    },
+    {
+     "kart": "lx:Einkaufswagen",
+     "de": "Ich brauche einen Euro für den Einkaufswagen.",
+     "tr": "Alışveriş arabası için bir avroya ihtiyacım var.",
+     "accepted": [
+      "Ich brauche einen Euro für den Einkaufswagen.",
+      "Für den Einkaufswagen brauche ich einen Euro.",
+      "Ich brauche für den Einkaufswagen einen Euro."
+     ]
+    },
+    {
+     "kart": "lx:Einkaufswagen",
+     "de": "Wir brauchen keinen Einkaufswagen, nur eine Tüte.",
+     "tr": "Arabaya gerek yok, sadece bir poşet.",
+     "accepted": [
+      "Wir brauchen keinen Einkaufswagen, nur eine Tüte.",
+      "Wir brauchen keinen Einkaufswagen, nur eine Tasche.",
+      "Einen Einkaufswagen brauchen wir nicht, nur eine Tüte."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Pazar öğlen, istasyondaki küçük market. Tobi kapıda alışveriş arabalarına bakıyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Brauchen wir einen Einkaufswagen?",
+      "tr": "Alışveriş arabası lazım mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nein, wir kaufen nur Wasser. Ich nehme eine Tüte.",
+      "tr": "Hayır, sadece su alıyoruz. Bir poşet alıyorum."
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Gut! Und dann schnell zum Stadtplatz.",
+      "tr": "İyi! Sonra hemen meydana."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, um zwei kommt der Zug.",
+      "tr": "Evet, alay saat ikide geliyor."
+     }
+    ],
+    "soru": {
+     "q_tr": "Ne alıyorlar?",
+     "opts": [
+      "Sadece su",
+      "Krapfen",
+      "Kostüm"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:77:v1",
+  "title_tr": "Kart geçmiyor, alay başlıyor",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Pazar öğlen, istasyondaki küçük market. Tobi korsan kostümüyle.",
+    "de": "Servus! Super, du bist da!",
+    "tr": "Selam! Süper, geldin!"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi rafı gösteriyor.",
+    "de": "Vor dem Zug kaufen wir noch Wasser. Der Laden im Bahnhof hat am Sonntag offen.",
+    "tr": "Alaydan önce bir de su alalım. İstasyondaki dükkân pazar günü açık."
+   },
+   {
+    "id": "s3",
+    "speaker": "Kassierer",
+    "sahne_tr": "Kasada genç bir kasiyer.",
+    "de": "Zwei Flaschen Wasser. Das macht zwei Euro, mit Pfand.",
+    "tr": "İki şişe su. Depozitoyla iki avro ediyor."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi şaşırıyor.",
+    "de": "Mit Pfand? Wie viel Pfand ist das?",
+    "tr": "Depozitoyla mı? Depozito ne kadar?"
+   },
+   {
+    "id": "s5",
+    "speaker": "Kassierer",
+    "sahne_tr": "Kasiyer şişeyi gösteriyor.",
+    "de": "Fünfundzwanzig Cent pro Flasche.",
+    "tr": "Şişe başına yirmi beş sent."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kartını uzatıyor.",
+    "de": "Okay. Ich zahle mit Karte.",
+    "tr": "Tamam. Kartla ödüyorum."
+   },
+   {
+    "id": "s7",
+    "speaker": "Kassierer",
+    "sahne_tr": "Kart makinesi bipliyor, ekranda kırmızı yazı.",
+    "de": "Hm, die Karte geht leider nicht.",
+    "tr": "Hım, kart maalesef geçmiyor."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi telefonunu çıkarıyor.",
+    "de": "Kann ich auch mit dem Handy zahlen?",
+    "tr": "Telefonla da ödeyebilir miyim?"
+   },
+   {
+    "id": "s9",
+    "speaker": "Kassierer",
+    "sahne_tr": "Kasiyer başını sallıyor.",
+    "de": "Leider nicht. Nur bar oder mit Karte.",
+    "tr": "Maalesef hayır. Sadece nakit ya da kart."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi sana dönüyor, mahcup.",
+    "de": "Hast du Bargeld? Ich gebe es dir morgen zurück, versprochen!",
+    "tr": "Nakdin var mı? Yarın sana geri veririm, söz!"
+   },
+   {
+    "id": "s11",
+    "speaker": "Kassierer",
+    "sahne_tr": "Kasiyer parayı alıyor.",
+    "de": "Danke. Brauchen Sie eine Quittung?",
+    "tr": "Teşekkürler. Fiş ister misiniz?"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kapıya koşuyor.",
+    "de": "Nein, danke. Schnell, der Zug fängt gleich an!",
+    "tr": "Hayır, teşekkürler. Çabuk, alay birazdan başlıyor!"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Meydan, müzik, konfeti. Tobi kalabalığı gösteriyor.",
+    "de": "Da! Das ist doch Herr Wimmer!",
+    "tr": "Şurada! Bu Herr Wimmer!"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Palyaço Herr Wimmer el sallıyor.",
+    "de": "Grüß Gott, Sie zwei! Heute bin ich wieder ein Clown.",
+    "tr": "Merhaba ikiniz! Bugün yine palyaçoyum."
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kahkahadan iki büklüm.",
+    "de": "Herr Wimmer, ich kann nicht mehr! Ich lache so viel!",
+    "tr": "Wimmer Bey, dayanamıyorum! Çok gülüyorum!"
+   },
+   {
+    "id": "s16",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer göz kırpıyor.",
+    "de": "Lachen ist gesund, Herr Lechner. Aber am Montag arbeiten wir wieder.",
+    "tr": "Gülmek sağlıklıdır Lechner Bey. Ama pazartesi yine çalışıyoruz."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15",
+     "s16"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu sahnede ne oluyor?",
+     "opts": [
+      "Tobi'nin kartı geçmiyor, sen ödüyorsun; sonra alayda Herr Wimmer'i görüyorsunuz",
+      "Market kapalı",
+      "Tobi kostümünü kaybediyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s10",
+      "s13"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Şişe başına depozito ne kadar?",
+      "opts": [
+       "Yirmi beş sent",
+       "Bir avro",
+       "On sent"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Bu dükkânda nasıl ödeyebilirsin?",
+      "opts": [
+       "Sadece nakit ya da kartla",
+       "Telefonla",
+       "Sadece kartla"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi parayı ne zaman geri veriyor?",
+      "opts": [
+       "Bugün",
+       "Yarın",
+       "Pazartesi akşamı"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s10"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s5",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "fünfundzwanzig",
+       "zwanzig",
+       "fünfzig"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s9",
+      "seviye": "orta",
+      "de": "Leider nicht. Nur bar oder mit ___.",
+      "accepted": [
+       "Karte",
+       "karte",
+       "Karte."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s8",
+      "seviye": "zor",
+      "banka": [
+       "Kann",
+       "ich",
+       "auch",
+       "mit",
+       "dem",
+       "Handy",
+       "zahlen",
+       "Karte",
+       "bar"
+      ],
+      "accepted": [
+       "Kann ich auch mit dem Handy zahlen?",
+       "kann ich auch mit dem handy zahlen",
+       "Kann ich auch mit dem Handy zahlen"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Ich gebe es dir morgen zurück, versprochen!",
+       "ich gebe es dir morgen zurück versprochen",
+       "Ich gebe es dir morgen zurück versprochen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Tobis Karte geht nicht. Ich zahle bar.",
+      "zorunlu": [
+       "Karte",
+       "bar"
+      ]
+     }
+    ],
+    "golge": [
+     "s8",
+     "s9"
+    ],
+    "cevapla": {
+     "id": "m1:77:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Tobi'nin kartı geçmedi. Kasiyere nakit ödeyeceğini söyle.",
+     "prompt_de": "Haben Sie Bargeld?",
+     "accepted": [
+      "Ja, ich zahle bar. Hier sind zwei Euro.",
+      "Ja, ich zahle bar.",
+      "Ja, hier sind zwei Euro.",
+      "Ja, ich habe Bargeld. Hier, bitte.",
+      "Ja, dann zahle ich bar.",
+      "Ja, ich zahle für ihn bar."
+     ],
+     "why_tr": "Nakit ödemek: **bar zahlen**."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:77:a1",
+   "tur": "anons",
+   "title_tr": "Market anonsu",
+   "ortam_tr": "İstasyondaki markette sıradasın. Hoparlörden anons geliyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Liebe Kunden, herzlich willkommen!",
+     "tr": "Sevgili müşterilerimiz, hoş geldiniz!"
+    },
+    {
+     "id": "c2",
+     "de": "Heute im Angebot: Bananen, das Kilo nur ein Euro neunundzwanzig.",
+     "tr": "Bugün indirimde: muz, kilosu sadece bir avro yirmi dokuz."
+    },
+    {
+     "id": "c3",
+     "de": "Und Wasser: sechs Flaschen für zwei Euro, mit Pfand.",
+     "tr": "Bir de su: altı şişe iki avro, depozitoyla."
+    },
+    {
+     "id": "c4",
+     "de": "An Kasse zwei können Sie heute nur bar zahlen.",
+     "tr": "İki numaralı kasada bugün sadece nakit ödeyebilirsiniz."
+    },
+    {
+     "id": "c5",
+     "de": "Wenn Sie mit Karte zahlen möchten, gehen Sie bitte zu Kasse eins.",
+     "tr": "Kartla ödemek isterseniz lütfen bir numaralı kasaya gidin."
+    },
+    {
+     "id": "c6",
+     "de": "Wir haben heute bis achtzehn Uhr offen.",
+     "tr": "Bugün saat on sekize kadar açığız."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Anons ne hakkında?",
+      "opts": [
+       "Bugünkü indirimler ve kasalar",
+       "Kayıp bir çocuk",
+       "Market kapanıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Hangi meyve indirimde?",
+       "opts": [
+        "Elma",
+        "Muz",
+        "Portakal"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Altı şişe su kaç avro?",
+       "opts": [
+        "İki avro",
+        "Bir yirmi dokuz",
+        "Altı avro"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "sechs",
+        "sieben",
+        "zehn"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c6",
+       "seviye": "orta",
+       "de": "Wir haben heute bis ___ Uhr offen.",
+       "accepted": [
+        "achtzehn",
+        "Achtzehn",
+        "achtzehn."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "An",
+        "Kasse",
+        "zwei",
+        "können",
+        "Sie",
+        "heute",
+        "nur",
+        "bar",
+        "zahlen",
+        "Karte",
+        "eins"
+       ],
+       "accepted": [
+        "An Kasse zwei können Sie heute nur bar zahlen.",
+        "an kasse zwei können sie heute nur bar zahlen",
+        "An Kasse zwei können Sie heute nur bar zahlen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Wenn Sie mit Karte zahlen möchten, gehen Sie bitte zu Kasse eins.",
+        "wenn sie mit karte zahlen möchten gehen sie bitte zu kasse eins",
+        "Wenn Sie mit Karte zahlen möchten gehen Sie bitte zu Kasse eins"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Anonsta ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Bananen sind im Angebot. An Kasse eins geht die Karte.",
+       "zorunlu": [
+        "Bananen",
+        "Kasse"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:77:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi anonsu kaçırdı. Ne indirimde olduğunu söyle.",
+      "prompt_de": "Was ist heute im Angebot?",
+      "accepted": [
+       "Bananen sind im Angebot, das Kilo kostet ein Euro neunundzwanzig.",
+       "Bananen sind heute im Angebot.",
+       "Bananen und Wasser sind im Angebot.",
+       "Die Bananen sind im Angebot.",
+       "Heute sind Bananen im Angebot.",
+       "Bananen, das Kilo für ein Euro neunundzwanzig."
+      ],
+      "why_tr": "İndirimdeki ürün için **… ist / sind im Angebot**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:77:a1:e1",
+    "k": "pick",
+    "q_tr": "Kartla ödeyeceksin. Hangi kasaya gitmelisin?",
+    "opts": [
+     "Bir numaralı kasaya",
+     "İki numaralı kasaya",
+     "Fark etmez"
+    ],
+    "ans": 0,
+    "why_tr": "İki numaralı kasa bugün sadece nakit alıyor.",
+    "kanit": [
+     "c4",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:77:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Derya'dan sesli mesaj",
+   "ortam_tr": "Pazar akşamı telefonunda Derya'nın mesajı var.",
+   "speaker": "ch:aksoy",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Derya!",
+     "tr": "Merhaba, ben Derya!"
+    },
+    {
+     "id": "c2",
+     "de": "Tobi sagt, Herr Wimmer war heute wieder ein Clown.",
+     "tr": "Tobi, Herr Wimmer'in bugün yine palyaço olduğunu söylüyor."
+    },
+    {
+     "id": "c3",
+     "de": "Ich lache immer noch!",
+     "tr": "Hâlâ gülüyorum!"
+    },
+    {
+     "id": "c4",
+     "de": "Wenn du morgen Zeit hast, trinken wir in der Pause einen Kaffee.",
+     "tr": "Yarın vaktin olursa molada bir kahve içelim."
+    },
+    {
+     "id": "c5",
+     "de": "Dann erzählst du mir alles. Bis morgen!",
+     "tr": "O zaman bana her şeyi anlatırsın. Yarın görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Derya ne istiyor?",
+      "opts": [
+       "Yarın molada kahve içip konuşmak",
+       "Akşam yemeğe çıkmak",
+       "Toplantıyı ertelemek"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Derya ne zaman buluşmak istiyor?",
+       "opts": [
+        "Yarın molada",
+        "Bu akşam",
+        "Cuma günü"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Derya haberi kimden duymuş?",
+       "opts": [
+        "Herr Wimmer'den",
+        "Tobi'den",
+        "Gerti'den"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c2"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Pause",
+        "Arbeit",
+        "Woche"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Wenn du morgen Zeit hast, trinken wir in der Pause einen ___.",
+       "accepted": [
+        "Kaffee",
+        "kaffee",
+        "Kaffee."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "lache",
+        "immer",
+        "noch",
+        "lachen",
+        "nicht"
+       ],
+       "accepted": [
+        "Ich lache immer noch!",
+        "ich lache immer noch",
+        "Ich lache immer noch"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Wenn du morgen Zeit hast, trinken wir in der Pause einen Kaffee.",
+        "wenn du morgen zeit hast trinken wir in der pause einen kaffee",
+        "Wenn du morgen Zeit hast trinken wir in der Pause einen Kaffee"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Derya'nın mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Derya lacht. Morgen trinken wir in der Pause einen Kaffee.",
+       "zorunlu": [
+        "Pause",
+        "Kaffee"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:77:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya'ya cevap ver: evet, molada geliyorsun ve çok güldüğünüzü söyle.",
+      "prompt_de": "Trinken wir morgen einen Kaffee?",
+      "accepted": [
+       "Ja, gern! Wir haben heute so viel gelacht.",
+       "Ja, gern. Heute haben wir viel gelacht!",
+       "Ja, klar! Wir haben so viel gelacht.",
+       "Gern! In der Pause erzähle ich dir alles.",
+       "Ja, gern, in der Pause. Wir haben so viel gelacht!",
+       "Ja, gerne! Es war so lustig."
+      ],
+      "why_tr": "Geçmişi **Wir haben … gelacht** ile anlatırsın."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:77:a2:e1",
+    "k": "pick",
+    "q_tr": "Yarın ne yapabilirsin?",
+    "opts": [
+     "Molada Derya ile kahve iç.",
+     "Derya'yı akşam ara.",
+     "Ofise gitme."
+    ],
+    "ans": 0,
+    "why_tr": "Derya yarın molada kahve içmeyi öneriyor.",
+    "kanit": [
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:77:g1",
+   "de": "Einkaufswagen",
+   "dogru_img": "empty supermarket shopping trolley",
+   "celdirici_img": [
+    "shopping basket",
+    "baby stroller",
+    "bicycle"
+   ]
+  },
+  {
+   "id": "m1:77:g2",
+   "de": "Quittung",
+   "dogru_img": "cashier handing a printed receipt to a customer",
+   "celdirici_img": [
+    "cashier handing a bag",
+    "customer holding coins",
+    "customer holding a bank card"
+   ]
+  },
+  {
+   "id": "m1:77:g3",
+   "de": "Sie lacht.",
+   "dogru_img": "woman laughing out loud",
+   "celdirici_img": [
+    "woman crying",
+    "woman sleeping",
+    "woman angry"
+   ]
+  },
+  {
+   "id": "m1:77:g4",
+   "de": "Pfand",
+   "dogru_img": "plastic bottle with deposit symbol on the label",
+   "celdirici_img": [
+    "glass of water",
+    "coffee cup",
+    "milk carton"
+   ]
+  },
+  {
+   "id": "m1:77:g5",
+   "de": "Die Karte geht nicht.",
+   "dogru_img": "card payment terminal showing an error",
+   "celdirici_img": [
+    "cash register drawer open with coins",
+    "customer counting banknotes",
+    "receipt printer"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:77:p1",
+  "title_tr": "Kapı provası: kart geçmiyor",
+  "durum_tr": "Market kasası. Su ve muz aldın. Kartla ödemek istiyorsun ama kart geçmeyecek. Cüzdanında on avro var.",
+  "karsi": "Kassiererin",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Grüß Gott! Das macht vier Euro vierzig, mit Pfand.",
+    "tr": "Merhaba! Depozitoyla dört kırk ediyor.",
+    "secenekler": [
+     {
+      "de": "Mit Pfand? Wie viel Pfand ist das?",
+      "tr": "Depozitoyla mı? Depozito ne kadar?",
+      "accepted": [
+       "Mit Pfand? Wie viel Pfand ist das?",
+       "Mit Pfand? Wie viel Pfand ist das denn?",
+       "Wie viel Pfand ist das, bitte?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi. Anlamadığını hemen sordun."
+     },
+     {
+      "de": "Okay. Ich zahle mit Karte, bitte.",
+      "tr": "Tamam. Kartla ödüyorum, lütfen.",
+      "accepted": [
+       "Okay. Ich zahle mit Karte, bitte.",
+       "Okay, ich zahle mit Karte.",
+       "Gut, ich zahle mit Karte, bitte."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Tamam. Kartını uzattın."
+     },
+     {
+      "de": "Ohne Pfand, bitte.",
+      "tr": "Depozitosuz, lütfen.",
+      "accepted": [
+       "Ohne Pfand, bitte.",
+       "Bitte ohne Pfand."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Depozito şişe fiyatına eklenir. Ne kadar olduğunu sorabilirsin: **Wie viel Pfand ist das?**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Fünfundzwanzig Cent pro Flasche. Bar oder mit Karte?",
+    "tr": "Şişe başına yirmi beş sent. Nakit mi, kart mı?",
+    "secenekler": [
+     {
+      "de": "Mit Karte, bitte. Hier ist meine Karte.",
+      "tr": "Kartla, lütfen. Kartım burada.",
+      "accepted": [
+       "Mit Karte, bitte. Hier ist meine Karte.",
+       "Mit Karte. Hier ist meine Karte.",
+       "Mit Karte, bitte, hier ist sie."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Tamam."
+     },
+     {
+      "de": "Mit Karte, wenn das geht.",
+      "tr": "Mümkünse kartla.",
+      "accepted": [
+       "Mit Karte, wenn das geht.",
+       "Mit Karte, wenn es geht.",
+       "Wenn das geht, mit Karte."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar. wenn ile yumuşattın."
+     },
+     {
+      "de": "Ja.",
+      "tr": "Evet.",
+      "accepted": [
+       "Ja.",
+       "Ja, bitte."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Seçmeli soru: **Bar** ya da **Mit Karte** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Hm. Ihre Karte geht leider nicht.",
+    "tr": "Hım. Kartınız maalesef geçmiyor.",
+    "secenekler": [
+     {
+      "de": "Kann ich auch bar zahlen? Ich habe zehn Euro.",
+      "tr": "Nakit de ödeyebilir miyim? On avrom var.",
+      "accepted": [
+       "Kann ich auch bar zahlen? Ich habe zehn Euro.",
+       "Kann ich auch bar zahlen? Ich habe zehn Euro dabei.",
+       "Kann ich bar zahlen? Ich habe zehn Euro."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Kapıdan geçtin! Başka bir ödeme yolunu sordun."
+     },
+     {
+      "de": "Oh! Geht es vielleicht mit dem Handy?",
+      "tr": "Aa! Belki telefonla olur mu?",
+      "accepted": [
+       "Oh! Geht es vielleicht mit dem Handy?",
+       "Geht es vielleicht mit dem Handy?",
+       "Oh, geht es auch mit dem Handy?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi. Başka bir yol sordun."
+     },
+     {
+      "de": "Warum? Meine Karte ist gut!",
+      "tr": "Neden? Kartım sağlam!",
+      "accepted": [
+       "Warum? Meine Karte ist gut!",
+       "Meine Karte ist gut!",
+       "Warum geht sie nicht?"
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Kızmak çözmez. Başka bir yol sor: **Kann ich auch bar zahlen?**"
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Mit dem Handy geht es hier leider nicht. Nur bar.",
+    "tr": "Burada telefonla maalesef olmuyor. Sadece nakit.",
+    "secenekler": [
+     {
+      "de": "Okay, dann zahle ich bar. Hier sind zehn Euro.",
+      "tr": "Tamam, o zaman nakit ödüyorum. Buyurun on avro.",
+      "accepted": [
+       "Okay, dann zahle ich bar. Hier sind zehn Euro.",
+       "Gut, dann zahle ich bar. Hier sind zehn Euro.",
+       "Dann zahle ich bar. Hier sind zehn Euro."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Hemen çözdün."
+     },
+     {
+      "de": "Kein Problem. Ich zahle bar.",
+      "tr": "Sorun değil. Nakit ödüyorum.",
+      "accepted": [
+       "Kein Problem. Ich zahle bar.",
+       "Kein Problem, ich zahle bar.",
+       "Kein Problem, dann bar."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Sakin ve net."
+     },
+     {
+      "de": "Dann zahle ich mit Handy.",
+      "tr": "O zaman telefonla öderim.",
+      "accepted": [
+       "Dann zahle ich mit Handy.",
+       "Mit Handy, bitte."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Telefon burada geçmiyor. **Dann zahle ich bar.** de."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Danke. Fünf Euro sechzig zurück. Brauchen Sie eine Quittung?",
+    "tr": "Teşekkürler. Beş altmış para üstü. Fiş ister misiniz?",
+    "secenekler": [
+     {
+      "de": "Ja, bitte, für die Arbeit.",
+      "tr": "Evet, lütfen, iş için.",
+      "accepted": [
+       "Ja, bitte, für die Arbeit.",
+       "Ja, bitte. Für die Arbeit.",
+       "Ja, bitte, die brauche ich für die Arbeit."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Nedenini de söyledin."
+     },
+     {
+      "de": "Nein, danke, ich brauche keine.",
+      "tr": "Hayır, teşekkürler, istemiyorum.",
+      "accepted": [
+       "Nein, danke, ich brauche keine.",
+       "Nein danke, ich brauche keine.",
+       "Nein, danke. Keine, bitte."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **keine** ile ismi tekrar etmedin."
+     },
+     {
+      "de": "Ja, keine.",
+      "tr": "Evet, hiç.",
+      "accepted": [
+       "Ja, keine.",
+       "Ja, keine Quittung."
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "**Ja** ile **keine** çelişiyor. **Ja, bitte** ya da **Nein, danke** de."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Bitte schön. Einen schönen Sonntag noch!",
+    "tr": "Buyurun. İyi pazarlar!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Depozitoyu sordun, kart geçmeyince başka bir ödeme yolunu sordun ve fiş konusunu kibarca çözdün."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Kasadaki tabela",
+  "metin_de": "Liebe Kunden! Heute können Sie an Kasse zwei nur bar zahlen. An Kasse eins geht auch die Karte. Für den Einkaufswagen brauchen Sie einen Euro. Umtausch nur mit Kassenbon. Am Sonntag haben wir von zehn bis achtzehn Uhr offen.",
+  "metin_tr": "Sevgili müşterilerimiz! Bugün iki numaralı kasada sadece nakit ödeyebilirsiniz. Bir numaralı kasada kart da geçiyor. Alışveriş arabası için bir avroya ihtiyacınız var. Değişim sadece fişle. Pazar günleri ondan on sekize kadar açığız.",
+  "sorular": [
+   {
+    "kind": "gist",
+    "q_tr": "Tabela ne anlatıyor?",
+    "opts": [
+     "Ödeme ve market kuralları",
+     "Bir iş ilanı",
+     "Bir parti daveti"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     1
+    ],
+    "id": "m1:77:o1"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Kartla nerede ödersin?",
+    "opts": [
+     "Bir numaralı kasada",
+     "İki numaralı kasada",
+     "Hiçbir yerde"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ],
+    "id": "m1:77:o2"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Alışveriş arabası için ne lazım?",
+    "opts": [
+     "Bir avro",
+     "Kart",
+     "Fiş"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ],
+    "id": "m1:77:o3"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Değişim için ne lazım?",
+    "opts": [
+     "Fiş",
+     "Kimlik",
+     "Hiçbir şey"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ],
+    "id": "m1:77:o4"
+   },
+   {
+    "id": "m1:77:o5",
+    "k": "guided_response",
+    "situation_tr": "Tobi soruyor: kart hangi kasada geçiyor? Tabelayı okudun.",
+    "prompt_de": "Wo geht die Karte?",
+    "accepted": [
+     "An Kasse eins geht die Karte.",
+     "An Kasse eins.",
+     "Die Karte geht an Kasse eins.",
+     "Kasse eins, nicht Kasse zwei.",
+     "An Kasse eins geht sie.",
+     "Nur an Kasse eins."
+    ],
+    "why_tr": "Yeri **an Kasse eins** ile söylersin."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Tobi'ye kısa mesaj yaz: gün için teşekkür et ve çok güldüğünüzü söyle.",
+   "ornek_de": "Hallo Tobi, danke für heute! Wir haben viel gelacht.",
+   "zorunlu": [
+    "gelacht"
+   ],
+   "accepted_kaliplar": [
+    "Hallo Tobi, danke für ___!",
+    "Wir haben ___ gelacht."
+   ],
+   "kontrol_tr": [
+    "Teşekkür ettin mi?",
+    "gelacht cümlenin sonunda mı?",
+    "Tobi'ye selam verdin mi?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:77:s",
+  "maddeler": [
+   {
+    "id": "m1:77:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich nehme einen Einkaufswagen und gehe zur Kasse.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich nehme einen Einkaufswagen und gehe zur Kasse.",
+     "ich nehme einen einkaufswagen und gehe zur kasse",
+     "Ich nehme einen Einkaufswagen und gehe zur Kasse"
+    ],
+    "why_tr": "**Einkaufswagen** alışveriş arabası."
+   },
+   {
+    "id": "m1:77:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Leider geht Ihre Karte heute nicht.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Leider geht Ihre Karte heute nicht.",
+     "leider geht ihre karte heute nicht",
+     "Leider geht Ihre Karte heute nicht"
+    ],
+    "why_tr": "**geht nicht** çalışmıyor demek."
+   },
+   {
+    "id": "m1:77:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Auf jeder Flasche sind fünfundzwanzig Cent Pfand.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Auf jeder Flasche sind fünfundzwanzig Cent Pfand.",
+     "auf jeder flasche sind fünfundzwanzig cent pfand",
+     "Auf jeder Flasche sind fünfundzwanzig Cent Pfand"
+    ],
+    "why_tr": "**Pfand** depozito."
+   },
+   {
+    "id": "m1:77:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Am Sonntag haben alle sehr viel gelacht.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Am Sonntag haben alle sehr viel gelacht.",
+     "am sonntag haben alle sehr viel gelacht",
+     "Am Sonntag haben alle sehr viel gelacht"
+    ],
+    "why_tr": "**gelacht** en sonda."
+   },
+   {
+    "id": "m1:77:s5",
+    "k": "tr_de",
+    "tr": "Nakit de ödeyebilir miyim?",
+    "accepted": [
+     "Kann ich auch bar zahlen?",
+     "Kann ich auch bar bezahlen?",
+     "Kann ich bar zahlen?",
+     "Geht auch bar?"
+    ],
+    "why_tr": "Başka yol sorarken **auch**: **Kann ich auch bar zahlen?**"
+   },
+   {
+    "id": "m1:77:s6",
+    "k": "tr_de",
+    "tr": "Telefonla ödeyebilir miyim?",
+    "accepted": [
+     "Kann ich mit dem Handy zahlen?",
+     "Kann ich mit dem Handy bezahlen?",
+     "Geht es mit dem Handy?",
+     "Kann ich auch mit dem Handy zahlen?"
+    ],
+    "why_tr": "Telefonla: **mit dem Handy**."
+   },
+   {
+    "id": "m1:77:s7",
+    "k": "tr_de",
+    "tr": "İş için bir fişe ihtiyacım var.",
+    "accepted": [
+     "Ich brauche eine Quittung für die Arbeit.",
+     "Für die Arbeit brauche ich eine Quittung.",
+     "Ich brauche für die Arbeit eine Quittung.",
+     "Ich brauche bitte eine Quittung für die Arbeit."
+    ],
+    "why_tr": "Fiş: **die Quittung**."
+   },
+   {
+    "id": "m1:77:s8",
+    "k": "tr_de",
+    "tr": "Şişelerde ne kadar depozito var?",
+    "accepted": [
+     "Wie viel Pfand ist auf den Flaschen?",
+     "Wie viel Pfand ist auf der Flasche?",
+     "Wie viel Pfand haben die Flaschen?",
+     "Wie viel Pfand ist das?"
+    ],
+    "why_tr": "Miktar sorusu: **Wie viel …?**"
+   },
+   {
+    "id": "m1:77:s9",
+    "k": "guided_response",
+    "situation_tr": "Kasiyer kartının geçmediğini söylüyor. Cüzdanında nakit var. Sakin ol ve nakit öde.",
+    "prompt_de": "Ihre Karte geht leider nicht.",
+    "accepted": [
+     "Kein Problem, dann zahle ich bar.",
+     "Kein Problem. Dann zahle ich bar.",
+     "Okay, dann zahle ich bar.",
+     "Dann zahle ich bar, kein Problem.",
+     "Kein Problem, ich zahle bar.",
+     "Gut, dann zahle ich eben bar."
+    ],
+    "why_tr": "**dann** başta olunca fiil hemen gelir: **dann zahle ich bar**."
+   },
+   {
+    "id": "m1:77:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Heute im Angebot: Tomaten, das Kilo nur zwei Euro.",
+    "speed": "normal",
+    "situation_tr": "Anonsu duydun. Tobi 'Ne indirimde?' diye soruyor. Cevap ver.",
+    "accepted": [
+     "Tomaten sind im Angebot.",
+     "Heute sind Tomaten im Angebot.",
+     "Die Tomaten sind im Angebot, das Kilo zwei Euro.",
+     "Tomaten, das Kilo für zwei Euro.",
+     "Tomaten! Nur zwei Euro das Kilo.",
+     "Die Tomaten sind heute im Angebot."
+    ],
+    "why_tr": "İndirimdeki ürün: **… sind im Angebot**."
+   },
+   {
+    "id": "m1:77:s11",
+    "k": "guided_response",
+    "situation_tr": "Kapı: market kasasındasın. Kartın geçmiyor. Kibarca başka bir ödeme yolu sor.",
+    "prompt_de": "Tut mir leid, Ihre Karte funktioniert nicht.",
+    "accepted": [
+     "Kann ich auch bar zahlen oder mit dem Handy?",
+     "Kann ich auch bar zahlen?",
+     "Geht es vielleicht mit dem Handy? Oder bar?",
+     "Kann ich bar zahlen? Ich habe Bargeld.",
+     "Oh! Kann ich mit dem Handy zahlen?",
+     "Dann zahle ich bar. Geht das?"
+    ],
+    "why_tr": "Başka yol sorarken: **Kann ich auch … zahlen?**"
+   }
+  ],
+  "sesli": [
+   "m1:77:s9",
+   "m1:77:s10"
+  ],
+  "dikte": [
+   "m1:77:s1",
+   "m1:77:s2",
+   "m1:77:s3",
+   "m1:77:s4"
+  ]
+ }
+}
