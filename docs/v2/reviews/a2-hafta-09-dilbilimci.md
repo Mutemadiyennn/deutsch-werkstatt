@@ -167,3 +167,40 @@ Kaynak: `docs/v2/reviews/orneklem/a2-hafta-09.md` (30/30 GEÇTİ; sayıya girmey
 - Öğrencinin kendi ailesi (57, 62 "meine Familie / meine Eltern"): WORLD karakteri değil.
 
 Açık kalan: B2 ve yukarıdaki "bırakılanlar"ın ilk maddesi (ikisi aynı karar). B4–B7 değişmedi.
+
+## Hafta kapısı (4. tur, 2026-11-23)
+
+Kaynak: `docs/v2/reviews/a2-hafta-09-kapi.md` (`kapi9.sh` ile yeniden üretildi). **Sonuç: GEÇTİ.**
+
+| Ölçüt | Önce | Sonra |
+|---|---:|---:|
+| Öğretilmeden istenen, kesin | 23 (+2 test ve görülmemişte) | 0 |
+| Öğretilmeden istenen, sınırda | 63 | 0 |
+| Anlaşılmayan karşı soru | 35 | 0 |
+| Hafta sonu testi | %58 (7/12) | %100 (12/12) |
+| Görülmemiş durum | 2/4 | 7/7 |
+| Sınanmayan can_do | 57, 58, 60 | yok |
+
+Denetimler: dikiş `İhlal: 0`; `content:validate` yalnız iki şema sınıfı; `h9.sh val` yalnız üç izinli sınıf; hafta içi tekrar eden cümle yok.
+
+**Değişen cümleler (öğretilmemiş sözcük çıktı):**
+- 57: "Tobi hilft einer Freundin in Mathe." → "Derya ist sehr gut in Mathe."; "Ich mache regelmäßig Sport." → "Ich arbeite regelmäßig am Wochenende."; "Tobi spielt regelmäßig Fußball." → "Tobi kommt regelmäßig zu spät."; s8 → "Arbeitest du regelmäßig am Wochenende?".
+- 58: "Ioana braucht …" → "Ich brauche für Freitag noch eine Unterkunft."; s2 "… mit Ioana telefoniert" → "Herr Pichler hat gestern die Heizung repariert.".
+- 59: "… ruft Herrn Pichler" → "… ruft den Hausmeister"; s1 "später kommt" → "zu spät kommt".
+- 60: prova "Morgen bringe ich Ihnen einen Kuchen." → "Morgen bekommen Sie einen Kuchen.".
+- 61: s3 "den nächsten Termin" → "endlich einen Termin".
+- 62: s3 "Urlaub in Italien" → "Mein Urlaub ist schon ein Jahr her."; s5 "Yemeği kendim pişirdim" → "Keki kendim yaptım" (selbst gemacht).
+- 63: s11'de "Schade" içermeyen üç kabul öne alındı, durum metni "Vazgeçme: …" oldu.
+- Test: t06 "nach Passau" → "nach Hause"; t11 "Herr Pichler stellt …" → "Ich stelle den Müll vor die Tür.".
+
+**Karşı tarafın replikleri (öğretilmiş sözcüklerle):** 58 Pichler "grüß Gott?" → "guten Abend?", "Ah, …" çıktı, "zeige … gebe" → "Dann gehen wir in den Keller, und Sie bekommen den Schlüssel."; 59 "nach dem Ton" → "Bitte sprechen Sie jetzt.", iki "Oh" çıktı; 60 Brandl "Grüß Gott!" → "Guten Tag!", "Oh" çıktı; 61 "Wartest du immer noch?" → "Bist du immer noch am Telefon?", "worum geht's" → "was haben Sie denn?", "trage ich Sie ein" → "dann haben Sie jetzt einen Termin"; 63 "das Rezept liegt … hier" → "ist am Dienstag fertig"; görülmemiş g4 açılışı "Praxis Dr. Lange, guten Tag?".
+
+**Gösterilen biçimler (kalıp satırı ya da dil noktası tablosu):**
+- Kalıp satırları: 58 h1 "Suchst du eine …?", "Ich habe … gefunden.", "Ich brauche …"; 58 h2 "Das ist die neue Nachbarin."; 59 h2 "Warum lernst du Deutsch? – Weil …", "Ich bleibe zu Hause, weil …"; 60 h1 "Ich verstehe … nicht.", "Ich bitte dich um … – Er bittet mich um …"; 60 h2 "Ich lasse … zu Hause.", "Lass mich bitte …"; 61 h1 "Grüß Gott!", "Ich versuche es noch einmal. – Ich habe es schon versucht."; 61 h2 "Passt Ihnen das? – Ja, das passt."; 62 h1 "Ich stelle … – Ich habe … gestellt."; 62 h2 "Du hast recht. – Da haben Sie recht.", "Ich habe … geholfen."; 63 h1 "Ich brauche einen neuen Termin.".
+- Tablo satırları: t2 "anfangen · hat angefangen"; t3 "reparieren · hat repariert", "reservieren · hat reserviert"; t5 "geschlafen habe", "gewartet habe", "geworden ist".
+
+**Yeni görülmemiş durumlar:** g5 (cd:m1:57, otobüs durağında Herr Yıldız, cumartesiyi anlat), g6 (cd:m1:58, yemekhanede Frau Lindner, yeni ev), g7 (cd:m1:60, asansörde Herr Schmid, yorgunluğun sebebi). Her birinde 5–6 kabul.
+
+**Kalan sınırda: yok.** Düzenli biçimler de (brauche, versuche, lasse) kalıp satırıyla gösterildi; gerekçeyle bırakılan madde olmadı.
+
+**Bu turun getirdikleri (okur ve örneklem bu satırları görmedi):** 17 yeni kalıp satırının Türkçesi, 6 yeni tablo satırı, 3 yeni görülmemiş durum ve yukarıdaki değişen cümleler. Bazı halkalarda kalıp sayısı 4'e çıktı (58 h1, 60 h1, 60 h2, 61 h1, 61 h2, 62 h2). 60 h2'deki "Lass mich bitte …" kalıbının Türkçesi ("Lütfen bırak da … yapayım.") okurun gözünden geçmeli.

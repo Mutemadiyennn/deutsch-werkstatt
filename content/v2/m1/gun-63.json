@@ -51,6 +51,10 @@
     {
      "de": "Wie geht es weiter? – Erzähl weiter!",
      "tr": "Şimdi ne olacak? – Anlatmaya devam et!"
+    },
+    {
+     "de": "Ich brauche einen neuen Termin.",
+     "tr": "Yeni bir randevuya ihtiyacım var."
     }
    ],
    "gorev_cumleleri": [
@@ -1014,8 +1018,8 @@
    },
    {
     "id": "n6",
-    "de": "Kein Problem, das Rezept liegt am Dienstag hier. Wiederhören!",
-    "tr": "Sorun değil, reçete salı günü burada hazır olur. Hoşça kalın!",
+    "de": "Kein Problem, das Rezept ist am Dienstag fertig. Wiederhören!",
+    "tr": "Sorun değil, reçete salı günü hazır. Hoşça kalın!",
     "secenekler": [
      {
       "de": "Vielen Dank, Frau Huber! Auf Wiederhören!",
@@ -1253,9 +1257,12 @@
    {
     "id": "m1:63:s11",
     "k": "guided_response",
-    "situation_tr": "Haftanın provası. Frau Huber perşembe sabahı dolu diyor. Üzüldüğünü söyle ve perşembe öğleden sonrayı ya da başka bir günü sor.",
+    "situation_tr": "Haftanın provası. Frau Huber perşembe sabahı dolu diyor. Vazgeçme: perşembe öğleden sonrayı ya da başka bir günü sor.",
     "prompt_de": "Donnerstag um acht ist leider schon alles voll.",
     "accepted": [
+     "Haben Sie am Donnerstag am Nachmittag noch etwas frei?",
+     "Geht es am Donnerstag am Nachmittag?",
+     "Und am Freitag? Haben Sie da noch etwas frei?",
      "Schade. Haben Sie am Donnerstag am Nachmittag noch etwas frei?",
      "Schade. Geht es am Donnerstag am Nachmittag?",
      "Schade. Und am Freitag? Haben Sie da noch etwas frei?",
