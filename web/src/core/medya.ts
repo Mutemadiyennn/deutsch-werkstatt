@@ -136,3 +136,24 @@ export function gecerliKonum(p: MedyaIlerleme | undefined, m: Medya): MedyaIlerl
   const n = step === "ayrinti" ? b.ayrinti.length : step === "dikte" ? b.dikte.length : step === "golge" ? b.golge.length : 1;
   return p.k < n ? p : { ...p, k: 0 };
 }
+
+/** Dikte basamağının öğrenciden istediği Almanca (seçilen sözcük, boşluğa giren, sıralanan ya da yazılan cümle, özet örneği) */
+export function dikteCevabi(d: Dikte): string {
+  switch (d.seviye) {
+    case "kolay": return d.opts[d.ans] ?? "";
+    case "orta": case "zor": case "usta": return d.accepted[0] ?? "";
+    case "gercek": return d.ornek_de;
+  }
+}
+/**
+ * Önce öğret sonra iste (1. gün öğrenci simülasyonu P0-1; PM #12 7063091182 önerisi a): akış günü medya ekranında, cevabında
+ * öğrencinin o ana kadar bilmediği sözcük geçen dikte basamağı atlanır. Kart ve halka ilerledikçe basamaklar geri gelir.
+ */
+export function dikteSuz(m: Medya, bilinmiyor: (de: string) => boolean): Medya {
+  // "Sen ne derdin?" (cevapla) da üretimdir: kabul edilen ilk cevap bilinmeyen sözcük taşıyorsa o gün sorulmaz
+  const cevap = (c: NonNullable<Bolum["cevapla"]>) => ((c as { accepted?: string[] }).accepted?.[0] ?? "");
+  return { ...m, bolumler: m.bolumler.map((b) => {
+    const { cevapla, ...geri } = b;
+    return { ...geri, dikte: b.dikte.filter((d) => !bilinmiyor(dikteCevabi(d))), ...(cevapla && !bilinmiyor(cevap(cevapla)) ? { cevapla } : {}) };
+  }) };
+}

@@ -42,6 +42,8 @@ export interface Adim {
   /** dersin öğesi (K8): kelime/kalıp `teach` ya da `drills` maddesi; birleşen kalıpta bütün `teach` kimlikleri `ogeler`de */
   ders?: { id: string; oge: string; ogeler?: string[] };
 }
+/** gün sonu "kendini dene" maddeleri dersin değil günün sınavından gelir (`Adim.ders.id`) */
+export const GUN_SINAVI = "gun_sinavi";
 export type DurakTuru = "isinma" | "ses" | "halka" | "dil" | "video" | "prova" | "okuma" | "gunsonu";
 export interface Durak {
   id: string; tur: DurakTuru; seans: number; title_tr: string; tahmini_dk: number; adimlar: Adim[];
@@ -103,6 +105,8 @@ export interface PlanGirdi {
   tohum: string;
   simdi: Date;
   politika?: AkisPolitikasi;
+  /** görseli olan kartlar (seçilmiş açık fotoğraf ya da Noto Emoji): `resimden_sec` yalnız bunlarda (PM 7059008858 md. 5) */
+  gorselli?: ReadonlySet<string>;
 }
 
 /** Akış günü mü (AK-5): `halkalar` boş değilse. Değilse planGun null döner ve çağıran eski düzene düşer. */
@@ -169,13 +173,30 @@ class Planlayici {
   constructor(private readonly g: PlanGirdi, private readonly H: Halka[], private readonly pol: AkisPolitikasi) {
     this.lex = g.dizin.kartlar;
     this.r = rng(g.tohum);
-    this.yeni = new Set(g.gun.yeni_kartlar.filter((c) => this.lex.has(c)));
+    // bugünün kartı = günün listesi + halkaların kartları. Halkada tanıtılan her kart kapıda "bugünün kartı"dır: liste ile halkalar
+    // uyuşmasa da (e2e fikstürü gerçek günün halkalarını alır) hiçbir kart kendi tanıtımından önce sorulmaz (PM 7067321013 F1).
+    // Sıra: önce günün listesi (içerikte ikisi aynı küme; plan değişmez).
+    this.yeni = new Set([...g.gun.yeni_kartlar, ...H.flatMap((h) => h.kartlar)].filter((c) => this.lex.has(c)));
     this.tanitilan = new Set(g.oncekiKartlar);
   }
 
   // ---------- kapı ----------
   private K(ek: string[][] = []): Bilinen { return { kart: this.tanitilan, biten: this.g.bitenDersler, kaliplar: [...this.ogretilenKalip, ...ek] }; }
   private bilinmeyen(de: string, haric: string[] = [], ek: string[][] = []): number { return bilinmeyenler(this.g.dizin, de, this.K(ek), haric).length; }
+
+  /**
+   * Gün sonu "kendini dene" (PM 7059008858 md. 4): günün sınav maddelerinden en çok 4'ü, önce her türden biri (duy, Türkçeden
+   * Almancaya, cevap ver). Madde gün sonundaki K(t) kapısından geçmelidir (öğretilmeyen istenmez); geçen yoksa durak boş kalır.
+   */
+  private kendiniDene(gun: { day: number; gun_sinavi?: { maddeler: Drill[] } }): Adim[] {
+    const metin = (m: Drill) => (m.k === "listen_and_respond" ? m.audio_de : "accepted" in m ? m.accepted[0] : undefined) ?? "";
+    const uygun = (gun.gun_sinavi?.maddeler ?? []).filter((m) => (m.k === "listen_and_respond" || m.k === "tr_de" || m.k === "guided_response") && metin(m) && this.bilinmeyen(metin(m)) === 0);
+    const sec: Drill[] = [];
+    for (const k of ["listen_and_respond", "tr_de", "guided_response"]) { const m = uygun.find((x) => x.k === k); if (m) sec.push(m); }
+    for (const m of uygun) { if (sec.length >= 4) break; if (!sec.includes(m)) sec.push(m); }
+    return sec.slice(0, 4).map((m) => ({ id: `gunsonu:${gun.day}:${m.id}`, tur: "ders_madde" as AdimTuru, kip: KIP.ders_madde, kartlar: [], kaynak: "ders" as const, sn: 45,
+      neden: "kendini dene: bugün öğrendiklerinle", ders: { id: GUN_SINAVI, oge: m.id } }));
+  }
   private gorevGecer(de: string, haric: string[] = []): boolean { return this.bilinmeyen(de, haric) <= this.pol.gorev_bilinmeyen_max; }
   private gosterimGecer(de: string, ek: string[][] = []): boolean { return this.bilinmeyen(de, [], ek) <= this.pol.gosterim_bilinmeyen_max; }
   private cerceveMi(t: string): boolean { return kartsizMi(this.g.dizin, t); }
@@ -411,7 +432,7 @@ class Planlayici {
       if (form) secenek.push({ tur: "gap", kartlar: [c], cumle: form.de.replace(/___/g, form.answer), haric: toks(form.answer.replace(/…/g, " ")), kaynak: "halka", neden: `${l.de}: cümlede boşluk` });
       const orderC = gorev.find((de) => toks(de).length >= pol.yapboz_min_sozcuk);
       if (orderC) secenek.push({ tur: "order", kartlar: [c], cumle: orderC, kaynak: "halka", neden: `${l.de}: cümleyi kur` });
-      for (const t2 of turleri(l)) secenek.push({ tur: t2, kartlar: [c], kaynak: "halka", neden: `${l.de}: ${TUR_NEDEN[t2]}` });
+      for (const t2 of turleri(l, this.g.gorselli)) secenek.push({ tur: t2, kartlar: [c], kaynak: "halka", neden: `${l.de}: ${TUR_NEDEN[t2]}` });
       // üretim cümleleri: tanıtım ve yapboz cümlesinden farklı (P2-5); söyle de aday (P1-5)
       const uretim = gorev.filter((de) => de !== orderC);
       if (uretim[0]) secenek.push({ tur: "dikte", kartlar: [c], cumle: uretim[0], kaynak: "halka", neden: `${l.de}: duyduğunu yaz` });
@@ -594,7 +615,7 @@ class Planlayici {
       if (hi < halkalar.length - 1) duraklar.push(...bekleyen.splice(0));
     });
     duraklar.push(...bekleyen.splice(0), ...Object.entries(ara).filter(([k]) => +k >= halkalar.length).flatMap(([, d]) => d));
-    const gs = this.yerlestir(gunSonuEk, "gunsonu", halkalar.at(-1)?.adimlar ?? []);
+    const gs = [...this.yerlestir(gunSonuEk, "gunsonu", halkalar.at(-1)?.adimlar ?? []), ...this.kendiniDene(gun)];
     duraklar.push({ ...sabit("gunsonu", `gunsonu:${gun.day}`, "Gün sonu", Math.max(pol.sabit_dk.gunsonu_ek, dk(gs) + pol.sabit_dk.gunsonu_ek), `m1:gun:${gun.day}`, "bugün neyi yapabiliyorsun: 4 kısa madde"), adimlar: gs });
     // son halka eski Bahçe anahtarını yazar (AK-6)
     const sonHalka = [...duraklar].reverse().find((d) => d.tur === "halka");
@@ -625,9 +646,9 @@ class Planlayici {
 const TUR_NEDEN: Partial<Record<AdimTuru, string>> = {
   listen_meaning: "duy, anlamını seç", resimden_sec: "duy, resmini seç", article: "artikeli", colloc: "birlikte geldiği sözcük", tr_de: "Almancasını kur"
 };
-function turleri(l: Lexeme): AdimTuru[] {
-  const t: AdimTuru[] = ["listen_meaning"];
-  if (l.img) t.push("resimden_sec");
+function turleri(l: Lexeme, gorselli?: ReadonlySet<string>): AdimTuru[] {
+  // görseli olan kartta "duy" kipinin ilk adayı resimden seç (TARGET3b 3; görsel gelmezse adım dinle-anlama düşer)
+  const t: AdimTuru[] = l.img || gorselli?.has(l.id) ? ["resimden_sec", "listen_meaning"] : ["listen_meaning"];
   if (l.pos === "noun" && l.art) t.push("article");
   if (l.collocations?.length) t.push("colloc");
   t.push("tr_de");
