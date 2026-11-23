@@ -106,3 +106,102 @@ Hata türü: kabul listeleri. Üçü doğru cevabın reddi ya da yanlış cevab�
 **Öneri: dilbilimciye geri.** Odak: bütün `cevapla`, sınav `guided_response` ve görülmemiş `accepted` listelerinin taranması. Ölçüt: (a) model cümle (`accepted[0]` ve `why_tr`'de verilen biçim) dilbilgisi açısından doğru mu; (b) `why_tr`'nin tarif ettiği en kısa doğru cevap `ruleVerdict` ile `correct` çıkıyor mu; (c) her kabul görevin istediği bilgiyi taşıyor mu. Bu tarama yapay zekâsız ölçütle birkaç dakikada makineyle yapılabilir; komut bu raporun yöntem bölümünde.
 
 ÖRNEKLEM: GERİ — 4/37
+
+---
+
+# 2. tur
+
+Tarih: 2026-11-23 · Yapan: qa-ajan · Girdi: dilbilimcinin "Örneklem dönüşü" eki (`docs/v2/reviews/a1-hafta-08/dilbilimci.md`): H1–H4 düzeltmesi, 83 listeye 476 kabul eklendi, 8 kabul çıkarıldı.
+
+## H1–H4 doğrulaması (`ruleVerdict`, 1. turdaki yöntem)
+
+| # | Madde | Sınanan cevap → sonuç | Durum |
+|---|---|---|---|
+| H1 | 50 `o4` | `Ja, um neun geht es.` (artık accepted[0]), `Ja, um neun geht's.`, `Kein Problem, um neun geht es.`, `Klar, neun Uhr geht.` → `correct`. Öznesiz üç biçim (`Ja, um neun geht.`, `Klar, um neun Uhr geht.`, `Kein Problem, um neun geht.`) listede yok → `ask_ai`. `why_tr`: `Saati tekrar et ve **geht es** ile onayla.` | KAPANDI |
+| H2 | 53 a1 `cevapla` | `Der Zug fällt aus, wir müssen den Bus nehmen.` (saatsiz) → `ask_ai`; `Der Zug fällt aus.` → `ask_ai`; yanlış saat `… um achtzehn Uhr dreißig.` → `ask_ai`. Önerilen iki biçim ve `… Der Bus kommt um achtzehn Uhr zwanzig.` → `correct`. 17 kabulün hepsinde iptal ve 18.20 var. | KAPANDI |
+| H3 | görülmemiş `g2` | `Wo ist die Milch?`, `Wo finde ich die Milch?`, `Entschuldigung, wo finde ich die Milch?`, `Ich suche die Milch.`, `Ja, gern. Wo finde ich die Milch?` → `correct`. `Ja, danke. Haben Sie Milch? Wo ist sie?` çıkarılmış; `Wo ist das Brot?` → `ask_ai`. | KAPANDI |
+| H4 | görülmemiş `g3` | `Ich bin {name}. Freut mich!`, `Hallo! Ich bin {name}. Freut mich!`, `Hallo, ich bin {name}.`, `Hallo, ich heiße {name}. Freut mich!` → `correct`. `Ich bin Lena. Freut mich!` → `ask_ai`, `Freut mich!` → `wrong`. | KAPANDI |
+
+1. turdaki "hata sayılmayan" üç cevap da artık `correct`: 51 a1 `Der Bus kommt erst um neun Uhr fünfundzwanzig.`, 53 s11 `Am Sonntag war ich am See. Der Zug ist ausgefallen.`, 54 s10 `Ich habe seit gestern Schmerzen.`
+
+## Yöntem (2. tur)
+
+**Evren:** aynı 343 madde, aynı sayım (anlama 76 · dikte 75 · prova 57 · sınav 55 · görev 38 · görsel 20 · cevapla 18 · görülmemiş 4). 1. turun 37 maddesi dışarıda bırakıldı (306 aday).
+**Eklenen kabuller:** 476. Kaynak: dilbilimcinin uygulama listeleri (`ADD`, `PROVA`, `FIRST` ve ikinci geçiş), dosyada bulunanlar. Gün dağılımı ekteki sayıyla birebir aynı (50: 86, 51: 75, 52: 68, 53: 87, 54: 118, görülmemiş: 42). 1. tur maddelerine düşenler çıkınca 373 aday kaldı.
+**Seçim (tekrarlanabilir):** Python `random.Random(20261124)`.
+- A bölümü: 373 eklenen kabulden `rnd.sample(…, 15)`. Her kabulün bağlı olduğu madde örnekleme girdi (15 kabul 15 ayrı maddeye düştü).
+- B bölümü: kalan 15 madde. Her gün (50→54) için sırayla görev, dikte, anlama türünden birer `rnd.choice`. Görsel türüne sıra gelmedi; 30 madde bu adımla doldu.
+**Örneklem: 30 madde** (evrenin %8,7'si, 1. turla birlikte 67 madde, %19,5). Türler: prova 7 · görev 5 · dikte 5 · anlama 5 · cevapla 4 · sınav 2 · görülmemiş 2. A bölümündeki 15 maddede eklenen kabullerin **hepsi** okundu: rastgele çekilen 15 dahil **92 eklenen kabul**.
+**Denetim:** 1. turdaki ölçütler. Eklenen kabuller için ayrıca: (c) görevin (durum metni, `why_tr`, provada düğümün sorusu ve seçeneğin geri bildirimi) istediği bilgiyi taşıyor mu; provada başka bir seçenekle `correct` eşleşiyor mu (`ruleVerdict`, seçenek seçenek); yakın ama eksik ya da yanlış cevaplar `correct` çıkmıyor mu (olumsuz sınama).
+**K(t):** benzetimdeki doğrulayıcıdan 50.–54. günün `taught` kümesi alındı; 476 eklenen kabul `ogretilmemis` ile sınandı. Küme dışında kalan yalnız **Lena** (6 kabul, görülmemiş `g3`, karşı tarafın `prompt_de`'de söylediği ad). Dilbilimcinin beyanı doğru.
+
+## Sınama (benzetim)
+
+`mkdir -p /tmp/claude-0/s8r && SIM=/tmp/claude-0/sim8r OUT=/tmp/claude-0/s8r REPO=/home/claude/dw-h08 /tmp/claude-0/s/sim.sh /tmp/claude-0/s/a1k-h7.json 50 gun-5[0-4].json gorulmemis-08.json`
+
+- `içerik v2: 20 alan · 1497 kelime (1205 K1, 0 K2; 14 parti) · 61 kalıp · 202 dilbilgisi · 6 senaryo · 2241 seviye tespiti maddesi → 5 hata, 276 uyarı`
+- 5 hatanın hepsi tek tür: `m1:50:h1` … `m1:54:h1`: `3 kart (4–6)` (benzetimin politikası eski; yeni sınır [2, 6]).
+- 50.–54. gün için "öğretilmemiş" ve "bilinmeyen" uyarısı 0. AK-3: `50. gün 0/24, 51. gün 0/23, 52. gün 0/21, 53. gün 0/21, 54. gün 0/23`.
+- 8. hafta dosyalarına ait uyarı satırları 1. turdakiyle (`/tmp/claude-0/s8q/sim.out`) birebir aynı (`diff` boş): `yeni_kartlar 3 kart`, video yok, B7 `_adsiz`.
+- `dikis.out`: 50–54 satırları `denetlendi | 0 | 0 | 0 | 0 | 0`, ihlal yok.
+
+## Seçilen maddeler ve sonuçlar
+
+A bölümü (rastgele çekilen eklenen kabul tırnak içinde; "+n": maddede okunan eklenen kabul sayısı):
+
+| # | Dosya · yol | Tür | Sonuç | Not |
+|---|---|---|---|---|
+| 1 | gun-52 · `sesler[m1:52:a2].b1.cevapla` · `Guten Tag, Frau Brandl! Hier sind zwanzig Euro.` (+9) | cevapla | GEÇTİ | Hepsi doğru. `Hier sind zehn Euro.` → `ask_ai`. Not N2. |
+| 2 | gun-54 · `prova.n2.secenekler[0]` · `Können Sie die Salbe bestellen?` (+6) | prova | GEÇTİ | Hepsi sipariş istiyor; [1] ve [2] ile çapraz eşleşme yok. `Kann ich die Salbe bestellen?` eczanede doğal. |
+| 3 | gun-50 · `sahne.b1.cevapla` · `Am Dienstag um halb zehn, Frau Brandl.` (+2) | cevapla | GEÇTİ | Gün ve saat her ikisinde var (s7, s8, s14). |
+| 4 | gun-50 · `gun_sinavi[m1:50:s9]` · `Acht Uhr ist zu früh. Geht auch halb zehn?` (+8) | sınav | GEÇTİ | Hepsi "erken" + "dokuz buçuk". Yarım cevaplar (`Acht Uhr ist zu früh.`, `Geht halb zehn?`) → `ask_ai`. |
+| 5 | gun-54 · `prova.n1.secenekler[1]` · `Eine Salbe und Tabletten für Frau Brandl, bitte.` (+3) | prova | GEÇTİ | [0]'ın (reçete) kabulleriyle karışmıyor; selamlı biçim geri bildirimle çelişmiyor. |
+| 6 | gun-54 · `prova.n3.secenekler[0]` · `Danke! Ich hole sie morgen um zehn.` (+6) | prova | GEÇTİ | `sie` = merhem (düğüm `Morgen ist sie da`). `Danke! Ich komme morgen.` geri bildirimle ("ne zaman geleceğini söyledin") uyumlu. |
+| 7 | gun-51 · `gun_sinavi[m1:51:s11]` · `Guten Tag! Wie viel kostet der Käse? Ein halbes Kilo, bitte.` (+10) | sınav | GEÇTİ | Hepsinde fiyat sorusu ve yarım kilo. Yarım cevaplar `ask_ai`. |
+| 8 | gun-53 · `prova.n1.secenekler[0]` · `Willkommen! Ich bin {name}.` (+3) | prova | GEÇTİ | Hepsinde ad + **Willkommen** (geri bildirim "sıcak karşıladın"). `Hallo! Ich bin {name}. Freut mich!` hâlâ [1]'e gidiyor; çapraz eşleşme yok. |
+| 9 | gun-50 · `prova.n1b.secenekler[0]` · `Entschuldigung, hier ist {name}. Es geht um den Termin am Donnerstag.` (+3) | prova | GEÇTİ | Perşembe randevusu durumla tutarlı. Not N1 (`Entschuldigung, hier ist {name}.` ve geri bildirim). |
+| 10 | gun-50 · `prova.n2b.secenekler[0]` · `Ach so. Das ist leider zu früh. Ich muss arbeiten.` (+2) | prova | GEÇTİ | |
+| 11 | gun-52 · `sesler[m1:52:a1].b1.cevapla` · `Die Mannschaft spielt Samstag um drei Uhr.` (+5) | cevapla | GEÇTİ | `am`sız gün gündelik ve doğru. `Am Samstag um fünfzehn Uhr.` doğru. Gün ya da saat eksik cevaplar ve yanlış gün → `ask_ai`. |
+| 12 | gorulmemis-08 · `durumlar[m1:h08:g4]` · `Mir tut der Rücken weh.` (+6) | görülmemiş | GEÇTİ | Hepsi sırt ağrısı; `Mir tut der Kopf weh.` → `ask_ai`. |
+| 13 | gorulmemis-08 · `durumlar[m1:h08:g1]` · `Guten Abend! Ich möchte am Samstag einen Tisch reservieren. Für vier Personen.` (+15) | görülmemiş | GEÇTİ | Hepsinde gün ve dört kişi. Günsüz ya da kişisiz biçim → `ask_ai`. |
+| 14 | gun-52 · `prova.n1.secenekler[0]` · `Ja, ich habe Zeit.` (+4) | prova | GEÇTİ | Düğüm `Hast du am Samstag Zeit?`; gün sorudan biliniyor. [1] ile çapraz eşleşme yok. |
+| 15 | gun-53 · `sesler[m1:53:a2].b1.cevapla` · `Guten Tag, Herr Pichler, hier ist {name}. Am Samstag war ich nicht zu Hause.` (+10) | cevapla | GEÇTİ | Hepsinde ad + cumartesi evde yoktum. Adsız ya da yarım cevap → `ask_ai`. |
+
+B bölümü:
+
+| # | Dosya · yol | Tür | Sonuç | Not |
+|---|---|---|---|---|
+| 16 | gun-50 · `halkalar[m1:50:h1].gorev_cumleleri[0]` (Wann bringen Sie den Teppich?) | görev | GEÇTİ | `Wann kommt der Teppich?` anlamca yakın, kart (Teppich) var. |
+| 17 | gun-50 · `sesler[m1:50:a2].b1.dikte[d4]` | dikte (usta) | GEÇTİ | c3 ile aynı. |
+| 18 | gun-50 · `sesler[m1:50:a2].eylem` | anlama | GEÇTİ | `kanit` [c5] doğru; cumartesi açık değiller. |
+| 19 | gun-51 · `halkalar[m1:51:h1].gorev_cumleleri[0]` (Wir machen am Samstag einen Ausflug.) | görev | GEÇTİ | |
+| 20 | gun-51 · `sesler[m1:51:a2].b1.dikte[d1]` | dikte (kolay) | GEÇTİ | c3 `dreißig`; çeldiriciler dreizehn, drei uygun. |
+| 21 | gun-51 · `sesler[m1:51:a2].b1.ana_fikir` | anlama | GEÇTİ | `kanit` [c3, c4] doğru. |
+| 22 | gun-52 · `halkalar[m1:52:h1].gorev_cumleleri[0]` (Die Mannschaft spielt am Samstag.) | görev | GEÇTİ | |
+| 23 | gun-52 · `sahne.b1.dikte[d4]` | dikte (usta) | GEÇTİ | s3 ile aynı. |
+| 24 | gun-52 · `sesler[m1:52:a2].b1.ayrinti[1]` | anlama | GEÇTİ | 20 avro; `kanit` [c4] doğru. |
+| 25 | gun-53 · `halkalar[m1:53:h1].gorev_cumleleri[3]` (Fällt der Zug heute aus?) | görev | GEÇTİ | `Der Zug fällt heute aus?` tonlamalı soru, gündelikte doğal. |
+| 26 | gun-53 · `sesler[m1:53:a1].b1.dikte[d1]` | dikte (kolay) | GEÇTİ | c3 `links`. |
+| 27 | gun-53 · `halkalar[m1:53:h1].sahne.soru` | anlama | GEÇTİ | 20 − 18,50 = 1,50; `ans` 0 doğru. |
+| 28 | gun-54 · `halkalar[m1:54:h1].gorev_cumleleri[7]` (Die Salbe ist für Sie reserviert.) | görev | GEÇTİ | |
+| 29 | gun-54 · `sesler[m1:54:a2].b1.dikte[d5]` | dikte (gerçek) | GEÇTİ | Zorunlu Samstag, Sonntag; örnek kayıtla tutarlı. |
+| 30 | gun-54 · `sesler[m1:54:a2].eylem` | anlama | GEÇTİ | `kanit` [c3, c4] doğru. |
+
+## Hatalar
+
+Yok. Örneklemdeki 92 eklenen kabulün hepsi doğru Almanca; görevin istediği bilgiyi (gün, saat, miktar, ad) taşımayan kabul yok. Provaya eklenen kabullerin **tamamı** (158, örneklemle sınırlı değil) `ruleVerdict` ile düğümün bütün seçeneklerine karşı sınandı: her biri yalnız kendi seçeneğiyle `correct`, başka seçenekle eşleşen 0.
+
+## Hata sayılmayan notlar (iyileştirme)
+
+- **N1 · 50 `prova.n1b.secenekler[0]`:** eklenen `Entschuldigung, hier ist {name}.` konuyu söylemiyor ama geri bildirim `İyi toparladın. Özür diledin, adını ve konuyu söyledin.` diyor. Hata sayılmadı: düğümün sorusu yalnız `Wer ist da, bitte?`, cevap onu tam karşılıyor; ekten önce de bu cevap "karar öğrencide" ile aynı seçeneğe gidip aynı geri bildirimi gösteriyordu. Öneri (dilbilimci): geri bildirimi `İyi toparladın. Özür diledin ve kim olduğunu söyledin.` yap ya da bu kabulü çıkar. Bütün eklenen prova kabullerinde aynı tarama yapıldı (seçeneğin bilgi kelimelerini taşımayan 54 kabul elle okundu); geri bildirimle açıkça çelişen yalnız bu.
+- **N2 · 52 a2 `cevapla`:** `Hier, bitte.` tutarı söylemiyor. Durum yalnız `Parayı verirken söyle.` diyor, gerçekte de doğal; ama `why_tr` hedefi **Hier sind zwanzig Euro**. Dinleme sonrası anlamayı ölçmek için tutarın istenmesi daha iyi olur (durum metnine "kaç avro verdiğini söyle" eklenir ya da kabul çıkar).
+- **N3 · 52 `prova.n3.secenekler[0]`** (örneklem dışı, taramada görüldü): `Okay, ich hole Geld.` ve `Kein Problem. Ich hole Bargeld.` **morgen**'i taşımıyor; geri bildirim `Çözümü kendin buldun: **Ich hole morgen Geld**.` Çelişki değil (çözüm aynı), bilgi notu.
+- **N4 · 54 `s10`** (1. tur maddesi): `Ich habe die Schmerzen seit gestern Abend.` ve `Ich habe seit gestern Abend Schmerzen.` durumda olmayan bir ayrıntı ekliyor (`Dünden beri`). Doğru Almanca, yanlış bilgi değil.
+- Dilbilimcinin açık noktası 2 doğrulandı: yanlış ya da eksik cevaplar `wrong` değil `ask_ai` çıkıyor (`Hier sind zehn Euro.`, `Am Sonntag um drei Uhr.`, `Mir tut der Kopf weh.`). D-097 gereği doğru sayılmıyorlar; "yanlış" geri bildirimi kod işi (#12).
+
+## Oran ve karar
+
+Yeni örneklem: **0 / 30 = %0** (eşik %2). Rastgele çekilen 15 eklenen kabulde 0 hata; okunan 92 eklenen kabulde 0 hata. H1–H4 kapandı; benzetim tek hata türüyle (`3 kart (4–6)`) geçti, ilgili uyarı 0, dikiş 50–54 ihlalsiz.
+Gerçek cihazda bakılacak: provada sesli cevapla `Entschuldigung, hier ist {name}.` söylenince (50 n1b) görünen geri bildirim (N1).
+
+ÖRNEKLEM: GEÇTİ — 0/30
