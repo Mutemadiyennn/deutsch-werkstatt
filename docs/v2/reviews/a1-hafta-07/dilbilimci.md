@@ -243,3 +243,52 @@ Bilerek eklenmeyenler: görevin istediği bilgiyi eksik veren cevaplar (saatsiz,
 Sonuç: (a) 2 ve (c) 10 hatalı kabul çıkarıldı, (b) haksız ret riski 169 listede azaltıldı. Bu turun hata oranı: (a)/(c) türünden 10 madde / 267 = %3,7.
 
 KARAR: ONAY (örnekleme hazır)
+
+## Örneklem dönüşü (dilbilimci-ajan, 2026-11-23)
+
+Dar tur. Örneklem 2/66 ile geri döndü (`docs/v2/qa/orneklem/a1-hafta-07.md`). İki hatayı İÇ-6 düzeltti, burada doğrulandı. Ardından 1. turda içeriği değişen yerler aynı ses ya da sahnedeki öbür öğelerle karşılaştırıldı.
+
+### 1. H1 ve H2 doğrulaması
+- **H1 · 43 a1 d5:** `ornek_de` şimdi **Heute ist die Praxis bis zwölf Uhr offen. Am Nachmittag ist sie geschlossen.**, `zorunlu` `["offen", "geschlossen"]`. Almanca doğru ve doğal. Kaydı doğru aktarıyor (c2, c3) ve `eylem` sorusuyla çelişmiyor. Bütün sözcükler kayıtta geçiyor, ikisi de 43. günden önce öğretilmiş kart. **Doğru.**
+- **H2 · 44 h3 görev 0:** kabuller şimdi `Ich möchte bitte bestellen.`, `Ich möchte bestellen, bitte.`, `Bitte, ich möchte bestellen.`. Üçü de doğru ve tekil. `ruleVerdict` sonucu (görev cümlesi + kabuller, akıştaki gibi):
+  | Cevap | Sonuç |
+  |---|---|
+  | `Ich möchte bitte bestellen.` | `correct` |
+  | `Bitte, ich möchte bestellen.` | `correct` |
+  | `Ich möchte bestellen, bitte.` | `correct` |
+  | `Wir möchten bitte bestellen.` | `ask_ai` (artık `correct` değil) |
+  **Doğru.** Not: `Ich möchte gern bestellen.` ve `Ich möchte bestellen.` `ask_ai` çıkıyor. İkisi de doğru Almanca ama görev cümlesi **bitte**'yi de istiyor, eklenmedi.
+
+### 2. Tutarlılık taraması
+1. turda içeriği (yalnız çeviri sözcüğünü değil) değiştiren **25 düzeltme** tarandı: #1, 2, 3, 8, 9, 12–20, 23–26, 28, 29, 33, 35, 37, 43, 44. Her biri için aynı birimdeki metin, `ana_fikir`, `ayrinti`, beş dikte basamağı, `golge`, `cevapla`, `eylem` ve `why_tr` okundu. Birimler (17): 43 a1, 43 a2, 43 h1 sahne, 43 prova, 44 s10, 45 a2, 45 v1, 45 h2, 45 prova, 46 v1, 46 a1, 46 prova, 47 h2 sahne ve v1, 47 a1, 47 s7, 48 a1, 49 s4, görülmemiş g1. Ek olarak eski içeriğin anahtar sözcükleri (anahtar, çanta, **egal**, **morgen kein Training**, **Nachbarn**, **umziehen**, **am See**, **mit dem Zug**, **Schmerzen im**, acil servis) dokuz dosyada arandı.
+
+**Yeni tutarsızlık: 0.** H1 bu türden tek kalıntıydı. Bakılıp tutarlı bulunanlar:
+- 45 a2: c5, ayrıntı 2, d5 örneği, `eylem` ve prova durum metni hep "reçete Pichler Bey'de" diyor. Anahtar ve çanta kalıntısı yok.
+- 45 v1: s8, s16, ayrıntı 2, d4, d5 örneği ve `cevapla` hep "bugün antrenman yok" diyor.
+- 46 a1: **Sie sind umgezogen?** ortam metni, ana fikir ve `cevapla` ile uyumlu.
+- 47: Brandl Hanım'ın oteli h2 sahnesinde, v1'de ve v1 ayrıntı sorusunda deniz kenarında. Derya'nın oteli (a1) ve radyo reklamı (a2) göl kenarında. Bunlar ayrı oteller, karışma yok.
+- 48 a1: `eylem` kanıtı c2 ve c3. d5 örneği, `golge` (c6) ve `cevapla` bununla çelişmiyor.
+
+Hata sayılmayan iki gözlem:
+- 46 v1 s9: sahne tarifi "omuz silkip seni gösteriyor" eski satırdan (**Fragen Sie meinen Nachbarn!**) kaldı. Yeni satırla (**Das weiß ich nicht!**) da tutarlı, çünkü s10'da Huber Hanım sana dönüp soruyor. Dokunulmadı.
+- 45 h2 görev cümlesi **Herr Pichler hat den Schlüssel. Ich soll ihn holen.** eski a2 kaydına hazırlıktı. Kayıt artık reçete diyor. Cümle tek başına doğru ve hiçbir şeyle çelişmiyor. Dokunulmadı.
+
+### 3. Örneklemin notları: 2 düzeltme
+| Yer | Önce | Sonra | Gerekçe |
+|---|---|---|---|
+| 44 s7 `why_tr` | "Kibar istek **Ich möchte** ile başlar, **bestellen** sona gelir." | + "**Ich will** de doğru ama garsona sert duyulur." | `Ich will einen Kaffee bestellen.` kabulde kaldı (Türkçe yönergenin doğru çevirisi). Aynı gün **Ich will** sert diye öğretiliyor, açıklama bunu söylemiyordu. |
+| 46 v1 d5 `ornek_de` | **Ihr Vorname ist Rosa. Sie war verheiratet.** | **Ihr Geburtstag ist am zweiten Mai. Sie war verheiratet.** | **Rosa** bu sahnede geçmiyor. Yeni örnek yalnız sahnede söylenenleri kullanıyor (s5, s7). `zorunlu` (`Ihr`, `verheiratet`) aynı. |
+
+Değerlendirilip bırakılanlar: 47 a1 ayrıntı 1 (**Hotel**, 1. turun 1. açık noktası, PM yorumuna bağlı) · t11 yönergesi ve gr:a1-09:t2 örnek çevirisi (bu dar turun kapsamında değil, hata da değil).
+
+### Sınama
+`SIM=/tmp/claude-0/sim7h OUT=/tmp/claude-0/s7h … sim.sh a1k-h7.json 43 gun-4[3-9].json gorulmemis-07.json`:
+- `→ 12 hata, 261 uyarı`, örneklemdeki koşuyla aynı. 12 hatanın hepsi `dersler: gr:… temel pakette yok`.
+- 43–49 ve görülmemiş için "öğretilmemiş", "bilinmeyen" ve `accepted` uyarısı 0. Kalan uyarılar bilinen türler (B7 `_adsiz` 6, video 7, `yeni_kartlar` hedefi 6). AK-3 sayacı 43 0/25 · 44 0/20 · 45 0/22 · 46 0/21 · 47 0/22 · 48 0/23 · 49 0/29.
+- `dikis.out` 43–49 satırları `0 | 0 | 0 | 0 | 0`.
+- `npm run content:validate`: 19 hata, öncekiyle aynı, hepsi bu dalın eski şemasından (`day ≤ 7`, `dersler` deseni).
+- Çalışma notu: `sim.sh` kendi içinde `git fetch` ve `git show` çalıştırıyor. Komutu görevde verildiği gibi koştum, başka git komutu çalıştırmadım.
+
+Sonuç: H1 ve H2 kapandı. Taranan 25 değişiklikte yeni tutarsızlık yok. Örneklemin iki notu düzeltildi. 1. turun ve kabul taramasının açık noktaları aynen duruyor, `review.status` "draft".
+
+KARAR: ONAY
