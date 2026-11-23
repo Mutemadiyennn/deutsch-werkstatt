@@ -78,7 +78,7 @@ def main():
                     check(pg.evaluate("location.hash") == "#/ben/ayarlar", "eski adresle açılış: ayarlar ekranı, adres yenisi")
                     check(pg.locator(".topbar a[aria-label=Geri]").get_attribute("href") == "#/ben", "ayarlardan geri: Ben")
                     pg.goto(base + "#/learn/telefon"); pg.wait_for_selector("[data-tab=koy][aria-current=page]")
-                    check(pg.evaluate("location.hash") == "#/learn/telefon" and pg.locator(".topbar a[aria-label=Geri]").get_attribute("href") == "#/koy", "alan sayfası adresi korunur; geri: Köy")
+                    check(pg.evaluate("location.hash") == "#/learn/telefon" and pg.locator(".topbar a[aria-label=Geri]").get_attribute("href") == "#/koy/pazar", "alan sayfası adresi korunur; geri: Köy'ün Pazar meydanı")
                     pg.goto(base + "#/ben"); pg.click("[data-test=ayarlar-ac]"); pg.wait_for_selector("[data-test=goal]")
                     check(pg.get_attribute("[data-tab=ben]", "aria-current") == "page", "Ben → Ayarlar tek dokunuş; Ben sekmesi etkin kalır")
 

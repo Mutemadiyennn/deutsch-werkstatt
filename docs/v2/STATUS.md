@@ -12,8 +12,9 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 - **Hedef ekranlar:** `design/TARGET3c` (kalıp, yapboz + K10, söyle, gün sonu sınaması, Yol, Bahçe boş hâli; TASARIM "Hedef 3c").
 
 ## Hat B (ANA-B): Hedef 3 kabuğu (PM-084; 2026-11-22)
-- **Sekme çerçevesi** (dal `v2/sekme-cercevesi`): dört sekme **Bugün · Yol · Köy · Ben** (`#/today`, `#/yol`, `#/koy`, `#/ben`; ayarlar `#/ben/ayarlar`), simgeler ve etkin durum `design/TARGET3`. Eski `#/learn`, `#/progress`, `#/profile` adresleri yeni yerlerine yönlenir. Köy ve Ben ekranları gelene kadar sekmeler bugünkü Öğren ve İlerlemem ekranlarını açar. Sınama: `tests/e2e/v2_sekme.py`.
-- Sıradaki (aynı hat, yığınlı PR'lar): Köy (PM-084 md. 4) → Ben (md. 5). Birleştirme sırası hat A'da (`[TOPLU-ADAY]`).
+- **Sekme çerçevesi** (dal `v2/sekme-cercevesi`): dört sekme **Bugün · Yol · Köy · Ben** (`#/today`, `#/yol`, `#/koy`, `#/ben`; ayarlar `#/ben/ayarlar`), simgeler ve etkin durum `design/TARGET3`. Eski `#/learn`, `#/progress`, `#/profile` adresleri yeni yerlerine yönlenir. Ben ekranı gelene kadar Ben sekmesi bugünkü İlerlemem ekranını açar. Sınama: `tests/e2e/v2_sekme.py`.
+- **Köy** (dal `v2/koy`, #195'in üstünde): `#/koy` = köyün adı + dükkân ızgarası (Bahçe · Sinema · Radyo · Atölye · Kütüphane · Pazar meydanı; kilitli: Kafe · Tiyatro · Gazete bayisi) + yalnız dinlenmemiş ses kaydı varken "Telefonun" kartı. Mekân sayfaları `#/koy/<bahce|sinema|radyo|kutuphane|pazar>` eski Öğren ekranının girişlerini taşır (Öğren ekranı kalktı; `#/learn` Köy'e yönlenir). Sayılar cihazdaki gerçek veriden (`core/koy.ts`). Sınama: `core/koy.test.ts`, `tests/e2e/v2_koy.py`.
+- Sıradaki (aynı hat, yığınlı PR): Ben (PM-084 md. 5); ardından PM-086 "Kendi kelimem". Birleştirme sırası hat A'da (`[TOPLU-ADAY]`).
 
 ## Sıradaki adım (PM-050: "İlk Hafta" dikey dilimi önce; 2026-11-18 23:45 UTC)
 **İmza yol haritası:** [`docs/v2/IMZA_YOL_HARITASI.md`](IMZA_YOL_HARITASI.md) — #54'ün her satırı için ekran tarifi ve sıra (PM-048).
