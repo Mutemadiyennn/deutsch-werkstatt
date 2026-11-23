@@ -212,3 +212,23 @@ Kapsam: yazarın hafta kapısı için yaptığı değişiklikler ve yeni hafta s
 Sonuç: 15 bulgu, 15 düzeltme (12 maddede; +24 kabul, 2 kabul çıkarıldı, 1 kabul düzeltildi, 4 Türkçe metin düzeltildi). Hata oranı: Almanca/Türkçe/bilgi türünden 6 madde / 20 = %30 (g5 ×2, g6 durum metni, t07, t10, t12, 55 `can_do`); kalan 8 bulgu haksız ret riski (eksik kabul). KAPANDI.
 
 KARAR: ONAY
+
+## Bütünleştirme fark turu (İÇ-10)
+
+Kapsam: `8465890a` (50. gün prova n1, n3; `s1`). İncelenen değişiklik: 3. Tarih: 2026-11-23.
+
+### Bulgu ve düzeltme (1)
+1. **Prova n3, eksik kabul.** Yeni seçenek **Wie bitte? Montag um wie viel Uhr?** için günü söylemeyen en olası iki biçim yoktu. Eklendi: **Wie bitte? Um wie viel Uhr?**, **Um wie viel Uhr, bitte?** (kabul 11 → 13). Türkçe metin değişmedi.
+
+### Onaylananlar
+- n1 **Guten Tag, hier ist {name}. Es geht um den Termin am Donnerstag.** / "Perşembe günkü randevu için arıyorum.": durum metniyle (perşembe randevusu olmuyor) ve n2 cevabıyla uyumlu; kabul 12, ilk kabul `de`. İkinci seçeneğin geri bildirimi (**Es geht um den Termin**) yeni cümleyle tutarlı. **Es geht um …** h1 kalıbında gösterilmiş.
+- n3 **Wie bitte? Montag um wie viel Uhr?** / "Efendim? Pazartesi saat kaçta?": n4 cevabı (**Montag. Um halb fünf. Also sechzehn Uhr dreißig.**) bu soruya eskisinden daha iyi oturuyor. Geri bildirim "Kaçırdığın yeri, yani saati sordun." doğru.
+- `s1` **Können Sie die Adresse bitte buchstabieren?**: doğru ve doğal; üç kabul yalnız yazım farkı; açıklama geçerli.
+
+### Sınama
+- Bütünleşik ağacın kopyasında: hafta kapısı 8. hafta, 50. gün öğretilmeden istenen 0; dikiş 50. gün 0 ihlal; doğrulayıcının hata kümesi düzeltme öncesiyle aynı.
+- Farkın dışında, önceden duran: 8. hafta kapısı "sınanmayan can_do: cd:m1:55, cd:m1:56" ile KALDI; bütünleşik doğrulayıcıda 50.–54. gün "h1: 3 kart (4–6)" ve 55.–56. gün `sinav` alanı hataları.
+
+Sonuç: 1 bulgu, 1 düzeltme. Hata oranı 1/3. KAPANDI.
+
+KARAR: DÜZELTİLDİ-ONAY
