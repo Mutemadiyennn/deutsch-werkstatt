@@ -9,6 +9,7 @@ import { useApp } from "../state.ts";
 import { db } from "../data/db.ts";
 import { loadM1Gun } from "../services/content.ts";
 import { ilerlemeOku } from "../services/ilerleme.ts";
+import { rafOku } from "../services/raf.ts";
 import { haftaCumlesi, haftaGunleri, haftaNo, haftaSatiri, haftaSayilari, noktalar, taninanKelime } from "../core/ben.ts";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
@@ -22,12 +23,15 @@ export function BenEkrani() {
   const { index, indexError } = useApp();
   const { plan, err, yok } = usePlan();
   const [v, setV] = useState<BenVeri | null>(null);
+  const [rafYok, setRafYok] = useState(false);
+  useEffect(() => { void rafOku().then((r) => setRafYok(!r)).catch(() => setRafYok(false)); }, []);
   // şu anki gün: planın sıradaki günü; hepsi bittiyse son gün
   const gun = plan?.simdi?.day ?? (plan?.gunler.length ? plan.gunler[plan.gunler.length - 1]!.day : 1);
   const hafta = haftaNo(gun);
   useEffect(() => {
     if (!index) return;
     let canli = true;
+    setV(null);   // hafta değişince önceki haftanın cümleleri bir an bile çizilmez (inceleme #208 P2-2)
     const var_ = new Set(index.m1.map((g) => g.day));
     const gunNo = haftaGunleri(hafta).filter((d) => var_.has(d));
     (async () => {
@@ -45,7 +49,8 @@ export function BenEkrani() {
   const durum = new Map((plan?.gunler ?? []).map((g) => [g.day, g.durum]));
   const seviye = v.gunler[0]?.level ?? null;
   const kartlar = v.gunler.flatMap((g) => g.yeni_kartlar);
-  const medya = index.m1.filter((g) => haftaGunleri(hafta).includes(g.day)).flatMap((g) => g.medya.map((m) => m.id));
+  // "kaydı dinledin": yalnız ses kayıtları (video ve köy dizisi sayılmaz; inceleme #208 P2-4)
+  const medya = index.m1.filter((g) => haftaGunleri(hafta).includes(g.day)).flatMap((g) => g.medya.filter((m) => m.kind === "ses").map((m) => m.id));
   const sayi = haftaSayilari({ kartlar, items: v.items, bitenGun: v.gunler.filter((g) => durum.get(g.day) === "bitti").length, medya, medyaBitti: v.medyaBitti });
   const kelime = taninanKelime(v.items.values());
   return (
@@ -62,7 +67,7 @@ export function BenEkrani() {
             return (
               <div class={`ben-cd${durum.get(g.day) === "kilitli" ? " ileride" : ""}`} data-test="ben-cd" data-gun={g.day} data-dolu={dolu}>
                 <span class="grow">{g.can_do.tr}</span>
-                <span class="ben-noktalar" role="img" aria-label={dolu ? `${NOKTA_TR.slice(0, dolu).join(", ")}` : "henüz kanıt yok"}>
+                <span class="ben-noktalar" role="img" aria-label={`${g.can_do.tr} ${dolu ? NOKTA_TR.slice(0, dolu).join(", ") : "henüz kanıt yok"}`}>
                   {n.map((d) => <i class={d ? "d" : undefined} />)}
                 </span>
               </div>
@@ -73,8 +78,10 @@ export function BenEkrani() {
       </>}
       <section class="ben-hafta" data-test="ben-bu-hafta">
         <b>Bu hafta</b>
-        <p>{haftaCumlesi(sayi)}</p>
+        <p>{haftaCumlesi(sayi, hafta)}</p>
       </section>
+      {/* PM-099: raf bağlı değilse tek satır (bağlıysa hiçbir şey); fotoğraflar açık lisanslı yedekle sürer */}
+      {rafYok && <a class="ben-raf" href="#/ben/ayarlar" data-test="raf-bagla">Fotoğraf rafı bağlı değil → bağla</a>}
       <div class="ben-satirlar">
         <a class="ben-satir" href="#/sozluk" data-test="kelime-haritam">
           <span class="ben-ic" style={{ background: "var(--m-bahce)" }} aria-hidden="true"><Icon name="harita" size={22} /></span>

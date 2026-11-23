@@ -21,9 +21,11 @@ DB = """async (is) => { const d = await new Promise((ok, no) => { const q = inde
     t.oncomplete = ok; t.onerror = no; }); d.close(); }"""
 G1, G2 = "2026-01-01T09:00:00.000Z", "2026-01-03T09:00:00.000Z"
 
-def oge(i, durable=False):
+T1, T2 = 1767258000000, 1767430800000   # G1 ve G2'nin ms karşılığı (iki ayrı gün)
+def oge(i, uretim=False):
     return {"itemId": i, "kind": "lexeme", "passive": {"s": 0.5, "n": 2, "ok": 2, "last": G2}, "firstAt": {"passive": G1},
-            "active": {"s": 0, "n": 0, "ok": 0, "sessions": []}, "durable": durable, "gaps": [], "inBank": False, "u": 1}
+            "active": {"s": 0.5 if uretim else 0, "n": 2 if uretim else 0, "ok": 2 if uretim else 0, "sessions": [f"a@{T1}", f"b@{T2}"] if uretim else []},
+            "durable": uretim, "gaps": [], "inBank": False, "u": 1}
 
 def ben(pg, base):
     pg.goto(base + "#/today"); pg.wait_for_selector("[data-tab=today][aria-current=page]")
@@ -51,6 +53,8 @@ def main():
                 check(pg.inner_text("[data-test=ben-cd][data-gun='1']").strip().startswith(g1["can_do"]["tr"]), f"{ad} 1. günün cümlesi içerikten ({g1['can_do']['tr']!r})")
                 check(all(x[1] == 0 for x in n), f"{ad} taze cihazda nokta dolu değil (kanıt yok)")
                 check(pg.locator("[data-test=ben-aciklama]").count() == 1, f"{ad} noktaların altında tek satır açıklama")
+                check(pg.locator("[data-test=raf-bagla]").count() == 1 and pg.get_attribute("[data-test=raf-bagla]", "href") == "#/ben/ayarlar", f"{ad} raf bağlı değil → tek satır 'bağla' (PM-099)")
+                check(pg.locator("[data-test=durum-cubugu]").count() == 0, f"{ad} Ben'de üst durum çubuğu yok (PM #200 finali takip b)")
                 check(pg.inner_text("[data-test=ben-bu-hafta] p") == "İlk günün bitince burada göreceksin.", f"{ad} Bu hafta: veri yokken dürüst tek cümle")
                 check(pg.locator("[data-test=kelime-haritam]").count() == 1 and pg.get_attribute("[data-test=kelime-haritam]", "href") == "#/sozluk", f"{ad} Kelime haritam → Sözlük")
                 metin = pg.inner_text("[data-test=ben]")
@@ -67,10 +71,10 @@ def main():
                 pg.reload(); ben(pg, base)
                 n = dict((x[0], x[1]) for x in noktalar(pg))
                 check(n.get(1) == 1 and all(v == 0 for k, v in n.items() if k != 1), f"{ad} 1. günün kartları iki ayrı günde tanındı → yalnız 'anlıyorum' ({n})")
-                pg.evaluate(DB, {"items": [oge(k, durable=True) for k in kart]})
+                pg.evaluate(DB, {"items": [oge(k, uretim=True) for k in kart]})
                 pg.reload(); ben(pg, base)
                 n = dict((x[0], x[1]) for x in noktalar(pg))
-                check(n.get(1) == 2, f"{ad} iki ayrı oturumda üretim → 'söyleyebiliyorum'; serbest üretim kanıtı yokken üçüncü nokta boş ({n})")
+                check(n.get(1) == 2, f"{ad} iki ayrı günde üretim → 'söyleyebiliyorum'; serbest üretim kanıtı yokken üçüncü nokta boş ({n})")
                 bh = pg.inner_text("[data-test=ben-bu-hafta] p")
                 check(bh == f"{len(set(kart))} kelime kalıcı oldu.", f"{ad} Bu hafta gerçek sayı ({bh!r})")
                 hk = pg.inner_text("[data-test=kelime-haritam]")
@@ -94,7 +98,9 @@ def main():
         # taze cihazda Çalışma düzenim: sıfır kutusu yok, dürüst satır
         b, ctx = launch(p); pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         pg.goto(base + "#/ben/duzen"); pg.wait_for_selector("[data-test=panel-language] [data-test^=dil-sayilari]")
-        check(pg.locator("[data-test=tiles]").count() == 0 and pg.locator("[data-test=dil-sayilari-bos]").count() == 1, "taze cihaz: sıfır kutuları ve sıfır satırları çizilmez")
+        check(pg.locator("[data-test=tiles]").count() == 0 and pg.locator("[data-test=dil-sayilari-bos]").count() == 1 and pg.locator("[data-test=odak-bos]").count() == 1 and pg.locator("[data-test=xp-seri]").count() == 0, "taze cihaz: sıfır kutuları, odak sayıları ve XP kartı çizilmez")
+        duz = pg.inner_text("main")
+        check(not re.search(r"(^|\s)0(\s|$|/)", duz), f"taze cihaz Çalışma düzenim: ekranda '0' yok ({[l for l in duz.split(chr(10)) if re.search(r'(^|\s)0(\s|$|/)', l)][:4]})")
         b.close()
     srv.shutdown()
     finish()

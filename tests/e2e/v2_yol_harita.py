@@ -30,8 +30,11 @@ def main():
         for tema in ("light", "dark"):
             b, ctx = launch(p, color_scheme=tema); pg = new_page(ctx)
             login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-            # 1) durum çubuğu sekmeli ekranlarda
-            for h in ("#/today", "#/yol", "#/learn", "#/profile"):
+            # 1) durum çubuğu Bugün ve Yol'da; Köy, Ben ve ayarlarda yok (PM #200 finali takip b)
+            for h in ("#/koy", "#/ben", "#/profile"):
+                pg.goto(base + h); pg.wait_for_selector("[data-tab=koy][aria-current=page], [data-tab=ben][aria-current=page]"); pg.wait_for_timeout(150)
+                check(pg.locator("[data-test=durum-cubugu]").count() == 0, f"[{tema}] {h}: üst durum çubuğu yok (yalnız Bugün ve Yol)")
+            for h in ("#/today", "#/yol"):
                 pg.goto(base + h); pg.wait_for_selector("[data-test=durum-cubugu]")
                 check(all(pg.locator(f"[data-test=durum-{k}]").count() == 1 for k in ("seri", "xp", "dk")), f"[{tema}] {h}: üst çubukta seri, XP, dakika")
             kutu = pg.locator("[data-test=durum-xp]").bounding_box()

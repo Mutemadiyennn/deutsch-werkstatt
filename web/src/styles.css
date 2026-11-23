@@ -229,8 +229,9 @@ html { scroll-padding-top: calc(var(--safe-top) + 96px); }
 .ben-cd:last-child { border-bottom: 0; }
 .ben-cd.ileride { color: var(--muted); }
 .ben-noktalar { display: flex; gap: 5px; flex: none; }
-.ben-noktalar i { width: 11px; height: 11px; border-radius: 50%; background: color-mix(in srgb, var(--muted) 30%, transparent); }
-.ben-noktalar i.d { background: var(--wiese); }
+.ben-noktalar i { width: 11px; height: 11px; border-radius: 50%; box-sizing: border-box; border: 1.5px solid var(--muted); }
+.ben-noktalar i.d { background: var(--wiese); border-color: var(--wiese); }
+.ben-raf { display: flex; align-items: center; min-height: 44px; margin-top: 12px; padding: 0 4px; color: var(--himmel-ink); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
 .ben-atif { margin: 8px 6px 0; font-size: 0.8rem; color: var(--muted); }
 .ben-hafta { margin-top: 14px; border-radius: 22px; padding: 16px; background: var(--brezel-soft); }
 .ben-hafta b { display: block; font-size: 1.06rem; }

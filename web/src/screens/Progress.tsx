@@ -58,8 +58,8 @@ export function Progress() {
     <div class="stack">
       <TopBar title="Çalışma düzenim" back="#/ben" />
       {/* Şölen 1 XP ve seri kartı (Bugün'den taşındı; durum çubuğu her ekranda) ve B11b "Geçen haftaki sen" */}
-      {xp && <XpSeri xp={xp} href="#/yol" />}
-      <GecenHaftakiSen />
+      {/* PM-084 md. 5.6: hiç puan yokken sıfır kartları çizilmez (inceleme #208 P1-2) */}
+      {xp && Object.values(xp.gunler).some((n) => n > 0) && <><XpSeri xp={xp} href="#/yol" /><GecenHaftakiSen /></>}
 
       <section class="card hero purple stack" data-test="hero">
         <div class="kicker">Çalışma düzenim · {today.toLocaleDateString("tr-TR", { day: "numeric", month: "short" })}</div>
@@ -72,6 +72,7 @@ export function Progress() {
 
       <section class="card tint stack" data-test="panel-focus">
         <div class="sechead"><span class="ic" aria-hidden="true"><Icon name="clock" /></span><div><h2>Çalışma düzeni</h2><div class="tiny muted">Panel 1 · süre: ne kadar düzenli çalıştığın, dil seviyen değil</div></div></div>
+        {monthMin === 0 && !todayDay?.focusSec ? <p class="small muted" data-test="odak-bos">İlk odak seansından sonra süreler burada görünür.</p> : <>
         <div class="row between"><span>Bugün</span><b>{todayDay ? Math.floor(todayDay.focusSec / 60) : 0} / {goal} dk · {e?.completedCount || 0}/4 seans</b></div>
         <div class="row between small muted"><span>Bugünkü mola</span><span>{Math.round(((todayDay?.breakSec || 0) + (todayDay?.longBreakSec || 0)) / 60)} dk (odak süresine eklenmez)</span></div>
         {seg.size > 0 && <div class="small">Bugün: {[...seg.entries()].map(([a, s]) => `${ACTIVITY_TR[a as keyof typeof ACTIVITY_TR]} ${Math.round(s / 60)} dk`).join(" · ")}</div>}
@@ -81,9 +82,10 @@ export function Progress() {
             <div class="goal" style={{ bottom: `${(profile.focus.weekly.minPerDay / maxBar) * 100}%` }} />
             {week.map((w) => <div class={`b${w.min >= profile.focus.weekly.minPerDay ? " hit" : ""}`} style={{ height: `${(w.min / maxBar) * 100}%` }} title={`${w.k}: ${w.min} dk`} />)}
           </div>
-          <div class="barlbl">{week.map((w, i) => <span>{DOW[i]}<br />{w.min}</span>)}</div>
+          <div class="barlbl">{week.map((w, i) => <span>{DOW[i]}<br />{w.min || "·"}</span>)}</div>
         </div>
-        <div class="row between small"><span>Bu ay</span><span>{monthMin} dk · {cnt("completed")} seans tamamlandı · {cnt("interrupted") + cnt("abandoned")} yarıda kaldı</span></div>
+        <div class="row between small"><span>Bu ay</span><span>{[monthMin && `${monthMin} dk`, cnt("completed") && `${cnt("completed")} seans tamamlandı`, (cnt("interrupted") + cnt("abandoned")) && `${cnt("interrupted") + cnt("abandoned")} yarıda kaldı`].filter(Boolean).join(" · ") || "bugün başladın"}</span></div>
+        </>}
       </section>
 
       <section class="card tint green stack" data-test="panel-language">
