@@ -15,6 +15,7 @@ import { klipVideolari } from "./klip.ts";
 import { notoDosya, notoSvg } from "./emoji.ts";
 import { tmpdir } from "node:os";
 import { fotoPaketle, type FotoKaydi } from "./medya.ts";
+import { kesinPaketi, type KesinPaket } from "./kesin.ts";
 
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
@@ -61,16 +62,8 @@ try {
 const dnNotlar = c.dn.flatMap((x) => x.data);
 // PM-100 md. 2: kesin kelime tabloları (curriculum/*-kesin.json) → gün → {kartlar, dersler}. Uygulama yalnız önceki günün dosyası
 // pakette YOKSA kullanır (K(t) tamamlama; doğrulayıcı ve hafta kapısıyla aynı kaynak). Dosya varken ölçü cihazda görülen karttır.
-const kesinGunler: Record<string, { kartlar: string[]; dersler: string[] }> = {};
-const kurDir = join(ROOT, "content/v2/curriculum");
-const KesinDosya = z.object({ ogretilmis_sayilan: z.object({ gunler: z.record(z.string(), z.array(z.string())) }).partial().optional(),
-  gunler: z.array(z.object({ day: z.number().int(), kartlar: z.array(z.string()).default([]), dersler: z.array(z.string()).default([]) }).passthrough()).default([]) }).passthrough();
-for (const f of existsSync(kurDir) ? readdirSync(kurDir).filter((x) => /^[ab][12]-kesin\.json$/.test(x)).sort() : []) {
-  const t = KesinDosya.safeParse(JSON.parse(readFileSync(join(kurDir, f), "utf8")));
-  if (!t.success) { console.error(`${f}: kesin tablo okunamadı: ${t.error.message}`); process.exit(1); }
-  for (const [g, k] of Object.entries(t.data.ogretilmis_sayilan?.gunler ?? {})) kesinGunler[g] ??= { kartlar: k, dersler: [] };
-  for (const g of t.data.gunler) kesinGunler[String(g.day)] = { kartlar: g.kartlar, dersler: g.dersler };
-}
+let kesinGunler: KesinPaket;
+try { kesinGunler = kesinPaketi(join(ROOT, "content/v2/curriculum")); } catch (e) { console.error(String(e)); process.exit(1); }
 
 const payload = {
   m1: days.map((d) => d.data),

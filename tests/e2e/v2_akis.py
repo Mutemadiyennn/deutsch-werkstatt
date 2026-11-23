@@ -245,7 +245,7 @@ def main():
                 halkaUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && !x.ders && x.cumle), dersUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && x.ders),
                 kendiniDene: (m.plan.duraklar.find((x) => x.tur === 'gunsonu')?.adimlar ?? []).filter((x) => x.ders && x.ders.id === 'gun_sinavi').length }; }""")
             if plan["r0"]: check("akis-tablo" in govdeler, "dil noktasının tablosu gerçek gövdeyle (PM md. 4)")
-            check(bool(TABLO), f"dil noktası tablosu görüldü ve ekrana sığdı; seçicili tablolar {TABLO} (PM 7059008858 md. 1)")
+            if plan["r0"] or plan["dn"]: check(bool(TABLO), f"dil noktası tablosu görüldü ve ekrana sığdı; seçicili tablolar {TABLO} (PM 7059008858 md. 1)")
             if plan["dn"]:
                 check("akis-dil-noktasi" in govdeler, f"dil noktası durağı çizildi: {plan['dn']} (PM-098 md. 4)")
                 check(all(plan["dnBitti"]), f"dil noktası durağının bitişi ders:<id> olarak yazıldı (sonraki günlerin bitenDersler'i): {plan['dnBitti']}")
