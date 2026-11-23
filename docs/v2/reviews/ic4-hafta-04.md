@@ -248,3 +248,28 @@ Kaynak: `docs/v2/qa/orneklem-ic4-hafta-04.md`, "2. örneklem (23.11)" (%0,78, GE
 3. Takip notları: 25. gün 1. halka kalıbı **Holst du …?** → **…'i gidip alır mısın?**; 26. gün 2. halka kalıpları **…'i unutuyorum – …'i unutma!** ve **…'i gösteriyorum – …'i gösterir misin? – …'i gösteriyor**; `m1:27:s11` durumu yalnız katı soruyor, gerekçe yalnız **im zweiten Stock** (kabuller değişmedi, bisikletli iki cevap fazladan doğru).
 
 Sınama (`sina.sh 4`): kalan HATA 0 · İhlal 0 · öğretilmeden istenen 0 · test 12/12 · görülmemiş 7/7.
+
+## Kalıp örnekleri fark doğrulaması
+Kapsam: `git diff 15c08f1 7649d5b -- content/v2/m1/` (53 yeni görev cümlesi, 22., 23., 25., 28. günde kalıp değişikliği, 28. gün sınav diktesi).
+
+### Bulgular ve düzeltmeler (27)
+- **Anlam ekleyen ya da eksilten kabuller (12):** 22. gün **… die Tasse morgen zurück?**; 24. gün **Das ist ziemlich viel Geld.** (**Kaution** düşmüş); 26. gün **Er zeigt uns heute / am Samstag das Haus.** (iki kabul), **Ist das dein Freund?** (Türkçesi **sizin**); 27. gün **… jetzt in der Apotheke?**, **Er spielt … im Flur / jetzt …** (iki kabul); 28. gün **schöne Musik**, **Zwei Jahre Garantie?** (**noch** düşmüş), **… ist jetzt im ersten Stock.**, **… ist noch ziemlich jung.**
+- **Çeviri (3):** 26. gün **Am Bahnhof …** **garın orada** → **istasyonun orada**; 25. gün **Welchen Stuhl holst du?** **alıyorsun** → **gidip alıyorsun** (günün öbür satırlarıyla aynı); **… teurer als laufen** **daha pahalı**.
+- **Kabul eksiği (1):** 25. gün **Busfahren ist teurer als Laufen.** yazımı eklendi.
+- **Dikte cümlesi aynı kayıtta gölge (8):** gölge, tam cümle diktesi olmayan satıra alındı. 22 `a1` → c3 · 22 `a2` → c2, c3 · 23 `a1` → c4 · 24 `a1` → c4 · 24 `a2` → c2, c5 · 25 `a2` → c4b, c5 · 27 `a1` → c2 · 28 `a2` → c4, c5. Hiçbirinde kişi adı yok. Kayıtlar beş satır olduğu için dört yerde gölge tek satıra indi.
+- **24. gün `a1`:** `cevapla` ilk kabulü durumla uyumlu olan **Nein, nicht schlimm. Ab zwölf ist alles wieder gut.** oldu; gerçek dikte örneğiyle artık örtüşmüyor.
+- **27. gün sahne `cevapla`:** prova `n1` ile aynı soruydu → **Und der Supermarkt? Ist er weit?** (kabuller **Nein, er ist hinter dem Bahnhof.** …); günün sahnesi ve şehir planıyla tutarlı.
+- **22. gün `a1` gölgesi** önce c5 seçildi, dikiş 1. haftayla tekrar buldu; c3'te bırakıldı.
+
+### Doğru bulunanlar
+- Kalan yeni cümleler doğru, çevirileri uyumlu. Bina tutarlı: Pichler birinci kat, öğrenci ikinci kat, müzik üçüncü kattan; süpermarket belediye ile eczane arasında; 26. gün **2 Zi., Kü., Blk., 55 m², NK 120 Euro** birinci ilanla aynı.
+- Kalıp değişiklikleri (**Gibst du … zurück?**, **Ich finde es …**, **welche – welches – welchen**, **… liegt …**, **billiger**) doğru.
+- 28. gün sınav diktesi **Im Flur bitte keine Fahrräder!** apartman kuralıyla tutarlı.
+
+### Takip notları (engel değil)
+- Tam cümle diktesi olmayan, ama kolay ya da boşluk doldurma diktesinde geçen satırlar hâlâ gölge olabiliyor (ör. 23 `a2` c3, 25 `a1` c3, 26 `a1` c5). İstenen liste dışında kaldıkları için dokunulmadı.
+- 28. gün **Die Garantie liegt neben dem Rezept.**: belge anlamında **Garantieschein** denir; **Mit Garantie ist es billiger.** mantığı zayıf. İkisi de dilbilgisi olarak doğru.
+
+Sınama: `sina.sh 4` tam yeşil · `kalipornek.ts` örneksiz 0.
+
+## KARAR: ONAY

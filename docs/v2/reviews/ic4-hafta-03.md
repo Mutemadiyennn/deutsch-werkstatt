@@ -254,3 +254,28 @@ Kaynak: `docs/v2/qa/orneklem-ic4-hafta-03.md`, "2. örneklem (23.11)" (%0,8, GE�
 5. E-4: 19. gün sahne s13 **Und siehst du?** → **Siehst du?** (çevirisiyle).
 
 Sınama (`sina.sh 3`): kalan HATA 0 · İhlal 0 · öğretilmeden istenen 0 · test 12/12 · görülmemiş 7/7.
+
+## Kalıp örnekleri fark doğrulaması
+Kapsam: `git diff f544905 ddc99df -- content/v2/m1/` (47 yeni görev cümlesi, 16. ve 21. günde kalıp değişikliği, 20. gün `a1` gölgesi).
+
+### Bulgular ve düzeltmeler (15)
+- **Anlam ekleyen ya da eksilten kabuller (14):** önceki ölçüyle (Türkçede olmayan zaman, sınır sözü eklenmez; Türkçedeki söz de düşmez).
+  - 15. gün: **Welche Kollegen sind da?**, **Haben Sie Lust, …?** (**heute** düşmüş), **Kommst du heute mit, …?** (**Abend** düşmüş), **Sind Sie heute krank, …?** (eklenmiş) → **denn** ya da **auch** ile yeniden yazıldı.
+  - 17. gün ve 20. gün: **ich muss jetzt auflegen** (iki yerde), **ich bin heute nicht da** → **jetzt**/**heute** çıktı.
+  - 18. gün: **Ich bin noch in der Warteschleife.** (**schon** ile aynı değil), **Der Mann ist bei Luka.** (**heute** düşmüş).
+  - 19. gün: **Wirklich, Derya spricht auch Türkisch.** (soru değil), **… jeden Tag nur Deutsch.**, **Bleibst du heute / am Wochenende zu Hause?** (iki kabul), **Tobi ist schon weg, …**
+- **21. gün** **Könnten Sie die Uhrzeit genau wiederholen?**: **genau wiederholen** Almancada söylenmez → **Um wie viel Uhr genau? Könnten Sie das wiederholen?** (çevirisi ve kabulleriyle).
+
+### Doğru bulunanlar
+- Kalan yeni cümleler dilbilgisi olarak doğru, çevirileri uyumlu; **istasyon** tutarlı.
+- Hikâye: 18. gün **Luka ist von neun bis sechs da** salon saatleriyle, 21. gün **Dienstag** / **um zehn** Tobi'nin babasının randevusuyla, **zur Praxis** ve **bei Ihnen – bei Dr. Weber** kalıpları günün sahnesiyle tutarlı.
+- 20. gün `a1` gölgesi c2, c4: kişi adı yok.
+
+### Takip notları (engel değil)
+- 15. gün **Haben Sie heute Lust, Herr Wimmer?**: neye istekli olduğu söylenmiyor; bağlam olmadan eksik duruyor.
+- 16. gün **Ist der Name mit Doppel-L?**, **Auf welchen Namen ist der Termin?**: anlaşılır, gündelikte **Schreibt man …?**, **… läuft der Termin?** denir.
+- 19. gün **Er sieht den Kuchen, ich sehe ihn auch. Schön!**: kalıbı göstermek için kurulmuş, yapay.
+
+Sınama: `sina.sh 3` tam yeşil · `kalipornek.ts` örneksiz 0.
+
+## KARAR: ONAY
