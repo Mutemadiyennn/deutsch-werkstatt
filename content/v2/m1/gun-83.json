@@ -1,0 +1,1425 @@
+{
+ "schema": 1,
+ "id": "m1:gun:83",
+ "day": 83,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Muayenede doktorun söylediklerini anlamak",
+ "goal_tr": "Doktorun hızlı açıklamasından talimatları yakalar, tekrar eder, gerekince yavaşlamasını istersin.",
+ "can_do": {
+  "id": "cd:m1:83",
+  "tr": "Doktorun hızlı açıklamasından iki talimatı yakalayıp tekrar ederim."
+ },
+ "unit": "u:a2:saglik-3",
+ "arm": "radyo",
+ "place": "pl:friseur",
+ "characters": [
+  "ch:petrovic",
+  "ch:weber",
+  "ch:popescu",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic9/dilbilimci-h12.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:heiraten",
+  "lx:oben",
+  "lx:ernst",
+  "lx:etwa",
+  "lx:glücklich"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:83:h1",
+   "title_tr": "Cumartesi, Luka'nın koltuğunda",
+   "kartlar": [
+    "lx:heiraten",
+    "lx:oben",
+    "lx:ernst",
+    "lx:etwa",
+    "lx:glücklich"
+   ],
+   "kaliplar": [
+    {
+     "de": "He, warte mal!",
+     "tr": "Hey, bir dakika bekle!"
+    },
+    {
+     "de": "etwa eine Woche – etwa zehn Minuten",
+     "tr": "yaklaşık bir hafta – yaklaşık on dakika"
+    },
+    {
+     "de": "Ist das ernst? – Das ist nicht ernst.",
+     "tr": "Bu ciddi mi? – Bu ciddi değil."
+    },
+    {
+     "de": "oben im Schrank – ganz oben",
+     "tr": "dolabın üst rafında – en üstte"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:heiraten",
+     "de": "Meine Kollegin will im Mai heiraten.",
+     "tr": "İş arkadaşım mayısta evlenmek istiyor.",
+     "accepted": [
+      "Meine Kollegin will im Mai heiraten.",
+      "Meine Kollegin möchte im Mai heiraten.",
+      "Im Mai will meine Kollegin heiraten."
+     ]
+    },
+    {
+     "kart": "lx:heiraten",
+     "de": "Wann möchten Sie heiraten?",
+     "tr": "Ne zaman evlenmek istiyorsunuz?",
+     "accepted": [
+      "Wann möchten Sie heiraten?",
+      "Wann wollen Sie heiraten?",
+      "Und wann möchten Sie heiraten?"
+     ]
+    },
+    {
+     "kart": "lx:oben",
+     "de": "Die Tabletten sind oben im Schrank.",
+     "tr": "Tabletler dolabın üst rafında.",
+     "accepted": [
+      "Die Tabletten sind oben im Schrank.",
+      "Die Tabletten sind im Schrank oben.",
+      "Oben im Schrank sind die Tabletten."
+     ]
+    },
+    {
+     "kart": "lx:oben",
+     "de": "Die Praxis ist ganz oben.",
+     "tr": "Muayenehane en üst katta.",
+     "accepted": [
+      "Die Praxis ist ganz oben.",
+      "Die Praxis ist ganz oben im Haus.",
+      "Ganz oben ist die Praxis."
+     ]
+    },
+    {
+     "kart": "lx:ernst",
+     "de": "Ist das ernst, Herr Doktor?",
+     "tr": "Bu ciddi mi doktor bey?",
+     "accepted": [
+      "Ist das ernst, Herr Doktor?",
+      "Herr Doktor, ist das ernst?",
+      "Ist das etwas Ernstes, Herr Doktor?"
+     ]
+    },
+    {
+     "kart": "lx:ernst",
+     "de": "Keine Angst, das ist nicht ernst.",
+     "tr": "Korkmayın, bu ciddi değil.",
+     "accepted": [
+      "Keine Angst, das ist nicht ernst.",
+      "Keine Angst, das ist nicht so ernst.",
+      "Das ist nicht ernst, keine Angst."
+     ]
+    },
+    {
+     "kart": "lx:etwa",
+     "de": "Ich brauche etwa eine Woche Ruhe.",
+     "tr": "Yaklaşık bir hafta dinlenmem lazım.",
+     "accepted": [
+      "Ich brauche etwa eine Woche Ruhe.",
+      "Ich brauche noch etwa eine Woche Ruhe.",
+      "Etwa eine Woche Ruhe brauche ich."
+     ]
+    },
+    {
+     "kart": "lx:etwa",
+     "de": "Ich muss etwa zehn Minuten warten.",
+     "tr": "Yaklaşık on dakika beklemem lazım.",
+     "accepted": [
+      "Ich muss etwa zehn Minuten warten.",
+      "Ich muss noch etwa zehn Minuten warten.",
+      "Etwa zehn Minuten muss ich warten."
+     ]
+    },
+    {
+     "kart": "lx:glücklich",
+     "de": "Sie ist so glücklich!",
+     "tr": "O (kadın) çok mutlu!",
+     "accepted": [
+      "Sie ist so glücklich!",
+      "Sie ist wirklich so glücklich!",
+      "Sie ist sehr glücklich!"
+     ]
+    },
+    {
+     "kart": "lx:glücklich",
+     "de": "Ich bin glücklich, mein Hals tut nicht mehr weh.",
+     "tr": "Mutluyum, boğazım artık ağrımıyor.",
+     "accepted": [
+      "Ich bin glücklich, mein Hals tut nicht mehr weh.",
+      "Ich bin glücklich: Mein Hals tut nicht mehr weh.",
+      "Ich bin so glücklich, mein Hals tut nicht mehr weh."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cumartesi sabahı, Salon Haarwerk. Luka bir müşterinin saçını kesiyor, sen kapıdan çıkmak üzeresin.",
+    "satirlar": [
+     {
+      "r": "ch:petrovic",
+      "de": "He, warte mal! Du bist in etwa zehn Minuten dran.",
+      "tr": "Hey, bir dakika bekle! Yaklaşık on dakika sonra sıra sende."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Kein Problem, ich habe Zeit.",
+      "tr": "Sorun değil, vaktim var."
+     },
+     {
+      "r": "ch:petrovic",
+      "de": "Die Dame hier will im Mai heiraten. Sie ist so glücklich!",
+      "tr": "Buradaki hanım mayısta evlenmek istiyor. Çok mutlu!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Ne kadar bekleyeceksin?",
+     "opts": [
+      "Yaklaşık on dakika",
+      "Bir saat",
+      "Hiç"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:83:v1",
+  "title_tr": "Cumartesi: kuaförde düğün haberi ve Luka'nın öğüdü",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "eine Kundin",
+    "sahne_tr": "Cumartesi, Salon Haarwerk. Aynanın önünde genç bir kadın oturuyor.",
+    "de": "Luka, ich heirate im Mai! Ich brauche einen Termin für den großen Tag.",
+    "tr": "Luka, mayısta evleniyorum! Büyük gün için bir randevu lazım."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka makası bırakıp gülümsüyor.",
+    "de": "Wie schön! Sie sind ja so glücklich!",
+    "tr": "Ne güzel! Çok mutlusunuz!"
+   },
+   {
+    "id": "s3",
+    "speaker": "eine Kundin",
+    "sahne_tr": "Kadın gülüyor ama biraz gergin.",
+    "de": "Ja, sehr! Aber ich habe auch ein bisschen Angst.",
+    "tr": "Evet, çok! Ama biraz da korkuyorum."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka elini omzuna koyuyor.",
+    "de": "Keine Angst! Am Morgen vom großen Tag mache ich Ihnen die Haare. Ganz in Ruhe.",
+    "tr": "Korkmayın! Büyük günün sabahı saçınızı yaparım. Hiç acele etmeden."
+   },
+   {
+    "id": "s5",
+    "speaker": "eine Kundin",
+    "sahne_tr": "Kadın saatine bakıyor.",
+    "de": "Wie lange dauert das?",
+    "tr": "Ne kadar sürer?"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka düşünüyor.",
+    "de": "Etwa eine Stunde.",
+    "tr": "Yaklaşık bir saat."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka sana sesleniyor; sen ceketini alıyorsun.",
+    "de": "He, warte mal! Du bist gleich dran.",
+    "tr": "Hey, bekle! Birazdan sıra sende."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Sen koltuktasın. Luka aynadan bakıyor.",
+    "de": "So, wie immer? Nur ein bisschen kürzer?",
+    "tr": "Evet, her zamanki gibi mi? Sadece biraz daha kısa mı?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka makasla başlıyor.",
+    "de": "Und, wie geht's? Du warst krank, oder?",
+    "tr": "Eee, nasılsın? Hastaydın, değil mi?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka kaşlarını kaldırıyor.",
+    "de": "Was hat der Arzt gesagt? Ist es ernst?",
+    "tr": "Doktor ne dedi? Ciddi mi?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Sen başını sallıyorsun; Luka rahatlıyor.",
+    "de": "Ach, nur der Hals. Gut! Du, ich war auch mal neu hier.",
+    "tr": "Ha, sadece boğaz. İyi! Bak, ben de bir zamanlar burada yeniydim."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka gülerek anlatıyor.",
+    "de": "Am Anfang war beim Arzt alles so schwer. Er war so schnell!",
+    "tr": "Başta doktorda her şey çok zordu. O kadar hızlıydı ki!"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka parmağını kaldırıyor.",
+    "de": "Dann habe ich immer gesagt: Langsam, bitte! Und: Können Sie das aufschreiben?",
+    "tr": "Sonra hep şunu dedim: Yavaş lütfen! Bir de: Bunu yazabilir misiniz?"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka aynada sana göz kırpıyor.",
+    "de": "Mach das auch so!",
+    "tr": "Sen de öyle yap!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Müşteri neden mutlu?",
+     "opts": [
+      "Mayısta büyük bir gün var: evleniyor",
+      "Yeni bir iş buldu",
+      "Tatile gidiyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s2"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Luka büyük günde ne zaman saçını yapacak?",
+      "opts": [
+       "Sabah",
+       "Akşam",
+       "Bir gün önce"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Saç ne kadar sürer?",
+      "opts": [
+       "Yaklaşık bir saat",
+       "On dakika",
+       "Bütün gün"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s1",
+      "seviye": "kolay",
+      "q_tr": "Hangi ayı duydun?",
+      "opts": [
+       "Mai",
+       "März",
+       "Juni"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s3",
+      "seviye": "orta",
+      "de": "Aber ich habe auch ein bisschen ___.",
+      "accepted": [
+       "Angst",
+       "angst",
+       "Angst."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s5",
+      "seviye": "zor",
+      "banka": [
+       "Wie",
+       "lange",
+       "dauert",
+       "das",
+       "wann",
+       "lang"
+      ],
+      "accepted": [
+       "Wie lange dauert das?",
+       "wie lange dauert das",
+       "Wie lange dauert das"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Keine Angst!",
+       "keine angst",
+       "Keine Angst"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Müşterinin haberini Almanca iki kısa cümleyle söyle.",
+      "ornek_de": "Die Frau heiratet im Mai. Sie ist sehr glücklich.",
+      "zorunlu": [
+       "heiratet",
+       "glücklich"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s7"
+    ],
+    "cevapla": {
+     "id": "m1:83:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Luka sana dönüyor. Sen de kadını tebrik et.",
+     "prompt_de": "Sie heiratet im Mai! Schön, oder?",
+     "accepted": [
+      "Herzlichen Glückwunsch! Das ist sehr schön.",
+      "Wie schön! Herzlichen Glückwunsch!",
+      "Toll! Herzlichen Glückwunsch!",
+      "Das ist schön! Viel Glück!",
+      "Herzlichen Glückwunsch und viel Glück!",
+      "Wie schön! Ich wünsche Ihnen viel Glück!"
+     ],
+     "why_tr": "Evlilik haberine **Herzlichen Glückwunsch!** dersin."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Luka sana ne öğüt veriyor?",
+     "opts": [
+      "Doktor hızlı konuşursa yavaşlamasını ve yazmasını iste",
+      "Başka bir doktora git",
+      "Saçını uzat"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s13"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Luka başta doktorda nasıl hissetmiş?",
+      "opts": [
+       "Her şey çok zormuş",
+       "Her şey kolaymış",
+       "Hiç doktora gitmemiş"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s12"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Luka saçını nasıl kesiyor?",
+      "opts": [
+       "Her zamanki gibi, biraz kısa",
+       "Çok kısa",
+       "Hiç kesmiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s8"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s12",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "schnell",
+       "langsam",
+       "laut"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s13",
+      "seviye": "orta",
+      "de": "Dann habe ich immer gesagt: ___, bitte!",
+      "accepted": [
+       "Langsam",
+       "langsam",
+       "Langsam."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s10",
+      "seviye": "zor",
+      "banka": [
+       "Was",
+       "hat",
+       "der",
+       "Arzt",
+       "gesagt",
+       "hast",
+       "sagt"
+      ],
+      "accepted": [
+       "Was hat der Arzt gesagt?",
+       "was hat der arzt gesagt",
+       "Was hat der Arzt gesagt"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s11",
+      "seviye": "usta",
+      "accepted": [
+       "Du, ich war auch mal neu hier.",
+       "du ich war auch mal neu hier",
+       "Du, ich war auch mal neu hier"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Luka'nın öğüdünü Almanca iki kısa cümleyle söyle.",
+      "ornek_de": "Ich sage: Langsam, bitte! Ich frage: Können Sie das aufschreiben?",
+      "zorunlu": [
+       "Langsam",
+       "aufschreiben"
+      ]
+     }
+    ],
+    "golge": [
+     "s13",
+     "s14"
+    ],
+    "cevapla": {
+     "id": "m1:83:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Luka doktorun ne dediğini soruyor. Ciddi değil. Yaklaşık üç gün dinlenmen lazım.",
+     "prompt_de": "Was hat der Arzt gesagt? Ist es ernst?",
+     "accepted": [
+      "Es ist nicht ernst. Ich brauche etwa drei Tage Ruhe.",
+      "Nein, nicht ernst. Ich brauche etwa drei Tage Ruhe.",
+      "Das ist nicht ernst. Etwa drei Tage Ruhe, sagt der Arzt.",
+      "Nicht ernst. Ich brauche noch etwa drei Tage Ruhe.",
+      "Nein, es ist nicht ernst. Etwa drei Tage Ruhe.",
+      "Zum Glück nicht ernst. Ich brauche etwa drei Tage Ruhe."
+     ],
+     "why_tr": "**nicht ernst**: ciddi değil. **etwa**: yaklaşık."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:83:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Dr. Weber'den hızlı bir mesaj",
+   "ortam_tr": "Cuma akşamı telefonunda Dr. Weber'in kısa mesajı var. Hızlı konuşuyor.",
+   "hizlar": [
+    "normal",
+    "natural",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, hier ist noch einmal Dr. Weber.",
+     "tr": "İyi günler, ben yine Dr. Weber."
+    },
+    {
+     "id": "c2",
+     "de": "Ich habe heute etwas vergessen.",
+     "tr": "Bugün bir şeyi unuttum."
+    },
+    {
+     "id": "c3",
+     "de": "Nehmen Sie das Schmerzmittel nur am Abend, nicht am Morgen.",
+     "tr": "Ağrı kesiciyi sadece akşam alın, sabah değil."
+    },
+    {
+     "id": "c4",
+     "de": "Und trinken Sie bitte viel Wasser.",
+     "tr": "Bir de lütfen bol su için."
+    },
+    {
+     "id": "c5",
+     "de": "Ist es in etwa einer Woche nicht besser, dann kommen Sie wieder.",
+     "tr": "Yaklaşık bir hafta içinde düzelmezse tekrar gelin."
+    },
+    {
+     "id": "c6",
+     "de": "Schönes Wochenende!",
+     "tr": "İyi hafta sonları!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Dr. Weber neden arıyor?",
+      "opts": [
+       "Unuttuğu talimatları söylüyor",
+       "Randevunu iptal ediyor",
+       "Kartını soruyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Ağrı kesiciyi ne zaman almalısın?",
+       "opts": [
+        "Sadece akşam",
+        "Sadece sabah",
+        "Sabah ve akşam"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ne içmelisin?",
+       "opts": [
+        "Bol su",
+        "Kahve",
+        "Hiçbir şey"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Abend",
+        "Mittag",
+        "Nacht"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Und trinken Sie bitte viel ___.",
+       "accepted": [
+        "Wasser",
+        "wasser",
+        "Wasser."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "habe",
+        "heute",
+        "etwas",
+        "vergessen",
+        "morgen",
+        "nichts"
+       ],
+       "accepted": [
+        "Ich habe heute etwas vergessen.",
+        "ich habe heute etwas vergessen",
+        "Ich habe heute etwas vergessen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Nehmen Sie das Schmerzmittel nur am Abend, nicht am Morgen.",
+        "nehmen sie das schmerzmittel nur am abend nicht am morgen",
+        "Nehmen Sie das Schmerzmittel nur am Abend, nicht am Morgen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Dr. Weber'in iki talimatını Almanca yaz.",
+       "ornek_de": "Ich nehme das Schmerzmittel nur am Abend. Ich trinke viel Wasser.",
+       "zorunlu": [
+        "Abend",
+        "Wasser"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:83:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi telefonda doktorun ne dediğini soruyor. İki talimatı söyle.",
+      "prompt_de": "Und? Was sagt der Arzt?",
+      "accepted": [
+       "Ich soll das Schmerzmittel nur am Abend nehmen und viel Wasser trinken.",
+       "Das Schmerzmittel nur am Abend, und viel Wasser trinken.",
+       "Ich soll viel Wasser trinken und das Schmerzmittel nur am Abend nehmen.",
+       "Nur am Abend das Schmerzmittel und viel Wasser.",
+       "Ich soll das Schmerzmittel am Abend nehmen und viel trinken.",
+       "Viel Wasser trinken und das Schmerzmittel nur am Abend."
+      ],
+      "why_tr": "Başkasının talimatını **soll** ile aktarırsın."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:83:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Ağrı kesiciyi akşam al, bol su iç",
+     "Ağrı kesiciyi sabah al",
+     "Hemen muayenehaneye git"
+    ],
+    "ans": 0,
+    "why_tr": "Dr. Weber ağrı kesiciyi sadece akşam almanı ve bol su içmeni söylüyor.",
+    "kanit": [
+     "c3",
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:83:a2",
+   "tur": "radyo",
+   "title_tr": "Kuaförde radyo: doktorda nasıl sorarsın?",
+   "ortam_tr": "Luka'nın salonunda radyo çalıyor. Bir sağlık önerisi var.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Und jetzt ein Tipp für Ihren Arzttermin.",
+     "tr": "Ve şimdi doktor randevunuz için bir öneri."
+    },
+    {
+     "id": "c2",
+     "de": "Beim Arzt geht oft alles sehr schnell.",
+     "tr": "Doktorda her şey çoğu zaman çok hızlı geçer."
+    },
+    {
+     "id": "c3",
+     "de": "Schreiben Sie Ihre Fragen zu Hause auf.",
+     "tr": "Sorularınızı evde not edin."
+    },
+    {
+     "id": "c4",
+     "de": "Verstehen Sie etwas nicht? Dann fragen Sie: Können Sie das bitte wiederholen?",
+     "tr": "Bir şeyi anlamadınız mı? O zaman sorun: Lütfen tekrar eder misiniz?"
+    },
+    {
+     "id": "c5",
+     "de": "Ihr Arzt sagt es gern noch einmal.",
+     "tr": "Doktorunuz seve seve bir kez daha söyler."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne öneriyor?",
+      "opts": [
+       "Sorularını hazırla, anlamazsan tekrar iste",
+       "Doktora gitme",
+       "Doktora erken git"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Sorularını nerede not etmelisin?",
+       "opts": [
+        "Evde",
+        "Bekleme odasında",
+        "Eczanede"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Anlamazsan ne sorarsın?",
+       "opts": [
+        "Tekrar eder misiniz?",
+        "Saat kaç?",
+        "Ne kadar?"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "schnell",
+        "langsam",
+        "spät"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Schreiben Sie Ihre Fragen zu ___ auf.",
+       "accepted": [
+        "Hause",
+        "hause",
+        "Hause."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Ihr",
+        "Arzt",
+        "sagt",
+        "es",
+        "gern",
+        "noch",
+        "einmal",
+        "Ihnen",
+        "fragt"
+       ],
+       "accepted": [
+        "Ihr Arzt sagt es gern noch einmal.",
+        "ihr arzt sagt es gern noch einmal",
+        "Ihr Arzt sagt es gern noch einmal"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Beim Arzt geht oft alles sehr schnell.",
+        "beim arzt geht oft alles sehr schnell",
+        "Beim Arzt geht oft alles sehr schnell"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyonun iki önerisini Almanca söyle.",
+       "ornek_de": "Ich schreibe meine Fragen auf. Ich frage: Können Sie das wiederholen?",
+       "zorunlu": [
+        "Fragen",
+        "wiederholen"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:83:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Doktor çok hızlı bir şey söyledi. Anlamadın. Tekrar etmesini iste.",
+      "prompt_de": "… und dann am Morgen und am Abend nach dem Essen, ja?",
+      "accepted": [
+       "Entschuldigung, können Sie das bitte wiederholen?",
+       "Können Sie das bitte wiederholen?",
+       "Entschuldigung, noch einmal, bitte.",
+       "Wie bitte? Können Sie das wiederholen?",
+       "Entschuldigung, bitte noch einmal langsam.",
+       "Können Sie das bitte noch einmal sagen?"
+      ],
+      "why_tr": "**Können Sie das bitte wiederholen?** her doktorda işe yarar."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:83:a2:e1",
+    "k": "pick",
+    "q_tr": "Radyoya göre doktora gitmeden önce ne yapmalısın?",
+    "opts": [
+     "Sorularını evde not al",
+     "İnternette oku",
+     "Hiçbir şey"
+    ],
+    "ans": 0,
+    "why_tr": "Radyo sorularını evde yazmanı öneriyor.",
+    "kanit": [
+     "c3"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:83:g1",
+   "de": "heiraten",
+   "dogru_img": "bride and groom at a wedding",
+   "celdirici_img": [
+    "birthday party",
+    "graduation ceremony",
+    "business meeting"
+   ]
+  },
+  {
+   "id": "m1:83:g2",
+   "de": "oben",
+   "dogru_img": "box on the top shelf of a cupboard",
+   "celdirici_img": [
+    "box on the floor",
+    "box under a table",
+    "box next to a door"
+   ]
+  },
+  {
+   "id": "m1:83:g3",
+   "de": "glücklich",
+   "dogru_img": "very happy smiling woman",
+   "celdirici_img": [
+    "sad woman",
+    "angry man",
+    "tired man yawning"
+   ]
+  },
+  {
+   "id": "m1:83:g4",
+   "de": "Haar",
+   "dogru_img": "woman with long brown hair",
+   "celdirici_img": [
+    "man with a beard",
+    "child with a hat",
+    "bald man"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:83:p1",
+  "title_tr": "Dr. Weber hızlı açıklıyor",
+  "durum_tr": "Cuma, muayenenin sonu. Dr. Weber hızlı konuşuyor. İki talimatı yakala ve tekrar et. Anlamazsan yavaşlamasını ya da yazmasını iste.",
+  "karsi": "ch:weber",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "So, nehmen Sie eine Tablette am Morgen und eine am Abend, etwa eine Woche lang.",
+    "tr": "Evet, sabah bir tablet, akşam bir tablet alın, yaklaşık bir hafta boyunca.",
+    "secenekler": [
+     {
+      "de": "Eine am Morgen und eine am Abend, etwa eine Woche. Richtig?",
+      "tr": "Sabah bir, akşam bir, yaklaşık bir hafta. Doğru mu?",
+      "accepted": [
+       "Eine am Morgen und eine am Abend, etwa eine Woche. Richtig?",
+       "Am Morgen eine und am Abend eine, etwa eine Woche. Richtig?",
+       "Eine am Morgen, eine am Abend, eine Woche lang. Richtig?",
+       "Also eine am Morgen und eine am Abend, etwa eine Woche?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika: talimatı tekrar edip doğruladın."
+     },
+     {
+      "de": "Entschuldigung, etwas langsamer, bitte.",
+      "tr": "Pardon, biraz daha yavaş lütfen.",
+      "accepted": [
+       "Entschuldigung, etwas langsamer, bitte.",
+       "Etwas langsamer, bitte.",
+       "Entschuldigung, bitte langsamer.",
+       "Bitte etwas langsamer."
+      ],
+      "sonraki": "n1r",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: yavaşlamasını istedin."
+     },
+     {
+      "de": "Ja, ja.",
+      "tr": "Evet, evet.",
+      "accepted": [
+       "Ja, ja.",
+       "Ja.",
+       "Okay, okay."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Anlamadan evet deme. Tekrar et ya da yavaşlamasını iste."
+     }
+    ]
+   },
+   {
+    "id": "n1r",
+    "de": "Gern. Eine Tablette am Morgen. Eine Tablette am Abend. Etwa eine Woche.",
+    "tr": "Tabii. Sabah bir tablet. Akşam bir tablet. Yaklaşık bir hafta.",
+    "secenekler": [
+     {
+      "de": "Also: am Morgen eine und am Abend eine. Danke!",
+      "tr": "Yani: sabah bir, akşam bir. Teşekkürler!",
+      "accepted": [
+       "Also: am Morgen eine und am Abend eine. Danke!",
+       "Also am Morgen eine, am Abend eine. Danke!",
+       "Am Morgen eine und am Abend eine. Danke!",
+       "Also, eine am Morgen und eine am Abend. Danke schön!"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru yakaladın."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Genau. Und trinken Sie viel. Kommt das Fieber wieder, dann rufen Sie an.",
+    "tr": "Aynen. Bir de bol için. Ateş geri gelirse arayın.",
+    "secenekler": [
+     {
+      "de": "Viel trinken, und bei Fieber anrufen. Okay.",
+      "tr": "Bol içmek, ateşte aramak. Tamam.",
+      "accepted": [
+       "Viel trinken, und bei Fieber anrufen. Okay.",
+       "Viel trinken und bei Fieber anrufen. Okay.",
+       "Okay: viel trinken, und bei Fieber rufe ich an.",
+       "Viel trinken. Bei Fieber rufe ich an."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Mükemmel: iki talimatı da yakaladın."
+     },
+     {
+      "de": "Können Sie mir das bitte aufschreiben?",
+      "tr": "Bunu bana yazabilir misiniz?",
+      "accepted": [
+       "Können Sie mir das bitte aufschreiben?",
+       "Können Sie das bitte aufschreiben?",
+       "Können Sie mir das aufschreiben?",
+       "Bitte schreiben Sie es mir auf."
+      ],
+      "sonraki": "n2w",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi bir strateji: yazılı iste."
+     }
+    ]
+   },
+   {
+    "id": "n2w",
+    "de": "Natürlich, ich schreibe es Ihnen auf.",
+    "tr": "Tabii, size yazıyorum.",
+    "secenekler": [
+     {
+      "de": "Vielen Dank!",
+      "tr": "Çok teşekkürler!",
+      "accepted": [
+       "Vielen Dank!",
+       "Danke schön!",
+       "Danke!",
+       "Vielen Dank, Herr Doktor!"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Haben Sie noch Fragen?",
+    "tr": "Başka sorunuz var mı?",
+    "secenekler": [
+     {
+      "de": "Ist es ernst?",
+      "tr": "Ciddi mi?",
+      "accepted": [
+       "Ist es ernst?",
+       "Ist das ernst?",
+       "Ist es etwas Ernstes?",
+       "Herr Doktor, ist es ernst?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Merak ettiğini sormak doğru."
+     },
+     {
+      "de": "Darf ich am Montag arbeiten?",
+      "tr": "Pazartesi çalışabilir miyim?",
+      "accepted": [
+       "Darf ich am Montag arbeiten?",
+       "Darf ich am Montag wieder arbeiten?",
+       "Kann ich am Montag arbeiten?",
+       "Darf ich Montag zur Arbeit?"
+      ],
+      "sonraki": "n4b",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi soru."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Nein, das ist nicht ernst. In etwa einer Woche geht es Ihnen wieder gut.",
+    "tr": "Hayır, ciddi değil. Yaklaşık bir hafta içinde yeniden iyi olursunuz.",
+    "son": true
+   },
+   {
+    "id": "n4b",
+    "de": "Nein, erst am Dienstag. Sie brauchen noch Ruhe.",
+    "tr": "Hayır, ancak salı. Hâlâ dinlenmeniz lazım.",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Doktorun hızlı talimatlarını yakaladın, tekrar ettin ve gerekince yavaşlamasını ya da yazmasını istedin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Dr. Weber'in kâğıdı",
+  "metin_de": "Tabletten: eine am Morgen, eine am Abend, nach dem Essen. Etwa eine Woche. Viel Wasser trinken. Kommt das Fieber wieder? Bitte die Praxis anrufen. Arbeit: ab Dienstag.",
+  "metin_tr": "Tabletler: sabah bir, akşam bir, yemekten sonra. Yaklaşık bir hafta. Bol su içmek. Ateş geri mi geldi? Lütfen muayenehaneyi arayın. İş: salıdan itibaren.",
+  "sorular": [
+   {
+    "id": "m1:83:o1",
+    "kind": "gist",
+    "q_tr": "Bu kâğıt ne?",
+    "opts": [
+     "Doktorun talimatları",
+     "Bir fatura",
+     "Bir davetiye"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     1
+    ]
+   },
+   {
+    "id": "m1:83:o2",
+    "kind": "detail",
+    "q_tr": "Tabletleri ne kadar süre alacaksın?",
+    "opts": [
+     "Yaklaşık bir hafta",
+     "İki gün",
+     "Bir ay"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:83:o3",
+    "kind": "detail",
+    "q_tr": "Ne zaman işe gidebilirsin?",
+    "opts": [
+     "Salıdan itibaren",
+     "Pazartesi",
+     "Yarın"
+    ],
+    "ans": 0,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:83:o4",
+    "k": "guided_response",
+    "situation_tr": "Ioana kâğıtta ne yazdığını soruyor. İki talimatı söyle.",
+    "prompt_de": "Was steht auf dem Zettel?",
+    "accepted": [
+     "Ich soll am Morgen und am Abend eine Tablette nehmen und viel Wasser trinken.",
+     "Eine Tablette am Morgen, eine am Abend, und viel Wasser trinken.",
+     "Ich soll viel Wasser trinken und am Morgen und am Abend eine Tablette nehmen.",
+     "Am Morgen und am Abend eine Tablette, und viel trinken.",
+     "Ich soll eine Woche Tabletten nehmen und viel trinken.",
+     "Tabletten am Morgen und am Abend, und viel Wasser."
+    ],
+    "why_tr": "Talimatı **soll** ile aktar."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Derya'ya kısa bir mesaj yaz: doktorun iki talimatını ve işe ne zaman döneceğini söyle.",
+   "ornek_de": "Hallo Derya! Der Arzt sagt, es ist nicht ernst. Ich soll viel trinken und eine Woche Tabletten nehmen. Ab Dienstag bin ich wieder im Büro.",
+   "zorunlu": [
+    "Dienstag",
+    "soll"
+   ],
+   "accepted_kaliplar": [
+    "Ich soll …",
+    "Ab … bin ich wieder …"
+   ],
+   "kontrol_tr": [
+    "İki talimat yazdın mı?",
+    "Dönüş gününü yazdın mı?",
+    "soll ile mi aktardın?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:83:s",
+  "maddeler": [
+   {
+    "id": "m1:83:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Meine Kollegin heiratet im Mai.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Meine Kollegin heiratet im Mai.",
+     "meine kollegin heiratet im mai",
+     "Meine Kollegin heiratet im Mai"
+    ],
+    "why_tr": "**heiratet**: evleniyor."
+   },
+   {
+    "id": "m1:83:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Die Tabletten liegen ganz oben im Regal.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Tabletten liegen ganz oben im Regal.",
+     "die tabletten liegen ganz oben im regal",
+     "Die Tabletten liegen ganz oben im Regal"
+    ],
+    "why_tr": "**ganz oben**: en üstte."
+   },
+   {
+    "id": "m1:83:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Das ist zum Glück nicht ernst.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das ist zum Glück nicht ernst.",
+     "das ist zum glück nicht ernst",
+     "Das ist zum Glück nicht ernst"
+    ],
+    "why_tr": "**zum Glück**: neyse ki."
+   },
+   {
+    "id": "m1:83:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ich bin in etwa zehn Minuten da.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich bin in etwa zehn Minuten da.",
+     "ich bin in etwa zehn minuten da",
+     "Ich bin in etwa zehn Minuten da"
+    ],
+    "why_tr": "**etwa**: yaklaşık."
+   },
+   {
+    "id": "m1:83:s5",
+    "k": "tr_de",
+    "tr": "Yaklaşık bir saat sürüyor.",
+    "accepted": [
+     "Das dauert etwa eine Stunde.",
+     "Es dauert etwa eine Stunde.",
+     "Etwa eine Stunde dauert das."
+    ],
+    "why_tr": "**etwa eine Stunde**: yaklaşık bir saat."
+   },
+   {
+    "id": "m1:83:s6",
+    "k": "tr_de",
+    "tr": "Çok mutluyuz.",
+    "accepted": [
+     "Wir sind sehr glücklich.",
+     "Wir sind so glücklich.",
+     "Wir sind wirklich glücklich."
+    ],
+    "why_tr": "**glücklich**: mutlu."
+   },
+   {
+    "id": "m1:83:s7",
+    "k": "tr_de",
+    "tr": "Ne zaman evleniyorsunuz?",
+    "accepted": [
+     "Wann heiraten Sie?",
+     "Wann heiraten Sie denn?",
+     "Und wann heiraten Sie?"
+    ],
+    "why_tr": "**heiraten** ikinci yerde, **Wann**'dan hemen sonra."
+   },
+   {
+    "id": "m1:83:s8",
+    "k": "tr_de",
+    "tr": "Lütfen biraz daha yavaş konuşun.",
+    "accepted": [
+     "Bitte sprechen Sie etwas langsamer.",
+     "Sprechen Sie bitte etwas langsamer.",
+     "Können Sie bitte etwas langsamer sprechen?"
+    ],
+    "why_tr": "**langsamer**: daha yavaş."
+   },
+   {
+    "id": "m1:83:s9",
+    "k": "guided_response",
+    "situation_tr": "Luka doktorun ne dediğini soruyor. Bol su içeceksin, akşam bir tablet alacaksın.",
+    "prompt_de": "Und, was hat der Arzt gesagt?",
+    "accepted": [
+     "Ich soll viel trinken und am Abend eine Tablette nehmen.",
+     "Viel trinken und am Abend eine Tablette.",
+     "Ich soll am Abend eine Tablette nehmen und viel trinken.",
+     "Der Arzt sagt: viel trinken und am Abend eine Tablette.",
+     "Ich soll viel Wasser trinken und am Abend eine Tablette nehmen."
+    ],
+    "why_tr": "**soll** ile aktar."
+   },
+   {
+    "id": "m1:83:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Nehmen Sie eine Tablette am Morgen und eine am Abend.",
+    "speed": "normal",
+    "situation_tr": "Dr. Weber hızlı söylüyor. Talimatı tekrar et.",
+    "accepted": [
+     "Eine am Morgen und eine am Abend.",
+     "Eine Tablette am Morgen und eine am Abend.",
+     "Am Morgen eine und am Abend eine.",
+     "Also eine am Morgen und eine am Abend."
+    ],
+    "why_tr": "Tekrar etmek anladığını gösterir."
+   },
+   {
+    "id": "m1:83:s11",
+    "k": "guided_response",
+    "situation_tr": "Dr. Weber çok hızlı konuştu. Anlamadın. Yavaş söylemesini ve yazmasını iste.",
+    "prompt_de": "Also, am Morgen und am Abend nach dem Essen, und bei Fieber sofort anrufen, ja?",
+    "accepted": [
+     "Entschuldigung, können Sie das bitte langsamer sagen und aufschreiben?",
+     "Entschuldigung, bitte langsamer. Können Sie das aufschreiben?",
+     "Langsamer, bitte. Und können Sie mir das aufschreiben?",
+     "Können Sie das bitte langsam sagen und aufschreiben?",
+     "Entschuldigung, etwas langsamer, bitte. Und bitte aufschreiben."
+    ],
+    "why_tr": "Yavaşlat: **langsamer**. Yazılı iste: **aufschreiben**."
+   }
+  ],
+  "sesli": [
+   "m1:83:s9",
+   "m1:83:s10"
+  ],
+  "dikte": [
+   "m1:83:s1",
+   "m1:83:s2",
+   "m1:83:s3",
+   "m1:83:s4"
+  ]
+ }
+}
