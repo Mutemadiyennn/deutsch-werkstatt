@@ -10,7 +10,7 @@
   "unit": "u:m1:53",
   "arm": "pazar",
   "place": "pl:firma",
-  "characters": ["ch:lechner", "ch:aksoy", "ch:pichler", "ch:popescu"],
+  "characters": ["ch:lechner", "ch:aksoy", "ch:pichler"],
   "requires": { "kelimeler": [], "kaliplar": [], "gramer": [], "tur": [], "baglayicilar": [], "akicilik": [] },
   "review": { "status": "draft" },
   "dersler": [],
@@ -96,9 +96,9 @@
         "cevapla": {
           "id": "m1:53:v1:c1",
           "k": "guided_response",
-          "situation_tr": "Derya sana soruyor. Cumartesi göldeydin, hava güzeldi.",
+          "situation_tr": "Derya sana soruyor. Pazar göldeydin, hava güzeldi.",
           "prompt_de": "Wie war dein Wochenende?",
-          "accepted": ["Gut! Am Samstag war ich am See.", "Super! Am Samstag war ich am See.", "Am Samstag war ich am See. Das Wetter war gut.", "Gut, danke! Ich war am Samstag am See.", "Schön! Am Samstag war ich am See, das Wetter war toll.", "Toll! Ich war am Samstag am See."],
+          "accepted": ["Am Sonntag war ich am See. Das Wetter war gut.", "Gut! Ich war am Sonntag am See.", "Toll! Am Sonntag war ich am See.", "Schön! Am Sonntag war ich am See, das Wetter war toll.", "Gut, danke! Am Sonntag war ich am See. Das Wetter war gut.", "Toll! Ich war am Sonntag am See."],
           "why_tr": "Geçmişte nerede olduğunu **war** ile söylersin: **Ich war am See**."
         }
       }
@@ -180,9 +180,9 @@
           "cevapla": {
             "id": "m1:53:a2:c1",
             "k": "guided_response",
-            "situation_tr": "Herr Pichler'i geri arıyorsun. Cumartesi gecesi evde değildin, göldeydin. Bunu söyle.",
+            "situation_tr": "Herr Pichler'i geri arıyorsun. Cumartesi gecesi evde değildin. Adını söyle ve bunu anlat.",
             "prompt_de": "Pichler. Ja, bitte?",
-            "accepted": ["Hier ist {name}. Am Samstag war ich nicht zu Hause. Ich war am See.", "Guten Tag, hier ist {name}. Am Samstag war ich nicht zu Hause.", "Hallo, {name} hier. Ich war am Samstag nicht zu Hause, ich war am See.", "Hier ist {name}. Am Samstag war ich am See, nicht zu Hause.", "Guten Tag, Herr Pichler. Am Samstag war ich nicht da. Ich war am See."],
+            "accepted": ["Hier ist {name}. Am Samstag war ich nicht zu Hause.", "Guten Tag, hier ist {name}. Am Samstag war ich nicht zu Hause.", "Hallo, {name} hier. Ich war am Samstag nicht zu Hause.", "Hier ist {name}. Am Samstag in der Nacht war ich nicht zu Hause.", "Guten Tag, Herr Pichler, hier ist {name}. Am Samstag war ich nicht da."],
             "why_tr": "Önce adını söyle, sonra **Am Samstag war ich nicht zu Hause** de."
           }
         }
@@ -231,8 +231,8 @@
       },
       {
         "id": "n2",
-        "de": "Freut mich! Und du, wie war dein Wochenende?",
-        "tr": "Memnun oldum! Ya senin hafta sonun nasıldı?",
+        "de": "Freut mich! Und, wie war dein Wochenende?",
+        "tr": "Memnun oldum! Eee, hafta sonun nasıldı?",
         "secenekler": [
           { "de": "Gut! Am Sonntag war ich am See.", "tr": "İyiydi! Pazar günü göldeydim.",
             "accepted": ["Gut! Am Sonntag war ich am See.", "Super! Am Sonntag war ich am See.", "Gut, danke! Ich war am Sonntag am See.", "Schön! Am Sonntag war ich am See."],
@@ -281,15 +281,15 @@
   },
   "okuma_yazma": {
     "tur": "yazma",
-    "title_tr": "Ioana'ya hafta sonunu yaz",
-    "metin_de": "Hallo {name}! Wie war dein Wochenende? Am Samstag ist mein Kurs ausgefallen. Am Sonntag war ich zu Hause. Und du? Ioana",
-    "metin_tr": "Merhaba {name}! Hafta sonun nasıldı? Cumartesi kursum iptal oldu. Pazar evdeydim. Ya sen? Ioana",
+    "title_tr": "Derya'ya hafta sonunu yaz",
+    "metin_de": "Hallo {name}! Wie war dein Wochenende? Am Samstag ist mein Kurs ausgefallen. Am Sonntag war ich zu Hause. Und du? Derya",
+    "metin_tr": "Merhaba {name}! Hafta sonun nasıldı? Cumartesi kursum iptal oldu. Pazar evdeydim. Ya sen? Derya",
     "sorular": [
-      { "id": "m1:53:o1", "kind": "detail", "q_tr": "Ioana'nın cumartesi kursu ne oldu?", "opts": ["İptal oldu", "Çok güzeldi", "Geç başladı"], "ans": 0, "kanit": [2] }
+      { "id": "m1:53:o1", "kind": "detail", "q_tr": "Derya'nın cumartesi kursu ne oldu?", "opts": ["İptal oldu", "Çok güzeldi", "Geç başladı"], "ans": 0, "kanit": [2] }
     ],
     "yazma": {
-      "gorev_tr": "Ioana'ya cevap yaz. Hafta sonu nerede olduğunu, ne yediğini ve bir sorunu iki üç cümleyle anlat.",
-      "ornek_de": "Hallo Ioana! Am Sonntag war ich am See. Wir haben am See gegessen. Der Zug ist ausgefallen.",
+      "gorev_tr": "Derya'ya cevap yaz. Hafta sonu nerede olduğunu, ne yediğini ve bir sorunu iki üç cümleyle anlat.",
+      "ornek_de": "Hallo Derya! Am Sonntag war ich am See. Wir haben am See gegessen. Der Zug ist ausgefallen.",
       "zorunlu": ["Sonntag", "war"],
       "accepted_kaliplar": ["Hallo ___!", "Am ___ war ich ___.", "Ich war am ___ ___.", "Wir haben ___ gegessen.", "Ich habe ___ gegessen.", "Der Zug ist ausgefallen.", "Der Bus ist ausgefallen.", "Mein Kurs ist ausgefallen.", "Das Wetter war ___.", "Das war ___.", "Am ___ war ich zu Hause.", "Und dein Wochenende?", "Bis morgen!"],
       "kontrol_tr": ["Nerede olduğunu **war** ile yazdın mı?", "Ne yediğini ya da ne yaptığını yazdın mı?", "**gegessen** ve **ausgefallen** cümlenin sonunda mı?"]

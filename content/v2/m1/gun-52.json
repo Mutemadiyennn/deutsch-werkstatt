@@ -154,7 +154,7 @@
       "script": [
         { "id": "c1", "de": "Hallo, hier ist Rosa Brandl.", "tr": "Merhaba, ben Rosa Brandl." },
         { "id": "c2", "de": "Der Teppich ist da!", "tr": "Halı geldi!" },
-        { "id": "c3", "de": "Aber der Mann will Bargeld, und ich habe zehn Euro.", "tr": "Ama adam nakit istiyor, bende de on avro var." },
+        { "id": "c3", "de": "Aber der Mann will Bargeld, und ich habe nur zehn Euro.", "tr": "Ama adam nakit istiyor, bende de sadece on avro var." },
         { "id": "c4", "de": "Können Sie mir bitte zwanzig Euro leihen?", "tr": "Bana yirmi avro ödünç verebilir misiniz lütfen?" },
         { "id": "c5", "de": "Ich bin an der Tür. Danke!", "tr": "Kapıdayım. Teşekkürler!" }
       ],
@@ -172,7 +172,7 @@
             { "id": "d2", "cumle": "c2", "seviye": "orta", "de": "Der ___ ist da!", "accepted": ["Teppich", "teppich", "Teppich."] },
             { "id": "d3", "cumle": "c5", "seviye": "zor", "banka": ["Ich", "bin", "an", "der", "Tür", "im", "Haus"], "accepted": ["Ich bin an der Tür.", "ich bin an der tür", "Ich bin an der Tür"] },
             { "id": "d4", "cumle": "c4", "seviye": "usta", "accepted": ["Können Sie mir bitte zwanzig Euro leihen?", "können sie mir bitte zwanzig euro leihen", "Können Sie mir bitte zwanzig Euro leihen"] },
-            { "id": "d5", "seviye": "gercek", "gorev_tr": "Frau Brandl ne dedi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Der Teppich ist da. Frau Brandl möchte zwanzig Euro leihen.", "zorunlu": ["Teppich", "zwanzig"] }
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Frau Brandl ne dedi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Der Teppich ist da. Frau Brandl braucht zwanzig Euro.", "zorunlu": ["Teppich", "zwanzig"] }
           ],
           "golge": ["c2", "c4"],
           "cevapla": {
@@ -232,12 +232,12 @@
       },
       {
         "id": "n2b",
-        "de": "Schade! Und am Sonntag? Am Sonntag spielen wir auch.",
-        "tr": "Yazık! Peki pazar? Pazar da oynuyoruz.",
+        "de": "Schade! Wandern kannst du auch am Sonntag. Am Samstag spielt meine Mannschaft!",
+        "tr": "Yazık! Yürüyüşe pazar da gidebilirsin. Cumartesi takımım oynuyor!",
         "secenekler": [
-          { "de": "Am Sonntag habe ich Zeit. Was kostet die Karte?", "tr": "Pazar vaktim var. Bilet ne kadar?",
-            "accepted": ["Am Sonntag habe ich Zeit. Was kostet die Karte?", "Sonntag geht. Was kostet die Karte?", "Am Sonntag geht es. Was kostet die Karte?"],
-            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Başka bir günü kabul ettin ve fiyatı sordun." }
+          { "de": "Okay, ich komme mit. Was kostet die Karte?", "tr": "Tamam, geliyorum. Bilet ne kadar?",
+            "accepted": ["Okay, ich komme mit. Was kostet die Karte?", "Okay, ich komme. Was kostet die Karte?", "Gut, ich komme mit. Was kostet die Karte?", "Okay, ich komme mit. Wie viel kostet die Karte?"],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Planını değiştirdin, kabul ettin ve fiyatı sordun." }
         ]
       },
       {
@@ -279,8 +279,8 @@
       { "id": "m1:52:o1", "kind": "gist", "q_tr": "Herr Pichler ne duyuruyor?", "opts": ["Hafta sonu burada olmadığını", "Kiranın arttığını", "Kaloriferin bozulduğunu"], "ans": 0, "kanit": [1] },
       { "id": "m1:52:o2", "kind": "detail", "q_tr": "Hafta sonu ne yapıyor?", "opts": ["Doğa yürüyüşüne gidiyor", "Maça gidiyor", "Çalışıyor"], "ans": 0, "kanit": [2] },
       { "id": "m1:52:o3", "kind": "detail", "q_tr": "Bir şey bozulursa ne yapmalısın?", "opts": ["Ona mesaj yazmalısın", "Frau Brandl'ı aramalısın", "Hiçbir şey, pazartesi beklemelisin"], "ans": 0, "kanit": [4, 5] },
-      { "id": "m1:52:o4", "k": "guided_response", "situation_tr": "Pazar günü banyodaki musluk bozuldu. Herr Pichler'e kısa bir mesaj yaz.", "prompt_de": "Ist etwas kaputt?",
-        "accepted": ["Ja, im Bad ist etwas kaputt.", "Ja, das Bad ist kaputt.", "Hallo Herr Pichler, im Bad ist etwas kaputt.", "Ja, im Bad ist das Wasser kaputt.", "Ja, bei mir im Bad ist etwas kaputt."],
+      { "id": "m1:52:o4", "k": "guided_response", "situation_tr": "Pazar günü banyoda bir şey bozuldu. Herr Pichler'e kısa bir mesaj yaz.", "prompt_de": "Ist etwas kaputt?",
+        "accepted": ["Ja, im Bad ist etwas kaputt.", "Ja, das Bad ist kaputt.", "Hallo Herr Pichler, im Bad ist etwas kaputt.", "Im Bad ist etwas kaputt, Herr Pichler.", "Ja, bei mir im Bad ist etwas kaputt."],
         "why_tr": "Bozuk bir şey için **kaputt** dersin, yeri de **im Bad** diye söylersin." }
     ]
   },
@@ -300,7 +300,7 @@
       { "id": "m1:52:s6", "k": "tr_de", "tr": "Pazar günü doğa yürüyüşü yapmak ister misin?",
         "accepted": ["Möchtest du am Sonntag wandern?", "Möchtest du am Sonntag wandern gehen?", "Willst du am Sonntag wandern?", "Möchtest du Sonntag wandern?"], "why_tr": "**Möchtest du** ile teklif edersin ve **wandern** en sona gelir." },
       { "id": "m1:52:s7", "k": "tr_de", "tr": "Takım bugün oynuyor.",
-        "accepted": ["Die Mannschaft spielt heute.", "Heute spielt die Mannschaft.", "Die Mannschaft spielt heute, ja."], "why_tr": "**spielt** oynuyor demektir." },
+        "accepted": ["Die Mannschaft spielt heute.", "Heute spielt die Mannschaft.", "Unsere Mannschaft spielt heute."], "why_tr": "**spielt** oynuyor demektir." },
       { "id": "m1:52:s8", "k": "tr_de", "tr": "Bana on avro ödünç verebilir misin?",
         "accepted": ["Kannst du mir zehn Euro leihen?", "Kannst du mir bitte zehn Euro leihen?", "Kannst du mir 10 Euro leihen?", "Kannst du mir zehn Euro borgen?"], "why_tr": "Ödünç isterken **Kannst du mir zehn Euro leihen?** dersin." },
       { "id": "m1:52:s9", "k": "guided_response", "situation_tr": "Kuaförde ödeme sırası. Luka sadece nakit alıyor, sende yok. Yarın ödeyip ödeyemeyeceğini sor.", "prompt_de": "Bei mir nur Bargeld, bitte.",

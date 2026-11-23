@@ -137,7 +137,7 @@
             "k": "guided_response",
             "situation_tr": "Muayenehaneyi geri arıyorsun. Cuma 8.15 sana uyuyor. Adını söyle ve kabul et.",
             "prompt_de": "Praxis Dr. Weber, Huber?",
-            "accepted": ["Hier ist {name}. Freitag um Viertel nach acht geht.", "Guten Tag, hier ist {name}. Freitag um Viertel nach acht geht.", "{name} hier. Freitag um Viertel nach acht passt.", "Guten Tag, mein Name ist {name}. Freitag um Viertel nach acht geht gut.", "Hier ist {name}. Freitag geht, um Viertel nach acht.", "Guten Tag, {name} hier. Am Freitag um acht Uhr fünfzehn geht."],
+            "accepted": ["Hier ist {name}. Freitag um Viertel nach acht geht.", "Guten Tag, hier ist {name}. Freitag um Viertel nach acht geht.", "{name} hier. Freitag um Viertel nach acht passt.", "Guten Tag, mein Name ist {name}. Freitag um Viertel nach acht geht gut.", "Hier ist {name}. Freitag geht, um Viertel nach acht.", "Guten Tag, {name} hier. Am Freitag um acht Uhr fünfzehn geht es."],
             "why_tr": "Önce adını söyle, sonra önerilen saati tekrar et: **Freitag um Viertel nach acht geht**."
           }
         }
@@ -196,14 +196,14 @@
   "prova": {
     "id": "m1:50:p1",
     "title_tr": "Muayenehaneyi geri arıyorsun",
-    "durum_tr": "Frau Huber perşembe randevunun olmadığını söyledi ve geri aramanı istedi. Sen arıyorsun. Cuma sabahı işin var.",
+    "durum_tr": "Frau Huber perşembe randevunun olmadığını söyledi ve geri aramanı istedi. Sen arıyorsun. Bu kez cuma sabahı işin var, o saat sana uymuyor.",
     "karsi": "ch:huber",
     "baslangic": "n1",
     "dugumler": [
       {
         "id": "n1",
-        "de": "Praxis Dr. Weber, Sie sprechen mit Huber.",
-        "tr": "Dr. Weber muayenehanesi, Huber ile görüşüyorsunuz.",
+        "de": "Praxis Dr. Weber, Sie sprechen mit Frau Huber.",
+        "tr": "Dr. Weber muayenehanesi, Huber Hanım ile görüşüyorsunuz.",
         "secenekler": [
           { "de": "Guten Tag, hier ist {name}. Es geht um meinen Termin.", "tr": "İyi günler, ben {name}. Randevum için arıyorum.",
             "accepted": ["Guten Tag, hier ist {name}. Es geht um meinen Termin.", "Guten Tag, {name} hier. Es geht um meinen Termin.", "Guten Tag, mein Name ist {name}. Es geht um meinen Termin.", "Guten Tag, hier ist {name}. Es geht um den Termin am Donnerstag."],
@@ -234,7 +234,7 @@
           { "de": "Viertel nach acht ist zu früh. Ich muss arbeiten.", "tr": "Sekizi çeyrek geçe çok erken. Çalışmam lazım.",
             "accepted": ["Viertel nach acht ist zu früh. Ich muss arbeiten.", "Das ist zu früh. Ich muss arbeiten.", "Leider ist Viertel nach acht zu früh. Ich muss arbeiten.", "Viertel nach acht geht leider nicht. Ich muss arbeiten."],
             "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Neden olmadığını da söyledin. Frau Huber başka bir saat arayacak." },
-          { "de": "Viertel vor acht?", "tr": "Sekize çeyrek var mı?",
+          { "de": "Viertel vor acht?", "tr": "Sekize çeyrek kala mı?",
             "accepted": ["Viertel vor acht?", "Um Viertel vor acht?", "Also Viertel vor acht?"],
             "sonraki": "n2b", "uygun": false, "geri_bildirim_tr": "Frau Huber **nach** dedi: sekizi çeyrek geçe. Emin değilsen tekrar ettir." }
         ]

@@ -161,7 +161,7 @@
         { "id": "c1", "de": "Hallo, hier ist Ioana.", "tr": "Merhaba, ben Ioana." },
         { "id": "c2", "de": "Ich bin jetzt an der Haltestelle.", "tr": "Şu an duraktayım." },
         { "id": "c3", "de": "Mein Bus hat dreißig Minuten Verspätung.", "tr": "Otobüsüm otuz dakika gecikmeli." },
-        { "id": "c4", "de": "Ich bin erst um halb zehn am Bahnhof.", "tr": "Garda ancak dokuz buçukta olurum." },
+        { "id": "c4", "de": "Ich bin erst um Viertel nach neun am Bahnhof.", "tr": "Garda ancak dokuzu çeyrek geçe olurum." },
         { "id": "c5", "de": "Könnt ihr bitte warten?", "tr": "Lütfen bekleyebilir misiniz?" }
       ],
       "bolumler": [
@@ -170,15 +170,15 @@
           "cumleler": ["c1", "c2", "c3", "c4", "c5"],
           "ana_fikir": { "kind": "gist", "q_tr": "Ioana neden arıyor?", "opts": ["Geç kalacak", "Gelemiyor", "Hasta"], "ans": 0, "kanit": ["c3", "c4"] },
           "ayrinti": [
-            { "kind": "detail", "q_tr": "Ioana garda saat kaçta olacak?", "opts": ["9.30", "9.00", "10.30"], "ans": 0, "kanit": ["c4"] },
+            { "kind": "detail", "q_tr": "Ioana garda saat kaçta olacak?", "opts": ["9.15", "9.00", "9.45"], "ans": 0, "kanit": ["c4"] },
             { "kind": "detail", "q_tr": "Ioana'nın otobüsü kaç dakika gecikmeli?", "opts": ["30", "13", "3"], "ans": 0, "kanit": ["c3"] }
           ],
           "dikte": [
             { "id": "d1", "cumle": "c3", "seviye": "kolay", "q_tr": "Hangi sayıyı duydun?", "opts": ["dreizehn", "dreißig", "drei"], "ans": 1 },
             { "id": "d2", "cumle": "c2", "seviye": "orta", "de": "Ich bin jetzt an der ___.", "accepted": ["Haltestelle", "haltestelle", "Haltestelle."] },
             { "id": "d3", "cumle": "c5", "seviye": "zor", "banka": ["Könnt", "ihr", "bitte", "warten", "kommen", "wir"], "accepted": ["Könnt ihr bitte warten?", "könnt ihr bitte warten", "Könnt ihr bitte warten"] },
-            { "id": "d4", "cumle": "c4", "seviye": "usta", "accepted": ["Ich bin erst um halb zehn am Bahnhof.", "ich bin erst um halb zehn am bahnhof", "Ich bin erst um halb zehn am Bahnhof"] },
-            { "id": "d5", "seviye": "gercek", "gorev_tr": "Ioana ne dedi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Ioana hat Verspätung. Sie ist um halb zehn am Bahnhof.", "zorunlu": ["Verspätung", "halb zehn"] }
+            { "id": "d4", "cumle": "c4", "seviye": "usta", "accepted": ["Ich bin erst um Viertel nach neun am Bahnhof.", "ich bin erst um viertel nach neun am bahnhof", "Ich bin erst um Viertel nach neun am Bahnhof"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Ioana ne dedi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Ioana hat Verspätung. Sie ist um Viertel nach neun am Bahnhof.", "zorunlu": ["Verspätung", "Bahnhof"] }
           ],
           "golge": ["c4", "c5"],
           "cevapla": {
@@ -191,7 +191,7 @@
           }
         }
       ],
-      "eylem": { "id": "m1:51:a2:e1", "k": "pick", "q_tr": "Ne yapmalısın?", "opts": ["Garda Ioana'yı bekle.", "Ioana'sız göle git.", "Ioana'yı evinden al."], "ans": 0, "why_tr": "Ioana dokuz buçukta garda olacak ve beklemenizi rica ediyor.", "kanit": ["c4", "c5"] }
+      "eylem": { "id": "m1:51:a2:e1", "k": "pick", "q_tr": "Ne yapmalısın?", "opts": ["Garda Ioana'yı bekle.", "Ioana'sız göle git.", "Ioana'yı evinden al."], "ans": 0, "why_tr": "Ioana dokuzu çeyrek geçe garda olacak ve beklemenizi rica ediyor.", "kanit": ["c4", "c5"] }
     }
   ],
   "gorsel": [
@@ -302,7 +302,7 @@
       "ornek_de": "Hallo Tobi! Am Sonntag habe ich nichts vor. Ich komme mit. Ich kann Äpfel und Wasser kaufen.",
       "zorunlu": ["Sonntag", "mit"],
       "accepted_kaliplar": ["Hallo ___!", "Am Sonntag habe ich nichts vor.", "Am Sonntag habe ich Zeit.", "Ich habe am Sonntag nichts vor.", "Ich komme gern mit.", "Ich komme mit.", "Ja, ich komme mit.", "Ich kann ___ kaufen.", "Ich kann ___ mitbringen.", "Ich kaufe ___.", "Ich bringe ___ mit.", "Bis Sonntag!"],
-      "kontrol_tr": ["Pazar günü boş olduğunu yazdın mı?", "Geziye geldiğini yazdın mı?", "**Ich komme … mit** cümlesinde **mit** sona geldi mi?"]
+      "kontrol_tr": ["Pazar günü boş olduğunu yazdın mı?", "Geziye geldiğini yazdın mı?", "**Ich komme mit** cümlesinde **mit** sona geldi mi?"]
     }
   },
   "gun_sinavi": {
