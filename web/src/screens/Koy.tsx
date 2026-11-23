@@ -96,7 +96,7 @@ export function MekanEkrani({ id }: { id: MekanId }) {
 /** Sinema (video, köy dizisi) ve Radyo (ses kayıtları): yalnız açılmış günlerin kayıtları, gün gün (#200 PM finali takip a) */
 function MedyaListesi({ mekan }: { mekan: "sinema" | "radyo" }) {
   const { index, indexError } = useApp();
-  const { plan, err } = usePlan();
+  const { plan, err, yenile } = usePlan();
   const [bitti, setBitti] = useState<Set<string>>(new Set());
   useEffect(() => { ilerlemeOku().then((i) => setBitti(i.medyaBitti)).catch(() => { /* işaret yok */ }); }, []);
   // plan kurulamazsa (ilk gün dosyası bile yok) yalnız ilk gün listelenir; kilitli gün hiçbir durumda açılmaz
@@ -119,7 +119,9 @@ function MedyaListesi({ mekan }: { mekan: "sinema" | "radyo" }) {
               <span aria-hidden="true">›</span></a></li>))}</ul>
         </section>
       ))}
-      {sonra && <p class="small muted" data-test="mekan-sonra">{mekan === "sinema" ? "Sonraki günlerin videoları, o gün açılınca burada." : "Sonraki günlerin kayıtları, o gün açılınca burada."}</p>}
+      {/* plan eksikse (bir gün dosyası gelmedi) gerekçe "kilitli" değil "yüklenemedi"dir (inceleme #224 P2-3); kilitli gün yine açılmaz */}
+      {(err || plan?.eksik) ? <div class="row" data-test="mekan-eksik"><span class="grow small muted">Bazı günler yüklenemedi.</span><button type="button" class="btn sm" onClick={yenile}>Tekrar dene</button></div>
+        : sonra && <p class="small muted" data-test="mekan-sonra">Sonraki günlerin kayıtları, o gün açılınca burada.</p>}
     </>
   );
 }
