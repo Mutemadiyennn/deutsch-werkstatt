@@ -1,0 +1,138 @@
+{
+ "id": "m1:gorulmemis:05",
+ "hafta": 5,
+ "durumlar": [
+  {
+   "id": "m1:h05:g1",
+   "can_do": "cd:m1:29",
+   "durum_tr": "Spor salonundasın. Basti yarın kaçta kalktığını soruyor. Yarın altıda kalkıyorsun.",
+   "karsi": "ch:kraus",
+   "yer": "pl:fitness",
+   "prompt_de": "Und morgen? Wann musst du aufstehen?",
+   "accepted": [
+    "Morgen muss ich um sechs aufstehen.",
+    "Ich stehe morgen um sechs auf.",
+    "Um sechs. Ich muss um sechs aufstehen.",
+    "Morgen stehe ich um sechs Uhr auf.",
+    "Ich muss um sechs Uhr aufstehen."
+   ],
+   "kalip": "Ich stehe um … auf. / Ich muss um … aufstehen.",
+   "why_tr": "**muss** ile **aufstehen** bütün kalır ve sona gider. **muss** yoksa **auf** ayrılır."
+  },
+  {
+   "id": "m1:h05:g2",
+   "can_do": "cd:m1:31",
+   "durum_tr": "Bürgerbüro'da Frau Schneider bir formu dolduruyor ve mesleğini soruyor. Bir firmada, büroda çalışıyorsun.",
+   "karsi": "ch:schneider",
+   "yer": "pl:buergerbuero",
+   "prompt_de": "Und Ihr Beruf, bitte?",
+   "accepted": [
+    "Ich arbeite in einer Firma, im Büro.",
+    "Ich arbeite im Büro.",
+    "Ich arbeite in einem Büro.",
+    "Im Büro, in einer Firma.",
+    "Ich arbeite hier in Wendlfing, in einer Firma.",
+    "Ich arbeite in einer Firma."
+   ],
+   "kalip": "Ich arbeite in … / Ich arbeite als …",
+   "why_tr": "Meslek sorusuna **Ich arbeite** ile başlayıp yeri söyleyebilirsin."
+  },
+  {
+   "id": "m1:h05:g3",
+   "can_do": "cd:m1:33",
+   "durum_tr": "Kuafördesin. Luka seni cumartesi bir kutlamaya çağırıyor. Cumartesi olmuyor. Teşekkür et ve pazar gününü öner.",
+   "karsi": "ch:petrovic",
+   "yer": "pl:friseur",
+   "prompt_de": "Wir feiern am Samstag. Kommen Sie auch?",
+   "accepted": [
+    "Danke, Luka! Aber am Samstag kann ich leider nicht. Geht Sonntag?",
+    "Danke für die Einladung! Leider kann ich am Samstag nicht. Geht auch Sonntag?",
+    "Tut mir leid, am Samstag kann ich nicht. Geht es am Sonntag?",
+    "Danke! Samstag geht leider nicht, aber Sonntag geht.",
+    "Leider kann ich am Samstag nicht. Am Sonntag geht es.",
+    "Danke, aber Samstag geht leider nicht. Vielleicht Sonntag?"
+   ],
+   "kalip": "Danke, aber … leider nicht. Geht …?",
+   "why_tr": "Teşekkür et, **leider** ile hayır de. Sonra **Geht Sonntag?** diye sor."
+  },
+  {
+   "id": "m1:h05:g4",
+   "can_do": "cd:m1:34",
+   "durum_tr": "Gardasın. Bir adam sana eczanenin yolunu soruyor. Dümdüz, sonra ikinci trafik ışığında sola.",
+   "karsi": "ein Mann",
+   "yer": "pl:bahnhof",
+   "prompt_de": "Entschuldigung, wie komme ich zur Apotheke?",
+   "accepted": [
+    "Gehen Sie geradeaus und an der zweiten Ampel links.",
+    "Geradeaus und dann an der zweiten Ampel links.",
+    "Immer geradeaus, an der zweiten Ampel links.",
+    "Gehen Sie geradeaus. An der zweiten Ampel biegen Sie links ab.",
+    "Geradeaus, dann an der zweiten Ampel nach links.",
+    "Gehen Sie hier geradeaus und dann an der zweiten Ampel links."
+   ],
+   "kalip": "Gehen Sie geradeaus. An der … Ampel links.",
+   "why_tr": "Yabancıya **Sie** dersin. Kaçıncı ışık olduğunu **an der zweiten Ampel** diye söylersin."
+  },
+  {
+   "id": "m1:h05:g5",
+   "can_do": "cd:m1:35",
+   "durum_tr": "Apartman merdiveni. Frau Brandl yarınki planını soruyor. Öğleden önce alışveriş, öğleden sonra otobüsle bir iş arkadaşına gidiyorsun.",
+   "karsi": "ch:brandl",
+   "yer": "pl:haus",
+   "prompt_de": "Na, was machen Sie denn morgen?",
+   "accepted": [
+    "Am Vormittag kaufe ich ein. Am Nachmittag fahre ich mit dem Bus zu einer Kollegin.",
+    "Morgen kaufe ich am Vormittag ein. Am Nachmittag fahre ich mit dem Bus zu einer Kollegin.",
+    "Am Vormittag kaufe ich ein, und am Nachmittag fahre ich mit dem Bus zu einem Kollegen.",
+    "Ich kaufe am Vormittag ein. Dann fahre ich mit dem Bus zu einer Kollegin.",
+    "Am Vormittag kaufe ich ein. Am Nachmittag besuche ich eine Kollegin, ich fahre mit dem Bus.",
+    "Am Vormittag kaufe ich ein. Am Nachmittag fahre ich mit dem Bus zu einem Kollegen."
+   ],
+   "kalip": "Am Vormittag … ich … . Am Nachmittag fahre ich mit dem … zu …",
+   "why_tr": "Zamanla başla, fiil ikinci yerde kalsın. **ein** en sona gider: **kaufe ich ein**."
+  },
+  {
+   "id": "m1:h05:g6",
+   "can_do": "cd:m1:30",
+   "durum_tr": "Kuaförde Luka randevu için haftanı soruyor. Pazartesi ve salı çalışıyorsun, perşembe boşsun.",
+   "karsi": "ch:petrovic",
+   "yer": "pl:friseur",
+   "prompt_de": "Und wann haben Sie diese Woche Zeit?",
+   "accepted": [
+    "Am Montag und am Dienstag arbeite ich. Am Donnerstag habe ich Zeit.",
+    "Am Montag arbeite ich, am Dienstag auch. Am Donnerstag geht es.",
+    "Am Donnerstag habe ich Zeit. Am Montag und Dienstag arbeite ich.",
+    "Am Donnerstag geht es. Am Montag arbeite ich.",
+    "Am Donnerstag habe ich Zeit.",
+    "Am Dienstag arbeite ich, aber am Donnerstag habe ich Zeit."
+   ],
+   "kalip": "Am … arbeite ich. – Am … habe ich Zeit.",
+   "why_tr": "Cümleye günle başla. Fiil hemen arkasından gelir."
+  },
+  {
+   "id": "m1:h05:g7",
+   "can_do": "cd:m1:32",
+   "durum_tr": "Spor salonunda Basti seni bir şey içmeye çağırıyor. Süt içmeyi seversin. Peynirle sosis arasında sosisi daha çok seversin.",
+   "karsi": "ch:kraus",
+   "yer": "pl:fitness",
+   "prompt_de": "Trinkst du gern Milch? Und was isst du lieber, Käse oder Bratwurst?",
+   "accepted": [
+    "Ja, ich trinke gern Milch. Ich esse lieber Bratwurst.",
+    "Ja, gern. Ich esse lieber Bratwurst.",
+    "Ja, ich trinke gern Milch. Lieber Bratwurst.",
+    "Ja, Milch trinke ich gern. Bratwurst esse ich lieber.",
+    "Ja, gern! Und ich esse lieber Bratwurst."
+   ],
+   "kalip": "Ich … gern … – Ich … lieber …",
+   "why_tr": "Sevdiğin şey için **gern**, daha çok sevdiğin için **lieber** dersin."
+  }
+ ],
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic5-hafta-05.md; okur: docs/v2/reviews/okur/ic5-hafta-05.md (14 GERİ, okurun önerisiyle düzeltildi)",
+  "okur": "passed",
+  "okur_at": "2026-11-23"
+ }
+}
