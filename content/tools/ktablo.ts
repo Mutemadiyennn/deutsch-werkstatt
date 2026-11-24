@@ -76,3 +76,34 @@ export function tabloDolgusu(dosyaGunleri: readonly number[], tablo: KesinTablo 
   }
   return out;
 }
+
+/**
+ * Dikiş ve hafta kapısı komut satırının varsayılan tablosu (PM-117 A.3 ön sınama): `KESIN_DOSYALAR`'ın (hangisi varsa) ham
+ * birleşimi, dikis.ts `KesinTablo` biçiminde. Gün aralıkları ayrıktır (a1 8–56, a2 57–168, b1 169–364): `gunler` ve `haftalar`
+ * sırayla eklenir, `ogretilmis_sayilan` ilk tablodan. Aynı gün ya da hafta iki dosyada varsa hata (sessizce üstüne yazılmaz).
+ * Önceden yalnız a1-kesin.json okunuyordu; A2 haftaları "tabloda N. gün yok" diye kalıyordu (içerik hatları elle birleştiriyordu).
+ */
+export function kesinTabloBirlesik(cdir: string, errors: string[] = []): { tablo: { ogretilmis_sayilan?: unknown; haftalar: unknown[]; gunler: unknown[] }; dosyalar: string[] } {
+  const tablo = { ogretilmis_sayilan: undefined as unknown, haftalar: [] as unknown[], gunler: [] as unknown[] }, dosyalar: string[] = [];
+  const gunler = new Map<number, string>(), haftalar = new Map<number, string>();
+  for (const ad of KESIN_DOSYALAR) {
+    const f = join(cdir, "curriculum", ad); if (!existsSync(f)) continue;
+    let t: Record<string, unknown>;
+    try { t = nesne(JSON.parse(readFileSync(f, "utf8"))); } catch (e) { errors.push(`curriculum/${ad}: JSON okunamadı (${(e as Error).message})`); continue; }
+    if (!Array.isArray(t.gunler)) { errors.push(`curriculum/${ad}: "gunler" dizisi yok`); continue; }
+    dosyalar.push(`curriculum/${ad}`);
+    if (tablo.ogretilmis_sayilan === undefined && t.ogretilmis_sayilan !== undefined) tablo.ogretilmis_sayilan = t.ogretilmis_sayilan;
+    for (const g of dizi(t.gunler)) {
+      const d = nesne(g).day; if (typeof d !== "number") continue;
+      if (gunler.has(d)) { errors.push(`curriculum/${ad}: ${d}. gün ${gunler.get(d)} içinde de var`); continue; }
+      gunler.set(d, ad); tablo.gunler.push(g);
+    }
+    for (const h of dizi(t.haftalar)) {
+      const no = nesne(h).no; if (typeof no !== "number") continue;
+      if (haftalar.has(no)) { errors.push(`curriculum/${ad}: ${no}. hafta ${haftalar.get(no)} içinde de var`); continue; }
+      haftalar.set(no, ad); tablo.haftalar.push(h);
+    }
+  }
+  if (!dosyalar.includes("curriculum/a1-kesin.json")) errors.push("curriculum/a1-kesin.json yok (1.–56. gün ve ogretilmis_sayilan bu tablodan)");
+  return { tablo, dosyalar };
+}

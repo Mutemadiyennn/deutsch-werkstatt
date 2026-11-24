@@ -119,3 +119,48 @@ describe("doğrulayıcı: dersler kimlikleri ve tablo dolgusu (geçici içerik k
   });
   it("tablo yüklenir (loadContent.kesin)", () => expect(c.kesin?.has(8)).toBe(true));
 });
+
+describe("kesinTabloBirlesik: dikiş ve hafta kapısı komut satırının varsayılan tablosu (PM-117 A.3)", () => {
+  it("a1 + a2 + b1 sırayla birleşir; ogretilmis_sayilan ilk tablodan; aynı gün ya da hafta iki dosyadaysa hata", async () => {
+    const { kesinTabloBirlesik } = await import("./ktablo.ts");
+    const kok = mkdtempSync(join(tmpdir(), "dw-birlesik-"));
+    try {
+      mkdirSync(join(kok, "curriculum"));
+      writeFileSync(join(kok, "curriculum/a1-kesin.json"), JSON.stringify({ ogretilmis_sayilan: { gunler: { "1": ["lx:a"] } }, haftalar: [{ no: 2 }], gunler: [{ day: 8, kartlar: ["lx:b"] }] }));
+      writeFileSync(join(kok, "curriculum/a2-kesin.json"), JSON.stringify({ haftalar: [{ no: 9 }], gunler: [{ day: 57, kartlar: ["lx:c"] }] }));
+      const e: string[] = [];
+      const r = kesinTabloBirlesik(kok, e);
+      expect(e).toEqual([]);
+      expect(r.dosyalar).toEqual(["curriculum/a1-kesin.json", "curriculum/a2-kesin.json"]);
+      expect(r.tablo.gunler.map((g) => (g as { day: number }).day)).toEqual([8, 57]);
+      expect(r.tablo.haftalar.map((h) => (h as { no: number }).no)).toEqual([2, 9]);
+      expect(r.tablo.ogretilmis_sayilan).toEqual({ gunler: { "1": ["lx:a"] } });
+      writeFileSync(join(kok, "curriculum/b1-kesin.json"), JSON.stringify({ haftalar: [{ no: 9 }], gunler: [{ day: 57, kartlar: ["lx:d"] }] }));
+      const e2: string[] = [];
+      kesinTabloBirlesik(kok, e2);
+      expect(e2).toEqual(["curriculum/b1-kesin.json: 57. gün a2-kesin.json içinde de var", "curriculum/b1-kesin.json: 9. hafta a2-kesin.json içinde de var"]);
+      writeFileSync(join(kok, "curriculum/b1-kesin.json"), JSON.stringify({ haftalar: [] }));
+      const e3: string[] = [];
+      kesinTabloBirlesik(kok, e3);
+      expect(e3).toEqual(['curriculum/b1-kesin.json: "gunler" dizisi yok']);
+      rmSync(join(kok, "curriculum/a1-kesin.json"));
+      const e4: string[] = [];
+      kesinTabloBirlesik(kok, e4);
+      expect(e4).toContain("curriculum/a1-kesin.json yok (1.–56. gün ve ogretilmis_sayilan bu tablodan)");
+    } finally { rmSync(kok, { recursive: true, force: true }); }
+  });
+  it("komut satırı varsayılanı birleşik tablo; --tablo tek dosya", async () => {
+    const { spawnSync } = await import("node:child_process");
+    const kos = (f: string, ...a: string[]) => spawnSync(process.execPath, ["--experimental-strip-types", "--no-warnings", join(ROOT, "content/tools", f), ...a], { encoding: "utf8" });
+    expect(kos("dikis-kos.ts").stdout).toContain("tablo curriculum/a1-kesin.json + curriculum/a2-kesin.json");
+    expect(kos("dikis-kos.ts", "--tablo", join(ROOT, "content/v2/curriculum/a1-kesin.json")).stdout).toContain("tablo content/v2/curriculum/a1-kesin.json");
+  }, 60000);
+  it("gerçek içerik: 8.–56. ve 57.–168. gün tek tabloda; A2 günü dikişte 'tabloda yok' sayılmaz", async () => {
+    const { kesinTabloBirlesik } = await import("./ktablo.ts");
+    const e: string[] = [];
+    const r = kesinTabloBirlesik(join(ROOT, "content/v2"), e);
+    expect(e).toEqual([]);
+    const gunler = new Set(r.tablo.gunler.map((g) => (g as { day: number }).day));
+    expect(gunler.has(56) && gunler.has(57) && gunler.has(168)).toBe(true);
+  });
+});
