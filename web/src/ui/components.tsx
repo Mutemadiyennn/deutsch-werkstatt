@@ -19,7 +19,7 @@ export function sekme(r: Route["name"]): string {
   switch (r) {
     case "yol": case "rehber": return "yol";
     case "koy": case "mekan": case "domain": case "scenario": case "sozluk": case "kalip": case "m1day": return "koy";
-    case "ben": case "profile": case "ses": return "ben";
+    case "ben": case "benDuzen": case "profile": case "ses": return "ben";
     default: return "today";
   }
 }

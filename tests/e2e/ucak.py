@@ -82,7 +82,7 @@ def main():
         pg.close(); pg = new_page(ctx)  # soğuk açılış: yeni sekme, ağ yok
         pg.goto(base); pg.wait_for_selector("[data-tab=today]", timeout=10_000)
         check(True, "A: uçak modunda soğuk açılış")
-        walk = [("#/today", "[data-test=next-activity]"), ("#/learn", "main h1, main h2"), ("#/progress", "[data-test=panel-focus]"), ("#/profile", "main h1, main h2"), ("#/sozluk", "[data-test=sozluk-q]")]
+        walk = [("#/today", "[data-test=next-activity]"), ("#/learn", "main h1, main h2"), ("#/progress", "[data-test=ben-bu-hafta]"), ("#/ben/duzen", "[data-test=panel-focus]"), ("#/profile", "main h1, main h2"), ("#/sozluk", "[data-test=sozluk-q]")]
         walk += [(f"#/scenario/{s}", "[data-section]") for s in scenarios]  # açılmamış senaryolar da (PM-035/6)
         walk += [(f"#/scenario/{SC}/{sec}", sel) for sec, sel in [
             ("words", "[data-test=stage-intro]"), ("chunks", "[data-test=ifade-card], [data-test=say-q], [data-test=meaning-q], [data-test=section-done], .empty"),

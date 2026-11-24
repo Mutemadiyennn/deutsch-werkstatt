@@ -26,7 +26,7 @@ import { setLearning, startFocus, updateFocusConfig } from "./services/focusRunt
 import { setBaslangicHizi, setKarakterler, setOgrenciHitap, setYavasOran, yerelSesleriYukle } from "./services/speech.ts";
 import { efektAyar, sesKilidiAc, ustUsteSifirla } from "./services/efekt.ts";
 import { kullanimIzle } from "./services/kullanim.ts";
-import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
+import { TabBar, Loading, ErrorPanel, sekme } from "./ui/components.tsx";
 import { ErrorBoundary, recordError } from "./ui/ErrorBoundary.tsx";
 import { ensurePersist } from "./services/storage.ts";
 import { Login } from "./screens/Login.tsx";
@@ -39,6 +39,7 @@ import { LongPressExplain } from "./ui/learn.tsx";
 import { BreakOverlay, OdakEkrani } from "./screens/Today.tsx";
 import { AssessRun, AssessResult } from "./screens/Assess.tsx";
 import { Progress } from "./screens/Progress.tsx";
+import { BenEkrani } from "./screens/Ben.tsx";
 import { Garden } from "./screens/Garden.tsx";
 import { ProfileView } from "./screens/Profile.tsx";
 
@@ -188,8 +189,9 @@ export function App() {
     case "domain": screen = <DomainView id={route.id} />; break;
     case "scenario": screen = <PlayerHome id={route.id} />; break;
     case "section": screen = <PlayerSection id={route.id} section={route.section} />; break;
-    // Ben ekranı gelene kadar sekme bugünkü İlerlemem ekranını açar (PM-084 md. 3.2)
-    case "ben": screen = <Progress />; break;
+    // Ben (PM-084 md. 5); eski İlerlemem "Çalışma düzenim" olarak #/ben/duzen'de
+    case "ben": screen = <BenEkrani />; break;
+    case "benDuzen": screen = <Progress />; break;
     case "profile": screen = <ProfileView />; break;
     case "assess": screen = <AssessRun />; break;
     case "assessResult": screen = <AssessResult id={route.id} />; break;
@@ -218,7 +220,7 @@ export function App() {
   const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && (location.hash.startsWith("#/__halka-turleri") || location.hash.startsWith("#/__dil-noktasi/"))) && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "akis" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma" && route.name !== "hafta" && route.name !== "haftaTekrar" && route.name !== "haftaSonuc" && route.name !== "sinav";
   return (
     <Ctx.Provider value={ctx}>
-      <main class={`app${tabs ? "" : " notabs"}`}>{tabs && <DurumCubugu />}<ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
+      <main class={`app${tabs ? "" : " notabs"}`}>{tabs && (sekme(route.name) === "today" || sekme(route.name) === "yol") && <DurumCubugu />}<ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
       {tabs && <TabBar route={route} />}
       <LongPressExplain />
       {LEARNING_ROUTES.has(route.name) && <BreakOverlay />}

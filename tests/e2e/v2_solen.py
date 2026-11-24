@@ -119,7 +119,7 @@ def main():
             w1 = pg.evaluate("parseFloat(document.querySelector('[data-test=ilerleme] i').style.width)")
             check(w1 > w0, f"[{tema}] ilerleme çubuğu doldu (%{w0:.1f} → %{w1:.1f}; hedef genişlik, geçiş animasyonundan bağımsız)")
             # XP: mücevherli sayaç ve seri kartı (B11b'den beri İlerlemem'de; durum çubuğu her ekranda)
-            pg.goto(base + "#/progress"); pg.wait_for_selector("[data-test=xp-seri]")
+            pg.goto(base + "#/ben/duzen"); pg.wait_for_selector("[data-test=xp-seri]")
             pg.wait_for_function("() => Number(document.querySelector('[data-test=xp-toplam]').innerText) > 0", timeout=5000)
             check(pg.locator("[data-test=gun-noktalari] .nokta").count() == 7 and pg.locator(".xpseri .mucevher").count() >= 1, f"[{tema}] İlerlemem: mücevherli XP sayacı ve 7 günlük noktalar")
             no_overflow(pg, f"[{tema}] İlerlemem XP/seri")

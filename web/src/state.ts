@@ -15,6 +15,7 @@ export type Route =
   | { name: "section"; id: string; section: string }
   | { name: "ben" }
   | { name: "profile" }
+  | { name: "benDuzen" }
   | { name: "assess" }
   | { name: "assessResult"; id?: string }
   | { name: "onboarding" }
@@ -44,7 +45,7 @@ export function parseHash(h: string): Route {
     // Hedef 3 sekmeleri (PM-084 md. 3): Bugün · Yol · Köy · Ben. Eski adresler (learn, progress, profile) yeni yerlerini açar;
     // adres çubuğunu `yeniAdres` düzeltir.
     case "koy": return mekanMi(p[1]) ? { name: "mekan", id: p[1] } : { name: "koy" };
-    case "ben": return p[1] === "ayarlar" ? { name: "profile" } : { name: "ben" };
+    case "ben": return p[1] === "ayarlar" ? { name: "profile" } : p[1] === "duzen" ? { name: "benDuzen" } : { name: "ben" };
     case "learn": return p[1] ? { name: "domain", id: p[1] } : { name: "koy" };
     case "scenario": return p[2] ? { name: "section", id: p[1]!, section: p[2] } : { name: "scenario", id: p[1] || "" };
     case "progress": return { name: "ben" };
