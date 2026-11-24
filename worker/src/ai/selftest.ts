@@ -8,7 +8,7 @@
  * önbellek geçmez, yeni sürüm sınanır (P1-2). Nöronlar ortak sayaçtan düşer; sayaç `ogrenci_payi_orani`nı geçtiyse
  * öz-sınama koşmaz (öğrencinin payı korunur). Yalnız Workers AI sağlayıcısında koşar. Eşikler worker/policy.json `selftest`.
  */
-import type { AiTaskName } from "@dw/shared";
+import { dilHatasi, dilPuani, type AiTaskName, type Dil } from "@dw/shared";
 import type { Env } from "../env.ts";
 import { HttpError, json } from "../http.ts";
 import { dayKey } from "../quota.ts";
@@ -17,7 +17,6 @@ import { neuronUsage } from "./workersai.ts";
 import policy from "../../policy.json";
 
 export const ST = policy.selftest;
-type Dil = "de" | "tr";
 
 /** Sabit örnekler: kişisel bilgi yok, ad yok (D-061); her görevin çıktısında hangi alan hangi dilde olmalı */
 export const ORNEKLER: { gorev: AiTaskName; vars: unknown; alanlar: (o: any) => [string, string | undefined, Dil][] }[] = [
@@ -70,35 +69,12 @@ export const ORNEKLER: { gorev: AiTaskName; vars: unknown; alanlar: (o: any) => 
   }
 ];
 
-/* ---------- dil denetimi: kaba ama sınanabilir; yalnız olumlu kanıtla düşürür (kısa ve belirsiz metin geçer) ---------- */
-const DE = new Set("der die das den dem des ein eine einen einem einer ist sind bin bist ich du wir ihr sie und nicht mit für auf zu im vom zum zur von bitte haben habe hat möchte möchten kann können wie gern gerne ja nein auch aber noch schon sehr gut guten tag etwas hier heute morgen danke mal man nach oft soll".split(" "));
-const TR = new Set("bir ve bu da de için ile çok ne mi mı mu mü değil var yok olarak gibi daha ama sen ben anlam anlamı anlama demek demektir cümle iyi sadece şu veya kullanılır doğru yanlış aynı olur oldu ya kısa güzel gelir".split(" "));
-// "in", "an", "was", "will", "also", "die", "man", "hat", "so" Almancada; "on", "at", "can", "tablet" Türkçede de var: listeye girmez
-const EN = new Set("the a and is are you your this that with of it be have has please thank thanks what i'm don't does very good would should could to for one two three take times day after before meals well great job done correct same meaning here okay sure yes by from my me they there their but if or how why when where which who need want answer right wrong".split(" "));
-export function dilPuani(s: string) {
-  const w = s.toLowerCase().match(/[\p{L}']+/gu) ?? [];
-  const say = (k: Set<string>) => w.filter((x) => k.has(x)).length;
-  return { de: say(DE) + (/[äß]/i.test(s) ? 2 : 0), tr: say(TR) + (/[ğışçİ]/.test(s) ? 2 : 0), en: say(EN) };
-}
-/** Tırnak içi (alıntı) çıkarılır: Türkçe açıklama Almanca örneği alıntılayabilir */
-const alintisiz = (s: string) => s.replace(/'[^']*'|"[^"]*"|„[^“"]*[“"]|“[^”]*”|»[^«]*«|«[^»]*»|‚[^‘’]*[‘’]/g, " ");
-/**
- * Alan beklenen dilde mi: değilse bulunan dil ("en" | "de" | "tr"), uygunsa null.
- * İngilizce: ≥ 2 İngilizce sözcük ve iki dilden de baskın, ya da hiç DE/TR kanıtı yokken ≥ 3 sözcüğün çoğu İngilizce.
- * Öbür dil: beklenen dilden hiç kanıt yok ve öbür dilden ≥ 2 puan (alıntı çıkarıldıktan sonra).
- */
-export function dilHatasi(s: string, bek: Dil): Dil | "en" | null {
-  const p = dilPuani(alintisiz(s));
-  const sozcuk = (alintisiz(s).match(/[\p{L}']+/gu) ?? []).length;
-  if (p.en >= 2 && p.en > p.de && p.en > p.tr) return "en";
-  if (p.de === 0 && p.tr === 0 && sozcuk >= 3 && p.en * 2 >= sozcuk) return "en";
-  const obur: Dil = bek === "de" ? "tr" : "de";
-  if (p[bek] === 0 && p[obur] >= 2) return obur;
-  return null;
-}
+/* dil denetimi: ölçü paylaşılır (packages/shared/src/dil.ts); çalışma anındaki güvence de aynısını kullanır (PM-112 A.1) */
+export { dilHatasi, dilPuani };
 
 /* ---------- koşu ---------- */
-export interface GorevSonucu { gorev: AiTaskName; gecti: boolean; ms: number; model: string | null; neden: string | null }
+/** `dil`: çalışma anı dil güvencesi devreye girdi mi ("yeniden" ikinci soruda tuttu · "yedek" kural tabanlı Türkçe; PM-112 A.1) */
+export interface GorevSonucu { gorev: AiTaskName; gecti: boolean; ms: number; model: string | null; neden: string | null; dil: "yeniden" | "yedek" | null }
 export interface OzSinama {
   durum: "kostu" | "onbellek" | "pay_korunuyor" | "gunluk_tavan" | "kapali";
   /** son koşunun sonucu; `taze` değilse ölçüm sayılmaz */
@@ -113,8 +89,10 @@ export interface OzSinama {
   /** bir önceki UTC günü (A.5 ölçümü gün bitince de okunabilsin) */
   dun: Ozet;
 }
-export interface Ozet { gun: string; kosu: number; gorev: Record<string, { gecti: number; toplam: number; ortanca_ms: number; en_uzun_ms: number }> }
-type Kayit = { t: string; g: [AiTaskName, 0 | 1, number][] };
+/** `dil_yeniden` / `dil_yedek`: dil güvencesinin devreye girdiği koşu sayısı (model sapması görünür kalsın; PM-112 A.1) */
+export interface Ozet { gun: string; kosu: number; gorev: Record<string, { gecti: number; toplam: number; ortanca_ms: number; en_uzun_ms: number; dil_yeniden: number; dil_yedek: number }> }
+/** dördüncü öğe: 0 yok · 1 yeniden · 2 yedek */
+type Kayit = { t: string; g: [AiTaskName, 0 | 1, number, (0 | 1 | 2)?][] };
 type Son = { ok: boolean; zaman: string; sonraki: string; surum: string; gorevler: GorevSonucu[] };
 /** Durable Object deposu (state.storage) ya da testte bellek */
 export interface Depo { get<T>(k: string): Promise<T | undefined>; put(k: string, v: unknown): Promise<void>; delete(k: string): Promise<boolean> }
@@ -124,7 +102,7 @@ export function ozet(gun: string, k: Kayit[]): Ozet {
   const g: Ozet["gorev"] = {};
   for (const { gorev } of ORNEKLER) {
     const ms = k.flatMap((x) => x.g.filter((y) => y[0] === gorev).map((y) => y[2]));
-    g[gorev] = { gecti: k.reduce((n, x) => n + x.g.filter((y) => y[0] === gorev && y[1]).length, 0), toplam: ms.length, ortanca_ms: ortanca(ms), en_uzun_ms: ms.length ? Math.max(...ms) : 0 };
+    g[gorev] = { gecti: k.reduce((n, x) => n + x.g.filter((y) => y[0] === gorev && y[1]).length, 0), toplam: ms.length, ortanca_ms: ortanca(ms), en_uzun_ms: ms.length ? Math.max(...ms) : 0, dil_yeniden: k.reduce((n, x) => n + x.g.filter((y) => y[0] === gorev && y[3] === 1).length, 0), dil_yedek: k.reduce((n, x) => n + x.g.filter((y) => y[0] === gorev && y[3] === 2).length, 0) };
   }
   return { gun, kosu: k.length, gorev: g };
 }
@@ -134,17 +112,21 @@ export async function gorevSina(env: Env, o: (typeof ORNEKLER)[number], simdi = 
   const t0 = simdi();
   try {
     const r = await runTask(env, o.gorev, o.vars);
-    const ms = simdi() - t0;
+    const ms = simdi() - t0, onarim = r.dil ?? null;
+    // yedek devreye girdiyse model iki kez saptı: öğrenci Türkçe gördü ama öz-sınama KALIR (inceleme #248 P1-2)
+    if (onarim === "yedek") return { gorev: o.gorev, gecti: false, ms, model: r.model, neden: `dil_yedek:${(r.dil_alanlar ?? []).join(",")}`, dil: onarim };
     for (const [alan, deger, dil] of o.alanlar(r.output)) {
       if (!deger) continue;
       const h = dilHatasi(deger, dil);
-      if (h) return { gorev: o.gorev, gecti: false, ms, model: r.model, neden: `dil:${alan}:${h}` };
+      if (h) return { gorev: o.gorev, gecti: false, ms, model: r.model, neden: `dil:${alan}:${h}`, dil: onarim };
     }
-    if (ms > ST.gecme_ms) return { gorev: o.gorev, gecti: false, ms, model: r.model, neden: "sure" };
-    return { gorev: o.gorev, gecti: true, ms, model: r.model, neden: null };
+    if (ms > ST.gecme_ms) return { gorev: o.gorev, gecti: false, ms, model: r.model, neden: "sure", dil: onarim };
+    return { gorev: o.gorev, gecti: true, ms, model: r.model, neden: null, dil: onarim };
   } catch (e) {
+    // dil yedeği yok (explain_tr asıl karşılığı iki kez Türkçe değil) → öğrenci yapay zekâsız yola düştü
+    if (e instanceof HttpError && e.code === "bad_output" && e.detail === "dil") return { gorev: o.gorev, gecti: false, ms: simdi() - t0, model: null, neden: "dil_yedek_yok", dil: "yedek" };
     const kod = e instanceof HttpError ? (e.code === "bad_output" ? "sema" : e.code) : "internal";
-    return { gorev: o.gorev, gecti: false, ms: simdi() - t0, model: null, neden: `hata:${kod}` };
+    return { gorev: o.gorev, gecti: false, ms: simdi() - t0, model: null, neden: `hata:${kod}`, dil: null };
   }
 }
 
@@ -195,7 +177,7 @@ export class OzSinamaCekirdek {
     const ok = gorevler.every((g) => g.gecti);
     // koşu bitince yazılır: yarıda kalan koşu (örnek düştü) boş kırmızı bırakmaz, sonraki istek yeniden koşar
     const onceki = (await this.depo.get<Kayit[]>(`gun:${gun}`)) ?? [];
-    const yeni = [...onceki, { t: zaman, g: gorevler.map((g) => [g.gorev, g.gecti ? 1 : 0, g.ms] as Kayit["g"][number]) }];
+    const yeni = [...onceki, { t: zaman, g: gorevler.map((g) => [g.gorev, g.gecti ? 1 : 0, g.ms, g.dil === "yedek" ? 2 : g.dil ? 1 : 0] as Kayit["g"][number]) }];
     await this.depo.put("son", { ok, zaman, sonraki, surum, gorevler } satisfies Son);
     this.sonKosu = { zaman: Date.parse(zaman), surum };
     await this.depo.put(`gun:${gun}`, yeni);

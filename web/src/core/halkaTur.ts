@@ -8,6 +8,7 @@
  */
 import type { Lexeme } from "@dw/shared";
 import { isCard, isNoun, trAnahtar } from "./garden.ts";
+import POLICY from "../policy.json" with { type: "json" };
 
 /** Tohumlu, kararlı rastgele (aynı tohum → aynı seçenekler; plan tekrar kurulunca soru değişmez) */
 export function tohumluRng(tohum: string): () => number {
@@ -69,7 +70,8 @@ export function resimSecenekleri(kart: Lexeme, adaylar: readonly Lexeme[], harit
 
 /* ---------- Eşleştir ---------- */
 
-export const ESLESTIR_EN_AZ = 4, ESLESTIR_EN_COK = 6;
+/** policy.json → akis.eslestir_kart (tek kaynak; inceleme #234 P2-1) */
+export const [ESLESTIR_EN_AZ, ESLESTIR_EN_COK] = POLICY.akis.eslestir_kart as [number, number];
 
 export interface EslestirDurum {
   /** sol sütun (Almanca), sağ sütun (Türkçe): kart kimlikleri */
