@@ -68,9 +68,9 @@ def main():
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
     shots = arg("--shots")
     with sync_playwright() as p:
-        b, ctx = launch(p, color_scheme=arg("--scheme") or "light"); pg = new_page(ctx)
+        b, ctx = launch(p, color_scheme=arg("--scheme") or "light"); ctx.add_init_script("sessionStorage.setItem('e2e-akis-gunler', '[]')"); pg = new_page(ctx)  # tam merdiven: 1. gün bayraksız. Akış günü dikte K(t) süzgecinin e2e'si yok (birim: core/medya.test.ts dikteSuz; ogrenci_akis.py sayar) — takip
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-        pg.goto(base + "#/learn"); pg.wait_for_selector("[data-test=m1-liste]")
+        pg.goto(base + "#/koy/radyo"); pg.wait_for_selector("[data-test=mekan-radyo]")
         pg.click("[data-test=m1-gun-1]"); pg.wait_for_selector("[data-test=m1-gun]")
         yildiz(pg, "gün listesi")
         check(pg.locator("[data-test=medya-video]").count() == 1 and pg.locator("[data-test=medya-ses]").count() >= 2, "gün sayfası: 1 video + en az 2 ses")

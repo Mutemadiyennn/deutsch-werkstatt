@@ -31,12 +31,19 @@ export function ogretilmemis(text: string, taught: Set<string>): string[] {
 export function checkGun(g: Gun, ctx: { lexicon: Set<string>; temel: Set<string>; taught?: Set<string> }): { errors: string[]; warnings: string[] } {
   const errors: string[] = [], warnings: string[] = [];
   const ist = (where: string, text: string) => { if (!ctx.taught) return; const u = ogretilmemis(text, ctx.taught); if (u.length) warnings.push(`${where}: öğretilmemiş kelime isteniyor: ${u.slice(0, 6).join(", ")}`); };
-  for (const d of g.dersler) if (!ctx.temel.has(d)) errors.push(`dersler: ${d} temel pakette yok`);
+  // r0: tam temel ders → temel paket; gr:/dn: dil noktası → var mı denetimi hat D'de (grammar.json, dn-HH.json; PM 7087668356 md. 4)
+  for (const d of g.dersler) if (d.startsWith("r0:") && !ctx.temel.has(d)) errors.push(`dersler: ${d} temel pakette yok`);
+  // sınav günü (PM-101 md. 5): kartsız, dersiz, halkasız; medya ve kart sayısı beklenmez (o gün deneme açılır)
+  if (g.sinav) {
+    if (g.yeni_kartlar.length) errors.push(`sinav: sınav günü kartsızdır (yeni_kartlar ${g.yeni_kartlar.length})`);
+    if (g.dersler.length) errors.push(`sinav: sınav gününde dersler boş olmalı (${g.dersler.join(", ")})`);
+    if (g.halkalar?.length) errors.push(`sinav: sınav günü halkasızdır (${g.halkalar.length} halka)`);
+  }
   const missing = g.yeni_kartlar.filter((id) => !ctx.lexicon.has(id));
   if (missing.length) warnings.push(`yeni_kartlar: sözlükte olmayan ${missing.length} kart (ilk: ${missing.slice(0, 5).join(", ")})`);
   if (g.yeni_kartlar.length && (g.yeni_kartlar.length < 15 || g.yeni_kartlar.length > 25)) warnings.push(`yeni_kartlar: ${g.yeni_kartlar.length} kart (hedef 15–25)`);
-  if (!g.video) warnings.push("gerçek insan videosu yok (PM-055: her gün en az 1 klip; bulunamadıysa #58'de PM'e sorulur)");
-  if (g.sesler.length < 2) warnings.push(`sesler: ${g.sesler.length} (en az 2: anons, sesli mesaj)`);
+  if (!g.video && !g.sinav) warnings.push("gerçek insan videosu yok (PM-055: her gün en az 1 klip; bulunamadıysa #58'de PM'e sorulur)");
+  if (g.sesler.length < 2 && !g.sinav) warnings.push(`sesler: ${g.sesler.length} (en az 2: anons, sesli mesaj)`);
 
   for (const m of medyalar(g)) {
     const at = `${m.kind}:${m.id}`;

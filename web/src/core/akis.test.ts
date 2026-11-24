@@ -9,7 +9,7 @@ import { join } from "node:path";
 import { z } from "zod";
 import { Halka, bilinmeyenler, genelAdlarAyikla, kalipOrtu, kartsizMi, kalipSecenekleri, kumeDizini, toks, YUVA, type Bilinen, type LearnerItem } from "@dw/shared";
 import { loadContent, ROOT } from "../../../content/tools/load.ts";
-import { ADIM_TURLERI, GOSTERIM, KIP, planGun, politikaHatalari, POLITIKA, type Adim, type AkisPolitikasi, type GunPlani, type PlanGirdi } from "./akis.ts";
+import { ADIM_TURLERI, GOSTERIM, GUN_SINAVI, KIP, planGun, politikaHatalari, POLITIKA, type Adim, type AkisPolitikasi, type GunPlani, type PlanGirdi } from "./akis.ts";
 
 const c = loadContent();
 const genel = genelAdlarAyikla(readFileSync(join(ROOT, "docs/v2/reviews/genel-adlar.md"), "utf8"));
@@ -189,6 +189,15 @@ describe("Halka planlayıcısı (AKIS AK-2, AK-3, AK-9) — 50 tohum × 4 durum"
       for (const d of halkaD(x.p)) { expect(d.adimlar.at(-1)!.tur, etiket(x, d.id)).toBe("sahne"); expect(d.adimlar.at(-2)!.tur, etiket(x, d.id)).toBe("eslestir"); }
     }
   });
+  it("eşleştir yalnız eslestir_kart[0]+ kartlık halkada: 2–3 kartlık halkada yok, 4'te var (PM-098 md. 2, inceleme #234 P1-1)", () => {
+    expect(POLITIKA.eslestir_kart).toEqual([4, 6]); expect(POLITIKA.halka_kart).toEqual([2, 6]);
+    const kes = (n: number) => halkalar.map((h) => { const k = h.kartlar.slice(0, n); return { ...h, kartlar: k, gorev_cumleleri: h.gorev_cumleleri.filter((g) => k.includes(g.kart)) }; });
+    for (const n of [2, 3, 4]) {
+      const p = plan("1:es", "sifir", { gun: { ...g1, halkalar: kes(n) } });
+      const es = halkaD(p).flatMap((d) => d.adimlar.filter((a) => a.tur === "eslestir"));
+      if (n < 4) expect(es, `${n} kart`).toEqual([]); else expect(es.length, `${n} kart`).toBeGreaterThan(0);
+    }
+  });
   it("dil durağı (AK-1): parçalar arasında en az bir halka; 1. parça kullanımla biter, 2. parça hatırlatmayla başlar", () => {
     for (const x of PLANLAR) {
       const d = x.p.duraklar;
@@ -280,6 +289,99 @@ describe("1. gün plan dökümü (PM 7046461673)", () => {
       const { dirname } = await import("node:path");
       mkdirSync(dirname(join(ROOT, hedef)), { recursive: true });
       writeFileSync(join(ROOT, hedef), sat.join("\n"));
+    }
+  });
+});
+
+describe("gün sonu: kendini dene (PM 7059008858 md. 4)", () => {
+  it("en çok 4 madde, günün sınavından; her biri gün sonu kapısından geçer ve türler önce birer kez", () => {
+    for (const t of TOHUMLAR.slice(0, 10)) {
+      const p = plan(t, "sifir");
+      const gs = p.duraklar.find((d) => d.tur === "gunsonu")!;
+      const kd = gs.adimlar.filter((a) => a.ders?.id === GUN_SINAVI);
+      expect(kd.length).toBe(4);  // 1. günde her türden en az bir madde gün sonu kapısından geçiyor
+      const ids = kd.map((a) => a.ders!.oge);
+      expect(new Set(ids).size).toBe(ids.length);
+      for (const id of ids) expect(gun.gun_sinavi.maddeler.some((m) => m.id === id)).toBe(true);
+      const turler = kd.map((a) => gun.gun_sinavi.maddeler.find((m) => m.id === a.ders!.oge)!.k);
+      if (turler.length >= 2) expect(new Set(turler.slice(0, Math.min(3, turler.length))).size).toBeGreaterThan(1);
+    }
+  });
+});
+
+describe("resimden seç yalnız görselli kartta (PM 7059008858 md. 5)", () => {
+  it("görselli kart verilince bazı tohumlarda 'resimden_sec' çıkar; yalnız o kartlarda", () => {
+    const halkaKart = [...new Set(gun.halkalar.flatMap((h) => h.kartlar))];
+    const gorselli = new Set(halkaKart.slice(0, 8));
+    let n = 0;
+    for (const t of TOHUMLAR) for (const a of plan(t, "sifir", { gorselli }).duraklar.flatMap((d) => d.adimlar)) if (a.tur === "resimden_sec") {
+      n++; expect(a.kartlar.every((k) => gorselli.has(k) || !!c.lexemes.find((l) => l.id === k)?.img)).toBe(true);
+    }
+    expect(n).toBeGreaterThan(0);
+  });
+});
+
+describe("değişmez kural: hiçbir kart kendi tanıtım adımından önce sorulmaz (PM 7067321013 F1)", () => {
+  /** Planı sırayla yürür; `tanit` adımı görülmeden bir adımın kartı olan (önceki günlerden bilinmeyen) kartları döndürür */
+  const erken = (p: GunPlani, onceki: ReadonlySet<string> = new Set()): string[] => {
+    const gorulen = new Set<string>(), out: string[] = [];
+    for (const d of p.duraklar) for (const a of d.adimlar) {
+      if (a.tur === "tanit") { a.kartlar.forEach((k) => gorulen.add(k)); continue; }
+      for (const k of a.kartlar) if (!onceki.has(k) && !gorulen.has(k)) out.push(`${a.id} ${a.tur} ${k}`);
+    }
+    return out;
+  };
+  const gercek = (day: number) => c.m1.find((x) => x.data.day === day)!.data;
+  const uygulama = (g: PlanGirdi["gun"], ek: Partial<PlanGirdi> = {}): GunPlani =>
+    planGun({ gun: g, dersler, dizin, items: new Map(), oncekiKartlar: new Set(), bitenDersler: new Set(), tohum: `akis:${g.day}`, simdi, ...ek })!;
+
+  it("gerçek gun-01.json, uygulamanın tohumu akis:1: görselsiz, bütün kartlar görselli, yarısı görselli", () => {
+    const g = gercek(1);
+    expect(g.halkalar?.length, "1. gün içerikte halkalı").toBeGreaterThan(0);
+    const kartlar = g.halkalar!.flatMap((h) => h.kartlar);
+    for (const gorselli of [undefined, new Set(kartlar), new Set(kartlar.filter((_, i) => i % 2 === 0))]) {
+      const p = uygulama(g, gorselli ? { gorselli } : {});
+      expect(erken(p), `görselli ${gorselli?.size ?? 0}`).toEqual([]);
+      // her halka kartı planda tam bir kez tanıtılır
+      const tanit = p.duraklar.flatMap((d) => d.adimlar).filter((a) => a.tur === "tanit").flatMap((a) => a.kartlar);
+      expect([...tanit].sort()).toEqual([...kartlar].sort());
+    }
+  });
+
+  it("içerikteki bütün akış günleri, uygulamanın tohumuyla (önceki günlerin kartları bilinir ya da hiç bilinmez)", () => {
+    const gunler = c.m1.map((x) => x.data).filter((g) => (g.halkalar?.length ?? 0) > 0).sort((a, b) => a.day - b.day);
+    expect(gunler.length).toBeGreaterThan(0);
+    for (const g of gunler) {
+      const onceki = new Set(c.m1.filter((x) => x.data.day < g.day).flatMap((x) => x.data.yeni_kartlar));
+      expect(erken(uygulama(g, { oncekiKartlar: onceki }), onceki), `${g.day}. gün`).toEqual([]);
+      expect(erken(uygulama(g)), `${g.day}. gün, önceki kart yok`).toEqual([]);
+    }
+  });
+
+  it("halka kartı yeni_kartlar'da olmasa da tanıtımından önce sorulmaz (e2e fikstürü: 'der Herr' tanıtımdan 3 adım önce soruluyordu)", () => {
+    const g = gercek(1);
+    // e2e paketindeki 1. gün: fikstürün yeni_kartlar'ı + gerçek günün halkaları (content/tools/build.ts)
+    const fx = JSON.parse(readFileSync(join(ROOT, "content/tools/fixtures/m1/gun-01.json"), "utf8")) as { yeni_kartlar: string[] };
+    const kartlar = g.halkalar!.flatMap((h) => h.kartlar);
+    expect(erken(uygulama({ ...g, yeni_kartlar: fx.yeni_kartlar }))).toEqual([]);
+    // genelleme: halka kartlarından herhangi biri listeden düşse de
+    for (const k of kartlar) for (const tohum of ["akis:1", "1:t0", "1:t7"])
+      expect(erken(uygulama({ ...g, yeni_kartlar: g.yeni_kartlar.filter((x) => x !== k) }, { tohum })), `${k} listede yok, ${tohum}`).toEqual([]);
+  });
+});
+
+describe("ses iki turda (PM-097 md. 1)", () => {
+  it("ilk tur başta (halkalardan önce); ikinci tur son halkadan sonra, provadan önce; her planda", () => {
+    const ikinciVar = g1.sesler.some((s) => s.bolumler.some((b) => b.dikte.length || b.golge.length || b.cevapla));
+    for (const { p } of PLANLAR) {
+      const d = p.duraklar;
+      const ilk = d.findIndex((x) => x.ses_turu === "ilk"), ikinci = d.findIndex((x) => x.ses_turu === "ikinci");
+      const ilkHalka = d.findIndex((x) => x.tur === "halka"), sonHalka = d.map((x) => x.tur).lastIndexOf("halka"), prova = d.findIndex((x) => x.tur === "prova");
+      if (g1.sesler.length) expect(ilk).toBeGreaterThanOrEqual(0);
+      if (ilk >= 0) expect(ilk).toBeLessThan(ilkHalka);
+      expect(ikinci >= 0).toBe(ikinciVar);
+      if (ikinci >= 0) { expect(ikinci).toBeGreaterThan(sonHalka); if (prova >= 0) expect(ikinci).toBeLessThan(prova); }
+      expect(d.filter((x) => x.tur === "ses")).toHaveLength((ilk >= 0 ? 1 : 0) + (ikinci >= 0 ? 1 : 0));
     }
   });
 });

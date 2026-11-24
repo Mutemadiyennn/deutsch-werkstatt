@@ -16,12 +16,12 @@ BASELINE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gezgin-base
 CAP = 80  # ekran başına en çok basış; fazlası "over_cap" olarak sayılır ve raporlanır
 
 def screens():
-    """Ana ekranlar + seviye tespiti + her senaryonun ana sayfası + bir tam ve bir mini senaryonun bütün bölümleri"""
+    """Dört sekme (Bugün, Yol, Köy, Ben) + ayarlar + seviye tespiti + Köy'ün beş mekân sayfası + her senaryonun ana sayfası + bir tam ve bir mini senaryonun bütün bölümleri"""
     idx = content_file("index.json")
     sc = [s["id"] for s in idx["scenarios"]]
     mini = next((s["id"] for s in idx["scenarios"] if s.get("format") == "mini"), None)
     doms = sorted({s["domain"] for s in idx["scenarios"]})
-    out = ["#/today", "#/learn", "#/progress", "#/profile", "#/assess"] + [f"#/learn/{d}" for d in doms] + [f"#/scenario/{s}" for s in sc]
+    out = ["#/today", "#/yol", "#/koy", "#/ben", "#/ben/ayarlar", "#/assess"] + [f"#/koy/{m}" for m in ("bahce", "sinema", "radyo", "kutuphane", "pazar")] + [f"#/learn/{d}" for d in doms] + [f"#/scenario/{s}" for s in sc]
     for s in [SC] + ([mini] if mini else []):
         out += [f"#/scenario/{s}/{x}" for x in SECTIONS]
     # Kalıplar listesi ve kalıp bağı olan bir sözlük kartı (yerleşim B5; inceleme #185 P1-3)
