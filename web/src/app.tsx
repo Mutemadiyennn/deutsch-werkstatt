@@ -161,7 +161,8 @@ export function App() {
     void loadWorld().then((w) => { if (w) setKarakterler(w.characters.map((c) => ({ id: c.id, name: c.name, ses: c.ses }))); });
   }, [user?.uid]);
 
-  useEffect(() => { if (route.name !== "section") setLearning(LEARNING_ROUTES.has(route.name), route.name === "assess" ? "assess" : "vocab"); window.scrollTo(0, 0); }, [route]);
+  // section: Player, seviye: TespitEkrani kendisi bildirir (giriş ekranı öğrenme sayılmaz; PM-127 md. 2.3–2.4)
+  useEffect(() => { if (route.name !== "section" && route.name !== "seviye") setLearning(LEARNING_ROUTES.has(route.name), route.name === "assess" ? "assess" : "vocab"); window.scrollTo(0, 0); }, [route]);
 
   const api = useMemo(() => createApi({ base: API_BASE, token: (f) => auth.idToken(f) }), []);
   useEffect(() => { void probeProvider(api); }, [api]);
