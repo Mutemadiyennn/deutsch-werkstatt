@@ -91,7 +91,8 @@ describe("#165 içeriği (main: docs/v2/reviews/halka/gun-01-halkalar.json) şem
     const c = loadContent();
     const dz = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genelAdlarAyikla(readFileSync(join(ROOT, "docs/v2/reviews/genel-adlar.md"), "utf8")));
     const h = (JSON.parse(readFileSync(f, "utf8")).halkalar as unknown[]).map((x) => Halka.parse(x));
-    const gunler = c.m1.map((x) => ({ file: "gun", data: x.data.day === 1 ? { ...x.data, halkalar: h } : x.data }));
+    // yalnız 1. hafta (#165 1. günün halkası); sonraki haftalar bu testi etkilemez (PM-117 A.1)
+    const gunler = c.m1.filter((x) => x.data.day <= 7).map((x) => ({ file: "gun", data: x.data.day === 1 ? { ...x.data, halkalar: h } : x.data }));
     expect(halkaDenetle(gunler as never, new Map(c.temel.map((t) => [t.data.id, t.data])), dz).errors).toEqual([]);
   });
 });

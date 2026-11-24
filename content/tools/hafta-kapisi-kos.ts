@@ -1,13 +1,14 @@
 /**
  * Hafta kapısının komut satırı (PM-087 B.1; ayrıntı hafta-kapisi.ts).
- *   node --experimental-strip-types content/tools/hafta-kapisi-kos.ts (--hafta N | --hepsi) [--tablo <yol>] [--esik 0.8] [--json <çıktı>] [--md <çıktı>]
+ *   node --experimental-strip-types content/tools/hafta-kapisi-kos.ts (--hafta N | --hepsi) [--tablo <yol>] [--esik 0.8] [--m1 <dizin>] [--json <çıktı>] [--md <çıktı>]
  *   --hepsi: gün dosyası olan her hafta (2. hafta ve sonrası; 1. hafta tablo öncesi/eski biçim); KAPI içerik adımı bununla koşar
+ *   --m1 <dizin>: gün dosyalarının dizini (varsayılan content/v2/m1; testler içerikten bağımsız fikstür dizini verir, PM-117 A.1)
  * Girdi: content/v2/m1/gun-NN.json (o haftanın 7 günü), hafta-sonu-testi-HH.json, gorulmemis-HH.json, dn-HH.json;
  * curriculum/a1-kesin.json (ya da --tablo), curriculum/omurga.json, sözlük, temel dersler, grammar.json.
  * Çıkış: 0 geçti · 1 kaldı · 2 girdi yok ya da okunamadı.
  */
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, relative } from "node:path";
 import { genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
 import { haftaOf, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
 import { dilNoktasiMetni, haftaKapisi, kapiRaporu } from "./hafta-kapisi.ts";
@@ -25,9 +26,10 @@ const oku = <T>(yol: string, ad: string, zorunlu = true): T | undefined => {
 };
 const tablo = oku<KesinTablo>(tabloYol, "tablo")!;
 const omurga = oku<Omurga>(join(CDIR, "curriculum/omurga.json"), "omurga")!;
-const mdir = join(CDIR, "m1");
+const mdir = deger("--m1") ?? join(CDIR, "m1");
+if (!existsSync(mdir)) { console.error(`HATA: gün dizini yok: ${mdir}`); process.exit(2); }
 const dosyalar = readdirSync(mdir);
-const gunler = dosyalar.filter((f) => /^gun-\d{2,3}\.json$/.test(f)).sort().map((f) => ({ file: `content/v2/m1/${f}`, data: oku<GunHam>(join(mdir, f), "gün dosyası")! }));
+const gunler = dosyalar.filter((f) => /^gun-\d{2,3}\.json$/.test(f)).sort().map((f) => ({ file: relative(ROOT, join(mdir, f)), data: oku<GunHam>(join(mdir, f), "gün dosyası")! }));
 
 const c = loadContent();
 const ga = join(ROOT, "docs/v2/reviews/genel-adlar.md");
