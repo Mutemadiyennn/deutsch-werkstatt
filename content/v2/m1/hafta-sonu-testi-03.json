@@ -1,0 +1,184 @@
+{
+ "id": "m1:hafta-sonu-testi:03",
+ "day": 21,
+ "maddeler": [
+  {
+   "id": "m1:21:t01",
+   "k": "listen_and_respond",
+   "audio_de": "Haben Sie am Freitag um elf Zeit?",
+   "speed": "normal",
+   "situation_tr": "Cuma saat on birde vaktin var. Evet de, günü ve saati tekrar et.",
+   "accepted": [
+    "Ja, am Freitag um elf habe ich Zeit.",
+    "Ja, Freitag um elf geht.",
+    "Ja, am Freitag um elf geht.",
+    "Ja, am Freitag um elf.",
+    "Ja, gern, am Freitag um elf.",
+    "Ja, Freitag um elf passt.",
+    "Ja, am Freitag um elf Uhr habe ich Zeit."
+   ],
+   "why_tr": "Soru **Haben Sie** ile başlıyor. Cevapta **habe ich Zeit** dersin."
+  },
+  {
+   "id": "m1:21:t02",
+   "k": "order",
+   "de": "Könnten / Sie / mir / die / Nummer / geben",
+   "tr": "Bana numarayı verebilir misiniz?",
+   "accepted": [
+    "Könnten Sie mir die Nummer geben?",
+    "Könnten Sie mir die Nummer geben",
+    "könnten Sie mir die Nummer geben?"
+   ],
+   "why_tr": "**Könnten Sie** başa gelir, **geben** en sona gider."
+  },
+  {
+   "id": "m1:21:t03",
+   "k": "gap",
+   "de": "Ich habe ___ Freitag einen Termin.",
+   "tr": "Cuma günü randevum var.",
+   "accepted": [
+    "am",
+    "Am",
+    "am."
+   ],
+   "opts": [
+    "um",
+    "am",
+    "im"
+   ],
+   "why_tr": "Günlerle **am**, saatle **um**, aylarla **im** dersin."
+  },
+  {
+   "id": "m1:21:t04",
+   "k": "listen_and_respond",
+   "audio_de": "Wo wohnen Sie? Wie schreibt man das?",
+   "speed": "normal",
+   "situation_tr": "Adresin Brunnengasse yedi numara. Sokağın adını söyle ve ilk harfi bir adla netleştir.",
+   "accepted": [
+    "Brunnengasse sieben, B wie Berta.",
+    "Brunnengasse sieben. B wie Berta.",
+    "Brunnengasse 7, B wie Berta.",
+    "Brunnengasse sieben. B wie Berlin.",
+    "In der Brunnengasse sieben. B wie Berta.",
+    "Brunnengasse sieben, mit B wie Berta.",
+    "Brunnengasse sieben, mit Doppel-N. B wie Berta."
+   ],
+   "why_tr": "Telefonda harfi bir adla söylersin: **B wie Berta** ya da **B wie Berlin**."
+  },
+  {
+   "id": "m1:21:t05",
+   "k": "transform",
+   "instr_tr": "Bu soruyu daha kibar söyle. **Könnten Sie** ile başla.",
+   "from_de": "Können Sie mich verbinden?",
+   "accepted": [
+    "Könnten Sie mich verbinden?",
+    "Könnten Sie mich bitte verbinden?",
+    "Könnten Sie mich verbinden, bitte?"
+   ],
+   "why_tr": "**Können** yerine **Könnten** daha kibar duyulur. Gerisi aynı kalır."
+  },
+  {
+   "id": "m1:21:t06",
+   "k": "listen_and_respond",
+   "audio_de": "Ihr Termin ist am Dienstag, dem zweiundzwanzigsten Dezember, um Viertel vor neun.",
+   "speed": "fast",
+   "situation_tr": "Huber Hanım randevuyu söylüyor. Tekrar ederek doğrula: gün ya da tarih, yanında saat.",
+   "accepted": [
+    "Am Dienstag, dem zweiundzwanzigsten, um Viertel vor neun?",
+    "Also am Dienstag um Viertel vor neun?",
+    "Dienstag, der zweiundzwanzigste, um Viertel vor neun?",
+    "Am zweiundzwanzigsten um Viertel vor neun?",
+    "Also Dienstag um acht Uhr fünfundvierzig?",
+    "Am Dienstag um Viertel vor neun? Danke!"
+   ],
+   "why_tr": "Doğrularken günü, tarihi ve saati soru gibi tekrar edersin."
+  },
+  {
+   "id": "m1:21:t07",
+   "k": "gap",
+   "de": "Er ___ mit dem Bus zur Praxis.",
+   "tr": "O otobüsle muayenehaneye gidiyor.",
+   "accepted": [
+    "fährt",
+    "Fährt",
+    "fährt."
+   ],
+   "opts": [
+    "fahrt",
+    "fahren",
+    "fährt"
+   ],
+   "why_tr": "O derken **fahren** kelimesinde **a** harfi **ä** olur: **er fährt**."
+  },
+  {
+   "id": "m1:21:t08",
+   "k": "guided_response",
+   "situation_tr": "Tobi seni cumartesi alışverişe çağırıyor. Cumartesi vaktin yok.",
+   "prompt_de": "Kommst du am Samstag mit einkaufen?",
+   "accepted": [
+    "Nein, am Samstag habe ich leider keine Zeit.",
+    "Nein, leider nicht.",
+    "Nein, am Samstag geht es leider nicht.",
+    "Nein, ich habe am Samstag keine Zeit.",
+    "Am Samstag? Nein, leider nicht.",
+    "Nein, am Samstag kann ich leider nicht."
+   ],
+   "why_tr": "Kibar hayır için **leider** ekle."
+  },
+  {
+   "id": "m1:21:t09",
+   "k": "tr_de",
+   "tr": "Wimmer Bey, vaktiniz var mı?",
+   "accepted": [
+    "Herr Wimmer, haben Sie Zeit?",
+    "Haben Sie Zeit, Herr Wimmer?",
+    "Herr Wimmer, haben Sie kurz Zeit?",
+    "Haben Sie kurz Zeit, Herr Wimmer?"
+   ],
+   "why_tr": "Kibar evet ya da hayır sorusunda **Haben Sie** başa gelir."
+  },
+  {
+   "id": "m1:21:t10",
+   "k": "listen_and_respond",
+   "audio_de": "Die Praxis ist am Mittwoch geschlossen. Kommen Sie bitte am Donnerstag um acht.",
+   "speed": "fast",
+   "situation_tr": "Muayenehaneye ne zaman gitmelisin? Günü ve saati Almanca söyle.",
+   "accepted": [
+    "Am Donnerstag um acht.",
+    "Am Donnerstag um acht Uhr.",
+    "Donnerstag um acht.",
+    "Am Donnerstag, um acht Uhr.",
+    "Ich komme am Donnerstag um acht.",
+    "Donnerstag, acht Uhr."
+   ],
+   "why_tr": "Çarşamba kapalı. **am Donnerstag um acht** gitmelisin."
+  },
+  {
+   "id": "m1:21:t11",
+   "k": "order",
+   "de": "Ist / Ihr / Vater / auch / krank",
+   "tr": "Babanız da hasta mı?",
+   "accepted": [
+    "Ist Ihr Vater auch krank?",
+    "Ist Ihr Vater auch krank",
+    "ist Ihr Vater auch krank?"
+   ],
+   "why_tr": "Evet ya da hayır sorusunda **Ist** başa gelir."
+  },
+  {
+   "id": "m1:21:t12",
+   "k": "guided_response",
+   "situation_tr": "Firmayı arıyorsun. Kendini tanıt ve kibarca Derya Aksoy'a bağlanmak iste.",
+   "prompt_de": "Hallo, guten Tag?",
+   "accepted": [
+    "Guten Tag, hier ist {name}. Könnten Sie mich mit Derya Aksoy verbinden?",
+    "Guten Tag, hier ist {name}. Könnten Sie mich bitte mit Derya Aksoy verbinden?",
+    "Guten Tag, {name} hier. Könnten Sie mich mit Frau Aksoy verbinden?",
+    "Hallo, hier ist {name}. Könnten Sie mich mit Derya verbinden?",
+    "Guten Tag, mein Name ist {name}. Könnten Sie mich mit Frau Aksoy verbinden?",
+    "Guten Tag, hier ist {name}. Können Sie mich mit Derya Aksoy verbinden?"
+   ],
+   "why_tr": "Önce **hier ist** ve adın. Sonra **Könnten Sie mich mit**, kişinin adı ve sonda **verbinden**."
+  }
+ ]
+}
