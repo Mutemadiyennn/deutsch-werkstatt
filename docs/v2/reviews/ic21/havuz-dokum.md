@@ -854,8 +854,6 @@ Kaynak: `content/v2/assess/a1-seviye-tespiti.json`. Her satır: kimlik · aşama
 
 ## 8. hafta
 
-- `m1:h08:g1` · tarama · konusma · durum — cd:m1:50 «Telefonda randevu saati değişince yeni saati sorar ve doğrularım.»
- - Cumartesi akşamı dört kişi için göl kenarındaki bir restoranda masa ayırtmak istiyorsun. Restoranı arıyorsun, telefonu bir garson açıyor. DE: Restaurant am See, guten Abend! → Guten Abend! Ich möchte für Samstag einen Tisch für vier Personen reservieren.
 - `m1:h08:g5` · tarama · konusma · durum — cd:m1:53 «Hafta sonumu anlatır, bir şey iptal olduysa ya da kötü gittiyse söylerim.»
  - Pazartesi akşamı dil kursundasın. Öğretmen herkese hafta sonunu soruyor. Cumartesi bir geziye gidecektin ama gezi iptal oldu, sen de evde kaldın. Bunu anlat. DE: Und Sie? Was haben Sie am Wochenende gemacht? → Der Ausflug ist ausgefallen. Ich war zu Hause.
 - `m1:h08:g6` · tarama · konusma · durum — cd:m1:54 «Eczanede eksik bir ilacı ayırtır, ilacı ne zaman içeceğimi sorarım.»
@@ -880,8 +878,6 @@ Kaynak: `content/v2/assess/a1-seviye-tespiti.json`. Her satır: kimlik · aşama
  - Pazar tezgâhındasın. Peynirin fiyatını sor ve yarım kilo iste. DE: Guten Tag! Was möchten Sie? → Was kostet der Käse? Ein halbes Kilo, bitte.
 - `m1:54:t03` · derin · yazma · tr_de — cd:m1:51 «İstediğim şey bitmişse başka bir şey seçer, fiyatı sorup doğrularım.»
  - TR: O zaman yarım kilo elma alayım. → Dann nehme ich ein halbes Kilo Äpfel.
-- `m1:h08:g2` · derin · konusma · durum — cd:m1:51 «İstediğim şey bitmişse başka bir şey seçer, fiyatı sorup doğrularım.»
- - Süpermarkettesin. Süt arıyorsun ama bulamıyorsun. Bir çalışan yanına geliyor. DE: Kann ich Ihnen helfen? → Ja, bitte. Wo ist die Milch?
 - `m1:52:s9` · derin · konusma · guided_response — cd:m1:52 «Mahallede hafta sonu planımı anlatır, nakit param yoksa çözüm sorarım.»
  - Kuaförde ödeme sırası. Luka sadece nakit alıyor, sende yok. Yarın ödeyip ödeyemeyeceğini sor. DE: Bei mir nur Bargeld, bitte. → Ich habe kein Bargeld. Kann ich morgen zahlen?
 - `m1:52:s10` · derin · konusma · guided_response — cd:m1:52 «Mahallede hafta sonu planımı anlatır, nakit param yoksa çözüm sorarım.»
