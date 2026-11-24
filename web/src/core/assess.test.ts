@@ -75,16 +75,14 @@ describe("öğrenci modeli ve planlayıcı", () => {
     expect(ch[0]!.gaps[0]).toMatchObject({ type: "active", source: "assess" });
     expect(itemIdFromAssess("as:li:x")).toBeNull();
   });
-  it("planlayıcı: önce tespit; sonra seans 1 → öncelikli alandaki senaryo; seans 3 → v1 dinleme", () => {
+  it("planlayıcı: önce tespit; sonra seans 1 → öncelikli alandaki senaryo; seans 3 → eski uygulamaya gönderilmez (PM-116)", () => {
     const p = defaultProfile();
     const index: any = { scenarios: [{ id: "sc:telefon:01-arzttermin", domain: "telefon", order: 1, level: "A1", title_tr: "Doktordan telefonla randevu almak", title_de: "", review: "draft" }] };
     expect(recommend({ profile: p, index, hasPlacement: false, sessionN: 1 }).kind).toBe("assess");
     const r1 = recommend({ profile: p, index, hasPlacement: true, sessionN: 1 });
     expect(r1).toMatchObject({ kind: "scenario", scenarioId: "sc:telefon:01-arzttermin", draft: true });
     const r3 = recommend({ profile: p, index, hasPlacement: true, sessionN: 3 });
-    expect(r3).toMatchObject({ kind: "v1", activity: "listening" });
-    expect((r3 as any).url).toContain("#shadow");
-    // ayar açıkken v1 kendiliğinden /v2/ye yönlenmesin (inceleme #130 B2)
-    expect((r3 as any).url).toMatch(/\?v1#shadow$/);
+    expect(r3.kind).toBe("none");
+    expect(JSON.stringify(r3)).not.toMatch(/eski uygulama|\?v1/i);
   });
 });

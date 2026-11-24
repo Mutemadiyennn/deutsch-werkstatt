@@ -6,7 +6,8 @@
    ve güncelleme v1'de kalır). Sayfanın geri kalanı yüklenmeden çalışır; çevrimdışında da (servis çalışanı bu sayfayı önbellekten verir). */
 (function(){ var e = /[?&]eski=1(&|$)/.test(location.search);
   try { if (e) sessionStorage.setItem("dw-eski", "1"); else e = sessionStorage.getItem("dw-eski") === "1"; } catch (x) {}
-  if (!e && !/\/v2\//.test(location.pathname)) location.replace("./v2/"); })();
+  // yönlenirken sayfanın geri kalanı ayrıştırılmasın: v1'in açılış kodu (depolama, eşitleme, bildirim) hiç çalışmasın (inceleme #262 P2-4)
+  if (!e && !/\/v2\//.test(location.pathname)) { location.replace("./v2/"); document.write('<plaintext hidden>'); } })();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#F1F6FB">
