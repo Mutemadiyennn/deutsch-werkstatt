@@ -26,20 +26,22 @@ def cevapla(pg, kip):
     """Sıradaki maddeyi `kip` ile cevapla: 'dogru' (e2e işaretlerinden) ya da 'bilmiyorum'"""
     if kip == "bilmiyorum":
         pg.click("[data-test=tespit-bilmiyorum]"); return
-    kart = pg.locator(".tespit-kart").first
+    # deneme maddesi (seç/form/mesaj) sınav günüyle aynı kartta (`MaddeView`): birincil düğme data-test=next
+    sinav = pg.locator("[data-test=sinav-sec], [data-test=sinav-form], [data-test=sinav-mesaj]")
+    kart = sinav.first if sinav.count() else pg.locator(".tespit-kart").first
     test = kart.get_attribute("data-test") or ""
-    if test == "tespit-mesaj":
+    if test == "sinav-mesaj":
         pg.fill("[data-test=yazi]", kart.get_attribute("data-ornek") or "Hallo!")
-        pg.click("[data-test=tespit-kontrol]"); pg.wait_for_selector("[data-test=tespit-mesaj-puanla]")
+        pg.click("[data-test=next]"); pg.wait_for_selector("[data-test=tespit-mesaj-puanla]")
         for seg in pg.locator("[data-test=tespit-mesaj-puanla] .seg").all(): seg.locator("button").last.click()
         pg.click("[data-test=tespit-puan-kaydet]"); return
-    if test == "tespit-form":
+    if test == "sinav-form":
         import json
         for k, v in json.loads(kart.get_attribute("data-ornek") or "{}").items(): pg.fill(f"[data-alan='{k}']", v)
-        pg.click("[data-test=tespit-kontrol]"); return
+        pg.click("[data-test=next]"); return
     dogru = kart.get_attribute("data-dogru")
     if dogru is not None:
-        pg.click(f".tespit-kart button.opt[data-opt='{dogru}']"); pg.click("[data-test=tespit-kontrol]"); return
+        pg.click(f".tespit-kart button.opt[data-opt='{dogru}']"); pg.click("[data-test=next]" if test == "sinav-sec" else "[data-test=tespit-kontrol]"); return
     cev = (kart.get_attribute("data-cevap") or "").replace("{name}", "Ayşe")
     if test == "tespit-drill-order":
         for w in [x.strip(".,!?;:„“\"") for x in cev.split()]:
