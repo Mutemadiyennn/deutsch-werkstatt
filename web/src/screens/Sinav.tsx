@@ -7,6 +7,7 @@
  *  - Bütün bölümler çözülünce deneme sonucu: toplam ≥ %60 ve konuşma ≥ %60 (PM-087 ek); geçmeyince zayıf bölümler ve yeniden çözme.
  */
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
+import type { ComponentChildren } from "preact";
 import type { Deneme, DenemeBolum, DenemeKisim, DenemeMadde, Drill, Gun, Speed } from "@dw/shared";
 import { mesajOlcutleri } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -196,9 +197,13 @@ function SonucKarti({ d, sonuc, kalan, onYeniden }: { d: Deneme; sonuc: ReturnTy
   );
 }
 
-/** Bir madde: seç (dinleme, okuma), form, mesaj, konuşma. Doğru/yanlış gösterilmez; cevap kaydedilir ve sıradakine geçilir */
-function MaddeView({ m, kisim, onDone }: { m: DenemeMadde; kisim: DenemeKisim; onDone: (c: Cevap) => void }) {
+/**
+ * Bir madde: seç (dinleme, okuma), form, mesaj, konuşma. Doğru/yanlış gösterilmez; cevap kaydedilir ve sıradakine geçilir.
+ * Seviye tespiti (PM-115) seç/form/mesajı buradan kullanır: `kontrol` birincil düğmenin adı, `ek` altına (Bilmiyorum).
+ */
+export function MaddeView({ m, kisim, onDone, kontrol, ek }: { m: DenemeMadde; kisim: Pick<DenemeKisim, "dinleme_sayisi">; onDone: (c: Cevap) => void; kontrol?: string; ek?: ComponentChildren }) {
   const [sec, setSec] = useState<number | null>(null);
+  const bar = (b: ComponentChildren) => <ActionBar>{ek ? <div class="stack" style={{ gap: 8 }}>{b}{ek}</div> : b}</ActionBar>;
   const [form, setForm] = useState<Record<string, string>>({});
   const [yazi, setYazi] = useState("");
   if (m.k === "pick") return (
@@ -209,7 +214,7 @@ function MaddeView({ m, kisim, onDone }: { m: DenemeMadde; kisim: DenemeKisim; o
       <h3><Rich text={m.q_tr} /></h3>
       <div role="radiogroup" aria-label="Cevap seçenekleri">{m.opts.map((o, k) => (
         <button class={`opt${sec === k ? " sel" : ""}`} role="radio" aria-checked={sec === k} data-opt={k} onClick={() => setSec(k)}>{o}</button>))}</div>
-      <ActionBar><button class="btn primary block" data-test="next" disabled={sec === null} onClick={() => sec !== null && onDone(sec)}>Devam</button></ActionBar>
+      {bar(<button class="btn primary block" data-test="next" disabled={sec === null} onClick={() => sec !== null && onDone(sec)}>{kontrol ?? "Devam"}</button>)}
     </section>
   );
   if (m.k === "form") {
@@ -219,23 +224,23 @@ function MaddeView({ m, kisim, onDone }: { m: DenemeMadde; kisim: DenemeKisim; o
         <div class="sinav-metin selectable" lang="de">{m.bilgi_de}</div>
         <div class="sinav-formu" lang="de">
           <b>{m.form_baslik_de}</b>
-          {m.verilen.map((x) => <label class="sinav-alan"><span>{x.etiket_de}</span><input class="input" value={x.deger} readOnly tabIndex={-1} /></label>)}
+          {(m.verilen ?? []).map((x) => <label class="sinav-alan"><span>{x.etiket_de}</span><input class="input" value={x.deger} readOnly tabIndex={-1} /></label>)}
           {m.alanlar.map((a) => <label class="sinav-alan"><span>{a.etiket_de}</span>
             <input class="input" lang="de" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellcheck={false} data-alan={a.id}
               value={form[a.id] ?? ""} onInput={(e) => setForm({ ...form, [a.id]: (e.target as HTMLInputElement).value })} /></label>)}
         </div>
-        <ActionBar><button class="btn primary block" data-test="next" onClick={() => onDone(form)}>{tamam ? "Devam" : "Boş alanlarla devam"}</button></ActionBar>
+        {bar(<button class="btn primary block" data-test="next" onClick={() => onDone(form)}>{kontrol ?? (tamam ? "Devam" : "Boş alanlarla devam")}</button>)}
       </section>
     );
   }
   if (m.k === "mesaj") return (
     <section class="card stack fade" data-test="sinav-mesaj" {...(E2E ? { "data-ornek": m.ornek_de } : {})}>
       <p><Rich text={m.gorev_tr} /></p>
-      {m.noktalar_tr.length > 0 && <ol class="small">{m.noktalar_tr.map((x) => <li><Rich text={x} /></li>)}</ol>}
+      {(m.noktalar_tr ?? []).length > 0 && <ol class="small">{(m.noktalar_tr ?? []).map((x) => <li><Rich text={x} /></li>)}</ol>}
       <textarea class="input" rows={6} lang="de" autocapitalize="sentences" spellcheck={false} data-test="yazi" value={yazi}
         placeholder="Almanca mesajını yaz…" onInput={(e) => setYazi((e.target as HTMLTextAreaElement).value)} />
       <p class="tiny muted">{yazi.trim() ? yazi.trim().split(/\s+/).length : 0} kelime</p>
-      <ActionBar><button class="btn primary block" data-test="next" disabled={!yazi.trim()} onClick={() => onDone(yazi.trim())}>Mesajı teslim et</button></ActionBar>
+      {bar(<button class="btn primary block" data-test="next" disabled={!yazi.trim()} onClick={() => onDone(yazi.trim())}>{kontrol ?? "Mesajı teslim et"}</button>)}
     </section>
   );
   // konuşma: hazırlıksız; örnek cevap gösterilmez
@@ -255,7 +260,7 @@ function MaddeView({ m, kisim, onDone }: { m: DenemeMadde; kisim: DenemeKisim; o
 }
 
 /** Dinleme: satırlar konuşanın sesiyle (kadın/erkek/anons), en çok `hak` kez; metin gösterilmez */
-function Dinle({ satirlar, speed, hak }: { satirlar: { r: string; de: string }[]; speed?: Speed; hak: number }) {
+export function Dinle({ satirlar, speed, hak }: { satirlar: { r: string; de: string }[]; speed?: Speed; hak: number }) {
   const [dinlenen, setDinlenen] = useState(0);
   const [calis, setCalis] = useState(false);
   // koşu sayacı: "Durdur" ve ekrandan kalkış diziyi bütünüyle keser (yalnız o anki satırı değil; inceleme #247 P1-1)

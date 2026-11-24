@@ -188,7 +188,7 @@ def no_overflow(page, where):
 HIZLI_KAPAT = """async () => { const d = await new Promise((ok, no) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); q.onerror = no; });
   await new Promise((ok, no) => { const t = d.transaction('meta', 'readwrite'); t.objectStore('meta').put({ key: 'hizliSerit', value: false }); t.oncomplete = ok; t.onerror = no; }); d.close(); }"""
 
-def login_onboard(page, port, assess=False, hizli_serit=False, baslangic="a1"):
+def login_onboard(page, port, assess=False, hizli_serit=False, tespit=False):
     page.goto(f"http://127.0.0.1:{port}/")
     page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
     page.click("summary")
@@ -203,11 +203,15 @@ def login_onboard(page, port, assess=False, hizli_serit=False, baslangic="a1"):
     page.click("text=Devam"); page.wait_for_selector("text=Öncelik sırası")
     page.click("text=Devam"); page.click("text=Devam")
     if hizli_serit is False: page.evaluate(HIZLI_KAPAT)
-    # PM-114 B: "Nereden başlayalım?" — testler varsayılan baştan (A1); "a2" kısa yoklamaya gider
-    page.wait_for_selector("[data-test=kurulum-baslangic]")
-    if baslangic == "a2":
-        page.click("[data-test=baslangic-a2]"); page.click("[data-test=yoklama-git]"); return
-    page.click("[data-test=baslangic-a1]")
+    # PM-115: kurulum seviye tespitine gider (e2e paketinde fikstür havuzu var). Testler varsayılan "Baştan başla" (1. gün);
+    # tespit=True girişte bırakır; assess=True eski aylık ölçüme (#/assess) gider
+    page.wait_for_selector("[data-test=start-tespit], [data-test=start-assess]")
+    if page.locator("[data-test=start-tespit]").count():
+        page.click("[data-test=start-tespit]"); page.wait_for_selector("[data-test=tespit-giris]", timeout=20000)
+        if tespit: return
+        page.click("[data-test=tespit-bastan]"); page.wait_for_function("() => location.hash === '#/today' || location.hash === ''", timeout=15000)
+        if assess: page.goto(f"http://127.0.0.1:{port}/#/assess")
+        return
     if assess: page.click("[data-test=start-assess]")
     else: page.click("text=Sonra yaparım")
 

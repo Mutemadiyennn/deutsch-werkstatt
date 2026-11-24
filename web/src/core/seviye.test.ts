@@ -1,24 +1,12 @@
 import { describe, expect, it } from "vitest";
 import type { Drill } from "@dw/shared";
-import { a2Var, atlananlar, biliniyorKart, dokunulmamis, enErkenZayif, etkinBaslangic, gecilenler, gecti, haftaBasi, hemenTekrar, maddeKartlari, yoklamaSec, yoklamaZayif, type YoklamaTest } from "./seviye.ts";
+import { a2Var, atlananlar, biliniyorKart, dokunulmamis, etkinBaslangic, gecilenler, haftaBasi, hemenTekrar, maddeKartlari } from "./seviye.ts";
 import { gunKilitli, gunOzeti, yol, yuklenecekHafta } from "./gun.ts";
 import { oncekiKume } from "./onceki.ts";
 import { isDue, review } from "./srs.ts";
 
 const dinle = (id: string): Drill => ({ id, k: "listen_and_respond", audio_de: "Wann ist der Termin?", speed: "normal", accepted: ["Am Montag.", "Montag."] });
 const yaz = (id: string, tr = "Pazartesi"): Drill => ({ id, k: "tr_de", tr, accepted: ["Am Montag ist der Termin.", "Montag."] });
-const test = (hafta: number): YoklamaTest => {
-  const g = haftaBasi(hafta);
-  return {
-    hafta,
-    maddeler: [yaz(`h${hafta}y1`), dinle(`h${hafta}d1`), dinle(`h${hafta}d2`), yaz(`h${hafta}y2`)],
-    beceriler: [
-      { gun: g, id: `cd:${g}`, tr: `${g}. günün cümlesi`, maddeler: [`h${hafta}d1`, `h${hafta}d2`, `h${hafta}y1`] },
-      { gun: g + 6, id: `cd:${g + 6}`, tr: `${g + 6}. günün cümlesi`, maddeler: [`h${hafta}y2`] }
-    ]
-  };
-};
-
 describe("seviye: başlangıç ve atlanan günler", () => {
   const days = [1, 2, 3, 8, 9, 15, 57, 58];
   it("A2 pakette yoksa başlangıç uygulanmaz", () => {
@@ -49,30 +37,6 @@ describe("seviye: başlangıç ve atlanan günler", () => {
     expect(gunOzeti(3, "Gün", true).atlandi).toBeUndefined();
     const y = yol([o, gunOzeti(57, "A2", false)]);
     expect(y.simdi?.day).toBe(57);
-  });
-});
-
-describe("seviye: yoklama", () => {
-  const t = [test(1), test(2), test(9)];
-  it("haftada 2 madde: önce dinleme, sonra ayrı günün yazması; A2 haftası girmez", () => {
-    const s = yoklamaSec(t);
-    expect(s.map((x) => x.d.id)).toEqual(["h1d1", "h1y2", "h2d1", "h2y2"]);
-    expect(s.map((x) => x.gun)).toEqual([1, 7, 8, 14]);
-  });
-  it("8 hafta × 2 = 16 madde", () => {
-    expect(yoklamaSec(Array.from({ length: 8 }, (_, i) => test(i + 1))).length).toBe(16);
-  });
-  it("zayıf cümleler gün sırasıyla, en erken zayıf hafta", () => {
-    const s = yoklamaSec(t);
-    const yanlis = new Set(["h2y2", "h2d1"]);
-    expect(yoklamaZayif(s, yanlis).map((z) => [z.gun, z.dogru, z.toplam])).toEqual([[8, 0, 1], [14, 0, 1]]);
-    expect(enErkenZayif(s, yanlis)).toBe(2);
-    expect(enErkenZayif(s, new Set())).toBeNull();
-  });
-  it("geçme oranı policy'den (0.8)", () => {
-    expect(gecti(13, 16)).toBe(true);
-    expect(gecti(12, 16)).toBe(false);
-    expect(gecti(0, 0)).toBe(false);
   });
 });
 

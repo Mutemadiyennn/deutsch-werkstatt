@@ -3,6 +3,7 @@
  * can_do cümleleri, kanıttan hesaplanan noktalar), bu hafta (gerçek sayılar), kelime haritası (Sözlük), çalışma düzeni
  * (eski İlerlemem, sıfırsız) ve Ayarlar (Profil). Sesli günlük özelliği olmadığı için o kutu çizilmez.
  */
+import { useTespitDurumu } from "../ui/tespitDurum.tsx";
 import { useEffect, useState } from "preact/hooks";
 import type { Gun, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -20,6 +21,7 @@ const NOKTA_TR = ["anlıyorum", "söyleyebiliyorum", "kendiliğimden kullanıyor
 interface BenVeri { gunler: Gun[]; items: Map<string, LearnerItem>; medyaBitti: Set<string> }
 
 export function BenEkrani() {
+  const tespit = useTespitDurumu();
   const { index, indexError } = useApp();
   const { plan, err, yok } = usePlan();
   const [v, setV] = useState<BenVeri | null>(null);
@@ -89,6 +91,11 @@ export function BenEkrani() {
           <span class="grow"><b>Kelime haritam</b><span>{kelime > 0 ? `${kelime} kelime` : "Tanıdığın kelimeler burada"}</span></span>
           <span aria-hidden="true">›</span>
         </a>
+        {tespit && <a class="ben-satir" href={tespit.durum === "bitti" ? "#/seviye/rapor" : "#/seviye"} data-test="ben-tespit">
+          <span class="ben-ic" style={{ background: "var(--m-kutuphane)" }} aria-hidden="true"><Icon name="chart" size={22} /></span>
+          <span class="grow"><b>{tespit.durum === "bitti" ? "Seviye raporun" : "Seviye tespiti"}</b><span>{tespit.durum === "bitti" ? "Beceriler, haftalar, zorlandıkların" : tespit.durum === "yarida" ? "Yarıda; kaldığın yerden sürer" : "Nereden başlayacağını bulalım"}</span></span>
+          <span aria-hidden="true">›</span>
+        </a>}
         <a class="ben-satir" href="#/ben/duzen" data-test="duzen-ac">
           <span class="ben-ic" style={{ background: "var(--m-radyo)" }} aria-hidden="true"><Icon name="clock" size={22} /></span>
           <span class="grow"><b>Çalışma düzenim</b><span>Odak süresi, seri, seviye ölçümü</span></span>

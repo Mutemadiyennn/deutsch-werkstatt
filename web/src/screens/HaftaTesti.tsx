@@ -17,6 +17,7 @@ import { personalizeDeep } from "../core/persona.ts";
 import { loadHaftaTesti, loadM1Gun, type HaftaTesti } from "../services/content.ts";
 import { gunBitisleri, haftaSonOku, haftaSonucYaz, type HaftaSon } from "../services/ilerleme.ts";
 import { gecilenGunler } from "../services/seviye.ts";
+import { tespitBekliyor } from "../services/tespit.ts";
 import { SEVIYE } from "../core/seviye.ts";
 import { DrillView, type DrillSonuc } from "../ui/drill.tsx";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
@@ -104,7 +105,7 @@ function e2eKilitsiz(): boolean {
 /** Kilitli gün kapısı: önceki günlerin hepsi bitmeden bu günün ekranı açılmaz */
 export function GunKapisi({ day, children }: { day: number; children: ComponentChildren }) {
   const { index } = useApp();
-  const [kilit, setKilit] = useState<boolean | null>(null);
+  const [kilit, setKilit] = useState<boolean | "tespit" | null>(null);
   useEffect(() => {
     if (!index) return;
     if (e2eKilitsiz()) { setKilit(false); return; }
@@ -112,10 +113,14 @@ export function GunKapisi({ day, children }: { day: number; children: ComponentC
     // okunamazsa açık bırakılır: kapı bir güvenlik değil sıra kuralıdır; ekran kendi hatasını gösterir
     // PM-114 B: başlangıçtan önceki atlanan günler geçilmiş sayılır (A2'den başlayan öğrencide 57. gün açık, atlanan gün de açık)
     const days = index.m1.map((g) => g.day);
-    void gecilenGunler(days).then(({ gecilen }) => !iptal && setKilit(gunKilitli(day, days, gecilen))).catch(() => !iptal && setKilit(false));
+    // PM-115 md. 1: ilk kurulumdan gelen öğrencide tespit bitmeden (ya da "Baştan başla" seçilmeden) gün açılmaz
+    void Promise.all([gecilenGunler(days), index.files.tespit ? tespitBekliyor() : false])
+      .then(([{ gecilen }, t]) => !iptal && setKilit(t ? "tespit" : gunKilitli(day, days, gecilen))).catch(() => !iptal && setKilit(false));
     return () => { iptal = true; };
   }, [index?.version, day]);
   if (kilit === null) return <Loading />;
+  if (kilit === "tespit") return <Kilitli ust={`${day}. gün`} baslik="Önce seviyeni görelim" metin="Seviye tespitini bitirince günlerin açılır; nereden başlayacağını o gösterir." test="gun-kilitli-tespit"
+    ek={<a class="btn sm" href="#/seviye" data-test="tespite-git">Seviye tespitine git</a>} />;
   if (kilit) return <Kilitli ust={`${day}. gün`} baslik="Bu gün henüz kilitli" metin="Günler sırayla açılır. Önceki günleri bitirince bu gün kendiliğinden açılacak." />;
   return <>{children}</>;
 }
@@ -164,7 +169,7 @@ export function HaftaTestiEkrani({ hafta }: { hafta: number }) {
 /**
  * Zayıf "yapabiliyorum" cümlelerinin tekrarı (#243 PM finali takip a): her zayıf günün gün sınavından kısa tur (`tekrarMaddeleri`).
  * Yalnız bitmiş günler (adresle kilitli gün girmez). Sonuç kaydedilmez; sonda "Testi yeniden çöz".
- * `seviye` (PM-114 B md. 3, `#/seviye/tekrar/<g,…>`): yoklamada zorlanılan A1 günleri; gün bitmiş olmak zorunda değil (öğrenci
+ * `seviye` (PM-115, `#/seviye/tekrar/<g,…>`; PR 3'ün planına kadar "Planımı gör"): tespitte zorlanılan A1 günleri; gün bitmiş olmak zorunda değil (öğrenci
  * yerini arıyor), yalnız A1 haftaları; geri ok ve son düğme yoklama sonucuna döner.
  */
 export function HaftaTekrarEkrani({ hafta, gunler, seviye = false }: { hafta: number; gunler: number[]; seviye?: boolean }) {
@@ -176,7 +181,7 @@ export function HaftaTekrarEkrani({ hafta, gunler, seviye = false }: { hafta: nu
   const [bitti, setBitti] = useState(false);
   const [n, setN] = useState(0);
   const baslik = "Zorlandıklarını tekrar et";
-  const geri = seviye ? "#/seviye/sonuc" : `#/hafta/${hafta}/sonuc`;
+  const geri = seviye ? "#/seviye/rapor" : `#/hafta/${hafta}/sonuc`;
   useEffect(() => {
     if (!index) return;
     setErr(null);
@@ -200,9 +205,9 @@ export function HaftaTekrarEkrani({ hafta, gunler, seviye = false }: { hafta: nu
   if (bitti) return (
     <div class="stack" data-test="hafta-tekrar-sonuc" data-dogru={dogru} data-toplam={tur.length}>
       <ProgressHeader title={baslik} back="#/today" ilerleme={{ n: tur.length, toplam: tur.length }} />
-      <section class="card stack"><h2>Tekrar bitti · {dogru}/{tur.length}</h2><p>{seviye ? "Şimdi nereden başlayacağına karar verebilirsin." : "Şimdi testi yeniden çözebilirsin; en iyi sonucun kalır."}</p></section>
+      <section class="card stack"><h2>Tekrar bitti · {dogru}/{tur.length}</h2><p>{seviye ? "Seviye raporuna dönüp sonucunu görebilirsin." : "Şimdi testi yeniden çözebilirsin; en iyi sonucun kalır."}</p></section>
       <ActionBar><div class="stack">{seviye
-        ? <a class="btn primary block" href="#/seviye/sonuc" data-test="seviye-sonuca">Karar ekranına dön</a>
+        ? <a class="btn primary block" href="#/seviye/rapor" data-test="seviye-sonuca">Seviye raporuna dön</a>
         : <a class="btn primary block" href={`#/hafta/${hafta}`} data-test="testi-yeniden">Testi yeniden çöz</a>}
         <a class="btn block" href="#/today" data-test="bugune-don">Bugüne dön</a></div></ActionBar>
     </div>

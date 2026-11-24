@@ -84,7 +84,7 @@ if (existsSync(join(ROOT, "content/v2/assess/a1-seviye-tespiti.json")) && !tespi
   console.error("seviye tespiti havuzu hatalı: npm run content:validate"); process.exit(1);
 }
 const tespitPkt = tespitPaketi(join(ROOT, "content/v2"), tespitAdlar)
-  ?? (process.env.DW_E2E_FIXTURES === "1" ? tespitPaketi(join(ROOT, "content/tools/fixtures/tespit"), tespitAdlar) : null);
+  ?? (process.env.DW_E2E_FIXTURES === "1" ? tespitPaketi(join(ROOT, "content/tools/fixtures/tespit-e2e"), tespitAdlar) : null); // 8 haftalık e2e fikstürü (PM-115 PR 2b)
 for (const h of tespitPkt?.haftalar ?? []) for (const d of h.dil_noktasi) if (!d.ad_tr) console.log(`uyarı: seviye tespiti: ${d.id} dil noktasının adı yok (grammar.json / dn-HH.json / temel)`);
 // PM-092 md. 1: haftaların dil noktaları (dn-HH.json) tek dosyada; uygulama dil noktası durağını ve kume tablosunu buradan kurar
 const dnNotlar = c.dn.flatMap((x) => x.data);

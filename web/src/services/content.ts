@@ -1,7 +1,7 @@
 /** İçerik paketi yükleyici: /content/current.json → /content/<sürüm>/… (şemayla doğrulanır, bellekte önbellek) */
 import { z } from "zod";
 import { bilinenKelimeler } from "../core/persona.ts";
-import { adsizTasi, AssessItem, ContentIndex, Deneme, DilNoktasi, Drill, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers, World } from "@dw/shared";
+import { adsizTasi, AssessItem, TespitPaket, ContentIndex, Deneme, DilNoktasi, Drill, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers, World } from "@dw/shared";
 
 const base = () => `${import.meta.env.BASE_URL}content/`;
 let idx: Promise<ContentIndex> | null = null;
@@ -95,6 +95,11 @@ export async function loadHaftaTesti(hafta: number): Promise<HaftaTesti | null> 
   const i = await loadIndex();
   const f = i.files.hafta[String(hafta)];
   return f ? within(file(f, z.object({ id: z.string(), maddeler: z.array(Drill).min(1), beceriler: z.array(Beceri).default([]) }))) : null;
+}
+/** A1 seviye tespiti paketi (PM-115; `tespit.json`): havuz yoksa null (tespit ekranları görünmez, eski kurulum akışı) */
+export async function loadTespit(): Promise<TespitPaket | null> {
+  const i = await loadIndex();
+  return i.files.tespit ? within(file(i.files.tespit, TespitPaket)) : null;
 }
 /** Düzey denemesi (sınav günü, PM-110): pakette yoksa null (sınav günü "hazırlanıyor"); varsa ve okunamıyorsa hata */
 export async function loadDeneme(id: string): Promise<Deneme | null> {

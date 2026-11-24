@@ -1,14 +1,13 @@
 /**
  * "A2'den başla" (PM-114 B): başlangıç günü, yoklama sonucu ve atlanan günlerin kartları cihazda.
  *  - `seviye:baslangic` { gun, at }: yoksa 1 (baştan).
- *  - `seviye:yoklama` { dogru, toplam, yanlis, maddeler, at }: son yoklama (sonuç ekranı kapansa da geri gelir).
  * Gün bitişi (`m1:gun:<g>`), XP ve seri buradan YAZILMAZ: atlanan gün "tamam" değildir.
  */
 import type { ContentIndex, Drill } from "@dw/shared";
 import { db, getMeta, itemsMap, putItems, setMeta } from "../data/db.ts";
-import { atlananlar, biliniyorKart, dokunulmamis, etkinBaslangic, gecilenler, hemenTekrar, maddeKartlari, SEVIYE, type YoklamaTest } from "../core/seviye.ts";
+import { atlananlar, biliniyorKart, dokunulmamis, etkinBaslangic, gecilenler, hemenTekrar, maddeKartlari, SEVIYE} from "../core/seviye.ts";
 import { gunBitisleri } from "./ilerleme.ts";
-import { loadHaftaTesti, loadKesin } from "./content.ts";
+import { loadKesin } from "./content.ts";
 
 const ANAHTAR = "seviye:baslangic";
 export interface Baslangic { gun: number; at: string }
@@ -23,21 +22,6 @@ export async function gecilenGunler(days: readonly number[]): Promise<{ bitenler
   const atlanan = atlananlar(days, bas, bitenler);
   return { bitenler, atlanan, gecilen: gecilenler(bitenler, atlanan), bas: etkinBaslangic(days, bas) };
 }
-
-/** Yoklamanın kaynağı: pakette olan A1 hafta sonu testleri (1…a1_hafta) */
-export async function yoklamaTestleri(index: ContentIndex): Promise<YoklamaTest[]> {
-  const haftalar = Object.keys(index.files.hafta ?? {}).map(Number).filter((h) => Number.isInteger(h) && h >= 1 && h <= SEVIYE.a1_hafta).sort((a, b) => a - b);
-  const out: YoklamaTest[] = [];
-  for (const h of haftalar) { const t = await loadHaftaTesti(h); if (t) out.push({ hafta: h, maddeler: t.maddeler, beceriler: t.beceriler }); }
-  return out;
-}
-
-export interface YoklamaSon { dogru: number; toplam: number; yanlis: string[]; maddeler: string[]; at: string }
-export async function yoklamaSonOku(): Promise<YoklamaSon | null> {
-  const v = await getMeta<YoklamaSon>("seviye:yoklama");
-  return v && typeof v.dogru === "number" && Array.isArray(v.yanlis) && Array.isArray(v.maddeler) ? v : null;
-}
-export const yoklamaSonYaz = (v: Omit<YoklamaSon, "at">) => setMeta("seviye:yoklama", { ...v, at: new Date().toISOString() });
 
 /** Günlerin kartları: dosyalı gün indeksten, dosyasız gün kesin tablodan */
 async function gunKartlari(index: ContentIndex, gunler: Iterable<number>): Promise<string[]> {

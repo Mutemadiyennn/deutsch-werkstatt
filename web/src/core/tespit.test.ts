@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import type { TespitCozulen, TespitPaket } from "@dw/shared";
-import { taramaPlani as tp, haftaDurumu as hdu, derinPlani as dp, tespitPlani as tpl, tespitRaporu as tr, tespitKarari as tk, kelimeOrnegi, TESPIT as TESPIT8, BECERILER, type Sonuc, type Cevaplar } from "./tespit.ts";
+import { bolumler, bolumSayaci, raporMetni, taramaPlani as tp, haftaDurumu as hdu, derinPlani as dp, tespitPlani as tpl, tespitRaporu as tr, tespitKarari as tk, kelimeOrnegi, TESPIT as TESPIT8, BECERILER, type Sonuc, type Cevaplar } from "./tespit.ts";
 
 /** fikstür paketi iki haftalık: A1 = 2 hafta sayılır (gerçek politika 8; eksik hafta ayrı testte) */
 const TESPIT = { ...TESPIT8, a1_hafta: 2 };
@@ -176,5 +176,31 @@ describe("seviye tespiti motoru (PM-115)", () => {
     const ids = derinPlani(iki, [1, 2]).filter((a) => a.madde).map((a) => a.id);
     expect(new Set(ids).size).toBe(ids.length);
     expect(kelimeOrnegi(["lx:b", "lx:a", "lx:c"], 2)).toEqual(kelimeOrnegi(["lx:c", "lx:a", "lx:b"], 2));
+  });
+  it("'sayilmadi' (yapay zekâ düştü): plan ilerler, oranlara ve 'oturmuş' kararına girmez, sorulan listesinde kalır", () => {
+    const c = taramaHepsi({ t1b: "sayilmadi" });
+    expect(haftaDurumu(PAKET, 1, c)).toBe("oturmus");
+    const r = tespitRaporu(PAKET, c);
+    expect(r.beceri.yazma).toEqual({ dogru: 1, toplam: 1, oran: 1 }); // c:yaz sayıldı, t1b sayılmadı
+    expect(r.sorulan).toContain("t1b");
+    expect(haftaDurumu(PAKET, 1, taramaHepsi({ t1a: "sayilmadi", t1b: "sayilmadi" }))).toBe("zayif"); // hiçbiri sayılmadı: derin bakış
+  });
+  it("bölümler: çekirdek, hafta taramaları, sonra zayıf haftaların derin bakışı; sayaç", () => {
+    const c0 = new Map<string, Sonuc>();
+    const b0 = bolumler(tespitPlani(PAKET, c0));
+    expect(b0.map((b) => b.anahtar)).toEqual(["cekirdek", "tarama:1", "tarama:2"]);
+    expect(bolumSayaci(tespitPlani(PAKET, c0), c0)).toEqual({ bitti: 0, toplam: 3 });
+    const c = taramaHepsi({ t2a: "bilmiyorum" });
+    const p = tespitPlani(PAKET, c);
+    expect(bolumler(p).map((b) => b.anahtar)).toEqual(["cekirdek", "tarama:1", "tarama:2", "derin:2"]);
+    expect(bolumSayaci(p, c)).toEqual({ bitti: 3, toplam: 4 });
+  });
+  it("rapor metni düz, karar ve yüzdeler; ölçülmeyen 'ölçülmedi'", () => {
+    const r = tespitRaporu(PAKET, taramaHepsi());
+    const adlar = { beceri: Object.fromEntries(BECERILER.map((b) => [b, b])) as never, karar: { a2: "A2", tamamla: "plan", bastan: "baştan" } };
+    const t = raporMetni(r, adlar);
+    expect(t).toContain("Karar: A2");
+    expect(t).toContain("- dil: ölçülmedi (0/0)");
+    expect(t).not.toMatch(/[<>{}]/);
   });
 });

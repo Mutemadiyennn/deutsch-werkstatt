@@ -1,10 +1,8 @@
 {
   "seviye": {
-    "aciklama": "PM-114 B: 'A2'den başla'. a2_ilk_gun: A2'nin ilk günü (9. hafta); yoklama A1'in 1..a1_hafta hafta sonu testlerinden, haftadan hafta_basi madde; gecme_orani altında zayıf cümleler + iki seçenek (kilit yok). biliniyor_gun: atlanan günlerin kartlarının ilk tanıma tekrarı (gün; yayilim_gun kadar yayılır).",
+    "aciklama": "PM-114 B / PM-115: başlangıç noktası. a2_ilk_gun: A2'nin ilk günü (9. hafta). biliniyor_gun: atlanan günlerin kartlarının ilk tanıma tekrarı (gün; yayilim_gun kadar yayılır). Yoklama PM-115 tespitiyle değişti (seviye_tespiti).",
     "a2_ilk_gun": 57,
     "a1_hafta": 8,
-    "hafta_basi": 2,
-    "gecme_orani": 0.8,
     "biliniyor_gun": 21,
     "yayilim_gun": 21
   },
@@ -100,7 +98,7 @@
     }
   },
   "seviye_tespiti": {
-    "aciklama": "PM-115: A1 seviye tespiti. `derin`: zayıf haftada can_do başına ve dil noktası başına sorulan üretim maddesi (derinSec); `havuz.cikis_min`: derin seçimden sonra her can_do / dil noktası için çıkış yoklamasına kalan, daha önce sorulmamış en az madde; `havuz.tarama_hafta`: hafta başına tarama maddesi aralığı. Doğrulayıcı (content/tools/tespit.ts) ve motor aynı değerleri okur. `karar`: A2'ye hazır (genel ≥, her beceri ≥, hiçbir hafta <) ve baştan (genel <). Sayılar yalnız burada.",
+    "aciklama": "PM-115: A1 seviye tespiti. `derin`: zayıf haftada can_do başına ve dil noktası başına sorulan üretim maddesi (derinSec); `havuz.cikis_min`: derin seçimden sonra her can_do / dil noktası için çıkış yoklamasına kalan, daha önce sorulmamış en az madde; `havuz.tarama_hafta`: hafta başına tarama maddesi aralığı. Doğrulayıcı (content/tools/tespit.ts) ve motor aynı değerleri okur. `karar`: A2'ye hazır (genel ≥, her beceri ≥, hiçbir hafta <) ve baştan (genel <). Sayılar yalnız burada. `acik_uclu_dogru`: form ve öz-puanlı mesajda puanın en az bu oranı → madde doğru.",
     "a1_hafta": 8,
     "havuz": {
       "tarama_hafta": [
@@ -131,7 +129,8 @@
       "a2_beceri_min": 0.7,
       "a2_hafta_min": 0.6,
       "bastan_genel_alti": 0.4
-    }
+    },
+    "acik_uclu_dogru": 0.6
   },
   "ben": {
     "aciklama": "PM-084 md. 5: Ben → Yapabildiklerim noktaları. Günün kartlarının nokta_oran'ı kanıt düzeyine ulaşınca nokta dolar; tanımada doğruluk en az tanima_dogruluk, her düzey en az iki ayrı günde (OD-4, OD-8).",

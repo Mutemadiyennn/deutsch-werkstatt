@@ -3,8 +3,8 @@ import { DurumCubugu } from "./ui/durum.tsx";
 import { RehberEkrani } from "./screens/Rehber.tsx";
 import { GorevlerEkrani } from "./ui/gorev.tsx";
 import { usePlan } from "./screens/Yol.tsx";
+import { TespitEkrani, TespitRaporu } from "./screens/Seviye.tsx";
 import { GunKapisi, HaftaSonucEkrani, HaftaTekrarEkrani, HaftaTestiEkrani } from "./screens/HaftaTesti.tsx";
-import { SeviyeSonuc, SeviyeYoklama } from "./screens/Seviye.tsx";
 import { dondurmaKontrol } from "./services/gorev.ts";
 import { probeProvider } from "./services/ai.ts";
 import { CallScreen as Call } from "./screens/Call.tsx";
@@ -214,14 +214,14 @@ export function App() {
     case "haftaSonuc": screen = <HaftaSonucEkrani key={route.hafta} hafta={route.hafta} />; break;
     case "sinav": screen = <GunKapisi key={location.hash} day={route.day}><SinavRota key={location.hash} day={route.day} bolum={route.bolum} /></GunKapisi>; break;
     case "haftaTekrar": screen = <HaftaTekrarEkrani key={location.hash} hafta={route.hafta} gunler={route.gunler} />; break;
-    case "seviye": screen = <SeviyeYoklama />; break;
-    case "seviyeSonuc": screen = <SeviyeSonuc />; break;
+    case "seviye": screen = <TespitEkrani />; break;
+    case "seviyeRapor": screen = <TespitRaporu />; break;
     case "seviyeTekrar": screen = <HaftaTekrarEkrani key={location.hash} hafta={0} gunler={route.gunler} seviye />; break;
     case "m1medya": screen = <GunKapisi key={location.hash} day={route.day}><MedyaEkrani key={`${route.id}:${route.tur ?? ""}`} day={route.day} id={route.id} tur={route.tur} /></GunKapisi>; break;
     // yalnız e2e: AK-10 3. adımın iki türü, ekran (4. adım) gelene kadar (üretimde bu dal ve modül paketten düşer)
     default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri") ? <HalkaTurRota key={location.hash} /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__dil-noktasi/") ? <DilNoktasiRota key={location.hash} /> : <Today />;
   }
-  const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && (location.hash.startsWith("#/__halka-turleri") || location.hash.startsWith("#/__dil-noktasi/"))) && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "akis" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma" && route.name !== "hafta" && route.name !== "haftaTekrar" && route.name !== "haftaSonuc" && route.name !== "sinav" && route.name !== "seviye" && route.name !== "seviyeSonuc" && route.name !== "seviyeTekrar";
+  const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && (location.hash.startsWith("#/__halka-turleri") || location.hash.startsWith("#/__dil-noktasi/"))) && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "akis" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma" && route.name !== "hafta" && route.name !== "haftaTekrar" && route.name !== "haftaSonuc" && route.name !== "sinav" && route.name !== "seviye" && route.name !== "seviyeRapor" && route.name !== "seviyeTekrar";
   return (
     <Ctx.Provider value={ctx}>
       <main class={`app${tabs ? "" : " notabs"}`}>{tabs && (sekme(route.name) === "today" || sekme(route.name) === "yol") && <DurumCubugu />}<ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>

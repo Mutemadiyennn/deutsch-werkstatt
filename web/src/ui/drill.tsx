@@ -63,10 +63,20 @@ export function drillVerdict(d: Drill, answer: string, typed = true, artikel?: {
   return { kind: "wrong", best, note: undefined };
 }
 
-const KICKER: Record<Drill["k"], string> = {
+export const KICKER: Record<Drill["k"], string> = {
   pick: "Seç", gap: "Boşluğu doldur", order: "Sıraya koy", transform: "Dönüştür", guided_response: "Cevap ver",
   listen_and_respond: "Dinle ve cevap ver", tr_de: "Almanca söyle"
 };
+
+/** Maddenin istemi (seçmeli hariç): DrillView ve seviye tespiti ortak */
+export function DrillIstem({ d }: { d: Exclude<Drill, { k: "pick" }> }) {
+  return d.k === "gap" ? <><div class="de-lg" lang="de">{d.de.split("___").map((p, j) => <>{j > 0 && <span class="gapblank" aria-label="boşluk" />}{p}</>)}</div><p class="small muted">{d.tr}</p><p class="tiny muted">Boşluğa gelen kelimeyi ya da bütün cümleyi yaz.</p></>
+    : d.k === "order" ? <><div class="de-lg">{d.tr}</div></>
+    : d.k === "transform" ? <><p class="small"><Rich text={d.instr_tr} /></p><div class="de-lg" lang="de">{d.from_de}</div></>
+    : d.k === "guided_response" ? <><p class="small"><Rich text={d.situation_tr} /></p><div class="row"><ListenButton text={d.prompt_de} small /><span class="de" lang="de">„{d.prompt_de}“</span></div></>
+    : d.k === "listen_and_respond" ? <>{d.situation_tr && <p class="small"><Rich text={d.situation_tr} /></p>}<div class="row"><ListenButton text={d.audio_de} speed={d.speed} /></div><p class="tiny muted">Metin gösterilmiyor: yalnızca dinle.</p></>
+    : <div class="de-lg">{d.tr}</div>;
+}
 
 export function DrillView({ d, sira, onDone, artikel }: { d: Drill; sira?: string; onDone: (s: DrillSonuc) => void; artikel?: { de: string; art: string } }) {
   const [v, setV] = useState<{ kind: "correct" | "wrong" | "unchecked"; best: string; note?: string; a: string } | null>(null);
@@ -87,12 +97,7 @@ export function DrillView({ d, sira, onDone, artikel }: { d: Drill; sira?: strin
     </section>
   );
 
-  const prompt = d.k === "gap" ? <><div class="de-lg" lang="de">{d.de.split("___").map((p, j) => <>{j > 0 && <span class="gapblank" aria-label="boşluk" />}{p}</>)}</div><p class="small muted">{d.tr}</p><p class="tiny muted">Boşluğa gelen kelimeyi ya da bütün cümleyi yaz.</p></>
-    : d.k === "order" ? <><div class="de-lg">{d.tr}</div></>
-    : d.k === "transform" ? <><p class="small"><Rich text={d.instr_tr} /></p><div class="de-lg" lang="de">{d.from_de}</div></>
-    : d.k === "guided_response" ? <><p class="small"><Rich text={d.situation_tr} /></p><div class="row"><ListenButton text={d.prompt_de} small /><span class="de" lang="de">„{d.prompt_de}“</span></div></>
-    : d.k === "listen_and_respond" ? <>{d.situation_tr && <p class="small"><Rich text={d.situation_tr} /></p>}<div class="row"><ListenButton text={d.audio_de} speed={d.speed} /></div><p class="tiny muted">Metin gösterilmiyor: yalnızca dinle.</p></>
-    : <div class="de-lg">{d.tr}</div>;
+  const prompt = <DrillIstem d={d} />;
   const cevap = d.k === "gap" ? d.accepted[0] : d.accepted[0];
   const submit = (a: string, mode: "typed" | "voice") => { const r = drillVerdict(d, a, mode === "typed", artikel); setV({ ...r, a }); haptic(r.kind === "correct" ? "success" : r.kind === "wrong" ? "error" : "selection"); };
   return (
@@ -117,7 +122,7 @@ export function DrillView({ d, sira, onDone, artikel }: { d: Drill; sira?: strin
 }
 
 /** Sıraya koy: içerik karışık sırayı "a / b / c" olarak verir (d.de); vermezse hedef cümle karıştırılır */
-function OrderChips({ target, given, onSubmit }: { target: string; given?: string; onSubmit: (s: string) => void }) {
+export function OrderChips({ target, given, onSubmit }: { target: string; given?: string; onSubmit: (s: string) => void }) {
   const chips = useMemo(() => {
     if (given && given.includes(" / ")) return given.split(" / ").map((w) => w.trim()).filter(Boolean);
     const t = target.split(/\s+/).map((w) => w.replace(/[.,!?;:„“"]/g, "")).filter(Boolean);

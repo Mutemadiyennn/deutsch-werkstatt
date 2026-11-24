@@ -5,7 +5,7 @@ import type { Profile } from "@dw/shared";
 import { migrateDomainPriority } from "@dw/shared";
 import { useApp, go } from "../state.ts";
 import { ACTIVITY_TR } from "../core/planner.ts";
-import { BaslangicSecimi } from "./Seviye.tsx";
+import { kurulumIsaretle } from "../services/tespit.ts";
 
 type Struggle = Profile["struggles"][number];
 const STRUGGLES: [Struggle, string][] = [
@@ -36,12 +36,14 @@ export function Onboarding() {
   const [p, setLocal] = useState<Profile>(structuredClone(profile));
   const set = (f: (x: Profile) => void) => setLocal((old) => { const n = structuredClone(old); f(n); return n; });
   const dTitle = (id: string) => index?.domains.find((d) => d.id === id)?.title_tr || id;
-  const steps = 6;
-  // PM-114 B md. 1: "Nereden başlayalım?" — "A2'den" seçilirse kurulum kısa yoklamayla biter (karar sonuç ekranında öğrencinin)
-  const [baslangic, setBaslangic] = useState<"a1" | "a2">("a1");
+  const steps = 5;
+  // PM-115: nereden başlanacağını seviye tespiti bulur (paket varsa); "Nereden başlayalım?" sorusu kalktı (elle değiştirme Ayarlar'ın dibinde)
+  const tespit = !!index?.files.tespit;
 
   const finish = async (hedef: "assess" | "today" | "seviye") => {
     // yazarken boşluk korunur ("Anna Maria"); kenar boşlukları yalnızca kayıtta atılır (redact adı tam bulmalı, D-061)
+    // ilk kurulumda tespit bitmeden gün açılmaz ("Kurulumu yeniden yap" eski öğrenciyi kilitlemez)
+    if (hedef === "seviye" && !profile.onboardedAt) await kurulumIsaretle();
     await setProfile({ ...p, displayName: p.displayName?.trim() || undefined, onboardedAt: new Date().toISOString() });
     go(hedef);
   };
@@ -139,14 +141,6 @@ export function Onboarding() {
       )}
 
       {step === 4 && (
-        <section class="stack" data-test="kurulum-baslangic">
-          <h1>Nereden başlayalım?</h1>
-          <p class="muted small">Sonra Ayarlar'dan değiştirebilirsin.</p>
-          <BaslangicSecimi kurulum secili={baslangic} onSec={(x) => { setBaslangic(x); setStep(5); }} />
-        </section>
-      )}
-
-      {step === 5 && (
         <section class="stack">
           <h1>Son ayarlar</h1>
           <label class="lbl">Dinlemeye hangi hızla başlayalım?</label>
@@ -165,12 +159,12 @@ export function Onboarding() {
               <input id="exam" class="input" type="date" value={p.goals.examB1.date || ""} onInput={(e) => set((x) => { x.goals.examB1.date = (e.target as HTMLInputElement).value || undefined; })} />
             </div>
           )}
-          {baslangic === "a2"
+          {tespit
             ? <>
-                <div class="card small">
-                  <b>Kısa yoklama.</b> A1'in hafta sonu testlerinden birkaç soru (en çok 5–7 dakika). Sonuç yalnız bir öneri; nereden başlayacağına sen karar verirsin.
+                <div class="card small" data-test="kurulum-tespit">
+                  <b>Seviye tespiti.</b> Seviyeni varsaymıyoruz: A1'in sekiz haftasından sorularla nereden başlayacağını birlikte bulalım. Bilmediğin soruda "Bilmiyorum" demek tamamen normal.
                 </div>
-                <button class="btn primary block" onClick={() => finish("seviye")} data-test="yoklama-git">Kısa yoklamaya başla</button>
+                <button class="btn primary block" onClick={() => finish("seviye")} data-test="start-tespit">Seviye tespitine başla</button>
               </>
             : <>
                 <div class="card small">

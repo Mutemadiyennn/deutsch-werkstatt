@@ -183,6 +183,8 @@ export function tespitDenetle(g: TespitGirdi): TespitSonuc {
     if (!k) { hata.push(`${yer}: ${id} çözülmedi`); continue; }
     if (k.kaynak !== "deneme" || k.deneme !== h.cekirdek.deneme) { hata.push(`${yer}: ${id} ${h.cekirdek.deneme} denemesinin maddesi değil`); continue; }
     if (k.bolum !== b) hata.push(`${yer}: ${id} "${k.bolum}" bölümünden (beklenen "${b}")`);
+    // kişisel bilgi isteyen madde (kabulünde "…" yer tutucusu: adın, adresin…) kural tabanlı ölçülemez (inceleme #257 P2-10)
+    if (dizi(k.madde.accepted).some((x) => typeof x === "string" && /…|\.\.\./.test(x))) hata.push(`${yer}: ${id} kişisel bilgi istiyor (kabulde "…"); çekirdeğe alınmaz`);
     cekirdek.push({ id, kaynak: "deneme", tur: k.tur, hafta: k.hafta ?? 0, asama: "cekirdek", beceri: b, can_do: [], dil_noktasi: [], uretim: k.uretim, madde: k.madde });
   }
 

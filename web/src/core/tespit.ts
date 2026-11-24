@@ -7,14 +7,16 @@
  *  - Rapor: altı beceri, sekiz hafta, zayıf can_do ve dil noktası (yalnız ÜRETİM maddesinden: seçmeli madde tek başına "biliyor"
  *    kanıtı değildir), bilinmeyen kelime; karar `policy.seviye_tespiti.karar`.
  * Plan belirlenimlidir: aynı paket + aynı cevaplar aynı adımları verir (yarıda bırak / sürdür: yalnız cevaplar saklanır).
- * "Bilmiyorum" yanlış sayılır (tahmin şişirmesin).
+ * "Bilmiyorum" yanlış sayılır (tahmin şişirmesin). "sayilmadi": cevap verildi ama denetlenemedi (yapay zekâ düştü; PM-112 A.3):
+ * plan ilerler, oranlara ve "oturmuş" kararına girmez.
  */
 import { derinSec, type TespitBeceri, type TespitCozulen, type TespitPaket } from "@dw/shared";
 import POLICY from "../policy.json" with { type: "json" };
 
 export const TESPIT = POLICY.seviye_tespiti;
 export type TespitPolitika = typeof TESPIT;
-export type Sonuc = "dogru" | "yanlis" | "bilmiyorum";
+export type Sonuc = "dogru" | "yanlis" | "bilmiyorum" | "sayilmadi";
+const sayilir = (c: Cevaplar, id: string) => c.has(id) && c.get(id) !== "sayilmadi";
 export type Cevaplar = ReadonlyMap<string, Sonuc>;
 export const BECERILER: readonly TespitBeceri[] = ["dinleme", "okuma", "yazma", "konusma", "kelime", "dil"];
 
@@ -53,9 +55,9 @@ export function taramaPlani(p: TespitPaket, P: TespitPolitika = TESPIT): Adim[] 
 export function haftaDurumu(p: TespitPaket, hafta: number, c: Cevaplar, P: TespitPolitika = TESPIT): "eksik" | "oturmus" | "zayif" {
   const adimlar = taramaPlani(p, P).filter((a) => a.hafta === hafta && a.asama === "tarama");
   if (adimlar.some((a) => !c.has(a.id))) return "eksik";
-  const maddeler = adimlar.filter((a) => a.beceri !== "kelime");
-  if (!maddeler.length) return "zayif"; // tarama maddesi yoksa hafta yargılanamaz: derin bakış
-  const kelimeHata = adimlar.filter((a) => a.beceri === "kelime" && c.get(a.id) !== "dogru").length;
+  const maddeler = adimlar.filter((a) => a.beceri !== "kelime" && sayilir(c, a.id));
+  if (!maddeler.length) return "zayif"; // tarama maddesi yoksa (ya da hiçbiri sayılmadıysa) hafta yargılanamaz: derin bakış
+  const kelimeHata = adimlar.filter((a) => a.beceri === "kelime" && sayilir(c, a.id) && c.get(a.id) !== "dogru").length;
   return maddeler.every((a) => c.get(a.id) === "dogru") && kelimeHata <= P.oturmus.kelime_hata_max ? "oturmus" : "zayif";
 }
 
@@ -150,7 +152,8 @@ export function tespitKarari(beceri: Record<TespitBeceri, Oran>, hafta: { hafta:
 /** Rapor: yalnız cevaplanmış adımlar sayılır (yarıda bırakılmış tespitte de çağrılabilir; karar ancak plan "bitti" iken anlamlı) */
 export function tespitRaporu(p: TespitPaket, c: Cevaplar, P: TespitPolitika = TESPIT): TespitRaporu {
   const plan = tespitPlani(p, c, P);
-  const cevapli = plan.adimlar.filter((a) => c.has(a.id));
+  // denetlenemeyen ("sayilmadi") cevap oranlara girmez; sorulan listesinde kalır (çıkış yoklaması aynı maddeyi sormaz)
+  const cevapli = plan.adimlar.filter((a) => sayilir(c, a.id));
   const ok = (a: Adim) => c.get(a.id) === "dogru";
   const beceri = Object.fromEntries(BECERILER.map((b) => { const x = cevapli.filter((a) => a.beceri === b); return [b, oran(x.filter(ok).length, x.length)]; })) as Record<TespitBeceri, Oran>;
   const hafta = p.haftalar.map((h) => {
@@ -176,5 +179,39 @@ export function tespitRaporu(p: TespitPaket, c: Cevaplar, P: TespitPolitika = TE
   const bilinmeyenKelime = [...new Set(cevapli.filter((a) => a.kart && !ok(a)).map((a) => a.kart!))];
   const bitti = plan.asama === "bitti";
   const k = bitti ? tespitKarari(beceri, hafta, genel, P) : { karar: null, nedenler: [] };
-  return { beceri, hafta, genel, zayifCanDo: zayifCanDo.sort((a, b) => a.gun - b.gun), zayifDilNoktasi, bilinmeyenKelime, sorulan: cevapli.filter((a) => a.madde).map((a) => a.id), bitti, ...k };
+  return { beceri, hafta, genel, zayifCanDo: zayifCanDo.sort((a, b) => a.gun - b.gun), zayifDilNoktasi, bilinmeyenKelime, sorulan: plan.adimlar.filter((a) => a.madde && c.has(a.id)).map((a) => a.id), bitti, ...k };
+}
+
+/* ---------- ekran için bölümler (PM-120 md. 4 b–c) ---------- */
+/** Bölüm: çekirdek (dört beceri), haftanın taraması ya da zayıf haftanın derin bakışı; plan sırasıyla */
+export interface Bolum { anahtar: string; tur: "cekirdek" | "tarama" | "derin"; hafta: number | null; adimlar: Adim[] }
+export function bolumler(plan: Pick<TespitPlani, "adimlar">): Bolum[] {
+  const out: Bolum[] = [];
+  for (const a of plan.adimlar) {
+    const tur = a.asama;
+    const anahtar = tur === "cekirdek" ? "cekirdek" : `${tur}:${a.hafta}`;
+    const son = out[out.length - 1];
+    if (son && son.anahtar === anahtar) son.adimlar.push(a);
+    else out.push({ anahtar, tur, hafta: tur === "cekirdek" ? null : a.hafta, adimlar: [a] });
+  }
+  return out;
+}
+/** Bitmiş bölüm sayısı (bütün adımları cevaplanmış) ve toplam; tarama sürerken derin bölümler henüz bilinmez */
+export function bolumSayaci(plan: Pick<TespitPlani, "adimlar">, c: Cevaplar): { bitti: number; toplam: number } {
+  const b = bolumler(plan);
+  return { bitti: b.filter((x) => x.adimlar.every((a) => c.has(a.id))).length, toplam: b.length };
+}
+/** Tespitin düz metin raporu ("Raporu kopyala"; kişisel bilgi yok) */
+export function raporMetni(r: TespitRaporu, adlar: { beceri: Record<TespitBeceri, string>; karar: Record<Karar, string> }): string {
+  const y = (o: number | null) => (o === null ? "ölçülmedi" : `%${Math.round(o * 100)}`);
+  const satir: string[] = ["Seviye raporu (A1)"];
+  if (r.karar) satir.push(`Karar: ${adlar.karar[r.karar]}`);
+  satir.push(`Genel: ${y(r.genel)}`, "", "Beceriler:");
+  for (const b of BECERILER) satir.push(`- ${adlar.beceri[b]}: ${y(r.beceri[b].oran)} (${r.beceri[b].dogru}/${r.beceri[b].toplam})`);
+  satir.push("", "Haftalar:");
+  for (const h of r.hafta) satir.push(`- ${h.hafta}. hafta: ${y(h.oran.oran)}`);
+  if (r.zayifCanDo.length) { satir.push("", "Zorlandıkların:"); for (const z of r.zayifCanDo) satir.push(`- ${z.gun}. gün (${z.dogru}/${z.toplam}): ${z.tr}`); }
+  if (r.zayifDilNoktasi.length) { satir.push("", "Dil noktaları:"); for (const z of r.zayifDilNoktasi) satir.push(`- ${z.ad_tr || "Dil noktası"} (${z.hafta}. hafta, ${z.dogru}/${z.toplam})`); }
+  satir.push("", `Bilmediğin kelimeler: ${r.bilinmeyenKelime.length}`);
+  return satir.join("\n");
 }

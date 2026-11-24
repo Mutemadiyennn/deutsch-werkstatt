@@ -1,0 +1,112 @@
+{
+ "schema": 1,
+ "id": "assess:a1-deneme:1",
+ "seviye": "A1",
+ "bolumler": [
+  {
+   "id": "dinleme",
+   "kisimlar": [
+    {
+     "id": "d1",
+     "maddeler": [
+      {
+       "id": "a1d:d1:01",
+       "k": "pick",
+       "hafta": 2,
+       "puan": 1,
+       "ses": [
+        {
+         "r": "A",
+         "de": "Das Brot kostet zwei Euro."
+        }
+       ],
+       "q_tr": "Ekmek kaç euro?",
+       "opts": [
+        "2",
+        "3"
+       ],
+       "ans": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "okuma",
+   "kisimlar": [
+    {
+     "id": "o1",
+     "maddeler": [
+      {
+       "id": "a1o:o1:01",
+       "k": "pick",
+       "hafta": 1,
+       "puan": 1,
+       "metin_de": "Heute ist Montag.",
+       "q_tr": "Bugün hangi gün?",
+       "opts": [
+        "Montag",
+        "Dienstag"
+       ],
+       "ans": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "yazma",
+   "kisimlar": [
+    {
+     "id": "y1",
+     "maddeler": [
+      {
+       "id": "a1y:y1:01",
+       "k": "mesaj",
+       "hafta": 1,
+       "puan": 10,
+       "gorev_tr": "Arkadaşına yaz.",
+       "ornek_de": "Hallo! Ich komme im Mai.",
+       "degerlendirme_tr": [
+        "Görev (10 puan): …"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "konusma",
+   "kisimlar": [
+    {
+     "id": "k1",
+     "maddeler": [
+      {
+       "id": "a1k:k1:01",
+       "k": "guided_response",
+       "hafta": 1,
+       "puan": 5,
+       "situation_tr": "Kapıda biri seni selamlıyor. Selamına karşılık ver.",
+       "prompt_de": "Guten Tag!",
+       "accepted": [
+        "Guten Tag!",
+        "Hallo!",
+        "Guten Tag."
+       ]
+      },
+      {
+       "id": "a1k:k1:02",
+       "k": "listen_and_respond",
+       "hafta": 2,
+       "puan": 5,
+       "audio_de": "Was möchten Sie?",
+       "accepted": [
+        "Ein Brot, bitte."
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

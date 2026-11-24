@@ -82,6 +82,13 @@ describe("seviye tespiti havuzu: kurallar", () => {
     expect(denetle((h) => { h.maddeler[0].yeni.id = "m001"; }).hata.length).toBeGreaterThan(0);
     expect(denetle((h) => { h.maddeler[2].beceri = "kelime"; }).hata.length).toBeGreaterThan(0);
   });
+  it("çekirdekte kişisel bilgi isteyen madde (kabulde \"…\") hata (inceleme #257 P2-10)", () => {
+    const kaynaklar = new Map(K.kaynaklar);
+    const k = kaynaklar.get("a1k:k1:01")!;
+    kaynaklar.set("a1k:k1:01", { ...k, madde: { ...k.madde, accepted: ["Ich heiße …"] } });
+    hataVar(denetle(undefined, { kaynaklar }), "a1k:k1:01 kişisel bilgi istiyor");
+    expect(denetle().hata).toEqual([]);
+  });
   it("ref çözülmez → hata; aynı madde iki kez (çekirdek dahil) → hata", () => {
     hataVar(denetle((h) => { madde(h, "m1:01:s1").ref = "m1:01:s9"; }), "ref m1:01:s9 çözülmedi");
     hataVar(denetle((h) => { h.maddeler.push({ ...madde(h, "m1:02:s3") }); }), "m1:02:s3 havuzda iki kez");
