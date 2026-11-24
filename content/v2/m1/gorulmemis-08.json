@@ -8,7 +8,7 @@
       "durum_tr": "Göl kenarındaki restoranda cumartesi saat sekize masa ayırttın. Restoran seni arıyor. Saat sekizde masa yok, yeni bir saat söylüyorlar. Yeni saat sana uyuyor. Saati tekrar et ve kabul et.",
       "karsi": "ein Kellner",
       "yer": "telefon: göl kenarında bir restoran",
-      "prompt_de": "Restaurant am See, guten Tag! Es geht um den Tisch am Samstag. Um acht Uhr geht es leider nicht. Geht auch halb sieben?",
+      "prompt_de": "Guten Tag, hier ist das Restaurant am See. Es geht um Ihren Tisch am Samstag. Um acht Uhr geht es leider nicht. Geht auch halb sieben?",
       "accepted": [
         "Halb sieben? Ja, das geht. Danke!",
         "Also Samstag um halb sieben. Das geht.",
@@ -22,17 +22,20 @@
         "Gut, dann Samstag um halb sieben.",
         "Halb sieben? Gut, das geht. Bis Samstag!",
         "Ach so. Halb sieben geht auch. Danke!",
-        "Also um halb sieben. Das geht, danke."
+        "Also um halb sieben. Das geht, danke.",
+        "Ja, das geht. Also Samstag um halb sieben.",
+        "Kein Problem. Also Samstag um halb sieben. Danke!",
+        "Samstag um halb sieben? Ja, das passt. Danke!"
       ],
       "kalip": "Also … um … Das geht.",
-      "why_tr": "Yeni saati **Also Samstag um halb sieben** diye tekrar eder, **Das geht** diyerek kabul edersin."
+      "why_tr": "Yeni saati **Also Samstag um halb sieben** diye tekrar edersin. Sonra **Das geht** dersin."
     },
     {
       "id": "m1:h08:g2",
       "can_do": "cd:m1:51",
-      "durum_tr": "Köyün pazarındasın. Meyve tezgâhında muz almak istiyorsun ama muz bitmiş. Satıcı başka bir meyve öneriyor ve fiyatını söylüyor. Onu al ve fiyatı tekrar ederek doğrula.",
+      "durum_tr": "Cumartesi pazardasın. Meyve tezgâhında muz almak istiyorsun ama muz bitmiş. Satıcı başka bir meyve öneriyor ve fiyatını söylüyor. Onu al ve fiyatı tekrar ederek doğrula.",
       "karsi": "ein Verkäufer am Markt",
-      "yer": "köyün pazarında meyve tezgâhı",
+      "yer": "pazarda bir meyve tezgâhı",
       "prompt_de": "Bananen habe ich leider nicht mehr. Aber die Äpfel sind sehr gut. Das Kilo kostet zwei Euro fünfzig.",
       "accepted": [
         "Dann nehme ich Äpfel. Zwei Euro fünfzig? Ein Kilo, bitte.",
@@ -44,18 +47,20 @@
         "Dann ein Kilo Äpfel. Das kostet zwei Euro fünfzig, oder?",
         "Okay, Äpfel. Zwei Euro fünfzig das Kilo? Ein Kilo, bitte.",
         "Dann nehme ich ein Kilo Äpfel. Zwei fünfzig? Hier, bitte.",
-        "Kein Problem. Dann nehme ich Äpfel. Zwei Euro fünfzig? Ein Kilo, bitte."
+        "Kein Problem. Dann nehme ich Äpfel. Zwei Euro fünfzig? Ein Kilo, bitte.",
+        "Gut, dann nehme ich die Äpfel. Zwei Euro fünfzig das Kilo?",
+        "Dann Äpfel, bitte. Zwei Euro fünfzig?"
       ],
       "kalip": "Dann nehme ich … – Zwei Euro fünfzig?",
-      "why_tr": "Eksik olanın yerine **Dann nehme ich Äpfel** dersin, fiyatı **Zwei Euro fünfzig?** diye tekrar edip doğrularsın."
+      "why_tr": "Muz yoksa **Dann nehme ich Äpfel** dersin. Fiyatı **Zwei Euro fünfzig?** diye tekrar edip doğrularsın."
     },
     {
       "id": "m1:h08:g3",
       "can_do": "cd:m1:52",
-      "durum_tr": "Evinin önünde yeni komşun Lena ile tanışıyorsun. Komşular cumartesi otobüsle göle gidiyor, seni de çağırıyor. Cumartesi boşsun ve gitmek istiyorsun. Ama yanında hiç nakit yok. Boş olduğunu söyle ve nasıl ödeyeceğini sor.",
+      "durum_tr": "Evinin önünde yeni komşun Lena ile tanışıyorsun. Lena cumartesi komşularla otobüsle göle gidiyor ve seni de çağırıyor. Cumartesi boşsun ve gitmek istiyorsun. Ama yanında hiç nakit yok. Boş olduğunu söyle. Parayı ne zaman ya da nasıl ödeyebileceğini sor.",
       "karsi": "Lena, eine neue Nachbarin",
       "yer": "evinin önü",
-      "prompt_de": "Hallo, ich bin Lena, deine Nachbarin. Wir fahren am Samstag mit dem Bus an den See. Das kostet fünf Euro. Kommst du mit?",
+      "prompt_de": "Hallo, ich bin Lena, deine neue Nachbarin. Wir fahren am Samstag mit dem Bus an den See. Das kostet fünf Euro. Kommst du mit?",
       "accepted": [
         "Ja, gern! Am Samstag habe ich nichts vor. Aber ich habe kein Bargeld. Kann ich morgen zahlen?",
         "Am Samstag habe ich nichts vor. Ich komme mit! Aber ich habe kein Bargeld. Kann ich mit Karte zahlen?",
@@ -66,7 +71,10 @@
         "Ja, am Samstag habe ich nichts vor. Aber ich habe kein Bargeld. Kann ich mit Karte zahlen?",
         "Ich habe am Samstag nichts vor. Ich komme gern mit. Aber ich habe kein Bargeld. Kann ich morgen zahlen?",
         "Freut mich, Lena! Am Samstag habe ich nichts vor. Aber ich habe kein Bargeld. Kann ich morgen zahlen?",
-        "Ja, klar! Am Samstag habe ich nichts vor. Ich habe kein Bargeld. Kann ich morgen zahlen?"
+        "Ja, klar! Am Samstag habe ich nichts vor. Ich habe kein Bargeld. Kann ich morgen zahlen?",
+        "Ja, am Samstag habe ich Zeit. Aber ich habe kein Bargeld. Kann ich morgen zahlen?",
+        "Gern, ich komme mit! Ich habe aber kein Bargeld dabei. Kann ich morgen zahlen?",
+        "Am Samstag habe ich nichts vor. Aber ich habe leider kein Bargeld. Kann ich später zahlen?"
       ],
       "kalip": "Am Samstag habe ich nichts vor. – Ich habe kein Bargeld. Kann ich … zahlen?",
       "why_tr": "Boş olduğunu **Am Samstag habe ich nichts vor** ile söylersin. Nakit yoksa **Ich habe kein Bargeld. Kann ich morgen zahlen?** diye sorarsın."
