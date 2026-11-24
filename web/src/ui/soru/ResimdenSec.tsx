@@ -1,7 +1,8 @@
 /** AKIS AK-7: halkanın `resimden_sec` adımı (hedef design/TARGET3b 3. ekran). Ekran (Akis.tsx, AK-10 4. adım) gelene kadar yalnız e2e'deki `#/__halka-turleri` gösterir. */
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import type { Lexeme } from "@dw/shared";
 import type { FotoKayit } from "../../services/content.ts";
+import { fotoAdresi } from "../../services/kartFoto.ts";
 import { speak } from "../../services/speech.ts";
 import { haptic } from "../../services/haptics.ts";
 import { ActionBar, FeedbackBand, ListenButton } from "../kit.tsx";
@@ -37,6 +38,18 @@ export function ResimSec({ soru, lex, harita, onBitti, onYok }: { soru: ResimSor
   const [yuklu, setYuklu] = useState(0);
   const [sonuc, setSonuc] = useState<null | "dogru" | "yanlis" | "bilmiyorum">(null);
   useEffect(() => { void speak(metin, "de", "normal"); }, [soru.kart]);
+  /** PM 7088230583 md. 3: görsel önce raftan (`raf:` adresi anahtarla, kapalı önbellekten), gelmezse açık fotoğraf; biri hiç yoksa `onYok` */
+  const [gorseller, setGorseller] = useState<{ src: string; atif: FotoKayit | null }[] | null>(null);
+  const yokRef = useRef(onYok); yokRef.current = onYok;
+  useEffect(() => {
+    let canli = true; setGorseller(null);
+    void Promise.all(soru.secenekler.map(async (s) => { const f = harita[kartGorsel(s.kart)]; return f ? fotoAdresi(f) : { src: s.gorsel, atif: null }; })).then((xs) => {
+      if (!canli) return;
+      if (xs.some((x) => !x)) { yokRef.current?.(); return; }
+      setGorseller(xs as { src: string; atif: FotoKayit | null }[]);
+    });
+    return () => { canli = false; };
+  }, [soru.kart, soru.secenekler.map((s) => s.kart).join("|")]);
   const kontrol = () => { if (secim === null) return; const ok = secim === soru.dogru; setSonuc(ok ? "dogru" : "yanlis"); haptic(ok ? "success" : "error"); };
   const bitti = sonuc !== null;
   // PM 7052062209 md. 4: cevaptan önce görselde Almanca içeren alt/erişilebilirlik etiketi yok (VoiceOver cevabı okumasın); cevaptan sonra var
@@ -52,9 +65,9 @@ export function ResimSec({ soru, lex, harita, onBitti, onYok }: { soru: ResimSor
         {soru.secenekler.map((s, i) => {
           const dur = !bitti ? (secim === i ? " sel" : "") : i === soru.dogru ? " right" : i === secim ? " wrong" : " soluk";
           return (
-            <button type="button" role="radio" aria-checked={secim === i} class={`resim-secenek${dur}`} disabled={bitti || yuklu < soru.secenekler.length} data-test="resim-secenek" data-i={i}
+            <button type="button" role="radio" aria-checked={secim === i} class={`resim-secenek${dur}`} disabled={bitti || !gorseller || yuklu < soru.secenekler.length} data-test="resim-secenek" data-i={i}
               {...(E2E ? { "data-right": i === soru.dogru ? "1" : undefined } : {})} aria-label={etiket(i)} onClick={() => { setSecim(i); haptic("selection"); }}>
-              <img class={harita[kartGorsel(s.kart)]?.emoji ? "emoji" : undefined} src={s.gorsel} alt={bitti ? etiket(i) : ""} loading="eager" decoding="async" onLoad={() => setYuklu((n) => n + 1)} onError={() => onYok?.()} />
+              {gorseller && <img class={harita[kartGorsel(s.kart)]?.emoji ? "emoji" : undefined} src={gorseller[i]!.src} alt={bitti ? etiket(i) : ""} loading="eager" decoding="async" onLoad={() => setYuklu((n) => n + 1)} onError={() => onYok?.()} />}
               {bitti && i === soru.dogru && <span class="resim-isaret" aria-hidden="true"><Icon name="check" /></span>}
             </button>
           );
@@ -70,7 +83,7 @@ export function ResimSec({ soru, lex, harita, onBitti, onYok }: { soru: ResimSor
           </FeedbackBand>
         </div>
       )}
-      <Atiflar kayitlar={soru.secenekler.map((s) => harita[kartGorsel(s.kart)]).filter((x): x is FotoKayit => !!x)} />
+      <Atiflar kayitlar={(gorseller ?? []).map((g) => g.atif).filter((x): x is FotoKayit => !!x)} />
       <ActionBar>
         {!bitti
           ? <button class="btn primary" style={{ width: "100%" }} data-test="resim-kontrol" disabled={secim === null} onClick={kontrol}>Kontrol et</button>

@@ -1,4 +1,6 @@
 /** İçerik paketi yükleyici: /content/current.json → /content/<sürüm>/… (şemayla doğrulanır, bellekte önbellek) */
+import { rafKayit } from "./raf.ts";
+import { fotoBirlestir } from "./kartFoto.ts";
 import { z } from "zod";
 import { bilinenKelimeler } from "../core/persona.ts";
 import { adsizTasi, AssessItem, ContentIndex, Deneme, DilNoktasi, Drill, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers, World } from "@dw/shared";
@@ -43,18 +45,38 @@ function file<T>(name: string, schema: z.ZodType<T>): Promise<T> {
 }
 /** PM-064: dünya (karakterlerin ses kaydı); içerikte yoksa boş */
 /** B12 3. parça: seçilmiş açık fotoğraflar; anahtar "lx:Kelime#kart" ya da "lx:Kelime#ornekN" */
-export interface FotoKayit { /** emoji: birbirine çeldirici olmayacak kartların Almancası (İÇ haritası notu) */ ayri?: readonly string[]; src: string; sinif: "acik"; yazar?: string | null; lisans: string; lisans_url?: string | null; sayfa?: string | null; /** Noto Emoji çizimi (fotoğraf değil): kırpılmaz, ortalanır */ emoji?: boolean }
+export interface FotoKayit { /** emoji: birbirine çeldirici olmayacak kartların Almancası (İÇ haritası notu) */ ayri?: readonly string[]; src: string; sinif: "acik" | "kapali"; yazar?: string | null; lisans: string; lisans_url?: string | null; sayfa?: string | null;
+  /** PM 7088230583 md. 3: raf kaydında (`sinif: kapali`, `src` = `raf:<yol>`) aynı yerin açık fotoğrafı; raf ulaşılamazsa o gösterilir */ acik?: FotoKayit;
+  /** Noto Emoji çizimi (fotoğraf değil): kırpılmaz, ortalanır */ emoji?: boolean }
 /** Fotoğraf haritası oturum boyunca bir kez çözülür; hata olursa boş harita saklanır (her dokunuşta ağ/çözüm yok; inceleme #121 P1-5) */
 let fotoHarita: Record<string, FotoKayit> | null = null;
 let fotoSoz: Promise<Record<string, FotoKayit>> | null = null;
 export const fotoHaritasi = () => fotoHarita;
-export const loadFoto = (): Promise<Record<string, FotoKayit>> => fotoHarita ? Promise.resolve(fotoHarita) : (fotoSoz ??= fotoYukle().then((h) => (fotoHarita = h)));
+/** Raf ayarı değişince artar: eski ayarla başlamış yükleme sonucunu haritaya yazamaz (inceleme #204 P2-1) */
+let fotoNesil = 0;
+export const loadFoto = (): Promise<Record<string, FotoKayit>> => {
+  if (fotoHarita) return Promise.resolve(fotoHarita);
+  if (fotoSoz) return fotoSoz;
+  const nesil = fotoNesil;
+  const soz = fotoYukle().then(({ harita, gecici }) => {
+    // raf kaydı henüz önbellekte yoksa (arkada çekiliyor) harita saklanmaz: sonraki ekran yeniden birleştirir
+    if (nesil === fotoNesil) { if (gecici) fotoSoz = null; else fotoHarita = harita; }
+    return harita;
+  });
+  fotoSoz = soz;
+  return soz;
+};
+/** Raf ayarı değişince (Profil → Medya rafı): harita bir sonraki istekte yeniden çözülür */
+export const fotoSifirla = () => { fotoNesil++; fotoHarita = null; fotoSoz = null; };
+/** önce raftan, yoksa açık fotoğraf (PM 7088230583 md. 3); raf kapalıysa yalnız açık harita (bugünkü davranış) */
+const fotoYukle = () => Promise.all([acikFotoYukle(), rafKayit().catch(() => ({ kart: {}, gecici: false }))])
+  .then(([a, r]) => ({ harita: fotoBirlestir(a, r.kart), gecici: r.gecici }));
+const acikFotoYukle = () => within(file("foto.json", z.object({ foto: z.record(z.string(), z.object({ src: z.string().refine((x) => /^https:\/\//.test(x) || /^content\/[\w-]+\/media\/[\w.-]+$/.test(x)), sinif: z.literal("acik"), yazar: z.string().nullish(), lisans: z.string(), lisans_url: z.string().nullish(), sayfa: z.string().nullish() }).passthrough()) }))).then((x) => x.foto as Record<string, FotoKayit>).catch(() => ({} as Record<string, FotoKayit>));
 /** PM-081 B: kart → Noto Emoji (paketteki SVG, çevrimdışı). Anahtar fotoğraf haritası gibi `<kart>#kart`; atıf tek satır (Apache-2.0) */
 let resimSoz: Promise<Record<string, FotoKayit>> | null = null;
 export const loadResim = (): Promise<Record<string, FotoKayit>> => (resimSoz ??= loadIndex().then((i) => i.files.resim ? within(file("resim.json", z.object({ kaynak: z.string(), lisans: z.string(), kartlar: z.record(z.string(), z.object({ src: z.string().regex(/^content\/[\w-]+\/media\/noto-[0-9a-f-]+\.svg$/), ayri: z.array(z.string()).optional() })) })))
   .then((x) => Object.fromEntries(Object.entries(x.kartlar).map(([id, r]) => [`${id}#kart`, { src: r.src, sinif: "acik", yazar: x.kaynak, lisans: x.lisans, lisans_url: "https://www.apache.org/licenses/LICENSE-2.0", sayfa: "https://github.com/googlefonts/noto-emoji", emoji: true, ...(r.ayri ? { ayri: r.ayri } : {}) } as FotoKayit]))) : {})
   .catch(() => ({} as Record<string, FotoKayit>)));
-const fotoYukle = () => within(file("foto.json", z.object({ foto: z.record(z.string(), z.object({ src: z.string().refine((x) => /^https:\/\//.test(x) || /^content\/[\w-]+\/media\/[\w.-]+$/.test(x)), sinif: z.literal("acik"), yazar: z.string().nullish(), lisans: z.string(), lisans_url: z.string().nullish(), sayfa: z.string().nullish() }).passthrough()) }))).then((x) => x.foto as Record<string, FotoKayit>).catch(() => ({} as Record<string, FotoKayit>));
 export const loadWorld = () => within(file("world/world.json", World)).catch(() => null);
 export const loadAssessBank = () => within(file("assess.json", z.array(AssessItem)));
 let kayitli = false;
