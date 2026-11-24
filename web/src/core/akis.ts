@@ -73,7 +73,7 @@ export interface AkisPolitikasi {
   /** yapboz (order) için en az sözcük */
   yapboz_min_sozcuk: number;
   adim_sn: Record<AdimTuru, number>;
-  sabit_dk: { ses: number; prova: number; okuma: number; gunsonu_ek: number };
+  sabit_dk: { ses: number; prova: number; okuma: number; gunsonu_ek: number; /** dil noktası durağı: açıklama + tablo + sesli örnekler (inceleme #231 P2-6) */ dil_noktasi: number };
   video: { kat: number; min_dk: number; max_dk: number };
 }
 const ikili = (a: readonly number[]): [number, number] => [a[0] ?? NaN, a[1] ?? NaN];
@@ -94,7 +94,7 @@ export function politikaHatalari(p: AkisPolitikasi): string[] {
   for (const k of ["seans_dk", "durak_dk", "gun_dk", "halka_kart", "eslestir_kart", "halka_tekrar"] as const) aralik(k, p[k]);
   if (!(p.isinma_dk >= 0)) h.push("isinma_dk ≥ 0 olmalı");
   for (const t of ADIM_TURLERI) if (!(p.adim_sn?.[t]! > 0)) h.push(`adim_sn.${t} > 0 olmalı`);
-  for (const k of ["ses", "prova", "okuma", "gunsonu_ek"] as const) if (!(p.sabit_dk?.[k] >= 0)) h.push(`sabit_dk.${k} ≥ 0 olmalı`);
+  for (const k of ["ses", "prova", "okuma", "gunsonu_ek", "dil_noktasi"] as const) if (!(p.sabit_dk?.[k] >= 0)) h.push(`sabit_dk.${k} ≥ 0 olmalı`);
   if (!(p.video?.kat > 0) || !(p.video.min_dk <= p.video.max_dk)) h.push("video {kat > 0, min_dk ≤ max_dk} olmalı");
   return h;
 }
@@ -112,7 +112,14 @@ export interface PlanGirdi {
   politika?: AkisPolitikasi;
   /** görseli olan kartlar (seçilmiş açık fotoğraf ya da Noto Emoji): `resimden_sec` yalnız bunlarda (PM 7059008858 md. 5) */
   gorselli?: ReadonlySet<string>;
+  /** dil noktaları (`gr:` grammar.json, `dn:` dn-HH.json; PM-092 md. 1): günün `dersler`indeki bu kimlikler dil noktası durağı olur */
+  dilNoktalari?: ReadonlyMap<string, { h_tr: string }>;
 }
+
+/** Dil noktası kimliği mi (`gr:` / `dn:`; tam temel ders `r0:` değil) */
+export const dilNoktasiMi = (id: string) => id.startsWith("gr:") || id.startsWith("dn:");
+/** Dil noktası durağının adım öğesi (`Adim.ders.oge`): ekran başlık, açıklama, tablo ve sesli örnekleri çizer */
+export const DIL_NOKTASI = "dil_noktasi";
 
 /** Akış günü mü (AK-5): `halkalar` boş değilse. Değilse planGun null döner ve çağıran eski düzene düşer. */
 export const akisGunu = (gun: Gun): gun is Gun & { halkalar: Halka[] } => Array.isArray(gun.halkalar) && gun.halkalar.length > 0;
@@ -174,6 +181,8 @@ class Planlayici {
   private readonly kalipYerlesti = new Set<string>();
   private vadeli: string[] = [];
   private vadeSira = 0;
+  /** biten dersler: önceki günler + bugün sunulan dil noktaları (durağından sonra tablo biçimleri bilinir; PM-092 md. 1) */
+  private readonly biten: Set<string>;
 
   constructor(private readonly g: PlanGirdi, private readonly H: Halka[], private readonly pol: AkisPolitikasi) {
     this.lex = g.dizin.kartlar;
@@ -183,10 +192,11 @@ class Planlayici {
     // Sıra: önce günün listesi (içerikte ikisi aynı küme; plan değişmez).
     this.yeni = new Set([...g.gun.yeni_kartlar, ...H.flatMap((h) => h.kartlar)].filter((c) => this.lex.has(c)));
     this.tanitilan = new Set(g.oncekiKartlar);
+    this.biten = new Set(g.bitenDersler);
   }
 
   // ---------- kapı ----------
-  private K(ek: string[][] = []): Bilinen { return { kart: this.tanitilan, biten: this.g.bitenDersler, kaliplar: [...this.ogretilenKalip, ...ek] }; }
+  private K(ek: string[][] = []): Bilinen { return { kart: this.tanitilan, biten: this.biten, kaliplar: [...this.ogretilenKalip, ...ek] }; }
   private bilinmeyen(de: string, haric: string[] = [], ek: string[][] = []): number { return bilinmeyenler(this.g.dizin, de, this.K(ek), haric).length; }
 
   /**
@@ -365,6 +375,10 @@ class Planlayici {
   // ---------- K8: günün derslerini sınıfla ----------
   private sinifla(): void {
     for (const id of this.g.gun.dersler) {
+      if (dilNoktasiMi(id)) {
+        if (!this.g.dilNoktalari?.has(id)) { this.gevseme.push({ kural: "hata", yer: `ders:${id}`, not: "dil noktası içerikte yok: durak kurulamadı" }); this.neden.push(`${id}: dil noktası bulunamadı`); }
+        continue;
+      }
       const d = this.g.dersler.get(id);
       if (!d) { this.gevseme.push({ kural: "hata", yer: `ders:${id}`, not: "ders içerikte yok: dil durağı ve eski anahtar kurulamadı" }); this.neden.push(`${id}: ders bulunamadı`); continue; }
       for (const t of d.teach) {
@@ -418,7 +432,7 @@ class Planlayici {
       return false;
     });
     // kurulabilirlik tahmini: halkanın sonundaki K(t) (yerinde yeniden sınanır)
-    const simK: Bilinen = { kart: new Set([...this.tanitilan, ...kartlar]), biten: this.g.bitenDersler, kaliplar: [...this.ogretilenKalip, ...(h.kaliplar ?? []).flatMap((k) => kalipSecenekleri(k.de))] };
+    const simK: Bilinen = { kart: new Set([...this.tanitilan, ...kartlar]), biten: this.biten, kaliplar: [...this.ogretilenKalip, ...(h.kaliplar ?? []).flatMap((k) => kalipSecenekleri(k.de))] };
     const bekler = (de: string) => this.bugunKartiBekler(de, simK.kart, simK.kaliplar!);
     const gecerSim = (de: string, haric: string[] = []) => !bekler(de) && bilinmeyenler(this.g.dizin, de, simK, haric).length <= pol.gorev_bilinmeyen_max;
     const gosterSim = (de: string) => !bekler(de) && bilinmeyenler(this.g.dizin, de, simK).length <= pol.gosterim_bilinmeyen_max;
@@ -548,6 +562,20 @@ class Planlayici {
     return d;
   }
 
+  /**
+   * Dil noktası durağı (PM-092 md. 1, PM 7087668356 md. 7): başlık, Türkçe açıklama, tablo, sesli örnekler; tek "Anladım", soru yok.
+   * Alıştırma halkadan gelir. Bitince `ders:<id>` yazılır (sonraki günlerin `bitenDersler`i); bugün de bundan sonraki adımlar tablo
+   * biçimlerini bilinen sayar.
+   */
+  private dilNoktasiDuragi(id: string): Durak {
+    const yer = `dil:${id}`;
+    const adim = this.cik({ tur: "tablo", kartlar: [], kaynak: "ders", ders: { id, oge: DIL_NOKTASI }, neden: "dil noktası: kuralı bir bakışta gör, örnekleri dinle" }, yer);
+    this.biten.add(id);
+    // başlık: konunun kısa adı ("İki parçalı fiiller: …" → "Dil noktası: İki parçalı fiiller"); süre politikadan (adım saniyesi değil)
+    const ad = (this.g.dilNoktalari?.get(id)?.h_tr ?? "").split(":")[0]!.trim();
+    return { id: yer, tur: "dil", seans: 0, title_tr: ad && ad.length <= 40 ? `Dil noktası: ${ad}` : "Dil noktası", tahmini_dk: this.pol.sabit_dk.dil_noktasi, adimlar: [adim], eski_anahtar: `ders:${id}`, neden: "yapı: bugünün dil noktası, alıştırması halkada" };
+  }
+
   // ---------- gün ----------
   plan(): GunPlani {
     const pol = this.pol, gun = this.g.gun;
@@ -563,9 +591,14 @@ class Planlayici {
     const dilDurum = new Map<string, { parca1?: number; bitti: boolean }>();
     for (const id of gun.dersler) if (this.g.dersler.has(id)) dilDurum.set(id, { bitti: false });
     const sonra = new Map<number, Durak[]>(); // halka sırasından sonra konacak dil durakları
+    // dil noktası durağı: `dersten_sonra` olan ilk halkanın önü; yoksa son halkadan sonra (dikiş denetçisiyle aynı K(t) sırası)
+    const dn = gun.dersler.filter((id) => dilNoktasiMi(id) && this.g.dilNoktalari?.has(id));
+    const dnHalka = this.H.findIndex((h) => h.dersten_sonra);
+    const once = new Map<number, Durak[]>();
     const halkalar: Durak[] = [];
     let tasinan: Aday[] = [];
     this.H.forEach((h, hi) => {
+      if (hi === dnHalka) once.set(hi, dn.map((id) => this.dilNoktasiDuragi(id)));
       const r = this.halka(h, hi, tasinan);
       tasinan = r.ertelenen;
       halkalar.push(r.durak);
@@ -599,6 +632,7 @@ class Planlayici {
         } else birak(ogeler);
       }
     });
+    if (dnHalka < 0 && dn.length) sonra.set(this.H.length - 1, [...dn.map((id) => this.dilNoktasiDuragi(id)), ...(sonra.get(this.H.length - 1) ?? [])]);
     const gunSonuEk = tasinan;
 
     // duraklar (K1 örnek dizi): ① ısınma · ses · h1 · (dil) ② h2 · video · h3 · (dil) ③ h4 · prova ④ h5 · okuma · gün sonu
@@ -619,7 +653,7 @@ class Planlayici {
     // ikinci tur varsa prova ona kadar bekler (sıra: … son halka · ses ikinci tur · prova …)
     const provaBekler = ses2 ? (ara[3] ?? []).splice(0) : [];
     halkalar.forEach((h, hi) => {
-      duraklar.push(h, ...(sonra.get(hi) ?? []));
+      duraklar.push(...(once.get(hi) ?? []), h, ...(sonra.get(hi) ?? []));
       if (ses2 && hi === halkalar.length - 1) duraklar.push(ses2, ...provaBekler.splice(0));
       bekleyen.push(...(ara[hi] ?? []));
       // sabit duraklar halkadan sonra; az halkalı günde sona kalır

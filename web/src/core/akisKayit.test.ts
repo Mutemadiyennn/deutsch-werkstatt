@@ -40,6 +40,9 @@ describe("akış kaydı (AK-6, AK-10 4. adım iskeleti)", () => {
   it("eski anahtarlar: dil → ders:<id>, son halka → m1:bahce:<gün>; gün sonunda bitti", () => {
     expect(eskiAnahtar(plan, plan.duraklar[2]!)).toBe("m1:bahce:1");
     expect(eskiAnahtar(plan, plan.duraklar[0]!)).toBeNull();
+    // dil noktası durağının ekranı yok: bitişini akış yazar (PM-092 md. 1)
+    expect(eskiAnahtar(plan, { ...plan.duraklar[0]!, eski_anahtar: "ders:gr:a1-05:t4" })).toBe("ders:gr:a1-05:t4");
+    expect(eskiAnahtar(plan, { ...plan.duraklar[0]!, eski_anahtar: "ders:dn:kucuk-sozcukler" })).toBe("ders:dn:kucuk-sozcukler");
     let k = { ...yeniKayit(plan), durak: 1 };
     // ders anahtarını akış yazmaz: dersin kalanı (diyalog, dinleme, görev) ders ekranında (inceleme #184 P1-4, Y-2)
     let r = ilerle(k, [{ kart: "lx:a", dogru: true }]);

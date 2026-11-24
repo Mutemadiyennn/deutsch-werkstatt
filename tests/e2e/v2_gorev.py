@@ -79,7 +79,7 @@ def main():
                 x = pg.evaluate(META_OKU, "xp") or {"toplam": 0, "gunler": {}}
                 x["gunler"][gun] = max(60, x["gunler"].get(gun, 0)); x["toplam"] = max(x["toplam"], 60)
                 pg.evaluate(META_YAZ, ["xp", x])
-                pg.goto(base + "#/progress"); pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=gorev-seridi].hazir")
+                pg.goto(base + "#/ben/duzen"); pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=gorev-seridi].hazir")
                 check("3/3 görev" in pg.inner_text("[data-test=gorev-seridi]"), f"[{tema}] şerit: 3/3 görev, sandık bekliyor")
                 pg.click("[data-test=gorev-seridi]"); pg.wait_for_selector("[data-test=sandik-ac]")
                 check(pg.locator("[data-test=gorev][data-tamam='1']").count() == 3 and pg.locator("[data-test=sandik-ac]").count() == 3, f"[{tema}] üç görev tamam, üç sandık açılmaya hazır")
@@ -120,7 +120,7 @@ def main():
             check(n == max(0, (adim - 1) // 3), f"[{tema}] yolda her 3 düğümde bir sandık ({n} sandık, {adim} adım)")
             if n: check(pg.get_attribute("[data-test=gun-1] [data-test=yol-sandik]", "data-durum") == "kilitli" and pg.locator("[data-test=gun-1] [data-test=yol-sandik] button").count() == 0, f"[{tema}] önceki adımlar bitmeden yol sandığı kilitli")
             # 5) geçen haftaki sen
-            pg.goto(base + "#/progress"); pg.wait_for_selector("[data-test=gecen-hafta]")
+            pg.goto(base + "#/ben/duzen"); pg.wait_for_selector("[data-test=gecen-hafta]")
             check(all(pg.locator(f"[data-test=hafta-{k}]").count() == 1 for k in ("xp", "dakika", "kelime")), f"[{tema}] İlerlemem: geçen haftaki sen (XP, dakika, yeni kelime)")
             check("Sıralama yok" in pg.inner_text("[data-test=gecen-hafta]"), f"[{tema}] lig yok; rakip geçen haftaki sen")
             no_overflow(pg, f"[{tema}] İlerlemem")

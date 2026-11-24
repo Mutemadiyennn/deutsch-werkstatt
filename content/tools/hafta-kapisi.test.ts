@@ -2,9 +2,10 @@
  * Hafta kapısı (PM-087 B.1, 7087286882, PM-096): her şart bilerek bozulmuş örnekte kırmızı, düzgün haftada yeşil.
  * Girdi: gerçek sözlük, temel dersler, omurga; tablo fikstürü fixtures/dikis-tablo.json (#198 1.–21. gün); 2. hafta yapay günlerle.
  */
-import { describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { spawnSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { copyFileSync, mkdtempSync, readFileSync, readdirSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
 import { tabloGunleri, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
@@ -157,19 +158,47 @@ describe("hafta kapısı: 2. hafta (önceki hafta öğretilmiş)", () => {
 
 describe("komut satırı", () => {
   const cli = (...a: string[]) => spawnSync(process.execPath, ["--experimental-strip-types", "--no-warnings", join(ROOT, "content/tools/hafta-kapisi-kos.ts"), ...a], { encoding: "utf8" });
+  /** Yalnız 1. haftanın gün dosyaları: içerik ağacında hangi haftalar olursa olsun aynı sonuç (PM-117 A.1, KAPI-İŞ 7104231689) */
+  let hafta1 = "";
+  beforeAll(() => {
+    hafta1 = mkdtempSync(join(tmpdir(), "dw-kapi-h1-"));
+    for (const f of readdirSync(join(ROOT, "content/v2/m1")).filter((x) => /^gun-0[1-7]\.json$/.test(x))) copyFileSync(join(ROOT, "content/v2/m1", f), join(hafta1, f));
+  });
+  afterAll(() => rmSync(hafta1, { recursive: true, force: true }));
   it("--hafta yoksa çıkış 2; tablo yoksa çıkış 2", () => {
     expect(cli().status).toBe(2);
+    expect(cli("--hepsi", "--m1", "/yok-dizin").stderr).toContain("HATA: gün dizini yok: /yok-dizin");
     expect(cli("--hafta", "2", "--tablo", "/yok.json").stderr).toContain("HATA: tablo yok: /yok.json");
   });
   it("--hepsi: 2. hafta ve sonrası gün dosyası yoksa denetlenecek hafta yok, çıkış 0", () => {
-    const r = cli("--hepsi", "--tablo", join(ROOT, "content/tools/fixtures/dikis-tablo.json"));
+    expect(readdirSync(hafta1)).toHaveLength(7);
+    const r = cli("--hepsi", "--tablo", join(ROOT, "content/tools/fixtures/dikis-tablo.json"), "--m1", hafta1);
     expect(r.stdout).toContain("denetlenecek hafta yok");
     expect(r.status).toBe(0);
   }, 30000);
-  it("gerçek içerik, dosyası olmayan hafta: KALDI, çıkış 1, rapor yazılır", () => {
-    const r = cli("--hafta", "3", "--tablo", join(ROOT, "content/tools/fixtures/dikis-tablo.json"));
+  it("dosyası olmayan hafta (gerçek 1. hafta, 3. hafta yok): KALDI, çıkış 1, rapor yazılır", () => {
+    const r = cli("--hafta", "3", "--tablo", join(ROOT, "content/tools/fixtures/dikis-tablo.json"), "--m1", hafta1);
     expect(r.status).toBe(1);
     expect(r.stdout).toContain("## Hafta kapısı · 3. hafta (gün 15–21) · KALDI");
     expect(r.stdout).toContain("gün dosyası yok: 15, 16, 17, 18, 19, 20, 21");
   }, 30000);
+});
+
+describe("sınav günü (PM-101 md. 5, PM-110)", () => {
+  // 14. gün sınav günü: kartsız, dersiz, halkasız; can_do görülmemiş durumla değil denemeyle sınanır
+  const sinavli = () => hafta2((gs) => { gs[6] = { day: 14, can_do: { id: "cd:m1:14", tr: "" }, yeni_kartlar: [], dersler: [], sinav: "assess:a1-deneme:1", sinav_bolumler: ["yazma", "konusma"] }; });
+  const GOR13 = () => GOR([8, 9, 10, 11, 12, 13].map((n) => ({ can_do: `cd:m1:${n}`, accepted: ["Danke, gut! Hallo!"] })));
+  const DEN = new Map([["assess:a1-deneme:1", ["dinleme", "okuma", "yazma", "konusma"]]]);
+  it("bağlı deneme varsa sınav gününün can_do'su görülmemiş durum istemez", () => {
+    const r = kos(sinavli(), { gorulmemis: GOR13(), denemeler: DEN });
+    expect(r.gorulmemis!.kapsanmayanCanDo).toEqual([]);
+    expect(r.sinav).toEqual([{ gun: 14, can_do: "cd:m1:14", deneme: "assess:a1-deneme:1", bolumler: ["yazma", "konusma"] }]);
+    expect(r.nedenler.filter((n) => n.includes("sınav") || n.includes("can_do"))).toEqual([]);
+    expect(kapiRaporu(r)).toContain("Sınav günü (can_do denemeyle sınanır): 14. gün → assess:a1-deneme:1 (yazma, konusma)");
+  });
+  it("deneme yoksa ya da bölüm denemede yoksa hafta kalır", () => {
+    expect(kos(sinavli(), { gorulmemis: GOR13() }).nedenler).toContain("sınav günü 14: assess:a1-deneme:1 denemesi yok (assess/)");
+    const r = kos(sinavli(), { gorulmemis: GOR13(), denemeler: new Map([["assess:a1-deneme:1", ["dinleme", "okuma", "yazma"]]]) });
+    expect(r.nedenler).toContain("sınav günü 14: konusma assess:a1-deneme:1 denemesinde yok");
+  });
 });

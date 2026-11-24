@@ -14,7 +14,8 @@ export type Route =
   | { name: "scenario"; id: string }
   | { name: "section"; id: string; section: string }
   | { name: "ben" }
-  | { name: "profile" }
+  | { name: "profile"; bolum?: "raf" }
+  | { name: "benDuzen" }
   | { name: "assess" }
   | { name: "assessResult"; id?: string }
   | { name: "onboarding" }
@@ -27,6 +28,10 @@ export type Route =
   | { name: "odak" }
   | { name: "m1medya"; day: number; id: string; tur?: "ilk" | "ikinci" }
   | { name: "akis"; day: number }
+  | { name: "hafta"; hafta: number }
+  | { name: "haftaTekrar"; hafta: number; gunler: number[] }
+  | { name: "haftaSonuc"; hafta: number }
+  | { name: "sinav"; day: number; bolum?: string }
   | { name: "ders"; id: string }
   | { name: "prova"; day: number }
   | { name: "okuma"; day: number }
@@ -40,7 +45,7 @@ export function parseHash(h: string): Route {
     // Hedef 3 sekmeleri (PM-084 md. 3): Bugün · Yol · Köy · Ben. Eski adresler (learn, progress, profile) yeni yerlerini açar;
     // adres çubuğunu `yeniAdres` düzeltir.
     case "koy": return mekanMi(p[1]) ? { name: "mekan", id: p[1] } : { name: "koy" };
-    case "ben": return p[1] === "ayarlar" ? { name: "profile" } : { name: "ben" };
+    case "ben": return p[1] === "ayarlar" ? (p[2] === "raf" ? { name: "profile", bolum: "raf" } : { name: "profile" }) : p[1] === "duzen" ? { name: "benDuzen" } : { name: "ben" };
     case "learn": return p[1] ? { name: "domain", id: p[1] } : { name: "koy" };
     case "scenario": return p[2] ? { name: "section", id: p[1]!, section: p[2] } : { name: "scenario", id: p[1] || "" };
     case "progress": return { name: "ben" };
@@ -60,6 +65,10 @@ export function parseHash(h: string): Route {
     case "odak": return { name: "odak" };
     case "kalip": return { name: "kalip", id: p[1] || undefined };
     case "akis": return { name: "akis", day: Number(p[1]) || 1 };
+    // #/hafta/<H>/tekrar/<g,g,…>: düşük sonuçta zayıf "yapabiliyorum" cümlelerinin tekrarı (#243 takip a)
+    // #/sinav/<gün>[/<bölüm>]: sınav günü denemesi (PM-110); bölümle o bölümü yeniden çözdürür
+    case "sinav": return { name: "sinav", day: Number(p[1]) || 1, ...(p[2] ? { bolum: p[2] } : {}) };
+    case "hafta": return p[2] === "sonuc" ? { name: "haftaSonuc", hafta: Number(p[1]) || 1 } : p[2] === "tekrar" ? { name: "haftaTekrar", hafta: Number(p[1]) || 1, gunler: (p[3] ?? "").split(",").map(Number).filter((n) => Number.isInteger(n) && n > 0) } : { name: "hafta", hafta: Number(p[1]) || 1 };
     // #/m1/<gün>/<kayıt>[/1|/2]: akışta sesin ilk ya da ikinci turu (PM-097 md. 1); ek yoksa bütün adımlar
     case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2], ...(p[3] === "1" ? { tur: "ilk" as const } : p[3] === "2" ? { tur: "ikinci" as const } : {}) } : { name: "m1day", day: Number(p[1]) || 1 };
     default: return { name: "today" };
@@ -75,7 +84,7 @@ export function yeniAdres(h: string): string | null {
 export const go = (path: string) => { location.hash = "#/" + path.replace(/^#?\/?/, ""); };
 
 /** Öğrenme ekranları: odak süresi yalnızca bunlarda sayılır (v1: menü ekranları sayılmaz) */
-export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section", "garden", "m1medya", "ders", "prova", "okuma", "akis"]);
+export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section", "garden", "m1medya", "ders", "prova", "okuma", "akis", "hafta", "haftaTekrar", "sinav"]);
 
 export interface AppCtx {
   user: AuthUser | null;

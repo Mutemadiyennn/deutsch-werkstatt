@@ -1,9 +1,18 @@
 /**
  * İki yönlü doğruluk, kalıcı permütasyon taraması (inceleme #76 P0, 2. tur K1): temel, M1, senaryo (domains) ve dünya
- * (world) içeriğindeki her kabul cümlesinin
- * kelime sıralamaları (≤ 5 kelimede hepsi, daha uzunda tohumlu 150 örnek) değerlendirilir. Kabul listesinde olmadığı hâlde
- * DOĞRU sayılan her sıralama anlık görüntüye yazılır: liste büyürse ya da değişirse test kırmızı olur ve yeni kabuller
- * gözle incelenir (`npx vitest -u` yalnızca inceleme sonrası).
+ * (world) içeriğindeki her kabul cümlesinin kelime sıralamaları (≤ 5 kelimede hepsi, daha uzunda tohumlu 150 örnek)
+ * değerlendirilir. Kabul listesinde olmadığı hâlde DOĞRU sayılan her sıralama **içerikten türetilen bir kuralla** açıklanmalı
+ * (PM-103 md. 7, PM-117 A.2; saklı anlık görüntü yok, içerik PR'ı web/'e dokunmadan geçer):
+ *  1. V2 öbek takası: kabul cümlesinin başındaki öbek fiilden sonraya, fiilden sonraki bitişik bir öbek başa geçer; çekimli fiil
+ *     ikinci yerde kalır, öbekler bölünmez, kişi zamiri eksen olmaz ("Seit gestern hab ich Fieber" → "Fieber hab ich seit gestern").
+ *  2. Orta alan: ön alan + fiil (2 sözcük; kabul edat/tanımlıkla başlıyorsa 3) ve son sözcük (fiil çerçevesinin sağ ucu) aynı,
+ *     aradakiler yer değiştirir.
+ *  3. Dolgu: cümlenin başındaki ya da sonundaki nezaket/onay sözcükleri (bitte, danke, ja, nein, also …; başta gern/gerne/dann,
+ *     sonda gut/toll/super/prima/klar/genau ve yalın "schön" hariç: "Gern ich …", "Gut das ist sehr" V3'tür) düşer; "Uhr" her yerden düşer (PM-101 md. 6); geri kalan sıra aynıdır.
+ * Kuralların açıklamadığı kabul derecelendiricinin gevşekliğidir: test kırmızı olur. Çözüm ya derecelendiricide (web/) ya da,
+ * sıra doğru Almancaysa, o sıranın kabul listesine yazılmasıdır (listede olan sıra taranmaz). ISTISNA: #76 incelemesinde ve
+ * PM-117 A.3 ön sınamasında görülüp inceleme kararıyla bırakılmış kabuller; yeni satır yalnız inceleme kararıyla; derecelendirici
+ * düzelince silinir.
  */
 import { describe, expect, it } from "vitest";
 import { readFileSync, readdirSync, statSync } from "node:fs";
@@ -62,17 +71,156 @@ function* siralamalar(w: string[], tohum: number): Generator<string[]> {
   }
 }
 
-describe("permütasyon taraması (temel + M1)", () => {
-  it("kabul listesinde olmayan doğru sıralamalar yalnızca bunlar", () => {
+/* ───────────── kurallar (içerikten türetilen denetim) ───────────── */
+const sozcukler = (s: string) => s.replace(/[.!?…]+\s*$/, "").split(/\s+/).map((w) => w.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, "").toLowerCase()).filter(Boolean);
+const DOLGU = new Set("bitte danke vielen dank sehr herzlichen schön gern gerne ja nein also okay ok gut genau na dann super prima toll alles klar oder entschuldigung hallo".split(" "));
+/** Baştan atılmayan dolgu: "Gern ich hätte …", "Dann ich gehe …" V3'tür (inceleme #76 2. tur K2, #259 P1-1) */
+const BAS_DOLGU = new Set([...DOLGU].filter((w) => !["gern", "gerne", "dann"].includes(w)));
+/** Sondan atılmayan: yüklem sıfatı olabilenler ("Das ist sehr gut" → "Gut das ist sehr" V3'tür, #259 fark); "schön" yalnız danke/bitte'den sonra */
+const SON_DOLGU = new Set([...DOLGU].filter((w) => !["gut", "toll", "super", "prima", "klar", "genau", "schön"].includes(w)));
+const sonDolgu = (p: string[], j: number) => SON_DOLGU.has(p[j - 1]!) || (p[j - 1] === "schön" && ["danke", "bitte"].includes(p[j - 2] ?? ""));
+const kenarsiz = (p: string[]) => { let i = 0, j = p.length; while (i < j && BAS_DOLGU.has(p[i]!)) i++; while (j > i && sonDolgu(p, j)) j--; return p.slice(i, j); };
+/** Yalnız "Uhr" her yerden düşer (PM-101 md. 6); dolgu yalnız kenardan (kenarsiz) */
+const ozu = (p: string[]) => p.filter((w) => w !== "uhr");
+const ayni = (a: string[], b: string[]) => a.length === b.length && a.every((w, i) => w === b[i]);
+const torba = (a: string[]) => [...a].sort().join(" ");
+/** Öbeğin içinden koparılamayan sözcükler: edat, tanımlık, iyelik ("seit gestern" bölünmez; "einen Termin" bölünmez) */
+const BAGLI = new Set("seit am an um im in mit von vom zu zum zur bei beim nach aus für ohne bis gegen über unter vor auf der die das den dem des ein eine einen einem einer eines kein keine keinen keinem mein meine meinen meinem dein deine deinen ihr ihre ihren ihrem sein seine seinen seinem unser unsere".split(" "));
+/** Önündeki öbekten koparılmış sayılan sözcük: BAGLI'dan zamir de olabilen der/die/das/den/dem/des çıkar ("das seit Sonntag" bölünme değil) */
+const KOPAN = new Set([...BAGLI].filter((w) => !/^d(er|ie|as|en|em|es)$/.test(w)));
+/** Kişi zamiri öbek takasında eksen olamaz, çok sözcüklü taşınan öbeğin içinde de olamaz ("Morgen ich habe Zeit" V3'tür) */
+const ZAMIR = new Set("ich du er sie es wir ihr man".split(" "));
+/** p, r'den V2 öbek takasıyla elde edilir: p = X v A, r = Y v B; X B'de bitişik, Y A'da bitişik, ikisi çıkınca kalan sıra aynı; öbek bölünmez */
+function obekTakasi(p: string[], r: string[]): boolean {
+  if (ayni(p, r) || torba(p) !== torba(r)) return false;
+  for (let i = 1; i < p.length; i++) for (let j = 1; j < r.length; j++) {
+    if (r[j] !== p[i] || ZAMIR.has(p[i]!)) continue;
+    const X = p.slice(0, i), Y = r.slice(0, j), A = p.slice(i + 1), B = r.slice(j + 1);
+    if ((X.length > 1 && X.some((w) => ZAMIR.has(w))) || (Y.length > 1 && Y.some((w) => ZAMIR.has(w)))) continue;
+    for (let a = 0; a + X.length <= B.length; a++) {
+      if (!ayni(B.slice(a, a + X.length), X) || KOPAN.has(B[a - 1] ?? "") || BAGLI.has(X.at(-1)!)) continue;
+      const B2 = [...B.slice(0, a), ...B.slice(a + X.length)];
+      for (let b = 0; b + Y.length <= A.length; b++) if (ayni(A.slice(b, b + Y.length), Y) && !KOPAN.has(A[b - 1] ?? "") && !BAGLI.has(Y.at(-1)!) && ayni([...A.slice(0, b), ...A.slice(b + Y.length)], B2)) return true;
+    }
+  }
+  return false;
+}
+/** Ön alan iki sözcüklü olabilir ("Am Sonntag kann …"): kabul edat/tanımlıkla başlıyorsa ön alan + fiil üç sözcüktür (#259 P1-1) */
+const ortaAlan = (p: string[], r: string[]) => (BAGLI.has(r[0] ?? "") ? [3] : [2, 3]).some((k) => p.length > k + 1 && ayni(p.slice(0, k), r.slice(0, k)) && p.at(-1) === r.at(-1) && torba(p) === torba(r));
+/** Baştaki ünlem kümesi: en az iki ünlem sözcüğü, en az biri cümle değeri taşıyan (ja, nein, okay, ach, also); küme çıkınca kalan sıra aynı
+ *  ("Gern. Ja, zwei Semmeln." ← "Ja, gern. Zwei Semmeln."; "Klar, ja, gern."). "Gern ich hätte …" tek sözcüklü küme olduğundan açıklanmaz. */
+const UNLEM = new Set("ja nein gern gerne klar dann so also okay ok ach gut danke bitte".split(" "));
+const UNLEM_CEKIRDEK = new Set("ja nein okay ok ach also".split(" "));
+function unlemKumesi(p: string[], r: string[]): boolean {
+  let k = 0; while (k < p.length && UNLEM.has(p[k]!)) k++;
+  if (k < 2 || !p.slice(0, k).some((w) => UNLEM_CEKIRDEK.has(w)) || torba(p) !== torba(r)) return false;
+  // küme r'nin baştaki ünlem dizisinden ve sondaki dolgudan gelir; cümle içinden sözcük (dann, so, gern, gut) çekilmez
+  let m = 0; while (m < r.length && UNLEM.has(r[m]!)) m++;
+  for (let t = 0; m + t <= r.length && (t === 0 || sonDolgu(r, r.length - t + 1)); t++) {
+    const son = r.slice(r.length - t);
+    if (torba(p.slice(0, k)) === torba([...r.slice(0, m), ...son]) && ayni(p.slice(k), r.slice(m, r.length - t))) return true;
+  }
+  return false;
+}
+/** Evet/hayır sorusunda (fiil başta) bir öbek başa alınıp düz cümle olur: "Dann geht er aufs Gymnasium." ← "Geht er dann aufs Gymnasium?" */
+function sorudanOne(p: string[], r: string[]): boolean {
+  if (ZAMIR.has(r[0] ?? "") || /^w(ann|o|ie|as|er|em|en|arum|eshalb|oher|ohin|elch\p{L}*)$/u.test(r[0] ?? "") || torba(p) !== torba(r)) return false;
+  for (let i = 1; i < p.length; i++) {
+    if (p[i] !== r[0]) continue;
+    const X = p.slice(0, i), B = r.slice(1);
+    if ((X.length > 1 && (X.some((w) => ZAMIR.has(w)) || !BAGLI.has(X[0]!))) || BAGLI.has(X.at(-1)!)) continue;
+    for (let a = 0; a + X.length <= B.length; a++) if (ayni(B.slice(a, a + X.length), X) && !KOPAN.has(B[a - 1] ?? "") && ayni([...B.slice(0, a), ...B.slice(a + X.length)], p.slice(i + 1))) return true;
+  }
+  return false;
+}
+function aciklanir(cevap: string, kabul: string[]): boolean {
+  const p0 = sozcukler(cevap);
+  for (const p of [p0, kenarsiz(p0)]) for (const a of kabul) for (const r of [sozcukler(a), kenarsiz(sozcukler(a))]) {
+    if (!p.length) continue;
+    if (ayni(p, r) || obekTakasi(p, r) || ortaAlan(p, r) || (ozu(p).length > 0 && ayni(ozu(p), ozu(r)))) return true;
+    if (unlemKumesi(p0, sozcukler(a)) || (/\?\s*$/.test(a) && sorudanOne(p, r))) return true;
+  }
+  return false;
+}
+/**
+ * main'in #76 anlık görüntüsünde görülüp bırakılmış, kuralların açıklamadığı kabuller (dosya, madde, kaynak → sıra); yalnız azalır.
+ * Çoğu derecelendiricinin baştaki ünlem/dolgu toleransı ("Ach so", "dann"): web/ takibi (#259 inceleme P1-1).
+ */
+const ISTISNA = new Set<string>([
+  "domains/essen/scenarios/m1-weihnachtsmarkt.json d10: Grüß Gott, einen Kinderpunsch, bitte. → Grüß Gott, bitte einen Kinderpunsch,.",
+  "domains/essen/scenarios/m1-weihnachtsmarkt.json d11: Okay, dann zahle ich bar. → dann Okay, ich zahle bar.",
+  "domains/strategie/scenarios/01-nicht-verstanden.json #1: Ach so! Nein, danke. → so! Ach Nein, danke.",
+  "domains/strategie/scenarios/01-nicht-verstanden.json #3: Ach so! Nein, danke. → so! Ach Nein, danke.",
+  "domains/strategie/scenarios/01-nicht-verstanden.json #3: Ach so, nein, danke. → so, Ach nein, danke.",
+  "domains/strategie/scenarios/01-nicht-verstanden.json b15: Ach so, jetzt verstehe ich. → so, Ach jetzt verstehe ich.",
+  "domains/strategie/scenarios/01-nicht-verstanden.json d31: Ach so! Danke schön. → Ach schön so! Danke.",
+  "domains/strategie/scenarios/01-nicht-verstanden.json d31: Ach so! Danke schön. → so! Ach Danke schön.",
+  "m1/gun-01.json m1:01:s7: Danke, dann bis Samstag! → dann Danke, bis Samstag.",
+  "m1/gun-07.json m1:07:s10: Nein, ich bin so müde. → so Nein, ich bin müde.",
+  // PM-117 A.3 ön sınamasında (16 içerik haftası birleşik) görülen, aynı türden derecelendirici toleransı ("so"/"dann" başa); web/ takibi
+  "m1/gun-59.json m1:59:s9: Weil mein Rücken so wehtut. → so Weil mein Rücken wehtut.",
+  "m1/gun-77.json m1:77:v1:c1: Ja, dann zahle ich bar. → dann Ja, ich zahle bar.",
+  "m1/gun-104.json m1:104:s6: Du siehst so müde aus. → so Du siehst müde aus.",
+  // doğru Almanca ("Gern, ja, ich komme mit."), sondaki "mit" yüzünden kurala girmiyor; #216 kabul listesine yazınca silinir
+  "m1/gun-15.json m1:15:s10: Ja, ich komme gern mit. → gern Ja, ich komme mit."
+]);
+
+describe("kurallar", () => {
+  it("öbek takası, orta alan, dolgu açıklar; V3, bölünmüş öbek, çerçeve dışı fiil açıklanmaz", () => {
+    expect(aciklanir("Fieber hab ich seit gestern.", ["Ich hab seit gestern Fieber."])).toBe(true);
+    expect(aciklanir("Einen Termin bräuchte ich mal.", ["Ich bräuchte mal einen Termin."])).toBe(true);
+    expect(aciklanir("Ich habe leider heute keine Zeit.", ["Ich habe heute leider keine Zeit."])).toBe(true);
+    expect(aciklanir("Ich bin dabei, danke.", ["Ich bin dabei!"])).toBe(true);
+    expect(aciklanir("Zehn dreißig, ja.", ["Zehn Uhr dreißig?"])).toBe(true);
+    expect(aciklanir("Morgen ich habe Zeit.", ["Ich habe morgen Zeit."])).toBe(false);
+    expect(aciklanir("Gestern hab ich seit Fieber.", ["Ich hab seit gestern Fieber."])).toBe(false);
+    expect(aciklanir("Ich möchte machen einen Termin.", ["Ich möchte einen Termin machen."])).toBe(false);
+    expect(aciklanir("Ich einen Termin möchte machen.", ["Ich möchte einen Termin machen."])).toBe(false);
+    // inceleme #259 P1-1: iki sözcüklü ön alan, baştaki gern/dann, öbek içi zamir, zamir ekseni
+    expect(aciklanir("Seit Montag ich habe Fieber.", ["Ich habe seit Montag Fieber."])).toBe(false);
+    expect(aciklanir("Am Sonntag ich kann nicht.", ["Am Sonntag kann ich nicht."])).toBe(false);
+    expect(aciklanir("Gern ich hätte einen Termin.", ["Ich hätte gern einen Termin."])).toBe(false);
+    expect(aciklanir("Dann ich gehe nach Hause.", ["Dann gehe ich nach Hause."])).toBe(false);
+    expect(aciklanir("Morgen ich habe Zeit, danke.", ["Ich habe morgen Zeit."])).toBe(false);
+    expect(aciklanir("Nach Hause heute ich gehe.", ["Ich gehe heute nach Hause."])).toBe(false);
+    expect(aciklanir("Zeit keine ich habe heute.", ["Ich habe heute keine Zeit."])).toBe(false);
+    // #259 fark: yüklem sıfatı sondan atılmaz
+    expect(aciklanir("Gut das ist sehr.", ["Das ist sehr gut."])).toBe(false);
+    expect(aciklanir("Toll das finde ich.", ["Das finde ich toll."])).toBe(false);
+    expect(aciklanir("Schön das ist.", ["Das ist schön."])).toBe(false);
+    expect(aciklanir("Ich bin dabei, danke schön.", ["Ich bin dabei!"])).toBe(true);
+    // ön sınama: baştaki ünlem kümesi ve sorudan düz cümle
+    expect(aciklanir("Gern. Ja, zwei Semmeln, bitte.", ["Ja, gern. Zwei Semmeln, bitte."])).toBe(true);
+    expect(aciklanir("Klar, ja, gern.", ["Ja, klar, gern!"])).toBe(true);
+    expect(aciklanir("Dann geht er aufs Gymnasium.", ["Geht er dann aufs Gymnasium?"])).toBe(true);
+    expect(aciklanir("Dann ja, ich zahle bar.", ["Ja, dann zahle ich bar."])).toBe(false);
+    expect(aciklanir("Morgen ich habe Zeit.", ["Habe ich morgen Zeit?"])).toBe(false);
+    expect(aciklanir("Gern, ich komme.", ["Ich komme gern."])).toBe(false);
+    expect(aciklanir("Ja dann ich gehe nach Hause.", ["Ja, ich gehe dann nach Hause."])).toBe(false);
+    expect(aciklanir("Nein gut ich finde das.", ["Nein, ich finde das gut."])).toBe(false);
+    expect(aciklanir("Ja so ich bin müde.", ["Ja, ich bin so müde."])).toBe(false);
+    expect(aciklanir("Ja gern ich hätte einen Termin.", ["Ja, ich hätte gern einen Termin."])).toBe(false);
+    expect(aciklanir("Gern, ja, ich komme.", ["Ja, ich komme gern."])).toBe(true);
+    expect(aciklanir("Der Bus wann kommt?", ["Wann kommt der Bus?"])).toBe(false);
+    expect(aciklanir("Kommt wann der Bus?", ["Wann kommt der Bus?"])).toBe(false);
+    expect(aciklanir("Heute Zeit hast du.", ["Hast du heute Zeit?"])).toBe(false);
+  });
+});
+
+describe("permütasyon taraması (temel + M1 + senaryo + dünya)", () => {
+  it("kabul listesinde olmayan her doğru sıralama kurallarla açıklanır", () => {
     const kabul: string[] = [];
     let n = 0;
+    // aynı kabul listesi + aynı cümle bir kez taranır (içerik büyüdükçe süre; ilk geçişin dosya/madde kimliği raporlanır)
+    const taranan = new Set<string>();
+    const ilkKez = (tur: string, accepted: string[], a: string) => { const k = `${tur}|${accepted.join("|")}|${a}`; if (taranan.has(k)) return false; taranan.add(k); return true; };
     for (const { dosya, d } of maddeler()) {
       if (d.k === "gap") continue;
       const acc = (d.accepted as string[]).filter((a) => !a.includes("{name}") && !/\d/.test(a));
       const accN = new Set((d.accepted as string[]).map((a) => norm(a)));
       for (const a of acc) {
         const w = a.replace(/[.!?…]+\s*$/, "").split(/\s+/).filter(Boolean);
-        if (w.length < 3 || w.length > 8) continue;
+        if (w.length < 3 || w.length > 8 || !ilkKez(`d:${d.k}`, d.accepted as string[], a)) continue;
         const tohum = [...a].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
         const gorulen = new Set<string>();
         for (const p of siralamalar(w, tohum)) {
@@ -80,7 +228,7 @@ describe("permütasyon taraması (temel + M1)", () => {
           const k = norm(c);
           if (accN.has(k) || gorulen.has(k)) continue;
           gorulen.add(k); n++;
-          if (drillVerdict(d, c, true).kind === "correct") kabul.push(`${dosya} ${d.id}: ${a} → ${c}`);
+          if (drillVerdict(d, c, true).kind === "correct" && !aciklanir(c, d.accepted as string[]) && !ISTISNA.has(`${dosya} ${d.id}: ${a} → ${c}`)) kabul.push(`${dosya} ${d.id}: ${a} → ${c}`);
         }
       }
     }
@@ -89,7 +237,7 @@ describe("permütasyon taraması (temel + M1)", () => {
       const accN = new Set(m.accepted.map((a) => norm(a)));
       for (const a of acc) {
         const w = a.replace(/[.!?…]+\s*$/, "").split(/\s+/).filter(Boolean);
-        if (w.length < 3 || w.length > 8) continue;
+        if (w.length < 3 || w.length > 8 || !ilkKez("r", m.accepted, a)) continue;
         const tohum = [...a].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 11);
         const gorulen = new Set<string>();
         for (const p of siralamalar(w, tohum)) {
@@ -97,11 +245,11 @@ describe("permütasyon taraması (temel + M1)", () => {
           const k = norm(c);
           if (accN.has(k) || gorulen.has(k)) continue;
           gorulen.add(k); n++;
-          if (ruleVerdict(m.accepted, c).kind === "correct") kabul.push(`${m.dosya} ${m.id}: ${a} → ${c}`);
+          if (ruleVerdict(m.accepted, c).kind === "correct" && !aciklanir(c, m.accepted) && !ISTISNA.has(`${m.dosya} ${m.id}: ${a} → ${c}`)) kabul.push(`${m.dosya} ${m.id}: ${a} → ${c}`);
         }
       }
     }
     expect(n).toBeGreaterThan(5_000);
-    expect(kabul.sort().join("\n")).toMatchSnapshot();
-  }, 300_000);
+    expect(kabul.sort(), "derecelendirici bu sıraları kabul ediyor ama hiçbir kural açıklamıyor (başlıktaki 1–3); doğru Almancaysa sırayı kabul listesine yaz, değilse web/ derecelendirici işi").toEqual([]);
+  }, 900_000);   // 16 hafta ≈ 5 dk; içerik büyüdükçe artar (takip: dosyalara bölüp paralel koşmak)
 });

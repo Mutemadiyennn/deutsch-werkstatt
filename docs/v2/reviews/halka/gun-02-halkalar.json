@@ -1,6 +1,6 @@
 {
  "gun": 2,
- "not": "PM-078 B öneri (İÇ), 1. günün onaylı biçimiyle (PM #163 ve #165 kuralları) ve PM 7047720404'ün iki ekiyle: her halkada en az 2 görev cümlesi önceki günün bir kartını taşır; günde en az bir çıkarım sorusu var (cikarim: true). Günün dersleri (r0-02, r0-11) varsayılmaz; haben biçimleri yalnızca h4 kalıbıyla (Ich habe … – Im August habe ich …) gelir. Şema ANA'da (AK-5); alan gelince gun-02.json'a taşınır.",
+ "not": "PM-078 B öneri (İÇ), 1. günün onaylı biçimiyle (PM #163 ve #165 kuralları) ve PM 7047720404'ün iki ekiyle: her halkada en az 2 görev cümlesi önceki günün bir kartını taşır; günde en az bir çıkarım sorusu var (cikarim: true). Günün dersleri (r0-02, r0-11) varsayılmaz; haben biçimleri yalnızca h4 kalıbıyla (Ich habe … – Im August habe ich …) gelir. Şema ANA'da (AK-5); alan gelince gun-02.json'a taşınır. Halkalar artık gun-02.json içinde (PM-084); bu dosya Python denetçilerinin (halka_kontrol.py, kucuk_sozcuk.py) girdisi olarak gün dosyasıyla eşit tutulur.",
  "halkalar": [
   {
    "id": "m1:02:h1",
@@ -41,6 +41,17 @@
       "Nicht im Januar, bitte.",
       "Bitte nicht im Januar.",
       "Im Januar nicht, bitte."
+     ]
+    },
+    {
+     "kart": "lx:Januar",
+     "de": "Im Januar, am Montag?",
+     "tr": "Ocakta, pazartesi günü mü?",
+     "accepted": [
+      "Im Januar, am Montag?",
+      "Am Montag, im Januar?",
+      "Im Januar? Am Montag?",
+      "Im Januar, Montag?"
      ]
     },
     {
@@ -202,6 +213,18 @@
      ]
     },
     {
+     "kart": "lx:Geburtstag",
+     "de": "Ihr Geburtstag? Im Mai oder im Juni?",
+     "tr": "Doğum gününüz mü? Mayısta mı, haziranda mı?",
+     "accepted": [
+      "Ihr Geburtstag? Im Mai oder im Juni?",
+      "Ihr Geburtstag? Im Juni oder im Mai?",
+      "Ist Ihr Geburtstag im Mai oder im Juni?",
+      "Ihr Geburtstag? Im Mai oder Juni?",
+      "Ihr Geburtstag? Mai oder Juni?"
+     ]
+    },
+    {
      "kart": "lx:Mai",
      "de": "Im Mai? Ja, Mai geht!",
      "tr": "Mayısta mı? Evet, mayıs olur!",
@@ -322,12 +345,17 @@
     "lx:Oktober",
     "lx:November",
     "lx:Dezember",
-    "lx:Jahr"
+    "lx:Jahr",
+    "lx:wohnen"
    ],
    "kaliplar": [
     {
      "de": "dieses Jahr",
      "tr": "bu yıl"
+    },
+    {
+     "de": "Ich wohne in … – Wohnen Sie in …?",
+     "tr": "…'de oturuyorum – …'de mi oturuyorsunuz? (şehir adıyla)"
     }
    ],
    "gorev_cumleleri": [
@@ -429,6 +457,26 @@
       "Nicht dieses Jahr – im Januar.",
       "Im Januar, nicht dieses Jahr.",
       "Dieses Jahr nicht, im Januar."
+     ]
+    },
+    {
+     "kart": "lx:wohnen",
+     "de": "Wohnen Sie in Wendlfing, Luka?",
+     "tr": "Wendlfing'de mi oturuyorsunuz Luka?",
+     "accepted": [
+      "Wohnen Sie in Wendlfing, Luka?",
+      "Luka, wohnen Sie in Wendlfing?",
+      "Sie wohnen in Wendlfing, Luka?"
+     ]
+    },
+    {
+     "kart": "lx:wohnen",
+     "de": "Ich wohne in Wendlfing. Und Sie?",
+     "tr": "Ben Wendlfing'de oturuyorum. Ya siz?",
+     "accepted": [
+      "Ich wohne in Wendlfing. Und Sie?",
+      "Und Sie? Ich wohne in Wendlfing.",
+      "Ich wohne in Wendlfing. Wohnen Sie in Wendlfing?"
      ]
     }
    ],
@@ -585,6 +633,18 @@
      ]
     },
     {
+     "kart": "lx:haben",
+     "de": "Im August habe ich Geburtstag.",
+     "tr": "Ağustosta doğum günüm var.",
+     "accepted": [
+      "Im August habe ich Geburtstag.",
+      "Ich habe im August Geburtstag.",
+      "Mein Geburtstag ist im August.",
+      "Im August ist mein Geburtstag.",
+      "Ich habe Geburtstag im August."
+     ]
+    },
+    {
      "kart": "lx:Urlaub",
      "de": "Ihr Urlaub ist im August, Frau Stadler?",
      "tr": "İzniniz ağustosta mı Stadler Hanım?",
@@ -639,12 +699,12 @@
   },
   {
    "id": "m1:02:h5",
-   "title_tr": "Ne zaman? Başı, sonu, açık",
+   "title_tr": "Ne zaman? Başı, sonu, gelmek",
    "kartlar": [
     "lx:wann",
     "lx:Anfang",
     "lx:Ende",
-    "lx:offen"
+    "lx:kommen"
    ],
    "kaliplar": [
     {
@@ -675,6 +735,19 @@
       "Wann ist Ihr Urlaub, Frau Huber?",
       "Frau Huber, wann ist Ihr Urlaub?",
       "Wann haben Sie Urlaub, Frau Huber?"
+     ]
+    },
+    {
+     "kart": "lx:wann",
+     "de": "Wann ist Ihr Urlaub? Im Juli oder im August?",
+     "tr": "İzniniz ne zaman? Temmuzda mı, ağustosta mı?",
+     "accepted": [
+      "Wann ist Ihr Urlaub? Im Juli oder im August?",
+      "Wann ist Ihr Urlaub? Im August oder im Juli?",
+      "Wann ist Ihr Urlaub? Im Juli? Oder im August?",
+      "Wann haben Sie Urlaub? Im Juli oder im August?",
+      "Wann ist Ihr Urlaub? Im Juli oder August?",
+      "Wann ist Ihr Urlaub? Juli oder August?"
      ]
     },
     {
@@ -719,23 +792,35 @@
      ]
     },
     {
-     "kart": "lx:offen",
-     "de": "Ist die Praxis heute offen?",
-     "tr": "Muayenehane bugün açık mı?",
+     "kart": "lx:Ende",
+     "de": "Ich habe von Ende Juli bis Anfang August Urlaub.",
+     "tr": "Temmuz sonundan ağustos başına kadar iznim var.",
      "accepted": [
-      "Ist die Praxis heute offen?",
-      "Ist heute die Praxis offen?",
-      "Heute ist die Praxis offen?"
+      "Ich habe von Ende Juli bis Anfang August Urlaub.",
+      "Von Ende Juli bis Anfang August habe ich Urlaub.",
+      "Urlaub habe ich von Ende Juli bis Anfang August.",
+      "Ich habe Urlaub von Ende Juli bis Anfang August.",
+      "Mein Urlaub ist von Ende Juli bis Anfang August."
      ]
     },
     {
-     "kart": "lx:offen",
-     "de": "Die Praxis ist von Montag bis Freitag offen, aber nicht am Wochenende.",
-     "tr": "Muayenehane pazartesiden cumaya kadar açık, ama hafta sonunda değil.",
+     "kart": "lx:kommen",
+     "de": "Wann kommen Sie? Am Montag?",
+     "tr": "Ne zaman geliyorsunuz? Pazartesi günü mü?",
      "accepted": [
-      "Die Praxis ist von Montag bis Freitag offen, aber nicht am Wochenende.",
-      "Von Montag bis Freitag ist die Praxis offen, aber nicht am Wochenende.",
-      "Die Praxis ist von Montag bis Freitag offen, am Wochenende aber nicht."
+      "Wann kommen Sie? Am Montag?",
+      "Am Montag? Wann kommen Sie?",
+      "Wann kommen Sie? Montag?"
+     ]
+    },
+    {
+     "kart": "lx:kommen",
+     "de": "Wir kommen Anfang September, Frau Stadler!",
+     "tr": "Eylül başında geliyoruz Stadler Hanım!",
+     "accepted": [
+      "Wir kommen Anfang September, Frau Stadler!",
+      "Anfang September kommen wir, Frau Stadler!",
+      "Frau Stadler, wir kommen Anfang September!"
      ]
     }
    ],
@@ -759,8 +844,8 @@
      },
      {
       "r": "ch:stadler",
-      "de": "Anfang September? Ja, offen!",
-      "tr": "Eylül başında mı? Evet, açık!"
+      "de": "Anfang September? Nein, im September nicht!",
+      "tr": "Eylül başında mı? Hayır, eylülde değil!"
      }
     ],
     "soru": {

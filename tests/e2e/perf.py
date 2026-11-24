@@ -31,7 +31,7 @@ if __name__ == "__main__":
         out["tti_first_ms"] = tti(p2, base, "text=Almancayı gerçek hayat için öğren"); b2.close()
         # sonraki açılış: aynı bağlam (önbellek + IndexedDB dolu)
         out["tti_next_ms"] = tti(pg, base + "#/today", "[data-test=next-activity]")
-        pg.goto(base + "#/progress"); pg.wait_for_selector("[data-test=panel-focus]")
+        pg.goto(base + "#/ben/duzen"); pg.wait_for_selector("[data-test=panel-focus]")
         out["scroll_progress"] = fps(pg)
         pg.goto(base + "#/scenario/sc:telefon:01-arzttermin/words"); pg.wait_for_selector("[data-test=stage-intro]")
         pg.click("[data-test=to-subtitles]"); pg.click("[data-test=to-scan]"); pg.wait_for_selector("[data-test=scan]")

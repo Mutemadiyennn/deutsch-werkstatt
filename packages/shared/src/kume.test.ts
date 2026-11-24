@@ -102,3 +102,34 @@ describe("cümle başı, tek sözcüklü cümle (ANA-D2 devri takibi: 34. gün \
     expect(y("Arm ist er.", ["lx:arm"])).toEqual([]);
   });
 });
+
+describe("sesteş isim ve fiil (PM-117 A.3 ön sınama: lx:Frage ↔ lx:fragen)", () => {
+  it("fiilin kendi çekimi, başlığı aynı yazılan ismin sayısına yenilmez; isim de başlığını korur", () => {
+    const fragen = Lexeme.parse({ id: "lx:fragen", de: "fragen", tr: "sormak", pos: "verb", verb: { praesens3: "fragt" }, forms: [{ de: "Ich ___ dich.", answer: "frage", tr: "x" }] });
+    const frage = Lexeme.parse({ id: "lx:Frage", de: "Frage", art: "die", pl: "Fragen", tr: "soru", pos: "noun", forms: [1, 2, 3].map((i) => ({ de: `Die ___ ${i}.`, answer: "Frage", tr: "x" })) });
+    const d = kumeDizini([fragen, frage], [], null);
+    expect([...d.yuzey.get("lx:fragen")!]).toContain("frage");
+    expect([...d.yuzey.get("lx:Frage")!]).toContain("frage");
+    expect([...d.idx.get("frage")!].sort()).toEqual(["lx:Frage", "lx:fragen"]);
+    // cümle ortasında büyük harf isim, küçük harf fiil okunuşu (#261 P1-1: Türkçe açıklama doğru kartı göstersin)
+    const bil = { kart: new Set<string>(), biten: new Set<string>() };
+    expect(bilinmeyenler(d, "Das ist eine Frage.", bil).find((x) => x.sozcuk === "frage")?.adaylar).toEqual(["lx:Frage", "lx:fragen"]);
+    expect(bilinmeyenler(d, "Dann frage ich.", bil).find((x) => x.sozcuk === "frage")?.adaylar).toEqual(["lx:fragen", "lx:Frage"]);
+    // sınıf bütün adaylardan: fiil biliniyorsa büyük harfli "Frage" de "biçim" (kart eksikliği değil; dikiş değişmez)
+    expect(bilinmeyenler(d, "Das ist eine Frage.", { kart: new Set(["lx:fragen"]), biten: new Set<string>() }).find((x) => x.sozcuk === "frage")).toMatchObject({ tur: "bicim", adaylar: ["lx:Frage", "lx:fragen"] });
+  });
+  it("sahte aday sahibine yenilir: ayrılan ön ek, cümle içi cevap, isim türetmesi (#261 P1-1; sahip kendi biçimini daha çok verir)", () => {
+    const V = (id: string, de: string, answer: string, pos = "verb") => Lexeme.parse({ id, de, tr: "x", pos, forms: [{ de: "x ___ x", answer, tr: "x" }] });
+    const lex = [
+      L({ id: "lx:nach", de: "nach", pos: "prep", forms: [1, 2].map(() => ({ de: "___ Hause", answer: "nach" })) }), V("lx:nachfragen", "nachfragen", "nach"),
+      L({ id: "lx:wenn", de: "wenn", pos: "conj", forms: [1, 2].map(() => ({ de: "___ es geht", answer: "wenn" })) }), V("lx:schneien", "schneien", "wenn"),
+      L({ id: "lx:melden", de: "melden", pos: "verb", forms: [1, 2].map(() => ({ de: "Wir ___ das.", answer: "melden" })) }), V("lx:Schimmel", "Schimmel", "melden", "noun"),
+      L({ id: "lx:neu", de: "neu", pos: "adj", forms: [1, 2].map(() => ({ de: "Das ist ___.", answer: "neu" })) }), V("lx:Neuigkeit", "Neuigkeit", "neu", "noun")
+    ];
+    const d = kumeDizini(lex, [], null);
+    expect([...d.idx.get("nach")!]).toEqual(["lx:nach"]);
+    expect([...d.idx.get("wenn")!]).toEqual(["lx:wenn"]);
+    expect([...d.idx.get("melden")!]).toEqual(["lx:melden"]);
+    expect([...d.idx.get("neu")!]).toEqual(["lx:neu"]);
+  });
+});

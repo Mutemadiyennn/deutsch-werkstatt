@@ -33,7 +33,8 @@ export function createApi(d: ApiDeps) {
       const body = await r.json().catch(() => null);
       if (!r.ok) {
         const p = ApiErrorSchema.safeParse(body);
-        if (p.success) throw new ApiError(p.data.error.code, p.data.error.message_tr, p.data.error.retryable);
+        // metin istemcinin öğrenci dilindeki karşılığından (sunucunun eski sürümü teknik metin gönderebilir; PM finali #218)
+        if (p.success) throw new ApiError(p.data.error.code, ERROR_TR[p.data.error.code]?.message_tr ?? p.data.error.message_tr, p.data.error.retryable);
         throw err(r.status === 503 ? "upstream_busy" : r.status === 429 ? "quota_upstream" : r.status === 502 ? "bad_output" : r.status === 504 ? "timeout" : "internal");
       }
       // 200 ama gövde JSON değil (yarım kalan ya da bozuk yanıt): öğrenciye bozuk çıktı gösterilmez (PM-087 A.4)
@@ -42,7 +43,7 @@ export function createApi(d: ApiDeps) {
     } catch (e) {
       if (e instanceof ApiError) throw e;
       if ((e as Error).name === "AbortError") throw err("timeout");
-      throw new ApiError("upstream_busy", "Sunucuya ulaşılamadı. İnternet bağlantını kontrol et.", true);
+      throw new ApiError("upstream_busy", "Bağlantı kurulamadı. İnternetini kontrol et.", true);
     } finally {
       clearTimeout(t);
     }

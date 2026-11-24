@@ -10,6 +10,7 @@ import { Rich } from "../ui/rich.tsx";
 import { isRepeatRequest, offlineDialogueIndex } from "../core/offline.ts";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Chunk, Drill, Lexeme, Pattern, Scenario, ScenarioProgress, Speed } from "@dw/shared";
+import { ERROR_TR } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { ustBaslik } from "../core/baslik.ts";
 import { loadLexicon, loadScenario } from "../services/content.ts";
@@ -331,7 +332,7 @@ function ListeningSection({ ctx, finish, back, setSub }: SP) {
   const [picked, setPicked] = useState<number | null>(null);
   useEffect(() => { if (i >= steps.length && steps.length) void finish(score, total); }, [i]);
   if (!steps.length) return <Empty title="Bu senaryoda dinleme yok" />;
-  if (i >= steps.length) return <Done score={score} total={total} back={back} ctx={ctx} title="Dinleme" note="İlk dinlemede anlama oranı İlerlemem'de hıza göre izlenir." />;
+  if (i >= steps.length) return <Done score={score} total={total} back={back} ctx={ctx} title="Dinleme" note="İlk dinlemede anlama oranı Ben → Çalışma düzenim'de hıza göre izlenir." />;
   const st = steps[i]!;
   useEffect(() => { setSub?.(<Count i={i} n={steps.length} />); }, [i]);
   const progress = null;
@@ -364,7 +365,7 @@ function ListeningItem({ li, progress, onDone }: { li: Scenario["listening"][num
       <section class="card stack"><div class="kicker icerik">Dinle · {li.title_tr}</div><p class="small">Önce metni görmeden dinle. İstediğin kadar tekrar dinleyebilirsin.</p>
         <div class="row"><button class="btn primary" onClick={() => playAll(li.speed)} disabled={playing} data-test="play-all">{playing ? "Çalıyor…" : <><Icon name="play" size={18} /> Dinle</>}</button>
           {li.speeds.filter((x) => x !== li.speed).map((sp) => <button class="btn" onClick={() => playAll(sp)} disabled={playing} data-speed={sp}>{SPEED_TR[sp]}</button>)}</div>
-        <p class="tiny muted">Cihaz sesi · {li.speed === "fast" ? "hızlı" : li.speed === "natural" ? "doğal hız" : li.speed === "slow" ? "yavaş" : baslangicYavas() ? "normal (ilk dinleme yavaş; Profil)" : "normal"}</p></section>
+        <p class="tiny muted">Cihaz sesi · {li.speed === "fast" ? "hızlı" : li.speed === "natural" ? "doğal hız" : li.speed === "slow" ? "yavaş" : baslangicYavas() ? "normal (ilk dinleme yavaş; Ayarlar)" : "normal"}</p></section>
       <ActionBar><button class="btn primary block" onClick={() => { stopSpeaking(); setPhase("qs"); }} data-test="to-questions">Sorulara geç</button></ActionBar>
     </div>
   );
@@ -441,7 +442,7 @@ function DialogueSection({ ctx, finish, back }: SP) {
       )}
       <div class="chat" aria-live="polite">
         {shown.map((l) => <div class={`bubble ${l.r === "A" ? "them" : "me"}`}><div class="who">{l.r === "A" ? d.roles.A : `${d.roles.B} (sen)`}</div><div class="dline"><div class="grow"><div lang="de">{l.de}</div>{support >= 1 && <div class="tr2">{l.tr}</div>}</div>{l.r === "A" && <ListenButton text={l.de} speed={l.speed} small slowToggle={false} />}</div></div>)}
-        {line.r === "A" && <div class="bubble them fade"><div class="who">{d.roles.A}</div><DeLine de={line.de} tr={support >= 1 ? line.tr : undefined} size="md" speed={line.speed} /><ExplainBtn de={line.de} /></div>}
+        {line.r === "A" && <div class="bubble them fade"><div class="who">{d.roles.A}</div><DeLine de={line.de} tr={support >= 1 ? line.tr : undefined} size="md" speed={line.speed} /><ExplainBtn de={line.de} chunks={ctx.s.chunks} /></div>}
         <ChatEnd dep={li} />
       </div>
       {line.r === "A" && <ActionBar><button class="btn primary block" onClick={() => setLi(li + 1)} data-test="next">Cevap ver</button></ActionBar>}
@@ -485,6 +486,9 @@ function ChatEnd({ dep }: { dep: number }) {
 /* ============================ 6 Rol oyunu ============================ */
 const NON_GERMAN = /\b(the|and|you|please|sorry|yes|what|i'm|can|evet|hayır|lütfen|tamam|anlamadım|ne)\b/i;
 type Turn = { r: "partner" | "learner"; de: string };
+/** Rapor hata kartının ek cümlesi: genel "cevap alamadım" başlıkla aynı şeyi söyler, tekrarlanmaz (öğrenci dili; PM finali #218) */
+const raporEk = (m: string) => (m === ERROR_TR.internal.message_tr || m === ERROR_TR.bad_output.message_tr ? "" : m);
+
 function RoleplaySection({ ctx, finish, back, setRight }: SP) {
   const { api, profile } = useApp();
   const persona: Persona = { name: profile.displayName, address: profile.address };
@@ -581,7 +585,7 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
         for (const g of f.gaps_de) await addPersonal({ id: `convo:${g}`, de: g, at: new Date().toISOString(), source: "sayit" });
         const done = f.goals.filter((x) => x.done).length;
         await finish(done, s.roleplay.goals.length, { level, goalsDone: done, goalsTotal: s.roleplay.goals.length, englishFallbacks: f.english_fallbacks, mode: "ai" });
-      } catch (e) { if (reportDoneRef.current || (modeRef.current as string) === "offline") return; reportRef.current = false; setErrYeniden(yenidenMi(e)); setErr(e instanceof ApiError ? e.message_tr : "Rapor alınamadı."); }
+      } catch (e) { if (reportDoneRef.current || (modeRef.current as string) === "offline") return; reportRef.current = false; setErrYeniden(yenidenMi(e)); setErr(e instanceof ApiError ? e.message_tr : ERROR_TR.internal.message_tr); }
       finally { clearTimeout(timer); setBusy(false); setSlow(null); setWaiting(false); }
     }
   };
@@ -611,7 +615,7 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
         {slow === "turn" && !waiting && <div class="card stack" role="status" data-test="rp-slow"><p style={{ margin: 0 }}><b>Biraz uzun sürüyor.</b> <span class="small muted">Yanıt gelirse hemen kullanılır.</span></p><div class="row"><button class="btn sm" onClick={() => setWaiting(true)} data-test="rp-wait">Bekle</button><button class="btn sm" onClick={() => void partnerTurn(histRef.current, stuckRef.current)} data-test="rp-retry">Tekrar dene</button><button class="btn sm" onClick={goOffline} data-test="rp-offline">Yapay zekâsız devam</button></div></div>}
         {slow === "turn" && waiting && <p class="tiny muted" role="status">Yanıt bekleniyor…</p>}
         {err && <div class="card err stack" role="alert"><p><b>{errYeniden ? "Bağlantı sorunu." : "Yapay zekâ şimdilik yok."}</b> {err}</p><div class="row">{errYeniden && <button class="btn sm" onClick={() => void partnerTurn(histRef.current, stuckRef.current)} data-test="rp-retry">Tekrar dene</button>}<button class="btn sm" onClick={goOffline} data-test="rp-offline">Yapay zekâsız devam</button></div></div>}
-        <div class="row">{last && <ExplainBtn de={last.de} context={s.roleplay.scene_tr} />}<SayItBox entries={entriesOf(ctx)} level={s.level} context_de={last?.de} /></div>
+        <div class="row">{last && <ExplainBtn de={last.de} context={s.roleplay.scene_tr} chunks={s.chunks} />}<SayItBox entries={entriesOf(ctx)} level={s.level} context_de={last?.de} /></div>
         <ChatEnd dep={turns.length + (busy ? 1 : 0) + (err ? 1 : 0)} />
         <ActionBar><AnswerField onSubmit={(a) => void send(a)} disabled={busy} submitLabel="Gönder" /></ActionBar>
       </div>
@@ -637,7 +641,7 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
     <div class="stack fade" data-test="rp-report">
       {busy && <LoadingCard lines={4} />}
       {slow === "report" && !waiting && !report && <div class="card stack" role="status" data-test="rp-slow"><p style={{ margin: 0 }}><b>Rapor biraz uzun sürüyor.</b> <span class="small muted">Gelirse hemen gösterilir.</span></p><div class="row"><button class="btn sm" onClick={() => setWaiting(true)} data-test="rp-wait">Bekle</button><button class="btn sm" onClick={() => { reportRef.current = false; void endTalk(histRef.current); }} data-test="rp-retry">Tekrar dene</button><button class="btn sm" onClick={kendimDegerlendir} data-test="rp-self">Kendim değerlendireyim</button></div></div>}
-      {err && !report && <div class="card err" role="alert"><p><b>Rapor alınamadı.</b> {err}</p><div class="row">{errYeniden && <button class="btn sm" onClick={() => void endTalk()} data-test="rp-retry">Tekrar dene</button>}<button class="btn sm" onClick={kendimDegerlendir} data-test="rp-self">Kendim değerlendireyim</button></div></div>}
+      {err && !report && <div class="card err" role="alert"><p><b>Rapor şu an alınamadı.</b>{raporEk(err) && <> {raporEk(err)}</>}</p><div class="row">{errYeniden && <button class="btn sm" onClick={() => void endTalk()} data-test="rp-retry">Tekrar dene</button>}<button class="btn sm" onClick={kendimDegerlendir} data-test="rp-self">Kendim değerlendireyim</button></div></div>}
       {report && <>
         <section class="card hero"><div class="kicker">Görev</div><div class="big">{report.goals.filter((g: any) => g.done).length}/{s.roleplay.goals.length}</div><p class="small">{report.summary_tr}</p></section>
         <section class="card stack"><div class="kicker">Hedefler</div>{s.roleplay.goals.map((g) => <div class="row">{report.goals.find((x: any) => x.id === g.id)?.done ? <Icon name="check" size={18} label="yapıldı" /> : <span class="emptybox" aria-label="yapılmadı" />} <span>{g.tr}</span></div>)}</section>

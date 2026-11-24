@@ -41,7 +41,7 @@ def v2_shots(p, theme, out, viewport=None):
         pg.dispatch_event("body", "pointerdown"); pg.clock.run_for(60_000)
     pg.goto(base + "/today"); pg.wait_for_selector("[data-test=break]"); pg.clock.pause_at(FIXED + datetime.timedelta(minutes=26, seconds=30)); snap("mola")
     pg.clock.resume()
-    pg.goto(base + "/ben"); pg.wait_for_selector("[data-test=panel-focus]"); snap("ben")
+    pg.goto(base + "/ben"); pg.wait_for_selector("[data-test=ben-bu-hafta]"); snap("ben")
     b.close()
 
 def diff_ratio(a, b):
