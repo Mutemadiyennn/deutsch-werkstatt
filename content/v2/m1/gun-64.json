@@ -1,0 +1,1477 @@
+{
+ "schema": 1,
+ "id": "m1:gun:64",
+ "day": 64,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Nerede, nereye: auf dem Tisch, auf den Tisch",
+ "goal_tr": "Kantinde mola verirsin. Bir şeyin nerede olduğunu ve nereye konduğunu söylersin.",
+ "can_do": {
+  "id": "cd:m1:64",
+  "tr": "Kantinde bir şeyin nerede olduğunu sorar, nereye koyduğumu söylerim."
+ },
+ "unit": "u:a2:64",
+ "arm": "kafe",
+ "place": "pl:firma",
+ "characters": [
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:wimmer",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-02:t1"
+ ],
+ "yeni_kartlar": [
+  "lx:Hunger",
+  "lx:Pause",
+  "lx:Schicht",
+  "lx:Kantine",
+  "lx:Speisekarte",
+  "lx:salzig",
+  "lx:Löffel",
+  "lx:Gabel"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:64:h1",
+   "title_tr": "Saat on iki buçuk: acıktım",
+   "kartlar": [
+    "lx:Hunger",
+    "lx:Pause",
+    "lx:Schicht"
+   ],
+   "kaliplar": [
+    {
+     "de": "Machen wir um … Pause?",
+     "tr": "Saat …'de mola verelim mi?"
+    },
+    {
+     "de": "Meine Schicht ist um … zu Ende.",
+     "tr": "Vardiyam saat …'de bitiyor."
+    },
+    {
+     "de": "Hast du auch großen Hunger? – Ja, großen Hunger!",
+     "tr": "Sen de çok aç mısın? – Evet, çok açım!"
+    },
+    {
+     "de": "Ich habe nur eine halbe Stunde Pause.",
+     "tr": "Sadece yarım saat molam var."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Hunger",
+     "de": "Ich habe großen Hunger, weil ich nichts gegessen habe.",
+     "tr": "Çok açım, çünkü hiçbir şey yemedim.",
+     "accepted": [
+      "Ich habe großen Hunger, weil ich nichts gegessen habe.",
+      "Ich habe großen Hunger, weil ich noch nichts gegessen habe.",
+      "Weil ich nichts gegessen habe, habe ich großen Hunger."
+     ]
+    },
+    {
+     "kart": "lx:Hunger",
+     "de": "Hast du noch keinen Hunger? Es ist schon halb eins.",
+     "tr": "Hâlâ acıkmadın mı? Saat on iki buçuk oldu bile.",
+     "accepted": [
+      "Hast du noch keinen Hunger? Es ist schon halb eins.",
+      "Hast du keinen Hunger? Es ist schon halb eins.",
+      "Hast du noch keinen Hunger? Es ist schon zwölf Uhr dreißig."
+     ]
+    },
+    {
+     "kart": "lx:Pause",
+     "de": "Machen wir um zwölf Pause?",
+     "tr": "Saat on ikide mola verelim mi?",
+     "accepted": [
+      "Machen wir um zwölf Pause?",
+      "Machen wir um zwölf Uhr Pause?",
+      "Machen wir um zwölf eine Pause?"
+     ]
+    },
+    {
+     "kart": "lx:Pause",
+     "de": "Ich habe heute nur eine halbe Stunde Pause.",
+     "tr": "Bugün sadece yarım saat molam var.",
+     "accepted": [
+      "Ich habe heute nur eine halbe Stunde Pause.",
+      "Heute habe ich nur eine halbe Stunde Pause.",
+      "Ich habe heute nur dreißig Minuten Pause."
+     ]
+    },
+    {
+     "kart": "lx:Schicht",
+     "de": "Meine Schicht ist um zwei zu Ende.",
+     "tr": "Vardiyam saat ikide bitiyor.",
+     "accepted": [
+      "Meine Schicht ist um zwei zu Ende.",
+      "Um zwei ist meine Schicht zu Ende.",
+      "Meine Schicht ist um zwei Uhr zu Ende."
+     ]
+    },
+    {
+     "kart": "lx:Schicht",
+     "de": "Diese Woche habe ich die Schicht von sechs bis zwei.",
+     "tr": "Bu hafta altıdan ikiye kadar olan vardiyadayım.",
+     "accepted": [
+      "Diese Woche habe ich die Schicht von sechs bis zwei.",
+      "Ich habe diese Woche die Schicht von sechs bis zwei.",
+      "Diese Woche habe ich die Schicht von sechs bis vierzehn Uhr."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Firmada saat on iki buçuk. Tobi masanın yanına geliyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Mahlzeit! Hast du auch so Hunger?",
+      "tr": "İyi öğlenler! Sen de böyle aç mısın?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, großen Hunger! Machen wir jetzt Pause?",
+      "tr": "Evet, çok açım! Şimdi mola verelim mi?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Klar. Ich habe heute die Schicht von sechs bis zwei.",
+      "tr": "Tabii. Bugün altıdan ikiye vardiyadayım."
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi'nin vardiyası saat kaçta bitiyor?",
+     "opts": [
+      "İkide",
+      "Altıda",
+      "On ikide"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:64:h2",
+   "title_tr": "Kantinde: nerede?",
+   "kartlar": [
+    "lx:Kantine",
+    "lx:Speisekarte",
+    "lx:salzig"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich gehe in die … – Ich bin in der …",
+     "tr": "…'e gidiyorum. – …'deyim."
+    },
+    {
+     "de": "… liegt unter dem Tisch.",
+     "tr": "… masanın altında."
+    },
+    {
+     "de": "Was gibt es heute? – Heute gibt es …",
+     "tr": "Bugün ne var? – Bugün … var."
+    },
+    {
+     "de": "… sitzt in der Kantine am Fenster.",
+     "tr": "… kantinde, pencerenin yanında oturuyor."
+    },
+    {
+     "de": "… liegt neben dem Brot. – … ist neben der Tür.",
+     "tr": "… ekmeğin yanında duruyor. – … kapının yanında."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Kantine",
+     "de": "Ich gehe jetzt in die Kantine. Kommst du mit?",
+     "tr": "Şimdi kantine gidiyorum. Geliyor musun?",
+     "accepted": [
+      "Ich gehe jetzt in die Kantine. Kommst du mit?",
+      "Ich gehe jetzt in die Kantine, kommst du mit?",
+      "Ich gehe in die Kantine. Kommst du mit?"
+     ]
+    },
+    {
+     "kart": "lx:Kantine",
+     "de": "Derya sitzt schon in der Kantine am Fenster.",
+     "tr": "Derya çoktan kantinde, pencerenin yanında oturuyor.",
+     "accepted": [
+      "Derya sitzt schon in der Kantine am Fenster.",
+      "Derya sitzt schon in der Kantine, am Fenster.",
+      "Derya ist schon in der Kantine am Fenster."
+     ]
+    },
+    {
+     "kart": "lx:Speisekarte",
+     "de": "Die Speisekarte liegt auf dem Tisch neben dem Brot.",
+     "tr": "Yemek listesi masada, ekmeğin yanında.",
+     "accepted": [
+      "Die Speisekarte liegt auf dem Tisch neben dem Brot.",
+      "Die Speisekarte liegt auf dem Tisch, neben dem Brot.",
+      "Die Speisekarte ist auf dem Tisch neben dem Brot."
+     ]
+    },
+    {
+     "kart": "lx:Speisekarte",
+     "de": "Was steht heute auf der Speisekarte?",
+     "tr": "Bugün yemek listesinde ne var?",
+     "accepted": [
+      "Was steht heute auf der Speisekarte?",
+      "Was steht denn heute auf der Speisekarte?",
+      "Was steht auf der Speisekarte heute?"
+     ]
+    },
+    {
+     "kart": "lx:salzig",
+     "de": "Das Fleisch ist heute zu salzig.",
+     "tr": "Et bugün fazla tuzlu.",
+     "accepted": [
+      "Das Fleisch ist heute zu salzig.",
+      "Heute ist das Fleisch zu salzig.",
+      "Das Fleisch ist heute leider zu salzig."
+     ]
+    },
+    {
+     "kart": "lx:salzig",
+     "de": "Das Gemüse ist gut, aber das Fleisch ist zu salzig.",
+     "tr": "Sebze iyi, ama et fazla tuzlu.",
+     "accepted": [
+      "Das Gemüse ist gut, aber das Fleisch ist zu salzig.",
+      "Das Gemüse ist gut. Aber das Fleisch ist zu salzig.",
+      "Das Gemüse ist gut, aber das Fleisch ist heute zu salzig."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Ioana bugün öğle arasında seni iş yerinde ziyaret ediyor. Birlikte kantine giriyorsunuz.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Hallo! Ich bin zum ersten Mal hier. Wo ist die Speisekarte?",
+      "tr": "Merhaba! Buraya ilk kez geliyorum. Yemek listesi nerede?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Sie liegt da, auf dem Tisch neben der Tür.",
+      "tr": "Şurada, kapının yanındaki masada."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Danke! Und wie ist das Fleisch?",
+      "tr": "Sağ ol! Et nasıl?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ein bisschen salzig. Nimm lieber das Gemüse.",
+      "tr": "Biraz tuzlu. Sen en iyisi sebzeyi al."
+     }
+    ],
+    "soru": {
+     "q_tr": "Yemek listesi nerede?",
+     "opts": [
+      "Kapının yanındaki masada",
+      "Duvarda",
+      "Mutfakta"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:64:h3",
+   "title_tr": "Masayı toplamak: nereye?",
+   "kartlar": [
+    "lx:Löffel",
+    "lx:Gabel"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wohin kommen die …?",
+     "tr": "… nereye konuyor?"
+    },
+    {
+     "de": "Ich bringe … in die Küche.",
+     "tr": "…'i mutfağa götürüyorum."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Löffel",
+     "de": "Mein Löffel liegt unter dem Tisch.",
+     "tr": "Kaşığım masanın altında.",
+     "accepted": [
+      "Mein Löffel liegt unter dem Tisch.",
+      "Mein Löffel ist unter dem Tisch.",
+      "Unter dem Tisch liegt mein Löffel."
+     ]
+    },
+    {
+     "kart": "lx:Löffel",
+     "de": "Ich bringe die Löffel in die Küche.",
+     "tr": "Kaşıkları mutfağa götürüyorum.",
+     "accepted": [
+      "Ich bringe die Löffel in die Küche.",
+      "Ich bringe die Löffel jetzt in die Küche.",
+      "Die Löffel bringe ich in die Küche."
+     ]
+    },
+    {
+     "kart": "lx:Gabel",
+     "de": "Wohin kommen die Gabeln? – In das Regal neben der Tür.",
+     "tr": "Çatallar nereye konuyor? – Kapının yanındaki rafa.",
+     "accepted": [
+      "Wohin kommen die Gabeln? – In das Regal neben der Tür.",
+      "Wohin kommen die Gabeln? – Ins Regal neben der Tür.",
+      "Wohin kommen die Gabeln? In das Regal neben der Tür."
+     ]
+    },
+    {
+     "kart": "lx:Gabel",
+     "de": "Die Gabeln sind im Regal neben der Tür.",
+     "tr": "Çatallar kapının yanındaki rafta.",
+     "accepted": [
+      "Die Gabeln sind im Regal neben der Tür.",
+      "Die Gabeln liegen im Regal neben der Tür.",
+      "Im Regal neben der Tür sind die Gabeln."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Yemek bitti. Derya tepsisini kaldırıyor, sen de yardım ediyorsun.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Wohin kommen die Tassen?",
+      "tr": "Fincanlar nereye konuyor?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "In das Regal neben der Tür. Und die Löffel bringe ich in die Küche.",
+      "tr": "Kapının yanındaki rafa. Kaşıkları da ben mutfağa götürürüm."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Danke! Da liegt noch eine Gabel unter dem Tisch.",
+      "tr": "Sağ ol! Masanın altında bir çatal daha var."
+     }
+    ],
+    "soru": {
+     "q_tr": "Fincanlar nereye konuyor?",
+     "opts": [
+      "Kapının yanındaki rafa",
+      "Mutfağa",
+      "Masaya"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:64:v1",
+  "title_tr": "Kantinde öğle arası",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Kantin. Derya elinde tepsiyle masaların arasında yürüyor.",
+    "de": "Mahlzeit! Wo sitzt ihr heute?",
+    "tr": "İyi öğlenler! Bugün nerede oturuyorsunuz?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi pencerenin yanındaki masadan el sallıyor.",
+    "de": "Hier, am Fenster. Der Platz neben mir ist frei.",
+    "tr": "Burada, pencerenin yanında. Yanımdaki yer boş."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya tepsisini masaya bırakıyor.",
+    "de": "Super. Was gibt es heute? Ich habe die Speisekarte nicht gesehen.",
+    "tr": "Süper. Bugün ne var? Yemek listesini görmedim."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kapıyı gösteriyor.",
+    "de": "Die Speisekarte steht da, neben der Tür. Heute gibt es Fleisch und Gemüse.",
+    "tr": "Yemek listesi şurada, kapının yanında. Bugün et ve sebze var."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya kaşığını alıyor.",
+    "de": "Und? Ist das Fleisch gut?",
+    "tr": "Eee? Et iyi mi?"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi yüzünü buruşturuyor.",
+    "de": "Es ist ein bisschen salzig.",
+    "tr": "Biraz tuzlu."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya tepsisine bakıyor.",
+    "de": "Ich habe keine Gabel! Wo sind die Gabeln?",
+    "tr": "Çatalım yok! Çatallar nerede?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi başını çeviriyor.",
+    "de": "Im Regal, gleich neben den Tassen.",
+    "tr": "Rafta, fincanların hemen yanında."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer masanın yanından geçiyor, eğilip masanın altına bakıyor.",
+    "de": "Guten Appetit! Herr Lechner, ist das Ihr Handy? Es liegt unter dem Tisch.",
+    "tr": "Afiyet olsun! Lechner Bey, bu sizin telefonunuz mu? Masanın altında duruyor."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi telefonunu alıyor, rahatlıyor.",
+    "de": "Danke! Ich habe es schon lange gesucht.",
+    "tr": "Teşekkürler! Uzun zamandır arıyordum."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer saatine bakıyor.",
+    "de": "Und nicht vergessen: Um eins kommen Sie bitte in mein Büro.",
+    "tr": "Bir de unutmayın: Saat birde lütfen odama gelin."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi Derya'ya bakıp omuz silkiyor.",
+    "de": "Klar, Herr Wimmer. Dann ist meine Pause heute kurz.",
+    "tr": "Tabii, Wimmer Bey. O zaman bugün molam kısa."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Kantinde ne konuşuluyor?",
+     "opts": [
+      "Yemek ve eşyalar nerede",
+      "Yeni bir proje",
+      "Hafta sonu"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s4",
+      "s7",
+      "s8"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Yemek listesi nerede?",
+      "opts": [
+       "Kapının yanında",
+       "Masanın altında",
+       "Rafta"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi'nin telefonu nerede?",
+      "opts": [
+       "Masanın altında",
+       "Rafta",
+       "Ofiste"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi saat birde nereye gidecek?",
+      "opts": [
+       "Herr Wimmer'in odasına",
+       "Kantine",
+       "Eve"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s6",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "salzig",
+       "süß",
+       "kalt"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s4",
+      "seviye": "orta",
+      "de": "Die Speisekarte steht da, neben der ___. Heute gibt es Fleisch und Gemüse.",
+      "accepted": [
+       "Tür",
+       "tür",
+       "Tür."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s9",
+      "seviye": "zor",
+      "banka": [
+       "Es",
+       "liegt",
+       "unter",
+       "dem",
+       "Tisch",
+       "auf",
+       "den"
+      ],
+      "accepted": [
+       "Es liegt unter dem Tisch.",
+       "es liegt unter dem tisch",
+       "Es liegt unter dem Tisch"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s11",
+      "seviye": "usta",
+      "accepted": [
+       "Und nicht vergessen: Um eins kommen Sie bitte in mein Büro.",
+       "und nicht vergessen um eins kommen sie bitte in mein büro",
+       "Und nicht vergessen: Um eins kommen Sie bitte in mein Büro"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Derya'ya iki kısa cümleyle söyle: Yemek listesi nerede, çatallar nerede?",
+      "ornek_de": "Die Speisekarte steht neben der Tür. Die Gabeln sind im Regal.",
+      "zorunlu": [
+       "neben der Tür",
+       "im Regal"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s8"
+    ],
+    "cevapla": {
+     "id": "m1:64:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya sana soruyor: Ekmek nerede? Ekmek masada, kahvenin yanında.",
+     "prompt_de": "Wo ist das Brot?",
+     "accepted": [
+      "Das Brot liegt auf dem Tisch, neben dem Kaffee.",
+      "Es liegt auf dem Tisch neben dem Kaffee.",
+      "Auf dem Tisch, neben dem Kaffee.",
+      "Das Brot ist auf dem Tisch neben dem Kaffee.",
+      "Da, auf dem Tisch neben dem Kaffee."
+     ],
+     "why_tr": "Nerede sorusuna **auf dem Tisch** dersin: masada."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:64:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Derya'dan sesli mesaj",
+   "ortam_tr": "Saat on iki. Derya toplantıda, sana kısa bir mesaj bırakmış.",
+   "speaker": "ch:aksoy",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, Derya hier.",
+     "tr": "Merhaba, ben Derya."
+    },
+    {
+     "id": "c2",
+     "de": "Ich bin noch in der Besprechung, sie dauert bis halb eins.",
+     "tr": "Hâlâ toplantıdayım, saat on iki buçuğa kadar sürüyor."
+    },
+    {
+     "id": "c3",
+     "de": "Geht ihr schon in die Kantine?",
+     "tr": "Siz şimdiden kantine mi gidiyorsunuz?"
+    },
+    {
+     "id": "c4",
+     "de": "Dann bring mir bitte einen Kaffee an meinen Platz am Fenster.",
+     "tr": "O zaman lütfen pencerenin yanındaki yerime bir kahve getir."
+    },
+    {
+     "id": "c5",
+     "de": "Danke, bis gleich!",
+     "tr": "Sağ ol, birazdan görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Derya ne istiyor?",
+      "opts": [
+       "Ona bir kahve getirmeni",
+       "Toplantıya gelmeni",
+       "Onu aramanı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Toplantı ne zamana kadar sürüyor?",
+       "opts": [
+        "On iki buçuğa kadar",
+        "Bire kadar",
+        "İkiye kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kahveyi nereye koymalısın?",
+       "opts": [
+        "Derya'nın pencere kenarındaki yerine",
+        "Mutfağa",
+        "Kapının yanına"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Besprechung",
+        "Pause",
+        "Schicht"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Geht ihr schon in die ___?",
+       "accepted": [
+        "Kantine",
+        "kantine",
+        "Kantine."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "bin",
+        "noch",
+        "in",
+        "der",
+        "Besprechung",
+        "sie",
+        "dauert",
+        "bis",
+        "halb",
+        "eins",
+        "die",
+        "um"
+       ],
+       "accepted": [
+        "Ich bin noch in der Besprechung, sie dauert bis halb eins.",
+        "ich bin noch in der besprechung sie dauert bis halb eins",
+        "Ich bin noch in der Besprechung, sie dauert bis halb eins"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Dann bring mir bitte einen Kaffee an meinen Platz am Fenster.",
+        "dann bring mir bitte einen kaffee an meinen platz am fenster",
+        "Dann bring mir bitte einen Kaffee an meinen Platz am Fenster"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Tobi'ye Derya'nın isteğini iki kısa cümleyle anlat.",
+       "ornek_de": "Derya ist noch in der Besprechung. Wir stellen einen Kaffee auf ihren Platz.",
+       "zorunlu": [
+        "Besprechung",
+        "Kaffee"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:64:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya'ya kısa bir mesajla cevap ver: Tamam, kahveyi pencerenin yanındaki yerine koyuyorsun.",
+      "prompt_de": "Kannst du mir einen Kaffee bringen?",
+      "accepted": [
+       "Ja, klar! Ich stelle den Kaffee auf deinen Platz am Fenster.",
+       "Klar, ich stelle ihn auf deinen Platz am Fenster.",
+       "Okay, der Kaffee steht dann auf deinem Platz am Fenster.",
+       "Ja, mache ich. Ich stelle ihn auf deinen Platz.",
+       "Kein Problem, ich stelle den Kaffee auf deinen Platz am Fenster."
+      ],
+      "why_tr": "Nereye sorusunda **auf deinen Platz** dersin: senin yerine."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:64:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Derya'ya kahve al, pencere kenarındaki yerine koy.",
+     "Derya'yı toplantıdan çağır.",
+     "Kahveyi mutfağa götür."
+    ],
+    "ans": 0,
+    "why_tr": "Derya bir kahve istiyor ve yerini söylüyor: pencerenin yanı.",
+    "kanit": [
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:64:a2",
+   "tur": "anons",
+   "title_tr": "Kantinde anons",
+   "ortam_tr": "Kantinde sıradasın. Hoparlörden bir anons geliyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Liebe Kolleginnen und Kollegen, hier ist die Kantine.",
+     "tr": "Sevgili çalışma arkadaşlarımız, burası kantin."
+    },
+    {
+     "id": "c2",
+     "de": "Heute gibt es Fleisch mit Gemüse und Kartoffeln.",
+     "tr": "Bugün sebzeli et ve patates var."
+    },
+    {
+     "id": "c3",
+     "de": "Die Kantine ist heute nur bis halb zwei offen.",
+     "tr": "Kantin bugün sadece bir buçuğa kadar açık."
+    },
+    {
+     "id": "c4",
+     "de": "Bitte stellen Sie Ihre Tasse in das Regal neben der Tür.",
+     "tr": "Lütfen fincanınızı kapının yanındaki rafa koyun."
+    },
+    {
+     "id": "c5",
+     "de": "Vielen Dank und guten Appetit!",
+     "tr": "Çok teşekkürler, afiyet olsun!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Anons ne hakkında?",
+      "opts": [
+       "Bugünkü yemek ve kantinin kuralları",
+       "Bir toplantı",
+       "Yeni bir vardiya"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Kantin bugün saat kaça kadar açık?",
+       "opts": [
+        "Bir buçuğa kadar",
+        "İkiye kadar",
+        "On ikiye kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Fincanını nereye koymalısın?",
+       "opts": [
+        "Kapının yanındaki rafa",
+        "Masada bırakırsın",
+        "Mutfağa"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "offen",
+        "voll",
+        "frei"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Bitte stellen Sie Ihre Tasse in das ___ neben der Tür.",
+       "accepted": [
+        "Regal",
+        "regal",
+        "Regal."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Die",
+        "Kantine",
+        "ist",
+        "heute",
+        "nur",
+        "bis",
+        "halb",
+        "zwei",
+        "offen",
+        "um",
+        "eins"
+       ],
+       "accepted": [
+        "Die Kantine ist heute nur bis halb zwei offen.",
+        "die kantine ist heute nur bis halb zwei offen",
+        "Die Kantine ist heute nur bis halb zwei offen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Bitte stellen Sie Ihre Tasse in das Regal neben der Tür.",
+        "bitte stellen sie ihre tasse in das regal neben der tür",
+        "Bitte stellen Sie Ihre Tasse in das Regal neben der Tür"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kantinde yeni bir iş arkadaşına iki kısa cümleyle anlat.",
+       "ornek_de": "Die Kantine ist heute nur bis halb zwei offen. Die Tasse kommt in das Regal neben der Tür.",
+       "zorunlu": [
+        "halb zwei",
+        "Regal"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:64:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Yeni bir iş arkadaşı fincanını elinde tutuyor ve soruyor. Kapının yanındaki rafa.",
+      "prompt_de": "Entschuldigung, wohin kommt die Tasse?",
+      "accepted": [
+       "In das Regal neben der Tür.",
+       "Ins Regal neben der Tür.",
+       "Die Tasse kommt in das Regal neben der Tür.",
+       "Da, in das Regal neben der Tür.",
+       "Stellen Sie sie bitte in das Regal neben der Tür."
+      ],
+      "why_tr": "Nereye sorusuna **in das Regal** dersin: rafa."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:64:a2:e1",
+    "k": "pick",
+    "q_tr": "Yemekten sonra ne yaparsın?",
+    "opts": [
+     "Fincanı kapının yanındaki rafa koyarım.",
+     "Fincanı masada bırakırım.",
+     "Fincanı mutfağa götürürüm."
+    ],
+    "ans": 0,
+    "why_tr": "Anons fincanların kapının yanındaki rafa konduğunu söylüyor.",
+    "kanit": [
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:64:g1",
+   "de": "Löffel",
+   "dogru_img": "metal spoon on a white table",
+   "celdirici_img": [
+    "fork on a table",
+    "knife on a table",
+    "cup of coffee"
+   ]
+  },
+  {
+   "id": "m1:64:g2",
+   "de": "Gabel",
+   "dogru_img": "fork on a white table",
+   "celdirici_img": [
+    "spoon on a table",
+    "plate",
+    "glass of water"
+   ]
+  },
+  {
+   "id": "m1:64:g3",
+   "de": "Speisekarte",
+   "dogru_img": "menu card on a canteen table",
+   "celdirici_img": [
+    "newspaper",
+    "calendar on a wall",
+    "shopping list"
+   ]
+  },
+  {
+   "id": "m1:64:g4",
+   "de": "Kantine",
+   "dogru_img": "company canteen with long tables and trays",
+   "celdirici_img": [
+    "restaurant at night",
+    "office with desks",
+    "kitchen at home"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:64:p1",
+  "title_tr": "Derya kantine geç geliyor",
+  "durum_tr": "Kantindesin, pencerenin yanında oturuyorsun. Yanındaki yer boş. Bugün et ve sebze var, et biraz tuzlu. Çatallar rafta, fincanların yanında. Vardiyan ikide bitiyor.",
+  "karsi": "ch:aksoy",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Hallo! Ist der Platz hier noch frei?",
+    "tr": "Merhaba! Buradaki yer boş mu?",
+    "secenekler": [
+     {
+      "de": "Ja, klar! Der Platz neben mir ist frei.",
+      "tr": "Evet, tabii! Yanımdaki yer boş.",
+      "accepted": [
+       "Ja, klar! Der Platz neben mir ist frei.",
+       "Ja, der Platz neben mir ist frei.",
+       "Hallo! Ja, der Platz ist frei."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Kısa ve sıcak bir cevap."
+     },
+     {
+      "de": "Ich habe großen Hunger.",
+      "tr": "Çok açım.",
+      "accepted": [
+       "Ich habe großen Hunger.",
+       "Ich habe Hunger.",
+       "Großen Hunger!"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Derya yeri soruyor. Önce cevap ver: **Ja, der Platz ist frei.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Danke! Was gibt es denn heute?",
+    "tr": "Sağ ol! Bugün ne var?",
+    "secenekler": [
+     {
+      "de": "Heute gibt es Fleisch und Gemüse. Die Speisekarte steht neben der Tür.",
+      "tr": "Bugün et ve sebze var. Yemek listesi kapının yanında.",
+      "accepted": [
+       "Heute gibt es Fleisch und Gemüse. Die Speisekarte steht neben der Tür.",
+       "Fleisch und Gemüse. Die Speisekarte steht neben der Tür.",
+       "Heute gibt es Fleisch und Gemüse. Die Speisekarte ist neben der Tür."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Nerede sorusuna **neben der Tür** dedin."
+     },
+     {
+      "de": "Die Speisekarte steht neben die Tür.",
+      "tr": "Yemek listesi kapının yanına duruyor.",
+      "accepted": [
+       "Die Speisekarte steht neben die Tür.",
+       "Die Speisekarte ist neben die Tür.",
+       "Neben die Tür."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Liste orada duruyor, hareket yok. O zaman **neben der Tür** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Und wie ist das Fleisch heute?",
+    "tr": "Peki et bugün nasıl?",
+    "secenekler": [
+     {
+      "de": "Es ist ein bisschen salzig. Nimm lieber das Gemüse.",
+      "tr": "Biraz tuzlu. Sen en iyisi sebzeyi al.",
+      "accepted": [
+       "Es ist ein bisschen salzig. Nimm lieber das Gemüse.",
+       "Ein bisschen salzig. Nimm lieber das Gemüse.",
+       "Na ja, es ist ein bisschen salzig. Nimm lieber das Gemüse."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Dürüst söyledin ve bir öneri verdin."
+     },
+     {
+      "de": "Das Fleisch ist zu salzig, aber das Gemüse ist gut.",
+      "tr": "Et fazla tuzlu, ama sebze iyi.",
+      "accepted": [
+       "Das Fleisch ist zu salzig, aber das Gemüse ist gut.",
+       "Das Fleisch ist zu salzig, das Gemüse ist gut.",
+       "Zu salzig, aber das Gemüse ist gut."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **zu salzig**: fazla tuzlu."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Jetzt habe ich keine Gabel. Wo sind die Gabeln?",
+    "tr": "Şimdi de çatalım yok. Çatallar nerede?",
+    "secenekler": [
+     {
+      "de": "Die Gabeln sind im Regal, neben den Tassen.",
+      "tr": "Çatallar rafta, fincanların yanında.",
+      "accepted": [
+       "Die Gabeln sind im Regal, neben den Tassen.",
+       "Im Regal, neben den Tassen.",
+       "Die Gabeln liegen im Regal neben den Tassen."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Nerede sorusuna **im Regal** dersin."
+     },
+     {
+      "de": "In das Regal.",
+      "tr": "Rafa.",
+      "accepted": [
+       "In das Regal.",
+       "Ins Regal.",
+       "Die Gabeln sind in das Regal."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "**in das Regal** rafa demek, hareket var. Çatallar orada duruyor: **im Regal**."
+     },
+     {
+      "de": "Moment, ich bringe dir eine Gabel.",
+      "tr": "Bir saniye, sana bir çatal getiriyorum.",
+      "accepted": [
+       "Moment, ich bringe dir eine Gabel.",
+       "Moment, ich bringe dir schnell eine Gabel.",
+       "Warte, ich bringe dir eine Gabel."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok nazik. Yardım etmek de iyi bir cevap."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Danke! Wann ist deine Schicht heute zu Ende?",
+    "tr": "Sağ ol! Bugün vardiyan saat kaçta bitiyor?",
+    "secenekler": [
+     {
+      "de": "Um zwei. Dann gehe ich nach Hause.",
+      "tr": "İkide. Sonra eve gidiyorum.",
+      "accepted": [
+       "Um zwei. Dann gehe ich nach Hause.",
+       "Meine Schicht ist um zwei zu Ende. Dann gehe ich nach Hause.",
+       "Um zwei Uhr. Dann gehe ich nach Hause."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Saat ve plan, iki kısa cümle."
+     },
+     {
+      "de": "Um sechs.",
+      "tr": "Altıda.",
+      "accepted": [
+       "Um sechs.",
+       "Um sechs Uhr.",
+       "Meine Schicht ist um sechs zu Ende."
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "Altıda başladın, ikide bitiyor. **Um zwei** de."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Schön. Dann trinken wir morgen in der Pause einen Kaffee!",
+    "tr": "Güzel. O zaman yarın molada bir kahve içeriz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Derya'ya yer gösterdin, yemek listesinin ve çatalların nerede olduğunu söyledin. Nerede sorusuna doğru cevap verdin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Kantinin kapısındaki not",
+  "metin_de": "Liebe Kolleginnen und Kollegen! Die Kantine ist von elf bis zwei Uhr offen. Die Speisekarte für die Woche steht neben der Tür. Löffel und Gabeln liegen im Regal neben den Tassen. Bitte stellen Sie Ihre Tasse nach der Pause in das Regal neben der Tür. Brot steht auf jedem Tisch.",
+  "metin_tr": "Sevgili çalışma arkadaşlarımız! Kantin on birden ikiye kadar açık. Haftalık yemek listesi kapının yanında duruyor. Kaşıklar ve çatallar fincanların yanındaki rafta. Lütfen moladan sonra fincanınızı kapının yanındaki rafa koyun. Her masada ekmek var.",
+  "sorular": [
+   {
+    "id": "m1:64:o1",
+    "kind": "gist",
+    "q_tr": "Bu not ne hakkında?",
+    "opts": [
+     "Kantinin kuralları ve eşyaların yeri",
+     "Yeni vardiya saatleri",
+     "Bir doğum günü"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     3
+    ]
+   },
+   {
+    "id": "m1:64:o2",
+    "kind": "detail",
+    "q_tr": "Kantin saat kaçta kapanıyor?",
+    "opts": [
+     "İkide",
+     "On birde",
+     "Birde"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:64:o3",
+    "kind": "detail",
+    "q_tr": "Kaşıklar nerede?",
+    "opts": [
+     "Fincanların yanındaki rafta",
+     "Masada",
+     "Kapının yanında"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:64:o4",
+    "kind": "detail",
+    "q_tr": "Fincanını nereye koyarsın?",
+    "opts": [
+     "Kapının yanındaki rafa",
+     "Pencerenin yanına",
+     "Masaya"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:64:o5",
+    "k": "guided_response",
+    "situation_tr": "Tobi soruyor: Fincanım nereye konuyor? Notta okudun.",
+    "prompt_de": "Wohin kommt meine Tasse?",
+    "accepted": [
+     "In das Regal neben der Tür.",
+     "Ins Regal neben der Tür.",
+     "Deine Tasse kommt in das Regal neben der Tür.",
+     "Sie kommt in das Regal neben der Tür.",
+     "In das Regal, neben der Tür."
+    ],
+    "why_tr": "Nereye sorusu: **in das Regal**. Hareket var, rafa koyuyorsun."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:64:s",
+  "maddeler": [
+   {
+    "id": "m1:64:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Die Speisekarte liegt unter der Tasche.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Speisekarte liegt unter der Tasche.",
+     "die speisekarte liegt unter der tasche",
+     "Die Speisekarte liegt unter der Tasche"
+    ],
+    "why_tr": "**unter der Tasche**: çantanın altında."
+   },
+   {
+    "id": "m1:64:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Wir gehen in der Pause in die Kantine.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir gehen in der Pause in die Kantine.",
+     "wir gehen in der pause in die kantine",
+     "Wir gehen in der Pause in die Kantine"
+    ],
+    "why_tr": "**in der Pause** molada, **in die Kantine** kantine."
+   },
+   {
+    "id": "m1:64:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Meine Schicht fängt morgen um sechs an.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Meine Schicht fängt morgen um sechs an.",
+     "meine schicht fängt morgen um sechs an",
+     "Meine Schicht fängt morgen um sechs an"
+    ],
+    "why_tr": "**fängt** ve **an** birlikte başlıyor demek. **an** en sonda."
+   },
+   {
+    "id": "m1:64:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Das Brot war gestern zu salzig.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Brot war gestern zu salzig.",
+     "das brot war gestern zu salzig",
+     "Das Brot war gestern zu salzig"
+    ],
+    "why_tr": "**zu salzig**: fazla tuzlu."
+   },
+   {
+    "id": "m1:64:s5",
+    "k": "tr_de",
+    "tr": "Çatal masanın altında.",
+    "accepted": [
+     "Die Gabel liegt unter dem Tisch.",
+     "Die Gabel ist unter dem Tisch.",
+     "Unter dem Tisch liegt die Gabel."
+    ],
+    "why_tr": "Nerede sorusu: **unter dem Tisch**."
+   },
+   {
+    "id": "m1:64:s6",
+    "k": "tr_de",
+    "tr": "Bir kaşık daha alabilir miyim?",
+    "accepted": [
+     "Kann ich noch einen Löffel haben?",
+     "Kann ich bitte noch einen Löffel haben?",
+     "Könnte ich noch einen Löffel haben?"
+    ],
+    "why_tr": "**noch einen Löffel**: bir kaşık daha."
+   },
+   {
+    "id": "m1:64:s7",
+    "k": "tr_de",
+    "tr": "Kantine gidiyorum.",
+    "accepted": [
+     "Ich gehe in die Kantine.",
+     "Ich gehe jetzt in die Kantine.",
+     "Ich gehe mal in die Kantine."
+    ],
+    "why_tr": "Nereye sorusu: **in die Kantine**."
+   },
+   {
+    "id": "m1:64:s8",
+    "k": "tr_de",
+    "tr": "Ne zaman mola veriyoruz?",
+    "accepted": [
+     "Wann machen wir Pause?",
+     "Wann machen wir eine Pause?",
+     "Wann haben wir Pause?"
+    ],
+    "why_tr": "Mola vermek: **Pause machen**."
+   },
+   {
+    "id": "m1:64:s9",
+    "k": "guided_response",
+    "situation_tr": "Tobi telefonda soruyor: Neredesin? Kantindesin, pencerenin yanında.",
+    "prompt_de": "Wo bist du gerade?",
+    "accepted": [
+     "Ich bin in der Kantine, am Fenster.",
+     "In der Kantine, am Fenster.",
+     "Ich sitze in der Kantine am Fenster.",
+     "Ich bin gerade in der Kantine am Fenster.",
+     "Ich bin in der Kantine. Ich sitze am Fenster."
+    ],
+    "why_tr": "Nerede sorusu: **in der Kantine**, **am Fenster**."
+   },
+   {
+    "id": "m1:64:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wohin gehst du jetzt?",
+    "speed": "normal",
+    "situation_tr": "Derya soruyor. Kantine gidiyorsun, çok açsın.",
+    "accepted": [
+     "Ich gehe in die Kantine, ich habe großen Hunger.",
+     "In die Kantine. Ich habe großen Hunger.",
+     "Ich gehe in die Kantine, weil ich großen Hunger habe.",
+     "In die Kantine, ich habe so Hunger.",
+     "Ich gehe jetzt in die Kantine. Ich habe Hunger."
+    ],
+    "why_tr": "Nereye sorusu: **in die Kantine**."
+   },
+   {
+    "id": "m1:64:s11",
+    "k": "guided_response",
+    "situation_tr": "Günün provası. Derya kantine geç geldi ve soruyor. Çatallar rafta, fincanların yanında.",
+    "prompt_de": "Ich habe keine Gabel. Wo sind die Gabeln?",
+    "accepted": [
+     "Sie sind im Regal neben den Tassen.",
+     "Im Regal, neben den Tassen.",
+     "Sie liegen im Regal neben den Tassen.",
+     "Die Gabeln liegen im Regal, neben den Tassen.",
+     "Da, im Regal neben den Tassen."
+    ],
+    "why_tr": "Nerede sorusu: **im Regal**, **neben den Tassen**."
+   }
+  ],
+  "sesli": [
+   "m1:64:s9",
+   "m1:64:s10"
+  ],
+  "dikte": [
+   "m1:64:s1",
+   "m1:64:s2",
+   "m1:64:s3",
+   "m1:64:s4"
+  ]
+ }
+}

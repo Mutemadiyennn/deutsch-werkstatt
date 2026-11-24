@@ -1,0 +1,1375 @@
+{
+ "schema": 1,
+ "id": "m1:gun:67",
+ "day": 67,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Koymak ve asmak geçmişte: gestellt, gelegt, gehängt",
+ "goal_tr": "Kaybolan bir eşyayı sorarsın. Bir şeyi nereye koyduğunu ve astığını söylersin.",
+ "can_do": {
+  "id": "cd:m1:67",
+  "tr": "Kaybolan bir eşyayı sorarım ve nereye koyduğumu söylerim."
+ },
+ "unit": "u:a2:67",
+ "arm": "telefon",
+ "place": "pl:haus",
+ "characters": [
+  "ch:brandl",
+  "ch:pichler",
+  "ch:lechner",
+  "ch:wimmer",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-02:t4"
+ ],
+ "yeni_kartlar": [
+  "lx:sorgen",
+  "lx:Ding",
+  "lx:Welt",
+  "lx:hin",
+  "lx:rein",
+  "lx:fühlen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:67:h1",
+   "title_tr": "Sabah ofiste: kim neyi hallediyor?",
+   "kartlar": [
+    "lx:sorgen",
+    "lx:Ding",
+    "lx:Welt"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wer sorgt für …? – Wir sorgen für … – Ich sorge für …",
+     "tr": "… işini kim üstleniyor? – … bizde. – … bende."
+    },
+    {
+     "de": "Das ist nicht das Ende der Welt.",
+     "tr": "Dünyanın sonu değil."
+    },
+    {
+     "de": "Leute aus der ganzen Welt",
+     "tr": "dünyanın her yerinden insanlar"
+    },
+    {
+     "de": "Grüß Gott! – Grüß Gott, hier ist …",
+     "tr": "İyi günler! Bavyera'da günün her saatinde böyle selam verilir. – İyi günler, ben … (telefonda)"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:sorgen",
+     "de": "Wer sorgt am Freitag für den Kaffee?",
+     "tr": "Cuma günü kahveyi kim üstleniyor?",
+     "accepted": [
+      "Wer sorgt am Freitag für den Kaffee?",
+      "Wer sorgt am Freitag für Kaffee?",
+      "Wer sorgt denn am Freitag für den Kaffee?"
+     ]
+    },
+    {
+     "kart": "lx:sorgen",
+     "de": "Derya und ich sorgen für die Musik.",
+     "tr": "Müziği Derya'yla ben üstleniyoruz.",
+     "accepted": [
+      "Derya und ich sorgen für die Musik.",
+      "Derya und ich, wir sorgen für die Musik.",
+      "Für die Musik sorgen Derya und ich."
+     ]
+    },
+    {
+     "kart": "lx:Ding",
+     "de": "Dieses Ding am Drucker ist neu. Wie geht das?",
+     "tr": "Yazıcıdaki bu şey yeni. Bu nasıl çalışıyor?",
+     "accepted": [
+      "Dieses Ding am Drucker ist neu. Wie geht das?",
+      "Das Ding am Drucker ist neu. Wie geht das?",
+      "Dieses Ding am Drucker ist neu. Wie funktioniert das?"
+     ]
+    },
+    {
+     "kart": "lx:Ding",
+     "de": "Nach der Arbeit muss ich noch ein paar Dinge machen.",
+     "tr": "İşten sonra daha birkaç şey yapmam gerek.",
+     "accepted": [
+      "Nach der Arbeit muss ich noch ein paar Dinge machen.",
+      "Ich muss nach der Arbeit noch ein paar Dinge machen.",
+      "Nach der Arbeit muss ich noch ein paar Sachen machen."
+     ]
+    },
+    {
+     "kart": "lx:Welt",
+     "de": "Der Drucker geht nicht, aber das ist nicht das Ende der Welt.",
+     "tr": "Yazıcı çalışmıyor, ama dünyanın sonu değil.",
+     "accepted": [
+      "Der Drucker geht nicht, aber das ist nicht das Ende der Welt.",
+      "Der Drucker geht nicht. Aber das ist nicht das Ende der Welt.",
+      "Der Drucker geht nicht, aber das ist doch nicht das Ende der Welt."
+     ]
+    },
+    {
+     "kart": "lx:Welt",
+     "de": "In unserer Firma arbeiten Leute aus der ganzen Welt.",
+     "tr": "Firmamızda dünyanın her yerinden insanlar çalışıyor.",
+     "accepted": [
+      "In unserer Firma arbeiten Leute aus der ganzen Welt.",
+      "In unserer Firma arbeiten Leute aus aller Welt.",
+      "Bei uns in der Firma arbeiten Leute aus der ganzen Welt."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Perşembe sabahı. Herr Wimmer cuma günkü ekip kahvaltısını planlıyor.",
+    "satirlar": [
+     {
+      "r": "ch:wimmer",
+      "de": "Morgen frühstücken wir zusammen. Wer sorgt für den Kaffee?",
+      "tr": "Yarın birlikte kahvaltı yapıyoruz. Kahveyi kim üstleniyor?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Derya und ich sorgen für den Kaffee.",
+      "tr": "Kahveyi Derya'yla ben üstleniyoruz."
+     },
+     {
+      "r": "ch:wimmer",
+      "de": "Danke! Und Herr Lechner bringt das Brot.",
+      "tr": "Teşekkürler! Lechner Bey de ekmeği getiriyor."
+     }
+    ],
+    "soru": {
+     "q_tr": "Kahveyi kim getiriyor?",
+     "opts": [
+      "Sen ve Derya",
+      "Tobi",
+      "Herr Wimmer"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:67:h2",
+   "title_tr": "Telefonda: Frau Brandl nasıl?",
+   "kartlar": [
+    "lx:hin",
+    "lx:rein",
+    "lx:fühlen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wohin hast du … gelegt? – Wohin haben Sie … gelegt?",
+     "tr": "…'i nereye koydun? – …'i nereye koydunuz?"
+    },
+    {
+     "de": "Ich habe … gelegt. – Ich habe … gehängt. – Hast du … gehängt?",
+     "tr": "…'i …'e koydum. – …'i …'e astım. – …'i …'e astın mı?"
+    },
+    {
+     "de": "Ich rufe wegen der … an.",
+     "tr": "… için arıyorum."
+    },
+    {
+     "de": "Wie fühlen Sie sich? – Ich fühle mich …",
+     "tr": "Kendinizi nasıl hissediyorsunuz? – Kendimi … hissediyorum."
+    },
+    {
+     "de": "Wie fühlst du dich?",
+     "tr": "Kendini nasıl hissediyorsun?"
+    },
+    {
+     "de": "Komm rein!",
+     "tr": "Gel, içeri gir!"
+    },
+    {
+     "de": "Ich habe … auf deinen Tisch gelegt.",
+     "tr": "…'i senin masana koydum."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:hin",
+     "de": "Wo ist mein Schlüssel hin? Ich habe ihn doch auf den Tisch gelegt.",
+     "tr": "Anahtarım nereye gitti? Onu masaya koymuştum.",
+     "accepted": [
+      "Wo ist mein Schlüssel hin? Ich habe ihn doch auf den Tisch gelegt.",
+      "Wo ist denn mein Schlüssel hin? Ich habe ihn doch auf den Tisch gelegt.",
+      "Wo ist mein Schlüssel hin? Ich habe ihn auf den Tisch gelegt."
+     ]
+    },
+    {
+     "kart": "lx:hin",
+     "de": "Wo ist meine Jacke hin? Ich habe sie an die Tür gehängt.",
+     "tr": "Ceketim nereye gitti? Onu kapıya asmıştım.",
+     "accepted": [
+      "Wo ist meine Jacke hin? Ich habe sie an die Tür gehängt.",
+      "Wo ist denn meine Jacke hin? Ich habe sie an die Tür gehängt.",
+      "Wo ist meine Jacke hin? Ich habe sie doch an die Tür gehängt."
+     ]
+    },
+    {
+     "kart": "lx:hin",
+     "de": "Wo ist das Foto hin? – Ich habe es über das Sofa gehängt.",
+     "tr": "Fotoğraf nereye gitti? – Onu kanepenin üstüne astım.",
+     "accepted": [
+      "Wo ist das Foto hin? – Ich habe es über das Sofa gehängt.",
+      "Wo ist das Foto hin? Ich habe es über das Sofa gehängt.",
+      "Wo ist das Foto hin? – Ich habe es über das Sofa gehängt, schau!"
+     ]
+    },
+    {
+     "kart": "lx:rein",
+     "de": "Kommen Sie rein! Ich habe den Kaffee schon auf den Tisch gestellt.",
+     "tr": "Buyurun, içeri gelin! Kahveyi masaya koydum bile.",
+     "accepted": [
+      "Kommen Sie rein! Ich habe den Kaffee schon auf den Tisch gestellt.",
+      "Kommen Sie rein! Den Kaffee habe ich schon auf den Tisch gestellt.",
+      "Kommen Sie doch rein! Ich habe den Kaffee schon auf den Tisch gestellt."
+     ]
+    },
+    {
+     "kart": "lx:rein",
+     "de": "Komm rein! Hast du deine Jacke schon in den Schrank gehängt?",
+     "tr": "Gel içeri! Ceketini dolaba astın mı?",
+     "accepted": [
+      "Komm rein! Hast du deine Jacke schon in den Schrank gehängt?",
+      "Komm doch rein! Hast du deine Jacke schon in den Schrank gehängt?",
+      "Komm rein! Hast du die Jacke schon in den Schrank gehängt?"
+     ]
+    },
+    {
+     "kart": "lx:rein",
+     "de": "Kann ich kurz rein? Ich habe mein Handy auf deinen Tisch gelegt.",
+     "tr": "Bir dakika içeri girebilir miyim? Telefonumu senin masana koydum.",
+     "accepted": [
+      "Kann ich kurz rein? Ich habe mein Handy auf deinen Tisch gelegt.",
+      "Kann ich kurz rein? Ich habe das Handy auf deinen Tisch gelegt.",
+      "Darf ich kurz rein? Ich habe mein Handy auf deinen Tisch gelegt."
+     ]
+    },
+    {
+     "kart": "lx:fühlen",
+     "de": "Ich rufe wegen der Zähler an. Wie fühlen Sie sich heute, Frau Brandl?",
+     "tr": "Sayaçlar için arıyorum. Bugün kendinizi nasıl hissediyorsunuz, Frau Brandl?",
+     "accepted": [
+      "Ich rufe wegen der Zähler an. Wie fühlen Sie sich heute, Frau Brandl?",
+      "Ich rufe wegen der Zähler an. Wie fühlen Sie sich heute?",
+      "Ich rufe wegen der Zähler an. Frau Brandl, wie fühlen Sie sich heute?"
+     ]
+    },
+    {
+     "kart": "lx:fühlen",
+     "de": "Ich fühle mich müde, weil ich heute den Keller aufgeräumt habe.",
+     "tr": "Kendimi yorgun hissediyorum, çünkü bugün bodrumu topladım.",
+     "accepted": [
+      "Ich fühle mich müde, weil ich heute den Keller aufgeräumt habe.",
+      "Ich fühle mich müde, weil ich den Keller heute aufgeräumt habe.",
+      "Ich fühle mich so müde, weil ich heute den Keller aufgeräumt habe."
+     ]
+    },
+    {
+     "kart": "lx:fühlen",
+     "de": "Danke, ich fühle mich gut. Ich habe die Bilder im Flur an die Wand gehängt.",
+     "tr": "Teşekkürler, kendimi iyi hissediyorum. Resimleri koridorda duvara astım.",
+     "accepted": [
+      "Danke, ich fühle mich gut. Ich habe die Bilder im Flur an die Wand gehängt.",
+      "Ich fühle mich gut, danke. Ich habe die Bilder im Flur an die Wand gehängt.",
+      "Mir geht es gut, danke. Ich habe die Bilder im Flur an die Wand gehängt."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Akşam eve geliyorsun. Bugün sayaç günüydü: Frau Brandl ve Herr Pichler dairendeydi. Kapı çalıyor.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Frau Brandl! Kommen Sie rein!",
+      "tr": "Frau Brandl! Buyurun, içeri gelin!"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Nur kurz. Haben Sie alles gefunden?",
+      "tr": "Sadece bir dakika. Her şeyi buldunuz mu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nicht alles. Wohin haben Sie mein Handy gelegt?",
+      "tr": "Hepsini değil. Telefonumu nereye koydunuz?"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "In den Schrank in der Küche.",
+      "tr": "Mutfaktaki dolaba."
+     }
+    ],
+    "soru": {
+     "q_tr": "Telefon nerede?",
+     "opts": [
+      "Mutfaktaki dolapta",
+      "Askılıkta",
+      "Masada"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:67:v1",
+  "title_tr": "Komşular dairende neyi nereye koydu?",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Akşam. Apartman koridoru. Frau Brandl ve Herr Pichler kapının önünde bekliyor.",
+    "de": "Grüß Gott! Sind Sie wieder zu Hause?",
+    "tr": "İyi akşamlar! Eve döndünüz mü?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler elindeki kâğıda bakıyor.",
+    "de": "Der Mann von der Firma war heute um zehn da.",
+    "tr": "Firmadan adam bugün saat onda buradaydı."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler kâğıdı katlıyor.",
+    "de": "Alles war in Ordnung.",
+    "tr": "Her şey yolundaydı."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl gülümseyerek dolabı gösteriyor.",
+    "de": "Ihre Jacke habe ich in den Schrank gehängt.",
+    "tr": "Ceketinizi dolaba astım."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl ayakkabıları gösteriyor.",
+    "de": "Und Ihre Schuhe habe ich in den Flur gestellt.",
+    "tr": "Ayakkabılarınızı da koridora koydum."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler bodrum kapısını işaret ediyor.",
+    "de": "Vor dem Wasserzähler war ein Karton. Den habe ich in den Keller gestellt.",
+    "tr": "Su sayacının önünde bir koli vardı. Onu bodruma koydum."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl mutfağı gösteriyor.",
+    "de": "Ihren Schlüssel habe ich in den Schrank in der Küche gelegt.",
+    "tr": "Anahtarınızı mutfaktaki dolaba koydum."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler gülüyor.",
+    "de": "Frau Brandl, Sie sorgen wirklich für alles!",
+    "tr": "Frau Brandl, siz gerçekten her şeyle ilgileniyorsunuz!"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl elini sallıyor.",
+    "de": "Ich helfe gern.",
+    "tr": "Seve seve yardım ederim."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl sana dönüyor.",
+    "de": "Und wie ist die Wohnung? Gut?",
+    "tr": "Peki daire nasıl? İyi mi?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler merdivene yürüyor.",
+    "de": "So, ich muss weiter. Schönen Abend noch!",
+    "tr": "Neyse, benim gitmem lazım. İyi akşamlar!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Komşular ne anlatıyor?",
+     "opts": [
+      "Dairende neyi nereye koyduklarını",
+      "Yeni bir kuralı",
+      "Bir partiyi"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s4",
+      "s5",
+      "s7"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Ceketin nerede?",
+      "opts": [
+       "Dolapta",
+       "Koridorda yerde",
+       "Bodrumda"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Koli nerede?",
+      "opts": [
+       "Bodrumda",
+       "Mutfakta",
+       "Su sayacının önünde"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Anahtarın nerede?",
+      "opts": [
+       "Mutfaktaki dolapta",
+       "Askılıkta",
+       "Herr Pichler'de"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s7"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Jacke",
+       "Tasche",
+       "Brille"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s7",
+      "seviye": "orta",
+      "de": "Ihren Schlüssel habe ich in den ___ in der Küche gelegt.",
+      "accepted": [
+       "Schrank",
+       "schrank",
+       "Schrank."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s5",
+      "seviye": "zor",
+      "banka": [
+       "Und",
+       "Ihre",
+       "Schuhe",
+       "habe",
+       "ich",
+       "in",
+       "den",
+       "Flur",
+       "gestellt",
+       "im",
+       "Keller"
+      ],
+      "accepted": [
+       "Und Ihre Schuhe habe ich in den Flur gestellt.",
+       "und ihre schuhe habe ich in den flur gestellt",
+       "Und Ihre Schuhe habe ich in den Flur gestellt"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Ihre Jacke habe ich in den Schrank gehängt.",
+       "ihre jacke habe ich in den schrank gehängt",
+       "Ihre Jacke habe ich in den Schrank gehängt"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Ceketin ve anahtarın nerede? Almanca iki kısa cümleyle söyle.",
+      "ornek_de": "Die Jacke ist im Schrank. Der Schlüssel liegt im Schrank in der Küche.",
+      "zorunlu": [
+       "Jacke",
+       "Schlüssel"
+      ]
+     }
+    ],
+    "golge": [
+     "s3",
+     "s9"
+    ],
+    "cevapla": {
+     "id": "m1:67:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Frau Brandl soruyor: Daire nasıl? Memnunsun. Kısa cevap ver ve teşekkür et.",
+     "prompt_de": "Und wie ist die Wohnung? Gut?",
+     "accepted": [
+      "Sehr gut, danke! Vielen Dank für die Hilfe!",
+      "Gut, danke! Vielen Dank für Ihre Hilfe.",
+      "Sehr gut, danke! Ich fühle mich hier wie zu Hause.",
+      "Ja, ich fühle mich sehr gut. Vielen Dank für die Hilfe!",
+      "Danke, ich fühle mich sehr gut hier."
+     ],
+     "why_tr": "Kısa cevap ver ve teşekkür et: **Vielen Dank für die Hilfe!**"
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:67:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Tobi'den sesli mesaj",
+   "ortam_tr": "Cuma sabahı yoldasın. Tobi telefonuna hızlı bir mesaj bırakmış.",
+   "speaker": "ch:lechner",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, Tobi hier!",
+     "tr": "Selam, ben Tobi!"
+    },
+    {
+     "id": "c2",
+     "de": "Sag mal, wohin hast du gestern den Schlüssel für den Drucker gelegt?",
+     "tr": "Söylesene, dün yazıcının anahtarını nereye koydun?"
+    },
+    {
+     "id": "c3",
+     "de": "Ich finde das Ding nicht!",
+     "tr": "O şeyi bulamıyorum!"
+    },
+    {
+     "id": "c4",
+     "de": "Der Techniker kommt um zehn ins Büro.",
+     "tr": "Teknisyen saat onda ofise geliyor."
+    },
+    {
+     "id": "c5",
+     "de": "Ruf mich bitte schnell zurück!",
+     "tr": "Lütfen beni hemen geri ara!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Tobi ne istiyor?",
+      "opts": [
+       "Yazıcının anahtarının nerede olduğunu",
+       "Kahvaltıya ne getireceğini",
+       "Teknisyenin numarasını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Teknisyen ne zaman geliyor?",
+       "opts": [
+        "Saat onda",
+        "Saat on birde",
+        "Yarın"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Tobi senden ne istiyor?",
+       "opts": [
+        "Onu hemen geri aramanı",
+        "Ofise erken gelmeni",
+        "Teknisyeni aramanı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Ding",
+        "Bild",
+        "Kind"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Der Techniker kommt um zehn ins ___.",
+       "accepted": [
+        "Büro",
+        "büro",
+        "Büro."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Ruf",
+        "mich",
+        "bitte",
+        "schnell",
+        "zurück",
+        "an",
+        "dich"
+       ],
+       "accepted": [
+        "Ruf mich bitte schnell zurück!",
+        "ruf mich bitte schnell zurück",
+        "Ruf mich bitte schnell zurück"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Sag mal, wohin hast du gestern den Schlüssel für den Drucker gelegt?",
+        "sag mal wohin hast du gestern den schlüssel für den drucker gelegt",
+        "Sag mal, wohin hast du gestern den Schlüssel für den Drucker gelegt"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Derya'ya Tobi'nin mesajını iki kısa cümleyle anlat.",
+       "ornek_de": "Tobi sucht den Schlüssel für den Drucker. Der Techniker kommt um zehn.",
+       "zorunlu": [
+        "Schlüssel",
+        "Techniker"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:67:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi'yi geri arıyorsun. Anahtarı dün masasının yanındaki dolaba koydun.",
+      "prompt_de": "Und? Wo ist der Schlüssel?",
+      "accepted": [
+       "Ich habe ihn gestern in den Schrank neben deinem Tisch gelegt.",
+       "Ich habe ihn in den Schrank neben deinem Tisch gelegt.",
+       "Ich habe den Schlüssel gestern in den Schrank neben deinem Tisch gelegt.",
+       "Der Schlüssel ist im Schrank neben deinem Tisch.",
+       "Ich habe ihn gestern in deinen Schrank gelegt.",
+       "Den habe ich gestern in den Schrank neben deinem Tisch gelegt."
+      ],
+      "why_tr": "Koydum demek için: **Ich habe ihn gelegt.** Nereye: **in den Schrank**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:67:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Tobi'yi hemen arayıp anahtarın yerini söylemelisin.",
+     "Saat onda teknisyeni aramalısın.",
+     "Yazıcıyı tamir etmelisin."
+    ],
+    "ans": 0,
+    "why_tr": "Tobi anahtarı arıyor ve hemen geri aramanı istiyor.",
+    "kanit": [
+     "c2",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:67:a2",
+   "tur": "radyo",
+   "title_tr": "Yerel radyo: şehirden haberler",
+   "ortam_tr": "Akşam mutfakta radyo açık. Yerel radyo şehirden kısa haberler veriyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hier ist Radio Vils mit den Nachrichten aus Wendlfing.",
+     "tr": "Burası Radyo Vils, Wendlfing'den haberler."
+    },
+    {
+     "id": "c2",
+     "de": "Wegen der Heizung ist das Schwimmbad am Samstag und Sonntag noch zu.",
+     "tr": "Kalorifer yüzünden yüzme havuzu cumartesi ve pazar hâlâ kapalı."
+    },
+    {
+     "id": "c3",
+     "de": "Im Rathaus gibt es ab heute eine Ausstellung: Wendlfing und die Welt.",
+     "tr": "Belediye binasında bugünden itibaren bir sergi var: Wendlfing ve dünya."
+    },
+    {
+     "id": "c4",
+     "de": "Leute aus Wendlfing zeigen Fotos aus der ganzen Welt.",
+     "tr": "Wendlfingliler dünyanın her yerinden fotoğraflar gösteriyor."
+    },
+    {
+     "id": "c5",
+     "de": "Die Ausstellung ist von Montag bis Samstag von neun bis fünf offen.",
+     "tr": "Sergi pazartesiden cumartesiye dokuzdan beşe kadar açık."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne anlatıyor?",
+      "opts": [
+       "Kapalı havuzu ve yeni bir sergiyi",
+       "Hava durumunu",
+       "Bir maçı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Yüzme havuzu neden kapalı?",
+       "opts": [
+        "Kalorifer yüzünden",
+        "Soğuk yüzünden",
+        "Bayram yüzünden"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Sergide ne var?",
+       "opts": [
+        "Dünyanın her yerinden fotoğraflar",
+        "Eski arabalar",
+        "Resimler ve müzik"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Welt",
+        "Stadt",
+        "Woche"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Wegen der Heizung ist das ___ am Samstag und Sonntag noch zu.",
+       "accepted": [
+        "Schwimmbad",
+        "schwimmbad",
+        "Schwimmbad."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Leute",
+        "aus",
+        "Wendlfing",
+        "zeigen",
+        "Fotos",
+        "aus",
+        "der",
+        "ganzen",
+        "Welt",
+        "in",
+        "Bilder"
+       ],
+       "accepted": [
+        "Leute aus Wendlfing zeigen Fotos aus der ganzen Welt.",
+        "leute aus wendlfing zeigen fotos aus der ganzen welt",
+        "Leute aus Wendlfing zeigen Fotos aus der ganzen Welt"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Die Ausstellung ist von Montag bis Samstag von neun bis fünf offen.",
+        "die ausstellung ist von montag bis samstag von neun bis fünf offen",
+        "Die Ausstellung ist von Montag bis Samstag von neun bis fünf offen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Ioana'ya iki kısa cümleyle anlat: havuz ve sergi.",
+       "ornek_de": "Das Schwimmbad ist am Wochenende zu. Im Rathaus gibt es eine Ausstellung.",
+       "zorunlu": [
+        "Schwimmbad",
+        "Ausstellung"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:67:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana arıyor: Cumartesi yüzmeye gidelim mi? Havuz kalorifer yüzünden kapalı. Sergiyi öner.",
+      "prompt_de": "Gehen wir am Samstag ins Schwimmbad?",
+      "accepted": [
+       "Das Schwimmbad ist wegen der Heizung zu. Gehen wir in die Ausstellung im Rathaus?",
+       "Das geht nicht, das Schwimmbad ist zu. Gehen wir lieber in die Ausstellung?",
+       "Wegen der Heizung ist das Schwimmbad zu. Wir können in die Ausstellung gehen.",
+       "Leider ist das Schwimmbad zu. Gehen wir ins Rathaus in die Ausstellung?",
+       "Nein, das Schwimmbad ist zu. Aber im Rathaus gibt es eine Ausstellung."
+      ],
+      "why_tr": "Sebebi **wegen der Heizung** ile söyle, sonra başka bir yer öner."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:67:a2:e1",
+    "k": "pick",
+    "q_tr": "Cumartesi yüzmeye gitmek istiyordun. Ne yaparsın?",
+    "opts": [
+     "Havuz kapalı, başka bir plan yaparım.",
+     "Cumartesi havuza giderim.",
+     "Pazar günü havuza giderim."
+    ],
+    "ans": 0,
+    "why_tr": "Havuz cumartesi ve pazar kapalı.",
+    "kanit": [
+     "c2"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:67:g1",
+   "de": "Schlüssel",
+   "dogru_img": "house key on a kitchen table",
+   "celdirici_img": [
+    "coin on a table",
+    "mobile phone",
+    "pair of glasses"
+   ]
+  },
+  {
+   "id": "m1:67:g2",
+   "de": "Jacke",
+   "dogru_img": "winter jacket hanging on a coat hook",
+   "celdirici_img": [
+    "pair of shoes",
+    "scarf",
+    "umbrella"
+   ]
+  },
+  {
+   "id": "m1:67:g3",
+   "de": "Bild",
+   "dogru_img": "framed picture hanging on a living room wall",
+   "celdirici_img": [
+    "mirror",
+    "window",
+    "wall clock"
+   ]
+  },
+  {
+   "id": "m1:67:g4",
+   "de": "Welt",
+   "dogru_img": "globe of the world on a desk",
+   "celdirici_img": [
+    "city map",
+    "football",
+    "calendar"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:67:p1",
+  "title_tr": "Frau Brandl'ı arıyorsun: bodrum anahtarı nerede?",
+  "durum_tr": "Akşam bodrum anahtarını bulamıyorsun. Bugün Frau Brandl dairendeydi. Onu arıyorsun. Cumartesi bütün gün meşgulsün, pazar boşsun.",
+  "karsi": "ch:brandl",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Brandl, grüß Gott?",
+    "tr": "Brandl, iyi akşamlar?",
+    "secenekler": [
+     {
+      "de": "Grüß Gott, Frau Brandl, hier ist {name}. Ich rufe wegen der Zähler an.",
+      "tr": "İyi akşamlar, Frau Brandl, ben {name}. Sayaçlar için arıyorum.",
+      "accepted": [
+       "Grüß Gott, Frau Brandl, hier ist {name}. Ich rufe wegen der Zähler an.",
+       "Grüß Gott, Frau Brandl. Hier ist {name}. Ich rufe wegen der Zähler an.",
+       "Guten Abend, Frau Brandl, hier ist {name}. Ich rufe wegen der Zähler an."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Adını ve neden aradığını söyledin: **wegen der Zähler**."
+     },
+     {
+      "de": "Wo ist mein Schlüssel?",
+      "tr": "Anahtarım nerede?",
+      "accepted": [
+       "Wo ist mein Schlüssel?",
+       "Wo ist der Schlüssel?",
+       "Mein Schlüssel ist weg!"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Telefonda önce selam ver ve adını söyle: **Grüß Gott, hier ist** ve adın."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Der Mann war da, alles in Ordnung. Haben Sie eine Frage?",
+    "tr": "Adam geldi, her şey yolunda. Bir sorunuz mu var?",
+    "secenekler": [
+     {
+      "de": "Alles gut, danke! Wohin haben Sie meinen Schlüssel für den Keller gelegt?",
+      "tr": "Her şey iyi, teşekkürler! Bodrum anahtarımı nereye koydunuz?",
+      "accepted": [
+       "Alles gut, danke! Wohin haben Sie meinen Schlüssel für den Keller gelegt?",
+       "Danke, alles gut! Wohin haben Sie meinen Schlüssel für den Keller gelegt?",
+       "Alles gut. Aber wohin haben Sie meinen Schlüssel für den Keller gelegt?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. **Wohin haben Sie meinen Schlüssel für den Keller gelegt?** tam doğru soru."
+     },
+     {
+      "de": "Wo haben Sie meinen Schlüssel für den Keller gelegt?",
+      "tr": "Bodrum anahtarımı nerede koydunuz?",
+      "accepted": [
+       "Wo haben Sie meinen Schlüssel für den Keller gelegt?",
+       "Wo haben Sie den Schlüssel gelegt?",
+       "Wo ist mein Schlüssel für den Keller gelegt?"
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Koymak hareket ister. Soru **wohin** ile başlar: **Wohin haben Sie ihn gelegt?**"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Den Schlüssel für den Keller? Den habe ich an die Wand neben der Tür gehängt.",
+    "tr": "Bodrum anahtarını mı? Onu kapının yanındaki duvara astım.",
+    "secenekler": [
+     {
+      "de": "Ich sehe ihn! Vielen Dank, Frau Brandl.",
+      "tr": "Görüyorum! Çok teşekkürler, Frau Brandl.",
+      "accepted": [
+       "Ich sehe ihn! Vielen Dank, Frau Brandl.",
+       "Ah, da ist er! Vielen Dank.",
+       "Ich sehe ihn. Danke schön, Frau Brandl!"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Anahtarı buldun ve teşekkür ettin."
+     },
+     {
+      "de": "Im Schrank? Da ist er nicht.",
+      "tr": "Dolapta mı? Orada değil.",
+      "accepted": [
+       "Im Schrank? Da ist er nicht.",
+       "In den Schrank? Da ist er nicht.",
+       "Er ist nicht im Schrank."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Dikkat: dolap değil. **an die Wand neben der Tür gehängt** dedi: kapının yanındaki duvara astı."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gern! Sagen Sie, kommen Sie am Samstag zum Kaffee? Um drei?",
+    "tr": "Rica ederim! Söyleyin, cumartesi kahveye gelir misiniz? Saat üçte?",
+    "secenekler": [
+     {
+      "de": "Am Samstag kann ich leider nicht. Geht es auch am Sonntag?",
+      "tr": "Cumartesi maalesef gelemem. Pazar da olur mu?",
+      "accepted": [
+       "Am Samstag kann ich leider nicht. Geht es auch am Sonntag?",
+       "Samstag geht leider nicht. Geht es am Sonntag?",
+       "Am Samstag kann ich leider nicht. Geht es vielleicht am Sonntag?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Hayır deyip başka bir gün önerdin."
+     },
+     {
+      "de": "Ja, gern! Ich komme am Samstag.",
+      "tr": "Evet, memnuniyetle! Cumartesi geliyorum.",
+      "accepted": [
+       "Ja, gern! Ich komme am Samstag.",
+       "Ja, gern, am Samstag um drei.",
+       "Gern, ich komme."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Dikkat, cumartesi bütün gün meşgulsün. Başka bir gün öner: **Geht es auch am Sonntag?**"
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Sonntag um drei? Ja, das geht. Ich sorge für den Kuchen!",
+    "tr": "Pazar üçte mi? Evet, olur. Pastayı ben hallederim!",
+    "secenekler": [
+     {
+      "de": "Super, ich freue mich! Bis Sonntag.",
+      "tr": "Süper, sevindim! Pazara görüşürüz.",
+      "accepted": [
+       "Super, ich freue mich! Bis Sonntag.",
+       "Toll, ich freue mich! Bis Sonntag.",
+       "Ich freue mich schon. Bis Sonntag!"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika bir kapanış. **Ich freue mich** önceki günlerden bildiğin kalıp."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Bis Sonntag! Und schönen Abend noch!",
+    "tr": "Pazara görüşürüz! İyi akşamlar!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Anahtarın yerini doğru soruyla sordun. Cumartesi daveti uymayınca başka bir gün önerdin."
+ },
+ "okuma_yazma": {
+  "tur": "yazma",
+  "title_tr": "Tobi'ye mesaj: anahtar ve kahve nerede?",
+  "metin_de": "Hallo! Der Techniker ist da. Wo ist der Schlüssel für den Drucker? Und wo ist der Kaffee für heute? Ich finde beides nicht. Tobi",
+  "metin_tr": "Merhaba! Teknisyen geldi. Yazıcının anahtarı nerede? Bugünün kahvesi nerede? İkisini de bulamıyorum. Tobi",
+  "sorular": [
+   {
+    "id": "m1:67:o1",
+    "kind": "gist",
+    "q_tr": "Tobi ne soruyor?",
+    "opts": [
+     "Anahtar ve kahve nerede",
+     "Teknisyen ne zaman geliyor",
+     "Toplantı ne zaman"
+    ],
+    "ans": 0,
+    "kanit": [
+     2,
+     3
+    ]
+   },
+   {
+    "id": "m1:67:o2",
+    "kind": "detail",
+    "q_tr": "Kim geldi?",
+    "opts": [
+     "Teknisyen",
+     "Herr Wimmer",
+     "Derya"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Tobi'ye kısa bir cevap yaz: Anahtarı dolaba koydun, kahveyi rafa koydun.",
+   "ornek_de": "Hallo Tobi! Ich habe den Schlüssel in den Schrank gelegt. Den Kaffee habe ich ins Regal gestellt.",
+   "zorunlu": [
+    "gelegt",
+    "gestellt"
+   ],
+   "accepted_kaliplar": [
+    "Hallo ___!",
+    "Ich habe den Schlüssel ___ gelegt.",
+    "Ich habe den Schlüssel ___ gelegt und den Kaffee ___ gestellt.",
+    "Ich habe ___ gelegt.",
+    "Ich habe ___ gestellt.",
+    "___ habe ich ___ gestellt.",
+    "___ habe ich ___ gelegt."
+   ],
+   "kontrol_tr": [
+    "**habe** ikinci yerde, **gelegt** ya da **gestellt** en sonda mı?",
+    "Nereye sorusuna **in den** ya da **ins** kullandın mı?",
+    "Kahve paketi dik durur: **gestellt**. Anahtar yatar: **gelegt**. Doğru mu?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:67:s",
+  "maddeler": [
+   {
+    "id": "m1:67:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich habe die Jacke in den Schrank gehängt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich habe die Jacke in den Schrank gehängt.",
+     "ich habe die jacke in den schrank gehängt",
+     "Ich habe die Jacke in den Schrank gehängt"
+    ],
+    "why_tr": "**gehängt**: astım. **in den Schrank**: dolaba."
+   },
+   {
+    "id": "m1:67:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Wo ist mein Handy hin?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wo ist mein Handy hin?",
+     "wo ist mein handy hin",
+     "Wo ist mein Handy hin"
+    ],
+    "why_tr": "**Wo ist mein Handy hin?** telefonum nereye gitti demek."
+   },
+   {
+    "id": "m1:67:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Wegen der Heizung bleibe ich heute zu Hause.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wegen der Heizung bleibe ich heute zu Hause.",
+     "wegen der heizung bleibe ich heute zu hause",
+     "Wegen der Heizung bleibe ich heute zu Hause"
+    ],
+    "why_tr": "**wegen der Heizung**: kalorifer yüzünden."
+   },
+   {
+    "id": "m1:67:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Frau Brandl sorgt für den Kuchen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Frau Brandl sorgt für den Kuchen.",
+     "frau brandl sorgt für den kuchen",
+     "Frau Brandl sorgt für den Kuchen"
+    ],
+    "why_tr": "**sorgt für**: üstleniyor, hallediyor."
+   },
+   {
+    "id": "m1:67:s5",
+    "k": "tr_de",
+    "tr": "Anahtarımı nereye koydun?",
+    "accepted": [
+     "Wohin hast du meinen Schlüssel gelegt?",
+     "Wo hast du meinen Schlüssel hingelegt?",
+     "Wohin hast du denn meinen Schlüssel gelegt?"
+    ],
+    "why_tr": "**gelegt** en sonda durur."
+   },
+   {
+    "id": "m1:67:s6",
+    "k": "tr_de",
+    "tr": "Resmi kanepenin üstüne astım.",
+    "accepted": [
+     "Ich habe das Bild über das Sofa gehängt.",
+     "Das Bild habe ich über das Sofa gehängt.",
+     "Ich habe das Bild übers Sofa gehängt."
+    ],
+    "why_tr": "Asmak: **gehängt**. Nereye: **über das Sofa**."
+   },
+   {
+    "id": "m1:67:s7",
+    "k": "tr_de",
+    "tr": "İçeri gel, hava soğuk!",
+    "accepted": [
+     "Komm rein, es ist kalt!",
+     "Komm doch rein, es ist kalt!",
+     "Komm rein! Es ist kalt.",
+     "Komm herein, es ist kalt!"
+    ],
+    "why_tr": "**rein**: içeri."
+   },
+   {
+    "id": "m1:67:s8",
+    "k": "tr_de",
+    "tr": "Bugün kendimi çok iyi hissediyorum.",
+    "accepted": [
+     "Ich fühle mich heute sehr gut.",
+     "Heute fühle ich mich sehr gut.",
+     "Ich fühle mich heute richtig gut."
+    ],
+    "why_tr": "**Ich fühle mich**: kendimi hissediyorum."
+   },
+   {
+    "id": "m1:67:s9",
+    "k": "guided_response",
+    "situation_tr": "Tobi soruyor: Yazıcının anahtarı nerede? Onu dolaba koydun.",
+    "prompt_de": "Wo ist der Schlüssel für den Drucker?",
+    "accepted": [
+     "Ich habe ihn in den Schrank gelegt.",
+     "Ich habe den Schlüssel in den Schrank gelegt.",
+     "In den Schrank. Ich habe ihn gestern in den Schrank gelegt.",
+     "Ich habe ihn heute in den Schrank gelegt.",
+     "Den habe ich in den Schrank gelegt."
+    ],
+    "why_tr": "**Ich habe ihn in den Schrank gelegt.** Nereye: **in den Schrank**."
+   },
+   {
+    "id": "m1:67:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wie fühlst du dich heute?",
+    "speed": "normal",
+    "situation_tr": "Derya soruyor. Biraz yorgunsun, çünkü dün bodrumu topladın.",
+    "accepted": [
+     "Ich fühle mich ein bisschen müde, weil ich gestern den Keller aufgeräumt habe.",
+     "Ein bisschen müde. Ich habe gestern den Keller aufgeräumt.",
+     "Ich bin ein bisschen müde, weil ich gestern den Keller aufgeräumt habe.",
+     "Ich fühle mich müde. Gestern habe ich den Keller aufgeräumt.",
+     "Ein bisschen müde, weil ich gestern den Keller aufgeräumt habe."
+    ],
+    "why_tr": "**Ich fühle mich müde** ve sebebi **weil** ile."
+   },
+   {
+    "id": "m1:67:s11",
+    "k": "guided_response",
+    "situation_tr": "Herr Pichler soruyor: Bisikletinizi nereye koydunuz? Onu bodruma koydun.",
+    "prompt_de": "Wohin haben Sie Ihr Fahrrad gestellt?",
+    "accepted": [
+     "Ich habe es in den Keller gestellt.",
+     "Ich habe das Fahrrad in den Keller gestellt.",
+     "In den Keller, Herr Pichler.",
+     "Das Fahrrad habe ich in den Keller gestellt.",
+     "Das habe ich in den Keller gestellt."
+    ],
+    "why_tr": "**gestellt** en sonda durur."
+   }
+  ],
+  "sesli": [
+   "m1:67:s9",
+   "m1:67:s10"
+  ],
+  "dikte": [
+   "m1:67:s1",
+   "m1:67:s2",
+   "m1:67:s3",
+   "m1:67:s4"
+  ]
+ }
+}

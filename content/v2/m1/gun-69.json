@@ -1,0 +1,1359 @@
+{
+ "schema": 1,
+ "id": "m1:gun:69",
+ "day": 69,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Randevuyu kaydırmak ve iptal etmek",
+ "goal_tr": "Bir randevuya gidemeyeceğini söylersin. Başka bir gün istersin. Önerilen gün uymazsa yeni bir gün sorarsın.",
+ "can_do": {
+  "id": "cd:m1:69",
+  "tr": "Telefonda randevumu iptal eder ya da başka güne alır, uymazsa yeni gün isterim."
+ },
+ "unit": "u:a2:69",
+ "arm": "telefon",
+ "place": "pl:haus",
+ "characters": [
+  "ch:huber",
+  "ch:petrovic",
+  "ch:lechner",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:erinnern",
+  "lx:wenig",
+  "lx:setzen",
+  "lx:sonst"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:69:h1",
+   "title_tr": "Cuma akşamı: hatırlatma ve az zaman",
+   "kartlar": [
+    "lx:erinnern",
+    "lx:wenig"
+   ],
+   "kaliplar": [
+    {
+     "de": "Die Praxis erinnert mich an den Termin. – Erinnerst du mich an …?",
+     "tr": "Muayenehane bana randevuyu hatırlatıyor. – Bana …'i hatırlatır mısın?"
+    },
+    {
+     "de": "Ich habe … gehängt. – Wohin habe ich … gelegt?",
+     "tr": "…'i …'e astım. – …'i nereye koydum?"
+    },
+    {
+     "de": "Geht es an einem anderen Tag?",
+     "tr": "Başka bir gün olur mu?"
+    },
+    {
+     "de": "Könnten Sie mich bitte … an den Termin erinnern?",
+     "tr": "Bana … randevuyu hatırlatabilir misiniz lütfen?"
+    },
+    {
+     "de": "Grüß Gott! – Grüß Gott, hier ist …",
+     "tr": "İyi günler! Bavyera'da günün her saatinde böyle selam verilir. – İyi günler, ben … (telefonda)"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:erinnern",
+     "de": "Könnten Sie mich bitte am Freitag an den Termin erinnern?",
+     "tr": "Bana randevuyu cuma günü hatırlatabilir misiniz lütfen?",
+     "accepted": [
+      "Könnten Sie mich bitte am Freitag an den Termin erinnern?",
+      "Könnten Sie mich am Freitag bitte an den Termin erinnern?",
+      "Könnten Sie mich am Freitag an den Termin erinnern?"
+     ]
+    },
+    {
+     "kart": "lx:erinnern",
+     "de": "Erinnerst du mich morgen an den Termin bei Luka?",
+     "tr": "Yarın bana Luka'daki randevuyu hatırlatır mısın?",
+     "accepted": [
+      "Erinnerst du mich morgen an den Termin bei Luka?",
+      "Kannst du mich morgen an den Termin bei Luka erinnern?",
+      "Erinnerst du mich bitte morgen an den Termin bei Luka?"
+     ]
+    },
+    {
+     "kart": "lx:erinnern",
+     "de": "Ich habe die Nachricht an die Tür gehängt. Sie erinnert mich an den Termin.",
+     "tr": "Notu kapıya astım. Bana randevuyu hatırlatıyor.",
+     "accepted": [
+      "Ich habe die Nachricht an die Tür gehängt. Sie erinnert mich an den Termin.",
+      "Ich habe die Nachricht an die Tür gehängt, sie erinnert mich an den Termin.",
+      "Die Nachricht habe ich an die Tür gehängt. Sie erinnert mich an den Termin."
+     ]
+    },
+    {
+     "kart": "lx:wenig",
+     "de": "Diese Woche habe ich leider sehr wenig Zeit.",
+     "tr": "Bu hafta maalesef çok az vaktim var.",
+     "accepted": [
+      "Diese Woche habe ich leider sehr wenig Zeit.",
+      "Ich habe diese Woche leider sehr wenig Zeit.",
+      "Leider habe ich diese Woche sehr wenig Zeit."
+     ]
+    },
+    {
+     "kart": "lx:wenig",
+     "de": "Am Montag habe ich wenig Zeit, weil wir eine Besprechung haben.",
+     "tr": "Pazartesi az vaktim var, çünkü toplantımız var.",
+     "accepted": [
+      "Am Montag habe ich wenig Zeit, weil wir eine Besprechung haben.",
+      "Am Montag habe ich nur wenig Zeit, weil wir eine Besprechung haben.",
+      "Ich habe am Montag wenig Zeit, weil wir eine Besprechung haben."
+     ]
+    },
+    {
+     "kart": "lx:wenig",
+     "de": "Ich habe wenig Zeit! Wohin habe ich nur meinen Schlüssel gelegt?",
+     "tr": "Vaktim az! Anahtarımı nereye koydum ben?",
+     "accepted": [
+      "Ich habe wenig Zeit! Wohin habe ich nur meinen Schlüssel gelegt?",
+      "Ich habe so wenig Zeit! Wohin habe ich nur meinen Schlüssel gelegt?",
+      "Ich habe wenig Zeit. Wohin habe ich nur meinen Schlüssel gelegt?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cuma akşamı. Derya'yla telefonda konuşuyorsun. Pazartesi saat dokuzda doktor randevun var, ama pazartesi dokuzda Herr Wimmer'le toplantı da var.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Am Montag um neun habe ich einen Termin bei Dr. Weber. Aber wir haben auch eine Besprechung!",
+      "tr": "Pazartesi dokuzda Dr. Weber'de randevum var. Ama toplantımız da var!"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Dann ruf am Montag um acht in der Praxis an und sag den Termin ab.",
+      "tr": "O zaman pazartesi sekizde muayenehaneyi ara ve randevuyu iptal et."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Gute Idee. Erinnerst du mich am Montag?",
+      "tr": "İyi fikir. Pazartesi bana hatırlatır mısın?"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Klar, ich erinnere dich!",
+      "tr": "Tabii, hatırlatırım!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya ne öneriyor?",
+     "opts": [
+      "Pazartesi sekizde arayıp randevuyu iptal etmeni",
+      "Toplantıya gitmemeni",
+      "Dr. Weber'e salı gitmeni"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:69:h2",
+   "title_tr": "Cumartesi: buluşma da kayıyor",
+   "kartlar": [
+    "lx:setzen",
+    "lx:sonst"
+   ],
+   "kaliplar": [
+    {
+     "de": "Dann komme ich halt später. – Das ist halt so.",
+     "tr": "O zaman ne yapalım, daha geç gelirim. – Durum bu, ne yapalım."
+    },
+    {
+     "de": "Samstag passt, ne? – …, ne?",
+     "tr": "Cumartesi uyar, değil mi? – …, değil mi?"
+    },
+    {
+     "de": "Ich setze mich ans Fenster. – Setz dich doch!",
+     "tr": "Pencerenin yanına oturuyorum. – Otursana!"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:setzen",
+     "de": "Alles voll? Dann setze ich mich halt ans Fenster.",
+     "tr": "Her yer dolu mu? O zaman ne yapalım, pencerenin yanına otururum.",
+     "accepted": [
+      "Alles voll? Dann setze ich mich halt ans Fenster.",
+      "Alles ist voll? Dann setze ich mich halt ans Fenster.",
+      "Alles voll? Dann setze ich mich halt an das Fenster."
+     ]
+    },
+    {
+     "kart": "lx:setzen",
+     "de": "Setz dich doch! Luka kommt gleich.",
+     "tr": "Otursana! Luka birazdan geliyor.",
+     "accepted": [
+      "Setz dich doch! Luka kommt gleich.",
+      "Setz dich! Luka kommt gleich.",
+      "Setz dich doch hin! Luka kommt gleich."
+     ]
+    },
+    {
+     "kart": "lx:sonst",
+     "de": "Haben Sie sonst noch einen Termin am Samstag?",
+     "tr": "Cumartesi başka boş randevunuz var mı?",
+     "accepted": [
+      "Haben Sie sonst noch einen Termin am Samstag?",
+      "Haben Sie am Samstag sonst noch einen Termin?",
+      "Haben Sie sonst noch einen Termin am Samstag frei?"
+     ]
+    },
+    {
+     "kart": "lx:sonst",
+     "de": "Man muss heute noch anrufen, sonst ist der Termin weg.",
+     "tr": "Bugün içinde aramak gerekiyor, yoksa randevu gider.",
+     "accepted": [
+      "Man muss heute noch anrufen, sonst ist der Termin weg.",
+      "Man muss noch heute anrufen, sonst ist der Termin weg.",
+      "Heute muss man noch anrufen, sonst ist der Termin weg."
+     ]
+    },
+    {
+     "kart": "lx:sonst",
+     "de": "Am Samstag um zehn passt gut, ne? Sonst rufe ich noch mal an.",
+     "tr": "Cumartesi onda iyi olur, değil mi? Olmazsa bir daha ararım.",
+     "accepted": [
+      "Am Samstag um zehn passt gut, ne? Sonst rufe ich noch mal an.",
+      "Samstag um zehn passt gut, ne? Sonst rufe ich noch mal an.",
+      "Am Samstag um zehn passt, ne? Sonst rufe ich noch einmal an."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cumartesi sabahı. Tobi arıyor. Akşam lokantada buluşacaktınız.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Du, heute Abend im Gasthaus geht leider nicht. Ein Freund hat Geburtstag.",
+      "tr": "Bak, bu akşam lokanta maalesef olmuyor. Bir arkadaşımın doğum günü."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Kein Problem! Dann halt nächste Woche, ne?",
+      "tr": "Sorun değil! O zaman haftaya, olur mu?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Genau! Am Freitag nach der Arbeit?",
+      "tr": "Aynen! Cuma işten sonra?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Freitag passt gut. Bis Montag!",
+      "tr": "Cuma iyi olur. Pazartesi görüşürüz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Yeni buluşma ne zaman?",
+     "opts": [
+      "Cuma işten sonra",
+      "Bu akşam",
+      "Pazartesi"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:69:v1",
+  "title_tr": "Kuaförde bir telefon",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Salon Haarwerk, cumartesi öğlene doğru. İçeri giriyorsun, Luka bir müşterinin saçını kurutuyor.",
+    "de": "Grüß Gott! Setzen Sie sich doch, ich komme gleich.",
+    "tr": "İyi günler! Buyurun oturun, hemen geliyorum."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Telefon çalıyor. Luka telefonu omzuyla tutuyor.",
+    "de": "Salon Haarwerk, Petrović, grüß Gott?",
+    "tr": "Salon Haarwerk, Petrović, iyi günler?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka dinliyor, başını sallıyor.",
+    "de": "Sie können am Dienstag nicht? Kein Problem.",
+    "tr": "Salı gelemiyor musunuz? Sorun değil."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka defterine bakıyor.",
+    "de": "Ich habe sonst noch am Mittwoch um vier etwas frei.",
+    "tr": "Bunun dışında çarşamba saat dörtte boş yerim var."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka sayfayı çeviriyor.",
+    "de": "Mittwoch geht auch nicht? Dann halt Donnerstag um fünf.",
+    "tr": "Çarşamba da olmuyor mu? O zaman ne yapalım, perşembe beşte."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka bir şey yazıyor.",
+    "de": "Gut, ich schreibe es auf. Ich schicke Ihnen am Mittwoch eine Nachricht.",
+    "tr": "Tamam, not alıyorum. Çarşamba size bir mesaj gönderirim."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka telefonu kapatıp sana dönüyor.",
+    "de": "So, Entschuldigung! Heute ist viel los.",
+    "tr": "Evet, kusura bakmayın! Bugün çok yoğun."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka makası eline alıyor.",
+    "de": "Diese Woche habe ich wenig Zeit. Alle wollen vor Fasching noch schnell kommen.",
+    "tr": "Bu hafta az vaktim var. Herkes karnavaldan (Fasching) önce bir an önce gelmek istiyor."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka gülüyor.",
+    "de": "Das ist halt jedes Jahr so, ne?",
+    "tr": "Her yıl böyle işte, değil mi?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka aynada sana bakıyor.",
+    "de": "Und Sie? Was machen Sie heute noch?",
+    "tr": "Ya siz? Bugün başka ne yapıyorsunuz?"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Luka telefonda ne yapıyor?",
+     "opts": [
+      "Bir müşterinin randevusunu başka güne alıyor",
+      "Yeni bir kuaför arıyor",
+      "Salonu kapatıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s3",
+      "s5"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Müşterinin yeni randevusu ne zaman?",
+      "opts": [
+       "Perşembe beşte",
+       "Çarşamba dörtte",
+       "Salı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Luka ona nasıl hatırlatacak?",
+      "opts": [
+       "Çarşamba mesajla",
+       "Salı telefonla",
+       "Hiç hatırlatmayacak"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Luka'nın bu hafta neden az vakti var?",
+      "opts": [
+       "Herkes karnavaldan önce gelmek istiyor",
+       "Hasta",
+       "Tatile gidiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s8"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Mittwoch",
+       "Montag",
+       "Freitag"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Mittwoch geht auch nicht? Dann halt ___ um fünf.",
+      "accepted": [
+       "Donnerstag",
+       "donnerstag",
+       "Donnerstag."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s3",
+      "seviye": "zor",
+      "banka": [
+       "Sie",
+       "können",
+       "am",
+       "Dienstag",
+       "nicht",
+       "Kein",
+       "Problem",
+       "am",
+       "Montag"
+      ],
+      "accepted": [
+       "Sie können am Dienstag nicht? Kein Problem.",
+       "sie können am dienstag nicht kein problem",
+       "Sie können am Dienstag nicht? Kein Problem"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s6",
+      "seviye": "usta",
+      "accepted": [
+       "Ich schicke Ihnen am Mittwoch eine Nachricht.",
+       "ich schicke ihnen am mittwoch eine nachricht",
+       "Ich schicke Ihnen am Mittwoch eine Nachricht"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Müşterinin randevusunu iki kısa cümleyle anlat.",
+      "ornek_de": "Eine Frau kann am Dienstag nicht. Ihr neuer Termin ist am Donnerstag um fünf.",
+      "zorunlu": [
+       "Donnerstag",
+       "fünf"
+      ]
+     }
+    ],
+    "golge": [
+     "s5",
+     "s9"
+    ],
+    "cevapla": {
+     "id": "m1:69:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Luka soruyor: Bugün başka ne yapıyorsunuz? Akşam Tobi'yle buluşacaktın ama buluşma cumaya kaydı. Akşam evdesin.",
+     "prompt_de": "Und Sie? Was machen Sie heute noch?",
+     "accepted": [
+      "Nicht viel. Mein Treffen mit Tobi ist jetzt am Freitag. Ich bleibe halt zu Hause.",
+      "Heute Abend bin ich zu Hause. Tobi kann nicht, wir treffen uns am Freitag.",
+      "Nicht viel. Ich treffe Tobi erst am Freitag, heute bleibe ich zu Hause.",
+      "Ich bleibe heute zu Hause, weil Tobi nicht kann. Wir treffen uns am Freitag.",
+      "Nichts. Tobi hat keine Zeit, wir treffen uns halt am Freitag."
+     ],
+     "why_tr": "Buluşmanın kaydığını söyle. **halt** cümleye ne yapalım havası katar."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:69:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Muayenehaneden hatırlatma",
+   "ortam_tr": "Cuma öğleden sonra. Frau Huber telefonuna bir mesaj bırakmış. Hızlı konuşuyor.",
+   "speaker": "ch:huber",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, Praxis Dr. Weber, hier spricht Frau Huber.",
+     "tr": "İyi günler, Dr. Weber muayenehanesi, ben Huber."
+    },
+    {
+     "id": "c2",
+     "de": "Wir erinnern Sie an Ihren Termin am Montag um neun.",
+     "tr": "Pazartesi saat dokuzdaki randevunuzu hatırlatıyoruz."
+    },
+    {
+     "id": "c3",
+     "de": "Vergessen Sie bitte Ihre Versichertenkarte nicht.",
+     "tr": "Lütfen sağlık kartınızı unutmayın."
+    },
+    {
+     "id": "c4",
+     "de": "Sie können nicht kommen? Dann sagen Sie den Termin bitte bis Montag um acht ab.",
+     "tr": "Gelemiyor musunuz? O zaman lütfen randevuyu pazartesi sekize kadar iptal edin."
+    },
+    {
+     "id": "c5",
+     "de": "Vielen Dank und schönes Wochenende!",
+     "tr": "Çok teşekkürler, iyi hafta sonları!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Frau Huber neden arıyor?",
+      "opts": [
+       "Pazartesi randevunu hatırlatmak için",
+       "Randevunu iptal etmek için",
+       "Reçeten hazır diye"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Neyi unutmamalısın?",
+       "opts": [
+        "Sağlık kartını",
+        "Reçeteni",
+        "Pasaportunu"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Gelemezsen ne zamana kadar iptal etmelisin?",
+       "opts": [
+        "Pazartesi sekize kadar",
+        "Cuma akşamına kadar",
+        "Pazartesi dokuza kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Versichertenkarte",
+        "Tasche",
+        "Jacke"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Wir ___ Sie an Ihren Termin am Montag um neun.",
+       "accepted": [
+        "erinnern",
+        "Erinnern",
+        "erinnern."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Vergessen",
+        "Sie",
+        "bitte",
+        "Ihre",
+        "Versichertenkarte",
+        "nicht",
+        "Ihren",
+        "kein"
+       ],
+       "accepted": [
+        "Vergessen Sie bitte Ihre Versichertenkarte nicht.",
+        "vergessen sie bitte ihre versichertenkarte nicht",
+        "Vergessen Sie bitte Ihre Versichertenkarte nicht"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Sie können nicht kommen? Dann sagen Sie den Termin bitte bis Montag um acht ab.",
+        "sie können nicht kommen dann sagen sie den termin bitte bis montag um acht ab",
+        "Sie können nicht kommen? Dann sagen Sie den Termin bitte bis Montag um acht ab"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Derya'ya mesajı iki kısa cümleyle anlat.",
+       "ornek_de": "Mein Termin ist am Montag um neun. Ich muss bis Montag um acht absagen.",
+       "zorunlu": [
+        "Montag",
+        "absagen"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:69:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Pazartesi sekizde muayenehaneyi arıyorsun. Pazartesi dokuzdaki randevuya gelemiyorsun, çünkü toplantın var. İptal et.",
+      "prompt_de": "Praxis Dr. Weber, Huber, guten Morgen?",
+      "accepted": [
+       "Grüß Gott, hier ist {name}. Ich kann am Montag um neun leider nicht kommen. Ich sage den Termin ab.",
+       "Grüß Gott, hier ist {name}. Ich muss meinen Termin heute um neun leider absagen.",
+       "Grüß Gott, mein Name ist {name}. Ich kann heute um neun nicht kommen, weil ich eine Besprechung habe.",
+       "Guten Morgen, hier ist {name}. Ich möchte meinen Termin um neun absagen.",
+       "Grüß Gott, {name} hier. Ich muss den Termin heute leider absagen, weil ich eine Besprechung habe."
+      ],
+      "why_tr": "Önce adını söyle. Sonra **Ich sage den Termin ab.** de."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:69:a1:e1",
+    "k": "pick",
+    "q_tr": "Pazartesi dokuzda toplantın var. Ne yapmalısın?",
+    "opts": [
+     "Pazartesi sekize kadar arayıp randevuyu iptal etmelisin.",
+     "Pazartesi dokuzda muayenehaneye gitmelisin.",
+     "Bir şey yapmana gerek yok."
+    ],
+    "ans": 0,
+    "why_tr": "Gelemiyorsan pazartesi sekize kadar iptal etmen gerekiyor.",
+    "kanit": [
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:69:a2",
+   "tur": "bekleme-anonsu",
+   "title_tr": "Muayenehanenin telefon kaydı",
+   "ortam_tr": "Pazartesi sabahı yedi buçuk. Muayenehaneyi arıyorsun, ama henüz kimse yok. Bir kayıt konuşuyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Herzlich willkommen in der Praxis Dr. Weber.",
+     "tr": "Dr. Weber muayenehanesine hoş geldiniz."
+    },
+    {
+     "id": "c2",
+     "de": "Unsere Sprechstunde ist von Montag bis Freitag von acht bis zwölf.",
+     "tr": "Muayene saatlerimiz pazartesiden cumaya sekizden on ikiye kadar."
+    },
+    {
+     "id": "c3",
+     "de": "Sie möchten einen Termin absagen?",
+     "tr": "Bir randevuyu iptal etmek mi istiyorsunuz?"
+    },
+    {
+     "id": "c4",
+     "de": "Dann sagen Sie bitte nach dem Ton Ihren Namen und Ihr Geburtsdatum.",
+     "tr": "O zaman lütfen sinyalden sonra adınızı ve doğum tarihinizi söyleyin."
+    },
+    {
+     "id": "c5",
+     "de": "Wir rufen Sie zurück.",
+     "tr": "Sizi geri arıyoruz."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Bu kayıt ne söylüyor?",
+      "opts": [
+       "Muayene saatlerini ve iptal için ne yapacağını",
+       "Doktorun tatilde olduğunu",
+       "Yeni bir adresi"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Muayenehane saat kaçta açılıyor?",
+       "opts": [
+        "Sekizde",
+        "Yedi buçukta",
+        "Dokuzda"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Sinyalden sonra ne söylemelisin?",
+       "opts": [
+        "Adını ve doğum tarihini",
+        "Sadece telefon numaranı",
+        "Hiçbir şey"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Geburtsdatum",
+        "Adresse",
+        "Nummer"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Sie möchten einen Termin ___?",
+       "accepted": [
+        "absagen",
+        "Absagen",
+        "absagen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Wir",
+        "rufen",
+        "Sie",
+        "zurück",
+        "an",
+        "dich"
+       ],
+       "accepted": [
+        "Wir rufen Sie zurück.",
+        "wir rufen sie zurück",
+        "Wir rufen Sie zurück"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Unsere Sprechstunde ist von Montag bis Freitag von acht bis zwölf.",
+        "unsere sprechstunde ist von montag bis freitag von acht bis zwölf",
+        "Unsere Sprechstunde ist von Montag bis Freitag von acht bis zwölf"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kayda adını ve isteğini iki kısa cümleyle söyle.",
+       "ornek_de": "Hier ist {name}. Ich möchte meinen Termin am Montag absagen.",
+       "zorunlu": [
+        "absagen"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:69:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Sinyal geldi. Önce adını söyle. Doğum tarihi bu kez gerekmiyor. Pazartesi dokuzdaki randevunu iptal et. Salı ya da çarşamba için yeni randevu iste.",
+      "prompt_de": "Bitte sprechen Sie jetzt.",
+      "accepted": [
+       "Hier ist {name}. Ich sage meinen Termin am Montag um neun ab. Haben Sie am Dienstag oder Mittwoch etwas frei?",
+       "Hier spricht {name}. Ich kann am Montag um neun nicht kommen. Geht es am Dienstag oder am Mittwoch?",
+       "Mein Name ist {name}. Ich muss den Termin am Montag absagen. Ich brauche einen neuen Termin am Dienstag oder Mittwoch.",
+       "Hier ist {name}. Montag um neun geht leider nicht. Bitte rufen Sie mich zurück, Dienstag oder Mittwoch geht.",
+       "{name} hier. Ich sage den Termin am Montag ab. Haben Sie am Dienstag etwas frei?"
+      ],
+      "why_tr": "Kayıtta kısa ve net konuş: ad, iptal, yeni gün isteği."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:69:a2:e1",
+    "k": "pick",
+    "q_tr": "Randevunu iptal etmek istiyorsun. Ne yaparsın?",
+    "opts": [
+     "Sinyalden sonra adımı ve doğum tarihimi söylerim.",
+     "Sekizde muayenehaneye giderim.",
+     "Telefonu kapatırım, sonra bir daha aramam."
+    ],
+    "ans": 0,
+    "why_tr": "Kayıt, sinyalden sonra ad ve doğum tarihi istiyor. Sonra seni geri arıyorlar.",
+    "kanit": [
+     "c3",
+     "c4",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:69:g1",
+   "de": "Wartezimmer",
+   "dogru_img": "waiting room of a doctor's practice with chairs",
+   "celdirici_img": [
+    "hair salon chair",
+    "office meeting room",
+    "train station hall"
+   ]
+  },
+  {
+   "id": "m1:69:g2",
+   "de": "Versichertenkarte",
+   "dogru_img": "health insurance card in a hand",
+   "celdirici_img": [
+    "credit card",
+    "train ticket",
+    "library card"
+   ]
+  },
+  {
+   "id": "m1:69:g3",
+   "de": "Uhr",
+   "dogru_img": "wall clock showing nine o'clock",
+   "celdirici_img": [
+    "calendar on a wall",
+    "mobile phone",
+    "alarm bell"
+   ]
+  },
+  {
+   "id": "m1:69:g4",
+   "de": "Stuhl",
+   "dogru_img": "empty chair by a window",
+   "celdirici_img": [
+    "sofa",
+    "table",
+    "bed"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:69:p1",
+  "title_tr": "Kuaför randevunu başka güne alıyorsun",
+  "durum_tr": "Salı saat altıda Luka'da saç randevun var. Ama salı toplantın yedi buçuğa kadar sürüyor. Luka'yı arıyorsun. Çarşamba akşam Ioana'yla Almanca çalışıyorsun. Perşembe sabah işteysin. Cumartesi boşsun.",
+  "karsi": "ch:petrovic",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Guten Tag, hier ist Luka.",
+    "tr": "İyi günler, ben Luka.",
+    "secenekler": [
+     {
+      "de": "Grüß Gott, Luka, hier ist {name}. Ich habe am Dienstag um sechs einen Termin bei Ihnen.",
+      "tr": "İyi günler Luka, ben {name}. Salı saat altıda sizde randevum var.",
+      "accepted": [
+       "Grüß Gott, Luka, hier ist {name}. Ich habe am Dienstag um sechs einen Termin bei Ihnen.",
+       "Grüß Gott, hier ist {name}. Ich habe am Dienstag um sechs einen Termin.",
+       "Hallo Luka, hier ist {name}. Ich habe am Dienstag um sechs einen Termin bei Ihnen."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Adını ve hangi randevu olduğunu söyledin."
+     },
+     {
+      "de": "Ich kann nicht kommen.",
+      "tr": "Gelemiyorum.",
+      "accepted": [
+       "Ich kann nicht kommen.",
+       "Ich komme nicht.",
+       "Ich kann leider nicht."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Luka henüz kim olduğunu bilmiyor. Önce adını ve randevunu söyle."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Ja, genau, Dienstag um sechs. Gibt es ein Problem?",
+    "tr": "Evet, doğru, salı altıda. Bir sorun mu var?",
+    "secenekler": [
+     {
+      "de": "Leider kann ich am Dienstag nicht, weil ich eine lange Besprechung habe. Haben Sie sonst noch etwas frei?",
+      "tr": "Maalesef salı gelemiyorum, çünkü uzun bir toplantım var. Başka boş bir yeriniz var mı?",
+      "accepted": [
+       "Leider kann ich am Dienstag nicht, weil ich eine lange Besprechung habe. Haben Sie sonst noch etwas frei?",
+       "Am Dienstag kann ich leider nicht, weil ich eine Besprechung habe. Haben Sie sonst noch etwas frei?",
+       "Leider kann ich am Dienstag nicht. Haben Sie sonst noch etwas frei?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Sebebini **weil** ile söyledin ve **sonst noch** ile başka bir yer sordun."
+     },
+     {
+      "de": "Ich muss den Termin leider absagen. Geht es an einem anderen Tag?",
+      "tr": "Randevuyu maalesef iptal etmem gerek. Başka bir gün olur mu?",
+      "accepted": [
+       "Ich muss den Termin leider absagen. Geht es an einem anderen Tag?",
+       "Ich muss den Termin absagen. Geht es an einem anderen Tag?",
+       "Leider muss ich absagen. Geht es an einem anderen Tag?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. İptal ettin ve hemen başka gün istedin."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Moment. Mittwoch um sechs habe ich noch etwas frei.",
+    "tr": "Bir saniye. Çarşamba altıda boş yerim var.",
+    "secenekler": [
+     {
+      "de": "Mittwoch passt mir leider auch nicht. Am Mittwoch lerne ich mit einer Freundin Deutsch.",
+      "tr": "Çarşamba da maalesef uymuyor. Çarşamba bir arkadaşımla Almanca çalışıyorum.",
+      "accepted": [
+       "Mittwoch passt mir leider auch nicht. Am Mittwoch lerne ich mit einer Freundin Deutsch.",
+       "Mittwoch geht leider auch nicht. Da lerne ich mit einer Freundin Deutsch.",
+       "Leider passt Mittwoch auch nicht."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Önerilen gün de uymadı, bunu açıkça söyledin."
+     },
+     {
+      "de": "Ja, Mittwoch passt gut.",
+      "tr": "Evet, çarşamba iyi olur.",
+      "accepted": [
+       "Ja, Mittwoch passt gut.",
+       "Ja, Mittwoch um sechs passt.",
+       "Mittwoch ist gut."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Dikkat, çarşamba akşam Ioana'yla çalışıyorsun. **Mittwoch passt mir leider auch nicht.** de."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Dann halt Donnerstag um zehn?",
+    "tr": "O zaman ne yapalım, perşembe onda?",
+    "secenekler": [
+     {
+      "de": "Am Donnerstag um zehn bin ich in der Arbeit. Geht es am Samstag?",
+      "tr": "Perşembe onda işteyim. Cumartesi olur mu?",
+      "accepted": [
+       "Am Donnerstag um zehn bin ich in der Arbeit. Geht es am Samstag?",
+       "Donnerstag um zehn arbeite ich. Geht es vielleicht am Samstag?",
+       "Am Donnerstag arbeite ich leider. Geht es am Samstag?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Vazgeçmedin, sana uyan günü sordun."
+     },
+     {
+      "de": "Okay.",
+      "tr": "Tamam.",
+      "accepted": [
+       "Okay.",
+       "Gut.",
+       "Okay, Donnerstag."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Perşembe sabah işteysin. Vazgeçme, cumartesiyi sor: **Geht es am Samstag?**"
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Samstag um zehn, das geht. Soll ich Sie am Freitag erinnern?",
+    "tr": "Cumartesi onda, olur. Size cuma günü hatırlatayım mı?",
+    "secenekler": [
+     {
+      "de": "Ja, bitte schicken Sie mir eine Nachricht. Danke, Luka!",
+      "tr": "Evet, lütfen bana bir mesaj gönderin. Teşekkürler Luka!",
+      "accepted": [
+       "Ja, bitte schicken Sie mir eine Nachricht. Danke, Luka!",
+       "Ja, gern. Bitte schicken Sie mir eine Nachricht.",
+       "Ja, bitte erinnern Sie mich. Danke!"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **schicken Sie mir eine Nachricht**: bana mesaj gönderin."
+     },
+     {
+      "de": "Nein, danke. Ich habe den Termin im Handy.",
+      "tr": "Hayır, teşekkürler. Randevu telefonumda.",
+      "accepted": [
+       "Nein, danke. Ich habe den Termin im Handy.",
+       "Nein danke, ich habe den Termin im Handy.",
+       "Nein, danke. Der Termin ist in meinem Handy."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "O da olur. Randevu telefonunda yazılı."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Gut. Also Samstag um zehn, ne?",
+    "tr": "Tamam. Yani cumartesi onda, değil mi?",
+    "secenekler": [
+     {
+      "de": "Genau, Samstag um zehn. Bis Samstag!",
+      "tr": "Aynen, cumartesi onda. Cumartesiye görüşürüz!",
+      "accepted": [
+       "Genau, Samstag um zehn. Bis Samstag!",
+       "Ja, genau. Bis Samstag!",
+       "Genau. Samstag um zehn, bis dann!"
+      ],
+      "sonraki": "n7",
+      "uygun": true,
+      "geri_bildirim_tr": "Tamam. Günü ve saati bir kez daha söyleyip kapattın."
+     }
+    ]
+   },
+   {
+    "id": "n7",
+    "de": "Bis Samstag! Wiederhören!",
+    "tr": "Cumartesiye görüşürüz! Hoşça kalın!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Randevunu kaydırdın. İki gün uymadı, vazgeçmeden sana uyan günü buldun."
+ },
+ "okuma_yazma": {
+  "tur": "yazma",
+  "title_tr": "Muayenehaneye mesaj: randevuyu iptal et, yeni gün iste",
+  "metin_de": "Praxis Dr. Weber: Wir erinnern Sie an Ihren Termin am Montag um 9 Uhr. Bitte bringen Sie Ihre Versichertenkarte mit. Sie können nicht kommen? Bitte sagen Sie bis Montag um 8 Uhr ab. Sie können uns auch eine Nachricht schreiben.",
+  "metin_tr": "Dr. Weber muayenehanesi: Pazartesi saat 9'daki randevunuzu hatırlatırız. Lütfen sağlık kartınızı getirin. Gelemiyor musunuz? Lütfen pazartesi saat 8'e kadar iptal edin. Bize mesaj da yazabilirsiniz.",
+  "sorular": [
+   {
+    "id": "m1:69:o1",
+    "kind": "gist",
+    "q_tr": "Bu ne?",
+    "opts": [
+     "Randevu hatırlatması",
+     "Bir fatura",
+     "Reçete"
+    ],
+    "ans": 0,
+    "kanit": [
+     0
+    ]
+   },
+   {
+    "id": "m1:69:o2",
+    "kind": "detail",
+    "q_tr": "İptal için son saat ne?",
+    "opts": [
+     "Pazartesi 8",
+     "Pazartesi 9",
+     "Cuma 8"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:69:o3",
+    "kind": "detail",
+    "q_tr": "Telefon dışında ne yapabilirsin?",
+    "opts": [
+     "Mesaj yazabilirsin",
+     "Hiçbir şey",
+     "Muayenehaneye gidebilirsin"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Muayenehaneye kısa bir mesaj yaz: Pazartesi dokuzdaki randevuya gelemiyorsun, çünkü toplantın var. Salı sabah boş bir yer sor.",
+   "ornek_de": "Guten Tag, Frau Huber! Ich kann am Montag um neun leider nicht kommen. Ich habe eine Besprechung. Haben Sie am Dienstag am Vormittag etwas frei? Vielen Dank! {name}",
+   "zorunlu": [
+    "Montag",
+    "nicht kommen",
+    "Dienstag"
+   ],
+   "accepted_kaliplar": [
+    "Guten Tag, ___!",
+    "Ich kann am Montag ___ leider nicht kommen.",
+    "Ich kann am Montag leider nicht kommen.",
+    "Ich kann am Montag ___ nicht kommen.",
+    "Ich kann am Montag nicht kommen.",
+    "Ich kann leider am Montag ___ nicht kommen.",
+    "Ich kann leider am Montag nicht kommen.",
+    "Leider kann ich am Montag ___ nicht kommen.",
+    "Leider kann ich am Montag nicht kommen.",
+    "Ich kann ___ leider nicht kommen.",
+    "Ich kann ___ nicht kommen.",
+    "Ich habe ___.",
+    "weil ich ___ habe.",
+    "Haben Sie am Dienstag ___ etwas frei?",
+    "Haben Sie am Dienstag etwas frei?",
+    "Haben Sie am Dienstag ___ frei?",
+    "Haben Sie ___ etwas frei?",
+    "Vielen Dank!",
+    "Vielen Dank! ___"
+   ],
+   "kontrol_tr": [
+    "Selam ve adın var mı?",
+    "Gelemediğin günü ve saati yazdın mı? **kommen** en sonda mı?",
+    "Yeni bir gün sordun mu? Örnek: **Haben Sie am Dienstag etwas frei?**"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:69:s",
+  "maddeler": [
+   {
+    "id": "m1:69:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Herr Wimmer erinnert uns an die Besprechung.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Herr Wimmer erinnert uns an die Besprechung.",
+     "herr wimmer erinnert uns an die besprechung",
+     "Herr Wimmer erinnert uns an die Besprechung"
+    ],
+    "why_tr": "**erinnert uns an**: bize hatırlatıyor."
+   },
+   {
+    "id": "m1:69:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Dann komme ich halt am Freitag.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Dann komme ich halt am Freitag.",
+     "dann komme ich halt am freitag",
+     "Dann komme ich halt am Freitag"
+    ],
+    "why_tr": "**halt**: ne yapalım. Konuşmada çok sık."
+   },
+   {
+    "id": "m1:69:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Am Montag habe ich nur wenig Zeit.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Am Montag habe ich nur wenig Zeit.",
+     "am montag habe ich nur wenig zeit",
+     "Am Montag habe ich nur wenig Zeit"
+    ],
+    "why_tr": "**wenig Zeit**: az zaman."
+   },
+   {
+    "id": "m1:69:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ich habe die Versichertenkarte in die Tasche gelegt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich habe die Versichertenkarte in die Tasche gelegt.",
+     "ich habe die versichertenkarte in die tasche gelegt",
+     "Ich habe die Versichertenkarte in die Tasche gelegt"
+    ],
+    "why_tr": "**in die Tasche gelegt**: çantaya koydum."
+   },
+   {
+    "id": "m1:69:s5",
+    "k": "tr_de",
+    "tr": "Yarın bana randevuyu hatırlatır mısın?",
+    "accepted": [
+     "Erinnerst du mich morgen an den Termin?",
+     "Kannst du mich morgen an den Termin erinnern?",
+     "Erinnerst du mich bitte morgen an den Termin?"
+    ],
+    "why_tr": "**Erinnerst du mich an den Termin?**: Bana randevuyu hatırlatır mısın?"
+   },
+   {
+    "id": "m1:69:s6",
+    "k": "tr_de",
+    "tr": "Lütfen oturun.",
+    "accepted": [
+     "Setzen Sie sich bitte.",
+     "Bitte setzen Sie sich.",
+     "Setzen Sie sich doch."
+    ],
+    "why_tr": "**Setzen Sie sich**: buyurun, oturun."
+   },
+   {
+    "id": "m1:69:s7",
+    "k": "tr_de",
+    "tr": "Başka boş bir yeriniz var mı?",
+    "accepted": [
+     "Haben Sie sonst noch etwas frei?",
+     "Haben Sie sonst etwas frei?",
+     "Haben Sie sonst noch einen Termin frei?"
+    ],
+    "why_tr": "**sonst noch**: başka."
+   },
+   {
+    "id": "m1:69:s8",
+    "k": "tr_de",
+    "tr": "Ceketi kapıya astım.",
+    "accepted": [
+     "Ich habe die Jacke an die Tür gehängt.",
+     "Die Jacke habe ich an die Tür gehängt.",
+     "Ich habe meine Jacke an die Tür gehängt."
+    ],
+    "why_tr": "Astım: **habe gehängt**. **gehängt** en sonda."
+   },
+   {
+    "id": "m1:69:s9",
+    "k": "guided_response",
+    "situation_tr": "Luka soruyor: Salı altıda geliyor musunuz? Salı gelemiyorsun. Cumartesiyi sor.",
+    "prompt_de": "Sie kommen am Dienstag um sechs, oder?",
+    "accepted": [
+     "Leider kann ich am Dienstag nicht. Geht es am Samstag?",
+     "Am Dienstag geht es leider nicht. Haben Sie am Samstag etwas frei?",
+     "Nein, leider nicht. Geht es auch am Samstag?",
+     "Dienstag kann ich leider nicht. Geht es vielleicht am Samstag?",
+     "Am Dienstag kann ich nicht kommen. Geht es am Samstag?"
+    ],
+    "why_tr": "Hayır de, sonra başka gün sor: **Geht es am Samstag?**"
+   },
+   {
+    "id": "m1:69:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wir sehen uns am Freitag, ne?",
+    "speed": "normal",
+    "situation_tr": "Tobi soruyor. Evet, cuma görüşüyorsunuz.",
+    "accepted": [
+     "Ja, genau, am Freitag!",
+     "Genau, bis Freitag!",
+     "Ja, am Freitag nach der Arbeit.",
+     "Klar, wir sehen uns am Freitag.",
+     "Ja, Freitag passt."
+    ],
+    "why_tr": "**ne?** değil mi demek. Kısa bir evet yeter."
+   },
+   {
+    "id": "m1:69:s11",
+    "k": "guided_response",
+    "situation_tr": "Frau Huber yeni randevu olarak salı dokuzu öneriyor. Salı da olmuyor. Çarşambayı sor.",
+    "prompt_de": "Passt es Ihnen am Dienstag um neun?",
+    "accepted": [
+     "Dienstag passt mir leider auch nicht. Geht es am Mittwoch?",
+     "Am Dienstag kann ich leider auch nicht. Haben Sie am Mittwoch etwas frei?",
+     "Leider nicht. Geht es vielleicht am Mittwoch?",
+     "Dienstag geht leider auch nicht. Und am Mittwoch?",
+     "Am Dienstag geht es leider nicht. Haben Sie sonst noch etwas frei, vielleicht am Mittwoch?"
+    ],
+    "why_tr": "Önerilen gün uymuyorsa **leider auch nicht** de ve yeni gün sor."
+   }
+  ],
+  "sesli": [
+   "m1:69:s9",
+   "m1:69:s10"
+  ],
+  "dikte": [
+   "m1:69:s1",
+   "m1:69:s2",
+   "m1:69:s3",
+   "m1:69:s4"
+  ]
+ }
+}

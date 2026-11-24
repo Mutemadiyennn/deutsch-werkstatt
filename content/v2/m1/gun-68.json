@@ -1,0 +1,1398 @@
+{
+ "schema": 1,
+ "id": "m1:gun:68",
+ "day": 68,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Apartman kuralları: Fahrräder dürfen nicht im Treppenhaus stehen",
+ "goal_tr": "Apartmandaki bir duyuruyu anlarsın. Kuralları söylersin. Komşudan ya da apartman görevlisinden kibarca bir şey istersin.",
+ "can_do": {
+  "id": "cd:m1:68",
+  "tr": "Apartmanın kurallarını anlar ve söylerim, komşudan kibarca bir şey isterim."
+ },
+ "unit": "u:a2:68",
+ "arm": "kafe",
+ "place": "pl:haus",
+ "characters": [
+  "ch:wimmer",
+  "ch:aksoy",
+  "ch:brandl",
+  "ch:popescu",
+  "ch:lechner",
+  "ch:pichler"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-02:t5"
+ ],
+ "yeni_kartlar": [
+  "lx:Angst",
+  "lx:schaffen",
+  "lx:Mülltonne",
+  "lx:wahr",
+  "lx:genug"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:68:h1",
+   "title_tr": "Cuma sabahı ofiste: telefon korkusu",
+   "kartlar": [
+    "lx:Angst",
+    "lx:schaffen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich habe ein bisschen Angst vor … – Keine Angst!",
+     "tr": "…'den biraz korkuyorum. – Korkma!"
+    },
+    {
+     "de": "Schaffst du das bis …? – Ja, das schaffe ich.",
+     "tr": "…'e kadar yetiştirebilir misin? – Evet, yetiştiririm."
+    },
+    {
+     "de": "Keine Angst, ich helfe dir.",
+     "tr": "Korkma, sana yardım ederim."
+    },
+    {
+     "de": "Ich mache es am …",
+     "tr": "… günü yaparım."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Angst",
+     "de": "Ich habe ein bisschen Angst vor dem Telefon.",
+     "tr": "Telefondan biraz korkuyorum.",
+     "accepted": [
+      "Ich habe ein bisschen Angst vor dem Telefon.",
+      "Vor dem Telefon habe ich ein bisschen Angst.",
+      "Ich habe ein bisschen Angst vor dem Telefon, Derya."
+     ]
+    },
+    {
+     "kart": "lx:Angst",
+     "de": "Keine Angst, ich helfe dir.",
+     "tr": "Korkma, sana yardım ederim.",
+     "accepted": [
+      "Keine Angst, ich helfe dir.",
+      "Keine Angst! Ich helfe dir.",
+      "Hab keine Angst, ich helfe dir."
+     ]
+    },
+    {
+     "kart": "lx:schaffen",
+     "de": "Schaffst du das bis Montag?",
+     "tr": "Bunu pazartesiye kadar yetiştirebilir misin?",
+     "accepted": [
+      "Schaffst du das bis Montag?",
+      "Schaffst du das noch bis Montag?",
+      "Schaffen Sie das bis Montag?"
+     ]
+    },
+    {
+     "kart": "lx:schaffen",
+     "de": "Ich schaffe das heute nicht, ich mache es am Montag.",
+     "tr": "Bugün yetiştiremiyorum, pazartesi yaparım.",
+     "accepted": [
+      "Ich schaffe das heute nicht, ich mache es am Montag.",
+      "Ich schaffe das heute nicht. Ich mache es am Montag.",
+      "Heute schaffe ich das nicht, ich mache es am Montag."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cuma sabahı ofiste. Herr Wimmer bir müşteriyi telefonla aramanı istiyor. Derya yanında.",
+    "satirlar": [
+     {
+      "r": "ch:wimmer",
+      "de": "Können Sie heute bitte einen Kunden anrufen? Schaffen Sie das bis zwölf?",
+      "tr": "Bugün lütfen bir müşteriyi arayabilir misiniz? On ikiye kadar yetiştirebilir misiniz?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, das schaffe ich. Aber ich habe ein bisschen Angst.",
+      "tr": "Evet, yetiştiririm. Ama biraz korkuyorum."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Keine Angst! Auf Deutsch, du schaffst das.",
+      "tr": "Korkma! Almanca konuş, başarırsın."
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya ne diyor?",
+     "opts": [
+      "Korkma, başarırsın",
+      "Sen arama, ben ararım",
+      "Müşteri bugün yok"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:68:h2",
+   "title_tr": "Telefonda Ioana: bodrumda yer var mı?",
+   "kartlar": [
+    "lx:Mülltonne",
+    "lx:wahr",
+    "lx:genug"
+   ],
+   "kaliplar": [
+    {
+     "de": "Man darf hier nicht … – Das ist gegen die Hausordnung.",
+     "tr": "Burada … yapılmaz. – Bu, apartman kurallarına aykırı."
+    },
+    {
+     "de": "Ist das wahr? – …, nicht wahr?",
+     "tr": "Bu doğru mu? – …, değil mi?"
+    },
+    {
+     "de": "Papier kommt in die neue Mülltonne.",
+     "tr": "Kâğıt yeni çöp bidonuna atılır."
+    },
+    {
+     "de": "Könnten Sie bitte …? – Natürlich!",
+     "tr": "Lütfen … yapabilir misiniz? – Tabii!"
+    },
+    {
+     "de": "Ist genug Platz im …? – Ja, da ist genug Platz.",
+     "tr": "…'de yeterince yer var mı? – Evet, yeterince yer var."
+    },
+    {
+     "de": "in die Mülltonne – neben die Mülltonne",
+     "tr": "çöp bidonunun içine – çöp bidonunun yanına"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Mülltonne",
+     "de": "Wer hat den Müll neben die Mülltonne gestellt?",
+     "tr": "Çöpü çöp bidonunun yanına kim koydu?",
+     "accepted": [
+      "Wer hat den Müll neben die Mülltonne gestellt?",
+      "Wer hat denn den Müll neben die Mülltonne gestellt?",
+      "Wer hat den Müll da neben die Mülltonne gestellt?"
+     ]
+    },
+    {
+     "kart": "lx:Mülltonne",
+     "de": "Man darf nichts neben die Mülltonne stellen.",
+     "tr": "Çöp bidonunun yanına hiçbir şey konmaz.",
+     "accepted": [
+      "Man darf nichts neben die Mülltonne stellen.",
+      "Neben die Mülltonne darf man nichts stellen.",
+      "Man darf nichts neben die Mülltonnen stellen."
+     ]
+    },
+    {
+     "kart": "lx:Mülltonne",
+     "de": "Papier muss man in die neue Mülltonne bringen.",
+     "tr": "Kâğıdı yeni çöp bidonuna götürmek gerekiyor.",
+     "accepted": [
+      "Papier muss man in die neue Mülltonne bringen.",
+      "Das Papier muss man in die neue Mülltonne bringen.",
+      "Man muss Papier in die neue Mülltonne bringen."
+     ]
+    },
+    {
+     "kart": "lx:wahr",
+     "de": "Ist das wahr? Am Sonntag darf man nicht laut Musik hören?",
+     "tr": "Bu doğru mu? Pazar günü yüksek sesle müzik dinlenmiyor mu?",
+     "accepted": [
+      "Ist das wahr? Am Sonntag darf man nicht laut Musik hören?",
+      "Ist das wahr? Darf man am Sonntag nicht laut Musik hören?",
+      "Ist das wirklich wahr? Am Sonntag darf man nicht laut Musik hören?"
+     ]
+    },
+    {
+     "kart": "lx:wahr",
+     "de": "Schuhe dürfen nicht vor der Tür stehen, nicht wahr?",
+     "tr": "Ayakkabılar kapının önünde duramaz, değil mi?",
+     "accepted": [
+      "Schuhe dürfen nicht vor der Tür stehen, nicht wahr?",
+      "Schuhe dürfen nicht vor der Tür stehen, oder?",
+      "Die Schuhe dürfen nicht vor der Tür stehen, nicht wahr?"
+     ]
+    },
+    {
+     "kart": "lx:genug",
+     "de": "Könnten Sie am Abend bitte nicht so laut sein? Ich habe nicht genug geschlafen.",
+     "tr": "Akşamları lütfen bu kadar gürültü yapmasanız olur mu? Yeterince uyuyamadım.",
+     "accepted": [
+      "Könnten Sie am Abend bitte nicht so laut sein? Ich habe nicht genug geschlafen.",
+      "Könnten Sie bitte am Abend nicht so laut sein? Ich habe nicht genug geschlafen.",
+      "Ich habe nicht genug geschlafen. Könnten Sie am Abend bitte nicht so laut sein?"
+     ]
+    },
+    {
+     "kart": "lx:genug",
+     "de": "Das Fahrrad muss in den Keller, da ist genug Platz.",
+     "tr": "Bisiklet bodruma konmalı, orada yeterince yer var.",
+     "accepted": [
+      "Das Fahrrad muss in den Keller, da ist genug Platz.",
+      "Das Fahrrad muss in den Keller. Da ist genug Platz.",
+      "Das Fahrrad muss in den Keller, dort ist genug Platz."
+     ]
+    },
+    {
+     "kart": "lx:genug",
+     "de": "Ich habe mein Fahrrad schon in den Keller gestellt, da ist genug Platz.",
+     "tr": "Bisikletimi bodruma koydum bile, orada yeterince yer var.",
+     "accepted": [
+      "Ich habe mein Fahrrad schon in den Keller gestellt, da ist genug Platz.",
+      "Ich habe mein Fahrrad schon in den Keller gestellt. Da ist genug Platz.",
+      "Mein Fahrrad habe ich schon in den Keller gestellt, da ist genug Platz."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cuma akşamı eve geliyorsun. Merdivende yeni bir duyuru asılı. Frau Brandl onu okuyor.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Haben Sie das schon gesehen? Herr Pichler hat eine neue Hausordnung ins Treppenhaus gehängt.",
+      "tr": "Bunu gördünüz mü? Herr Pichler merdivene yeni bir apartman yönetmeliği asmış."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja. Man darf keine Schuhe mehr vor die Tür stellen, oder?",
+      "tr": "Evet. Artık kapının önüne ayakkabı konmuyor, değil mi?"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Genau. Und der Müll muss in die Mülltonne, nicht neben die Mülltonne!",
+      "tr": "Aynen. Çöp de bidona atılacak, yanına değil!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Herr Pichler ne yaptı?",
+     "opts": [
+      "Merdivene yeni kurallar astı",
+      "Çöpleri topladı",
+      "Ayakkabıları bodruma koydu"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:68:v1",
+  "title_tr": "Tobi'nin komşusu",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Cuma öğlen, kantin. Tobi tepsisiyle masaya geliyor, biraz mahcup görünüyor.",
+    "de": "Mahlzeit! Ich habe ein Problem mit meinem Nachbarn.",
+    "tr": "İyi öğlenler! Komşumla bir sorunum var."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya çatalını bırakıyor.",
+    "de": "Was denn? Erzähl!",
+    "tr": "Ne oldu? Anlat!"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi telefonunda bir fotoğraf gösteriyor.",
+    "de": "Mein Nachbar hat eine Nachricht an meine Tür gehängt.",
+    "tr": "Komşum kapıma bir not asmış."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi notu yüksek sesle okuyor.",
+    "de": "Da steht: Nach zehn Uhr darf man keine laute Musik hören.",
+    "tr": "Şöyle yazıyor: Saat ondan sonra yüksek sesle müzik dinlenmez."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya kaşlarını kaldırıyor.",
+    "de": "Und? War die Musik laut?",
+    "tr": "Eee? Müzik yüksek miydi?"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi omuz silkiyor.",
+    "de": "Am Dienstag war das Spiel. Meine Freunde waren da, und es war ein bisschen laut.",
+    "tr": "Salı maç vardı. Arkadaşlarım geldi, biraz gürültü oldu."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülüyor.",
+    "de": "Ein bisschen? Ist das wahr?",
+    "tr": "Biraz mı? Doğru mu bu?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi ellerini kaldırıyor.",
+    "de": "Okay, okay. Es war sehr laut. Bis halb zwölf.",
+    "tr": "Tamam, tamam. Çok gürültülüydü. On bir buçuğa kadar."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya başını sallıyor.",
+    "de": "Dann hat dein Nachbar recht. Das ist gegen die Hausordnung.",
+    "tr": "O zaman komşun haklı. Bu, apartman kurallarına aykırı."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi iç çekiyor.",
+    "de": "Ja, ich weiß. Heute Abend bringe ich ihm ein Bier und sage Entschuldigung.",
+    "tr": "Evet, biliyorum. Bu akşam ona bir bira götürüp özür dileyeceğim."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülümsüyor.",
+    "de": "Gute Idee. Und das nächste Spiel seht ihr im Gasthaus!",
+    "tr": "İyi fikir. Bir sonraki maçı da lokantada izlersiniz!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi gülüyor.",
+    "de": "Genau, das machen wir!",
+    "tr": "Aynen, öyle yapacağız!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Tobi ne anlatıyor?",
+     "opts": [
+      "Komşusu müzik yüzünden kapısına not astı",
+      "Maçı kaybettiler",
+      "Yeni bir daireye taşınıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s3",
+      "s4"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Müzik saat kaça kadar sürdü?",
+      "opts": [
+       "On bir buçuğa kadar",
+       "Saat ona kadar",
+       "Sabaha kadar"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s8"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi bu akşam ne yapacak?",
+      "opts": [
+       "Komşusuna bira götürüp özür dileyecek",
+       "Yine maç izleyecek",
+       "Herr Pichler'i arayacak"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya bir sonraki maç için ne öneriyor?",
+      "opts": [
+       "Lokantada izlemelerini",
+       "Hiç izlememelerini",
+       "Komşuyu da çağırmalarını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s9",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Hausordnung",
+       "Mülltonne",
+       "Treppenhaus"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s7",
+      "seviye": "orta",
+      "de": "Ein bisschen? Ist das ___?",
+      "accepted": [
+       "wahr",
+       "Wahr",
+       "wahr."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s6",
+      "seviye": "zor",
+      "banka": [
+       "Meine",
+       "Freunde",
+       "waren",
+       "da",
+       "und",
+       "es",
+       "war",
+       "ein",
+       "bisschen",
+       "laut",
+       "sind",
+       "viel"
+      ],
+      "accepted": [
+       "Meine Freunde waren da, und es war ein bisschen laut.",
+       "meine freunde waren da und es war ein bisschen laut",
+       "Meine Freunde waren da, und es war ein bisschen laut"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Heute Abend bringe ich ihm ein Bier und sage Entschuldigung.",
+       "heute abend bringe ich ihm ein bier und sage entschuldigung",
+       "Heute Abend bringe ich ihm ein Bier und sage Entschuldigung"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Tobi'nin hikâyesini iki kısa cümleyle anlat.",
+      "ornek_de": "Bei Tobi war die Musik nach zehn Uhr laut. Das ist gegen die Hausordnung.",
+      "zorunlu": [
+       "Musik",
+       "Hausordnung"
+      ]
+     }
+    ],
+    "golge": [
+     "s7",
+     "s9"
+    ],
+    "cevapla": {
+     "id": "m1:68:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Tobi sana da soruyor: Senin komşuların nasıl? Komşuların çok iyi, Frau Brandl sana hep yardım ediyor.",
+     "prompt_de": "Und du? Wie sind deine Nachbarn?",
+     "accepted": [
+      "Meine Nachbarn sind sehr nett. Frau Brandl hilft mir immer.",
+      "Sehr nett! Frau Brandl hilft mir immer.",
+      "Meine Nachbarn sind nett. Frau Brandl hilft mir oft.",
+      "Sie sind sehr nett. Frau Brandl hilft mir immer.",
+      "Gut! Meine Nachbarin Frau Brandl hilft mir immer."
+     ],
+     "why_tr": "Kısa söyle: **Meine Nachbarn sind nett.** Sonra bir örnek ver."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:68:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Herr Pichler'in iş arkadaşından sesli mesaj",
+   "ortam_tr": "Cuma öğleden sonra işteyken telefonuna bir mesaj geliyor. Banyodaki priz için gelecek adam arıyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist der Kollege von Herrn Pichler.",
+     "tr": "İyi günler, ben Herr Pichler'in iş arkadaşıyım."
+    },
+    {
+     "id": "c2",
+     "de": "Es geht um die Steckdose im Bad.",
+     "tr": "Banyodaki priz hakkında arıyorum."
+    },
+    {
+     "id": "c3",
+     "de": "Ich kann heute leider nicht um drei kommen.",
+     "tr": "Bugün maalesef saat üçte gelemiyorum."
+    },
+    {
+     "id": "c4",
+     "de": "Ich komme gegen fünf. Geht das bei Ihnen?",
+     "tr": "Saat beş gibi gelirim. Size uyar mı?"
+    },
+    {
+     "id": "c5",
+     "de": "Bitte rufen Sie mich kurz zurück. Danke!",
+     "tr": "Lütfen beni bir arayın. Teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Adam neden arıyor?",
+      "opts": [
+       "Saat üçte gelemiyor, daha geç gelecek",
+       "Bugün hiç gelmeyecek",
+       "Erken, saat birde gelecek"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Adam saat kaç gibi geliyor?",
+       "opts": [
+        "Beş gibi",
+        "Üçte",
+        "Yedi gibi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Senden ne istiyor?",
+       "opts": [
+        "Onu geri aramanı",
+        "Ona mesaj yazmanı",
+        "Herr Pichler'i aramanı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "drei",
+        "fünf",
+        "sieben"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Ich komme ___ fünf. Geht das bei Ihnen?",
+       "accepted": [
+        "gegen",
+        "Gegen",
+        "gegen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "kann",
+        "heute",
+        "leider",
+        "nicht",
+        "um",
+        "drei",
+        "kommen",
+        "gegen",
+        "morgen"
+       ],
+       "accepted": [
+        "Ich kann heute leider nicht um drei kommen.",
+        "ich kann heute leider nicht um drei kommen",
+        "Ich kann heute leider nicht um drei kommen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Bitte rufen Sie mich kurz zurück.",
+        "bitte rufen sie mich kurz zurück",
+        "Bitte rufen Sie mich kurz zurück"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı iki kısa cümleyle anlat.",
+       "ornek_de": "Der Kollege kommt nicht um drei. Er kommt gegen fünf.",
+       "zorunlu": [
+        "gegen fünf"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:68:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Adamı geri arıyorsun. Adını söyledin. Saat beş sana uyuyor, o saatte evdesin.",
+      "prompt_de": "Hallo! Passt es Ihnen gegen fünf?",
+      "accepted": [
+       "Ja, gegen fünf passt gut. Ich bin zu Hause.",
+       "Ja, das geht. Gegen fünf bin ich zu Hause.",
+       "Gegen fünf passt mir gut. Bis später!",
+       "Ja, kein Problem. Ich bin gegen fünf zu Hause.",
+       "Ja, fünf Uhr passt. Ich bin dann zu Hause."
+      ],
+      "why_tr": "**gegen fünf**: beş gibi, tam saat değil. Evet de ve evde olduğunu söyle."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:68:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Adamı geri arayıp saat beşin uyup uymadığını söylemelisin.",
+     "Saat üçte evde beklemelisin.",
+     "Hiçbir şey yapmana gerek yok."
+    ],
+    "ans": 0,
+    "why_tr": "Adam beş gibi gelmek istiyor ve geri aramanı rica ediyor.",
+    "kanit": [
+     "c4",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:68:a2",
+   "tur": "radyo",
+   "title_tr": "Yerel radyo: komşularla sorun",
+   "ortam_tr": "Akşam yemek yaparken radyo açık. Wendlfing'in yerel radyosu komşuluk üzerine konuşuyor.",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hier ist Radio Vils. Heute geht es um Nachbarn.",
+     "tr": "Burası Radio Vils. Bugün konumuz komşular."
+    },
+    {
+     "id": "c2",
+     "de": "Viele Leute in Wendlfing haben Probleme mit lauter Musik.",
+     "tr": "Wendlfing'de birçok insanın yüksek sesli müzikle sorunu var."
+    },
+    {
+     "id": "c3",
+     "de": "Was können Sie machen? Sprechen Sie mit Ihren Nachbarn, und bleiben Sie nett.",
+     "tr": "Ne yapabilirsiniz? Komşularınızla konuşun ve nazik kalın."
+    },
+    {
+     "id": "c4",
+     "de": "Sagen Sie: Könnten Sie die Musik bitte nicht so laut machen?",
+     "tr": "Şöyle deyin: Müziği lütfen bu kadar yüksek açmasanız olur mu?"
+    },
+    {
+     "id": "c5",
+     "de": "Und nicht vergessen: Von zehn Uhr am Abend bis sechs Uhr am Morgen ist Ruhezeit.",
+     "tr": "Unutmayın: Akşam ondan sabah altıya kadar sessizlik saatleri."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo neyi anlatıyor?",
+      "opts": [
+       "Gürültülü komşuyla ne yapılacağını",
+       "Hafta sonu hava durumunu",
+       "Yeni bir lokantayı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1",
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Sessizlik saatleri ne zaman?",
+       "opts": [
+        "Akşam ondan sabah altıya kadar",
+        "Gece yarısından sabah sekize kadar",
+        "Öğlen birden üçe kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Radyo komşuyla nasıl konuşmanı söylüyor?",
+       "opts": [
+        "Nazik kalarak",
+        "Yüksek sesle",
+        "Mektupla"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Musik",
+        "Mülltonne",
+        "Treppenhaus"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Was können Sie machen? Sprechen Sie mit Ihren ___, und bleiben Sie nett.",
+       "accepted": [
+        "Nachbarn",
+        "nachbarn",
+        "Nachbarn."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Sagen",
+        "Sie:",
+        "Könnten",
+        "Sie",
+        "die",
+        "Musik",
+        "bitte",
+        "nicht",
+        "so",
+        "laut",
+        "machen",
+        "muss",
+        "leider"
+       ],
+       "accepted": [
+        "Sagen Sie: Könnten Sie die Musik bitte nicht so laut machen?",
+        "sagen sie könnten sie die musik bitte nicht so laut machen",
+        "Sagen Sie: Könnten Sie die Musik bitte nicht so laut machen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Und nicht vergessen: Von zehn Uhr am Abend bis sechs Uhr am Morgen ist Ruhezeit.",
+        "und nicht vergessen von zehn uhr am abend bis sechs uhr am morgen ist ruhezeit",
+        "Und nicht vergessen: Von zehn Uhr am Abend bis sechs Uhr am Morgen ist Ruhezeit"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyonun önerisini iki kısa cümleyle anlat.",
+       "ornek_de": "Man muss mit den Nachbarn sprechen. Nach zehn Uhr ist Ruhezeit.",
+       "zorunlu": [
+        "Nachbarn",
+        "Ruhezeit"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:68:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Saat on bir. Üst kattaki komşu yüksek sesle müzik dinliyor. Kapısını çaldın, kapıyı açtı. Kibarca rica et.",
+      "prompt_de": "Ja? Was gibt's?",
+      "accepted": [
+       "Guten Abend! Könnten Sie die Musik bitte nicht so laut machen?",
+       "Entschuldigung, könnten Sie die Musik bitte nicht so laut machen?",
+       "Guten Abend. Es ist schon elf. Könnten Sie die Musik bitte nicht so laut machen?",
+       "Hallo! Könnten Sie bitte die Musik nicht so laut machen? Es ist schon spät.",
+       "Entschuldigung, es ist Ruhezeit. Könnten Sie die Musik bitte nicht so laut machen?"
+      ],
+      "why_tr": "Önce selam ver. Sonra kibarca rica et: **Könnten Sie bitte**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:68:a2:e1",
+    "k": "pick",
+    "q_tr": "Komşun gece yüksek sesle müzik dinliyor. Radyo ne yapmanı öneriyor?",
+    "opts": [
+     "Komşunla konuşmanı ve nazik kalmanı",
+     "Hemen polisi aramanı",
+     "Sen de müziği açmanı"
+    ],
+    "ans": 0,
+    "why_tr": "Radyo önce komşuyla konuşmayı ve nazik kalmayı öneriyor.",
+    "kanit": [
+     "c3"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:68:g1",
+   "de": "Mülltonne",
+   "dogru_img": "garbage bins in a courtyard",
+   "celdirici_img": [
+    "post box",
+    "plant pot",
+    "bicycle stand"
+   ]
+  },
+  {
+   "id": "m1:68:g2",
+   "de": "Hausordnung",
+   "dogru_img": "house rules notice on a hallway wall",
+   "celdirici_img": [
+    "calendar on a wall",
+    "menu card",
+    "street sign"
+   ]
+  },
+  {
+   "id": "m1:68:g3",
+   "de": "Treppenhaus",
+   "dogru_img": "stairwell in an apartment building",
+   "celdirici_img": [
+    "elevator",
+    "basement",
+    "garden"
+   ]
+  },
+  {
+   "id": "m1:68:g4",
+   "de": "Angst",
+   "dogru_img": "nervous person looking at a ringing phone",
+   "celdirici_img": [
+    "person laughing on the phone",
+    "person sleeping",
+    "person eating"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:68:p1",
+  "title_tr": "Herr Pichler: bisikletin merdivende",
+  "durum_tr": "Cuma akşamı. Bisikletini merdivende bırakmışsın, kapının önünde de eski kâğıtlar var. Herr Pichler geliyor. Pazartesi altı buçuğa kadar işteysin.",
+  "karsi": "ch:pichler",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Grüß Gott! Ist das Ihr Fahrrad im Treppenhaus?",
+    "tr": "İyi akşamlar! Merdivendeki bisiklet sizin mi?",
+    "secenekler": [
+     {
+      "de": "Ja, das ist mein Fahrrad. Entschuldigung!",
+      "tr": "Evet, benim bisikletim. Özür dilerim!",
+      "accepted": [
+       "Ja, das ist mein Fahrrad. Entschuldigung!",
+       "Ja, das ist meins. Entschuldigung!",
+       "Ja, das ist mein Fahrrad. Tut mir leid!"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Kabul ettin ve özür diledin."
+     },
+     {
+      "de": "Nein.",
+      "tr": "Hayır.",
+      "accepted": [
+       "Nein.",
+       "Nein, das ist nicht mein Fahrrad.",
+       "Nein, nicht meins."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Bisiklet senin. Doğruyu söyle ve özür dile: **Entschuldigung!**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Das geht so nicht. Das Fahrrad darf nicht hier im Treppenhaus stehen.",
+    "tr": "Böyle olmaz. Bisiklet burada, merdivende duramaz.",
+    "secenekler": [
+     {
+      "de": "Ich weiß. Ich stelle es gleich in den Keller.",
+      "tr": "Biliyorum. Hemen bodruma koyuyorum.",
+      "accepted": [
+       "Ich weiß. Ich stelle es gleich in den Keller.",
+       "Ich weiß. Ich stelle es sofort in den Keller.",
+       "Ja, ich stelle es gleich in den Keller."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Nereye: **in den Keller**."
+     },
+     {
+      "de": "Ich stelle es gleich im Keller.",
+      "tr": "Hemen bodrumda koyuyorum.",
+      "accepted": [
+       "Ich stelle es gleich im Keller.",
+       "Es steht gleich in den Keller.",
+       "Ich stelle es im Keller."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Nereye sorusunda **in den Keller** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Gut. Und das Papier vor Ihrer Tür? Das muss auch weg.",
+    "tr": "Tamam. Peki kapınızın önündeki kâğıtlar? Onlar da kalkmalı.",
+    "secenekler": [
+     {
+      "de": "Wohin kommt das Papier? In die Mülltonne?",
+      "tr": "Kâğıt nereye atılıyor? Çöp bidonuna mı?",
+      "accepted": [
+       "Wohin kommt das Papier? In die Mülltonne?",
+       "Wohin kommt das Papier? In die neue Mülltonne?",
+       "Und wohin kommt das Papier?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi soru. Bilmiyorsan sor."
+     },
+     {
+      "de": "Das Papier lege ich neben die Mülltonne.",
+      "tr": "Kâğıtları çöp bidonunun yanına koyuyorum.",
+      "accepted": [
+       "Das Papier lege ich neben die Mülltonne.",
+       "Ich lege das Papier neben die Mülltonne.",
+       "Neben die Mülltonne, okay?"
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Bidonun yanına bir şey konmaz. Nereye atıldığını sor."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Das Papier kommt in die neue Mülltonne. Die steht ab Montag hinter dem Haus.",
+    "tr": "Kâğıt yeni bidona atılıyor. O, pazartesiden itibaren apartmanın arkasında.",
+    "secenekler": [
+     {
+      "de": "Könnten Sie mir die neue Mülltonne am Montag zeigen?",
+      "tr": "Yeni çöp bidonunu pazartesi bana gösterebilir misiniz?",
+      "accepted": [
+       "Könnten Sie mir die neue Mülltonne am Montag zeigen?",
+       "Könnten Sie mir am Montag die neue Mülltonne zeigen?",
+       "Könnten Sie mir die neue Tonne am Montag zeigen?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok kibar. **Könnten Sie** ile rica ettin."
+     },
+     {
+      "de": "Zeigen Sie mir die Mülltonne!",
+      "tr": "Bana çöp bidonunu gösterin!",
+      "accepted": [
+       "Zeigen Sie mir die Mülltonne!",
+       "Zeig mir die Mülltonne!",
+       "Die Mülltonne zeigen!"
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu emir gibi. Kibar sor: **Könnten Sie mir die Mülltonne zeigen?**"
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Ja, gut. Am Montag gegen sechs bin ich hinter dem Haus.",
+    "tr": "Peki, olur. Pazartesi altı gibi apartmanın arkasındayım.",
+    "secenekler": [
+     {
+      "de": "Gegen sechs schaffe ich es leider nicht. Geht es um sieben?",
+      "tr": "Altı gibi maalesef yetişemem. Yedide olur mu?",
+      "accepted": [
+       "Gegen sechs schaffe ich es leider nicht. Geht es um sieben?",
+       "Um sechs schaffe ich es leider nicht. Geht es um sieben?",
+       "Gegen sechs bin ich noch im Büro. Geht es um sieben?"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Saat uymadı, sen yeni bir saat istedin."
+     },
+     {
+      "de": "Okay.",
+      "tr": "Tamam.",
+      "accepted": [
+       "Okay.",
+       "Gut.",
+       "Ja, okay."
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "Pazartesi altı buçuğa kadar işteysin. Bunu söyle ve başka saat iste."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Um sieben? Gut, um sieben. Aber pünktlich!",
+    "tr": "Yedide mi? Peki, yedide. Ama tam saatinde!",
+    "secenekler": [
+     {
+      "de": "Danke, Herr Pichler! Bis Montag um sieben.",
+      "tr": "Teşekkürler, Herr Pichler! Pazartesi yedide görüşürüz.",
+      "accepted": [
+       "Danke, Herr Pichler! Bis Montag um sieben.",
+       "Vielen Dank! Bis Montag um sieben.",
+       "Danke! Montag um sieben, ich bin pünktlich."
+      ],
+      "sonraki": "n7",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Günü ve saati tekrar ettin."
+     }
+    ]
+   },
+   {
+    "id": "n7",
+    "de": "Bis Montag!",
+    "tr": "Pazartesi görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Kuralı anladın, kibarca yardım istedin. Önerilen saat uymayınca yeni bir saat aldın."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Merdivendeki duyuru",
+  "metin_de": "Liebe Nachbarinnen und Nachbarn! Ab Montag gibt es hinter dem Haus eine neue Mülltonne für Papier. Ich stelle die Mülltonnen jetzt am Dienstag vor das Haus, nicht mehr am Mittwoch. Bitte stellen Sie keinen Müll neben die Tonnen. Fahrräder dürfen nicht im Treppenhaus stehen. Im Keller ist genug Platz. Am Samstag putze ich das Treppenhaus. Bitte stellen Sie keine Schuhe mehr vor die Tür. Vielen Dank! Josef Pichler, Hausmeister",
+  "metin_tr": "Sevgili komşular! Pazartesiden itibaren apartmanın arkasında kâğıt için yeni bir çöp bidonu var. Çöp bidonlarını artık çarşamba değil, salı günü apartmanın önüne koyuyorum. Lütfen bidonların yanına çöp koymayın. Bisikletler merdivende duramaz. Bodrumda yeterince yer var. Cumartesi merdiveni temizliyorum. Lütfen artık kapının önüne ayakkabı koymayın. Çok teşekkürler! Josef Pichler, apartman görevlisi",
+  "sorular": [
+   {
+    "id": "m1:68:o1",
+    "kind": "gist",
+    "q_tr": "Duyuru ne hakkında?",
+    "opts": [
+     "Apartmanın kuralları ve yenilikler",
+     "Bir doğum günü partisi",
+     "Kira artışı"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:68:o2",
+    "kind": "detail",
+    "q_tr": "Çöp bidonları artık hangi gün apartmanın önünde?",
+    "opts": [
+     "Salı",
+     "Çarşamba",
+     "Pazartesi"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:68:o3",
+    "kind": "detail",
+    "q_tr": "Bisikletler nereye konmalı?",
+    "opts": [
+     "Bodruma",
+     "Merdivene",
+     "Avluya"
+    ],
+    "ans": 0,
+    "kanit": [
+     4,
+     5
+    ]
+   },
+   {
+    "id": "m1:68:o4",
+    "kind": "detail",
+    "q_tr": "Artık ne yapmamalısın?",
+    "opts": [
+     "Kapının önüne ayakkabı koymamalısın",
+     "Müzik dinlememelisin",
+     "Çöp atmamalısın"
+    ],
+    "ans": 0,
+    "kanit": [
+     6,
+     7
+    ]
+   },
+   {
+    "id": "m1:68:o5",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl merdivende soruyor: Kâğıt nereye atılıyor? Duyuruya göre cevap ver.",
+    "prompt_de": "Wohin kommt jetzt das Papier?",
+    "accepted": [
+     "Das Papier kommt in die neue Mülltonne hinter dem Haus.",
+     "In die neue Mülltonne hinter dem Haus.",
+     "Es kommt in die neue Mülltonne hinter dem Haus.",
+     "Ab Montag kommt das Papier in die neue Mülltonne.",
+     "Papier kommt jetzt in die neue Mülltonne hinter dem Haus."
+    ],
+    "why_tr": "Nereye: **in die neue Mülltonne**. Bidon **die Mülltonne**, bu yüzden **in die**."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:68:s",
+  "maddeler": [
+   {
+    "id": "m1:68:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Der Müll muss in die Mülltonne hinter dem Haus.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Müll muss in die Mülltonne hinter dem Haus.",
+     "der müll muss in die mülltonne im hof",
+     "Der Müll muss in die Mülltonne hinter dem Haus"
+    ],
+    "why_tr": "**muss**: gerekiyor. Nereye: **in die Mülltonne**."
+   },
+   {
+    "id": "m1:68:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Schuhe darf man nicht vor die Tür stellen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Schuhe darf man nicht vor die Tür stellen.",
+     "schuhe darf man nicht vor die tür stellen",
+     "Schuhe darf man nicht vor die Tür stellen"
+    ],
+    "why_tr": "**darf man nicht**: yapılmaz. Nereye: **vor die Tür**."
+   },
+   {
+    "id": "m1:68:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Haben wir genug Kaffee für alle?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Haben wir genug Kaffee für alle?",
+     "haben wir genug kaffee für alle",
+     "Haben wir genug Kaffee für alle"
+    ],
+    "why_tr": "**genug**: yeterince."
+   },
+   {
+    "id": "m1:68:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Wer hat das Fahrrad in den Keller gestellt?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wer hat das Fahrrad in den Keller gestellt?",
+     "wer hat das fahrrad in den keller gestellt",
+     "Wer hat das Fahrrad in den Keller gestellt"
+    ],
+    "why_tr": "**hat gestellt**: koydu. Nereye: **in den Keller**."
+   },
+   {
+    "id": "m1:68:s5",
+    "k": "tr_de",
+    "tr": "Merdivende bisiklet duramaz.",
+    "accepted": [
+     "Im Treppenhaus darf kein Fahrrad stehen.",
+     "Fahrräder dürfen nicht im Treppenhaus stehen.",
+     "Im Treppenhaus dürfen keine Fahrräder stehen.",
+     "Das Fahrrad darf nicht im Treppenhaus stehen."
+    ],
+    "why_tr": "**darf nicht**: izin yok. Nerede: **im Treppenhaus**."
+   },
+   {
+    "id": "m1:68:s6",
+    "k": "tr_de",
+    "tr": "Bisikletinizi lütfen bodruma koyabilir misiniz?",
+    "accepted": [
+     "Könnten Sie Ihr Fahrrad bitte in den Keller stellen?",
+     "Könnten Sie bitte Ihr Fahrrad in den Keller stellen?",
+     "Könnten Sie Ihr Fahrrad in den Keller stellen?"
+    ],
+    "why_tr": "Kibar rica: **Könnten Sie**. **stellen** en sonda."
+   },
+   {
+    "id": "m1:68:s7",
+    "k": "tr_de",
+    "tr": "Korkma, başarırsın!",
+    "accepted": [
+     "Keine Angst, du schaffst das!",
+     "Hab keine Angst, du schaffst das!",
+     "Keine Angst! Du schaffst das."
+    ],
+    "why_tr": "**Keine Angst**: korkma. **du schaffst das**: başarırsın."
+   },
+   {
+    "id": "m1:68:s8",
+    "k": "tr_de",
+    "tr": "Bu doğru mu? Çöp artık salı günü mü?",
+    "accepted": [
+     "Ist das wahr? Der Müll ist jetzt am Dienstag?",
+     "Stimmt das? Der Müll ist jetzt am Dienstag?",
+     "Ist das wahr? Ist der Müll jetzt am Dienstag?"
+    ],
+    "why_tr": "**Ist das wahr?**: bu doğru mu?"
+   },
+   {
+    "id": "m1:68:s9",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl soruyor: Bisikletler nerede durmalı? Bodrumda, orada yeterince yer var.",
+    "prompt_de": "Wo sollen die Fahrräder stehen?",
+    "accepted": [
+     "Im Keller. Da ist genug Platz.",
+     "Die Fahrräder müssen im Keller stehen. Da ist genug Platz.",
+     "Im Keller, da ist genug Platz.",
+     "Sie müssen im Keller stehen, da ist genug Platz.",
+     "Im Keller. Dort ist genug Platz."
+    ],
+    "why_tr": "Nerede: **im Keller**. Sonra **genug Platz** de."
+   },
+   {
+    "id": "m1:68:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Schaffst du das bis heute Abend?",
+    "speed": "normal",
+    "situation_tr": "Derya soruyor. Evet, bu akşama kadar yetiştirirsin.",
+    "accepted": [
+     "Ja, das schaffe ich.",
+     "Ja, bis heute Abend schaffe ich das.",
+     "Ja, klar, das schaffe ich.",
+     "Ja, ich schaffe das.",
+     "Ich glaube, ja. Das schaffe ich."
+    ],
+    "why_tr": "Cevapta **schaffe** kullan: **Ja, das schaffe ich.**"
+   },
+   {
+    "id": "m1:68:s11",
+    "k": "guided_response",
+    "situation_tr": "Günün provası. Herr Pichler pazartesi altı gibi apartmanın arkasında olacağını söylüyor. O saatte işteysin. Söyle ve saat yediyi sor.",
+    "prompt_de": "Am Montag gegen sechs bin ich hinter dem Haus, okay?",
+    "accepted": [
+     "Gegen sechs bin ich leider noch im Büro. Geht es um sieben?",
+     "Um sechs schaffe ich das leider nicht. Geht es auch um sieben?",
+     "Leider nicht, da bin ich noch im Büro. Geht es vielleicht um sieben?",
+     "Gegen sechs geht es leider nicht. Geht es um sieben?",
+     "Das schaffe ich leider nicht, ich bin noch im Büro. Geht es um sieben?"
+    ],
+    "why_tr": "Önce **leider** ile olmadığını söyle. Sonra yeni saat sor: **Geht es um sieben?**"
+   }
+  ],
+  "sesli": [
+   "m1:68:s9",
+   "m1:68:s10"
+  ],
+  "dikte": [
+   "m1:68:s1",
+   "m1:68:s2",
+   "m1:68:s3",
+   "m1:68:s4"
+  ]
+ }
+}

@@ -1,0 +1,1434 @@
+{
+ "schema": 1,
+ "id": "m1:gun:65",
+ "day": 65,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Kısa biçimler: im, ins, am, ans",
+ "goal_tr": "Nereye gittiğini ve nerede olduğunu kısa biçimlerle söylersin. Bir şeye sevindiğini ya da kızdığını söylersin.",
+ "can_do": {
+  "id": "cd:m1:65",
+  "tr": "Boş zamanda nereye gittiğimi, neye sevindiğimi ve neye kızdığımı söylerim."
+ },
+ "unit": "u:a2:65",
+ "arm": "kafe",
+ "place": "pl:haus",
+ "characters": [
+  "ch:lechner",
+  "ch:wimmer",
+  "ch:kraus",
+  "ch:popescu",
+  "ch:pichler"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-02:t2"
+ ],
+ "yeni_kartlar": [
+  "lx:Drucker",
+  "lx:sich_ärgern_(über)",
+  "lx:Fitnessstudio",
+  "lx:Schwimmbad",
+  "lx:Verein",
+  "lx:Spiel",
+  "lx:sich_freuen_(auf/über)",
+  "lx:Zähler"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:65:h1",
+   "title_tr": "Sabah ofiste: yazıcı yine bozuk",
+   "kartlar": [
+    "lx:Drucker",
+    "lx:sich_ärgern_(über)"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich ärgere mich über … – Ärgerst du dich auch?",
+     "tr": "…'e sinirleniyorum. – Sen de sinirleniyor musun?"
+    },
+    {
+     "de": "Er ärgert sich über … – Wir ärgern uns alle.",
+     "tr": "O …'e sinirleniyor. – Hepimiz sinirleniyoruz."
+    },
+    {
+     "de": "Grüß Gott! – Grüß Gott, hier ist …",
+     "tr": "İyi günler! Bavyera'da günün her saatinde böyle selam verilir. – İyi günler, ben … (telefonda)"
+    },
+    {
+     "de": "… liegt unter dem Drucker.",
+     "tr": "… yazıcının altında duruyor."
+    },
+    {
+     "de": "Ich stelle den neuen … auf den Tisch.",
+     "tr": "Yeni …'i masaya koyuyorum."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Drucker",
+     "de": "Der Schlüssel liegt im Schrank unter dem Drucker.",
+     "tr": "Anahtar yazıcının altındaki dolapta.",
+     "accepted": [
+      "Der Schlüssel liegt im Schrank unter dem Drucker.",
+      "Der Schlüssel ist im Schrank unter dem Drucker.",
+      "Im Schrank unter dem Drucker liegt der Schlüssel."
+     ]
+    },
+    {
+     "kart": "lx:Drucker",
+     "de": "Ich stelle den neuen Drucker auf den Tisch am Fenster.",
+     "tr": "Yeni yazıcıyı pencerenin yanındaki masaya koyuyorum.",
+     "accepted": [
+      "Ich stelle den neuen Drucker auf den Tisch am Fenster.",
+      "Ich stelle den neuen Drucker auf den Tisch beim Fenster.",
+      "Den neuen Drucker stelle ich auf den Tisch am Fenster."
+     ]
+    },
+    {
+     "kart": "lx:sich_ärgern_(über)",
+     "de": "Ich ärgere mich über den Drucker, er geht schon wieder nicht.",
+     "tr": "Yazıcıya sinirleniyorum, yine çalışmıyor.",
+     "accepted": [
+      "Ich ärgere mich über den Drucker, er geht schon wieder nicht.",
+      "Ich ärgere mich über den Drucker. Er geht schon wieder nicht.",
+      "Ich ärgere mich über den Drucker, weil er schon wieder nicht geht."
+     ]
+    },
+    {
+     "kart": "lx:sich_ärgern_(über)",
+     "de": "Herr Wimmer ärgert sich über die vielen Überstunden.",
+     "tr": "Herr Wimmer çok fazla mesaiye sinirleniyor.",
+     "accepted": [
+      "Herr Wimmer ärgert sich über die vielen Überstunden.",
+      "Herr Wimmer ärgert sich über die Überstunden.",
+      "Über die vielen Überstunden ärgert sich Herr Wimmer."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Sabah sekiz. Ofiste Tobi yazıcının önünde duruyor, yüzü kızarmış.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Der Drucker geht schon wieder nicht! Ich ärgere mich so!",
+      "tr": "Yazıcı yine çalışmıyor! Çok sinirleniyorum!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich ärgere mich auch. Hat er kein Papier?",
+      "tr": "Ben de sinirleniyorum. Kâğıdı mı yok?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Doch, Papier ist da. Ich rufe jetzt den Techniker an.",
+      "tr": "Var, kâğıt var. Şimdi teknisyeni arıyorum."
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi ne yapacak?",
+     "opts": [
+      "Teknisyeni arayacak",
+      "Kâğıt alacak",
+      "Eve gidecek"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:65:h2",
+   "title_tr": "Akşam apartmanda: sayaç",
+   "kartlar": [
+    "lx:Fitnessstudio",
+    "lx:Schwimmbad",
+    "lx:Verein",
+    "lx:Spiel",
+    "lx:sich_freuen_(auf/über)",
+    "lx:Zähler"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich gehe ins … – Ich bin im …",
+     "tr": "…'e gidiyorum. – …'deyim."
+    },
+    {
+     "de": "Ich freue mich auf … – Freust du dich auch? – Wir freuen uns.",
+     "tr": "…'i dört gözle bekliyorum. – Sen de seviniyor musun? – Seviniyoruz."
+    },
+    {
+     "de": "Sie freut sich über …",
+     "tr": "O …'e seviniyor."
+    },
+    {
+     "de": "Der Zähler ist im …",
+     "tr": "Sayaç …'de."
+    },
+    {
+     "de": "Ich mache ein Foto vom … und schicke es an Herrn …",
+     "tr": "…'in fotoğrafını çekip … Bey'e gönderiyorum."
+    },
+    {
+     "de": "Dann frage ich … – Ich frage sie.",
+     "tr": "O zaman …'e sorarım. – Ona sorarım."
+    },
+    {
+     "de": "Wir sehen … im Fernsehen.",
+     "tr": "…'i televizyonda izliyoruz."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Fitnessstudio",
+     "de": "Ich gehe heute nach der Arbeit ins Fitnessstudio.",
+     "tr": "Bugün işten sonra spor salonuna gidiyorum.",
+     "accepted": [
+      "Ich gehe heute nach der Arbeit ins Fitnessstudio.",
+      "Heute gehe ich nach der Arbeit ins Fitnessstudio.",
+      "Ich gehe nach der Arbeit heute ins Fitnessstudio."
+     ]
+    },
+    {
+     "kart": "lx:Fitnessstudio",
+     "de": "Ich bin am Abend mit Basti im Fitnessstudio.",
+     "tr": "Akşam Basti'yle spor salonundayım.",
+     "accepted": [
+      "Ich bin am Abend mit Basti im Fitnessstudio.",
+      "Am Abend bin ich mit Basti im Fitnessstudio.",
+      "Ich bin heute Abend mit Basti im Fitnessstudio."
+     ]
+    },
+    {
+     "kart": "lx:Schwimmbad",
+     "de": "Am Sonntag gehen wir ins Schwimmbad.",
+     "tr": "Pazar günü yüzme havuzuna gidiyoruz.",
+     "accepted": [
+      "Am Sonntag gehen wir ins Schwimmbad.",
+      "Wir gehen am Sonntag ins Schwimmbad.",
+      "Am Sonntag gehen wir in das Schwimmbad."
+     ]
+    },
+    {
+     "kart": "lx:Schwimmbad",
+     "de": "Im Schwimmbad ist es am Wochenende sehr voll.",
+     "tr": "Hafta sonu yüzme havuzu çok kalabalık.",
+     "accepted": [
+      "Im Schwimmbad ist es am Wochenende sehr voll.",
+      "Am Wochenende ist es im Schwimmbad sehr voll.",
+      "Im Schwimmbad ist es am Wochenende immer sehr voll."
+     ]
+    },
+    {
+     "kart": "lx:Verein",
+     "de": "Tobi ist am Mittwoch immer im Verein.",
+     "tr": "Tobi çarşambaları hep kulüpte.",
+     "accepted": [
+      "Tobi ist am Mittwoch immer im Verein.",
+      "Am Mittwoch ist Tobi immer im Verein.",
+      "Tobi ist immer am Mittwoch im Verein."
+     ]
+    },
+    {
+     "kart": "lx:Verein",
+     "de": "Am Freitag gehe ich zum ersten Mal in den Verein.",
+     "tr": "Cuma günü kulübe ilk kez gidiyorum.",
+     "accepted": [
+      "Am Freitag gehe ich zum ersten Mal in den Verein.",
+      "Ich gehe am Freitag zum ersten Mal in den Verein.",
+      "Am Freitag gehe ich das erste Mal in den Verein."
+     ]
+    },
+    {
+     "kart": "lx:Spiel",
+     "de": "Das Spiel vom Verein ist am Samstag um drei.",
+     "tr": "Kulübün maçı cumartesi saat üçte.",
+     "accepted": [
+      "Das Spiel vom Verein ist am Samstag um drei.",
+      "Am Samstag um drei ist das Spiel vom Verein.",
+      "Das Spiel vom Verein ist am Samstag um drei Uhr."
+     ]
+    },
+    {
+     "kart": "lx:Spiel",
+     "de": "Wir sehen das Spiel am Abend im Fernsehen.",
+     "tr": "Maçı akşam televizyonda izliyoruz.",
+     "accepted": [
+      "Wir sehen das Spiel am Abend im Fernsehen.",
+      "Am Abend sehen wir das Spiel im Fernsehen.",
+      "Wir schauen das Spiel am Abend im Fernsehen."
+     ]
+    },
+    {
+     "kart": "lx:sich_freuen_(auf/über)",
+     "de": "Ich freue mich schon auf das Spiel am Samstag.",
+     "tr": "Cumartesi maçını şimdiden dört gözle bekliyorum.",
+     "accepted": [
+      "Ich freue mich schon auf das Spiel am Samstag.",
+      "Ich freue mich auf das Spiel am Samstag.",
+      "Auf das Spiel am Samstag freue ich mich schon."
+     ]
+    },
+    {
+     "kart": "lx:sich_freuen_(auf/über)",
+     "de": "Derya freut sich über den Kuchen von Frau Brandl.",
+     "tr": "Derya Frau Brandl'ın pastasına seviniyor.",
+     "accepted": [
+      "Derya freut sich über den Kuchen von Frau Brandl.",
+      "Derya freut sich sehr über den Kuchen von Frau Brandl.",
+      "Über den Kuchen von Frau Brandl freut sich Derya."
+     ]
+    },
+    {
+     "kart": "lx:Zähler",
+     "de": "Der Zähler für meine Wohnung ist im Keller.",
+     "tr": "Dairemin sayacı bodrumda.",
+     "accepted": [
+      "Der Zähler für meine Wohnung ist im Keller.",
+      "Der Zähler von meiner Wohnung ist im Keller.",
+      "Im Keller ist der Zähler für meine Wohnung."
+     ]
+    },
+    {
+     "kart": "lx:Zähler",
+     "de": "Ich mache ein Foto vom Zähler und schicke es an Herrn Pichler.",
+     "tr": "Sayacın fotoğrafını çekip Herr Pichler'e gönderiyorum.",
+     "accepted": [
+      "Ich mache ein Foto vom Zähler und schicke es an Herrn Pichler.",
+      "Ich mache ein Foto vom Zähler und schicke es Herrn Pichler.",
+      "Ich mache vom Zähler ein Foto und schicke es an Herrn Pichler."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Öğle arası. Kantinde Tobi telefonunda bir şeye bakıyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Am Samstag ist das Spiel im Stadion. Kommst du mit?",
+      "tr": "Cumartesi stadyumda maç var. Geliyor musun?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Am Samstag gehe ich ins Schwimmbad. Aber am Abend vielleicht?",
+      "tr": "Cumartesi yüzme havuzuna gidiyorum. Ama akşam belki?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Klar! Am Abend sind wir im Gasthaus.",
+      "tr": "Tabii! Akşam lokantadayız."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Super, ich freue mich!",
+      "tr": "Süper, sevindim!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Cumartesi akşam Tobi nerede?",
+     "opts": [
+      "Lokantada",
+      "Stadyumda",
+      "Yüzme havuzunda"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:65:v1",
+  "title_tr": "Spor salonunda yeni biri",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:kraus",
+    "sahne_tr": "VilsFit spor salonu, iş çıkışı. Basti makinenin yanında, Ioana elinde çantasıyla etrafa bakıyor.",
+    "de": "Hallo, du bist neu hier, oder? Ich bin Basti.",
+    "tr": "Selam, burada yenisin, değil mi? Ben Basti."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana gülümsüyor.",
+    "de": "Hallo, ich bin Ioana. Heute mache ich ein Probetraining.",
+    "tr": "Merhaba, ben Ioana. Bugün deneme antrenmanı yapıyorum."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti koridoru gösteriyor.",
+    "de": "Super! Deine Tasche kannst du in den Schrank im Flur stellen.",
+    "tr": "Süper! Çantanı koridordaki dolaba koyabilirsin."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana çantasını omzundan indiriyor.",
+    "de": "Danke. Und wo gibt es hier Wasser?",
+    "tr": "Sağ ol. Peki burada su nerede?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti kapıyı işaret ediyor.",
+    "de": "Am Eingang, gleich neben der Tür.",
+    "tr": "Girişte, kapının hemen yanında."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti havluyla yüzünü siliyor.",
+    "de": "Gehst du später auch ins Schwimmbad? Das ist nicht weit.",
+    "tr": "Sonra sen de yüzme havuzuna gidiyor musun? Uzak değil."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana başını sallıyor.",
+    "de": "Heute nicht. Am Abend sehe ich das Spiel im Fernsehen.",
+    "tr": "Bugün değil. Akşam maçı televizyonda izliyorum."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti'nin gözleri parlıyor.",
+    "de": "Ja, das Spiel! Ich freue mich schon so!",
+    "tr": "Evet, maç! Şimdiden çok heyecanlıyım!"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti gururla tişörtündeki armayı gösteriyor.",
+    "de": "Ich spiele auch im Verein, jeden Mittwoch am Abend.",
+    "tr": "Ben de kulüpte oynuyorum, her çarşamba akşamı."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana kapıdaki saat tabelasına bakıyor.",
+    "de": "Toll! Ich ärgere mich nur über die Zeiten. Am Sonntag ist das Studio zu.",
+    "tr": "Harika! Sadece saatlere sinirleniyorum. Pazar günü salon kapalı."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:kraus",
+    "sahne_tr": "Basti omuz silkiyor.",
+    "de": "Stimmt. Dann geh am Sonntag ins Schwimmbad!",
+    "tr": "Doğru. O zaman pazar günü yüzme havuzuna git!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana gülüyor.",
+    "de": "Gute Idee! Bis bald!",
+    "tr": "İyi fikir! Yakında görüşürüz!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Basti ve Ioana ne konuşuyor?",
+     "opts": [
+      "Spor salonu, maç ve boş zaman",
+      "İş ve toplantı",
+      "Apartmanın kuralları"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s3",
+      "s7",
+      "s9"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Ioana çantasını nereye koyabilir?",
+      "opts": [
+       "Koridordaki dolaba",
+       "Girişe",
+       "Yüzme havuzuna"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s3"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Basti ne zaman kulüpte oynuyor?",
+      "opts": [
+       "Her çarşamba akşamı",
+       "Her pazar",
+       "Cumartesi sabahı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Ioana neye sinirleniyor?",
+      "opts": [
+       "Salonun saatlerine",
+       "Maça",
+       "Basti'ye"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s9",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Verein",
+       "Stadion",
+       "Büro"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s6",
+      "seviye": "orta",
+      "de": "Gehst du später auch ins ___? Das ist nicht weit.",
+      "accepted": [
+       "Schwimmbad",
+       "schwimmbad",
+       "Schwimmbad."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s7",
+      "seviye": "zor",
+      "banka": [
+       "Heute",
+       "nicht",
+       "Am",
+       "Abend",
+       "sehe",
+       "ich",
+       "das",
+       "Spiel",
+       "im",
+       "Fernsehen",
+       "ins",
+       "Kino"
+      ],
+      "accepted": [
+       "Heute nicht. Am Abend sehe ich das Spiel im Fernsehen.",
+       "heute nicht am abend sehe ich das spiel im fernsehen",
+       "Heute nicht. Am Abend sehe ich das Spiel im Fernsehen"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s3",
+      "seviye": "usta",
+      "accepted": [
+       "Super! Deine Tasche kannst du in den Schrank im Flur stellen.",
+       "super deine tasche kannst du in den schrank im flur stellen",
+       "Super! Deine Tasche kannst du in den Schrank im Flur stellen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Ioana'nın akşamını iki kısa cümleyle anlat.",
+      "ornek_de": "Ioana ist neu im Fitnessstudio. Am Abend sieht sie das Spiel im Fernsehen.",
+      "zorunlu": [
+       "Fitnessstudio",
+       "im Fernsehen"
+      ]
+     }
+    ],
+    "golge": [
+     "s8",
+     "s11"
+    ],
+    "cevapla": {
+     "id": "m1:65:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Basti sana da soruyor: Bugün yüzme havuzuna gidiyor musun? Hayır, eve gidiyorsun, akşam maçı izliyorsun.",
+     "prompt_de": "Und du? Gehst du heute noch ins Schwimmbad?",
+     "accepted": [
+      "Nein, ich gehe nach Hause. Am Abend sehe ich das Spiel.",
+      "Heute nicht. Ich gehe nach Hause und sehe das Spiel.",
+      "Nein, heute nicht. Am Abend sehe ich das Spiel im Fernsehen.",
+      "Nein, ich gehe nach Hause, weil ich das Spiel sehen will.",
+      "Heute nicht, ich sehe am Abend das Spiel."
+     ],
+     "why_tr": "Hayır de, sonra planını söyle: **Ich gehe nach Hause.**"
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:65:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Apartman görevlisinden sesli mesaj",
+   "ortam_tr": "İşten dönüyorsun. Herr Pichler telefonuna bir mesaj bırakmış.",
+   "speaker": "ch:pichler",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, hier ist Pichler, der Hausmeister.",
+     "tr": "İyi günler, ben Pichler, apartman görevlisi."
+    },
+    {
+     "id": "c2",
+     "de": "Am Donnerstag von acht bis zwölf kommt ein Mann von der Firma.",
+     "tr": "Perşembe sekizden on ikiye kadar firmadan bir adam geliyor."
+    },
+    {
+     "id": "c3",
+     "de": "Er liest die Zähler im Keller und in den Wohnungen ab.",
+     "tr": "Bodrumdaki ve dairelerdeki sayaçları okuyor."
+    },
+    {
+     "id": "c4",
+     "de": "Sind Sie am Donnerstag im Büro?",
+     "tr": "Perşembe günü işte misiniz?"
+    },
+    {
+     "id": "c5",
+     "de": "Dann rufen Sie mich bitte bis Mittwoch an.",
+     "tr": "O zaman lütfen çarşambaya kadar beni arayın."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Herr Pichler neden arıyor?",
+      "opts": [
+       "Perşembe sayaçlar okunacak",
+       "Kalorifer bozuk",
+       "Çöp günü değişti"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Adam saat kaçta geliyor?",
+       "opts": [
+        "Sekizden on ikiye kadar",
+        "On ikiden sonra",
+        "Akşam"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Perşembe evde değilsen ne yapmalısın?",
+       "opts": [
+        "Çarşambaya kadar Herr Pichler'i aramalısın",
+        "Bir kâğıt yazmalısın",
+        "Hiçbir şey"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4",
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Zähler",
+        "Drucker",
+        "Schlüssel"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Sind Sie am Donnerstag im ___?",
+       "accepted": [
+        "Büro",
+        "büro",
+        "Büro."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Dann",
+        "rufen",
+        "Sie",
+        "mich",
+        "bitte",
+        "bis",
+        "Mittwoch",
+        "an",
+        "am",
+        "Donnerstag"
+       ],
+       "accepted": [
+        "Dann rufen Sie mich bitte bis Mittwoch an.",
+        "dann rufen sie mich bitte bis mittwoch an",
+        "Dann rufen Sie mich bitte bis Mittwoch an"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Am Donnerstag von acht bis zwölf kommt ein Mann von der Firma.",
+        "am donnerstag von acht bis zwölf kommt ein mann von der firma",
+        "Am Donnerstag von acht bis zwölf kommt ein Mann von der Firma"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı Almanca iki kısa cümleyle anlat.",
+       "ornek_de": "Am Donnerstag kommt ein Mann für die Zähler. Ich rufe Herrn Pichler bis Mittwoch an.",
+       "zorunlu": [
+        "Donnerstag",
+        "Zähler"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:65:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Herr Pichler'i geri arıyorsun. Perşembe işte olduğunu söyle.",
+      "prompt_de": "Pichler, grüß Gott?",
+      "accepted": [
+       "Grüß Gott, Herr Pichler. Am Donnerstag bin ich leider im Büro.",
+       "Grüß Gott, hier ist {name}. Am Donnerstag bin ich im Büro.",
+       "Grüß Gott, Herr Pichler. Ich bin am Donnerstag leider im Büro.",
+       "Hallo Herr Pichler, am Donnerstag bin ich leider im Büro.",
+       "Grüß Gott! Ich rufe an, weil ich am Donnerstag im Büro bin."
+      ],
+      "why_tr": "Nerede sorusu: **im Büro**. **in dem** kısalıp **im** olur."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:65:a1:e1",
+    "k": "pick",
+    "q_tr": "Perşembe sabah işe gidiyorsun. Ne yapmalısın?",
+    "opts": [
+     "Çarşambaya kadar Herr Pichler'i aramalısın.",
+     "Perşembe evde beklemelisin.",
+     "Bir şey yapmana gerek yok."
+    ],
+    "ans": 0,
+    "why_tr": "Perşembe işteysen Herr Pichler çarşambaya kadar aramanı istiyor.",
+    "kanit": [
+     "c4",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:65:a2",
+   "tur": "radyo",
+   "title_tr": "Yerel radyo: hafta sonu",
+   "ortam_tr": "Sabah kahvaltıda radyo açık. Wendlfing'in yerel radyosu hafta sonunu anlatıyor.",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Und jetzt: Was gibt es am Wochenende in Wendlfing?",
+     "tr": "Ve şimdi: Hafta sonu Wendlfing'de ne var?"
+    },
+    {
+     "id": "c2",
+     "de": "Das Schwimmbad ist ab Samstag wieder offen.",
+     "tr": "Yüzme havuzu cumartesiden itibaren yeniden açık."
+    },
+    {
+     "id": "c3",
+     "de": "Am Samstag um drei ist das Spiel im Stadion an der Vils.",
+     "tr": "Cumartesi saat üçte Vils kıyısındaki stadyumda maç var."
+    },
+    {
+     "id": "c4",
+     "de": "Am Sonntag hat der Sportverein einen Tag der offenen Tür.",
+     "tr": "Pazar günü spor kulübünün açık kapı günü var."
+    },
+    {
+     "id": "c5",
+     "de": "Wir freuen uns auf ein schönes Wochenende!",
+     "tr": "Güzel bir hafta sonunu dört gözle bekliyoruz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne anlatıyor?",
+      "opts": [
+       "Hafta sonu şehirde neler var",
+       "Hava durumu",
+       "Trafik"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Yüzme havuzu ne zaman yeniden açık?",
+       "opts": [
+        "Cumartesiden itibaren",
+        "Pazar günü",
+        "Bugün"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Maç ne zaman?",
+       "opts": [
+        "Cumartesi saat üçte",
+        "Pazar saat üçte",
+        "Cumartesi akşam"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Schwimmbad",
+        "Fitnessstudio",
+        "Stadion"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Am Samstag um drei ist das ___ im Stadion an der Vils.",
+       "accepted": [
+        "Spiel",
+        "spiel",
+        "Spiel."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Das",
+        "Schwimmbad",
+        "ist",
+        "ab",
+        "Samstag",
+        "wieder",
+        "offen",
+        "im",
+        "Sonntag"
+       ],
+       "accepted": [
+        "Das Schwimmbad ist ab Samstag wieder offen.",
+        "das schwimmbad ist ab samstag wieder offen",
+        "Das Schwimmbad ist ab Samstag wieder offen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Wir freuen uns auf ein schönes Wochenende!",
+        "wir freuen uns auf ein schönes wochenende",
+        "Wir freuen uns auf ein schönes Wochenende"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Ioana'ya hafta sonunu iki kısa cümleyle anlat.",
+       "ornek_de": "Das Schwimmbad ist ab Samstag wieder offen. Am Samstag um drei ist das Spiel.",
+       "zorunlu": [
+        "Schwimmbad",
+        "Spiel"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:65:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana hafta sonu için soruyor. Cumartesi yüzme havuzuna gitmeyi öner.",
+      "prompt_de": "Was machen wir am Samstag?",
+      "accepted": [
+       "Das Schwimmbad ist wieder offen. Gehen wir am Samstag ins Schwimmbad?",
+       "Gehen wir am Samstag ins Schwimmbad?",
+       "Wir können am Samstag ins Schwimmbad gehen.",
+       "Am Samstag gehen wir ins Schwimmbad, okay?",
+       "Am Samstag? Ins Schwimmbad! Es ist wieder offen."
+      ],
+      "why_tr": "Nereye: **ins Schwimmbad**. **in das** kısalıp **ins** olur."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:65:a2:e1",
+    "k": "pick",
+    "q_tr": "Cumartesi öğleden sonra maça gitmek istiyorsun. Saat kaçta stadyumda olmalısın?",
+    "opts": [
+     "Üçte",
+     "İkide",
+     "Dörtte"
+    ],
+    "ans": 0,
+    "why_tr": "Maç cumartesi saat üçte, stadyumda.",
+    "kanit": [
+     "c3"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:65:g1",
+   "de": "Drucker",
+   "dogru_img": "office printer with paper tray",
+   "celdirici_img": [
+    "laptop on a desk",
+    "telephone",
+    "coffee machine"
+   ]
+  },
+  {
+   "id": "m1:65:g2",
+   "de": "Schwimmbad",
+   "dogru_img": "indoor public swimming pool",
+   "celdirici_img": [
+    "gym with machines",
+    "football stadium",
+    "lake in summer"
+   ]
+  },
+  {
+   "id": "m1:65:g3",
+   "de": "Fitnessstudio",
+   "dogru_img": "gym with exercise machines",
+   "celdirici_img": [
+    "swimming pool",
+    "office",
+    "classroom"
+   ]
+  },
+  {
+   "id": "m1:65:g4",
+   "de": "Zähler",
+   "dogru_img": "electricity meter on a basement wall",
+   "celdirici_img": [
+    "kitchen clock",
+    "thermostat",
+    "door bell"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:65:p1",
+  "title_tr": "Herr Pichler arıyor: sayaç günü",
+  "durum_tr": "Akşam telefon çalıyor: Herr Pichler. Perşembe bütün gün işteysin. Cuma öğleden sonra evdesin. Komşun Frau Brandl'da dairenin yedek anahtarı var.",
+  "karsi": "ch:pichler",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Grüß Gott, Pichler hier. Haben Sie kurz Zeit?",
+    "tr": "İyi akşamlar, ben Pichler. Bir dakikanız var mı?",
+    "secenekler": [
+     {
+      "de": "Grüß Gott, Herr Pichler. Ja, natürlich.",
+      "tr": "İyi akşamlar, Herr Pichler. Evet, tabii.",
+      "accepted": [
+       "Grüß Gott, Herr Pichler. Ja, natürlich.",
+       "Grüß Gott! Ja, natürlich.",
+       "Guten Abend, Herr Pichler. Ja, klar."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Selam verip evet dedin."
+     },
+     {
+      "de": "Wer ist da?",
+      "tr": "Kim o?",
+      "accepted": [
+       "Wer ist da?",
+       "Wer ist das?",
+       "Wer?"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Adını söyledi: Pichler. Selam ver: **Grüß Gott, Herr Pichler.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Am Donnerstag kommt ein Mann für die Zähler. Sind Sie da zu Hause?",
+    "tr": "Perşembe günü sayaçlar için bir adam geliyor. O gün evde misiniz?",
+    "secenekler": [
+     {
+      "de": "Nein, leider nicht. Am Donnerstag bin ich den ganzen Tag im Büro.",
+      "tr": "Hayır, maalesef. Perşembe bütün gün işteyim.",
+      "accepted": [
+       "Nein, leider nicht. Am Donnerstag bin ich den ganzen Tag im Büro.",
+       "Leider nicht. Am Donnerstag bin ich im Büro.",
+       "Nein, am Donnerstag bin ich den ganzen Tag im Büro."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **im Büro**: nerede, **in dem** kısalmış."
+     },
+     {
+      "de": "Ja, ich bin zu Hause.",
+      "tr": "Evet, evdeyim.",
+      "accepted": [
+       "Ja, ich bin zu Hause.",
+       "Ja, da bin ich zu Hause.",
+       "Ja, am Donnerstag bin ich da."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Dikkat, perşembe bütün gün işteysin. Bunu söyle: **Ich bin im Büro.**"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Der Zähler für Wasser ist im Bad. Der Mann muss in Ihre Wohnung.",
+    "tr": "Su sayacı banyoda. Adamın dairenize girmesi gerek.",
+    "secenekler": [
+     {
+      "de": "Geht es auch am Freitag? Am Freitag bin ich am Nachmittag zu Hause.",
+      "tr": "Cuma da olur mu? Cuma öğleden sonra evdeyim.",
+      "accepted": [
+       "Geht es auch am Freitag? Am Freitag bin ich am Nachmittag zu Hause.",
+       "Geht es am Freitag? Da bin ich am Nachmittag zu Hause.",
+       "Kann er am Freitag kommen? Am Nachmittag bin ich zu Hause."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Başka bir gün önerdin: **am Freitag**, **am Nachmittag**."
+     },
+     {
+      "de": "Frau Brandl hat meinen Schlüssel. Sie wohnt im ersten Stock.",
+      "tr": "Frau Brandl'da anahtarım var. Birinci katta oturuyor.",
+      "accepted": [
+       "Frau Brandl hat meinen Schlüssel. Sie wohnt im ersten Stock.",
+       "Frau Brandl hat einen Schlüssel für meine Wohnung.",
+       "Meine Nachbarin Frau Brandl hat meinen Schlüssel."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Akıllıca. Sorunu komşuyla çözdün."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Nein, das geht leider nicht. Der Mann kommt nur am Donnerstag.",
+    "tr": "Hayır, maalesef olmuyor. Adam sadece perşembe geliyor.",
+    "secenekler": [
+     {
+      "de": "Dann frage ich Frau Brandl. Sie hat meinen Schlüssel.",
+      "tr": "O zaman Frau Brandl'a sorarım. Anahtarım onda.",
+      "accepted": [
+       "Dann frage ich Frau Brandl. Sie hat meinen Schlüssel.",
+       "Dann frage ich meine Nachbarin. Sie hat einen Schlüssel.",
+       "Frau Brandl hat meinen Schlüssel. Ich frage sie."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Önerilen gün olmadı, sen başka bir yol buldun."
+     },
+     {
+      "de": "Schade, dann nicht.",
+      "tr": "Yazık, o zaman olmasın.",
+      "accepted": [
+       "Schade, dann nicht.",
+       "Dann geht es eben nicht.",
+       "Dann geht es nicht."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Vazgeçme. Anahtar Frau Brandl'da, bunu söyle."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Gut, dann gehe ich mit Frau Brandl in Ihre Wohnung. Und bitte stellen Sie nichts vor den Zähler!",
+    "tr": "Tamam, o zaman Frau Brandl'la dairenize girerim. Ve lütfen sayacın önüne bir şey koymayın!",
+    "secenekler": [
+     {
+      "de": "Alles klar. Vor dem Zähler steht nichts.",
+      "tr": "Tamam. Sayacın önünde hiçbir şey yok.",
+      "accepted": [
+       "Alles klar. Vor dem Zähler steht nichts.",
+       "Kein Problem. Vor dem Zähler steht nichts.",
+       "Alles klar, vor dem Zähler ist nichts."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Nerede: **vor dem Zähler**."
+     },
+     {
+      "de": "Ich stelle meine Tasche vor den Zähler.",
+      "tr": "Çantamı sayacın önüne koyuyorum.",
+      "accepted": [
+       "Ich stelle meine Tasche vor den Zähler.",
+       "Meine Tasche steht vor dem Zähler.",
+       "Vor dem Zähler steht meine Tasche."
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "Tam tersi! Herr Pichler sayacın önünün boş kalmasını istiyor."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Sehr gut. Dann schönen Abend noch!",
+    "tr": "Harika. O zaman iyi akşamlar!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Perşembe evde olamıyorsun. Bunu söyledin ve komşunun yardımıyla bir yol buldun."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Apartman girişindeki duyuru",
+  "metin_de": "Liebe Nachbarinnen und Nachbarn! Am Donnerstag kommt ein Mann von der Firma ins Haus. Er liest die Zähler ab. Die Stromzähler sind im Keller. Die Wasserzähler sind in den Wohnungen, im Bad oder in der Küche. Sie sind am Donnerstag nicht zu Hause? Dann rufen Sie mich bitte bis Mittwoch an. Josef Pichler, Hausmeister",
+  "metin_tr": "Sevgili komşular! Perşembe günü firmadan bir adam apartmana geliyor. Sayaçları okuyor. Elektrik sayaçları bodrumda. Su sayaçları dairelerde, banyoda ya da mutfakta. Perşembe evde değil misiniz? O zaman lütfen çarşambaya kadar beni arayın. Josef Pichler, apartman görevlisi",
+  "sorular": [
+   {
+    "id": "m1:65:o1",
+    "kind": "gist",
+    "q_tr": "Duyuru ne hakkında?",
+    "opts": [
+     "Sayaç okuma günü",
+     "Yeni bir kiracı",
+     "Çöp kuralları"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:65:o2",
+    "kind": "detail",
+    "q_tr": "Elektrik sayaçları nerede?",
+    "opts": [
+     "Bodrumda",
+     "Banyoda",
+     "Mutfakta"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:65:o3",
+    "kind": "detail",
+    "q_tr": "Su sayaçları nerede?",
+    "opts": [
+     "Dairelerde, banyoda ya da mutfakta",
+     "Bodrumda",
+     "Avluda"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:65:o4",
+    "kind": "detail",
+    "q_tr": "Perşembe evde değilsen ne yaparsın?",
+    "opts": [
+     "Çarşambaya kadar Herr Pichler'i ararsın",
+     "Cuma günü ararsın",
+     "Hiçbir şey"
+    ],
+    "ans": 0,
+    "kanit": [
+     5,
+     6
+    ]
+   },
+   {
+    "id": "m1:65:o5",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl merdivende soruyor: Su sayacın nerede? Senin sayacın banyoda.",
+    "prompt_de": "Wo ist denn Ihr Zähler für Wasser?",
+    "accepted": [
+     "Mein Zähler ist im Bad.",
+     "Im Bad.",
+     "Er ist im Bad.",
+     "Der Zähler ist bei mir im Bad.",
+     "Mein Zähler ist im Bad, Frau Brandl."
+    ],
+    "why_tr": "Nerede: **im Bad**. **in dem Bad** kısalıp **im Bad** olur."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:65:s",
+  "maddeler": [
+   {
+    "id": "m1:65:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Am Mittwoch gehe ich ins Schwimmbad.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Am Mittwoch gehe ich ins Schwimmbad.",
+     "am mittwoch gehe ich ins schwimmbad",
+     "Am Mittwoch gehe ich ins Schwimmbad"
+    ],
+    "why_tr": "**ins** kısa biçim, uzunu **in das**. Nereye sorusu."
+   },
+   {
+    "id": "m1:65:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Der Zähler ist im Keller am Ende vom Flur.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Zähler ist im Keller am Ende vom Flur.",
+     "der zähler ist im keller am ende vom flur",
+     "Der Zähler ist im Keller am Ende vom Flur"
+    ],
+    "why_tr": "**im Keller**: bodrumda. **vom** kısa biçim, uzunu **von dem**."
+   },
+   {
+    "id": "m1:65:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Tobi ärgert sich über das Spiel.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Tobi ärgert sich über das Spiel.",
+     "tobi ärgert sich über das spiel",
+     "Tobi ärgert sich über das Spiel"
+    ],
+    "why_tr": "**ärgert sich über**: sinirleniyor."
+   },
+   {
+    "id": "m1:65:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Wir freuen uns auf den Sommer.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir freuen uns auf den Sommer.",
+     "wir freuen uns auf den sommer",
+     "Wir freuen uns auf den Sommer"
+    ],
+    "why_tr": "**freuen uns auf**: dört gözle bekliyoruz."
+   },
+   {
+    "id": "m1:65:s5",
+    "k": "tr_de",
+    "tr": "Spor salonuna gidiyorum.",
+    "accepted": [
+     "Ich gehe ins Fitnessstudio.",
+     "Ich gehe in das Fitnessstudio.",
+     "Ich gehe jetzt ins Fitnessstudio."
+    ],
+    "why_tr": "Nereye: **ins Fitnessstudio**."
+   },
+   {
+    "id": "m1:65:s6",
+    "k": "tr_de",
+    "tr": "Yazıcıya sinirleniyorum.",
+    "accepted": [
+     "Ich ärgere mich über den Drucker.",
+     "Ich ärgere mich so über den Drucker.",
+     "Über den Drucker ärgere ich mich."
+    ],
+    "why_tr": "**sich ärgern über**: **mich** unutma."
+   },
+   {
+    "id": "m1:65:s7",
+    "k": "tr_de",
+    "tr": "Hafta sonunu dört gözle bekliyorum.",
+    "accepted": [
+     "Ich freue mich auf das Wochenende.",
+     "Ich freue mich schon auf das Wochenende.",
+     "Auf das Wochenende freue ich mich."
+    ],
+    "why_tr": "**sich freuen auf**: **ich freue mich auf**."
+   },
+   {
+    "id": "m1:65:s8",
+    "k": "tr_de",
+    "tr": "Anahtar yazıcının altında.",
+    "accepted": [
+     "Der Schlüssel liegt unter dem Drucker.",
+     "Der Schlüssel ist unter dem Drucker.",
+     "Unter dem Drucker liegt der Schlüssel."
+    ],
+    "why_tr": "Nerede: **unter dem Drucker**."
+   },
+   {
+    "id": "m1:65:s9",
+    "k": "guided_response",
+    "situation_tr": "Basti soruyor: Dün neredeydin? Yüzme havuzundaydın.",
+    "prompt_de": "Wo warst du gestern?",
+    "accepted": [
+     "Ich war im Schwimmbad.",
+     "Gestern war ich im Schwimmbad.",
+     "Im Schwimmbad.",
+     "Ich war gestern im Schwimmbad.",
+     "Ich bin im Schwimmbad gewesen."
+    ],
+    "why_tr": "Nerede: **im Schwimmbad**."
+   },
+   {
+    "id": "m1:65:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Freust du dich auf das Spiel am Samstag?",
+    "speed": "normal",
+    "situation_tr": "Tobi soruyor. Evet, çok seviniyorsun.",
+    "accepted": [
+     "Ja, ich freue mich sehr!",
+     "Ja, ich freue mich schon sehr auf das Spiel!",
+     "Ja, sehr! Ich freue mich.",
+     "Ja, ich freue mich schon!",
+     "Klar, ich freue mich sehr auf das Spiel."
+    ],
+    "why_tr": "Cevapta **ich freue mich** de."
+   },
+   {
+    "id": "m1:65:s11",
+    "k": "guided_response",
+    "situation_tr": "Günün provası. Herr Pichler perşembe evde misin diye soruyor. Perşembe işte olduğunu söyle, cuma öğleden sonrayı öner.",
+    "prompt_de": "Sind Sie am Donnerstag zu Hause?",
+    "accepted": [
+     "Nein, am Donnerstag bin ich im Büro. Geht es am Freitag am Nachmittag?",
+     "Leider nicht, ich bin im Büro. Geht es auch am Freitag am Nachmittag?",
+     "Nein, leider nicht. Am Freitag am Nachmittag bin ich zu Hause.",
+     "Am Donnerstag bin ich im Büro. Geht es vielleicht am Freitag?",
+     "Nein, ich bin im Büro. Am Freitag am Nachmittag geht es."
+    ],
+    "why_tr": "**im Büro** nerede, **am Freitag** ne zaman. Hayır de ve başka gün öner."
+   }
+  ],
+  "sesli": [
+   "m1:65:s9",
+   "m1:65:s10"
+  ],
+  "dikte": [
+   "m1:65:s1",
+   "m1:65:s2",
+   "m1:65:s3",
+   "m1:65:s4"
+  ]
+ }
+}
