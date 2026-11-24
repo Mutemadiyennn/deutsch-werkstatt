@@ -4,6 +4,7 @@
  * dokunuşta: Bahçe (tekrar, duyduğum kelime) · Sinema ve Radyo (günlerin kayıtları) · Atölye (kalıplar) ·
  * Kütüphane (sözlük, temel dersler, okuma) · Pazar meydanı (durumlar, mevsimin dersi, konuşma provası).
  */
+import type { ComponentChildren } from "preact";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { useApp } from "../state.ts";
 import { db } from "../data/db.ts";
@@ -11,12 +12,12 @@ import { loadLexicon } from "../services/content.ts";
 import { ilerlemeOku } from "../services/ilerleme.ts";
 import { visibleScenarios } from "../core/season.ts";
 import { AYRAC, ayrac } from "../core/ayrac.ts";
-import { KOY_ADI, MEKAN_ADI, acikAdimlar, acikGunler, bekleyenKart, dukkanlar, mekanMedya, telefon, vadesiGelen, type Dukkan, type DukkanId, type MekanId } from "../core/koy.ts";
+import { KOY_ADI, MEKAN_ADI, acikAdimlar, acikGunler, bekleyenKart, dukkanlar, haftaKatla, mekanMedya, telefon, vadesiGelen, type Dukkan, type DukkanId, type HaftaKat, type Katlar, type MekanId } from "../core/koy.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 import { Icon, type IconName } from "../ui/icons.tsx";
 import { plain } from "../ui/rich.tsx";
 import { MevsimKarti, TekrarListesi } from "./Today.tsx";
-import { usePlan } from "./Yol.tsx";
+import { haftaRengi, usePlan } from "./Yol.tsx";
 
 const SIMGE: Record<DukkanId, IconName> = { bahce: "filiz", sinema: "film", radyo: "radyo", atolye: "kalem", kutuphane: "kitap", pazar: "pazar", kafe: "kafe", tiyatro: "sahne", gazete: "gazete" };
 
@@ -93,6 +94,46 @@ export function MekanEkrani({ id }: { id: MekanId }) {
   );
 }
 
+const haftaAd = (h: number) => (h === 1 ? "İlk Hafta" : `${h}. hafta`);
+
+/**
+ * Haftaya göre katlanan liste (PM-122 md. 2.1; `haftaKatla`): son hafta açık, öbür haftalar tek satır (dokununca açılır, yeniden
+ * dokununca kapanır), `YAKIN_HAFTA`'dan eski haftalar tek "1.–N. hafta" satırında. Tek hafta varken ekran eskisi gibidir (satır ve
+ * başlık yok). `kap`: "kart" Sinema/Radyo (her hafta satırı ayrı kart, günlerin kartları altında), "liste" Kütüphane/Pazar (kartın
+ * listesinde satır; `ciz` <li> döndürür).
+ */
+function HaftaKatlari<T extends { day: number }>({ k, kap, ozet, ciz }: { k: Katlar<T>; kap: "kart" | "liste"; ozet: (l: T[]) => string; ciz: (l: T[]) => ComponentChildren }) {
+  const [acik, setAcik] = useState<Set<number>>(new Set());
+  const cevir = (h: number) => setAcik((s) => { const x = new Set(s); if (x.has(h)) x.delete(h); else x.add(h); return x; });
+  // 0: eski haftalar satırı
+  const satir = (anahtar: number, etiket: string, alt: string, vurgu: string | undefined, test: string) => {
+    const ac = acik.has(anahtar);
+    const dugme = (
+      <button type="button" class="row hafta-satir-btn" aria-expanded={ac} data-test={test} onClick={() => cevir(anahtar)}>
+        <span class="grow"><b>{etiket}</b> <span class="small muted">· {alt}</span></span>
+        <Icon name={ac ? "up" : "down"} size={18} />
+      </button>
+    );
+    const st = vurgu ? ({ "--vurgu": vurgu } as Record<string, string>) : undefined;
+    return kap === "kart"
+      ? <section class={`card hafta-satir kat-satir${vurgu ? "" : " eski"}`} style={st} data-acik={ac ? "1" : "0"}>{dugme}</section>
+      : <li class={`kat-satir${vurgu ? "" : " eski"}`} style={st} data-acik={ac ? "1" : "0"}>{dugme}</li>;
+  };
+  const hafta = (h: HaftaKat<T>) => <>{satir(h.hafta, haftaAd(h.hafta), ozet(h.ogeler), haftaRengi(h.hafta), `kat-${h.hafta}`)}{acik.has(h.hafta) && ciz(h.ogeler)}</>;
+  const baska = k.eski.length + k.yakin.length > 0;
+  return (
+    <>
+      {k.eski.length > 0 && satir(0, `${k.eski[0]!.hafta}.–${k.eski[k.eski.length - 1]!.hafta}. hafta`, `${k.eski.length} hafta`, undefined, "kat-eski")}
+      {acik.has(0) && k.eski.map(hafta)}
+      {k.yakin.map(hafta)}
+      {k.acik && baska && (kap === "kart"
+        ? <h2 class="sectitle kat-baslik" data-test={`kat-acik-${k.acik.hafta}`}>{haftaAd(k.acik.hafta)}</h2>
+        : <li class="kicker kat-baslik" data-test={`kat-acik-${k.acik.hafta}`}>{haftaAd(k.acik.hafta)}</li>)}
+      {k.acik && ciz(k.acik.ogeler)}
+    </>
+  );
+}
+
 /** Sinema (video, köy dizisi) ve Radyo (ses kayıtları): yalnız açılmış günlerin kayıtları, gün gün (#200 PM finali takip a) */
 function MedyaListesi({ mekan }: { mekan: "sinema" | "radyo" }) {
   const { index, indexError } = useApp();
@@ -103,22 +144,25 @@ function MedyaListesi({ mekan }: { mekan: "sinema" | "radyo" }) {
   const gunler = useMemo(() => (index ? mekanMedya(index, mekan, acikGunler(index, plan?.gunler ?? [])) : []), [index?.version, mekan, plan]);
   // kilitli günlerde de bu mekânın kaydı varsa liste neden kısa, tek satırla söylenir
   const sonra = useMemo(() => (index ? mekanMedya(index, mekan, new Set(index.m1.map((g) => g.day))).length > gunler.length : false), [index?.version, mekan, gunler]);
+  const katlar = useMemo(() => haftaKatla(gunler), [gunler]);
   if (indexError) return <ErrorPanel message={indexError} onRetry={() => location.reload()} />;
   if (!index || (!plan && !err && index.m1.length > 0)) return <Loading />;
   const tur = { video: "Video", sahne: "Köy dizisi", ses: "Dinle" } as const;
   if (!gunler.length) return <p class="small muted">{mekan === "sinema" ? "Burada henüz video yok." : "Burada henüz ses kaydı yok."}{sonra ? " Yeni günler açıldıkça gelir." : ""}</p>;
+  const gunKarti = (g: (typeof gunler)[number]) => (
+    <section class="card" data-test={`mekan-gun-${g.day}`}>
+      <a class="kicker icerik mekan-gun" href={`#/m1/${g.day}`} data-test={`m1-gun-${g.day}`}>{g.day}. gün{AYRAC}{plain(g.title_tr)} ›</a>
+      <ul class="list">{g.kayitlar.map((m) => (
+        <li><a class="row" style={SATIR} href={m.href} data-test={`kayit-${m.kind}`}>
+          <span class="grow"><b>{plain(m.title_tr)}</b>{mekan === "sinema" && <><br /><span class="tiny muted">{tur[m.kind]}</span></>}</span>
+          {bitti.has(m.id) && <span class="tiny muted" data-test="kayit-bitti">{m.kind === "ses" ? "dinlendi" : "izlendi"}</span>}
+          <span aria-hidden="true">›</span></a></li>))}</ul>
+    </section>
+  );
   return (
     <>
-      {gunler.map((g) => (
-        <section class="card" data-test={`mekan-gun-${g.day}`}>
-          <a class="kicker icerik mekan-gun" href={`#/m1/${g.day}`} data-test={`m1-gun-${g.day}`}>{g.day}. gün{AYRAC}{plain(g.title_tr)} ›</a>
-          <ul class="list">{g.kayitlar.map((m) => (
-            <li><a class="row" style={SATIR} href={m.href} data-test={`kayit-${m.kind}`}>
-              <span class="grow"><b>{plain(m.title_tr)}</b>{mekan === "sinema" && <><br /><span class="tiny muted">{tur[m.kind]}</span></>}</span>
-              {bitti.has(m.id) && <span class="tiny muted" data-test="kayit-bitti">{m.kind === "ses" ? "dinlendi" : "izlendi"}</span>}
-              <span aria-hidden="true">›</span></a></li>))}</ul>
-        </section>
-      ))}
+      <HaftaKatlari k={katlar} kap="kart" ciz={(l) => l.map(gunKarti)}
+        ozet={(l) => `${l.length} gün${AYRAC}${l.reduce((n, g) => n + g.kayitlar.length, 0)} kayıt`} />
       {/* plan eksikse (bir gün dosyası gelmedi) gerekçe "kilitli" değil "yüklenemedi"dir (inceleme #224 P2-3); kilitli gün yine açılmaz */}
       {(err || plan?.eksik) ? <div class="row" data-test="mekan-eksik"><span class="grow small muted">Bazı günler yüklenemedi.</span><button type="button" class="btn sm" onClick={yenile}>Tekrar dene</button></div>
         : sonra && <p class="small muted" data-test="mekan-sonra">Sonraki günlerin kayıtları, o gün açılınca burada.</p>}
@@ -149,9 +193,9 @@ function Kutuphane() {
       {okuma.length > 0 && (
         <section class="card" data-test="okuma-liste">
           <div class="kicker">Okuma ve yazma</div>
-          <ul class="list">{okuma.map((a) => (
+          <ul class="list"><HaftaKatlari k={haftaKatla(okuma)} kap="liste" ozet={(l) => `${l.length} metin`} ciz={(l) => l.map((a) => (
             <li><a href={a.href} class="row" style={SATIR} data-test={`okuma-${a.day}`}>
-              <span class="grow"><b>{a.title_tr}</b><br /><span class="small muted">{a.day}. gün{a.bitti ? `${AYRAC}okundu` : ""}</span></span><span aria-hidden="true">›</span></a></li>))}</ul>
+              <span class="grow"><b>{a.title_tr}</b><br /><span class="small muted">{a.day}. gün{a.bitti ? `${AYRAC}okundu` : ""}</span></span><span aria-hidden="true">›</span></a></li>))} /></ul>
         </section>
       )}
     </>
@@ -174,9 +218,9 @@ function Pazar() {
       {prova.length > 0 && (
         <section class="card" data-test="prova-liste">
           <div class="kicker">Konuşma provası</div>
-          <ul class="list">{prova.map((a) => (
+          <ul class="list"><HaftaKatlari k={haftaKatla(prova)} kap="liste" ozet={(l) => `${l.length} prova`} ciz={(l) => l.map((a) => (
             <li><a href={a.href} class="row" style={SATIR} data-test={`prova-${a.day}`}>
-              <span class="grow"><b>{a.title_tr}</b><br /><span class="small muted">{a.day}. gün{a.bitti ? `${AYRAC}yapıldı` : ""}</span></span><span aria-hidden="true">›</span></a></li>))}</ul>
+              <span class="grow"><b>{a.title_tr}</b><br /><span class="small muted">{a.day}. gün{a.bitti ? `${AYRAC}yapıldı` : ""}</span></span><span aria-hidden="true">›</span></a></li>))} /></ul>
         </section>
       )}
       <p class="small muted">Gerçek hayattan {domains.length} durum, senin öncelik sıranla. Önce kelime, sonra cümle, en son konuşma.</p>

@@ -6,7 +6,7 @@
  *  - "Telefonun" kartı yalnız açılmış günlerde dinlenmemiş ses kaydı varsa çizilir
  */
 import { kartMi, type ContentIndex, type LearnerItem, type Lexeme } from "@dw/shared";
-import type { Adim, GunDurum } from "./gun.ts";
+import { haftaOf, type Adim, type GunDurum } from "./gun.ts";
 import { isDue } from "./srs.ts";
 import { visibleScenarios } from "./season.ts";
 
@@ -108,4 +108,26 @@ export function mekanMedya(index: KoyVeri["index"], mekan: "sinema" | "radyo", a
 /** Kütüphane (okuma) ve Pazar meydanı (prova): yalnız açılmış günlerin adımları (öğretilmemiş günün provası istenmez) */
 export function acikAdimlar(gunler: readonly YolGunu[], tur: "okuma" | "prova"): (Adim & { day: number; gun_tr: string })[] {
   return gunler.filter((g) => g.durum !== "kilitli").flatMap((g) => g.adimlar.filter((a) => a.tur === tur && a.hazir).map((a) => ({ ...a, day: g.day, gun_tr: g.title_tr })));
+}
+
+/**
+ * Köy listeleri haftaya göre katlanır (PM-122 md. 2.1, KAPI-İŞ 7122131212; Yol #243 gibi): listedeki en son hafta (açılmış
+ * günlerden; içinde bulunulan hafta, o hafta bu mekânda öğe yoksa öğesi olan son hafta) açık gelir, öbür haftalar tek satır,
+ * dokununca açılır. 52 haftada 51 satır tek başına gezginin ekran sınırına (80) yaklaşır: son `YAKIN_HAFTA` hafta ayrı satır,
+ * daha eskiler tek satırda ("1.–N. hafta"), dokununca hafta satırları açılır. Liste yalnız açılmış günlerden gelir (#224 kuralı).
+ */
+export const YAKIN_HAFTA = 4;
+export interface HaftaKat<T> { hafta: number; ogeler: T[] }
+export interface Katlar<T> { acik: HaftaKat<T> | null; yakin: HaftaKat<T>[]; eski: HaftaKat<T>[] }
+export function haftaKatla<T extends { day: number }>(ogeler: readonly T[]): Katlar<T> {
+  const m = new Map<number, T[]>();
+  for (const o of ogeler) { const h = haftaOf(o.day); const l = m.get(h); if (l) l.push(o); else m.set(h, [o]); }
+  const kat = [...m].sort((a, b) => a[0] - b[0]).map(([hafta, l]) => ({ hafta, ogeler: l.slice().sort((a, b) => a.day - b.day) }));
+  const acik = kat.pop() ?? null;
+  const kes = Math.max(0, kat.length - YAKIN_HAFTA);
+  return { acik, yakin: kat.slice(kes), eski: kat.slice(0, kes) };
+}
+/** ilk açılışta (hiçbir satır açılmamışken) listenin dokunulabilir öğe sayısı: eski haftalar satırı + yakın hafta satırları + açık haftanın öğeleri */
+export function katDokunus<T>(k: Katlar<T>, ogeBasi: (o: T) => number): number {
+  return (k.eski.length ? 1 : 0) + k.yakin.length + (k.acik?.ogeler.reduce((n, o) => n + ogeBasi(o), 0) ?? 0);
 }
