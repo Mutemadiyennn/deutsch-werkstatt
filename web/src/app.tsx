@@ -42,6 +42,7 @@ import { Progress } from "./screens/Progress.tsx";
 import { BenEkrani } from "./screens/Ben.tsx";
 import { Garden } from "./screens/Garden.tsx";
 import { ProfileView } from "./screens/Profile.tsx";
+import { hatirlatmaKur, hatirlatmaVar } from "./services/hatirlatma.ts";
 
 const API_BASE = (import.meta.env.VITE_API_BASE as string | undefined) || "";
 
@@ -113,6 +114,15 @@ export function App() {
     document.addEventListener("visibilitychange", yenile);
     return () => document.removeEventListener("visibilitychange", yenile);
   }, []);
+  // günlük hatırlatma (PM-121 md. 3.3): açılıştan kısa süre sonra ve uygulama arka plana geçerken 7 günlük pencere yeniden kurulur
+  const hedefDk = profile?.focus.dailyGoalMin;
+  useEffect(() => {
+    if (hedefDk === undefined || !hatirlatmaVar()) return;
+    const t = setTimeout(() => void hatirlatmaKur(hedefDk), 2500);
+    const arka = () => { if (document.visibilityState === "hidden") void hatirlatmaKur(hedefDk); };
+    document.addEventListener("visibilitychange", arka);
+    return () => { clearTimeout(t); document.removeEventListener("visibilitychange", arka); };
+  }, [hedefDk]);
   // Şölen 1 (#58 B10): efekt sesleri ve kutlamalar Profil'den
   useEffect(() => { if (profile) efektAyar(profile.ui); }, [profile?.ui.sfx, profile?.ui.celebrations]);
 
