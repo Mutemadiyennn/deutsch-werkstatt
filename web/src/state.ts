@@ -27,6 +27,7 @@ export type Route =
   | { name: "odak" }
   | { name: "m1medya"; day: number; id: string; tur?: "ilk" | "ikinci" }
   | { name: "akis"; day: number }
+  | { name: "hafta"; hafta: number }
   | { name: "ders"; id: string }
   | { name: "prova"; day: number }
   | { name: "okuma"; day: number }
@@ -60,6 +61,7 @@ export function parseHash(h: string): Route {
     case "odak": return { name: "odak" };
     case "kalip": return { name: "kalip", id: p[1] || undefined };
     case "akis": return { name: "akis", day: Number(p[1]) || 1 };
+    case "hafta": return { name: "hafta", hafta: Number(p[1]) || 1 };
     // #/m1/<gün>/<kayıt>[/1|/2]: akışta sesin ilk ya da ikinci turu (PM-097 md. 1); ek yoksa bütün adımlar
     case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2], ...(p[3] === "1" ? { tur: "ilk" as const } : p[3] === "2" ? { tur: "ikinci" as const } : {}) } : { name: "m1day", day: Number(p[1]) || 1 };
     default: return { name: "today" };
@@ -75,7 +77,7 @@ export function yeniAdres(h: string): string | null {
 export const go = (path: string) => { location.hash = "#/" + path.replace(/^#?\/?/, ""); };
 
 /** Öğrenme ekranları: odak süresi yalnızca bunlarda sayılır (v1: menü ekranları sayılmaz) */
-export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section", "garden", "m1medya", "ders", "prova", "okuma", "akis"]);
+export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section", "garden", "m1medya", "ders", "prova", "okuma", "akis", "hafta"]);
 
 export interface AppCtx {
   user: AuthUser | null;

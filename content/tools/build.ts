@@ -16,6 +16,7 @@ import { notoDosya, notoSvg } from "./emoji.ts";
 import { tmpdir } from "node:os";
 import { fotoPaketle, type FotoKaydi } from "./medya.ts";
 import { kesinPaketi, type KesinPaket } from "./kesin.ts";
+import { haftaTestleri, type HaftaTestiPaket } from "./haftaTesti.ts";
 
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
@@ -64,11 +65,18 @@ const dnNotlar = c.dn.flatMap((x) => x.data);
 // pakette YOKSA kullanır (K(t) tamamlama; doğrulayıcı ve hafta kapısıyla aynı kaynak). Dosya varken ölçü cihazda görülen karttır.
 let kesinGunler: KesinPaket;
 try { kesinGunler = kesinPaketi(join(ROOT, "content/v2/curriculum")); } catch (e) { console.error(String(e)); process.exit(1); }
+// PR B-3: hafta sonu testleri (hafta-sonu-testi-HH.json; 1. hafta eski adla) → hafta/hafta-HH.json; e2e paketinde fikstür haftası içerikte yoksa eklenir
+let haftaTest: HaftaTestiPaket;
+try {
+  haftaTest = haftaTestleri(join(ROOT, "content/v2/m1"));
+  if (process.env.DW_E2E_FIXTURES === "1") for (const [h, t] of Object.entries(haftaTestleri(join(ROOT, "content/tools/fixtures/m1")))) haftaTest[h] ??= t;
+} catch (e) { console.error(String(e)); process.exit(1); }
 
 const payload = {
   m1: days.map((d) => d.data),
   dn: dnNotlar,
   kesin: kesinGunler,
+  hafta: haftaTest,
   temel: c.temel.map((t) => t.data),
   lexemes: c.lexemes,
   grammar: c.grammar,
@@ -156,6 +164,9 @@ const lexById = new Map(c.lexemes.map((l) => [l.id, l]));
 const m1Files: Record<string, string> = {};
 if (days.length) mkdirSync(join(dir, "m1"), { recursive: true });
 for (const d of days) { const f = `m1/gun-${String(d.data.day).padStart(2, "0")}.json`; w(f, d.data); m1Files[String(d.data.day)] = f; }
+const haftaFiles: Record<string, string> = {};
+if (Object.keys(haftaTest).length) mkdirSync(join(dir, "hafta"), { recursive: true });
+for (const [h, t] of Object.entries(haftaTest)) { const f = `hafta/hafta-${h.padStart(2, "0")}.json`; w(f, t); haftaFiles[h] = f; }
 // R0 temel dersler (yalnızca incelenmiş olanlar öğrenciye gider; taslak ders pakete girmez)
 const temelFiles: Record<string, string> = {};
 const temel = c.temel.map((t) => t.data).filter((t) => t.review.status === "reviewed").sort((a, b) => a.order - b.order);
@@ -172,7 +183,7 @@ const index: ContentIndex = {
     kartlar: g.yeni_kartlar.filter((id) => { const l = lexById.get(id); return !!l && kartMi(l); }), medya: medyalar(g).map((m) => ({ id: m.id, kind: m.kind, title_tr: m.title_tr })) })),
   temel: temel.map((t) => ({ id: t.id, order: t.order, title_tr: t.title_tr, title_de: t.title_de, review: t.review.status })),
   counts: { lexemes: c.lexemes.length, grammar: c.grammar.length, assess: c.assess.length, scenarios: c.scenarios.length },
-  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}), ...(resimHarita ? { resim: "resim.json" } : {}), genelAdlar: "genel-adlar.json", dn: "dn.json", kesin: "kesin.json" }
+  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}), ...(resimHarita ? { resim: "resim.json" } : {}), genelAdlar: "genel-adlar.json", dn: "dn.json", kesin: "kesin.json", hafta: haftaFiles }
 };
 w("genel-adlar.json", genelAdlar);
 w("index.json", index);
