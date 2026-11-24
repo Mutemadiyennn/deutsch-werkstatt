@@ -13,8 +13,14 @@ URL = "http://localhost:8765/"
 SW = os.path.join(SITE, "sw.js")
 
 async def tur(p, eksik):
+    asil = os.path.join(SITE, eksik) if eksik else None
+    sakla = asil + ".sakla" if asil else None
+    try: return await _tur(p, eksik, asil, sakla)
+    finally:   # tur yarıda kalsa da simge geri gelir (inceleme #262 2. tur P2-b)
+        if sakla and os.path.exists(sakla): os.rename(sakla, asil)
+
+async def _tur(p, eksik, asil, sakla):
     hata = []
-    sakla = None
     open(SW, "w", encoding="utf-8").write(ESKI)
     b = await p.chromium.launch(); ctx = await b.new_context(); pg = await ctx.new_page()
     await pg.goto(URL + "index.html?eski=1"); await pg.wait_for_timeout(800)
@@ -23,9 +29,7 @@ async def tur(p, eksik):
     if not await pg.evaluate("!!navigator.serviceWorker.controller"): hata.append("eski işçi sayfayı denetlemiyor")
     # yayın: yeni sw.js (dw-static-v2); istenirse bir simge alınamıyor
     open(SW, "w", encoding="utf-8").write(YENI)
-    if eksik:
-        sakla = os.path.join(SITE, eksik) + ".sakla"
-        if os.path.exists(os.path.join(SITE, eksik)): os.rename(os.path.join(SITE, eksik), sakla)
+    if asil and os.path.exists(asil): os.rename(asil, sakla)
     await pg.evaluate("sessionStorage.removeItem('dw-eski')")
     try: await pg.goto(URL, timeout=8000); await pg.wait_for_timeout(800)   # çevrimiçi açılış: yeni sayfa → /v2/
     except Exception: pass
@@ -37,7 +41,6 @@ async def tur(p, eksik):
     except Exception: pass
     if not any(u.endswith("/v2/") for u in gez): hata.append(f"çevrimdışı kök /v2/'ye yönlenmedi ({gez})")
     await b.close()
-    if sakla and os.path.exists(sakla): os.rename(sakla, os.path.join(SITE, eksik))
     print(f"[{'simge eksik: ' + eksik if eksik else 'tam'}] önbellekler {anahtar} · çevrimdışı gezinme {gez}")
     return [f"{eksik or 'tam'}: {h}" for h in hata]
 

@@ -21,7 +21,7 @@ def v1(p, theme):
     b = p.chromium.launch()
     ctx = b.new_context(viewport=VP, device_scale_factor=2, is_mobile=True, has_touch=True, color_scheme=theme)
     pg = ctx.new_page(); pg.add_init_script(GATE)
-    pg.goto("http://localhost:8765/index.html?eski=1")   # PM-116: kök /v2/ye yönlenir; pg.wait_for_timeout(1500)
+    pg.goto("http://localhost:8765/index.html?eski=1"); pg.wait_for_timeout(1500)   # PM-116: kök /v2/ye yönlenir
     pg.evaluate(f"S.state.setupDone=true; S.state.theme='{theme}'; S.state.seenNew='2026-11-17a'; document.documentElement.setAttribute('data-theme','{theme}'); try{{applyTheme()}}catch(e){{}}; 0")
     def at(js, name, wait=1200):
         pg.evaluate(f"(async()=>{{ try{{ stopAll&&stopAll(); }}catch(e){{}} S.brk=null; {js} }})()"); pg.wait_for_timeout(wait)
