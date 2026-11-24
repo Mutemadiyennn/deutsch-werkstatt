@@ -1,0 +1,171 @@
+{
+ "id": "m1:hafta-sonu-testi:12",
+ "day": 84,
+ "maddeler": [
+  {
+   "id": "m1:84:t01",
+   "k": "listen_and_respond",
+   "audio_de": "Seit wann haben Sie die Schmerzen?",
+   "speed": "normal",
+   "situation_tr": "Dr. Weber soruyor. Cumartesiden beri karnın ağrıyor.",
+   "accepted": [
+    "Seit Samstag habe ich Bauchschmerzen.",
+    "Seit Samstag.",
+    "Ich habe seit Samstag Bauchschmerzen.",
+    "Seit Samstag tut mein Bauch weh."
+   ],
+   "why_tr": "**seit**'tan sonra günü söylersin: **seit Samstag**."
+  },
+  {
+   "id": "m1:84:t02",
+   "k": "order",
+   "de": "der / Ich / gebe / Nachbarin / den / Schlüssel",
+   "tr": "Komşu kadına anahtarı veriyorum.",
+   "accepted": [
+    "Ich gebe der Nachbarin den Schlüssel.",
+    "Der Nachbarin gebe ich den Schlüssel.",
+    "Den Schlüssel gebe ich der Nachbarin."
+   ],
+   "why_tr": "Önce kime (**der Nachbarin**), sonra ne (**den Schlüssel**)."
+  },
+  {
+   "id": "m1:84:t03",
+   "k": "gap",
+   "de": "Die Tabletten? Ich gebe ___ Ihnen gleich.",
+   "tr": "Tabletler mi? Onları size hemen veriyorum.",
+   "accepted": [
+    "sie",
+    "Sie",
+    "sie."
+   ],
+   "opts": [
+    "sie",
+    "ihr",
+    "ihnen"
+   ],
+   "why_tr": "Tabletler: **sie**. Kısa şey sözcüğü kişiden önce gelir."
+  },
+  {
+   "id": "m1:84:t04",
+   "k": "guided_response",
+   "situation_tr": "Eczanedesin. Nezlen var. Eczacıya nezleye karşı ne önerdiğini sor.",
+   "prompt_de": "Guten Tag, was darf ich Ihnen geben?",
+   "accepted": [
+    "Ich habe Schnupfen. Was können Sie mir gegen Schnupfen empfehlen?",
+    "Guten Tag. Was können Sie mir gegen Schnupfen empfehlen?",
+    "Ich habe Schnupfen. Was empfehlen Sie mir?",
+    "Haben Sie etwas gegen Schnupfen? Was können Sie mir empfehlen?",
+    "Guten Tag, ich habe Schnupfen. Was können Sie mir empfehlen?"
+   ],
+   "why_tr": "Öneri istemek için: **Was können Sie mir empfehlen?**"
+  },
+  {
+   "id": "m1:84:t05",
+   "k": "transform",
+   "instr_tr": "Şeyi kısa söyle: **das Buch** yerine **es**.",
+   "from_de": "Ich gebe dem Kind das Buch.",
+   "accepted": [
+    "Ich gebe es dem Kind.",
+    "Dem Kind gebe ich es.",
+    "ich gebe es dem kind"
+   ],
+   "why_tr": "Şey kısa sözcük olunca öne geçer: **es dem Kind**."
+  },
+  {
+   "id": "m1:84:t06",
+   "k": "listen_and_respond",
+   "audio_de": "Wo sind Sie gerade?",
+   "speed": "normal",
+   "situation_tr": "Herr Wimmer arıyor. Doktordasın. Cevap ver.",
+   "accepted": [
+    "Ich bin beim Arzt.",
+    "Ich bin gerade beim Arzt.",
+    "Beim Arzt.",
+    "Ich bin gerade beim Doktor."
+   ],
+   "why_tr": "Yer: **beim Arzt**."
+  },
+  {
+   "id": "m1:84:t07",
+   "k": "tr_de",
+   "tr": "Kazada 112'yi ararım.",
+   "accepted": [
+    "Bei einem Unfall rufe ich eins, eins, zwei an.",
+    "Bei einem Unfall rufe ich 112 an.",
+    "Bei einem Unfall rufe ich die 112 an.",
+    "Bei einem Unfall rufe ich die Nummer eins, eins, zwei an.",
+    "Bei einem Unfall rufe ich den Notruf an, eins, eins, zwei."
+   ],
+   "why_tr": "**rufe** ikinci yerde, **an** en sonda."
+  },
+  {
+   "id": "m1:84:t08",
+   "k": "gap",
+   "de": "Nach der Arbeit gehe ich nach ___.",
+   "tr": "İşten sonra eve gidiyorum.",
+   "accepted": [
+    "Hause",
+    "hause",
+    "Hause."
+   ],
+   "opts": [
+    "Hause",
+    "Haus",
+    "zu"
+   ],
+   "why_tr": "Eve: **nach Hause**. Evde: **zu Hause**."
+  },
+  {
+   "id": "m1:84:t09",
+   "k": "listen_and_respond",
+   "audio_de": "Nehmen Sie die Tropfen am Morgen, und kommen Sie am Freitag wieder.",
+   "speed": "fast",
+   "situation_tr": "Doktor hızlı söylüyor. İki talimatı tekrar et.",
+   "accepted": [
+    "Die Tropfen am Morgen, und am Freitag komme ich wieder.",
+    "Am Morgen die Tropfen, und am Freitag wiederkommen.",
+    "Tropfen am Morgen, Freitag wiederkommen.",
+    "Die Tropfen am Morgen und am Freitag wieder kommen."
+   ],
+   "why_tr": "İki talimatı sırayla tekrar et."
+  },
+  {
+   "id": "m1:84:t10",
+   "k": "guided_response",
+   "situation_tr": "Herr Wimmer bugünkü kutlamaya gelip gelmeyeceğini soruyor. Hastasın. Bu yüzden evde kalıyorsun.",
+   "prompt_de": "Kommen Sie heute zur Feier?",
+   "accepted": [
+    "Leider nicht, ich bin krank. Deshalb bleibe ich zu Hause.",
+    "Leider nicht. Ich bin krank, deshalb bleibe ich zu Hause.",
+    "Nein, leider. Ich bin krank und bleibe zu Hause.",
+    "Leider nicht, ich bin krank. Ich bleibe zu Hause."
+   ],
+   "why_tr": "**deshalb**'tan hemen sonra **bleibe** gelir: **deshalb bleibe ich**."
+  },
+  {
+   "id": "m1:84:t11",
+   "k": "order",
+   "de": "Seite / auf / tut / Es / der / rechten / weh",
+   "tr": "Sağ tarafta ağrıyor.",
+   "accepted": [
+    "Es tut auf der rechten Seite weh.",
+    "Auf der rechten Seite tut es weh.",
+    "Es tut auf der rechten Seite weh!"
+   ],
+   "why_tr": "**tut** ikinci yerde, **weh** en sonda."
+  },
+  {
+   "id": "m1:84:t12",
+   "k": "guided_response",
+   "situation_tr": "Tobi'nin bisikleti çalındı. Ne yapması gerektiğini soruyor. Polise şikâyette bulunmasını öner.",
+   "prompt_de": "Mein Fahrrad ist weg. Was soll ich machen?",
+   "accepted": [
+    "An deiner Stelle würde ich eine Anzeige bei der Polizei machen.",
+    "An deiner Stelle würde ich zur Polizei gehen und eine Anzeige machen.",
+    "Ich an deiner Stelle würde eine Anzeige machen.",
+    "An deiner Stelle würde ich bei der Polizei eine Anzeige machen."
+   ],
+   "why_tr": "**An deiner Stelle würde ich** ile öğüt verirsin."
+  }
+ ]
+}

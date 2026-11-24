@@ -1,0 +1,1455 @@
+{
+ "schema": 1,
+ "id": "m1:gun:84",
+ "day": 84,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Haftanın sınavı: doktora şikâyetini anlatmak",
+ "goal_tr": "Dr. Weber'in sorularına cevap verip şikâyetini ayrıntılı anlatırsın. Hızlı açıklamadan iki talimatı yakalarsın.",
+ "can_do": {
+  "id": "cd:m1:84",
+  "tr": "Dr. Weber'in sorularına cevap verip şikâyetimi ayrıntılı anlatırım."
+ },
+ "unit": "u:a2:saglik-3",
+ "arm": "radyo",
+ "place": "pl:haus",
+ "characters": [
+  "ch:brandl",
+  "ch:pichler",
+  "ch:lechner",
+  "ch:huber",
+  "ch:weber",
+  "ch:aksoy",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic9/dilbilimci-h12.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:deshalb",
+  "lx:eben",
+  "lx:Rettungswagen",
+  "lx:Anzeige"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:84:h1",
+   "title_tr": "Pazar: bu yüzden, işte, ambulans, şikâyet",
+   "kartlar": [
+    "lx:deshalb",
+    "lx:eben",
+    "lx:Rettungswagen",
+    "lx:Anzeige"
+   ],
+   "kaliplar": [
+    {
+     "de": "…, deshalb kann ich … – …, deshalb muss ich …",
+     "tr": "…, bu yüzden … yapabilirim / yapmam lazım."
+    },
+    {
+     "de": "gerade eben – Das ist eben so.",
+     "tr": "az önce – İşte böyle."
+    },
+    {
+     "de": "eine Anzeige machen",
+     "tr": "şikâyette bulunmak (polise)"
+    },
+    {
+     "de": "Grüß Gott! – Grüß Gott, hier ist …",
+     "tr": "İyi günler! Bavyera'da günün her saatinde böyle selam verilir. – İyi günler, ben … (telefonda)"
+    },
+    {
+     "de": "Bewegen Sie sich ein bisschen. – ein bisschen bewegen",
+     "tr": "Biraz hareket edin. – biraz hareket etmek"
+    },
+    {
+     "de": "nichts Schweres tragen – etwas Schweres",
+     "tr": "ağır bir şey taşımamak – ağır bir şey"
+    },
+    {
+     "de": "Was fehlt Ihnen?",
+     "tr": "Neyiniz var? (Doktor böyle sorar.)"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:deshalb",
+     "de": "Ich habe Fieber, deshalb kann ich nicht kommen.",
+     "tr": "Ateşim var, bu yüzden gelemiyorum.",
+     "accepted": [
+      "Ich habe Fieber, deshalb kann ich nicht kommen.",
+      "Ich habe Fieber, deshalb kann ich leider nicht kommen.",
+      "Ich habe Fieber. Deshalb kann ich nicht kommen."
+     ]
+    },
+    {
+     "kart": "lx:deshalb",
+     "de": "Der Hals tut weh, deshalb muss ich zum Arzt.",
+     "tr": "Boğazım ağrıyor, bu yüzden doktora gitmem lazım.",
+     "accepted": [
+      "Der Hals tut weh, deshalb muss ich zum Arzt.",
+      "Mein Hals tut weh, deshalb muss ich zum Arzt.",
+      "Der Hals tut weh. Deshalb muss ich zum Arzt."
+     ]
+    },
+    {
+     "kart": "lx:eben",
+     "de": "Frau Huber war eben hier.",
+     "tr": "Frau Huber az önce buradaydı.",
+     "accepted": [
+      "Frau Huber war eben hier.",
+      "Frau Huber war gerade eben hier.",
+      "Eben war Frau Huber hier."
+     ]
+    },
+    {
+     "kart": "lx:eben",
+     "de": "Das ist eben so.",
+     "tr": "İşte böyle.",
+     "accepted": [
+      "Das ist eben so.",
+      "Das ist eben so!",
+      "Tja, das ist eben so."
+     ]
+    },
+    {
+     "kart": "lx:Rettungswagen",
+     "de": "Der Rettungswagen kommt in zehn Minuten.",
+     "tr": "Ambulans on dakika içinde geliyor.",
+     "accepted": [
+      "Der Rettungswagen kommt in zehn Minuten.",
+      "In zehn Minuten kommt der Rettungswagen.",
+      "Der Rettungswagen ist in zehn Minuten da."
+     ]
+    },
+    {
+     "kart": "lx:Rettungswagen",
+     "de": "Rufen Sie bitte einen Rettungswagen!",
+     "tr": "Lütfen bir ambulans çağırın!",
+     "accepted": [
+      "Rufen Sie bitte einen Rettungswagen!",
+      "Bitte rufen Sie einen Rettungswagen!",
+      "Rufen Sie sofort einen Rettungswagen!"
+     ]
+    },
+    {
+     "kart": "lx:Anzeige",
+     "de": "Ich möchte eine Anzeige machen. Mein Fahrrad ist weg.",
+     "tr": "Şikâyette bulunmak istiyorum. Bisikletim yok.",
+     "accepted": [
+      "Ich möchte eine Anzeige machen. Mein Fahrrad ist weg.",
+      "Ich möchte eine Anzeige machen, mein Fahrrad ist weg.",
+      "Mein Fahrrad ist weg. Ich möchte eine Anzeige machen."
+     ]
+    },
+    {
+     "kart": "lx:Anzeige",
+     "de": "Tobi muss bei der Polizei eine Anzeige machen.",
+     "tr": "Tobi polise şikâyette bulunmak zorunda.",
+     "accepted": [
+      "Tobi muss bei der Polizei eine Anzeige machen.",
+      "Tobi muss eine Anzeige bei der Polizei machen.",
+      "Bei der Polizei muss Tobi eine Anzeige machen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Pazar öğlen. Tobi arıyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Ich war eben bei der Polizei. Ich habe eine Anzeige gemacht.",
+      "tr": "Az önce polisteydim. Şikâyette bulundum."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Und? Ist das Fahrrad wieder da?",
+      "tr": "Eee? Bisiklet bulundu mu?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Nein. Das ist eben so. Deshalb kaufe ich ein neues.",
+      "tr": "Hayır. İşte böyle. Bu yüzden yenisini alıyorum."
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi ne yapacak?",
+     "opts": [
+      "Yeni bir bisiklet alacak",
+      "Polisi yeniden arayacak",
+      "Bisikletini bulmuş"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:84:v1",
+  "title_tr": "Pazar: Frau Brandl'da kahve ve çiçek",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Pazar, saat üç. Frau Brandl kapıyı açıyor; elinde bir buket çiçek var.",
+    "de": "Grüß Gott! Kommen Sie rein! Ein Blumenstrauß? Für mich?",
+    "tr": "İyi günler! Buyurun, girin! Bir buket çiçek mi? Benim için mi?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl'ın gözleri doluyor.",
+    "de": "Zum Valentinstag! Ja mei, mir schenkt sonst keiner Blumen.",
+    "tr": "Sevgililer Günü için! Ne diyeyim, bana başka kimse çiçek hediye etmiyor."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl çiçekleri vazoya koyuyor.",
+    "de": "Danke, das ist so lieb von Ihnen.",
+    "tr": "Teşekkürler, ne kadar incesiniz."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Kahveyi dolduruyor.",
+    "de": "Und wie geht es Ihnen? Sie klingen schon viel besser.",
+    "tr": "Siz nasılsınız? Sesiniz çok daha iyi geliyor."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl sesini alçaltıyor.",
+    "de": "Haben Sie gestern Nacht den Rettungswagen gehört? Er war in der Brunnengasse, bei einem Nachbarn.",
+    "tr": "Dün gece ambulansı duydunuz mu? Brunnengasse'deydi, bir komşudaydı."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl elini sallıyor.",
+    "de": "Nichts Schlimmes, sagt man. Er ist eben schon alt, wie ich.",
+    "tr": "Kötü bir şey değilmiş, öyle diyorlar. O da benim gibi yaşlı işte."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl parmağını kaldırıyor.",
+    "de": "Deshalb sage ich immer: Ein guter Hausarzt ist wichtig!",
+    "tr": "Bu yüzden hep söylerim: iyi bir aile hekimi önemlidir!"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Kapı çalıyor; Herr Pichler başını uzatıyor.",
+    "de": "Grüß Gott! Ist noch ein Kaffee da?",
+    "tr": "İyi günler! Bir kahve kaldı mı?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl sandalye gösteriyor.",
+    "de": "Natürlich, Herr Pichler. Setzen Sie sich!",
+    "tr": "Tabii Herr Pichler. Oturun!"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler oturuyor.",
+    "de": "Die Polizei war heute im Haus, wegen dem Fahrrad vor der Tür. Jetzt macht der Nachbar eine Anzeige.",
+    "tr": "Bugün polis apartmandaydı, kapının önündeki bisiklet yüzünden. Şimdi komşu şikâyette bulunuyor."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl gülüyor.",
+    "de": "Sie haben eben recht, Herr Pichler: Die Fahrräder kommen in den Keller!",
+    "tr": "Haklısınız işte Herr Pichler: bisikletler bodruma!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler memnun.",
+    "de": "Eben! Das sage ich doch!",
+    "tr": "Aynen! Ben de onu diyorum!"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl keki kesiyor.",
+    "de": "So, und jetzt Kuchen! Heute ist Valentinstag, da feiern wir ein bisschen.",
+    "tr": "Evet, şimdi kek! Bugün Sevgililer Günü, biraz kutlayalım."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Frau Brandl neden çok mutlu?",
+     "opts": [
+      "Ona bir buket çiçek getirdin",
+      "Doğum günü",
+      "Torunu geldi"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s3"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Dün gece ne oldu?",
+      "opts": [
+       "Bir komşuya ambulans geldi",
+       "Bir yangın çıktı",
+       "Bir hırsızlık oldu"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Frau Brandl'a göre ne önemli?",
+      "opts": [
+       "İyi bir aile hekimi",
+       "Bir bisiklet",
+       "Çok uyumak"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s7"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s1",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Blumenstrauß",
+       "Kuchen",
+       "Geschenk"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s6",
+      "seviye": "orta",
+      "de": "Er ist eben schon ___, wie ich.",
+      "accepted": [
+       "alt",
+       "Alt",
+       "alt."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s3",
+      "seviye": "zor",
+      "banka": [
+       "Danke",
+       "das",
+       "ist",
+       "so",
+       "lieb",
+       "von",
+       "Ihnen",
+       "dir",
+       "sehr"
+      ],
+      "accepted": [
+       "Danke, das ist so lieb von Ihnen.",
+       "danke das ist so lieb von ihnen",
+       "Danke, das ist so lieb von Ihnen"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Und wie geht es Ihnen?",
+       "und wie geht es ihnen",
+       "Und wie geht es Ihnen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Bölümü Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Ich bringe Frau Brandl einen Blumenstrauß. Sie ist sehr glücklich.",
+      "zorunlu": [
+       "Blumenstrauß",
+       "glücklich"
+      ]
+     }
+    ],
+    "golge": [
+     "s3",
+     "s7"
+    ],
+    "cevapla": {
+     "id": "m1:84:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Frau Brandl nasıl olduğunu soruyor. İyisin. Doktor ciddi bir şey olmadığını söyledi.",
+     "prompt_de": "Und wie geht es Ihnen?",
+     "accepted": [
+      "Es geht mir gut, danke. Der Arzt sagt, es ist nicht ernst.",
+      "Gut, danke! Der Arzt sagt, es ist nicht ernst.",
+      "Mir geht es gut. Es ist nicht ernst, sagt der Arzt.",
+      "Danke, gut. Es ist nichts Ernstes.",
+      "Gut, danke. Der Arzt sagt: nicht ernst.",
+      "Es geht mir gut, danke schön. Es ist nicht ernst."
+     ],
+     "why_tr": "**nicht ernst**: ciddi değil."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Herr Pichler ne anlatıyor?",
+     "opts": [
+      "Polis bugün apartmandaydı, bisiklet yüzünden",
+      "Kalorifer bozuldu",
+      "Yeni bir komşu geldi"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s10"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Herr Pichler'e göre bisikletler nereye?",
+      "opts": [
+       "Bodruma",
+       "Kapının önüne",
+       "Bahçeye"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Bugün ne kutluyorlar?",
+      "opts": [
+       "Sevgililer Günü",
+       "Doğum günü",
+       "Fasching"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s13"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s10",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Polizei",
+       "Feuerwehr",
+       "Praxis"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s12",
+      "seviye": "orta",
+      "de": "Eben! Das sage ich ___!",
+      "accepted": [
+       "doch",
+       "Doch",
+       "doch."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s9",
+      "seviye": "zor",
+      "banka": [
+       "Natürlich",
+       "Herr",
+       "Pichler",
+       "Setzen",
+       "Sie",
+       "sich",
+       "dich",
+       "Frau"
+      ],
+      "accepted": [
+       "Natürlich, Herr Pichler. Setzen Sie sich!",
+       "natürlich herr pichler setzen sie sich",
+       "Natürlich, Herr Pichler. Setzen Sie sich"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s8",
+      "seviye": "usta",
+      "accepted": [
+       "Ist noch ein Kaffee da?",
+       "ist noch ein kaffee da",
+       "Ist noch ein Kaffee da"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Herr Pichler'in haberini Almanca iki kısa cümleyle söyle.",
+      "ornek_de": "Die Polizei war im Haus. Der Nachbar macht eine Anzeige wegen dem Fahrrad.",
+      "zorunlu": [
+       "Polizei",
+       "Anzeige"
+      ]
+     }
+    ],
+    "golge": [
+     "s11",
+     "s12"
+    ],
+    "cevapla": {
+     "id": "m1:84:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Herr Pichler sana dönüyor: senin bisikletin nerede? Bodrumda, tabii.",
+     "prompt_de": "Und Ihr Fahrrad? Wo ist das?",
+     "accepted": [
+      "Mein Fahrrad ist im Keller, natürlich!",
+      "Im Keller, natürlich.",
+      "Das ist im Keller, Herr Pichler.",
+      "Natürlich im Keller!",
+      "Es ist im Keller.",
+      "Im Keller, Herr Pichler!"
+     ],
+     "why_tr": "Yer: **im Keller** (bodrumda)."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:84:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Kulak provası: Frau Huber'in hızlı mesajı",
+   "ortam_tr": "Pazar akşamı telefonuna bakıyorsun. Frau Huber cuma akşamı hızlıca bir mesaj bırakmış.",
+   "hizlar": [
+    "natural",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, Huber von der Praxis Dr. Weber, ganz kurz.",
+     "tr": "İyi günler, Dr. Weber muayenehanesinden Huber, çok kısa."
+    },
+    {
+     "id": "c2",
+     "de": "Die Tabletten nehmen Sie bitte nur noch bis Mittwoch.",
+     "tr": "Tabletleri lütfen yalnızca çarşambaya kadar alın."
+    },
+    {
+     "id": "c3",
+     "de": "Und am Donnerstag rufen Sie bitte kurz an und sagen uns, wie es Ihnen geht.",
+     "tr": "Perşembe günü de kısaca arayıp nasıl olduğunuzu söyleyin."
+    },
+    {
+     "id": "c4",
+     "de": "Gute Besserung, Wiederhören!",
+     "tr": "Geçmiş olsun, hoşça kalın!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Frau Huber ne istiyor?",
+      "opts": [
+       "Tabletleri çarşambaya kadar al, perşembe ara",
+       "Pazartesi muayenehaneye gel",
+       "Kartını getir"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Tabletleri ne zamana kadar almalısın?",
+       "opts": [
+        "Çarşambaya kadar",
+        "Cumaya kadar",
+        "Bir ay"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ne zaman aramalısın?",
+       "opts": [
+        "Perşembe",
+        "Salı",
+        "Bugün"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "Mittwoch",
+        "Montag",
+        "Freitag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Und am ___ rufen Sie bitte kurz an und sagen uns, wie es Ihnen geht.",
+       "accepted": [
+        "Donnerstag",
+        "donnerstag",
+        "Donnerstag."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c1",
+       "seviye": "zor",
+       "banka": [
+        "Grüß",
+        "Gott",
+        "Huber",
+        "von",
+        "der",
+        "Praxis",
+        "Dr",
+        "Weber",
+        "ganz",
+        "kurz",
+        "Arzt",
+        "lang"
+       ],
+       "accepted": [
+        "Grüß Gott, Huber von der Praxis Dr. Weber, ganz kurz.",
+        "grüß gott huber von der praxis dr weber ganz kurz",
+        "Grüß Gott, Huber von der Praxis Dr. Weber, ganz kurz"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Die Tabletten nehmen Sie bitte nur noch bis Mittwoch.",
+        "die tabletten nehmen sie bitte nur noch bis mittwoch",
+        "Die Tabletten nehmen Sie bitte nur noch bis Mittwoch"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "İki talimatı Almanca yaz.",
+       "ornek_de": "Ich nehme die Tabletten nur bis Mittwoch. Am Donnerstag rufe ich an.",
+       "zorunlu": [
+        "Mittwoch",
+        "Donnerstag"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:84:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya mesajda ne dendiğini soruyor. İki talimatı söyle.",
+      "prompt_de": "Was sagt die Praxis?",
+      "accepted": [
+       "Ich soll die Tabletten nur bis Mittwoch nehmen und am Donnerstag anrufen.",
+       "Die Tabletten nur bis Mittwoch, und am Donnerstag anrufen.",
+       "Ich nehme die Tabletten bis Mittwoch und rufe am Donnerstag an.",
+       "Nur bis Mittwoch die Tabletten, am Donnerstag soll ich anrufen.",
+       "Bis Mittwoch Tabletten, am Donnerstag anrufen.",
+       "Ich soll am Donnerstag anrufen und die Tabletten nur bis Mittwoch nehmen."
+      ],
+      "why_tr": "İki talimatı **soll** ile sırayla aktar."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:84:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Tabletleri çarşambaya kadar al, perşembe muayenehaneyi ara",
+     "Tabletleri perşembeye kadar al",
+     "Çarşamba muayenehaneye git"
+    ],
+    "ans": 0,
+    "why_tr": "Frau Huber çarşambaya kadar tablet, perşembe telefon diyor.",
+    "kanit": [
+     "c2",
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:84:a2",
+   "tur": "radyo",
+   "title_tr": "Pazar radyosu: hangi numara?",
+   "ortam_tr": "Pazar sabahı radyo açık. Sunucu hafta sonu için hatırlatma yapıyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen, Wendlfing, es ist Sonntag.",
+     "tr": "Günaydın Wendlfing, bugün pazar."
+    },
+    {
+     "id": "c2",
+     "de": "Heute sind die Praxen zu.",
+     "tr": "Bugün muayenehaneler kapalı."
+    },
+    {
+     "id": "c3",
+     "de": "Brauchen Sie einen Arzt? Dann rufen Sie den Bereitschaftsdienst an: eins, eins, sechs, eins, eins, sieben.",
+     "tr": "Doktora mı ihtiyacınız var? O zaman nöbetçi hekimi arayın: 116117."
+    },
+    {
+     "id": "c4",
+     "de": "Bei einem Unfall oder wenn es sehr schlimm ist, rufen Sie eins, eins, zwei. Dann kommt der Rettungswagen.",
+     "tr": "Kazada ya da durum çok ciddiyse 112'yi arayın. O zaman ambulans gelir."
+    },
+    {
+     "id": "c5",
+     "de": "Und heute ist Valentinstag. Schönen Sonntag!",
+     "tr": "Bir de bugün Sevgililer Günü. İyi pazarlar!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne hatırlatıyor?",
+      "opts": [
+       "Pazar günü doktor ve kaza için hangi numaranın aranacağını",
+       "Mağazaların açılış saatlerini",
+       "Hava durumunu"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Bugün muayenehaneler nasıl?",
+       "opts": [
+        "Kapalı",
+        "Açık",
+        "Öğlene kadar açık"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kazada hangi numara?",
+       "opts": [
+        "112",
+        "116117",
+        "110"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c1",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "Sonntag",
+        "Samstag",
+        "Montag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Heute sind die ___ zu.",
+       "accepted": [
+        "Praxen",
+        "praxen",
+        "Praxen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Dann",
+        "kommt",
+        "der",
+        "Rettungswagen",
+        "Feuerwehr",
+        "die"
+       ],
+       "accepted": [
+        "Dann kommt der Rettungswagen.",
+        "dann kommt der rettungswagen",
+        "Dann kommt der Rettungswagen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Heute sind die Praxen zu.",
+        "heute sind die praxen zu",
+        "Heute sind die Praxen zu"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyonun iki numarasını Almanca söyle.",
+       "ornek_de": "Für einen Arzt: eins, eins, sechs, eins, eins, sieben. Bei einem Unfall: eins, eins, zwei.",
+       "zorunlu": [
+        "Arzt",
+        "Unfall"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:84:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Frau Brandl pazar günü doktora ihtiyacı olursa ne yapacağını soruyor.",
+      "prompt_de": "Heute ist doch Sonntag. Was mache ich, wenn ich einen Arzt brauche?",
+      "accepted": [
+       "Dann rufen Sie den Bereitschaftsdienst an: eins, eins, sechs, eins, eins, sieben.",
+       "Rufen Sie den Bereitschaftsdienst an.",
+       "Dann rufen Sie eins, eins, sechs, eins, eins, sieben an.",
+       "Sie rufen den Bereitschaftsdienst an, Frau Brandl.",
+       "Den Bereitschaftsdienst anrufen: eins, eins, sechs, eins, eins, sieben.",
+       "Dann rufen Sie bitte den Bereitschaftsdienst an."
+      ],
+      "why_tr": "Pazar günü doktor için **Bereitschaftsdienst** (116117)."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:84:a2:e1",
+    "k": "pick",
+    "q_tr": "Pazar günü bir komşu düşüp kalkamıyor, kafası kanıyor. Ne yaparsın?",
+    "opts": [
+     "112'yi ara",
+     "116117'yi ara",
+     "Pazartesiyi bekle"
+    ],
+    "ans": 0,
+    "why_tr": "Kazada ve hayati tehlikede 112'yi ararsın. Ambulans gelir. Hayati tehlike: ağır yaralanma, nefes darlığı, göğüs ağrısı.",
+    "kanit": [
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:84:g1",
+   "de": "Rettungswagen",
+   "dogru_img": "ambulance with blue lights on a street",
+   "celdirici_img": [
+    "police car",
+    "fire engine",
+    "taxi"
+   ]
+  },
+  {
+   "id": "m1:84:g2",
+   "de": "Anzeige",
+   "dogru_img": "person reporting at a police station desk",
+   "celdirici_img": [
+    "person at a bank counter",
+    "person at a post office",
+    "person at a doctor's reception"
+   ]
+  },
+  {
+   "id": "m1:84:g3",
+   "de": "Blumenstrauß",
+   "dogru_img": "bouquet of flowers given to an old woman",
+   "celdirici_img": [
+    "box of chocolates",
+    "birthday cake",
+    "bottle of wine"
+   ]
+  },
+  {
+   "id": "m1:84:g4",
+   "de": "Hausarzt",
+   "dogru_img": "family doctor talking with a patient in a practice",
+   "celdirici_img": [
+    "surgeon in an operating room",
+    "pharmacist at a counter",
+    "dentist with a drill"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:84:p1",
+  "title_tr": "Haftanın son provası: Dr. Weber'le",
+  "durum_tr": "Prova: birkaç hafta sonra. Üç gündür sırtının sol tarafı ağrıyor. Bodrumda çok çalıştın, ağır şeyler kaldırdın. Bazen başın dönüyor. Ateş yok. Ağrı kesici aldın, pek işe yaramadı. Dr. Weber soruyor.",
+  "karsi": "ch:weber",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Grüß Gott. Was fehlt Ihnen?",
+    "tr": "İyi günler. Neyiniz var?",
+    "secenekler": [
+     {
+      "de": "Ich habe seit drei Tagen Rückenschmerzen.",
+      "tr": "Üç gündür sırtım ağrıyor.",
+      "accepted": [
+       "Ich habe seit drei Tagen Rückenschmerzen.",
+       "Seit drei Tagen habe ich Rückenschmerzen.",
+       "Ich habe Rückenschmerzen, seit drei Tagen.",
+       "Mein Rücken tut seit drei Tagen weh."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: ne ve ne zamandan beri."
+     },
+     {
+      "de": "Mein Rücken tut weh, auf der linken Seite.",
+      "tr": "Sırtım ağrıyor, sol tarafta.",
+      "accepted": [
+       "Mein Rücken tut weh, auf der linken Seite.",
+       "Der Rücken tut auf der linken Seite weh.",
+       "Mir tut der Rücken links weh.",
+       "Mein Rücken tut links weh."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: yeri de söyledin."
+     },
+     {
+      "de": "Ich habe seit drei Tagen.",
+      "tr": "(eksik) Üç gündür var.",
+      "accepted": [
+       "Ich habe seit drei Tagen.",
+       "Seit drei Tagen."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Neyin olduğunu söylemedin: **Rückenschmerzen**."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Wo genau? Und wie ist das passiert?",
+    "tr": "Tam olarak nerede? Nasıl oldu?",
+    "secenekler": [
+     {
+      "de": "Links. Ich habe im Keller viel gearbeitet.",
+      "tr": "Solda. Bodrumda çok çalıştım.",
+      "accepted": [
+       "Links. Ich habe im Keller viel gearbeitet.",
+       "Auf der linken Seite. Ich habe im Keller viel gearbeitet.",
+       "Links. Im Keller habe ich viel gearbeitet.",
+       "Links. Ich habe viel im Keller gearbeitet."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika: yer ve neden."
+     },
+     {
+      "de": "Auf der linken Seite. Ich weiß nicht genau, vielleicht vom Keller.",
+      "tr": "Sol tarafta. Tam bilmiyorum, belki bodrumdan.",
+      "accepted": [
+       "Auf der linken Seite. Ich weiß nicht genau, vielleicht vom Keller.",
+       "Links. Vielleicht von der Arbeit im Keller.",
+       "Auf der linken Seite, vielleicht vom Keller.",
+       "Links, vielleicht von der Arbeit im Keller."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Was haben Sie noch? Kopfschmerzen? Schwindel?",
+    "tr": "Başka neyiniz var? Baş ağrısı? Baş dönmesi?",
+    "secenekler": [
+     {
+      "de": "Manchmal habe ich Schwindel.",
+      "tr": "Bazen başım dönüyor.",
+      "accepted": [
+       "Manchmal habe ich Schwindel.",
+       "Ja, manchmal habe ich Schwindel.",
+       "Ja, ich habe manchmal Schwindel.",
+       "Manchmal ist mir schwindelig."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Önemli bir bilgi. Söylemen doğru."
+     },
+     {
+      "de": "Nein, nichts.",
+      "tr": "Hayır, hiçbir şey.",
+      "accepted": [
+       "Nein, nichts.",
+       "Nein.",
+       "Sonst nichts."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Durumda baş dönmesi var. Doktora söyle: **Manchmal habe ich Schwindel.**"
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Haben Sie Fieber? Nehmen Sie etwas?",
+    "tr": "Ateşiniz var mı? Bir şey alıyor musunuz?",
+    "secenekler": [
+     {
+      "de": "Kein Fieber. Ich nehme ein Schmerzmittel, aber es ist nicht genug.",
+      "tr": "Ateş yok. Ağrı kesici alıyorum ama yetmiyor.",
+      "accepted": [
+       "Kein Fieber. Ich nehme ein Schmerzmittel, aber es ist nicht genug.",
+       "Nein, kein Fieber. Ich nehme ein Schmerzmittel, aber es ist nicht genug.",
+       "Kein Fieber. Das Schmerzmittel ist nicht genug.",
+       "Fieber nicht. Ein Schmerzmittel, aber das ist nicht genug."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: iki soruya da cevap verdin."
+     },
+     {
+      "de": "Nein. Ich nehme seit gestern ein Schmerzmittel.",
+      "tr": "Hayır. Dünden beri ağrı kesici alıyorum.",
+      "accepted": [
+       "Nein. Ich nehme seit gestern ein Schmerzmittel.",
+       "Nein, kein Fieber. Seit gestern nehme ich ein Schmerzmittel.",
+       "Kein Fieber, aber seit gestern ein Schmerzmittel.",
+       "Nein. Seit gestern nehme ich ein Schmerzmittel."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Gut. Nehmen Sie das Schmerzmittel am Abend, und bewegen Sie sich ein bisschen, aber nichts Schweres tragen.",
+    "tr": "Peki. Ağrı kesiciyi akşam alın, biraz hareket edin ama ağır bir şey taşımayın.",
+    "secenekler": [
+     {
+      "de": "Also: am Abend das Schmerzmittel, ein bisschen bewegen, nichts Schweres tragen.",
+      "tr": "Yani: akşam ağrı kesici, biraz hareket, ağır bir şey taşımamak.",
+      "accepted": [
+       "Also: am Abend das Schmerzmittel, ein bisschen bewegen, nichts Schweres tragen.",
+       "Am Abend das Schmerzmittel, und nichts Schweres tragen.",
+       "Also am Abend das Schmerzmittel und nichts Schweres tragen. Richtig?",
+       "Schmerzmittel am Abend, ein bisschen bewegen, nichts Schweres."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Mükemmel: talimatları tekrar ettin."
+     },
+     {
+      "de": "Wie bitte? Noch einmal langsam, bitte.",
+      "tr": "Efendim? Bir kez daha yavaşça, lütfen.",
+      "accepted": [
+       "Wie bitte? Noch einmal langsam, bitte.",
+       "Können Sie das bitte noch einmal sagen?",
+       "Wie bitte? Noch einmal, bitte.",
+       "Entschuldigung, noch einmal langsam, bitte."
+      ],
+      "sonraki": "n5r",
+      "uygun": true,
+      "geri_bildirim_tr": "Anlamadığında sormak doğru."
+     }
+    ]
+   },
+   {
+    "id": "n5r",
+    "de": "Gern: das Schmerzmittel am Abend. Und nichts Schweres tragen.",
+    "tr": "Tabii: ağrı kesici akşam. Bir de ağır bir şey taşımayın.",
+    "secenekler": [
+     {
+      "de": "Danke. Am Abend das Schmerzmittel, nichts Schweres tragen.",
+      "tr": "Teşekkürler. Akşam ağrı kesici, ağır şey taşımak yok.",
+      "accepted": [
+       "Danke. Am Abend das Schmerzmittel, nichts Schweres tragen.",
+       "Danke! Am Abend das Schmerzmittel und nichts Schweres tragen.",
+       "Alles klar: am Abend das Schmerzmittel, nichts Schweres.",
+       "Danke: am Abend, und nichts Schweres tragen."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru yakaladın."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Genau. Wird es nicht besser, kommen Sie in einer Woche wieder.",
+    "tr": "Aynen. Düzelmezse bir hafta sonra tekrar gelin.",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Haftanın son provası tamam. Şikâyetini sırayla anlattın ve talimatları tekrar ettin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Haftam: kısa bir yazı",
+  "metin_de": "Am Montag hatte ich Halsschmerzen, deshalb war ich in der Apotheke. Am Dienstag hatte ich in der Nacht Fieber. Ich habe den Bereitschaftsdienst angerufen. Am Mittwoch und am Freitag war ich bei Dr. Weber. Es ist nicht ernst. Jetzt brauche ich noch ein bisschen Ruhe. Am Dienstag gehe ich wieder zur Arbeit.",
+  "metin_tr": "Pazartesi boğazım ağrıyordu, bu yüzden eczaneye gittim. Salı gecesi ateşim vardı. Nöbetçi hekimi aradım. Çarşamba ve cuma Dr. Weber'deydim. Ciddi değil. Şimdi biraz daha dinlenmem lazım. Salı günü yeniden işe gidiyorum.",
+  "sorular": [
+   {
+    "id": "m1:84:o1",
+    "kind": "gist",
+    "q_tr": "Bu yazı ne anlatıyor?",
+    "opts": [
+     "Hasta geçen bir haftayı",
+     "Bir tatili",
+     "Bir taşınmayı"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     4
+    ]
+   },
+   {
+    "id": "m1:84:o2",
+    "kind": "detail",
+    "q_tr": "Salı gecesi ne oldu?",
+    "opts": [
+     "Ateş çıktı, nöbetçi hekim arandı",
+     "Kaza oldu",
+     "Eczaneye gidildi"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:84:o3",
+    "kind": "detail",
+    "q_tr": "Hangi günler doktordaydın?",
+    "opts": [
+     "Çarşamba ve cuma",
+     "Pazartesi ve salı",
+     "Sadece cuma"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:84:o4",
+    "k": "guided_response",
+    "situation_tr": "Ioana kursta haftanı soruyor. Kısa anlat: hastaydın, doktordaydın, ciddi değil.",
+    "prompt_de": "Wie war deine Woche?",
+    "accepted": [
+     "Ich war krank, deshalb war ich zweimal beim Arzt. Aber es ist nicht ernst.",
+     "Nicht so gut. Ich war krank und beim Arzt. Es ist nicht ernst.",
+     "Ich war die ganze Woche krank. Ich war beim Arzt, es ist nicht ernst.",
+     "Ich hatte Halsschmerzen und Fieber, deshalb war ich beim Arzt. Es ist nicht ernst.",
+     "Ich war krank. Der Arzt sagt, es ist nicht ernst.",
+     "Ich war krank, deshalb war ich beim Arzt. Zum Glück ist es nicht ernst."
+    ],
+    "why_tr": "**deshalb**'tan hemen sonra **war** gelir: **deshalb war ich**."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Haftanı 4–5 cümleyle yaz: ne oldu, ne zamandan beri, nereye gittin, doktor ne dedi.",
+   "ornek_de": "Ich bin seit Montag krank, deshalb war ich beim Arzt. Dr. Weber sagt, es ist nicht ernst. Ich soll viel trinken. Am Dienstag gehe ich wieder zur Arbeit.",
+   "zorunlu": [
+    "seit",
+    "deshalb"
+   ],
+   "accepted_kaliplar": [
+    "Ich bin seit ___ krank, deshalb war ich ___.",
+    "Seit ___ bin ich krank, deshalb war ich ___.",
+    "Seit ___ bin ich krank.",
+    "Ich habe seit ___ ___.",
+    "Seit ___ habe ich ___.",
+    "Ich bin seit ___ krank.",
+    "___, deshalb war ich ___.",
+    "Deshalb war ich ___.",
+    "Deshalb habe ich ___.",
+    "___, deshalb habe ich ___.",
+    "Am ___ hatte ich ___.",
+    "Der Arzt sagt, ___.",
+    "Dr. Weber sagt, ___.",
+    "Ich soll ___.",
+    "Am ___ gehe ich wieder ___."
+   ],
+   "kontrol_tr": [
+    "seit ile başlangıcı yazdın mı?",
+    "deshalb ile bir neden-sonuç kurdun mu?",
+    "Doktorun talimatını soll ile aktardın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:84:s",
+  "maddeler": [
+   {
+    "id": "m1:84:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich habe Fieber, deshalb bleibe ich zu Hause.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich habe Fieber, deshalb bleibe ich zu Hause.",
+     "ich habe fieber deshalb bleibe ich zu hause",
+     "Ich habe Fieber, deshalb bleibe ich zu Hause"
+    ],
+    "why_tr": "**deshalb**'tan hemen sonra **bleibe** gelir: **deshalb bleibe ich**."
+   },
+   {
+    "id": "m1:84:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Der Rettungswagen ist in fünf Minuten da.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Rettungswagen ist in fünf Minuten da.",
+     "der rettungswagen ist in fünf minuten da",
+     "Der Rettungswagen ist in fünf Minuten da"
+    ],
+    "why_tr": "**Rettungswagen**: ambulans."
+   },
+   {
+    "id": "m1:84:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Frau Huber hat eben angerufen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Frau Huber hat eben angerufen.",
+     "frau huber hat eben angerufen",
+     "Frau Huber hat eben angerufen"
+    ],
+    "why_tr": "**eben**: az önce."
+   },
+   {
+    "id": "m1:84:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Das Rezept gebe ich Ihnen morgen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Rezept gebe ich Ihnen morgen.",
+     "das rezept gebe ich ihnen morgen",
+     "Das Rezept gebe ich Ihnen morgen"
+    ],
+    "why_tr": "Kime: **Ihnen**. Ne: **das Rezept**."
+   },
+   {
+    "id": "m1:84:s5",
+    "k": "tr_de",
+    "tr": "Tobi polise şikâyette bulunuyor.",
+    "accepted": [
+     "Tobi macht eine Anzeige bei der Polizei.",
+     "Tobi macht bei der Polizei eine Anzeige.",
+     "Tobi geht zur Polizei und macht eine Anzeige."
+    ],
+    "why_tr": "**eine Anzeige machen**: şikâyette bulunmak."
+   },
+   {
+    "id": "m1:84:s6",
+    "k": "tr_de",
+    "tr": "Boğazım ağrıyor, bu yüzden doktora gidiyorum.",
+    "accepted": [
+     "Mein Hals tut weh, deshalb gehe ich zum Arzt.",
+     "Der Hals tut mir weh, deshalb gehe ich zum Arzt.",
+     "Ich habe Halsschmerzen, deshalb gehe ich zum Arzt."
+    ],
+    "why_tr": "**deshalb**'tan hemen sonra **gehe** gelir: **deshalb gehe ich**."
+   },
+   {
+    "id": "m1:84:s7",
+    "k": "tr_de",
+    "tr": "Üç gündür sırtım ağrıyor.",
+    "accepted": [
+     "Seit drei Tagen habe ich Rückenschmerzen.",
+     "Ich habe seit drei Tagen Rückenschmerzen.",
+     "Mein Rücken tut seit drei Tagen weh."
+    ],
+    "why_tr": "**seit drei Tagen** ile **habe** dersin. Ağrı hâlâ sürüyor."
+   },
+   {
+    "id": "m1:84:s8",
+    "k": "tr_de",
+    "tr": "Bana yardım edebilir misiniz? Ambulans çağırın!",
+    "accepted": [
+     "Können Sie mir helfen? Rufen Sie einen Rettungswagen!",
+     "Können Sie mir bitte helfen? Rufen Sie einen Rettungswagen!",
+     "Können Sie mir helfen? Bitte rufen Sie einen Rettungswagen!"
+    ],
+    "why_tr": "**Rufen Sie** ile kibar ama net bir talimat verirsin."
+   },
+   {
+    "id": "m1:84:s9",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl nasıl olduğunu soruyor. İyisin, işe salı dönüyorsun.",
+    "prompt_de": "Wie geht es Ihnen jetzt?",
+    "accepted": [
+     "Gut, danke. Am Dienstag gehe ich wieder zur Arbeit.",
+     "Es geht mir gut, danke. Ab Dienstag arbeite ich wieder.",
+     "Gut! Am Dienstag gehe ich wieder arbeiten.",
+     "Danke, gut. Dienstag gehe ich wieder zur Arbeit.",
+     "Viel besser, danke. Am Dienstag gehe ich wieder zur Arbeit."
+    ],
+    "why_tr": "**zur Arbeit**: işe."
+   },
+   {
+    "id": "m1:84:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Nehmen Sie die Tabletten nur noch bis Mittwoch.",
+    "speed": "normal",
+    "situation_tr": "Frau Huber hızlı söylüyor. Talimatı tekrar et.",
+    "accepted": [
+     "Nur noch bis Mittwoch.",
+     "Die Tabletten nur bis Mittwoch.",
+     "Bis Mittwoch, okay.",
+     "Okay, nur bis Mittwoch."
+    ],
+    "why_tr": "**bis Mittwoch**: çarşambaya kadar."
+   },
+   {
+    "id": "m1:84:s11",
+    "k": "guided_response",
+    "situation_tr": "Dr. Weber soruyor. Üç gündür sırtının sol tarafı ağrıyor. Bazen başın dönüyor.",
+    "prompt_de": "Was haben Sie, seit wann, und wo tut es weh?",
+    "accepted": [
+     "Seit drei Tagen tut mein Rücken auf der linken Seite weh. Manchmal habe ich auch Schwindel.",
+     "Ich habe seit drei Tagen Rückenschmerzen, links. Manchmal habe ich Schwindel.",
+     "Mein Rücken tut seit drei Tagen links weh, und manchmal habe ich Schwindel.",
+     "Rückenschmerzen seit drei Tagen, auf der linken Seite. Und manchmal Schwindel.",
+     "Seit drei Tagen habe ich links Rückenschmerzen und manchmal Schwindel."
+    ],
+    "why_tr": "Sırayla: ne, ne zamandan beri, nerede, başka şikâyet."
+   }
+  ],
+  "sesli": [
+   "m1:84:s9",
+   "m1:84:s10"
+  ],
+  "dikte": [
+   "m1:84:s1",
+   "m1:84:s2",
+   "m1:84:s3",
+   "m1:84:s4"
+  ]
+ }
+}

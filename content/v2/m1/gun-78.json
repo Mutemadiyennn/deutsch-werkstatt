@@ -1,0 +1,1791 @@
+{
+ "schema": 1,
+ "id": "m1:gun:78",
+ "day": 78,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Kime, ne: Geben Sie mir bitte …",
+ "goal_tr": "Kime ne verdiğini ve ne hediye ettiğini söylersin. Eczanede kibarca bir şey istersin.",
+ "can_do": {
+  "id": "cd:m1:78",
+  "tr": "Kime ne verdiğimi söylerim ve eczanede kibarca bir şey isterim."
+ },
+ "unit": "u:a2:saglik-1",
+ "arm": "radyo",
+ "place": "pl:apotheke",
+ "characters": [
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:wimmer",
+  "ch:brandl",
+  "ch:huber"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic9/dilbilimci-h12.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+ },
+ "dersler": [
+  "gr:a2-07:t1"
+ ],
+ "yeni_kartlar": [
+  "lx:ausschlafen",
+  "lx:losfahren",
+  "lx:Radtour",
+  "lx:Picknick",
+  "lx:Biergarten",
+  "lx:Brauch",
+  "lx:Ring",
+  "lx:Schal",
+  "lx:auspacken"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:78:h1",
+   "title_tr": "Pazartesi molası: hafta sonu ve yaz planı",
+   "kartlar": [
+    "lx:ausschlafen",
+    "lx:losfahren",
+    "lx:Radtour",
+    "lx:Picknick",
+    "lx:Biergarten"
+   ],
+   "kaliplar": [
+    {
+     "de": "Am Wochenende will ich …",
+     "tr": "Hafta sonu … istiyorum."
+    },
+    {
+     "de": "Ich schlafe aus. – Wir schlafen aus. – Ich habe ausgeschlafen.",
+     "tr": "Uykumu alıyorum. – Uykumuzu alıyoruz. – Uykumu aldım."
+    },
+    {
+     "de": "Wir fahren um … los. – Ich bin um … losgefahren.",
+     "tr": "Saat …'da yola çıkıyoruz. – Saat …'da yola çıktım."
+    },
+    {
+     "de": "Im Sommer machen wir …",
+     "tr": "Yazın … yapıyoruz."
+    },
+    {
+     "de": "Grüß Gott! – Grüß Gott, hier ist …",
+     "tr": "İyi günler! Bavyera'da günün her saatinde böyle selam verilir. – İyi günler, ben … (telefonda)"
+    },
+    {
+     "de": "Liebe Frau …, – Lieber Herr …,",
+     "tr": "Sevgili … Hanım, – Sevgili … Bey, (mektup ve mesaj başında)"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:ausschlafen",
+     "de": "Am Samstag will ich endlich ausschlafen.",
+     "tr": "Cumartesi sonunda uykumu almak istiyorum.",
+     "accepted": [
+      "Am Samstag will ich endlich ausschlafen.",
+      "Ich will am Samstag endlich ausschlafen.",
+      "Am Samstag möchte ich endlich ausschlafen."
+     ]
+    },
+    {
+     "kart": "lx:ausschlafen",
+     "de": "Am Sonntag können wir ausschlafen.",
+     "tr": "Pazar günü uykumuzu alabiliriz.",
+     "accepted": [
+      "Am Sonntag können wir ausschlafen.",
+      "Wir können am Sonntag ausschlafen.",
+      "Am Sonntag können wir endlich ausschlafen."
+     ]
+    },
+    {
+     "kart": "lx:losfahren",
+     "de": "Wann müssen wir morgen losfahren?",
+     "tr": "Yarın kaçta yola çıkmamız lazım?",
+     "accepted": [
+      "Wann müssen wir morgen losfahren?",
+      "Um wie viel Uhr müssen wir morgen losfahren?",
+      "Wann müssen wir denn morgen losfahren?"
+     ]
+    },
+    {
+     "kart": "lx:losfahren",
+     "de": "Wir müssen um sieben Uhr losfahren.",
+     "tr": "Saat yedide yola çıkmamız lazım.",
+     "accepted": [
+      "Wir müssen um sieben Uhr losfahren.",
+      "Wir müssen um sieben losfahren.",
+      "Um sieben Uhr müssen wir losfahren."
+     ]
+    },
+    {
+     "kart": "lx:Radtour",
+     "de": "Im Frühling machen wir eine Radtour an der Vils.",
+     "tr": "İlkbaharda Vils kıyısında bisiklet turu yapıyoruz.",
+     "accepted": [
+      "Im Frühling machen wir eine Radtour an der Vils.",
+      "Wir machen im Frühling eine Radtour an der Vils.",
+      "Im Frühling machen wir an der Vils eine Radtour."
+     ]
+    },
+    {
+     "kart": "lx:Radtour",
+     "de": "Eine Radtour im Februar? Das ist verrückt!",
+     "tr": "Şubatta bisiklet turu mu? Bu çılgınlık!",
+     "accepted": [
+      "Eine Radtour im Februar? Das ist verrückt!",
+      "Eine Radtour im Februar? Das ist ja verrückt!",
+      "Im Februar eine Radtour? Das ist verrückt!"
+     ]
+    },
+    {
+     "kart": "lx:Picknick",
+     "de": "Im Sommer machen wir ein Picknick am See.",
+     "tr": "Yazın gölün kenarında piknik yapıyoruz.",
+     "accepted": [
+      "Im Sommer machen wir ein Picknick am See.",
+      "Wir machen im Sommer ein Picknick am See.",
+      "Im Sommer machen wir am See ein Picknick."
+     ]
+    },
+    {
+     "kart": "lx:Picknick",
+     "de": "Am Samstag wollen wir ein Picknick machen.",
+     "tr": "Cumartesi piknik yapmak istiyoruz.",
+     "accepted": [
+      "Am Samstag wollen wir ein Picknick machen.",
+      "Wir wollen am Samstag ein Picknick machen.",
+      "Am Samstag möchten wir ein Picknick machen."
+     ]
+    },
+    {
+     "kart": "lx:Biergarten",
+     "de": "Gehen wir im Sommer zusammen in den Biergarten?",
+     "tr": "Yazın birlikte bira bahçesine gidelim mi?",
+     "accepted": [
+      "Gehen wir im Sommer zusammen in den Biergarten?",
+      "Gehen wir im Sommer in den Biergarten?",
+      "Wollen wir im Sommer zusammen in den Biergarten gehen?"
+     ]
+    },
+    {
+     "kart": "lx:Biergarten",
+     "de": "Kannst du mir einen Biergarten empfehlen?",
+     "tr": "Bana bir bira bahçesi önerebilir misin?",
+     "accepted": [
+      "Kannst du mir einen Biergarten empfehlen?",
+      "Kannst du mir einen guten Biergarten empfehlen?",
+      "Kannst du mir bitte einen Biergarten empfehlen?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Pazartesi sabahı, firmada mola. Dışarısı buz gibi. Tobi elinde kahveyle yanına geliyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Wie war dein Wochenende?",
+      "tr": "Hafta sonun nasıldı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Super! Ich habe endlich ausgeschlafen. Und du?",
+      "tr": "Süper! Sonunda uykumu aldım. Ya sen?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Ich bin am Samstag um sechs losgefahren, Radtour an der Vils!",
+      "tr": "Ben cumartesi saat altıda yola çıktım, Vils kıyısında bisiklet turu!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Eine Radtour im Februar? Du bist verrückt!",
+      "tr": "Şubatta bisiklet turu mu? Sen delisin!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi cumartesi ne yaptı?",
+     "opts": [
+      "Sabah erkenden bisiklet turuna çıktı",
+      "Öğlene kadar uyudu",
+      "Kuaföre gitti"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:78:h2",
+   "title_tr": "Hediyeler: kime ne?",
+   "kartlar": [
+    "lx:Brauch",
+    "lx:Ring",
+    "lx:Schal",
+    "lx:auspacken"
+   ],
+   "kaliplar": [
+    {
+     "de": "Am Valentinstag schenkt man …",
+     "tr": "Sevgililer Günü'nde (14 Şubat) … hediye edilir."
+    },
+    {
+     "de": "am Valentinstag",
+     "tr": "Sevgililer Günü'nde"
+    },
+    {
+     "de": "einen warmen Schal – etwas Warmes",
+     "tr": "sıcak bir atkı – sıcak bir şey"
+    },
+    {
+     "de": "Wir schenken unserer Mutter … – Ich schenke meiner Mutter … – Was hat sie dir gegeben?",
+     "tr": "Annemize … hediye ediyoruz. – Anneme … hediye ediyorum. – Sana ne verdi?"
+    },
+    {
+     "de": "Wie viele Tabletten? – Drei am Tag.",
+     "tr": "Kaç tablet? – Günde üç."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Brauch",
+     "de": "Am Valentinstag schenkt man seiner Frau einen Blumenstrauß. Das ist hier ein Brauch.",
+     "tr": "Sevgililer Günü'nde insan karısına bir buket çiçek hediye eder. Bu burada bir gelenek.",
+     "accepted": [
+      "Am Valentinstag schenkt man seiner Frau einen Blumenstrauß. Das ist hier ein Brauch.",
+      "Am Valentinstag schenkt man seiner Frau einen Blumenstrauß. Das ist hier so ein Brauch.",
+      "Am Valentinstag schenkt man der Frau einen Blumenstrauß. Das ist hier ein Brauch."
+     ]
+    },
+    {
+     "kart": "lx:Brauch",
+     "de": "Diesen Brauch kennen wir nicht.",
+     "tr": "Biz bu geleneği bilmiyoruz.",
+     "accepted": [
+      "Diesen Brauch kennen wir nicht.",
+      "Wir kennen diesen Brauch nicht.",
+      "Den Brauch kennen wir nicht."
+     ]
+    },
+    {
+     "kart": "lx:Ring",
+     "de": "Er möchte seiner Frau am Valentinstag einen Ring schenken.",
+     "tr": "Sevgililer Günü'nde karısına bir yüzük hediye etmek istiyor.",
+     "accepted": [
+      "Er möchte seiner Frau am Valentinstag einen Ring schenken.",
+      "Am Valentinstag möchte er seiner Frau einen Ring schenken.",
+      "Er will seiner Frau am Valentinstag einen Ring schenken."
+     ]
+    },
+    {
+     "kart": "lx:Ring",
+     "de": "Kannst du mir den Ring zeigen?",
+     "tr": "Yüzüğü bana gösterebilir misin?",
+     "accepted": [
+      "Kannst du mir den Ring zeigen?",
+      "Kannst du mir mal den Ring zeigen?",
+      "Zeigst du mir den Ring?"
+     ]
+    },
+    {
+     "kart": "lx:Schal",
+     "de": "Frau Brandl möchte mir einen Schal schenken.",
+     "tr": "Frau Brandl bana bir atkı hediye etmek istiyor.",
+     "accepted": [
+      "Frau Brandl möchte mir einen Schal schenken.",
+      "Frau Brandl will mir einen Schal schenken.",
+      "Frau Brandl möchte mir gern einen Schal schenken."
+     ]
+    },
+    {
+     "kart": "lx:Schal",
+     "de": "Hier, ich gebe dir meinen Schal.",
+     "tr": "Al, sana atkımı veriyorum.",
+     "accepted": [
+      "Hier, ich gebe dir meinen Schal.",
+      "Hier, ich gebe dir mal meinen Schal.",
+      "Hier, du kannst meinen Schal haben."
+     ]
+    },
+    {
+     "kart": "lx:auspacken",
+     "de": "Darf ich das Geschenk jetzt auspacken?",
+     "tr": "Hediyeyi şimdi açabilir miyim?",
+     "accepted": [
+      "Darf ich das Geschenk jetzt auspacken?",
+      "Darf ich jetzt das Geschenk auspacken?",
+      "Kann ich das Geschenk jetzt auspacken?"
+     ]
+    },
+    {
+     "kart": "lx:auspacken",
+     "de": "Darf ich Ihnen das Geschenk geben? Sie können es gleich auspacken.",
+     "tr": "Size hediyeyi verebilir miyim? Hemen açabilirsiniz.",
+     "accepted": [
+      "Darf ich Ihnen das Geschenk geben? Sie können es gleich auspacken.",
+      "Darf ich Ihnen das Geschenk geben? Sie können es jetzt auspacken.",
+      "Darf ich Ihnen das Geschenk geben? Sie dürfen es gleich auspacken."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Pazartesi sabahı, işe çıkmadan önce kapın çalıyor. Alt kattaki komşun Frau Brandl elinde küçük bir paketle duruyor.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Sie sind erkältet, gell? Das ist für Sie.",
+      "tr": "Soğuk almışsınız, değil mi? Bu sizin için."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Für mich? Darf ich das jetzt auspacken?",
+      "tr": "Benim için mi? Şimdi açabilir miyim?"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Natürlich! Ein Schal, ganz warm. Der ist für Ihren Hals.",
+      "tr": "Tabii! Bir atkı, çok sıcak tutar. Boğazınız için."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Danke, Frau Brandl! Sie sind so lieb.",
+      "tr": "Teşekkürler Frau Brandl! Çok tatlısınız."
+     }
+    ],
+    "soru": {
+     "q_tr": "Frau Brandl paketin içinde ne getiriyor?",
+     "opts": [
+      "Sıcak bir atkı",
+      "Kurabiye",
+      "Bir yüzük"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:78:v1",
+  "title_tr": "Pazartesi: Herr Wimmer'in çiçekleri ve eczanede sıra",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Ofis, öğleden sonra. Derya başıyla Herr Wimmer'in masasındaki büyük bir buket çiçeği gösteriyor.",
+    "de": "Schau mal: Herr Wimmer hat einen Blumenstrauß auf dem Tisch.",
+    "tr": "Baksana: Herr Wimmer'in masasında bir buket çiçek var."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer biraz utanmış, gülümsüyor.",
+    "de": "Der ist für meine Frau. Am Sonntag ist Valentinstag.",
+    "tr": "O eşim için. Pazar günü Sevgililer Günü."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya göz kırpıyor.",
+    "de": "Und was schenken Sie Ihrer Frau noch, Herr Wimmer? Einen Ring?",
+    "tr": "Eşinize başka ne hediye ediyorsunuz Herr Wimmer? Bir yüzük mü?"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer elini sallıyor, saatine bakıyor.",
+    "de": "Nein, nein. Meine Frau arbeitet in der Apotheke, sie hat wenig Zeit. Ich koche ihr am Sonntag etwas.",
+    "tr": "Yok, yok. Eşim eczanede çalışıyor, pek vakti yok. Pazar günü ona bir şey pişireceğim."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya sana dönüyor. Sen sabahtan beri öksürüyorsun.",
+    "de": "Dein Hals tut weh, oder? Geh doch nach der Arbeit in die Apotheke!",
+    "tr": "Boğazın ağrıyor, değil mi? İşten sonra eczaneye git!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer kapıdan çıkarken dönüp söylüyor.",
+    "de": "Ja, gehen Sie in die Vils-Apotheke. Meine Frau kann Ihnen gern helfen.",
+    "tr": "Evet, Vils-Apotheke'ye gidin. Eşim size seve seve yardım edebilir."
+   },
+   {
+    "id": "s7",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Vils-Apotheke, akşam altıya doğru. Tezgâhta Herr Wimmer'in eşi var. Senin önünde atkılı bir adam bekliyor.",
+    "de": "So, der Nächste, bitte! Guten Abend, was darf ich Ihnen geben?",
+    "tr": "Evet, sıradaki lütfen! İyi akşamlar, size ne vereyim?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ein Kunde",
+    "sahne_tr": "Adam yorgun görünüyor.",
+    "de": "Guten Abend. Meine Tochter ist krank. Sie hat Fieber und Husten.",
+    "tr": "İyi akşamlar. Kızım hasta. Ateşi ve öksürüğü var."
+   },
+   {
+    "id": "s9",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Eczacı başını kaldırıp soruyor.",
+    "de": "Wie alt ist Ihre Tochter?",
+    "tr": "Kızınız kaç yaşında?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ein Kunde",
+    "sahne_tr": "Adam eliyle küçük bir boy gösteriyor.",
+    "de": "Sie ist acht.",
+    "tr": "Sekiz yaşında."
+   },
+   {
+    "id": "s11",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Eczacı raftan küçük bir şişe alıyor.",
+    "de": "Dann gebe ich Ihnen diese Tropfen hier, die sind für Kinder.",
+    "tr": "O zaman size şu damlayı veriyorum, çocuklar için."
+   },
+   {
+    "id": "s12",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Eczacı şişenin üstüne bir şey yazıyor.",
+    "de": "Geben Sie Ihrer Tochter am Morgen und am Abend zehn Tropfen.",
+    "tr": "Kızınıza sabah ve akşam on damla verin."
+   },
+   {
+    "id": "s13",
+    "speaker": "ein Kunde",
+    "sahne_tr": "Adam tekrar ederek not alıyor.",
+    "de": "Am Morgen und am Abend zehn Tropfen. Danke schön!",
+    "tr": "Sabah ve akşam on damla. Çok teşekkürler!"
+   },
+   {
+    "id": "s14",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Eczacı ciddi bir yüzle ekliyor.",
+    "de": "Und wenn das Fieber hoch ist, gehen Sie bitte mit ihr zum Arzt.",
+    "tr": "Ateş yüksekse lütfen onu doktora götürün."
+   },
+   {
+    "id": "s15",
+    "speaker": "die Apothekerin",
+    "sahne_tr": "Adam gidiyor. Eczacı sana gülümsüyor.",
+    "de": "Gute Besserung! So, und jetzt Sie. Was darf ich Ihnen geben?",
+    "tr": "Geçmiş olsun! Evet, şimdi siz. Size ne vereyim?"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu bölümde ne oluyor?",
+     "opts": [
+      "Herr Wimmer eşine çiçek almış; Derya seni eczaneye gönderiyor",
+      "Herr Wimmer hasta, Derya onu eczaneye gönderiyor",
+      "Derya'ya biri yüzük hediye etmiş"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s5"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Herr Wimmer pazar günü eşi için ne yapacak?",
+      "opts": [
+       "Yemek pişirecek",
+       "Yüzük alacak",
+       "Bira bahçesine götürecek"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Herr Wimmer'in eşi nerede çalışıyor?",
+      "opts": [
+       "Muayenehanede",
+       "Eczanede",
+       "Fırında"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya ne zaman eczaneye gitmeni söylüyor?",
+      "opts": [
+       "Yarın sabah",
+       "Öğle arasında",
+       "İşten sonra"
+      ],
+      "ans": 2,
+      "kanit": [
+       "s5"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s2",
+      "seviye": "kolay",
+      "q_tr": "Hangi günü duydun?",
+      "opts": [
+       "Samstag",
+       "Sonntag",
+       "Montag"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s6",
+      "seviye": "orta",
+      "de": "Meine Frau kann Ihnen gern ___.",
+      "accepted": [
+       "helfen",
+       "Helfen",
+       "helfen."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s3",
+      "seviye": "zor",
+      "banka": [
+       "Und",
+       "was",
+       "schenken",
+       "Sie",
+       "Ihrer",
+       "Frau",
+       "noch",
+       "Herr",
+       "Wimmer",
+       "Ihre",
+       "schenkt"
+      ],
+      "accepted": [
+       "Und was schenken Sie Ihrer Frau noch, Herr Wimmer?",
+       "und was schenken sie ihrer frau noch herr wimmer",
+       "Und was schenken Sie Ihrer Frau noch, Herr Wimmer"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Ich koche ihr am Sonntag etwas.",
+       "ich koche ihr am sonntag etwas",
+       "Ich koche ihr am Sonntag etwas"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Bu bölümde ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Herr Wimmer hat einen Blumenstrauß für seine Frau. Sie arbeitet in der Apotheke.",
+      "zorunlu": [
+       "Blumenstrauß",
+       "Apotheke"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s6"
+    ],
+    "cevapla": {
+     "id": "m1:78:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya pazar günü kime ne hediye edeceğini soruyor. Frau Brandl'a bir buket çiçek hediye etmek istiyorsun.",
+     "prompt_de": "Und du? Schenkst du am Sonntag auch etwas?",
+     "accepted": [
+      "Ich möchte Frau Brandl einen Blumenstrauß schenken.",
+      "Ja, ich möchte Frau Brandl einen Blumenstrauß schenken.",
+      "Ich schenke Frau Brandl einen Blumenstrauß.",
+      "Ja, ich schenke Frau Brandl einen Blumenstrauß.",
+      "Frau Brandl. Ich möchte ihr einen Blumenstrauß schenken.",
+      "Ich will Frau Brandl einen Blumenstrauß schenken."
+     ],
+     "why_tr": "Önce kime: **Frau Brandl**. Sonra ne: **einen Blumenstrauß**."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Eczacı adama ne veriyor?",
+     "opts": [
+      "Çocuklar için damla",
+      "Ağrı kesici tablet",
+      "Bir atkı"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s11"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Adamın kızı kaç yaşında?",
+      "opts": [
+       "On",
+       "Sekiz",
+       "Altı"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Kız damlayı ne zaman almalı?",
+      "opts": [
+       "Sabah ve akşam",
+       "Yalnızca öğlen",
+       "Her saat"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s12"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Ateş yüksekse ne yapmalılar?",
+      "opts": [
+       "Eczaneyi yeniden aramalılar",
+       "Doktora gitmeliler",
+       "Evde beklemeliler"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s14"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s10",
+      "seviye": "kolay",
+      "q_tr": "Hangi sayıyı duydun?",
+      "opts": [
+       "elf",
+       "acht",
+       "sechs"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s12",
+      "seviye": "orta",
+      "de": "Geben Sie Ihrer Tochter am Morgen und am Abend zehn ___.",
+      "accepted": [
+       "Tropfen",
+       "tropfen",
+       "Tropfen."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s8",
+      "seviye": "zor",
+      "banka": [
+       "Sie",
+       "hat",
+       "Fieber",
+       "und",
+       "Husten",
+       "Schnupfen",
+       "ist"
+      ],
+      "accepted": [
+       "Sie hat Fieber und Husten.",
+       "sie hat fieber und husten",
+       "Sie hat Fieber und Husten"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s14",
+      "seviye": "usta",
+      "accepted": [
+       "Und wenn das Fieber hoch ist, gehen Sie bitte mit ihr zum Arzt.",
+       "und wenn das fieber hoch ist gehen sie bitte mit ihr zum arzt",
+       "Und wenn das Fieber hoch ist, gehen Sie bitte mit ihr zum Arzt"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Eczacının adama ne söylediğini Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Das Kind bekommt Tropfen, am Morgen und am Abend zehn Tropfen.",
+      "zorunlu": [
+       "Tropfen",
+       "Abend"
+      ]
+     }
+    ],
+    "golge": [
+     "s12",
+     "s15"
+    ],
+    "cevapla": {
+     "id": "m1:78:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Sıra sende. Boğazın ağrıyor. Eczacıdan kibarca boğazın için bir şey iste.",
+     "prompt_de": "So, und jetzt Sie. Was darf ich Ihnen geben?",
+     "accepted": [
+      "Guten Abend. Mein Hals tut weh. Geben Sie mir bitte etwas für den Hals.",
+      "Mein Hals tut weh. Geben Sie mir bitte etwas für den Hals.",
+      "Guten Abend. Geben Sie mir bitte etwas für den Hals.",
+      "Guten Abend. Mein Hals tut weh. Können Sie mir etwas für den Hals geben?",
+      "Mein Hals tut weh. Haben Sie etwas für den Hals?",
+      "Geben Sie mir bitte etwas für den Hals. Mein Hals tut weh."
+     ],
+     "why_tr": "Kime: **mir** (bana). Ne: **etwas für den Hals**. Önce kişi, sonra şey gelir."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:78:a1",
+   "tur": "radyo",
+   "title_tr": "Sabah radyosu: soğuk ve Sevgililer Günü",
+   "ortam_tr": "Pazartesi sabahı mutfaktasın. Yerel radyoda sunucu kısa haberler veriyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen, Wendlfing! Es ist sieben Uhr, und draußen ist es sehr kalt.",
+     "tr": "Günaydın Wendlfing! Saat yedi ve dışarısı çok soğuk."
+    },
+    {
+     "id": "c2",
+     "de": "Viele Leute sind gerade erkältet, die Praxen sind voll.",
+     "tr": "Birçok kişi şu sıralar soğuk algınlığı geçiriyor, muayenehaneler dolu."
+    },
+    {
+     "id": "c3",
+     "de": "Also: Tragen Sie draußen immer einen Schal und eine warme Jacke.",
+     "tr": "Yani: dışarıda hep atkı ve sıcak bir mont giyin."
+    },
+    {
+     "id": "c4",
+     "de": "Und am Wochenende schlafen Sie einfach mal aus!",
+     "tr": "Hafta sonu da bir güzel uykunuzu alın!"
+    },
+    {
+     "id": "c5",
+     "de": "Am Sonntag ist Valentinstag.",
+     "tr": "Pazar günü Sevgililer Günü."
+    },
+    {
+     "id": "c6",
+     "de": "Schenken Sie Ihrer Frau oder Ihrem Mann doch einen Blumenstrauß!",
+     "tr": "Eşinize bir buket çiçek hediye edin!"
+    },
+    {
+     "id": "c7",
+     "de": "Gleich kommt das Wetter. Bleiben Sie gesund!",
+     "tr": "Birazdan hava durumu geliyor. Sağlıcakla kalın!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo neler anlatıyor?",
+      "opts": [
+       "Soğuk hava ve hastalık için öneriler, bir de pazar günü çiçek hediyesi",
+       "Trafik ve yol çalışmaları",
+       "Hafta sonunun futbol sonuçları"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c6"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Radyoya göre dışarıda nasıl bir mont giymelisin?",
+       "opts": [
+        "İnce bir mont",
+        "Sıcak bir mont",
+        "Yağmurluk"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Radyo eşine ne hediye etmeni öneriyor?",
+       "opts": [
+        "Bir buket çiçek",
+        "Bir yüzük",
+        "Bir atkı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c6"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Radyoya göre muayenehaneler nasıl?",
+       "opts": [
+        "Kapalı",
+        "Dolu",
+        "Boş"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c2"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c1",
+       "seviye": "kolay",
+       "q_tr": "Hangi saati duydun?",
+       "opts": [
+        "acht",
+        "sieben",
+        "neun"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Also: Tragen Sie draußen immer einen ___ und eine warme Jacke.",
+       "accepted": [
+        "Schal",
+        "schal",
+        "Schal."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Und",
+        "am",
+        "Wochenende",
+        "schlafen",
+        "Sie",
+        "einfach",
+        "mal",
+        "aus",
+        "auf",
+        "Montag"
+       ],
+       "accepted": [
+        "Und am Wochenende schlafen Sie einfach mal aus!",
+        "und am wochenende schlafen sie einfach mal aus",
+        "Und am Wochenende schlafen Sie einfach mal aus"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c6",
+       "seviye": "usta",
+       "accepted": [
+        "Schenken Sie Ihrer Frau oder Ihrem Mann doch einen Blumenstrauß!",
+        "schenken sie ihrer frau oder ihrem mann doch einen blumenstrauß",
+        "Schenken Sie Ihrer Frau oder Ihrem Mann doch einen Blumenstrauß"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyonun ne önerdiğini Almanca iki kısa cümleyle söyle.",
+       "ornek_de": "Es ist kalt. Man soll draußen einen Schal tragen.",
+       "zorunlu": [
+        "Schal",
+        "kalt"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:78:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "İşte Tobi bugün havanın nasıl olduğunu soruyor. Radyoda duydun: çok soğuk, atkı takmak lazım.",
+      "prompt_de": "Wie ist das Wetter heute? Was soll man tragen?",
+      "accepted": [
+       "Es ist sehr kalt. Wir sollen draußen einen Schal tragen.",
+       "Sehr kalt! Man soll einen Schal tragen.",
+       "Es ist sehr kalt. Man soll einen Schal und eine warme Jacke tragen.",
+       "Sehr kalt. Trag einen Schal!",
+       "Es ist kalt. Wir sollen einen Schal tragen.",
+       "Es ist sehr kalt, man soll draußen einen Schal tragen."
+      ],
+      "why_tr": "Radyonun önerisini **sollen** ile aktarırsın: **Man soll einen Schal tragen.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:78:a1:e1",
+    "k": "pick",
+    "q_tr": "Radyoya göre bugün ne yapmalısın?",
+    "opts": [
+     "Dışarıda sıcak bir mont giy, atkı da tak",
+     "Bisikletle işe git",
+     "Pazar günü muayenehaneye git"
+    ],
+    "ans": 0,
+    "why_tr": "Sunucu soğuk için sıcak bir mont ve atkı öneriyor.",
+    "kanit": [
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:78:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Muayenehaneden sesli mesaj",
+   "ortam_tr": "Sabah Dr. Weber'in muayenehanesini aradın; hat meşguldü, telesekretere adını ve boğaz ağrını söyledin. Öğlen telefonunda Frau Huber'in mesajı var.",
+   "speaker": "ch:huber",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, hier ist die Praxis Dr. Weber, Huber.",
+     "tr": "İyi günler, Dr. Weber muayenehanesi, ben Huber."
+    },
+    {
+     "id": "c2",
+     "de": "Sie haben heute Morgen angerufen. Ihr Hals tut weh, oder?",
+     "tr": "Bu sabah aramışsınız. Boğazınız ağrıyor, değil mi?"
+    },
+    {
+     "id": "c3",
+     "de": "Dr. Weber kann Ihnen am Mittwoch um halb zehn einen Termin geben.",
+     "tr": "Dr. Weber size çarşamba dokuz buçuğa randevu verebilir."
+    },
+    {
+     "id": "c4",
+     "de": "Passt Ihnen das?",
+     "tr": "Size uyar mı?"
+    },
+    {
+     "id": "c5",
+     "de": "Bitte vergessen Sie Ihre Versichertenkarte nicht.",
+     "tr": "Lütfen sağlık sigortası kartınızı unutmayın."
+    },
+    {
+     "id": "c6",
+     "de": "Rufen Sie uns einfach kurz zurück. Danke, und gute Besserung!",
+     "tr": "Bizi kısaca geri arayın yeter. Teşekkürler, geçmiş olsun!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Frau Huber neden arıyor?",
+      "opts": [
+       "Randevunu iptal ediyor",
+       "Sana çarşamba için randevu öneriyor",
+       "Reçeten hazır olmuş"
+      ],
+      "ans": 1,
+      "kanit": [
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Randevu ne zaman?",
+       "opts": [
+        "Çarşamba 9.30",
+        "Çarşamba 10.30",
+        "Salı 9.30"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Neyi unutmamalısın?",
+       "opts": [
+        "Reçeteyi",
+        "Atkını",
+        "Sağlık sigortası kartını"
+       ],
+       "ans": 2,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "Montag",
+        "Mittwoch",
+        "Freitag"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Passt ___ das?",
+       "accepted": [
+        "Ihnen",
+        "ihnen",
+        "Ihnen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Bitte",
+        "vergessen",
+        "Sie",
+        "Ihre",
+        "Versichertenkarte",
+        "nicht",
+        "Ihren",
+        "kein"
+       ],
+       "accepted": [
+        "Bitte vergessen Sie Ihre Versichertenkarte nicht.",
+        "bitte vergessen sie ihre versichertenkarte nicht",
+        "Bitte vergessen Sie Ihre Versichertenkarte nicht"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Dr. Weber kann Ihnen am Mittwoch um halb zehn einen Termin geben.",
+        "dr weber kann ihnen am mittwoch um halb zehn einen termin geben",
+        "Dr. Weber kann Ihnen am Mittwoch um halb zehn einen Termin geben"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Ich habe am Mittwoch um halb zehn einen Termin. Ich brauche meine Versichertenkarte.",
+       "zorunlu": [
+        "Mittwoch",
+        "Termin"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:78:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Muayenehaneyi geri arıyorsun. Frau Huber açıyor. Kendini tanıt. Çarşamba dokuz buçuk sana uyuyor.",
+      "prompt_de": "Praxis Dr. Weber, Huber, grüß Gott?",
+      "accepted": [
+       "Grüß Gott, hier ist {name}. Mittwoch um halb zehn passt mir gut, danke.",
+       "Guten Tag, hier ist {name}. Mittwoch um halb zehn passt mir, danke.",
+       "Hallo, hier ist {name}. Der Termin am Mittwoch um halb zehn passt mir gut.",
+       "Guten Tag, {name} hier. Mittwoch um halb zehn passt gut, danke schön.",
+       "Grüß Gott, hier ist {name}. Ja, Mittwoch um halb zehn passt mir.",
+       "Guten Tag, hier ist {name}. Mittwoch um halb zehn geht gut, danke."
+      ],
+      "accepted_adsiz": [
+       "Grüß Gott. Mittwoch um halb zehn passt mir gut, danke.",
+       "Guten Tag. Mittwoch um halb zehn passt mir, danke.",
+       "Hallo. Der Termin am Mittwoch um halb zehn passt mir gut.",
+       "Guten Tag. Mittwoch um halb zehn passt gut, danke schön.",
+       "Grüß Gott. Ja, Mittwoch um halb zehn passt mir.",
+       "Guten Tag. Mittwoch um halb zehn geht gut, danke."
+      ],
+      "why_tr": "Kime uyuyor? **mir** (bana): **Das passt mir.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:78:a2:e1",
+    "k": "pick",
+    "q_tr": "Şimdi ne yapmalısın?",
+    "opts": [
+     "Muayenehaneyi geri ara, çarşambayı onayla ve kartını unutma",
+     "Çarşamba sabah sekizde habersiz git",
+     "Eczaneyi arayıp randevu iste"
+    ],
+    "ans": 0,
+    "why_tr": "Frau Huber geri aramanı istiyor. Randevu çarşamba 9.30, kartın gerekli.",
+    "kanit": [
+     "c3",
+     "c5",
+     "c6"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:78:g1",
+   "de": "Ring",
+   "dogru_img": "gold ring on a white table",
+   "celdirici_img": [
+    "silver necklace",
+    "wrist watch",
+    "pair of earrings"
+   ]
+  },
+  {
+   "id": "m1:78:g2",
+   "de": "Schal",
+   "dogru_img": "warm knitted scarf",
+   "celdirici_img": [
+    "wool hat",
+    "pair of gloves",
+    "winter jacket"
+   ]
+  },
+  {
+   "id": "m1:78:g3",
+   "de": "Picknick",
+   "dogru_img": "picnic blanket with food on grass by a lake",
+   "celdirici_img": [
+    "family dinner at a table",
+    "barbecue grill",
+    "restaurant terrace"
+   ]
+  },
+  {
+   "id": "m1:78:g4",
+   "de": "Biergarten",
+   "dogru_img": "bavarian beer garden with wooden tables under chestnut trees",
+   "celdirici_img": [
+    "cafe interior",
+    "supermarket shelf",
+    "city park playground"
+   ]
+  },
+  {
+   "id": "m1:78:g5",
+   "de": "Radtour",
+   "dogru_img": "people cycling on a path along a river",
+   "celdirici_img": [
+    "people hiking in mountains",
+    "people running in a park",
+    "people swimming in a lake"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:78:p1",
+  "title_tr": "Vils-Apotheke'de sıra sende",
+  "durum_tr": "Akşam, Vils-Apotheke. Sıra sende. Boğazın ağrıyor, biraz da nezlesin, ateşin yok. Tezgâhta Herr Wimmer'in eşi var.",
+  "karsi": "die Apothekerin",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Guten Abend! Was darf ich Ihnen geben?",
+    "tr": "İyi akşamlar! Size ne vereyim?",
+    "secenekler": [
+     {
+      "de": "Guten Abend. Können Sie mir bitte etwas für den Hals geben?",
+      "tr": "İyi akşamlar. Bana boğazım için bir şey verebilir misiniz?",
+      "accepted": [
+       "Guten Abend. Können Sie mir bitte etwas für den Hals geben?",
+       "Guten Abend, können Sie mir etwas für den Hals geben?",
+       "Können Sie mir bitte etwas für den Hals geben?",
+       "Guten Abend. Könnten Sie mir bitte etwas für den Hals geben?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Önce kime: **mir**, sonra ne: **etwas für den Hals**."
+     },
+     {
+      "de": "Mein Hals tut weh. Was können Sie mir empfehlen?",
+      "tr": "Boğazım ağrıyor. Bana ne önerirsiniz?",
+      "accepted": [
+       "Mein Hals tut weh. Was können Sie mir empfehlen?",
+       "Mein Hals tut weh. Was empfehlen Sie mir?",
+       "Guten Abend. Mein Hals tut weh. Was können Sie mir empfehlen?",
+       "Mir tut der Hals weh. Was können Sie mir empfehlen?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **empfehlen** ile eczacıdan öneri istedin."
+     },
+     {
+      "de": "Können Sie mich etwas für den Hals geben?",
+      "tr": "(yanlış) Beni boğazım için bir şey verebilir misiniz?",
+      "accepted": [
+       "Können Sie mich etwas für den Hals geben?",
+       "Geben Sie mich etwas für den Hals.",
+       "Können Sie mich bitte etwas geben?"
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Kime? sorusunun cevabı **mir** (bana) olur. **mich** burada yanlış."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Wie bitte? Ist das für Sie?",
+    "tr": "Efendim? Sizin için mi?",
+    "secenekler": [
+     {
+      "de": "Ja, für mich. Geben Sie mir bitte etwas für den Hals.",
+      "tr": "Evet, benim için. Bana lütfen boğazım için bir şey verin.",
+      "accepted": [
+       "Ja, für mich. Geben Sie mir bitte etwas für den Hals.",
+       "Ja, für mich. Bitte geben Sie mir etwas für den Hals.",
+       "Ja, für mich. Können Sie mir etwas für den Hals geben?",
+       "Für mich, ja. Geben Sie mir bitte etwas für den Hals."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi oldu: önce **für mich**, sonra **Geben Sie mir**."
+     },
+     {
+      "de": "Nein, für den Hals.",
+      "tr": "Hayır, boğaz için.",
+      "accepted": [
+       "Nein, für den Hals.",
+       "Für den Hals.",
+       "Nein, nur für den Hals."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Eczacı sizin için mi diye soruyor. **Ja, für mich** de."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Haben Sie auch Fieber?",
+    "tr": "Ateşiniz de var mı?",
+    "secenekler": [
+     {
+      "de": "Nein, kein Fieber. Aber ich habe Schnupfen.",
+      "tr": "Hayır, ateşim yok. Ama nezleyim.",
+      "accepted": [
+       "Nein, kein Fieber. Aber ich habe Schnupfen.",
+       "Nein, ich habe kein Fieber, aber Schnupfen.",
+       "Kein Fieber, aber ich habe Schnupfen.",
+       "Nein, kein Fieber. Ich habe aber Schnupfen."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Ateş yok, nezle var: açık ve kısa."
+     },
+     {
+      "de": "Nein, nur Schnupfen und der Hals.",
+      "tr": "Hayır, sadece nezle ve boğaz.",
+      "accepted": [
+       "Nein, nur Schnupfen und der Hals.",
+       "Nein, nur Schnupfen und Hals.",
+       "Nein. Nur der Hals und Schnupfen."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa cevap da olur. Eczacı anladı."
+     },
+     {
+      "de": "Ja, ich habe einen Schal.",
+      "tr": "Evet, atkım var.",
+      "accepted": [
+       "Ja, ich habe einen Schal.",
+       "Ich habe einen Schal.",
+       "Ja, einen Schal."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Soru ateş (**Fieber**) hakkında. Ateşin yok: **Nein, kein Fieber.**"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Gut. Dann gebe ich Ihnen diese Tabletten. Nehmen Sie drei am Tag, nicht mehr.",
+    "tr": "Peki. O zaman size bu tabletleri veriyorum. Günde üç tane alın, fazla değil.",
+    "secenekler": [
+     {
+      "de": "Drei am Tag, gut. Was kosten die Tabletten?",
+      "tr": "Günde üç, tamam. Tabletler ne kadar?",
+      "accepted": [
+       "Drei am Tag, gut. Was kosten die Tabletten?",
+       "Gut, drei am Tag. Was kosten die Tabletten?",
+       "Drei am Tag, okay. Was kosten sie?",
+       "Drei am Tag. Und was kosten die Tabletten?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Talimatı tekrar ettin, sonra fiyatı sordun."
+     },
+     {
+      "de": "Entschuldigung, wie viele am Tag?",
+      "tr": "Pardon, günde kaç tane?",
+      "accepted": [
+       "Entschuldigung, wie viele am Tag?",
+       "Entschuldigung, wie viele Tabletten am Tag?",
+       "Wie viele am Tag, bitte?",
+       "Entschuldigung, wie viele soll ich am Tag nehmen?"
+      ],
+      "sonraki": "n3r",
+      "uygun": true,
+      "geri_bildirim_tr": "Anlamadığını sormak çok iyi. Eczacı tekrar edecek."
+     },
+     {
+      "de": "Gut, ich nehme zehn am Tag.",
+      "tr": "Peki, günde on tane alırım.",
+      "accepted": [
+       "Gut, ich nehme zehn am Tag.",
+       "Zehn am Tag, gut.",
+       "Ich nehme zehn am Tag."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Fazla! Eczacı **drei am Tag** dedi."
+     }
+    ]
+   },
+   {
+    "id": "n3r",
+    "de": "Drei Tabletten am Tag. Nicht mehr als drei, ja?",
+    "tr": "Günde üç tablet. Üçten fazla değil, tamam mı?",
+    "secenekler": [
+     {
+      "de": "Alles klar, drei am Tag. Was kostet das?",
+      "tr": "Tamam, günde üç. Ne kadar tutuyor?",
+      "accepted": [
+       "Alles klar, drei am Tag. Was kostet das?",
+       "Alles klar, drei Tabletten am Tag. Was kostet das?",
+       "Okay, drei am Tag. Was kostet das?",
+       "Gut, drei am Tag. Was macht das?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru tekrar ettin. Şimdi fiyatı sordun."
+     },
+     {
+      "de": "Zehn am Tag, ja.",
+      "tr": "Günde on, evet.",
+      "accepted": [
+       "Zehn am Tag, ja.",
+       "Ja, zehn am Tag.",
+       "Zehn, ja."
+      ],
+      "sonraki": "n3r",
+      "uygun": false,
+      "geri_bildirim_tr": "Dikkat: **drei**, yani üç. On değil."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Sechs Euro fünfzig. Und tragen Sie draußen einen Schal!",
+    "tr": "Altı euro elli. Bir de dışarıda atkı takın!",
+    "secenekler": [
+     {
+      "de": "Mache ich. Meine Nachbarin hat mir gerade einen Schal geschenkt.",
+      "tr": "Takarım. Komşum az önce bana bir atkı hediye etti.",
+      "accepted": [
+       "Mache ich. Meine Nachbarin hat mir gerade einen Schal geschenkt.",
+       "Ja, mache ich. Meine Nachbarin hat mir einen Schal geschenkt.",
+       "Mache ich. Ich habe einen Schal von meiner Nachbarin.",
+       "Ja. Meine Nachbarin hat mir gerade einen Schal geschenkt."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok güzel: kime **mir**, ne **einen Schal**."
+     },
+     {
+      "de": "Hier, bitte. Ich zahle mit Karte.",
+      "tr": "Buyurun. Kartla ödüyorum.",
+      "accepted": [
+       "Hier, bitte. Ich zahle mit Karte.",
+       "Hier, bitte. Mit Karte.",
+       "Ich zahle mit Karte, bitte.",
+       "Hier bitte, mit Karte."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Kısa ve net ödedin."
+     },
+     {
+      "de": "Nein danke, ich möchte keinen Schal kaufen.",
+      "tr": "Hayır teşekkürler, atkı almak istemiyorum.",
+      "accepted": [
+       "Nein danke, ich möchte keinen Schal kaufen.",
+       "Nein, ich kaufe keinen Schal.",
+       "Keinen Schal, danke."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Eczacı atkı satmıyor, öneri veriyor. **Tragen Sie** takın demek."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Wie schön! Gute Besserung. Und wenn es am Mittwoch nicht besser ist: zum Arzt, ja?",
+    "tr": "Ne güzel! Geçmiş olsun. Çarşambaya kadar geçmezse: doktora, tamam mı?",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Eczanede kibarca bir şey istedin. Sorulara cevap verdin ve talimatı doğru tekrar ettin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Paketin içinden çıkan not",
+  "metin_de": "Grüß Gott! Ich höre Ihren Husten im Treppenhaus. Das ist nicht gut! Ich gebe Ihnen meinen Schal. Er ist alt, aber sehr warm. Bitte tragen Sie ihn draußen. Am Sonntag ist Valentinstag. Mir schenkt keiner mehr Blumen, ja mei. Kommen Sie doch am Sonntag um drei auf einen Kaffee! Ihre Rosa Brandl",
+  "metin_tr": "İyi günler! Merdivende öksürüğünüzü duyuyorum. Bu hiç iyi değil! Size atkımı veriyorum. Eski ama çok sıcak tutar. Lütfen dışarıda takın. Pazar günü Sevgililer Günü. Bana artık kimse çiçek hediye etmiyor, ne yapalım. Pazar günü saat üçte bir kahveye gelin! Rosa Brandl",
+  "sorular": [
+   {
+    "id": "m1:78:o1",
+    "kind": "gist",
+    "q_tr": "Frau Brandl neden yazıyor?",
+    "opts": [
+     "Sana atkısını veriyor ve seni kahveye çağırıyor",
+     "Merdivendeki gürültüden şikâyet ediyor",
+     "Senden bir paket istiyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     3,
+     8
+    ]
+   },
+   {
+    "id": "m1:78:o2",
+    "kind": "detail",
+    "q_tr": "Atkı nasıl?",
+    "opts": [
+     "Yeni ve pahalı",
+     "Eski ama çok sıcak",
+     "Küçük ve ince"
+    ],
+    "ans": 1,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:78:o3",
+    "kind": "detail",
+    "q_tr": "Frau Brandl seni ne zaman kahveye çağırıyor?",
+    "opts": [
+     "Cumartesi akşamı",
+     "Bu akşam",
+     "Pazar saat üçte"
+    ],
+    "ans": 2,
+    "kanit": [
+     8
+    ]
+   },
+   {
+    "id": "m1:78:o4",
+    "kind": "detail",
+    "q_tr": "Frau Brandl Sevgililer Günü için ne diyor?",
+    "opts": [
+     "Artık kimse ona çiçek hediye etmiyor",
+     "Pazar günü bir kutlama yapıyor",
+     "Bir komşusu ona çiçek getiriyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     7
+    ]
+   },
+   {
+    "id": "m1:78:o5",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl'a cevap ver. Pazar günü seve seve geliyorsun. Ona bir buket çiçek getiriyorsun.",
+    "prompt_de": "Kommen Sie am Sonntag auf einen Kaffee?",
+    "accepted": [
+     "Ja, gern! Und ich bringe Ihnen einen Blumenstrauß.",
+     "Gern, Frau Brandl! Ich bringe Ihnen einen Blumenstrauß.",
+     "Ja, sehr gern. Ich bringe Ihnen einen Blumenstrauß.",
+     "Ja, gern. Ich bringe Ihnen am Sonntag einen Blumenstrauß.",
+     "Gern! Und ich bringe Ihnen Blumen.",
+     "Ja, gern, Frau Brandl. Und ich bringe Ihnen einen Blumenstrauß."
+    ],
+    "why_tr": "Kime: **Ihnen** (size). Ne: **einen Blumenstrauß**. Önce kişi, sonra şey gelir."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Frau Brandl'ın kapısına kısa bir not yaz. Atkı için teşekkür et ve atkıyı anlat. Pazar günü saat üçte geleceğini söyle.",
+   "ornek_de": "Liebe Frau Brandl, vielen Dank für den Schal! Er ist sehr warm. Am Sonntag komme ich gern um drei.",
+   "zorunlu": [
+    "Schal",
+    "Sonntag"
+   ],
+   "accepted_kaliplar": [
+    "Liebe ___, vielen Dank für den Schal!",
+    "Vielen Dank für den Schal!",
+    "Danke für den Schal!",
+    "Vielen Dank für ___!",
+    "Liebe ___,",
+    "Er ist sehr ___.",
+    "Der Schal ist sehr ___.",
+    "Ich komme am Sonntag ___.",
+    "Am Sonntag komme ich ___.",
+    "Am Sonntag komme ich um ___."
+   ],
+   "kontrol_tr": [
+    "Atkı için teşekkür ettin mi?",
+    "Pazar gününü ve saati yazdın mı?",
+    "Frau Brandl'a Sie ile mi hitap ettin?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:78:s",
+  "maddeler": [
+   {
+    "id": "m1:78:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Frau Brandl schenkt mir einen warmen Schal.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Frau Brandl schenkt mir einen warmen Schal.",
+     "frau brandl schenkt mir einen warmen schal",
+     "Frau Brandl schenkt mir einen warmen Schal"
+    ],
+    "why_tr": "Kime: **mir**. Ne: **einen warmen Schal**."
+   },
+   {
+    "id": "m1:78:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Am Sonntag schlafen wir endlich aus.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Am Sonntag schlafen wir endlich aus.",
+     "am sonntag schlafen wir endlich aus",
+     "Am Sonntag schlafen wir endlich aus"
+    ],
+    "why_tr": "**aus** cümlenin en sonunda duruyor."
+   },
+   {
+    "id": "m1:78:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Herr Wimmer schenkt seiner Frau einen Blumenstrauß.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Herr Wimmer schenkt seiner Frau einen Blumenstrauß.",
+     "herr wimmer schenkt seiner frau einen blumenstrauß",
+     "Herr Wimmer schenkt seiner Frau einen Blumenstrauß"
+    ],
+    "why_tr": "Kime: **seiner Frau**. Ne: **einen Blumenstrauß**."
+   },
+   {
+    "id": "m1:78:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Im Sommer machen wir eine Radtour und ein Picknick.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Im Sommer machen wir eine Radtour und ein Picknick.",
+     "im sommer machen wir eine radtour und ein picknick",
+     "Im Sommer machen wir eine Radtour und ein Picknick"
+    ],
+    "why_tr": "**machen** ikinci yerde, çünkü cümle **Im Sommer** ile başlıyor."
+   },
+   {
+    "id": "m1:78:s5",
+    "k": "tr_de",
+    "tr": "Bana bu tabletleri verebilir misiniz?",
+    "accepted": [
+     "Können Sie mir diese Tabletten geben?",
+     "Können Sie mir bitte diese Tabletten geben?",
+     "Könnten Sie mir diese Tabletten geben?",
+     "Könnten Sie mir bitte diese Tabletten geben?"
+    ],
+    "why_tr": "Kime: **mir** (bana). Ne: **diese Tabletten**. **geben** en sonda."
+   },
+   {
+    "id": "m1:78:s6",
+    "k": "tr_de",
+    "tr": "Annemize bir atkı hediye ediyoruz.",
+    "accepted": [
+     "Wir schenken unserer Mutter einen Schal.",
+     "Unserer Mutter schenken wir einen Schal.",
+     "Wir schenken unserer Mama einen Schal."
+    ],
+    "why_tr": "Kime: **unserer Mutter**. Ne: **einen Schal**. Önce kişi, sonra şey."
+   },
+   {
+    "id": "m1:78:s7",
+    "k": "tr_de",
+    "tr": "Doktora kolumu gösteriyorum.",
+    "accepted": [
+     "Ich zeige dem Arzt meinen Arm.",
+     "Dem Arzt zeige ich meinen Arm.",
+     "Ich zeige dem Doktor meinen Arm."
+    ],
+    "why_tr": "Kime: **dem Arzt**. Ne: **meinen Arm**."
+   },
+   {
+    "id": "m1:78:s8",
+    "k": "tr_de",
+    "tr": "Cumartesi saat sekizde yola çıkıyoruz.",
+    "accepted": [
+     "Am Samstag fahren wir um acht Uhr los.",
+     "Wir fahren am Samstag um acht Uhr los.",
+     "Am Samstag fahren wir um acht los."
+    ],
+    "why_tr": "**fahren** ikinci yerde, **los** en sonda."
+   },
+   {
+    "id": "m1:78:s9",
+    "k": "guided_response",
+    "situation_tr": "Derya Frau Brandl'ın sana ne verdiğini soruyor. Sana bir atkı hediye etti.",
+    "prompt_de": "Und, was hat dir Frau Brandl gegeben?",
+    "accepted": [
+     "Sie hat mir einen Schal geschenkt.",
+     "Sie hat mir einen Schal gegeben.",
+     "Einen Schal. Sie hat mir einen Schal geschenkt.",
+     "Frau Brandl hat mir einen Schal geschenkt.",
+     "Einen Schal!",
+     "Sie hat mir einen warmen Schal geschenkt."
+    ],
+    "why_tr": "Kime: **mir**. Ne: **einen Schal**."
+   },
+   {
+    "id": "m1:78:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Haben Sie am Wochenende ausgeschlafen?",
+    "speed": "normal",
+    "situation_tr": "Herr Wimmer pazartesi sabahı soruyor. Evet, cumartesi uykunu aldın. Cevap ver.",
+    "accepted": [
+     "Ja, am Samstag habe ich ausgeschlafen.",
+     "Ja, ich habe am Samstag ausgeschlafen.",
+     "Ja, am Samstag.",
+     "Ja, endlich! Am Samstag habe ich ausgeschlafen.",
+     "Ja, danke. Am Samstag habe ich ausgeschlafen."
+    ],
+    "why_tr": "Geçmişi **habe** ve **ausgeschlafen** ile söylersin. **ausgeschlafen** en sonda durur."
+   },
+   {
+    "id": "m1:78:s11",
+    "k": "guided_response",
+    "situation_tr": "Eczanedesin. Nezlen var. Eczacıdan nezle için kibarca bir şey iste.",
+    "prompt_de": "Guten Tag! Was darf ich Ihnen geben?",
+    "accepted": [
+     "Guten Tag. Ich habe Schnupfen. Können Sie mir bitte etwas gegen Schnupfen geben?",
+     "Guten Tag. Ich habe Schnupfen. Geben Sie mir bitte etwas gegen Schnupfen.",
+     "Ich habe Schnupfen. Können Sie mir etwas gegen Schnupfen geben?",
+     "Guten Tag! Haben Sie etwas gegen Schnupfen?",
+     "Guten Tag. Können Sie mir bitte etwas gegen Schnupfen geben?",
+     "Ich habe Schnupfen. Was können Sie mir geben?"
+    ],
+    "why_tr": "Kime: **mir**. Ne: **etwas gegen Schnupfen**. Önce kişi, sonra şey."
+   }
+  ],
+  "sesli": [
+   "m1:78:s9",
+   "m1:78:s10"
+  ],
+  "dikte": [
+   "m1:78:s1",
+   "m1:78:s2",
+   "m1:78:s3",
+   "m1:78:s4"
+  ]
+ }
+}
