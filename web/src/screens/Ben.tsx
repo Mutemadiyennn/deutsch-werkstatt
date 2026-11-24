@@ -80,8 +80,9 @@ export function BenEkrani() {
         <b>Bu hafta</b>
         <p>{haftaCumlesi(sayi, hafta)}</p>
       </section>
-      {/* PM-099: raf bağlı değilse tek satır (bağlıysa hiçbir şey); fotoğraflar açık lisanslı yedekle sürer */}
-      {rafYok && <a class="ben-raf" href="#/ben/ayarlar" data-test="raf-bagla">Fotoğraf rafı bağlı değil → bağla</a>}
+      {/* PM-099: raf bağlı değilse tek satır (bağlıysa hiçbir şey); fotoğraflar açık lisanslı yedekle sürer. Satır doğrudan
+          Ayarlar'daki Medya rafı kartına iner (#208 PM finali takip d) */}
+      {rafYok && <a class="ben-raf" href="#/ben/ayarlar/raf" data-test="raf-bagla">Fotoğraf rafı bağlı değil → bağla</a>}
       <div class="ben-satirlar">
         <a class="ben-satir" href="#/sozluk" data-test="kelime-haritam">
           <span class="ben-ic" style={{ background: "var(--m-bahce)" }} aria-hidden="true"><Icon name="harita" size={22} /></span>

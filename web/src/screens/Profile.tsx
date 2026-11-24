@@ -21,7 +21,27 @@ export function ProfileView() {
   useEffect(() => { void persistState().then(setPersist).catch(() => {}); }, []);
   const [, tick] = useState(0);
   useEffect(() => onAiState(() => tick((n) => n + 1)), []); // sağlayıcı yoklaması sonrası yeniden çiz
-  const { profile, setProfile, index, api, toast, user } = useApp();
+  const { profile, setProfile, index, api, toast, user, route } = useApp();
+  // Ben'deki "Fotoğraf rafı bağlı değil → bağla" satırı (`#/ben/ayarlar/raf`) uzun sayfanın başına değil, doğrudan
+  // Medya rafı kartına iner (#208 PM finali takip d). Üstteki kartlar (Kullanımım) sonradan dolar; iOS WebKit'te kaydırma
+  // çapası olmadığından kart aşağı itilir (inceleme #224 P1-1): sayfa boyu değiştikçe 2 sn boyunca yeniden hizalanır,
+  // öğrenci kendisi kaydırınca ya da dokununca bırakılır. Odak kartın başlığına gider (EK2; #224 P2-6).
+  const raf = useRef<HTMLElement>(null);
+  const rafBaslik = useRef<HTMLHeadingElement>(null);
+  const rafaIn = route.name === "profile" && route.bolum === "raf";
+  useEffect(() => {
+    const el = raf.current;
+    if (!rafaIn || !el) return;
+    let bitti = false;
+    const hizala = () => { if (!bitti) el.scrollIntoView({ block: "start" }); };
+    const ro = typeof ResizeObserver === "function" ? new ResizeObserver(hizala) : null;
+    const birak = () => { bitti = true; ro?.disconnect(); clearTimeout(t); for (const e of OLAY) removeEventListener(e, birak); };
+    const OLAY = ["touchstart", "wheel", "keydown", "pointerdown"] as const;
+    for (const e of OLAY) addEventListener(e, birak, { passive: true });
+    const t = setTimeout(birak, 2000);
+    const r = requestAnimationFrame(() => { hizala(); rafBaslik.current?.focus({ preventScroll: true }); ro?.observe(el.parentElement ?? document.body); });
+    return () => { cancelAnimationFrame(r); birak(); };
+  }, [rafaIn]);
   const basliklar = Object.fromEntries((index?.temel ?? []).map((t) => [t.id, t.title_tr]));
   const [srv, setSrv] = useState<string | null>(null);
   // Art arda iki değişiklik (ör. adı yazıp hemen hitabı seçmek) aynı eski kopyadan yazılırsa ikincisi birincisini siler:
@@ -143,8 +163,8 @@ export function ProfileView() {
         <KullanimTablosu basliklar={basliklar} />
       </section>
 
-      <section class="card">
-        <h2>Medya rafı</h2>
+      <section class="card" ref={raf} data-test="raf-karti" style={{ scrollMarginTop: "12px" }}>
+        <h2 ref={rafBaslik} tabIndex={-1} style={{ outline: "none" }}>Medya rafı</h2>
         <MedyaRafi />
       </section>
 

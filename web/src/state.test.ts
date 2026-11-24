@@ -10,6 +10,8 @@ describe("sekme adresleri", () => {
     expect(parseHash("#/koy").name).toBe("koy");
     expect(parseHash("#/ben").name).toBe("ben");
     expect(parseHash("#/ben/ayarlar").name).toBe("profile");
+    expect(parseHash("#/ben/ayarlar/raf")).toEqual({ name: "profile", bolum: "raf" }); // Ben'deki raf satırı kartın kendisine iner (#208 takip d)
+    expect(sekme(parseHash("#/ben/ayarlar/raf").name)).toBe("ben");
   });
   it("eski adresler kırılmaz: yeni yerindeki ekranı açar", () => {
     expect(parseHash("#/learn").name).toBe("koy");
