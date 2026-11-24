@@ -836,3 +836,15 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .akis-tablo-sec { flex-wrap: wrap; gap: 8px; }
 .akis-tablo-sec .chip { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font-weight: 700; }
 .akis-tablo-sec .chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+/* Sınav günü (PM-110): deneme ekranı — metin kutusu, form, bölüm listesi */
+.sinav-bolumler { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.sinav-bolumler > li { gap: 10px; flex-wrap: nowrap; }
+.sinav-kurallar { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+.sinav-metin { padding: 12px 14px; border-radius: 14px; background: var(--soft); line-height: 1.5; overflow-wrap: anywhere; }
+.sinav-formu { display: grid; gap: 10px; padding: 12px 14px; border-radius: 14px; box-shadow: 0 0 0 1.5px var(--line) inset; }
+.sinav-alan { display: grid; gap: 4px; font-size: 0.9rem; font-weight: 700; }
+.sinav-alan input[readonly] { background: var(--soft); color: var(--muted); }
+.sinav-yonerge .kicker { display: inline; margin-right: 4px; }
+.sinav-dinle { gap: 10px; }
+/* ölçüt düğmeleri dar ekranda ve büyük yazıda alt satıra geçer (6 puanlık ölçüt 7 düğme; inceleme #247 P2-6) */
+.sinav .seg { display: flex; flex-wrap: wrap; max-width: 100%; }

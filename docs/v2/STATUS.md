@@ -11,6 +11,11 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 - **GitHub Actions bu depoda GitHub tarafından kapalı** (16:53 UTC'den beri). Kabul **KAPI oturumunda** (PM 7047288255): temiz worktree, `ci-v2.yml` sırası, WebKit üç cihaz; PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI". Ortak betik `scripts/kapi.sh` (dal `kapi/betik`). Yayın ve medya hatları durdu; kod PR'ları KAPI sırasıyla birleşir.
 - **Hedef ekranlar:** `design/TARGET3c` (kalıp, yapboz + K10, söyle, gün sonu sınaması, Yol, Bahçe boş hâli; TASARIM "Hedef 3c").
 
+## Hat F (ANA-F4): sınav günü uçtan uca (PM-110, PM-112 B; 2026-11-23)
+- Dal `v2/sinav-gunu` (yığın #231 → #243 → #244 + main). `Gun.sinav_bolumler` (55: dinleme + okuma, 56: yazma + konuşma), `Deneme` şeması (`packages/shared/src/deneme.ts`, assess/*.json; pakette `index.files.deneme`), doğrulayıcı (bölüm denemede yok / iki günde aynı / hiç açılmıyor hata; sınav gününde medya, prova, gün sınavı hata), dikiş (sınav günü halkasız geçerli), hafta kapısı (sınav gününün can_do'su denemeyle sınanır).
+- Uygulama: sınav günü tek adım "Deneme sınavı" (`#/sinav/<gün>`, `#/sinav/<gün>/<bölüm>`); gün yalnız o günün bölümleri bitince biter (`m1:sinav:<deneme>:<bölüm>`); deneme ekranı ayrı parçada. Sınama `tests/e2e/v2_sinav.py`.
+- İçerik tarafı ([İÇ-İŞ] #12): #222 `gun-55/56.json`'a `sinav_bolumler` eklenmeli (yoksa uyarı, deneme her gün bütünüyle açılır).
+
 ## Hat B (ANA-B): Hedef 3 kabuğu (PM-084; 2026-11-22)
 - **Sekme çerçevesi** (dal `v2/sekme-cercevesi`): dört sekme **Bugün · Yol · Köy · Ben** (`#/today`, `#/yol`, `#/koy`, `#/ben`; ayarlar `#/ben/ayarlar`), simgeler ve etkin durum `design/TARGET3`. Eski `#/learn`, `#/progress`, `#/profile` adresleri yeni yerlerine yönlenir. Ben ekranı gelene kadar Ben sekmesi bugünkü İlerlemem ekranını açar. Sınama: `tests/e2e/v2_sekme.py`.
 - **Köy** (dal `v2/koy`, #195'in üstünde): `#/koy` = köyün adı + dükkân ızgarası (Bahçe · Sinema · Radyo · Atölye · Kütüphane · Pazar meydanı; kilitli: Kafe · Tiyatro · Gazete bayisi) + yalnız dinlenmemiş ses kaydı varken "Telefonun" kartı. Mekân sayfaları `#/koy/<bahce|sinema|radyo|kutuphane|pazar>` eski Öğren ekranının girişlerini taşır (Öğren ekranı kalktı; `#/learn` Köy'e yönlenir). Sayılar cihazdaki gerçek veriden (`core/koy.ts`). Sınama: `core/koy.test.ts`, `tests/e2e/v2_koy.py`.

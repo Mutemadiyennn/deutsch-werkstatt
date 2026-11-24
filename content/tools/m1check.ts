@@ -38,7 +38,14 @@ export function checkGun(g: Gun, ctx: { lexicon: Set<string>; temel: Set<string>
     if (g.yeni_kartlar.length) errors.push(`sinav: sınav günü kartsızdır (yeni_kartlar ${g.yeni_kartlar.length})`);
     if (g.dersler.length) errors.push(`sinav: sınav gününde dersler boş olmalı (${g.dersler.join(", ")})`);
     if (g.halkalar?.length) errors.push(`sinav: sınav günü halkasızdır (${g.halkalar.length} halka)`);
-  }
+    // o gün yalnız deneme açılır (uygulama başka adım göstermez): medya, prova, okuma ya da gün sınavı yazılmışsa öğrenci görmez (hat G takibi)
+    const fazla = (["video", "sahne", "prova", "okuma_yazma", "gun_sinavi"] as const).filter((k) => g[k] !== undefined);
+    if (g.sesler.length) fazla.unshift("sesler" as never);
+    if (g.gorsel.length) fazla.push("gorsel" as never);
+    if (fazla.length) errors.push(`sinav: sınav gününde yalnız deneme açılır; ${fazla.join(", ")} öğrenciye görünmez`);
+    if (!g.sinav_bolumler) warnings.push("sinav_bolumler yok: deneme bütünüyle bu gün açılır (PM-110: bölümler günlere ayrılır)");
+    else if (new Set(g.sinav_bolumler).size !== g.sinav_bolumler.length) errors.push(`sinav_bolumler: aynı bölüm iki kez (${g.sinav_bolumler.join(", ")})`);
+  } else if (g.sinav_bolumler) errors.push("sinav_bolumler: yalnız sınav gününde (sinav bağı yok)");
   const missing = g.yeni_kartlar.filter((id) => !ctx.lexicon.has(id));
   if (missing.length) warnings.push(`yeni_kartlar: sözlükte olmayan ${missing.length} kart (ilk: ${missing.slice(0, 5).join(", ")})`);
   if (g.yeni_kartlar.length && (g.yeni_kartlar.length < 15 || g.yeni_kartlar.length > 25)) warnings.push(`yeni_kartlar: ${g.yeni_kartlar.length} kart (hedef 15–25)`);

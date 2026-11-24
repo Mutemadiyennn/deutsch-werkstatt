@@ -1,7 +1,7 @@
 /** İçerik paketi yükleyici: /content/current.json → /content/<sürüm>/… (şemayla doğrulanır, bellekte önbellek) */
 import { z } from "zod";
 import { bilinenKelimeler } from "../core/persona.ts";
-import { adsizTasi, AssessItem, ContentIndex, DilNoktasi, Drill, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers, World } from "@dw/shared";
+import { adsizTasi, AssessItem, ContentIndex, Deneme, DilNoktasi, Drill, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers, World } from "@dw/shared";
 
 const base = () => `${import.meta.env.BASE_URL}content/`;
 let idx: Promise<ContentIndex> | null = null;
@@ -95,6 +95,12 @@ export async function loadHaftaTesti(hafta: number): Promise<HaftaTesti | null> 
   const i = await loadIndex();
   const f = i.files.hafta[String(hafta)];
   return f ? within(file(f, z.object({ id: z.string(), maddeler: z.array(Drill).min(1), beceriler: z.array(Beceri).default([]) }))) : null;
+}
+/** Düzey denemesi (sınav günü, PM-110): pakette yoksa null (sınav günü "hazırlanıyor"); varsa ve okunamıyorsa hata */
+export async function loadDeneme(id: string): Promise<Deneme | null> {
+  const i = await loadIndex();
+  const f = i.files.deneme?.[id];
+  return f ? within(file(f, Deneme)) : null;
 }
 /** M1 İlk Hafta günü (#58 A4) */
 export async function loadM1Gun(day: number): Promise<Gun> {

@@ -78,6 +78,11 @@ function DilNoktasiRota() {
   const m = useModul(() => (akisModul ??= within(import("./screens/Akis.tsx")).catch((e) => { akisModul = null; throw e; })));
   return m === "hata" ? yuklenemedi : m ? <m.DilNoktasiVitrin id={decodeURIComponent(location.hash.slice("#/__dil-noktasi/".length))} /> : <Loading />;
 }
+/** Sınav günü ekranı (PM-110) ayrı parçada: ilk açılış paketine girmez (JS bütçesi) */
+function SinavRota({ day, bolum }: { day: number; bolum?: string }) {
+  const m = useModul(() => within(import("./screens/Sinav.tsx")));
+  return m === "hata" ? yuklenemedi : m ? <m.SinavEkrani day={day} bolum={bolum} /> : <Loading />;
+}
 function HalkaTurRota() {
   const m = useModul(() => within(import("./screens/HalkaTurDeneme.tsx")));
   return m === "hata" ? yuklenemedi : m ? <m.HalkaTurDeneme /> : <Loading />;
@@ -204,12 +209,13 @@ export function App() {
     case "akis": screen = <GunKapisi key={location.hash} day={route.day}><AkisRota key={route.day} day={route.day} /></GunKapisi>; break;
     case "hafta": screen = <HaftaTestiEkrani key={route.hafta} hafta={route.hafta} />; break;
     case "haftaSonuc": screen = <HaftaSonucEkrani key={route.hafta} hafta={route.hafta} />; break;
+    case "sinav": screen = <GunKapisi key={location.hash} day={route.day}><SinavRota key={location.hash} day={route.day} bolum={route.bolum} /></GunKapisi>; break;
     case "haftaTekrar": screen = <HaftaTekrarEkrani key={location.hash} hafta={route.hafta} gunler={route.gunler} />; break;
     case "m1medya": screen = <GunKapisi key={location.hash} day={route.day}><MedyaEkrani key={`${route.id}:${route.tur ?? ""}`} day={route.day} id={route.id} tur={route.tur} /></GunKapisi>; break;
     // yalnız e2e: AK-10 3. adımın iki türü, ekran (4. adım) gelene kadar (üretimde bu dal ve modül paketten düşer)
     default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri") ? <HalkaTurRota key={location.hash} /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__dil-noktasi/") ? <DilNoktasiRota key={location.hash} /> : <Today />;
   }
-  const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && (location.hash.startsWith("#/__halka-turleri") || location.hash.startsWith("#/__dil-noktasi/"))) && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "akis" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma" && route.name !== "hafta" && route.name !== "haftaTekrar" && route.name !== "haftaSonuc";
+  const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && (location.hash.startsWith("#/__halka-turleri") || location.hash.startsWith("#/__dil-noktasi/"))) && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "akis" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma" && route.name !== "hafta" && route.name !== "haftaTekrar" && route.name !== "haftaSonuc" && route.name !== "sinav";
   return (
     <Ctx.Provider value={ctx}>
       <main class={`app${tabs ? "" : " notabs"}`}>{tabs && <DurumCubugu />}<ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>

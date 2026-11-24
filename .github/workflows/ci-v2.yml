@@ -181,6 +181,8 @@ jobs:
         run: cd tests/e2e && python v2_dil_noktasi.py --shots /tmp/shots && python v2_dil_noktasi.py --ts 1.3 && python v2_dil_noktasi.py --genislik 320 && python v2_dil_noktasi.py --ts 1.3 --genislik 320
       - name: "Çok haftalı Yol (PR B-3): 2. hafta açık, 1. hafta tek satır, yalnız haftanın gün dosyaları, gün kilidi, hafta sonu testi; açık + koyu"
         run: cd tests/e2e && python v2_yol_hafta.py --shots /tmp/shots && python v2_yol_hafta.py --scheme dark --shots /tmp/shots
+      - name: "Sınav günü (PM-110): 55. gün dinleme + okuma, 56. gün yazma + konuşma, öz-puan, geçme kuralı, yeniden çözme; açık + koyu"
+        run: cd tests/e2e && python v2_sinav.py --shots /tmp/shots && python v2_sinav.py --scheme dark --shots /tmp/shots
       - name: "8. gün fikstürü (#231 P1-3): gr: dersli gün baştan sona, dil noktası durağı, ders:<id> yazımı"
         run: cd tests/e2e && python v2_akis.py --tam --gun 8
       - name: Görsel regresyon (açık + koyu)
