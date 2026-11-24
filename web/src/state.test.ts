@@ -13,6 +13,12 @@ describe("sekme adresleri", () => {
     expect(parseHash("#/ben/ayarlar/raf")).toEqual({ name: "profile", bolum: "raf" }); // Ben'deki raf satırı kartın kendisine iner (#208 takip d)
     expect(sekme(parseHash("#/ben/ayarlar/raf").name)).toBe("ben");
   });
+  it("seviye tespiti adresleri (PM-115; ara plan PM-124 md. 4.1)", () => {
+    expect(parseHash("#/seviye").name).toBe("seviye");
+    expect(parseHash("#/seviye/rapor").name).toBe("seviyeRapor");
+    expect(parseHash("#/seviye/plan").name).toBe("seviyePlan");
+    expect(parseHash("#/seviye/tekrar/15,29")).toEqual({ name: "seviyeTekrar", gunler: [15, 29] });
+  });
   it("eski adresler kırılmaz: yeni yerindeki ekranı açar", () => {
     expect(parseHash("#/learn").name).toBe("koy");
     expect(parseHash("#/progress").name).toBe("ben");

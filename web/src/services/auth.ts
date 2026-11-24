@@ -43,14 +43,14 @@ export function authErrorTr(e: unknown): string {
 class FirebaseAuth implements AuthAdapter {
   private user: AuthUser | null = null;
   private subs = new Set<(u: AuthUser | null) => void>();
-  private mod: typeof import("firebase/auth") | null = null;
-  private auth: import("firebase/auth").Auth | null = null;
+  private mod: typeof import("./firebaseYukle.ts") | null = null;
+  private auth: import("./firebaseYukle.ts").Auth | null = null;
   ready: Promise<void>;
   constructor() {
     this.ready = (async () => {
-      const [{ initializeApp, getApps, getApp }, au] = await Promise.all([import("firebase/app"), import("firebase/auth")]);
-      const app = getApps().length ? getApp() : initializeApp(FIREBASE_CONFIG);
-      let auth: import("firebase/auth").Auth;
+      const au = await import("./firebaseYukle.ts");
+      const app = au.getApps().length ? au.getApp() : au.initializeApp(FIREBASE_CONFIG);
+      let auth: import("./firebaseYukle.ts").Auth;
       // popupRedirectResolver şart (web): initializeAuth onu kendiliğinden eklemez, yoksa signInWithPopup her tarayıcıda hemen
       // hata verir. Kabukta verilmez: Google düğmesi orada yok, çözümleyici açılışı ağa bağlardı (inceleme #114 P1-1)
       try { auth = au.initializeAuth(app, { persistence: [au.indexedDBLocalPersistence, au.browserLocalPersistence], ...(isNative() ? {} : { popupRedirectResolver: au.browserPopupRedirectResolver }) }); } catch { auth = au.getAuth(app); }

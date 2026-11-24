@@ -27,7 +27,7 @@ def screens():
     # Kalıplar listesi ve kalıp bağı olan bir sözlük kartı (yerleşim B5; inceleme #185 P1-3)
     out += ["#/kalip", "#/sozluk/wo/lx%3Awo"]
     # PM-114 B: kısa yoklama girişi ve sonucu (sonuç yoksa dürüst boş ekran)
-    out += ["#/seviye", "#/seviye/rapor"]
+    out += ["#/seviye", "#/seviye/rapor", "#/seviye/plan"]
     # AKIS AK-10 4a: akış günü (e2e paketinde 2. gün halkalı) ve halka adım türleri (yalnız e2e yolu)
     akis = ["#/akis/2"] if any(g.get("day") == 2 for g in idx.get("m1", [])) else []
     return out + [f"#/call/{SC}"] + akis + ["#/__halka-turleri"]

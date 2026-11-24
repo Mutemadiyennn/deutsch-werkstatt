@@ -4,7 +4,8 @@ A1 seviye tespiti ekranları (PM-115 PR 2b; hedef ekran PM-120 md. 4). e2e fikst
   A) hepsi doğru → derin bakış yok, bölüm aralarında "oturmuş ✓", yarıda bırak/sürdür (yeniden yükleme) → "A2'ye hazırsın"
      → A2'ye başla → Bugün 57. gün; yapay zekâya hiç istek yok (kural tabanlı); Ben'den rapor yeniden açılır
   B) 3. ve 5. haftanın taraması "Bilmiyorum" → yalnız o iki hafta "biraz daha bakalım" + derin bakış → "tamamlama planı"
-     → Planımı gör (PR 3'e kadar zayıf günlerin tekrarı); A2 açılmaz
+     → Planımı gör (PR 3'e kadar ara hâl, PM-124 md. 4.1: zorlanılan cümleler + Rehber + "Bunları tekrar et" + not) → tekrar
+     → geri ok listeye; A2 açılmaz
   C) ilk kurulumda gün kilidi (tespit bitmeden gün açılmaz) → hepsi "Bilmiyorum" ("Şimdilik bırak" → Bugün → Sürdür)
      → "A1'i baştan" → A1'e baştan başla → 1. gün
   D) kurulumdan gelen öğrenci bir cevaptan sonra Ayarlar'da elle "Baştan (A1)" → kilit kalkar, Bugün 1. gün
@@ -143,6 +144,9 @@ def main():
         pg.goto(base + "#/ben"); pg.wait_for_selector("[data-test=ben-tespit]", timeout=15000)
         check("Seviye raporun" in pg.inner_text("[data-test=ben-tespit]") and pg.get_attribute("[data-test=ben-tespit]", "href") == "#/seviye/rapor", "Ben: 'Seviye raporun' satırı rapora gider")
         pg.click("[data-test=ben-tespit]"); pg.wait_for_selector("[data-test=tespit-rapor]", timeout=15000)
+        pg.goto(base + "#/seviye/plan"); pg.wait_for_function("() => location.hash === '#/seviye/rapor'", timeout=15000)
+        pg.wait_for_selector("[data-test=tespit-rapor]", timeout=15000)
+        check(pg.locator("[data-test=tespit-plan-ara]").count() == 0, "A2 kararında plan yok: #/seviye/plan rapora yönlenir")
         pg.click("[data-test=tespit-a2]"); pg.wait_for_selector("[data-test=next-activity]", timeout=20000)
         check(yolgun(pg) == ["gun-57"], f"A2'ye başla: Bugün 57. gün ({yolgun(pg)})")
         check((pg.evaluate(META, "seviye:baslangic") or {}).get("gun") == 57, "başlangıç cihazda 57")
@@ -175,8 +179,23 @@ def main():
         check(bool(re.search(r"15\. GÜN · \d+/\d+", pg.inner_text("[data-test=tespit-zayif]"))), "#244 dili: 'N. GÜN · d/t'")
         check(pg.locator("[data-test=tespit-plan]").count() == 1 and pg.locator("[data-test=tespit-a2]").count() == 0, "tek birincil 'Planımı gör'; A2 düğmesi yok")
         pg.evaluate("window.scrollTo(0, document.body.scrollHeight)"); shot(pg, f"tespit-rapor-tamamla-alt-{sema}", full=False)
-        pg.click("[data-test=tespit-plan]"); pg.wait_for_function("() => location.hash.startsWith('#/seviye/tekrar/')", timeout=15000)
-        check(pg.evaluate("location.hash") == "#/seviye/tekrar/15,29", f"Planımı gör: zayıf günlerin tekrarı ({pg.evaluate('location.hash')})")
+        pg.click("[data-test=tespit-plan]"); pg.wait_for_selector("[data-test=tespit-plan-ara]", timeout=15000)
+        check(pg.evaluate("location.hash") == "#/seviye/plan", f"Planımı gör: ara hâl ({pg.evaluate('location.hash')})")
+        pl = pg.evaluate("""() => ({ gun: [...document.querySelectorAll('[data-test=zayif-liste] li')].map((x) => x.dataset.gun),
+          rehber: [...document.querySelectorAll('[data-test=zayif-liste] .rehber-btn')].map((x) => x.getAttribute('href')),
+          not: (document.querySelector('[data-test=plan-not]') || {}).innerText || '',
+          birincil: [...document.querySelectorAll('.btn.primary')].map((x) => [x.innerText.trim(), x.getAttribute('href')]) })""")
+        check(pl["gun"] == ["15", "29"] and pl["rehber"] == ["#/rehber/15", "#/rehber/29"], f"zorlanılan cümleler + Rehber ({pl['gun']}, {pl['rehber']})")
+        check(pl["not"] == "Tamamlama planın birkaç gün içinde burada olacak; A2 o zaman açılır.", f"tek satır not ({pl['not']!r})")
+        check(pl["birincil"] == [["Bunları tekrar et", "#/seviye/tekrar/15,29"]], f"tek birincil 'Bunları tekrar et' ({pl['birincil']})")
+        check(re.search(r"15\. GÜN · \d+/\d+ DOĞRU", pg.inner_text("[data-test=zayif-liste]")) is not None, "#244 dili: 'N. GÜN · d/t DOĞRU'")
+        no_overflow(pg, "planın (ara hâl)"); shot(pg, f"tespit-11-plan-ara-{sema}", full=False)
+        pg.click("[data-test=zayif-tekrar]"); pg.wait_for_selector("[data-test=hafta-tekrar], [data-test=hafta-tekrar-bos]", timeout=15000)
+        check(pg.evaluate("location.hash") == "#/seviye/tekrar/15,29", f"Bunları tekrar et: #244'ün tekrar akışı ({pg.evaluate('location.hash')})")
+        check(pg.get_attribute("header.pbar a[aria-label=Geri]", "href") == "#/seviye/plan", "tekrarın geri oku listeye döner")
+        pg.click("header.pbar a[aria-label=Geri]"); pg.wait_for_selector("[data-test=tespit-plan-ara]", timeout=15000)
+        pg.goto(base + "#/seviye/plan"); pg.wait_for_selector("[data-test=tespit-plan-ara]", timeout=15000)
+        check(pg.locator("[data-test=tespit-plan-ara]").count() == 1, "adresle açılan ara plan (yeniden yükleme) aynı listeyi gösterir")
         check(not (pg.evaluate(META, "seviye:baslangic") or {}).get("gun", 1) > 1, "tamamlama kararı A2'yi açmaz (başlangıç değişmedi)")
         b.close()
 

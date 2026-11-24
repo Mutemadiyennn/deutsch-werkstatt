@@ -3,9 +3,6 @@ import { DurumCubugu } from "./ui/durum.tsx";
 import { RehberEkrani } from "./screens/Rehber.tsx";
 import { GorevlerEkrani } from "./ui/gorev.tsx";
 import { usePlan } from "./screens/Yol.tsx";
-import { TespitEkrani, TespitRaporu } from "./screens/Seviye.tsx";
-// Sınav günü ve seviye tespiti ana pakette: ayrı parçalar toplam JS bütçesini (300 KB gzip) aşıyordu (#264); ilk açılış payı yeterli
-import { SinavEkrani } from "./screens/Sinav.tsx";
 import { GunKapisi, HaftaSonucEkrani, HaftaTekrarEkrani, HaftaTestiEkrani } from "./screens/HaftaTesti.tsx";
 import { dondurmaKontrol } from "./services/gorev.ts";
 import { probeProvider } from "./services/ai.ts";
@@ -81,6 +78,22 @@ function AkisRota({ day }: { day: number }) {
 function DilNoktasiRota() {
   const m = useModul(() => (akisModul ??= within(import("./screens/Akis.tsx")).catch((e) => { akisModul = null; throw e; })));
   return m === "hata" ? yuklenemedi : m ? <m.DilNoktasiVitrin id={decodeURIComponent(location.hash.slice("#/__dil-noktasi/".length))} /> : <Loading />;
+}
+/** Seviye tespiti ve sınav günü ana paketin dışında (PM-124 md. 4.2): ilk açılışa girmez. İkisi ortak deneme kartıyla
+ *  (`ui/denemeMadde.tsx`) tek parçada (`vite.config.ts` "seviye" grubu; iki parça + ortak parça toplamı 2 KB büyütüyordu).
+ *  Toplam bütçedeki yer `paketInceltme` ve Firebase'in adlı yüklenmesinden (`services/firebaseYukle.ts`). */
+type SeviyeModul = typeof import("./screens/Seviye.tsx");
+let seviyeModul: Promise<SeviyeModul> | null = null;
+const seviyeYukle = () => (seviyeModul ??= within(import("./screens/Seviye.tsx")).catch((e) => { seviyeModul = null; throw e; }));
+function SeviyeRota({ ekran }: { ekran: "tespit" | "rapor" | "plan" }) {
+  const m = useModul(seviyeYukle);
+  return m === "hata" ? yuklenemedi : m ? (ekran === "rapor" ? <m.TespitRaporu /> : ekran === "plan" ? <m.TespitPlanAra /> : <m.TespitEkrani />) : <Loading />;
+}
+type SinavModul = typeof import("./screens/Sinav.tsx");
+let sinavModul: Promise<SinavModul> | null = null;
+function SinavRota({ day, bolum }: { day: number; bolum?: string }) {
+  const m = useModul(() => (sinavModul ??= within(import("./screens/Sinav.tsx")).catch((e) => { sinavModul = null; throw e; })));
+  return m === "hata" ? yuklenemedi : m ? <m.SinavEkrani day={day} bolum={bolum} /> : <Loading />;
 }
 function HalkaTurRota() {
   const m = useModul(() => within(import("./screens/HalkaTurDeneme.tsx")));
@@ -209,16 +222,17 @@ export function App() {
     case "akis": screen = <GunKapisi key={location.hash} day={route.day}><AkisRota key={route.day} day={route.day} /></GunKapisi>; break;
     case "hafta": screen = <HaftaTestiEkrani key={route.hafta} hafta={route.hafta} />; break;
     case "haftaSonuc": screen = <HaftaSonucEkrani key={route.hafta} hafta={route.hafta} />; break;
-    case "sinav": screen = <GunKapisi key={location.hash} day={route.day}><SinavEkrani key={location.hash} day={route.day} bolum={route.bolum} /></GunKapisi>; break;
+    case "sinav": screen = <GunKapisi key={location.hash} day={route.day}><SinavRota key={location.hash} day={route.day} bolum={route.bolum} /></GunKapisi>; break;
     case "haftaTekrar": screen = <HaftaTekrarEkrani key={location.hash} hafta={route.hafta} gunler={route.gunler} />; break;
-    case "seviye": screen = <TespitEkrani />; break;
-    case "seviyeRapor": screen = <TespitRaporu />; break;
+    case "seviye": screen = <SeviyeRota key="tespit" ekran="tespit" />; break;
+    case "seviyeRapor": screen = <SeviyeRota key="rapor" ekran="rapor" />; break;
+    case "seviyePlan": screen = <SeviyeRota key="plan" ekran="plan" />; break;
     case "seviyeTekrar": screen = <HaftaTekrarEkrani key={location.hash} hafta={0} gunler={route.gunler} seviye />; break;
     case "m1medya": screen = <GunKapisi key={location.hash} day={route.day}><MedyaEkrani key={`${route.id}:${route.tur ?? ""}`} day={route.day} id={route.id} tur={route.tur} /></GunKapisi>; break;
     // yalnız e2e: AK-10 3. adımın iki türü, ekran (4. adım) gelene kadar (üretimde bu dal ve modül paketten düşer)
     default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri") ? <HalkaTurRota key={location.hash} /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__dil-noktasi/") ? <DilNoktasiRota key={location.hash} /> : <Today />;
   }
-  const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && (location.hash.startsWith("#/__halka-turleri") || location.hash.startsWith("#/__dil-noktasi/"))) && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "akis" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma" && route.name !== "hafta" && route.name !== "haftaTekrar" && route.name !== "haftaSonuc" && route.name !== "sinav" && route.name !== "seviye" && route.name !== "seviyeRapor" && route.name !== "seviyeTekrar";
+  const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && (location.hash.startsWith("#/__halka-turleri") || location.hash.startsWith("#/__dil-noktasi/"))) && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "akis" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma" && route.name !== "hafta" && route.name !== "haftaTekrar" && route.name !== "haftaSonuc" && route.name !== "sinav" && route.name !== "seviye" && route.name !== "seviyeRapor" && route.name !== "seviyePlan" && route.name !== "seviyeTekrar";
   return (
     <Ctx.Provider value={ctx}>
       <main class={`app${tabs ? "" : " notabs"}`}>{tabs && (sekme(route.name) === "today" || sekme(route.name) === "yol") && <DurumCubugu />}<ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>

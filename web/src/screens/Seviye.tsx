@@ -3,8 +3,10 @@
  *  - `TespitEkrani` (`#/seviye`): (a) giriş / sürdür, (b) madde + "Bilmiyorum", (c) bölüm arası. Madde sonrası doğru/yanlış
  *    gösterilmez (#247 gibi); her cevap anında cihaza yazılır.
  *  - `TespitRaporu` (`#/seviye/rapor`): karar kartı, beceriler, haftalar, zayıf listeler, "Raporu kopyala", karara göre tek birincil.
- *  Bugün davet kartı, Ben durumu ve Ayarlar'daki elle değiştirme `ui/tespitDurum.tsx`. Ekranlar ana pakette (ayrı parça toplam JS
- *  bütçesini aşıyordu; sınav günü ekranı da ana pakette); deneme kartı `ui/denemeMadde.tsx` sınav günüyle ortak.
+ *  - `TespitPlanAra` (`#/seviye/plan`, PM-124 md. 4.1): "Planımı gör"ün PR 3'e kadarki hâli; zorlanılan cümleler (Rehber +
+ *    "Bunları tekrar et", #244'ün tekrar akışı) ve tek satır not. A2 kapalı kalır.
+ *  Bugün davet kartı, Ben durumu ve Ayarlar'daki elle değiştirme `ui/tespitDurum.tsx`. Ekranlar sınav günüyle birlikte ayrı
+ *  parçada (`app.tsx` `SeviyeRota`, PM-124 md. 4.2); deneme kartı `ui/denemeMadde.tsx` sınav günüyle ortak.
  * Değerlendirme kural tabanlı (`drillVerdict`); denetlenemeyen cevapta yapay zekâ ikinci göz; sağlayıcı yoksa kural sonucu,
  * yapay zekâ düşerse madde sayılmaz (Assess #249 kuralı). "Bilmiyorum" yanlış sayılır.
  */
@@ -390,7 +392,45 @@ export function TespitRaporu() {
           : r.karar === "bastan"
             ? <button class="btn primary block" data-test="tespit-bastan-karar" disabled={mesgul} onClick={() => void uygula("bastan")}>A1'e baştan başla</button>
             : <button class="btn primary block" data-test="tespit-plan" disabled={mesgul}
-                onClick={() => { setMesgul(true); void tamamlaNotEt().then(() => go(planGunleri.length ? `seviye/tekrar/${planGunleri.join(",")}` : "today"), () => { setMesgul(false); toast("Kaydedilemedi; tekrar dene."); }); }}>Planımı gör</button>}
+                onClick={() => { setMesgul(true); void tamamlaNotEt().then(() => go("seviye/plan"), () => { setMesgul(false); toast("Kaydedilemedi; tekrar dene."); }); }}>Planımı gör</button>}
+      </ActionBar>
+    </div>
+  );
+}
+
+/* ---------- (e) "Planımı gör" ara hâli (PM-124 md. 4.1; PR 3'ün plan ekranına kadar) ---------- */
+export function TespitPlanAra() {
+  const { v, err, yenile } = useTespit();
+  // karar "tamamla" değilse plan yok: rapor ekranı (rapor yoksa onun "Henüz rapor yok" hâli) kendi kararını gösterir
+  const yonlen = !!v && v.kayit.rapor?.karar !== "tamamla";
+  useEffect(() => { if (yonlen) location.replace("#/seviye/rapor"); }, [yonlen]);
+  if (err) return <div class="stack"><ProgressHeader title="Planın" back="#/seviye/rapor" /><ErrorPanel message={err} onRetry={yenile} /></div>;
+  if (!v) return <Loading />;
+  const r = v.kayit.rapor;
+  if (!r || r.karar !== "tamamla") return <Loading />;
+  const gunler = [...new Set(r.zayifCanDo.map((z) => z.gun))];
+  return (
+    <div class="stack" data-test="tespit-plan-ara">
+      <ProgressHeader title="Planın" back="#/seviye/rapor" />
+      <section class="card stack">
+        {gunler.length > 0 && <>
+          <p style={{ margin: 0 }}>Seviye tespitinde şunları yaparken zorlandın:</p>
+          <ol class="zayif-liste" data-test="zayif-liste">{r.zayifCanDo.map((z) => (
+            <li class="row" data-test={`zayif-${z.gun}`} data-gun={z.gun}>
+              <a class="grow zayif-cumle" href={`#/seviye/tekrar/${z.gun}`} data-test={`zayif-tekrar-${z.gun}`} aria-label={`${z.gun}. günü tekrar et: ${z.tr}`}>
+                <span class="tiny muted">{z.gun}. GÜN · {z.dogru}/{z.toplam} DOĞRU</span>
+                <span class="zayif-tr">{z.tr}</span>
+              </a>
+              <a class="rehber-btn" href={`#/rehber/${z.gun}`} aria-label={`${z.gun}. günün rehberi`}>Rehber</a>
+            </li>))}</ol>
+        </>}
+        <p class="small muted" style={{ margin: 0 }} data-test="plan-not">Tamamlama planın birkaç gün içinde burada olacak; A2 o zaman açılır.</p>
+      </section>
+      <ActionBar>
+        {gunler.length > 0
+          ? <div class="stack"><a class="btn primary block" href={`#/seviye/tekrar/${gunler.join(",")}`} data-test="zayif-tekrar">Bunları tekrar et</a>
+              <a class="btn block" href="#/today" data-test="bugune-don">Bugüne dön</a></div>
+          : <a class="btn primary block" href="#/today" data-test="bugune-don">Bugüne dön</a>}
       </ActionBar>
     </div>
   );

@@ -17,3 +17,14 @@ Taş: M1 → A1 sonu / A2 girişi. Rakip: yaygın yerleştirme testleri tek puan
 | 10 | Ben'den rapor yeniden açılır | A |
 | 11 | Deneme yürüyüşü havuzu atlar; çekirdekte kişisel bilgi isteyen madde doğrulayıcı hatası | `content/tools/tespit.test.ts` |
 | 12 | Açık + koyu, 390 genişlikte taşma yok; gezgin yeni ekranlarda | A–C, `gezgin.py` |
+
+## Ek — PM-124 md. 4 (#12 7132286663; dal `v2/plan-ara-bolme`, #264 üstünde)
+Hedef ekran: PM-124 md. 4.1 tarifi + #244'ün hafta sonu "zorlandın" listesi (aynı satır biçimi). Rakip: plan hazır değilken düğme ya boşa düşer ya da açıklamasız bir alıştırmaya atar; burada öğrenci neyi neden tekrar ettiğini görür ve A2'nin ne zaman açılacağını bilir.
+
+| # | Ölçüt | Sınama |
+|---|---|---|
+| 13 | "Planımı gör" (#264'te doğrudan `#/seviye/tekrar/<g,…>`'e gidiyordu) → `#/seviye/plan`: zorlanılan cümleler ("N. GÜN · d/t DOĞRU" + cümle, satır o günün tekrarına gider) + **Rehber**; tek birincil **Bunları tekrar et** (#244'ün tekrar akışı, `#/seviye/tekrar/<g,…>`) + Bugüne dön; tek satır not "Tamamlama planın birkaç gün içinde burada olacak; A2 o zaman açılır."; A2 kapalı | `v2_seviye.py` B |
+| 14 | Tekrarın geri oku listeye döner; adresle açılan ara plan aynı listeyi gösterir; karar "tamamla" değilse `#/seviye/plan` rapora yönlenir | B, A |
+| 15 | Seviye + sınav günü ekranları ana paketten çıkar (tek ayrı parça, ortak deneme kartıyla); ilk açılış ≤ 250 KB; toplam JS ≤ 307.200 − 25 KB (281.600 B) | `ci-v2.yml` bütçe adımı (yerel ölçü PR'da) |
+| 16 | Davranış aynı: giriş (Firebase adlı yükleme; üretim derlemesinde giriş ekranı + e-posta yolu), sandık töreni (`preact/compat` yerine body katmanı), çevrimdışı (yeni parça servis işçisinde), açık + koyu taşma yok | `v2_gorev`, `ucak`, `yukleme`, `gezgin` (`#/seviye/plan`), `v2_sinav`, `v2_core` |
+
