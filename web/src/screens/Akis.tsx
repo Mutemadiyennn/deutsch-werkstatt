@@ -510,10 +510,17 @@ function AkisTablo({ sutunlar, satirlar, alt, dar }: { sutunlar: string[]; satir
   useLayoutEffect(() => {
     const t = tref.current; const ust = t?.parentElement;
     if (!dar || !t || !ust || typeof ResizeObserver === "undefined") return;
-    const olc = () => { if (t.getBoundingClientRect().width > ust.getBoundingClientRect().width + 0.5) setKir(true); };
-    olc();
-    const ro = new ResizeObserver(olc); ro.observe(t); ro.observe(ust);
-    return () => ro.disconnect();
+    const tasar = () => t.getBoundingClientRect().width > ust.getBoundingClientRect().width + 0.5;
+    if (tasar()) { setKir(true); return; }
+    // gözlemci içinden sınıf değiştirmek WebKit'te "ResizeObserver loop" hatası verir (KAPI-İŞ 7118350740: iPhone 15, %130):
+    // ölçüm bir sonraki kareye ertelenir, kare başına tek ölçüm; "kir" tek yönlü, bir kez kurulunca gözlemci bırakılır (titreme yok)
+    let kare = 0;
+    const ro = new ResizeObserver(() => {
+      if (kare) return;
+      kare = requestAnimationFrame(() => { kare = 0; if (tasar()) { ro.disconnect(); setKir(true); } });
+    });
+    ro.observe(t); ro.observe(ust);
+    return () => { ro.disconnect(); cancelAnimationFrame(kare); };
   }, [dar]);
   return (
     <>

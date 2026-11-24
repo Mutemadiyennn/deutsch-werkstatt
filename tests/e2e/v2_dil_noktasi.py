@@ -5,7 +5,7 @@ Dil noktası durağı (PM-092 md. 1, PM 7087668356 md. 7; inceleme #231 P1-1/P1-
   - "örnek…" sütunu satırın altında; başlık, açıklama, her örnekte dinle düğmesi, tek birincil "Anladım", soru yok
   - ekranda ham ** ya da çıplak yer tutucu yok
 Gövde e2e paketinin `#/__dil-noktasi/<id>` rotasıyla tek başına çizilir (planlayıcıdaki yeri akis.test.ts sınar).
-python3 tests/e2e/v2_dil_noktasi.py [--browser webkit] [--device "iPhone 15"] [--scheme dark] [--shots DIR] [--seviye A1] [--ts 1.3] [--genislik 320]
+python3 tests/e2e/v2_dil_noktasi.py [--browser webkit] [--device "iPhone 15"] [--scheme dark] [--shots DIR] [--seviye A1] [--ts 1.3] [--genislik 320]  (CI: dördü de; %130 + 320 pt ölçüm döngüsünü yakalar)
 """
 import json, os
 from playwright.sync_api import sync_playwright
@@ -30,10 +30,12 @@ def main():
     sema = arg("--scheme") or "light"
     liste = notlar()
     check(len(liste) > 0, f"pakette dil noktası var ({len(liste)})")
-    tasan, bolunen, govde, ham = [], [], [], []
+    tasan, bolunen, govde, ham, dongu = [], [], [], [], []
     tablolu = 0
     with sync_playwright() as p:
         b, ctx = launch(p, color_scheme=sema, viewport={"width": GENISLIK, "height": 568} if GENISLIK else None); pg = new_page(ctx)
+        # ResizeObserver döngüsü (KAPI-İŞ 7118350740): WebKit sayfa hatası verir, Chromium yalnız pencereye 'error' olayı yollar; ikisinde de sayılır
+        pg.add_init_script("window.__roDongu = 0; addEventListener('error', (e) => { if (/ResizeObserver loop/.test(e.message || '')) window.__roDongu++; });")
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         for i, n in enumerate(liste):
             # seçici o konunun kimliğini taşır: rota her konuda yeniden kurulur (key = adres), önceki konunun gövdesi yeni konu
@@ -48,7 +50,8 @@ def main():
                 th: t ? t.querySelectorAll('thead th').length : 0, alt: t ? t.querySelectorAll('tr.alt').length : 0, secici: s.querySelectorAll('[data-test=akis-tablo-sec]').length,
                 baslik: (s.querySelector('h2')?.innerText || '').length, ornek: s.querySelectorAll('[data-test=dil-noktasi-ornek]').length,
                 dinle: s.querySelectorAll('[data-test=dil-noktasi-ornek] button').length, birincil: s.querySelectorAll('.btn.primary').length,
-                soru: s.querySelectorAll('button.opt, input, textarea').length, metin: s.innerText }; }""", sec)
+                soru: s.querySelectorAll('button.opt, input, textarea').length, metin: s.innerText, ro: window.__roDongu || 0 }; }""", sec)
+            if r["ro"]: dongu.append(n["id"]); pg.evaluate("window.__roDongu = 0")
             tab = n.get("table") or {}
             if tab.get("rows"):
                 tablolu += 1
@@ -65,6 +68,7 @@ def main():
     check(not tasan, f"yazı %{round(TS * 100)}{f', {GENISLIK} pt' if GENISLIK else ''}: {tablolu} tablonun hepsi ekrana sığar, sayfa yatay kaymaz (taşan {len(tasan)}: {tasan[:8]})")
     check(not bolunen, f"tablo bölünmez: sütun seçici yok, bütün sütunlar görünür (bölünen {len(bolunen)}: {bolunen[:8]})")
     check(not govde, f"her durakta başlık, sesli örnekler, tek 'Anladım', soru yok (eksik {len(govde)}: {govde[:5]})")
+    check(not dongu, f"ölçüm döngüsü yok: hiçbir durakta 'ResizeObserver loop' ({len(dongu)}: {dongu[:5]})")
     check(not ham, f"ekranda ham ** ya da yer tutucu yok ({ham[:5]})")
     srv.shutdown()
     finish()
