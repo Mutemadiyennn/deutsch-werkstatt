@@ -3,6 +3,8 @@ import { loadContent, checkRules, ROOT } from "./load.ts";
 import { ogretilmemisBosluklar } from "./bosluk.ts";
 import { medyaDenetle } from "./medya.ts";
 import { halkaDenetle } from "./halka.ts";
+import { haftaBecerileri, haftaTestleri } from "./haftaTesti.ts";
+import { kesinPaketi } from "./kesin.ts";
 import { genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -23,6 +25,11 @@ if (bos.length) {
   const d = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genel, [...c.grammar, ...c.dn.flatMap((x) => x.data)]);
   const h = halkaDenetle(c.m1, new Map(c.temel.map((t) => [t.data.id, t.data])), d, c.kesin);
   c.errors.push(...h.errors); c.warnings.push(...h.warnings);
+  // #243 takip a / inceleme #244 P2-4: hafta sonu testi maddesinin açık `can_do` bağı haftanın bir gününde olmalı (hata)
+  try {
+    const b = haftaBecerileri(haftaTestleri(join(ROOT, "content/v2/m1")), c.m1.map((g) => g.data), kesinPaketi(join(ROOT, "content/v2/curriculum")), d);
+    c.errors.push(...b.hatalar); c.warnings.push(...b.uyarilar);
+  } catch (e) { c.errors.push(String((e as Error).message)); }
 }
 for (const w of c.warnings) console.log("  uyarı:", w);
 for (const e of c.errors) console.log("  HATA:", e);

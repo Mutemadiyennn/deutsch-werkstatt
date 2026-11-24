@@ -87,10 +87,14 @@ export function loadScenario(id: string): Promise<Scenario> {
 /** İçerik paketinin kök adresi (medya dosyaları göreli yolla buradan) */
 export const contentUrl = (version: string) => `${base()}${version}/`;
 /** Hafta sonu testi (PR B-3): pakette yoksa null; varsa ve okunamıyorsa hata (ekran "Tekrar dene") */
-export async function loadHaftaTesti(hafta: number): Promise<{ id: string; maddeler: Drill[] } | null> {
+/** Test maddelerinin sınadığı "yapabiliyorum" cümleleri (#243 takip a; derlemede `beceriEsle`): eski pakette boş */
+const Beceri = z.object({ gun: z.number().int(), id: z.string(), tr: z.string(), maddeler: z.array(z.string()) });
+export type Beceri = z.infer<typeof Beceri>;
+export interface HaftaTesti { id: string; maddeler: Drill[]; beceriler: Beceri[] }
+export async function loadHaftaTesti(hafta: number): Promise<HaftaTesti | null> {
   const i = await loadIndex();
   const f = i.files.hafta[String(hafta)];
-  return f ? within(file(f, z.object({ id: z.string(), maddeler: z.array(Drill).min(1) }))) : null;
+  return f ? within(file(f, z.object({ id: z.string(), maddeler: z.array(Drill).min(1), beceriler: z.array(Beceri).default([]) }))) : null;
 }
 /** M1 İlk Hafta günü (#58 A4) */
 export async function loadM1Gun(day: number): Promise<Gun> {

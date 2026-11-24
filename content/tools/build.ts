@@ -9,14 +9,14 @@ import { loadContent, checkRules, ROOT, parseFile } from "./load.ts";
 import { Gun, medyalar } from "../../packages/shared/src/m1.ts";
 import { readdirSync } from "node:fs";
 import { kartMi, type ContentIndex } from "../../packages/shared/src/content.ts";
-import { Halka, genelAdlarAyikla } from "../../packages/shared/src/index.ts";
+import { Halka, genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
 import { z } from "zod";
 import { klipVideolari } from "./klip.ts";
 import { notoDosya, notoSvg } from "./emoji.ts";
 import { tmpdir } from "node:os";
 import { fotoPaketle, type FotoKaydi } from "./medya.ts";
 import { kesinPaketi, type KesinPaket } from "./kesin.ts";
-import { haftaTestleri, type HaftaTestiPaket } from "./haftaTesti.ts";
+import { haftaBecerileri, haftaTestleri, type HaftaTestiPaket } from "./haftaTesti.ts";
 
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
@@ -35,6 +35,9 @@ if (process.env.DW_E2E_FIXTURES === "1") {
     // bayrak PR'ı md. 9: halkasız fikstür gerçek günün halkalarını (ve günün sınavını: gün sonu 'kendini dene') alır (1. günün akışı e2e'de, uçak modunda ve yükleme ölçümünde sınanır)
     if (g) { const i = days.findIndex((d) => d.data.day === g.day); const gercek = i >= 0 ? days[i]!.data : undefined; if (i >= 0) days.splice(i, 1); days.push({ file: `fixtures/m1/${f}`, data: !g.halkalar?.length && gercek?.halkalar?.length ? { ...g, halkalar: gercek.halkalar, ...(!g.gun_sinavi && gercek.gun_sinavi ? { gun_sinavi: gercek.gun_sinavi } : {}) } : g }); }
   }
+  // #243 takip c: kilitli hafta satırı için 3. haftanın tek günü (15) 9. gün fikstüründen türetilir (dosya kopyası depoya girmez)
+  const g9 = days.find((d) => d.file === "fixtures/m1/gun-09.json");
+  if (g9 && !days.some((d) => d.data.day === 15)) days.push({ file: "fixtures/m1/gun-09.json→15", data: { ...g9.data, day: 15, id: "m1:gun:15", title_tr: "15. gün (e2e fikstürü)" } });
   // AKIS AK-10 4. adım: `halkalar` henüz gün dosyalarında değil (İÇ taşıyacak). e2e paketinde, fikstürle değiştirilmemiş
   // günlere İÇ'in halka önerisi (docs/v2/reviews/halka/gun-NN-halkalar.json) eklenir — yayın paketine girmez
   const hk = join(ROOT, "docs/v2/reviews/halka");
@@ -70,6 +73,12 @@ let haftaTest: HaftaTestiPaket;
 try {
   haftaTest = haftaTestleri(join(ROOT, "content/v2/m1"));
   if (process.env.DW_E2E_FIXTURES === "1") for (const [h, t] of Object.entries(haftaTestleri(join(ROOT, "content/tools/fixtures/m1")))) haftaTest[h] ??= t;
+  // #243 PM finali takip a: her test maddesi haftanın bir "yapabiliyorum" cümlesine bağlanır (düşük sonuçta zayıf cümleler)
+  const dizin = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genelAdlar, [...c.grammar, ...dnNotlar] as never);
+  const b = haftaBecerileri(haftaTest, days.map((d) => d.data), kesinGunler, dizin);
+  for (const u of b.uyarilar) console.log(`uyarı: ${u}`);
+  if (b.hatalar.length) throw new Error(b.hatalar.join("\n"));
+  haftaTest = b.paket;
 } catch (e) { console.error(String(e)); process.exit(1); }
 
 const payload = {
