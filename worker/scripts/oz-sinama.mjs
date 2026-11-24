@@ -28,11 +28,12 @@ yaz("### Yapay zekâ öz-sınaması (PM-087 A)");
 if (!j || typeof j !== "object") { yaz("- ⚠️ uç okunamadı"); process.exit(1); }
 const sonuc = !j.taze ? "⚠️ ölçülmedi (bu sürümün taze sonucu yok; aşağıdaki tablo eski)" : j.ok ? "✅ geçti" : "❌ kaldı";
 yaz(`- durum: \`${temiz(j.durum)}\` · sonuç: ${sonuc} · sürüm: \`${temiz(j.surum)}\` · koşu zamanı: \`${temiz(j.zaman)}\` · sağlayıcı: \`${temiz(j.saglayici)}\``);
-yaz("\n| görev | sonuç | ms | model | neden |\n|---|---|---|---|---|");
-for (const g of Array.isArray(j.gorevler) ? j.gorevler : []) yaz(`| ${temiz(g.gorev)} | ${g.gecti ? "✅" : "❌"} | ${Number(g.ms) || 0} | \`${temiz(g.model)}\` | ${g.neden ? "`" + temiz(g.neden) + "`" : ""} |`);
+// dil: çalışma anı dil güvencesi devreye girdi mi (yeniden: geçer · yedek: öğrenci Türkçe gördü ama model iki kez saptı, KALIR; PM-112 A.1)
+yaz("\n| görev | sonuç | ms | model | neden | dil |\n|---|---|---|---|---|---|");
+for (const g of Array.isArray(j.gorevler) ? j.gorevler : []) yaz(`| ${temiz(g.gorev)} | ${g.gecti ? "✅" : "❌"} | ${Number(g.ms) || 0} | \`${temiz(g.model)}\` | ${g.neden ? "`" + temiz(g.neden) + "`" : ""} | ${g.dil ? "`" + temiz(g.dil) + "`" : ""} |`);
 for (const [ad, o] of [["bugün", j.bugun], ["dün", j.dun]]) {
   if (!o || !o.kosu) continue;
-  yaz(`\n**${ad} (${temiz(o.gun)}): ${Number(o.kosu)} koşu**\n\n| görev | geçti/toplam | ortanca ms | en uzun ms |\n|---|---|---|---|`);
-  for (const [k, v] of Object.entries(o.gorev || {})) yaz(`| ${temiz(k)} | ${Number(v.gecti)}/${Number(v.toplam)} | ${Number(v.ortanca_ms)} | ${Number(v.en_uzun_ms)} |`);
+  yaz(`\n**${ad} (${temiz(o.gun)}): ${Number(o.kosu)} koşu**\n\n| görev | geçti/toplam | ortanca ms | en uzun ms | dil: yeniden / yedek |\n|---|---|---|---|---|`);
+  for (const [k, v] of Object.entries(o.gorev || {})) yaz(`| ${temiz(k)} | ${Number(v.gecti)}/${Number(v.toplam)} | ${Number(v.ortanca_ms)} | ${Number(v.en_uzun_ms)} | ${Number(v.dil_yeniden) || 0} / ${Number(v.dil_yedek) || 0} |`);
 }
 process.exit(j.durum === "kapali" ? 1 : !j.taze ? 3 : j.ok ? 0 : 1);

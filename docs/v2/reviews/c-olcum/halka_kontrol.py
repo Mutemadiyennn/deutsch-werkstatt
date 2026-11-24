@@ -56,7 +56,8 @@ for h in o['halkalar']:
             if 'accepted' in g:
                 if len(g['accepted']) < 3 or g['accepted'][0] != g['de']: print(f"HATA {h['id']} {c} accepted ≥3 ve ilki de olmalı: {g['de']}"); hata += 1
                 for a in g['accepted'][1:]:
-                    ua, _ = M['bilinmeyen'](a, bk, bb, biten=bt, kaliplar=kalip_cok)
+                    # konuşma biçimi "geht's" = "geht es" (yalnız kabul satırında; değerlendirici kesme işaretini atıyor)
+                    ua, _ = M['bilinmeyen'](a.replace("'s", " es").replace("’s", " es"), bk, bb, biten=bt, kaliplar=kalip_cok)
                     if ua: print(f"HATA {h['id']} {c} kabul satırında bilinmeyen {ua}: {a}"); hata += 1
             if u: print(f"HATA {h['id']} {c} görev cümlesi bilinmeyen {u}: {g['de']}"); hata += 1
             elif set(M['toks'](g['de'])) & (M['yuzey'](C) - set(M['toks'](C.get('art', '')))): n += 1; liste.append(g['de'])
@@ -83,4 +84,13 @@ for h in o['halkalar']:
 # PM 7047720404 (a): günde en az bir çıkarım sorusu (soru.cikarim: true), aynı soru metni iki kez yok
 if len({q for q, _ in sorular}) != len(sorular): print("HATA: aynı sahne sorusu metni iki kez"); hata += 1
 if gun > 1 and not any(c for _, c in sorular): print("HATA: günde çıkarım sorusu yok (soru.cikarim: true)"); hata += 1
+# PM 7052062209 İÇ 1 (rapor kipi; eşik policy.json'a girene kadar hata değil): gün toplamında dünün kartlarından ≥4 görev
+# cümlesi, 3. günden itibaren daha eski günlerin kartlarından ≥4 görev cümlesi
+if gun > 1:
+    dun_tok = {x for i in gunler[gun - 1]['yeni_kartlar'] for x in M['gost'][i]}
+    eski_tok = {x for d in range(1, gun - 1) for i in gunler[d]['yeni_kartlar'] for x in M['gost'][i]}
+    gc = [g['de'] for h in o['halkalar'] for g in h.get('gorev_cumleleri', [])]
+    dun = sum(1 for s in gc if set(M['toks'](s)) & dun_tok); eski = sum(1 for s in gc if set(M['toks'](s)) & eski_tok)
+    print(f"rapor (b) gün toplamı: dünün kartları {dun} cümle (eşik 4){' ' + 'ALTINDA' if dun < 4 else ''}"
+          + (f" · daha eski günler {eski} cümle (eşik 4){' ' + 'ALTINDA' if eski < 4 else ''}" if gun > 2 else ''))
 print(f"→ {hata} hata, {uyari} not")

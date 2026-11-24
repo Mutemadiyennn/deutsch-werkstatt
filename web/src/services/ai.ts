@@ -4,13 +4,14 @@
  *  - önbellek zorunlu: equiv_check, explain_tr, say_it_de (IndexedDB)
  *  - hızlı görevlerde 12 sn, konuşmada 30 sn üst sınır; hata kodları Türkçe (shared ERROR_TR)
  */
-import type { AiInput, AiOutput, AiTaskName } from "@dw/shared";
+import { AiTasks, ERROR_TR, type AiInput, type AiOutput, type AiTaskName } from "@dw/shared";
 import { ApiError, type Api } from "./api.ts";
 import { cacheGet, cachePut } from "../data/db.ts";
 
 const CACHED: AiTaskName[] = ["equiv_check", "explain_tr", "say_it_de"];
 /** Kalite gerektiren görevler: güçlü model; istemci 12 sn'de "Biraz uzun sürüyor" seçeneklerini gösterir, isteği kesmez */
 export const SLOW: AiTaskName[] = ["roleplay_turn", "feedback_tr"];
+export const QUICK_TIMEOUT_MS = 11_000;
 export const SOFT_WAIT_MS = 10_000; // "en geç 12 sn": yavaş cihazda çizim payıyla (CI WebKit 11,5 sn → 12,1 sn ölçtü)
 
 /* Süre ölçümü (rapor için p50/p95): görev başına son 200 cevap süresi, bu cihazda */
@@ -54,10 +55,16 @@ export async function ai<T extends AiTaskName>(api: Api, task: T, vars: AiInput<
   const st = aiState(api);
   if (!st.available) throw new ApiError("not_configured", st.reason!, false);
   const key = CACHED.includes(task) ? `${task}:${await hash(JSON.stringify(vars))}` : null;
-  if (key) { const c = await cacheGet<AiOutput<T>>(key); if (c) return c; }
+  if (key) { const c = await cacheGet<AiOutput<T>>(key); if (c && AiTasks[task].output.safeParse(c).success) return c; }
   const t0 = performance.now();
   try {
-    const out = await api.ai(task, vars, SLOW.includes(task) ? 45_000 : 12_000); // konuşma: toplam bütçe ≤45 sn; 12 sn uyarısı ekranda (çağrı kesilmez)
+    // konuşma: toplam bütçe ≤45 sn; 12 sn uyarısı ekranda (çağrı kesilmez). Hızlı görev: seçenek en geç 12 sn'de görünsün diye
+    // istemci 11 sn'de bırakır (phases/03-H3 · PEDAGOGY §7; çizim payı ≈ 0,6 sn; inceleme #218 P1-2)
+    const ham = await api.ai(task, vars, SLOW.includes(task) ? 45_000 : QUICK_TIMEOUT_MS);
+    // sunucu şemayı denetler; istemci yine de denetler: şemaya uymayan çıktı ekrana ve önbelleğe girmez (PM-087 A.4)
+    const p = AiTasks[task].output.safeParse(ham);
+    if (!p.success) throw new ApiError("bad_output", ERROR_TR.bad_output.message_tr, true);
+    const out = p.data as AiOutput<T>;
     latencyAdd(task, performance.now() - t0);
     fails = 0;
     if (key) await cachePut(key, out);

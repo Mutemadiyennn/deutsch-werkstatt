@@ -16,7 +16,7 @@ from common import serve, launch, new_page, login_onboard, check, finish, shot, 
 PORT = 4199
 
 def ders_ac(pg, base):
-    pg.goto(base + "#/learn"); pg.wait_for_selector("[data-test=temel-ders]")
+    pg.goto(base + "#/koy/kutuphane"); pg.wait_for_selector("[data-test=temel-ders]")
     pg.locator("[data-test=temel-ders]").first.click(); pg.wait_for_selector("[data-test=ders]")
 
 def ders_ilerle_kurmaya(pg):

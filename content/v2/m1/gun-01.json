@@ -389,8 +389,8 @@
      "tr": "… olur mu? – … olur. – … olmuyor."
     },
     {
-     "de": "Bis …!",
-     "tr": "… görüşürüz!"
+     "de": "Bis …! – Danke und bis Montag!",
+     "tr": "… görüşürüz! – Teşekkürler, pazartesi görüşürüz!"
     }
    ],
    "gorev_cumleleri": [
@@ -523,8 +523,8 @@
    ],
    "kaliplar": [
     {
-     "de": "Welcher Tag ist heute?",
-     "tr": "Bugün günlerden ne?"
+     "de": "Welcher Tag ist heute? – Samstag oder Sonntag?",
+     "tr": "Bugün günlerden ne? – Cumartesi mi, pazar mı?"
     },
     {
      "de": "diese Woche",
@@ -686,8 +686,8 @@
      "tr": "Dün … idi – Dün … mıydı?"
     },
     {
-     "de": "…, aber …",
-     "tr": "…, ama …"
+     "de": "…, aber … – Wir gehen in die Praxis. – Gehen Sie …?",
+     "tr": "…, ama … – Muayenehaneye gidiyoruz. – … gidiyor musunuz?"
     }
    ],
    "gorev_cumleleri": [
@@ -803,12 +803,12 @@
     },
     {
      "kart": "lx:geschlossen",
-     "de": "Heute ist alles geschlossen.",
-     "tr": "Bugün her şey kapalı.",
+     "de": "Die Praxis ist morgen geschlossen.",
+     "tr": "Muayenehane yarın kapalı.",
      "accepted": [
-      "Heute ist alles geschlossen.",
-      "Alles ist heute geschlossen.",
-      "Heute ist ja alles geschlossen."
+      "Die Praxis ist morgen geschlossen.",
+      "Morgen ist die Praxis geschlossen.",
+      "Die Praxis ist morgen geschlossen, ja."
      ]
     }
    ],
@@ -1586,7 +1586,9 @@
     "secenekler": [
      {
       "de": "Guten Tag, hier ist {name}.",
+      "de_adsiz": "Guten Tag.",
       "tr": "İyi günler, ben {name}.",
+      "tr_adsiz": "İyi günler.",
       "accepted": [
        "Guten Tag, hier ist {name}.",
        "Guten Tag, ich bin {name}.",
@@ -1598,19 +1600,34 @@
        "Grüß Gott, {name} hier.",
        "Grüß Gott, mein Name ist {name}."
       ],
+      "accepted_adsiz": [
+       "Guten Tag.",
+       "Grüß Gott.",
+       "Guten Morgen.",
+       "Guten Tag, Frau Huber.",
+       "Grüß Gott, Frau Huber.",
+       "Guten Morgen, Frau Huber."
+      ],
       "sonraki": "n2",
       "uygun": true,
       "geri_bildirim_tr": "Güzel. Önce selam verdin, sonra adını söyledin."
      },
      {
       "de": "Hallo, hier ist {name}.",
+      "de_adsiz": "Hallo.",
       "tr": "Merhaba, ben {name}.",
+      "tr_adsiz": "Merhaba.",
       "accepted": [
        "Hallo, hier ist {name}.",
        "Hallo, ich bin {name}.",
        "Hallo, mein Name ist {name}.",
        "Hallo, {name} hier.",
        "Hallo, hier spricht {name}."
+      ],
+      "accepted_adsiz": [
+       "Hallo.",
+       "Hallo, Frau Huber.",
+       "Ja, hallo."
       ],
       "sonraki": "n2",
       "uygun": true,
@@ -1637,7 +1654,9 @@
     "secenekler": [
      {
       "de": "Guten Tag, hier ist {name}.",
+      "de_adsiz": "Guten Tag.",
       "tr": "İyi günler, ben {name}.",
+      "tr_adsiz": "İyi günler.",
       "accepted": [
        "Guten Tag, hier ist {name}.",
        "Guten Tag, ich bin {name}.",
@@ -1648,6 +1667,14 @@
        "Guten Morgen, hier ist {name}.",
        "Grüß Gott, {name} hier.",
        "Grüß Gott, mein Name ist {name}."
+      ],
+      "accepted_adsiz": [
+       "Guten Tag.",
+       "Grüß Gott.",
+       "Guten Morgen.",
+       "Guten Tag, Frau Huber.",
+       "Grüß Gott, Frau Huber.",
+       "Guten Morgen, Frau Huber."
       ],
       "sonraki": "n2",
       "uygun": true,
@@ -1670,7 +1697,9 @@
    {
     "id": "n2",
     "de": "Guten Tag, {Herr|Frau} {name}. Geht Dienstag?",
+    "de_adsiz": "Guten Tag. Geht Dienstag?",
     "tr": "İyi günler, {Herr|Frau} {name}. Salı olur mu?",
+    "tr_adsiz": "İyi günler. Salı olur mu?",
     "secenekler": [
      {
       "de": "Ja, Dienstag geht.",
@@ -1785,7 +1814,9 @@
    {
     "id": "n4",
     "de": "Dienstag, ja. Danke, {Herr|Frau} {name}.",
+    "de_adsiz": "Dienstag, ja. Danke!",
     "tr": "Salı, tamam. Teşekkürler, {Herr|Frau} {name}.",
+    "tr_adsiz": "Salı, tamam. Teşekkürler!",
     "secenekler": [
      {
       "de": "Danke, bis Dienstag!",
@@ -1826,7 +1857,9 @@
    {
     "id": "n5",
     "de": "Donnerstag, ja. Danke, {Herr|Frau} {name}.",
+    "de_adsiz": "Donnerstag, ja. Danke!",
     "tr": "Perşembe, tamam. Teşekkürler, {Herr|Frau} {name}.",
+    "tr_adsiz": "Perşembe, tamam. Teşekkürler!",
     "secenekler": [
      {
       "de": "Danke, bis Donnerstag!",
@@ -1877,7 +1910,9 @@
   "tur": "okuma",
   "title_tr": "Ioana'dan mesaj",
   "metin_de": "Hallo {name}, hier ist Ioana. Heute ist Dienstag. Morgen geht nicht. Donnerstag geht nicht. Geht Freitag? Danke!",
+  "metin_de_adsiz": "Hallo, hier ist Ioana. Heute ist Dienstag. Morgen geht nicht. Donnerstag geht nicht. Geht Freitag? Danke!",
   "metin_tr": "Merhaba {name}, ben Ioana. Bugün salı. Yarın olmaz. Perşembe olmaz. Cuma olur mu? Teşekkürler!",
+  "metin_tr_adsiz": "Merhaba, ben Ioana. Bugün salı. Yarın olmaz. Perşembe olmaz. Cuma olur mu? Teşekkürler!",
   "sorular": [
    {
     "id": "m1:01:o1",

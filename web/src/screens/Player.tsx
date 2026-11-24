@@ -10,6 +10,7 @@ import { Rich } from "../ui/rich.tsx";
 import { isRepeatRequest, offlineDialogueIndex } from "../core/offline.ts";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Chunk, Drill, Lexeme, Pattern, Scenario, ScenarioProgress, Speed } from "@dw/shared";
+import { ERROR_TR } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { ustBaslik } from "../core/baslik.ts";
 import { loadLexicon, loadScenario } from "../services/content.ts";
@@ -441,7 +442,7 @@ function DialogueSection({ ctx, finish, back }: SP) {
       )}
       <div class="chat" aria-live="polite">
         {shown.map((l) => <div class={`bubble ${l.r === "A" ? "them" : "me"}`}><div class="who">{l.r === "A" ? d.roles.A : `${d.roles.B} (sen)`}</div><div class="dline"><div class="grow"><div lang="de">{l.de}</div>{support >= 1 && <div class="tr2">{l.tr}</div>}</div>{l.r === "A" && <ListenButton text={l.de} speed={l.speed} small slowToggle={false} />}</div></div>)}
-        {line.r === "A" && <div class="bubble them fade"><div class="who">{d.roles.A}</div><DeLine de={line.de} tr={support >= 1 ? line.tr : undefined} size="md" speed={line.speed} /><ExplainBtn de={line.de} /></div>}
+        {line.r === "A" && <div class="bubble them fade"><div class="who">{d.roles.A}</div><DeLine de={line.de} tr={support >= 1 ? line.tr : undefined} size="md" speed={line.speed} /><ExplainBtn de={line.de} chunks={ctx.s.chunks} /></div>}
         <ChatEnd dep={li} />
       </div>
       {line.r === "A" && <ActionBar><button class="btn primary block" onClick={() => setLi(li + 1)} data-test="next">Cevap ver</button></ActionBar>}
@@ -485,6 +486,9 @@ function ChatEnd({ dep }: { dep: number }) {
 /* ============================ 6 Rol oyunu ============================ */
 const NON_GERMAN = /\b(the|and|you|please|sorry|yes|what|i'm|can|evet|hayır|lütfen|tamam|anlamadım|ne)\b/i;
 type Turn = { r: "partner" | "learner"; de: string };
+/** Rapor hata kartının ek cümlesi: genel "cevap alamadım" başlıkla aynı şeyi söyler, tekrarlanmaz (öğrenci dili; PM finali #218) */
+const raporEk = (m: string) => (m === ERROR_TR.internal.message_tr || m === ERROR_TR.bad_output.message_tr ? "" : m);
+
 function RoleplaySection({ ctx, finish, back, setRight }: SP) {
   const { api, profile } = useApp();
   const persona: Persona = { name: profile.displayName, address: profile.address };
@@ -501,6 +505,11 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
   const [turns, setTurns] = useState<Turn[]>([]);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  /** hata yeniden denenebilir mi (günlük sınır değil); değilse "Tekrar dene" gösterilmez (inceleme #218 P2) */
+  const [errYeniden, setErrYeniden] = useState(true);
+  /** yapay zekâlı konuşmadan "Kendim değerlendireyim"e geçildi: hazır diyaloğun örnekleri öğrencinin cümleleriyle eşleşmez, gösterilmez */
+  const [kendim, setKendim] = useState(false);
+  const yenidenMi = (e: unknown) => !(e instanceof ApiError) || e.retryable;
   const [stuck, setStuck] = useState(0);
   const [report, setReport] = useState<any>(null);
   const [selfGoals, setSelfGoals] = useState<Record<string, boolean>>({});
@@ -545,9 +554,11 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
       const nt = [...hist, { r: "partner" as const, de: reply }]; setTurns(nt); histRef.current = nt; say(reply);
       if (o.end) setTimeout(() => void endTalk(nt), 600);
     } catch (e) {
-      if (pendingRef.current === turn && inflightRef.current <= 1) { pendingRef.current = null; setSlow(null); setWaiting(false); setErr(e instanceof ApiError ? e.message_tr : "Yanıt alınamadı."); }
+      if (pendingRef.current === turn && inflightRef.current <= 1) { pendingRef.current = null; setSlow(null); setWaiting(false); setErrYeniden(yenidenMi(e)); setErr(e instanceof ApiError ? e.message_tr : "Yanıt alınamadı."); }
     } finally { clearTimeout(timer); inflightRef.current--; if (pendingRef.current === null || inflightRef.current === 0) setBusy(pendingRef.current !== null && inflightRef.current > 0); }
   };
+  /** Rapor gelmedi: yapay zekâsız rapora geç (görevleri öğrenci işaretler, bölüm kaydedilir); geç gelen rapor yok sayılır (PM-087 A.4) */
+  const kendimDegerlendir = () => { if (reportDoneRef.current) return; setKendim(true); setMode("offline"); modeRef.current = "offline"; setSlow(null); setWaiting(false); setErr(null); setBusy(false); };
   const goOffline = () => { setMode("offline"); modeRef.current = "offline"; pendingRef.current = null; setSlow(null); setWaiting(false); setErr(null); setBusy(false); nextOffline(histRef.current); };
   const send = async (a: string) => {
     const nonDe = NON_GERMAN.test(a) && !/[äöüß]|\b(ich|bitte|ja|nein|danke)\b/i.test(a);
@@ -566,13 +577,15 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
       const timer = window.setTimeout(() => setSlow("report"), SOFT_WAIT_MS);
       try {
         const f = await ai(api, "feedback_tr", { scene_tr: s.roleplay.scene_tr, goals: s.roleplay.goals.map((g) => ({ id: g.id, de: g.de })), transcript: t.slice(-60).map((h) => ({ r: h.r, de: redact(h.de, persona) })) });
-        if (reportDoneRef.current) return;   // "Tekrar dene" ile iki istek: önce gelen kullanılır
+        if (reportDoneRef.current || (modeRef.current as string) === "offline") return;   // "Tekrar dene" ile iki istek: önce gelen kullanılır; öğrenci kendisi değerlendirmeye geçtiyse geç rapor yok sayılır
         reportDoneRef.current = true;
+        // önce ekran: hata ve yavaş kartı kalkar (yarış: Tekrar dene'nin hatası önce, ilk istek sonra gelebilir; inceleme #218 P1-1)
+        setErr(null); setSlow(null); setWaiting(false); setBusy(false);
         setReport(f);
         for (const g of f.gaps_de) await addPersonal({ id: `convo:${g}`, de: g, at: new Date().toISOString(), source: "sayit" });
         const done = f.goals.filter((x) => x.done).length;
         await finish(done, s.roleplay.goals.length, { level, goalsDone: done, goalsTotal: s.roleplay.goals.length, englishFallbacks: f.english_fallbacks, mode: "ai" });
-      } catch (e) { if (reportDoneRef.current) return; reportRef.current = false; setErr(e instanceof ApiError ? e.message_tr : "Rapor alınamadı."); }
+      } catch (e) { if (reportDoneRef.current || (modeRef.current as string) === "offline") return; reportRef.current = false; setErrYeniden(yenidenMi(e)); setErr(e instanceof ApiError ? e.message_tr : ERROR_TR.internal.message_tr); }
       finally { clearTimeout(timer); setBusy(false); setSlow(null); setWaiting(false); }
     }
   };
@@ -601,8 +614,8 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
           {busy && <div class="bubble them" aria-label="Karşı taraf yazıyor"><span class="skeleton" style={{ display: "inline-block", width: 60 }} /></div>}</div>
         {slow === "turn" && !waiting && <div class="card stack" role="status" data-test="rp-slow"><p style={{ margin: 0 }}><b>Biraz uzun sürüyor.</b> <span class="small muted">Yanıt gelirse hemen kullanılır.</span></p><div class="row"><button class="btn sm" onClick={() => setWaiting(true)} data-test="rp-wait">Bekle</button><button class="btn sm" onClick={() => void partnerTurn(histRef.current, stuckRef.current)} data-test="rp-retry">Tekrar dene</button><button class="btn sm" onClick={goOffline} data-test="rp-offline">Yapay zekâsız devam</button></div></div>}
         {slow === "turn" && waiting && <p class="tiny muted" role="status">Yanıt bekleniyor…</p>}
-        {err && <div class="card err stack" role="alert"><p><b>Bağlantı sorunu.</b> {err}</p><div class="row"><button class="btn sm" onClick={() => void partnerTurn(histRef.current, stuckRef.current)} data-test="rp-retry">Tekrar dene</button><button class="btn sm" onClick={goOffline} data-test="rp-offline">Yapay zekâsız devam</button></div></div>}
-        <div class="row">{last && <ExplainBtn de={last.de} context={s.roleplay.scene_tr} />}<SayItBox entries={entriesOf(ctx)} level={s.level} context_de={last?.de} /></div>
+        {err && <div class="card err stack" role="alert"><p><b>{errYeniden ? "Bağlantı sorunu." : "Yapay zekâ şimdilik yok."}</b> {err}</p><div class="row">{errYeniden && <button class="btn sm" onClick={() => void partnerTurn(histRef.current, stuckRef.current)} data-test="rp-retry">Tekrar dene</button>}<button class="btn sm" onClick={goOffline} data-test="rp-offline">Yapay zekâsız devam</button></div></div>}
+        <div class="row">{last && <ExplainBtn de={last.de} context={s.roleplay.scene_tr} chunks={s.chunks} />}<SayItBox entries={entriesOf(ctx)} level={s.level} context_de={last?.de} /></div>
         <ChatEnd dep={turns.length + (busy ? 1 : 0) + (err ? 1 : 0)} />
         <ActionBar><AnswerField onSubmit={(a) => void send(a)} disabled={busy} submitLabel="Gönder" /></ActionBar>
       </div>
@@ -617,8 +630,8 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
         <section class="card stack"><div class="kicker">Rapor · yapay zekâsız mod</div>
           <p class="small">Görevleri sen işaretle:</p>
           {s.roleplay.goals.map((g) => <label class="row"><input type="checkbox" checked={!!selfGoals[g.id]} onChange={(e) => setSelfGoals({ ...selfGoals, [g.id]: (e.target as HTMLInputElement).checked })} /> {g.tr}</label>)}
-          <div class="kicker" style={{ marginTop: 8 }}>Senin cümlelerin ve örnek karşılıkları</div>
-          {learner.map((a, k) => <div class="small"><span lang="de">{a}</span>{expect[k] && <div class="muted" lang="de">Örnek: {expect[k]}</div>}</div>)}
+          <div class="kicker" style={{ marginTop: 8 }}>{kendim ? "Senin cümlelerin" : "Senin cümlelerin ve örnek karşılıkları"}</div>
+          {learner.map((a, k) => <div class="small"><span lang="de">{a}</span>{expect[k] && !kendim && <div class="muted" lang="de">Örnek: {expect[k]}</div>}</div>)}
         </section>
         <ActionBar><button class="btn primary block" onClick={async () => { const done = Object.values(selfGoals).filter(Boolean).length; await finish(done, s.roleplay.goals.length, { level, goalsDone: done, goalsTotal: s.roleplay.goals.length, mode: "offline" }); location.hash = back; }} data-test="rp-save">Kaydet ve bitir</button></ActionBar>
       </div>
@@ -627,8 +640,8 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
   return (
     <div class="stack fade" data-test="rp-report">
       {busy && <LoadingCard lines={4} />}
-      {slow === "report" && !waiting && <div class="card stack" role="status" data-test="rp-slow"><p style={{ margin: 0 }}><b>Rapor biraz uzun sürüyor.</b> <span class="small muted">Gelirse hemen gösterilir.</span></p><div class="row"><button class="btn sm" onClick={() => setWaiting(true)} data-test="rp-wait">Bekle</button><button class="btn sm" onClick={() => { reportRef.current = false; void endTalk(histRef.current); }} data-test="rp-retry">Tekrar dene</button><a class="btn sm" href={back}>Rapor olmadan bitir</a></div></div>}
-      {err && <div class="card err" role="alert"><p><b>Rapor alınamadı.</b> {err}</p><div class="row"><button class="btn sm" onClick={() => void endTalk()}>Tekrar dene</button><a class="btn sm" href={back}>Rapor olmadan bitir</a></div></div>}
+      {slow === "report" && !waiting && !report && <div class="card stack" role="status" data-test="rp-slow"><p style={{ margin: 0 }}><b>Rapor biraz uzun sürüyor.</b> <span class="small muted">Gelirse hemen gösterilir.</span></p><div class="row"><button class="btn sm" onClick={() => setWaiting(true)} data-test="rp-wait">Bekle</button><button class="btn sm" onClick={() => { reportRef.current = false; void endTalk(histRef.current); }} data-test="rp-retry">Tekrar dene</button><button class="btn sm" onClick={kendimDegerlendir} data-test="rp-self">Kendim değerlendireyim</button></div></div>}
+      {err && !report && <div class="card err" role="alert"><p><b>Rapor şu an alınamadı.</b>{raporEk(err) && <> {raporEk(err)}</>}</p><div class="row">{errYeniden && <button class="btn sm" onClick={() => void endTalk()} data-test="rp-retry">Tekrar dene</button>}<button class="btn sm" onClick={kendimDegerlendir} data-test="rp-self">Kendim değerlendireyim</button></div></div>}
       {report && <>
         <section class="card hero"><div class="kicker">Görev</div><div class="big">{report.goals.filter((g: any) => g.done).length}/{s.roleplay.goals.length}</div><p class="small">{report.summary_tr}</p></section>
         <section class="card stack"><div class="kicker">Hedefler</div>{s.roleplay.goals.map((g) => <div class="row">{report.goals.find((x: any) => x.id === g.id)?.done ? <Icon name="check" size={18} label="yapıldı" /> : <span class="emptybox" aria-label="yapılmadı" />} <span>{g.tr}</span></div>)}</section>
