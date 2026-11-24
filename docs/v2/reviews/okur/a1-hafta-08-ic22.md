@@ -52,3 +52,43 @@ Kapsam: değişen satırlar `m1:h08:g1.why_tr`, `m1:h08:g2.why_tr`, `m1:h08:g3.d
 1. turda geri dönen `m1:h08:g1.why_tr` ve `m1:h08:g2.why_tr` artık geçiyor. `m1:h08:g3.why_tr` değişmedi, 1. turdaki GEÇTİ kararı geçerli; `m1:h08:g1.durum_tr` de değişmedi ve geçerli. Kapsamdaki 6 satırın 6'sı geçti.
 
 Genel sonuç: GEÇTİ. Bu turun kapsamında `gorulmemis-08.json` için açık GERİ yok (OD-9.4).
+
+## 3. tur
+
+Kapsam: yeniden yazılan `m1:h08:g2` (büfe, kahve bitmiş, su). Yalnız `durum_tr` ve `why_tr` okundu. Sayım önceki turlardaki gibi yapıldı: kalın Almanca sayılır.
+
+| öğe kimliği | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| `m1:h08:g2` | `durum_tr` | Sabah istasyondaki büfedesin. Kahve almak istiyorsun ama kahve bitmiş. Satıcı su öneriyor ve fiyatını söylüyor. Suyu al ve fiyatı tekrar ederek doğrula. | İstasyon büfesindeyim, kahve kalmamış. Satıcı su öneriyor ve fiyatını söylüyor. Suyu alacağım ve fiyatı geri söyleyip doğru mu diye soracağım. | GEÇTİ | 4 cümle, en uzunu 7 kelime. Terim ya da sembol yok. Ne yapacağım tek okumada belli. |
+| `m1:h08:g2` | `why_tr` | Kahve yoksa **Dann nehme ich ein Wasser** dersin. Fiyatı **Einen Euro achtzig?** diye tekrar edip doğrularsın. Konuşmada kısaca **eins achtzig** da denir. | Kahve yoksa su alırım derim, fiyatı soru gibi geri söylerim. Ayrıca fiyatın kısa bir söylenişi de varmış. | GERİ | Cümleler 8, 8 ve 6 kelime, uzunluk sorunu yok. Ama alanda iki fikir var. İlk iki cümle ne diyeceğimi anlatıyor. Üçüncü cümle görevle ilgisi olmayan ikinci bir bilgi veriyor: fiyatın kısa söylenişi. Ayrıca "Konuşmada denir" derken bunu duyacak mıyım yoksa ben de söyleyebilir miyim, belli değil. İlk okumada "hangisini söylemeliydim?" diye takıldım. |
+
+### 3. tur sonucu
+
+| | |
+|---|---|
+| Okunan satır | 2 |
+| GEÇTİ | 1 |
+| GERİ | 1 |
+
+GERİ olan kimlik:
+1. `gorulmemis-08.json` `m1:h08:g2.why_tr` (iki fikir; üçüncü cümle ayrı bir bilgi veriyor ve "denir" kimin söyleyeceğini belirsiz bırakıyor)
+
+Genel sonuç: GERİ. `m1:h08:g2.why_tr` geri döndüğü için `gorulmemis-08.json` henüz "reviewed" sayılamaz (OD-9.4). Kapsamdaki diğer satırların (g1 `durum_tr`/`why_tr`, g3 `durum_tr`/`why_tr`, g2 `durum_tr`) GEÇTİ kararı geçerli.
+
+## 4. tur
+
+Kapsam: yalnız `m1:h08:g2.why_tr` (üçüncü cümle çıkarıldı).
+
+| öğe kimliği | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| `m1:h08:g2` | `why_tr` | Kahve yoksa **Dann nehme ich ein Wasser** dersin. Fiyatı **Einen Euro achtzig?** diye tekrar edip doğrularsın. | Kahve kalmamışsa su alırım derim. Sonra fiyatı soru gibi geri söyleyip doğru mu diye bakarım. | GEÇTİ | Cümleler 8 ve 8 kelime. İki cümle de görevin iki adımını anlatıyor: su almak, fiyatı doğrulamak. Ayrı bir bilgi kalmadı. Tırnak, terim ya da sembol yok. 3. turdaki belirsizlik de gitti. |
+
+### 4. tur sonucu
+
+| | |
+|---|---|
+| Okunan satır | 1 |
+| GEÇTİ | 1 |
+| GERİ | 0 |
+
+Genel sonuç: GEÇTİ. Bu PR'ın okur kapsamındaki altı satırın hepsi (`m1:h08:g1`, `m1:h08:g2`, `m1:h08:g3` durumlarının `durum_tr` ve `why_tr` alanları) son hâliyle geçti. `gorulmemis-08.json` için bu kapsamda açık GERİ yok (OD-9.4).

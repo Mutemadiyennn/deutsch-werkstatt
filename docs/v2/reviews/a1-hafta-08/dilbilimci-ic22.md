@@ -33,3 +33,26 @@ Karşılaştırma: `gun-50`…`gun-52` (halkalar, sahne, prova, gun_sinavi).
 
 ## Sonuç
 **DÜZELTİLDİ-ONAY.** 7 bulgu / 3 madde. Diff: 16 ekleme, 8 silme.
+
+## 2. fark turu (inceleme P1-2: g2 51. günle aynı yer ve cevap)
+
+Kapsam: `git diff HEAD`. g2 yeniden yazıldı: istasyon büfesi, kahve bitmiş, su öneriliyor. Ayrıca `gun-51.json` içinde m1:51:v1:c1 ve m1:51:s9 kabul listelerinden birer satır ("Okay, dann nehme ich …") çıkarıldı.
+
+**g2 denetimi**
+- Yeni durum 51. günle örtüşmüyor. 51. günde pazar ve fırın vardı, cevaplar meyve ve ekmekti. Burada istasyon büfesi, kahve ve su var. Kaffee (7. ve 53. gün) ve Wasser (51. gün) biliniyor. "Kahve almak istedim ama bitmiş" gerçek hayatta sık yaşanan bir durum. Önceki turdaki "g2 s9'a yakın" şüphesi kapandı.
+- `Kaffee habe ich leider nicht mehr.` Kütle adında en doğal söyleyiş "keinen Kaffee mehr". Ama öne alınmış bu biçim konuşmada yaygın ve öğretilen kalıbın aynısı (51. gün: "Käse haben wir leider nicht mehr"). Kabul edildi.
+- `Das Wasser kostet einen Euro achtzig.` doğru: miktar ölçüsünde -i hâli (einen). Öğrencinin yankı sorusunda "Einen Euro achtzig?" da "Ein Euro achtzig?" da doğal. Konuşmada en yaygını "eins achtzig". Üçü de listede var.
+- Türkçe metin (durum_tr, why_tr) doğru ve kısa; terim yok, İngilizce köprü yok. Durum can_do ile örtüşüyor: öğrenci başka bir şey seçiyor ve fiyatı doğruluyor.
+
+**Düzeltme**
+
+| alan | önce | sonra | gerekçe |
+|---|---|---|---|
+| g2 accepted | 12 | +3: `Gut, dann nehme ich ein Wasser. Eins achtzig, richtig?` · `Dann nehme ich ein Wasser. Ein Euro achtzig, richtig?` · `Dann ein Wasser, bitte. 1,80 Euro?` | "eins achtzig" yalnız "Hier, bitte" ile bitince kabul ediliyordu; "ein Euro … richtig?" ile tam "Dann nehme ich" birlikte yoktu. Rakamla yazılmış fiyat da yoktu (51. günde rakam varyantları listede). |
+| g2 why_tr | … diye tekrar edip doğrularsın. | + `Konuşmada kısaca **eins achtzig** da denir.` | Satıcıdan duyacağı en yaygın biçimi tanıtır; dinlemede işe yarar. |
+
+**gun-51 çıkarmaları:** Çıkarılan iki satır dilbilgisi açısından doğruydu. Değerlendirici bu cümleleri listede olmasalar da doğru sayıyor (koordinatör denedi). Bu yüzden haksız ret riski yok. İki listede de ≥ 3 varyant kalıyor (13 ve 12). Onaylandı.
+
+**Doğrulama:** `wtE` → hafta kapısı **GEÇTİ**, görülmemiş **6/6**, sınanmayan can_do yok, öğretilmeden istenen 0. `content:validate` 0 hata verdi. JSON biçimi korundu.
+
+**Sonuç: DÜZELTİLDİ-ONAY.** 2. turda 2 bulgu / 1 madde (+3 satır, 1 satır değişti).
