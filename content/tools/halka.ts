@@ -1,6 +1,6 @@
 /**
  * AKIS AK-10 1. adım (PM #160 7042498589): `halkalar` şeması denetimi + cümle kapısı sayacı (AK-3).
- *  - `halkalar` olan günde (hata): halka kartları = yeni_kartlar; halka başına 4–6 kart; görev cümlesinde bilinmeyen 0 ve
+ *  - `halkalar` olan günde (hata): halka kartları = yeni_kartlar; halka başına 2–6 kart (PM-098 md. 2: tek kartlık halka yok); görev cümlesinde bilinmeyen 0 ve
  *    kartın kelimesi geçer; sahne satırında bilinmeyen ≤ 1; her kartın kapıdan geçen en az 2 görev cümlesi var.
  *  - Bütün günler için sayaç (uyarı): günün görev cümlelerinde (öğrencinin ürettiği) bilinmeyen > 0 sayısı ve kapıdan geçen
  *    örnek/boşluk cümlesi olmayan kartlar. Sayım İÇ'in "B" kipiyle aynı: günün dersleri yapılmış, günün kartları tanıtılmış.
@@ -8,8 +8,9 @@
  */
 import { bilinmeyenler, bilinmeyenYazi, kalipSecenekleri, toks, type Drill, type Gun, type KumeDizini, type TemelDers } from "../../packages/shared/src/index.ts";
 
+import { tabloDolgusu, type KesinTablo } from "./ktablo.ts";
 import POLICY from "../../web/src/policy.json" with { type: "json" };
-/** policy.json → akis.halka_kart (AK-8; PM 7043401257) */
+/** policy.json → akis.halka_kart (AK-8; PM 7043401257; PM-098 md. 2 / PM-100 md. 1: [2, 6] sınırdır, formül değil) */
 export const HALKA_KART = POLICY.akis.halka_kart as [number, number];
 const GOREV_MIN = 2;
 
@@ -43,10 +44,19 @@ export function gunCumleleri(g: Gun, dersler: Map<string, TemelDers>): Cumle[] {
 
 export interface HalkaSonuc { errors: string[]; warnings: string[]; sayac: { gun: number; gorev: number; ihlal: number; kartsiz: string[] }[] }
 
-export function halkaDenetle(gunler: { file: string; data: Gun }[], dersler: Map<string, TemelDers>, d: KumeDizini): HalkaSonuc {
+/**
+ * `tablo`: kesin kelime tabloları (ktablo.ts). Önceki günün dosyası yoksa o günün kartları, çerçeve sözcükleri ve dersleri K(t)'ye
+ * tablodan girer (PM-092 md. 3.2); dosyası olan gün her zaman dosyadan okunur.
+ */
+export function halkaDenetle(gunler: { file: string; data: Gun }[], dersler: Map<string, TemelDers>, d: KumeDizini, tablo?: KesinTablo): HalkaSonuc {
   const errors: string[] = [], warnings: string[] = [], sayac: HalkaSonuc["sayac"] = [];
   const oncekiKart = new Set<string>(), oncekiDers = new Set<string>();
+  const dolgu = tabloDolgusu(gunler.map((x) => x.data.day), tablo);
   for (const { file, data: g } of [...gunler].sort((a, b) => a.data.day - b.data.day)) {
+    for (const t of dolgu.get(g.day) ?? []) {
+      for (const c of [...t.kartlar, ...t.cerceve]) oncekiKart.add(c);
+      for (const id of t.dersler) { oncekiDers.add(id); for (const c of d.dersler.get(id)?.kart ?? []) oncekiKart.add(c); }
+    }
     const bugunDers = new Set(g.dersler);
     const bugunDersKart = new Set(g.dersler.flatMap((id) => [...(d.dersler.get(id)?.kart ?? [])]));
     // --- halkalar (hata) ---

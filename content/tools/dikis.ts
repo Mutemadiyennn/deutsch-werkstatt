@@ -1,6 +1,6 @@
 /**
  * Dikiş denetçisi (PM-090 md. 2.1; PM kararı 7087835391 md. 2: "tablo haftayı sabitler, günü değil"). Yapay zekâsız, saf.
- * Kaynaklar: `content/v2/curriculum/a1-kesin.json` (1.–7. gün `ogretilmis_sayilan.gunler`, sonrası `gunler[]`),
+ * Kaynaklar: `content/v2/curriculum/{a1,a2,b1}-kesin.json` birleşimi (ktablo.ts `kesinTabloBirlesik`; 1.–7. gün a1 `ogretilmis_sayilan.gunler`, sonrası `gunler[]`),
  * `content/v2/curriculum/omurga.json` (gün → dersler), `content/v2/m1/gun-NN.json` (ŞEMASIZ okunur: şema 8. günü kabul etmese de koşar).
  *
  * Kurallar (her biri ayrı sayılır; toplam ihlal 0 olmalı):

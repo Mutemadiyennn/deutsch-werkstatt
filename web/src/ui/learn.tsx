@@ -1,7 +1,7 @@
 import { fotoHaritasi, loadFoto, type FotoKayit } from "../services/content.ts";
 /** Oynatıcının ortak parçaları: cevap kutusu, karar gösterimi, "Bu ne demek?", "Almanca nasıl derim?", "Duyduğum kelime", fotoğraf */
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
-import type { Lexeme, PhotoResult } from "@dw/shared";
+import type { Chunk, Lexeme, Pattern, PhotoResult } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { ai, aiState } from "../services/ai.ts";
 import { ApiError } from "../services/api.ts";
@@ -14,22 +14,25 @@ import { addClaim, addPersonal, cacheGet, cachePut } from "../data/db.ts";
 import { noktadakiKelime, yerelAcikla, type YerelAciklama } from "../core/sozluk.ts";
 import { loadLexicon } from "../services/content.ts";
 
-/** Cihazdaki sözlük (içerik paketi; çevrimdışı da var). Yüklenemezse boş liste: "Bu ne demek?" yine yapay zekâya sorabilir */
-function useSozluk(): Lexeme[] | null {
-  const [lex, setLex] = useState<Lexeme[] | null>(null);
+/** Cihazdaki sözlük ve kalıplar (içerik paketi; çevrimdışı da var). Yüklenemezse boş: "Bu ne demek?" yine yapay zekâya sorabilir */
+function useSozluk(): { lexemes: Lexeme[]; patterns: Pattern[] } | null {
+  const [lex, setLex] = useState<{ lexemes: Lexeme[]; patterns: Pattern[] } | null>(null);
   useEffect(() => {
     let canli = true;
     // sözlük 8 sn'de gelmezse boş listeyle devam (yapay zekâya sorma yolu açık kalır; inceleme #76 P2)
-    const t = setTimeout(() => { if (canli) setLex((l) => l ?? []); }, 8000);
-    loadLexicon().then((x) => { if (canli) setLex(x.lexemes); }, () => { if (canli) setLex((l) => l ?? []); }).finally(() => clearTimeout(t));
+    const t = setTimeout(() => { if (canli) setLex((l) => l ?? { lexemes: [], patterns: [] }); }, 8000);
+    loadLexicon().then((x) => { if (canli) setLex({ lexemes: x.lexemes, patterns: x.patterns }); }, () => { if (canli) setLex((l) => l ?? { lexemes: [], patterns: [] }); }).finally(() => clearTimeout(t));
     return () => { canli = false; clearTimeout(t); };
   }, []);
   return lex;
 }
 
 function YerelCevap({ a }: { a: YerelAciklama }) {
-  if (a.kaynak === "kelimeler") return <div data-test="yerel-kelimeler">{a.kelimeler!.map((k) => <div><b lang="de">{k.art ? `${k.art} ` : ""}{k.de}</b> — {k.tr}</div>)}</div>;
-  return <div data-test="yerel-cevap"><b lang="de">{a.art ? `${a.art} ` : ""}{a.de}</b> — {a.tr}{a.kart && <span class="muted"> ({a.kart})</span>}</div>;
+  if (a.kaynak === "kelimeler") return <div data-test="yerel-kelimeler">
+    {/* kalıp bütün olarak (ör. Grüß Gott = merhaba), sonra kalan kelimeler (PM finali #218) */}
+    {a.ifadeler?.map((k) => <div data-test="yerel-ifade"><b lang="de">{k.de}</b> — {k.tr}{k.not && <span class="muted"> · {k.not}</span>}</div>)}
+    {a.kelimeler!.map((k) => <div><b lang="de">{k.art ? `${k.art} ` : ""}{k.de}</b> — {k.tr}</div>)}</div>;
+  return <div data-test="yerel-cevap"><b lang="de">{a.art ? `${a.art} ` : ""}{a.de}</b> — {a.tr}{a.not && <span class="muted"> · {a.not}</span>}{a.kart && <span class="muted"> ({a.kart})</span>}</div>;
 }
 
 /** Yazı ya da konuşma ile cevap (tasarım sistemi: AnswerField) */
@@ -71,19 +74,19 @@ export function VerdictView({ v, answer, onNext, onClaim, itemId, scenarioId, pr
  * "Bu ne demek?" — puan düşürmez; konuşma/akış kaldığı yerden sürer. #58 A11: cevap önce cihazdaki sözlükten (ifade, kelime,
  * cümlede kelime kelime); yapay zekâ yalnızca yerel cevap yoksa ya da cümlenin tamamı istenirse, ad maskelenerek (D-061).
  */
-export function ExplainBtn({ de, context, onAsked, acik: ilk = false }: { de: string; context?: string; onAsked?: (de: string) => void; acik?: boolean }) {
+export function ExplainBtn({ de, context, onAsked, acik: ilk = false, chunks }: { de: string; context?: string; onAsked?: (de: string) => void; acik?: boolean; /** oynatılan senaryonun iletişim kalıpları: cümledeki kalıp bütün açıklanır */ chunks?: Chunk[] }) {
   const { api, profile } = useApp();
   const lex = useSozluk();
   const [acik, setAcik] = useState(ilk);
-  const [st, setSt] = useState<{ busy?: boolean; out?: { tr: string; note_tr: string }; err?: string } | null>(null);
-  const yerel = useMemo(() => (acik && lex ? yerelAcikla(de, lex) : null), [acik, lex, de]);
+  const [st, setSt] = useState<{ busy?: boolean; out?: { tr: string; note_tr: string }; err?: string; yeniden?: boolean } | null>(null);
+  const yerel = useMemo(() => (acik && lex ? yerelAcikla(de, lex.lexemes, { chunks, patterns: lex.patterns }) : null), [acik, lex, de, chunks]);
   useEffect(() => { setAcik(ilk); setSt(null); }, [de]);
   const sor = async () => {
     if (!aiState(api).available) { setSt({ err: aiState(api).reason }); return; }
     setSt({ busy: true });
     const persona = { name: profile.displayName, address: profile.address };
     try { const o = await ai(api, "explain_tr", { de: redact(de, persona).slice(0, 120), context: context ? redact(context, persona).slice(0, 400) : undefined }); setSt({ out: o }); }
-    catch (e) { setSt({ err: e instanceof ApiError ? e.message_tr : "Açıklama alınamadı." }); }
+    catch (e) { setSt({ err: e instanceof ApiError ? e.message_tr : "Açıklama alınamadı.", yeniden: !(e instanceof ApiError) || e.retryable }); }
   };
   const tamCevap = !!yerel && yerel.kaynak !== "kelimeler";
   return (
@@ -92,7 +95,8 @@ export function ExplainBtn({ de, context, onAsked, acik: ilk = false }: { de: st
       {acik && <div class="fb info small stack" style={{ marginTop: 6 }} data-test="explain-out">
         {!lex ? "Sözlük açılıyor…" : yerel ? <YerelCevap a={yerel} /> : !st && <div data-test="yerel-yok">Cihazdaki sözlükte yok.{!aiState(api).available && <> {aiState(api).reason}</>}</div>}
         {lex && !st && aiState(api).available && <button class="btn ghost sm" onClick={sor} data-test="explain-ai">{!yerel ? "Öğretmene sor" : tamCevap ? "Bu cümlede ne demek? Öğretmene sor" : "Cümlenin tamamını öğretmene sor"}</button>}
-        {st && <div>{st.busy && "Açıklanıyor…"}{st.out && <><b>{st.out.tr}</b> — {st.out.note_tr}</>}{st.err && st.err}</div>}
+        {st && <div>{st.busy && "Açıklanıyor…"}{st.out && <><b>{st.out.tr}</b>{st.out.note_tr && <> — {st.out.note_tr}</>}</>}{st.err && <span role="alert" data-test="explain-err">{st.err}</span>}</div>}
+        {st?.err && st.yeniden && aiState(api).available && <button class="btn ghost sm" onClick={sor} data-test="explain-retry">Tekrar dene</button>}
         {!ilk && <button class="btn ghost sm" onClick={() => { setAcik(false); setSt(null); }}>Kapat</button>}</div>}
     </span>
   );

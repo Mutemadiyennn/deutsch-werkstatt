@@ -16,7 +16,7 @@
   "2. Hafta: omurganın her k1_aralik grubu için o grubun, sıra aralığındaki, öğretilmemiş, daha önce atanmamış, takvim kolunda olmayan kartları; K1 sırasıyla; adet kadar. r0 grubu r0:* gruplarının tamamıdır. 2. haftanın ilk grubu omurganın 8. gün listesidir.",
   "3. Gün: gunler[].kelime.adet kadar. Önce günün başlığında ya da derslerinin grammar.json kaydında (başlık, tablo, örnek cümle; Türkçe açıklama sayılmaz) tam sözcük olarak geçen kartlar ve dersin K1 grubundaki kartlar (r0:10-buchstabieren ↔ r0:heceleme), en erken uyan güne; kalanı K1 sırasıyla, gün sırasıyla. 8. gün omurgadaki listesinin kalanını öğretir.",
   "4. Dilbilimci gün sırası denetimi: bulgular yalnız aynı hafta içinde gün değiştirerek düzeltilir (duzeltmeler alanı).",
-  "5. Kart ve çerçeve (PM 7088230583 md. 1, PM-047 §2): kartlar = kartMi (card:false değil ve tür det/pron/conj/prep/particle/num değil) ya da sözlükte henüz kaydı olmayan kimlik; cerceve = öteki işlev sözcükleri. Hafta kümesi kuralı yalnız kartlar içindir. cerceve sözcüğü yeni_kartlar'a yazılmaz, ama o hafta bir kalıpta ya da dil noktasında gösterilmeden kullanılamaz. Boşalan yer doldurulmaz; planlanan_yeni üst sınırdır. sozlukte_yok: registry/lexicon/batch-*.json içinde derin kaydı olmayan kimlik (3. haftanın 4'ünden Anrufbeantworter'in yalnız v1 aktarım kaydı var, lexemes.v1.json; Durchwahl, Rückruf, Warteschleife yalnız domains/telefon/proposals.json'da yazar önerisi; 5. haftanın 9'unun hiçbir kaydı yok); işaretli kimlik (kimlik_isaretleri) lex kaydı girene kadar günün en sonuna bırakılır."
+  "5. Kart ve çerçeve (PM 7088230583 md. 1, PM-047 §2): kartlar = kartMi (card:false değil ve tür det/pron/conj/prep/particle/num değil) ya da sözlükte henüz kaydı olmayan kimlik; cerceve = öteki işlev sözcükleri. Hafta kümesi kuralı yalnız kartlar içindir. cerceve sözcüğü yeni_kartlar'a yazılmaz, ama o hafta bir kalıpta ya da dil noktasında gösterilmeden kullanılamaz. Boşalan yer doldurulmaz; planlanan_yeni üst sınırdır. sozlukte_yok: registry/lexicon/batch-*.json içinde derin kaydı olmayan kimlik; işaretli kimlik (kimlik_isaretleri) lex kaydı girene kadar günün en sonuna bırakılır. Şu an 0: tablodaki 13 kimlik batch-015 ile sözlüğe girdi (İÇ-K2)."
  ],
  "takaslar": {
   "not_tr": "main'deki gun-0N.json dosyalarında takas yok; bilinen takaslar halka dalında duruyor (PM-090 md. 1: tablo onları hesaba katar). one_gelen kartlar 1. haftada öğretilmiş sayılır ve 8. günden düşer. hafta_ici takaslar 1. haftanın içinde kalır, tabloyu değiştirmez.",
@@ -632,12 +632,7 @@
     "lx:jeder",
     "lx:zur"
    ],
-   "sozlukte_yok": [
-    "lx:Anrufbeantworter",
-    "lx:Durchwahl",
-    "lx:Rückruf",
-    "lx:Warteschleife"
-   ]
+   "sozlukte_yok": []
   },
   {
    "no": 4,
@@ -950,17 +945,7 @@
     "lx:beim",
     "lx:bisschen"
    ],
-   "sozlukte_yok": [
-    "lx:Vorgesetzte",
-    "lx:Lohn",
-    "lx:Gehaltsabrechnung",
-    "lx:Schichtplan",
-    "lx:Bahnsteig",
-    "lx:Fahrplan",
-    "lx:Abfahrt",
-    "lx:Fahrschein",
-    "lx:Zugausfall"
-   ]
+   "sozlukte_yok": []
   },
   {
    "no": 6,
@@ -1619,11 +1604,7 @@
    "cerceve": [
     "lx:am"
    ],
-   "sozlukte_yok": [
-    "lx:Anrufbeantworter",
-    "lx:Durchwahl",
-    "lx:Rückruf"
-   ]
+   "sozlukte_yok": []
   },
   {
    "day": 18,
@@ -1656,9 +1637,7 @@
     "lx:denn",
     "lx:zum"
    ],
-   "sozlukte_yok": [
-    "lx:Warteschleife"
-   ]
+   "sozlukte_yok": []
   },
   {
    "day": 19,
@@ -2018,10 +1997,7 @@
    ],
    "cerceve_adet": 0,
    "cerceve": [],
-   "sozlukte_yok": [
-    "lx:Vorgesetzte",
-    "lx:Lohn"
-   ]
+   "sozlukte_yok": []
   },
   {
    "day": 31,
@@ -2053,15 +2029,7 @@
    ],
    "cerceve_adet": 0,
    "cerceve": [],
-   "sozlukte_yok": [
-    "lx:Gehaltsabrechnung",
-    "lx:Schichtplan",
-    "lx:Bahnsteig",
-    "lx:Fahrplan",
-    "lx:Abfahrt",
-    "lx:Fahrschein",
-    "lx:Zugausfall"
-   ]
+   "sozlukte_yok": []
   },
   {
    "day": 32,
@@ -2858,73 +2826,7 @@
   "ust_siniri_asan_hafta": 0,
   "kart_toplam": 471,
   "cerceve_toplam": 60,
-  "sozlukte_olmayan": 13
+  "sozlukte_olmayan": 0
  },
- "kimlik_isaretleri": {
-  "lx:Anrufbeantworter": {
-   "sozlukte_yok": true,
-   "hafta": 3,
-   "gun": 17
-  },
-  "lx:Durchwahl": {
-   "sozlukte_yok": true,
-   "hafta": 3,
-   "gun": 17
-  },
-  "lx:Rückruf": {
-   "sozlukte_yok": true,
-   "hafta": 3,
-   "gun": 17
-  },
-  "lx:Warteschleife": {
-   "sozlukte_yok": true,
-   "hafta": 3,
-   "gun": 18
-  },
-  "lx:Vorgesetzte": {
-   "sozlukte_yok": true,
-   "hafta": 5,
-   "gun": 30
-  },
-  "lx:Lohn": {
-   "sozlukte_yok": true,
-   "hafta": 5,
-   "gun": 30
-  },
-  "lx:Gehaltsabrechnung": {
-   "sozlukte_yok": true,
-   "hafta": 5,
-   "gun": 31
-  },
-  "lx:Schichtplan": {
-   "sozlukte_yok": true,
-   "hafta": 5,
-   "gun": 31
-  },
-  "lx:Bahnsteig": {
-   "sozlukte_yok": true,
-   "hafta": 5,
-   "gun": 31
-  },
-  "lx:Fahrplan": {
-   "sozlukte_yok": true,
-   "hafta": 5,
-   "gun": 31
-  },
-  "lx:Abfahrt": {
-   "sozlukte_yok": true,
-   "hafta": 5,
-   "gun": 31
-  },
-  "lx:Fahrschein": {
-   "sozlukte_yok": true,
-   "hafta": 5,
-   "gun": 31
-  },
-  "lx:Zugausfall": {
-   "sozlukte_yok": true,
-   "hafta": 5,
-   "gun": 31
-  }
- }
+ "kimlik_isaretleri": {}
 }
