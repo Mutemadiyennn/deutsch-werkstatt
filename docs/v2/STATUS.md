@@ -11,6 +11,10 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 - **GitHub Actions bu depoda GitHub tarafından kapalı** (16:53 UTC'den beri). Kabul **KAPI oturumunda** (PM 7047288255): temiz worktree, `ci-v2.yml` sırası, WebKit üç cihaz; PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI". Ortak betik `scripts/kapi.sh` (dal `kapi/betik`). Yayın ve medya hatları durdu; kod PR'ları KAPI sırasıyla birleşir.
 - **Hedef ekranlar:** `design/TARGET3c` (kalıp, yapboz + K10, söyle, gün sonu sınaması, Yol, Bahçe boş hâli; TASARIM "Hedef 3c").
 
+## Hat F (ANA-F7): Köy listeleri haftaya göre katlanır (PM-122 md. 2.1; 2026-11-24)
+- Dal `v2/koy-hafta-katla`. Sinema, Radyo, Kütüphane (okuma), Pazar meydanı (prova): listedeki son hafta açık, öbür haftalar tek satır (dokununca açılır); son 4 haftadan eskisi tek "1.–N. hafta" satırında (`haftaKatla`, `YAKIN_HAFTA`). "Yalnız açılmış günler" kuralı (#224) aynen. 52 haftalık fikstürde dört sayfa gezgin sınırının (80) altında (`koy.test.ts`); e2e `v2_koy_hafta.py`.
+- Takip: plan yalnız içinde bulunulan haftanın gün dosyasını yüklediği için (#243) önceki haftaların okuma ve provası Kütüphane/Pazar'da görünmüyor (katlama hazır, veri yok).
+
 ## Hat F (ANA-F4): sınav günü uçtan uca (PM-110, PM-112 B; 2026-11-23)
 - Dal `v2/sinav-gunu` (yığın #231 → #243 → #244 + main). `Gun.sinav_bolumler` (55: dinleme + okuma, 56: yazma + konuşma), `Deneme` şeması (`packages/shared/src/deneme.ts`, assess/*.json; pakette `index.files.deneme`), doğrulayıcı (bölüm denemede yok / iki günde aynı / hiç açılmıyor hata; sınav gününde medya, prova, gün sınavı hata), dikiş (sınav günü halkasız geçerli), hafta kapısı (sınav gününün can_do'su denemeyle sınanır).
 - Uygulama: sınav günü tek adım "Deneme sınavı" (`#/sinav/<gün>`, `#/sinav/<gün>/<bölüm>`); gün yalnız o günün bölümleri bitince biter (`m1:sinav:<deneme>:<bölüm>`); deneme ekranı ayrı parçada. Sınama `tests/e2e/v2_sinav.py`.
