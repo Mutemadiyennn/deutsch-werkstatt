@@ -178,7 +178,7 @@ jobs:
       - name: "Akış bayrağı 'hepsi' (PM-090 md. 3): 1. gün bitince 2. günün BAŞLA'sı akışa gider; [1] ve [] ile eski düzen"
         run: cd tests/e2e && python v2_akis_hepsi.py
       - name: "Dil noktası durağı (PM-092 md. 1, #231): paketteki bütün dil noktaları telefonda sığar, tablo bölünmez, sesli örnekler, tek 'Anladım'"
-        run: cd tests/e2e && python v2_dil_noktasi.py --shots /tmp/shots && python v2_dil_noktasi.py --ts 1.3 && python v2_dil_noktasi.py --genislik 320
+        run: cd tests/e2e && python v2_dil_noktasi.py --shots /tmp/shots && python v2_dil_noktasi.py --ts 1.3 && python v2_dil_noktasi.py --genislik 320 && python v2_dil_noktasi.py --ts 1.3 --genislik 320
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4
