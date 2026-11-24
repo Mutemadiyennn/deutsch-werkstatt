@@ -218,6 +218,7 @@ onceki_kart, onceki_bicim, onceki_derskart, onceki_ders = set(), set(), set(), s
 for g in gunler:
     bugun_bicim, bugun_derskart = set(), set()
     for did in g.get('dersler', []):
+        if did not in dersler: continue   # gr:/dn: dil noktası durağı temel ders değil (İÇ-7, 2. hafta)
         b, k = ders_bicim(dersler[did]); bugun_bicim |= b; bugun_derskart |= k
     tanitilan = set()
     for cid in g['yeni_kartlar']:
@@ -243,7 +244,7 @@ for g in gunler:
             kayit[ad] = {'ornek_0': o0, 'ornek_le1': o1, 'bosluk_0': b0, 'ornek_bilinmeyen': ornek_bil, 'bosluk_bilinmeyen': bos_bil}
         sonuc['kartlar'].append(kayit)
     bk = onceki_kart | onceki_derskart | bugun_derskart | tanitilan; bb = onceki_bicim | bugun_bicim
-    cs = gun_cumleleri(g) + [x for did in g.get('dersler', []) for x in ders_cumleleri(dersler[did])]
+    cs = gun_cumleleri(g) + [x for did in g.get('dersler', []) if did in dersler for x in ders_cumleleri(dersler[did])]
     gk = []
     for yer, tur, s in cs:
         if not s: continue
