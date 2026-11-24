@@ -1,6 +1,6 @@
 /**
  * Dikiş denetçisi (PM-090 md. 2.1; PM kararı 7087835391 md. 2: "tablo haftayı sabitler, günü değil"). Yapay zekâsız, saf.
- * Kaynaklar: `content/v2/curriculum/a1-kesin.json` (1.–7. gün `ogretilmis_sayilan.gunler`, sonrası `gunler[]`),
+ * Kaynaklar: `content/v2/curriculum/{a1,a2,b1}-kesin.json` birleşimi (ktablo.ts `kesinTabloBirlesik`; 1.–7. gün a1 `ogretilmis_sayilan.gunler`, sonrası `gunler[]`),
  * `content/v2/curriculum/omurga.json` (gün → dersler), `content/v2/m1/gun-NN.json` (ŞEMASIZ okunur: şema 8. günü kabul etmese de koşar).
  *
  * Kurallar (her biri ayrı sayılır; toplam ihlal 0 olmalı):
@@ -23,7 +23,7 @@
  *      `teach`'i ve tablosu) ya da sunulmuş DİL NOKTASININ TABLOSU (`gr:` grammar.json, `dn:` dn-HH.json; tablodaki bütün biçimler).
  *      Gösterilmiş kalıbın BÜTÜNÜ içinde geçen çerçeve sözcüğü kullanılmış sayılmaz. Kısıt o haftanın ve sonraki haftaların listesindedir;
  *      önceki haftaların çerçevesi bilinir (paralel hatta önceki haftanın dosyaları dalda olmayabilir; o haftayı kendi koşusu denetler). Tablo listeyi `haftalar[].cerceve` (`no` = hafta) ya da `gunler[].cerceve` ile verir.
- *  (biçim) 8. gün ve sonrası halka biçiminde olmalı (`halkalar` boş olamaz); hiç gün denetlenmezse ihlal. `day` tamsayı değilse ya da
+ *  (biçim) 8. gün ve sonrası halka biçiminde olmalı (`halkalar` boş olamaz; sınav günü (`sinav` bağı) halkasızdır); hiç gün denetlenmezse ihlal. `day` tamsayı değilse ya da
  *      dosya adındaki gün (`gun-NN.json`) `day` ile tutmazsa ihlal (sessizce düşülmez; inceleme #199 2. tur takibi).
  * Kalıp örtüsü KONUMA göredir (inceleme #199 2. tur takibi): kalıbın kapsadığı geçiş örtülür, aynı sözcüğün kalıp dışındaki geçişi değil.
  * 1. haftanın halkasız (eski biçim) günleri "atlandı" görünür ve sayılmaz; `tum: true` ile denetlenir. Böyle bir gün varken
@@ -80,7 +80,7 @@ export function dilNoktasiMetni(n: unknown): string[] {
 }
 
 /** bilinmeyenler()'in kendi içinde örttüğü konumlar (aynı kurallar: halkanın kalıpları, biten derslerin kalıpları, bilinen kartların çok sözcüklü başlıkları) */
-function icOrtu(d: KumeDizini, tt: readonly string[], k: Bilinen): Set<number> {
+export function icOrtu(d: KumeDizini, tt: readonly string[], k: Bilinen): Set<number> {
   const kart = new Set(k.kart); for (const id of k.biten) for (const x of d.dersler.get(id)?.kart ?? []) kart.add(x);
   const duz: (readonly string[])[] = [...(k.kaliplar ?? [])];
   for (const id of k.biten) duz.push(...(d.dersler.get(id)?.kaliplar ?? []));
@@ -145,7 +145,7 @@ export function acikEsdizimler(l: Pick<Lexeme, "de" | "art" | "forms" | "colloca
     .sort((a, b) => b.p - a.p || a.k - b.k).slice(0, 3).map((x) => x.c.de);
 }
 /** Gösterilmiş kalıplar: bilinen kartların açık eşdizimleri + biten temel derslerin çok sözcüklü `exp.parcalar`ı */
-function gosterilenKaliplar(d: KumeDizini, kartlar: Iterable<string>, biten: Iterable<string>, dersler?: ReadonlyMap<string, TemelDers>): string[][] {
+export function gosterilenKaliplar(d: KumeDizini, kartlar: Iterable<string>, biten: Iterable<string>, dersler?: ReadonlyMap<string, TemelDers>): string[][] {
   const r: string[][] = [];
   for (const id of kartlar) { const l = d.kartlar.get(id); if (l) for (const c of acikEsdizimler(l)) r.push(...kalipSecenekleri(c).filter((x) => x.length > 1)); }
   for (const id of biten) for (const t of dersler?.get(id)?.teach ?? []) {
@@ -251,10 +251,15 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
     }
     const atla = (neden: string) => { satir.durum = "atlandı"; satir.neden = neden; for (const m of adUyumsuz.get(n) ?? []) satir.not.push(`biçim (sayılmadı): ${m}`); satirlar.push(satir); };
     if (g.sadece?.length && !g.sadece.includes(n)) { atla("seçilmedi"); continue; }
-    if (!halkalar.length) {
+    // sınav günü (PM-101 md. 5, PM-110): kartsız, dersiz, halkasız; o gün deneme açılır. Halka biçimi istenmez, kart/ders kuralları aynen
+    // sayılır (tabloda o gün 0 kart, omurgada 0 ders olmalı; haftalık küme eşitliği sınav gününü boş sayar)
+    const sinav = typeof gun.sinav === "string" ? gun.sinav : null;
+    if (sinav) satir.not.push(`sınav günü (${sinav}${dizi(gun.sinav_bolumler).length ? `: ${yazilar(gun.sinav_bolumler).join(", ")}` : ""})`);
+    if (!halkalar.length && !sinav) {
       if (n <= 7 && !g.tum) { atla("1. hafta, halkasız (eski biçim)"); continue; }
       if (n > 7) ihlal(satir, "bicim", "halkalar", "halka biçimi yok (8. günden sonra zorunlu)");
     }
+    if (sinav && halkalar.length) ihlal(satir, "bicim", "halkalar", `sınav günü halkasızdır (${halkalar.length} halka)`);
     for (const m of adUyumsuz.get(n) ?? []) ihlal(satir, "bicim", file, m);
     const yeni = yazilar(gun.yeni_kartlar);
 

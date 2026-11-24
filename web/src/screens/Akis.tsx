@@ -7,26 +7,28 @@
  * `policy.akis.gunler` bayrağı ve Yol/Bugün bağlaması, kart kayıtları `srs.review` (source "drill", session "akis@…"),
  * halka sonu ekranı (TARGET3b 6), mini sahne (Ders `Diyalog`), seans halkası (K9).
  */
-import { useEffect, useMemo, useRef, useState } from "preact/hooks";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Rich } from "../ui/rich.tsx";
-import { hucreDili, tabloBol } from "../core/tablo.ts";
+import { hucreDili, sikTablo, tabloBol } from "../core/tablo.ts";
 import { bilinmeyenler, kalipOrtu, kalipSecenekleri, kalipToks, kumeDizini, toks, YUVA, type Drill, type Lexeme, type LearnerItem } from "@dw/shared";
-import { loadFoto, loadGenelAdlar, loadResim, loadIndex, loadLexicon, loadM1Gun, loadTemeller, loadWorld, type FotoKayit } from "../services/content.ts";
+import { loadDilNoktalari, loadFoto, loadGenelAdlar, loadResim, loadLexicon, loadM1Gun, loadTemeller, loadWorld, type FotoKayit } from "../services/content.ts";
+import { oncekiBilinen } from "../services/onceki.ts";
 import { getMeta, itemsMap, putItems, setMeta } from "../data/db.ts";
 import { review } from "../core/srs.ts";
 import { adimXpVer, bahceTamam, gunBittiYaz, soruXpVer } from "../services/ilerleme.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { useApp } from "../state.ts";
-import { akisGunu, GUN_SINAVI, KIP, planGun } from "../core/akis.ts";
+import { akisGunu, DIL_NOKTASI, GUN_SINAVI, KIP, planGun } from "../core/akis.ts";
 import { akisAnahtar, yeniKayit } from "../core/akisKayit.ts";
 import { ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
 import type { Adim, Durak } from "../core/akis.ts";
 import { durakGecisi, halkaOzeti, ilerle, seansDurumu, simdiki, type AkisKaydi } from "../core/akisKayit.ts";
-import { resimSecenekleri } from "../core/halkaTur.ts";
+import { ESLESTIR_EN_AZ, resimSecenekleri } from "../core/halkaTur.ts";
+import { ikinciTurVar, ilerlemeAnahtari } from "../core/medya.ts";
 import { ResimSec } from "../ui/soru/ResimdenSec.tsx";
 import { Eslestir } from "../ui/soru/Eslestir.tsx";
-import { ActionBar } from "../ui/kit.tsx";
+import { ActionBar, ListenButton } from "../ui/kit.tsx";
 import { Question } from "../ui/soru/Soru.tsx";
 import { DrillView } from "../ui/drill.tsx";
 import { BoslukAdimi, KalipAdimi, SahneAdimi, TanitAdimi, UretAdimi, YapbozAdimi, type CumleBilgi, type SahneVeri } from "../ui/soru/AkisAdim.tsx";
@@ -53,7 +55,10 @@ export interface AkisOynaticiProps {
 export interface DurakHedef { href: string; /** hepsi bitince durak biter (ses durağında günün bütün sesleri) */ anahtarlar: string[] }
 
 /** Planın cümlesinden ekranda çözülenler: Türkçe + kabul (halka görev cümleleri → kart örnekleri), kalıbın Türkçesi, K10 ipucu */
-export interface AkisBaglam { gorev: (dersId: string) => string | undefined; hatirlatma: (dersId: string, adimId: string) => { de: string; tr: string }[]; adGerekli: (a: Adim) => boolean; tablo: (dersId: string) => { baslik_tr: string; sutunlar: string[]; satirlar: string[][] } | undefined; kalipOrnek: (kalip: string, d: Durak, adimId: string) => CumleBilgi[]; yakin: (adimId: string, d: Durak) => Yakinlik; teach: (dersId: string, oge: string) => { de: string; tr: string; ipucu?: string } | undefined; hedef: (d: Durak) => DurakHedef | null; cumle: (de: string) => CumleBilgi; sahne: (satirlar: string[]) => SahneVeri | undefined; isaretli: (de: string, adimId: string) => { sozcuk: string; tr?: string }[]; vurgu: (kart: string) => string[]; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void }
+/** Dil noktası durağının gövdesi (grammar.json / dn-HH.json biçimi; PM-092 md. 1) */
+export interface DilNoktasiVeri { h_tr: string; tr: string; table?: { head: string[]; rows: string[][] }; ex: { de: string; tr: string }[] }
+
+export interface AkisBaglam { dilNoktasi: (id: string) => DilNoktasiVeri | undefined; gorev: (dersId: string) => string | undefined; hatirlatma: (dersId: string, adimId: string) => { de: string; tr: string }[]; adGerekli: (a: Adim) => boolean; tablo: (dersId: string) => { baslik_tr: string; sutunlar: string[]; satirlar: string[][] } | undefined; kalipOrnek: (kalip: string, d: Durak, adimId: string) => CumleBilgi[]; yakin: (adimId: string, d: Durak) => Yakinlik; teach: (dersId: string, oge: string) => { de: string; tr: string; ipucu?: string } | undefined; hedef: (d: Durak) => DurakHedef | null; cumle: (de: string) => CumleBilgi; sahne: (satirlar: string[]) => SahneVeri | undefined; isaretli: (de: string, adimId: string) => { sozcuk: string; tr?: string }[]; vurgu: (kart: string) => string[]; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void }
 
 export function AkisOynatici({ kayit, lex, harita, emojiHarita, baglam, kaydet, cik }: AkisOynaticiProps) {
   const [neden, setNeden] = useState(false);
@@ -115,7 +120,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, emojiHarita, baglam, tohum, b
   if (adli) return null;
   // adımsız durak (ses, video, prova, okuma): var olan ekrana gider, dönüşte akış ilerler (AK-6)
   if (durakGecisi(adim)) return <DurakGecis adim={adim} tur={durakOf(adim).tur} baslik={durakOf(adim).title_tr} dk={durakOf(adim).tahmini_dk} hedef={baglam.hedef(durakOf(adim))} bitir={() => bitir([], true)} />;
-  if (adim.tur === "eslestir" && kartlar.length >= 4) return <Eslestir kartlar={kartlar} tohum={tohum} onBitti={bitir} />;
+  if (adim.tur === "eslestir" && kartlar.length >= ESLESTIR_EN_AZ) return <Eslestir kartlar={kartlar} tohum={tohum} onBitti={bitir} />;
   // görsel gelmezse (çevrimdışı, önbellekte yok) resimden seç o adımda dinle-anlam sorusuna düşer (tek doğru cevap; inceleme #183 P1-2)
   if (adim.tur === "resimden_sec" && soru && !gorselYok) return <ResimSec soru={soru} lex={lex} harita={resim!.h} onYok={() => setGorselYok(true)} onBitti={(ok) => bitir([{ kart: soru.kart, dogru: ok }])} />;
   // dersin alıştırma maddesi (K8 `kaynak: "ders"`): Ders oynatıcısının bileşeniyle, aynı denetimle
@@ -132,6 +137,11 @@ function AdimGovdesi({ adim, durakOf, lex, harita, emojiHarita, baglam, tohum, b
   if (b && adim.tur === "gap") {
     const l0 = kartlar[0];
     return <BoslukAdimi key={adim.id} bilgi={b} bosluk={l0 ? [l0.de, ...(l0.forms ?? []).map((f) => f.answer)] : []} onBitti={hepsi} />;
+  }
+  // dil noktası durağı (`gr:`/`dn:`; PM 7087668356 md. 7): başlık, açıklama, tablo, sesli örnekler; soru yok
+  if (adim.ders?.oge === DIL_NOKTASI) {
+    const n = baglam.dilNoktasi(adim.ders.id);
+    if (n) return <DilNoktasiAdimi n={n} onBitti={() => bitir([])} />;
   }
   // dil noktasının tablo ve hatırlatma öğesi: dersin öğretim öğesi (iç tür adı ekranda görünmez; inceleme #184 P1-4)
   if (adim.tur === "tablo" && adim.ders) {
@@ -226,17 +236,18 @@ export function AkisEkrani({ day }: { day: number }) {
   useEffect(() => {
     void (async () => {
       try {
-        const [gun, { lexemes }, temel, world, genel, harita, idx, emojiHarita] = await Promise.all([loadM1Gun(day), loadLexicon(), loadTemeller(), loadWorld(), loadGenelAdlar(), loadFoto(), loadIndex(), loadResim()]);
+        const [gun, { lexemes }, temel, world, genel, harita, dilNoktalari, emojiHarita] = await Promise.all([loadM1Gun(day), loadLexicon(), loadTemeller(), loadWorld(), loadGenelAdlar(), loadFoto(), loadDilNoktalari(), loadResim()]);
         if (!akisGunu(gun)) { setV("degil"); return; }
         const lex = new Map(lexemes.map((l) => [l.id, l]));
         const ids = [...new Set([...gun.yeni_kartlar, ...lexemes.filter((l) => l.card !== false).map((l) => l.id)])];
         const items = await itemsMap(ids);
+        // K(t): dosyalı önceki gün cihazda görülenle, dosyasız gün kesin tablodan (PM-100 md. 2); dil noktaları kume dizininde (PM-092 md. 1)
+        const onceki = await oncekiBilinen(day, items);
+        const dizin = kumeDizini(lexemes, temel, world, genel, [...dilNoktalari.values()]);
         let kayit = await getMeta<AkisKaydi>(akisAnahtar(day));
         if (!kayit || kayit.surum !== 1) {
-          const oncekiGunler = idx.m1.filter((g) => g.day < day);
-          const oncekiKartlar = new Set(oncekiGunler.flatMap((g) => g.kartlar).filter((k) => items.get(k)?.passive?.fsrs));
-          const plan = planGun({ gun, dersler: new Map(temel.map((t) => [t.id, t])), dizin: kumeDizini(lexemes, temel, world, genel), items, oncekiKartlar,
-            bitenDersler: new Set(await oncekiDersler(oncekiGunler.map((g) => g.day))), tohum: `akis:${day}`, simdi: new Date(),
+          const plan = planGun({ gun, dersler: new Map(temel.map((t) => [t.id, t])), dizin, items, oncekiKartlar: onceki.kartlar, dilNoktalari,
+            bitenDersler: onceki.dersler, tohum: `akis:${day}`, simdi: new Date(),
             gorselli: new Set([...Object.keys(harita), ...Object.keys(emojiHarita)].filter((k) => k.endsWith("#kart")).map((k) => k.slice(0, -"#kart".length))) });
           if (!plan) { setV("degil"); return; }
           kayit = yeniKayit(plan); await setMeta(akisAnahtar(day), kayit);
@@ -256,13 +267,21 @@ export function AkisEkrani({ day }: { day: number }) {
         const kisi = { name: profile.displayName, address: profile.address };
         const bittiMi = async (k: string) => { const m = await getMeta<{ bitti?: unknown; ilkBitti?: unknown }>(k); return !!(m && (m.bitti || m.ilkBitti)); };
         const sesler = gun.sesler.map((x) => x.id);
-        const sesBitti = new Set<string>(); for (const id of sesler) if (await bittiMi(`m1:medya:${id}`)) sesBitti.add(id);
+        const sesBitti = new Set<string>(), sesBitti1 = new Set<string>(), sesBitti2 = new Set<string>();
+        for (const id of sesler) { if (await bittiMi(`m1:medya:${id}`)) sesBitti.add(id); if (await bittiMi(ilerlemeAnahtari(id, "ilk"))) sesBitti1.add(id); if (await bittiMi(ilerlemeAnahtari(id, "ikinci"))) sesBitti2.add(id); }
         const hedef = (d: Durak): DurakHedef | null => {
           if (d.tur === "prova") return { href: `#/prova/${day}`, anahtarlar: [`m1:prova:${day}`] };
           if (d.tur === "okuma") return { href: `#/okuma/${day}`, anahtarlar: [`m1:okuma:${day}`] };
           if (d.tur === "video" && gun.video) return { href: `#/m1/${day}/${encodeURIComponent(gun.video.id)}`, anahtarlar: [`m1:medya:${gun.video.id}`] };
-          // ses durağı günün bütün seslerini kapsar; sıradaki bitmemiş sese gider (inceleme #184 P1-3)
-          if (d.tur === "ses" && sesler.length) { const s1 = sesler.find((x) => !sesBitti.has(x)) ?? sesler[0]!; return { href: `#/m1/${day}/${encodeURIComponent(s1)}`, anahtarlar: sesler.map((x) => `m1:medya:${x}`) }; }
+          // ses durağı günün bütün seslerini kapsar; sıradaki bitmemiş sese gider (inceleme #184 P1-3). İki tur (PM-097 md. 1):
+          // ilk tur bütün sesler (/1), ikinci tur yalnız üretim basamağı olanlar (/2); turların ilerlemesi ayrı anahtarda
+          if (d.tur === "ses" && sesler.length) {
+            const t = d.ses_turu === "ikinci" ? "ikinci" : d.ses_turu === "ilk" ? "ilk" : undefined;
+            const ids = t === "ikinci" ? gun.sesler.filter((s) => ikinciTurVar(s)).map((s) => s.id) : sesler;
+            const bitti = t === "ikinci" ? sesBitti2 : t === "ilk" ? sesBitti1 : sesBitti;
+            const s1 = ids.find((x) => !bitti.has(x)) ?? ids[0]!; const ek = t === "ikinci" ? "/2" : t === "ilk" ? "/1" : "";
+            return { href: `#/m1/${day}/${encodeURIComponent(s1)}${ek}`, anahtarlar: ids.map((x) => ilerlemeAnahtari(x, t)) };
+          }
           return null;
         };
         // dönüş: şimdiki adım bir durak geçişiyse ve o ekran bitmişse akış kendiliğinden ilerler (AK-6)
@@ -274,10 +293,10 @@ export function AkisEkrani({ day }: { day: number }) {
           kayit = ilerle(kayit, []).kayit; await setMeta(akisAnahtar(day), kayit);
         }
         // gösterimde K(t): bu adımdan önceki tanıtım ve kalıp adımları + önceki günler (planlayıcının kapısıyla aynı kaynak, yaklaşık)
-        const dizin = kumeDizini(lexemes, temel, world, genel);
         const sira = kayit.plan.duraklar.flatMap((d) => d.adimlar);
-        const bitenD = new Set(await oncekiDersler(idx.m1.filter((g) => g.day < day).map((g) => g.day)));
-        const oncekiK = new Set(idx.m1.filter((g) => g.day < day).flatMap((g) => g.kartlar).filter((k) => items.get(k)?.passive?.fsrs));
+        const oncekiK = onceki.kartlar;
+        // biten dersler o adımda: önceki günler + bugün bu adımdan önce sunulan dil noktaları (planlayıcının kapısıyla aynı)
+        const bitenOnce = (adimId: string) => { const i = sira.findIndex((a) => a.id === adimId); return new Set([...onceki.dersler, ...(i < 0 ? sira : sira.slice(0, i)).filter((a) => a.ders?.oge === DIL_NOKTASI).map((a) => a.ders!.id)]); };
         const adsiz = !profile.displayName;
         const hamDrill = (id: string, oge: string) => temel.find((t) => t.id === id)?.drills.find((x) => x.id === oge);
         const kartlarOnce = (adimId: string) => {
@@ -285,6 +304,7 @@ export function AkisEkrani({ day }: { day: number }) {
           return new Set([...oncekiK, ...once.filter((a) => a.tur === "tanit").flatMap((a) => a.kartlar)]);
         };
         const baglam: AkisBaglam = {
+          dilNoktasi: (id) => { const n = dilNoktalari.get(id); return n && personalizeDeep({ h_tr: n.h_tr, tr: n.tr, ...(n.table ? { table: n.table } : {}), ex: n.ex }, kisi); },
           // ad girilmemişse adlı madde geçilir (tanıtım ve kalıp hariç: kalıpta {name} yuva olarak çizilir; D-122, PM 7055715440 md. 3)
           adGerekli: (a) => adsiz && a.tur !== "kalip" && a.tur !== "tanit" && [a.cumle ?? "", ...(a.satirlar ?? []), a.ders ? JSON.stringify(hamDrill(a.ders.id, a.ders.oge) ?? "") : ""].some((x) => x.includes("{name}")),
           gorev: (id) => { const t = temel.find((x) => x.id === id)?.mission?.task_tr; return t && personalizeDeep(t, kisi); },
@@ -318,7 +338,7 @@ export function AkisEkrani({ day }: { day: number }) {
             // kalıbın sabit sözcüklerinin hepsi cümlede geçiyorsa örnek; sıra şart değil (devrik sıra kalıbın konusu olabilir: "Im Frühling habe ich …")
             const kapsar = (de: string, kp: string[]) => { const w = new Set(toks(de)); const sb = kp.filter((x) => x !== YUVA); return sb.length > 0 && sb.every((t) => w.has(t)); };
             // örnek o adımda bilinenlerle kurulmuş olmalı: bu kalıp dahil K(t) dışında sözcük 0 (inceleme #186 P1-2)
-            const kNow = { kart: kartlarOnce(adimId), biten: bitenD, kaliplar: [...sira.slice(0, Math.max(0, sira.findIndex((a) => a.id === adimId)) + 1).filter((a) => a.tur === "kalip" && a.cumle).flatMap((a) => kalipSecenekleri(a.cumle))] };
+            const kNow = { kart: kartlarOnce(adimId), biten: bitenOnce(adimId), kaliplar: [...sira.slice(0, Math.max(0, sira.findIndex((a) => a.id === adimId)) + 1).filter((a) => a.tur === "kalip" && a.cumle).flatMap((a) => kalipSecenekleri(a.cumle))] };
             // vurgu: yalnız yuvanın yerine giren sözcük — sabit parçanın bitişik geçtiği yerde yuvanın komşusu ("im …" → "im"den sonraki sözcük)
             const temiz = (x: string) => x.replace(/^[„“"»«(]+|[.,!?;:„“"»«)]+$/g, "");  // vurgu noktalamasız (inceleme #186 P2-3)
             const yuvaKp = (de: string, kp: string[]): string[] => {
@@ -376,7 +396,7 @@ export function AkisEkrani({ day }: { day: number }) {
             const i = sira.findIndex((a) => a.id === adimId); const once = i < 0 ? sira : sira.slice(0, i + 1);
             const kart = new Set([...oncekiK, ...once.filter((a) => a.tur === "tanit").flatMap((a) => a.kartlar)]);
             const kaliplarK = once.filter((a) => a.tur === "kalip" && a.cumle).flatMap((a) => kalipSecenekleri(a.cumle));
-            return bilinmeyenler(dizin, de, { kart, biten: bitenD, kaliplar: kaliplarK }).map((u) => ({ sozcuk: u.sozcuk, tr: u.adaylar?.map((x) => lex.get(x)?.tr).find(Boolean) }));
+            return bilinmeyenler(dizin, de, { kart, biten: bitenOnce(adimId), kaliplar: kaliplarK }).map((u) => ({ sozcuk: u.sozcuk, tr: u.adaylar?.map((x) => lex.get(x)?.tr).find(Boolean) }));
           },
           // K10 ipucu tek ve kısa anlam: "veya, ya da, değil mi" → "veya" (PM 7055715440 md. 8)
           ipucu: (w) => { const k = w.toLowerCase(); const tr = cerceve.get(k); return tr && (k10[k] ?? 0) < 2 ? ilkAnlam(tr) : undefined; },
@@ -418,11 +438,24 @@ export function AkisEkrani({ day }: { day: number }) {
   return <AkisOynatici kayit={v.kayit} lex={v.lex} harita={v.harita} emojiHarita={v.emojiHarita} baglam={v.baglam} kaydet={(k, e, a) => void kaydet(k, e, a)} cik={() => { location.hash = `#/m1/${day}`; }} />;
 }
 
-/** önceki günlerin bitmiş temel dersleri (`ders:<id>` ilerlemesi) */
-async function oncekiDersler(gunler: number[]): Promise<string[]> {
-  const out: string[] = [];
-  for (const g of gunler) { try { const d = await loadM1Gun(g); for (const id of d.dersler) if (await getMeta(`ders:${id}`)) out.push(id); } catch { /* gün yok */ } }
-  return out;
+/**
+ * Dil noktası durağı (PM-092 md. 1, PM 7087668356 md. 7): başlık, Türkçe açıklama, tablo (bugünkü tablo gövdesi), sesli örnekler;
+ * tek birincil "Anladım". Soru yok: alıştırma halkadan gelir. Öğretilmemiş sözcüklü örnek de yalnız Türkçesiyle gösterilir.
+ */
+function DilNoktasiAdimi({ n, onBitti }: { n: DilNoktasiVeri; onBitti: () => void }) {
+  return (
+    <section class="stack fade" data-test="akis-dil-noktasi">
+      <div class="kicker icerik" style={{ color: "var(--accent)" }}>Dil noktası</div>
+      <h2 style={{ margin: 0 }}>{n.h_tr}</h2>
+      <p style={{ margin: 0 }} data-test="dil-noktasi-aciklama"><Rich text={n.tr} /></p>
+      {/* "örnek" sütunu tam cümle: satırın altında tam genişlikte (dört sütun telefona sığmıyordu; 29. gün dikey dilimi) */}
+      {n.table && n.table.rows.length > 0 && <AkisTablo sutunlar={n.table.head} satirlar={n.table.rows} alt={ornekSutunu(n.table.head)} dar />}
+      {n.ex.length > 0 && <section class="card stack" style={{ gap: 6 }} data-test="dil-noktasi-ornekler">
+        {n.ex.map((o) => <div class="row" data-test="dil-noktasi-ornek" style={{ flexWrap: "nowrap", gap: 10, alignItems: "center" }}><span class="grow"><b lang="de">{o.de}</b><br /><span class="small muted">{o.tr}</span></span><ListenButton text={o.de} small slowToggle={false} /></div>)}
+      </section>}
+      <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={onBitti}>Anladım</button></ActionBar>
+    </section>
+  );
 }
 
 /** Halka sonu (TARGET3b 6): beş elmas dolu, başlık, kelime başına dört nokta; sıradaki durak ve seans satırı; Filiz yok */
@@ -463,20 +496,56 @@ function HalkaSonu({ ozet, lex, sonraki, seans, devam, mola }: { ozet: ReturnTyp
  * Dil noktası tablosu (PM 7059008858 md. 1): 4 sütundan genişse sabit sütunlar + seçilen tek sütun; üstte sütun seçici.
  * Telefonda yatay kaydırma gerekmez; başlıklar ve "Türkçe" sütunu Türkçe, öteki hücreler Almanca.
  */
-function AkisTablo({ sutunlar, satirlar }: { sutunlar: string[]; satirlar: string[][] }) {
-  const bol = tabloBol(sutunlar);
+function AkisTablo({ sutunlar, satirlar, alt, dar }: { sutunlar: string[]; satirlar: string[][]; /** dil noktası: başlık satır kırar, hücre boşluğu dar */ dar?: boolean; /** bu sütun (dil noktasının "örnek" cümlesi) satırın altında tam genişlikte */ alt?: number }) {
+  const ana = sutunlar.map((_, i) => i).filter((i) => i !== alt);
+  // dil noktası tablosu bölünmez (5 sütunlu cümle dizilişi tek bakışta okunmalı; inceleme #231 P1-2): hücre satır kırar
+  const bol0 = dar ? null : tabloBol(ana.map((i) => sutunlar[i]!));
+  const bol = bol0 && { sabit: bol0.sabit.map((i) => ana[i]!), secilebilir: bol0.secilebilir.map((i) => ana[i]!) };
   const [sec, setSec] = useState(bol?.secilebilir[0] ?? -1);
-  const goster = bol ? [...bol.sabit, sec] : sutunlar.map((_, i) => i);
+  const goster = bol ? [...bol.sabit, sec] : ana;
+  // dil noktası tablosu büyük yazıda ya da dar ekranda (320 pt, %130) yine taşarsa sözcük içinden de kırılır (inceleme #231 2. tur P1-1);
+  // normal durumda sözcükler bütün kalır ("fern." bölünmesin)
+  const tref = useRef<HTMLTableElement>(null);
+  const [kir, setKir] = useState(false);
+  useLayoutEffect(() => {
+    const t = tref.current; const ust = t?.parentElement;
+    if (!dar || !t || !ust || typeof ResizeObserver === "undefined") return;
+    const tasar = () => t.getBoundingClientRect().width > ust.getBoundingClientRect().width + 0.5;
+    if (tasar()) { setKir(true); return; }
+    // gözlemci içinden sınıf değiştirmek WebKit'te "ResizeObserver loop" hatası verir (KAPI-İŞ 7118350740: iPhone 15, %130):
+    // ölçüm bir sonraki kareye ertelenir, kare başına tek ölçüm; "kir" tek yönlü, bir kez kurulunca gözlemci bırakılır (titreme yok)
+    let kare = 0;
+    const ro = new ResizeObserver(() => {
+      if (kare) return;
+      kare = requestAnimationFrame(() => { kare = 0; if (tasar()) { ro.disconnect(); setKir(true); } });
+    });
+    ro.observe(t); ro.observe(ust);
+    return () => { ro.disconnect(); cancelAnimationFrame(kare); };
+  }, [dar]);
   return (
     <>
       {bol && <div class="row akis-tablo-sec" role="group" aria-label="Sütun seç" data-test="akis-tablo-sec">
         {bol.secilebilir.map((i) => <button type="button" lang="de" class={`chip${i === sec ? " on" : ""}`} aria-pressed={i === sec} data-sutun={i} onClick={() => setSec(i)}>{sutunlar[i]}</button>)}
       </div>}
-      <table class="akis-tablo-t" data-test="akis-tablo-t"><thead><tr>{goster.map((i) => <th lang={bol && !bol.sabit.includes(i) ? "de" : undefined}>{sutunlar[i]}</th>)}</tr></thead>
-        <tbody>{satirlar.map((r) => <tr>{goster.map((i) => <td lang={hucreDili(sutunlar[i] ?? "")}>{r[i]}</td>)}</tr>)}</tbody></table>
+      <table ref={tref} class={`akis-tablo-t${dar ? " dar" : ""}${dar && sikTablo(sutunlar, satirlar, ana) ? " genis" : ""}${kir ? " kir" : ""}`} data-test="akis-tablo-t"><thead><tr>{goster.map((i) => <th lang={bol && !bol.sabit.includes(i) ? "de" : undefined}>{sutunlar[i]}</th>)}</tr></thead>
+        <tbody>{satirlar.map((r) => alt !== undefined && r[alt]
+          ? <><tr class="ust">{goster.map((i) => <td lang={hucreDili(sutunlar[i] ?? "")}>{r[i]}</td>)}</tr>
+              <tr class="alt"><td colSpan={goster.length} lang="de" data-test="akis-tablo-ornek">{r[alt]}</td></tr></>
+          : <tr>{goster.map((i) => <td lang={hucreDili(sutunlar[i] ?? "")}>{r[i]}</td>)}</tr>)}</tbody></table>
     </>
   );
 }
+
+/** yalnız e2e: dil noktası durağının gövdesi tek başına (`#/__dil-noktasi/<id>`) */
+export function DilNoktasiVitrin({ id }: { id: string }) {
+  const [n, setN] = useState<DilNoktasiVeri | null | "yok">(null);
+  useEffect(() => { void loadDilNoktalari().then((m) => { const x = m.get(id); setN(x ? { h_tr: x.h_tr, tr: x.tr, ...(x.table ? { table: x.table } : {}), ex: x.ex } : "yok"); }); }, [id]);
+  if (n === "yok") return <p data-test="dil-noktasi-yok">yok</p>;
+  return n ? <section class="stack" data-test="akis" data-dil-noktasi={id}><DilNoktasiAdimi n={n} onBitti={() => undefined} /></section> : <Loading />;
+}
+
+/** dil noktası tablosunun örnek cümle sütunu ("örnek", "örnek cevap", "örnek (Wo?)"); yoksa undefined */
+export const ornekSutunu = (head: readonly string[]) => { const i = head.findIndex((h) => /^örnek/i.test(h.trim())); return i < 0 ? undefined : i; };
 
 /** "veya, ya da, değil mi" → "veya"; parantezli açıklama atılır */
 export const ilkAnlam = (tr: string) => tr.split(/[,;/]|\s\(/)[0]!.trim() || tr.trim();

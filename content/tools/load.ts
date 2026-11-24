@@ -13,10 +13,12 @@ import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import { Domain, Lexeme, LexiconBatch, Pattern, GrammarNote, Scenario, AssessItem, World, TemelDers, PRODUCTION_DRILLS, productionCount } from "../../packages/shared/src/content.ts";
 import { Gun, DilNoktasi, gunDosyaNo, gunNo } from "../../packages/shared/src/m1.ts";
+import { Deneme, SINAV_BOLUM, denemeSorunlari } from "../../packages/shared/src/deneme.ts";
 import { checkGun } from "./m1check.ts";
 import { explanationIssues, textIssues } from "../../packages/shared/src/explain.ts";
 import { adsizDenetle, adsizTasi } from "../../packages/shared/src/adsiz.ts";
 import { untaught } from "./teach.ts";
+import { kesinTabloOku, tabloDolgusu, type KesinTablo } from "./ktablo.ts";
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const CDIR = join(ROOT, "content/v2");
@@ -34,12 +36,18 @@ export interface Loaded {
   temel: { file: string; data: TemelDers }[];
   /** M1 İlk Hafta günleri (content/v2/m1/gun-NN.json; #58 A2/A4) */
   m1: { file: string; data: Gun }[];
+  /** düzey denemeleri (content/v2/assess/*.json, bank.json dışında; PM-087 B.2): sınav günü bunları açar */
+  deneme: { file: string; data: Deneme }[];
   /** haftanın dil noktaları (content/v2/m1/dn-HH.json; PM-092 md. 1): grammar.json biçiminde dizi */
   dn: { file: string; hafta: number; data: DilNoktasi[] }[];
+  /** kesin kelime tabloları (curriculum/a1|a2|b1-kesin.json): gün → kartlar, çerçeve, dersler; dosyası olmayan önceki günün K(t) kaynağı (ktablo.ts) */
+  kesin?: KesinTablo;
   /** K1 seçim listesi (content/v2/curriculum/k1.json) */
   k1?: { cekirdek: string[]; pasif: string[] } | null;
   /** #58 B4 tabanı ve incelenmiş hassas konular (content/tools/b4-taban.json; yalnızca depo içeriği yüklenince) */
   b4Taban?: B4Taban;
+  /** içerik kökü (loadContent(dir)) */
+  dir?: string;
   errors: string[];
   warnings: string[];
 }
@@ -115,6 +123,9 @@ export function loadContent(dir = CDIR): Loaded {
   }
   const grammar = parseFile(join(dir, "registry/grammar.json"), z.array(GrammarNote), errors) || [];
   const assess = parseFile(join(dir, "assess/bank.json"), z.array(AssessItem), errors) || [];
+  const deneme = walk(join(dir, "assess")).filter((f) => !f.endsWith("/bank.json"))
+    .map((f) => ({ file: rel(f), data: parseFile(f, Deneme, errors) }))
+    .filter((x): x is { file: string; data: Deneme } => !!x.data);
   const scenarios = walk(join(dir, "domains"))
     .filter((f) => f.includes("/scenarios/"))
     .map((f) => ({ file: rel(f), data: parseFile(f, Scenario, errors) }))
@@ -148,7 +159,8 @@ export function loadContent(dir = CDIR): Loaded {
   const k1 = k1raw ? { cekirdek: k1raw.cekirdek.map((x) => x.id), pasif: k1raw.pasif.map((x) => x.id) } : null;
   const tabanDosya = join(ROOT, "content/tools/b4-taban.json");
   const b4Taban = dir === CDIR && existsSync(tabanDosya) ? (JSON.parse(readFileSync(tabanDosya, "utf8")) as B4Taban) : undefined;
-  return { domains, lexemes: [...byId.values()], lexiconBatches, patterns, grammar, scenarios, assess, world, temel, m1, dn, k1, b4Taban, errors, warnings };
+  const kesin = kesinTabloOku(dir, errors);
+  return { domains, lexemes: [...byId.values()], lexiconBatches, patterns, grammar, scenarios, assess, deneme, world, temel, m1, dn, k1, b4Taban, kesin, dir, errors, warnings };
 }
 
 /** PEDAGOGY.md §2: derin (K1) ve hafif (K2) kart zorunlu alanları */
@@ -380,8 +392,51 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
   // M1 günleri (#58 A4, PM-053, PM-055): kimlik/dosya, bölüm ve dikte bağları, gerçek video
   { const days = new Set<number>(), temelIds = new Set(c.temel.map((t) => t.data.id));
     const taught = baseTaught(c);
+    // sınav bağı (PM-101 md. 5, PM-110): assess/*.json denemesi; deneme dosyası henüz dalda yoksa uyarı (ayrı içerik PR'ı)
+    const denemeler = new Map<string, Set<string>>();
+    for (const { file, data: d } of c.deneme ?? []) {
+      if (denemeler.has(d.id)) errors.push(`${file}: deneme kimliği iki kez (${d.id})`);
+      denemeler.set(d.id, new Set(d.bolumler.map((b) => b.id)));
+      // taslak deneme pakete girmez (build.ts): sınav günü uygulamada "hazırlanıyor" kalır, gün bitmez (inceleme #247 P2-3)
+      if (d.review.status !== "reviewed") warnings.push(`${file}: ${d.id} taslak; pakete girmez, bağlı sınav günü uygulamada "hazırlanıyor" kalır`);
+      for (const x of denemeSorunlari(d)) errors.push(`${file}: ${x}`);
+    }
+    // aynı denemeye bağlı günler bölümleri paylaşmaz; hepsi bölümlüyse denemenin her bölümü bir güne düşer (öğrenci bölümü atlamaz)
+    const sinavGunleri = new Map<string, { file: string; day: number; bolumler?: string[] }[]>();
+    for (const { file, data: g } of c.m1) if (g.sinav) sinavGunleri.set(g.sinav, [...(sinavGunleri.get(g.sinav) ?? []), { file, day: g.day, bolumler: g.sinav_bolumler }]);
+    for (const [id, gs] of sinavGunleri) {
+      const var_ = denemeler.get(id);
+      const sahibi = new Map<string, number>();
+      for (const x of gs.sort((a, b) => a.day - b.day)) for (const b of x.bolumler ?? []) {
+        if (var_ && !var_.has(b)) errors.push(`${x.file}: sinav_bolumler: ${b} ${id} denemesinde yok`);
+        if (sahibi.has(b)) errors.push(`${x.file}: sinav_bolumler: ${b} ${sahibi.get(b)}. günde de açılıyor (${id})`); else sahibi.set(b, x.day);
+      }
+      // bölümlü ve bölümsüz gün aynı denemede: bölümsüz gün bütün bölümleri açar, öteki günle çakışır (inceleme #247 P2-4)
+      if (gs.some((x) => x.bolumler) && gs.some((x) => !x.bolumler)) errors.push(`${id}: ${gs.filter((x) => !x.bolumler).map((x) => x.day).join(", ")}. gün bölümsüz, öteki günler bölümlü; bölümler çakışır`);
+      if (gs.filter((x) => !x.bolumler).length > 1) warnings.push(`${id}: ${gs.filter((x) => !x.bolumler).map((x) => x.day).join(", ")}. günler bölümsüz; deneme her gün bütünüyle açılır`);
+      if (var_ && gs.every((x) => x.bolumler)) {
+        const eksik = SINAV_BOLUM.filter((b) => var_.has(b) && !sahibi.has(b));
+        if (eksik.length) errors.push(`${id}: ${eksik.join(", ")} bölümü hiçbir sınav gününde açılmıyor`);
+      }
+    }
+    // önceki günün dosyası yoksa K(t) kesin tablodan (PM-092 md. 3.2; ktablo.ts)
+    const dolgu = tabloDolgusu(c.m1.map((x) => x.data.day), c.kesin);
+    const gr = new Set(c.grammar.map((x) => x.id));
+    const dnHaftasi = new Map<string, number[]>();
+    for (const f of c.dn) for (const n of f.data) dnHaftasi.set(n.id, [...(dnHaftasi.get(n.id) ?? []), f.hafta]);
     for (const { file, data: g } of [...c.m1].sort((a, b) => a.data.day - b.data.day)) {
+      if (g.sinav && !denemeler.has(g.sinav)) warnings.push(`${file}: sinav ${g.sinav} assess/ altında bulunamadı`);
+      for (const t of dolgu.get(g.day) ?? []) addDayTaught(taught, { yeni_kartlar: [...t.kartlar, ...t.cerceve], dersler: t.dersler }, c);
       addDayTaught(taught, g, c);
+      // dersler: gr: kimliği registry/grammar.json'da, dn: kimliği o haftanın dn-HH.json'ında olmalı (PM-092 md. 3.1)
+      const hafta = Math.ceil(g.day / 7), hh = String(hafta).padStart(2, "0");
+      for (const d of g.dersler) {
+        if (d.startsWith("gr:") && !gr.has(d)) errors.push(`${file}: dersler: ${d} registry/grammar.json'da yok`);
+        if (d.startsWith("dn:")) {
+          const h = dnHaftasi.get(d) ?? [];
+          if (!h.includes(hafta)) errors.push(`${file}: dersler: ${d} m1/dn-${hh}.json'da yok${h.length ? ` (${h.map((x) => `dn-${String(x).padStart(2, "0")}.json`).join(", ")} içinde)` : ""}`);
+        }
+      }
       const no = gunDosyaNo(file), nn = no === null ? null : gunNo(no);
       if (nn && g.id !== `m1:gun:${nn}`) errors.push(`${file}: kimlik ${g.id} dosya adıyla uyuşmuyor (m1:gun:${nn})`);
       if (nn && g.day !== no) errors.push(`${file}: day ${g.day} dosya adıyla uyuşmuyor`);
@@ -418,7 +473,7 @@ function baseTaught(c: Loaded): Set<string> {
   return t;
 }
 /** gün d'nin öğrettikleri kümeye eklenir (kümülatif). Kartın örnek cümlesi öğretim sayılmaz (FORMAT: dikte örnek cümleden gelemez) */
-function addDayTaught(t: Set<string>, g: Gun, c: Loaded) {
+function addDayTaught(t: Set<string>, g: Pick<Gun, "yeni_kartlar" | "dersler">, c: Loaded) {
   const byId = new Map(c.lexemes.map((l) => [l.id, l]));
   for (const id of g.yeni_kartlar) {
     const l = byId.get(id); if (!l) continue;

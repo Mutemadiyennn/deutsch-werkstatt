@@ -18,6 +18,24 @@ function runAs(levelOk: (it: AssessItem) => boolean, seed = "t1") {
 }
 
 describe("seviye tespiti", () => {
+  it("yapay zekâ denetimi düşen cevap (unchecked) yanlış sayılmaz: puana, uyarlamaya ve zayıflık bankasına girmez (PM-112 A.3)", () => {
+    const items = selectItems(bank, "u1");
+    const sp = items.filter((i) => i.skill === "speaking" && i.level === "A1");
+    expect(sp.length).toBeGreaterThan(0);
+    // bütün A1 konuşma maddeleri: biri doğru, gerisi denetlenemedi
+    const ans: AssessAnswer[] = sp.map((it, k) => (k === 0 ? answer(it, true) : { ...answer(it, false), unchecked: true }));
+    const r = score(items, ans).results.find((x) => x.skill === "speaking")!;
+    expect(r.byLevel.A1).toEqual({ correct: 1, total: 1 });
+    // A1'de denetlenen tek cevap doğru: A2 konuşma maddeleri kapanmaz
+    const a2 = items.find((i) => i.skill === "speaking" && i.level === "A2");
+    if (a2) expect(nextItem(items.filter((i) => i.skill === "speaking"), ans)?.level).toBe("A2");
+    // kesinti bütün A1 konuşma cevaplarını denetlenemez yaptıysa: seviye ölçülemedi, tahmin "A1 öncesi"ne düşmez (inceleme #249 P1-2)
+    const sp2 = items.filter((i) => i.skill === "speaking");
+    const hepsi = sp2.map((it) => (it.level === "A1" ? { ...answer(it, false), unchecked: true } : answer(it, true)));
+    expect(score(items, hepsi).results.find((x) => x.skill === "speaking")!.estimate).not.toBe("below-A1");
+    const vp = items.find((i) => i.skill === "vocab_passive")!;
+    expect(applyAssessment(new Map(), [{ ...answer(vp, false), unchecked: true }])).toEqual([]);
+  });
   it("plan: 42 madde, her beceri ve seviyeden, aynı tohumla aynı sorular", () => {
     const a = selectItems(bank, "x");
     const total = Object.values(PLAN).reduce((s, l) => s + l.A1 + l.A2 + l.B1, 0);
@@ -75,16 +93,14 @@ describe("öğrenci modeli ve planlayıcı", () => {
     expect(ch[0]!.gaps[0]).toMatchObject({ type: "active", source: "assess" });
     expect(itemIdFromAssess("as:li:x")).toBeNull();
   });
-  it("planlayıcı: önce tespit; sonra seans 1 → öncelikli alandaki senaryo; seans 3 → v1 dinleme", () => {
+  it("planlayıcı: önce tespit; sonra seans 1 → öncelikli alandaki senaryo; seans 3 → eski uygulamaya gönderilmez (PM-116)", () => {
     const p = defaultProfile();
     const index: any = { scenarios: [{ id: "sc:telefon:01-arzttermin", domain: "telefon", order: 1, level: "A1", title_tr: "Doktordan telefonla randevu almak", title_de: "", review: "draft" }] };
     expect(recommend({ profile: p, index, hasPlacement: false, sessionN: 1 }).kind).toBe("assess");
     const r1 = recommend({ profile: p, index, hasPlacement: true, sessionN: 1 });
     expect(r1).toMatchObject({ kind: "scenario", scenarioId: "sc:telefon:01-arzttermin", draft: true });
     const r3 = recommend({ profile: p, index, hasPlacement: true, sessionN: 3 });
-    expect(r3).toMatchObject({ kind: "v1", activity: "listening" });
-    expect((r3 as any).url).toContain("#shadow");
-    // ayar açıkken v1 kendiliğinden /v2/ye yönlenmesin (inceleme #130 B2)
-    expect((r3 as any).url).toMatch(/\?v1#shadow$/);
+    expect(r3.kind).toBe("none");
+    expect(JSON.stringify(r3)).not.toMatch(/eski uygulama|\?v1/i);
   });
 });

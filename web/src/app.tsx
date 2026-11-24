@@ -3,6 +3,7 @@ import { DurumCubugu } from "./ui/durum.tsx";
 import { RehberEkrani } from "./screens/Rehber.tsx";
 import { GorevlerEkrani } from "./ui/gorev.tsx";
 import { usePlan } from "./screens/Yol.tsx";
+import { GunKapisi, HaftaSonucEkrani, HaftaTekrarEkrani, HaftaTestiEkrani } from "./screens/HaftaTesti.tsx";
 import { dondurmaKontrol } from "./services/gorev.ts";
 import { probeProvider } from "./services/ai.ts";
 import { CallScreen as Call } from "./screens/Call.tsx";
@@ -15,7 +16,7 @@ import { KalipEkrani } from "./screens/Kalip.tsx";
 import { YolEkrani } from "./screens/Yol.tsx";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Assessment, ContentIndex, Profile } from "@dw/shared";
-import { Ctx, LEARNING_ROUTES, parseHash, type AppCtx, type Route } from "./state.ts";
+import { Ctx, LEARNING_ROUTES, parseHash, yeniAdres, type AppCtx, type Route } from "./state.ts";
 import { auth, type AuthUser } from "./services/auth.ts";
 import { createApi } from "./services/api.ts";
 import { SesDeneme } from "./screens/SesDeneme.tsx";
@@ -25,20 +26,23 @@ import { setLearning, startFocus, updateFocusConfig } from "./services/focusRunt
 import { setBaslangicHizi, setKarakterler, setOgrenciHitap, setYavasOran, yerelSesleriYukle } from "./services/speech.ts";
 import { efektAyar, sesKilidiAc, ustUsteSifirla } from "./services/efekt.ts";
 import { kullanimIzle } from "./services/kullanim.ts";
-import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
+import { TabBar, Loading, ErrorPanel, sekme } from "./ui/components.tsx";
 import { ErrorBoundary, recordError } from "./ui/ErrorBoundary.tsx";
 import { ensurePersist } from "./services/storage.ts";
 import { Login } from "./screens/Login.tsx";
 import { Onboarding } from "./screens/Onboarding.tsx";
 import { Today } from "./screens/Today.tsx";
-import { Learn, DomainView } from "./screens/Learn.tsx";
+import { DomainView } from "./screens/Learn.tsx";
+import { KoyEkrani, MekanEkrani } from "./screens/Koy.tsx";
 import { PlayerHome, PlayerSection } from "./screens/Player.tsx";
 import { LongPressExplain } from "./ui/learn.tsx";
 import { BreakOverlay, OdakEkrani } from "./screens/Today.tsx";
 import { AssessRun, AssessResult } from "./screens/Assess.tsx";
 import { Progress } from "./screens/Progress.tsx";
+import { BenEkrani } from "./screens/Ben.tsx";
 import { Garden } from "./screens/Garden.tsx";
 import { ProfileView } from "./screens/Profile.tsx";
+import { hatirlatmaKur, hatirlatmaVar } from "./services/hatirlatma.ts";
 
 const API_BASE = (import.meta.env.VITE_API_BASE as string | undefined) || "";
 
@@ -71,6 +75,16 @@ function AkisRota({ day }: { day: number }) {
   const m = useModul(() => (akisModul ??= within(import("./screens/Akis.tsx")).catch((e) => { akisModul = null; throw e; })));
   return m === "hata" ? yuklenemedi : m ? <m.AkisEkrani day={day} /> : <Loading />;
 }
+/** yalnız e2e: bir dil noktasının durak gövdesi tek başına (`#/__dil-noktasi/<id>`; bütün tabloların telefonda sığdığı denetim) */
+function DilNoktasiRota() {
+  const m = useModul(() => (akisModul ??= within(import("./screens/Akis.tsx")).catch((e) => { akisModul = null; throw e; })));
+  return m === "hata" ? yuklenemedi : m ? <m.DilNoktasiVitrin id={decodeURIComponent(location.hash.slice("#/__dil-noktasi/".length))} /> : <Loading />;
+}
+/** Sınav günü ekranı (PM-110) ayrı parçada: ilk açılış paketine girmez (JS bütçesi) */
+function SinavRota({ day, bolum }: { day: number; bolum?: string }) {
+  const m = useModul(() => within(import("./screens/Sinav.tsx")));
+  return m === "hata" ? yuklenemedi : m ? <m.SinavEkrani day={day} bolum={bolum} /> : <Loading />;
+}
 function HalkaTurRota() {
   const m = useModul(() => within(import("./screens/HalkaTurDeneme.tsx")));
   return m === "hata" ? yuklenemedi : m ? <m.HalkaTurDeneme /> : <Loading />;
@@ -100,13 +114,27 @@ export function App() {
     document.addEventListener("visibilitychange", yenile);
     return () => document.removeEventListener("visibilitychange", yenile);
   }, []);
+  // günlük hatırlatma (PM-121 md. 3.3): açılıştan kısa süre sonra ve uygulama arka plana geçerken 7 günlük pencere yeniden kurulur
+  const hedefDk = profile?.focus.dailyGoalMin;
+  useEffect(() => {
+    if (hedefDk === undefined || !hatirlatmaVar()) return;
+    const t = setTimeout(() => void hatirlatmaKur(hedefDk), 2500);
+    const arka = () => { if (document.visibilityState === "hidden") void hatirlatmaKur(hedefDk); };
+    document.addEventListener("visibilitychange", arka);
+    return () => { clearTimeout(t); document.removeEventListener("visibilitychange", arka); };
+  }, [hedefDk]);
   // Şölen 1 (#58 B10): efekt sesleri ve kutlamalar Profil'den
   useEffect(() => { if (profile) efektAyar(profile.ui); }, [profile?.ui.sfx, profile?.ui.celebrations]);
 
   useEffect(() => {
     // ekran değişince "üst üste" sayacı sıfırlanır (inceleme #87 P2)
-    const on = () => { ustUsteSifirla(); setRoute(parseHash(location.hash)); };
+    // eski sekme adresi (#/learn, #/progress, #/profile) yenisiyle değişir; geçmişe ikinci kayıt düşmez (PM-084 md. 3.2)
+    const duzelt = () => { const y = yeniAdres(location.hash); if (y) history.replaceState(history.state, "", y); };
+    const on = () => { duzelt(); ustUsteSifirla(); setRoute(parseHash(location.hash)); };
+    duzelt();
     addEventListener("hashchange", on);
+    // ilk çizimle dinleyici arasında adres değiştiyse kaçmasın (açılışta hemen başka sekmeye geçilince eski ekran kalıyordu)
+    setRoute(parseHash(location.hash));
     // iOS: efekt sesi için ses bağlamı ilk dokunuşta açılır (inceleme #87 P2)
     // dinleyici kalır: ilk dokunuş etkinleştirme sayılmayabilir (iOS'ta touchend sayılır, pointerdown sayılmaz) ve ses sonradan
     // açılabilir; ses bağlamı çalışınca sesKilidiAc hemen döner (inceleme #87 2. tur)
@@ -166,36 +194,43 @@ export function App() {
   let screen;
   if (!profile.onboardedAt || route.name === "onboarding") screen = <Onboarding />;
   else switch (route.name) {
-    case "learn": screen = <Learn />; break;
+    case "koy": screen = <KoyEkrani />; break;
+    case "mekan": screen = <MekanEkrani key={route.id} id={route.id} />; break;
     case "domain": screen = <DomainView id={route.id} />; break;
     case "scenario": screen = <PlayerHome id={route.id} />; break;
     case "section": screen = <PlayerSection id={route.id} section={route.section} />; break;
-    case "progress": screen = <Progress />; break;
+    // Ben (PM-084 md. 5); eski İlerlemem "Çalışma düzenim" olarak #/ben/duzen'de
+    case "ben": screen = <BenEkrani />; break;
+    case "benDuzen": screen = <Progress />; break;
     case "profile": screen = <ProfileView />; break;
     case "assess": screen = <AssessRun />; break;
     case "assessResult": screen = <AssessResult id={route.id} />; break;
     case "call": screen = <Call id={route.id} />; break;
-    case "garden": screen = <Garden key={route.day ?? 0} day={route.day} />; break;
+    case "garden": screen = route.day ? <GunKapisi key={location.hash} day={route.day}><Garden key={route.day} day={route.day} /></GunKapisi> : <Garden key={0} day={route.day} />; break;
     case "yol": screen = <YolEkrani />; break;
     case "ders": screen = <DersEkrani key={route.id} id={route.id} />; break;
-    case "prova": screen = <ProvaEkrani key={route.day} day={route.day} />; break;
-    case "okuma": screen = <OkumaEkrani key={route.day} day={route.day} />; break;
+    case "prova": screen = <GunKapisi key={location.hash} day={route.day}><ProvaEkrani key={route.day} day={route.day} /></GunKapisi>; break;
+    case "okuma": screen = <GunKapisi key={location.hash} day={route.day}><OkumaEkrani key={route.day} day={route.day} /></GunKapisi>; break;
     case "sozluk": screen = <SozlukEkrani q={route.q} id={route.id} />; break;
     case "ses": screen = <SesDeneme />; break;
     case "kalip": screen = <KalipEkrani key={route.id ?? "-"} id={route.id} />; break;
-    case "m1day": screen = <M1Gun day={route.day} />; break;
+    case "m1day": screen = <GunKapisi key={location.hash} day={route.day}><M1Gun day={route.day} /></GunKapisi>; break;
     case "rehber": screen = <RehberEkrani day={route.day} />; break;
     case "gorevler": screen = <GorevlerRota />; break;
     case "odak": screen = <OdakEkrani />; break;
-    case "akis": screen = <AkisRota key={route.day} day={route.day} />; break;
-    case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
+    case "akis": screen = <GunKapisi key={location.hash} day={route.day}><AkisRota key={route.day} day={route.day} /></GunKapisi>; break;
+    case "hafta": screen = <HaftaTestiEkrani key={route.hafta} hafta={route.hafta} />; break;
+    case "haftaSonuc": screen = <HaftaSonucEkrani key={route.hafta} hafta={route.hafta} />; break;
+    case "sinav": screen = <GunKapisi key={location.hash} day={route.day}><SinavRota key={location.hash} day={route.day} bolum={route.bolum} /></GunKapisi>; break;
+    case "haftaTekrar": screen = <HaftaTekrarEkrani key={location.hash} hafta={route.hafta} gunler={route.gunler} />; break;
+    case "m1medya": screen = <GunKapisi key={location.hash} day={route.day}><MedyaEkrani key={`${route.id}:${route.tur ?? ""}`} day={route.day} id={route.id} tur={route.tur} /></GunKapisi>; break;
     // yalnız e2e: AK-10 3. adımın iki türü, ekran (4. adım) gelene kadar (üretimde bu dal ve modül paketten düşer)
-    default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri") ? <HalkaTurRota key={location.hash} /> : <Today />;
+    default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri") ? <HalkaTurRota key={location.hash} /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__dil-noktasi/") ? <DilNoktasiRota key={location.hash} /> : <Today />;
   }
-  const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri")) && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "akis" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma";
+  const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && (location.hash.startsWith("#/__halka-turleri") || location.hash.startsWith("#/__dil-noktasi/"))) && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "akis" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma" && route.name !== "hafta" && route.name !== "haftaTekrar" && route.name !== "haftaSonuc" && route.name !== "sinav";
   return (
     <Ctx.Provider value={ctx}>
-      <main class={`app${tabs ? "" : " notabs"}`}>{tabs && <DurumCubugu />}<ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
+      <main class={`app${tabs ? "" : " notabs"}`}>{tabs && (sekme(route.name) === "today" || sekme(route.name) === "yol") && <DurumCubugu />}<ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
       {tabs && <TabBar route={route} />}
       <LongPressExplain />
       {LEARNING_ROUTES.has(route.name) && <BreakOverlay />}

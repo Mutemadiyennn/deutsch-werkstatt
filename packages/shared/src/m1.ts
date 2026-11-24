@@ -7,6 +7,7 @@
  */
 import { z } from "zod";
 import { Audio, Drill, Level, LexemeId, ReviewState, Speed } from "./content.ts";
+import { SinavBolum } from "./deneme.ts";
 
 /** gün numarası alt deseni: 01…99 iki hane, 100…364 üç hane (PM 7088043877 md. 1; #205 P2-1) */
 export const GUN_NN = "(0[1-9]|[1-9]\\d|[12]\\d{2}|3[0-5]\\d|36[0-4])";
@@ -137,7 +138,7 @@ export const OkumaYazma = z.object({
 });
 
 /**
- * AKIS AK-5 (PM-078 B; PM #160): günün "halkaları" — İÇ'in grupladığı 4–6 yeni kart, kapıdan geçen görev cümleleri ve mini sahne.
+ * AKIS AK-5 (PM-078 B; PM #160): günün "halkaları" — İÇ'in grupladığı 2–6 yeni kart (policy `akis.halka_kart`; PM-098 md. 2), kapıdan geçen görev cümleleri ve mini sahne.
  * Alan yoksa gün bugünkü düzenle çalışır. Halka kendi kalıplarını öğretir (`kaliplar`; "…" yuvadır) ve günün dersi VARSAYILMAZ
  * (#165 kuralı): `dersten_sonra: true` yalnız halka bilerek dersten sonra konduysa yazılır (planlayıcı sırayı K(t)'den hesaplar, K8).
  */
@@ -168,6 +169,8 @@ export const GUN_SON = 364;
 export const GUN_ID = new RegExp(`^m1:gun:${GUN_NN}$`);
 /** dil noktası kimliği: dn: + küçük harf/rakam parçaları, aralarında tek - ya da : (dn:08-trennbar, dn:a1-08:t1) */
 const DN_ID = "dn:[a-z0-9]+(?:[-:][a-z0-9]+)*";
+/** sınav günü bağı (PM-101 md. 5): assess:<ad>:<n> (ör. assess:a1-deneme:1) */
+export const SINAV_ID = /^assess:[a-z0-9]+(?:-[a-z0-9]+)*:\d+$/;
 export const DERS_ID = new RegExp(`^(r0:\\d{2}-[a-z0-9-]+|gr:[ab][12]-\\d\\d:t\\d+|${DN_ID})$`);
 /** gün numarasından dosya adı numarası: 8 → "08", 120 → "120" */
 export const gunNo = (day: number) => String(day).padStart(2, "0");
@@ -209,6 +212,12 @@ export const Gun = z.object({
   dersler: z.array(z.string().regex(DERS_ID)).default([]),
   yeni_kartlar: z.array(LexemeId).default([]),
   halkalar: z.array(Halka).optional(),
+  /** sınav günü (PM-101 md. 5): o gün uygulama bu denemeyi açar (hat F). Sınav günü kartsız, `dersler: []` ve halkasızdır;
+   *  doğrulayıcı böyle günü geçerli sayar (content/tools/load.ts). A1/A2/B1 sonu sınav günleri aynı biçim. */
+  sinav: z.string().regex(SINAV_ID).optional(),
+  /** sınav gününün bölümleri (PM-110): denemenin bu gün açılan bölümleri, sırayla (A1: 55. gün dinleme + okuma, 56. gün yazma + konuşma).
+   *  Yalnız `sinav` ile; yoksa deneme bütünüyle o gün açılır (doğrulayıcı uyarır). Aynı denemeye bağlı günler bölümleri paylaşmaz */
+  sinav_bolumler: z.array(SinavBolum).min(1).optional(),
   video: Video.optional(),
   sahne: Sahne.optional(),
   sesler: z.array(Ses).default([]),
@@ -225,6 +234,9 @@ export type Gun = z.infer<typeof Gun>;
 /** Medya oynatıcısının tek arayüzü: video, köy dizisi sahnesi ve ses aynı akışı kullanır (PM-053 §6) */
 export interface Medya {
   id: string;
+  /** akış gününde ses iki turda oynar (PM-097 md. 1): "ilk" = dinle + anlama (önce duy), "ikinci" = dikte, gölge, "Sen ne derdin?"
+   *  (son halkadan sonra; günün kartları bilinir). Yoksa bütün adımlar (eski düzen) */
+  tur?: "ilk" | "ikinci";
   kind: "video" | "sahne" | "ses";
   title_tr: string;
   ortam_tr?: string;

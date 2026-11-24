@@ -11,6 +11,7 @@ DIST = os.path.join(ROOT, "web", "dist-e2e")
 ERR: list = []
 API_CALLS: list = []
 HELD: list = []   # "hold": yanıtı test kendisi sonra verir (geç yanıt senaryosu)
+GEC: list = []    # "gec": yanıt bekletilir, gec_birak() ile N sn sonra verilir (PM-087 A.4 "15 sn gecikme")
 
 def arg(name, default=None):
     return sys.argv[sys.argv.index(name) + 1] if name in sys.argv else default
@@ -92,6 +93,10 @@ def make_api(ai_handler=None):
                 return  # yanıt yok → istemci zaman aşımı
             if st == "hold":
                 HELD.append((r, b.get("task"), out)); return
+            if st == "gec":
+                GEC.append((r, b.get("task"), out, time.time())); return
+            if st == "raw":  # 200 ama gövde JSON değil (bozuk yanıt)
+                return r.fulfill(status=200, headers=CORS, body=out)
             if st != 200:
                 return r.fulfill(status=st, headers=CORS, body=json.dumps(out))
             return r.fulfill(status=200, headers=CORS, body=json.dumps({"task": b.get("task"), "output": out, "model": "m", "ms": 5}))
@@ -103,7 +108,7 @@ def default_ai(task, v):
     if task == "equiv_check":
         return 200, {"ok": False, "reason_tr": "Fiil biçimi yanlış."}
     if task == "explain_tr":
-        return 200, {"tr": "Tekrar eder misiniz?", "note_tr": "Kibar rica."}
+        return 200, {"tr": "Tekrar eder misiniz?", "note_tr": "Kibar rica.", "examples": []}  # şemadaki zorunlu alan (istemci de denetler, PM-087 A.4)
     if task == "say_it_de":
         return 200, {"de_simple": "Ich brauche einen Termin.", "note_tr": "Basit ve doğal."}
     if task == "roleplay_turn":
@@ -116,11 +121,22 @@ def default_ai(task, v):
         return 200, {"goals": [{"id": g["id"], "done": i < len(gs) - 1} for i, g in enumerate(gs)], "strengths_tr": ["Kibar başladın."], "fixes": [{"said": "Ich will Termin", "better": "Ich hätte gern einen Termin.", "why_tr": "Kibar istek."}], "english_fallbacks": 0, "gaps_de": ["der Vormittag"], "summary_tr": "Randevuyu aldın; saat kısmında kısa kaldın."}
     return 404, {"error": {"code": "bad_request"}}
 
+def gec_birak(page, sn=15.0):
+    """Bekletilen yanıtları istekten sn saniye sonra verir; istemci isteği bırakmışsa (zaman aşımı) yok sayılır."""
+    while GEC:
+        r, task, out, t = GEC.pop(0)
+        kalan = t + sn - time.time()
+        if kalan > 0: page.wait_for_timeout(int(kalan * 1000))
+        try: r.fulfill(status=200, headers=CORS, body=json.dumps({"task": task, "output": out, "model": "m", "ms": int(sn * 1000)}))
+        except Exception: pass
+
 # Akış bayrağının e2e tabanı: yalnız 1. gün (pilot). Üretimde `policy.akis.gunler` "hepsi"dir; e2e paketinde 2. ve 3. güne de halka
 # önerisi eklendiği için taban yazılmasa eski düzeni sınayan testler (ders yolu, devam, gezgin) akışa düşerdi. Hiçbir test bayrağın
 # varsayılanına yaslanmaz: eski düzen '[]', bütün günler '"hepsi"' (v2_akis_hepsi.py) diye KENDİ değerini yazar (sekmede kalıcı).
 # try/catch: depolamaya erişimi olmayan belgede (boş sayfa, yalıtılmış çerçeve) sessionStorage okumak sayfa hatası verir
 AKIS_TABAN = "try { if (sessionStorage.getItem('e2e-akis-gunler') === null) sessionStorage.setItem('e2e-akis-gunler', '[1]'); } catch (e) {}"
+# PR B-3 gün kilidi: eski testler tek günü adresle açar → taban "kapali"; kilidi sınayan test (v2_yol_hafta.py) "acik" yazar
+GUN_KILIDI_TABAN = "try { if (sessionStorage.getItem('e2e-gun-kilidi') === null) sessionStorage.setItem('e2e-gun-kilidi', 'kapali'); } catch (e) {}"
 
 def launch(p, color_scheme="light", viewport=None, service_workers="block"):
     # Servis işçisi varsayılan kapalı: WebKit'te page.route, SW denetimindeki sayfanın isteklerini görmez (inceleme #43 P0-1). Yalnızca ucak.py açar.
@@ -136,6 +152,7 @@ def launch(p, color_scheme="light", viewport=None, service_workers="block"):
     else:
         ctx = b.new_context(viewport=viewport or {"width": 390, "height": 844}, device_scale_factor=2, locale="tr-TR", color_scheme=color_scheme, has_touch=True, service_workers=service_workers)
     ctx.add_init_script(AKIS_TABAN)
+    ctx.add_init_script(GUN_KILIDI_TABAN)
     return b, ctx
 
 IPTAL = []

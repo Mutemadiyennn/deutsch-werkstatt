@@ -23,6 +23,8 @@ jobs:
         run: npm run content:validate
       - name: "Dikiş denetçisi (PM-090 md. 2.1): günler ↔ a1-kesin.json tablosu ve omurga, 0 ihlal"
         run: node --experimental-strip-types --no-warnings content/tools/dikis-kos.ts
+      - name: "Hafta kapısı (PM-087 B.1): 2. hafta ve sonrası, öğretilmeden istenen 0, hafta sonu testi ≥ %80, görülmemiş durum"
+        run: node --experimental-strip-types --no-warnings content/tools/hafta-kapisi-kos.ts --hepsi
       - name: Raf doldurma hattı birim testleri (ağsız; D-112)
         run: python3 -m pip install --quiet --break-system-packages pillow 2>/dev/null || python3 -m pip install --quiet pillow; python3 scripts/raf/test_doldur.py
       - name: Gizli anahtar taraması (Firebase web yapılandırması hariç)
@@ -101,6 +103,8 @@ jobs:
         run: cd tests/e2e && python v2_core.py
       - name: Oynatıcı (aşama 1–6, dinleme, klavye, uzun basma, dayanıklılık, taşma, %130)
         run: cd tests/e2e && python v2_player.py --shots /tmp/shots
+      - name: Yapay zekâ hata durumları (PM-087 A.4)
+        run: cd tests/e2e && python v2_yz_hata.py --tablo /tmp/yz-hata.md
       - name: DN-2 gezgin (her ekranda her düğme)
         run: mkdir -p /tmp/shots && cd tests/e2e && python gezgin.py --out /tmp/shots/gezgin.json
       - name: "Yerleşim bekçisi (PM-079 md. 4): B1–B8, gezginin ekranları, 844 ve 932 yükseklik; kip dosyada (rapor → kırmızı)"
@@ -125,6 +129,14 @@ jobs:
         run: cd tests/e2e && python v2_yol.py --shots /tmp/shots
       - name: "Yol haritası ve durum çubuğu (#58 B11a, PM-065): düğümler, BAŞLA, kilitli, gün bandı ve Rehber, seri/XP/dakika, kontrast"
         run: cd tests/e2e && python v2_yol_harita.py --shots /tmp/shots
+      - name: "Sekme çerçevesi (PM-084 md. 3, Hedef 3): Bugün · Yol · Köy · Ben, etkin durum, eski adresler yönlenir, tam ekran akışlarda sekme yok"
+        run: cd tests/e2e && python v2_sekme.py --shots /tmp/shots
+      - name: "Köy (PM-084 md. 4, Hedef 3): dükkân ızgarası, kilitli dükkânlar, gerçek sayılar, Telefonun kartı, eski Öğren girişleri ≤ 2 dokunuş"
+        run: cd tests/e2e && python v2_koy.py --shots /tmp/shots
+      - name: "Ben (PM-084 md. 5, Hedef 3): Ne kazandım, kanıttan noktalar, bu hafta, çalışma düzenim, ayarlar"
+        run: cd tests/e2e && python v2_ben.py --shots /tmp/shots
+      - name: "Günlük hatırlatma (PM-121 md. 3.3): kabukta 7 günlük pencere, v1 kimlikleri silinir, Çalışma düzenim'den kapat/saat"
+        run: cd tests/e2e && python v2_hatirlatma.py --shots /tmp/shots
       - name: "Seçilmiş açık fotoğraf (#58 B12 3. parça): kartta atıfla, kayıt yoksa alan yok"
         run: cd tests/e2e && python v2_foto.py
       - name: "Ses ve mikrofon (#58 B15 1. adım, PM-064): karaktere göre ses, Yavaş yalnızca hız, mikrofon yolu ve Türkçe hata türleri"
@@ -169,6 +181,14 @@ jobs:
         run: cd tests/e2e && python v2_akis.py --mikrofon --gun 1
       - name: "Akış bayrağı 'hepsi' (PM-090 md. 3): 1. gün bitince 2. günün BAŞLA'sı akışa gider; [1] ve [] ile eski düzen"
         run: cd tests/e2e && python v2_akis_hepsi.py
+      - name: "Dil noktası durağı (PM-092 md. 1, #231): paketteki bütün dil noktaları telefonda sığar, tablo bölünmez, sesli örnekler, tek 'Anladım'"
+        run: cd tests/e2e && python v2_dil_noktasi.py --shots /tmp/shots && python v2_dil_noktasi.py --ts 1.3 && python v2_dil_noktasi.py --genislik 320 && python v2_dil_noktasi.py --ts 1.3 --genislik 320
+      - name: "Çok haftalı Yol (PR B-3): 2. hafta açık, 1. hafta tek satır, yalnız haftanın gün dosyaları, gün kilidi, hafta sonu testi; açık + koyu"
+        run: cd tests/e2e && python v2_yol_hafta.py --shots /tmp/shots && python v2_yol_hafta.py --scheme dark --shots /tmp/shots
+      - name: "Sınav günü (PM-110): 55. gün dinleme + okuma, 56. gün yazma + konuşma, öz-puan, geçme kuralı, yeniden çözme; açık + koyu"
+        run: cd tests/e2e && python v2_sinav.py --shots /tmp/shots && python v2_sinav.py --scheme dark --shots /tmp/shots
+      - name: "8. gün fikstürü (#231 P1-3): gr: dersli gün baştan sona, dil noktası durağı, ders:<id> yazımı"
+        run: cd tests/e2e && python v2_akis.py --tam --gun 8
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4

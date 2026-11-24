@@ -18,3 +18,14 @@ export function tabloBol(sutunlar: readonly string[]): TabloBolum | null {
 
 /** hücrenin dili: başlığı "Türkçe" olan sütun Türkçe, ötekiler Almanca (başlıklar Türkçe) */
 export const hucreDili = (baslik: string) => (/^türkçe$/i.test(baslik.trim()) ? "tr" : "de");
+
+/**
+ * Dil noktası tablosu sık mı (inceleme #231 P1-1): 5+ sütun ya da 4 sütunda en uzun sözcüklerin toplamı ≥ 40 harf. Sık tablo daha küçük
+ * yazı ve dar hücre boşluğuyla çizilir; böylece bölünmeden (sütun seçicisiz) 390 pt'ye sığar.
+ */
+export function sikTablo(sutunlar: readonly string[], satirlar: readonly (readonly string[])[], goster: readonly number[]): boolean {
+  if (goster.length >= 5) return true;
+  if (goster.length < 4) return false;
+  const enUzun = (i: number) => Math.max(0, ...[sutunlar[i] ?? "", ...satirlar.map((r) => r[i] ?? "")].flatMap((c) => c.split(/\s+/)).map((w) => w.length));
+  return goster.reduce((a, i) => a + enUzun(i), 0) >= 40;
+}

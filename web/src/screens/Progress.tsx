@@ -11,6 +11,7 @@ import { TopBar, useFocusTick } from "../ui/components.tsx";
 import { XpSeri } from "../ui/solen.tsx";
 import { GecenHaftakiSen } from "../ui/gorev.tsx";
 import { useXp } from "../ui/durum.tsx";
+import { HATIRLATMA_SAATLERI, hatirlatmaAyar, hatirlatmaIzni, hatirlatmaKaydet, hatirlatmaVar, type HatirlatmaAyar } from "../services/hatirlatma.ts";
 
 const addDays = (d: Date, n: number) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
 const DOW = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"];
@@ -56,25 +57,23 @@ export function Progress() {
 
   return (
     <div class="stack">
-      <TopBar title="İlerlemem" />
+      <TopBar title="Çalışma düzenim" back="#/ben" />
       {/* Şölen 1 XP ve seri kartı (Bugün'den taşındı; durum çubuğu her ekranda) ve B11b "Geçen haftaki sen" */}
-      {xp && <XpSeri xp={xp} href="#/yol" />}
-      <GecenHaftakiSen />
+      {/* PM-084 md. 5.6: hiç puan yokken sıfır kartları çizilmez (inceleme #208 P1-2) */}
+      {xp && Object.values(xp.gunler).some((n) => n > 0) && <><XpSeri xp={xp} href="#/yol" /><GecenHaftakiSen /></>}
 
       <section class="card hero purple stack" data-test="hero">
-        <div class="kicker">İlerlemem · {today.toLocaleDateString("tr-TR", { day: "numeric", month: "short" })}</div>
+        <div class="kicker">Çalışma düzenim · {today.toLocaleDateString("tr-TR", { day: "numeric", month: "short" })}</div>
         <h1 class="hero-title">{placement ? (placement.overall === "below-A1" ? "A1 öncesi" : placement.overall) : "Seviye henüz ölçülmedi"}</h1>
-        <div class="tiles">
-          <div><b>{stats?.passiveKnown ?? 0}</b><span>pasif kelime</span></div>
-          <div><b>{stats?.activeKnown ?? 0}</b><span>aktif kelime</span></div>
-          <div><b>{stats?.durable ?? 0}</b><span>kalıcı kelime</span></div>
-          <div><b>{scen.done}</b><span>bitmiş senaryo</span></div>
-        </div>
+        {/* PM-084 md. 5.6: sıfır olan sayı ekrana çizilmez (veri yerinde; ilk kanıtla görünür) */}
+        {(() => { const t = ([[stats?.passiveKnown ?? 0, "pasif kelime"], [stats?.activeKnown ?? 0, "aktif kelime"], [stats?.durable ?? 0, "kalıcı kelime"], [scen.done, "bitmiş senaryo"]] as const).filter(([n]) => n > 0);
+          return t.length > 0 && <div class="tiles" data-test="tiles">{t.map(([n, ad]) => <div><b>{n}</b><span>{ad}</span></div>)}</div>; })()}
         <p class="small" style={{ margin: 0 }}>{exam !== null ? <>B1 hedefine <b>{exam} gün</b> var. Son 6 hafta sınav odaklı çalışacağız.</> : "Süre ve dil kazanımı ayrı izlenir: çok çalışmak tek başına seviye demek değildir."}</p>
       </section>
 
       <section class="card tint stack" data-test="panel-focus">
         <div class="sechead"><span class="ic" aria-hidden="true"><Icon name="clock" /></span><div><h2>Çalışma düzeni</h2><div class="tiny muted">Panel 1 · süre: ne kadar düzenli çalıştığın, dil seviyen değil</div></div></div>
+        {monthMin === 0 && !todayDay?.focusSec ? <p class="small muted" data-test="odak-bos">İlk odak seansından sonra süreler burada görünür.</p> : <>
         <div class="row between"><span>Bugün</span><b>{todayDay ? Math.floor(todayDay.focusSec / 60) : 0} / {goal} dk · {e?.completedCount || 0}/4 seans</b></div>
         <div class="row between small muted"><span>Bugünkü mola</span><span>{Math.round(((todayDay?.breakSec || 0) + (todayDay?.longBreakSec || 0)) / 60)} dk (odak süresine eklenmez)</span></div>
         {seg.size > 0 && <div class="small">Bugün: {[...seg.entries()].map(([a, s]) => `${ACTIVITY_TR[a as keyof typeof ACTIVITY_TR]} ${Math.round(s / 60)} dk`).join(" · ")}</div>}
@@ -84,9 +83,10 @@ export function Progress() {
             <div class="goal" style={{ bottom: `${(profile.focus.weekly.minPerDay / maxBar) * 100}%` }} />
             {week.map((w) => <div class={`b${w.min >= profile.focus.weekly.minPerDay ? " hit" : ""}`} style={{ height: `${(w.min / maxBar) * 100}%` }} title={`${w.k}: ${w.min} dk`} />)}
           </div>
-          <div class="barlbl">{week.map((w, i) => <span>{DOW[i]}<br />{w.min}</span>)}</div>
+          <div class="barlbl">{week.map((w, i) => <span>{DOW[i]}<br />{w.min || "·"}</span>)}</div>
         </div>
-        <div class="row between small"><span>Bu ay</span><span>{monthMin} dk · {cnt("completed")} seans tamamlandı · {cnt("interrupted") + cnt("abandoned")} yarıda kaldı</span></div>
+        <div class="row between small"><span>Bu ay</span><span>{[monthMin && `${monthMin} dk`, cnt("completed") && `${cnt("completed")} seans tamamlandı`, (cnt("interrupted") + cnt("abandoned")) && `${cnt("interrupted") + cnt("abandoned")} yarıda kaldı`].filter(Boolean).join(" · ") || "bugün başladın"}</span></div>
+        </>}
       </section>
 
       <section class="card tint green stack" data-test="panel-language">
@@ -98,17 +98,36 @@ export function Progress() {
             {assessments.length > 1 && <p class="small">Ölçüm sayısı: {assessments.length} · ilk: {assessments[0]!.overall} → son: {assessments.at(-1)!.overall}</p>}
           </>
         ) : <p class="small muted">Henüz seviye tespiti yok. <a href="#/assess">Şimdi yap</a></p>}
-        {stats && (
-          <div class="small">
-            <div class="row between"><span>Tanıdığın kelimeler (pasif)</span><b>{stats.passiveKnown}</b></div>
-            <div class="row between"><span>Kendin üretebildiğin kelimeler (aktif)</span><b>{stats.activeKnown}</b></div>
-            <div class="row between"><span>Kalıcı kelimeler (iki ayrı oturumda üretilmiş)</span><b>{stats.durable}</b></div>
-            <div class="row between"><span>Tekrar listende</span><b>{stats.bank}</b></div>
-            <div class="row between"><span>Gerçek hayat senaryoları (başlanan / bağımsız tamamlanan)</span><b>{scen.started} / {scen.done}</b></div>
-          </div>
-        )}
+        {stats && (() => {
+          const satir = ([["Tanıdığın kelimeler (pasif)", stats.passiveKnown], ["Kendin üretebildiğin kelimeler (aktif)", stats.activeKnown], ["Kalıcı kelimeler (iki ayrı oturumda üretilmiş)", stats.durable],
+            ["Tekrar listende", stats.bank], ["Gerçek hayat senaryoları (başlanan)", scen.started], ["Gerçek hayat senaryoları (bağımsız tamamlanan)", scen.done]] as const).filter(([, n]) => n > 0);
+          return satir.length
+            ? <div class="small" data-test="dil-sayilari">{satir.map(([ad, n]) => <div class="row between"><span>{ad}</span><b>{n}</b></div>)}</div>
+            : <p class="small muted" data-test="dil-sayilari-bos">İlk kelimeni tanıyınca burada sayılar görünür.</p>;
+        })()}
         <p class="tiny muted">Pasif = tanıma; aktif = kendin üretme. Kalıcı: en az 3 saat arayla iki ayrı oturumda doğru üretilmiş.</p>
       </section>
+      {hatirlatmaVar() && <HatirlatmaKarti hedefDk={goal} />}
     </div>
+  );
+}
+
+/** Günlük hatırlatma (PM-121 md. 3.3): akşam tek bildirim; kapatılabilir, saati seçilir. Yalnız iPhone kabuğunda görünür. */
+function HatirlatmaKarti({ hedefDk }: { hedefDk: number }) {
+  const [a, setA] = useState<HatirlatmaAyar | null>(null);
+  const [izin, setIzin] = useState<string | null>(null);
+  useEffect(() => { void hatirlatmaAyar().then(setA); void hatirlatmaIzni().then(setIzin); }, []);
+  if (!a) return null;
+  const degis = (y: HatirlatmaAyar) => { setA(y); void hatirlatmaKaydet(y, hedefDk).then(() => hatirlatmaIzni()).then(setIzin); };
+  return (
+    <section class="card stack" data-test="hatirlatma">
+      <div class="sechead"><span class="ic" aria-hidden="true"><Icon name="zil" /></span><div><h2>Günlük hatırlatma</h2><div class="tiny muted">Akşam tek bildirim. O gün hedefinin yarısını geçtiysen gelmez.</div></div></div>
+      <label class="row hatirlatma-satir"><input type="checkbox" checked={a.acik} data-test="hatirlatma-acik" onChange={(e) => degis({ ...a, acik: (e.target as HTMLInputElement).checked })} /><span>Her akşam hatırlat</span></label>
+      {a.acik && izin === "denied" && <p class="small muted" data-test="hatirlatma-izin">Bildirim izni kapalı. iPhone'da Ayarlar → Bildirimler'den bu uygulamaya izin ver.</p>}
+      {a.acik && <><label class="lbl" for="hatirlatma-saat">Saat</label>
+        <select id="hatirlatma-saat" class="input" value={a.saat} data-test="hatirlatma-saat" onChange={(e) => degis({ ...a, saat: (e.target as HTMLSelectElement).value })}>
+          {HATIRLATMA_SAATLERI.map((s) => <option value={s}>{s}</option>)}
+        </select></>}
+    </section>
   );
 }

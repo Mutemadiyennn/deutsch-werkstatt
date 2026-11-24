@@ -6,7 +6,7 @@
  * Tamamlanan adım yeniden önerilmez; sıradaki adım her zaman tek ve açıktır. Seviye XP ile değil kanıtla atlanır.
  */
 import type { Gun } from "@dw/shared";
-import { medyalar } from "@dw/shared";
+import { medyalar, SINAV_BOLUM, type SinavBolum } from "@dw/shared";
 import POLICY from "../policy.json" with { type: "json" };
 
 export type SeansNo = 1 | 2 | 3 | 4;
@@ -14,7 +14,7 @@ export type SeansNo = 1 | 2 | 3 | 4;
 /** Yol ve Bugün'deki adım başlıkları düz metindir: içerikteki **kalın** işareti ekrana yıldızla çıkmaz (D-092; KAPI 7059696028) */
 const isaretsiz = (t: string) => t.replace(/\*\*(.+?)\*\*/g, "$1");
 
-export interface Adim { seans: SeansNo; tur: "bahce" | "ders" | "medya" | "prova" | "okuma"; id: string; title_tr: string; href: string; bitti: boolean; hazir: boolean; alt?: "video" | "ses" }
+export interface Adim { seans: SeansNo; tur: "bahce" | "ders" | "medya" | "prova" | "okuma" | "sinav"; id: string; title_tr: string; href: string; bitti: boolean; hazir: boolean; alt?: "video" | "ses" }
 /** `akis`: bayraklı günde akış bitmeden "BAŞLA" bu adrese gider (akış durakları sırayla açar; öğrenci simülasyonu P1-1) */
 export interface GunDurum { day: number; title_tr: string; adimlar: Adim[]; bitti: boolean; akis?: string }
 /** Cihazda saklanan ilerlemeden okunanlar (meta anahtarları ekranda doldurulur) */
@@ -34,12 +34,27 @@ export interface Ilerleme {
   tanitilan?: Set<string>;
   /** Bahçe'ye kart olarak giren kimlikler (sayı, parçacık, zamir kart değildir); verilmezse hepsi sayılır */
   kartlar?: Set<string>;
+  /** sınav günü (PM-110): biten deneme bölümleri (`<deneme>:<bölüm>`, `m1:sinav:` kayıtları) */
+  sinavBitti?: Set<string>;
+  /** paketteki denemeler (`index.files.deneme`); verilmezse hepsi var sayılır. Denemesi pakette olmayan sınav günü "hazırlanıyor" */
+  denemeler?: ReadonlySet<string>;
 }
 
 export const SEANS_TR: Record<SeansNo, string> = { 1: "Kelime Bahçesi", 2: "Temel ders", 3: "Video ve sesler", 4: "Konuşma provası" };
 export const bahceAnahtari = (day: number) => `m1:bahce:${day}`;
 /** Adımın etiketi: seansın adı; Seans 4'te okuma/yazma kendi adıyla */
-export const adimAdi = (a: Pick<Adim, "seans" | "tur">) => (a.tur === "okuma" ? "Okuma ve yazma" : SEANS_TR[a.seans]);
+export const adimAdi = (a: Pick<Adim, "seans" | "tur">) => (a.tur === "okuma" ? "Okuma ve yazma" : a.tur === "sinav" ? "Deneme sınavı" : SEANS_TR[a.seans]);
+
+/* ---------- sınav günü (PM-101 md. 5, PM-110) ---------- */
+export const BOLUM_TR: Record<SinavBolum, string> = { dinleme: "Dinleme", okuma: "Okuma", yazma: "Yazma", konusma: "Konuşma" };
+/** Günün deneme bölümleri: `sinav_bolumler`, yoksa denemenin bütün bölümleri (doğrulayıcı uyarır) */
+export const sinavBolumleri = (g: Pick<Gun, "sinav_bolumler">): SinavBolum[] => [...(g.sinav_bolumler ?? SINAV_BOLUM)];
+/** "Dinleme ve okuma", "Dinleme, okuma, yazma ve konuşma" */
+export function bolumlerTr(b: readonly SinavBolum[]): string {
+  const a = b.map((x, i) => (i ? BOLUM_TR[x].toLocaleLowerCase("tr") : BOLUM_TR[x]));
+  return a.length < 2 ? a.join("") : `${a.slice(0, -1).join(", ")} ve ${a[a.length - 1]}`;
+}
+export const sinavAnahtari = (deneme: string, bolum: string) => `${deneme}:${bolum}`;
 
 /** Akış bayrağı: gün listesi ya da "hepsi" (halkası olan her gün; PM-090 md. 3 "akışın bütün günlere açılması") */
 export type AkisGunleri = readonly number[] | "hepsi";
@@ -62,17 +77,30 @@ export function akisAcik(g: Gun, ilr: Ilerleme, gunler: AkisGunleri = bayrakliGu
 }
 
 export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<string, string> = {}, akisGunler: AkisGunleri = bayrakliGunler()): GunDurum {
+  // sınav günü: tek adım "Deneme sınavı" (Bahçe yok; o gün yalnız deneme). Gün, o günün bölümleri bitince biter; deneme pakette
+  // yoksa adım "hazırlanıyor" kalır ve gün bitmez (sınav yapılmadan geçilmez; ANA-G notu 7091382884)
+  if (g.sinav) {
+    const b = sinavBolumleri(g);
+    const bitti = b.every((x) => !!ilr.sinavBitti?.has(sinavAnahtari(g.sinav!, x)));
+    const hazir = !ilr.denemeler || ilr.denemeler.has(g.sinav);
+    const adim: Adim = { seans: 1, tur: "sinav", id: `sinav:${g.day}`, title_tr: bolumlerTr(b), href: `#/sinav/${g.day}`, bitti, hazir };
+    return { day: g.day, title_tr: isaretsiz(g.title_tr), adimlar: [adim], bitti: !!ilr.gunBitti?.has(g.day) || bitti };
+  }
   const a: Adim[] = [];
   const bahceBitti = ilr.bahceBitti.has(g.day);
   const kalan = bahceBitti ? 0 : g.yeni_kartlar.filter((id) => (!ilr.kartlar || ilr.kartlar.has(id)) && !ilr.tanitilan?.has(id)).length;
   a.push({ seans: 1, tur: "bahce", id: `bahce:${g.day}`, title_tr: kalan ? `${kalan} yeni kelime ve tekrar` : "Kelime tekrarı", href: `#/garden/${g.day}`, bitti: bahceBitti, hazir: true });
-  for (const d of g.dersler) a.push({ seans: 2, tur: "ders", id: d, title_tr: temelBasliklari[d] ?? "Temel ders", href: `#/ders/${encodeURIComponent(d)}`, bitti: ilr.dersBitti.has(d), hazir: d in temelBasliklari });
+  const akisGunu = akisAcik(g, ilr, akisGunler);
+  // dil noktası (gr:/dn:) ders ekranında açılmaz, akışın durağıdır (#231 takibi): akış günündeyse hazır ve akışa gider; değilse hazırlanıyor
+  for (const d of g.dersler) a.push(/^(gr|dn):/.test(d)
+    ? { seans: 2, tur: "ders", id: d, title_tr: "Dil noktası", href: `#/akis/${g.day}`, bitti: ilr.dersBitti.has(d), hazir: akisGunu }
+    : { seans: 2, tur: "ders", id: d, title_tr: temelBasliklari[d] ?? "Temel ders", href: `#/ders/${encodeURIComponent(d)}`, bitti: ilr.dersBitti.has(d), hazir: d in temelBasliklari });
   for (const m of medyalar(g)) if (m.kind !== "sahne") a.push({ seans: 3, tur: "medya", alt: m.kind === "video" ? "video" : "ses", id: m.id, title_tr: isaretsiz(m.title_tr), href: `#/m1/${g.day}/${encodeURIComponent(m.id)}`, bitti: ilr.medyaBitti.has(m.id), hazir: true });
   if (g.prova) a.push({ seans: 4, tur: "prova", id: `prova:${g.day}`, title_tr: isaretsiz(g.prova.title_tr), href: `#/prova/${g.day}`, bitti: !!ilr.provaBitti?.has(g.day), hazir: true });
   if (g.okuma_yazma) a.push({ seans: 4, tur: "okuma", id: `okuma:${g.day}`, title_tr: isaretsiz(g.okuma_yazma.title_tr), href: `#/okuma/${g.day}`, bitti: !!ilr.okumaBitti?.has(g.day), hazir: true });
   // akış günü: Bahçe adımı akış ekranından; ders, prova, okuma ve medya kendi ekranlarında (inceleme #184 Y-3) (eski anahtarlar akış durak bitince yazılır; Yol ve Bugün aynen okur)
   // prova, okuma ve medya kendi ekranlarında kalır: akışta "şimdi geç" denen durağa Yol'dan yine ulaşılır (inceleme #184 P1-2)
-  const akis = akisAcik(g, ilr, akisGunler);
+  const akis = akisGunu;
   if (akis) for (const x of a) if (x.tur === "bahce") x.href = `#/akis/${g.day}`;
   // gün, hazır olan bütün adımlar bitince biter (hazırlanmakta olan adım öğrenciyi bekletmez)
   const bitti = !!ilr.gunBitti?.has(g.day) || a.filter((x) => x.hazir).every((x) => x.bitti);
@@ -87,6 +115,49 @@ export function yol(gunler: GunDurum[]): { gunler: (GunDurum & { durum: "bitti" 
     gunler: sirali.map((g, k) => ({ ...g, durum: i < 0 || k < i ? "bitti" : k === i ? "simdi" : "kilitli" })),
     simdi: i < 0 ? null : sirali[i]!
   };
+}
+
+/* ---------- çok haftalı yol (PR B-3; PR B 7087645415 md. 1–4) ---------- */
+/** Gün sınırı (yıl): 364. günden sonrası paketten gelse de yola girmez */
+export const GUN_SINIR = 364;
+/** Hafta = ⌈gün / 7⌉ */
+export const haftaOf = (day: number) => Math.ceil(day / 7);
+/** Haftanın son günü (hafta sonu düğümü, kupa) */
+export const haftaSonuMu = (day: number) => day % 7 === 0;
+/** Yolda gösterilen günler: 1…364, sıralı, tekil */
+export const yolGunleri = (days: number[]) => [...new Set(days.filter((d) => Number.isInteger(d) && d >= 1 && d <= GUN_SINIR))].sort((a, b) => a - b);
+/**
+ * Açılışta yüklenecek hafta: kalıcı gün bitişi (`m1:gun:<g>`) olmayan ilk günün haftası; hepsi bittiyse son hafta.
+ * Önceki haftaların dosyaları yüklenmez (md. 3; yükleme bütçesi).
+ */
+export function yuklenecekHafta(days: number[], gunBitti: ReadonlySet<number>): number | null {
+  const g = yolGunleri(days);
+  if (!g.length) return null;
+  const ilk = g.find((d) => !gunBitti.has(d));
+  return haftaOf(ilk ?? g[g.length - 1]!);
+}
+/**
+ * Gün kilidi (md. 4): gün, kendinden önceki bütün günler kalıcı olarak bitmişse açıktır (sıra; atlama yok). Pakette olmayan ya da
+ * sınır dışındaki gün kilitli sayılmaz (ekran "henüz hazır değil" der). Adresle elle açılan kilitli gün bu kuralla kapanır.
+ */
+export function gunKilitli(day: number, days: number[], gunBitti: ReadonlySet<number>): boolean {
+  const g = yolGunleri(days);
+  if (!g.includes(day)) return false;
+  return g.some((d) => d < day && !gunBitti.has(d));
+}
+/** Hafta sonu testi açık mı: haftanın paketteki bütün günleri kalıcı olarak bitmiş (en az bir gün) */
+export function haftaBitti(hafta: number, days: number[], gunBitti: ReadonlySet<number>): boolean {
+  const g = yolGunleri(days).filter((d) => haftaOf(d) === hafta);
+  return g.length > 0 && g.every((d) => gunBitti.has(d));
+}
+/** Yolda yüklenmemiş günün yerine geçen özet (önceki hafta: bitti; sonraki hafta: kilitli). Adımı yoktur. */
+export const gunOzeti = (day: number, title_tr: string, bitti: boolean): GunDurum => ({ day, title_tr: isaretsiz(title_tr), adimlar: [], bitti });
+/** Haftalara böl: her haftanın günleri ve durumu (`simdi`: şimdiki günün haftası) */
+export function haftalara<T extends { day: number; durum: "bitti" | "simdi" | "kilitli" }>(gunler: T[]): { hafta: number; gunler: T[]; durum: "bitti" | "simdi" | "kilitli" }[] {
+  const m = new Map<number, T[]>();
+  for (const g of gunler) { const h = haftaOf(g.day); m.set(h, [...(m.get(h) ?? []), g]); }
+  return [...m.entries()].sort((a, b) => a[0] - b[0]).map(([hafta, gs]) => ({ hafta, gunler: gs,
+    durum: gs.some((g) => g.durum === "simdi") ? "simdi" : gs.every((g) => g.durum === "bitti") ? "bitti" : "kilitli" }));
 }
 
 /** Sıradaki adım: şu anki günün ilk hazır ve bitmemiş adımı (seans sırasıyla) */

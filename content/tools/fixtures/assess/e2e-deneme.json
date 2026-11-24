@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "id": "assess:e2e-deneme:1",
+  "seviye": "A1",
+  "review": { "status": "reviewed", "by": "e2e-fikstür" },
+  "note_tr": "Yalnız e2e ve birim testleri için küçük deneme (yayın paketine girmez). Biçim content/v2/assess/a1-deneme.json ile aynı.",
+  "gecme": { "toplam": 0.6, "konusma": 0.6 },
+  "puanlama_tr": "Her bölümde aldığın puan 25 üzerinden hesaplanır. Geçmek için toplam en az 60 puan gerekir. Konuşma bölümünden ayrıca en az 15 puan gerekir.",
+  "bolumler": [
+    { "id": "dinleme", "title_tr": "Dinleme", "sure_dk": 5, "puan": 25, "ham_puan": 2, "kisimlar": [
+      { "id": "d1", "yonerge_tr": "İki kısa konuşma dinleyeceksin. Her konuşmayı iki kez duyacaksın. Doğru cevabı seç.", "dinleme_sayisi": 2, "maddeler": [
+        { "id": "e2d:d1:01", "k": "pick", "speed": "normal", "ses": [{ "r": "kadin", "de": "Guten Morgen! Was möchten Sie?" }, { "r": "erkek", "de": "Zwei Brötchen, bitte." }], "q_tr": "Adam ne istiyor?", "opts": ["İki ekmek", "Bir kahve", "Bir su"], "ans": 0, "kanit": [1], "puan": 1 },
+        { "id": "e2d:d1:02", "k": "pick", "speed": "normal", "ses": [{ "r": "anons", "de": "Der Bus fährt heute um neun Uhr." }], "q_tr": "Otobüs bugün saat kaçta kalkıyor?", "opts": ["Sekizde", "Dokuzda"], "ans": 1, "kanit": [0], "puan": 1 }
+      ] }
+    ] },
+    { "id": "okuma", "title_tr": "Okuma", "sure_dk": 5, "puan": 25, "ham_puan": 2, "kisimlar": [
+      { "id": "o1", "yonerge_tr": "Kısa bir tabela okuyacaksın. Cümle doğru mu, yanlış mı?", "maddeler": [
+        { "id": "e2o:o1:01", "k": "pick", "metin_de": "Montag bis Freitag 9 bis 18 Uhr. Samstag geschlossen.", "q_tr": "Dükkân cumartesi açık.", "opts": ["Doğru", "Yanlış"], "ans": 1, "kanit": [1], "puan": 1 }
+      ] },
+      { "id": "o2", "yonerge_tr": "İki ilan okuyacaksın: a ve b. Duruma uyan ilanı seç.", "maddeler": [
+        { "id": "e2o:o2:01", "k": "pick", "q_tr": "Pazar günü ekmek almak istiyorsun.", "secenekler_de": ["Bäckerei Lang. Sonntag geschlossen.", "Backstube am Markt. Sonntag 8 bis 11 Uhr."], "opts": ["a", "b"], "ans": 1, "kanit": [1], "puan": 1 }
+      ] }
+    ] },
+    { "id": "yazma", "title_tr": "Yazma", "sure_dk": 10, "puan": 25, "ham_puan": 6, "kisimlar": [
+      { "id": "y1", "yonerge_tr": "Metni oku ve formdaki iki boşluğu doldur.", "maddeler": [
+        { "id": "e2y:y1:01", "k": "form", "puan": 2, "bilgi_de": "Anna Berg wohnt in der Bergstraße 12. Ihre Nummer ist 0176 23 45 81.", "form_baslik_de": "Anmeldung", "verilen": [{ "etiket_de": "Vorname", "deger": "Anna" }],
+          "alanlar": [
+            { "id": "strasse", "etiket_de": "Straße, Hausnummer", "puan": 1, "accepted": ["Bergstraße 12", "Bergstrasse 12", "Bergstr. 12"] },
+            { "id": "telefon", "etiket_de": "Telefon", "puan": 1, "accepted": ["0176 23 45 81", "0176234581"] }
+          ] }
+      ] },
+      { "id": "y2", "yonerge_tr": "Kısa bir mesaj yaz. Başta selam, sonda kapanış olsun.", "maddeler": [
+        { "id": "e2y:y2:01", "k": "mesaj", "puan": 4, "gorev_tr": "Yarınki randevuna gidemiyorsun. Kısa bir e-posta yaz.", "noktalar_tr": ["Gelemeyeceğini yaz.", "Yeni bir gün iste."],
+          "ornek_de": "Guten Tag, leider kann ich morgen nicht kommen. Haben Sie am Freitag einen Termin? Viele Grüße {name}", "zorunlu": ["Termin"],
+          "degerlendirme_tr": ["Görev (2 puan): her madde 1 puan.", "Selam ve kapanış (2 puan): selam 1 puan, kapanış 1 puan."] }
+      ] }
+    ] },
+    { "id": "konusma", "title_tr": "Konuşma", "sure_dk": 5, "puan": 25, "ham_puan": 2, "hazirliksiz": true, "kisimlar": [
+      { "id": "k1", "yonerge_tr": "Hazırlık yok. Durumu okuyunca hemen konuş.", "degerlendirme_tr": ["Her madde 1 puan. Anlaşılır ve tam cümle: tam puan. Cümle bozuksa yarım puan."], "maddeler": [
+        { "id": "e2k:k1:01", "k": "guided_response", "puan": 1, "situation_tr": "Görevli adını soruyor. Adını söyle.", "prompt_de": "Wie heißen Sie?", "accepted": ["Ich heiße {name}.", "Mein Name ist {name}."] },
+        { "id": "e2k:k1:02", "k": "listen_and_respond", "puan": 1, "speed": "normal", "audio_de": "Woher kommen Sie?", "situation_tr": "Görevli bir şey soruyor. Cevap ver.", "accepted": ["Ich komme aus der Türkei.", "Aus der Türkei."] }
+      ] }
+    ] }
+  ]
+}

@@ -9,7 +9,7 @@ import { join } from "node:path";
 import { z } from "zod";
 import { Halka, bilinmeyenler, genelAdlarAyikla, kalipOrtu, kartsizMi, kalipSecenekleri, kumeDizini, toks, YUVA, type Bilinen, type LearnerItem } from "@dw/shared";
 import { loadContent, ROOT } from "../../../content/tools/load.ts";
-import { ADIM_TURLERI, GOSTERIM, GUN_SINAVI, KIP, planGun, politikaHatalari, POLITIKA, type Adim, type AkisPolitikasi, type GunPlani, type PlanGirdi } from "./akis.ts";
+import { ADIM_TURLERI, DIL_NOKTASI, GOSTERIM, GUN_SINAVI, KIP, planGun, politikaHatalari, POLITIKA, type Adim, type AkisPolitikasi, type GunPlani, type PlanGirdi } from "./akis.ts";
 
 const c = loadContent();
 const genel = genelAdlarAyikla(readFileSync(join(ROOT, "docs/v2/reviews/genel-adlar.md"), "utf8"));
@@ -189,6 +189,15 @@ describe("Halka planlayıcısı (AKIS AK-2, AK-3, AK-9) — 50 tohum × 4 durum"
       for (const d of halkaD(x.p)) { expect(d.adimlar.at(-1)!.tur, etiket(x, d.id)).toBe("sahne"); expect(d.adimlar.at(-2)!.tur, etiket(x, d.id)).toBe("eslestir"); }
     }
   });
+  it("eşleştir yalnız eslestir_kart[0]+ kartlık halkada: 2–3 kartlık halkada yok, 4'te var (PM-098 md. 2, inceleme #234 P1-1)", () => {
+    expect(POLITIKA.eslestir_kart).toEqual([4, 6]); expect(POLITIKA.halka_kart).toEqual([2, 6]);
+    const kes = (n: number) => halkalar.map((h) => { const k = h.kartlar.slice(0, n); return { ...h, kartlar: k, gorev_cumleleri: h.gorev_cumleleri.filter((g) => k.includes(g.kart)) }; });
+    for (const n of [2, 3, 4]) {
+      const p = plan("1:es", "sifir", { gun: { ...g1, halkalar: kes(n) } });
+      const es = halkaD(p).flatMap((d) => d.adimlar.filter((a) => a.tur === "eslestir"));
+      if (n < 4) expect(es, `${n} kart`).toEqual([]); else expect(es.length, `${n} kart`).toBeGreaterThan(0);
+    }
+  });
   it("dil durağı (AK-1): parçalar arasında en az bir halka; 1. parça kullanımla biter, 2. parça hatırlatmayla başlar", () => {
     for (const x of PLANLAR) {
       const d = x.p.duraklar;
@@ -358,5 +367,50 @@ describe("değişmez kural: hiçbir kart kendi tanıtım adımından önce sorul
     // genelleme: halka kartlarından herhangi biri listeden düşse de
     for (const k of kartlar) for (const tohum of ["akis:1", "1:t0", "1:t7"])
       expect(erken(uygulama({ ...g, yeni_kartlar: g.yeni_kartlar.filter((x) => x !== k) }, { tohum })), `${k} listede yok, ${tohum}`).toEqual([]);
+  });
+});
+
+describe("ses iki turda (PM-097 md. 1)", () => {
+  it("ilk tur başta (halkalardan önce); ikinci tur son halkadan sonra, provadan önce; her planda", () => {
+    const ikinciVar = g1.sesler.some((s) => s.bolumler.some((b) => b.dikte.length || b.golge.length || b.cevapla));
+    for (const { p } of PLANLAR) {
+      const d = p.duraklar;
+      const ilk = d.findIndex((x) => x.ses_turu === "ilk"), ikinci = d.findIndex((x) => x.ses_turu === "ikinci");
+      const ilkHalka = d.findIndex((x) => x.tur === "halka"), sonHalka = d.map((x) => x.tur).lastIndexOf("halka"), prova = d.findIndex((x) => x.tur === "prova");
+      if (g1.sesler.length) expect(ilk).toBeGreaterThanOrEqual(0);
+      if (ilk >= 0) expect(ilk).toBeLessThan(ilkHalka);
+      expect(ikinci >= 0).toBe(ikinciVar);
+      if (ikinci >= 0) { expect(ikinci).toBeGreaterThan(sonHalka); if (prova >= 0) expect(ikinci).toBeLessThan(prova); }
+      expect(d.filter((x) => x.tur === "ses")).toHaveLength((ilk >= 0 ? 1 : 0) + (ikinci >= 0 ? 1 : 0));
+    }
+  });
+});
+
+describe("dil noktası durağı (PM-092 md. 1, PM 7087668356 md. 7)", () => {
+  const not = c.grammar.find((g) => g.table)!;
+  const dn = new Map([[not.id, not]]);
+  const gunDn = (h: typeof halkalar) => ({ ...gun, dersler: [...g1.dersler, not.id], halkalar: h });
+  it("`dersten_sonra` olan ilk halkanın önüne tek adımlı durak; bitiş anahtarı ders:<id>; soru yok", () => {
+    const h = halkalar.map((x, i) => (i === 1 ? { ...x, dersten_sonra: true } : x));
+    const p = plan("1:dn", "sifir", { gun: gunDn(h), dilNoktalari: dn });
+    const i = p.duraklar.findIndex((d) => d.id === `dil:${not.id}`);
+    expect(i).toBeGreaterThan(0);
+    expect(p.duraklar[i + 1]!.id).toBe(h[1]!.id);
+    const d = p.duraklar[i]!;
+    expect(d.tur).toBe("dil"); expect(d.eski_anahtar).toBe(`ders:${not.id}`);
+    expect(d.adimlar).toHaveLength(1);
+    expect(d.adimlar[0]).toMatchObject({ tur: "tablo", kartlar: [], ders: { id: not.id, oge: DIL_NOKTASI } });
+    expect(p.gevseme.some((g) => g.yer === `ders:${not.id}`)).toBe(false);
+  });
+  it("`dersten_sonra` yoksa son halkadan sonra; durak tek kez", () => {
+    const p = plan("1:dn", "sifir", { gun: gunDn(halkalar), dilNoktalari: dn });
+    const d = p.duraklar; const i = d.findIndex((x) => x.id === `dil:${not.id}`);
+    expect(i).toBeGreaterThan(d.map((x) => x.tur).lastIndexOf("halka"));
+    expect(d.filter((x) => x.id === `dil:${not.id}`)).toHaveLength(1);
+  });
+  it("içerikte olmayan dil noktası: durak yok, hata kaydı", () => {
+    const p = plan("1:dn", "sifir", { gun: { ...gun, dersler: [...g1.dersler, "gr:a1-99:t9"] }, dilNoktalari: dn });
+    expect(p.duraklar.some((d) => d.id === "dil:gr:a1-99:t9")).toBe(false);
+    expect(p.gevseme.some((g) => g.kural === "hata" && g.yer === "ders:gr:a1-99:t9")).toBe(true);
   });
 });

@@ -93,13 +93,10 @@ def main():
 
         print("1) giriş")
         page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
-        # inceleme #130 B3: "her açılışta yeni uygulama" ayarı kapalıyken girişte dönüş bağlantısı yok; açıkken var
-        check(page.locator("[data-test=v1-don]").count() == 0, "giriş: ayar kapalıyken 'Eski uygulamaya dön' yok")
+        # PM-116: uygulama doğrudan v2 açılır; girişte "Eski uygulamaya dön" yok (v1'deki eski "her açılışta yeni uygulama" ayarı açık kalmış olsa da)
         page.evaluate("localStorage.setItem('dw-v2-ac', '1')"); page.reload(); page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
-        yuk = page.locator("[data-test=v1-don]").bounding_box()["height"] if page.locator("[data-test=v1-don]").count() else 0
-        check(page.locator("[data-test=v1-don]").count() == 1 and yuk >= 44, f"giriş: ayar açıkken 'Eski uygulamaya dön' var, dokunma alanı ≥ 44 pt ({yuk})")
-        page.wait_for_timeout(500); shot(page, "01b-giris-eskiye-don")
-        page.evaluate("localStorage.removeItem('dw-v2-ac')"); page.reload(); page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
+        check(page.locator("[data-test=v1-don]").count() == 0, "giriş: 'Eski uygulamaya dön' yok (PM-116)")
+        page.evaluate("localStorage.removeItem('dw-v2-ac')")
         page.click("summary")
         page.fill("#em", "test@example.com"); page.fill("#pw", "yanlis")
         page.click("button[type=submit]")
@@ -185,7 +182,7 @@ def main():
             draft = STRAT_REVIEW != "reviewed"
             check(("Deneme dersi" in na) == draft, f"inceleme etiketi içerik durumuna uygun ({STRAT_REVIEW})")
         # M1'de Bugün = yol: "Tekrar edilecekler" Öğren'de, günlük süre Odak'ta (PM 7015070303-E)
-        if M1: page.goto(f"http://127.0.0.1:{PORT}/#/learn")
+        if M1: page.goto(f"http://127.0.0.1:{PORT}/#/koy/bahce")
         page.wait_for_selector("[data-test=weak] li")
         weak = page.inner_text("[data-test=weak]")
         check("Seviye tespitinde" not in weak and "Şu an listede kelime yok" not in weak, "bilinmeyen kelimeler zayıflık listesinde")
@@ -225,21 +222,22 @@ def main():
         page.wait_for_function("(document.querySelector('[data-test=seans-durum]') || document.querySelector('[data-test=focus-idle]'))?.textContent.match(/[Ss]eans 2/)")
         check(True, "mola bitince sırada seans 2")
 
-        print("6) İlerlemem")
-        page.click("[data-tab=progress]")
+        print("6) Ben → Çalışma düzenim (eski İlerlemem; PM-084 md. 5)")
+        page.click("[data-tab=ben]"); page.wait_for_selector("[data-test=ben] [data-test=ben-bu-hafta]")
+        page.click("[data-test=duzen-ac]")
         page.wait_for_selector("[data-test=panel-focus]")
         pf = page.inner_text("[data-test=panel-focus]")
         check("25 / 100 dk" in pf or "26 / 100 dk" in pf, "odak paneli bugünkü süreyi gösteriyor")
         check("mola" in pf.lower() and "eklenmez" in pf, "mola süresi ayrı gösteriliyor")
-        page.wait_for_selector("[data-test=panel-language] >> text=Tanıdığın kelimeler")  # istatistikler eşzamansız yüklenir
+        page.wait_for_selector("[data-test=panel-language] [data-test^=dil-sayilari]")  # istatistikler eşzamansız yüklenir
         pl = page.inner_text("[data-test=panel-language]")
-        check("Tahmini başlangıç seviyesi" in pl and "Tanıdığın kelimeler" in pl, "dil paneli ayrı ve seviye tespitine dayanıyor")
+        check("Tahmini başlangıç seviyesi" in pl and not any(l.strip().endswith("\n0") or l.strip() == "0" for l in pl.split("\n")), "dil paneli ayrı, seviye tespitine dayanıyor; sıfır satırı yok (PM-084 md. 5.6)")
         shot(page, "07-progress")
-        no_overflow(page, "İlerlemem")
+        no_overflow(page, "Çalışma düzenim")
 
         print("7) Profil: hedef değişikliği kalıcı; sunucu iletişimi")
         page.clock.resume()
-        page.click("[data-tab=profile]")
+        page.click("[data-tab=ben]"); page.click("[data-test=ayarlar-ac]")
         check(page.inner_text("[data-test=uid]") == "e2e-user" and page.locator("[data-test=uid-kopyala]").count() == 1, "Profil: hesap kimliği ve 'Kopyala' (ALLOWED_UIDS için)")
         page.select_option("[data-test=goal]", "120")
         page.wait_for_selector("text=Kaydedildi")
@@ -254,11 +252,8 @@ def main():
         check(usage and usage[-1]["auth"] == "Bearer e2e-token", "kullanım isteğinde token var")
         health = [c for c in API_CALLS if c["url"].endswith("/v1/health")]
         check(health and health[-1]["auth"] is None, "health isteğinde token gönderilmiyor")
-        # "Eski uygulamaya dön" (PM 7025664499; inceleme #130 P2): ?v1 ile açar, v1'deki "her açılışta yeni uygulama" ayarını kapatır
-        page.evaluate("localStorage.setItem('dw-v2-ac', '1')")
-        v1 = page.evaluate("""() => { const a = document.querySelector('[data-test=v1-don]'); if (!a) return null;
-            a.addEventListener('click', (e) => e.preventDefault(), { once: true }); a.click(); return { href: a.getAttribute('href'), ayar: localStorage.getItem('dw-v2-ac') }; }""")
-        check(v1 is not None and v1["href"].endswith("?v1") and v1["ayar"] == "0", f"Profil: 'Eski uygulamaya dön' ?v1 ile açar ve ayarı kapatır ({v1})")
+        # PM-116: Ayarlar → Sunucu ve veriler'de "Eski uygulamaya dön" yok
+        check(page.locator("[data-test=v1-don]").count() == 0 and "Eski uygulamaya" not in page.inner_text("body"), "Profil: 'Eski uygulamaya dön' yok (PM-116)")
         shot(page, "08-profile")
         no_overflow(page, "Profil")
         page.reload()
@@ -270,7 +265,7 @@ def main():
         check(re.search(r"/\s?120 dk", hedef_txt) is not None, "yeni hedef (120 dk) yeniden yüklemeden sonra korunuyor")
 
         print("7b) B1 hedefi: SAHTE tarihle (PM-001: gerçek tarih depoda yok)")
-        page.click("[data-tab=profile]")
+        page.click("[data-tab=ben]"); page.click("[data-test=ayarlar-ac]")
         page.check("text=B1 sınavına hazırlık")
         page.fill("input[aria-label='Sınav tarihi']", "2099-01-01"); page.press("input[aria-label='Sınav tarihi']", "Tab")
         page.wait_for_timeout(300)
@@ -278,8 +273,8 @@ def main():
         page.wait_for_selector("[data-test=exam-badge]")
         check("gün" in page.inner_text("[data-test=exam-badge]"), "B1 açıkken Bugün'de sınav rozeti (kalan gün)")
 
-        print("8) Öğren")
-        page.click("[data-tab=learn]")
+        print("8) Köy → Pazar meydanı: gerçek hayat durumları")
+        page.click("[data-tab=koy]"); page.click("[data-mekan=pazar]")
         page.wait_for_selector("[data-domain=telefon]")
         check(page.locator("[data-domain]").count() == 20, "20 gerçek hayat alanı listeleniyor")
         check(page.locator("[data-domain]").first.get_attribute("data-domain") == "strategie" and page.locator("[data-domain]").nth(1).get_attribute("data-domain") == "telefon", "alanlar öncelik sırasına göre (strateji, telefon)")
@@ -289,7 +284,7 @@ def main():
         shot(page, "09-learn-domain")
 
         print("9) sekme çubuğu içeriği örtmüyor; koyu tema")
-        page.click("[data-tab=profile]")
+        page.click("[data-tab=ben]"); page.click("[data-test=ayarlar-ac]")
         page.wait_for_selector("text=Çıkış yap")
         page.wait_for_timeout(300)
         page.evaluate("window.scrollTo(0, document.documentElement.scrollHeight)")

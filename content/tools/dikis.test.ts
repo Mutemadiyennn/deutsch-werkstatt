@@ -214,7 +214,11 @@ describe("(b, çerçeve) çerçeve sözcüğü gösterilmeden kullanılamaz (PM 
     expect(cer(ckos([g8("Hallo, als Zeit!")], cTablo({ 2: ["lx:als", "lx:als#2"] })), 8)).toHaveLength(1);
   });
   it("1. hafta tablo öncesidir: 2. haftanın çerçevesini gösterilmeden kullanması ihlal değil, satırda not", () => {
-    const r = ckos([kopya()], cTablo({ 2: ["lx:und", "lx:der"] }));
+    // gerçek 1. günün içeriğine bağlı değil (#196 1. günün çerçeve biçimlerini kalıplarda gösterdi): 1. günün ilk halkasına
+    // 2. haftanın gösterilmemiş çerçeve sözcüğüyle bir görev eklenir; denetlenen tek şey 1. haftanın ölçüsü
+    const g = kopya(); const h = halka(g, 0);
+    h.gorev_cumleleri = [...h.gorev_cumleleri, { kart: h.kartlar[0]!, de: "Hallo, seit Montag!", accepted: ["Hallo, seit Montag!"] }];
+    const r = ckos([g], cTablo({ 2: ["lx:seit"] }));
     expect(cer(r, 1)).toEqual([]);
     expect(r.satirlar[0]!.not.join(";")).toMatch(/1\. hafta \(tablo öncesi, sayılmadı\): \d+ çerçeve biçimi/);
   });
@@ -270,6 +274,26 @@ describe("(d) haftalar arası aynı üretim cümlesi", () => {
     const yalin = (n: number, id: string): GunHam => ({ day: n, yeni_kartlar: [...T.get(n)!], dersler: [...omDers(n)], halkalar: [{ id: `h${n}`, kartlar: [...T.get(n)!], gorev_cumleleri: [] }],
       gun_sinavi: { maddeler: [{ id, k: "guided_response", prompt_de: "Welcher Tag ist heute?", accepted: ["Montag."] }] } });
     expect(kural(kos([yalin(1, "x"), yalin(8, "y")]), "d", 8)).toEqual([]);
+  });
+});
+
+describe("sınav günü (PM-101 md. 5, PM-110)", () => {
+  // 14. gün sınav günü: tabloda ve omurgada o gün boş (A1'de 55–56 böyle)
+  const t2 = structuredClone(tablo); for (const x of t2.gunler as { day: number; kartlar: string[] }[]) if (x.day === 14) x.kartlar = [];
+  const o2 = structuredClone(omurga); for (const x of o2.gunler) if (x.day === 14) x.dersler = [];
+  const sinavGunu = (ek: Record<string, unknown> = {}): GunHam => ({ day: 14, can_do: { id: "cd:m1:14", tr: "" }, yeni_kartlar: [], dersler: [], sinav: "assess:a1-deneme:1", sinav_bolumler: ["yazma", "konusma"], ...ek });
+  it("halkasız, kartsız, dersiz sınav günü ihlal değil; satırda notu", () => {
+    const r = kos([sinavGunu()], { tablo: t2, omurga: o2 });
+    expect(r.ihlaller.filter((i) => i.gun === 14)).toEqual([]);
+    expect(r.satirlar.find((x) => x.gun === 14)!.not).toContain("sınav günü (assess:a1-deneme:1: yazma, konusma)");
+  });
+  it("halka taşıyan sınav günü biçim ihlali", () => {
+    const r = kos([sinavGunu({ halkalar: [{ id: "h", kartlar: [], gorev_cumleleri: [] }] })], { tablo: t2, omurga: o2 });
+    expect(kural(r, "bicim", 14).map((i) => i.mesaj)).toEqual(["sınav günü halkasızdır (1 halka)"]);
+  });
+  it("sınavsız halkasız gün hâlâ ihlal", () => {
+    const { sinav: _, sinav_bolumler: __, ...g } = sinavGunu();
+    expect(kural(kos([g as GunHam], { tablo: t2, omurga: o2 }), "bicim", 14)).toHaveLength(1);
   });
 });
 
