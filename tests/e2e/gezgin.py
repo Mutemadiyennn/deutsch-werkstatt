@@ -26,6 +26,8 @@ def screens():
         out += [f"#/scenario/{s}/{x}" for x in SECTIONS]
     # Kalıplar listesi ve kalıp bağı olan bir sözlük kartı (yerleşim B5; inceleme #185 P1-3)
     out += ["#/kalip", "#/sozluk/wo/lx%3Awo"]
+    # PM-114 B: kısa yoklama girişi ve sonucu (sonuç yoksa dürüst boş ekran)
+    out += ["#/seviye", "#/seviye/sonuc"]
     # AKIS AK-10 4a: akış günü (e2e paketinde 2. gün halkalı) ve halka adım türleri (yalnız e2e yolu)
     akis = ["#/akis/2"] if any(g.get("day") == 2 for g in idx.get("m1", [])) else []
     return out + [f"#/call/{SC}"] + akis + ["#/__halka-turleri"]
@@ -67,6 +69,9 @@ def main():
             rep["over_cap"] += max(0, n - CAP)
             for i in range(min(n, CAP)):
                 pg.goto(base + scr); pg.wait_for_timeout(300); settle(pg, scr)
+                # önceki basışın bildirimi (toast, 2,6 sn) aynı belgede kalır ve sıradaki düğmenin üstüne düşer: bitmesi beklenir
+                try: pg.wait_for_selector(".toast", state="detached", timeout=3500)
+                except Exception: pass
                 loc = pg.locator(TAP)
                 if i >= loc.count(): break
                 el = loc.nth(i)

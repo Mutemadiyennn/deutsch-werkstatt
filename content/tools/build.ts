@@ -40,6 +40,8 @@ if (process.env.DW_E2E_FIXTURES === "1") {
   // #243 takip c: kilitli hafta satırı için 3. haftanın tek günü (15) 9. gün fikstüründen türetilir (dosya kopyası depoya girmez)
   const g9 = days.find((d) => d.file === "fixtures/m1/gun-09.json");
   if (g9 && !days.some((d) => d.data.day === 15)) days.push({ file: "fixtures/m1/gun-09.json→15", data: { ...g9.data, day: 15, id: "m1:gun:15", title_tr: "15. gün (e2e fikstürü)" } });
+  // PM-114 B ("A2'den başla"): A2'nin ilk günü (57) aynı fikstürden; 9. hafta açılır ve oynanır (dosya kopyası depoya girmez)
+  if (g9 && !days.some((d) => d.data.day === 57)) days.push({ file: "fixtures/m1/gun-09.json→57", data: { ...g9.data, day: 57, id: "m1:gun:57", level: "A2", title_tr: "57. gün (e2e fikstürü)" } });
   // AKIS AK-10 4. adım: `halkalar` henüz gün dosyalarında değil (İÇ taşıyacak). e2e paketinde, fikstürle değiştirilmemiş
   // günlere İÇ'in halka önerisi (docs/v2/reviews/halka/gun-NN-halkalar.json) eklenir — yayın paketine girmez
   const hk = join(ROOT, "docs/v2/reviews/halka");
