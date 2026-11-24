@@ -33,7 +33,7 @@ async def main():
       await route.fulfill(json={"candidates":[{"content":{"parts":[{"text":json.dumps({"text":"Guten Morgen, wie geht's?"})}]}}]})
     await pg.route("**/generativelanguage.googleapis.com/**", gem)
     await pg.add_init_script(INIT)
-    await pg.goto("http://localhost:8765/index.html?nogate"); await pg.wait_for_timeout(1000)
+    await pg.goto("http://localhost:8765/index.html?eski=1&nogate"); await pg.wait_for_timeout(1000)
     print("mic2Ok:", await pg.evaluate("mic2Ok()"), "useSR:", await pg.evaluate("useSR()"))
     async def run(label, plan, wait=6000, cancel_at=None):
       await pg.evaluate(f"window.__plan={json.dumps(plan)}; window.__r=null; window.__live=[]; primeTTS(); void recognize(t=>__live.push(t)).then(a=>window.__r={{ok:a}}).catch(e=>window.__r={{err:e.code}}); 0")

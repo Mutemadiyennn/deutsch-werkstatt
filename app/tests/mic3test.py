@@ -25,7 +25,7 @@ async def main():
       await route.fulfill(json={"candidates":[{"content":{"parts":[{"text":"{\"text\":\"Was ist der Plan für das Wochenende?\"}"}]}}]})
     await pg.route("**/generativelanguage.googleapis.com/**", gem)
     await pg.add_init_script(INIT)
-    await pg.goto("http://localhost:8765/index.html"); await pg.wait_for_timeout(1500)
+    await pg.goto("http://localhost:8765/index.html?eski=1"); await pg.wait_for_timeout(1500)
     await pg.evaluate("S.state.setupDone=true; 0")
     print("NATIVE", await pg.evaluate("NATIVE"), "mic3Ok", await pg.evaluate("mic3Ok()"))
     await pg.evaluate("window.__p = recognize(t=>{window.__live=t}); 0"); await pg.wait_for_timeout(600)

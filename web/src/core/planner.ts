@@ -15,19 +15,7 @@ export const ACTIVITY_TR: Record<Activity, string> = {
 export type Recommendation =
   | { kind: "assess"; title_tr: string; why_tr: string }
   | { kind: "scenario"; activity: Activity; scenarioId: string; title_tr: string; why_tr: string; draft: boolean }
-  | { kind: "v1"; activity: Activity; url: string; title_tr: string; why_tr: string }
   | { kind: "none"; title_tr: string; why_tr: string };
-
-/** v1'de karşılığı olan bölümler (çalışan özellikler) */
-const V1_TARGET: Partial<Record<Activity, { hash: string; tr: string }>> = {
-  build: { hash: "#kurs", tr: "Eski uygulama: kursundaki kural ve alıştırma basamakları" },
-  drills: { hash: "#kurs", tr: "Eski uygulama: kursundaki alıştırmalar" },
-  listening: { hash: "#shadow", tr: "Eski uygulama: Shadowing ve dinleme" },
-  pronunciation: { hash: "#shadow", tr: "Eski uygulama: Shadowing ve telaffuz" },
-  dialogue: { hash: "#kurs", tr: "Eski uygulama: kursundaki diyalog ve rol oyunu" },
-  roleplay: { hash: "#canli", tr: "Eski uygulama: Canlı sohbet" },
-  review: { hash: "#kurs", tr: "Eski uygulama: kurs tekrarı" }
-};
 
 export function recommend(o: { profile: Profile; index: ContentIndex | null; hasPlacement: boolean; sessionN: number }): Recommendation {
   if (!o.hasPlacement) return { kind: "assess", title_tr: "Seviye tespiti (12–15 dk)", why_tr: "Planı senin gerçek seviyene göre kurabilmek için önce kısa, pratik bir tespit yapalım." };
@@ -42,7 +30,6 @@ export function recommend(o: { profile: Profile; index: ContentIndex | null; has
     }
     return { kind: "none", title_tr: "Bu alanların dersleri yakında", why_tr: "Öncelik listendeki alanların dersleri hazırlanıyor." };
   }
-  const t = V1_TARGET[activity];
-  if (t) return { kind: "v1", activity, url: V1_URL + "?v1" + t.hash, title_tr: t.tr, why_tr: `Seans ${o.sessionN}: ${ACTIVITY_TR[activity]}. Bu etkinlik için şimdilik eski uygulamadaki karşılığını kullan.` };
+  // PM-116: v1 artık açılmaz; v2'de karşılığı olmayan etkinlik için "eski uygulamada aç" önerilmez
   return { kind: "none", title_tr: ACTIVITY_TR[activity], why_tr: "" };
 }

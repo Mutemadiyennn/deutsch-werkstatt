@@ -22,7 +22,7 @@ async def main():
     await pg.route("**/generativelanguage.googleapis.com/**", gem)
     await pg.route("**/texttospeech.googleapis.com/**", lambda r: r.fulfill(status=500, body="x"))
     await pg.add_init_script("localStorage.setItem('dw-gemini','AIzaTESTKEYxxxxxxxxxxxxxxxxxxxxxxxxxxx'); localStorage.setItem('dw-gate', JSON.stringify({h:'2a4fd738768c5609c205edf6dcd7dd72c2da1add10f40b3d013ffa70660e0135', t:Date.now()})); window.alert=()=>{}; window.confirm=()=>true; window.prompt=()=>null;")
-    await pg.goto("http://localhost:8765/index.html"); await pg.wait_for_timeout(2500)
+    await pg.goto("http://localhost:8765/index.html?eski=1"); await pg.wait_for_timeout(2500)
     await pg.evaluate("S.state.setupDone = true; say = async()=>true; sayMixed = async()=>true; 0")
     await pg.evaluate("go('plan'); render(); 0"); await pg.wait_for_timeout(400)
     seen = {}; trail=[]; problems=[]
