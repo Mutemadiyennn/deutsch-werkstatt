@@ -36,8 +36,10 @@ def koy(pg, base):
 def main():
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
     idx = content_file("index.json")
-    video = sum(1 for g in idx["m1"] for m in g["medya"] if m["kind"] == "video")
     gun1 = sorted(idx["m1"], key=lambda g: g["day"])[0]
+    # taze cihazda yalnız ilk gün açık: Sinema ve Radyo yalnız onu sayar ve listeler (#200 PM finali takip a)
+    video = sum(1 for m in gun1["medya"] if m["kind"] == "video")
+    kilitli_medya = [g["day"] for g in idx["m1"] if g["day"] != gun1["day"] and g["medya"]]
     ses1 = [m["id"] for m in gun1["medya"] if m["kind"] == "ses"]
     kart1 = gun1["kartlar"][:3]
     with sync_playwright() as p:
@@ -66,7 +68,7 @@ def main():
                 # 4: taze cihaz — sayı yalnız gerçek veride; uydurma sayı ve 0 yok
                 acik = {x["id"]: x for x in d if not x["kilitli"]}
                 check(acik["bahce"]["alt"] == "Kelime tekrarı" and not acik["bahce"]["nokta"], f"{ad} Bahçe: vadesi gelen kart yokken sayı yok, tanım satırı ({acik['bahce']['alt']!r}), nokta yok")
-                check(acik["sinema"]["alt"] == (f"{video} gerçek video" if video else "Köy dizisi"), f"{ad} Sinema: paketteki video sayısı ya da tanım ({acik['sinema']['alt']!r})")
+                check(acik["sinema"]["alt"] == (f"{video} gerçek video" if video else "Köy dizisi"), f"{ad} Sinema: açılmış günlerin video sayısı ya da tanım ({acik['sinema']['alt']!r})")
                 m = re.fullmatch(r"(\d+) durum hazır", acik["pazar"]["alt"]); alanlar = {s["domain"] for s in idx["scenarios"]}
                 check(bool(m) and 1 <= int(m[1]) <= len(alanlar), f"{ad} Pazar meydanı: dersi olan alan sayısı ({acik['pazar']['alt']!r}; pakette {len(alanlar)})")
                 check(all(not re.search(r"\b0\b", x["alt"]) for x in k), f"{ad} hiçbir kartta '0' yok")
@@ -105,7 +107,10 @@ def main():
                     git("bahce", "[data-test=tekrar-bahce]", "[data-test=garden], [data-test=garden-empty]"); check(True, "Bahçe → Kelime Bahçesi (2 dokunuş)")
                     git("sinema", bekle="[data-test=mekan-sinema] [data-test^=kayit-]")
                     tur = pg.evaluate("[...document.querySelectorAll('[data-test^=kayit-]')].map((a) => a.dataset.test)")
-                    check(set(tur) <= {"kayit-video", "kayit-sahne"} and len(tur) == sum(1 for g in idx["m1"] for m in g["medya"] if m["kind"] != "ses"), f"Sinema: paketteki video ve köy dizisi kayıtları ({len(tur)})")
+                    check(set(tur) <= {"kayit-video", "kayit-sahne"} and len(tur) == sum(1 for m in gun1["medya"] if m["kind"] != "ses"), f"Sinema: açılmış günün video ve köy dizisi kayıtları ({len(tur)})")
+                    gorunen = pg.evaluate("[...document.querySelectorAll('[data-test^=mekan-gun-]')].map((s) => +s.dataset.test.slice(10))")
+                    check(gorunen == [gun1["day"]] and len(kilitli_medya) > 0, f"Sinema: yalnız açılmış gün listelenir ({gorunen}; kayıtlı kilitli günler {kilitli_medya} görünmez; #200 takip a)")
+                    check(pg.inner_text("[data-test=mekan-sonra]") == "Sonraki günlerin kayıtları, o gün açılınca burada.", "Sinema: liste neden kısa, tek satır")
                     git("sinema", "[data-test^=kayit-]", "[data-test=medya]"); check(True, "Sinema → kayıt → oynatıcı (2 dokunuş)")
                     DOKUN = "() => [...document.querySelectorAll('.koy-sayfa a')].filter((a) => !a.closest('.topbar')).map((a) => [a.dataset.test || a.getAttribute('href'), Math.round(a.getBoundingClientRect().height)]).filter(([, h]) => h < 44)"
                     kucuk = pg.evaluate(DOKUN)
@@ -113,7 +118,15 @@ def main():
                     git("radyo", bekle="[data-test=mekan-radyo] [data-test=kayit-ses]")
                     kucuk = pg.evaluate(DOKUN)
                     check(kucuk == [], f"Radyo: satırlar en az 44 px ({kucuk[:4]})")
-                    check(pg.locator("[data-test=kayit-ses]").count() == sum(1 for g in idx["m1"] for m in g["medya"] if m["kind"] == "ses") and pg.locator("[data-test=kayit-bitti]").count() == 0, "Radyo: paketteki bütün ses kayıtları; dinlenmemişte işaret yok")
+                    gorunen = pg.evaluate("[...document.querySelectorAll('[data-test^=mekan-gun-]')].map((s) => +s.dataset.test.slice(10))")
+                    check(pg.locator("[data-test=kayit-ses]").count() == len(ses1) and gorunen == [gun1["day"]] and pg.locator("[data-test=kayit-bitti]").count() == 0, f"Radyo: yalnız açılmış günün ses kayıtları ({gorunen}); dinlenmemişte işaret yok")
+                    # soğuk açılış: sayfa yeniden yüklenir, her karede bakan gözlemci kilitli günü bir an bile görmemeli (inceleme #224 P2-1)
+                    GOZ = "() => { window.__gorulen = new Set(); new MutationObserver(() => document.querySelectorAll('[data-test^=mekan-gun-]').forEach((s) => window.__gorulen.add(+s.dataset.test.slice(10)))).observe(document, { childList: true, subtree: true }); }"
+                    pg.add_init_script(f"({GOZ})()")
+                    for m in ("radyo", "sinema"):
+                        pg.goto(base + f"#/koy/{m}"); pg.reload(); pg.wait_for_selector(f"[data-test=mekan-{m}] [data-test^=kayit-]"); pg.wait_for_timeout(500)
+                        g = pg.evaluate("[...window.__gorulen]")
+                        check(g == [gun1["day"]], f"{m}: soğuk açılışta (yeniden yükleme) kilitli gün bir an bile çizilmez (görülen: {g})")
                     git("radyo", "[data-test=m1-gun-1]", "[data-test=m1-gun]"); check(True, "Radyo → gün sayfası (eski 'İlk Hafta' girişi; 2 dokunuş)")
                     git("atolye", bekle="[data-test=kalip-liste]"); check(pg.evaluate("location.hash") == "#/kalip", "Atölye → Kalıplar (1 dokunuş)")
                     git("kutuphane", "[data-test=sozluk-ac]", "[data-test=sozluk-q]"); check(True, "Kütüphane → Sözlük (2 dokunuş)")
@@ -149,6 +162,27 @@ def main():
                     pg.reload(); koy(pg, base); pg.wait_for_selector("[data-mekan=bahce] [data-test=mekan-nokta]")
                     check(pg.locator("[data-test=koy-telefon]").count() == 0 and kartlar(pg)[0]["id"] == "bahce", "dinlenmemiş kayıt kalmayınca Telefonun kartı çizilmez")
                     shot(pg, "koy-telefonsuz", full=False)
+                    print("ilerlemiş öğrenci: 1. gün bitince 2. gün listeye girer, 3. gün girmez (inceleme #224 P2-2)")
+                    sirali = sorted(idx["m1"], key=lambda g: g["day"])
+                    pg.evaluate(DB, {"meta": [{"key": f"m1:gun:{sirali[0]['day']}", "value": "2026-01-01T00:00:00.000Z"}]})
+                    for m, tur in (("sinema", lambda k: k != "ses"), ("radyo", lambda k: k == "ses")):
+                        pg.goto(base + f"#/koy/{m}"); pg.reload(); pg.wait_for_selector(f"[data-test=mekan-{m}] [data-test^=kayit-]")
+                        beklenen = [g["day"] for g in sirali[:2] if any(tur(x["kind"]) for x in g["medya"])]
+                        g = pg.evaluate("[...document.querySelectorAll('[data-test^=mekan-gun-]')].map((s) => +s.dataset.test.slice(10))")
+                        check(g == beklenen and pg.locator("[data-test=mekan-sonra]").count() == 1, f"{m}: 1. gün bitince açılmış günler {g} (beklenen {beklenen}); sonraki günler için tek satır")
+                    koy(pg, base)
+                    sv = sum(1 for g in sirali[:2] for x in g["medya"] if x["kind"] == "video")
+                    sin = next(x for x in kartlar(pg) if x["id"] == "sinema")
+                    check(sin["alt"] == (f"{sv} gerçek video" if sv else "Köy dizisi"), f"Köy: Sinema sayısı açılmış iki günden ({sin['alt']!r})")
+                    # 2. günün dosyası gelmezse (çevrimdışı) gerekçe "kilitli" değil "yüklenemedi" + Tekrar dene (inceleme #224 P2-3)
+                    dosya2 = idx["files"]["m1"][str(sirali[1]["day"])]
+                    pg.route(f"**/{dosya2}", lambda route, _istek=None: route.abort())
+                    pg.goto(base + "#/koy/radyo"); pg.reload(); pg.wait_for_selector("[data-test=mekan-eksik]")
+                    g = pg.evaluate("[...document.querySelectorAll('[data-test^=mekan-gun-]')].map((s) => +s.dataset.test.slice(10))")
+                    check(g == [sirali[0]["day"]] and pg.locator("[data-test=mekan-sonra]").count() == 0 and pg.locator("[data-test=mekan-eksik] button").inner_text() == "Tekrar dene",
+                          f"Radyo: gün dosyası gelmeyince yalnız yüklenen gün ({g}), 'Bazı günler yüklenemedi' + Tekrar dene")
+                    pg.unroute(f"**/{dosya2}"); pg.click("[data-test=mekan-eksik] button"); pg.wait_for_selector("[data-test=mekan-gun-2]")
+                    check(pg.locator("[data-test=mekan-eksik]").count() == 0, "Radyo: Tekrar dene → dosya gelince 2. gün listede, uyarı kalkar")
                 b.close()
     srv.shutdown()
     finish()

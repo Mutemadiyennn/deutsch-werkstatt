@@ -18,7 +18,8 @@
  *  1. öğretilmeden istenen = 0 (kesin + sınırda);
  *  2. hafta sonu testi (`hafta-sonu-testi-HH.json`), haftanın sonundaki bilgiyle ≥ %80 (policy yoksa 0.8);
  *  3. görülmemiş durum (`gorulmemis-HH.json`, PM 7087286882): her durumda haftanın sonundaki bilgiyle kurulabilen ve haftanın
- *     içeriğinde aynen geçmeyen bir kabul cümlesi var; haftanın her `can_do`'su en az bir durumla sınanır.
+ *     içeriğinde aynen geçmeyen bir kabul cümlesi var; haftanın her `can_do`'su en az bir durumla sınanır. Sınav gününün (`sinav`)
+ *     `can_do`su bunun dışındadır: o gün denemeyle sınanır; bağlı deneme ve `sinav_bolumler`'deki bölümler assess/'te olmalı.
  * Uygulamada oynanış (tarayıcı) ayrı katmandır: `tests/e2e/ogrenci_akis.py` haftaya genişletilince aynı sayıları ekrandan ölçer.
  */
 import { bilinmeyenler, kalipOrtu, kalipSecenekleri, toks, toksAsil, YUVA_AD, type Bilinen, type KumeDizini } from "../../packages/shared/src/kume.ts";
@@ -101,6 +102,8 @@ export interface KapiGirdi {
   dersler?: ReadonlyMap<string, TemelDers>;
   dilNoktalari?: ReadonlyMap<string, readonly string[]>;
   test?: unknown; gorulmemis?: unknown;
+  /** düzey denemeleri (assess/*.json): kimlik → bölüm kimlikleri. Sınav gününün `can_do`su görülmemiş durumla değil denemeyle sınanır */
+  denemeler?: ReadonlyMap<string, readonly string[]>;
   esik?: number;
 }
 export interface KapiSonuc {
@@ -110,6 +113,8 @@ export interface KapiSonuc {
   test: { toplam: number; dogru: number; oran: number; maddeler: AdimSatiri[] } | null;
   gorulmemis: { toplam: number; kurulan: number; durumlar: (AdimSatiri & { can_do?: string })[]; kapsanmayanCanDo: string[] } | null;
   eksikGunler: number[];
+  /** sınav günleri (PM-101 md. 5, PM-110): bağlı deneme ve o gün açılan bölümler; `sorun` varsa hafta kalır */
+  sinav: { gun: number; can_do?: string; deneme: string; bolumler: string[]; sorun?: string }[];
   gecti: boolean; nedenler: string[];
 }
 
@@ -204,11 +209,20 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
   const adimlar: AdimSatiri[] = [], eksikGunler: number[] = [];
   const haftaCumleleri = new Set<string>();
   const canDo = new Set<string>();
+  const sinav: KapiSonuc["sinav"] = [];
   for (let gn = ilk; gn <= son; gn++) {
     const f = dosya.get(gn);
     if (!f) { eksikGunler.push(gn); for (const k of tablo.get(gn) ?? []) b.kart.add(k); for (const x of omurga.get(gn) ?? []) dersEkle(b, x); continue; }
     almancaCumleler(f, haftaCumleleri);
-    const cd = nesne(f.can_do).id; if (typeof cd === "string") canDo.add(cd);
+    const cd = nesne(f.can_do).id;
+    // sınav günü: o gün yalnız deneme açılır (derslerden bağımsız, PM-087 B.2); `can_do` denemeyle sınanır, görülmemiş durum istenmez
+    const sid = yazi(f.sinav);
+    if (sid) {
+      const var_ = g.denemeler?.get(sid), bolumler = yazilar(f.sinav_bolumler);
+      const yok = var_ ? bolumler.filter((x) => !var_.includes(x)) : [];
+      sinav.push({ gun: gn, can_do: typeof cd === "string" ? cd : undefined, deneme: sid, bolumler: bolumler.length ? bolumler : [...(var_ ?? [])],
+        ...(!var_ ? { sorun: `${sid} denemesi yok (assess/)` } : yok.length ? { sorun: `${yok.join(", ")} ${sid} denemesinde yok` } : {}) });
+    } else if (typeof cd === "string") canDo.add(cd);
     const yeni = new Set(yazilar(f.yeni_kartlar)), dersler = yazilar(f.dersler);
     // durak sırası uygulamanın planlayıcısıyla aynı (web/src/core/akis.ts, K1 dizisi; PM-097 md. 1 ses ikinci turu): ısınma · ses (dinle) · h1 · h2 · (sahne/video) · h3 · h4 ·
     // prova · h5 · okuma · gün sonu; az halkalı günde sabit duraklar sona kalır. Dil noktası: `dersten_sonra` olan ilk halkadan önce
@@ -243,7 +257,7 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     dersVer();
     bolum("sesler", "uretim");   // ses · ikinci tur: son halkadan sonra
     for (const [hi, adlar] of Object.entries(ARA)) if (+hi >= halkalar.length) for (const ad of adlar) bolum(ad);
-    const bilinen = new Set(["halkalar", "yeni_kartlar", "dersler", "requires", "review", "can_do", "sesler", "sahne", "video", "prova", "okuma_yazma", "gun_sinavi"]);
+    const bilinen = new Set(["halkalar", "yeni_kartlar", "dersler", "requires", "review", "can_do", "sesler", "sahne", "video", "prova", "okuma_yazma", "gun_sinavi", "sinav", "sinav_bolumler"]);
     for (const ad of Object.keys(f).filter((k) => !bilinen.has(k))) bolum(ad);   // resimden seç (gorsel) ve bilinmeyen bölümler: günün bütün kartlarıyla
     bolum("gun_sinavi");
     for (const k of [...gunB.kart]) b.kart.add(k); for (const x of gunB.biten) b.biten.add(x);
@@ -279,7 +293,8 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     if (gorulmemis.kurulan < gorulmemis.toplam) nedenler.push(`görülmemiş durum ${gorulmemis.kurulan}/${gorulmemis.toplam} kurulabiliyor`);
     if (gorulmemis.kapsanmayanCanDo.length) nedenler.push(`görülmemiş durumla sınanmayan can_do: ${gorulmemis.kapsanmayanCanDo.join(", ")}`);
   }
-  return { hafta, adimlar, ogretilmedenKesin, ogretilmedenSinirda, anlasilmayanSoru, anlamaEksik, suzulen, test, gorulmemis, eksikGunler, gecti: !nedenler.length, nedenler };
+  for (const x of sinav) if (x.sorun) nedenler.push(`sınav günü ${x.gun}: ${x.sorun}`);
+  return { hafta, adimlar, ogretilmedenKesin, ogretilmedenSinirda, anlasilmayanSoru, anlamaEksik, suzulen, test, gorulmemis, eksikGunler, sinav, gecti: !nedenler.length, nedenler };
 }
 
 /** kalıp metni → kalıp seçenekleri (" – " kume.ts'te, " / " burada ayrılır) */
@@ -296,6 +311,7 @@ export function kapiRaporu(r: KapiSonuc): string {
   L.push("", `Öğretilmeden istenen: **${r.ogretilmedenKesin + r.ogretilmedenSinirda}** (kesin ${r.ogretilmedenKesin}, sınırda ${r.ogretilmedenSinirda}) · anlaşılmayan karşı soru: ${r.anlasilmayanSoru} · anlama sorusunun kanıtında yeni sözcük (engel değil): ${r.anlamaEksik} · süzülen medya maddesi (uygulama sormaz; engel değil): ${r.suzulen}`);
   if (r.test) L.push(`Hafta sonu testi: **${yuzde(r.test.oran)}** (${r.test.dogru}/${r.test.toplam})`);
   if (r.gorulmemis) L.push(`Görülmemiş durum: **${r.gorulmemis.kurulan}/${r.gorulmemis.toplam}** kurulabiliyor · sınanmayan can_do: ${r.gorulmemis.kapsanmayanCanDo.join(", ") || "yok"}`);
+  if (r.sinav.length) L.push(`Sınav günü (can_do denemeyle sınanır): ${r.sinav.map((x) => `${x.gun}. gün → ${x.deneme} (${x.bolumler.join(", ") || "bölüm yok"})${x.sorun ? ` ✗ ${x.sorun}` : ""}`).join(" · ")}`);
   if (r.nedenler.length) L.push("", "Kalma nedenleri:", ...r.nedenler.map((n) => `- ${n}`));
   const kotu = [...r.adimlar.filter((a) => a.sonuc !== "anlama" && a.sonuc !== "suzuldu"), ...(r.test?.maddeler ?? []), ...(r.gorulmemis?.durumlar ?? [])].filter((a) => a.sonuc !== "tamam");
   if (kotu.length) { L.push("", "Ayrıntı (en yakın kabul seçeneği ve eksik sözcükleri; ~ = gösterilmemiş biçim):"); for (const a of kotu) L.push(`- ${a.gun}. gün ${a.yer} [${a.sonuc}] ${a.eksik.join(", ")} · ${a.cumle}`); }

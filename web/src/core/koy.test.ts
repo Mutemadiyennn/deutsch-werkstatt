@@ -2,7 +2,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import type { LearnerItem } from "@dw/shared";
-import { KOY_ADI, acikAdimlar, bekleyenKart, dukkanlar, hazirDurum, mekanMedya, mekanMi, telefon, vadesiGelen, type KoyVeri, type YolGunu } from "./koy.ts";
+import { KOY_ADI, acikAdimlar, acikGunler, bekleyenKart, dukkanlar, hazirDurum, mekanMedya, mekanMi, telefon, vadesiGelen, type KoyVeri, type YolGunu } from "./koy.ts";
 import type { Adim } from "./gun.ts";
 import { parseHash } from "../state.ts";
 import { sekme } from "../ui/components.tsx";
@@ -47,7 +47,7 @@ describe("Köy: dükkânlar", () => {
     for (const x of d.filter((y) => !y.kilitli)) expect(x.alt).not.toMatch(/\d/);
   });
   it("sayılar gerçek veriden: vadesi gelen kart, paketteki video, hazır durum", () => {
-    const v = veri({ bekleyen: 12, index: index({ m1: [gun(1, true), gun(2, true)], scenarios: [sc("a", "telefon"), sc("b", "telefon"), sc("c", "arzt")] }) });
+    const v = veri({ bekleyen: 12, index: index({ m1: [gun(1, true), gun(2, true)], scenarios: [sc("a", "telefon"), sc("b", "telefon"), sc("c", "arzt")] }), gunler: [yolGunu(1, "bitti", []), yolGunu(2, "simdi", [])] });
     expect(bul(v, "bahce")).toMatchObject({ alt: "12 tekrar bekliyor", nokta: true });
     expect(bul(v, "sinema").alt).toBe("2 gerçek video");
     expect(bul(v, "pazar").alt).toBe("2 durum hazır");
@@ -57,6 +57,13 @@ describe("Köy: dükkânlar", () => {
     const v = veri({ index: index({ m1: [] }) });
     for (const id of ["sinema", "radyo"]) { expect(bul(v, id).kilitli).toBe(true); expect(bul(v, id).href).toBeUndefined(); expect(bul(v, id).alt).toMatch(/açılır$/); }
     expect(bul(v, "bahce").kilitli).toBe(false);
+  });
+  it("Sinema'nın video sayısı yalnız açılmış günlerden; plan yokken yalnız ilk gün (#200 takip a)", () => {
+    const i = index({ m1: [gun(1, true), gun(2, true), gun(3, true)] });
+    expect(bul(veri({ index: i, gunler: [yolGunu(1, "bitti", []), yolGunu(2, "simdi", []), yolGunu(3, "kilitli", [])] }), "sinema").alt).toBe("2 gerçek video");
+    expect(bul(veri({ index: i }), "sinema").alt).toBe("1 gerçek video");
+    // ilk günde video yoksa (yalnız köy dizisi) sonraki günün videosu sayılmaz
+    expect(bul(veri({ index: index({ m1: [gun(1), gun(2, true)] }), gunler: [yolGunu(1, "simdi", []), yolGunu(2, "kilitli", [])] }), "sinema").alt).toBe("Köy dizisi");
   });
   it("Sinema'da köşe noktası: açılmış günde izlenmemiş video varsa; kilitli günün videosu sayılmaz", () => {
     const i = index({ m1: [gun(1, true), gun(2, true)] });
@@ -81,12 +88,25 @@ describe("Köy: Telefonun kartı", () => {
 describe("Köy: mekân listeleri", () => {
   it("Radyo ses kayıtlarını, Sinema video ve köy dizisini gün gün verir; kaydı olmayan gün yazılmaz", () => {
     const i = index({ m1: [gun(2, true), gun(1), { ...gun(3), medya: [] }] });
-    const r = mekanMedya(i, "radyo"), si = mekanMedya(i, "sinema");
+    const acik = new Set([1, 2, 3]);
+    const r = mekanMedya(i, "radyo", acik), si = mekanMedya(i, "sinema", acik);
     expect(r.map((g) => g.day)).toEqual([1, 2]);
     expect(r.flatMap((g) => g.kayitlar.map((k) => k.kind))).toEqual(["ses", "ses", "ses", "ses"]);
     expect(si.flatMap((g) => g.kayitlar.map((k) => k.kind))).toEqual(["sahne", "sahne", "video"]);
     expect(r[0]!.kayitlar[0]!.href).toBe("#/m1/1/m1%3A01%3Aa1");
     expect(parseHash(r[0]!.kayitlar[0]!.href)).toEqual({ name: "m1medya", day: 1, id: "m1:01:a1" });
+  });
+  it("Sinema ve Radyo yalnız açılmış günleri listeler; kilitli günün kaydı görünmez (#200 PM finali takip a)", () => {
+    const i = index({ m1: [gun(1, true), gun(2, true), gun(3, true), gun(4, true)] });
+    const g = [yolGunu(1, "bitti", []), yolGunu(2, "simdi", []), yolGunu(3, "kilitli", []), yolGunu(4, "kilitli", [])];
+    expect(acikGunler(i, g)).toEqual(new Set([1, 2]));
+    expect(mekanMedya(i, "sinema", acikGunler(i, g)).map((x) => x.day)).toEqual([1, 2]);
+    expect(mekanMedya(i, "radyo", acikGunler(i, g)).map((x) => x.day)).toEqual([1, 2]);
+    // plan gelmediyse ya da kurulamadıysa yalnız ilk gün; planın yüklenemeyen (listede olmayan) günü açık sayılmaz
+    expect(acikGunler(i, [])).toEqual(new Set([1]));
+    expect(acikGunler(index({ m1: [gun(3), gun(2)] }), [])).toEqual(new Set([2]));
+    expect(acikGunler(i, [yolGunu(1, "bitti", []), yolGunu(2, "simdi", [])])).toEqual(new Set([1, 2]));
+    expect(acikGunler(index({ m1: [] }), [])).toEqual(new Set());
   });
   it("okuma ve prova yalnız açılmış günlerden listelenir", () => {
     const g = [yolGunu(1, "bitti", [adim("prova", "p1", { bitti: true }), adim("okuma", "o1")]), yolGunu(2, "simdi", [adim("prova", "p2"), adim("okuma", "o2", { hazir: false })]), yolGunu(3, "kilitli", [adim("prova", "p3"), adim("okuma", "o3")])];

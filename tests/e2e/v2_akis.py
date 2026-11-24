@@ -104,6 +104,9 @@ def main():
     sema = arg("--scheme") or "light"
     with sync_playwright() as p:
         b, ctx = launch(p, color_scheme=sema); ctx.add_init_script(f"window.GUN_ = {GUN};"); pg = new_page(ctx)
+        # 8. gün ve sonrası (dikey dilim, PM-100 md. 2): önceki günler oynanmış öğrenci — dosyalı günler görülmüş, dosyasız günler kesin
+        # tablodan (yalnız e2e paketi okur: services/onceki.ts)
+        if GUN > 7: ctx.add_init_script("try { localStorage.setItem('dw-e2e-onceki', 'hepsi'); } catch (e) {}")
         if "--mikrofon" in sys.argv: ctx.add_init_script(MIKROFON)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         if "--mikrofon" in sys.argv:
@@ -194,7 +197,17 @@ def main():
                 if pg.locator("[data-test=akis-bitti]").count(): break
                 if pg.locator("[data-test=halka-sonu]").count(): pg.click("[data-test=halka-sonu-devam]"); pg.wait_for_timeout(150); continue
                 ekran_denetle(pg, kalip_ornek)
-                for g in ("akis-gorev", "akis-hatirlatma", "akis-tablo", "akis-tr-de", "akis-dikte", "akis-soyle", "akis-bosluk", "akis-yapboz", "akis-kalip", "akis-tanit", "akis-dil-oge", "akis-sahne", "akis-durak-gecis", "eslestir"):
+                if pg.locator("[data-test=akis-dil-noktasi]").count() and "akis-dil-noktasi" not in govdeler:
+                    # dil noktası durağı (PM 7087668356 md. 7): başlık, açıklama, tablo, sesli örnekler, tek "Anladım"; soru yok
+                    dn = pg.evaluate("""() => { const s = document.querySelector('[data-test=akis-dil-noktasi]');
+                      return { baslik: s.querySelector('h2')?.innerText.length ?? 0, aciklama: s.querySelector('[data-test=dil-noktasi-aciklama]')?.innerText.length ?? 0,
+                        tablo: !!s.querySelector('[data-test=akis-tablo-t]'), ornek: s.querySelectorAll('[data-test=dil-noktasi-ornek]').length,
+                        dinle: s.querySelectorAll('[data-test=dil-noktasi-ornek] button').length, birincil: s.querySelectorAll('.btn.primary').length,
+                        soru: s.querySelectorAll('button.opt, input, textarea').length }; }""")
+                    check(dn["baslik"] and dn["aciklama"] > 20 and dn["tablo"] and dn["ornek"] >= 1 and dn["dinle"] >= dn["ornek"] and dn["birincil"] == 1 and dn["soru"] == 0,
+                          f"dil noktası durağı: başlık, açıklama, tablo, sesli örnekler, tek 'Anladım', soru yok ({dn})")
+                    no_overflow(pg, "dil noktası durağı"); shot(pg, f"akis-dil-noktasi-{sema}", full=True)
+                for g in ("akis-dil-noktasi", "akis-gorev", "akis-hatirlatma", "akis-tablo", "akis-tr-de", "akis-dikte", "akis-soyle", "akis-bosluk", "akis-yapboz", "akis-kalip", "akis-tanit", "akis-dil-oge", "akis-sahne", "akis-durak-gecis", "eslestir"):
                     if pg.locator(f"[data-test={g}]").count(): govdeler.add(g)
                 ic = ("tablo", "hatirlat", "ders_madde", "soyle", "tr_de", "gap", "order", "dikte", "listen_meaning", "resimden_sec", "eslestir", "kalip", "tanit", "colloc", "article", "sahne", "tekrar")
                 if pg.locator("[data-test=akis] .kicker").count() and any(x == pg.inner_text("[data-test=akis] .kicker").strip().lower() for x in ic): check(False, f"ekranda iç tür adı görünüyor: {pg.inner_text('[data-test=akis] .kicker')}")
@@ -222,16 +235,27 @@ def main():
             cerceve, ornekli = sum(k[0] for k in kalip_ornek), sum(min(k[0], k[1]) for k in kalip_ornek)
             if "--kalip-sert" in sys.argv: check(kalip_ornek and not eksik, f"her kalıp çerçevesine en az bir örnek (çerçeve/örnek {kalip_ornek}; eksik {eksik})")
             else: check(kalip_ornek and ornekli * 10 >= cerceve * 7, f"kalıp çerçevelerinin {ornekli}/{cerceve}'i örnekli (≥ %70; eksik {len(eksik)} kalıp, PM 7059008858 md. 2)")
-            check("akis-tablo" in govdeler, "dil noktasının tablosu gerçek gövdeyle (PM md. 4)")
-            check(bool(TABLO), f"dil noktası tablosu görüldü ve ekrana sığdı; seçicili tablolar {TABLO} (PM 7059008858 md. 1)")
             plan = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
-              const m = await new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get('akis:' + GUN_); t.onsuccess = () => ok(t.result.value); }); d.close();
+              const m = await new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get('akis:' + GUN_); t.onsuccess = () => ok(t.result.value); });
               const a = m.plan.duraklar.flatMap((x) => x.adimlar); const say = (f) => a.filter(f).length;
-              return { halkaUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && !x.ders && x.cumle), dersUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && x.ders),
+              const dn = [...new Set(a.filter((x) => x.ders && x.ders.oge === 'dil_noktasi').map((x) => x.ders.id))];
+              const al = (k) => new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get(k); t.onsuccess = () => ok(t.result ? t.result.value : null); });
+              const dnBitti = []; for (const id of dn) dnBitti.push(!!(await al('ders:' + id))); d.close();
+              return { r0: a.some((x) => x.ders && x.ders.id.startsWith('r0:')), dn, dnBitti, gunDersler: m.plan.gevseme.filter((x) => x.kural === 'hata' && x.yer.startsWith('ders:')).map((x) => x.yer),
+                halkaUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && !x.ders && x.cumle), dersUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && x.ders),
                 kendiniDene: (m.plan.duraklar.find((x) => x.tur === 'gunsonu')?.adimlar ?? []).filter((x) => x.ders && x.ders.id === 'gun_sinavi').length }; }""")
+            if plan["r0"]: check("akis-tablo" in govdeler, "dil noktasının tablosu gerçek gövdeyle (PM md. 4)")
+            if plan["r0"] or plan["dn"]: check(bool(TABLO), f"dil noktası tablosu görüldü ve ekrana sığdı; seçicili tablolar {TABLO} (PM 7059008858 md. 1)")
+            if plan["dn"]:
+                check("akis-dil-noktasi" in govdeler, f"dil noktası durağı çizildi: {plan['dn']} (PM-098 md. 4)")
+                check(all(plan["dnBitti"]), f"dil noktası durağının bitişi ders:<id> olarak yazıldı (sonraki günlerin bitenDersler'i): {plan['dnBitti']}")
+            check(not plan["gunDersler"], f"planda hata kaydı yok (günün dersleri bulundu): {plan['gunDersler']}")
+            if GUN > 7: check(plan["halkaUret"] >= 1, f"K(t) önceki haftalarla dolu: halkada üretim adımı var ({plan['halkaUret']})")
             check(1 <= plan["kendiniDene"] <= 4, f"gün sonu 'kendini dene': günün sınavından {plan['kendiniDene']} madde oynandı (PM 7059008858 md. 4)")
-            beklenen = {"akis-bosluk", "akis-yapboz", "akis-tanit", "akis-tablo", "akis-hatirlatma", "akis-gorev"} | ({"akis-tr-de"} if plan["halkaUret"] else set())
-            check(beklenen <= govdeler, f"halka cümlesi kendi gövdesiyle oynandı, Bahçe sorusuna düşmedi (gövdeler {sorted(govdeler)}; üretim halka {plan['halkaUret']}, ders {plan['dersUret']})")
+            beklenen = {"akis-bosluk", "akis-yapboz", "akis-tanit"} | ({"akis-tablo", "akis-hatirlatma", "akis-gorev"} if plan["r0"] else set())
+            # halka üretim adımı (tr_de, söyle, dikte) kendi üretim gövdesiyle
+            uret_govde = not plan["halkaUret"] or bool({"akis-tr-de", "akis-soyle", "akis-dikte"} & govdeler)
+            check(beklenen <= govdeler and uret_govde, f"halka cümlesi kendi gövdesiyle oynandı, Bahçe sorusuna düşmedi (gövdeler {sorted(govdeler)}; üretim halka {plan['halkaUret']}, ders {plan['dersUret']})")
             anahtar = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
               const al = (k) => new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get(k); t.onsuccess = () => ok(!!t.result); });
               const r = { bahce: await al('m1:bahce:' + GUN_), gun: await al('m1:gun:' + GUN_), ders: GUN_ === 2 ? await al('ders:r0:02-monate') : null }; d.close(); return r; }""")

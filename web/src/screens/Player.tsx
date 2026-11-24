@@ -332,7 +332,7 @@ function ListeningSection({ ctx, finish, back, setSub }: SP) {
   const [picked, setPicked] = useState<number | null>(null);
   useEffect(() => { if (i >= steps.length && steps.length) void finish(score, total); }, [i]);
   if (!steps.length) return <Empty title="Bu senaryoda dinleme yok" />;
-  if (i >= steps.length) return <Done score={score} total={total} back={back} ctx={ctx} title="Dinleme" note="İlk dinlemede anlama oranı İlerlemem'de hıza göre izlenir." />;
+  if (i >= steps.length) return <Done score={score} total={total} back={back} ctx={ctx} title="Dinleme" note="İlk dinlemede anlama oranı Ben → Çalışma düzenim'de hıza göre izlenir." />;
   const st = steps[i]!;
   useEffect(() => { setSub?.(<Count i={i} n={steps.length} />); }, [i]);
   const progress = null;
@@ -365,7 +365,7 @@ function ListeningItem({ li, progress, onDone }: { li: Scenario["listening"][num
       <section class="card stack"><div class="kicker icerik">Dinle · {li.title_tr}</div><p class="small">Önce metni görmeden dinle. İstediğin kadar tekrar dinleyebilirsin.</p>
         <div class="row"><button class="btn primary" onClick={() => playAll(li.speed)} disabled={playing} data-test="play-all">{playing ? "Çalıyor…" : <><Icon name="play" size={18} /> Dinle</>}</button>
           {li.speeds.filter((x) => x !== li.speed).map((sp) => <button class="btn" onClick={() => playAll(sp)} disabled={playing} data-speed={sp}>{SPEED_TR[sp]}</button>)}</div>
-        <p class="tiny muted">Cihaz sesi · {li.speed === "fast" ? "hızlı" : li.speed === "natural" ? "doğal hız" : li.speed === "slow" ? "yavaş" : baslangicYavas() ? "normal (ilk dinleme yavaş; Profil)" : "normal"}</p></section>
+        <p class="tiny muted">Cihaz sesi · {li.speed === "fast" ? "hızlı" : li.speed === "natural" ? "doğal hız" : li.speed === "slow" ? "yavaş" : baslangicYavas() ? "normal (ilk dinleme yavaş; Ayarlar)" : "normal"}</p></section>
       <ActionBar><button class="btn primary block" onClick={() => { stopSpeaking(); setPhase("qs"); }} data-test="to-questions">Sorulara geç</button></ActionBar>
     </div>
   );

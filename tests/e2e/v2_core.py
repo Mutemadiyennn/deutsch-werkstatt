@@ -225,17 +225,18 @@ def main():
         page.wait_for_function("(document.querySelector('[data-test=seans-durum]') || document.querySelector('[data-test=focus-idle]'))?.textContent.match(/[Ss]eans 2/)")
         check(True, "mola bitince sırada seans 2")
 
-        print("6) İlerlemem")
-        page.click("[data-tab=ben]")
+        print("6) Ben → Çalışma düzenim (eski İlerlemem; PM-084 md. 5)")
+        page.click("[data-tab=ben]"); page.wait_for_selector("[data-test=ben] [data-test=ben-bu-hafta]")
+        page.click("[data-test=duzen-ac]")
         page.wait_for_selector("[data-test=panel-focus]")
         pf = page.inner_text("[data-test=panel-focus]")
         check("25 / 100 dk" in pf or "26 / 100 dk" in pf, "odak paneli bugünkü süreyi gösteriyor")
         check("mola" in pf.lower() and "eklenmez" in pf, "mola süresi ayrı gösteriliyor")
-        page.wait_for_selector("[data-test=panel-language] >> text=Tanıdığın kelimeler")  # istatistikler eşzamansız yüklenir
+        page.wait_for_selector("[data-test=panel-language] [data-test^=dil-sayilari]")  # istatistikler eşzamansız yüklenir
         pl = page.inner_text("[data-test=panel-language]")
-        check("Tahmini başlangıç seviyesi" in pl and "Tanıdığın kelimeler" in pl, "dil paneli ayrı ve seviye tespitine dayanıyor")
+        check("Tahmini başlangıç seviyesi" in pl and not any(l.strip().endswith("\n0") or l.strip() == "0" for l in pl.split("\n")), "dil paneli ayrı, seviye tespitine dayanıyor; sıfır satırı yok (PM-084 md. 5.6)")
         shot(page, "07-progress")
-        no_overflow(page, "İlerlemem")
+        no_overflow(page, "Çalışma düzenim")
 
         print("7) Profil: hedef değişikliği kalıcı; sunucu iletişimi")
         page.clock.resume()

@@ -21,7 +21,8 @@ export async function ilerlemeOku(kartlar: string[] = []): Promise<Ilerleme> {
     provaBitti: sayi(pr.filter(bitmis), "m1:prova:"),
     okumaBitti: sayi(ok.filter(bitmis), "m1:okuma:"),
     tanitilan: new Set(it.keys()),
-    akisBasladi: sayi((await metaPrefix<unknown>("akis:")).filter((x) => /^akis:\d+$/.test(x.key)), "akis:")
+    akisBasladi: sayi((await metaPrefix<unknown>("akis:")).filter((x) => /^akis:\d+$/.test(x.key)), "akis:"),
+    sinavBitti: new Set((await metaPrefix<SinavBolumSonuc>("m1:sinav:")).filter((x) => typeof x.value?.puan === "number").map((x) => x.key.slice("m1:sinav:".length)))
   };
 }
 let kuyruk: Promise<unknown> = Promise.resolve();
@@ -66,3 +67,37 @@ export async function bahceTamam(day: number) {
 }
 /** Gün bitişi kalıcı (inceleme #66 P2-7) */
 export async function gunBittiYaz(day: number) { if (!(await getMeta(`m1:gun:${day}`))) await setMeta(`m1:gun:${day}`, new Date().toISOString()); }
+/** Kalıcı gün bitişleri (`m1:gun:<g>`): hangi haftanın yükleneceği ve gün kilidi (PR B-3) bunlarla karar verir; gün dosyası yüklenmez */
+export async function gunBitisleri(): Promise<Set<number>> {
+  return new Set((await metaPrefix<unknown>("m1:gun:")).map((x) => Number(x.key.slice("m1:gun:".length))).filter((n) => Number.isInteger(n)));
+}
+/** Hafta sonu testi sonucu (PR B-3): `m1:hafta:<H>`; en iyi sonuç kalır (yeniden çözmek düşürmez) */
+export interface HaftaSonuc { dogru: number; toplam: number; at: string }
+export async function haftaSonuclari(): Promise<Map<number, HaftaSonuc>> {
+  return new Map((await metaPrefix<HaftaSonuc>("m1:hafta:")).filter((x) => x.value && typeof x.value.dogru === "number").map((x) => [Number(x.key.slice("m1:hafta:".length)), x.value!]));
+}
+/** Son çözüm (inceleme #244 P2-2): yanlış maddeler dahil; düşük sonuçta zayıf cümleler ekran kapansa da geri gelir */
+export interface HaftaSon { dogru: number; toplam: number; yanlis: string[]; at: string }
+export async function haftaSonOku(hafta: number): Promise<HaftaSon | null> {
+  const v = await getMeta<HaftaSon>(`m1:hafta-son:${hafta}`);
+  return v && typeof v.dogru === "number" && Array.isArray(v.yanlis) ? v : null;
+}
+export async function haftaSonucYaz(hafta: number, dogru: number, toplam: number, yanlis: string[] = []): Promise<void> {
+  await setMeta(`m1:hafta-son:${hafta}`, { dogru, toplam, yanlis, at: new Date().toISOString() });
+  const eski = await getMeta<HaftaSonuc>(`m1:hafta:${hafta}`);
+  if (eski && eski.toplam && eski.dogru / eski.toplam >= dogru / Math.max(1, toplam)) return;
+  await setMeta(`m1:hafta:${hafta}`, { dogru, toplam, at: new Date().toISOString() });
+}
+
+/**
+ * Sınav günü (PM-110): deneme bölümünün sonucu `m1:sinav:<deneme>:<bölüm>`. Son çözüm sayılır (deneme gerçek sınavın provasıdır;
+ * yeniden çözünce eski puan silinir). `puan` bölüm puanı üzerinden (A1: 25), `ham` maddelerin puanı; `maddeler` madde → puan.
+ */
+export interface SinavBolumSonuc { puan: number; ham: number; hamToplam: number; at: string; maddeler: Record<string, number> }
+export async function sinavSonuclari(deneme: string): Promise<Map<string, SinavBolumSonuc>> {
+  const on = `m1:sinav:${deneme}:`;
+  return new Map((await metaPrefix<SinavBolumSonuc>(on)).filter((x) => x.key.startsWith(on) && typeof x.value?.puan === "number").map((x) => [x.key.slice(on.length), x.value!]));
+}
+export async function sinavBolumYaz(deneme: string, bolum: string, s: Omit<SinavBolumSonuc, "at">): Promise<void> {
+  await setMeta(`m1:sinav:${deneme}:${bolum}`, { ...s, at: new Date().toISOString() });
+}

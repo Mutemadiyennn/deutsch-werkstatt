@@ -135,6 +135,8 @@ def gec_birak(page, sn=15.0):
 # varsayılanına yaslanmaz: eski düzen '[]', bütün günler '"hepsi"' (v2_akis_hepsi.py) diye KENDİ değerini yazar (sekmede kalıcı).
 # try/catch: depolamaya erişimi olmayan belgede (boş sayfa, yalıtılmış çerçeve) sessionStorage okumak sayfa hatası verir
 AKIS_TABAN = "try { if (sessionStorage.getItem('e2e-akis-gunler') === null) sessionStorage.setItem('e2e-akis-gunler', '[1]'); } catch (e) {}"
+# PR B-3 gün kilidi: eski testler tek günü adresle açar → taban "kapali"; kilidi sınayan test (v2_yol_hafta.py) "acik" yazar
+GUN_KILIDI_TABAN = "try { if (sessionStorage.getItem('e2e-gun-kilidi') === null) sessionStorage.setItem('e2e-gun-kilidi', 'kapali'); } catch (e) {}"
 
 def launch(p, color_scheme="light", viewport=None, service_workers="block"):
     # Servis işçisi varsayılan kapalı: WebKit'te page.route, SW denetimindeki sayfanın isteklerini görmez (inceleme #43 P0-1). Yalnızca ucak.py açar.
@@ -150,6 +152,7 @@ def launch(p, color_scheme="light", viewport=None, service_workers="block"):
     else:
         ctx = b.new_context(viewport=viewport or {"width": 390, "height": 844}, device_scale_factor=2, locale="tr-TR", color_scheme=color_scheme, has_touch=True, service_workers=service_workers)
     ctx.add_init_script(AKIS_TABAN)
+    ctx.add_init_script(GUN_KILIDI_TABAN)
     return b, ctx
 
 IPTAL = []

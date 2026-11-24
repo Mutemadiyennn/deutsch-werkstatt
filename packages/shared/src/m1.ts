@@ -7,6 +7,7 @@
  */
 import { z } from "zod";
 import { Audio, Drill, Level, LexemeId, ReviewState, Speed } from "./content.ts";
+import { SinavBolum } from "./deneme.ts";
 
 /** gün numarası alt deseni: 01…99 iki hane, 100…364 üç hane (PM 7088043877 md. 1; #205 P2-1) */
 export const GUN_NN = "(0[1-9]|[1-9]\\d|[12]\\d{2}|3[0-5]\\d|36[0-4])";
@@ -214,6 +215,9 @@ export const Gun = z.object({
   /** sınav günü (PM-101 md. 5): o gün uygulama bu denemeyi açar (hat F). Sınav günü kartsız, `dersler: []` ve halkasızdır;
    *  doğrulayıcı böyle günü geçerli sayar (content/tools/load.ts). A1/A2/B1 sonu sınav günleri aynı biçim. */
   sinav: z.string().regex(SINAV_ID).optional(),
+  /** sınav gününün bölümleri (PM-110): denemenin bu gün açılan bölümleri, sırayla (A1: 55. gün dinleme + okuma, 56. gün yazma + konuşma).
+   *  Yalnız `sinav` ile; yoksa deneme bütünüyle o gün açılır (doğrulayıcı uyarır). Aynı denemeye bağlı günler bölümleri paylaşmaz */
+  sinav_bolumler: z.array(SinavBolum).min(1).optional(),
   video: Video.optional(),
   sahne: Sahne.optional(),
   sesler: z.array(Ses).default([]),
