@@ -1,10 +1,11 @@
-/** İlk kurulum: zorlandığın durumlar → alan önceliği → günlük hedef ve Pomodoro → dinleme ve hedefler → seviye tespiti */
+/** İlk kurulum: zorlandığın durumlar → alan önceliği → günlük hedef ve Pomodoro → nereden başlayalım (PM-114 B) → dinleme ve hedefler → seviye tespiti ya da kısa yoklama */
 import { Icon } from "../ui/icons.tsx";
 import { useState } from "preact/hooks";
 import type { Profile } from "@dw/shared";
 import { migrateDomainPriority } from "@dw/shared";
 import { useApp, go } from "../state.ts";
 import { ACTIVITY_TR } from "../core/planner.ts";
+import { kurulumIsaretle } from "../services/tespit.ts";
 
 type Struggle = Profile["struggles"][number];
 const STRUGGLES: [Struggle, string][] = [
@@ -36,11 +37,15 @@ export function Onboarding() {
   const set = (f: (x: Profile) => void) => setLocal((old) => { const n = structuredClone(old); f(n); return n; });
   const dTitle = (id: string) => index?.domains.find((d) => d.id === id)?.title_tr || id;
   const steps = 5;
+  // PM-115: nereden başlanacağını seviye tespiti bulur (paket varsa); "Nereden başlayalım?" sorusu kalktı (elle değiştirme Ayarlar'ın dibinde)
+  const tespit = !!index?.files.tespit;
 
-  const finish = async (toAssess: boolean) => {
+  const finish = async (hedef: "assess" | "today" | "seviye") => {
     // yazarken boşluk korunur ("Anna Maria"); kenar boşlukları yalnızca kayıtta atılır (redact adı tam bulmalı, D-061)
+    // ilk kurulumda tespit bitmeden gün açılmaz ("Kurulumu yeniden yap" eski öğrenciyi kilitlemez)
+    if (hedef === "seviye" && !profile.onboardedAt) await kurulumIsaretle();
     await setProfile({ ...p, displayName: p.displayName?.trim() || undefined, onboardedAt: new Date().toISOString() });
-    go(toAssess ? "assess" : "today");
+    go(hedef);
   };
 
   return (
@@ -154,11 +159,20 @@ export function Onboarding() {
               <input id="exam" class="input" type="date" value={p.goals.examB1.date || ""} onInput={(e) => set((x) => { x.goals.examB1.date = (e.target as HTMLInputElement).value || undefined; })} />
             </div>
           )}
-          <div class="card small">
-            <b>Seviye tespiti.</b> Seviyeni varsaymıyoruz: 12–15 dakikalık pratik görevlerle (kelime, dinleme, cümle kurma, konuşma) başlangıç noktanı bulalım. Bilmediğin soruda "Bilmiyorum" demek tamamen normal.
-          </div>
-          <button class="btn primary block" onClick={() => finish(true)} data-test="start-assess">Seviye tespitine başla</button>
-          <button class="btn ghost block" onClick={() => finish(false)}>Sonra yaparım</button>
+          {tespit
+            ? <>
+                <div class="card small" data-test="kurulum-tespit">
+                  <b>Seviye tespiti.</b> Seviyeni varsaymıyoruz: A1'in sekiz haftasından sorularla nereden başlayacağını birlikte bulalım. Bilmediğin soruda "Bilmiyorum" demek tamamen normal.
+                </div>
+                <button class="btn primary block" onClick={() => finish("seviye")} data-test="start-tespit">Seviye tespitine başla</button>
+              </>
+            : <>
+                <div class="card small">
+                  <b>Seviye tespiti.</b> Seviyeni varsaymıyoruz: 12–15 dakikalık pratik görevlerle (kelime, dinleme, cümle kurma, konuşma) başlangıç noktanı bulalım. Bilmediğin soruda "Bilmiyorum" demek tamamen normal.
+                </div>
+                <button class="btn primary block" onClick={() => finish("assess")} data-test="start-assess">Seviye tespitine başla</button>
+                <button class="btn ghost block" onClick={() => finish("today")}>Sonra yaparım</button>
+              </>}
         </section>
       )}
     </div>

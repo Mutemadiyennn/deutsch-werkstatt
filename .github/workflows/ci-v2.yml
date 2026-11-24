@@ -189,6 +189,8 @@ jobs:
         run: cd tests/e2e && python v2_yol_hafta.py --shots /tmp/shots && python v2_yol_hafta.py --scheme dark --shots /tmp/shots
       - name: "Sınav günü (PM-110): 55. gün dinleme + okuma, 56. gün yazma + konuşma, öz-puan, geçme kuralı, yeniden çözme; açık + koyu"
         run: cd tests/e2e && python v2_sinav.py --shots /tmp/shots && python v2_sinav.py --scheme dark --shots /tmp/shots
+      - name: "Seviye tespiti (PM-115 PR 2b): giriş, madde + Bilmiyorum, bölüm arası, sürdür, rapor, üç karar yolu, gün kilidi; açık + koyu"
+        run: cd tests/e2e && python v2_seviye.py --shots /tmp/shots && python v2_seviye.py --scheme dark --shots /tmp/shots
       - name: "8. gün fikstürü (#231 P1-3): gr: dersli gün baştan sona, dil noktası durağı, ders:<id> yazımı"
         run: cd tests/e2e && python v2_akis.py --tam --gun 8
       - name: Görsel regresyon (açık + koyu)

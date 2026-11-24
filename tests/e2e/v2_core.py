@@ -131,7 +131,15 @@ def main():
         page.click("text=Devam")
         check(page.input_value("#goal") == "100", "varsayılan günlük hedef 100 dk")
         page.click("text=Devam")
-        page.click("[data-test=start-assess]")
+        # PM-115: kurulumun son adımı A1 seviye tespitine gider ("Nereden başlayalım?" sorusu yok); ilk kurulumda "Baştan başla"
+        page.wait_for_selector("[data-test=start-tespit]")
+        check(page.locator("[data-test=kurulum-baslangic]").count() == 0, "kurulumda 'Nereden başlayalım?' sorusu yok (PM-115)")
+        page.click("[data-test=start-tespit]")
+        page.wait_for_selector("[data-test=tespit-giris]")
+        check("Önce seviyeni görelim" in page.inner_text("[data-test=tespit-giris]") and page.locator("[data-test=tespit-bastan]").count() == 1, "tespit girişi + ilk kurulumda 'Baştan başla'")
+        page.click("[data-test=tespit-bastan]"); page.wait_for_function("() => location.hash === '#/today' || location.hash === ''", timeout=15000)
+        # eski senaryo seviye ölçümü (aylık ölçüm, Ayarlar'dan) sınanmaya devam eder
+        page.goto(f"http://127.0.0.1:{PORT}/#/assess")
 
         print("3) seviye tespiti (yarıda yeniden yükleyip devam)")
         page.wait_for_selector("[data-test=assess-begin]")

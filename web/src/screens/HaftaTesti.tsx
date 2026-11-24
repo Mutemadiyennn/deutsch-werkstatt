@@ -16,17 +16,20 @@ import { tekrarAdresi, tekrarMaddeleri, zayiflar } from "../core/haftaTesti.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { loadHaftaTesti, loadM1Gun, type HaftaTesti } from "../services/content.ts";
 import { gunBitisleri, haftaSonOku, haftaSonucYaz, type HaftaSon } from "../services/ilerleme.ts";
+import { gecilenGunler } from "../services/seviye.ts";
+import { tespitBekliyor } from "../services/tespit.ts";
+import { SEVIYE } from "../core/seviye.ts";
 import { DrillView, type DrillSonuc } from "../ui/drill.tsx";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
 import { ActionBar, ProgressHeader } from "../ui/kit.tsx";
 import POLICY from "../policy.json" with { type: "json" };
 
-function Kilitli({ ust, baslik, metin, test = "gun-kilitli", ek }: { ust: string; baslik: string; metin: string; test?: string; ek?: ComponentChildren }) {
+function Kilitli({ ust, baslik, metin, test = "gun-kilitli", ek, back = "#/today" }: { ust: string; baslik: string; metin: string; test?: string; ek?: ComponentChildren; back?: string }) {
   return (
     <div class="stack" data-test={test}>
-      <ProgressHeader title={ust} back="#/today" />
+      <ProgressHeader title={ust} back={back} />
       <section class="card stack"><h2>{baslik}</h2><p>{metin}</p>{ek}</section>
-      <ActionBar><a class="btn primary block" href="#/today" data-test="bugune-don">Bugüne dön</a></ActionBar>
+      <ActionBar><a class="btn primary block" href={back} data-test={back === "#/today" ? "bugune-don" : "geri-don"}>{back === "#/today" ? "Bugüne dön" : "Geri dön"}</a></ActionBar>
     </div>
   );
 }
@@ -102,16 +105,22 @@ function e2eKilitsiz(): boolean {
 /** Kilitli gün kapısı: önceki günlerin hepsi bitmeden bu günün ekranı açılmaz */
 export function GunKapisi({ day, children }: { day: number; children: ComponentChildren }) {
   const { index } = useApp();
-  const [kilit, setKilit] = useState<boolean | null>(null);
+  const [kilit, setKilit] = useState<boolean | "tespit" | null>(null);
   useEffect(() => {
     if (!index) return;
     if (e2eKilitsiz()) { setKilit(false); return; }
     let iptal = false;
     // okunamazsa açık bırakılır: kapı bir güvenlik değil sıra kuralıdır; ekran kendi hatasını gösterir
-    void gunBitisleri().then((b) => !iptal && setKilit(gunKilitli(day, index.m1.map((g) => g.day), b))).catch(() => !iptal && setKilit(false));
+    // PM-114 B: başlangıçtan önceki atlanan günler geçilmiş sayılır (A2'den başlayan öğrencide 57. gün açık, atlanan gün de açık)
+    const days = index.m1.map((g) => g.day);
+    // PM-115 md. 1: ilk kurulumdan gelen öğrencide tespit bitmeden (ya da "Baştan başla" seçilmeden) gün açılmaz
+    void Promise.all([gecilenGunler(days), index.files.tespit ? tespitBekliyor() : false])
+      .then(([{ gecilen }, t]) => !iptal && setKilit(t ? "tespit" : gunKilitli(day, days, gecilen))).catch(() => !iptal && setKilit(false));
     return () => { iptal = true; };
   }, [index?.version, day]);
   if (kilit === null) return <Loading />;
+  if (kilit === "tespit") return <Kilitli ust={`${day}. gün`} baslik="Önce seviyeni görelim" metin="Seviye tespitini bitirince günlerin açılır; nereden başlayacağını o gösterir." test="gun-kilitli-tespit"
+    ek={<a class="btn sm" href="#/seviye" data-test="tespite-git">Seviye tespitine git</a>} />;
   if (kilit) return <Kilitli ust={`${day}. gün`} baslik="Bu gün henüz kilitli" metin="Günler sırayla açılır. Önceki günleri bitirince bu gün kendiliğinden açılacak." />;
   return <>{children}</>;
 }
@@ -160,8 +169,10 @@ export function HaftaTestiEkrani({ hafta }: { hafta: number }) {
 /**
  * Zayıf "yapabiliyorum" cümlelerinin tekrarı (#243 PM finali takip a): her zayıf günün gün sınavından kısa tur (`tekrarMaddeleri`).
  * Yalnız bitmiş günler (adresle kilitli gün girmez). Sonuç kaydedilmez; sonda "Testi yeniden çöz".
+ * `seviye` (PM-115, `#/seviye/tekrar/<g,…>`; PR 3'ün planına kadar "Planımı gör"): tespitte zorlanılan A1 günleri; gün bitmiş olmak zorunda değil (öğrenci
+ * yerini arıyor), yalnız A1 haftaları; geri ok ve son düğme yoklama sonucuna döner.
  */
-export function HaftaTekrarEkrani({ hafta, gunler }: { hafta: number; gunler: number[] }) {
+export function HaftaTekrarEkrani({ hafta, gunler, seviye = false }: { hafta: number; gunler: number[]; seviye?: boolean }) {
   const { index, profile } = useApp();
   const [tur, setTur] = useState<{ gun: number; tr: string; d: Drill }[] | null | "bos">(null);
   const [err, setErr] = useState<string | null>(null);
@@ -170,13 +181,14 @@ export function HaftaTekrarEkrani({ hafta, gunler }: { hafta: number; gunler: nu
   const [bitti, setBitti] = useState(false);
   const [n, setN] = useState(0);
   const baslik = "Zorlandıklarını tekrar et";
+  const geri = seviye ? "#/seviye/rapor" : `#/hafta/${hafta}/sonuc`;
   useEffect(() => {
     if (!index) return;
     setErr(null);
     (async () => {
       const b = await gunBitisleri();
       const var_ = new Set(index.m1.map((g) => g.day));
-      const secilen = [...new Set(gunler)].filter((g) => haftaOf(g) === hafta && var_.has(g) && (e2eKilitsiz() || b.has(g))).sort((x, y) => x - y);
+      const secilen = [...new Set(gunler)].filter((g) => var_.has(g) && (seviye ? haftaOf(g) <= SEVIYE.a1_hafta : haftaOf(g) === hafta && (e2eKilitsiz() || b.has(g)))).sort((x, y) => x - y);
       const kisi = { name: profile.displayName, address: profile.address };
       const out: { gun: number; tr: string; d: Drill }[] = [];
       for (const g of secilen) {
@@ -185,16 +197,18 @@ export function HaftaTekrarEkrani({ hafta, gunler }: { hafta: number; gunler: nu
       }
       setTur(out.length ? out : "bos");
     })().catch((e) => setErr(String(e?.message || e)));
-  }, [index?.version, hafta, gunler.join(","), n]);
-  if (err) return <div class="stack"><ProgressHeader title={baslik} back={`#/hafta/${hafta}/sonuc`} /><ErrorPanel message={err} onRetry={() => setN((x) => x + 1)} /></div>;
+  }, [index?.version, hafta, gunler.join(","), n, seviye]);
+  if (err) return <div class="stack"><ProgressHeader title={baslik} back={geri} /><ErrorPanel message={err} onRetry={() => setN((x) => x + 1)} /></div>;
   if (!tur) return <Loading />;
-  if (tur === "bos") return <Kilitli ust={baslik} baslik="Burada tekrar yok" metin="Bu günler henüz bitmedi ya da tekrar alıştırması yok." test="hafta-tekrar-bos"
-    ek={gunler.filter((g) => haftaOf(g) === hafta && index?.m1.some((x) => x.day === g)).slice(0, 1).map((g) => <a class="btn sm" href={`#/rehber/${g}`}>{g}. günün Rehber'i</a>)} />;
+  if (tur === "bos") return <Kilitli ust={baslik} baslik="Burada tekrar yok" metin={seviye ? "Bu günlerin tekrar alıştırması henüz yok." : "Bu günler henüz bitmedi ya da tekrar alıştırması yok."} test="hafta-tekrar-bos" back={geri}
+    ek={gunler.filter((g) => (seviye || haftaOf(g) === hafta) && index?.m1.some((x) => x.day === g)).slice(0, 1).map((g) => <a class="btn sm" href={`#/rehber/${g}`}>{g}. günün Rehber'i</a>)} />;
   if (bitti) return (
     <div class="stack" data-test="hafta-tekrar-sonuc" data-dogru={dogru} data-toplam={tur.length}>
       <ProgressHeader title={baslik} back="#/today" ilerleme={{ n: tur.length, toplam: tur.length }} />
-      <section class="card stack"><h2>Tekrar bitti · {dogru}/{tur.length}</h2><p>Şimdi testi yeniden çözebilirsin; en iyi sonucun kalır.</p></section>
-      <ActionBar><div class="stack"><a class="btn primary block" href={`#/hafta/${hafta}`} data-test="testi-yeniden">Testi yeniden çöz</a>
+      <section class="card stack"><h2>Tekrar bitti · {dogru}/{tur.length}</h2><p>{seviye ? "Seviye raporuna dönüp sonucunu görebilirsin." : "Şimdi testi yeniden çözebilirsin; en iyi sonucun kalır."}</p></section>
+      <ActionBar><div class="stack">{seviye
+        ? <a class="btn primary block" href="#/seviye/rapor" data-test="seviye-sonuca">Seviye raporuna dön</a>
+        : <a class="btn primary block" href={`#/hafta/${hafta}`} data-test="testi-yeniden">Testi yeniden çöz</a>}
         <a class="btn block" href="#/today" data-test="bugune-don">Bugüne dön</a></div></ActionBar>
     </div>
   );
@@ -206,7 +220,7 @@ export function HaftaTekrarEkrani({ hafta, gunler }: { hafta: number; gunler: nu
   };
   return (
     <div class="stack" data-test="hafta-tekrar" data-hafta={hafta} data-q={q} data-gun={m.gun}>
-      <ProgressHeader title={baslik} back={`#/hafta/${hafta}/sonuc`} ilerleme={{ n: q, toplam: tur.length }} />
+      <ProgressHeader title={baslik} back={geri} ilerleme={{ n: q, toplam: tur.length }} />
       <p class="small tekrar-cumle" data-test="tekrar-cumle"><b>{m.gun}. gün:</b> {m.tr}</p>
       <DrillView key={`${m.gun}:${m.d.id}`} d={m.d} sira={`${q + 1}/${tur.length}`} onDone={sonra} />
     </div>

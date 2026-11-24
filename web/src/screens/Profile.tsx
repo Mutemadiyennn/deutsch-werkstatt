@@ -12,6 +12,7 @@ import { ACTIVITY_TR } from "../core/planner.ts";
 import { ApiError } from "../services/api.ts";
 import { aiState, onAiState } from "../services/ai.ts";
 import { TopBar } from "../ui/components.tsx";
+import { ElleBaslangic } from "../ui/tespitDurum.tsx";
 
 const ACTS = Activity.options.filter((a) => a !== "assess" && a !== "other");
 
@@ -194,6 +195,8 @@ export function ProfileView() {
           <button class="btn sm" onClick={() => auth.signOut()}>Çıkış yap</button>
         </div>
       </section>
+      {/* PM-115 md. 3: görünür akışta değil; dipte sessiz elle değiştirme (tespit önerilir) */}
+      <ElleBaslangic />
     </div>
   );
 }

@@ -16,6 +16,7 @@ import { klipVideolari } from "./klip.ts";
 import { notoDosya, notoSvg } from "./emoji.ts";
 import { tmpdir } from "node:os";
 import { fotoPaketle, type FotoKaydi } from "./medya.ts";
+import { tespitPaketi } from "./tespit.ts";
 import { kesinPaketi, type KesinPaket } from "./kesin.ts";
 import { haftaBecerileri, haftaTestleri, type HaftaTestiPaket } from "./haftaTesti.ts";
 
@@ -39,6 +40,8 @@ if (process.env.DW_E2E_FIXTURES === "1") {
   // #243 takip c: kilitli hafta satırı için 3. haftanın tek günü (15) 9. gün fikstüründen türetilir (dosya kopyası depoya girmez)
   const g9 = days.find((d) => d.file === "fixtures/m1/gun-09.json");
   if (g9 && !days.some((d) => d.data.day === 15)) days.push({ file: "fixtures/m1/gun-09.json→15", data: { ...g9.data, day: 15, id: "m1:gun:15", title_tr: "15. gün (e2e fikstürü)" } });
+  // PM-114 B ("A2'den başla"): A2'nin ilk günü (57) aynı fikstürden; 9. hafta açılır ve oynanır (dosya kopyası depoya girmez)
+  if (g9 && !days.some((d) => d.data.day === 57)) days.push({ file: "fixtures/m1/gun-09.json→57", data: { ...g9.data, day: 57, id: "m1:gun:57", level: "A2", title_tr: "57. gün (e2e fikstürü)" } });
   // AKIS AK-10 4. adım: `halkalar` henüz gün dosyalarında değil (İÇ taşıyacak). e2e paketinde, fikstürle değiştirilmemiş
   // günlere İÇ'in halka önerisi (docs/v2/reviews/halka/gun-NN-halkalar.json) eklenir — yayın paketine girmez
   const hk = join(ROOT, "docs/v2/reviews/halka");
@@ -74,6 +77,15 @@ try {
   }
 } catch (e) { console.error(String(e)); process.exit(1); }
 
+// PM-115 PR 2: A1 seviye tespiti paketi (havuz dosyası varsa; e2e paketinde içerikte yoksa fikstür havuzu). Hatalı havuz
+// pakete girmez (doğrulayıcı zaten durdurur). Gün dosyası olmayan günün kartları kesin tablodan gelir (tablo paketi #231 zinciriyle).
+const tespitAdlar = new Map<string, string>([...c.grammar.map((g) => [g.id, g.h_tr] as [string, string]), ...c.dn.flatMap((x) => x.data).map((d) => [d.id, d.h_tr] as [string, string]), ...c.temel.map((t) => [t.data.id, t.data.title_tr] as [string, string])]);
+if (existsSync(join(ROOT, "content/v2/assess/a1-seviye-tespiti.json")) && !tespitPaketi(join(ROOT, "content/v2"), tespitAdlar)) {
+  console.error("seviye tespiti havuzu hatalı: npm run content:validate"); process.exit(1);
+}
+const tespitPkt = tespitPaketi(join(ROOT, "content/v2"), tespitAdlar)
+  ?? (process.env.DW_E2E_FIXTURES === "1" ? tespitPaketi(join(ROOT, "content/tools/fixtures/tespit-e2e"), tespitAdlar) : null); // 8 haftalık e2e fikstürü (PM-115 PR 2b)
+for (const h of tespitPkt?.haftalar ?? []) for (const d of h.dil_noktasi) if (!d.ad_tr) console.log(`uyarı: seviye tespiti: ${d.id} dil noktasının adı yok (grammar.json / dn-HH.json / temel)`);
 // PM-092 md. 1: haftaların dil noktaları (dn-HH.json) tek dosyada; uygulama dil noktası durağını ve kume tablosunu buradan kurar
 const dnNotlar = c.dn.flatMap((x) => x.data);
 // PM-100 md. 2: kesin kelime tabloları (curriculum/*-kesin.json) → gün → {kartlar, dersler}. Uygulama yalnız önceki günün dosyası
@@ -94,6 +106,7 @@ try {
 } catch (e) { console.error(String(e)); process.exit(1); }
 
 const payload = {
+  tespit: tespitPkt,
   m1: days.map((d) => d.data),
   dn: dnNotlar,
   kesin: kesinGunler,
@@ -208,9 +221,10 @@ const index: ContentIndex = {
     kartlar: g.yeni_kartlar.filter((id) => { const l = lexById.get(id); return !!l && kartMi(l); }), medya: medyalar(g).map((m) => ({ id: m.id, kind: m.kind, title_tr: m.title_tr })) })),
   temel: temel.map((t) => ({ id: t.id, order: t.order, title_tr: t.title_tr, title_de: t.title_de, review: t.review.status })),
   counts: { lexemes: c.lexemes.length, grammar: c.grammar.length, assess: c.assess.length, scenarios: c.scenarios.length },
-  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}), ...(resimHarita ? { resim: "resim.json" } : {}), genelAdlar: "genel-adlar.json", dn: "dn.json", kesin: "kesin.json", hafta: haftaFiles, deneme: denemeFiles }
+  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}), ...(resimHarita ? { resim: "resim.json" } : {}), genelAdlar: "genel-adlar.json", dn: "dn.json", kesin: "kesin.json", hafta: haftaFiles, deneme: denemeFiles, ...(tespitPkt ? { tespit: "tespit.json" } : {}) }
 };
 w("genel-adlar.json", genelAdlar);
+if (tespitPkt) w("tespit.json", tespitPkt);
 w("index.json", index);
 writeFileSync(join(base, "current.json"), JSON.stringify({ version }));
 console.log(`içerik paketi ${version} → web/public/content/${version}/ (${c.scenarios.length} senaryo, ${c.lexemes.length} kelime, ${c.assess.length} tespit maddesi)`);

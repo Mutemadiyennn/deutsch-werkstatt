@@ -634,6 +634,12 @@ main { overflow-x: clip; }
 .yolgun { display: grid; gap: 6px; }
 .hafta-satir { border-left: 6px solid var(--vurgu, var(--hafta-1)); padding: 12px 14px; }
 .hafta-satir.kilitli { border-left-color: var(--line); color: var(--muted); }
+/* PM-114 B: başlangıçtan önceki hafta "atlandı" — çizgi soluk, satır okunur (kilitli değil: açılır) */
+.hafta-satir.atlandi { border-left-style: dashed; }
+.baslangic .opt + .opt { margin-top: 0; }
+.baslangic-ic { display: grid; gap: 2px; }
+.baslangic-opt .small { font-weight: 400; }
+.baslangic-opt:disabled { opacity: .6; cursor: default; }
 .hafta-satir-btn { width: 100%; min-height: 44px; background: none; border: 0; padding: 0; color: inherit; font: inherit; text-align: left; gap: 10px; cursor: pointer; }
 .hafta-satir-btn .ico { color: var(--vurgu, var(--hafta-1)); flex: none; }
 /* Köy listeleri haftaya göre katlanır (PM-122 md. 2.1): eski haftalar satırı vurgusuz; liste içindeki satır ve açık haftanın başlığı */
@@ -875,3 +881,25 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .sinav-dinle { gap: 10px; }
 /* ölçüt düğmeleri dar ekranda ve büyük yazıda alt satıra geçer (6 puanlık ölçüt 7 düğme; inceleme #247 P2-6) */
 .sinav .seg { display: flex; flex-wrap: wrap; max-width: 100%; }
+
+/* Seviye tespiti (PM-115 PR 2b; PM-120 md. 4) */
+.tespit-maddeler { margin: 4px 0 0; padding-left: 18px; display: grid; gap: 4px; }
+.tespit-kalan { margin: 4px 0 0; }
+.tespit-etiket { letter-spacing: .06em; font-weight: 600; margin: -4px 0 -2px; }
+.tespit-bilmiyorum { background: transparent; box-shadow: 0 0 0 1.5px var(--line) inset; }
+.tespit-ara.oturmus h2 { color: var(--ok); }
+.tespit-karar { border-left: 6px solid var(--accent); }
+.tespit-karar.a2 { border-left-color: var(--ok); }
+.tespit-karar.tamamla { border-left-color: var(--c-amber); }
+.tespit-karar.bastan { border-left-color: var(--c-blue); }
+.tespit-cubuk { display: grid; gap: 4px; }
+.tespit-cubuk-yol { height: 8px; border-radius: 99px; background: var(--soft); overflow: hidden; }
+.tespit-cubuk-yol > i { display: block; height: 100%; border-radius: 99px; background: var(--ok); }
+.tespit-cubuk.dusuk .tespit-cubuk-yol > i { background: var(--c-amber); }
+.tespit-cubuk.olculmedi { color: var(--muted); }
+[data-test=tespit-haftalar] .tespit-cubuk-yol { height: 5px; }
+.tespit-acilir summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; }
+.tespit-acilir .zayif-liste { margin-top: 8px; }
+.tespit-kelime-satir { margin: 0; text-align: center; }
+.tespit-seg { display: flex; flex-wrap: wrap; width: 100%; } .tespit-seg > button { min-width: 44px; min-height: 44px; flex: 1 0 44px; }
+.tespit-orta { display: flex; justify-content: center; } .tespit-orta .ikincil-eylem { align-self: center; text-align: center; }
