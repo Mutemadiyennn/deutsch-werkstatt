@@ -833,3 +833,6 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .akis-tablo-sec { flex-wrap: wrap; gap: 8px; }
 .akis-tablo-sec .chip { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font-weight: 700; }
 .akis-tablo-sec .chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+/* Günlük hatırlatma (PM-121 md. 3.3; inceleme #263 P1-2): satırın tamamı dokunulur, en az 44 pt; kutu 24 px */
+.hatirlatma-satir { min-height: 44px; cursor: pointer; }
+.hatirlatma-satir input[type=checkbox] { width: 24px; height: 24px; margin: 0; accent-color: var(--accent); }

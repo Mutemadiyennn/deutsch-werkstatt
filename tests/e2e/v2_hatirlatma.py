@@ -3,7 +3,8 @@ Günlük hatırlatma (PM-121 md. 3.3; v1 kapanınca akşam hatırlatmasını v2 
   1. iPhone kabuğunda (LocalNotifications) açılıştan kısa süre sonra 7 günlük pencere kurulur: günde tek, 19:30 (varsayılan);
      önce v1'in kimlikleri (7101–7107, 7200) silinir, iki hatırlatma birden gelmez
   2. Ben → Çalışma düzenim'de "Günlük hatırlatma" kartı: kapatınca yalnız silinir (kurulum yok), açıp saat seçince o saatte kurulur;
-     ayar yeniden açılışta korunur
+     ayar yeniden açılışta korunur; satır en az 44 pt (inceleme #263 P1-2)
+  2b. v1'de "Kapalı" seçilmişse v2 kapalı başlar ve bildirim kurmaz; izin kapalıysa kartta tek satır (inceleme #263 P1-1, P2-2)
   3. uygulama arka plana geçince pencere yeniden kurulur
   4. tarayıcıda (kabuk yok) kart çizilmez, hata yok
   5. açık + koyu, 390 ve 430; taşma yok
@@ -18,6 +19,9 @@ SAHTE = """window.__ln = []; window.Capacitor = { Plugins: { LocalNotifications:
   cancel: async (o) => { window.__ln.push(['sil', o.notifications.map((n) => n.id)]); },
   checkPermissions: async () => ({ display: 'granted' }), requestPermissions: async () => ({ display: 'granted' }),
   schedule: async (o) => { window.__ln.push(['kur', o.notifications.map((n) => [n.id, new Date(n.schedule.at).getHours() + ':' + String(new Date(n.schedule.at).getMinutes()).padStart(2, '0')])]); } } } };"""
+
+RED = SAHTE.replace("checkPermissions: async () => ({ display: 'granted' })", "checkPermissions: async () => ({ display: 'denied' })")
+V1_KAPALI = "if (!localStorage.getItem('dw-werkstatt-v2')) localStorage.setItem('dw-werkstatt-v2', JSON.stringify({ words: [], state: { remind: 'off' } }));"
 
 def kayit(pg): return pg.evaluate("window.__ln || []")
 def bekle_kur(pg, n):
@@ -38,6 +42,16 @@ def main():
         check(pg.locator("[data-test=hatirlatma]").count() == 0, "tarayıcıda (kabuk yok) hatırlatma kartı çizilmez")
         b.close()
 
+        # 2b. v1'de kapalı → v2 kapalı başlar; izin reddedilmiş → açınca uyarı satırı, kurulum yok
+        b, ctx = launch(p); ctx.add_init_script(V1_KAPALI); ctx.add_init_script(RED); pg = new_page(ctx)
+        login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.wait_for_timeout(3000)
+        check(not any(x[0] == "kur" for x in kayit(pg)), f"v1'de kapalıysa açılışta bildirim kurulmaz ({kayit(pg)})")
+        duzen(pg, base); kart = pg.locator("[data-test=hatirlatma]"); kart.wait_for()
+        check(not kart.locator("[data-test=hatirlatma-acik]").is_checked() and kart.locator("[data-test=hatirlatma-saat]").count() == 0, "v1'de 'Kapalı' seçilmişse v2'de kart kapalı başlar")
+        kart.locator("[data-test=hatirlatma-acik]").click(); kart.locator("[data-test=hatirlatma-izin]").wait_for(timeout=5000)
+        check(not any(x[0] == "kur" for x in kayit(pg)), "izin kapalıyken açınca kurulmaz, kartta izin satırı görünür")
+        b.close()
+
         for sema in ("light", "dark"):
             for gen in (390, 430):
                 b, ctx = launch(p, color_scheme=sema, viewport={"width": gen, "height": 932 if gen == 430 else 844}); ctx.add_init_script(SAHTE); pg = new_page(ctx)
@@ -52,6 +66,9 @@ def main():
                 kart = pg.locator("[data-test=hatirlatma]"); kart.wait_for()
                 check(kart.locator("[data-test=hatirlatma-acik]").is_checked() and kart.locator("[data-test=hatirlatma-saat]").input_value() == "19:30", f"{sema} {gen}: kart açık, 19:30")
                 kart.scroll_into_view_if_needed()
+                if gen == 390:
+                    sh = pg.evaluate("(() => { const r = document.querySelector('.hatirlatma-satir').getBoundingClientRect(); const k = document.querySelector('[data-test=hatirlatma-acik]').getBoundingClientRect(); return [r.height, k.width]; })()")
+                    check(sh[0] >= 44 and sh[1] >= 22, f"{sema}: 'Her akşam hatırlat' satırı en az 44 pt, kutu ≥ 22 px ({sh})")
                 no_overflow(pg, f"{sema} {gen} Çalışma düzenim")
                 if gen == 430: pg.evaluate("window.scrollTo(0, document.body.scrollHeight)"); pg.wait_for_timeout(150); shot(pg, f"hatirlatma-{sema}", full=False)
                 if sema == "light" and gen == 430:

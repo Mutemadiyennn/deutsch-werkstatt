@@ -20,7 +20,7 @@ const GUN = 7;
 export const HATIRLATMA_METIN: readonly (readonly [string, string])[] = [
   ["Bugünkü adımın hazır", "Birkaç dakika yeter: aç, kaldığın yerden devam et."],
   ["Guten Abend!", "Bugün kısa bir tur: dinle, sonra bir cümle söyle."],
-  ["10 dakika yeter", "En zor kısım başlamak. Bir halka aç, gerisi gelir."],
+  ["Kısa bir tur yeter", "En zor kısım başlamak. Bugünkü ilk adımı aç, gerisi gelir."],
   ["Bugün bir şey söyle", "Almanca konuştukça donma azalır. Bugün birkaç cümle kur."],
   ["Yarın kolaylaşsın", "Bugün kısa bir tekrar, yarın daha az unutmak demek."],
 ];
@@ -53,9 +53,30 @@ const eklenti = (): LN | undefined => (globalThis as any).Capacitor?.Plugins?.Lo
 /** kabukta bildirim eklentisi var mı (yoksa ayar satırı da gösterilmez) */
 export const hatirlatmaVar = () => !!eklenti();
 
+/** v1'in ayarı (aynı kökte `localStorage["dw-werkstatt-v2"].state.remind`: "off" ya da "HH:MM"); yoksa ya da okunamazsa null */
+export function v1Ayari(ham: string | null): HatirlatmaAyar | null {
+  try {
+    const r = ham ? JSON.parse(ham)?.state?.remind : undefined;
+    if (r === "off") return { ...HATIRLATMA_VARSAYILAN, acik: false };
+    if (typeof r === "string" && (HATIRLATMA_SAATLERI as readonly string[]).includes(r)) return { acik: true, saat: r };
+    return null;
+  } catch { return null; }
+}
+
+/** ayar; v2'de kayıt yoksa bir kez v1'inkinden (v1'de kapattıysa kapalı başlar, saat listedeyse o saat), sonra kaydedilir */
 export async function hatirlatmaAyar(): Promise<HatirlatmaAyar> {
   const a = await getMeta<Partial<HatirlatmaAyar>>("hatirlatma");
-  return { ...HATIRLATMA_VARSAYILAN, ...(a ?? {}) };
+  if (a) return { ...HATIRLATMA_VARSAYILAN, ...a };
+  let ham: string | null = null;
+  try { ham = globalThis.localStorage?.getItem("dw-werkstatt-v2") ?? null; } catch { /* erişim yok */ }
+  const y = v1Ayari(ham) ?? HATIRLATMA_VARSAYILAN;
+  await setMeta("hatirlatma", y);
+  return y;
+}
+
+/** bildirim izni (kart "izin kapalı" satırı için); kabuk yoksa null */
+export async function hatirlatmaIzni(): Promise<string | null> {
+  try { return (await eklenti()?.checkPermissions?.())?.display ?? null; } catch { return null; }
 }
 
 /** ayarı kaydeder ve bildirimleri hemen yeniden kurar */
@@ -70,26 +91,30 @@ export function hatirlatmaKur(gunlukHedefDk: number, simdi = new Date()): Promis
   // üst üste çağrılar (görünürlük + ayar) sırayla: iki kurulum birbirinin bildirimini silmesin
   const onceki = kuruluyor ?? Promise.resolve();
   const p = onceki.then(() => kur(gunlukHedefDk, simdi)).catch(() => undefined);
-  kuruluyor = p.finally(() => { if (kuruluyor === p) kuruluyor = null; });
+  const q: Promise<void> = p.finally(() => { if (kuruluyor === q) kuruluyor = null; });
+  kuruluyor = q;
   return p;
 }
 
 async function kur(gunlukHedefDk: number, simdi: Date) {
   const L = eklenti(); if (!L) return;
-  await L.cancel?.({ notifications: KIMLIKLER.map((id) => ({ id })) });
+  // önce plan hesaplanır, silme ile kurma art arda gelir: arka plana geçerken iOS uygulamayı arada askıya alırsa pencere boş kalmasın
   const ayar = await hatirlatmaAyar();
-  if (!ayar.acik) return;
-  let izin = (await L.checkPermissions?.())?.display;
-  if (izin !== "granted") {
-    // izin bir kez sorulur; reddedildiyse bir daha sorulmaz (iOS zaten ikinci kez göstermez)
-    if (izin === "denied" || (await getMeta<boolean>("hatirlatma_soruldu"))) return;
-    await setMeta("hatirlatma_soruldu", true);
-    izin = (await L.requestPermissions?.())?.display;
-    if (izin !== "granted") return;
+  let plan: Bildirim[] = [];
+  if (ayar.acik && (await izinVar(L))) {
+    const bugun = localDate(simdi.getTime());
+    const gun = (await focusRange(bugun, bugun))[0];
+    plan = hatirlatmaPlani(simdi, ayar, !!gun && gun.focusSec >= (gunlukHedefDk * 60) / 2);
   }
-  const bugun = localDate(simdi.getTime());
-  const gun = (await focusRange(bugun, bugun))[0];
-  const bugunYeter = !!gun && gun.focusSec >= (gunlukHedefDk * 60) / 2;
-  const plan = hatirlatmaPlani(simdi, ayar, bugunYeter);
+  await L.cancel?.({ notifications: KIMLIKLER.map((id) => ({ id })) });
   if (plan.length) await L.schedule({ notifications: plan });
+}
+
+async function izinVar(L: LN): Promise<boolean> {
+  const izin = (await L.checkPermissions?.())?.display;
+  if (izin === "granted") return true;
+  // izin bir kez sorulur; reddedildiyse bir daha sorulmaz (iOS zaten ikinci kez göstermez)
+  if (izin === "denied" || (await getMeta<boolean>("hatirlatma_soruldu"))) return false;
+  await setMeta("hatirlatma_soruldu", true);
+  return (await L.requestPermissions?.())?.display === "granted";
 }

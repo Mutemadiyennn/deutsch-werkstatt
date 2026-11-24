@@ -7,7 +7,7 @@ vi.mock("../data/db.ts", () => ({
   setMeta: async (k: string, v: unknown) => { meta.set(k, v); },
   focusRange: async (from: string) => (odakSn ? [{ date: from, focusSec: odakSn }] : []),
 }));
-import { hatirlatmaPlani, hatirlatmaKur, hatirlatmaKaydet, HATIRLATMA_VARSAYILAN, HATIRLATMA_METIN } from "./hatirlatma.ts";
+import { hatirlatmaPlani, hatirlatmaKur, hatirlatmaKaydet, hatirlatmaAyar, v1Ayari, HATIRLATMA_VARSAYILAN, HATIRLATMA_METIN } from "./hatirlatma.ts";
 
 const saat = (d: Date) => `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
 
@@ -37,6 +37,28 @@ describe("günlük hatırlatma planı (PM-121 md. 3.3)", () => {
   });
 });
 
+describe("v1'in ayarı bir kez taşınır (inceleme #263 P1-1)", () => {
+  const v1 = (remind?: string) => JSON.stringify({ words: [], state: remind === undefined ? {} : { remind } });
+  it("off → kapalı; listedeki saat → o saat; liste dışı ya da kayıt yok → 19:30", () => {
+    expect(v1Ayari(v1("off"))).toEqual({ acik: false, saat: "19:30" });
+    expect(v1Ayari(v1("21:00"))).toEqual({ acik: true, saat: "21:00" });
+    expect(v1Ayari(v1("07:00"))).toBeNull();
+    expect(v1Ayari(v1())).toBeNull();
+    expect(v1Ayari(null)).toBeNull();
+    expect(v1Ayari("{bozuk")).toBeNull();
+  });
+  it("v2'de kayıt yoksa v1'den okunur ve yazılır; sonra v1'e bakılmaz", async () => {
+    meta.clear();
+    const depo = new Map<string, string>([["dw-werkstatt-v2", v1("off")]]);
+    (globalThis as any).localStorage = { getItem: (k: string) => depo.get(k) ?? null };
+    expect(await hatirlatmaAyar()).toEqual({ acik: false, saat: "19:30" });
+    expect(meta.get("hatirlatma")).toEqual({ acik: false, saat: "19:30" });
+    depo.set("dw-werkstatt-v2", v1("21:00"));
+    expect((await hatirlatmaAyar()).acik).toBe(false);
+    delete (globalThis as any).localStorage;
+  });
+});
+
 describe("kurulum (kabuk köprüsü)", () => {
   let L: { cancel: ReturnType<typeof vi.fn>; checkPermissions: ReturnType<typeof vi.fn>; requestPermissions: ReturnType<typeof vi.fn>; schedule: ReturnType<typeof vi.fn> };
   beforeEach(() => {
@@ -59,6 +81,17 @@ describe("kurulum (kabuk köprüsü)", () => {
     odakSn = 30 * 60;
     await hatirlatmaKur(60, new Date(2026, 10, 24, 10, 0));
     expect(L.schedule.mock.calls[0]![0].notifications[0].schedule.at.getDate()).toBe(25);
+  });
+  it("izin yoksa da eski bildirimler silinir; silme ile kurma art arda (arada bekleme yok)", async () => {
+    const sira: string[] = [];
+    L.checkPermissions.mockImplementation(async () => { sira.push("izin"); return { display: "granted" }; });
+    L.cancel.mockImplementation(async () => { sira.push("sil"); });
+    L.schedule.mockImplementation(async () => { sira.push("kur"); });
+    await hatirlatmaKur(60, new Date(2026, 10, 24, 10, 0));
+    expect(sira).toEqual(["izin", "sil", "kur"]);
+    L.checkPermissions.mockResolvedValue({ display: "denied" }); L.cancel.mockClear(); L.schedule.mockClear();
+    await hatirlatmaKur(60);
+    expect(L.cancel).toHaveBeenCalledTimes(1); expect(L.schedule).not.toHaveBeenCalled();
   });
   it("kapatılınca yalnız silinir", async () => {
     await hatirlatmaKaydet({ acik: false, saat: "19:30" }, 60);
