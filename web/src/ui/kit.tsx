@@ -202,7 +202,13 @@ export function ActionBar({ children }: { children: ComponentChildren }) {
     const app = document.querySelector<HTMLElement>(".app"); if (!app) return;
     app.classList.add("hasbar");
     // içerik eylem çubuğunun altında kalmasın: yükseklik ölçülür (cevap alanı + harf şeridi gibi yüksek çubuklar için)
-    const ro = typeof ResizeObserver !== "undefined" && ref.current ? new ResizeObserver(() => { if (ref.current) app.style.setProperty("--actionbar-h", `${Math.ceil(ref.current.getBoundingClientRect().height) - 12}px`); }) : null;
+    // aynı ölçü yeniden yazılmaz (gözlemci içinden gereksiz düzen değişikliği yok; KAPI-İŞ 7118350740)
+    let son = "";
+    const ro = typeof ResizeObserver !== "undefined" && ref.current ? new ResizeObserver(() => {
+      if (!ref.current) return;
+      const h = `${Math.ceil(ref.current.getBoundingClientRect().height) - 12}px`;
+      if (h !== son) { son = h; app.style.setProperty("--actionbar-h", h); }
+    }) : null;
     if (ro && ref.current) ro.observe(ref.current);
     return () => { ro?.disconnect(); app.classList.remove("hasbar"); app.style.removeProperty("--actionbar-h"); };
   }, []);
