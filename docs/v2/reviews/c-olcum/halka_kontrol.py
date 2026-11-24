@@ -56,7 +56,8 @@ for h in o['halkalar']:
             if 'accepted' in g:
                 if len(g['accepted']) < 3 or g['accepted'][0] != g['de']: print(f"HATA {h['id']} {c} accepted ≥3 ve ilki de olmalı: {g['de']}"); hata += 1
                 for a in g['accepted'][1:]:
-                    ua, _ = M['bilinmeyen'](a, bk, bb, biten=bt, kaliplar=kalip_cok)
+                    # konuşma biçimi "geht's" = "geht es" (yalnız kabul satırında; değerlendirici kesme işaretini atıyor)
+                    ua, _ = M['bilinmeyen'](a.replace("'s", " es").replace("’s", " es"), bk, bb, biten=bt, kaliplar=kalip_cok)
                     if ua: print(f"HATA {h['id']} {c} kabul satırında bilinmeyen {ua}: {a}"); hata += 1
             if u: print(f"HATA {h['id']} {c} görev cümlesi bilinmeyen {u}: {g['de']}"); hata += 1
             elif set(M['toks'](g['de'])) & (M['yuzey'](C) - set(M['toks'](C.get('art', '')))): n += 1; liste.append(g['de'])

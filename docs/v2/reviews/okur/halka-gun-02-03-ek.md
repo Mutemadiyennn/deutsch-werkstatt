@@ -29,3 +29,7 @@ Toplam: 6 · GEÇTİ: 6 · GERİ: 0
 GERİ kimlikleri: yok.
 
 Bu ek turdaki altı satır OD-9.4 açısından engel değildir. Dosyanın tamamının "reviewed" sayılması, `halka-gun-02-03.md` raporundaki önceki GERİ satırlarının durumuna bağlıdır.
+
+## Not (sonraki tur)
+
+3. satırın görev cümlesi ("Im August habe ich Urlaub." / "Ağustosta iznim var.") m1:02:h4'te artık yok. Yerine "Im August habe ich Geburtstag." / "Ağustosta doğum günüm var." geldi. Bu yeni satır `halka-gun-05-06-ek.md` raporunda, Ek tur 2 bölümünde 15. satır olarak okundu: GEÇTİ.
