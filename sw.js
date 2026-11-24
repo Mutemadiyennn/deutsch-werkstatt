@@ -2,13 +2,10 @@
    Sayfa: önce ağ (4 sn), yoksa önbellek. Yazı tipleri ve Firebase kütüphaneleri: önbellek önce.
    Güncelleme kontrolü (?u=) ve bütün API çağrıları hiç önbelleğe girmez.
    /v2/ altı ayrı uygulamadır: bu işçi ona hiç karışmaz (v2 sayfası v1'in "./" önbelleğinin üstüne yazılmasın). */
-// PM-116: STATIC v2 → eski sayfa önbelleği silinir; kök adres yeni sayfayla (→ /v2/) açılır, çevrimdışında da
-const STATIC = "dw-static-v2", RUNTIME = "dw-runtime-v1";
+const STATIC = "dw-static-v1", RUNTIME = "dw-runtime-v1";
 const CORE = ["./", "manifest.webmanifest", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "favicon.png"];
 self.addEventListener("install", e => {
-  // sayfa ("./") alınamazsa kurulum düşer: eski işçi ve önbelleği yerinde kalır, sonraki açılışta yeniden denenir (inceleme #262 P1-1);
-  // simgeler en iyi çabayla
-  e.waitUntil(caches.open(STATIC).then(c => Promise.all([c.add("./"), ...CORE.slice(1).map(u => c.add(u).catch(() => {}))])).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(STATIC).then(c => c.addAll(CORE).catch(() => {})).then(() => self.skipWaiting()));
 });
 self.addEventListener("activate", e => {
   // yalnız v1'in kendi eski önbellekleri (dw-…): v2'nin aynı kökendeki önbelleklerine (dw2-…) dokunulmaz (PM 7059014921)
