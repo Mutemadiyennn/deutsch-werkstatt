@@ -1,0 +1,1629 @@
+{
+ "schema": 1,
+ "id": "m1:gun:31",
+ "day": 31,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Meslek sormak: Was sind Sie von Beruf?",
+ "goal_tr": "Birine mesleğini sorarsın. Kendi işini de söylersin. Garda bilet ve kalkış saatini sorarsın.",
+ "can_do": {
+  "id": "cd:m1:31",
+  "tr": "Birine mesleğini sorar, kendi işimi söylerim."
+ },
+ "unit": "u:a1:31",
+ "arm": "kafe",
+ "place": "pl:firma",
+ "characters": [
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:popescu",
+  "ch:wimmer"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic5-hafta-05.md; okur: docs/v2/reviews/okur/ic5-hafta-05.md (14 GERİ, okurun önerisiyle düzeltildi)",
+  "okur": "passed",
+  "okur_at": "2026-11-23"
+ },
+ "dersler": [
+  "gr:a1-08:t1",
+  "gr:a1-08:t2"
+ ],
+ "yeni_kartlar": [
+  "lx:Schichtplan",
+  "lx:Gehaltsabrechnung",
+  "lx:sofort",
+  "lx:passen",
+  "lx:Beruf",
+  "lx:Schwester",
+  "lx:entschuldigen",
+  "lx:toll",
+  "lx:Fahrschein",
+  "lx:einmal",
+  "lx:Abfahrt",
+  "lx:Bahnsteig",
+  "lx:Fahrplan",
+  "lx:Zugausfall"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:31:h1",
+   "title_tr": "Vardiya planı geldi",
+   "kartlar": [
+    "lx:Schichtplan",
+    "lx:Gehaltsabrechnung",
+    "lx:sofort",
+    "lx:passen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Passt es dir …?",
+     "tr": "… sana uyar mı?"
+    },
+    {
+     "de": "Am … habe ich frei.",
+     "tr": "… günü izinliyim."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Schichtplan",
+     "de": "Wo ist der Schichtplan?",
+     "tr": "Vardiya planı nerede?",
+     "accepted": [
+      "Wo ist der Schichtplan?",
+      "Wo ist denn der Schichtplan?",
+      "Entschuldigung, wo ist der Schichtplan?"
+     ]
+    },
+    {
+     "kart": "lx:Schichtplan",
+     "de": "Was steht auf dem Schichtplan?",
+     "tr": "Vardiya planında ne yazıyor?",
+     "accepted": [
+      "Was steht auf dem Schichtplan?",
+      "Was steht denn auf dem Schichtplan?",
+      "Was steht im Schichtplan?"
+     ]
+    },
+    {
+     "kart": "lx:Gehaltsabrechnung",
+     "de": "Am Freitag kommt die Gehaltsabrechnung.",
+     "tr": "Cuma günü maaş bordrosu geliyor.",
+     "accepted": [
+      "Am Freitag kommt die Gehaltsabrechnung.",
+      "Die Gehaltsabrechnung kommt am Freitag.",
+      "Am Freitag kommt die Gehaltsabrechnung, oder?"
+     ]
+    },
+    {
+     "kart": "lx:Gehaltsabrechnung",
+     "de": "Hast du deine Gehaltsabrechnung?",
+     "tr": "Bordronu aldın mı?",
+     "accepted": [
+      "Hast du deine Gehaltsabrechnung?",
+      "Hast du deine Gehaltsabrechnung schon?",
+      "Hast du die Gehaltsabrechnung?"
+     ]
+    },
+    {
+     "kart": "lx:sofort",
+     "de": "Ich komme sofort.",
+     "tr": "Hemen geliyorum.",
+     "accepted": [
+      "Ich komme sofort.",
+      "Ich komme sofort!",
+      "Sofort, ich komme."
+     ]
+    },
+    {
+     "kart": "lx:sofort",
+     "de": "Ich rufe Derya sofort an.",
+     "tr": "Derya'yı hemen arıyorum.",
+     "accepted": [
+      "Ich rufe Derya sofort an.",
+      "Ich rufe sofort Derya an.",
+      "Ich rufe Derya jetzt sofort an."
+     ]
+    },
+    {
+     "kart": "lx:passen",
+     "de": "Passt es dir am Montag?",
+     "tr": "Pazartesi sana uyar mı?",
+     "accepted": [
+      "Passt es dir am Montag?",
+      "Passt dir Montag?",
+      "Passt es dir am Montag, Tobi?"
+     ]
+    },
+    {
+     "kart": "lx:passen",
+     "de": "Am Montag passt es mir gut.",
+     "tr": "Pazartesi bana çok uygun.",
+     "accepted": [
+      "Am Montag passt es mir gut.",
+      "Montag passt mir gut.",
+      "Am Montag passt es gut."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Çarşamba sabahı, firmanın panosu. Tobi yeni vardiya planına bakıyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Der Schichtplan ist da! Am Montag habe ich frei.",
+      "tr": "Vardiya planı gelmiş! Pazartesi izinliyim."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Und ich? Wann habe ich frei?",
+      "tr": "Ya ben? Ben ne zaman izinliyim?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Du hast am Dienstag frei.",
+      "tr": "Sen salı izinlisin."
+     }
+    ],
+    "soru": {
+     "q_tr": "Vardiya planına göre sen hangi gün izinlisin?",
+     "opts": [
+      "Pazartesi",
+      "Salı",
+      "Cumartesi"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:31:h2",
+   "title_tr": "Mesleğin ne?",
+   "kartlar": [
+    "lx:Beruf",
+    "lx:Schwester",
+    "lx:entschuldigen",
+    "lx:toll"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich arbeite als … – Er arbeitet als …",
+     "tr": "… olarak çalışıyorum – … olarak çalışıyor"
+    },
+    {
+     "de": "der Techniker – die Technikerin",
+     "tr": "teknisyen: erkek – kadın"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Beruf",
+     "de": "Was bist du von Beruf, Derya?",
+     "tr": "Mesleğin ne Derya?",
+     "accepted": [
+      "Was bist du von Beruf, Derya?",
+      "Derya, was bist du von Beruf?",
+      "Was ist dein Beruf, Derya?"
+     ]
+    },
+    {
+     "kart": "lx:Beruf",
+     "de": "Und was sind Sie von Beruf?",
+     "tr": "Peki sizin mesleğiniz ne?",
+     "accepted": [
+      "Und was sind Sie von Beruf?",
+      "Und Sie? Was sind Sie von Beruf?",
+      "Und was ist Ihr Beruf?"
+     ]
+    },
+    {
+     "kart": "lx:Schwester",
+     "de": "Meine Schwester arbeitet in der Praxis.",
+     "tr": "Kız kardeşim muayenehanede çalışıyor.",
+     "accepted": [
+      "Meine Schwester arbeitet in der Praxis.",
+      "Meine Schwester arbeitet in einer Praxis.",
+      "In der Praxis arbeitet meine Schwester."
+     ]
+    },
+    {
+     "kart": "lx:Schwester",
+     "de": "Was ist deine Schwester von Beruf?",
+     "tr": "Kız kardeşinin mesleği ne?",
+     "accepted": [
+      "Was ist deine Schwester von Beruf?",
+      "Was macht deine Schwester?",
+      "Und deine Schwester? Was ist sie von Beruf?"
+     ]
+    },
+    {
+     "kart": "lx:entschuldigen",
+     "de": "Entschuldigen Sie, arbeiten Sie hier?",
+     "tr": "Affedersiniz, burada mı çalışıyorsunuz?",
+     "accepted": [
+      "Entschuldigen Sie, arbeiten Sie hier?",
+      "Entschuldigen Sie bitte, arbeiten Sie hier?",
+      "Entschuldigung, arbeiten Sie hier?"
+     ]
+    },
+    {
+     "kart": "lx:entschuldigen",
+     "de": "Entschuldigen Sie, was sind Sie von Beruf?",
+     "tr": "Affedersiniz, mesleğiniz ne?",
+     "accepted": [
+      "Entschuldigen Sie, was sind Sie von Beruf?",
+      "Entschuldigen Sie bitte, was sind Sie von Beruf?",
+      "Entschuldigung, was sind Sie von Beruf?"
+     ]
+    },
+    {
+     "kart": "lx:toll",
+     "de": "Du bist Verkäufer? Toll!",
+     "tr": "Satış elemanı mısın? Harika!",
+     "accepted": [
+      "Du bist Verkäufer? Toll!",
+      "Du bist Verkäufer? Das ist toll!",
+      "Verkäufer? Toll!"
+     ]
+    },
+    {
+     "kart": "lx:toll",
+     "de": "Du bist die Technikerin? Toll!",
+     "tr": "Teknisyen sen misin? Harika!",
+     "accepted": [
+      "Du bist die Technikerin? Toll!",
+      "Du bist die Technikerin? Das ist toll!",
+      "Bist du die Technikerin? Toll!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Kantinde öğle yemeği. Derya'yla ailelerinizi konuşuyorsunuz.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Was ist deine Schwester von Beruf, Derya?",
+      "tr": "Kız kardeşinin mesleği ne Derya?"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Sie ist Krankenpflegerin. Sie arbeitet in der Nacht.",
+      "tr": "Hemşire. Gece çalışıyor."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Toll! Und dein Bruder?",
+      "tr": "Harika! Ya erkek kardeşin?"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Er arbeitet als Koch.",
+      "tr": "O aşçı olarak çalışıyor."
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya'nın kız kardeşi ne iş yapıyor?",
+     "opts": [
+      "Hemşire",
+      "Aşçı",
+      "Doktor",
+      "Polis"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:31:h3",
+   "title_tr": "Garda: pazar için bilet",
+   "kartlar": [
+    "lx:Fahrschein",
+    "lx:einmal",
+    "lx:Abfahrt",
+    "lx:Bahnsteig",
+    "lx:Fahrplan",
+    "lx:Zugausfall"
+   ],
+   "kaliplar": [
+    {
+     "de": "Von welchem Bahnsteig?",
+     "tr": "Hangi perondan?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Fahrschein",
+     "de": "Ich kaufe einen Fahrschein.",
+     "tr": "Bir bilet alıyorum.",
+     "accepted": [
+      "Ich kaufe einen Fahrschein.",
+      "Ich kaufe jetzt einen Fahrschein.",
+      "Ich kaufe noch einen Fahrschein."
+     ]
+    },
+    {
+     "kart": "lx:Fahrschein",
+     "de": "Hier ist mein Fahrschein.",
+     "tr": "Buyurun, biletim.",
+     "accepted": [
+      "Hier ist mein Fahrschein.",
+      "Hier, mein Fahrschein.",
+      "Hier, bitte, mein Fahrschein."
+     ]
+    },
+    {
+     "kart": "lx:einmal",
+     "de": "Einmal, bitte!",
+     "tr": "Bir tane, lütfen!",
+     "accepted": [
+      "Einmal, bitte!",
+      "Bitte einmal!",
+      "Einmal bitte."
+     ]
+    },
+    {
+     "kart": "lx:einmal",
+     "de": "Bitte noch einmal langsam.",
+     "tr": "Lütfen bir kez daha, yavaşça.",
+     "accepted": [
+      "Bitte noch einmal langsam.",
+      "Noch einmal langsam, bitte.",
+      "Bitte noch einmal, langsam."
+     ]
+    },
+    {
+     "kart": "lx:Abfahrt",
+     "de": "Wann ist die Abfahrt?",
+     "tr": "Kalkış ne zaman?",
+     "accepted": [
+      "Wann ist die Abfahrt?",
+      "Wann ist denn die Abfahrt?",
+      "Um wie viel Uhr ist die Abfahrt?"
+     ]
+    },
+    {
+     "kart": "lx:Abfahrt",
+     "de": "Die Abfahrt ist um acht Uhr.",
+     "tr": "Kalkış saat sekizde.",
+     "accepted": [
+      "Die Abfahrt ist um acht Uhr.",
+      "Die Abfahrt ist um acht.",
+      "Um acht Uhr ist die Abfahrt."
+     ]
+    },
+    {
+     "kart": "lx:Bahnsteig",
+     "de": "Wo ist Bahnsteig zwei?",
+     "tr": "İki numaralı peron nerede?",
+     "accepted": [
+      "Wo ist Bahnsteig zwei?",
+      "Entschuldigung, wo ist Bahnsteig zwei?",
+      "Wo ist Bahnsteig zwei, bitte?"
+     ]
+    },
+    {
+     "kart": "lx:Bahnsteig",
+     "de": "Tobi ist schon auf dem Bahnsteig.",
+     "tr": "Tobi çoktan peronda.",
+     "accepted": [
+      "Tobi ist schon auf dem Bahnsteig.",
+      "Tobi ist auf dem Bahnsteig.",
+      "Tobi ist schon am Bahnsteig."
+     ]
+    },
+    {
+     "kart": "lx:Fahrplan",
+     "de": "Hier ist der Fahrplan.",
+     "tr": "Tarife burada.",
+     "accepted": [
+      "Hier ist der Fahrplan.",
+      "Der Fahrplan ist hier.",
+      "Hier, der Fahrplan."
+     ]
+    },
+    {
+     "kart": "lx:Fahrplan",
+     "de": "Auf dem Fahrplan steht acht Uhr.",
+     "tr": "Tarifede saat sekiz yazıyor.",
+     "accepted": [
+      "Auf dem Fahrplan steht acht Uhr.",
+      "Auf dem Fahrplan steht: acht Uhr.",
+      "Im Fahrplan steht acht Uhr."
+     ]
+    },
+    {
+     "kart": "lx:Zugausfall",
+     "de": "Schon wieder ein Zugausfall!",
+     "tr": "Yine bir tren iptali!",
+     "accepted": [
+      "Schon wieder ein Zugausfall!",
+      "Schon wieder Zugausfall!",
+      "Ach nein, schon wieder ein Zugausfall!"
+     ]
+    },
+    {
+     "kart": "lx:Zugausfall",
+     "de": "Zugausfall! Dann fahren wir mit dem Bus.",
+     "tr": "Tren iptal! O zaman otobüsle gidiyoruz.",
+     "accepted": [
+      "Zugausfall! Dann fahren wir mit dem Bus.",
+      "Zugausfall! Wir fahren dann mit dem Bus.",
+      "Zugausfall, dann fahren wir mit dem Bus."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "İş çıkışı, Wendlfing garı. Ioana'yla pazar günkü Münih yolculuğu için tarifeye bakıyorsunuz.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Wann ist die Abfahrt am Sonntag?",
+      "tr": "Pazar günü kalkış ne zaman?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Um acht. Hier, auf dem Fahrplan.",
+      "tr": "Sekizde. Bak, tarifede."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Und von welchem Bahnsteig?",
+      "tr": "Peki hangi perondan?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Von Bahnsteig zwei.",
+      "tr": "İki numaralı perondan."
+     }
+    ],
+    "soru": {
+     "q_tr": "Pazar günü tren kaçta kalkıyor?",
+     "opts": [
+      "Sekizde",
+      "Dokuzda",
+      "Onda"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:31:v1",
+  "title_tr": "Kantinde yeni iş arkadaşı",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Firmanın kantini, öğle arası. Derya yanında yeni bir kadınla masaya geliyor.",
+    "de": "Hallo, ihr zwei! Das ist meine Kollegin. Sie ist neu hier.",
+    "tr": "Selam ikiniz! Bu iş arkadaşım. Burada yeni."
+   },
+   {
+    "id": "s2",
+    "sahne_tr": "Yeni iş arkadaşı gülümseyip el sallıyor.",
+    "de": "Hallo! Freut mich!",
+    "tr": "Merhaba! Memnun oldum!"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi hemen ayağa kalkıp elini uzatıyor.",
+    "de": "Freut mich auch! Ich bin Tobi.",
+    "tr": "Ben de memnun oldum! Ben Tobi."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi yeniden oturuyor, merakla bakıyor.",
+    "de": "Und, was bist du von Beruf?",
+    "tr": "Eee, mesleğin ne?"
+   },
+   {
+    "id": "s5",
+    "sahne_tr": "Yeni iş arkadaşı tepsisini masaya koyuyor.",
+    "de": "Ich bin Technikerin.",
+    "tr": "Teknisyenim."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi Derya'yı gösteriyor.",
+    "de": "Technikerin? Toll! Dann arbeitet ihr zusammen!",
+    "tr": "Teknisyen mi? Harika! O zaman birlikte çalışıyorsunuz!"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya başını sallıyor.",
+    "de": "Ja, genau. Am Montag fängt sie an.",
+    "tr": "Evet, aynen. Pazartesi başlıyor."
+   },
+   {
+    "id": "s8",
+    "sahne_tr": "Yeni iş arkadaşı Tobi'ye dönüyor.",
+    "de": "Und was machst du hier, Tobi?",
+    "tr": "Peki sen burada ne yapıyorsun Tobi?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi göğsünü kabartıyor, ciddi bir yüz takınıyor.",
+    "de": "Ich? Ich bin hier der Chef!",
+    "tr": "Ben mi? Buranın şefi benim!"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gözlerini deviriyor, gülüyor.",
+    "de": "Ach, Tobi! Er ist Verkäufer, nicht Chef.",
+    "tr": "Hadi Tobi! O satış elemanı, şef değil."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi omuz silkip sırıtıyor.",
+    "de": "Na ja, noch nicht!",
+    "tr": "Eh, henüz değil!"
+   },
+   {
+    "id": "s12",
+    "sahne_tr": "Yeni iş arkadaşı etrafa bakıyor.",
+    "de": "Und wer ist der Vorgesetzte hier?",
+    "tr": "Peki burada amir kim?"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "O sırada Herr Wimmer elinde kahveyle hızla geçiyor.",
+    "de": "Herr Wimmer. Er ist immer schnell, aber gut.",
+    "tr": "Wimmer Bey. Hep aceleci ama iyidir."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Sahnede ne oluyor?",
+     "opts": [
+      "Derya yeni bir iş arkadaşını tanıştırıyor",
+      "Tobi işten ayrılıyor",
+      "Herr Wimmer toplantı yapıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Yeni iş arkadaşının mesleği ne?",
+      "opts": [
+       "Satış elemanı",
+       "Teknisyen",
+       "Doktor"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Yeni iş arkadaşı ne zaman işe başlıyor?",
+      "opts": [
+       "Bugün",
+       "Cuma",
+       "Pazartesi"
+      ],
+      "ans": 2,
+      "kanit": [
+       "s7"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi aslında ne iş yapıyor?",
+      "opts": [
+       "Satış elemanı",
+       "Şef",
+       "Teknisyen"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s5",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Ärztin",
+       "Technikerin",
+       "Verkäufer"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s10",
+      "seviye": "orta",
+      "de": "Ach, Tobi! Er ist ___, nicht Chef.",
+      "accepted": [
+       "Verkäufer",
+       "verkäufer",
+       "Verkäufer."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s4",
+      "seviye": "zor",
+      "banka": [
+       "Und",
+       "was",
+       "bist",
+       "du",
+       "von",
+       "Beruf",
+       "sind",
+       "wo"
+      ],
+      "accepted": [
+       "Und, was bist du von Beruf?",
+       "und was bist du von beruf",
+       "Und, was bist du von Beruf"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s7",
+      "seviye": "usta",
+      "accepted": [
+       "Am Montag fängt sie an.",
+       "am montag fängt sie an",
+       "Am Montag fängt sie an"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Die Kollegin ist Technikerin. Am Montag fängt sie an.",
+      "zorunlu": [
+       "Technikerin",
+       "Montag"
+      ]
+     }
+    ],
+    "golge": [
+     "s4",
+     "s5"
+    ],
+    "cevapla": {
+     "id": "m1:31:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Yeni iş arkadaşı sana da soruyor. Sen de burada, firmada çalışıyorsun.",
+     "prompt_de": "Und du? Was machst du hier?",
+     "accepted": [
+      "Ich arbeite hier in der Firma.",
+      "Ich arbeite auch hier in der Firma.",
+      "Ich arbeite hier, mit Tobi und Derya.",
+      "Ich arbeite mit Derya und Tobi.",
+      "Ich arbeite auch hier.",
+      "Ich arbeite hier in der Firma, mit Tobi."
+     ],
+     "why_tr": "Nerede çalıştığını **Ich arbeite hier in der Firma** diye söylersin."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:31:a1",
+   "tur": "radyo",
+   "title_tr": "Yerel radyo: Mesleğiniz ne?",
+   "ortam_tr": "Sabah kahvaltıda yerel radyo açık. Muhabir sokakta insanlara mesleklerini soruyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen! Heute fragen wir in Wendlfing: Was sind Sie von Beruf?",
+     "tr": "Günaydın! Bugün Wendlfing'de soruyoruz: Mesleğiniz ne?"
+    },
+    {
+     "id": "c2",
+     "de": "Ich bin Busfahrer. Ich fahre den Bus zum Bahnhof.",
+     "tr": "Otobüs şoförüyüm. Gara giden otobüsü kullanıyorum."
+    },
+    {
+     "id": "c3",
+     "de": "Ich arbeite als Verkäufer im Supermarkt.",
+     "tr": "Süpermarkette satış elemanı olarak çalışıyorum."
+    },
+    {
+     "id": "c4",
+     "de": "Ich bin Krankenpflegerin.",
+     "tr": "Hemşireyim."
+    },
+    {
+     "id": "c4b",
+     "de": "Ich arbeite in der Nacht.",
+     "tr": "Gece çalışıyorum."
+    },
+    {
+     "id": "c5",
+     "de": "Danke! Und jetzt: das Wetter.",
+     "tr": "Teşekkürler! Şimdi de hava durumu."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c4b",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo insanlara ne soruyor?",
+      "opts": [
+       "Yaşlarını",
+       "Mesleklerini",
+       "Nerede oturduklarını"
+      ],
+      "ans": 1,
+      "kanit": [
+       "c1"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Gece kim çalışıyor?",
+       "opts": [
+        "Hemşire",
+        "Otobüs şoförü",
+        "Satış elemanı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4",
+        "c4b"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Satış elemanı nerede çalışıyor?",
+       "opts": [
+        "Fırında",
+        "Garda",
+        "Süpermarkette"
+       ],
+       "ans": 2,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Koch",
+        "Busfahrer",
+        "Arzt"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Ich arbeite als ___ im Supermarkt.",
+       "accepted": [
+        "Verkäufer",
+        "verkäufer",
+        "Verkäufer."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4b",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "arbeite",
+        "in",
+        "der",
+        "Nacht",
+        "am",
+        "Abend"
+       ],
+       "accepted": [
+        "Ich arbeite in der Nacht.",
+        "ich arbeite in der nacht",
+        "Ich arbeite in der Nacht"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Ich arbeite als Verkäufer im Supermarkt.",
+        "ich arbeite als verkäufer im supermarkt",
+        "Ich arbeite als Verkäufer im Supermarkt"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyoda kimlerin konuştuğunu Almanca iki kısa cümleyle söyle.",
+       "ornek_de": "Er ist Busfahrer. Sie ist Krankenpflegerin.",
+       "zorunlu": [
+        "Busfahrer",
+        "Krankenpflegerin"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:31:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Muhabir sana da soruyor. Bir firmada çalıştığını söyle.",
+      "prompt_de": "Und Sie? Was sind Sie von Beruf?",
+      "accepted": [
+       "Ich arbeite in einer Firma.",
+       "Ich arbeite in einer Firma hier in Wendlfing.",
+       "Ich arbeite in einer Firma in Wendlfing.",
+       "Ich arbeite hier in einer Firma.",
+       "Ich arbeite bei einer Firma."
+      ],
+      "why_tr": "Mesleğini söylemek istemezsen nerede çalıştığını söyle: **Ich arbeite in einer Firma.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:31:a1:e1",
+    "k": "pick",
+    "q_tr": "Gara gitmek istiyorsun. Radyodaki şoförün sözüne göre ne yapabilirsin?",
+    "opts": [
+     "Otobüse bin.",
+     "Süpermarkete git.",
+     "Gece hemşireyi ara."
+    ],
+    "ans": 0,
+    "why_tr": "Otobüs şoförü otobüsüyle gara gittiğini söylüyor.",
+    "kanit": [
+     "c2"
+    ]
+   }
+  },
+  {
+   "id": "m1:31:a2",
+   "tur": "anons",
+   "title_tr": "Garda hoparlör duyurusu",
+   "ortam_tr": "Pazar sabahı, Wendlfing garı. Münih'e gideceksin. Hoparlörden bir duyuru geliyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Bahnsteig zwei: Abfahrt nach München um acht Uhr.",
+     "tr": "İki numaralı peron: Münih'e kalkış saat sekizde."
+    },
+    {
+     "id": "c2",
+     "de": "Heute ist leider Zugausfall.",
+     "tr": "Bugün maalesef tren iptal."
+    },
+    {
+     "id": "c3",
+     "de": "Bitte nehmen Sie den Bus vor dem Bahnhof.",
+     "tr": "Lütfen garın önündeki otobüse binin."
+    },
+    {
+     "id": "c4",
+     "de": "Die Abfahrt nach München ist heute erst um neun Uhr.",
+     "tr": "Münih'e kalkış bugün ancak saat dokuzda."
+    },
+    {
+     "id": "c5",
+     "de": "Wir entschuldigen uns.",
+     "tr": "Özür dileriz."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Duyuru ne diyor?",
+      "opts": [
+       "Saat sekizdeki Münih treni bugün yok",
+       "Tren beş dakika gecikiyor",
+       "Peron değişti"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1",
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Münih'e bir sonraki kalkış saat kaçta?",
+       "opts": [
+        "sekizde",
+        "dokuzda",
+        "onda"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Tren hangi perondan kalkacaktı?",
+       "opts": [
+        "birden",
+        "ikiden",
+        "üçten"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c1"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c1",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "drei",
+        "zwei",
+        "vier"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Bitte nehmen Sie den ___ vor dem Bahnhof.",
+       "accepted": [
+        "Bus",
+        "bus",
+        "Bus."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Heute",
+        "ist",
+        "leider",
+        "Zugausfall",
+        "morgen",
+        "nicht"
+       ],
+       "accepted": [
+        "Heute ist leider Zugausfall.",
+        "heute ist leider zugausfall",
+        "Heute ist leider Zugausfall"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Die Abfahrt nach München ist heute erst um neun Uhr.",
+        "die abfahrt nach münchen ist heute erst um neun uhr",
+        "Die Abfahrt nach München ist heute erst um neun Uhr"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Duyuruda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Schon wieder Zugausfall! Ich nehme den Bus vor dem Bahnhof.",
+       "zorunlu": [
+        "Zugausfall",
+        "Bus"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:31:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana telefonda nerede kaldığını soruyor. Tren iptal, otobüse biniyorsun.",
+      "prompt_de": "Wo bist du? Wann kommst du?",
+      "accepted": [
+       "Zugausfall! Ich komme mit dem Bus.",
+       "Zugausfall! Ich nehme den Bus.",
+       "Es gibt einen Zugausfall. Ich nehme den Bus.",
+       "Ich komme mit dem Bus. Es gibt einen Zugausfall.",
+       "Heute ist Zugausfall. Ich nehme den Bus.",
+       "Der Zug fällt aus. Ich nehme den Bus.",
+       "Schon wieder Zugausfall! Ich komme mit dem Bus."
+      ],
+      "why_tr": "Önce sorunu söyle: **Zugausfall**. Sonra çözümü: **Ich komme mit dem Bus.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:31:a2:e1",
+    "k": "pick",
+    "q_tr": "Münih'e gitmek istiyorsun. Ne yapabilirsin?",
+    "opts": [
+     "Garın önündeki otobüse bin ya da dokuzdaki kalkışı bekle.",
+     "Saat sekizde peronda bekle.",
+     "Eve dön, yarın gel."
+    ],
+    "ans": 0,
+    "why_tr": "Sekiz treni iptal. Garın önünde otobüs var, dokuzda da yeni bir kalkış var.",
+    "kanit": [
+     "c2",
+     "c3",
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:31:g1",
+   "de": "Fahrschein",
+   "dogru_img": "printed train ticket",
+   "celdirici_img": [
+    "bank card",
+    "passport",
+    "receipt from a supermarket"
+   ]
+  },
+  {
+   "id": "m1:31:g2",
+   "de": "Bahnsteig",
+   "dogru_img": "train station platform with a platform number sign",
+   "celdirici_img": [
+    "bus stop with a shelter",
+    "parking lot",
+    "airport gate"
+   ]
+  },
+  {
+   "id": "m1:31:g3",
+   "de": "Fahrplan",
+   "dogru_img": "printed train timetable on a station wall",
+   "celdirici_img": [
+    "restaurant menu board",
+    "weather map",
+    "street map"
+   ]
+  },
+  {
+   "id": "m1:31:g4",
+   "de": "Schichtplan",
+   "dogru_img": "work shift schedule table pinned on a notice board",
+   "celdirici_img": [
+    "family photo on a wall",
+    "calendar with holidays",
+    "shopping list"
+   ]
+  },
+  {
+   "id": "m1:31:g5",
+   "de": "Gehaltsabrechnung",
+   "dogru_img": "payslip document with numbers and a company logo",
+   "celdirici_img": [
+    "supermarket receipt",
+    "train ticket",
+    "birthday card"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:31:p1",
+  "title_tr": "Kursta meslek oyunu",
+  "durum_tr": "Akşam kursu. Ioana'yla meslek oyunu oynuyorsunuz. Ioana bugün polis, sen bugün doktorsun. Önce sen soruyorsun.",
+  "karsi": "ch:popescu",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Wir üben, ja? Ich bin heute Polizistin, du bist {Arzt|Ärztin}.",
+    "tr": "Pratik yapalım mı? Ben bugün polisim, sen doktorsun.",
+    "secenekler": [
+     {
+      "de": "Guten Tag! Was sind Sie von Beruf?",
+      "tr": "İyi günler! Mesleğiniz ne?",
+      "accepted": [
+       "Guten Tag! Was sind Sie von Beruf?",
+       "Guten Tag, was sind Sie von Beruf?",
+       "Hallo! Was sind Sie von Beruf?",
+       "Guten Tag! Was ist Ihr Beruf?",
+       "Was sind Sie von Beruf?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Oyunda **Sie** kullandın ve **von Beruf** dedin."
+     },
+     {
+      "de": "Hallo, Ioana! Was bist du von Beruf?",
+      "tr": "Merhaba Ioana! Mesleğin ne?",
+      "accepted": [
+       "Hallo, Ioana! Was bist du von Beruf?",
+       "Was bist du von Beruf?",
+       "Hallo! Was bist du von Beruf?",
+       "Ioana, was bist du von Beruf?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Arkadaşına **du** ile de sorabilirsin."
+     },
+     {
+      "de": "Was sind Sie?",
+      "tr": "Siz nesiniz?",
+      "accepted": [
+       "Was sind Sie?",
+       "Was sind Sie denn?",
+       "Und was sind Sie?",
+       "Was bist du?"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu soru kaba duyulabilir. Mesleği sorarken **von Beruf** ekle: **Was sind Sie von Beruf?**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Ich bin Polizistin. Ich arbeite in der Nacht. Und Sie?",
+    "tr": "Polisim. Gece çalışıyorum. Ya siz?",
+    "secenekler": [
+     {
+      "de": "Ich bin {Arzt|Ärztin}.",
+      "tr": "Ben doktorum.",
+      "accepted": [
+       "Ich bin {Arzt|Ärztin}.",
+       "Ich bin {Arzt|Ärztin} von Beruf.",
+       "Ich arbeite als {Arzt|Ärztin}.",
+       "Ich bin {Arzt|Ärztin}, ja."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Meslekten önce **ein** ya da **eine** yok."
+     },
+     {
+      "de": "Ich bin {Arzt|Ärztin}. Ich arbeite in der Praxis.",
+      "tr": "Ben doktorum. Muayenehanede çalışıyorum.",
+      "accepted": [
+       "Ich bin {Arzt|Ärztin}. Ich arbeite in der Praxis.",
+       "Ich bin {Arzt|Ärztin}. Ich arbeite in einer Praxis.",
+       "Ich arbeite als {Arzt|Ärztin} in der Praxis.",
+       "Ich bin {Arzt|Ärztin} und arbeite in der Praxis."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Mesleğini ve nerede çalıştığını söyledin."
+     },
+     {
+      "de": "Ich bin {ein Arzt|eine Ärztin}.",
+      "tr": "Ben bir doktorum.",
+      "accepted": [
+       "Ich bin {ein Arzt|eine Ärztin}.",
+       "Ich bin ein Arzt.",
+       "Ich bin eine Ärztin.",
+       "Ich bin {ein Arzt|eine Ärztin} von Beruf."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Meslekten önce **ein** ya da **eine** koymazsın."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Toll! Und wo arbeiten Sie?",
+    "tr": "Harika! Peki nerede çalışıyorsunuz?",
+    "secenekler": [
+     {
+      "de": "Ich arbeite in der Praxis Dr. Weber.",
+      "tr": "Dr. Weber muayenehanesinde çalışıyorum.",
+      "accepted": [
+       "Ich arbeite in der Praxis Dr. Weber.",
+       "In der Praxis Dr. Weber.",
+       "Ich arbeite bei Dr. Weber in der Praxis.",
+       "Ich arbeite in der Praxis von Dr. Weber."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Yeri açıkça söyledin."
+     },
+     {
+      "de": "In einer Praxis hier in Wendlfing.",
+      "tr": "Burada, Wendlfing'de bir muayenehanede.",
+      "accepted": [
+       "In einer Praxis hier in Wendlfing.",
+       "In einer Praxis in Wendlfing.",
+       "Ich arbeite in einer Praxis hier in Wendlfing.",
+       "Hier in Wendlfing, in einer Praxis."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve doğru bir cevap."
+     },
+     {
+      "de": "Ich arbeite am Montag.",
+      "tr": "Pazartesi çalışıyorum.",
+      "accepted": [
+       "Ich arbeite am Montag.",
+       "Am Montag arbeite ich.",
+       "Ich arbeite am Montag und am Dienstag.",
+       "Ich arbeite am Montag, ja."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Ioana nerede çalıştığını soruyor, günü değil. **in der Praxis** de."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Sehr gut! Und jetzt wirklich: Was machst du?",
+    "tr": "Çok iyi! Şimdi gerçekten: Sen ne iş yapıyorsun?",
+    "secenekler": [
+     {
+      "de": "Ich arbeite in einer Firma, mit Tobi und Derya.",
+      "tr": "Bir firmada çalışıyorum, Tobi ve Derya'yla.",
+      "accepted": [
+       "Ich arbeite in einer Firma, mit Tobi und Derya.",
+       "Ich arbeite in einer Firma.",
+       "Ich arbeite in einer Firma mit Tobi und Derya.",
+       "Ich arbeite in einer Firma hier in Wendlfing."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Nerede ve kimlerle çalıştığını söyledin."
+     },
+     {
+      "de": "Ich arbeite hier in Wendlfing in einer Firma.",
+      "tr": "Burada, Wendlfing'de bir firmada çalışıyorum.",
+      "accepted": [
+       "Ich arbeite hier in Wendlfing in einer Firma.",
+       "Ich arbeite hier in einer Firma.",
+       "Hier in Wendlfing, in einer Firma.",
+       "In einer Firma hier in Wendlfing."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Nerede çalıştığını açıkça söyledin."
+     },
+     {
+      "de": "Ich bin von Beruf.",
+      "tr": "Mesleğim.",
+      "accepted": [
+       "Ich bin von Beruf.",
+       "Ich bin von Beruf, ja.",
+       "Von Beruf.",
+       "Ich bin von Beruf hier."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Cümle eksik kaldı. **Ich arbeite in einer Firma.** de ya da mesleğini söyle."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Toll! Nur Deutsch, wie immer!",
+    "tr": "Harika! Hep olduğu gibi, sadece Almanca!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Mesleği sordun, oyundaki mesleğini ve gerçek işini söyledin. Meslekten önce **ein** koymadın."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Panoda duyuru: firmada yeni",
+  "metin_de": "Neu in der Firma! Ab Montag arbeitet eine Technikerin bei uns. Sie kommt aus München. Ab Mittwoch haben wir auch einen Koch. Der Schichtplan für die Woche ist im Büro.",
+  "metin_tr": "Firmada yeni! Pazartesiden itibaren bir teknisyen bizimle çalışıyor. Münihli. Çarşambadan itibaren bir de aşçımız var. Haftanın vardiya planı ofiste.",
+  "sorular": [
+   {
+    "id": "m1:31:o1",
+    "kind": "gist",
+    "q_tr": "Duyuru ne hakkında?",
+    "opts": [
+     "Yeni maaşlar",
+     "Firmaya yeni gelen çalışanlar",
+     "Tren iptalleri"
+    ],
+    "ans": 1,
+    "kanit": [
+     0,
+     1
+    ]
+   },
+   {
+    "id": "m1:31:o2",
+    "kind": "detail",
+    "q_tr": "Teknisyen ne zaman başlıyor?",
+    "opts": [
+     "Pazartesi",
+     "Çarşamba",
+     "Cuma"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:31:o3",
+    "kind": "detail",
+    "q_tr": "Teknisyen nereli?",
+    "opts": [
+     "Wendlfing",
+     "Münih",
+     "Duyuruda yazmıyor"
+    ],
+    "ans": 1,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:31:o4",
+    "kind": "detail",
+    "q_tr": "Vardiya planı nerede?",
+    "opts": [
+     "Kantinde",
+     "Ofiste",
+     "Panoda"
+    ],
+    "ans": 1,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:31:o5",
+    "k": "guided_response",
+    "situation_tr": "Tobi soruyor. Duyuruya göre aşçı çarşambadan itibaren var.",
+    "prompt_de": "Ab wann haben wir einen Koch?",
+    "accepted": [
+     "Ab Mittwoch.",
+     "Ab Mittwoch haben wir einen Koch.",
+     "Am Mittwoch.",
+     "Ab Mittwoch, Tobi.",
+     "Ab Mittwoch haben wir auch einen Koch."
+    ],
+    "why_tr": "Duyuruda **Ab Mittwoch** yazıyor: çarşambadan itibaren."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:31:s",
+  "maddeler": [
+   {
+    "id": "m1:31:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Meine Schwester ist Polizistin.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Meine Schwester ist Polizistin.",
+     "meine schwester ist polizistin",
+     "Meine Schwester ist Polizistin"
+    ],
+    "why_tr": "Meslekten önce **eine** gelmez."
+   },
+   {
+    "id": "m1:31:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Die Abfahrt nach München ist um acht Uhr.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Abfahrt nach München ist um acht Uhr.",
+     "die abfahrt nach münchen ist um acht uhr",
+     "Die Abfahrt nach München ist um acht Uhr"
+    ],
+    "why_tr": "**Abfahrt** kalkış demektir."
+   },
+   {
+    "id": "m1:31:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Am Freitag kommt der Schichtplan.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Am Freitag kommt der Schichtplan.",
+     "am freitag kommt der schichtplan",
+     "Am Freitag kommt der Schichtplan"
+    ],
+    "why_tr": "**Am Freitag** başta, **kommt** ikinci yerde."
+   },
+   {
+    "id": "m1:31:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Tobi ist Verkäufer, nicht Chef.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Tobi ist Verkäufer, nicht Chef.",
+     "tobi ist verkäufer nicht chef",
+     "Tobi ist Verkäufer, nicht Chef"
+    ],
+    "why_tr": "**Verkäufer** satış elemanı demektir."
+   },
+   {
+    "id": "m1:31:s5",
+    "k": "tr_de",
+    "tr": "Mesleğiniz ne?",
+    "accepted": [
+     "Was sind Sie von Beruf?",
+     "Was ist Ihr Beruf?",
+     "Was machen Sie beruflich?",
+     "Und was sind Sie von Beruf?"
+    ],
+    "why_tr": "Mesleği kibarca sorarken **Was sind Sie von Beruf?** dersin."
+   },
+   {
+    "id": "m1:31:s6",
+    "k": "tr_de",
+    "tr": "O doktor. (bir kadın için)",
+    "accepted": [
+     "Sie ist Ärztin.",
+     "Sie ist Ärztin von Beruf.",
+     "Sie arbeitet als Ärztin."
+    ],
+    "why_tr": "Kadın doktor **Ärztin** olur. Önüne **eine** gelmez."
+   },
+   {
+    "id": "m1:31:s7",
+    "k": "tr_de",
+    "tr": "Bir bilet, lütfen. Kalkış ne zaman?",
+    "accepted": [
+     "Einmal, bitte. Wann ist die Abfahrt?",
+     "Einmal bitte! Wann ist die Abfahrt?",
+     "Bitte einmal. Wann ist die Abfahrt?",
+     "Einmal, bitte. Um wie viel Uhr ist die Abfahrt?"
+    ],
+    "why_tr": "Gişede tek bilet için **Einmal, bitte** dersin."
+   },
+   {
+    "id": "m1:31:s8",
+    "k": "tr_de",
+    "tr": "Erkek kardeşim aşçı olarak çalışıyor.",
+    "accepted": [
+     "Mein Bruder arbeitet als Koch.",
+     "Mein Bruder ist Koch.",
+     "Mein Bruder ist Koch von Beruf."
+    ],
+    "why_tr": "**als** olarak demektir: **arbeitet als Koch**."
+   },
+   {
+    "id": "m1:31:s9",
+    "k": "guided_response",
+    "situation_tr": "Tobi, Derya'nın kız kardeşini soruyor. Kız kardeşi hemşire ve gece çalışıyor.",
+    "prompt_de": "Was macht die Schwester von Derya?",
+    "accepted": [
+     "Sie ist Krankenpflegerin. Sie arbeitet in der Nacht.",
+     "Sie ist Krankenpflegerin.",
+     "Sie arbeitet als Krankenpflegerin.",
+     "Krankenpflegerin. Sie arbeitet in der Nacht.",
+     "Sie ist Krankenschwester."
+    ],
+    "why_tr": "Kadın hemşire **Krankenpflegerin** olur."
+   },
+   {
+    "id": "m1:31:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Entschuldigen Sie, wann ist die Abfahrt nach München?",
+    "speed": "normal",
+    "situation_tr": "Garda biri soruyor. Münih treni dokuzda kalkıyor.",
+    "accepted": [
+     "Um neun Uhr.",
+     "Die Abfahrt ist um neun Uhr.",
+     "Um neun.",
+     "Um neun Uhr, von Bahnsteig zwei.",
+     "Die Abfahrt ist um neun."
+    ],
+    "why_tr": "Saati **um** ile söylersin: **um neun Uhr**."
+   },
+   {
+    "id": "m1:31:s11",
+    "k": "guided_response",
+    "situation_tr": "Kantinde yeni biri kendini tanıtıyor. Memnun olduğunu söyle, mesleğini sor, sen de firmada çalıştığını söyle.",
+    "prompt_de": "Hallo! Ich bin neu hier.",
+    "accepted": [
+     "Freut mich! Was sind Sie von Beruf? Ich arbeite hier in der Firma.",
+     "Freut mich! Was bist du von Beruf? Ich arbeite auch hier.",
+     "Hallo! Freut mich! Was sind Sie von Beruf? Ich arbeite auch in der Firma.",
+     "Freut mich! Was machst du hier? Ich arbeite auch in der Firma."
+    ],
+    "why_tr": "Önce **Freut mich!** de. Sonra **Was sind Sie von Beruf?** diye sor."
+   }
+  ],
+  "sesli": [
+   "m1:31:s9",
+   "m1:31:s10"
+  ],
+  "dikte": [
+   "m1:31:s1",
+   "m1:31:s2",
+   "m1:31:s3",
+   "m1:31:s4"
+  ]
+ }
+}

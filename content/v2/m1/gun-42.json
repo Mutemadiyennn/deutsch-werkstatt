@@ -1,0 +1,1346 @@
+{
+ "schema": 1,
+ "id": "m1:gun:42",
+ "day": 42,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Haftanın sınavı: hafta sonunu anlatmak",
+ "goal_tr": "Pazartesi molasında hafta sonunu üç cümleyle anlatır, Derya'nın hikâyesini başkasına aktarırsın.",
+ "can_do": {
+  "id": "cd:m1:42",
+  "tr": "Dün ne yaptığımı kısa cümlelerle anlatırım."
+ },
+ "unit": "u:a1:42",
+ "arm": "kafe",
+ "place": "pl:firma",
+ "characters": [
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:wimmer",
+  "ch:brandl"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic5-hafta-06.md; okur: docs/v2/reviews/okur/ic5-hafta-06.md (28 GERİ, okurun önerisiyle düzeltildi)",
+  "okur": "passed",
+  "okur_at": "2026-11-23"
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:lustig",
+  "lx:Haar",
+  "lx:super",
+  "lx:Wiedersehen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:42:h1",
+   "title_tr": "Pazartesi molası: saçlar, komik bir film, hoşça kalın",
+   "kartlar": [
+    "lx:lustig",
+    "lx:Haar",
+    "lx:super",
+    "lx:Wiedersehen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Das war super! – Das war lustig!",
+     "tr": "Süperdi! – Komikti!"
+    },
+    {
+     "de": "Deine Haare sind … – Seine Haare sind …",
+     "tr": "Saçların … – Saçları …"
+    },
+    {
+     "de": "Ich bin … gefahren. – Wir sind … gefahren. – Ich bin … geblieben.",
+     "tr": "…'e gittim. – …'e gittik. – …'de kaldım."
+    },
+    {
+     "de": "Auf Wiedersehen, bis … – Wiedersehen!",
+     "tr": "Hoşça kalın, …'e kadar! – Hoşça kalın!"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:lustig",
+     "de": "Die Party am Samstag war sehr lustig.",
+     "tr": "Cumartesiki parti çok eğlenceliydi.",
+     "accepted": [
+      "Die Party am Samstag war sehr lustig.",
+      "Am Samstag war die Party sehr lustig.",
+      "Die Party am Samstag war so lustig."
+     ]
+    },
+    {
+     "kart": "lx:lustig",
+     "de": "Derya hat einen Film gesehen. Er war sehr lustig.",
+     "tr": "Derya bir film izledi. Çok komikti.",
+     "accepted": [
+      "Derya hat einen Film gesehen. Er war sehr lustig.",
+      "Derya hat einen Film gesehen, er war sehr lustig.",
+      "Derya hat einen Film gesehen. Der war sehr lustig."
+     ]
+    },
+    {
+     "kart": "lx:Haar",
+     "de": "Vor einer Woche hatte ich noch lange Haare.",
+     "tr": "Bir hafta önce saçlarım hâlâ uzundu.",
+     "accepted": [
+      "Vor einer Woche hatte ich noch lange Haare.",
+      "Ich hatte vor einer Woche noch lange Haare.",
+      "Vor einer Woche waren meine Haare noch lang."
+     ]
+    },
+    {
+     "kart": "lx:Haar",
+     "de": "Tobi war bei Luka. Seine Haare sind jetzt kurz.",
+     "tr": "Tobi Luka'daydı. Saçları artık kısa.",
+     "accepted": [
+      "Tobi war bei Luka. Seine Haare sind jetzt kurz.",
+      "Tobi war bei Luka, seine Haare sind jetzt kurz.",
+      "Tobi war bei Luka. Jetzt sind seine Haare kurz."
+     ]
+    },
+    {
+     "kart": "lx:super",
+     "de": "Seit Donnerstag funktioniert die Heizung wieder. Super!",
+     "tr": "Perşembeden beri kalorifer yine çalışıyor. Süper!",
+     "accepted": [
+      "Seit Donnerstag funktioniert die Heizung wieder. Super!",
+      "Die Heizung funktioniert seit Donnerstag wieder. Super!",
+      "Seit Donnerstag funktioniert die Heizung wieder, super!"
+     ]
+    },
+    {
+     "kart": "lx:super",
+     "de": "Wir sind am Samstag mit dem Fahrrad gefahren. Das war super!",
+     "tr": "Cumartesi bisikletle gittik. Süperdi!",
+     "accepted": [
+      "Wir sind am Samstag mit dem Fahrrad gefahren. Das war super!",
+      "Wir sind am Samstag mit dem Fahrrad gefahren. Super!",
+      "Wir sind Samstag mit dem Fahrrad gefahren. Das war super!"
+     ]
+    },
+    {
+     "kart": "lx:Wiedersehen",
+     "de": "Auf Wiedersehen, Herr Wimmer, bis Montag!",
+     "tr": "Hoşça kalın Wimmer Bey, pazartesi görüşürüz!",
+     "accepted": [
+      "Auf Wiedersehen, Herr Wimmer, bis Montag!",
+      "Auf Wiedersehen, Herr Wimmer! Bis Montag!",
+      "Wiedersehen, Herr Wimmer, bis Montag!"
+     ]
+    },
+    {
+     "kart": "lx:Wiedersehen",
+     "de": "Wiedersehen, Frau Brandl! Danke für den Kaffee.",
+     "tr": "Hoşça kalın Brandl Hanım! Kahve için teşekkürler.",
+     "accepted": [
+      "Wiedersehen, Frau Brandl! Danke für den Kaffee.",
+      "Auf Wiedersehen, Frau Brandl! Danke für den Kaffee.",
+      "Wiedersehen, Frau Brandl, danke für den Kaffee!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Pazartesi sabahı mola. Tobi yeni saçlarıyla içeri giriyor.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Tobi, deine Haare! Super!",
+      "tr": "Tobi, saçların! Süper!"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Danke! Ich war am Samstag bei Luka.",
+      "tr": "Sağ ol! Cumartesi Luka'daydım."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Die Haare sind toll. Und ein bisschen lustig!",
+      "tr": "Saçlar harika. Bir de biraz komik!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi cumartesi neredeydi?",
+     "opts": [
+      "Kuaförde, Luka'da",
+      "Doktorda",
+      "Ailesinde",
+      "Firmada"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:42:v1",
+  "title_tr": "Derya'nın komik hafta sonu",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Pazartesi molası. Tobi, Derya ve sen mutfaktasınız.",
+    "de": "Und du, Derya? Wie war dein Wochenende?",
+    "tr": "Ya sen Derya? Hafta sonun nasıldı?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülmeye başlıyor.",
+    "de": "Lustig! Am Samstag bin ich mit dem Bus in die Stadt gefahren.",
+    "tr": "Komikti! Cumartesi otobüsle şehre gittim."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya ellerini açıyor.",
+    "de": "Ich habe einen Rock gekauft. Dann war das Wetter schlecht, und ich hatte keine Jacke!",
+    "tr": "Bir etek aldım. Sonra hava bozdu, ceketim de yoktu!"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kendini gösteriyor.",
+    "de": "Wie bei mir! Und dann?",
+    "tr": "Benim gibi! Sonra?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya göz kırpıyor.",
+    "de": "Ich war eine Stunde in der Bäckerei Stadler und habe Kuchen gegessen.",
+    "tr": "Bir saat Stadler fırınındaydım ve pasta yedim."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi başparmağını kaldırıyor.",
+    "de": "Super Idee!",
+    "tr": "Süper fikir!"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya burnunu siliyor.",
+    "de": "Am Sonntag war ich zu Hause, ein bisschen erkältet.",
+    "tr": "Pazar günü evdeydim, biraz soğuk almıştım."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi geri çekiliyor.",
+    "de": "Echt? Du auch?",
+    "tr": "Gerçekten mi? Sen de mi?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya sana dönüyor.",
+    "de": "Und du? Wie war dein Samstag?",
+    "tr": "Ya sen? Cumartesin nasıldı?"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Derya'nın hafta sonu nasıl geçti?",
+     "opts": [
+      "Şehre gitti, alışveriş yaptı, sonra biraz hastalandı",
+      "Ailesine gitti",
+      "Bütün hafta sonu çalıştı"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s3",
+      "s7"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Derya şehre neyle gitti?",
+      "opts": [
+       "otobüsle",
+       "tramvayla",
+       "arabayla"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Hava bozunca Derya nereye gitti?",
+      "opts": [
+       "Stadler fırınına",
+       "eve",
+       "Tobi'ye"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s3",
+       "s5"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s3",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Rock",
+       "Rücken",
+       "Rad"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s7",
+      "seviye": "orta",
+      "de": "Am Sonntag war ich zu Hause, ein bisschen ___.",
+      "accepted": [
+       "erkältet",
+       "Erkältet",
+       "erkältet."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s5",
+      "seviye": "zor",
+      "banka": [
+       "Ich",
+       "war",
+       "eine",
+       "Stunde",
+       "in",
+       "der",
+       "Bäckerei",
+       "Stadler",
+       "und",
+       "habe",
+       "Kuchen",
+       "gegessen",
+       "bin",
+       "Woche"
+      ],
+      "accepted": [
+       "Ich war eine Stunde in der Bäckerei Stadler und habe Kuchen gegessen.",
+       "ich war eine stunde in der bäckerei stadler und habe kuchen gegessen",
+       "Ich war eine Stunde in der Bäckerei Stadler und habe Kuchen gegessen"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Wie bei mir! Und dann?",
+       "wie bei mir und dann",
+       "Wie bei mir! Und dann"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Derya'nın hafta sonunu Ioana'ya Almanca üç kısa cümleyle anlat.",
+      "ornek_de": "Derya ist in die Stadt gefahren. Sie hat einen Rock gekauft. Am Sonntag war sie erkältet.",
+      "zorunlu": [
+       "Derya",
+       "Sie"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s5"
+    ],
+    "cevapla": {
+     "id": "m1:42:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Akşam kursta Ioana Derya'yı soruyor. Derya'nın hafta sonunu kısaca anlat.",
+     "prompt_de": "Und Derya? Wie war ihr Wochenende?",
+     "accepted": [
+      "Sie ist in die Stadt gefahren und hat einen Rock gekauft.",
+      "Derya hat einen Rock gekauft. Dann war das Wetter schlecht.",
+      "Sie war in der Stadt. Am Sonntag war sie ein bisschen erkältet.",
+      "Lustig! Sie hatte keine Jacke und war in der Bäckerei.",
+      "Derya ist mit dem Bus in die Stadt gefahren. Sie hat Kuchen gegessen."
+     ],
+     "why_tr": "Derya **ich** dedi, sen **sie** dersin: **Sie hat einen Rock gekauft.**"
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:42:a1",
+   "tur": "radyo",
+   "title_tr": "Yerel radyo: Wendlfing'de hafta sonu",
+   "ortam_tr": "Pazartesi sabahı otobüste yerel radyo çalıyor.",
+   "speaker": "die Sprecherin",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen! Wie war das Wochenende in Wendlfing?",
+     "tr": "Günaydın! Wendlfing'de hafta sonu nasıldı?"
+    },
+    {
+     "id": "c2",
+     "de": "Am Samstag war das Wetter schlecht.",
+     "tr": "Cumartesi hava kötüydü."
+    },
+    {
+     "id": "c3",
+     "de": "Am Sonntag war es warm.",
+     "tr": "Pazar günü hava sıcaktı."
+    },
+    {
+     "id": "c4",
+     "de": "Die Stadt und der Bahnhof waren sehr voll.",
+     "tr": "Şehir de gar da çok kalabalıktı."
+    },
+    {
+     "id": "c5",
+     "de": "Und heute? Heute sind es zwölf Grad.",
+     "tr": "Ya bugün? Bugün hava on iki derece."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne anlatıyor?",
+      "opts": [
+       "Wendlfing'de hafta sonunun nasıl geçtiğini",
+       "Yarınki hava durumunu",
+       "Yeni bir otobüs hattını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Cumartesi hava nasıldı?",
+       "opts": [
+        "kötü",
+        "sıcak",
+        "çok güzel"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Pazar günü şehir nasıldı?",
+       "opts": [
+        "çok kalabalık",
+        "boş",
+        "kapalı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3",
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c5",
+       "seviye": "kolay",
+       "q_tr": "Hangi sayıyı duydun?",
+       "opts": [
+        "zwölf",
+        "zwei",
+        "zwanzig"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Am Samstag war das Wetter ___.",
+       "accepted": [
+        "schlecht",
+        "Schlecht",
+        "schlecht."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Die",
+        "Stadt",
+        "und",
+        "der",
+        "Bahnhof",
+        "waren",
+        "sehr",
+        "voll",
+        "war",
+        "Bus"
+       ],
+       "accepted": [
+        "Die Stadt und der Bahnhof waren sehr voll.",
+        "die stadt und der bahnhof waren sehr voll",
+        "Die Stadt und der Bahnhof waren sehr voll"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Am Sonntag war es warm.",
+        "am sonntag war es warm",
+        "Am Sonntag war es warm"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyodan duyduğunu Tobi'ye Almanca iki kısa cümleyle anlat.",
+       "ornek_de": "Am Samstag war das Wetter schlecht. Am Sonntag war die Stadt sehr voll.",
+       "zorunlu": [
+        "Wetter"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:42:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi soruyor: pazar günü şehir nasıldı? Kalabalıktı de.",
+      "prompt_de": "Wie war es am Sonntag in der Stadt?",
+      "accepted": [
+       "Die Stadt war sehr voll.",
+       "Es war warm, und die Stadt war voll.",
+       "Sehr voll! Es war warm.",
+       "Voll! Der Bahnhof war auch voll.",
+       "Am Sonntag war die Stadt sehr voll."
+      ],
+      "why_tr": "Birden çok şey için **waren**, tek şey için **war**: **Die Stadt war voll.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:42:a1:e1",
+    "k": "pick",
+    "q_tr": "Derya soruyor: Bugün ceket lazım mı? Radyoya göre ne dersin?",
+    "opts": [
+     "Evet, hava sadece on iki derece.",
+     "Hayır, hava çok sıcak.",
+     "Hayır, bugün yirmi derece."
+    ],
+    "ans": 0,
+    "why_tr": "Radyo bugün havanın on iki derece olduğunu söylüyor.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:42:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Frau Brandl'dan sesli mesaj",
+   "ortam_tr": "Pazartesi öğlen telefonuna alt kattaki komşun Frau Brandl'dan bir mesaj geliyor.",
+   "speaker": "ch:brandl",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Rosa Brandl.",
+     "tr": "Merhaba, ben Rosa Brandl."
+    },
+    {
+     "id": "c2",
+     "de": "Ich bin am Samstag mit dem Bus zu einer Freundin gefahren.",
+     "tr": "Cumartesi otobüsle bir arkadaşıma gittim."
+    },
+    {
+     "id": "c3",
+     "de": "Wir haben Kaffee getrunken und Kuchen gegessen.",
+     "tr": "Kahve içtik, pasta yedik."
+    },
+    {
+     "id": "c4",
+     "de": "Am Sonntag bin ich zu Hause geblieben.",
+     "tr": "Pazar günü evde kaldım."
+    },
+    {
+     "id": "c5",
+     "de": "Kommen Sie heute Abend auf einen Kaffee?",
+     "tr": "Bu akşam bir kahveye gelir misiniz?"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Frau Brandl neden arıyor?",
+      "opts": [
+       "Hafta sonunu anlatıyor ve seni kahveye çağırıyor",
+       "Kalorifer yine bozuldu",
+       "Hasta, yardım istiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Frau Brandl cumartesi neyle gitti?",
+       "opts": [
+        "otobüsle",
+        "tramvayla",
+        "arabayla"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Pazar günü ne yaptı?",
+       "opts": [
+        "evde kaldı",
+        "şehre gitti",
+        "doktora gitti"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "getrunken",
+        "geschrieben",
+        "gesprochen"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Am Sonntag bin ich zu Hause ___.",
+       "accepted": [
+        "geblieben",
+        "Geblieben",
+        "geblieben."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Wir",
+        "haben",
+        "Kaffee",
+        "getrunken",
+        "und",
+        "Kuchen",
+        "gegessen",
+        "sind",
+        "Tee"
+       ],
+       "accepted": [
+        "Wir haben Kaffee getrunken und Kuchen gegessen.",
+        "wir haben kaffee getrunken und kuchen gegessen",
+        "Wir haben Kaffee getrunken und Kuchen gegessen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Kommen Sie heute Abend auf einen Kaffee?",
+        "kommen sie heute abend auf einen kaffee",
+        "Kommen Sie heute Abend auf einen Kaffee"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Frau Brandl'ın hafta sonunu Tobi'ye Almanca üç kısa cümleyle anlat.",
+       "ornek_de": "Frau Brandl ist zu einer Freundin gefahren. Sie haben Kaffee getrunken. Am Sonntag ist sie zu Hause geblieben.",
+       "zorunlu": [
+        "Frau Brandl",
+        "Sie"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:42:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Frau Brandl'ı geri arıyorsun. Davete evet de, saati sor.",
+      "prompt_de": "Brandl. Ja, bitte?",
+      "accepted": [
+       "Hallo, Frau Brandl! Ja, gern! Um wie viel Uhr?",
+       "Ja, gern! Wann soll ich kommen?",
+       "Danke, Frau Brandl! Ich komme gern. Um wie viel Uhr?",
+       "Gern! Um wie viel Uhr?",
+       "Hallo! Ja, ich komme gern auf einen Kaffee."
+      ],
+      "why_tr": "Daveti kabul et, sonra saati sor: **Um wie viel Uhr?**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:42:a2:e1",
+    "k": "pick",
+    "q_tr": "Frau Brandl'ın mesajından sonra ne yapmalısın?",
+    "opts": [
+     "Onu geri ara ve akşam kahveye git.",
+     "Cumartesi onunla otobüse bin.",
+     "Pazar günü evde kal."
+    ],
+    "ans": 0,
+    "why_tr": "Frau Brandl seni bu akşam kahveye çağırıyor.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:42:g1",
+   "de": "Haar",
+   "dogru_img": "man with a fresh short haircut",
+   "celdirici_img": [
+    "man with a beard",
+    "man wearing a hat",
+    "man with glasses"
+   ]
+  },
+  {
+   "id": "m1:42:g2",
+   "de": "lustig",
+   "dogru_img": "friends laughing at a funny movie",
+   "celdirici_img": [
+    "people crying at a sad movie",
+    "people sleeping in a cinema",
+    "empty cinema"
+   ]
+  },
+  {
+   "id": "m1:42:g3",
+   "de": "Wiedersehen",
+   "dogru_img": "two people waving goodbye at a door",
+   "celdirici_img": [
+    "two people shaking hands to meet",
+    "people waiting at a bus stop",
+    "person talking on the phone"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:42:p1",
+  "title_tr": "Haftanın son provası: hafta sonunu anlat",
+  "durum_tr": "Pazartesi molası. Tobi hafta sonunu soruyor. Üç cümleyle anlat: nerede, nasıl, ne yaptın? Sonra Herr Wimmer geliyor.",
+  "karsi": "ch:lechner",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Wie war dein Wochenende?",
+    "tr": "Hafta sonun nasıldı?",
+    "secenekler": [
+     {
+      "de": "Super! Am Samstag war ich in der Stadt.",
+      "tr": "Süperdi! Cumartesi şehirdeydim.",
+      "accepted": [
+       "Super! Am Samstag war ich in der Stadt.",
+       "Super! Ich war am Samstag in der Stadt.",
+       "Super, am Samstag war ich in der Stadt."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel başlangıç. Nerede olduğunu **war** ile söyledin."
+     },
+     {
+      "de": "Es war lustig. Ich habe mit Ioana einen Film gesehen.",
+      "tr": "Eğlenceliydi. Ioana ile bir film izledim.",
+      "accepted": [
+       "Es war lustig. Ich habe mit Ioana einen Film gesehen.",
+       "Lustig! Ich habe mit Ioana einen Film gesehen.",
+       "Es war lustig, ich habe mit Ioana einen Film gesehen."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **habe** ve **gesehen** ile ne yaptığını söyledin."
+     },
+     {
+      "de": "Am Wochenende gehe ich in die Stadt.",
+      "tr": "Hafta sonu şehre gidiyorum.",
+      "accepted": [
+       "Am Wochenende gehe ich in die Stadt.",
+       "Ich gehe am Wochenende in die Stadt.",
+       "Am Wochenende fahre ich in die Stadt."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Hafta sonu geçti. **Ich war in der Stadt** de."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "In der Stadt? Mit dem Auto?",
+    "tr": "Şehirde mi? Arabayla mı?",
+    "secenekler": [
+     {
+      "de": "Nein, ich bin mit dem Bus in die Stadt gefahren.",
+      "tr": "Hayır, şehre otobüsle gittim.",
+      "accepted": [
+       "Nein, ich bin mit dem Bus in die Stadt gefahren.",
+       "Nein, mit dem Bus.",
+       "Nein, ich bin mit dem Bus gefahren."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Tam doğru. Gitmekte **bin** ve **gefahren** gelir."
+     },
+     {
+      "de": "Nein, mit dem Fahrrad. Das Wetter war super.",
+      "tr": "Hayır, bisikletle. Hava süperdi.",
+      "accepted": [
+       "Nein, mit dem Fahrrad. Das Wetter war super.",
+       "Nein, mit dem Fahrrad. Das Wetter war schön.",
+       "Mit dem Fahrrad, das Wetter war super."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Havayı da **war** ile anlattın."
+     },
+     {
+      "de": "Nein, ich fahre mit dem Bus.",
+      "tr": "Hayır, otobüsle gidiyorum.",
+      "accepted": [
+       "Nein, ich fahre mit dem Bus.",
+       "Ich fahre mit dem Bus.",
+       "Nein, ich fahre mit dem Fahrrad."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu şimdi. Geçmiş için **Ich bin mit dem Bus gefahren** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Ein Film? War der gut?",
+    "tr": "Film mi? İyi miydi?",
+    "secenekler": [
+     {
+      "de": "Ja, der war sehr lustig!",
+      "tr": "Evet, çok komikti!",
+      "accepted": [
+       "Ja, der war sehr lustig!",
+       "Ja, sehr lustig!",
+       "Ja, er war sehr lustig!"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve doğal."
+     },
+     {
+      "de": "Na ja, er war sehr lang!",
+      "tr": "Eh, çok uzundu!",
+      "accepted": [
+       "Na ja, er war sehr lang!",
+       "Na ja, der war sehr lang!",
+       "Er war sehr lang!"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Komik ve doğru. **war** ile filmi anlattın."
+     },
+     {
+      "de": "Ja, ich sehe einen Film.",
+      "tr": "Evet, bir film izliyorum.",
+      "accepted": [
+       "Ja, ich sehe einen Film.",
+       "Ich sehe einen Film.",
+       "Ja, ich sehe heute einen Film."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Film geçmişte kaldı. **Der Film war gut** ya da **war lustig** de."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Und was hast du dann gemacht?",
+    "tr": "Peki sonra ne yaptın?",
+    "secenekler": [
+     {
+      "de": "Ich habe einen Pullover gekauft. Dann bin ich nach Hause gegangen.",
+      "tr": "Bir kazak aldım. Sonra eve gittim.",
+      "accepted": [
+       "Ich habe einen Pullover gekauft. Dann bin ich nach Hause gegangen.",
+       "Ich habe einen Pullover gekauft und bin nach Hause gegangen.",
+       "Dann habe ich einen Pullover gekauft."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Bir cümlede **habe**, ötekinde **bin**."
+     },
+     {
+      "de": "Am Sonntag war ich zu Hause. Das Wetter war schlecht.",
+      "tr": "Pazar günü evdeydim. Hava kötüydü.",
+      "accepted": [
+       "Am Sonntag war ich zu Hause. Das Wetter war schlecht.",
+       "Am Sonntag war ich zu Hause, das Wetter war schlecht.",
+       "Am Sonntag bin ich zu Hause geblieben."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Üçüncü cümleyi de söyledin."
+     },
+     {
+      "de": "Dann gehe ich nach Hause.",
+      "tr": "Sonra eve gidiyorum.",
+      "accepted": [
+       "Dann gehe ich nach Hause.",
+       "Dann gehe ich heute nach Hause.",
+       "Ich gehe nach Hause."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu şimdi. Geçmiş için **Dann bin ich nach Hause gegangen** de."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Schön! Da kommt Herr Wimmer.",
+    "tr": "Güzel! Bak, Herr Wimmer geliyor.",
+    "secenekler": [
+     {
+      "de": "Guten Morgen, Herr Wimmer!",
+      "tr": "Günaydın Wimmer Bey!",
+      "accepted": [
+       "Guten Morgen, Herr Wimmer!",
+       "Guten Morgen, Herr Wimmer.",
+       "Morgen, Herr Wimmer!"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Şefe **Herr Wimmer** diye kibarca selam verdin."
+     },
+     {
+      "de": "Hallo, Herr Wimmer! Wie war Ihr Wochenende?",
+      "tr": "Merhaba Wimmer Bey! Hafta sonunuz nasıldı?",
+      "accepted": [
+       "Hallo, Herr Wimmer! Wie war Ihr Wochenende?",
+       "Guten Morgen! Wie war Ihr Wochenende, Herr Wimmer?",
+       "Hallo! Wie war Ihr Wochenende, Herr Wimmer?"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **Ihr Wochenende** dedin, yani **Sie** ile sordun."
+     },
+     {
+      "de": "Hallo Stefan, wie geht's dir?",
+      "tr": "Selam Stefan, nasılsın?",
+      "accepted": [
+       "Hallo Stefan, wie geht's dir?",
+       "Hallo Stefan!",
+       "Stefan, wie geht's dir?"
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "Şefe adıyla ve **du** ile hitap etmezsin. **Guten Morgen, Herr Wimmer!** de."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Guten Morgen! Hatten Sie ein schönes Wochenende?",
+    "tr": "Günaydın! Güzel bir hafta sonu geçirdiniz mi?",
+    "secenekler": [
+     {
+      "de": "Ja, danke! Ich war in der Stadt und habe eingekauft.",
+      "tr": "Evet, teşekkürler! Şehirdeydim ve alışveriş yaptım.",
+      "accepted": [
+       "Ja, danke! Ich war in der Stadt und habe eingekauft.",
+       "Ja, danke. Ich war in der Stadt und habe eingekauft.",
+       "Ja, danke! Ich habe in der Stadt eingekauft."
+      ],
+      "sonraki": "n7",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve kibar. **war** ve **habe eingekauft** ikisi de yerinde."
+     },
+     {
+      "de": "Ja, sehr schön. Und Sie, Herr Wimmer?",
+      "tr": "Evet, çok güzeldi. Ya siz Wimmer Bey?",
+      "accepted": [
+       "Ja, sehr schön. Und Sie, Herr Wimmer?",
+       "Ja, sehr schön, danke. Und Sie?",
+       "Ja, danke. Und Sie, Herr Wimmer?"
+      ],
+      "sonraki": "n7",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar ve doğal. Soruyu **Sie** ile geri sordun."
+     },
+     {
+      "de": "Ja, und du?",
+      "tr": "Evet, ya sen?",
+      "accepted": [
+       "Ja, und du?",
+       "Ja. Und du?",
+       "Ja, danke, und du?"
+      ],
+      "sonraki": "n6",
+      "uygun": false,
+      "geri_bildirim_tr": "Herr Wimmer'e **du** demezsin: **Und Sie?**"
+     }
+    ]
+   },
+   {
+    "id": "n7",
+    "de": "Schön! Bei mir auch. Jetzt aber an die Arbeit!",
+    "tr": "Güzel! Benimki de öyleydi. Ama şimdi iş başına!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Hafta sonunu üç cümleyle anlattın: **war**, **gekauft**, **gefahren**. Şefe de kibarca **Sie** dedin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Ioana'nın kurs mesajı",
+  "metin_de": "Hallo! Am Samstag war ich bei Luka. Meine Haare sind jetzt kurz! Am Sonntag bin ich mit einer Freundin in die Stadt gefahren. Wir haben Kaffee getrunken. Das war super! Bis Montag im Kurs, Ioana",
+  "metin_tr": "Merhaba! Cumartesi Luka'daydım. Saçlarım artık kısa! Pazar günü bir arkadaşımla şehre gittim. Kahve içtik. Süperdi! Pazartesi kursta görüşürüz, Ioana",
+  "sorular": [
+   {
+    "id": "m1:42:o1",
+    "kind": "gist",
+    "q_tr": "Ioana ne anlatıyor?",
+    "opts": [
+     "Hafta sonunu",
+     "Kursun saatini",
+     "Yeni işini"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     3
+    ]
+   },
+   {
+    "id": "m1:42:o2",
+    "kind": "detail",
+    "q_tr": "Ioana cumartesi ne yaptı?",
+    "opts": [
+     "Saçını kestirdi",
+     "Kahve içti",
+     "Kursa gitti"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:42:o3",
+    "kind": "detail",
+    "q_tr": "Pazar günü kiminle şehre gitti?",
+    "opts": [
+     "bir arkadaşıyla",
+     "Tobi'yle",
+     "tek başına"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:42:o4",
+    "k": "guided_response",
+    "situation_tr": "Kursta Ioana'nın yeni saçını görüyorsun. Ona bir şey söyle.",
+    "prompt_de": "Wie sind meine Haare?",
+    "accepted": [
+     "Super! Deine Haare sind toll.",
+     "Deine Haare sind super!",
+     "Toll! Kurz ist super.",
+     "Sehr schön, Ioana!",
+     "Super, Ioana! Die Haare sind schön."
+    ],
+    "why_tr": "Kısa bir iltifat yeter: **Deine Haare sind super!**"
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Ioana'ya cevap yaz: hafta sonunu üç kısa cümleyle anlat.",
+   "ornek_de": "Am Samstag war ich in der Stadt. Ich habe einen Pullover gekauft. Am Sonntag bin ich zu Hause geblieben.",
+   "zorunlu": [
+    "war",
+    "habe",
+    "bin"
+   ],
+   "accepted_kaliplar": [
+    "Am ___ war ich ___.",
+    "Ich war ___.",
+    "Ich habe ___ gekauft.",
+    "Ich habe ___ gesehen.",
+    "Ich habe ___ gegessen.",
+    "Ich habe ___ getrunken.",
+    "Am ___ habe ich ___.",
+    "Am ___ bin ich ___ gefahren.",
+    "Am ___ bin ich ___ gegangen.",
+    "Am ___ bin ich zu Hause geblieben.",
+    "Ich bin ___ gefahren.",
+    "Ich bin ___ gegangen.",
+    "Ich bin zu Hause geblieben.",
+    "Das war ___."
+   ],
+   "kontrol_tr": [
+    "Üç cümle yazdın mı?",
+    "**war**, **habe** ve **bin** var mı?",
+    "Geçmiş biçimi cümlenin sonunda mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:42:s",
+  "maddeler": [
+   {
+    "id": "m1:42:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Die Party am Freitag war lustig.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Party am Freitag war lustig.",
+     "die party am freitag war lustig",
+     "Die Party am Freitag war lustig"
+    ],
+    "why_tr": "**lustig** eğlenceli, komik demek."
+   },
+   {
+    "id": "m1:42:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Wir sind am Sonntag zu Ioana gegangen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir sind am Sonntag zu Ioana gegangen.",
+     "wir sind am sonntag zu ioana gegangen",
+     "Wir sind am Sonntag zu Ioana gegangen"
+    ],
+    "why_tr": "Gitmekte **sind** ve **gegangen** gelir."
+   },
+   {
+    "id": "m1:42:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Ihre Haare sind sehr schön.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ihre Haare sind sehr schön.",
+     "ihre haare sind sehr schön",
+     "Ihre Haare sind sehr schön"
+    ],
+    "why_tr": "**die Haare** saçlar demek."
+   },
+   {
+    "id": "m1:42:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Auf Wiedersehen und bis Montag!",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Auf Wiedersehen und bis Montag!",
+     "auf wiedersehen und bis montag",
+     "Auf Wiedersehen und bis Montag"
+    ],
+    "why_tr": "Kibar vedalaşma: **Auf Wiedersehen!**"
+   },
+   {
+    "id": "m1:42:s5",
+    "k": "tr_de",
+    "tr": "Cumartesi Luka'daydım.",
+    "accepted": [
+     "Am Samstag war ich bei Luka.",
+     "Ich war am Samstag bei Luka.",
+     "Samstag war ich bei Luka."
+    ],
+    "why_tr": "Nerede olduğunu **war** ile söylersin."
+   },
+   {
+    "id": "m1:42:s6",
+    "k": "tr_de",
+    "tr": "Pazar günü evde kaldık.",
+    "accepted": [
+     "Am Sonntag sind wir zu Hause geblieben.",
+     "Wir sind am Sonntag zu Hause geblieben.",
+     "Am Sonntag sind wir daheim geblieben."
+    ],
+    "why_tr": "Kalmak **sind** ister: **wir sind geblieben**."
+   },
+   {
+    "id": "m1:42:s7",
+    "k": "tr_de",
+    "tr": "Bir hafta önce Tobi hastaydı.",
+    "accepted": [
+     "Vor einer Woche war Tobi krank.",
+     "Tobi war vor einer Woche krank.",
+     "Vor einer Woche war Tobi erkältet."
+    ],
+    "why_tr": "**vor einer Woche** bir hafta önce demek."
+   },
+   {
+    "id": "m1:42:s8",
+    "k": "tr_de",
+    "tr": "Film süperdi!",
+    "accepted": [
+     "Der Film war super!",
+     "Der Film war echt super!",
+     "Super, der Film!"
+    ],
+    "why_tr": "**super** Türkçedeki gibi: süper."
+   },
+   {
+    "id": "m1:42:s9",
+    "k": "guided_response",
+    "situation_tr": "Derya cumartesini soruyor. Bir arkadaşınla film izledin, çok komikti.",
+    "prompt_de": "Und was hast du am Samstag so gemacht?",
+    "accepted": [
+     "Ich habe mit einer Freundin einen Film gesehen. Er war sehr lustig.",
+     "Ich habe einen Film gesehen. Er war sehr lustig.",
+     "Am Samstag habe ich mit einem Freund einen Film gesehen. Der war lustig.",
+     "Ich habe einen Film gesehen, sehr lustig!",
+     "Wir haben einen Film gesehen. Er war so lustig!"
+    ],
+    "why_tr": "Önce ne yaptığını, sonra nasıl olduğunu söyle: **gesehen**, **war lustig**."
+   },
+   {
+    "id": "m1:42:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wie bist du zu Derya gefahren?",
+    "speed": "normal",
+    "situation_tr": "Tobi soruyor. Otobüsle gittin.",
+    "accepted": [
+     "Ich bin mit dem Bus zu Derya gefahren.",
+     "Mit dem Bus.",
+     "Mit dem Bus bin ich gefahren.",
+     "Ich bin mit dem Bus gefahren.",
+     "Mit dem Bus, das geht schnell."
+    ],
+    "why_tr": "Neyle gittin sorusu: **mit dem Bus**."
+   },
+   {
+    "id": "m1:42:s11",
+    "k": "guided_response",
+    "situation_tr": "Pazartesi Tobi soruyor. Hafta sonunu üç cümleyle anlat: nerede, nasıl, ne yaptın?",
+    "prompt_de": "Und, wie war dein Wochenende?",
+    "accepted": [
+     "Am Samstag war ich in der Stadt. Ich bin mit dem Bus gefahren. Ich habe einen Rock gekauft.",
+     "Am Samstag bin ich zu Derya gefahren. Wir haben Kuchen gegessen. Am Sonntag war ich zu Hause.",
+     "Es war super. Ich war bei Luka. Am Sonntag bin ich zu Hause geblieben.",
+     "Am Samstag habe ich gelernt. Am Sonntag bin ich in die Stadt gegangen. Ich habe einen Film gesehen.",
+     "Ich war in der Stadt und habe eingekauft. Dann bin ich nach Hause gegangen. Es war schön.",
+     "Am Samstag war ich müde. Am Sonntag bin ich mit dem Fahrrad gefahren. Das Wetter war super."
+    ],
+    "why_tr": "Nerede olduğunu **war**, neyle gittiğini **gefahren**, ne aldığını **gekauft** ile söylersin."
+   }
+  ],
+  "sesli": [
+   "m1:42:s9",
+   "m1:42:s10"
+  ],
+  "dikte": [
+   "m1:42:s1",
+   "m1:42:s2",
+   "m1:42:s3",
+   "m1:42:s4"
+  ]
+ }
+}
