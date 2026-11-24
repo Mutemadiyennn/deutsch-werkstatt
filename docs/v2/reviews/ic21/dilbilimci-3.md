@@ -64,3 +64,20 @@ Eklenen 5 kaynak maddede (m1:12:s1, m1:25:s3, m1:28:s3, m1:46:s7, m1:48:s8) etik
 - `npm run content:validate` → seviye tespiti havuzu 447 madde, **0 hata**. Döküm yenilendi.
 
 SONUÇ: ONAY
+
+## Fark (P1-2)
+İnceleme yorumu 7125586039. Bu turda yalnız iki madde değişti, yalnız onlara baktım.
+
+- **m009** tr: "Tobi bir kahve istiyor. **möchten** ile yaz."
+  - Türkçe doğru. İpucu fiilin yalın biçimini (möchten) veriyor; öğrencinin yazacağı biçimi (möchte, sonda -t yok) vermiyor. Ölçüm korunuyor.
+  - `accepted`'a 2 varyant ekledim: "Tobi möchte gerne einen Kaffee." ve "Tobi möchte bitte einen Kaffee.". İkisi de doğru ve sık; önce reddediliyorlardı.
+  - Bütün varyantlarda **möchte** ve **einen** var.
+- **m010** instr_tr: "Cümleyi en kibar istek biçimiyle söyle. **möchte** kullanma."
+  - Türkçe doğru; yapı yönergede verilmiyor.
+  - `accepted`'a 1 varyant ekledim: "Ich hätte bitte gern einen Termin.".
+  - Bütün varyantlarda **hätte** ve **einen** var.
+  - Kalan küçük risk: "Könnte ich einen Termin haben?" da kibar bir istek ve doğru Almanca, ama bu madde onu reddeder. A1'in 2. haftasında beklenen cevap değil ve maddenin ölçtüğü yapıyı (hätte gern) içermiyor. Bu yüzden kabul listesine eklemedim.
+
+`npm run content:validate` → seviye tespiti havuzu 447 madde, **0 hata**.
+
+SONUÇ: ONAY

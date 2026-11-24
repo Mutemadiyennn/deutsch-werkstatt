@@ -45,3 +45,17 @@ Ortak not (GERİ değil): m008, m009, m011 ve m016'da `tr` alanı "… ile yaz."
 Toplam 10 · GEÇTİ 9 · GERİ 1 (m009)
 
 SONUÇ: GERİ — tespit:a1:m009
+
+## Fark (yönerge değişikliği: m009, m010)
+
+### tespit:a1:m009: GEÇTİ
+- `tr`: "Tobi bir kahve istiyor. **möchten** ile yaz." Tek okumada anladım. Cümleyi möchten fiiliyle yazacağım, Tobi için doğru biçimi kendim bulacağım.
+- `why_tr` da düzeltilmiş: "Tobi için de, ich möchte'deki gibi möchte dersin, sonuna t gelmez." Önceki GERİ kalktı.
+
+### tespit:a1:m010: GEÇTİ
+- `instr_tr`: "Cümleyi en kibar istek biçimiyle söyle. **möchte** kullanma." Tek okumada anladım. Aynı isteği möchte'siz ve daha kibar söyleyeceğim.
+- Not (GERİ değil): "en kibar" açık uçlu. Ben "Könnte ich bitte einen Termin haben?" ya da "Ich würde gern einen Termin haben." da yazabilirdim. Bunlar kabul listesinde yok. Bu bir yazım sorunu değil, kabul listesi sorunu. Karar dilbilimcinin.
+
+Fark özeti: 2 madde · GEÇTİ 2 · GERİ 0. Bu dosyanın m008–m017 bölümünde açık GERİ kalmadı.
+
+SONUÇ: GEÇTİ

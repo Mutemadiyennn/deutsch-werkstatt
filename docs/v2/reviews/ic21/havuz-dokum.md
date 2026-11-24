@@ -219,7 +219,7 @@ Kaynak: `content/v2/assess/a1-seviye-tespiti.json`. Her satır: kimlik · aşama
 - `tespit:a1:m008` **YENİ** · derin · dil · tr_de — gr:a1-03:t4 «möchten ve mögen: istemek ve sevmek»
  - TR: Peyniri severim. **mögen** ile yaz. → Ich mag Käse.
 - `tespit:a1:m009` **YENİ** · derin · dil · tr_de — gr:a1-03:t4 «möchten ve mögen: istemek ve sevmek»; gr:a1-06:t1 «İstenen şey: einen Kuchen, keinen Termin»
- - TR: Tobi bir kahve istiyor. **möchte** ile yaz. → Tobi möchte einen Kaffee.
+ - TR: Tobi bir kahve istiyor. **möchten** ile yaz. → Tobi möchte einen Kaffee.
 - `tespit:a1:m010` **YENİ** · derin · dil · transform — gr:a1-12:t2 «Kibar istek: Ich hätte gern einen Termin»; gr:a1-06:t1 «İstenen şey: einen Kuchen, keinen Termin»
  -  → Ich hätte gern einen Termin.
 - `m1:12:s1` · derin · dinleme · listen_and_respond — gr:a1-12:t2 «Kibar istek: Ich hätte gern einen Termin»; gr:a1-06:t1 «İstenen şey: einen Kuchen, keinen Termin»
