@@ -123,7 +123,7 @@ function HaftaKatlari<T extends { day: number }>({ k, kap, ozet, ciz }: { k: Kat
   const baska = k.eski.length + k.yakin.length > 0;
   return (
     <>
-      {k.eski.length > 0 && satir(0, `${k.eski[0]!.hafta}.–${k.eski[k.eski.length - 1]!.hafta}. hafta`, `${k.eski.length} hafta`, undefined, "kat-eski")}
+      {k.eski.length > 0 && satir(0, `${k.eski[0]!.hafta}.–${k.eski[k.eski.length - 1]!.hafta}. hafta`, ozet(k.eski.flatMap((h) => h.ogeler)), undefined, "kat-eski")}
       {acik.has(0) && k.eski.map(hafta)}
       {k.yakin.map(hafta)}
       {k.acik && baska && (kap === "kart"
