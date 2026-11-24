@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
-import { DwDB, useDb } from "../data/db.ts";
+import { DwDB, getMeta, useDb } from "../data/db.ts";
 import { rafKartSuz, rafKayit, rafKayitCek, rafTemizle, rafYaz, rafYol } from "./raf.ts";
 import { fotoAdresi, fotoBirlestir, ilkFoto, RAF_ONEK } from "./kartFoto.ts";
 import type { FotoKayit } from "./content.ts";
@@ -113,14 +113,26 @@ describe("kelime fotoğrafı önce raftan (PM 7088230583 md. 3)", () => {
     await rafYaz({ adres: ADRES, anahtar: ANAHTAR }); await rafKayitCek();
     const h1 = fotoBirlestir({}, (await rafKayit()).kart);
     expect((await fotoAdresi(h1["lx:Montag#kart"]))?.src).toMatch(/^blob:/);
-    expect(onb.depolar.get("dw2-kapali")?.has(`${ADRES}/kayit.json`)).toBe(true);
-    expect(onb.depolar.get("dw2-kapali")?.has(`${ADRES}/foto/aaaa.jpg`)).toBe(true);
+    expect(await getMeta(`raf:depo:${ADRES}/kayit.json`)).toMatchObject({ ham: KAYIT });
+    expect((await getMeta<{ veri: ArrayBuffer }>(`raf:depo:${ADRES}/foto/aaaa.jpg`))?.veri.byteLength).toBe(4);
     ag = false;
     await rafYaz({ adres: ADRES, anahtar: ANAHTAR });
     const r = await rafKayit();
     expect(r.gecici).toBe(false);
     expect(Object.keys(r.kart).sort()).toEqual(["lx:Montag#kart", "lx:Semmel#kart"]);
     expect((await fotoAdresi(r.kart["lx:Montag#kart"] && fotoBirlestir({}, r.kart)["lx:Montag#kart"]))?.src).toMatch(/^blob:/);
+  });
+  it("Cache Storage olmayan tarayıcıda da (WebKit yeniden yükleme, KAPI-İŞ 7123119259) kayıt ve görülen fotoğraf çevrimdışı gelir", async () => {
+    vi.stubGlobal("caches", undefined);
+    await rafYaz({ adres: ADRES, anahtar: ANAHTAR }); await rafKayitCek();
+    expect((await fotoAdresi(fotoBirlestir({}, (await rafKayit()).kart)["lx:Montag#kart"]))?.src).toMatch(/^blob:/);
+    ag = false;
+    // yeni sayfa gibi: bellekteki söz ve yerel adresler yok, yalnız cihazdaki kayıt
+    await rafYaz({ adres: ADRES, anahtar: ANAHTAR });
+    const r = await rafKayit();
+    expect(r.gecici).toBe(false);
+    expect((await fotoAdresi(fotoBirlestir({ "lx:Montag#kart": ACIK }, r.kart)["lx:Montag#kart"]))?.src).toMatch(/^blob:/);
+    expect(cagri.filter((u) => u.endsWith("/foto/aaaa.jpg"))).toHaveLength(1);
   });
   it("önbellek boş: ekran beklemez (boş + geçici); kayıt arkada çekilir, ağ hatası oturum boyunca saklanmaz (inceleme #204 P2-2)", async () => {
     await rafYaz({ adres: ADRES, anahtar: ANAHTAR });

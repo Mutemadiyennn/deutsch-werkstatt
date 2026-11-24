@@ -82,13 +82,17 @@ describe("kapalı medya rafı, uygulama tarafı (D-112, #58 B12)", () => {
     expect(u).toMatch(/^blob:/);
     expect(await rafDosya("/foto/a.jpg")).toBe(u);
     expect(cagri.filter((c) => c.url.endsWith("foto/a.jpg"))).toHaveLength(1);
-    expect(onb.depolar.get("dw2-kapali")?.has("https://raf.ornek.dev/foto/a.jpg")).toBe(true);
+    // kapalı önbellek IndexedDB'de (WebKit'te yeniden yüklemede de kalır; KAPI-İŞ 7123119259), Cache Storage'a yazılmaz
+    expect((await getMeta<{ veri: ArrayBuffer }>("raf:depo:https://raf.ornek.dev/foto/a.jpg"))?.veri.byteLength).toBe(4);
+    expect(onb.depolar.get("dw2-kapali")?.size ?? 0).toBe(0);
   });
   it("Sil: ayar, kapalı önbellek ve yerel adresler gider", async () => {
     await rafYaz({ adres: "https://raf.ornek.dev", anahtar: ANAHTAR });
     await rafDosya("foto/a.jpg");
+    await onb.open("dw2-kapali");   // eski sürümün Cache Storage'ı da temizlikte gider
     await rafYaz(null);
     expect(await rafOku()).toBeNull();
+    expect(await getMeta("raf:depo:https://raf.ornek.dev/foto/a.jpg")).toBeUndefined();
     expect(onb.depolar.has("dw2-kapali")).toBe(false);
     expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:test/0");
     expect(await rafDosya("foto/a.jpg")).toBeNull();
@@ -96,6 +100,6 @@ describe("kapalı medya rafı, uygulama tarafı (D-112, #58 B12)", () => {
   it("yanlış anahtarla dosya: null (çağıran açık yedeği gösterir), önbelleğe girmez", async () => {
     await rafYaz({ adres: "https://raf.ornek.dev", anahtar: "yanlis-anahtar" });
     expect(await rafDosya("foto/b.jpg")).toBeNull();
-    expect(onb.depolar.get("dw2-kapali")?.size ?? 0).toBe(0);
+    expect(await getMeta("raf:depo:https://raf.ornek.dev/foto/b.jpg")).toBeUndefined();
   });
 });

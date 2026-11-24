@@ -1,10 +1,12 @@
 /**
  * PM-061 / D-112 (#58 B12) kapalı medya rafı — uygulama tarafı. Rafın adresi ve anahtarı YALNIZCA bu cihazda (`meta` →
  * `raf`); depoya, teste, yedek dosyasına (exportAll `meta` tablosunu almaz) ve hiçbir sunucuya gitmez. Kapalı dosyalar
- * anahtarla çekilir ve ayrı önbellekte (`dw2-kapali`) tutulur; servis işçisi bu isteklere dokunmaz. Raf yoksa ya da
+ * anahtarla çekilir ve cihazda IndexedDB'de (`meta` → `raf:depo:<adres>`) tutulur; servis işçisi bu isteklere dokunmaz.
+ * Önbellek eskiden Cache Storage'daydı (`dw2-kapali`); WebKit'te sayfa yeniden yüklenince kayıt ve dosya gelmiyordu (KAPI-İŞ
+ * 7123119259), IndexedDB yeniden yüklemede de kalır. Eski Cache Storage yalnız temizlikte silinir. Raf yoksa ya da
  * ulaşılamazsa çağıran açık yedeği gösterir (hiçbir ekran boş kalmaz).
  */
-import { delMeta, getMeta, setMeta } from "../data/db.ts";
+import { delMeta, delMetaPrefix, getMeta, setMeta } from "../data/db.ts";
 
 export interface RafAyar { adres: string; anahtar: string }
 export type RafDurum = "parola-kisa" | "dosya-yok" | "bagli" | "anahtar-yanlis" | "ulasilamiyor" | "ayar-yok" | "adres-gecersiz" | "eksik" | "anahtar-tanimsiz" | "koruma-yok";
@@ -20,7 +22,16 @@ export const RAF_DURUM_TR: Record<RafDurum, string> = {
   "eksik": "Adres ve parolanın ikisi de gerekli. Bir şey değiştirilmedi.",
   "adres-gecersiz": "Adres https:// ile başlamalı ve rafın kendi adresi olmalı. Kaydedilmedi."
 };
+/** eski Cache Storage adı: yalnız temizlikte silinir */
 const ONBELLEK = "dw2-kapali";
+/** cihazdaki kapalı önbellek: `meta` → `raf:depo:<adres>/<yol>`; dosya `{ tur, veri: ArrayBuffer }`, kayıt `{ ham }`.
+ *  `exportAll` `meta` tablosunu almaz (yedeğe ve sunucuya gitmez). Blob yerine ArrayBuffer: her tarayıcıda klonlanır. */
+const DEPO = "raf:depo:";
+interface DepoDosya { tur: string; veri: ArrayBuffer; at: number }
+interface DepoKayit { ham: unknown; at: number }
+async function depoOku<T>(url: string): Promise<T | undefined> { try { return await getMeta<T>(DEPO + url); } catch { return undefined; } }
+/** yazılamazsa (kota) gösterim sürer: yalnız çevrimdışı yedek eksik kalır */
+async function depoYaz(url: string, v: DepoDosya | DepoKayit) { try { await setMeta(DEPO + url, v); } catch { /* kota dolu */ } }
 /** Rafta her zaman bulunan küçük sınama dosyası (doldurma hattı yazar) */
 export const SAGLIK = "saglik.txt";
 
@@ -64,6 +75,7 @@ const yerel = new Map<string, string>();
 export async function rafTemizle() {
   for (const u of yerel.values()) URL.revokeObjectURL(u);
   yerel.clear(); kayitSoz = null;
+  try { await delMetaPrefix(DEPO); } catch { /* veri tabanı yoksa geç */ }
   try { if (typeof caches !== "undefined") await caches.delete(ONBELLEK); } catch { /* önbellek yoksa geç */ }
 }
 
@@ -98,14 +110,14 @@ export async function rafDosya(yol: string): Promise<string | null> {
   const hazir = yerel.get(anahtarUrl);
   if (hazir) return hazir;
   try {
-    const c = typeof caches !== "undefined" ? await caches.open(ONBELLEK) : null;
-    let r = c ? await c.match(anahtarUrl) : undefined;
-    if (!r) {
+    let d = await depoOku<DepoDosya>(anahtarUrl);
+    if (!d?.veri || typeof d.veri.byteLength !== "number") {
       const y = await istek(ayar, yol, 15_000);
       if (!y.ok) return null;
-      r = y; if (c) await c.put(anahtarUrl, y.clone());
+      d = { tur: y.headers.get("content-type") ?? "", veri: await y.arrayBuffer(), at: Date.now() };
+      await depoYaz(anahtarUrl, d);
     }
-    const u = URL.createObjectURL(await r.blob());
+    const u = URL.createObjectURL(new Blob([d.veri], d.tur ? { type: d.tur } : {}));
     yerel.set(anahtarUrl, u);
     return u;
   } catch { return null; }
@@ -171,29 +183,26 @@ export function rafKayit(): Promise<RafKayit> {
   const soz = (kayitSoz ??= (async (): Promise<RafKayit> => {
     const ayar = await rafOku();
     if (!ayar) return { kart: {}, gecici: false };
-    const c = await onbellek();
-    try {
-      const eski = c ? await c.match(`${ayar.adres}/${RAF_KAYIT}`) : undefined;
-      if (eski) { void kayitCek(ayar, c).catch(() => null); return { kart: rafKartSuz(await eski.json()), gecici: false }; }
-    } catch { /* bozuk önbellek: ağdan */ }
-    void kayitCek(ayar, c).catch(() => null).finally(() => { if (kayitSoz === soz) kayitSoz = null; });
+    const eski = await depoOku<DepoKayit>(`${ayar.adres}/${RAF_KAYIT}`);
+    if (eski && "ham" in eski) { void kayitCek(ayar).catch(() => null); return { kart: rafKartSuz(eski.ham), gecici: false }; }
+    void kayitCek(ayar).catch(() => null).finally(() => { if (kayitSoz === soz) kayitSoz = null; });
     return { kart: {}, gecici: true };
   })());
   return soz;
 }
-const onbellek = async (): Promise<Cache | null> => { try { return typeof caches !== "undefined" ? await caches.open(ONBELLEK) : null; } catch { return null; } };
-async function kayitCek(ayar: RafAyar, c: Cache | null, zaman = 15_000): Promise<Record<string, RafKart> | null> {
+async function kayitCek(ayar: RafAyar, zaman = 15_000): Promise<Record<string, RafKart> | null> {
   const y = await istek(ayar, RAF_KAYIT, zaman);
   if (!y.ok) return null;
-  if (c) await c.put(`${ayar.adres}/${RAF_KAYIT}`, y.clone());
-  return rafKartSuz(await y.json());
+  const ham: unknown = await y.json();
+  await depoYaz(`${ayar.adres}/${RAF_KAYIT}`, { ham, at: Date.now() });
+  return rafKartSuz(ham);
 }
 /** Profil → "Kaydet ve rafı sına": kaydı şimdi çeker ve önbelleğe koyar; kelime fotoğrafı sayısı (ulaşılamazsa null) */
 export async function rafKayitCek(): Promise<number | null> {
   const ayar = await rafOku();
   if (!ayar) return null;
   try {
-    const k = await kayitCek(ayar, await onbellek(), 10_000);
+    const k = await kayitCek(ayar, 10_000);
     kayitSoz = null;
     return k ? Object.keys(k).filter((x) => x.endsWith("#kart")).length : null;
   } catch { return null; }
