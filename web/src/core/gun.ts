@@ -16,7 +16,7 @@ const isaretsiz = (t: string) => t.replace(/\*\*(.+?)\*\*/g, "$1");
 
 export interface Adim { seans: SeansNo; tur: "bahce" | "ders" | "medya" | "prova" | "okuma"; id: string; title_tr: string; href: string; bitti: boolean; hazir: boolean; alt?: "video" | "ses" }
 /** `akis`: bayraklı günde akış bitmeden "BAŞLA" bu adrese gider (akış durakları sırayla açar; öğrenci simülasyonu P1-1) */
-export interface GunDurum { day: number; title_tr: string; adimlar: Adim[]; bitti: boolean; akis?: string }
+export interface GunDurum { day: number; title_tr: string; adimlar: Adim[]; bitti: boolean; akis?: string; /** PM-114 B: başlangıçtan önceki, bitmemiş gün (yolda geçilmiş sayılır, "tamam" değil) */ atlandi?: boolean }
 /** Cihazda saklanan ilerlemeden okunanlar (meta anahtarları ekranda doldurulur) */
 export interface Ilerleme {
   dersBitti: Set<string>; medyaBitti: Set<string>;
@@ -126,8 +126,9 @@ export function haftaBitti(hafta: number, days: number[], gunBitti: ReadonlySet<
   const g = yolGunleri(days).filter((d) => haftaOf(d) === hafta);
   return g.length > 0 && g.every((d) => gunBitti.has(d));
 }
-/** Yolda yüklenmemiş günün yerine geçen özet (önceki hafta: bitti; sonraki hafta: kilitli). Adımı yoktur. */
-export const gunOzeti = (day: number, title_tr: string, bitti: boolean): GunDurum => ({ day, title_tr: isaretsiz(title_tr), adimlar: [], bitti });
+/** Yolda yüklenmemiş günün yerine geçen özet (önceki hafta: bitti; sonraki hafta: kilitli). Adımı yoktur.
+ *  `atlandi` (PM-114 B): başlangıçtan önceki bitmemiş gün yolda geçilmiş sayılır (`bitti`), ekranda "atlandı" yazar. */
+export const gunOzeti = (day: number, title_tr: string, bitti: boolean, atlandi = false): GunDurum => ({ day, title_tr: isaretsiz(title_tr), adimlar: [], bitti: bitti || atlandi, ...(atlandi ? { atlandi } : {}) });
 /** Haftalara böl: her haftanın günleri ve durumu (`simdi`: şimdiki günün haftası) */
 export function haftalara<T extends { day: number; durum: "bitti" | "simdi" | "kilitli" }>(gunler: T[]): { hafta: number; gunler: T[]; durum: "bitti" | "simdi" | "kilitli" }[] {
   const m = new Map<number, T[]>();

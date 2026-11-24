@@ -137,6 +137,8 @@ export interface LearnerItem {
    * boşluklar) kendi uzunluğuna göre döner; aynı kart art arda iki oturumda aynı cümleyle açılmaz.
    */
   exSeen?: number;
+  /** PM-114 B: "atlandi" — atlanan A1 gününün kartı "biliniyor" diye girdi (kanıt değil; geri dönüşte dokunulmamışsa çıkar) */
+  kaynak?: "atlandi";
 }
 
 export interface ScenarioProgress {

@@ -16,15 +16,17 @@ export interface OncekiGirdi {
   /** dosyalı önceki günlerin cihazda biten dersleri */
   bitenDosyali: Iterable<string>;
   hepsiOynandi?: boolean;
+  /** PM-114 B: başlangıçtan önceki atlanan günler — bilinen sayılır: dosyalı gün kartlarının hepsi, dersler kesin tablodan */
+  atlanan?: ReadonlySet<number>;
 }
 export interface OncekiKume { kartlar: Set<string>; dersler: Set<string>; /** kesin tablodan tamamlanan günler (rapor ve test için) */ tablodan: number[] }
 
 export function oncekiKume(g: OncekiGirdi): OncekiKume {
   const dosya = new Map(g.dosyali.filter((x) => x.day < g.day).map((x) => [x.day, x.kartlar] as const));
   const kartlar = new Set<string>(), dersler = new Set<string>(g.bitenDosyali), tablodan: number[] = [];
-  for (const [, k] of dosya) for (const c of k) if (g.hepsiOynandi || g.gorulmus(c)) kartlar.add(c);
+  for (const [d, k] of dosya) for (const c of k) if (g.hepsiOynandi || g.atlanan?.has(d) || g.gorulmus(c)) kartlar.add(c);
   for (let d = 1; d < g.day; d++) {
-    if (dosya.has(d)) continue;
+    if (dosya.has(d)) { if (g.atlanan?.has(d)) for (const x of g.kesin.get(d)?.dersler ?? []) dersler.add(x); continue; }
     const t = g.kesin.get(d); if (!t) continue;
     tablodan.push(d);
     for (const c of t.kartlar) kartlar.add(c);
