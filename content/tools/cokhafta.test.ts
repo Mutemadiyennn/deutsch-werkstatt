@@ -29,7 +29,8 @@ describe("1. hafta geriye uyum", () => {
   it("1. haftanın halka kapısı dil noktalı dizinle de 0 hata (#205 P2-8)", () => {
     const genel = genelAdlarAyikla(readFileSync(join(ROOT, "docs/v2/reviews/genel-adlar.md"), "utf8"));
     const d = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genel, [...c.grammar, ...c.dn.flatMap((x) => x.data)]);
-    expect(halkaDenetle(c.m1, new Map(c.temel.map((t) => [t.data.id, t.data])), d).errors).toEqual([]);
+    // yalnız 1. hafta: sonraki haftaların halkası kendi hafta kapısında denetlenir; test içerik ağacından bağımsız (PM-117 A.1)
+    expect(halkaDenetle(c.m1.filter((x) => x.data.day <= 7), new Map(c.temel.map((t) => [t.data.id, t.data])), d).errors).toEqual([]);
   });
   it("1. haftanın dersleri yalnız r0: ve hepsi temel pakette", () => {
     const temel = new Set(c.temel.map((t) => t.data.id));

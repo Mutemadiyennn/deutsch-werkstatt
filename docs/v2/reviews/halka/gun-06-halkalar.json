@@ -1,0 +1,718 @@
+{
+ "gun": 6,
+ "not": "PM-078 B öneri (İÇ), 3. günün onaylı biçimiyle (PM #163, #165, PM 7047720404 a/b, PM-080 §3–§4). Günün dersleri (r0-06, r0-07) varsayılmaz; 1.–5. günün dersleri (r0-01, r0-02, r0-11, r0-03, r0-04, r0-05) ve 1.–5. günün halka kalıpları (gun-04, gun-05 taslakları dahil) bilinir. Tarihler yalnız ayın 1–4'ü (sıra sayıları kartla, „am …-ten“ h1 kalıbıyla). Olgular: Bürgerbüro randevusu 3 aralık perşembe saat dokuz (gün 6 sesi a2), yeni hasta için ad, soyad, doğum tarihi, telefon (gün 6 sesi a1), Brandl'ın doğum günü 2 mayıs (WORLD), Derya Wendlfing'li (WORLD), öğrencinin adresi Brunnengasse 7 (WORLD), 1 mayıs tatil (WORLD takvimi; 2027'de cumartesi, bu yüzden muayenehane pazartesi açılır). Gerekçe ve sınama gun-06-yazar.md. Şema ANA'da (AK-5); alan gelince gun-06.json'a taşınır. Halkalar artık gun-06.json içinde (PM-084); bu dosya Python denetçilerinin (halka_kontrol.py, kucuk_sozcuk.py) girdisi olarak gün dosyasıyla eşit tutulur.",
+ "halkalar": [
+  {
+   "id": "m1:06:h1",
+   "title_tr": "Bugünün tarihi ne?",
+   "kartlar": [
+    "lx:Datum",
+    "lx:erster",
+    "lx:zweiter",
+    "lx:dritter",
+    "lx:vierter"
+   ],
+   "kaliplar": [
+    {
+     "de": "Welches Datum ist heute? – Heute ist der erste Mai. – der Zweite – der Dritte – der Vierte",
+     "tr": "Bugünün tarihi ne? – Bugün bir mayıs. – ayın ikisi – üçü – dördü"
+    },
+    {
+     "de": "am ersten Mai – am zweiten … – am dritten … – am vierten …",
+     "tr": "bir mayısta – ayın ikisinde – üçünde – dördünde"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Datum",
+     "de": "Welches Datum ist heute, Tobi?",
+     "tr": "Bugünün tarihi ne Tobi?",
+     "accepted": [
+      "Welches Datum ist heute, Tobi?",
+      "Tobi, welches Datum ist heute?",
+      "Welches Datum haben wir heute, Tobi?"
+     ]
+    },
+    {
+     "kart": "lx:Datum",
+     "de": "Das Datum ist der vierte Mai, nicht der erste.",
+     "tr": "Tarih dört mayıs, bir mayıs değil.",
+     "accepted": [
+      "Das Datum ist der vierte Mai, nicht der erste.",
+      "Das Datum ist nicht der erste, sondern der vierte Mai.",
+      "Das Datum ist der vierte Mai, nicht der erste Mai."
+     ]
+    },
+    {
+     "kart": "lx:erster",
+     "de": "Ist heute der erste Dezember?",
+     "tr": "Bugün bir aralık mı?",
+     "accepted": [
+      "Ist heute der erste Dezember?",
+      "Heute ist der erste Dezember?",
+      "Heute ist der erste Dezember, ja?"
+     ]
+    },
+    {
+     "kart": "lx:erster",
+     "de": "Am ersten Mai ist das Büro geschlossen.",
+     "tr": "Bir mayısta ofis kapalı.",
+     "accepted": [
+      "Am ersten Mai ist das Büro geschlossen.",
+      "Das Büro ist am ersten Mai geschlossen.",
+      "Am ersten Mai ist das Büro nicht offen."
+     ]
+    },
+    {
+     "kart": "lx:zweiter",
+     "de": "Der Erste? Nein, der Zweite!",
+     "tr": "Ayın biri mi? Hayır, ikisi!",
+     "accepted": [
+      "Der Erste? Nein, der Zweite!",
+      "Der Erste? Nein, heute ist der Zweite!",
+      "Der Erste? Nein, nicht der Erste, der Zweite!"
+     ]
+    },
+    {
+     "kart": "lx:zweiter",
+     "de": "Ihr Geburtstag ist am zweiten Mai, Frau Brandl?",
+     "tr": "Doğum gününüz iki mayısta mı Brandl Hanım?",
+     "accepted": [
+      "Ihr Geburtstag ist am zweiten Mai, Frau Brandl?",
+      "Ist Ihr Geburtstag am zweiten Mai, Frau Brandl?",
+      "Frau Brandl, ist Ihr Geburtstag am zweiten Mai?",
+      "Haben Sie am zweiten Mai Geburtstag, Frau Brandl?"
+     ]
+    },
+    {
+     "kart": "lx:dritter",
+     "de": "Heute ist der Dritte, nicht der Zweite.",
+     "tr": "Bugün ayın üçü, ikisi değil.",
+     "accepted": [
+      "Heute ist der Dritte, nicht der Zweite.",
+      "Heute ist nicht der Zweite, sondern der Dritte.",
+      "Heute ist der Dritte und nicht der Zweite."
+     ]
+    },
+    {
+     "kart": "lx:dritter",
+     "de": "Am dritten Dezember habe ich einen Termin.",
+     "tr": "Üç aralıkta randevum var.",
+     "accepted": [
+      "Am dritten Dezember habe ich einen Termin.",
+      "Ich habe am dritten Dezember einen Termin.",
+      "Mein Termin ist am dritten Dezember."
+     ]
+    },
+    {
+     "kart": "lx:vierter",
+     "de": "Der vierte Dezember ist ein Freitag.",
+     "tr": "Dört aralık bir cuma.",
+     "accepted": [
+      "Der vierte Dezember ist ein Freitag.",
+      "Der vierte Dezember ist Freitag.",
+      "Am vierten Dezember ist Freitag."
+     ]
+    },
+    {
+     "kart": "lx:vierter",
+     "de": "Am Vierten? Nein, am Dritten!",
+     "tr": "Ayın dördünde mi? Hayır, üçünde!",
+     "accepted": [
+      "Am Vierten? Nein, am Dritten!",
+      "Am Vierten? Nein, nicht am Vierten, am Dritten!",
+      "Am Vierten? Nein, nicht am Vierten, sondern am Dritten!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Bürgerbüro'dan Schneider Hanım arıyor. Randevunun tarihini söylüyor.",
+    "satirlar": [
+     {
+      "r": "ch:schneider",
+      "de": "Der Termin ist am dritten Dezember, um neun.",
+      "tr": "Randevu üç aralıkta, saat dokuzda."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Am Dritten? Heute ist der Zweite!",
+      "tr": "Üçünde mi? Bugün ayın ikisi!"
+     },
+     {
+      "r": "ch:schneider",
+      "de": "Ja, um neun Uhr. Bis dann!",
+      "tr": "Evet, saat dokuzda. Görüşmek üzere!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Bürgerbüro'daki randevun ne zaman?",
+     "opts": [
+      "Bugün saat dokuzda",
+      "Yarın saat dokuzda",
+      "Yarın saat on birde",
+      "Dört aralıkta saat dokuzda"
+     ],
+     "ans": 1,
+     "cikarim": true
+    }
+   }
+  },
+  {
+   "id": "m1:06:h2",
+   "title_tr": "Adınız ne? Bu ne demek?",
+   "kartlar": [
+    "lx:was",
+    "lx:wie",
+    "lx:heißen",
+    "lx:Vorname",
+    "lx:Nachname"
+   ],
+   "kaliplar": [
+    {
+     "de": "Sind Sie neu hier? – Wie heißen Sie? – Was heißt …?",
+     "tr": "Burada yeni misiniz? – Adınız ne? – … ne demek?"
+    },
+    {
+     "de": "Wie ist Ihr Vorname? – Wie ist Ihr Nachname?",
+     "tr": "Ön adınız ne? – Soyadınız ne?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:was",
+     "de": "Was machen Sie am Wochenende, Herr Wimmer?",
+     "tr": "Hafta sonu ne yapıyorsunuz Wimmer Bey?",
+     "accepted": [
+      "Was machen Sie am Wochenende, Herr Wimmer?",
+      "Herr Wimmer, was machen Sie am Wochenende?",
+      "Herr Wimmer, was machen Sie denn am Wochenende?"
+     ]
+    },
+    {
+     "kart": "lx:was",
+     "de": "Was heißt das bitte, Herr Pichler?",
+     "tr": "Bu ne demek Pichler Bey?",
+     "accepted": [
+      "Was heißt das bitte, Herr Pichler?",
+      "Herr Pichler, was heißt das bitte?",
+      "Was heißt das, Herr Pichler?",
+      "Herr Pichler, was heißt das?"
+     ]
+    },
+    {
+     "kart": "lx:wie",
+     "de": "Wie alt ist Frau Brandl?",
+     "tr": "Brandl Hanım kaç yaşında?",
+     "accepted": [
+      "Wie alt ist Frau Brandl?",
+      "Wie alt ist Frau Brandl, bitte?",
+      "Frau Brandl ist wie alt?"
+     ]
+    },
+    {
+     "kart": "lx:wie",
+     "de": "Wie heißt die Praxis? Dr. Weber?",
+     "tr": "Muayenehanenin adı ne? Dr. Weber mi?",
+     "accepted": [
+      "Wie heißt die Praxis? Dr. Weber?",
+      "Wie heißt die Praxis? Praxis Dr. Weber?",
+      "Wie heißt die Praxis? Heißt die Praxis Dr. Weber?"
+     ]
+    },
+    {
+     "kart": "lx:heißen",
+     "de": "Ich heiße {name}. Wie heißen Sie?",
+     "de_adsiz": "Und Sie? Wie heißen Sie?",
+     "tr": "Adım {name}. Sizin adınız ne?",
+     "tr_adsiz": "Ya siz? Sizin adınız ne?",
+     "accepted": [
+      "Ich heiße {name}. Wie heißen Sie?",
+      "Ich heiße {name}. Und wie heißen Sie?",
+      "Ich heiße {name}. Und Sie?"
+     ],
+     "accepted_adsiz": [
+      "Und Sie? Wie heißen Sie?",
+      "Und wie heißen Sie?",
+      "Wie heißen Sie?"
+     ]
+    },
+    {
+     "kart": "lx:heißen",
+     "de": "Mein Arzt heißt Dr. Weber.",
+     "tr": "Doktorumun adı Dr. Weber.",
+     "accepted": [
+      "Mein Arzt heißt Dr. Weber.",
+      "Mein Arzt heißt Weber.",
+      "Dr. Weber heißt mein Arzt."
+     ]
+    },
+    {
+     "kart": "lx:Vorname",
+     "de": "Wie ist Ihr Vorname, Herr Pichler?",
+     "tr": "Ön adınız ne Pichler Bey?",
+     "accepted": [
+      "Wie ist Ihr Vorname, Herr Pichler?",
+      "Herr Pichler, wie ist Ihr Vorname?",
+      "Ihr Vorname, Herr Pichler?"
+     ]
+    },
+    {
+     "kart": "lx:Vorname",
+     "de": "Josef ist der Vorname, Pichler der Nachname.",
+     "tr": "Josef ön adı, Pichler soyadı.",
+     "accepted": [
+      "Josef ist der Vorname, Pichler der Nachname.",
+      "Josef ist der Vorname, Pichler ist der Nachname.",
+      "Der Vorname ist Josef, der Nachname Pichler."
+     ]
+    },
+    {
+     "kart": "lx:Nachname",
+     "de": "Ist Brandl Ihr Nachname?",
+     "tr": "Soyadınız Brandl mı?",
+     "accepted": [
+      "Ist Brandl Ihr Nachname?",
+      "Ist Ihr Nachname Brandl?",
+      "Ihr Nachname ist Brandl?"
+     ]
+    },
+    {
+     "kart": "lx:Nachname",
+     "de": "Der Nachname ist Huber, nicht Weber.",
+     "tr": "Soyadı Huber, Weber değil.",
+     "accepted": [
+      "Der Nachname ist Huber, nicht Weber.",
+      "Der Nachname ist nicht Weber, sondern Huber.",
+      "Huber ist der Nachname, nicht Weber."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Apartmanın girişi. Alt kattaki zilde yalnızca „R. Brandl“ yazıyor. Pichler Bey yanında.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Brandl ist der Nachname. Wie ist der Vorname?",
+      "tr": "Brandl soyadı. Ön adı ne?"
+     },
+     {
+      "r": "ch:pichler",
+      "de": "Der Vorname? Rosa. Rosa Brandl.",
+      "tr": "Ön adı mı? Rosa. Rosa Brandl."
+     }
+    ],
+    "soru": {
+     "q_tr": "Alt kattaki komşunun ön adı ne?",
+     "opts": [
+      "Rosa",
+      "Brandl",
+      "Josef",
+      "Pichler"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:06:h3",
+   "title_tr": "Kim? Nerede? Nereye? Nereden?",
+   "kartlar": [
+    "lx:wer",
+    "lx:wo",
+    "lx:wohin",
+    "lx:woher"
+   ],
+   "kaliplar": [
+    {
+     "de": "Woher kommst du? – Aus …",
+     "tr": "Nerelisin? (kelimesi kelimesine: nereden geliyorsun?) – …'den, …'dan."
+    },
+    {
+     "de": "Wohin? – In die Praxis. – Zum Arzt. – In Zimmer zwei.",
+     "tr": "Nereye? – Muayenehaneye. – Doktora. – 2 numaralı odaya."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:wer",
+     "de": "Wer ist das? Frau Brandl?",
+     "tr": "Bu kim? Brandl Hanım mı?",
+     "accepted": [
+      "Wer ist das? Frau Brandl?",
+      "Wer ist das? Ist das Frau Brandl?",
+      "Wer ist das? Das ist Frau Brandl?"
+     ]
+    },
+    {
+     "kart": "lx:wer",
+     "de": "Wer wohnt in Nummer drei?",
+     "tr": "Üç numarada kim oturuyor?",
+     "accepted": [
+      "Wer wohnt in Nummer drei?",
+      "Wer wohnt in der Nummer drei?",
+      "In Nummer drei wohnt wer?"
+     ]
+    },
+    {
+     "kart": "lx:wo",
+     "de": "Wo ist die Praxis, Frau Huber?",
+     "tr": "Muayenehane nerede Huber Hanım?",
+     "accepted": [
+      "Wo ist die Praxis, Frau Huber?",
+      "Frau Huber, wo ist die Praxis?",
+      "Wo ist denn die Praxis, Frau Huber?"
+     ]
+    },
+    {
+     "kart": "lx:wo",
+     "de": "Wo ist Tobi heute?",
+     "tr": "Tobi bugün nerede?",
+     "accepted": [
+      "Wo ist Tobi heute?",
+      "Wo ist heute Tobi?",
+      "Wo ist denn Tobi heute?"
+     ]
+    },
+    {
+     "kart": "lx:wohin",
+     "de": "Wohin, Frau Brandl? In die Praxis?",
+     "tr": "Nereye Brandl Hanım? Muayenehaneye mi?",
+     "accepted": [
+      "Wohin, Frau Brandl? In die Praxis?",
+      "Frau Brandl, wohin? In die Praxis?",
+      "Wohin gehen Sie, Frau Brandl? In die Praxis?"
+     ]
+    },
+    {
+     "kart": "lx:wohin",
+     "de": "Ich gehe zum Arzt. Wohin gehst du?",
+     "tr": "Ben doktora gidiyorum. Sen nereye gidiyorsun?",
+     "accepted": [
+      "Ich gehe zum Arzt. Wohin gehst du?",
+      "Ich gehe zum Arzt. Und du, wohin gehst du?",
+      "Zum Arzt gehe ich. Wohin gehst du?"
+     ]
+    },
+    {
+     "kart": "lx:woher",
+     "de": "Woher kommen Sie, Herr Wimmer?",
+     "tr": "Nerelisiniz Wimmer Bey?",
+     "accepted": [
+      "Woher kommen Sie, Herr Wimmer?",
+      "Herr Wimmer, woher kommen Sie?",
+      "Woher kommen Sie denn, Herr Wimmer?"
+     ]
+    },
+    {
+     "kart": "lx:woher",
+     "de": "Woher kommt Derya? Aus Wendlfing?",
+     "tr": "Derya nereli? Wendlfing'den mi?",
+     "accepted": [
+      "Woher kommt Derya? Aus Wendlfing?",
+      "Woher kommt Derya? Kommt Derya aus Wendlfing?",
+      "Derya kommt woher? Aus Wendlfing?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "İş yeri, saat dört. Montunu giyiyorsun. Tobi kapıda seni görüyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Wohin gehst du, {name}? Es ist noch früh!",
+      "de_adsiz": "Wohin gehst du? Es ist noch früh!",
+      "tr": "Nereye gidiyorsun {name}? Daha saat erken!",
+      "tr_adsiz": "Nereye gidiyorsun? Daha saat erken!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Zum Arzt. Ich habe um halb fünf einen Termin.",
+      "tr": "Doktora. Saat dört buçukta randevum var."
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Zum Arzt? Okay, bis morgen!",
+      "tr": "Doktora mı? Tamam, yarın görüşürüz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "İşten neden erken çıkıyorsun?",
+     "opts": [
+      "Doktorda randevun var",
+      "Fırına gidiyorsun",
+      "Bürgerbüro'da randevun var",
+      "Tobi'yle buluşuyorsun"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:06:h4",
+   "title_tr": "Formdaki bilgiler: ne lazım?",
+   "kartlar": [
+    "lx:brauchen",
+    "lx:Adresse",
+    "lx:Geburtsdatum",
+    "lx:Telefonnummer"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich brauche … – Brauchen Sie …?",
+     "tr": "Bana … lazım. – Size … lazım mı?"
+    },
+    {
+     "de": "… und …",
+     "tr": "… ve …"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:brauchen",
+     "de": "Ich brauche einen Termin, bitte.",
+     "tr": "Bana bir randevu lazım, lütfen.",
+     "accepted": [
+      "Ich brauche einen Termin, bitte.",
+      "Ich brauche bitte einen Termin.",
+      "Bitte, ich brauche einen Termin."
+     ]
+    },
+    {
+     "kart": "lx:brauchen",
+     "de": "Brauchen Sie meine Nummer?",
+     "tr": "Size numaram lazım mı?",
+     "accepted": [
+      "Brauchen Sie meine Nummer?",
+      "Meine Nummer, brauchen Sie die?",
+      "Sie brauchen meine Nummer?"
+     ]
+    },
+    {
+     "kart": "lx:Adresse",
+     "de": "Wie ist die Adresse, Frau Schneider?",
+     "tr": "Adres ne Schneider Hanım?",
+     "accepted": [
+      "Wie ist die Adresse, Frau Schneider?",
+      "Frau Schneider, wie ist die Adresse?",
+      "Die Adresse, Frau Schneider?"
+     ]
+    },
+    {
+     "kart": "lx:Adresse",
+     "de": "Meine Adresse ist neu.",
+     "tr": "Adresim yeni.",
+     "accepted": [
+      "Meine Adresse ist neu.",
+      "Ich habe eine neue Adresse.",
+      "Meine Adresse, die ist neu."
+     ]
+    },
+    {
+     "kart": "lx:Geburtsdatum",
+     "de": "Brauchen Sie mein Geburtsdatum?",
+     "tr": "Size doğum tarihim lazım mı?",
+     "accepted": [
+      "Brauchen Sie mein Geburtsdatum?",
+      "Mein Geburtsdatum, brauchen Sie das?",
+      "Sie brauchen mein Geburtsdatum?"
+     ]
+    },
+    {
+     "kart": "lx:Geburtsdatum",
+     "de": "Geburtsdatum oder Geburtstag?",
+     "tr": "Doğum tarihi mi, doğum günü mü?",
+     "accepted": [
+      "Geburtsdatum oder Geburtstag?",
+      "Das Geburtsdatum oder der Geburtstag?",
+      "Ist das Geburtsdatum oder Geburtstag?"
+     ]
+    },
+    {
+     "kart": "lx:Telefonnummer",
+     "de": "Meine Telefonnummer ist neu.",
+     "tr": "Telefon numaram yeni.",
+     "accepted": [
+      "Meine Telefonnummer ist neu.",
+      "Ich habe eine neue Telefonnummer.",
+      "Ich habe eine neue Telefonnummer, ja."
+     ]
+    },
+    {
+     "kart": "lx:Telefonnummer",
+     "de": "Brauchen Sie meine Telefonnummer und meine Adresse?",
+     "tr": "Size telefon numaram ve adresim lazım mı?",
+     "accepted": [
+      "Brauchen Sie meine Telefonnummer und meine Adresse?",
+      "Brauchen Sie meine Telefonnummer und Adresse?",
+      "Meine Telefonnummer und meine Adresse, brauchen Sie die?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Muayenehanenin resepsiyonu. Huber Hanım bilgilerini kâğıda yazıyor.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Ich brauche noch Ihre Adresse und Ihre Telefonnummer.",
+      "tr": "Adresiniz ve telefon numaranız da lazım."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Die Adresse? Brunnengasse sieben.",
+      "tr": "Adres mi? Brunnengasse yedi."
+     },
+     {
+      "r": "ch:huber",
+      "de": "Danke. Und die Telefonnummer?",
+      "tr": "Teşekkürler. Ya telefon numarası?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Huber Hanım'ın kâğıdında hangi bilgi hâlâ eksik?",
+     "opts": [
+      "Adresin",
+      "Telefon numaran",
+      "Ön adın",
+      "Doğum günün"
+     ],
+     "ans": 1,
+     "cikarim": true
+    }
+   }
+  },
+  {
+   "id": "m1:06:h5",
+   "title_tr": "Neden? Ne sıklıkla? Ne kadar?",
+   "kartlar": [
+    "lx:warum",
+    "lx:wie_viel",
+    "lx:oft",
+    "lx:sehr"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wie oft …? – Sehr oft.",
+     "tr": "Ne sıklıkla …? – Çok sık."
+    },
+    {
+     "de": "Danke sehr! – Sehr gern!",
+     "tr": "Çok teşekkürler! – Seve seve! (çok memnuniyetle)"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:warum",
+     "de": "Warum ist das Büro heute geschlossen?",
+     "tr": "Ofis bugün neden kapalı?",
+     "accepted": [
+      "Warum ist das Büro heute geschlossen?",
+      "Warum ist heute das Büro geschlossen?",
+      "Das Büro ist heute geschlossen? Warum?"
+     ]
+    },
+    {
+     "kart": "lx:warum",
+     "de": "Warum geht es am Montag nicht?",
+     "tr": "Pazartesi günü neden olmuyor?",
+     "accepted": [
+      "Warum geht es am Montag nicht?",
+      "Warum geht Montag nicht?",
+      "Am Montag geht es nicht? Warum?",
+      "Warum geht's am Montag nicht?",
+      "Warum geht es Montag nicht?",
+      "Warum geht das am Montag nicht?",
+      "Warum geht es denn am Montag nicht?",
+      "Warum geht es nicht am Montag?"
+     ]
+    },
+    {
+     "kart": "lx:wie_viel",
+     "de": "Wie viel Urlaub haben Sie?",
+     "tr": "Ne kadar izniniz var?",
+     "accepted": [
+      "Wie viel Urlaub haben Sie?",
+      "Wie viel Urlaub haben Sie denn?",
+      "Sie haben wie viel Urlaub?"
+     ]
+    },
+    {
+     "kart": "lx:wie_viel",
+     "de": "Um wie viel Uhr kommt Dr. Weber?",
+     "tr": "Dr. Weber saat kaçta geliyor?",
+     "accepted": [
+      "Um wie viel Uhr kommt Dr. Weber?",
+      "Dr. Weber kommt um wie viel Uhr?",
+      "Wann kommt Dr. Weber? Um wie viel Uhr?"
+     ]
+    },
+    {
+     "kart": "lx:oft",
+     "de": "Haben Sie oft Urlaub, Frau Huber?",
+     "tr": "Sık sık izin yapıyor musunuz Huber Hanım?",
+     "accepted": [
+      "Haben Sie oft Urlaub, Frau Huber?",
+      "Frau Huber, haben Sie oft Urlaub?",
+      "Sie haben oft Urlaub, Frau Huber?",
+      "Machen Sie oft Urlaub, Frau Huber?"
+     ]
+    },
+    {
+     "kart": "lx:oft",
+     "de": "Wie oft gehen Sie zum Arzt?",
+     "tr": "Ne sıklıkla doktora gidiyorsunuz?",
+     "accepted": [
+      "Wie oft gehen Sie zum Arzt?",
+      "Wie oft gehen Sie denn zum Arzt?",
+      "Zum Arzt, wie oft gehen Sie?"
+     ]
+    },
+    {
+     "kart": "lx:sehr",
+     "de": "Herr Wimmer ist sehr oft im Büro.",
+     "tr": "Wimmer Bey çok sık ofiste.",
+     "accepted": [
+      "Herr Wimmer ist sehr oft im Büro.",
+      "Im Büro ist Herr Wimmer sehr oft.",
+      "Sehr oft ist Herr Wimmer im Büro."
+     ]
+    },
+    {
+     "kart": "lx:sehr",
+     "de": "Sehr gern, Herr Wimmer!",
+     "tr": "Seve seve Wimmer Bey!",
+     "accepted": [
+      "Sehr gern, Herr Wimmer!",
+      "Herr Wimmer, sehr gern!",
+      "Ja, sehr gern, Herr Wimmer!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Muayenehanenin kapısı kapalı. Eve dönünce merdivende Brandl Hanım'a soruyorsun.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Warum ist die Praxis heute geschlossen?",
+      "tr": "Muayenehane bugün neden kapalı?"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Heute ist der erste Mai. Am Montag ist die Praxis wieder offen.",
+      "tr": "Bugün bir mayıs. Pazartesi günü muayenehane yine açık."
+     }
+    ],
+    "soru": {
+     "q_tr": "Muayenehane bugün neden kapalı?",
+     "opts": [
+      "Bugün resmî tatil",
+      "Dr. Weber izinde",
+      "Öğle arası",
+      "Bugün çarşamba, öğleden sonra kapalı"
+     ],
+     "ans": 0,
+     "cikarim": true
+    }
+   }
+  }
+ ]
+}

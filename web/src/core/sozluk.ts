@@ -1,9 +1,10 @@
 /**
  * "Bu ne demek?" ve uzun basma için yerel sözlük (#58 A11): önce cihazdaki kartlar, yapay zekâ yalnızca isteğe bağlı ek.
- * Sıra: bütün ifade (kart, başlık ifadesi, eşdizim, örnek cümle) → tek kelime (çekimli biçimden kart, kartBul) →
- * cümlede kelime kelime anlamlar. Hiçbiri yoksa null (arayüz "sözlükte yok" der; varsa öğretmene sorma düğmesi).
+ * Sıra: bütün ifade (senaryonun iletişim kalıbı, kalıp örneği, kart, başlık ifadesi, eşdizim, örnek cümle) → tek kelime
+ * (çekimli biçimden kart, kartBul) → cümle: önce içindeki kalıplar BÜTÜN olarak ("Grüß Gott" = merhaba; "Gott" ayrıca
+ * açıklanmaz; PM finali #218), sonra kalan kelimeler tek tek. Hiçbiri yoksa null (arayüz "sözlükte yok" der).
  */
-import type { Lexeme } from "@dw/shared";
+import type { Chunk, Lexeme, Pattern } from "@dw/shared";
 import { norm } from "./grading.ts";
 import { kartBul } from "./medya.ts";
 
@@ -14,16 +15,77 @@ export interface YerelAciklama {
   art?: "der" | "die" | "das";
   /** ifade bir kartın eşdizimi ya da örneğiyse, o kartın kelimesi */
   kart?: string;
+  /** ne zaman söylenir (iletişim kalıbının açıklamasından; ör. "Güneyde selamlaşırken söylenir") */
+  not?: string;
+  /** cümlede bütün olarak açıklanan kalıplar (kelime kelime bölünmez) */
+  ifadeler?: { de: string; tr: string; not?: string }[];
   kelimeler?: { w: string; de: string; tr: string; art?: "der" | "die" | "das" }[];
+}
+
+/** Ek kaynaklar: oynatılan senaryonun iletişim kalıpları ve kalıp kayıtları */
+export interface YerelEk { chunks?: Chunk[]; patterns?: Pattern[] }
+interface Aday { de: string; tr: string; kart?: string; not?: string; t: string[] }
+
+/** Açıklamadaki **kalın** işaretini düz metne çevirir (yerel cevap düz metin gösterir) */
+const duz = (s?: string) => s?.replace(/\*\*/g, "").trim() || undefined;
+/** Yer tutucusuz ifadeler (yer tutucu: ___, …, [Name], {name}, "+ isim") */
+const ifadeMi = (de: string) => !/_{2,}|…|\.\.\.|\[|\{|\+/.test(de);
+const parcala = (s: string) => norm(s).split(" ").filter(Boolean);
+/**
+ * İşlev sözcükleri: yalnız bunlardan oluşan iki kelimelik kalıp ("ich nicht = ben değil") cümlede kalıp sayılmaz; "Das Wort kenne
+ * ich nicht" içinde yanlış eşleşir (inceleme #249 P1-1). Normalleştirilmiş biçimler (norm: ü → ue).
+ */
+const ISLEV = new Set("ich du er sie es wir ihr man nicht kein keine und oder aber denn das der die den dem des ein eine einen einem einer ist bin bist sind war hat habe hast haben zu im in an am auf mit von vom zum zur fuer bei ja nein so wie was wo nur auch noch schon mal bitte da hier dann jetzt sehr gut mir dir mich dich uns euch ihn ihm".split(" "));
+/** Ünlem ve soru kalıpları ("Wie bitte?", "Grüß Gott!") işlev sözcüğünden oluşsa da kalıptır (inceleme #249 2. tur) */
+const kalipMi = (x: { de: string; t: string[] }) => x.t.length >= 3 || (x.t.length === 2 && (/[?!]$/.test(x.de.trim()) || x.t.some((w) => !ISLEV.has(w))));
+function adayEkle(a: Aday[], de: string | undefined, tr: string | undefined, o: Partial<Aday> = {}) {
+  if (!de || !tr || !ifadeMi(de)) return;
+  const t = parcala(temiz(de));
+  if (t.length) a.push({ de: temiz(de), tr, t, ...o });
+}
+/** İletişim kalıpları (senaryo; açıklamasının "ne zaman" satırıyla) ve kalıp örnekleri: her çağrıda (küçük liste) */
+function ekAdaylar(ek: YerelEk): Aday[] {
+  const a: Aday[] = [];
+  for (const c of ek.chunks ?? []) {
+    const not = duz(c.exp?.ne_zaman_tr);
+    adayEkle(a, c.layers.hd, c.tr, { not });
+    // gündelik biçimin kendi anlamı varsa o (inceleme #249 P2)
+    adayEkle(a, c.layers.alltag, duz(c.alltag_exp?.anlam_tr) ?? c.tr, { not: duz(c.alltag_exp?.ne_zaman_tr) ?? not });
+    if (c.layers.bair?.status === "verified") adayEkle(a, c.layers.bair.text, c.tr, { not: duz(c.layers.bair.note_tr) ?? not });
+  }
+  for (const p of ek.patterns ?? []) for (const x of p.examples) adayEkle(a, x.de, x.tr);
+  return a;
+}
+/** Kartlardaki çok kelimeli ifadeler (başlık ifadesi, eşdizim): sözlük başına bir kez */
+const kartAday = new WeakMap<Lexeme[], Aday[]>();
+function kartAdaylar(lex: Lexeme[]): Aday[] {
+  let a = kartAday.get(lex);
+  if (a) return a;
+  a = [];
+  for (const l of lex) {
+    if (l.head) adayEkle(a, l.head.de, l.head.tr, { kart: l.de });
+    // kartın açıklaması eşdizimi **kalın** anıyorsa o cümle "ne zaman" notudur ("Güneyde selamlaşırken Grüß Gott dersin.")
+    const notlar = [l.exp?.ne_zaman_tr, l.exp?.ipucu_tr].filter((x): x is string => !!x);
+    for (const c of l.collocations) {
+      const n = norm(c.de);
+      const not = notlar.find((x) => [...x.matchAll(/\*\*([^*]+)\*\*/g)].some((m) => norm(m[1]!) === n));
+      adayEkle(a, c.de, c.tr, { kart: l.de, ...(not ? { not: duz(not) } : {}) });
+    }
+  }
+  kartAday.set(lex, a);
+  return a;
 }
 
 const temiz = (s: string) => s.replace(/[„“"»«()]/g, "").replace(/\s+/g, " ").trim();
 
-export function yerelAcikla(metin: string, lex: Lexeme[]): YerelAciklama | null {
+export function yerelAcikla(metin: string, lex: Lexeme[], ek: YerelEk = {}): YerelAciklama | null {
   const t = temiz(metin);
   const n = norm(t);
   if (!n) return null;
-  // 1) bütün ifade
+  const ekA = ekAdaylar(ek);
+  // 1) bütün ifade: önce iletişim kalıbı ve kalıp örneği (açıklamasıyla), sonra kartlar
+  const tam = ekA.find((x) => x.t.join(" ") === n);
+  if (tam) return { kaynak: "ifade", de: tam.de, tr: tam.tr, ...(tam.not ? { not: tam.not } : {}) };
   for (const l of lex) {
     if (norm(l.de) === n) return { kaynak: "ifade", de: l.de, tr: l.tr, art: l.art };
     if (l.head && norm(l.head.de) === n) return { kaynak: "ifade", de: l.head.de, tr: l.head.tr, kart: l.de };
@@ -40,13 +102,28 @@ export function yerelAcikla(metin: string, lex: Lexeme[]): YerelAciklama | null 
     const k = kartBul(sozler[0]!, lex);
     return k ? { kaynak: "kelime", de: k.de, tr: k.tr, art: k.art } : null;
   }
-  // 3) cümle: kelime kelime (aynı kart bir kez)
+  // 3) cümle: önce içindeki kalıplar bütün olarak (en uzun önce, örtüşmeden), sonra kalan kelimeler tek tek (aynı kart bir kez)
+  const tok = sozler.map((w) => norm(w));
+  const kapali = new Array<boolean>(tok.length).fill(false);
+  const bulunan: { i: number; x: Aday }[] = [];
+  // sıralama kararlı: aynı uzunlukta iletişim kalıbı karttan önce gelir
+  for (const x of [...ekA, ...kartAdaylar(lex)].filter((y) => kalipMi(y) && y.t.length <= tok.length).sort((p, q) => q.t.length - p.t.length)) {
+    for (let i = 0; i + x.t.length <= tok.length; i++) {
+      if (x.t.every((w, j) => tok[i + j] === w && !kapali[i + j])) {
+        // her geçiş kapanır (aynı kalıp ikinci kez geçerse kelime kelime bölünmez); listede bir kez
+        for (let j = 0; j < x.t.length; j++) kapali[i + j] = true;
+        if (!bulunan.some((b) => norm(b.x.de) === norm(x.de))) bulunan.push({ i, x });
+      }
+    }
+  }
+  const ifadeler = bulunan.sort((p, q) => p.i - q.i).map(({ x }) => ({ de: x.de, tr: x.tr, ...(x.not ? { not: x.not } : {}) }));
   const kelimeler: NonNullable<YerelAciklama["kelimeler"]> = [];
-  for (const w of sozler) {
+  sozler.forEach((w, i) => {
+    if (kapali[i]) return;
     const k = kartBul(w, lex);
     if (k && !kelimeler.some((x) => x.de === k.de)) kelimeler.push({ w: w.replace(/[.,!?;:]/g, ""), de: k.de, tr: k.tr, art: k.art });
-  }
-  return kelimeler.length ? { kaynak: "kelimeler", de: t, kelimeler } : null;
+  });
+  return kelimeler.length || ifadeler.length ? { kaynak: "kelimeler", de: t, ...(ifadeler.length ? { ifadeler } : {}), kelimeler } : null;
 }
 
 /** Uzun basılan noktadaki kelime (WebKit: caretRangeFromPoint; diğerleri: caretPositionFromPoint) */

@@ -66,7 +66,9 @@ function blockedLevel(skill: AssessSkill, level: Level, items: AssessItem[], ans
     const ans = answers.filter((a) => a.skill === skill && a.level === lower);
     if (ans.length < asked.length) continue; // alt seviye henüz bitmedi; sıra zaten ona gelir
     const ok = ans.filter((a) => a.correct).length;
-    if (asked.length && ok / asked.length < 0.5) return true;
+    // denetlenemeyen cevap paydaya girmez (yanlış sayılmaz)
+    const sayilan = asked.length - ans.filter((a) => a.unchecked).length;
+    if (sayilan > 0 && ok / sayilan < 0.5) return true;
   }
   return false;
 }
@@ -81,11 +83,14 @@ export function score(items: AssessItem[], answers: AssessAnswer[]): { results: 
   const results: SkillResult[] = [];
   for (const skill of SKILL_ORDER) {
     const byLevel = Object.fromEntries(LEVELS.map((l) => [l, { correct: 0, total: 0 }])) as SkillResult["byLevel"];
-    for (const a of answers.filter((x) => x.skill === skill)) { byLevel[a.level].total++; if (a.correct) byLevel[a.level].correct++; }
+    // denetlenemeyen cevap (yapay zekâ hatası) puana girmez: ne doğru ne yanlış
+    for (const a of answers.filter((x) => x.skill === skill && !x.unchecked)) { byLevel[a.level].total++; if (a.correct) byLevel[a.level].correct++; }
     // sorulmayan (uyarlama ile atlanan) üst seviye maddeleri yanlış sayılır
     for (const it of items.filter((i) => i.skill === skill)) if (!answers.some((a) => a.itemId === it.id)) byLevel[it.level].total++;
     let est: Level | "below-A1" = "below-A1";
-    for (const l of LEVELS) { const b = byLevel[l]; if (b.total && b.correct / b.total >= 0.6) est = l; else break; }
+    // bir seviyenin bütün cevapları denetlenemediyse o seviye ölçülemedi: tahmini kesmez, atlanır (inceleme #249 P1-2)
+    const olculemedi = (l: Level) => !byLevel[l].total && answers.some((a) => a.skill === skill && a.level === l && a.unchecked);
+    for (const l of LEVELS) { const b = byLevel[l]; if (olculemedi(l)) continue; if (b.total && b.correct / b.total >= 0.6) est = l; else break; }
     const total = LEVELS.reduce((s, l) => s + byLevel[l].total, 0);
     const correct = LEVELS.reduce((s, l) => s + byLevel[l].correct, 0);
     results.push({ skill, correct, total, byLevel, estimate: est, confidence: total >= 9 ? "high" : total >= 6 ? "medium" : "low" });
@@ -95,7 +100,7 @@ export function score(items: AssessItem[], answers: AssessAnswer[]): { results: 
   const med = sorted[Math.floor((sorted.length - 1) / 2)]!; // alt medyan: iyimser değil
   const overall = med === 0 ? "below-A1" : LEVELS[med - 1]!;
   const bySpeed: Partial<Record<Speed, { correct: number; total: number }>> = {};
-  for (const a of answers.filter((x) => x.skill === "listening")) {
+  for (const a of answers.filter((x) => x.skill === "listening" && !x.unchecked)) {
     const sp = (a.mode as Speed) || LISTEN_SPEED[a.level];
     const b = (bySpeed[sp] ||= { correct: 0, total: 0 }); b.total++; if (a.correct) b.correct++;
   }
