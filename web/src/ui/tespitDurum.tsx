@@ -57,9 +57,7 @@ export function useTespitDurumu(): { durum: "yok" | "baslamadi" | "yarida" | "bi
 }
 
 /** Bugün'de davet / sürdürme kartı: tespit bitmemiş ve karar uygulanmamışsa (paket yoksa görünmez) */
-export function TespitDavet({ d: dis }: { d?: ReturnType<typeof useTespitDurumu> } = {}) {
-  const ic = useTespitDurumu();
-  const d = dis === undefined ? ic : dis;
+export function TespitDavet({ d }: { d: ReturnType<typeof useTespitDurumu> }) {
   if (!d || d.durum === "bitti" || d.kayit.uygulandi) return null;
   const yarida = d.durum === "yarida";
   return (

@@ -4,7 +4,7 @@
  *    gösterilmez (#247 gibi); her cevap anında cihaza yazılır.
  *  - `TespitRaporu` (`#/seviye/rapor`): karar kartı, beceriler, haftalar, zayıf listeler, "Raporu kopyala", karara göre tek birincil.
  *  Bugün davet kartı, Ben durumu ve Ayarlar'daki elle değiştirme `ui/tespitDurum.tsx`. Ekranlar ana pakette (ayrı parça toplam JS
- *  bütçesini aşıyordu); deneme kartı `ui/denemeMadde.tsx` sınav günüyle ortak, sınav günü ekranı ayrı parçada kalır.
+ *  bütçesini aşıyordu; sınav günü ekranı da ana pakette); deneme kartı `ui/denemeMadde.tsx` sınav günüyle ortak.
  * Değerlendirme kural tabanlı (`drillVerdict`); denetlenemeyen cevapta yapay zekâ ikinci göz; sağlayıcı yoksa kural sonucu,
  * yapay zekâ düşerse madde sayılmaz (Assess #249 kuralı). "Bilmiyorum" yanlış sayılır.
  */
@@ -54,16 +54,17 @@ export function TespitEkrani() {
   const { v, setV, err, yenile } = useTespit();
   const [gorunum, setGorunum] = useState<"giris" | "madde" | { hafta: number; durum: "oturmus" | "zayif"; dk: number }>("giris");
   const [mesgul, setMesgul] = useState(false);
-  const [raporHata, setRaporHata] = useState(0);
+  const [raporHata, setRaporHata] = useState(false);
+  const [raporDeneme, setRaporDeneme] = useState(0);
   // plan bitti: rapor bir kez yazılır, sonra rapor ekranı (render içinde durum değişmez); son haftanın bölüm arası önce görünür
   const ara = typeof gorunum === "object";
   const bitti = !!v?.paket && (!!v.kayit.rapor || tespitPlani(v.paket, cevapMap(v.kayit)).asama === "bitti");
   useEffect(() => {
     if (!bitti || !v?.paket || ara) return;
     if (v.kayit.rapor) { go("seviye/rapor"); return; }
-    void raporKaydet(tespitRaporu(v.paket, cevapMap(v.kayit))).then(() => go("seviye/rapor"), () => setRaporHata((x) => (x > 0 ? -x : -1)));
-  }, [bitti, ara, raporHata > 0 ? raporHata : 0]);
-  if (raporHata < 0) return <div class="stack"><ProgressHeader title={BASLIK} back="#/today" /><ErrorPanel message="Raporun kaydedilemedi. Cevapların cihazda duruyor. Tekrar dene." onRetry={() => setRaporHata((x) => -x + 1)} /></div>;
+    void raporKaydet(tespitRaporu(v.paket, cevapMap(v.kayit))).then(() => go("seviye/rapor"), () => setRaporHata(true));
+  }, [bitti, ara, raporDeneme]);
+  if (raporHata) return <div class="stack"><ProgressHeader title={BASLIK} back="#/today" /><ErrorPanel message="Raporun kaydedilemedi. Cevapların cihazda duruyor. Tekrar dene." onRetry={() => { setRaporHata(false); setRaporDeneme((x) => x + 1); }} /></div>;
   if (err) return <div class="stack"><ProgressHeader title={BASLIK} back="#/today" /><ErrorPanel message={err} onRetry={yenile} /></div>;
   if (!v || !index) return <Loading />;
   if (!v.paket) return (

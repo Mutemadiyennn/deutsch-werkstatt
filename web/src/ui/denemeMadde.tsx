@@ -1,6 +1,6 @@
 /**
  * Düzey denemesinin madde kartı (sınav günü `screens/Sinav.tsx` ve seviye tespitinin dört beceri çekirdeği ortak).
- * Ana pakette durur (seviye tespiti ana pakette); sınav günü ekranının geri kalanı ayrı parçada kalır.
+ * Seviye tespiti ve sınav günü ekranı ana pakette (ayrı parçalar toplam JS bütçesini aşıyordu; #264).
  */
 import type { ComponentChildren } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";

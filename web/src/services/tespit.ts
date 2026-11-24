@@ -44,11 +44,10 @@ export async function tespitBekliyor(): Promise<boolean> {
 
 /** Rapor bir kez saklanır; A2 ve tamamlama kararında bilinmeyen kelimeler Kelime Bahçesi'nde hemen vadeli (PM-115 md. 3–4) */
 export async function raporKaydet(r: TespitRaporu): Promise<TespitKayit> {
+  // önce Bahçe (tekrar edilebilir): yazılamazsa rapor da yazılmaz, yeniden denemede kelimeler kaybolmaz (inceleme #264 2. tur P2-a);
   // "rapor var mı" denetimi yazım kuyruğunun içinde (çift tetik ya da iki sekme raporu iki kez yazmaz)
-  let yeni = false;
-  const k = await degistir((k) => { if (k.rapor) return k; yeni = true; return { ...k, rapor: { ...r, at: new Date().toISOString() } }; });
-  if (yeni && r.karar !== "bastan") await bahceyeKoy(r.bilinmeyenKelime);
-  return k;
+  if (!(await tespitOku()).rapor && r.karar !== "bastan") await bahceyeKoy(r.bilinmeyenKelime);
+  return degistir((k) => (k.rapor ? k : { ...k, rapor: { ...r, at: new Date().toISOString() } }));
 }
 async function bahceyeKoy(kartlar: readonly string[]) {
   if (!kartlar.length) return;
