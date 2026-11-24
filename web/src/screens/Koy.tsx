@@ -103,8 +103,13 @@ const haftaAd = (h: number) => (h === 1 ? "İlk Hafta" : `${h}. hafta`);
  * listesinde satır; `ciz` <li> döndürür).
  */
 function HaftaKatlari<T extends { day: number }>({ k, kap, ozet, ciz }: { k: Katlar<T>; kap: "kart" | "liste"; ozet: (l: T[]) => string; ciz: (l: T[]) => ComponentChildren }) {
+  // aynı anda tek hafta açık (eski haftalar satırı açıkken içinden bir hafta daha): açılmış hâl de kısa kalır (inceleme #265 P2-1)
   const [acik, setAcik] = useState<Set<number>>(new Set());
-  const cevir = (h: number) => setAcik((s) => { const x = new Set(s); if (x.has(h)) x.delete(h); else x.add(h); return x; });
+  const cevir = (h: number) => setAcik((s) => {
+    if (s.has(h)) { const x = new Set(s); x.delete(h); if (h === 0) for (const e of k.eski) x.delete(e.hafta); return x; }
+    const x = new Set<number>(h !== 0 && s.has(0) && k.eski.some((e) => e.hafta === h) ? [0] : []);
+    x.add(h); return x;
+  });
   // 0: eski haftalar satırı
   const satir = (anahtar: number, etiket: string, alt: string, vurgu: string | undefined, test: string) => {
     const ac = acik.has(anahtar);

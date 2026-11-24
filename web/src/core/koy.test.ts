@@ -161,6 +161,16 @@ describe("Köy: listeler haftaya göre katlanır (PM-122 md. 2.1)", () => {
     expect(k.eski.map((h) => h.hafta)).toEqual([1, 2, 3, 4, 5]);
     expect(katDokunus(k, () => 1)).toBe(1 + YAKIN_HAFTA + 7);
   });
+  it("açık haftadan önce 5 hafta: eski küme tek haftayla kurulmaz, beşi de ayrı satır (inceleme #265 P1-1); boşluklu haftalar", () => {
+    const k = haftaKatla(d(...Array.from({ length: 36 }, (_, i) => i + 1)));
+    expect(k.acik?.hafta).toBe(6);
+    expect(k.eski).toEqual([]); expect(k.yakin.map((h) => h.hafta)).toEqual([1, 2, 3, 4, 5]);
+    const b = haftaKatla(d(1, 15, 29, 36, 50, 64, 78));
+    expect(b.acik?.hafta).toBe(12);
+    expect(b.eski.map((h) => h.hafta)).toEqual([1, 3]);
+    expect(b.yakin.map((h) => h.hafta)).toEqual([5, 6, 8, 10]);
+    expect(haftaKatla(d(...Array.from({ length: 43 }, (_, i) => i + 1))).eski.map((h) => h.hafta)).toEqual([1, 2]);
+  });
   it("52 hafta (364 gün, gün başına bol kayıt): Sinema, Radyo, Kütüphane, Pazar ilk açılışta gezgin sınırının altında", () => {
     const CAP = Number(/^CAP = (\d+)/m.exec(readFileSync(new URL("../../../tests/e2e/gezgin.py", import.meta.url), "utf8"))![1]);
     expect(CAP).toBeGreaterThan(0);

@@ -114,7 +114,7 @@ export function acikAdimlar(gunler: readonly YolGunu[], tur: "okuma" | "prova"):
  * Köy listeleri haftaya göre katlanır (PM-122 md. 2.1, KAPI-İŞ 7122131212; Yol #243 gibi): listedeki en son hafta (açılmış
  * günlerden; içinde bulunulan hafta, o hafta bu mekânda öğe yoksa öğesi olan son hafta) açık gelir, öbür haftalar tek satır,
  * dokununca açılır. 52 haftada 51 satır tek başına gezginin ekran sınırına (80) yaklaşır: son `YAKIN_HAFTA` hafta ayrı satır,
- * daha eskiler tek satırda ("1.–N. hafta"), dokununca hafta satırları açılır. Liste yalnız açılmış günlerden gelir (#224 kuralı).
+ * daha eskiler (en az iki hafta) tek satırda ("1.–N. hafta"), dokununca hafta satırları açılır. Liste yalnız açılmış günlerden gelir (#224 kuralı).
  */
 export const YAKIN_HAFTA = 4;
 export interface HaftaKat<T> { hafta: number; ogeler: T[] }
@@ -124,7 +124,8 @@ export function haftaKatla<T extends { day: number }>(ogeler: readonly T[]): Kat
   for (const o of ogeler) { const h = haftaOf(o.day); const l = m.get(h); if (l) l.push(o); else m.set(h, [o]); }
   const kat = [...m].sort((a, b) => a[0] - b[0]).map(([hafta, l]) => ({ hafta, ogeler: l.slice().sort((a, b) => a.day - b.day) }));
   const acik = kat.pop() ?? null;
-  const kes = Math.max(0, kat.length - YAKIN_HAFTA);
+  // eski kümede tek hafta kalacaksa kümelenmez ("1.–1. hafta" yok; inceleme #265 P1-1): o hafta da ayrı satır
+  const kes = kat.length - YAKIN_HAFTA >= 2 ? kat.length - YAKIN_HAFTA : 0;
   return { acik, yakin: kat.slice(kes), eski: kat.slice(0, kes) };
 }
 /** ilk açılışta (hiçbir satır açılmamışken) listenin dokunulabilir öğe sayısı: eski haftalar satırı + yakın hafta satırları + açık haftanın öğeleri */
