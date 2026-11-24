@@ -6,8 +6,8 @@ import { useEffect, useState } from "preact/hooks";
 import { useApp } from "../state.ts";
 import { a2Var, etkinBaslangic, SEVIYE } from "../core/seviye.ts";
 import { haftaOf } from "../core/gun.ts";
-import { baslangicOku, baslangicYaz } from "../services/seviye.ts";
-import { tespitOku, type TespitKayit } from "../services/tespit.ts";
+import { baslangicOku } from "../services/seviye.ts";
+import { elleUygula, tespitBekliyor, tespitOku, type TespitKayit } from "../services/tespit.ts";
 
 const a2Hafta = haftaOf(SEVIYE.a2_ilk_gun);
 /* ---------- Ayarlar: başlangıç noktasını elle değiştir (sessiz) ---------- */
@@ -17,14 +17,15 @@ export function ElleBaslangic() {
   const [acik, setAcik] = useState(false);
   const [bas, setBas] = useState<number | null>(null);
   const [mesgul, setMesgul] = useState(false);
-  useEffect(() => { if (acik) void baslangicOku().then(setBas).catch(() => setBas(1)); }, [acik]);
+  const [bekliyor, setBekliyor] = useState(false);
+  useEffect(() => { if (!acik) return; void baslangicOku().then(setBas).catch(() => setBas(1)); void tespitBekliyor().then(setBekliyor).catch(() => setBekliyor(false)); }, [acik]);
   if (!index) return null;
   const days = index.m1.map((g) => g.day);
   const etkin = bas === null ? null : etkinBaslangic(days, bas);
   const a2 = a2Var(days);
   const uygula = async (g: number) => {
     if (mesgul) return; setMesgul(true);
-    try { const b = await baslangicYaz(g, index); setBas(b); toast(b <= 1 ? "1. günden başlıyorsun" : `${haftaOf(b)}. haftadan başlıyorsun`); }
+    try { const b = await elleUygula(g, index); setBas(b); setBekliyor(false); toast(b <= 1 ? "1. günden başlıyorsun" : `${haftaOf(b)}. haftadan başlıyorsun`); }
     catch { toast("Kaydedilemedi; tekrar dene."); }
     setMesgul(false);
   };
@@ -35,7 +36,7 @@ export function ElleBaslangic() {
       {etkin !== null && <p class="small muted" data-test="baslangic-simdi" style={{ margin: 0 }}>Şu an: <b>{baslangicAdi(etkin)}</b></p>}
       <p class="small" style={{ margin: 0 }}>Önerimiz seviye tespiti. Burada seçersen test yapmadan oradan başlarsın. Bitirdiğin günler ve kelimelerin kalır.</p>
       <div class="row" style={{ gap: 8 }}>
-        <button class="btn sm" data-test="elle-a1" disabled={mesgul || etkin === 1} onClick={() => void uygula(1)}>Baştan (A1)</button>
+        <button class="btn sm" data-test="elle-a1" disabled={mesgul || (etkin === 1 && !bekliyor)} onClick={() => void uygula(1)}>Baştan (A1)</button>
         <button class="btn sm" data-test="elle-a2" disabled={mesgul || !a2 || etkin === SEVIYE.a2_ilk_gun} onClick={() => void uygula(SEVIYE.a2_ilk_gun)}>A2'den ({a2Hafta}. hafta)</button>
       </div>
       {!a2 && <p class="tiny muted" style={{ margin: 0 }}>A2'nin günleri hazırlanıyor.</p>}
@@ -56,8 +57,9 @@ export function useTespitDurumu(): { durum: "yok" | "baslamadi" | "yarida" | "bi
 }
 
 /** Bugün'de davet / sürdürme kartı: tespit bitmemiş ve karar uygulanmamışsa (paket yoksa görünmez) */
-export function TespitDavet() {
-  const d = useTespitDurumu();
+export function TespitDavet({ d: dis }: { d?: ReturnType<typeof useTespitDurumu> } = {}) {
+  const ic = useTespitDurumu();
+  const d = dis === undefined ? ic : dis;
   if (!d || d.durum === "bitti" || d.kayit.uygulandi) return null;
   const yarida = d.durum === "yarida";
   return (
@@ -69,3 +71,6 @@ export function TespitDavet() {
     </section>
   );
 }
+
+/** Kurulumdan gelen ve henüz karar vermemiş öğrenci (gün kilidi; Bugün'de yol yerine tespit kartı) */
+export const tespitBekliyorMu = (d: ReturnType<typeof useTespitDurumu>) => !!d && !!d.kayit.kurulum && !d.kayit.uygulandi && d.durum !== "bitti";

@@ -4,6 +4,8 @@ import { RehberEkrani } from "./screens/Rehber.tsx";
 import { GorevlerEkrani } from "./ui/gorev.tsx";
 import { usePlan } from "./screens/Yol.tsx";
 import { TespitEkrani, TespitRaporu } from "./screens/Seviye.tsx";
+// Sınav günü ve seviye tespiti ana pakette: ayrı parçalar toplam JS bütçesini (300 KB gzip) aşıyordu (#264); ilk açılış payı yeterli
+import { SinavEkrani } from "./screens/Sinav.tsx";
 import { GunKapisi, HaftaSonucEkrani, HaftaTekrarEkrani, HaftaTestiEkrani } from "./screens/HaftaTesti.tsx";
 import { dondurmaKontrol } from "./services/gorev.ts";
 import { probeProvider } from "./services/ai.ts";
@@ -79,11 +81,6 @@ function AkisRota({ day }: { day: number }) {
 function DilNoktasiRota() {
   const m = useModul(() => (akisModul ??= within(import("./screens/Akis.tsx")).catch((e) => { akisModul = null; throw e; })));
   return m === "hata" ? yuklenemedi : m ? <m.DilNoktasiVitrin id={decodeURIComponent(location.hash.slice("#/__dil-noktasi/".length))} /> : <Loading />;
-}
-/** Sınav günü ekranı (PM-110) ayrı parçada: ilk açılış paketine girmez (JS bütçesi) */
-function SinavRota({ day, bolum }: { day: number; bolum?: string }) {
-  const m = useModul(() => within(import("./screens/Sinav.tsx")));
-  return m === "hata" ? yuklenemedi : m ? <m.SinavEkrani day={day} bolum={bolum} /> : <Loading />;
 }
 function HalkaTurRota() {
   const m = useModul(() => within(import("./screens/HalkaTurDeneme.tsx")));
@@ -212,7 +209,7 @@ export function App() {
     case "akis": screen = <GunKapisi key={location.hash} day={route.day}><AkisRota key={route.day} day={route.day} /></GunKapisi>; break;
     case "hafta": screen = <HaftaTestiEkrani key={route.hafta} hafta={route.hafta} />; break;
     case "haftaSonuc": screen = <HaftaSonucEkrani key={route.hafta} hafta={route.hafta} />; break;
-    case "sinav": screen = <GunKapisi key={location.hash} day={route.day}><SinavRota key={location.hash} day={route.day} bolum={route.bolum} /></GunKapisi>; break;
+    case "sinav": screen = <GunKapisi key={location.hash} day={route.day}><SinavEkrani key={location.hash} day={route.day} bolum={route.bolum} /></GunKapisi>; break;
     case "haftaTekrar": screen = <HaftaTekrarEkrani key={location.hash} hafta={route.hafta} gunler={route.gunler} />; break;
     case "seviye": screen = <TespitEkrani />; break;
     case "seviyeRapor": screen = <TespitRaporu />; break;

@@ -152,3 +152,29 @@ GERİ olanlar: S07, S08, S10 [PM], S16 (yalnız `≈` eki), S17, S27, S32, S44, 
 Bu PR'ın Türkçe metinleri bu haliyle "reviewed" sayılamaz (OD-9.4).
 
 Biçim notu (geri dönüş sebebi değil, karar yazar/PM'de): PM metinleri de içinde olmak üzere birçok satırda `;` var (S06, S10, S14, S22, S60, S64, S68, T10, H02, B02). OD-9.2'nin `;` yasağı açıklama alanları için yazıldı. Arayüz metnine uygulanıp uygulanmayacağına baş geliştirici ya da PM karar verir.
+
+## Fark turu (OD-9.4)
+
+Yalnızca ilk turda geri dönen ve düzeltilen satırlar ile iki yeni/ek metin okundu. S10, S27 ve S44 PM'e gittiği için bu turda okunmadı.
+
+| Kimlik | Yer | Yeni metin | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|
+| S07 | Seviye.tsx:94 | {n}/{t} bölüm bitti · yaklaşık {k} dk kaldı | Bölümlerin bir kısmını bitirdim, birkaç dakika kaldı. | GEÇTİ | `≈` gitti. |
+| S08 | Seviye.tsx:96 | Yaklaşık N dakika. Zorlandığın hafta olursa biraz uzar. | Test bu kadar sürer, zorlanırsam biraz daha uzun sürer. | GEÇTİ | İki kısa cümle, sembol yok. |
+| S16 | Seviye.tsx:118 | {N}. hafta: biraz daha bakalım (yaklaşık {dk} dk) | Bu haftada eksiğim var, birkaç dakika daha soru gelecek. | GEÇTİ | |
+| S17 | Seviye.tsx:119 | Bütün haftalar bitince bu haftadan birkaç soru daha gelecek. | Önce bütün haftalar bitecek, sonra bu haftadan ek sorular gelecek. | GEÇTİ | "Tarama" gitti; ne zaman olacağı belli. |
+| S32 | Seviye.tsx:234 | Uygulama mesajı tam puanlayamaz. Mesajını aşağıdaki örnekle karşılaştır. Her satır için puanını seç. Örnek tek doğru değildir. | Uygulama mesajımı değerlendiremiyor; aşağıdaki örnek mesaja bakıp her satıra kendim puan veriyorum. Benimki farklı olsa da doğru olabilir. | GEÇTİ | Dört kısa cümle, her biri tek iş. "Örnekle" artık emir gibi okunmuyor. |
+| S53 | Seviye.tsx:375 | Zorlandığın bir şey çıkmadı. | Zorlandığım bir şey yok. | GEÇTİ | |
+| T05 | tespitDurum.tsx:37 | Önerimiz seviye tespiti. Burada seçersen test yapmadan oradan başlarsın. Bitirdiğin günler ve kelimelerin kalır. | Test yapmamı öneriyorlar; burada seçersem testsiz, seçtiğim yerden başlarım. Eski ilerlemem silinmez. | GEÇTİ | |
+| H04 | HaftaTesti.tsx:208 | Seviye raporuna dönüp sonucunu görebilirsin. | Rapora dönüp sonucuma bakabilirim. | GEÇTİ | |
+| R07 | core/tespit.ts:215 | - {ad_tr \|\| "Dil noktası"} ({N}. hafta, {d}/{t}) | Zorlandığım dil konusu, hangi hafta, kaçını bildim. | GEÇTİ | İç kimlik artık görünmüyor. Ekrandaki S54 ile aynı yedek metin. |
+| S69 (yeni) | Seviye.tsx:66 | Raporun kaydedilemedi. Cevapların cihazda duruyor; tekrar dene. | Rapor kaydolmadı ama cevaplarım telefonda duruyor, bir daha deneyeyim. | GEÇTİ | Biçim notu: `;` (ilk turdaki gibi geri dönüş sebebi değil). |
+| H01–H03 (değişmedi) | HaftaTesti.tsx:122–123 | Kilit ekranı: {N}. gün / Önce seviyeni görelim / Seviye tespitini bitirince günlerin açılır; nereden başlayacağını o gösterir. / Seviye tespitine git | Testi bitirmeden dersler açılmaz; test nereden başlayacağımı söyler. | GEÇTİ | İlk turdaki karar aynı. |
+
+### Fark turu sonucu
+
+- Okunan: **11** (9 düzeltme + 1 yeni metin + değişmeyen kilit ekranı)
+- GEÇTİ: **11**
+- GERİ: **0**
+
+Okur tarafında açık madde kalmadı. Açık kalanlar S10, S27 ve S44: PM metni olarak PM'de. Bu üç madde kapanmadan PR'ın Türkçe metinleri bütünüyle "reviewed" sayılmaz (OD-9.4).

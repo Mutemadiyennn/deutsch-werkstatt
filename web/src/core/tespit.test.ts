@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import type { TespitCozulen, TespitPaket } from "@dw/shared";
-import { bolumler, bolumSayaci, raporMetni, taramaPlani as tp, haftaDurumu as hdu, derinPlani as dp, tespitPlani as tpl, tespitRaporu as tr, tespitKarari as tk, kelimeOrnegi, TESPIT as TESPIT8, BECERILER, type Sonuc, type Cevaplar } from "./tespit.ts";
+import { bolumler, bolumSayaci, haftaDerinDk, raporMetni, tespitDegerlendir, taramaPlani as tp, haftaDurumu as hdu, derinPlani as dp, tespitPlani as tpl, tespitRaporu as tr, tespitKarari as tk, kelimeOrnegi, TESPIT as TESPIT8, BECERILER, type Sonuc, type Cevaplar } from "./tespit.ts";
 
 /** fikstür paketi iki haftalık: A1 = 2 hafta sayılır (gerçek politika 8; eksik hafta ayrı testte) */
 const TESPIT = { ...TESPIT8, a1_hafta: 2 };
@@ -202,5 +202,25 @@ describe("seviye tespiti motoru (PM-115)", () => {
     expect(t).toContain("Karar: A2");
     expect(t).toContain("- dil: ölçülmedi (0/0)");
     expect(t).not.toMatch(/[<>{}]/);
+  });
+  it("tespitDegerlendir: kural esas; denetlenemeyende yapay zekâ ikinci göz; sağlayıcı yok → yanlış, sigorta/hata → sayılmadı; ad gitmez", async () => {
+    const kisi = { name: "Ayşe" };
+    const x = { istem: "Ayşe, komşuna selam ver.", kabul: ["Hallo, ich bin Ayşe."], cevap: "Servus, ich bin Ayşe." };
+    const giden: unknown[] = [];
+    const sor = async (v: { prompt_tr: string; expected: string[]; answer: string }) => { giden.push(v); return { ok: true }; };
+    expect(await tespitDegerlendir("correct", x, { available: false }, sor, kisi)).toBe("dogru");
+    expect(await tespitDegerlendir("wrong", x, { available: true }, sor, kisi)).toBe("yanlis");
+    expect(giden).toHaveLength(0); // kural karar verdiyse yapay zekâya sorulmaz
+    expect(await tespitDegerlendir("unchecked", x, { available: false }, sor, kisi)).toBe("yanlis"); // yapay zekâsız sürüm
+    expect(await tespitDegerlendir("unchecked", x, { available: false, openUntil: Date.now() + 60000 }, sor, kisi)).toBe("sayilmadi");
+    expect(await tespitDegerlendir("unchecked", x, { available: true }, async () => { throw new Error("500"); }, kisi)).toBe("sayilmadi");
+    expect(await tespitDegerlendir("unchecked", x, { available: true }, async () => ({ ok: false }), kisi)).toBe("yanlis");
+    expect(await tespitDegerlendir("unchecked", x, { available: true }, sor, kisi)).toBe("dogru");
+    expect(JSON.stringify(giden)).not.toContain("Ayşe"); // istem, kabul ve cevap redact (D-061)
+    expect(JSON.stringify(giden)).toContain("[Name]");
+  });
+  it("haftaDerinDk: zayıf haftanın kendi derin bakış süresi (en az 1 dk)", () => {
+    expect(haftaDerinDk(PAKET, 1)).toBeGreaterThanOrEqual(1);
+    expect(haftaDerinDk(PAKET, 1)).toBeGreaterThanOrEqual(haftaDerinDk(PAKET, 2));
   });
 });

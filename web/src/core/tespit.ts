@@ -12,6 +12,7 @@
  */
 import { derinSec, type TespitBeceri, type TespitCozulen, type TespitPaket } from "@dw/shared";
 import POLICY from "../policy.json" with { type: "json" };
+import { redact, type Persona } from "./persona.ts";
 
 export const TESPIT = POLICY.seviye_tespiti;
 export type TespitPolitika = typeof TESPIT;
@@ -214,4 +215,28 @@ export function raporMetni(r: TespitRaporu, adlar: { beceri: Record<TespitBeceri
   if (r.zayifDilNoktasi.length) { satir.push("", "Dil noktaları:"); for (const z of r.zayifDilNoktasi) satir.push(`- ${z.ad_tr || "Dil noktası"} (${z.hafta}. hafta, ${z.dogru}/${z.toplam})`); }
   satir.push("", `Bilmediğin kelimeler: ${r.bilinmeyenKelime.length}`);
   return satir.join("\n");
+}
+
+/** Zayıf haftanın derin bakış süresi (dk; bölüm arası "yaklaşık N dk") */
+export const haftaDerinDk = (p: TespitPaket, hafta: number, P: TespitPolitika = TESPIT) => Math.max(1, dk(derinPlani(p, [hafta], P), P));
+
+/**
+ * Cevabın tespit sonucu (PM-115 md. 1, PM-112 A): kural kararı esastır; kuralın denetleyemediği cevapta yapay zekâ ikinci göz.
+ * Sağlayıcı hiç yoksa (yapay zekâsız sürüm) kural sonucu = yanlış; sigorta açıksa ya da istek düşerse "sayilmadi" (puana girmez).
+ * Yapay zekâya ad gitmez: istem, kabuller ve cevap `redact` edilir (D-061).
+ */
+export async function tespitDegerlendir(
+  kural: "correct" | "wrong" | "unchecked",
+  x: { istem: string; kabul: readonly string[]; cevap: string },
+  yz: { available: boolean; openUntil?: number },
+  sor: (v: { prompt_tr: string; expected: string[]; answer: string }) => Promise<{ ok: boolean }>,
+  persona: Persona
+): Promise<Sonuc> {
+  if (kural === "correct") return "dogru";
+  if (kural === "wrong") return "yanlis";
+  if (!yz.available) return yz.openUntil ? "sayilmadi" : "yanlis";
+  try {
+    const r = await sor({ prompt_tr: redact(x.istem, persona).slice(0, 300), expected: x.kabul.slice(0, 6).map((k) => redact(k, persona)), answer: redact(x.cevap, persona).slice(0, 300) });
+    return r.ok ? "dogru" : "yanlis";
+  } catch { return "sayilmadi"; }
 }

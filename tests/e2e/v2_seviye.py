@@ -5,7 +5,9 @@ A1 seviye tespiti ekranları (PM-115 PR 2b; hedef ekran PM-120 md. 4). e2e fikst
      → A2'ye başla → Bugün 57. gün; yapay zekâya hiç istek yok (kural tabanlı); Ben'den rapor yeniden açılır
   B) 3. ve 5. haftanın taraması "Bilmiyorum" → yalnız o iki hafta "biraz daha bakalım" + derin bakış → "tamamlama planı"
      → Planımı gör (PR 3'e kadar zayıf günlerin tekrarı); A2 açılmaz
-  C) ilk kurulumda gün kilidi (tespit bitmeden gün açılmaz) → hepsi "Bilmiyorum" → "A1'i baştan" → A1'e baştan başla → 1. gün
+  C) ilk kurulumda gün kilidi (tespit bitmeden gün açılmaz) → hepsi "Bilmiyorum" ("Şimdilik bırak" → Bugün → Sürdür)
+     → "A1'i baştan" → A1'e baştan başla → 1. gün
+  D) kurulumdan gelen öğrenci bir cevaptan sonra Ayarlar'da elle "Baştan (A1)" → kilit kalkar, Bugün 1. gün
 python3 tests/e2e/v2_seviye.py [--browser webkit] [--device "iPhone 15"] [--scheme dark] [--shots DIR]
 """
 from playwright.sync_api import sync_playwright
@@ -51,7 +53,7 @@ def cevapla(pg, kip):
     pg.fill("[data-test=answer]", cev); pg.click("[data-test=submit]")
 
 
-def coz(pg, kip_sec, sema, ad, reload_at=None):
+def coz(pg, kip_sec, sema, ad, reload_at=None, birak=False):
     """Tespiti rapora kadar çöz. kip_sec(m) → 'dogru' | 'bilmiyorum'. Döner: (maddeler, aralar)"""
     goruldu, aralar, n = [], [], 0
     while n < 200:
@@ -62,6 +64,13 @@ def coz(pg, kip_sec, sema, ad, reload_at=None):
             aralar.append(a)
             if len(aralar) == 1 or (a["d"] == "zayif" and not any(x["d"] == "zayif" for x in aralar[:-1])):
                 no_overflow(pg, f"bölüm arası ({a['d']})"); shot(pg, f"tespit-ara-{a['d']}-{sema}", full=False)
+            if birak and a["d"] == "zayif":
+                # "Şimdilik bırak" → Bugün; davet kartı "Sürdür" ile geri getirir (kilitli öğrencide yol görünmez)
+                birak = False
+                pg.click("[data-test=tespit-birak]"); pg.wait_for_selector("[data-test=tespit-davet]", timeout=15000)
+                check("yarıda" in pg.inner_text("[data-test=tespit-davet]") and pg.locator("[data-test=yol]").count() == 0, "Şimdilik bırak: Bugün'de 'yarıda' kartı, yol gizli (gün kilitli)")
+                pg.click("[data-test=tespit-davet-git]"); pg.wait_for_selector("[data-test=tespit-surdur]"); pg.click("[data-test=tespit-surdur]")
+                continue
             pg.click("[data-test=tespit-devam]"); continue
         m = madde(pg); goruldu.append(m)
         if n == 1:
@@ -181,7 +190,7 @@ def main():
         pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=tespit-davet]", timeout=20000)
         check("Önce seviyeni görelim" in pg.inner_text("[data-test=tespit-davet]"), "Bugün'de tespit kartı")
         pg.click("[data-test=tespit-davet-git]"); pg.wait_for_selector("[data-test=tespit-giris]"); pg.click("[data-test=tespit-basla]")
-        goruldu, aralar = coz(pg, lambda m: "bilmiyorum", sema, "c")
+        goruldu, aralar = coz(pg, lambda m: "bilmiyorum", sema, "c", birak=True)
         check(all(a["d"] == "zayif" for a in aralar) and len(aralar) == 8, "hepsi zayıf")
         r = rapor(pg)
         check(r["karar"] == "bastan" and "A1'i baştan" in r["metin"], f"karar: baştan ({r['karar']})")
@@ -190,6 +199,25 @@ def main():
         check(yolgun(pg) == ["gun-1"], f"A1'e baştan: Bugün 1. gün ({yolgun(pg)})")
         pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=gun-kilitli-tespit], [data-test=gun-kilitli], [data-test=garden-intro], [data-test^=gq-], [data-test=garden-empty], [data-test=garden-done], [data-test=hizli-oneri]", timeout=20000)
         check(pg.locator("[data-test=gun-kilitli-tespit]").count() == 0, "karardan sonra gün kilidi kalktı")
+        b.close()
+
+        # ---------- D) kurulumdan gelen öğrenci elle başlangıçla kilidi kaldırır (inceleme #264 P1-1) ----------
+        print("D) kurulum → bir cevap → Ayarlar'da elle 'Baştan (A1)' → kilit kalkar")
+        b, ctx = launch(p, color_scheme=sema); pg = new_page(ctx)
+        ctx.add_init_script("try { sessionStorage.setItem('e2e-gun-kilidi', 'acik'); } catch (e) {}")
+        login_onboard(pg, PORT, tespit=True); pg.click("[data-test=tespit-basla]")
+        pg.wait_for_selector("[data-test=tespit-madde]"); cevapla(pg, "bilmiyorum")
+        pg.wait_for_function("() => document.querySelector('[data-test=tespit-madde]')?.dataset.adim !== 'a1d:d1:01'", timeout=15000)
+        pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=tespit-davet]", timeout=15000)
+        check(pg.locator("[data-test=yol]").count() == 0, "kilitli öğrencide Bugün'de yol ve BAŞLA yok, yalnız tespit kartı")
+        pg.goto(base + "#/ben/ayarlar"); pg.wait_for_selector("[data-test=elle-baslangic]", timeout=15000)
+        pg.click("[data-test=elle-baslangic]"); pg.wait_for_selector("[data-test=baslangic-simdi]")
+        check(not pg.locator("[data-test=elle-a1]").is_disabled(), "kilitliyken 'Baştan (A1)' seçilebilir")
+        pg.click("[data-test=elle-a1]"); pg.wait_for_timeout(800)
+        pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=gun-kilitli-tespit], [data-test=gun-kilitli], [data-test=garden-intro], [data-test^=gq-], [data-test=garden-empty], [data-test=garden-done], [data-test=hizli-oneri]", timeout=20000)
+        check(pg.locator("[data-test=gun-kilitli-tespit]").count() == 0, "elle seçimden sonra gün kilidi kalktı")
+        pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=next-activity]", timeout=20000)
+        check(pg.locator("[data-test=tespit-davet]").count() == 0 and yolgun(pg) == ["gun-1"], f"Bugün: davet yok, 1. gün ({yolgun(pg)})")
         b.close()
     srv.shutdown()
     finish()

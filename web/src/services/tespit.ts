@@ -44,10 +44,11 @@ export async function tespitBekliyor(): Promise<boolean> {
 
 /** Rapor bir kez saklanır; A2 ve tamamlama kararında bilinmeyen kelimeler Kelime Bahçesi'nde hemen vadeli (PM-115 md. 3–4) */
 export async function raporKaydet(r: TespitRaporu): Promise<TespitKayit> {
-  const once = await tespitOku();
-  if (once.rapor) return once;
-  if (r.karar !== "bastan") await bahceyeKoy(r.bilinmeyenKelime);
-  return degistir((k) => ({ ...k, rapor: { ...r, at: new Date().toISOString() } }));
+  // "rapor var mı" denetimi yazım kuyruğunun içinde (çift tetik ya da iki sekme raporu iki kez yazmaz)
+  let yeni = false;
+  const k = await degistir((k) => { if (k.rapor) return k; yeni = true; return { ...k, rapor: { ...r, at: new Date().toISOString() } }; });
+  if (yeni && r.karar !== "bastan") await bahceyeKoy(r.bilinmeyenKelime);
+  return k;
 }
 async function bahceyeKoy(kartlar: readonly string[]) {
   if (!kartlar.length) return;
@@ -63,6 +64,15 @@ async function bahceyeKoy(kartlar: readonly string[]) {
 export async function kararUygula(karar: "a2" | "bastan", index: ContentIndex, yanlis: readonly Drill[] = []): Promise<number> {
   const g = await baslangicYaz(karar === "a2" ? SEVIYE.a2_ilk_gun : 1, index, karar === "a2" ? yanlis : []);
   await degistir((k) => ({ ...k, uygulandi: karar }));
+  return g;
+}
+/**
+ * Ayarlar'ın dibindeki elle seçim: başlangıcı yazar ve kararı not eder (kurulumdan gelen öğrencinin gün kilidi kalkar;
+ * inceleme #264 P1-1). Döner: uygulanan başlangıç günü.
+ */
+export async function elleUygula(gun: number, index: ContentIndex): Promise<number> {
+  const g = await baslangicYaz(gun, index);
+  await degistir((k) => ({ ...k, uygulandi: g >= SEVIYE.a2_ilk_gun ? "a2" : "bastan" }));
   return g;
 }
 /** "Planımı gör" (PR 3'e kadar zayıf günlerin tekrarı): karar not edilir, başlangıç değişmez, A2 kapalı kalır */

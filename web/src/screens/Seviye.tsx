@@ -3,7 +3,8 @@
  *  - `TespitEkrani` (`#/seviye`): (a) giriş / sürdür, (b) madde + "Bilmiyorum", (c) bölüm arası. Madde sonrası doğru/yanlış
  *    gösterilmez (#247 gibi); her cevap anında cihaza yazılır.
  *  - `TespitRaporu` (`#/seviye/rapor`): karar kartı, beceriler, haftalar, zayıf listeler, "Raporu kopyala", karara göre tek birincil.
- *  Bugün davet kartı, Ben durumu ve Ayarlar'daki elle değiştirme ana pakette: `ui/tespitDurum.tsx`. Bu modül ayrı parçada yüklenir.
+ *  Bugün davet kartı, Ben durumu ve Ayarlar'daki elle değiştirme `ui/tespitDurum.tsx`. Ekranlar ana pakette (ayrı parça toplam JS
+ *  bütçesini aşıyordu); deneme kartı `ui/denemeMadde.tsx` sınav günüyle ortak, sınav günü ekranı ayrı parçada kalır.
  * Değerlendirme kural tabanlı (`drillVerdict`); denetlenemeyen cevapta yapay zekâ ikinci göz; sağlayıcı yoksa kural sonucu,
  * yapay zekâ düşerse madde sayılmaz (Assess #249 kuralı). "Bilmiyorum" yanlış sayılır.
  */
@@ -12,16 +13,16 @@ import type { DenemeMadde, Drill, Lexeme, TespitBeceri, TespitPaket } from "@dw/
 import { mesajOlcutleri } from "@dw/shared";
 import { go, useApp } from "../state.ts";
 import { a2Var, SEVIYE } from "../core/seviye.ts";
-import { BECERILER, bolumler, bolumSayaci, haftaDurumu, raporMetni, tahminiDk, tespitPlani, tespitRaporu, TESPIT, type Adim, type Cevaplar, type Karar, type Sonuc, type TespitRaporu as Rapor } from "../core/tespit.ts";
+import { BECERILER, bolumler, bolumSayaci, haftaDerinDk, haftaDurumu, raporMetni, tahminiDk, tespitDegerlendir, tespitPlani, tespitRaporu, TESPIT, type Adim, type Cevaplar, type Karar, type Sonuc, type TespitRaporu as Rapor } from "../core/tespit.ts";
 import { formPuani, olcutSecenekleri } from "../core/deneme.ts";
 import { haftaOf } from "../core/gun.ts";
-import { personalizeDeep, redact } from "../core/persona.ts";
+import { personalizeDeep } from "../core/persona.ts";
 import { loadLexicon, loadTespit } from "../services/content.ts";
 import { cevapYaz, kararUygula, raporKaydet, tamamlaNotEt, tespitOku, type TespitKayit } from "../services/tespit.ts";
 import { ai, aiState } from "../services/ai.ts";
 import { sttAvailable } from "../services/speech.ts";
 import { DrillIstem, drillVerdict, KICKER, OrderChips } from "../ui/drill.tsx";
-import { MaddeView } from "./Sinav.tsx";
+import { MaddeView } from "../ui/denemeMadde.tsx";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
 import { ActionBar, AnswerField, ListenButton, MicButton, ProgressHeader } from "../ui/kit.tsx";
 import { Rich } from "../ui/rich.tsx";
@@ -53,14 +54,16 @@ export function TespitEkrani() {
   const { v, setV, err, yenile } = useTespit();
   const [gorunum, setGorunum] = useState<"giris" | "madde" | { hafta: number; durum: "oturmus" | "zayif"; dk: number }>("giris");
   const [mesgul, setMesgul] = useState(false);
+  const [raporHata, setRaporHata] = useState(0);
   // plan bitti: rapor bir kez yazılır, sonra rapor ekranı (render içinde durum değişmez); son haftanın bölüm arası önce görünür
   const ara = typeof gorunum === "object";
   const bitti = !!v?.paket && (!!v.kayit.rapor || tespitPlani(v.paket, cevapMap(v.kayit)).asama === "bitti");
   useEffect(() => {
     if (!bitti || !v?.paket || ara) return;
     if (v.kayit.rapor) { go("seviye/rapor"); return; }
-    void raporKaydet(tespitRaporu(v.paket, cevapMap(v.kayit))).then(() => go("seviye/rapor"), () => toast("Rapor kaydedilemedi; tekrar dene."));
-  }, [bitti, ara]);
+    void raporKaydet(tespitRaporu(v.paket, cevapMap(v.kayit))).then(() => go("seviye/rapor"), () => setRaporHata((x) => (x > 0 ? -x : -1)));
+  }, [bitti, ara, raporHata > 0 ? raporHata : 0]);
+  if (raporHata < 0) return <div class="stack"><ProgressHeader title={BASLIK} back="#/today" /><ErrorPanel message="Raporun kaydedilemedi. Cevapların cihazda duruyor. Tekrar dene." onRetry={() => setRaporHata((x) => -x + 1)} /></div>;
   if (err) return <div class="stack"><ProgressHeader title={BASLIK} back="#/today" /><ErrorPanel message={err} onRetry={yenile} /></div>;
   if (!v || !index) return <Loading />;
   if (!v.paket) return (
@@ -136,7 +139,7 @@ export function TespitEkrani() {
       // haftanın taraması bitti: bölüm arası (yüzde yok)
       if (b.tur === "tarama" && b.adimlar.every((x) => yeni.has(x.id)) && b.hafta !== null) {
         const d = haftaDurumu(paket, b.hafta, yeni);
-        if (d !== "eksik") setGorunum({ hafta: b.hafta, durum: d, dk: tahminiDk(paket).hafta_basi_derin || 5 });
+        if (d !== "eksik") setGorunum({ hafta: b.hafta, durum: d, dk: haftaDerinDk(paket, b.hafta) });
       }
     } catch { toast("Cevap kaydedilemedi; tekrar dene."); }
   };
@@ -150,22 +153,12 @@ export function TespitEkrani() {
 }
 
 /* ---------- madde kartları ---------- */
-/** Denetlenemeyen cevap: yapay zekâ ikinci göz; sağlayıcı yoksa kural sonucu (yanlış), yapay zekâ düştüyse "sayılmadı" */
+/** Kural kararı + yapay zekâ ikinci göz (`tespitDegerlendir`, saf ve sınanmış; istem, kabul ve cevap redact edilir) */
 function useDegerlendir() {
   const { api, profile } = useApp();
   const persona = { name: profile.displayName, address: profile.address };
-  return async (d: Drill, cevap: string, typed: boolean, istem: string): Promise<Sonuc> => {
-    const v = drillVerdict(d, cevap, typed);
-    if (v.kind === "correct") return "dogru";
-    if (v.kind === "wrong") return "yanlis";
-    const st = aiState(api);
-    if (!st.available) return st.openUntil ? "sayilmadi" : "yanlis";
-    const kabul = "accepted" in d ? d.accepted : [];
-    try {
-      const r = await ai(api, "equiv_check", { prompt_tr: istem.slice(0, 300), expected: kabul.slice(0, 6).map((x) => redact(x, persona)), answer: redact(cevap, persona).slice(0, 300) });
-      return r.ok ? "dogru" : "yanlis";
-    } catch { return "sayilmadi"; }
-  };
+  return (d: Drill, cevap: string, typed: boolean, istem: string): Promise<Sonuc> =>
+    tespitDegerlendir(drillVerdict(d, cevap, typed).kind, { istem, kabul: "accepted" in d ? d.accepted : [], cevap }, aiState(api), (v) => ai(api, "equiv_check", v), persona);
 }
 const ACIK = TESPIT.acik_uclu_dogru;
 
@@ -224,7 +217,7 @@ function DenemeKarti({ m, onCevap }: { m: DenemeMadde; onCevap: (s: Sonuc) => vo
   const bil = <Bilmiyorum onClick={() => onCevap("bilmiyorum")} />;
   if (m.k === "pick" || m.k === "form" || (m.k === "mesaj" && yazi === null)) return (
     <div class="tespit-kart">
-      <MaddeView m={m} kisim={{ dinleme_sayisi: 2 }} kontrol="Kontrol et" ek={bil} onDone={(c) => {
+      <MaddeView m={m} kisim={{ dinleme_sayisi: 2 }} kontrol="Kontrol et" ek={bil} onDone={(c: unknown) => {
         if (m.k === "pick") onCevap(c === m.ans ? "dogru" : "yanlis");
         else if (m.k === "form") onCevap(formPuani(m, c as Record<string, string>) / (m.alanlar.reduce((s, x) => s + x.puan, 0) || 1) >= ACIK ? "dogru" : "yanlis");
         else { setYazi(String(c)); window.scrollTo(0, 0); }
@@ -242,7 +235,7 @@ function DenemeKarti({ m, onCevap }: { m: DenemeMadde; onCevap: (s: Sonuc) => vo
         <div class="small">Senin mesajın:</div>
         <div class="sinav-metin selectable" lang="de" style={{ whiteSpace: "pre-wrap" }}>{yazi}</div>
         <div class="small">Örnek mesaj:</div>
-        <div class="sinav-metin selectable" lang="de">{m.ornek_de.replace(/\{name\}/g, "(adın)")}</div>
+        <div class="sinav-metin selectable" lang="de">{m.ornek_de}</div>
         {ol.map((o, i) => (
           <div class="stack" style={{ gap: 6 }}>
             <div class="small"><b>{o.ad} ({o.puan} puan):</b> <Rich text={o.tr} /></div>
@@ -263,8 +256,11 @@ function DenemeKarti({ m, onCevap }: { m: DenemeMadde; onCevap: (s: Sonuc) => vo
 /** Kelime örneği: dinle → anlam (haftanın kartlarından üç çeldirici, kararlı sıra) */
 function KelimeKarti({ a, paket, onCevap }: { a: Adim; paket: TespitPaket; onCevap: (s: Sonuc) => void }) {
   const [lex, setLex] = useState<Map<string, Lexeme> | null>(null);
+  const [lexHata, setLexHata] = useState<string | null>(null);
+  const [n, setN] = useState(0);
   const [sec, setSec] = useState<number | null>(null);
-  useEffect(() => { void loadLexicon().then((x) => setLex(new Map(x.lexemes.map((l) => [l.id, l])))).catch(() => setLex(new Map())); }, []);
+  // sözlük yüklenemezse madde "sayılmadı" yazılmaz: hata ve yeniden dene (yalnız sözlükte olmayan kart sayılmaz)
+  useEffect(() => { setLexHata(null); void loadLexicon().then((x) => setLex(new Map(x.lexemes.map((l) => [l.id, l])))).catch((e) => setLexHata(String(e?.message || e))); }, [n]);
   const secenek = useMemo(() => {
     if (!lex) return null;
     const l = lex.get(a.kart!);
@@ -285,6 +281,7 @@ function KelimeKarti({ a, paket, onCevap }: { a: Adim; paket: TespitPaket; onCev
   }, [lex, a.kart]);
   // sözlükte olmayan kart ölçülemez: sayılmaz, sıradakine geçilir
   useEffect(() => { if (lex && !secenek) onCevap("sayilmadi"); }, [lex, secenek]);
+  if (lexHata) return <ErrorPanel message={lexHata} onRetry={() => setN((x) => x + 1)} />;
   if (!secenek) return <Loading />;
   return (
     <section class="card stack fade tespit-kart" data-test="tespit-kelime" {...(E2E ? { "data-dogru": secenek.ans } : {})}>
