@@ -15,6 +15,7 @@ import { klipVideolari } from "./klip.ts";
 import { notoDosya, notoSvg } from "./emoji.ts";
 import { tmpdir } from "node:os";
 import { fotoPaketle, type FotoKaydi } from "./medya.ts";
+import { kesinPaketi, type KesinPaket } from "./kesin.ts";
 
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
@@ -57,8 +58,17 @@ try {
   }
 } catch (e) { console.error(String(e)); process.exit(1); }
 
+// PM-092 md. 1: haftaların dil noktaları (dn-HH.json) tek dosyada; uygulama dil noktası durağını ve kume tablosunu buradan kurar
+const dnNotlar = c.dn.flatMap((x) => x.data);
+// PM-100 md. 2: kesin kelime tabloları (curriculum/*-kesin.json) → gün → {kartlar, dersler}. Uygulama yalnız önceki günün dosyası
+// pakette YOKSA kullanır (K(t) tamamlama; doğrulayıcı ve hafta kapısıyla aynı kaynak). Dosya varken ölçü cihazda görülen karttır.
+let kesinGunler: KesinPaket;
+try { kesinGunler = kesinPaketi(join(ROOT, "content/v2/curriculum")); } catch (e) { console.error(String(e)); process.exit(1); }
+
 const payload = {
   m1: days.map((d) => d.data),
+  dn: dnNotlar,
+  kesin: kesinGunler,
   temel: c.temel.map((t) => t.data),
   lexemes: c.lexemes,
   grammar: c.grammar,
@@ -128,6 +138,8 @@ mkdirSync(join(dir, "scenarios"), { recursive: true });
 const w = (p: string, v: unknown) => writeFileSync(join(dir, p), JSON.stringify(v));
 w("lexemes.json", { lexemes: c.lexemes, patterns: c.patterns });
 w("grammar.json", c.grammar);
+w("dn.json", dnNotlar);
+w("kesin.json", { gunler: kesinGunler });
 w("assess.json", c.assess);
 // B12 3. parça: seçilmiş açık fotoğraflar (kapalı medya pakete girmez; raftan gelir, D-112)
 if (acik) w("foto.json", { ...acik, foto: fotoPaket.yaz(version) });
@@ -160,7 +172,7 @@ const index: ContentIndex = {
     kartlar: g.yeni_kartlar.filter((id) => { const l = lexById.get(id); return !!l && kartMi(l); }), medya: medyalar(g).map((m) => ({ id: m.id, kind: m.kind, title_tr: m.title_tr })) })),
   temel: temel.map((t) => ({ id: t.id, order: t.order, title_tr: t.title_tr, title_de: t.title_de, review: t.review.status })),
   counts: { lexemes: c.lexemes.length, grammar: c.grammar.length, assess: c.assess.length, scenarios: c.scenarios.length },
-  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}), ...(resimHarita ? { resim: "resim.json" } : {}), genelAdlar: "genel-adlar.json" }
+  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}), ...(resimHarita ? { resim: "resim.json" } : {}), genelAdlar: "genel-adlar.json", dn: "dn.json", kesin: "kesin.json" }
 };
 w("genel-adlar.json", genelAdlar);
 w("index.json", index);

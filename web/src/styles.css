@@ -811,6 +811,14 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .akis-tablo-t th, .akis-tablo-t td { white-space: nowrap; }
 .akis-tablo-t th, .akis-tablo-t td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
 .akis-tablo-t th { color: var(--muted); font-weight: 700; font-size: 0.85rem; }
+/* dil noktası: örnek cümle satırın altında, tam genişlikte, satır kırar */
+.akis-tablo-t.dar th { white-space: normal; vertical-align: bottom; }
+.akis-tablo-t.dar th, .akis-tablo-t.dar td { padding-left: 6px; padding-right: 6px; white-space: normal; overflow-wrap: break-word; hyphens: auto; -webkit-hyphens: auto; }
+.akis-tablo-t.dar.genis { font-size: 0.85rem; }
+.akis-tablo-t.dar.kir th, .akis-tablo-t.dar.kir td { overflow-wrap: anywhere; }
+.akis-tablo-t.dar.genis th, .akis-tablo-t.dar.genis td { padding-left: 4px; padding-right: 4px; }
+.akis-tablo-t tr.ust td { border-bottom: 0; padding-bottom: 2px; }
+.akis-tablo-t tr.alt td { white-space: normal; padding-top: 0; color: var(--muted); font-size: 0.9rem; font-style: italic; }
 /* PM 7059008858 md. 1: tablo telefonda sığar; geniş tabloda sütun seçici (çipler satır kırar, kaydırma yok) */
 .akis-tablo-sec { flex-wrap: wrap; gap: 8px; }
 .akis-tablo-sec .chip { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font-weight: 700; }

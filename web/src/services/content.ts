@@ -1,7 +1,7 @@
 /** İçerik paketi yükleyici: /content/current.json → /content/<sürüm>/… (şemayla doğrulanır, bellekte önbellek) */
 import { z } from "zod";
 import { bilinenKelimeler } from "../core/persona.ts";
-import { adsizTasi, AssessItem, ContentIndex, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers, World } from "@dw/shared";
+import { adsizTasi, AssessItem, ContentIndex, DilNoktasi, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers, World } from "@dw/shared";
 
 const base = () => `${import.meta.env.BASE_URL}content/`;
 let idx: Promise<ContentIndex> | null = null;
@@ -64,6 +64,18 @@ export const loadLexicon = () => within(file("lexemes.json", z.object({ lexemes:
   return x;
 });
 export const loadGrammar = () => within(file("grammar.json", z.array(GrammarNote)));
+/** Dil noktaları (PM-092 md. 1): `gr:` grammar.json + `dn:` haftaların dn-HH.json'ı (pakette `dn.json`); eski pakette dn yoksa yalnız gr */
+export async function loadDilNoktalari(): Promise<Map<string, DilNoktasi | GrammarNote>> {
+  const i = await loadIndex();
+  const [gr, dn] = await Promise.all([loadGrammar(), i.files.dn ? within(file(i.files.dn, z.array(DilNoktasi))) : Promise.resolve([] as DilNoktasi[])]);
+  return new Map<string, DilNoktasi | GrammarNote>([...gr.map((g) => [g.id, g] as const), ...dn.map((d) => [d.id, d] as const)]);
+}
+/** Kesin kelime tablosu (PM-100 md. 2): gün → kartlar, dersler. Yalnız önceki günün dosyası pakette yoksa kullanılır. Pakette yoksa boş;
+ *  pakette olup okunamazsa HATA (boş K(t) ile plan kurulup kalıcı yazılmasın; ekran "Tekrar dene" gösterir; inceleme #231 P2-3) */
+export const loadKesin = (): Promise<Map<number, { kartlar: string[]; dersler: string[] }>> => loadIndex().then((i) => i.files.kesin
+  ? within(file(i.files.kesin, z.object({ gunler: z.record(z.string(), z.object({ kartlar: z.array(z.string()), dersler: z.array(z.string()) })) })))
+    .then((k) => new Map(Object.entries(k.gunler).map(([g, v]) => [Number(g), v])))
+  : new Map());
 export function loadScenario(id: string): Promise<Scenario> {
   return within((async () => {
     const i = await loadIndex();

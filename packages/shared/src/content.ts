@@ -397,6 +397,8 @@ export const ContentIndex = z.object({
     /** kart → Noto Emoji haritası (PM-081 B) */ resim: z.string().optional(),
     /** AKIS AK-3 genel adlar listesi: servis işçisi önceden önbelleğe alır (internetsiz akışta bilinen küme eksik kalmasın) */
     genelAdlar: z.string().optional(),
+    /** haftaların dil noktaları (dn-HH.json birleşik; PM-092 md. 1) ve kesin kelime tablosu (gün → kartlar, dersler; PM-100 md. 2) */
+    dn: z.string().optional(), kesin: z.string().optional(),
     /** paketteki medya dosyaları (servis işçisi ayrı önbelleğe alır; A12) */
     medya: z.array(z.string()).default([]) })
 });
