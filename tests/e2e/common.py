@@ -188,7 +188,7 @@ def no_overflow(page, where):
 HIZLI_KAPAT = """async () => { const d = await new Promise((ok, no) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); q.onerror = no; });
   await new Promise((ok, no) => { const t = d.transaction('meta', 'readwrite'); t.objectStore('meta').put({ key: 'hizliSerit', value: false }); t.oncomplete = ok; t.onerror = no; }); d.close(); }"""
 
-def login_onboard(page, port, assess=False, hizli_serit=False):
+def login_onboard(page, port, assess=False, hizli_serit=False, tespit=False):
     page.goto(f"http://127.0.0.1:{port}/")
     page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
     page.click("summary")
@@ -203,6 +203,15 @@ def login_onboard(page, port, assess=False, hizli_serit=False):
     page.click("text=Devam"); page.wait_for_selector("text=Öncelik sırası")
     page.click("text=Devam"); page.click("text=Devam")
     if hizli_serit is False: page.evaluate(HIZLI_KAPAT)
+    # PM-115: kurulum seviye tespitine gider (e2e paketinde fikstür havuzu var). Testler varsayılan "Baştan başla" (1. gün);
+    # tespit=True girişte bırakır; assess=True eski aylık ölçüme (#/assess) gider
+    page.wait_for_selector("[data-test=start-tespit], [data-test=start-assess]")
+    if page.locator("[data-test=start-tespit]").count():
+        page.click("[data-test=start-tespit]"); page.wait_for_selector("[data-test=tespit-giris]", timeout=20000)
+        if tespit: return
+        page.click("[data-test=tespit-bastan]"); page.wait_for_function("() => location.hash === '#/today' || location.hash === ''", timeout=15000)
+        if assess: page.goto(f"http://127.0.0.1:{port}/#/assess")
+        return
     if assess: page.click("[data-test=start-assess]")
     else: page.click("text=Sonra yaparım")
 
@@ -237,3 +246,13 @@ def tanitim_gec(pg):
     pg.click("[data-test=garden-intro] [data-test=next]")
     pg.wait_for_function("(eski) => { const t = document.querySelector('[data-test=garden-intro] .de-xl'); return !t || t.innerText !== eski; }", arg=eski)
     pg.wait_for_selector("[data-test^=gq-], [data-test=garden-intro], [data-test=garden-done], [data-test=hizli-oneri]")
+
+RAF_PAROLA = "sahte-test-anahtari-0123456789abcdef-01234"
+def raf_bagla(page, base, adres, parola=RAF_PAROLA):
+    """PM 7088230583 md. 3: Profil → Medya rafı'ndan "Kaydet ve rafı sına" (kelime fotoğrafı kaydı da o an çekilir). Durum kodunu döndürür.
+    Sahte raf `saglik.txt` isteğine 200 + `X-Raf: 1` (ve `Access-Control-Expose-Headers: X-Raf`) vermeli."""
+    page.goto(base + "#/profile"); page.wait_for_selector("[data-test=medya-rafi][data-hazir='1']")
+    page.fill("[data-test=raf-adres]", adres); page.fill("[data-test=raf-anahtar]", parola)
+    page.click("[data-test=raf-sina]"); page.wait_for_selector("[data-test=raf-durum][data-durum]", timeout=15000)
+    page.wait_for_selector("[data-test=raf-sina]:not([disabled])", timeout=15000)
+    return page.get_attribute("[data-test=raf-durum]", "data-durum")

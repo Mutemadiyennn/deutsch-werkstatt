@@ -1,0 +1,138 @@
+{
+ "id": "m1:gorulmemis:03",
+ "hafta": 3,
+ "durumlar": [
+  {
+   "id": "m1:h03:g1",
+   "can_do": "cd:m1:15",
+   "durum_tr": "Bir eczaneyi arıyorsun. Eczacı açıyor. Kendini tanıt ve cumartesi açık mı diye sor.",
+   "karsi": "eczacı (yeni kişi)",
+   "yer": "pl:apotheke",
+   "prompt_de": "Guten Tag! Wie kann ich helfen?",
+   "accepted": [
+    "Guten Tag, hier ist {name}. Haben Sie am Samstag offen?",
+    "Guten Tag, hier ist {name}. Ist am Samstag offen?",
+    "Guten Tag, {name} hier. Haben Sie am Samstag offen?",
+    "Hallo, hier ist {name}. Haben Sie am Samstag offen?",
+    "Guten Tag, mein Name ist {name}. Haben Sie am Samstag offen?",
+    "Guten Tag, hier ist {name}. Haben Sie am Samstag auch offen?",
+    "Grüß Gott, hier ist {name}. Haben Sie am Samstag offen?"
+   ],
+   "kalip": "Guten Tag, hier ist … – Haben Sie am … offen?",
+   "why_tr": "Önce **hier ist** ve adın. Sonra **Haben Sie** ile evet ya da hayır sorusu."
+  },
+  {
+   "id": "m1:h03:g2",
+   "can_do": "cd:m1:16",
+   "durum_tr": "Spor salonundan bir görevli seni arıyor. Deneme antrenmanı için adını ve yazılışını soruyor.",
+   "karsi": "spor salonu görevlisi (yeni kişi)",
+   "yer": "pl:fitness",
+   "prompt_de": "Gern, am Samstag um zehn. Und Ihr Name? Können Sie das buchstabieren?",
+   "accepted": [
+    "{name}. Gern, ich buchstabiere langsam.",
+    "Mein Name ist {name}. Ich buchstabiere.",
+    "{name}. Ja, ich buchstabiere langsam.",
+    "Ich heiße {name}. Gern, ich buchstabiere.",
+    "Mein Name ist {name}. Gern, ich buchstabiere langsam.",
+    "Gern. {name}, ich buchstabiere jetzt."
+   ],
+   "kalip": "Mein Name ist … – Ich buchstabiere.",
+   "why_tr": "Adını söyle, sonra **Ich buchstabiere** de ve harfleri yavaşça söyle."
+  },
+  {
+   "id": "m1:h03:g3",
+   "can_do": "cd:m1:17",
+   "durum_tr": "Bisiklet tamircisi hızlı bir sesli mesaj bırakmış. Geri arıyorsun. Saati anlamadın, kibarca tekrar ettir.",
+   "karsi": "bisiklet tamircisi (yeni kişi)",
+   "yer": "bisiklet tamirhanesi (telefon)",
+   "prompt_de": "Ihr Fahrrad geht wieder. Kommen Sie am Freitag um Viertel vor fünf.",
+   "accepted": [
+    "Entschuldigung, könnten Sie das langsam wiederholen?",
+    "Könnten Sie die Uhrzeit langsam wiederholen?",
+    "Wie bitte? Könnten Sie das wiederholen?",
+    "Entschuldigung, könnten Sie bitte langsam sprechen?",
+    "Könnten Sie das bitte wiederholen? Am Freitag um wie viel Uhr?",
+    "Am Freitag um Viertel vor fünf? Könnten Sie das wiederholen?"
+   ],
+   "kalip": "Könnten Sie das wiederholen?",
+   "why_tr": "Anlamadığında kibarca **Könnten Sie** ile tekrar istersin."
+  },
+  {
+   "id": "m1:h03:g4",
+   "can_do": "cd:m1:20",
+   "durum_tr": "Ioana'yı arıyorsun, annesi açıyor. Ioana'nın döneceği günü duyunca tarihiyle doğrula. Salı ayın on beşi.",
+   "karsi": "Ioana'nın annesi (yeni kişi)",
+   "yer": "Ioana'nın evi (telefon)",
+   "prompt_de": "Ioana ist nicht zu Hause. Sie kommt am Dienstag zurück.",
+   "accepted": [
+    "Also am Dienstag, dem fünfzehnten?",
+    "Am Dienstag? Also am fünfzehnten?",
+    "Sie kommt am Dienstag, dem fünfzehnten, zurück?",
+    "Also am fünfzehnten? Danke!",
+    "Am Dienstag, am fünfzehnten? Danke!",
+    "Dienstag, der fünfzehnte? Danke schön!",
+    "Am Dienstag? Am fünfzehnten Dezember?"
+   ],
+   "kalip": "Also am …, dem …?",
+   "why_tr": "Günü duyunca tarihi tekrar ederek doğrularsın: **am fünfzehnten**."
+  },
+  {
+   "id": "m1:h03:g5",
+   "can_do": "cd:m1:18",
+   "durum_tr": "Diş hekiminin sekreteri bu hafta yer olmadığını söylüyor ve ocakta ne zaman gelebileceğini soruyor. Sana pazartesi saat dokuz uyuyor.",
+   "karsi": "diş hekimi sekreteri (yeni kişi)",
+   "yer": "diş hekimi muayenehanesi (telefon)",
+   "prompt_de": "Diese Woche geht es leider nicht. Wann geht es im Januar?",
+   "accepted": [
+    "Am Montag um neun, bitte.",
+    "Im Januar am Montag um neun.",
+    "Am Montag um neun Uhr, bitte.",
+    "Im Januar? Am Montag um neun.",
+    "Montag um neun, bitte.",
+    "Geht Montag um neun?",
+    "Am Montag um neun.",
+    "Am Montag um neun Uhr."
+   ],
+   "kalip": "im … – am … um …",
+   "why_tr": "Gün için **am**, saat için **um** dersin: **am Montag um neun**."
+  },
+  {
+   "id": "m1:h03:g6",
+   "can_do": "cd:m1:19",
+   "durum_tr": "Kafede yeni tanıştığın biri arkadaşın Ioana'yı soruyor. Ioana her gün bisikletle gidiyor ve iyi Almanca konuşuyor.",
+   "karsi": "kafede tanıştığın biri (yeni kişi)",
+   "yer": "kafe",
+   "prompt_de": "Und Ioana? Fährt sie mit dem Bus oder mit dem Fahrrad?",
+   "accepted": [
+    "Sie fährt mit dem Fahrrad.",
+    "Ioana fährt mit dem Fahrrad.",
+    "Mit dem Fahrrad. Sie fährt jeden Tag mit dem Fahrrad.",
+    "Sie fährt immer mit dem Fahrrad.",
+    "Mit dem Fahrrad, sie fährt nie mit dem Bus.",
+    "Ioana fährt jeden Tag mit dem Fahrrad."
+   ],
+   "kalip": "sie fährt – er spricht",
+   "why_tr": "Başkası için **sie fährt** dersin. **fahren** kelimesindeki **a**, **ä** olur."
+  },
+  {
+   "id": "m1:h03:g7",
+   "can_do": "cd:m1:21",
+   "durum_tr": "Fizyoterapi muayenehanesi randevunu söylüyor. Tekrar ederek doğrula: gün ya da tarih, yanında saat.",
+   "karsi": "fizyoterapi sekreteri (yeni kişi)",
+   "yer": "fizyoterapi muayenehanesi (telefon)",
+   "prompt_de": "Ihr Termin ist am Freitag, dem achtzehnten, um Viertel nach drei.",
+   "accepted": [
+    "Am Freitag, dem achtzehnten, um Viertel nach drei? Danke!",
+    "Also am Freitag um Viertel nach drei?",
+    "Freitag, der achtzehnte, um Viertel nach drei?",
+    "Am achtzehnten um Viertel nach drei? Danke!",
+    "Also Freitag um fünfzehn Uhr fünfzehn?",
+    "Am Freitag um Viertel nach drei? Danke schön!",
+    "Am Freitag, dem achtzehnten, um Viertel nach drei?",
+    "Am Freitag um Viertel nach drei?"
+   ],
+   "kalip": "Also am …, dem …, um …?",
+   "why_tr": "Doğrularken günü ya da tarihi ve saati soru gibi tekrar edersin."
+  }
+ ]
+}

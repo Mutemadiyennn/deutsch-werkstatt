@@ -1,0 +1,174 @@
+{
+ "id": "m1:hafta-sonu-testi:04",
+ "day": 28,
+ "maddeler": [
+  {
+   "id": "m1:28:t01",
+   "k": "listen_and_respond",
+   "audio_de": "Wo ist die Apotheke? Neben dem Rathaus?",
+   "speed": "normal",
+   "situation_tr": "Hayır, eczane süpermarketin yanında. Düzelt.",
+   "accepted": [
+    "Nein, sie ist neben dem Supermarkt.",
+    "Nein, neben dem Supermarkt.",
+    "Nein, die Apotheke ist neben dem Supermarkt.",
+    "Nein, nicht neben dem Rathaus. Neben dem Supermarkt.",
+    "Nein, sie ist direkt neben dem Supermarkt."
+   ],
+   "why_tr": "**die Apotheke** için **sie** dersin. Yanında **neben dem**."
+  },
+  {
+   "id": "m1:28:t02",
+   "k": "order",
+   "de": "Das / Haus / ist / nicht / weit / vom / Bahnhof",
+   "tr": "Ev istasyona uzak değil.",
+   "accepted": [
+    "Das Haus ist nicht weit vom Bahnhof.",
+    "Das Haus ist nicht weit vom Bahnhof",
+    "das Haus ist nicht weit vom Bahnhof."
+   ],
+   "why_tr": "**Das Haus** ilk parça, **ist** hemen arkasından gelir. **nicht** de **weit** kelimesinin önünde durur."
+  },
+  {
+   "id": "m1:28:t03",
+   "k": "gap",
+   "de": "Die Tasse? ___ ist im Schrank.",
+   "tr": "Fincan mı? Dolapta.",
+   "accepted": [
+    "Sie",
+    "sie",
+    "Sie."
+   ],
+   "opts": [
+    "Er",
+    "Sie",
+    "Es"
+   ],
+   "why_tr": "**die Tasse** için **sie** dersin."
+  },
+  {
+   "id": "m1:28:t04",
+   "k": "listen_and_respond",
+   "audio_de": "Dieses Sofa kostet 200 Euro, das da 150. Welches nehmen Sie?",
+   "speed": "normal",
+   "situation_tr": "Ucuz olanı al ve nedenini söyle.",
+   "accepted": [
+    "Ich nehme das da, es ist billiger.",
+    "Das da, es ist billiger.",
+    "Ich nehme das für 150 Euro, es ist billiger.",
+    "Das für 150 Euro. Es ist billiger.",
+    "Ich nehme das da. Es ist billiger als dieses."
+   ],
+   "why_tr": "**das Sofa** için **es**, daha ucuz için **billiger** dersin."
+  },
+  {
+   "id": "m1:28:t05",
+   "k": "transform",
+   "instr_tr": "Sorun olduğunu söyle. **sehr** yerine **zu** kullan.",
+   "from_de": "Das Sofa ist sehr groß.",
+   "accepted": [
+    "Das Sofa ist zu groß.",
+    "Das Sofa ist viel zu groß.",
+    "Das Sofa ist mir zu groß."
+   ],
+   "why_tr": "**sehr** yalnızca çok demektir. **zu** bir sorun bildirir."
+  },
+  {
+   "id": "m1:28:t06",
+   "k": "tr_de",
+   "tr": "Bu ceket şundan daha ucuz.",
+   "accepted": [
+    "Diese Jacke ist billiger als die da.",
+    "Diese Jacke ist billiger als die Jacke da.",
+    "Die Jacke hier ist billiger als die da.",
+    "Diese hier ist billiger als die da."
+   ],
+   "why_tr": "Karşılaştırmada **billiger als** dersin."
+  },
+  {
+   "id": "m1:28:t07",
+   "k": "listen_and_respond",
+   "audio_de": "Wie finden Sie den Flur? Er ist neu.",
+   "speed": "normal",
+   "situation_tr": "Koridoru aydınlık ve güzel buluyorsun. Söyle.",
+   "accepted": [
+    "Ich finde ihn hell und schön.",
+    "Er ist hell und schön.",
+    "Hell und schön!",
+    "Ich finde ihn sehr hell und schön.",
+    "Er ist sehr hell und schön."
+   ],
+   "why_tr": "**der Flur** için **er** dersin: **Er ist hell und schön**."
+  },
+  {
+   "id": "m1:28:t08",
+   "k": "order",
+   "de": "Der / Führerschein / liegt / im / Schrank",
+   "tr": "Ehliyet dolapta duruyor.",
+   "accepted": [
+    "Der Führerschein liegt im Schrank.",
+    "Der Führerschein liegt im Schrank",
+    "der Führerschein liegt im Schrank."
+   ],
+   "why_tr": "**Der Führerschein** ilk parça, **liegt** hemen arkasından gelir."
+  },
+  {
+   "id": "m1:28:t09",
+   "k": "guided_response",
+   "situation_tr": "Yeni bir komşu kendini tanıtıyor. Memnun olduğunu söyle, adını ve katını söyle.",
+   "prompt_de": "Hallo! Ich bin neu hier. Und Sie?",
+   "accepted": [
+    "Freut mich! Ich bin {name}, ich wohne im zweiten Stock.",
+    "Freut mich! Mein Name ist {name}. Ich wohne im zweiten Stock.",
+    "Freut mich, ich bin {name}. Ich wohne hier im zweiten Stock.",
+    "Hallo! Ich bin {name}. Ich wohne im zweiten Stock. Freut mich!",
+    "Freut mich! Ich heiße {name} und wohne im zweiten Stock."
+   ],
+   "why_tr": "Önce **Freut mich**, sonra adın ve **im zweiten Stock**."
+  },
+  {
+   "id": "m1:28:t10",
+   "k": "gap",
+   "de": "Das Fahrrad ist ___ dem Haus.",
+   "tr": "Bisiklet evin önünde.",
+   "accepted": [
+    "vor",
+    "Vor",
+    "vor."
+   ],
+   "opts": [
+    "vor",
+    "im",
+    "am"
+   ],
+   "why_tr": "Önünde derken **vor dem** dersin."
+  },
+  {
+   "id": "m1:28:t11",
+   "k": "listen_and_respond",
+   "audio_de": "Der Techniker kommt am Montag um acht. Bitte bleiben Sie zu Hause.",
+   "speed": "normal",
+   "situation_tr": "Ne zaman evde olman gerektiğini kısaca söyle.",
+   "accepted": [
+    "Am Montag um acht.",
+    "Am Montag um acht bin ich zu Hause.",
+    "Montag um acht.",
+    "Am Montag um acht Uhr.",
+    "Ich bleibe am Montag um acht zu Hause."
+   ],
+   "why_tr": "Gün için **am**, saat için **um** dersin."
+  },
+  {
+   "id": "m1:28:t12",
+   "k": "tr_de",
+   "tr": "Bunu unutma: cumartesi saat onda istasyonda!",
+   "accepted": [
+    "Vergiss das nicht: am Samstag um zehn am Bahnhof!",
+    "Vergiss das nicht: Samstag um zehn am Bahnhof!",
+    "Vergiss nicht: am Samstag um zehn am Bahnhof!",
+    "Nicht vergessen: am Samstag um zehn am Bahnhof!"
+   ],
+   "why_tr": "Unutma derken **Vergiss das nicht** dersin."
+  }
+ ]
+}

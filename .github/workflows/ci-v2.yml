@@ -133,8 +133,12 @@ jobs:
         run: cd tests/e2e && python v2_sekme.py --shots /tmp/shots
       - name: "Köy (PM-084 md. 4, Hedef 3): dükkân ızgarası, kilitli dükkânlar, gerçek sayılar, Telefonun kartı, eski Öğren girişleri ≤ 2 dokunuş"
         run: cd tests/e2e && python v2_koy.py --shots /tmp/shots
+      - name: "Köy listeleri haftaya göre katlanır (PM-122 md. 2.1): Radyo/Sinema 2. hafta açık, İlk Hafta tek satır, dokununca açılır; açık + koyu"
+        run: cd tests/e2e && python v2_koy_hafta.py --shots /tmp/shots && python v2_koy_hafta.py --scheme dark --shots /tmp/shots
       - name: "Ben (PM-084 md. 5, Hedef 3): Ne kazandım, kanıttan noktalar, bu hafta, çalışma düzenim, ayarlar"
         run: cd tests/e2e && python v2_ben.py --shots /tmp/shots
+      - name: "Günlük hatırlatma (PM-121 md. 3.3): kabukta 7 günlük pencere, v1 kimlikleri silinir, Çalışma düzenim'den kapat/saat"
+        run: cd tests/e2e && python v2_hatirlatma.py --shots /tmp/shots
       - name: "Seçilmiş açık fotoğraf (#58 B12 3. parça): kartta atıfla, kayıt yoksa alan yok"
         run: cd tests/e2e && python v2_foto.py
       - name: "Ses ve mikrofon (#58 B15 1. adım, PM-064): karaktere göre ses, Yavaş yalnızca hız, mikrofon yolu ve Türkçe hata türleri"
@@ -185,6 +189,8 @@ jobs:
         run: cd tests/e2e && python v2_yol_hafta.py --shots /tmp/shots && python v2_yol_hafta.py --scheme dark --shots /tmp/shots
       - name: "Sınav günü (PM-110): 55. gün dinleme + okuma, 56. gün yazma + konuşma, öz-puan, geçme kuralı, yeniden çözme; açık + koyu"
         run: cd tests/e2e && python v2_sinav.py --shots /tmp/shots && python v2_sinav.py --scheme dark --shots /tmp/shots
+      - name: "Seviye tespiti (PM-115 PR 2b): giriş, madde + Bilmiyorum, bölüm arası, sürdür, rapor, üç karar yolu, gün kilidi; açık + koyu"
+        run: cd tests/e2e && python v2_seviye.py --shots /tmp/shots && python v2_seviye.py --scheme dark --shots /tmp/shots
       - name: "8. gün fikstürü (#231 P1-3): gr: dersli gün baştan sona, dil noktası durağı, ders:<id> yazımı"
         run: cd tests/e2e && python v2_akis.py --tam --gun 8
       - name: Görsel regresyon (açık + koyu)

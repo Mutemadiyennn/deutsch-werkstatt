@@ -9,7 +9,7 @@ async def main():
         pg.on("pageerror", lambda e: errs.append(str(e)+" @@ "+(e.stack or "")[:300]))
         await pg.add_init_script(FAKE)
         await pg.route("https://generativelanguage.googleapis.com/**", lambda r: r.abort())
-        await pg.goto("http://localhost:8765/index.html")
+        await pg.goto("http://localhost:8765/index.html?eski=1")
         await pg.evaluate("localStorage.setItem('dw-gemini','x')"); await pg.reload(); await pg.wait_for_timeout(1200)
         await pg.evaluate(f"(async()=>{{ await Store.put('words', {json.dumps(W)}); S.sess = {{ctx:'desk', sec:0, hist:[], start:Date.now(), ended:false, cur:null}}; go('kelime', ()=>startVocab()); }})()")
         await pg.wait_for_timeout(2500)

@@ -1,0 +1,145 @@
+{
+ "id": "m1:gorulmemis:04",
+ "hafta": 4,
+ "durumlar": [
+  {
+   "id": "m1:h04:g1",
+   "can_do": "cd:m1:27",
+   "durum_tr": "Bir kafede yeni biriyle tanıştın. Nerede oturduğunu ve buraya uzak olup olmadığını soruyor. Sen Brunnengasse'de, ikinci katta oturuyorsun.",
+   "karsi": "kafede tanıştığın biri (yeni kişi)",
+   "yer": "kafe",
+   "prompt_de": "Und wo wohnen Sie? Ist das weit von hier?",
+   "accepted": [
+    "Ich wohne in der Brunnengasse, im zweiten Stock. Es ist nicht weit.",
+    "In der Brunnengasse, im zweiten Stock. Nicht weit.",
+    "Ich wohne in der Brunnengasse. Das ist nicht weit von hier.",
+    "In der Brunnengasse sieben, im zweiten Stock. Es ist nicht weit.",
+    "Ich wohne im zweiten Stock, in der Brunnengasse. Nicht weit von hier.",
+    "Nicht weit! Ich wohne in der Brunnengasse, im zweiten Stock."
+   ],
+   "kalip": "Ich wohne in der … , im … Stock. – Es ist nicht weit.",
+   "why_tr": "Sokak için **in der**, kat için **im** dersin. Uzak değil derken **nicht weit**."
+  },
+  {
+   "id": "m1:h04:g2",
+   "can_do": "cd:m1:22",
+   "durum_tr": "Bir arkadaşın telefonda ehliyetini bulamıyor. Ona olası yerleri sor.",
+   "karsi": "arkadaşın (yeni kişi), telefonda",
+   "yer": "arkadaşının evi (telefon)",
+   "prompt_de": "Mensch, mein Führerschein ist weg!",
+   "accepted": [
+    "Ist er vielleicht im Schrank?",
+    "Ist er in der Jacke?",
+    "Ist er vielleicht in der Jacke?",
+    "Liegt er auf dem Stuhl?",
+    "Ist er im Schrank?",
+    "Ist er vielleicht im Schrank? Oder in der Jacke?",
+    "Liegt er in der Küche?",
+    "Ist er vielleicht im Büro?"
+   ],
+   "kalip": "Ist er …? – Liegt er auf dem …?",
+   "why_tr": "**der Führerschein** için **er** dersin. Soruda **Ist er** ya da **Liegt er** başa gelir."
+  },
+  {
+   "id": "m1:h04:g3",
+   "can_do": "cd:m1:25",
+   "durum_tr": "Arkadaşın internette iki kanepe buldu: biri 300, biri 200 avro. 300 avroluk fazla büyük. Hangisini alması gerektiğini söyle.",
+   "karsi": "arkadaşın (yeni kişi)",
+   "yer": "arkadaşının evi",
+   "prompt_de": "Welches Sofa nehme ich? Das für 300 oder das für 200 Euro?",
+   "accepted": [
+    "Das für 200 Euro. Es ist billiger, und das für 300 ist zu groß.",
+    "Das für 200 Euro, es ist billiger.",
+    "Nimm das für 200 Euro. Das für 300 ist zu groß.",
+    "Das für 200 ist billiger. Das für 300 ist zu groß.",
+    "Ich finde das für 200 Euro besser. Es ist billiger.",
+    "Das für 200 Euro. Das andere ist zu groß."
+   ],
+   "kalip": "Das für … ist billiger. – Das ist zu groß.",
+   "why_tr": "Karşılaştırmada **billiger**, sorun için **zu groß** dersin."
+  },
+  {
+   "id": "m1:h04:g4",
+   "can_do": "cd:m1:26",
+   "durum_tr": "Bir iş arkadaşın telefonunda üç ev ilanı gösteriyor: 500, 700 ve 900 avro. En ucuzunu soruyor.",
+   "karsi": "iş arkadaşın (yeni kişi)",
+   "yer": "mola odası",
+   "prompt_de": "Welches ist am billigsten? Das für 500, 700 oder 900 Euro?",
+   "accepted": [
+    "Das für 500 Euro ist am billigsten.",
+    "Das für 500 ist am billigsten.",
+    "Am billigsten ist das für 500 Euro.",
+    "Das für 500 Euro. Es ist am billigsten.",
+    "500 Euro ist am billigsten.",
+    "Das erste, für 500 Euro, ist am billigsten.",
+    "Das für fünfhundert Euro ist am billigsten.",
+    "Das für fünfhundert ist am billigsten.",
+    "Am billigsten ist das für fünfhundert Euro.",
+    "Das für 500 Euro.",
+    "Das für fünfhundert Euro."
+   ],
+   "kalip": "Das für … ist am billigsten.",
+   "why_tr": "En ucuz derken **am billigsten** dersin."
+  },
+  {
+   "id": "m1:h04:g5",
+   "can_do": "cd:m1:23",
+   "durum_tr": "Bir kafede ceketini unuttun. Ertesi gün kafeyi arıyorsun. Garson ceketin nasıl olduğunu soruyor. Ceketin küçük ve yeni.",
+   "karsi": "kafe çalışanı (yeni kişi)",
+   "yer": "kafe (telefon)",
+   "prompt_de": "Ihre Jacke? Wie ist sie?",
+   "accepted": [
+    "Sie ist klein und neu.",
+    "Klein und neu.",
+    "Meine Jacke ist klein und neu.",
+    "Sie ist neu und klein.",
+    "Sie ist ganz neu und klein.",
+    "Sie ist klein, aber neu."
+   ],
+   "kalip": "Sie ist … und …",
+   "why_tr": "**die Jacke** için **sie** dersin: **Sie ist klein und neu**."
+  },
+  {
+   "id": "m1:h04:g6",
+   "can_do": "cd:m1:24",
+   "durum_tr": "Spor salonunda görevli sana bir dolap gösteriyor. Dolap senin çantan için fazla küçük.",
+   "karsi": "spor salonu görevlisi (yeni kişi)",
+   "yer": "pl:fitness",
+   "prompt_de": "Hier ist Ihr Schrank. Ist er gut?",
+   "accepted": [
+    "Nein, er ist zu klein.",
+    "Er ist leider zu klein.",
+    "Nein, leider zu klein.",
+    "Der Schrank ist zu klein.",
+    "Nein, er ist mir zu klein.",
+    "Er ist schön, aber zu klein.",
+    "Er ist zu klein.",
+    "Nein, zu klein.",
+    "Nein, der Schrank ist zu klein."
+   ],
+   "kalip": "Er ist zu …",
+   "why_tr": "Sorun varsa **zu** dersin: **zu klein**. **der Schrank** için **er**."
+  },
+  {
+   "id": "m1:h04:g7",
+   "can_do": "cd:m1:28",
+   "durum_tr": "Otobüs durağında yeni tanıştığın biri evini soruyor. Evin büyük değil ama aydınlık, ikinci kattasın.",
+   "karsi": "durakta tanıştığın biri (yeni kişi)",
+   "yer": "pl:bahnhof (otobüs durağı)",
+   "prompt_de": "Und wie ist es bei dir? Ist es groß?",
+   "accepted": [
+    "Nein, es ist nicht groß, aber hell. Ich wohne im zweiten Stock.",
+    "Nicht groß, aber hell. Im zweiten Stock.",
+    "Nein, nicht groß, aber sehr hell.",
+    "Es ist nicht groß, aber hell, im zweiten Stock.",
+    "Nein, es ist klein, aber hell. Ich wohne im zweiten Stock.",
+    "Nicht so groß, aber hell und schön.",
+    "Nein, es ist nicht groß, aber hell.",
+    "Nein, nicht groß, aber hell.",
+    "Nein, nicht groß, aber hell. Ich wohne im zweiten Stock."
+   ],
+   "kalip": "Es ist nicht …, aber … – Ich wohne im … Stock.",
+   "why_tr": "Önce **nicht groß, aber hell** de. Sonra katını **im zweiten Stock** ile söyle."
+  }
+ ]
+}

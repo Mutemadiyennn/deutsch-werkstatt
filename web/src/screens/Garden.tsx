@@ -3,11 +3,13 @@
  * Kartlar öğrenciye soru olarak döner; cevap öğrenciden beklenir. Yanlışta doğrusu öğrencinin cevabıyla yan yana
  * gösterilir, kart turun sonunda başka örnek ve başka türle yeniden gelir ve kişisel bankaya girer (srs.review).
  */
+import { RAF_ONEK } from "../services/kartFoto.ts";
 import { gorevSay } from "../services/gorev.ts";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
-import { loadFoto, loadLexicon, loadM1Gun } from "../services/content.ts";
+import { loadFoto, loadIndex, loadLexicon, loadM1Gun } from "../services/content.ts";
+import { gecilenGunler } from "../services/seviye.ts";
 import { bahceTamam, xpOku, xpVer } from "../services/ilerleme.ts";
 import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri, yerelGun } from "../core/gun.ts";
@@ -37,7 +39,7 @@ export function Garden({ day }: { day?: number } = {}) {
 }
 
 function GardenTur({ day, again }: { day?: number; again: () => void }) {
-  const [data, setData] = useState<{ lex: Map<string, Lexeme>; all: Lexeme[]; items: Map<string, LearnerItem>; round: GardenQ[]; capped: boolean; gunKartlari: string[]; yakin: Yakinlik } | null>(null);
+  const [data, setData] = useState<{ lex: Map<string, Lexeme>; all: Lexeme[]; items: Map<string, LearnerItem>; round: GardenQ[]; capped: boolean; gunKartlari: string[]; yakin: Yakinlik; /** PM-114 B: atlanan günün Bahçe'si (adım bitirmez) */ atlandi?: boolean } | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [i, setI] = useState(0);
@@ -71,7 +73,9 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       const items = await itemsMap(lexemes.map((l) => l.id));
       // yeni kart sırası: önce M1 gününün yeni kartları (A5b), sonra K1 derin kartlar sıklık sırasıyla
       const k1 = lexemes.filter((l) => l.tier === "K1" && isCard(l)).sort((a, b) => (a.freqRank ?? 9e9) - (b.freqRank ?? 9e9)).map((l) => l.id);
-      const gunler = day ? await Promise.all(Array.from({ length: day }, (_, k) => loadM1Gun(k + 1).catch(() => null))) : [];
+      // PM-114 B: atlanan günlerin kartları "biliniyor" diye cihazda; o günlerin dosyaları yüklenmez (A2'nin 57. günü 56 dosya indirmez)
+      const atl = day ? (await gecilenGunler((await loadIndex()).m1.map((g) => g.day)).catch(() => null))?.atlanan ?? new Set<number>() : new Set<number>();
+      const gunler = day ? await Promise.all(Array.from({ length: day }, (_, k) => (atl.has(k + 1) ? Promise.resolve(null) : loadM1Gun(k + 1).catch(() => null)))) : [];
       const gunKartlari = [...new Set(gunler.flatMap((g) => g?.yeni_kartlar ?? []))].filter((id) => lex.has(id) && isCard(lex.get(id)!));
       const kalan = gunKartlari.filter((id) => !items.has(id));
       const pool = [...kalan, ...k1.filter((id) => !kalan.includes(id))];
@@ -87,7 +91,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       // B4: "Fotoğraftaki ne?" yalnızca seçilmiş fotoğrafı olan kartta; çevrimdışında yalnız paketteki (yerel yollu) fotoğraflar
       // (dış adres çevrimdışı gelmez; pakettekini servis işçisi önbelleğe alır — inceleme #187 P2-5)
       const fotoTum = await loadFoto();
-      const fotoHarita = navigator.onLine === false ? Object.fromEntries(Object.entries(fotoTum).filter(([, f]) => f.src.startsWith("content/"))) : fotoTum;
+      // raf kaydı da kalır: görülmüş raf fotoğrafı kapalı önbellekte; gelmezse soru fotoğrafsız biçime döner (inceleme #204 P2-3)
+      const fotoHarita = navigator.onLine === false ? Object.fromEntries(Object.entries(fotoTum).filter(([, f]) => f.src.startsWith("content/") || f.src.startsWith(RAF_ONEK))) : fotoTum;
       fotoluKartlar(new Set(Object.keys(fotoHarita).filter((k) => k.endsWith("#kart")).map((k) => k.slice(0, -"#kart".length))));
       // PM 7030294523 P0: "kendi cümleni kur" yalnızca İlk Hafta bitmiş ve en az bir kalıp bitirilmişse (kartın kararlılığı garden.ts'de)
       const kendiCumle = { ilkHaftaBitti: !!(await getMeta(`m1:gun:${POLICY.own_sentence.ilk_hafta_son_gun}`)), kalipBitti: (await metaPrefix("kalip:bitti:")).length > 0 };
@@ -106,10 +111,12 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       // normal akış seçildiyse ya da bugün öneri reddedildiyse kendiliğinden öneri de gelmez (tercih saygısı)
       if (kapali || (await getMeta<string>("hizliOneriRed")) === bugun) setOneri("reddedildi");
       // boş tur: günün kartları zaten tanıtıldıysa Seans 1 burada tamamlanır (ekran efektine bırakılmaz)
-      if (day && !round.length && !kalan.length) await bahceTamam(day);
+      // atlanan günün Bahçe'si o günün adımını bitirmez: XP, seri ve m1:bahce yazılmaz (PM-114 B md. 4; inceleme #245 F-1)
+      const atlandi = !!day && atl.has(day);
+      if (day && !atlandi && !round.length && !kalan.length) await bahceTamam(day);
       // çeldirici yakınlığı: turun ve günün kartları, öğrencinin tanıdıkları (PM 7011722598 madde 5)
       const yakin: Yakinlik = { tur: new Set([...round.map((q) => q.lexId), ...gunKartlari]), bilinen: new Set(items.keys()) };
-      setData({ lex, all: lexemes, items, round, capped: newLeft <= 0, gunKartlari, yakin });
+      setData({ lex, all: lexemes, items, round, capped: newLeft <= 0, gunKartlari, yakin, atlandi });
     })().catch((e) => setErr(String(e?.message || e)));
     return () => stopSpeaking();
   }, []);
@@ -165,7 +172,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     // tekrar, en son gösterilen cümlenin ardından ("Başka cümle"ye basıldıysa o cümleden sonra; inceleme #92 P1-1)
     const r2 = !r.ok && outcome ? requeue(round, { ...q, type: tip, sina: false, ex: exi }, l, Math.random, data.items.get(q.lexId)) : round;
     // son cevap: günün bütün kartları tanıtıldıysa Seans 1 şimdi işaretlenir (inceleme #66 P1-1)
-    if (day && i + 1 >= r2.length && data.gunKartlari.every((id) => data.items.has(id))) { try { await bahceTamam(day); } catch { /* bir sonraki açılışta yeniden denenir */ } }
+    if (day && !data.atlandi && i + 1 >= r2.length && data.gunKartlari.every((id) => data.items.has(id))) { try { await bahceTamam(day); } catch { /* bir sonraki açılışta yeniden denenir */ } }
     setData({ ...data, round: r2 });
     setI(i + 1);
   };

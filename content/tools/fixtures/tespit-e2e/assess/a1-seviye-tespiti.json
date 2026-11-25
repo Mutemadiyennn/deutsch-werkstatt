@@ -1,0 +1,664 @@
+{
+ "schema": 1,
+ "id": "tespit:a1:1",
+ "seviye": "A1",
+ "review": {
+  "status": "draft"
+ },
+ "note_tr": "e2e fikstürü (PM-115 PR 2b): fixtures/tespit + 3.–8. haftada birer gün ve yeni maddeler; A1'in sekiz haftası ölçülür.",
+ "cekirdek": {
+  "deneme": "assess:a1-deneme:1",
+  "dinleme": [
+   "a1d:d1:01"
+  ],
+  "okuma": [
+   "a1o:o1:01"
+  ],
+  "yazma": [
+   "a1y:y1:01"
+  ],
+  "konusma": [
+   "a1k:k1:01"
+  ]
+ },
+ "maddeler": [
+  {
+   "yeni": {
+    "id": "tespit:a1:m001",
+    "k": "guided_response",
+    "situation_tr": "Komşun bugünün gününü soruyor.",
+    "prompt_de": "Welcher Tag ist heute?",
+    "accepted": [
+     "Heute ist Montag.",
+     "Montag.",
+     "Heute ist Montag"
+    ]
+   },
+   "hafta": 1,
+   "asama": "tarama",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:01"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m002",
+    "k": "tr_de",
+    "tr": "Haziranda geliyorum.",
+    "accepted": [
+     "Ich komme im Juni.",
+     "Im Juni komme ich.",
+     "ich komme im Juni"
+    ]
+   },
+   "hafta": 1,
+   "asama": "tarama",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:02"
+   ]
+  },
+  {
+   "ref": "m1:01:s1",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:01"
+   ],
+   "dil_noktasi": [
+    "r0:01-tage"
+   ]
+  },
+  {
+   "ref": "m1:01:s2",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "dinleme",
+   "can_do": [
+    "cd:m1:01"
+   ],
+   "dil_noktasi": [
+    "r0:01-tage"
+   ]
+  },
+  {
+   "ref": "m1:07:t01",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "dil",
+   "dil_noktasi": [
+    "r0:01-tage"
+   ],
+   "can_do": [
+    "cd:m1:01"
+   ]
+  },
+  {
+   "ref": "m1:01:s3",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "dil",
+   "can_do": [
+    "cd:m1:01"
+   ]
+  },
+  {
+   "ref": "m1:02:s1",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:02"
+   ],
+   "dil_noktasi": [
+    "r0:02-monate",
+    "r0:11-praesens"
+   ]
+  },
+  {
+   "ref": "m1:02:s2",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:02"
+   ],
+   "dil_noktasi": [
+    "r0:02-monate",
+    "r0:11-praesens"
+   ]
+  },
+  {
+   "ref": "m1:02:s3",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "dil",
+   "dil_noktasi": [
+    "r0:11-praesens"
+   ],
+   "can_do": [
+    "cd:m1:02"
+   ]
+  },
+  {
+   "ref": "r0:02:d01",
+   "hafta": 1,
+   "asama": "derin",
+   "beceri": "dil",
+   "dil_noktasi": [
+    "r0:02-monate"
+   ]
+  },
+  {
+   "ref": "m1:h02:g1",
+   "hafta": 2,
+   "asama": "tarama",
+   "beceri": "konusma"
+  },
+  {
+   "ref": "m1:h02:g2",
+   "hafta": 2,
+   "asama": "tarama",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:08"
+   ]
+  },
+  {
+   "ref": "m1:h02:g3",
+   "hafta": 2,
+   "asama": "derin",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:08"
+   ],
+   "dil_noktasi": [
+    "dn:kucuk-sozcukler"
+   ]
+  },
+  {
+   "ref": "m1:08:s1",
+   "hafta": 2,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:08"
+   ],
+   "dil_noktasi": [
+    "gr:a1-03:t5",
+    "dn:kucuk-sozcukler"
+   ]
+  },
+  {
+   "ref": "m1:08:s2",
+   "hafta": 2,
+   "asama": "derin",
+   "beceri": "dil",
+   "can_do": [
+    "cd:m1:08"
+   ],
+   "dil_noktasi": [
+    "gr:a1-03:t5"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m003",
+    "k": "tr_de",
+    "tr": "Bir ekmek daha, lütfen.",
+    "accepted": [
+     "Noch ein Brot, bitte.",
+     "Noch ein Brot bitte.",
+     "noch ein Brot, bitte"
+    ]
+   },
+   "hafta": 2,
+   "asama": "derin",
+   "beceri": "yazma",
+   "dil_noktasi": [
+    "gr:a1-03:t5",
+    "dn:kucuk-sozcukler"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m004",
+    "k": "tr_de",
+    "tr": "Münih'te oturuyorum.",
+    "accepted": [
+     "Ich wohne in München.",
+     "Ich wohne in München",
+     "ich wohne in München."
+    ]
+   },
+   "hafta": 3,
+   "asama": "tarama",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:15"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m005",
+    "k": "guided_response",
+    "situation_tr": "Komşun nerede oturduğunu soruyor. Münih'te oturduğunu söyle.",
+    "prompt_de": "Wo wohnen Sie?",
+    "accepted": [
+     "Ich wohne in München.",
+     "In München.",
+     "Ich wohne in München"
+    ]
+   },
+   "hafta": 3,
+   "asama": "tarama",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:15"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m006",
+    "k": "tr_de",
+    "tr": "Ben de Münih'te oturuyorum.",
+    "accepted": [
+     "Ich wohne auch in München.",
+     "Ich wohne auch in München",
+     "ich wohne auch in München."
+    ]
+   },
+   "hafta": 3,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:15"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m007",
+    "k": "tr_de",
+    "tr": "Nerede oturuyorsun?",
+    "accepted": [
+     "Wo wohnst du?",
+     "Wo wohnst du",
+     "wo wohnst du?"
+    ]
+   },
+   "hafta": 3,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:15"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m008",
+    "k": "tr_de",
+    "tr": "Saat kaç?",
+    "accepted": [
+     "Wie spät ist es?",
+     "Wie viel Uhr ist es?",
+     "Wie spät ist es"
+    ]
+   },
+   "hafta": 4,
+   "asama": "tarama",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:22"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m009",
+    "k": "guided_response",
+    "situation_tr": "Biri saati soruyor. Saatin üç olduğunu söyle.",
+    "prompt_de": "Wie spät ist es?",
+    "accepted": [
+     "Es ist drei Uhr.",
+     "Drei Uhr.",
+     "Es ist drei."
+    ]
+   },
+   "hafta": 4,
+   "asama": "tarama",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:22"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m010",
+    "k": "tr_de",
+    "tr": "Saat dört.",
+    "accepted": [
+     "Es ist vier Uhr.",
+     "Es ist vier.",
+     "Vier Uhr."
+    ]
+   },
+   "hafta": 4,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:22"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m011",
+    "k": "tr_de",
+    "tr": "Affedersiniz, saat kaç?",
+    "accepted": [
+     "Entschuldigung, wie spät ist es?",
+     "Entschuldigung, wie viel Uhr ist es?",
+     "Entschuldigung wie spät ist es?"
+    ]
+   },
+   "hafta": 4,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:22"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m012",
+    "k": "tr_de",
+    "tr": "Bir kahve, lütfen.",
+    "accepted": [
+     "Einen Kaffee, bitte.",
+     "Einen Kaffee bitte.",
+     "Ich möchte einen Kaffee, bitte."
+    ]
+   },
+   "hafta": 5,
+   "asama": "tarama",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:29"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m013",
+    "k": "guided_response",
+    "situation_tr": "Kafedesin. Garson ne içmek istediğini soruyor. Çay iste.",
+    "prompt_de": "Was möchten Sie trinken?",
+    "accepted": [
+     "Einen Tee, bitte.",
+     "Ich möchte einen Tee.",
+     "Einen Tee bitte."
+    ]
+   },
+   "hafta": 5,
+   "asama": "tarama",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:29"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m014",
+    "k": "tr_de",
+    "tr": "Sütlü bir kahve, lütfen.",
+    "accepted": [
+     "Einen Kaffee mit Milch, bitte.",
+     "Einen Kaffee mit Milch bitte.",
+     "Ich möchte einen Kaffee mit Milch."
+    ]
+   },
+   "hafta": 5,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:29"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m015",
+    "k": "tr_de",
+    "tr": "Hesap, lütfen.",
+    "accepted": [
+     "Die Rechnung, bitte.",
+     "Zahlen, bitte.",
+     "Die Rechnung bitte."
+    ]
+   },
+   "hafta": 5,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:29"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m016",
+    "k": "tr_de",
+    "tr": "Tren istasyonu nerede?",
+    "accepted": [
+     "Wo ist der Bahnhof?",
+     "Wo ist der Bahnhof",
+     "wo ist der Bahnhof?"
+    ]
+   },
+   "hafta": 6,
+   "asama": "tarama",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:36"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m017",
+    "k": "guided_response",
+    "situation_tr": "Sokakta biri yardım edip edemeyeceğini soruyor. Eczanenin nerede olduğunu sor.",
+    "prompt_de": "Kann ich Ihnen helfen?",
+    "accepted": [
+     "Wo ist die Apotheke?",
+     "Ja, wo ist die Apotheke?",
+     "Entschuldigung, wo ist die Apotheke?"
+    ]
+   },
+   "hafta": 6,
+   "asama": "tarama",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:36"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m018",
+    "k": "tr_de",
+    "tr": "Dümdüz gidin.",
+    "accepted": [
+     "Gehen Sie geradeaus.",
+     "Immer geradeaus.",
+     "Gehen Sie immer geradeaus."
+    ]
+   },
+   "hafta": 6,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:36"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m019",
+    "k": "tr_de",
+    "tr": "Sağa dönün.",
+    "accepted": [
+     "Gehen Sie nach rechts.",
+     "Biegen Sie rechts ab.",
+     "Gehen Sie rechts."
+    ]
+   },
+   "hafta": 6,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:36"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m020",
+    "k": "tr_de",
+    "tr": "Bir randevu istiyorum.",
+    "accepted": [
+     "Ich möchte einen Termin.",
+     "Ich hätte gern einen Termin.",
+     "Ich möchte einen Termin, bitte."
+    ]
+   },
+   "hafta": 7,
+   "asama": "tarama",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:43"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m021",
+    "k": "guided_response",
+    "situation_tr": "Muayenehanedesin. Görevli ne zaman gelebileceğini soruyor. Pazartesi de.",
+    "prompt_de": "Wann können Sie kommen?",
+    "accepted": [
+     "Am Montag.",
+     "Montag.",
+     "Ich kann am Montag kommen."
+    ]
+   },
+   "hafta": 7,
+   "asama": "tarama",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:43"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m022",
+    "k": "tr_de",
+    "tr": "Başım ağrıyor.",
+    "accepted": [
+     "Ich habe Kopfschmerzen.",
+     "Mein Kopf tut weh.",
+     "Ich habe Kopfschmerzen"
+    ]
+   },
+   "hafta": 7,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:43"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m023",
+    "k": "tr_de",
+    "tr": "Salı günü gelebilirim.",
+    "accepted": [
+     "Ich kann am Dienstag kommen.",
+     "Am Dienstag kann ich kommen.",
+     "Ich kann Dienstag kommen."
+    ]
+   },
+   "hafta": 7,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:43"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m024",
+    "k": "tr_de",
+    "tr": "Cumartesi sinemaya gidiyorum.",
+    "accepted": [
+     "Am Samstag gehe ich ins Kino.",
+     "Ich gehe am Samstag ins Kino.",
+     "Samstag gehe ich ins Kino."
+    ]
+   },
+   "hafta": 8,
+   "asama": "tarama",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:50"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m025",
+    "k": "guided_response",
+    "situation_tr": "Arkadaşın pazar günü ne yapacağını soruyor. Yüzmeye gideceğini söyle.",
+    "prompt_de": "Was machst du am Sonntag?",
+    "accepted": [
+     "Ich gehe schwimmen.",
+     "Am Sonntag gehe ich schwimmen.",
+     "Ich gehe am Sonntag schwimmen."
+    ]
+   },
+   "hafta": 8,
+   "asama": "tarama",
+   "beceri": "konusma",
+   "can_do": [
+    "cd:m1:50"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m026",
+    "k": "tr_de",
+    "tr": "Pazar günü evde kalıyorum.",
+    "accepted": [
+     "Am Sonntag bleibe ich zu Hause.",
+     "Ich bleibe am Sonntag zu Hause.",
+     "Sonntag bleibe ich zu Hause."
+    ]
+   },
+   "hafta": 8,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:50"
+   ]
+  },
+  {
+   "yeni": {
+    "id": "tespit:a1:m027",
+    "k": "tr_de",
+    "tr": "Cumartesi vaktin var mı?",
+    "accepted": [
+     "Hast du am Samstag Zeit?",
+     "Hast du Samstag Zeit?",
+     "Hast du am Samstag Zeit"
+    ]
+   },
+   "hafta": 8,
+   "asama": "derin",
+   "beceri": "yazma",
+   "can_do": [
+    "cd:m1:50"
+   ]
+  }
+ ]
+}

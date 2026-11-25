@@ -74,6 +74,8 @@ export async function saveProfile(p: Profile): Promise<Profile> {
 export async function getMeta<T>(key: string): Promise<T | undefined> { return (await db.meta.get(key))?.value as T | undefined; }
 export async function setMeta(key: string, value: unknown) { await db.meta.put({ key, value }); }
 export async function delMeta(key: string) { await db.meta.delete(key); }
+/** meta anahtarı önekiyle bütün kayıtları siler (ör. kapalı raf önbelleği "raf:depo:") */
+export async function delMetaPrefix(prefix: string) { await db.meta.where("key").startsWith(prefix).delete(); }
 /** Bu zamandan sonra ilk kez tanıtılan (pasif) öğeler: gün sonu özetinde "yeni anladığın kelimeler" (#58 B3) */
 /**
  * B5 (inceleme #146 P1-2): bugün (yerel gün) BAHÇEDE cevaplanmış kartlar. Seviye tespiti ve senaryo da kart yazar; onlar sayılmaz.

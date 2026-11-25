@@ -59,7 +59,10 @@ def main():
         pg.on("request", lambda r: istek.append(r.url) if "/m1/gun-" in r.url else None)
         pg.goto(base + "#/yol"); pg.reload(); pg.wait_for_selector("[data-test=yol] [data-test=gun-8]", timeout=20000)
         yuklenen = sorted({u.rsplit("/", 1)[-1] for u in istek})
-        check(yuklenen == ["gun-08.json", "gun-09.json"], f"Yol açılışında yalnız 2. haftanın gün dosyaları yüklendi ({yuklenen})")
+        # 2. haftanın pakette olan günleri (8–14) yüklenir; 1. haftanınki (1–7) ve 3. haftanınki (15+) yüklenmez.
+        # Fikstürde yalnız 8–9 var, gerçek 2. hafta gelince 8–14 (PM-127 md. 2.2: iki ağaçta da geçer).
+        hafta2 = {f"gun-{g:02d}.json" for g in range(8, 15)}
+        check("gun-08.json" in yuklenen and set(yuklenen) <= hafta2, f"Yol açılışında yalnız 2. haftanın gün dosyaları yüklendi ({yuklenen})")
         y = pg.evaluate("""() => { const q = (s) => document.querySelector(s);
           return { h1: q('[data-test=hafta-1]')?.dataset.durum, h1gun: document.querySelectorAll('[data-test=hafta-1] [data-test^=gun-]').length,
             g8: q('[data-test=gun-8]')?.dataset.durum, g9: q('[data-test=gun-9]')?.dataset.durum, bant: q('[data-test=gun-8] .gun-bant-ust')?.innerText,

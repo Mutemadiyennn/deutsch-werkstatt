@@ -7,3 +7,4 @@ export * from "./deneme.ts";
 export * from "./adsiz.ts";
 export * from "./kume.ts";
 export * from "./dil.ts";
+export * from "./tespit.ts";

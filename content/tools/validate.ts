@@ -3,6 +3,7 @@ import { loadContent, checkRules, ROOT } from "./load.ts";
 import { ogretilmemisBosluklar } from "./bosluk.ts";
 import { medyaDenetle } from "./medya.ts";
 import { halkaDenetle } from "./halka.ts";
+import { tespitYukle } from "./tespit.ts";
 import { haftaBecerileri, haftaTestleri } from "./haftaTesti.ts";
 import { kesinPaketi } from "./kesin.ts";
 import { genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
@@ -31,9 +32,12 @@ if (bos.length) {
     c.errors.push(...b.hatalar); c.warnings.push(...b.uyarilar);
   } catch (e) { c.errors.push(String((e as Error).message)); }
 }
+// PM-115 md. 5: A1 seviye tespiti havuzu (dosya yoksa sessiz; biçim content/v2/assess/TESPIT_FORMAT.md)
+const tespit = tespitYukle(c.dir ?? join(ROOT, "content/v2"));
+if (tespit) { c.errors.push(...tespit.hata); c.warnings.push(...tespit.uyari); }
 for (const w of c.warnings) console.log("  uyarı:", w);
 for (const e of c.errors) console.log("  HATA:", e);
 console.log(
-  `içerik v2: ${c.domains.length} alan · ${c.lexemes.length} kelime (${c.lexemes.filter((l) => l.tier === "K1").length} K1, ${c.lexemes.filter((l) => l.tier === "K2").length} K2; ${c.lexiconBatches.length} parti) · ${c.patterns.length} kalıp · ${c.grammar.length} dilbilgisi · ${c.scenarios.length} senaryo · ${c.assess.length} seviye tespiti maddesi → ${c.errors.length} hata, ${c.warnings.length} uyarı`
+  `içerik v2: ${c.domains.length} alan · ${c.lexemes.length} kelime (${c.lexemes.filter((l) => l.tier === "K1").length} K1, ${c.lexemes.filter((l) => l.tier === "K2").length} K2; ${c.lexiconBatches.length} parti) · ${c.patterns.length} kalıp · ${c.grammar.length} dilbilgisi · ${c.scenarios.length} senaryo · ${c.assess.length} tespit bankası maddesi (bank.json)${tespit ? ` · seviye tespiti havuzu ${tespit.cozulen.length} madde` : ""} → ${c.errors.length} hata, ${c.warnings.length} uyarı`
 );
 if (c.errors.length) process.exit(1);

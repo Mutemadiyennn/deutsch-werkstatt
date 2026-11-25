@@ -9,10 +9,10 @@ import { KullanimTablosu } from "../ui/gunsonu.tsx";
 import { MedyaRafi } from "../ui/raf.tsx";
 import { persistState, type PersistState } from "../services/storage.ts";
 import { ACTIVITY_TR } from "../core/planner.ts";
-import { EskiyeDon } from "../ui/EskiyeDon.tsx";
 import { ApiError } from "../services/api.ts";
 import { aiState, onAiState } from "../services/ai.ts";
 import { TopBar } from "../ui/components.tsx";
+import { ElleBaslangic } from "../ui/tespitDurum.tsx";
 
 const ACTS = Activity.options.filter((a) => a !== "assess" && a !== "other");
 
@@ -178,8 +178,7 @@ export function ProfileView() {
         <p class="small" style={{ marginTop: 8 }} data-test="persist">{persist === "persisted" ? "İlerlemen bu cihazda kalıcı. Telefonu değiştirmeden önce yedek indir." : persist === "best-effort" ? "İlerlemen bu cihazda. Telefonda yer azalırsa silinebilir: ara sıra yedek indir." : "İlerlemen bu cihazda. Ara sıra yedek indir."}</p>
         <div class="row" style={{ marginTop: 12 }}>
           <button class="btn sm" onClick={download}>Yedeği indir (JSON)</button>
-          {/* PM 7025664499: v1'deki "Her açılışta yeni uygulamayı aç" anahtarını kapatır ve eski uygulamaya geçer (aynı köken) */}
-          <EskiyeDon />
+          {/* "Eski uygulamaya dön" PM-116 ile kalktı: uygulama doğrudan v2 açılır */}
         </div>
       </section>
 
@@ -196,6 +195,8 @@ export function ProfileView() {
           <button class="btn sm" onClick={() => auth.signOut()}>Çıkış yap</button>
         </div>
       </section>
+      {/* PM-115 md. 3: görünür akışta değil; dipte sessiz elle değiştirme (tespit önerilir) */}
+      <ElleBaslangic />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 /** Bugün: 100 dk hedefi, seans x/4, kalan odak/mola süresi, sıradaki etkinlik, öğrenilenler, zayıflıklar */
+import { TespitDavet, tespitBekliyorMu, useTespitDurumu } from "../ui/tespitDurum.tsx";
 import { useEffect, useRef, useState } from "preact/hooks";
 import type { LearnerItem, Lexeme, Scenario } from "@dw/shared";
 import { HeardWordBox } from "../ui/learn.tsx";
@@ -32,6 +33,9 @@ export function Today() {
   // seviye tespitini beklemez (LS-2.1 ilk başarı ≤60 sn); tespit ikincil bağlantıdır
   const { plan, err: planErr, yenile } = usePlan();
   const m1 = plan;
+  // PM-115 md. 1: kurulumdan gelen öğrenci tespit bitmeden (ya da karar vermeden) günü açamaz: yol yerine tespit kartı
+  const tespit = useTespitDurumu();
+  const tespitBekliyor = tespitBekliyorMu(tespit);
 
   useEffect(() => {
     // B7: "Şu an öğrendiklerin" de kişiselleştirilir (ad yuvası görünmez/okunmaz)
@@ -72,10 +76,11 @@ export function Today() {
     <div class="stack today bugun-yol" data-test="bugun-yol">
       {breakOn && <BreakCard />}
       {indexError && <ErrorPanel message={`İçerik yüklenemedi: ${indexError}`} onRetry={() => location.reload()} />}
-      <GorevSeridi plan={m1} />
-      <YolHarita yalnizBugun plan={m1} selam={`${greetDe} ${greetTr}${profile.displayName ? `, ${profile.displayName}` : ""}.`}
-        ek={examOn ? <span class="gun-bant-sinav" data-test="exam-badge">B1{exam !== null ? `: ${exam} gün` : ""}</span> : undefined} onBasla={devam} />
-      <GunSonu plan={m1} />
+      <TespitDavet d={tespit} />
+      {!tespitBekliyor && <GorevSeridi plan={m1} />}
+      {!tespitBekliyor && <YolHarita yalnizBugun plan={m1} selam={`${greetDe} ${greetTr}${profile.displayName ? `, ${profile.displayName}` : ""}.`}
+        ek={examOn ? <span class="gun-bant-sinav" data-test="exam-badge">B1{exam !== null ? `: ${exam} gün` : ""}</span> : undefined} onBasla={devam} />}
+      {!tespitBekliyor && <GunSonu plan={m1} />}
     </div>
   );
 
@@ -115,7 +120,6 @@ export function Today() {
         {rec.kind === "scenario" && rec.draft && <p class="tiny" style={{ margin: 0 }}><span class="chip">Deneme dersi</span></p>}
         {rec.kind === "assess" && <a class="btn primary block" href="#/assess"><Icon name="play" size={18} /> Seviye tespitine başla</a>}
         {rec.kind === "scenario" && <a class="btn primary block" href={`#/scenario/${encodeURIComponent(rec.scenarioId)}`}><Icon name="play" size={18} /> Devam et</a>}
-        {rec.kind === "v1" && <a class="btn primary block" href={rec.url} target="_blank" rel="noopener">Eski uygulamada aç <Icon name="out" size={18} /></a>}
         {e && !breakOn && <FocusPanel />}
         {placement && <a class="small" href={`#/assess/result/${placement.id}`}>Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>}
       </section>

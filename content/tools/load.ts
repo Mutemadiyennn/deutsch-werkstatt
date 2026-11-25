@@ -123,7 +123,7 @@ export function loadContent(dir = CDIR): Loaded {
   }
   const grammar = parseFile(join(dir, "registry/grammar.json"), z.array(GrammarNote), errors) || [];
   const assess = parseFile(join(dir, "assess/bank.json"), z.array(AssessItem), errors) || [];
-  const deneme = walk(join(dir, "assess")).filter((f) => !f.endsWith("/bank.json"))
+  const deneme = walk(join(dir, "assess")).filter((f) => !f.endsWith("/bank.json") && !f.endsWith("-seviye-tespiti.json")) // havuz deneme değil (PM-115; ANA-H2 devri md. 2)
     .map((f) => ({ file: rel(f), data: parseFile(f, Deneme, errors) }))
     .filter((x): x is { file: string; data: Deneme } => !!x.data);
   const scenarios = walk(join(dir, "domains"))
