@@ -40,6 +40,8 @@ import { BreakOverlay, OdakEkrani } from "./screens/Today.tsx";
 import { AssessRun, AssessResult } from "./screens/Assess.tsx";
 import { Progress } from "./screens/Progress.tsx";
 import { BenEkrani } from "./screens/Ben.tsx";
+import { HakkimdaEkrani } from "./screens/Hakkimda.tsx";
+import { hakkimdaYukle } from "./services/hakkimda.ts";
 import { Garden } from "./screens/Garden.tsx";
 import { ProfileView } from "./screens/Profile.tsx";
 import { hatirlatmaKur, hatirlatmaVar } from "./services/hatirlatma.ts";
@@ -107,6 +109,8 @@ export function App() {
   const [profile, setP] = useState<Profile | null>(null);
   // öğrencinin satırları hitaba göre seslendirilir; Profil'de değişince hemen (PM-064, inceleme #117 P1-4)
   useEffect(() => { setOgrenciHitap(profile?.address); }, [profile?.address]);
+  // PM-148 karar 2: "Kendim hakkında" değerleri bellekte (persona yuvaları); yalnız cihazda
+  useEffect(() => { if (user) void hakkimdaYukle().catch(() => undefined); }, [user]);
   const [index, setIndex] = useState<ContentIndex | null>(null);
   const [indexError, setIndexError] = useState<string | null>(null);
   const [placement, setPlacement] = useState<Assessment | undefined>();
@@ -214,6 +218,7 @@ export function App() {
     // Ben (PM-084 md. 5); eski İlerlemem "Çalışma düzenim" olarak #/ben/duzen'de
     case "ben": screen = <BenEkrani />; break;
     case "benDuzen": screen = <Progress />; break;
+    case "benHakkimda": screen = <HakkimdaEkrani />; break;
     case "profile": screen = <ProfileView />; break;
     case "assess": screen = <AssessRun />; break;
     case "assessResult": screen = <AssessResult id={route.id} />; break;

@@ -6,7 +6,9 @@
  */
 import { useEffect, useRef, useState } from "preact/hooks";
 import { ERROR_TR, type AiOutput, type SerbestKonus } from "@dw/shared";
-import { degerlendir, gizle, maskesiz, ornekCoz, type ProfilDegerleri } from "../../core/serbestKonus.ts";
+import { bosYuvalar, degerlendir, gizle, maskesiz, ornekCoz, type ProfilDegerleri } from "../../core/serbestKonus.ts";
+import { YuvaAlani } from "../hakkimda.tsx";
+import type { Hakkimda } from "../../core/persona.ts";
 import { ai, aiState, SOFT_WAIT_MS } from "../../services/ai.ts";
 import { ApiError } from "../../services/api.ts";
 import { speak, sttAvailable } from "../../services/speech.ts";
@@ -16,7 +18,11 @@ import { ActionBar, ListenButton, MicButton } from "../kit.tsx";
 
 type Rapor = AiOutput<"feedback_tr">;
 
-export function SerbestKonusAdimi({ k, profil, onBitti }: { k: SerbestKonus; profil: ProfilDegerleri; onBitti: (sesli: boolean) => void }) {
+export function SerbestKonusAdimi({ k, profil: profil0, onBitti, onProfil }: { k: SerbestKonus; profil: ProfilDegerleri; onBitti: (sesli: boolean) => void;
+  /** karar 2: görevin kullandığı boş alanı öğrenci o an yazarsa (isteğe bağlı) cihaza kaydedilir */ onProfil?: (v: Hakkimda) => Promise<void> }) {
+  const [profil, setProfil] = useState(profil0);
+  const [sor] = useState(() => bosYuvalar(k, profil0));
+  const [taslakP, setTaslakP] = useState<Hakkimda>({});
   const { api } = useApp();
   const mik = sttAvailable();
   const [parcalar, setParcalar] = useState<string[]>([]);
@@ -71,6 +77,15 @@ export function SerbestKonusAdimi({ k, profil, onBitti }: { k: SerbestKonus; pro
         <h2 style={{ margin: "6px 0 0" }} data-test="serbest-gorev">{k.gorev_tr}</h2>
         <p class="tiny muted" style={{ margin: "6px 0 0" }}>Hazırlık yok. Bildiğin gibi, en az {k.en_az_cumle} cümle söyle.</p>
       </div>
+      {sor.length > 0 && onProfil && !parcalar.length && (
+        <details class="card" data-test="serbest-profil">
+          <summary class="small"><b>İstersen önce bilgilerini yaz</b> <span class="muted">(isteğe bağlı, yalnız bu telefonda)</span></summary>
+          <div class="stack" style={{ gap: 12, marginTop: 10 }}>
+            {sor.map((y) => <YuvaAlani y={y} cerceve={false} deger={taslakP[y] ?? ""} degis={(x) => setTaslakP({ ...taslakP, [y]: x })} />)}
+            <button class="btn" data-test="serbest-profil-kaydet" onClick={() => { const v = { ...profil, ...taslakP }; setProfil(v); void onProfil(taslakP); }}>Kaydet</button>
+          </div>
+        </details>
+      )}
       {k.soru_de && (
         <div class="row" style={{ justifyContent: "center", alignItems: "center", gap: 10 }} data-test="serbest-soru">
           <span class="small muted">Karşındaki sana bir şey söyledi:</span>

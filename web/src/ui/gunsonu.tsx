@@ -11,6 +11,7 @@ import { adimEtiketi, bugunBitenGun, gununCumlesi, type KullanimOzet } from "../
 import { yerelGun } from "../core/gun.ts";
 import { ListenButton } from "./kit.tsx";
 import { Kutlama } from "./solen.tsx";
+import { bugunKonusma, serbestKonusAcik } from "../services/konusma.ts";
 
 const KELIME_SINIR = 12;
 
@@ -18,6 +19,9 @@ export function GunSonu({ plan }: { plan: Plan | null }) {
   const [oz, setOz] = useState<KullanimOzet | null>(null);
   const [kelimeler, setKelimeler] = useState<string[]>([]);
   const [kutla, setKutla] = useState(false);
+  /** PM-148 karar 4: bugün mikrofonla yapılan serbest konuşma sayısı (bayrak açıkken) */
+  const [konus, setKonus] = useState<{ sesli: number; yazili: number } | null>(null);
+  useEffect(() => { if (serbestKonusAcik()) void bugunKonusma().then(setKonus).catch(() => undefined); }, []);
   const bugun = yerelGun(new Date());
   useEffect(() => {
     let iptal = false;
@@ -44,13 +48,17 @@ export function GunSonu({ plan }: { plan: Plan | null }) {
     if (!gun) return;
     void getMeta(`gunsonu:kutlandi:${gun}`).then((v) => { if (!v) { setKutla(true); void setMeta(`gunsonu:kutlandi:${gun}`, new Date().toISOString()); } });
   }, [gun]);
-  if (!oz || !oz.bitenler.length) return null;
+  const konusSatir = konus && <p class="small" data-test="gun-sonu-konusma" data-sesli={konus.sesli} style={{ margin: 0 }}>
+    {konus.sesli ? `Bugün ${konus.sesli} kez konuştun.` : konus.yazili ? "Bugün konuşmadın: yazarak cevapladın. Yarın sesli dene." : "Bugün konuşmadın."}</p>;
+  // özet yoksa da bugün serbest konuşma yapıldıysa satır görünür (karar 4)
+  if (!oz || !oz.bitenler.length) return konus && konus.sesli + konus.yazili > 0 ? <section class="card stack" data-test="gun-sonu">{konusSatir}</section> : null;
   const cumle = gununCumlesi(oz);
   const baslik = <h2 data-test="gun-sonu-baslik">{gun ? `${gun}. gün bitti` : "Bugünün özeti"}</h2>;
   return (
     <section class="card stack" data-test="gun-sonu">
       {kutla ? <Kutlama>{baslik}</Kutlama> : baslik}
       <p class="small muted">Bugün {oz.bitenler.length} adım bitirdin.</p>
+      {konusSatir}
       {cumle && <div data-test="gun-sonu-cumle"><div class="tiny muted">Bugün kendi kurduğun cümle</div>
         <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start" }}><p class="de grow" lang="de">„{cumle.metin}“</p><ListenButton text={cumle.metin} small /></div></div>}
       {kelimeler.length > 0 && <div data-test="gun-sonu-kelimeler"><div class="tiny muted">Bugün yeni anladığın kelimeler</div>

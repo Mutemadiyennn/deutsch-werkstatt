@@ -99,6 +99,11 @@ export function BenEkrani() {
           <span class="grow"><b>{tespit.durum === "bitti" ? "Seviye raporun" : "Seviye tespiti"}</b><span>{tespit.durum === "bitti" ? "Beceriler, haftalar, zorlandıkların" : tespit.durum === "yarida" ? "Yarıda; kaldığın yerden sürer" : "Nereden başlayacağını bulalım"}</span></span>
           <span aria-hidden="true">›</span>
         </a>}
+        <a class="ben-satir" href="#/ben/hakkimda" data-test="hakkimda-ac">
+          <span class="ben-ic" style={{ background: "var(--m-pazar)" }} aria-hidden="true"><Icon name="user" size={22} /></span>
+          <span class="grow"><b>Kendim hakkında</b><span>İsteğe bağlı; konuşma görevlerinde örnek cevap senin bilgilerinle</span></span>
+          <span aria-hidden="true">›</span>
+        </a>
         <a class="ben-satir" href="#/ben/duzen" data-test="duzen-ac">
           <span class="ben-ic" style={{ background: "var(--m-radyo)" }} aria-hidden="true"><Icon name="clock" size={22} /></span>
           <span class="grow"><b>Çalışma düzenim</b><span>Odak süresi, seri, seviye ölçümü</span></span>

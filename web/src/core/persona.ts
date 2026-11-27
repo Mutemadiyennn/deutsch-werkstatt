@@ -4,24 +4,35 @@
  *   {A|B}        → A = Herr hitabı, B = Frau hitabı (ör. {Patient|Patientin}, {Herr|Frau})
  * Ad depoya, loglara ve yapay zekâya gitmez: yapay zekâya giden metinde ad "[Name]" olur.
  */
-import { ADSIZ } from "@dw/shared";
-export interface Persona { name?: string; address?: "Herr" | "Frau" }
+import { ADSIZ, PROFIL_YUVALARI, type ProfilYuvasi } from "@dw/shared";
+/** PM-148 karar 2: "Kendim hakkında" alanları (yalnız cihazda; `services/hakkimda.ts`). Değer kalıptaki yerine olduğu gibi konan Almanca biçim */
+export type Hakkimda = Partial<Record<ProfilYuvasi, string>>;
+export interface Persona { name?: string; address?: "Herr" | "Frau"; /** verilmezse cihazdaki son değer (`hakkimdaAyarla`) */ profil?: Hakkimda }
+/** Profil yuvası boşken gösterimdeki yer ("(adın)" gibi) */
+export const YUVA_GOSTERIM: Record<ProfilYuvasi, string> = { ulke: "(ülken)", sehir: "(şehrin)", yas: "(yaşın)", diller: "(dillerin)", meslek: "(mesleğin)", hobi: "(hobin)", aile: "(medeni durumun)" };
+const PROFIL_RE = new RegExp(`\\{(${PROFIL_YUVALARI.join("|")})\\}`, "g");
+/** Cihazdaki "Kendim hakkında" değerleri: ekranlar persona kurarken ayrıca vermesin diye bellekte (servis yükler ve kaydedince günceller) */
+let cihazProfili: Hakkimda = {};
+export function hakkimdaAyarla(v: Hakkimda) { cihazProfili = { ...v }; }
+const profilOf = (p: Persona): Hakkimda => p.profil ?? cihazProfili;
+const deger = (p: Persona, y: ProfilYuvasi) => profilOf(p)[y]?.trim() || "";
 const ALT = /\{([^{}|]+)\|([^{}|]+)\}/g;
 
 /** Ekranda gösterim: hitap yoksa "A/B" */
 export function showText(t: string, p: Persona): string {
-  return t.replace(ALT, (_m, a: string, b: string) => (p.address === "Herr" ? a : p.address === "Frau" ? b : `${a}/${b}`)).replace(/\{name\}/g, p.name || "(adın)");
+  return t.replace(PROFIL_RE, (_m, y: ProfilYuvasi) => deger(p, y) || YUVA_GOSTERIM[y]).replace(ALT, (_m, a: string, b: string) => (p.address === "Herr" ? a : p.address === "Frau" ? b : `${a}/${b}`)).replace(/\{name\}/g, p.name || "(adın)");
 }
 /** Seslendirme: hitap yoksa erkek/kadın biçiminden ilki; ad yoksa ad yuvası atlanır */
 export function speakText(t: string, p: Persona): string {
-  return t.replace(ALT, (_m, a: string, b: string) => (p.address === "Frau" ? b : a)).replace(/\s*\{name\}/g, p.name ? ` ${p.name}` : "");
+  return t.replace(PROFIL_RE, (_m, y: ProfilYuvasi) => deger(p, y)).replace(ALT, (_m, a: string, b: string) => (p.address === "Frau" ? b : a)).replace(/\s*\{name\}/g, p.name ? ` ${p.name}` : "");
 }
 /** Kabul listesi: hitap yoksa iki biçim de kabul; ad varsa yerleştirilir, yoksa {name} kalır (fillName ile cevaptan doldurulur) */
 export function expandAccepted(list: string[], p: Persona): string[] {
   const out: string[] = [];
   for (const t of list) {
     const forms = p.address ? [t.replace(ALT, (_m, a: string, b: string) => (p.address === "Herr" ? a : b))] : [t.replace(ALT, (_m, a: string) => a), t.replace(ALT, (_m, _a: string, b: string) => b)];
-    for (const f of forms) { const g = p.name ? f.replace(/\{name\}/g, p.name) : f; if (!out.includes(g)) out.push(g); }
+    // profil yuvası: değer varsa yerleşir, yoksa yuva kalır (fillName cevaptan doldurur)
+    for (const f0 of forms) { const f = f0.replace(PROFIL_RE, (m, y: ProfilYuvasi) => deger(p, y) || m); const g = p.name ? f.replace(/\{name\}/g, p.name) : f; if (!out.includes(g)) out.push(g); }
   }
   return out;
 }
@@ -39,6 +50,7 @@ export function bilinenKelimeler(l: Iterable<string>) {
 }
 /** Ad girilmemişse: beklenen cümledeki {name} yuvasını öğrencinin cevabındaki 1–3 kelimeyle doldur (bilinen kelime ad değildir) */
 export function fillName(expected: string, answer: string): string {
+  expected = profilDoldur(expected, answer);
   if (!expected.includes("{name}")) return expected;
   const [pre, post = ""] = expected.split("{name}") as [string, string?];
   const orig = parca(answer), a = orig.map((w) => w.toLocaleLowerCase("de"));
@@ -77,6 +89,11 @@ const desen = (x: string) => {
   return out;
 };
 export function redact(t: string, p: Persona): string {
+  // PM-148 karar 2: profil değerleri de yapay zekâya gitmez ("[…]"); ad "[Name]" (unredact geri koyar)
+  for (const v of Object.values(profilOf(p))) {
+    const x = v?.normalize("NFC").trim().replace(/\s+/g, " ");
+    if (x && [...x].length >= 2) t = t.normalize("NFC").replace(new RegExp(`(?<![\\p{L}\\p{N}])(?:${desen(x)})(?![\\p{L}\\p{N}])`, "giu"), "[…]");
+  }
   const ad = p.name?.normalize("NFC").trim().replace(/\s+/g, " ");
   if (!ad) return t;
   // tireli ve iki kelimeli adın parçaları (≥ 2 harf) da ayrıca
@@ -86,9 +103,24 @@ export function redact(t: string, p: Persona): string {
   const re = new RegExp(`(?<![\\p{L}\\p{N}])(?:${adaylar.map(desen).join("|")})(?![\\p{L}\\p{N}])`, "giu");
   return t.normalize("NFC").replace(re, "[Name]");
 }
-/** Yapay zekâdan gelen metin: [Name] → ad (yoksa hitap kalır) */
+/**
+ * Profil yuvası boşsa (PM-148 karar 2): beklenen cümledeki {ulke}, {sehir}… yuvası öğrencinin cevabındaki 1–4 sözcükle doldurulur
+ * ("Ich komme aus {ulke}." ↔ "Ich komme aus Polen."). Ad yuvasından farkı: sözlükteki sözcük de olabilir (verheiratet, Lehrer).
+ * Uymazsa yuva gösterimdeki yeriyle kalır (doğru sayılmaz).
+ */
+export function profilDoldur(expected: string, answer: string): string {
+  const bol = expected.split(PROFIL_RE);   // [metin, yuva, metin, …]
+  if (bol.length === 1) return expected;
+  const AD = "qqadyeriqq";
+  const kac = (w: string) => (w.toLocaleLowerCase("de") === AD ? "(?:\\S+(?:\\s+\\S+){0,2}?)" : w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const desenler = bol.map((x, i) => (i % 2 ? "(\\S+(?:\\s+\\S+){0,3}?)" : parca(x.replace(/\{name\}/g, ` ${AD} `)).map(kac).join("\\s+"))).filter(Boolean);
+  const m = new RegExp(`^${desenler.join("\\s+")}$`, "iu").exec(parca(answer).join(" "));
+  let n = 0;
+  return expected.replace(PROFIL_RE, (_m, y: ProfilYuvasi) => m?.[++n] ?? YUVA_GOSTERIM[y]);
+}
+/** Yapay zekâdan gelen metin: [Name] → ad (yoksa hitap kalır); profil maskesi "[…]" → "…" */
 export function unredact(t: string, p: Persona): string {
-  return t.replace(/\[Name\]/g, p.name || "").replace(/\s+([,.!?])/g, "$1").replace(/\s{2,}/g, " ").trim();
+  return t.replace(/\[…\]/g, "…").replace(/\[Name\]/g, p.name || "").replace(/\s+([,.!?])/g, "$1").replace(/\s{2,}/g, " ").trim();
 }
 /** Senaryonun bütün metinlerini cihaz profiline göre hazırlar: accepted listeleri genişler, diğer metinler gösterime göre */
 export function personalizeDeep<T>(x: T, p: Persona, key = ""): T {

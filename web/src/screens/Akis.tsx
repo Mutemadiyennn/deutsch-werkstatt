@@ -21,6 +21,8 @@ import { useApp } from "../state.ts";
 import { akisGunu, DIL_NOKTASI, GUN_SINAVI, KIP, planGun, SERBEST_KONUS } from "../core/akis.ts";
 import { SerbestKonusAdimi } from "../ui/soru/SerbestKonus.tsx";
 import { konusmaYaz, serbestKonusAcik } from "../services/konusma.ts";
+import { hakkimdaKaydet, hakkimdaYukle } from "../services/hakkimda.ts";
+import type { Hakkimda } from "../core/persona.ts";
 import type { ProfilDegerleri } from "../core/serbestKonus.ts";
 import { akisAnahtar, yeniKayit } from "../core/akisKayit.ts";
 import { ProgressHeader } from "../ui/kit.tsx";
@@ -63,7 +65,7 @@ export interface DilNoktasiVeri { h_tr: string; tr: string; table?: { head: stri
 
 export interface AkisBaglam { dilNoktasi: (id: string) => DilNoktasiVeri | undefined; gorev: (dersId: string) => string | undefined; hatirlatma: (dersId: string, adimId: string) => { de: string; tr: string }[]; adGerekli: (a: Adim) => boolean; tablo: (dersId: string) => { baslik_tr: string; sutunlar: string[]; satirlar: string[][] } | undefined; kalipOrnek: (kalip: string, d: Durak, adimId: string) => CumleBilgi[]; yakin: (adimId: string, d: Durak) => Yakinlik; teach: (dersId: string, oge: string) => { de: string; tr: string; ipucu?: string } | undefined; hedef: (d: Durak) => DurakHedef | null; cumle: (de: string) => CumleBilgi; sahne: (satirlar: string[]) => SahneVeri | undefined; isaretli: (de: string, adimId: string) => { sozcuk: string; tr?: string }[]; vurgu: (kart: string) => string[]; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void;
   /** PM-148 serbest konuşma: günün maddesi, profil yuvaları (yalnız cihazda) ve konuşma kaydı (karar 4) */
-  serbest: (oge: string) => SerbestKonus | undefined; profil: ProfilDegerleri; konustu: (adimId: string, sesli: boolean) => void }
+  serbest: (oge: string) => SerbestKonus | undefined; profil: ProfilDegerleri; konustu: (adimId: string, sesli: boolean) => void; profilKaydet: (v: Hakkimda) => Promise<void> }
 
 export function AkisOynatici({ kayit, lex, harita, emojiHarita, baglam, kaydet, cik }: AkisOynaticiProps) {
   const [neden, setNeden] = useState(false);
@@ -131,7 +133,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, emojiHarita, baglam, tohum, b
   // serbest konuşma (PM-148): kart sonucu yok; yalnız mikrofonla yapıldıysa konuşma sayılır (karar 4)
   if (adim.tur === "serbest_konus" && adim.ders?.id === SERBEST_KONUS) {
     const k = baglam.serbest(adim.ders.oge);
-    if (k) return <SerbestKonusAdimi key={adim.id} k={k} profil={baglam.profil} onBitti={(sesli) => { baglam.konustu(adim.id, sesli); bitir([]); }} />;
+    if (k) return <SerbestKonusAdimi key={adim.id} k={k} profil={baglam.profil} onProfil={baglam.profilKaydet} onBitti={(sesli) => { baglam.konustu(adim.id, sesli); bitir([]); }} />;
     // eski planın maddesi içerikten kalktıysa boş kart yok: adım kendiliğinden geçer (inceleme #281 P2-3)
     return <Gec bitir={() => bitir([])} />;
   }
@@ -277,6 +279,7 @@ export function AkisEkrani({ day }: { day: number }) {
         const cerceve = new Map(lexemes.filter((l) => l.card === false).map((l) => [l.de.toLowerCase(), l.tr]));
         const k10 = (await getMeta<Record<string, number>>("akis:k10")) ?? {};
         const kisi = { name: profile.displayName, address: profile.address };
+        const hk = await hakkimdaYukle();
         const bittiMi = async (k: string) => { const m = await getMeta<{ bitti?: unknown; ilkBitti?: unknown }>(k); return !!(m && (m.bitti || m.ilkBitti)); };
         const sesler = gun.sesler.map((x) => x.id);
         const sesBitti = new Set<string>(), sesBitti1 = new Set<string>(), sesBitti2 = new Set<string>();
@@ -414,7 +417,8 @@ export function AkisEkrani({ day }: { day: number }) {
           ipucu: (w) => { const k = w.toLowerCase(); const tr = cerceve.get(k); return tr && (k10[k] ?? 0) < 2 ? ilkAnlam(tr) : undefined; },
           gordu: (ws) => { for (const w of ws) { const k = w.replace(/[.,!?;:]/g, "").toLowerCase(); if (cerceve.has(k)) k10[k] = (k10[k] ?? 0) + 1; } void setMeta("akis:k10", k10); },
           serbest: (oge) => gun.serbest_konus?.find((x) => x.id === oge),
-          profil: { name: kisi.name },
+          profil: { name: kisi.name, ...hk },
+          profilKaydet: async (v) => { Object.assign(hk, await hakkimdaKaydet({ ...hk, ...v })); },
           konustu: (adimId, sesli) => { void konusmaYaz({ id: adimId, gun: day, sesli }); }
         };
         setV({ kayit, lex, harita, emojiHarita, items, baglam });

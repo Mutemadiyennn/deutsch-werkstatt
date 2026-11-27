@@ -13,7 +13,8 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 
 ## Hat V (ANA-V): serbest sesli konuşma (PM-148 [ANA-V]; 2026-11-27)
 - Dal `ana-v/serbest-konus` (md. 1): `serbest_konus` adım türü (şema, FORMAT.md, doğrulayıcı, hafta kapısı, planlayıcı gün sonu başı, ekran, çevrimdışı hedef listesi + `feedback_tr`, konuşma kaydı `konusma:<tarih>`). Bayrak `policy.serbest_konus.acik` **kapalı** (PM-135 ek 14); e2e `v2_serbest.py` iki bayrakla.
-- **Açık:** md. 2 (profil alanları, "Kendim hakkında"), md. 3 ("Bugün N kez konuştun", konuşma payı), md. 4 (A1 tamam kapısı) yığınlı PR'larda.
+- Dal `ana-v/profil-yuva` (md. 2 + md. 3'ün satırı; #281'in üstünde): profil yuvaları `persona.ts`'de (gösterim "(ülken)", kabulde cevaptan dolar, yapay zekâya "[…]"), `teach.ts`; Ben → "Kendim hakkında" (`meta.hakkimda`, yedeğe girmez); serbest konuşmada boş alanı o an sorma; Bugün'de "Bugün N kez konuştun" (bayrak açıkken).
+- **Açık:** md. 3 konuşma payı eşiği (`konusma_payi_min` 0.30, hafta kapısı) ve md. 4 (A1 tamam kapısı) devirde.
 
 ## Hat K (ANA-K): Kabuk 1.6 (PM-128, PM-142 md. 2.1; 2026-11-27)
 - Dal `ana-k/kabuk-1.6`, PR #271 (yalnız `ios-build.yml`): `server.url` ve "Tekrar dene" doğrudan `/v2/`; Capacitor `^8`, konuşma tanıma 7.0.1 sabit; derlemede kabuk adresi + izin anahtarı denetimi.
