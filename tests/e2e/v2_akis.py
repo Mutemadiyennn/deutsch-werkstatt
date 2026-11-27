@@ -32,10 +32,16 @@ def ust_cubuk(pg, ne):
       const e = document.querySelector('[data-test=akis] [role=progressbar]').getBoundingClientRect(); return { kes: e.right > n.left + 0.5, sag: Math.round(n.right), w: innerWidth }; }""")
     check(not r["kes"] and r["sag"] <= r["w"], f"{ne}: üst çubukta elmaslar 'Neden bu?' ile kesişmiyor ({r})")
 
+SAHNE_AD: list = []
+
 def adim_gec(pg, yanlis=False):
     """Şimdiki adımı geçer; yanlis=True ise 'Bilmiyorum' yolu (varsa). Dönen: adım türü"""
     tur = pg.get_attribute("[data-test=akis]", "data-tur")
     if pg.locator("[data-test=akis-durak-gec]").count(): pg.click("[data-test=akis-durak-gec]"); pg.wait_for_timeout(250); return tur
+    if pg.locator("[data-test=sahne-metni-ac]").count() and not SAHNE_AD:
+        # DENETİM-1 P1-2: sahne metninde konuşanın adı; ham kimlik (ch:…, ogrenci) yok
+        pg.click("[data-test=sahne-metni-ac]"); m = pg.inner_text("[data-test=sahne-metin]"); SAHNE_AD.append(m)
+        check("ch:" not in m and "ogrenci" not in m, f"sahne metninde ad var, ham kimlik yok ({m[:60]!r})")
     # mikrofonlu tarayıcıda (yerel Chromium: konuşma tanıma var) üretim adımı büyük mikrofonla açılır: yazarak yola geç
     if pg.locator("[data-test=akis-yazarak]").count(): pg.click("[data-test=akis-yazarak]"); pg.wait_for_timeout(100)
     if yanlis and pg.locator("[data-test=akis-bilmiyorum]").count():
