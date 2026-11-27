@@ -143,3 +143,92 @@ Dosya durumu (OD-9.4): `gun-46`, `gun-48`, `hafta-sonu-testi-07` ve `hafta-sonu-
 |---|---|---|---|---|
 | `m1:54:t13` `situation_tr` | Sınav provası. Kartlar önünde: **Name? Alter? Land? Wohnort? Sprachen? Beruf? Hobby?** Görevli kendini anlatmanı istiyor. Bu kez cümleleri **und** ile bağla: dört beş cümle yeter. | | **GERİ** | GERİ #7 |
 | `m1:54:t13` `why_tr` | İki bilgiyi **und** ile bağlayınca konuşma akar. Aynı kişi için **und**dan sonra **ich** gerekmez: **Ich heiße … und bin … Jahre alt.** | İki cümleyi **und** ile birleştirince ikinci **ich** düşer. | GEÇTİ | 7 ve 13 kelime. "Aynı kişi için" sözü tek başına bulanık, ama örnek açıyor. |
+
+## 2. tur (OD-9.3, PM-148)
+
+Girdi: 1. turdaki 7 GERİ metninin şimdiki hâli ve `git diff 11ac6372 02ab4f99 -- content/v2/` içindeki değişen ve yeni öğrenci metinleri. Metinler `02ab4f99` hâliyle okundu.
+Yeni düzen: `tr` satırlarında öğrencinin kendi bilgisi `…` ile gösteriliyor ("…'den geliyorum"). Üstteki Almanca satır kendi bilgimle dolu geldiği için `…` boşluğun yeri olarak okundu, sembol sayılmadı.
+`serbest_konus` görünürlüğü (`web/src/ui/soru/SerbestKonus.tsx`): `durum_tr` küçük yazıyla, `gorev_tr` büyük başlık (`h2`) olarak, `hedefler[].tr` sonuç ekranında ("Bunu da söyleyebilirsin: …"), `ornek_tr` dolu Almanca örneğin altında görünüyor.
+
+### 1. turdaki GERİ satırları
+
+| # | Öğe | Alan | Açıklama (şimdiki) | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|---|
+| 2-1 | `gun-46.json` `okuma_yazma.yazma` | `gorev_tr` | Pichler Bey'in formunu doldur: adı, soyadı, doğum yeri, mesleği. Sonra onun hakkında iki üç cümle yaz (**sein**, **seine** ile). Formu e-postayla gönderiyorsun, kime gittiğini bilmiyorsun. **Sehr geehrte Damen und Herren,** ile başla. **Mit freundlichen Grüßen** ile bitir. | Formu dolduracağım, Pichler Bey hakkında birkaç cümle yazacağım. Kime gittiğini bilmediğim için resmî açılış ve kapanış kullanacağım. | GEÇTİ | Bölünmüş. En uzun cümle 10 kelime. (1. tur #1) |
+| 2-2 | `gun-48.json` `okuma_yazma.yazma` | `gorev_tr` | Tobi'ye kısa bir cevap yaz. **Lieber Tobi,** ile başla. Geçmiş olsun de ve iki öğüt ver. Bir öğüdün nedenini **denn** ile söyle. Onun için ne yapacağını da yaz. **Viele Grüße** ile bitir. | Tobi'ye yazacağım: başlangıç, geçmiş olsun, iki öğüt, birinin nedeni, onun için ne yapacağım, kapanış. | GEÇTİ | Her iş ayrı cümlede, en uzunu 7 kelime. Bu kez hiçbir işi atlamadım. (1. tur #2) |
+| 2-3 | `gun-48.json` `okuma_yazma.yazma` | `kontrol_tr[0]` | **Lieber Tobi,** ile başladın mı? **Gute Besserung** yazdın mı? | Mesajın başı doğru mu: hitap ve geçmiş olsun var mı? | GEÇTİ | İki kısa soru, ikisi de mesajın başı. Not: tek kutuya iki soru (bkz. not 1). |
+| 2-4 | `gun-48.json` `okuma_yazma.yazma` | `kontrol_tr[1]` | Öğütler **Trink**, **Bleib** ile mi başlıyor? Nedende **du** gelir: **denn du hast …** | Öğütler doğrudan **Trink**, **Bleib** ile başlamalı. Nedeni yazarken **du** kullanırım. | GEÇTİ | "(**du** olmadan)" kalkınca çelişki gitti. Tek fikir: **du** öğütte yok, nedende var. (1. tur #3) |
+| 2-5 | `gun-48.json` `okuma_yazma.yazma` | `kontrol_tr[2]` | **für dich** ile ne yapacağını yazdın mı? Sonda **Viele Grüße** var mı? | Onun için ne yapacağımı yazdım mı, sonda kapanış var mı? | GEÇTİ | **Gute Besserung** ayrıldı, yanlış okuma gitti. İki kısa soru, ikisi de mesajın sonu. (1. tur #4) |
+| 2-6 | `hafta-sonu-testi-07.json` `m1:49:t13` | `situation_tr` | Sınav provası. Görevli seni tanımak istiyor. Kartlar: **Name** (ad), **Alter** (yaş), **Land** (ülke). Her kart için bir kısa cümle söyle. | Üç kart var: ad, yaş, ülke. Her biri için kendimle ilgili kısa bir cümle söyleyeceğim. | GEÇTİ | Kart sözcüklerinin Türkçesi var, "Kartlar:" çoğul. (1. tur #5) |
+| 2-7 | `hafta-sonu-testi-07.json` `m1:49:t13` | `why_tr` | Her karta bir cümle yeter. **Alter** için **Ich bin … Jahre alt** dersin. **Land** için **Ich komme aus …** dersin. | Her karta bir cümle. Yaş için **Ich bin … Jahre alt**, ülke için **Ich komme aus**. | GEÇTİ | 5, 8, 7 kelime. Kart ile kalıp eşlemesi açık. (1. tur #6) |
+| 2-8 | `hafta-sonu-testi-08.json` `m1:54:t13` | `situation_tr` | Sınav provası. Bu kez üç kart var: **Wohnort** (oturduğun yer), **Sprachen** (diller), **Beruf** (meslek). Her kart için bir kısa cümle söyle. | Bu sefer kartlar oturduğum yer, diller ve meslek. Her biri için bir cümle. | GEÇTİ | 12 kelime, Türkçeleri var. (1. tur #7) |
+| 2-9 | `hafta-sonu-testi-08.json` `m1:54:t13` | `why_tr` | Her karta bir cümle yeter. **Wohnort** için **Ich wohne in …** dersin. **Beruf** için **Ich bin …** ya da **Ich arbeite als …** dersin. | Oturduğum yer için **Ich wohne in**, iş için **Ich bin** ya da **Ich arbeite als**. | GEÇTİ | 5, 7, 11 kelime. **und** açıklaması kalktı, görev de artık **und** istemiyor, tutarlı. |
+
+### Değişen ve yeni öteki metinler
+
+| # | Öğe | Alan | Açıklama | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|---|
+| 2-10 | `hafta-sonu-testi-07.json` `m1:49:t10` (yeni, sıralama) | `tr` | Akşam iki damla alın. | Doktor ya da eczacı akşam iki damla almamı söylüyor. | GEÇTİ | |
+| 2-11 | `hafta-sonu-testi-07.json` `m1:49:t10` | `why_tr` | Resmî talimatta **Nehmen** başta, **Sie** hemen arkasında: **Nehmen Sie …** | Kibar bir talimatta önce **Nehmen**, sonra **Sie** gelir. | GEÇTİ | 8 kelime, terim yok. Bkz. not 3. |
+| 2-12 | `gun-46.json` görev `lx:Heimat` (Ich komme aus {ulke}. Das ist meine Heimat.) | `tr` | …'den geliyorum. Orası benim memleketim. | Şu ülkeden geliyorum, orası memleketim. | GEÇTİ | |
+| 2-13 | `gun-46.json` prova n7 seçenek 1 | `tr` | … yaşındayım. …'den geliyorum. | Yaşımı ve memleketimi söylüyorum. | GEÇTİ | |
+| 2-14 | `gun-46.json` prova n8 seçenek 1 | `tr` | Mesleğim: …, medeni durumum: … | İşimi ve evli mi bekâr mı olduğumu söylüyorum. | GEÇTİ | "medeni durum" düğümün kendi sorusunda da geçiyor. |
+| 2-15 | `gun-46.json` prova n8b seçenek 1 | `tr` | … konuşuyorum. Artık biraz Almanca da konuşuyorum. | Dillerimi söylüyorum, artık biraz Almanca da biliyorum. | GEÇTİ | Geri bildirim ("Dillerini **Ich spreche …** ile söyledin.") yeni cümleye de uyuyor. |
+| 2-16 | `gun-53.json` prova n1c seçenek 1 | `tr` | …'den geliyorum. Şimdi …'de oturuyorum. | Memleketimi ve şimdi oturduğum yeri söylüyorum. | GEÇTİ | |
+| 2-17 | `gun-53.json` prova n1c seçenek 2 (görünmez) | `tr` | …'den geliyorum. | Nereden geldiğimi söylüyorum. | GEÇTİ | Uygun olmayan seçenek, öğrenciye görünmüyor. |
+| 2-18 | `gun-53.json` prova n1d seçenek 1 | `tr` | Mesleğim: …, konuştuğum diller: … | İşimi ve dillerimi söylüyorum. | GEÇTİ | |
+| 2-19 | `gun-53.json` prova n1e seçenek 1 | `tr` | Hobim: …, hafta sonu boş vaktim var. | Hobimi söylüyorum, hafta sonu boşum diyorum. | GEÇTİ | Geri bildirim ("konuyu hafta sonuna bağladın") yeni cümleye uyuyor. |
+| 2-20 | `gun-46.json` `serbest_konus[m1:46:k1]` | `durum_tr` | Dil sınavının provası. Görevli karşında oturuyor ve seni tanımak istiyor. | Sınav provası, görevli beni tanımak istiyor. | GEÇTİ | |
+| 2-21 | `gun-46.json` `serbest_konus[m1:46:k1]` | `gorev_tr` | Kendini tanıt: adını, yaşını, nereli olduğunu, nerede oturduğunu, hangi dilleri konuştuğunu, mesleğini ve hobini söyle. | Kendimi yedi bilgiyle tanıtacağım: ad, yaş, memleket, oturduğum yer, diller, iş, hobi. | **GERİ** | 15 kelimelik tek cümle (sınır 14). Ekranda büyük başlık olarak çıkıyor, telefonda birkaç satıra yayılıyor. Sona gelince baştakileri sayamadım. Almanca sözcük yok, ne söyleyeceğim açık. |
+| 2-22 | `gun-46.json` `m1:46:k1` | `hedefler[h1].tr` | adını söyle | Adımı söyleyeceğim. | GEÇTİ | |
+| 2-23 | `gun-46.json` `m1:46:k1` | `hedefler[h2].tr` | yaşını söyle | Yaşımı söyleyeceğim. | GEÇTİ | |
+| 2-24 | `gun-46.json` `m1:46:k1` | `hedefler[h3].tr` | nereli olduğunu söyle | Memleketimi söyleyeceğim. | GEÇTİ | |
+| 2-25 | `gun-46.json` `m1:46:k1` | `hedefler[h4].tr` | nerede oturduğunu söyle | Oturduğum yeri söyleyeceğim. | GEÇTİ | |
+| 2-26 | `gun-46.json` `m1:46:k1` | `hedefler[h5].tr` | hangi dilleri konuştuğunu söyle | Dillerimi söyleyeceğim. | GEÇTİ | |
+| 2-27 | `gun-46.json` `m1:46:k1` | `hedefler[h6].tr` | mesleğini söyle | İşimi söyleyeceğim. | GEÇTİ | |
+| 2-28 | `gun-46.json` `m1:46:k1` | `hedefler[h7].tr` | hobini söyle | Hobimi söyleyeceğim. | GEÇTİ | |
+| 2-29 | `gun-46.json` `m1:46:k1` | `ornek_tr` | Adım … Yaşım … Memleketim … Oturduğum yer … Konuştuğum diller … Mesleğim … Hobim … | Örnek tanıtmanın Türkçesi: her bilgi için bir parça. | GEÇTİ | Dolu Almanca örneğin altında görünüyor, eşleşme sırayla belli. Not 2'ye bakın. |
+| 2-30 | `gun-52.json` `serbest_konus[m1:52:k1]` | `durum_tr` | Kuaförde sıra bekliyorsun. Yanındaki kadın mahalleye yeni taşınmış ve seninle tanışmak istiyor. | Kuaförde bekliyorum, mahalleye yeni gelen bir kadın benimle tanışmak istiyor. | GEÇTİ | 3 ve 9 kelime. |
+| 2-31 | `gun-52.json` `serbest_konus[m1:52:k1]` | `gorev_tr` | Ona kendini anlat: nereli olduğunu, hangi dilleri konuştuğunu, ne iş yaptığını ve boş zamanında ne yaptığını söyle. | Kadına memleketimi, dillerimi, işimi ve boş zamanımda ne yaptığımı anlatacağım. | **GERİ** | 17 kelimelik tek cümle (sınır 14), ekranda büyük başlık. Almanca sözcük yok, ne söyleyeceğim açık. |
+| 2-32 | `gun-52.json` `m1:52:k1` | `hedefler[h1].tr` | nereli olduğunu söyle | Memleketimi söyleyeceğim. | GEÇTİ | |
+| 2-33 | `gun-52.json` `m1:52:k1` | `hedefler[h2].tr` | hangi dilleri konuştuğunu söyle | Dillerimi söyleyeceğim. | GEÇTİ | |
+| 2-34 | `gun-52.json` `m1:52:k1` | `hedefler[h3].tr` | mesleğini söyle | İşimi söyleyeceğim. | GEÇTİ | |
+| 2-35 | `gun-52.json` `m1:52:k1` | `hedefler[h4].tr` | hobini söyle | Hobimi söyleyeceğim. | GEÇTİ | Görevde "boş zamanında ne yaptığını" deniyor, burada "hobini". Aynı şey olarak okudum. |
+| 2-36 | `gun-52.json` `m1:52:k1` | `ornek_tr` | Memleketim … Konuştuğum diller … Mesleğim … Hobim … | Örneğin Türkçesi: dört bilgi. | GEÇTİ | |
+| 2-37 | `gun-53.json` `serbest_konus[m1:53:k1]` | `durum_tr` | İş yerinde başka bir ekiple ilk toplantı. Herkes sırayla kendini tanıtıyor, şimdi sıra sende. | İş toplantısındayım, herkes kendini tanıtıyor, sıra bende. | GEÇTİ | 7 ve 7 kelime. |
+| 2-38 | `gun-53.json` `serbest_konus[m1:53:k1]` | `gorev_tr` | Kendini tanıt: adını, yaşını, nereli olduğunu, nerede oturduğunu, hangi dilleri konuştuğunu, ne iş yaptığını ve hobini söyle. | Kendimi yedi bilgiyle tanıtacağım. | **GERİ** | 17 kelimelik tek cümle (sınır 14), ekranda büyük başlık. 2-21 ile aynı sorun. Almanca sözcük yok, ne söyleyeceğim açık. |
+| 2-39 | `gun-53.json` `m1:53:k1` | `hedefler[h1].tr` | adını söyle | Adımı söyleyeceğim. | GEÇTİ | |
+| 2-40 | `gun-53.json` `m1:53:k1` | `hedefler[h2].tr` | yaşını söyle | Yaşımı söyleyeceğim. | GEÇTİ | |
+| 2-41 | `gun-53.json` `m1:53:k1` | `hedefler[h3].tr` | nereli olduğunu söyle | Memleketimi söyleyeceğim. | GEÇTİ | |
+| 2-42 | `gun-53.json` `m1:53:k1` | `hedefler[h4].tr` | nerede oturduğunu söyle | Oturduğum yeri söyleyeceğim. | GEÇTİ | |
+| 2-43 | `gun-53.json` `m1:53:k1` | `hedefler[h5].tr` | hangi dilleri konuştuğunu söyle | Dillerimi söyleyeceğim. | GEÇTİ | |
+| 2-44 | `gun-53.json` `m1:53:k1` | `hedefler[h6].tr` | mesleğini söyle | İşimi söyleyeceğim. | GEÇTİ | |
+| 2-45 | `gun-53.json` `m1:53:k1` | `hedefler[h7].tr` | hobini söyle | Hobimi söyleyeceğim. | GEÇTİ | |
+| 2-46 | `gun-53.json` `m1:53:k1` | `ornek_tr` | Adım … Yaşım … Memleketim … Şimdi oturduğum yer … Konuştuğum diller … ve biraz Almanca. Mesleğim … Hobim … | Örneğin Türkçesi; dillerin arkasına "biraz da Almanca" eklenmiş. | GEÇTİ | |
+
+gun-45 ve gun-48'deki `accepted_kaliplar` eklemeleri, `accepted` listeleri ve `can_do` alanları öğrenciye Türkçe metin göstermiyor, okunmadı. Silinen `m1:49:t05` maddesinde görünen metin kalmadı.
+
+### 2. tur GERİ dönenler
+
+| # | Yer | Neden | Öneri (yön) |
+|---|---|---|---|
+| 2-21 | `gun-46.json` `serbest_konus[m1:46:k1].gorev_tr` | 15 kelimelik tek cümle, yedi madde. Büyük başlıkta telefonda uzun. | İki ya da üç kısa cümleye bölünsün (ör. önce "Kendini tanıt.", sonra maddeler ikiye ayrılsın). Almanca sözcük girmesin. |
+| 2-31 | `gun-52.json` `serbest_konus[m1:52:k1].gorev_tr` | 17 kelimelik tek cümle. | "Ona kendini anlat." ayrı dursun, dört madde bir iki kısa cümleye dağılsın. |
+| 2-38 | `gun-53.json` `serbest_konus[m1:53:k1].gorev_tr` | 17 kelimelik tek cümle, yedi madde. | 2-21 ile aynı yön. |
+
+### 2. tur notları (karar değil)
+
+1. **Kontrol kutularında iki soru (2-3, 2-5).** Kontrol listesinde her madde bir işaret kutusu. Bir kutuda iki soru var: biri tamamsa öbürü değilse işaretleyeyim mi, bir an düşündüm. İkisi de mesajın aynı bölümüyle ilgili (baş, son), o yüzden GERİ saymadım. Yazar isterse her soru kendi kutusuna alınabilir.
+2. **ornek_tr'de `…` art arda (2-29, 2-36, 2-46).** Noktasız "Adım … Yaşım … Memleketim …" dizisi yalnız okununca tek uzun satır gibi. Dolu Almanca örneğin hemen altında durduğu için anlaşıldı. Adım bilindiği hâlde "Adım …" yazılmış, öbür `tr` satırlarındaki gibi "Adım {name}" değil.
+3. **`m1:49:t10` (2-11).** `why_tr` "**Nehmen** başta" diyor. Ama `accepted` içinde **Am Abend nehmen Sie zwei Tropfen.** da var. Öğrenci bunu yazarsa kabul edilir, açıklama ise başka sıra söyler. İçerik kararı.
+4. **`m1:54:t13` (2-8).** 7. günde **Mein Wohnort ist …** öğretildi. Bu maddenin `accepted` listesinde **Mein Wohnort ist …** ile başlayan cevap yok. Öğrenci kartı görüp öğrendiği kalıpla cevap verirse reddedilebilir. Okur kapsamı dışında, bilgi için.
+
+### 2. tur sayıları
+
+- Okunan: 46 (1. tur GERİ düzeltmesi 7 + değişen kontrol ve neden 2 + değişen/yeni 37)
+- GEÇTİ: 43
+- GERİ: 3
+
+GERİ kimlikleri: `gun-46.json` `serbest_konus[m1:46:k1].gorev_tr`; `gun-52.json` `serbest_konus[m1:52:k1].gorev_tr`; `gun-53.json` `serbest_konus[m1:53:k1].gorev_tr`.
+
+OD-9.4: 1. turdaki 7 GERİ kapandı. `hafta-sonu-testi-07`, `hafta-sonu-testi-08`, `gun-45` ve `gun-48` okur açısından "reviewed" sayılabilir. `gun-46`, `gun-52` ve `gun-53` yeni `serbest_konus` görev cümleleri yüzünden bu turda "reviewed" sayılamaz.
