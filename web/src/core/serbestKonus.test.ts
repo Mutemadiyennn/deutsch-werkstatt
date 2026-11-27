@@ -15,27 +15,36 @@ const k = SerbestKonus.parse({
 
 describe("serbest konuşma değerlendirmesi (çevrimdışı)", () => {
   it("noktalamalı döküm: hedefler ve cümle sayısı", () => {
-    const r = degerlendir(k, "Ich heiße Mila. Ich wohne in Oberwiesing.");
+    const r = degerlendir(k, ["Ich heiße Mila. Ich wohne in Oberwiesing."]);
     expect(r.hedefler.map((h) => h.tamam)).toEqual([true, false, true]);
     expect(r.cumle).toBe(2); expect(r.yeter).toBe(true); expect(r.tamam).toBe(2);
   });
-  it("ses tanıma noktalama koymasa da hedefler bulunur, cümle sayısı hedeflerden", () => {
-    const r = degerlendir(k, "ich heisse Mila ich komme aus Polen ich wohne in Oberwiesing");
+  it("ses tanıma noktalama koymasa da hedefler bulunur, cümle sayısı çakışmasız yerlerden", () => {
+    const r = degerlendir(k, ["ich heisse Mila ich komme aus Polen ich wohne in Oberwiesing"]);
     expect(r.tamam).toBe(3); expect(r.cumle).toBe(3); expect(r.yeter).toBe(true);
   });
+  it("inceleme #281 P1-2: aynı yeri iki kalıp tutarsa belirgin olan kazanır; tek cümle iki hedef ve iki cümle sayılmaz", () => {
+    const r = degerlendir(k, ["Ich bin aus Polen."]);
+    expect(r.hedefler.map((h) => h.tamam)).toEqual([false, true, false]);
+    expect(r.cumle).toBe(1); expect(r.yeter).toBe(false);
+  });
+  it("inceleme #281 P1-2: hedefe uymayan iki parça noktalamasız da iki cümle", () => {
+    const r = degerlendir(k, ["guten Tag", "das Wetter ist schön"]);
+    expect(r.cumle).toBe(2); expect(r.yeter).toBe(true); expect(r.tamam).toBe(0);
+  });
   it("tek cümle yetmez; boş döküm hiçbir hedefi karşılamaz", () => {
-    expect(degerlendir(k, "Hallo.").yeter).toBe(false);
-    const bos = degerlendir(k, "  ");
+    expect(degerlendir(k, ["Hallo."]).yeter).toBe(false);
+    const bos = degerlendir(k, ["  "]);
     expect(bos.cumle).toBe(0); expect(bos.tamam).toBe(0);
   });
   it("kalıp sözcük sınırında aranır (\"in\" sözcüğün içinde eşleşmez)", () => {
-    expect(degerlendir(k, "Kinder spielen gern.").hedefler[2]!.tamam).toBe(false);
+    expect(degerlendir(k, ["Kinder spielen gern."]).hedefler[2]!.tamam).toBe(false);
   });
 });
 
 describe("profil yuvaları (karar 2)", () => {
   it("örnek profilden çözülür, boş alan …", () => {
-    expect(ornekCoz(k.ornek_de, { name: "Mila", ulke: "Polen" })).toBe("Ich heiße Mila. Ich komme aus Polen. Ich wohne in …");
+    expect(ornekCoz(k.ornek_de, { name: "Mila", ulke: "Polen" })).toBe("Ich heiße Mila. Ich komme aus Polen. Ich wohne in … .");
   });
   it("boş yuvalar: hedeflerden ve örnekten, ad hariç", () => {
     expect(bosYuvalar(k, { ulke: "Polen" })).toEqual(["sehir"]);
@@ -46,6 +55,17 @@ describe("profil yuvaları (karar 2)", () => {
       .toBe("Ich heiße […]. Ich komme aus […] und wohne in […].");
     // sözcük içinde değil
     expect(gizle("Milano", { name: "Mila" })).toBe("Milano");
+  });
+  it("inceleme #281 P1-1: ses tanımanın Almanca yazımı da gizlenir (persona.redact ile)", () => {
+    for (const [ad, soz] of [["Gülşen", "Gülsen"], ["Çağrı", "Cagri"], ["İbrahim", "Ibrahim"], ["Özge", "Oezge"]] as const)
+      expect(gizle(`Ich heiße ${soz}.`, { name: ad })).toBe("Ich heiße […].");
+    expect(gizle("Ich heiße Anna Maria.", { name: "Anna Maria" })).toBe("Ich heiße […].");
+    expect(gizle("Ich heiße Maria und du?", { name: "Anna Maria" })).toBe("Ich heiße […] und du?");
+  });
+  it("inceleme #281 P1-1: profil boşken yuvalı hedefin ___'ine düşen sözcükler gizlenir, kalıp sözcükleri kalır", () => {
+    expect(gizle("ich heiße Anna Maria ich komme aus der Ukraine ich wohne in Bad Aibling", {}, k))
+      .toBe("ich heiße […] […] ich komme aus der […] ich wohne in […] […]");
+    expect(gizle("Ich heiße Gülsen. Ich komme aus Polen.", {}, k)).toBe("Ich heiße […]. Ich komme aus […].");
   });
   it("kume yer tutucusu profil yuvalarının hepsini ad yeri sayar (sözcük sayılmaz)", () => {
     for (const y of PROFIL_YUVALARI) expect(toks(`Ich komme aus {${y}}.`)).toEqual(["ich", "komme", "aus"]);

@@ -138,6 +138,11 @@ function checkSerbestKonus(g: Gun, errors: string[], ist: (where: string, text: 
     // ipucu yok: görev ve durum metninde Almanca işaretleme, tırnak ya da yer tutucu olmaz
     for (const [ad, v] of [["gorev_tr", k.gorev_tr], ["durum_tr", k.durum_tr]] as const) if (/\*\*|[„“"»«{]/.test(v)) errors.push(`${at}: ${ad} içinde ipucu işareti (**, tırnak ya da yer tutucu) olmaz`);
     if (k.soru_de && /[{]/.test(k.soru_de)) errors.push(`${at}: soru_de içinde yer tutucu olmaz (ses önceden üretilir)`);
+    // profil yuvaları yalnız ornek_de'de (ekranda yalnız orada çözülür; inceleme #281 P2-2)
+    if (/[{}]/.test(k.ornek_tr)) errors.push(`${at}: ornek_tr içinde yer tutucu olmaz (… yazılır)`);
+    for (const h of k.hedefler) if (/[{}]/.test(h.tr) || h.kaliplar.some((kp) => /[{}]/.test(kp))) errors.push(`${at}/${h.id}: hedefte yer tutucu olmaz (kalıpta ___)`);
+    const yabanci = [...k.ornek_de.matchAll(/\{([^}]*)\}/g)].map((m) => m[1]!).filter((y) => !/^(name|ulke|sehir|yas|diller|meslek|hobi|aile)$/.test(y));
+    if (yabanci.length) errors.push(`${at}: ornek_de içinde bilinmeyen yuva: ${yabanci.join(", ")}`);
     const hid = k.hedefler.map((h) => h.id);
     if (new Set(hid).size !== hid.length) errors.push(`${at}: hedef kimlikleri tekil değil`);
     const kaliplar = k.hedefler.flatMap((h) => h.kaliplar);

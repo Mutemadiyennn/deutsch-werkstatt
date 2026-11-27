@@ -218,11 +218,14 @@ class Planlayici {
   }
   /**
    * Serbest konuşma (PM-148 [ANA-V] md. 1): bayrak açıksa günün maddeleri gün sonunun başında. Cümlesi yok (öğrenci kendi kurar);
-   * açılış sorusu varsa gösterim satırıdır ve gösterim kapısından geçmeyen madde konmaz (hafta kapısı içerikte ayrıca sayar).
+   * açılış sorusu varsa gösterim satırıdır ve gösterim kapısından geçmeyen, ya da bir hedefinin hiçbir kalıbı görev kapısından
+   * geçmeyen madde konmaz (hafta kapısı içerikte ayrıca sayar).
    */
   private serbestKonus(gun: Gun): Adim[] {
     if (!(this.g.serbestKonus ?? POLICY.serbest_konus.acik)) return [];
-    return (gun.serbest_konus ?? []).filter((k) => !k.soru_de || this.gosterimGecer(k.soru_de)).map((k) => ({
+    // her hedefin en az bir kalıbı K(t) ile kurulabilmeli (yuva ad yeri gibi bilinir; hafta kapısıyla aynı kural, inceleme #281 P2-8)
+    const kurulur = (k: NonNullable<Gun["serbest_konus"]>[number]) => k.hedefler.every((h) => h.kaliplar.some((kp) => this.gorevGecer(kp.replace(/_{3,}/g, "{name}"))));
+    return (gun.serbest_konus ?? []).filter((k) => (!k.soru_de || this.gosterimGecer(k.soru_de)) && kurulur(k)).map((k) => ({
       id: `gunsonu:${gun.day}:${k.id}`, tur: "serbest_konus" as AdimTuru, kip: KIP.serbest_konus, kartlar: [], kaynak: "ders" as const,
       sn: this.pol.adim_sn.serbest_konus, neden: "serbest konuşma: hazırlıksız, kendi cümlelerinle", ...(k.soru_de ? { satirlar: [k.soru_de] } : {}),
       ders: { id: SERBEST_KONUS, oge: k.id } }));

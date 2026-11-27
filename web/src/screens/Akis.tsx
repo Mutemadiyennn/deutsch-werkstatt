@@ -132,6 +132,8 @@ function AdimGovdesi({ adim, durakOf, lex, harita, emojiHarita, baglam, tohum, b
   if (adim.tur === "serbest_konus" && adim.ders?.id === SERBEST_KONUS) {
     const k = baglam.serbest(adim.ders.oge);
     if (k) return <SerbestKonusAdimi key={adim.id} k={k} profil={baglam.profil} onBitti={(sesli) => { baglam.konustu(adim.id, sesli); bitir([]); }} />;
+    // eski planın maddesi içerikten kalktıysa boş kart yok: adım kendiliğinden geçer (inceleme #281 P2-3)
+    return <Gec bitir={() => bitir([])} />;
   }
   // dersin alıştırma maddesi (K8 `kaynak: "ders"`): Ders oynatıcısının bileşeniyle, aynı denetimle
   const drill = adim.ders ? baglam.drill(adim.ders.id, adim.ders.oge) : undefined;

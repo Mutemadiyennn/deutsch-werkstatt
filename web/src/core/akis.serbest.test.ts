@@ -14,13 +14,12 @@ const dizin = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genel);
 const dersler = new Map(c.temel.map((t) => [t.data.id, t.data]));
 const g1 = c.m1.find((x) => x.data.day === 1)!.data;
 const halkalar = z.array(Halka).parse(JSON.parse(readFileSync(join(ROOT, "docs/v2/reviews/halka/gun-01-halkalar.json"), "utf8")).halkalar);
+/** 1. günün kendi görev cümleleri: gün sonunda K(t) ile kurulabilir (hedef kalıbı olarak; planlayıcı hedefleri sınar) */
+const gc = halkalar.flatMap((h) => h.gorev_cumleleri.map((x) => x.de)).filter((de) => /[.!?]$/.test(de));
 const madde = (id: string, soru_de?: string) => SerbestKonus.parse({
-  id, durum_tr: "Kursta biri seninle tanışmak istiyor.", gorev_tr: "Adını ve nasıl olduğunu söyle.", ...(soru_de ? { soru_de } : {}),
-  hedefler: [
-    { id: "h1", tr: "adını söyle", kaliplar: ["Ich heiße ___.", "Mein Name ist ___.", "Ich bin ___."], yuva: "name" },
-    { id: "h2", tr: "selam ver", kaliplar: ["Hallo.", "Guten Tag.", "Guten Morgen."] }
-  ],
-  ornek_de: "Hallo. Ich heiße {name}.", ornek_tr: "Merhaba. Benim adım …."
+  id, durum_tr: "Kursta biri seninle konuşmak istiyor.", gorev_tr: "Bugünün iki cümlesini söyle.", ...(soru_de ? { soru_de } : {}),
+  hedefler: [{ id: "h1", tr: "birinci", kaliplar: gc.slice(0, 3) }, { id: "h2", tr: "ikinci", kaliplar: gc.slice(3, 6) }],
+  ornek_de: `${gc[0]} ${gc[3]}`, ornek_tr: "…"
 });
 const gun = { ...g1, halkalar, serbest_konus: [madde("m1:01:k1", "Hallo!"), madde("m1:01:k2")] };
 const girdi = (ek: Partial<PlanGirdi> = {}): PlanGirdi =>
@@ -47,6 +46,12 @@ describe("serbest konuşma (PM-148)", () => {
   });
   it("açılış sorusu gösterim kapısından geçmezse madde konmaz (öğretilmeden istenen 0)", () => {
     const g = { ...gun, serbest_konus: [madde("m1:01:k1", "Entschuldigung, wohnen Sie schon lange in Oberwiesing und arbeiten Sie im Rathaus?")] };
+    const p = planGun(girdi({ gun: g, serbestKonus: true }))!;
+    expect(p.duraklar.flatMap((d) => d.adimlar).some((a) => a.tur === "serbest_konus")).toBe(false);
+  });
+  it("bir hedefinin hiçbir kalıbı kurulamayan madde konmaz (hafta kapısıyla aynı kural)", () => {
+    const m = madde("m1:01:k1");
+    const g = { ...gun, serbest_konus: [{ ...m, hedefler: [m.hedefler[0]!, { id: "h2", tr: "uçak", kaliplar: ["Mein Flugzeug landet ___.", "Der Flughafen ist ___.", "Das Flugzeug fliegt ___."] }] }] };
     const p = planGun(girdi({ gun: g, serbestKonus: true }))!;
     expect(p.duraklar.flatMap((d) => d.adimlar).some((a) => a.tur === "serbest_konus")).toBe(false);
   });

@@ -46,6 +46,12 @@ describe("serbest_konus şeması", () => {
     expect(hatalar(madde({ ornek_de: "Ich heiße {name}. Ich trinke Kaffee." })).join("\n")).toMatch(/uymuyor[\s\S]*h2: ornek_de bu hedefi karşılamıyor/);
     expect(hatalar(madde({ ornek_de: "Ich heiße {name}, ich komme aus {ulke}." })).join("\n")).toMatch(/1 cümle/);
   });
+  it("yuvalar yalnız ornek_de'de; bilinmeyen yuva hatadır (inceleme #281 P2-2)", () => {
+    expect(hatalar(madde({ ornek_tr: "Benim adım {name}." })).join("\n")).toMatch(/ornek_tr içinde yer tutucu/);
+    const h = madde().hedefler;
+    expect(hatalar(madde({ hedefler: [{ ...h[0], kaliplar: ["Ich heiße {name}.", "Mein Name ist ___.", "Ich bin ___."] }, h[1]] })).join("\n")).toMatch(/hedefte yer tutucu/);
+    expect(hatalar(madde({ ornek_de: "Ich heiße {name}. Ich komme aus {land}." })).join("\n")).toMatch(/bilinmeyen yuva: land/);
+  });
   it("kimlik tekil ve günün numarasıyla; hedef kimlikleri tekil", () => {
     expect(hatalar(madde(), madde()).join("\n")).toMatch(/tekil değil/);
     expect(hatalar(madde({ id: "m1:02:k1" })).join("\n")).toMatch(/günün numarasıyla/);
