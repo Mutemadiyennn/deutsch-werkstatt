@@ -3,8 +3,9 @@
  * Görevler (`#/gorevler`), görev başına sandık ve tam ekran açılış töreni, İlerlemem'de "Geçen haftaki sen".
  * Çizimler (sandık, görev simgeleri) tek SVG setinden: 24'lük ızgara, 2 px çizgi, yuvarlak uçlar; özgün.
  */
-import { useEffect, useRef, useState } from "preact/hooks";
-import { createPortal } from "preact/compat";
+import type { ComponentChildren } from "preact";
+import { render } from "preact";
+import { useEffect, useLayoutEffect, useRef, useState } from "preact/hooks";
 import { db, focusRange } from "../data/db.ts";
 import { localDate } from "../core/focus.ts";
 import { yerelGun } from "../core/gun.ts";
@@ -88,6 +89,17 @@ export function GorevSeridi({ plan }: { plan?: Plan | null }) {
   );
 }
 
+/** body'ye ayrı kök: `preact/compat`'ın createPortal'ı yalnız bunun için 6 KB taşıyordu (PM-124 md. 4.2). Tören bağlamsız (useApp yok). */
+function BodyKatmani({ children }: { children: ComponentChildren }) {
+  const kap = useRef<HTMLDivElement | null>(null);
+  useLayoutEffect(() => {
+    const d = document.createElement("div"); document.body.appendChild(d); kap.current = d;
+    return () => { render(null, d); d.remove(); kap.current = null; };
+  }, []);
+  useLayoutEffect(() => { if (kap.current) render(<>{children}</>, kap.current); });
+  return null;
+}
+
 /** Tam ekran sandık töreni (PM 7015070303-C): ödül büyük ve tek; "Devam" hemen basılabilir (PM-059) */
 function SandikToreni({ odul, hak, kapat }: { odul: Odul; hak: number; kapat: () => void }) {
   const ref = useRef<HTMLButtonElement>(null);
@@ -142,7 +154,7 @@ export function GorevlerEkrani({ plan }: { plan?: Plan | null }) {
             : <span class="sandik-btn" role="img" aria-label={sandik === "acik" ? `${g.kisa}: sandık açıldı` : `${g.kisa}: görev bitince sandık açılır`} data-test="gorev-sandik" data-durum={sandik}><Sandik durum={sandik} /></span>}
         </li>))}</ul>
       {/* body'ye taşınır: ekran kabının dönüşümü (giriş hareketi) sabit katmanı kırpmasın, durum çubuğunu da örtsün */}
-      {tören && createPortal(<SandikToreni odul={tören} hak={hak} kapat={() => setTören(null)} />, document.body)}
+      {tören && <BodyKatmani><SandikToreni odul={tören} hak={hak} kapat={() => setTören(null)} /></BodyKatmani>}
     </div>
   );
 }

@@ -169,8 +169,8 @@ export function HaftaTestiEkrani({ hafta }: { hafta: number }) {
 /**
  * Zayıf "yapabiliyorum" cümlelerinin tekrarı (#243 PM finali takip a): her zayıf günün gün sınavından kısa tur (`tekrarMaddeleri`).
  * Yalnız bitmiş günler (adresle kilitli gün girmez). Sonuç kaydedilmez; sonda "Testi yeniden çöz".
- * `seviye` (PM-115, `#/seviye/tekrar/<g,…>`; PR 3'ün planına kadar "Planımı gör"): tespitte zorlanılan A1 günleri; gün bitmiş olmak zorunda değil (öğrenci
- * yerini arıyor), yalnız A1 haftaları; geri ok ve son düğme yoklama sonucuna döner.
+ * `seviye` (PM-115, `#/seviye/tekrar/<g,…>`; PR 3'ün planına kadar "Planımı gör" listesinden, `#/seviye/plan`): tespitte zorlanılan A1 günleri;
+ * gün bitmiş olmak zorunda değil (öğrenci yerini arıyor), yalnız A1 haftaları; geri ok listeye, son düğme seviye raporuna döner.
  */
 export function HaftaTekrarEkrani({ hafta, gunler, seviye = false }: { hafta: number; gunler: number[]; seviye?: boolean }) {
   const { index, profile } = useApp();
@@ -181,7 +181,7 @@ export function HaftaTekrarEkrani({ hafta, gunler, seviye = false }: { hafta: nu
   const [bitti, setBitti] = useState(false);
   const [n, setN] = useState(0);
   const baslik = "Zorlandıklarını tekrar et";
-  const geri = seviye ? "#/seviye/rapor" : `#/hafta/${hafta}/sonuc`;
+  const geri = seviye ? "#/seviye/plan" : `#/hafta/${hafta}/sonuc`;
   useEffect(() => {
     if (!index) return;
     setErr(null);

@@ -35,6 +35,7 @@ export type Route =
   | { name: "seviye" }
   | { name: "seviyeRapor" }
   | { name: "seviyeTekrar"; gunler: number[] }
+  | { name: "seviyePlan" }
   | { name: "ders"; id: string }
   | { name: "prova"; day: number }
   | { name: "okuma"; day: number }
@@ -71,8 +72,8 @@ export function parseHash(h: string): Route {
     // #/hafta/<H>/tekrar/<g,g,…>: düşük sonuçta zayıf "yapabiliyorum" cümlelerinin tekrarı (#243 takip a)
     // #/sinav/<gün>[/<bölüm>]: sınav günü denemesi (PM-110); bölümle o bölümü yeniden çözdürür
     case "sinav": return { name: "sinav", day: Number(p[1]) || 1, ...(p[2] ? { bolum: p[2] } : {}) };
-    // PM-115: #/seviye (tespit), #/seviye/rapor (eski #/seviye/sonuc da rapora), #/seviye/tekrar/<g,g,…>
-    case "seviye": return p[1] === "rapor" || p[1] === "sonuc" ? { name: "seviyeRapor" } : p[1] === "tekrar" ? { name: "seviyeTekrar", gunler: (p[2] ?? "").split(",").map(Number).filter((n) => Number.isInteger(n) && n > 0) } : { name: "seviye" };
+    // PM-115: #/seviye (tespit), #/seviye/rapor (eski #/seviye/sonuc da rapora), #/seviye/tekrar/<g,g,…>; #/seviye/plan (PM-124 md. 4.1)
+    case "seviye": return p[1] === "rapor" || p[1] === "sonuc" ? { name: "seviyeRapor" } : p[1] === "plan" ? { name: "seviyePlan" } : p[1] === "tekrar" ? { name: "seviyeTekrar", gunler: (p[2] ?? "").split(",").map(Number).filter((n) => Number.isInteger(n) && n > 0) } : { name: "seviye" };
     case "hafta": return p[2] === "sonuc" ? { name: "haftaSonuc", hafta: Number(p[1]) || 1 } : p[2] === "tekrar" ? { name: "haftaTekrar", hafta: Number(p[1]) || 1, gunler: (p[3] ?? "").split(",").map(Number).filter((n) => Number.isInteger(n) && n > 0) } : { name: "hafta", hafta: Number(p[1]) || 1 };
     // #/m1/<gün>/<kayıt>[/1|/2]: akışta sesin ilk ya da ikinci turu (PM-097 md. 1); ek yoksa bütün adımlar
     case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2], ...(p[3] === "1" ? { tur: "ilk" as const } : p[3] === "2" ? { tur: "ikinci" as const } : {}) } : { name: "m1day", day: Number(p[1]) || 1 };
