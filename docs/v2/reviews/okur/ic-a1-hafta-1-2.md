@@ -151,3 +151,56 @@ Bu partide GERİ olduğu için gün 07, 12, 13 ve `hafta-sonu-testi.json` "revie
 - **Gün 07 n4 → n4b (21):** Türkçede "Nerede oturuyorsunuz?" ardından "Peki oturduğunuz yer?" aynı soru gibi okunuyor. "Wendlfing mi?" çözüyor; GERİ değil.
 - **Gün 13 n3c ikinci seçenek (35, 36):** Geri bildirim "Yanlış değil" diyor, ama seçenek aynı soruya geri döndürüyor. Anlaşılır, ama öğrenci "yanlış değilse neden tekrar soruyor" diye bir an duraksayabilir. İçerik kararıdır; GERİ sayılmadı.
 - Yuvalarda ek yok; hepsi "Memleketim {ulke}", "{yas} yaşındayım" gibi eksiz yazılmış, boş yuvayla da okunuyor.
+
+## 2. tur (OD-9.3, PM-148)
+
+Girdi: 1. turdaki 6 GERİ satırının düzeltilmiş hâli (`bd04df4a`) ve `git diff bd04df4a 500acb21 -- content/v2/` içindeki değişen öğrenci metinleri. Metinler `500acb21` hâliyle okundu.
+Okuma biçimi 1. turla aynı. Yeni düzen: `tr` satırlarında öğrencinin kendi bilgisi `…` ile gösteriliyor ("Memleketim: …"). Üstteki Almanca satır kendi bilgimle dolu geldiği için `…` boşluğun yeri olarak okundu, sembol sayılmadı. {name} adımla doluyor.
+Görünürlük: `web/src/core/prova.ts` hazırlık listesine yalnız uygun seçenekleri alıyor. Uygun olmayan seçeneklerin `tr` satırı öğrenciye görünmüyor. 1. turla tutarlı olsun diye yine okundu, "(görünmez)" diye işaretlendi.
+
+### 1. turdaki GERİ satırları
+
+| # | Öğe | Alan | Açıklama (şimdiki) | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|---|
+| 2-1 | gun-07 kart lx:Wohnort (Wohnort oder Adresse?) | `tr` | Şehrin adı mı, adres mi? | Karşımdaki soruyor: şehrin adını mı istiyorsun, yoksa sokak ve numarayı mı? | GEÇTİ | Fark artık Türkçede görünüyor. Tek soru, ayraç yok. (1. tur #20) |
+| 2-2 | gun-07 m1:07:s12 | `situation_tr` | Sınav kartı: **Name? Land? Wohnort?** (**Land**: ülke) Görevli soruyor. Gerçek sınavdaki gibi kendi bilgilerinle söyle. | Kartta ad, ülke, oturduğum yer var. Gerçek sınavdaki gibi kendi bilgilerimi söyleyeceğim. | GEÇTİ | `=` gitti. Ne söyleyeceğim kartın kendisinde, hemen önde. "Gerçek sınavdaki gibi" bunun bu haftanın testi değil, gerçek sınavın provası olduğunu da gösteriyor. (1. tur #26) |
+| 2-3 | gun-12 kart lx:Alter (Alter: {yas}. Wohnort: {sehir}.) | `tr` | Yaşım: … Oturduğum yer: … (formdaki gibi kısa) | Yaşımı ve şehrimi formdaki gibi kısa kısa söylüyorum. | GEÇTİ | "(formdaki gibi kısa)" tek okumada anlaşıldı. (1. tur #31) |
+| 2-4 | gun-13 prova n3d seçenek 2 (görünmez) | `tr` | Konuştuğum diller: … (kelimenin sonu yanlış) | Dillerimi söylüyorum ama bir kelimenin sonu yanlış. | GEÇTİ | "çekim" terimi gitti. (1. tur #40) |
+| 2-5 | hafta-sonu-testi m1:07:t09 | `situation_tr` | Sınav kartı: **Land? Wohnort?** (**Land**: ülke) Görevli soruyor. Gerçek sınavdaki gibi kendi bilgilerinle söyle. | Ülkemi ve oturduğum yeri kendi bilgilerimle söyleyeceğim. | GEÇTİ | `=` gitti. (1. tur #47) |
+| 2-6 | hafta-sonu-testi m1:07:t09 | `why_tr` | **Woher** sorusuna **Ich komme aus …** dersin. **Wo wohnen** sorusuna **Ich wohne in …** dersin. | **Woher** sorulursa **Ich komme aus**, **Wo wohnen** sorulursa **Ich wohne in** derim. | GEÇTİ | İki cümle, 6 ve 7 kelime. (1. tur #48) |
+| 2-7 | gun-14 m1:14:s12 | `situation_tr` | Sınav kartı: **Alter? Sprachen?** (**Sprachen**: diller) Görevli soruyor. Gerçek sınavdaki gibi kendi bilgilerinle söyle. | Kartta yaş ve diller var. Yaşımı ve konuştuğum dilleri söyleyeceğim. | GEÇTİ | 1. turdaki not (Sprachen açıklanmamış) de kapandı. |
+
+### 2.–3. turda değişen öteki metinler
+
+| # | Öğe | Alan | Açıklama | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|---|
+| 2-8 | gun-02 kart lx:wohnen | `tr` | Memleketim …, ama Wendlfing'de oturuyorum. | Memleketimi söylüyorum, ama Wendlfing'de yaşıyorum. | GEÇTİ | |
+| 2-9 | gun-02 prova n3c seçenek 1 | `tr` | Memleketim: … | Nereli olduğumu söylüyorum. | GEÇTİ | |
+| 2-10 | gun-02 prova n3c seçenek 2 (görünmez) | `tr` | Memleketim: … (yanlış kelimeyle) | Aynısı, ama yanlış bir kelimeyle. | GEÇTİ | |
+| 2-11 | gun-06 kart lx:heißen | `tr` | Adım {name}, memleketim … | Adımı ve memleketimi söylüyorum. | GEÇTİ | |
+| 2-12 | gun-06 kart lx:heißen | `tr_adsiz` | Memleketim: … Peki sizin adınız ne? | Memleketimi söyleyip karşımdakinin adını soruyorum. | GEÇTİ | Yeni ikinci cümle Almancadaki **Und wie heißen Sie?** ile örtüşüyor. |
+| 2-13 | gun-06 kart lx:woher | `tr` | Memleketim: … Ya siz nerelisiniz, Luka? | Memleketimi söyleyip Luka'ya nereli olduğunu soruyorum. | GEÇTİ | |
+| 2-14 | gun-06 prova n6b seçenek 1 | `tr` | Memleketim …, Brandl Hanım. | Brandl Hanım'a memleketimi söylüyorum. | GEÇTİ | |
+| 2-15 | gun-06 prova n6b seçenek 2 (görünmez) | `tr` | Oturduğum yer: … (yanlış kelimeyle) | Oturduğum yeri söylüyorum, yanlış bir kelimeyle. | GEÇTİ | Not (karar değil): eskiden yuva ülkeyle doluydu ("Oturduğum yer: Türkiye"), yanlışlık görünüyordu. Şimdi `…` şehir gibi okunuyor. Satır görünmediği için engel değil. |
+| 2-16 | gun-07 kart lx:Wohnort (Mein Wohnort ist {sehir}.) | `tr` | Oturduğum yer: … | Oturduğum şehri söylüyorum. | GEÇTİ | |
+| 2-17 | gun-12 kart lx:Alter (Mein Alter? Ich bin {yas} Jahre alt.) | `tr` | Yaşım mı? … yaşındayım. | "Yaşım mı?" deyip yaşımı söylüyorum. | GEÇTİ | |
+| 2-18 | gun-13 prova n3c seçenek 1 | `tr` | … yaşındayım. Ya sen? | Yaşımı söyleyip onunkini soruyorum. | GEÇTİ | |
+| 2-19 | gun-13 prova n3c seçenek 2 | `tr` | Yaşım: … | Yaşımı söylüyorum. | GEÇTİ | Bu seçenek artık uygun, hazırlık listesinde görünüyor. Bkz. not 1. |
+| 2-20 | gun-13 prova n3c seçenek 2 | `geri_bildirim_tr` | Anlaşılır. Daha doğal: **Ich bin … Jahre alt.** | Karşımdaki anladı, ama **Ich bin … Jahre alt** daha doğal. | GEÇTİ | 1 ve 6 kelime, terim yok. |
+| 2-21 | gun-13 prova n3d seçenek 1 | `tr` | Konuştuğum diller: … | Dillerimi sayıyorum. | GEÇTİ | |
+| 2-22 | hafta-sonu-testi-02 m1:14:t10 | `situation_tr` | Sınav kartı: **Name? Alter? Wohnort?** Görevli soruyor. Gerçek sınavdaki gibi kendi bilgilerinle söyle. | Adımı, yaşımı, oturduğum yeri kendi bilgilerimle söyleyeceğim. | GEÇTİ | **Alter** ve **Wohnort** bu noktada kartlarıyla öğretilmiş (gün 7, 12). |
+
+`batch-018.json` farkı yalnız inceleme damgası (`review`), öğrenciye görünmüyor. `accepted` listelerindeki eklemeler Almanca, okur kapsamı dışında.
+
+### 2. tur notları (karar değil)
+
+1. **gun-13 n3c seçenek 2 artık uygun.** Hazırlık ekranı "Konuşmada bunları söyleyeceksin" diyor ve **Mein Alter ist …** cümlesini ("Yaşım: …") gösteriyor. Ama lx:Alter kartı (`mistakes_tr[1]`) "**Mein Alter ist dreißig** pek denmez" diyor. Öğrenci olarak ikisini yan yana görünce "söyleyeyim mi, söylemeyeyim mi?" diye duraksarım. Düzeltme yazar ya da dilbilimci işi.
+2. **`…` yazımı tek biçimde değil.** Bazı satırlarda "Memleketim: …", bazılarında "Memleketim …," var. Okumayı bozmuyor.
+
+### 2. tur sayıları
+
+- Okunan: 22 (1. tur GERİ düzeltmesi 6 + gun-14 s12 + 15 değişen metin)
+- GEÇTİ: 22
+- GERİ: 0
+
+OD-9.4: 1. turdaki 6 GERİ kapandı, 2. turda yeni GERİ yok. Gün 02, 06, 07, 12, 13, 14, `hafta-sonu-testi.json`, `hafta-sonu-testi-02.json` ve `batch-018.json` okur açısından "reviewed" sayılabilir.
