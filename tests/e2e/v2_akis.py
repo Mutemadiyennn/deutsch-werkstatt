@@ -16,7 +16,10 @@ from common import serve, launch, new_page, login_onboard, check, finish, shot, 
 PORT = 4243
 MIKROFON = """(() => { navigator.mediaDevices = navigator.mediaDevices || {};
   navigator.mediaDevices.getUserMedia = async () => { const ac = new (window.AudioContext || window.webkitAudioContext)(); const o = ac.createOscillator(); const d = ac.createMediaStreamDestination(); o.connect(d); o.start(); return d.stream; };
-  window.webkitSpeechRecognition = function () { const r = this; r.start = () => setTimeout(() => { r.onresult && r.onresult({ results: [[{ transcript: "Guten Tag" }]] }); r.onend && r.onend(); }, 80); r.stop = () => {}; };
+  // __srBekle: sonuç yalnız durdurunca (gerçek tanıma gibi); __srDur: stop() sayısı (PM-137: tek dokunuş kaydı hemen durduruyordu)
+  window.__srDur = 0;
+  window.webkitSpeechRecognition = function () { const r = this; r.start = () => { if (!window.__srBekle) setTimeout(() => { r.onresult && r.onresult({ results: [[{ transcript: "Guten Tag" }]] }); r.onend && r.onend(); }, 80); };
+    r.stop = () => { window.__srDur++; if (window.__srBekle) setTimeout(() => { r.onend && r.onend(); }, 50); }; };
   window.SpeechRecognition = window.webkitSpeechRecognition; })()"""
 GUN = int(arg("--gun") or 2)
 KAYIT = """async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
@@ -127,6 +130,17 @@ def main():
             if bulundu:
                 check("Dokun ve konuş" in pg.inner_text("[data-test=akis-mikrofon]"), "büyük mikrofon: 'Dokun ve konuş'")
                 no_overflow(pg, "büyük mikrofon"); shot(pg, f"akis-mikrofon-{sema}", full=False)
+                # PM-137: tek dokunuş kaydı başlatır ve AÇIK bırakır; ikinci dokunuş durdurur; hata kutusu ekrandan taşmaz
+                pg.evaluate("localStorage.setItem('dw2-mic-explained', '1'); window.__srBekle = 1; window.__srDur = 0")
+                mic = "[data-test=akis-mikrofon] [data-test=mic]"
+                pg.click(mic); pg.wait_for_timeout(700)
+                check(pg.evaluate("window.__srDur") == 0 and pg.get_attribute(mic, "aria-pressed") == "true", f"tek dokunuş: kayıt sürüyor, durdurulmadı (stop {pg.evaluate('window.__srDur')} kez)")
+                pg.click(mic); pg.wait_for_selector("[data-test=akis-mikrofon] [data-test=mic-hata]", timeout=5000)
+                check(pg.evaluate("window.__srDur") == 1 and pg.get_attribute(mic, "aria-pressed") == "false", "ikinci dokunuş kaydı durdurur")
+                kutu = pg.evaluate("() => { const r = document.querySelector('[data-test=akis-mikrofon] [data-test=mic-hata]').getBoundingClientRect(); return [r.left, r.right, innerWidth]; }")
+                check(kutu[0] >= 0 and kutu[1] <= kutu[2], f"mikrofon hata kutusu ekranın içinde (sol/sağ/genişlik {kutu})")
+                shot(pg, f"akis-mikrofon-hata-{sema}", full=False)
+                pg.evaluate("window.__srBekle = 0")
             b.close(); srv.shutdown(); finish(); return
         # bayrak PR'ı md. 7: Bugün (seanslar) — bayraklı günde Bahçe adımı akışa gider
         if GUN == 1 and "--tam" in sys.argv: pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=next-activity]"); shot(pg, f"akis-bugun-{sema}", full=False)

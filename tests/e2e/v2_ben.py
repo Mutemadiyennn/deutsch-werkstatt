@@ -115,6 +115,12 @@ def main():
         check(pg.locator("[data-test=tiles]").count() == 0 and pg.locator("[data-test=dil-sayilari-bos]").count() == 1 and pg.locator("[data-test=odak-bos]").count() == 1 and pg.locator("[data-test=xp-seri]").count() == 0, "taze cihaz: sıfır kutuları, odak sayıları ve XP kartı çizilmez")
         duz = pg.inner_text("main")
         check(not re.search(r"(^|\s)0(\s|$|/)", duz), f"taze cihaz Çalışma düzenim: ekranda '0' yok ({[l for l in duz.split(chr(10)) if re.search(r'(^|\s)0(\s|$|/)', l)][:4]})")
+        # PM-142 md. 2.4: Ben'in en altında Tanılama; tek ekranda kabuk, sesler, son sahne, son tanıma hatası
+        pg.goto(base + "#/ben"); pg.wait_for_selector("[data-test=tanilama]")
+        son = pg.evaluate("[...document.querySelectorAll('[data-test=ben] > *')].pop()?.dataset.test")
+        pg.click("[data-test=tanilama] summary"); t = pg.inner_text("[data-test=tani-satir]")
+        check(son == "tanilama" and all(x in t for x in ("Kabuk: yok", "Ses yolu:", "Almanca sesler", "Son sahne: henüz yok", "Tanıma:", "son hata: yok")), f"Ben → en altta Tanılama, dört satır ({son}, {t!r})")
+        no_overflow(pg, "Tanılama açık"); shot(pg, "ben-tanilama", full=False)
         b.close()
     srv.shutdown()
     finish()

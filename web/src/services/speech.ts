@@ -81,6 +81,18 @@ export function konusanAta(adlar: (string | undefined)[]): Map<string, Atama> {
 }
 /** Tek konuşanın sabit sesi (sahnesiz): Profil listesi ve tek satırlık "Dinle" bununla aynı sesi çalar (inceleme #117 P1-3) */
 export const karakterSesi = (ad: string): Atama | undefined => konusanAta([ad]).get(ad);
+/** PM-132 md. 2b: dinlerken ekranda konuşanın adı (öğrenci "Sen", karakter adı, yoksa içerikteki ad) */
+export const konusanAdi = (kim: string): string => (OGRENCI.test(kim.trim()) ? "Sen" : kim === "karsi" ? "Karşındaki" : karakterler.find((c) => c.id === kim)?.name ?? kim);
+
+/**
+ * Tanılama (PM-142 md. 2.4): son sahnenin ses atamaları ve son tanıma hatasının ham metni cihazda saklanır;
+ * Ben → Tanılama tek ekranda gösterir (sahibinin tek ekran görüntüsü kök nedeni göstersin).
+ */
+export interface Tani { sahne?: string; hata?: string }
+const TANI_KEY = "dw2-tani";
+export function taniOku(): Tani { try { return JSON.parse(localStorage.getItem(TANI_KEY) || "{}") as Tani; } catch { return {}; } }
+function taniYaz(k: keyof Tani, v: string) { try { localStorage.setItem(TANI_KEY, JSON.stringify({ ...taniOku(), [k]: v })); } catch { /* özel kip */ } }
+const hamHata = (e: unknown) => String((e as any)?.message ?? (e as any)?.error ?? e).slice(0, 160);
 
 function voiceFor(lang: "de" | "tr"): SpeechSynthesisVoice | undefined {
   const vs = cihazSesleri();
@@ -228,12 +240,14 @@ export function ilkHiz(text: string, speed: Speed = "normal"): Speed {
   return speed === "normal" && ilk ? "slow" : speed;
 }
 /** Satır satır çalınan diyalog/dinleme: hız bütün dizi için bir kez belirlenir (satırlar arasında karışmaz; inceleme #77 P2) */
-export async function speakDizi(lines: { de: string; speed?: Speed; kim?: string }[], speed: Speed = "normal", ara = 0, iptal?: () => boolean): Promise<void> {
+export async function speakDizi(lines: { de: string; speed?: Speed; kim?: string }[], speed: Speed = "normal", ara = 0, iptal?: () => boolean, onSatir?: (i: number) => void): Promise<void> {
   const ilk = ilkHiz(lines.map((l) => l.de).join("\n"), "normal") === "slow";
   // sahne: konuşanlar birlikte atanır (yavaşta da aynı sesler)
   const sahne = konusanAta(lines.map((l) => l.kim));
-  for (const l of lines) {
+  taniYaz("sahne", [...sahne].map(([k, a]) => `${k} → ${a.ses?.name ?? "ses yok"} ${a.pitch}`).join(" · ") || `${lines.length} satır, konuşan yok (tek ses)`);
+  for (const [i, l] of lines.entries()) {
     if (iptal?.()) return;
+    onSatir?.(i);
     const sp = l.speed ?? speed;
     const kendi = l.kim ? sahne.get(l.kim) : undefined;
     // yavaşta yedek ses sahnedeki öteki konuşanların sesine düşmesin (inceleme #162 P1-2)
@@ -330,23 +344,26 @@ export const sttYolu = (): "yerel" | "tarayici" | "yok" => (kabukta() && NATIVE_
 /** Tanıma hatalarının türü ve Türkçe karşılığı (PM 7016783246-2 d): her birinde ne yapılacağı */
 export type SttHata = "izin" | "mesgul" | "sessiz" | "hizmet" | "zaman" | "diger";
 export function sttHataTuru(e: unknown): SttHata {
-  const c = String((e as any)?.message ?? (e as any)?.error ?? e).toLowerCase();
-  if (/service-not-allowed/.test(c)) return "hizmet";
+  const c = hamHata(e).toLowerCase();
+  // iOS eklentisi kod vermez: tanıma hatası telefonun dilinde (Almanca), öbürleri sabit İngilizce metin (PM-137)
+  if (/service-not-allowed|siri|diktier|dictation|deaktiviert|disabled|nicht verfügbar/.test(c)) return "hizmet";
   if (/not-allowed|permission|denied|notallowed|security/.test(c)) return "izin";
-  if (/audio-capture|busy|in use|notreadable|already/.test(c)) return "mesgul";
-  if (/no-speech|no match|nomatch|sessiz/.test(c)) return "sessiz";
-  if (/service-not-allowed|unavailable|not supported|stt_unavailable|network|language-not-supported/.test(c)) return "hizmet";
+  if (/audio-capture|busy|in use|notreadable|already|ongoing|verwendet/.test(c)) return "mesgul";
+  if (/no.speech|no match|nomatch|sessiz|keine sprache|nicht erkannt|cancel|abgebrochen/.test(c)) return "sessiz";
+  if (/unavailable|not supported|stt_unavailable|network|netzwerk|verbindung|language-not-supported/.test(c)) return "hizmet";
   if (/timeout|zaman/.test(c)) return "zaman";
   return "diger";
 }
 export const STT_HATA_TR: Record<SttHata, string> = {
-  izin: "Mikrofon izni yok. iPhone'da Ayarlar → Deutsch Werkstatt (ya da Safari) → Mikrofon'u aç; uygulamada ayrıca Ayarlar → Siri → Dikte açık olmalı.",
+  izin: "Mikrofon izni yok. iPhone'da Einstellungen → Datenschutz & Sicherheit → Mikrofon ve Spracherkennung altında uygulamayı aç.",
   mesgul: "Mikrofonu başka bir uygulama kullanıyor (arama, kayıt, başka sekme). Onu kapatıp tekrar dene.",
   sessiz: "Ses gelmedi. Telefonu ağzına yaklaştır, biraz daha yüksek sesle söyle ve tekrar dene.",
-  hizmet: "Konuşma tanıma bu cihazda ya da bu tarayıcıda şu an kullanılamıyor. Yazarak cevaplayabilirsin; iPhone uygulamasında Siri ve Dikte açık olmalı.",
+  hizmet: "Konuşma tanıma şu an kullanılamıyor. iPhone'da Einstellungen → Allgemein → Tastatur → Diktierfunktion açık olmalı ve internet bağlı olmalı. Şimdilik yazarak cevapla.",
   zaman: "Tanıma zamanında bitmedi. Tekrar dene; olmazsa yazarak cevapla.",
   diger: "Mikrofon kullanılamadı. Tekrar dene ya da yazarak cevapla."
 };
+/** Öğrenciye görünen metin; "diger"de ham metin de yazılır (ekran görüntüsüyle iletilebilsin; PM-137 md. 1) */
+export const sttHataMetni = (e: unknown) => { const t = sttHataTuru(e); return t === "diger" ? `${STT_HATA_TR.diger} (Kod: ${hamHata(e).slice(0, 60)})` : STT_HATA_TR[t]; };
 
 /** Almanca konuşma tanıma: olası metinleri döndürür (en iyi ilk). Desteklenmiyorsa hata fırlatır; arayüz yazarak cevaba geçer. */
 export function listenOnce(lang = "de-DE", maxMs = 9000): { result: Promise<string[]>; stop: () => void } {
@@ -359,6 +376,8 @@ export function listenOnce(lang = "de-DE", maxMs = 9000): { result: Promise<stri
         const izinli = (x: any) => !x || x.speechRecognition === undefined || x.speechRecognition === "granted";
         let pm: any = null; try { pm = await N.checkPermissions?.(); } catch { /* eski eklenti */ }
         if (!izinli(pm)) { const r = await N.requestPermissions?.(); if (!izinli(r)) throw new Error("not-allowed"); }
+        // önceki oturum açık kaldıysa ("Ongoing speech recognition") önce kapatılır (PM-137 md. 2)
+        try { if ((await N.isListening?.())?.listening) { await N.stop(); await new Promise((r) => setTimeout(r, 300)); } } catch { /* eski eklenti */ }
         // süre dolunca durdurulur ve eklentinin durdurma ile verdiği sonuç beklenir (atılmaz); zamanlayıcı her durumda temizlenir
         // ki bir sonraki oturumu yarıda kesmesin (inceleme #117 2. tur P1-A)
         const bas: Promise<any> = N.start({ language: lang, maxResults: 4, partialResults: false, popup: false });
@@ -373,7 +392,7 @@ export function listenOnce(lang = "de-DE", maxMs = 9000): { result: Promise<stri
           const r: any = await Promise.race([bas, sure]);
           return ((r && r.matches) || []) as string[];
         } finally { clearTimeout(zaman); }
-      } finally { listening = false; }
+      } catch (e) { taniYaz("hata", `${new Date().toISOString().slice(5, 16)} yerel: ${hamHata(e)}`); throw e; } finally { listening = false; }
     })();
     return { result, stop: () => { try { N.stop?.(); } catch {} } };
   }
@@ -384,7 +403,7 @@ export function listenOnce(lang = "de-DE", maxMs = 9000): { result: Promise<stri
   const result = new Promise<string[]>((res, rej) => {
     let got: string[] = [];
     rec.onresult = (e: any) => { const r = e.results[0]; got = Array.from({ length: r.length }, (_, i) => r[i].transcript as string); };
-    rec.onerror = (e: any) => { listening = false; clearTimeout(to); e.error === "no-speech" ? res([]) : rej(new Error(e.error || "stt_error")); };
+    rec.onerror = (e: any) => { listening = false; clearTimeout(to); taniYaz("hata", `${new Date().toISOString().slice(5, 16)} tarayıcı: ${e.error}`); e.error === "no-speech" ? res([]) : rej(new Error(e.error || "stt_error")); };
     rec.onend = () => { listening = false; clearTimeout(to); res(got); };
   });
   listening = true;

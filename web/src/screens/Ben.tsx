@@ -15,6 +15,9 @@ import { haftaCumlesi, haftaGunleri, haftaNo, haftaSatiri, haftaSayilari, noktal
 import { ErrorPanel, Loading } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { usePlan } from "./Yol.tsx";
+import { kabukBilgisi, kabukSatiri } from "../services/kabuk.ts";
+import { cihazSesleri, sesYolu, sttYolu, taniOku } from "../services/speech.ts";
+import { almancaMi, KALITE_TR } from "../core/sesSec.ts";
 
 const NOKTA_TR = ["anlıyorum", "söyleyebiliyorum", "kendiliğimden kullanıyorum"] as const;
 
@@ -107,6 +110,24 @@ export function BenEkrani() {
           <span aria-hidden="true">›</span>
         </a>
       </div>
+      <Tanilama />
     </div>
+  );
+}
+
+/** PM-142 md. 2.4: tek ekran görüntüsü kök nedeni göstersin — kabuk, cihazın Almanca sesleri, son sahnenin atamaları, son tanıma hatası */
+function Tanilama() {
+  const [kabuk, setKabuk] = useState("");
+  useEffect(() => { void kabukBilgisi().then((b) => setKabuk(kabukSatiri(b)), () => {}); }, []);
+  const t = taniOku(), yol = sesYolu();
+  const sesler = cihazSesleri().filter(almancaMi).map((v) => `${v.name} (${KALITE_TR(v)})`);
+  return (
+    <details class="card tanilama" data-test="tanilama">
+      <summary class="small"><b>Tanılama</b></summary>
+      <p class="tiny" data-test="tani-satir">{kabuk}<br />
+        Ses yolu: {yol} · Almanca sesler ({sesler.length}): {sesler.join(", ") || "yok"}<br />
+        Son sahne: {t.sahne ?? "henüz yok"}<br />
+        Tanıma: {sttYolu()} · son hata: {t.hata ?? "yok"}</p>
+    </details>
   );
 }

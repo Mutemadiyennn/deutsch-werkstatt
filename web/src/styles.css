@@ -903,3 +903,11 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .tespit-kelime-satir { margin: 0; text-align: center; }
 .tespit-seg { display: flex; flex-wrap: wrap; width: 100%; } .tespit-seg > button { min-width: 44px; min-height: 44px; flex: 1 0 44px; }
 .tespit-orta { display: flex; justify-content: center; } .tespit-orta .ikincil-eylem { align-self: center; text-align: center; }
+/* PM-132 md. 2b: dinlerken konuşan (ad + renk noktası); yer önceden ayrılır, çalarken ekran zıplamaz */
+.konusan { display: flex; align-items: center; gap: 8px; min-height: 1.5em; margin: 0; font-weight: 700; }
+.konusan i { width: 12px; height: 12px; border-radius: 50%; flex: none; background: #1784D6; }
+.konusan i[data-i="1"] { background: #C2410C; } .konusan i[data-i="2"] { background: #15803D; } .konusan i[data-i="3"] { background: #9333EA; }
+.konusan i[data-i="4"] { background: #B45309; } .konusan i[data-i="5"] { background: #0F766E; }
+/* PM-137 md. 3: satır içi mikrofon düğmesinin hata kutusu iki kenara bağlı (sağdan taşmaz) */
+.mic-hata-in { position: absolute; left: 16px; right: 16px; margin-top: 60px; }
+.tanilama p { margin: 8px 0 0; overflow-wrap: anywhere; }
