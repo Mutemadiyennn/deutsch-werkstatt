@@ -6,7 +6,7 @@ CI makinesi gerçek iPhone değildir; sınırlar bu yüzden CI için de geçerli
 """
 import time
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish
+from common import sekme_kok, serve, launch, new_page, login_onboard, check, finish
 
 PORT = 4188
 SC = "sc:telefon:01-arzttermin"
@@ -35,6 +35,8 @@ def main():
             out = []
             for tab, dugme, sel, other in tabs:
                 for _ in range(n):
+                    # PM-133 md. 1: sekme son konumunu açar; ölçülen sekmenin son konumu kökü olsun
+                    if dugme.startswith("[data-tab="): sekme_kok(pg, tab)
                     pg.click(f"[data-tab={other}]"); pg.wait_for_selector(sel, state="detached"); pg.wait_for_selector(dugme); pg.wait_for_timeout(200)
                     dom, frame = pg.evaluate("""async ([dugme, sel]) => {
                       const t0 = performance.now(); let dom = 0;

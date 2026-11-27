@@ -235,6 +235,13 @@ def bekle_kosul(page, js, arg=None, timeout=5000, adim=150):
         page.wait_for_timeout(adim)
 
 
+def sekme_kok(pg, k):
+    """Sekmenin köküne in (PM-133 md. 1): alt sekme o sekmenin son konumunu açar; etkin sekmeye bir kez daha dokunmak köke indirir"""
+    pg.click(f"[data-tab={k}]"); pg.wait_for_selector(f"[data-tab={k}][aria-current=page]")
+    if pg.evaluate("location.hash") != f"#/{k}": pg.click(f"[data-tab={k}]")
+    pg.wait_for_function("(k) => location.hash === '#/' + k", arg=k)
+
+
 def finish():
     print("HATALAR:", "yok" if not ERR else "\n  " + "\n  ".join(ERR))
     sys.exit(1 if ERR else 0)

@@ -10,6 +10,7 @@ import { haptic } from "../services/haptics.ts";
 import { efekt, ustUsteDizi, ustUsteSay, xpUcur } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
 import { gorevSay } from "../services/gorev.ts";
+import { cikisMi, donus } from "../services/gezinme.ts";
 import { Mucevher } from "./solen.tsx";
 
 /* ---------- Ses düğmesi: büyük, tek dokunuşla yavaş/normal ---------- */
@@ -191,10 +192,12 @@ export function YanlisIci({ dogrusu, cevap, children }: { dogrusu: string; cevap
 /* ---------- Üst ilerleme: aşama x/6 · seans x/4 · kalan süre ---------- */
 /** `right`: başlık satırının sağı (#58 A6: öğrenme ekranlarında seans ve kalan dakika çipi) */
 export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], right, sub, ilerleme }: { title: string; back: string; step?: number; steps?: number; doneSteps?: number[]; right?: ComponentChildren; sub?: ComponentChildren; ilerleme?: { n: number; toplam: number } }) {
+  // PM-133: hedef giriş noktasıdır; tam ekran akıştan çıkış X, akışın içinde bir üst adım ‹
+  const hedef = donus(back), cik = cikisMi(hedef);
   return (
     <header class="pbar">
       <div class="row" style={{ gap: 8 }}>
-        <a class="iconbtn plain" href={back} aria-label="Geri"><Icon name="back" /></a>
+        <a class="iconbtn plain" href={hedef} aria-label={cik ? "Kapat" : "Geri"} data-test={cik ? "kapat" : "geri"}><Icon name={cik ? "x" : "back"} /></a>
         {title ? <h1>{title}</h1> : <span class="grow" />}
         {right}
       </div>
