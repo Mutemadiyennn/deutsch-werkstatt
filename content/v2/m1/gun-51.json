@@ -1,0 +1,340 @@
+{
+  "schema": 1,
+  "id": "m1:gun:51",
+  "day": 51,
+  "level": "A1",
+  "format": "gun",
+  "title_tr": "Pekiştirme: alışveriş ve fiyat",
+  "goal_tr": "Pazarda fiyat sorar, istediğin şey bitince başka bir şey seçer, yanlış duyduğun fiyatı sorarsın.",
+  "can_do": { "id": "cd:m1:51", "tr": "İstediğim şey bitmişse başka bir şey seçer, fiyatı sorup doğrularım." },
+  "unit": "u:m1:51",
+  "arm": "pazar",
+  "place": "pl:marktplatz",
+  "characters": ["ch:lechner", "ch:popescu", "ch:wimmer", "ch:stadler"],
+  "requires": { "kelimeler": [], "kaliplar": [], "gramer": [], "tur": [], "baglayicilar": [], "akicilik": [] },
+  "review": { "status": "draft" },
+  "dersler": [],
+  "yeni_kartlar": ["lx:Ausflug", "lx:vorhaben", "lx:Verspätung"],
+  "halkalar": [
+    {
+      "id": "m1:51:h1",
+      "title_tr": "Gezi planı, alışveriş ve gecikme",
+      "kartlar": ["lx:Ausflug", "lx:vorhaben", "lx:Verspätung"],
+      "kaliplar": [
+        { "de": "Was hast du … vor? – Haben Sie … etwas vor?", "tr": "… ne yapmayı düşünüyorsun? – … bir planınız var mı?" },
+        { "de": "Dann nehme ich …", "tr": "O zaman … alayım." },
+        { "de": "ein halbes Kilo …", "tr": "yarım kilo …" }
+      ],
+      "gorev_cumleleri": [
+        { "kart": "lx:Ausflug", "de": "Wir machen am Samstag einen Ausflug.", "tr": "Cumartesi bir gezi yapıyoruz.",
+          "accepted": ["Wir machen am Samstag einen Ausflug.", "Am Samstag machen wir einen Ausflug.", "Wir machen Samstag einen Ausflug."] },
+        { "kart": "lx:Ausflug", "de": "Der Ausflug kostet zwanzig Euro.", "tr": "Gezi yirmi avro tutuyor.",
+          "accepted": ["Der Ausflug kostet zwanzig Euro.", "Der Ausflug kostet 20 Euro.", "Zwanzig Euro kostet der Ausflug."] },
+        { "kart": "lx:Ausflug", "de": "Kommst du mit zum Ausflug?", "tr": "Geziye sen de geliyor musun?",
+          "accepted": ["Kommst du mit zum Ausflug?", "Kommst du zum Ausflug mit?", "Kommst du auch mit zum Ausflug?"] },
+        { "kart": "lx:vorhaben", "de": "Was hast du heute Abend vor?", "tr": "Bu akşam ne yapmayı düşünüyorsun?",
+          "accepted": ["Was hast du heute Abend vor?", "Was hast du denn heute Abend vor?", "Heute Abend, was hast du vor?"] },
+        { "kart": "lx:vorhaben", "de": "Ich habe am Samstag nichts vor.", "tr": "Cumartesi hiçbir planım yok.",
+          "accepted": ["Ich habe am Samstag nichts vor.", "Am Samstag habe ich nichts vor.", "Ich habe Samstag nichts vor."] },
+        { "kart": "lx:vorhaben", "de": "Haben Sie morgen etwas vor?", "tr": "Yarın bir planınız var mı?",
+          "accepted": ["Haben Sie morgen etwas vor?", "Haben Sie morgen schon etwas vor?", "Haben Sie morgen was vor?"] },
+        { "kart": "lx:Verspätung", "de": "Der Bus hat fünfzehn Minuten Verspätung.", "tr": "Otobüs on beş dakika gecikmeli.",
+          "accepted": ["Der Bus hat fünfzehn Minuten Verspätung.", "Der Bus hat 15 Minuten Verspätung.", "Fünfzehn Minuten Verspätung hat der Bus."] },
+        { "kart": "lx:Verspätung", "de": "Entschuldigung, ich komme mit Verspätung.", "tr": "Kusura bakmayın, gecikmeli geliyorum.",
+          "accepted": ["Entschuldigung, ich komme mit Verspätung.", "Entschuldigung, ich komme mit etwas Verspätung.", "Ich komme mit Verspätung, Entschuldigung."] },
+        { "kart": "lx:Verspätung", "de": "Hat der Zug Verspätung?", "tr": "Tren gecikmeli mi?",
+          "accepted": ["Hat der Zug Verspätung?", "Hat der Zug heute Verspätung?", "Der Zug hat Verspätung?"] }
+      ],
+      "sahne": {
+        "ortam_tr": "Cuma öğleden sonra, iş yerinde. Şefin Herr Wimmer kapıda duruyor.",
+        "satirlar": [
+          { "r": "ch:wimmer", "de": "Haben Sie am Wochenende etwas vor?", "tr": "Hafta sonu bir planınız var mı?" },
+          { "r": "ogrenci", "de": "Ja, am Sonntag machen wir einen Ausflug an den See.", "tr": "Evet, pazar günü göle bir gezi yapıyoruz." },
+          { "r": "ch:wimmer", "de": "Schön! Und das Wetter ist gut.", "tr": "Güzel! Hava da iyi." }
+        ],
+        "soru": { "q_tr": "Pazar günü ne yapıyorsun?", "opts": ["Göle geziye gidiyorsun", "Çalışıyorsun", "Evde kalıyorsun"], "ans": 0 }
+      }
+    }
+  ],
+  "sahne": {
+    "id": "m1:51:v1",
+    "title_tr": "Gezi için pazar alışverişi",
+    "sahneler": [
+      { "id": "s1", "speaker": "ch:lechner", "sahne_tr": "Cumartesi sabahı Stadtplatz'ta pazar kurulmuş. Tobi elinde bir liste tutuyor, Ioana yanında.", "de": "Morgen machen wir einen Ausflug an den See.", "tr": "Yarın göle bir gezi yapıyoruz." },
+      { "id": "s2", "speaker": "ch:popescu", "sahne_tr": "Ioana listeye uzanıp bakıyor.", "de": "Super! Und was brauchen wir?", "tr": "Süper! Peki neye ihtiyacımız var?" },
+      { "id": "s3", "speaker": "ch:lechner", "sahne_tr": "Tobi listeyi parmağıyla okuyor.", "de": "Brot, Käse, Äpfel und Wasser.", "tr": "Ekmek, peynir, elma ve su." },
+      { "id": "s4", "speaker": "die Verkäuferin", "sahne_tr": "Peynir ve meyve tezgâhında güler yüzlü bir satıcı onları bekliyor.", "de": "Guten Morgen! Bitte schön?", "tr": "Günaydın! Buyurun?" },
+      { "id": "s5", "speaker": "ch:lechner", "sahne_tr": "Tobi kırmızı elmaları gösteriyor.", "de": "Ein Kilo Äpfel, bitte. Was kostet das?", "tr": "Bir kilo elma, lütfen. Ne kadar?" },
+      { "id": "s6", "speaker": "die Verkäuferin", "sahne_tr": "Satıcı elmaları tartıya koyuyor.", "de": "Ein Kilo kostet drei Euro zwanzig.", "tr": "Bir kilosu üç avro yirmi." },
+      { "id": "s7", "speaker": "ch:lechner", "sahne_tr": "Tobi büyük bir peynir kalıbını gösteriyor.", "de": "Und der Käse?", "tr": "Peki peynir?" },
+      { "id": "s8", "speaker": "die Verkäuferin", "sahne_tr": "Satıcı peynirin üstündeki küçük tabelayı gösteriyor.", "de": "Der Käse kostet zwanzig Euro das Kilo.", "tr": "Peynirin kilosu yirmi avro." },
+      { "id": "s9", "speaker": "ch:popescu", "sahne_tr": "Ioana gözlerini büyütüyor, Tobi'ye bakıyor.", "de": "Zwanzig Euro? Das ist teuer!", "tr": "Yirmi avro mu? Bu pahalı!" },
+      { "id": "s10", "speaker": "ch:lechner", "sahne_tr": "Tobi omuz silkiyor, iki parmağıyla küçük bir parça gösteriyor.", "de": "Dann nehme ich nur ein halbes Kilo.", "tr": "O zaman sadece yarım kilo alayım." },
+      { "id": "s11", "speaker": "ch:lechner", "sahne_tr": "Tobi tezgâhın arkasındaki boş ekmek sepetine bakıyor.", "de": "Haben Sie auch Brot?", "tr": "Ekmeğiniz de var mı?" },
+      { "id": "s12", "speaker": "die Verkäuferin", "sahne_tr": "Satıcı boş sepeti gösterip başını sallıyor.", "de": "Brot haben wir leider nicht mehr. Aber Semmeln!", "tr": "Ekmek maalesef kalmadı. Ama küçük ekmek var!" },
+      { "id": "s13", "speaker": "ch:lechner", "sahne_tr": "Tobi gülüyor, altı parmak gösteriyor.", "de": "Okay, dann sechs Semmeln.", "tr": "Tamam, o zaman altı küçük ekmek." },
+      { "id": "s14", "speaker": "die Verkäuferin", "sahne_tr": "Satıcı her şeyi bir poşete koyuyor.", "de": "Das macht sechzehn Euro zwanzig.", "tr": "Hepsi on altı avro yirmi." },
+      { "id": "s15", "speaker": "ch:lechner", "sahne_tr": "Tobi cebinden kartını çıkarıyor.", "de": "Kann ich mit Karte zahlen?", "tr": "Kartla ödeyebilir miyim?" },
+      { "id": "s16", "speaker": "die Verkäuferin", "sahne_tr": "Satıcı özür diler gibi ellerini açıyor.", "de": "Nein, Karte geht leider nicht.", "tr": "Hayır, kart maalesef geçmiyor." },
+      { "id": "s17", "speaker": "ch:popescu", "sahne_tr": "Ioana çantasından cüzdanını çıkarıp gülümsüyor.", "de": "Kein Problem. Ich habe zwanzig Euro.", "tr": "Sorun değil. Bende yirmi avro var." }
+    ],
+    "bolumler": [
+      {
+        "id": "b1",
+        "cumleler": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15", "s16", "s17"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Tobi ve Ioana ne yapıyor?", "opts": ["Gezi için alışveriş yapıyorlar", "Restoranda yemek yiyorlar", "Otobüs bekliyorlar"], "ans": 0, "kanit": ["s1", "s3"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Tobi neden sadece yarım kilo peynir alıyor?", "opts": ["Peynir pahalı", "Peynir bitmiş", "Ioana peynir sevmiyor"], "ans": 0, "kanit": ["s8", "s9"] },
+          { "kind": "detail", "q_tr": "Tezgâhta ne kalmamış?", "opts": ["Ekmek", "Elma", "Peynir"], "ans": 0, "kanit": ["s12"] },
+          { "kind": "detail", "q_tr": "Sonunda kim ödüyor?", "opts": ["Ioana, nakit", "Tobi, kartla", "Satıcı ödemiyor"], "ans": 0, "kanit": ["s16", "s17"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s6", "seviye": "kolay", "q_tr": "Hangi sayıyı duydun?", "opts": ["dreizehn", "drei", "dreißig"], "ans": 1 },
+          { "id": "d2", "cumle": "s9", "seviye": "orta", "de": "Zwanzig Euro? Das ist ___!", "accepted": ["teuer", "Teuer", "teuer!"] },
+          { "id": "d3", "cumle": "s15", "seviye": "zor", "banka": ["Kann", "ich", "mit", "Karte", "zahlen", "bar", "Geld"], "accepted": ["Kann ich mit Karte zahlen?", "kann ich mit karte zahlen", "Kann ich mit Karte zahlen"] },
+          { "id": "d4", "cumle": "s12", "seviye": "usta", "accepted": ["Brot haben wir leider nicht mehr.", "brot haben wir leider nicht mehr", "Brot haben wir leider nicht mehr"] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Pazarda ne oldu? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Der Käse ist teuer. Brot haben sie nicht mehr.", "zorunlu": ["Käse", "Brot"] }
+        ],
+        "golge": ["s10", "s15"],
+        "cevapla": {
+          "id": "m1:51:v1:c1",
+          "k": "guided_response",
+          "situation_tr": "Pazarda sen de alışveriş yapıyorsun. Satıcı peynirin bittiğini söylüyor. O zaman elma al.",
+          "prompt_de": "Käse haben wir leider nicht mehr.",
+          "accepted": ["Dann nehme ich Äpfel.", "Dann Äpfel, bitte.", "Gut, dann nehme ich Äpfel, bitte.", "Schade. Dann nehme ich Äpfel.", "Dann nehme ich ein Kilo Äpfel.", "Dann möchte ich Äpfel.", "Dann nehme ich die Äpfel.", "Dann bitte Äpfel.", "Dann Äpfel.", "Ich nehme Äpfel.", "Schade. Dann Äpfel, bitte.", "Äpfel, bitte.", "Dann hätte ich gern Äpfel."],
+          "why_tr": "İstediğin şey yoksa **Dann nehme ich Äpfel** gibi başka bir şey seç."
+        }
+      }
+    ]
+  },
+  "sesler": [
+    {
+      "id": "m1:51:a1",
+      "tur": "anons",
+      "title_tr": "Garda otobüs anonsu",
+      "ortam_tr": "Pazar sabahı garın önündeki duraktasın. Hoparlörden bir anons geliyor.",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Hier ist der Bahnhof Wendlfing.", "tr": "Burası Wendlfing garı." },
+        { "id": "c2", "de": "Der Bus zum See hat heute fünfundzwanzig Minuten Verspätung.", "tr": "Göle giden otobüs bugün yirmi beş dakika gecikmeli." },
+        { "id": "c3", "de": "Er kommt nicht um neun, er kommt um neun Uhr fünfundzwanzig.", "tr": "Dokuzda değil, dokuz yirmi beşte geliyor." },
+        { "id": "c4", "de": "Der Zug um zehn Uhr hat keine Verspätung.", "tr": "Saat ondaki trenin gecikmesi yok." },
+        { "id": "c5", "de": "Entschuldigen Sie bitte die Verspätung.", "tr": "Gecikme için özür dileriz." }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Anons ne hakkında?", "opts": ["Otobüs gecikiyor", "Otobüs bugün hiç gelmiyor", "Tren erken geliyor"], "ans": 0, "kanit": ["c2", "c3"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Otobüs kaç dakika gecikmeli?", "opts": ["25", "20", "5"], "ans": 0, "kanit": ["c2"] },
+            { "kind": "detail", "q_tr": "Saat ondaki tren gecikiyor mu?", "opts": ["Hayır, gecikmiyor", "Evet, yarım saat", "Anonsta söylenmiyor"], "ans": 0, "kanit": ["c4"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c2", "seviye": "kolay", "q_tr": "Hangi sayıyı duydun?", "opts": ["fünfzehn", "fünfundzwanzig", "fünfzig"], "ans": 1 },
+            { "id": "d2", "cumle": "c4", "seviye": "orta", "de": "Der Zug um zehn Uhr hat keine ___.", "accepted": ["Verspätung", "verspätung", "Verspätung."] },
+            { "id": "d3", "cumle": "c1", "seviye": "zor", "banka": ["Hier", "ist", "der", "Bahnhof", "Wendlfing", "die", "Haltestelle"], "accepted": ["Hier ist der Bahnhof Wendlfing.", "hier ist der bahnhof wendlfing", "Hier ist der Bahnhof Wendlfing"] },
+            { "id": "d4", "cumle": "c4", "seviye": "usta", "accepted": ["Der Zug um zehn Uhr hat keine Verspätung.", "der zug um zehn uhr hat keine verspätung", "Der Zug um zehn Uhr hat keine Verspätung"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Anonsta ne dendi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Der Bus hat Verspätung. Er kommt um neun Uhr fünfundzwanzig.", "zorunlu": ["Bus", "Verspätung"] }
+          ],
+          "golge": ["c2", "c3"],
+          "cevapla": {
+            "id": "m1:51:a1:c1",
+            "k": "guided_response",
+            "situation_tr": "Tobi telefon ediyor, otobüsü soruyor. Ne zaman geldiğini söyle.",
+            "prompt_de": "Wo ist der Bus?",
+            "accepted": ["Der Bus hat Verspätung. Er kommt um neun Uhr fünfundzwanzig.", "Er hat Verspätung. Er kommt um neun Uhr fünfundzwanzig.", "Der Bus hat fünfundzwanzig Minuten Verspätung.", "Er kommt um neun Uhr fünfundzwanzig.", "Der Bus kommt um neun Uhr fünfundzwanzig.", "Der Bus hat Verspätung, er kommt um 9 Uhr 25.", "Der Bus kommt erst um neun Uhr fünfundzwanzig.", "Er kommt erst um neun Uhr fünfundzwanzig.", "Der Bus hat Verspätung. Er kommt erst um neun Uhr fünfundzwanzig.", "Um neun Uhr fünfundzwanzig.", "Der Bus hat Verspätung. Der Bus kommt um neun Uhr fünfundzwanzig.", "Er hat Verspätung und kommt um neun Uhr fünfundzwanzig.", "Der Bus hat fünfundzwanzig Minuten Verspätung. Er kommt um neun Uhr fünfundzwanzig.", "Er hat fünfundzwanzig Minuten Verspätung."],
+            "why_tr": "Önce **Der Bus hat Verspätung** de, sonra yeni saati söyle."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:51:a1:e1", "k": "pick", "q_tr": "Tobi ile durakta saat dokuzda buluşacaksınız. Ne yapmalısın?", "opts": ["Tobi'ye otobüsün 9.25'te geldiğini haber ver.", "Eve dön, gezi iptal.", "Saat ondaki trene bin."], "ans": 0, "why_tr": "Otobüs gelmiyor değil, sadece geç geliyor: dokuz yirmi beşte.", "kanit": ["c2", "c3"] }
+    },
+    {
+      "id": "m1:51:a2",
+      "tur": "sesli-mesaj",
+      "title_tr": "Ioana'dan sesli mesaj",
+      "ortam_tr": "Pazar sabahı, garda bekliyorsun. Ioana telefonuna sesli mesaj bırakmış.",
+      "speaker": "ch:popescu",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Hallo, hier ist Ioana.", "tr": "Merhaba, ben Ioana." },
+        { "id": "c2", "de": "Ich bin jetzt an der Haltestelle.", "tr": "Şu an duraktayım." },
+        { "id": "c3", "de": "Mein Bus hat dreißig Minuten Verspätung.", "tr": "Otobüsüm otuz dakika gecikmeli." },
+        { "id": "c4", "de": "Ich bin erst um Viertel nach neun am Bahnhof.", "tr": "Garda ancak dokuzu çeyrek geçe olurum." },
+        { "id": "c5", "de": "Könnt ihr bitte warten?", "tr": "Lütfen bekleyebilir misiniz?" }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Ioana neden arıyor?", "opts": ["Geç kalacak", "Gelemiyor", "Hasta"], "ans": 0, "kanit": ["c3", "c4"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Ioana garda saat kaçta olacak?", "opts": ["9.15", "9.00", "9.45"], "ans": 0, "kanit": ["c4"] },
+            { "kind": "detail", "q_tr": "Ioana'nın otobüsü kaç dakika gecikmeli?", "opts": ["30", "13", "3"], "ans": 0, "kanit": ["c3"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c3", "seviye": "kolay", "q_tr": "Hangi sayıyı duydun?", "opts": ["dreizehn", "dreißig", "drei"], "ans": 1 },
+            { "id": "d2", "cumle": "c2", "seviye": "orta", "de": "Ich bin jetzt an der ___.", "accepted": ["Haltestelle", "haltestelle", "Haltestelle."] },
+            { "id": "d3", "cumle": "c5", "seviye": "zor", "banka": ["Könnt", "ihr", "bitte", "warten", "kommen", "wir"], "accepted": ["Könnt ihr bitte warten?", "könnt ihr bitte warten", "Könnt ihr bitte warten"] },
+            { "id": "d4", "cumle": "c4", "seviye": "usta", "accepted": ["Ich bin erst um Viertel nach neun am Bahnhof.", "ich bin erst um viertel nach neun am bahnhof", "Ich bin erst um Viertel nach neun am Bahnhof"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Ioana ne dedi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Ioana hat Verspätung. Sie ist um Viertel nach neun am Bahnhof.", "zorunlu": ["Verspätung", "Bahnhof"] }
+          ],
+          "golge": ["c4", "c5"],
+          "cevapla": {
+            "id": "m1:51:a2:c1",
+            "k": "guided_response",
+            "situation_tr": "Ioana'ya kısa bir sesli mesajla cevap ver: bekliyorsunuz.",
+            "prompt_de": "Könnt ihr warten?",
+            "accepted": ["Ja, wir warten.", "Kein Problem, wir warten.", "Ja, klar, wir warten auf dich.", "Klar, wir warten!", "Ja, wir warten am Bahnhof.", "Kein Problem, Ioana. Wir warten.", "Ja, wir warten auf dich.", "Kein Problem, wir warten auf dich.", "Ja, klar. Wir warten am Bahnhof."],
+            "why_tr": "**wir warten** biz bekliyoruz demektir."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:51:a2:e1", "k": "pick", "q_tr": "Ne yapmalısın?", "opts": ["Garda Ioana'yı bekle.", "Ioana'sız göle git.", "Ioana'yı evinden al."], "ans": 0, "why_tr": "Ioana dokuzu çeyrek geçe garda olacak ve beklemenizi rica ediyor.", "kanit": ["c4", "c5"] }
+    }
+  ],
+  "gorsel": [
+    { "id": "m1:51:g1", "de": "ein Kilo Äpfel", "dogru_img": "red apples on a market scale showing one kilogram", "celdirici_img": ["one single apple on a table", "bananas on a market scale", "a bottle of apple juice"] },
+    { "id": "m1:51:g2", "de": "Semmeln", "dogru_img": "basket of round bread rolls", "celdirici_img": ["a large loaf of bread", "a pretzel", "a cake"] },
+    { "id": "m1:51:g3", "de": "Käse", "dogru_img": "wedge of yellow cheese on a market stall", "celdirici_img": ["slices of sausage", "a bowl of butter", "a carton of eggs"] },
+    { "id": "m1:51:g4", "de": "Fahrkarte", "dogru_img": "paper bus ticket in a hand", "celdirici_img": ["a credit card", "a shopping receipt", "a passport"] }
+  ],
+  "prova": {
+    "id": "m1:51:p1",
+    "title_tr": "Fırında gezi alışverişi",
+    "durum_tr": "Pazar sabahı gezi için Stadler fırınına uğruyorsun. Altı küçük ekmek almak istiyorsun. Frau Stadler tezgâhta.",
+    "karsi": "ch:stadler",
+    "baslangic": "n1",
+    "dugumler": [
+      {
+        "id": "n1",
+        "de": "Guten Morgen! Was darf es sein?",
+        "tr": "Günaydın! Ne istersiniz?",
+        "secenekler": [
+          { "de": "Guten Morgen! Sechs Semmeln, bitte.", "tr": "Günaydın! Altı küçük ekmek, lütfen.",
+            "accepted": ["Guten Morgen! Sechs Semmeln, bitte.", "Guten Morgen, sechs Semmeln, bitte.", "Guten Morgen! Ich möchte sechs Semmeln, bitte.", "Grüß Gott! Sechs Semmeln, bitte.", "Guten Morgen! Ich hätte gern sechs Semmeln.", "Guten Morgen, Frau Stadler! Sechs Semmeln, bitte.", "Guten Morgen! Ich möchte sechs Semmeln.", "Guten Morgen! Ich nehme sechs Semmeln.", "Guten Tag! Sechs Semmeln, bitte.", "Hallo! Sechs Semmeln, bitte."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Selam verdin ve ne istediğini kısa söyledin." },
+          { "de": "Ich möchte sechs Semmeln. Wir machen einen Ausflug.", "tr": "Altı küçük ekmek istiyorum. Bir gezi yapıyoruz.",
+            "accepted": ["Ich möchte sechs Semmeln. Wir machen einen Ausflug.", "Ich möchte bitte sechs Semmeln. Wir machen einen Ausflug.", "Sechs Semmeln, bitte. Wir machen einen Ausflug."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Güzel. Bir cümle daha ekleyip sohbet başlattın." },
+          { "de": "Semmeln!", "tr": "Küçük ekmek!",
+            "accepted": ["Semmeln!", "Semmeln.", "Sechs!"],
+            "sonraki": "n1b", "uygun": false, "geri_bildirim_tr": "Tek kelime sert duyulur ve sayı eksik. **Sechs Semmeln, bitte** de." }
+        ]
+      },
+      {
+        "id": "n1b",
+        "de": "Semmeln, ja. Wie viel Stück?",
+        "tr": "Küçük ekmek, tamam. Kaç tane?",
+        "secenekler": [
+          { "de": "Sechs, bitte.", "tr": "Altı, lütfen.",
+            "accepted": ["Sechs, bitte.", "Sechs Semmeln, bitte.", "Bitte sechs.", "Sechs Stück, bitte.", "Ich möchte sechs Semmeln, bitte."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Şimdi oldu. Sayıyı ve **bitte** kelimesini söyledin." }
+        ]
+      },
+      {
+        "id": "n2",
+        "de": "Ach, ich habe leider nur vier Semmeln.",
+        "tr": "Ah, maalesef sadece dört küçük ekmeğim var.",
+        "secenekler": [
+          { "de": "Dann nehme ich vier Semmeln und ein Brot.", "tr": "O zaman dört küçük ekmek ve bir ekmek alayım.",
+            "accepted": ["Dann nehme ich vier Semmeln und ein Brot.", "Okay, dann nehme ich vier Semmeln und ein Brot.", "Dann vier Semmeln und ein Brot, bitte.", "Gut, dann nehme ich vier Semmeln und ein Brot.", "Okay, dann vier Semmeln und ein Brot.", "Schade. Dann nehme ich vier Semmeln und ein Brot.", "Dann nehme ich vier und ein Brot.", "Kein Problem. Dann nehme ich vier Semmeln und ein Brot."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Harika. Eksik olanın yerine başka bir şey seçtin." },
+          { "de": "Okay, vier, bitte. Und ein Brot.", "tr": "Tamam, dört, lütfen. Bir de ekmek.",
+            "accepted": ["Okay, vier, bitte. Und ein Brot.", "Gut, dann vier. Und ein Brot, bitte.", "Dann vier, bitte. Und ein Brot.", "Okay, vier Semmeln und ein Brot, bitte.", "Okay, vier. Und ein Brot, bitte.", "Okay, vier Semmeln und ein Brot."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Kısa ve açık. Frau Stadler hemen hazırlıyor." },
+          { "de": "Nein, sechs Semmeln!", "tr": "Hayır, altı küçük ekmek!",
+            "accepted": ["Nein, sechs Semmeln!", "Ich möchte sechs Semmeln!", "Nein, sechs, bitte!"],
+            "sonraki": "n2", "uygun": false, "geri_bildirim_tr": "Frau Stadler'in sadece dört tanesi var, **Dann nehme ich vier** de." }
+        ]
+      },
+      {
+        "id": "n3",
+        "de": "So, das macht sechs Euro zehn.",
+        "tr": "Evet, hepsi altı avro on.",
+        "secenekler": [
+          { "de": "Sechs Euro zehn? Hier, bitte.", "tr": "Altı avro on mu? Buyurun.",
+            "accepted": ["Sechs Euro zehn? Hier, bitte.", "Sechs Euro zehn, hier bitte.", "Hier, bitte. Sechs Euro zehn.", "Okay, sechs Euro zehn. Hier, bitte.", "Hier sind sechs Euro zehn.", "Sechs Euro zehn? Bitte.", "Sechs Euro zehn?"],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Fiyatı tekrar ederek doğruladın." },
+          { "de": "Sechzehn Euro? Das ist teuer!", "tr": "On altı avro mu? Bu pahalı!",
+            "accepted": ["Sechzehn Euro? Das ist teuer!", "Sechzehn Euro? Das ist aber teuer!", "Sechzehn? Das ist teuer!"],
+            "sonraki": "n3b", "uygun": false, "geri_bildirim_tr": "**sechs Euro zehn** ile **sechzehn** kulağa yakın gelir. Emin değilsen sor." }
+        ]
+      },
+      {
+        "id": "n3b",
+        "de": "Nein, nein! Nicht sechzehn. Sechs Euro zehn!",
+        "tr": "Hayır, hayır! On altı değil. Altı avro on!",
+        "secenekler": [
+          { "de": "Ach so, sechs Euro zehn. Hier, bitte.", "tr": "Ha, altı avro on. Buyurun.",
+            "accepted": ["Ach so, sechs Euro zehn. Hier, bitte.", "Ach so! Hier, bitte.", "Ah, sechs Euro zehn. Hier, bitte.", "Ach so, sechs Euro zehn.", "Entschuldigung! Sechs Euro zehn. Hier, bitte."],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "İyi toparladın. Doğru fiyatı tekrar ettin." }
+        ]
+      },
+      {
+        "id": "n4",
+        "de": "Danke! Wohin geht der Ausflug?",
+        "tr": "Teşekkürler! Gezi nereye?",
+        "secenekler": [
+          { "de": "An den See. Mit dem Bus.", "tr": "Göle. Otobüsle.",
+            "accepted": ["An den See. Mit dem Bus.", "An den See, mit dem Bus.", "Wir fahren mit dem Bus an den See.", "An den See.", "Zum See.", "An den See. Wir fahren mit dem Bus."],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Kısa ve doğal bir cevap." },
+          { "de": "Wir fahren an den See.", "tr": "Göle gidiyoruz.",
+            "accepted": ["Wir fahren an den See.", "Wir fahren heute an den See.", "Wir gehen an den See.", "Wir fahren zum See.", "Wir machen einen Ausflug an den See.", "Der Ausflug geht an den See."],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Tam bir cümle kurdun." }
+        ]
+      },
+      { "id": "n9", "de": "Schön! Viel Spaß heute!", "tr": "Güzel! Bugün iyi eğlenceler!", "son": true }
+    ],
+    "kapanis_tr": "Ürün eksik çıkınca başka bir şey seçtin ve fiyatı doğruladın."
+  },
+  "okuma_yazma": {
+    "tur": "yazma",
+    "title_tr": "Tobi'ye cevap yaz",
+    "metin_de": "Hallo {name}! Am Sonntag machen wir einen Ausflug an den See. Was hast du am Sonntag vor? Kommst du mit? Tobi",
+    "metin_tr": "Merhaba {name}! Pazar günü göle bir gezi yapıyoruz. Pazar ne yapmayı düşünüyorsun? Sen de geliyor musun? Tobi",
+    "sorular": [
+      { "id": "m1:51:o1", "kind": "detail", "q_tr": "Tobi ne soruyor?", "opts": ["Geziye gelip gelmeyeceğini", "Göle nasıl gidileceğini", "Gezinin ne kadar tuttuğunu"], "ans": 0, "kanit": [2, 3] }
+    ],
+    "yazma": {
+      "gorev_tr": "Tobi'ye kısa bir cevap yaz. Pazar boş olduğunu, geldiğini ve ne alabileceğini söyle.",
+      "ornek_de": "Hallo Tobi! Am Sonntag habe ich nichts vor. Ich komme mit. Ich kann Äpfel und Wasser kaufen.",
+      "zorunlu": ["Sonntag", "mit"],
+      "accepted_kaliplar": ["Hallo ___!", "Am Sonntag habe ich nichts vor.", "Am Sonntag habe ich Zeit.", "Ich habe am Sonntag nichts vor.", "Ich komme gern mit.", "Ich komme mit.", "Ja, ich komme mit.", "Ich kann ___ kaufen.", "Ich kann ___ mitbringen.", "Ich kaufe ___.", "Ich bringe ___ mit.", "Bis Sonntag!"],
+      "kontrol_tr": ["Pazar günü boş olduğunu yazdın mı?", "Geziye geldiğini yazdın mı?", "**Ich komme mit** cümlesinde **mit** sona geldi mi?"]
+    }
+  },
+  "gun_sinavi": {
+    "id": "m1:51:s",
+    "maddeler": [
+      { "id": "m1:51:s1", "k": "listen_and_respond", "audio_de": "Die Äpfel kosten drei Euro das Kilo.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Die Äpfel kosten drei Euro das Kilo.", "die äpfel kosten drei euro das kilo", "Die Aepfel kosten drei Euro das Kilo."], "why_tr": "Birden çok şey için **kosten** dersin." },
+      { "id": "m1:51:s2", "k": "listen_and_respond", "audio_de": "Hast du am Sonntag etwas vor?", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Hast du am Sonntag etwas vor?", "hast du am sonntag etwas vor", "Hast du am Sonntag etwas vor"], "why_tr": "**vor** cümlenin sonuna gelir." },
+      { "id": "m1:51:s3", "k": "listen_and_respond", "audio_de": "Der Bus nach Wendlfing hat Verspätung.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Der Bus nach Wendlfing hat Verspätung.", "der bus nach wendlfing hat verspätung", "Der Bus nach Wendlfing hat Verspaetung."], "why_tr": "**Verspätung haben** gecikmeli olmak demektir." },
+      { "id": "m1:51:s4", "k": "listen_and_respond", "audio_de": "Ein halbes Kilo Käse, bitte.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Ein halbes Kilo Käse, bitte.", "ein halbes kilo käse bitte", "Ein halbes Kilo Kaese, bitte."], "why_tr": "**ein halbes Kilo** yarım kilo demektir." },
+      { "id": "m1:51:s5", "k": "tr_de", "tr": "Gezi için ekmek ve su lazım.",
+        "accepted": ["Für den Ausflug brauchen wir Brot und Wasser.", "Wir brauchen Brot und Wasser für den Ausflug.", "Für den Ausflug brauchen wir Wasser und Brot.", "Für den Ausflug brauche ich Brot und Wasser.", "Wir brauchen für den Ausflug Brot und Wasser.", "Ich brauche Brot und Wasser für den Ausflug.", "Ich brauche für den Ausflug Brot und Wasser.", "Wir brauchen Wasser und Brot für den Ausflug.", "Für den Ausflug brauche ich Wasser und Brot."], "why_tr": "**brauchen** ihtiyacı olmak demektir." },
+      { "id": "m1:51:s6", "k": "tr_de", "tr": "Peynir fazla pahalı.",
+        "accepted": ["Der Käse ist zu teuer.", "Käse ist zu teuer.", "Der Käse ist mir zu teuer.", "Der Käse ist echt zu teuer."], "why_tr": "Fazla pahalı derken **zu teuer** dersin." },
+      { "id": "m1:51:s7", "k": "tr_de", "tr": "Pazar günü hiçbir planım yok.",
+        "accepted": ["Am Sonntag habe ich nichts vor.", "Ich habe am Sonntag nichts vor.", "Ich habe Sonntag nichts vor.", "Sonntag habe ich nichts vor."], "why_tr": "Hiçbir planım yok derken **nichts vor** dersin ve **vor** en sona gelir." },
+      { "id": "m1:51:s8", "k": "tr_de", "tr": "Otobüs otuz dakika gecikmeli.",
+        "accepted": ["Der Bus hat dreißig Minuten Verspätung.", "Der Bus hat 30 Minuten Verspätung.", "Der Bus hat eine halbe Stunde Verspätung.", "Der Bus hat dreissig Minuten Verspätung."], "why_tr": "Gecikmeyi **hat dreißig Minuten Verspätung** diye söylersin." },
+      { "id": "m1:51:s9", "k": "guided_response", "situation_tr": "Pazarda elma kalmamış. O zaman muz al.", "prompt_de": "Äpfel habe ich leider nicht mehr.",
+        "accepted": ["Dann nehme ich Bananen.", "Dann Bananen, bitte.", "Gut, dann nehme ich Bananen, bitte.", "Schade. Dann nehme ich Bananen.", "Dann nehme ich ein Kilo Bananen.", "Dann möchte ich Bananen.", "Dann nehme ich die Bananen.", "Dann bitte Bananen.", "Dann Bananen.", "Ich nehme Bananen.", "Schade. Dann Bananen, bitte.", "Bananen, bitte."],
+        "why_tr": "Başka bir şey seçerken **Dann nehme ich Bananen** dersin." },
+      { "id": "m1:51:s10", "k": "guided_response", "situation_tr": "Fiyatı tam duymadın: altı mı, on altı mı? Sor.", "prompt_de": "Das macht sechs Euro zehn.",
+        "accepted": ["Sechs oder sechzehn?", "Wie bitte? Sechs oder sechzehn?", "Sechs Euro zehn oder sechzehn Euro?", "Entschuldigung, sechs oder sechzehn?", "Sechs Euro zehn?", "Sechs oder sechzehn Euro?", "Sechs Euro oder sechzehn Euro?", "Sechs Euro zehn oder sechzehn?", "Sechzehn oder sechs?", "Wie bitte? Sechs Euro zehn?", "Wie bitte? Sechs oder sechzehn Euro?", "Sechs Euro oder sechzehn?", "Sechzehn Euro?", "Wie viel? Sechs oder sechzehn?"],
+        "why_tr": "Emin değilsen iki sayıyı da söyleyip sor." },
+      { "id": "m1:51:s11", "k": "guided_response", "situation_tr": "Pazar tezgâhındasın. Peynirin fiyatını sor ve yarım kilo iste.", "prompt_de": "Guten Tag! Was möchten Sie?",
+        "accepted": ["Was kostet der Käse? Ein halbes Kilo, bitte.", "Was kostet der Käse? Ich möchte ein halbes Kilo.", "Wie viel kostet der Käse? Ein halbes Kilo, bitte.", "Ein halbes Kilo Käse, bitte. Was kostet das?", "Guten Tag! Was kostet der Käse? Ein halbes Kilo, bitte.", "Was kostet der Käse? Ein halbes Kilo Käse, bitte.", "Guten Tag! Was kostet der Käse? Ich möchte ein halbes Kilo.", "Was kostet der Käse? Ich nehme ein halbes Kilo.", "Wie viel kostet der Käse? Ich möchte ein halbes Kilo.", "Guten Tag! Wie viel kostet der Käse? Ein halbes Kilo, bitte.", "Was kostet der Käse? Ich möchte ein halbes Kilo Käse.", "Was kostet der Käse? Ein halbes Kilo.", "Guten Tag! Ein halbes Kilo Käse, bitte. Was kostet das?", "Ich möchte ein halbes Kilo Käse. Was kostet das?", "Was kostet der Käse? Ich brauche ein halbes Kilo."],
+        "why_tr": "Fiyatı **Was kostet der Käse?** diye sor, miktarı **ein halbes Kilo** diye söyle." }
+    ],
+    "sesli": ["m1:51:s9", "m1:51:s10"],
+    "dikte": ["m1:51:s1", "m1:51:s2", "m1:51:s3", "m1:51:s4"]
+  }
+}
