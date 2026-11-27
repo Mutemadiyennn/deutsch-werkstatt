@@ -41,7 +41,7 @@ Genel hüküm: yuvalı cevaplar dilbilgisel olarak doğru. **Ich bin {meslek}.**
 - Evet/hayır sorusuna en doğal cevap "Nein, ich bin verheiratet." / "Ja, ich bin ledig." Kabuller yalnız "Ich bin {aile}." biçimindeydi. `prova.ts` olumsuzluk tutumu farklı cevabı "yakın" saymıyor, yani evli öğrencinin doğru cevabı **yanlış** sayılırdı. Kabule "Ja/Nein" eklemek de olmaz: değere göre çelişkili cevabı kabul eder.
 - **Sonra:** seçmeli soru "Sind Sie verheiratet oder ledig?" (46. günde öğretilen kalıbın aynısı). Cevap "Ich bin {aile}." olur, ja/nein gerekmez.
 
-### P1-4 · {aile} = verheiratet, 39. günde öğretilmemiş (AÇIK, kart işi)
+### P1-4 · {aile} = verheiratet, 39. günde öğretilmemiş (KAPANDI, 3. tur)
 - `lx:verheiratet` m1'de ilk kez **46. günde** kart. 39. günde evli öğrenci "Ich bin verheiratet." üretmek zorunda. Doğrulayıcı yuvanın değerini saymadığı için yakalamıyor.
 - Hafifletme: n6 sorusunda artık sözcük duyuluyor (P1-3). Kalıcı çözüm bende değil, tablo ve sözlük işi: `lx:verheiratet` 29. güne, `lx:ledig`in yanına alınmalı (kart batch-008'de var) ya da ≤ 39. günde bir halka kalıbı "Ich bin ledig. – Ich bin verheiratet." eklenmeli. Aynı soru öbür yuvalar için de geçerli: profil değerleri (meslek adı, ülke, diller) kart değil. Öğrencinin kendi bilgisi olduğu için kabul edilebilir, ama `{aile}`in kapalı bir değer kümesi var ve öğretilebilir.
 
@@ -83,5 +83,19 @@ Genel hüküm: yuvalı cevaplar dilbilgisel olarak doğru. **Ich bin {meslek}.**
 - Gün 16 ve 19 `kapanis_tr`: meslek sorusu yarım cümleyle eklendi ("…, mesleğini de söyledin." / "… ve ne iş yaptığını söyledin.").
 - Denetimler: validate 0 hata (291 uyarı) · dikiş İhlal: 0 · hafta kapısı 0 / %100 / 6/6 · `vitest content/tools` 18 dosya, 230 test geçti.
 
+## 3. tur (PR #284 incelemesi, yorum 7226711251)
+- **P1-1 gun-40:** h1'e kalıp eklendi: "Guten Tag, … – Mit freundlichen Grüßen, …" / "İyi günler, … – Saygılarımla, … (resmî mesajın sonu)". Okumaya kısa soru eklendi: `m1:40:o5` "Mesajı kim yazdı?" (`kanit: [4]`).
+- **Türkçede yuva:** bu paketin dosyalarında (16, 19, 31, 32, 33, 39) yeni yuvalar `tr` alanında "…" oldu ("Mesleğim …", "… olarak çalışıyorum.", "Hobim mi? …! Ya sen, Tobi?", "Memleketim: … Ya sen hangi ülkedensin?", "Evli ya da bekâr olduğumu söylüyorum: …"). {name} kaldı. Almancaya dokunulmadı. **Bu paketin dışında** aynı düzen 2, 6, 7, 12 ve 13. günlerde de var (1.–2. hafta; bana verilmediği için dokunulmadı).
+- **P2-1:** HST-05 `m1:35:t06` → `"can_do": "cd:m1:30"`.
+- **P2-2:** sade kabuller eklendi. HST-06 t12: "… Ich bin {meslek}. Mein Hobby ist {hobi}." ve "… Ich arbeite als {meslek}. …". HST-03 t09: "Ich bin {meslek} und ich spreche {diller}.". HST-05 t09: "Ich bin {meslek} von Beruf und mein Hobby ist {hobi}.".
+- **P2-3:** yalnız yuvadan oluşan "{meslek}." kabulü 16 n8 ve 19 n7'den çıktı. Her seçenekte hâlâ ≥ 3 kabul var. "Als {meslek}." kaldı.
+- **P2-4:** gun-27 `accepted_kaliplar`'dan "Lieber ___," çıktı (mektup Derya'ya).
+- **P2-5:** gun-32 n6 "Mein Hobby ist Fußball." → "Mein Hobby ist Schwimmen." (`lx:schwimmen` 12. günde kart; 33. günde Tobi yüzmeye çağırıyor, uyumlu). tr "Benim hobim yüzmek."
+- **P2-9:** gun-16 görev cümlesine B7 biçimleri eklendi: `de_adsiz` "Ich arbeite als {meslek}.", `tr_adsiz` "… olarak çalışıyorum.", `accepted_adsiz` 3 biçim.
+- **P2-11:** gun-19 n7 "Gut! Dann üben wir noch. Was arbeitest du?" → "Gut! Und was arbeitest du?" ("İyi! Peki sen ne iş yapıyorsun?"). durum_tr'den "pratik için" çıktı. n6 "Dann reden wir noch Deutsch!" artık tekrarlanmıyor.
+- **P1-4 kapandı:** 39. gün h2 kalıp satırıyla gösterildi (baş geliştirici kararı). Kart taşıma 2. pakette.
+- Denetimler: validate 0 hata (308 uyarı; dal artık #283 üstünde, sayı yeni tabanla) · dikiş İhlal: 0 · hafta kapısı 0 / %100 / 6/6 · `vitest content/tools` 19 dosya, 238 test geçti.
+- Not: doğrulayıcı uyarılarında "öğretilmemiş kelime isteniyor: {meslek}" (16 n8, 19 n7, 31 n4) görünüyor. Bu yuva tanıma işi, içerik hatası değil; araç yeni tabanda yuvayı tanımıyor olabilir.
+
 ## Sonuç
-Yazarın bulguları: 6 (P1 4, P2 2) / 35 madde → hata oranı ≈ %17. 5'i düzeltildi. **AÇIK:** P1-4 (`lx:verheiratet` 46. günden önce öğretilmeli). Kart kararı gelene kadar `review` alanına dokunulmadı (görev gereği).
+Yazarın bulguları: 6 (P1 4, P2 2) / 35 madde → hata oranı ≈ %17. Hepsi kapandı (P1-4 baş geliştirici kararıyla). Sonuç: **KAPANDI**. `review` alanına görev gereği dokunulmadı.

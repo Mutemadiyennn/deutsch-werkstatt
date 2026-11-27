@@ -347,12 +347,19 @@
     {
      "kart": "lx:Name",
      "de": "Mein Name ist {name}. Ich arbeite als {meslek}.",
-     "tr": "Adım {name}. {meslek} olarak çalışıyorum.",
+     "de_adsiz": "Ich arbeite als {meslek}.",
+     "tr": "Adım {name}. … olarak çalışıyorum.",
+     "tr_adsiz": "… olarak çalışıyorum.",
      "accepted": [
       "Mein Name ist {name}. Ich arbeite als {meslek}.",
       "Mein Name ist {name}, ich arbeite als {meslek}.",
       "Ich heiße {name}. Ich arbeite als {meslek}.",
       "Mein Name ist {name}. Ich bin {meslek}."
+     ],
+     "accepted_adsiz": [
+      "Ich arbeite als {meslek}.",
+      "Ich bin {meslek}.",
+      "Ich arbeite hier als {meslek}."
      ]
     }
    ],
@@ -1603,7 +1610,7 @@
     "secenekler": [
      {
       "de": "Ich arbeite als {meslek}.",
-      "tr": "{meslek} olarak çalışıyorum.",
+      "tr": "… olarak çalışıyorum.",
       "accepted": [
        "Ich arbeite als {meslek}.",
        "Ich arbeite hier als {meslek}.",
@@ -1616,11 +1623,10 @@
      },
      {
       "de": "Ich bin {meslek}.",
-      "tr": "Mesleğim {meslek}.",
+      "tr": "Mesleğim …",
       "accepted": [
        "Ich bin {meslek}.",
        "Ich bin {meslek}, Frau Huber.",
-       "{meslek}.",
        "Ich arbeite als {meslek}."
       ],
       "sonraki": "n6",
@@ -1629,7 +1635,7 @@
      },
      {
       "de": "Ich bin ein {meslek}.",
-      "tr": "Mesleğim {meslek}. (yanlış)",
+      "tr": "Mesleğim … (yanlış)",
       "accepted": [
        "Ich bin ein {meslek}.",
        "Ich arbeite als ein {meslek}.",
