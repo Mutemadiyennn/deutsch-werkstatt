@@ -165,8 +165,9 @@ export function SerbestKonusAdimi({ k, profil: profil0, onBitti, onProfil }: { k
           <summary class="small"><b>Örnek cevap senin bilgilerinle gelsin mi?</b> <span class="muted">(isteğe bağlı, yalnız bu telefonda)</span></summary>
           <div class="stack" style={{ gap: 12, marginTop: 10 }}>
             {sor.map((y) => <YuvaAlani y={y} deger={taslakP[y] ?? ""} degis={(x) => setTaslakP({ ...taslakP, [y]: x })} />)}
-            <button class="btn" data-test="serbest-profil-kaydet" onClick={() => { const v = { ...profil, ...taslakP }; setProfil(v); void onProfil(taslakP).then(() => setKaydedildi(true), () => setKaydedildi(false)); }}>Kaydet</button>
-            {kaydedildi && <p class="tiny muted" style={{ margin: 0 }} data-test="serbest-profil-tamam">Kaydedildi. Yalnız bu telefonda.</p>}
+            <button class="btn" data-test="serbest-profil-kaydet" onClick={() => { const v = { ...profil, ...taslakP }; setProfil(v); void onProfil(taslakP).then(() => setKaydedildi(true), () => { setProfil(profil); setKaydedildi(false); }); }}>Kaydet</button>
+            {kaydedildi === true && <p class="tiny muted" style={{ margin: 0 }} data-test="serbest-profil-tamam">Kaydedildi. Yalnız bu telefonda.</p>}
+            {kaydedildi === false && <p class="tiny" style={{ margin: 0 }} data-test="serbest-profil-hata">Kaydedilemedi; tekrar dene.</p>}
           </div>
         </details>
       )}

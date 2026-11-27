@@ -49,6 +49,8 @@ const BILINEN = new Set(BILINEN_SABIT);
 /** {aile} yuvasına girebilen dört biçim; ülke/şehir öbeğinin başında artikel olabilir ("aus der Schweiz") */
 export const AILE_DURUMU = ["ledig", "verheiratet", "geschieden", "verwitwet"];
 const ARTIKEL_OK = new Set(["der", "dem", "den", "die"]);
+/** yazıyla yaş: 13–19, onluklar ve "vierunddreißig" biçimi (ß / ss, ü / ue) */
+const YAS_SOZ = /^(?:(?:dreizehn|vierzehn|f(?:ü|ue)nfzehn|sechzehn|siebzehn|achtzehn|neunzehn)|(?:(?:ein|zwei|drei|vier|f(?:ü|ue)nf|sechs|sieben|acht|neun)und)?(?:zwanzig|drei(?:ß|ss)ig|vierzig|f(?:ü|ue)nfzig|sechzig|siebzig|achtzig|neunzig))$/;
 /** profil yuvasına giremeyen işlev sözcükleri ve sıfatlar: BILINEN'in sabit hâli (sözlükle genişlemez: "Lehrer", "Polen" girebilsin) */
 const ISLEV = new Set([...BILINEN_SABIT, "sehr", "nicht", "müde", "krank", "gut", "schlecht", "alt", "jung", "hier", "da"]);
 export function bilinenKelimeler(l: Iterable<string>) {
@@ -127,7 +129,8 @@ export function profilDoldur(expected: string, answer: string): string {
   const uygun = (y: ProfilYuvasi, v: string) => {
     const w = v.toLocaleLowerCase("de").split(/\s+/);
     if (y === "aile") return AILE_DURUMU.includes(v.toLocaleLowerCase("de"));
-    if (y === "yas") return /^\d{1,3}$/.test(v);
+    if (y === "yas") return /^\d{1,3}$/.test(v) || YAS_SOZ.test(v.toLocaleLowerCase("de"));   // "dreißig", "vierunddreißig" (inceleme #286 R2-1)
+    if (w.every((x) => ARTIKEL_OK.has(x))) return false;   // "aus der." (R2-4)
     if (y === "diller") return w.every((x) => x === "und" || !ISLEV.has(x));
     return !w.some((x) => ISLEV.has(x) && !ARTIKEL_OK.has(x));
   };
@@ -138,7 +141,8 @@ export function profilGeriAl(t: string, p: Persona = {}): string {
   let out = t;
   for (const [y, v] of Object.entries(profilOf(p)) as [ProfilYuvasi, string | undefined][]) {
     const x = v?.normalize("NFC").trim();
-    if (x && [...x].length >= 2) out = out.normalize("NFC").replace(new RegExp(`(?<![\\p{L}\\p{N}])(?:${desen(x)})(?![\\p{L}\\p{N}])`, "giu"), `{${y}}`);
+    // sayı geri alınmaz: "7:30" bozulmasın (yaş kişiyi tanıtmaz; inceleme #286 R2-3)
+    if (x && [...x].length >= 2 && !/^\d+$/.test(x)) out = out.normalize("NFC").replace(new RegExp(`(?<![\\p{L}\\p{N}])(?:${desen(x)})(?![\\p{L}\\p{N}])`, "giu"), `{${y}}`);
   }
   return out;
 }

@@ -29,6 +29,9 @@ describe("profil yuvaları", () => {
     expect(profilDoldur("Ich bin {yas} Jahre alt.", "Ich bin sehr Jahre alt.")).toBe("Ich bin (yaşın) Jahre alt.");
     expect(profilDoldur("Ich komme aus {ulke}.", "Ich komme aus nicht.")).toBe("Ich komme aus (ülken).");
     expect(profilDoldur("Ich bin {meslek}.", "Ich bin Lehrer.")).toBe("Ich bin Lehrer.");
+    // 2. tur R2-1: yazıyla yaş; R2-4: yalnız artikel
+    for (const y of ["dreißig", "vierunddreißig", "achtzehn", "dreissig"]) expect(profilDoldur("Ich bin {yas} Jahre alt.", `Ich bin ${y} Jahre alt.`)).toBe(`Ich bin ${y} Jahre alt.`);
+    expect(profilDoldur("Ich komme aus {ulke}.", "Ich komme aus der.")).toBe("Ich komme aus (ülken).");
     // ad yuvasıyla birlikte: fillName ikisini de doldurur
     expect(fillName("Ich heiße {name} und komme aus {ulke}.", "Ich heiße Mila und komme aus Polen.")).toBe("Ich heiße Mila und komme aus Polen.");
   });
@@ -45,6 +48,8 @@ describe("profil yuvaları", () => {
     expect(sesMetni("Ich komme aus (ülken). Ich bin (medeni durumun).")).toBe("Ich komme aus. Ich bin.");
     hakkimdaAyarla({ sehir: "Hamburg" });
     expect(profilGeriAl("Ich wohne in Hamburg.")).toBe("Ich wohne in {sehir}.");
+    hakkimdaAyarla({ yas: "30" });
+    expect(profilGeriAl("um 7:30 Uhr")).toBe("um 7:30 Uhr");
   });
   it("içerik denetiminde yuvalar sözcük sayılmaz (teach.ts)", () => {
     expect(tokens("Ich komme aus {ulke} und bin {meslek}.")).toEqual(["ich", "komme", "aus", "und", "bin"]);
