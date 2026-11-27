@@ -1,6 +1,6 @@
 # A1 gerçek bir A1 mi? — bağımsız içerik denetimi [DENETİM-A1]
 
-PM-147 md. 3 · denetçi: [DENETİM-A1] (içeriği yazanlardan ayrı; yalnız okur ve ölçer, düzeltme yapmaz) · 27.11.2026 · main `2ac33b9`
+PM-147 md. 3 · denetçi: [DENETİM-A1] (içeriği yazanlardan ayrı; yalnız okur ve ölçer, düzeltme yapmaz) · 27.11.2026 · main `8321b13` (sayımlar `2ac33b9` ile aynı; arada içerik ve planlayıcı değişmedi)
 Kapsam: `content/v2/m1/` gün 1–56, hafta sonu testleri (8), görülmemiş durumlar (7), deneme sınavı `content/v2/assess/a1-deneme.json`, izlence `content/v2/curriculum/a1-kesin.json`, sözlük `content/v2/registry/`.
 
 ## Hüküm: **KISMEN**
