@@ -55,6 +55,19 @@ describe("PM-132: sahnede her konuşan kendi sesiyle", () => {
   });
 });
 
+describe("RQ-Ş18: konuşanın adı seçeneklerdeki cevabı önceden vermez", () => {
+  it("yalnız seçenekler, unvansız", async () => {
+    const { adCevapMi } = await import("./speech.ts");
+    // r0:10:h2: "Soyadı hangisi?" Kraus / Graus / Krause → gizlenir
+    expect(adCevapMi("Herr Kraus", JSON.stringify([["Paketi doğru kişiye vermek için"], ["Kraus", "Graus", "Krause"]]))).toBe(true);
+    // soru konuşanı anar ama seçenekler adı içermez → ad görünür; unvan tek başına eşleşmez
+    expect(adCevapMi("Derya", JSON.stringify([["Pazartesi", "Salı", "Cuma"]]))).toBe(false);
+    expect(adCevapMi("Frau Huber", JSON.stringify([["Frau Demir", "Herr Demir"]]))).toBe(false);
+    expect(adCevapMi("Dr. Thomas Weber", JSON.stringify([["Dr. Kaya"]]))).toBe(false);
+    expect(adCevapMi("Tobias „Tobi“ Lechner", JSON.stringify([["Tobi", "Luka"]]))).toBe(true);
+  });
+});
+
 describe("PM-137: iOS eklentisinin hata metinleri sınıflanır", () => {
   it("Almanca (yerelleştirilmiş) ve sabit İngilizce metinler", async () => {
     const { sttHataTuru } = await import("./speech.ts");

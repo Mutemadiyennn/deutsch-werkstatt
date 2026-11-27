@@ -82,6 +82,8 @@ export function konusanAta(adlar: (string | undefined)[]): Map<string, Atama> {
 /** Tek konuşanın sabit sesi (sahnesiz): Profil listesi ve tek satırlık "Dinle" bununla aynı sesi çalar (inceleme #117 P1-3) */
 export const karakterSesi = (ad: string): Atama | undefined => konusanAta([ad]).get(ad);
 /** PM-132 md. 2b: dinlerken ekranda konuşanın adı (öğrenci "Sen", karakter adı, yoksa içerikteki ad) */
+/** Adın bir sözcüğü (unvan hariç) sonra gelecek seçeneklerde geçiyorsa ad cevabı verir (RQ-Ş18; inceleme #274 Ö-3, 2. tur P1-A) */
+export const adCevapMi = (ad: string, secenekler: string) => ad.split(/[\s„“"]+/).some((w) => w.length > 2 && !/^(herr|frau|dr\.)$/i.test(w) && secenekler.includes(w));
 export const konusanAdi = (kim: string): string => (OGRENCI.test(kim.trim()) ? "Sen" : kim === "karsi" ? "Karşındaki" : karakterler.find((c) => c.id === kim)?.name ?? kim);
 
 /**

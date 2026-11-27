@@ -5,7 +5,7 @@
 import { createContext, type ComponentChildren } from "preact";
 import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
-import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive, STT_HATA_TR, sttHataMetni, konusanAta, konusanAdi } from "../services/speech.ts";
+import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive, STT_HATA_TR, sttHataMetni, konusanAta, konusanAdi, adCevapMi } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { efekt, ustUsteDizi, ustUsteSay, xpUcur } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
@@ -134,12 +134,12 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
 
 /**
  * PM-132 md. 2b: dinlerken konuşanın adı ve rengi (metin kapalıyken de); renk sahnedeki sırasından, aynı sahnede iki konuşan
- * aynı rengi almaz. `gizle`: sonra sorulacak soruların metni; ad orada geçiyorsa cevabı önceden vermesin diye "Konuşan N"
+ * aynı rengi almaz. `gizle`: sonra sorulacak soruların seçenekleri; ad (unvansız) orada geçiyorsa cevabı önceden vermesin diye "Konuşan N"
  * (RQ-Ş18; inceleme #274 Ö-3). aria-live yok: ekran okuyucu adı diyalog sesinin üstüne okumasın (Ö-2)
  */
 export function KonusanRozet({ kim, kimler, gizle = "" }: { kim?: string; kimler: (string | undefined)[]; gizle?: string }) {
   const i = [...new Set(kimler)].indexOf(kim), ad = kim ? konusanAdi(kim) : "";
-  return <p class="konusan" data-test="konusan">{kim && <><i data-i={i % 6} />{ad.split(/[\s„“"]+/).some((w) => w.length > 2 && gizle.includes(w)) ? `Konuşan ${i + 1}` : ad}</>}</p>;
+  return <p class="konusan" data-test="konusan">{kim && <><i data-i={i % 6} />{adCevapMi(ad, gizle) ? `Konuşan ${i + 1}` : ad}</>}</p>;
 }
 
 /* ---------- Geri bildirim bandı: renk + titreşim + kısa Türkçe açıklama ---------- */

@@ -264,7 +264,7 @@ function Dinleme({ l, onNext }: { l: TemelDers["listening"][number]; onNext: (s:
       <div class="kicker icerik">{l.title_tr}</div>
       <div class="row"><button class="btn primary grow" data-test="dinle" onClick={() => cal(l.speed === "slow" ? "slow" : "normal")}>Dinle</button>
         {l.speeds.includes("slow") && l.speeds.length > 1 && <button class="btn grow" onClick={() => cal("slow")}>Yavaş</button>}</div>
-      <KonusanRozet kim={kim} kimler={satirlar.map((x) => x.kim)} gizle={JSON.stringify(l.qs)} />
+      <KonusanRozet kim={kim} kimler={satirlar.map((x) => x.kim)} gizle={JSON.stringify(l.qs.map((q) => q.opts))} />
       {!dinledi && !E2E ? <p class="small muted">Önce dinle; sorular sonra gelecek.</p> : soru ? (
         <div class="stack">
           <h3><Rich text={soru.q_tr} /></h3>
