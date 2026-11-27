@@ -1,0 +1,1459 @@
+{
+ "schema": 1,
+ "id": "m1:gun:105",
+ "day": 105,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Haftanın sınavı: geç kaldığını açıklamak",
+ "goal_tr": "Pazartesi neden geç kaldığını üç kişiye, her seferinde daha kısa anlatırsın. Herr Wimmer'in hızlı sesli mesajını iki cümleyle özetlersin.",
+ "can_do": {
+  "id": "cd:m1:105",
+  "tr": "Geç kaldığımı ve nedenini kısa ve açık anlatırım."
+ },
+ "unit": "u:a2:is-4",
+ "arm": "tiyatro",
+ "characters": [
+  "ch:aksoy",
+  "ch:popescu",
+  "ch:lechner",
+  "ch:wimmer"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic17/dilbilimci-h15.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:blöd",
+  "lx:gefährlich"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:105:h1",
+   "title_tr": "Pazar: can sıkıcı ve tehlikeli",
+   "kartlar": [
+    "lx:blöd",
+    "lx:gefährlich"
+   ],
+   "kaliplar": [
+    {
+     "de": "Das ist blöd. – Das war blöd. – So ein blöder Tag!",
+     "tr": "Bu can sıkıcı. – Can sıkıcıydı. – Ne saçma bir gün!"
+    },
+    {
+     "de": "Das ist gefährlich. – Das war gefährlich.",
+     "tr": "Bu tehlikeli. – Tehlikeliydi."
+    },
+    {
+     "de": "Alles Gute zum Geburtstag! – Herzlichen Glückwunsch!",
+     "tr": "Doğum günün kutlu olsun! – Tebrikler!"
+    },
+    {
+     "de": "Grüß Gott! – Servus! – Passt scho!",
+     "tr": "İyi günler! (Bavyera selamı) – Selam! ya da Hoşça kal! (yalnız 'du' dediğin kişiye) – Tamam, sorun yok! (Bavyera)"
+    },
+    {
+     "de": "Ich wollte … – Ich musste … – Ich konnte nicht pünktlich kommen.",
+     "tr": "… istedim. – … zorundaydım. – Tam zamanında gelemedim."
+    },
+    {
+     "de": "Ich bin zum Geldautomaten gegangen, um Geld abzuheben.",
+     "tr": "Para çekmek için bankamatiğe gittim."
+    },
+    {
+     "de": "Wir sind mit dem Bus gekommen. – Ihr seid zu spät!",
+     "tr": "Otobüsle geldik. – Geç kaldınız!"
+    },
+    {
+     "de": "Derya bekommt einen Gutschein. – Ich bringe Kuchen mit.",
+     "tr": "Derya bir hediye çeki alıyor. – Pasta getiriyorum."
+    },
+    {
+     "de": "Moment mal! – Hast du alles verstanden? – Ich habe nicht alles verstanden.",
+     "tr": "Bir dakika! – Her şeyi anladın mı? – Her şeyi anlamadım."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:blöd",
+     "de": "Der Geldautomat war kaputt. Das war blöd!",
+     "tr": "Bankamatik bozuktu. Can sıkıcıydı!",
+     "accepted": [
+      "Der Geldautomat war kaputt. Das war blöd!",
+      "Mein Geldautomat war kaputt. Das war blöd!",
+      "Der Geldautomat war kaputt. Das war echt blöd!"
+     ]
+    },
+    {
+     "kart": "lx:blöd",
+     "de": "Das ist blöd, mein Fahrrad hat keine Luft.",
+     "tr": "Can sıkıcı, bisikletimin lastiği inik.",
+     "accepted": [
+      "Das ist blöd, mein Fahrrad hat keine Luft.",
+      "Mein Fahrrad hat keine Luft. Das ist blöd.",
+      "Blöd, mein Fahrrad hat keine Luft."
+     ]
+    },
+    {
+     "kart": "lx:blöd",
+     "de": "So ein blöder Tag!",
+     "tr": "Ne saçma bir gün!",
+     "accepted": [
+      "So ein blöder Tag!",
+      "So ein blöder Tag heute!",
+      "Was für ein blöder Tag!"
+     ]
+    },
+    {
+     "kart": "lx:gefährlich",
+     "de": "Mit dem Fahrrad ohne Luft fahren? Das ist gefährlich!",
+     "tr": "Havası olmayan bisikletle gitmek mi? Bu tehlikeli!",
+     "accepted": [
+      "Mit dem Fahrrad ohne Luft fahren? Das ist gefährlich!",
+      "Mit dem Fahrrad ohne Luft? Das ist gefährlich!",
+      "Ohne Luft mit dem Fahrrad fahren? Das ist gefährlich!"
+     ]
+    },
+    {
+     "kart": "lx:gefährlich",
+     "de": "Die Kreuzung ist gefährlich. Ich gehe lieber zu Fuß.",
+     "tr": "Kavşak tehlikeli. Ben yürüyerek gitmeyi tercih ederim.",
+     "accepted": [
+      "Die Kreuzung ist gefährlich. Ich gehe lieber zu Fuß.",
+      "Ich gehe lieber zu Fuß, die Kreuzung ist gefährlich.",
+      "Diese Kreuzung ist gefährlich. Ich gehe lieber zu Fuß."
+     ]
+    },
+    {
+     "kart": "lx:gefährlich",
+     "de": "Früher war diese Kreuzung gefährlich.",
+     "tr": "Eskiden bu kavşak tehlikeliydi.",
+     "accepted": [
+      "Früher war diese Kreuzung gefährlich.",
+      "Diese Kreuzung war früher gefährlich.",
+      "Früher war die Kreuzung hier gefährlich."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Pazar, saat üçü yirmi geçe. Ioana ile Derya'nın kapısındasınız. Derya kapıyı açıyor.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Da seid ihr ja! Ihr seid zu spät!",
+      "tr": "İşte geldiniz! Geç kaldınız!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Alles Gute zum Geburtstag, Derya! Entschuldigung, mein Fahrrad hat keine Luft.",
+      "tr": "Doğum günün kutlu olsun Derya! Kusura bakma, bisikletimin lastiği inik."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Kein Problem. Mit dem Fahrrad ohne Luft? Das ist gefährlich!",
+      "tr": "Sorun değil. Havası olmayan bisikletle mi? Bu tehlikeli!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, deswegen sind wir mit dem Bus gekommen.",
+      "tr": "Evet, bu yüzden otobüsle geldik."
+     }
+    ],
+    "soru": {
+     "q_tr": "Neden geç kaldınız?",
+     "opts": [
+      "Bisikletin lastiği inikti, otobüsle geldiniz",
+      "Ioana uyuyakaldı",
+      "Derya'nın adresini bilmiyordunuz"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:105:v1",
+  "title_tr": "Derya'nın doğum günü kahvesi",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya'nın salonu. Masada pasta ve kahve. Sen ona bir buket çiçek ve bir zarf veriyorsun.",
+    "de": "Für mich? Ein Blumenstrauß und ein Gutschein! Von wem ist das?",
+    "tr": "Benim için mi? Bir buket çiçek ve bir hediye çeki! Kimden bu?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Sen 'bürodaki herkesten' diyorsun. Derya'nın gözleri parlıyor.",
+    "de": "Von den Kollegen im Büro? Das ist so lieb!",
+    "tr": "Bürodaki iş arkadaşlarından mı? Ne kadar tatlı!"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya birden duruyor ve sana bakıyor.",
+    "de": "Moment mal. Am Montag hast du gesagt: Ich musste noch Geld abheben.",
+    "tr": "Bir dakika. Pazartesi sen 'Daha para çekmem gerekiyordu' demiştin."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülüyor.",
+    "de": "War das Geld für meinen Gutschein?",
+    "tr": "O para benim hediye çekim için miydi?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana pastasını bırakıyor, merakla bakıyor.",
+    "de": "Was war am Montag? Ich weiß nichts. Erzähl mal!",
+    "tr": "Pazartesi ne oldu? Hiçbir şey bilmiyorum. Anlatsana!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya fincanları dolduruyor.",
+    "de": "Ja, erzähl es Ioana! Aber nicht so lange, der Kaffee wird kalt.",
+    "tr": "Evet, Ioana'ya anlat! Ama çok uzun değil, kahve soğuyor."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana gülüyor.",
+    "de": "Und danach rufen wir Tobi an. Er hat heute Zeit.",
+    "tr": "Ondan sonra da Tobi'yi ararız. Bugün vakti var."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Derya telefonu masaya koyuyor; ekranda Tobi, Hamburg'dan görüntülü arıyor.",
+    "de": "Servus, Derya! Alles Gute zum Geburtstag!",
+    "tr": "Selam Derya! Doğum günün kutlu olsun!"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi el sallıyor.",
+    "de": "Ich kann leider nicht kommen. Hamburg ist so weit weg.",
+    "tr": "Maalesef gelemiyorum. Hamburg çok uzak."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kameraya yaklaşıyor.",
+    "de": "Und du? Derya sagt, du warst am Montag zu spät?",
+    "tr": "Ya sen? Derya pazartesi geç kaldığını söylüyor?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi saatine bakıyor.",
+    "de": "Ganz kurz, bitte, ich muss gleich los!",
+    "tr": "Çok kısa, lütfen, birazdan çıkmam lazım!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Sen iki cümleyle anlatıyorsun. Tobi gülüyor.",
+    "de": "Passt scho! Das Geschenk ist da, das ist wichtig.",
+    "tr": "Tamam, sorun yok! Hediye burada, önemli olan bu."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya telefonu alıyor, herkese bakıyor.",
+    "de": "Danke, Tobi! Und danke euch. Das ist ein schöner Geburtstag.",
+    "tr": "Teşekkürler Tobi! Size de teşekkürler. Bu güzel bir doğum günü."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Derya neyi fark ediyor?",
+     "opts": [
+      "Pazartesi çektiğin paranın onun hediyesi için olduğunu",
+      "Çiçeklerin Lena'dan olduğunu",
+      "Kahvenin soğuk olduğunu"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s3",
+      "s4"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Derya ne hediye alıyor?",
+      "opts": [
+       "Bir buket çiçek ve bir hediye çeki",
+       "Bir kitap",
+       "Bir pasta"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s1"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Hediye kimden?",
+      "opts": [
+       "Bürodaki iş arkadaşlarından",
+       "Yalnızca senden",
+       "Ioana'dan"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya neden kısa anlatmanı istiyor?",
+      "opts": [
+       "Kahve soğuyor",
+       "Tobi bekliyor",
+       "Ioana gitmek zorunda"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s1",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Gutschein",
+       "Kuchen",
+       "Geld"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s2",
+      "seviye": "orta",
+      "de": "Von den Kollegen im ___? Das ist so lieb!",
+      "accepted": [
+       "Büro",
+       "büro",
+       "Büro."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s4",
+      "seviye": "zor",
+      "banka": [
+       "War",
+       "das",
+       "Geld",
+       "für",
+       "meinen",
+       "Gutschein",
+       "ist",
+       "deinen"
+      ],
+      "accepted": [
+       "War das Geld für meinen Gutschein?",
+       "war das geld für meinen gutschein",
+       "War das Geld für meinen Gutschein"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s5",
+      "seviye": "usta",
+      "accepted": [
+       "Was war am Montag?",
+       "was war am montag",
+       "Was war am Montag"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Bölümde ne olduğunu Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Derya bekommt einen Blumenstrauß und einen Gutschein. Das Geld vom Montag war für ihren Gutschein.",
+      "zorunlu": [
+       "Gutschein",
+       "Montag"
+      ]
+     }
+    ],
+    "golge": [
+     "s3",
+     "s6"
+    ],
+    "cevapla": {
+     "id": "m1:105:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya soruyor: Pazartesiki para onun hediye çeki için miydi? Evet de. Bu yüzden pazartesi para çekmek zorunda kaldığını söyle.",
+     "prompt_de": "War das Geld für meinen Gutschein?",
+     "accepted": [
+      "Ja! Deswegen musste ich am Montag noch Geld abheben.",
+      "Ja, das Geld war für deinen Gutschein. Deswegen war ich zu spät.",
+      "Ja, genau! Deswegen bin ich am Montag zu spät gekommen.",
+      "Ja, für deinen Gutschein. Deswegen musste ich Geld abheben.",
+      "Ja, das war für dich. Deswegen war ich am Montag zu spät."
+     ],
+     "why_tr": "Sonucu **deswegen** ile söylersin. Hemen arkasından **musste** gelir: **Deswegen musste ich am Montag noch Geld abheben.**"
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Tobi ne yapıyor?",
+     "opts": [
+      "Derya'yı kutluyor ve senin hikâyeni çok kısa dinlemek istiyor",
+      "Doğum gününe geliyor",
+      "Pazartesi toplantısını anlatıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s8",
+      "s11"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Tobi neden gelemiyor?",
+      "opts": [
+       "Hamburg çok uzak",
+       "Hasta",
+       "Çalışıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi neden kısa anlatmanı istiyor?",
+      "opts": [
+       "Birazdan çıkması lazım",
+       "Telefonu bozuk",
+       "Seni anlamıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s8",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Servus",
+       "Hallo",
+       "Tschüss"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s11",
+      "seviye": "orta",
+      "de": "Ganz kurz, bitte, ich muss gleich ___!",
+      "accepted": [
+       "los",
+       "Los",
+       "los."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s9",
+      "seviye": "zor",
+      "banka": [
+       "Hamburg",
+       "ist",
+       "so",
+       "weit",
+       "weg",
+       "kann",
+       "nah"
+      ],
+      "accepted": [
+       "Hamburg ist so weit weg.",
+       "hamburg ist so weit weg",
+       "Hamburg ist so weit weg"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Derya sagt, du warst am Montag zu spät?",
+       "derya sagt du warst am montag zu spät",
+       "Derya sagt, du warst am Montag zu spät"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Tobi'nin ne dediğini Almanca iki kısa cümleyle söyle.",
+      "ornek_de": "Tobi kann nicht kommen, Hamburg ist weit weg. Er will die Geschichte ganz kurz hören.",
+      "zorunlu": [
+       "Tobi",
+       "kurz"
+      ]
+     }
+    ],
+    "golge": [
+     "s8",
+     "s12"
+    ],
+    "cevapla": {
+     "id": "m1:105:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Tobi'ye pazartesi hikâyesini iki cümleyle anlat: Derya'nın hediye çeki için para çekmen gerekiyordu, bankamatik bozuktu, bu yüzden geç kaldın.",
+     "prompt_de": "Ganz kurz, bitte, ich muss gleich los!",
+     "accepted": [
+      "Ich musste Geld für Derya abheben. Der Geldautomat war kaputt, deswegen war ich zu spät.",
+      "Kurz gesagt: Geld für Derya, Geldautomat kaputt, deswegen zu spät.",
+      "Ich musste Geld für den Gutschein abheben. Der Geldautomat war kaputt, deswegen war ich zu spät.",
+      "Der Geldautomat war kaputt. Deswegen war ich zu spät.",
+      "Ich musste Geld abheben, und der Geldautomat war kaputt. Deswegen war ich zu spät."
+     ],
+     "why_tr": "En kısa turda iki cümle: neden ve sonuç. **deswegen war ich zu spät**."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:105:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Haftanın son dinlemesi: Herr Wimmer'in hızlı mesajı",
+   "ortam_tr": "Pazar akşamı, Derya'dan dönüyorsun. Telefonunda Herr Wimmer'den bir sesli mesaj var. Çok hızlı konuşuyor. Dinle ve iki cümleyle özetle.",
+   "speaker": "ch:wimmer",
+   "hizlar": [
+    "natural",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Abend, hier ist Wimmer. Entschuldigen Sie, es ist Sonntag. Ganz kurz:",
+     "tr": "İyi akşamlar, ben Wimmer. Kusura bakmayın, bugün pazar. Çok kısaca:"
+    },
+    {
+     "id": "c2",
+     "de": "Die Besprechung morgen ist nicht um neun, sondern schon um halb neun.",
+     "tr": "Yarınki toplantı dokuzda değil, sekiz buçukta."
+    },
+    {
+     "id": "c3",
+     "de": "Bitte bringen Sie die Zahlen vom Freitag mit.",
+     "tr": "Lütfen cuma günkü rakamları yanınızda getirin."
+    },
+    {
+     "id": "c4",
+     "de": "Lena ist morgen auch wieder da.",
+     "tr": "Lena da yarın yine işte."
+    },
+    {
+     "id": "c5",
+     "de": "Sie können nicht? Dann melden Sie sich bitte heute noch bei mir.",
+     "tr": "Gelemiyor musunuz? O zaman lütfen bugün bana haber verin."
+    },
+    {
+     "id": "c6",
+     "de": "Danke, und einen schönen Abend noch!",
+     "tr": "Teşekkürler, iyi akşamlar!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Herr Wimmer ne istiyor?",
+      "opts": [
+       "Yarınki toplantı sekiz buçukta; cuma rakamlarını getir",
+       "Yarınki toplantı iptal",
+       "Yarın evden çalış"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Toplantı saat kaçta?",
+       "opts": [
+        "Sekiz buçukta",
+        "Dokuzda",
+        "Dokuz buçukta"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ne getirmelisin?",
+       "opts": [
+        "Cuma günkü rakamları",
+        "Pasta",
+        "Hediye çekini"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Gelemiyorsan ne yapmalısın?",
+       "opts": [
+        "Bugün ona haber vermelisin",
+        "Yarın sabah yazmalısın",
+        "Lena'yı aramalısın"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "sondern",
+        "aber",
+        "oder"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Bitte bringen Sie die ___ vom Freitag mit.",
+       "accepted": [
+        "Zahlen",
+        "zahlen",
+        "Zahlen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Lena",
+        "ist",
+        "morgen",
+        "auch",
+        "wieder",
+        "da",
+        "morgen",
+        "heute",
+        "nicht"
+       ],
+       "accepted": [
+        "Lena ist morgen auch wieder da.",
+        "lena ist morgen auch wieder da",
+        "Lena ist morgen auch wieder da"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Dann melden Sie sich bitte heute noch bei mir.",
+        "dann melden sie sich bitte heute noch bei mir",
+        "Dann melden Sie sich bitte heute noch bei mir"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Herr Wimmer'in mesajını Almanca iki cümleyle özetle.",
+       "ornek_de": "Die Besprechung ist morgen schon um halb neun. Ich soll die Zahlen vom Freitag mitbringen.",
+       "zorunlu": [
+        "halb neun",
+        "Zahlen"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:105:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya mesaj yazıyor: Herr Wimmer de sana mesaj bıraktı mı? Ne diyor? İki cümleyle özetle.",
+      "prompt_de": "Was sagt Herr Wimmer?",
+      "accepted": [
+       "Die Besprechung ist morgen schon um halb neun. Wir sollen die Zahlen vom Freitag mitbringen.",
+       "Morgen ist die Besprechung um halb neun, nicht um neun. Und wir sollen die Zahlen vom Freitag mitbringen.",
+       "Besprechung um halb neun. Und die Zahlen vom Freitag mitbringen.",
+       "Die Besprechung ist um halb neun. Wir sollen die Zahlen mitbringen.",
+       "Kurz gesagt: halb neun, und die Zahlen vom Freitag mitbringen."
+      ],
+      "why_tr": "İki ana bilgi: **um halb neun** ve **die Zahlen mitbringen**. Başkasının isteğini **sollen** ile aktarırsın."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:105:a1:e1",
+    "k": "pick",
+    "q_tr": "Yarın sabah ne yapmalısın?",
+    "opts": [
+     "Sekiz buçukta toplantıda ol, cuma rakamlarını getir",
+     "Dokuzda gel, rakamları sonra gönder",
+     "Bugün Lena'yı ara"
+    ],
+    "ans": 0,
+    "why_tr": "**nicht um neun, sondern schon um halb neun**: dokuzda değil, sekiz buçukta. **Bringen Sie die Zahlen mit**: rakamları getir.",
+    "kanit": [
+     "c2",
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:105:a2",
+   "tur": "radyo",
+   "title_tr": "Pazar akşamı radyosu: yarın sabah dikkat",
+   "ortam_tr": "Pazar akşamı evdesin. Radyoda pazartesi sabahı için hava ve yol bilgisi var.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Abend, Wendlfing! Hier ist das Wetter für Montag.",
+     "tr": "İyi akşamlar Wendlfing! Pazartesi için hava durumu."
+    },
+    {
+     "id": "c2",
+     "de": "Heute Nacht wird es sehr kalt.",
+     "tr": "Bu gece hava çok soğuk olacak."
+    },
+    {
+     "id": "c3",
+     "de": "Morgen früh sind die Straßen gefährlich.",
+     "tr": "Yarın sabah yollar tehlikeli."
+    },
+    {
+     "id": "c4",
+     "de": "Fahren Sie langsam, und fahren Sie lieber nicht mit dem Fahrrad!",
+     "tr": "Yavaş sürün ve bisiklete binmeseniz iyi olur!"
+    },
+    {
+     "id": "c5",
+     "de": "Die Busse haben morgen früh oft Verspätung. Gehen Sie also früh los.",
+     "tr": "Otobüsler yarın sabah sık sık rötar yapıyor. Yani erken yola çıkın."
+    },
+    {
+     "id": "c6",
+     "de": "Dann kommen Sie auch pünktlich zur Arbeit. Gute Nacht!",
+     "tr": "O zaman işe de tam zamanında varırsınız. İyi geceler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne öneriyor?",
+      "opts": [
+       "Yarın sabah yollar tehlikeli: yavaş git, bisiklete binme, erken çık",
+       "Yarın hava çok güzel",
+       "Yarın otobüsler çalışmıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Bu gece hava nasıl olacak?",
+       "opts": [
+        "Çok soğuk",
+        "Sıcak",
+        "Yağmurlu"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Otobüsler yarın sabah nasıl?",
+       "opts": [
+        "Sık sık rötar yapıyor",
+        "Hiç gelmiyor",
+        "Ücretsiz"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "gefährlich",
+        "schrecklich",
+        "komisch"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Fahren Sie langsam, und fahren Sie lieber nicht mit dem ___!",
+       "accepted": [
+        "Fahrrad",
+        "fahrrad",
+        "Fahrrad."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Morgen",
+        "früh",
+        "sind",
+        "die",
+        "Straßen",
+        "gefährlich",
+        "heute",
+        "Abend"
+       ],
+       "accepted": [
+        "Morgen früh sind die Straßen gefährlich.",
+        "morgen früh sind die straßen gefährlich",
+        "Morgen früh sind die Straßen gefährlich"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Heute Nacht wird es sehr kalt.",
+        "heute nacht wird es sehr kalt",
+        "Heute Nacht wird es sehr kalt"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyonun önerisini Almanca iki kısa cümleyle söyle.",
+       "ornek_de": "Morgen früh sind die Straßen gefährlich. Ich fahre nicht mit dem Fahrrad, ich gehe früh los.",
+       "zorunlu": [
+        "gefährlich",
+        "Fahrrad"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:105:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana yarın sabah bisikletle mi gideceğini soruyor. Hayır: yollar tehlikeli, otobüsle ve erken çıkacaksın.",
+      "prompt_de": "Fährst du morgen mit dem Fahrrad?",
+      "accepted": [
+       "Nein, die Straßen sind morgen gefährlich. Ich fahre früh mit dem Bus.",
+       "Nein, das ist gefährlich. Ich nehme den Bus und gehe früh los.",
+       "Nein. Morgen früh sind die Straßen gefährlich, deswegen fahre ich mit dem Bus.",
+       "Nein, mit dem Bus. Die Straßen sind gefährlich.",
+       "Nein, das ist zu gefährlich. Ich fahre mit dem Bus."
+      ],
+      "why_tr": "Neden ve sonuç: **Die Straßen sind gefährlich, deswegen fahre ich mit dem Bus.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:105:a2:e1",
+    "k": "pick",
+    "q_tr": "Yarın sabah işe nasıl gitmelisin?",
+    "opts": [
+     "Otobüsle, erken çıkarak",
+     "Bisikletle, hızlı",
+     "Her zamanki saatte, bisikletle"
+    ],
+    "ans": 0,
+    "why_tr": "Radyo bisiklete binme diyor ve otobüsler rötarlı: **Gehen Sie also früh los.**",
+    "kanit": [
+     "c4",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:105:g1",
+   "de": "gefährlich",
+   "dogru_img": "warning sign on a road in the cold early morning",
+   "celdirici_img": [
+    "sunny beach",
+    "children playing in a park",
+    "flower shop window"
+   ]
+  },
+  {
+   "id": "m1:105:g2",
+   "de": "Geburtstag",
+   "dogru_img": "birthday cake with candles on a coffee table",
+   "celdirici_img": [
+    "wedding cake",
+    "christmas tree",
+    "plate of sandwiches"
+   ]
+  },
+  {
+   "id": "m1:105:g3",
+   "de": "Gutschein",
+   "dogru_img": "gift voucher in an envelope",
+   "celdirici_img": [
+    "bank card",
+    "train ticket",
+    "shopping receipt"
+   ]
+  },
+  {
+   "id": "m1:105:g4",
+   "de": "Blumenstrauß",
+   "dogru_img": "bouquet of spring flowers given to a smiling woman",
+   "celdirici_img": [
+    "single potted plant",
+    "box of chocolates",
+    "bottle of wine"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:105:p1",
+  "title_tr": "Haftanın son provası: pazartesi hikâyesi üç kez, her seferinde daha kısa",
+  "durum_tr": "Derya'nın doğum günü kahvesi. Pazartesi neden geç kaldığını üç kişiye anlatıyorsun. Önce Derya'ya her şeyi anlat (dört cümle). Sonra Ioana'ya daha kısa (üç cümle). En sonda telefonda Tobi'ye çok kısa (iki cümle). Olanlar şunlar. Derya'nın hediye çeki için para çekmek istedin. Bankamatiğin bozuktu. Öbür bankamatikte ücret ödedin. Sonra bir an şifreyi unuttun. Saat 9.12'de Herr Wimmer'e geç kalma nedenini söyledin: önce para çekmen gerekmişti.",
+  "karsi": "ch:aksoy",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Also: Was war am Montag? Erzähl mal alles!",
+    "tr": "Hadi: Pazartesi ne oldu? Her şeyi anlat!",
+    "secenekler": [
+     {
+      "de": "Zuerst wollte ich Geld für deinen Gutschein abheben. Aber mein Geldautomat war kaputt. Danach musste ich am anderen Geldautomaten eine Gebühr zahlen. Deswegen konnte ich nicht pünktlich kommen.",
+      "tr": "Önce senin hediye çekin için para çekmek istedim. Ama bankamatiğim bozuktu. Ondan sonra öbür bankamatikte ücret ödemem gerekti. Bu yüzden tam zamanında gelemedim.",
+      "accepted": [
+       "Zuerst wollte ich Geld für deinen Gutschein abheben. Aber mein Geldautomat war kaputt. Danach musste ich am anderen Geldautomaten eine Gebühr zahlen. Deswegen konnte ich nicht pünktlich kommen.",
+       "Zuerst wollte ich Geld für deinen Gutschein abheben, aber mein Geldautomat war kaputt. Danach musste ich am anderen Geldautomaten eine Gebühr zahlen. Deswegen bin ich zu spät gekommen.",
+       "Zuerst wollte ich Geld für dich abheben. Aber mein Geldautomat war kaputt. Danach musste ich eine Gebühr zahlen. Deswegen konnte ich nicht pünktlich kommen.",
+       "Zuerst wollte ich Geld abheben, für deinen Gutschein. Mein Geldautomat war kaputt. Danach musste ich am anderen Geldautomaten eine Gebühr zahlen. Deswegen war ich zu spät."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: dört cümle, sırayla, ve haftanın biçimleri: **wollte, musste, konnte**."
+     },
+     {
+      "de": "Zuerst war mein Geldautomat kaputt. Dann musste ich zu einem anderen Geldautomaten gehen. Danach habe ich die Geheimzahl vergessen. Deswegen bin ich zu spät gekommen.",
+      "tr": "Önce bankamatiğim bozuktu. Sonra başka bir bankamatiğe gitmem gerekti. Ondan sonra şifreyi unuttum. Bu yüzden geç kaldım.",
+      "accepted": [
+       "Zuerst war mein Geldautomat kaputt. Dann musste ich zu einem anderen Geldautomaten gehen. Danach habe ich die Geheimzahl vergessen. Deswegen bin ich zu spät gekommen.",
+       "Zuerst war mein Geldautomat kaputt. Dann musste ich zu einem anderen Geldautomaten gehen. Danach habe ich die Geheimzahl vergessen. Deswegen war ich zu spät.",
+       "Zuerst war der Geldautomat kaputt, dann musste ich zu einem anderen gehen. Danach habe ich die Geheimzahl vergessen. Deswegen bin ich zu spät gekommen."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel, dört cümle ve doğru sıra."
+     },
+     {
+      "de": "Ich war zu spät. Tja.",
+      "tr": "(eksik) Geç kaldım. Eh.",
+      "accepted": [
+       "Ich war zu spät. Tja.",
+       "Tja, ich war zu spät.",
+       "Ich war zu spät, tja."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu birinci tur: her şeyi anlat. **Zuerst** ile başla ve nedeni söyle."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "So ein blöder Montag! Und Herr Wimmer? Was hast du ihm gesagt?",
+    "tr": "Ne saçma bir pazartesi! Ya Herr Wimmer? Ona ne dedin?",
+    "secenekler": [
+     {
+      "de": "Ich habe gesagt: Ich musste noch Geld abheben. Ich konnte nicht früher kommen.",
+      "tr": "Dedim ki: Daha para çekmem gerekiyordu. Daha erken gelemedim.",
+      "accepted": [
+       "Ich habe gesagt: Ich musste noch Geld abheben. Ich konnte nicht früher kommen.",
+       "Ich habe gesagt: Ich musste noch Geld abheben. Ich konnte nicht pünktlich kommen.",
+       "Ich musste noch Geld abheben, habe ich gesagt. Ich konnte nicht früher kommen.",
+       "Ich habe gesagt, ich musste noch Geld abheben. Ich konnte nicht früher kommen."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru: geçmişte zorunluluk **musste**, geçmişte yapamamak **konnte nicht**."
+     },
+     {
+      "de": "Ich habe gesagt: Entschuldigung, ich musste noch Geld abheben.",
+      "tr": "Dedim ki: Kusura bakmayın, daha para çekmem gerekiyordu.",
+      "accepted": [
+       "Ich habe gesagt: Entschuldigung, ich musste noch Geld abheben.",
+       "Ich habe gesagt: Entschuldigung, ich musste Geld abheben.",
+       "Entschuldigung, ich musste noch Geld abheben, habe ich gesagt."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar ve açık. Şefe önce özür, sonra neden."
+     },
+     {
+      "de": "Ich habe gesagt: Ich muss noch Geld abheben.",
+      "tr": "(zaman yanlış) Dedim ki: Daha para çekmem gerekiyor.",
+      "accepted": [
+       "Ich habe gesagt: Ich muss noch Geld abheben.",
+       "Ich muss noch Geld abheben, habe ich gesagt.",
+       "Ich habe gesagt, ich muss Geld abheben."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Herr Wimmer'e bunu geldiğinde söyledin. Para çekme işi bitmişti: **musste**."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Ioana hat nicht alles verstanden. Erzähl es ihr noch einmal, aber kürzer.",
+    "tr": "Ioana her şeyi anlamadı. Ona bir kez daha anlat, ama daha kısa.",
+    "secenekler": [
+     {
+      "de": "Zuerst war mein Geldautomat kaputt. Danach musste ich eine Gebühr zahlen. Deswegen war ich zu spät.",
+      "tr": "Önce bankamatiğim bozuktu. Ondan sonra ücret ödemem gerekti. Bu yüzden geç kaldım.",
+      "accepted": [
+       "Zuerst war mein Geldautomat kaputt. Danach musste ich eine Gebühr zahlen. Deswegen war ich zu spät.",
+       "Zuerst war mein Geldautomat kaputt. Danach musste ich eine Gebühr zahlen. Deswegen bin ich zu spät gekommen.",
+       "Zuerst war der Geldautomat kaputt, danach musste ich eine Gebühr zahlen. Deswegen war ich zu spät."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: üç cümle. Ayrıntı düştü, ana bilgi kaldı."
+     },
+     {
+      "de": "Ich wollte Geld für Derya abheben. Mein Geldautomat war kaputt. Deswegen war ich zu spät.",
+      "tr": "Derya için para çekmek istedim. Bankamatiğim bozuktu. Bu yüzden geç kaldım.",
+      "accepted": [
+       "Ich wollte Geld für Derya abheben. Mein Geldautomat war kaputt. Deswegen war ich zu spät.",
+       "Ich wollte Geld für Derya abheben, aber mein Geldautomat war kaputt. Deswegen war ich zu spät.",
+       "Ich wollte Geld für Derya abheben. Der Geldautomat war kaputt. Deswegen bin ich zu spät gekommen."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: üç cümle, neden ve sonuç açık."
+     },
+     {
+      "de": "Zuerst wollte ich Geld für Derya abheben. Aber mein Geldautomat war kaputt. Danach musste ich am anderen Geldautomaten eine Gebühr zahlen. Danach habe ich die Geheimzahl vergessen. Deswegen war ich zu spät.",
+      "tr": "(uzun) Önce Derya için para çekmek istedim. Ama bankamatiğim bozuktu. Ondan sonra öbür bankamatikte ücret ödemem gerekti. Ondan sonra şifreyi unuttum. Bu yüzden geç kaldım.",
+      "accepted": [
+       "Zuerst wollte ich Geld für Derya abheben. Aber mein Geldautomat war kaputt. Danach musste ich am anderen Geldautomaten eine Gebühr zahlen. Danach habe ich die Geheimzahl vergessen. Deswegen war ich zu spät.",
+       "Zuerst wollte ich Geld für Derya abheben, aber mein Geldautomat war kaputt, danach musste ich eine Gebühr zahlen, danach habe ich die Geheimzahl vergessen, deswegen war ich zu spät.",
+       "Zuerst wollte ich Geld abheben. Mein Geldautomat war kaputt. Danach musste ich eine Gebühr zahlen. Danach habe ich die Geheimzahl vergessen. Deswegen war ich zu spät."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu ikinci tur: daha kısa olmalı. Üç cümle yeter."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Tobi ist am Telefon. Er hat keine Zeit. Ganz kurz, bitte!",
+    "tr": "Tobi telefonda. Vakti yok. Çok kısa, lütfen!",
+    "secenekler": [
+     {
+      "de": "Ich musste Geld für Derya abheben. Der Geldautomat war kaputt, deswegen war ich zu spät.",
+      "tr": "Derya için para çekmem gerekiyordu. Bankamatik bozuktu, bu yüzden geç kaldım.",
+      "accepted": [
+       "Ich musste Geld für Derya abheben. Der Geldautomat war kaputt, deswegen war ich zu spät.",
+       "Ich musste Geld für Derya abheben. Der Geldautomat war kaputt, deswegen bin ich zu spät gekommen.",
+       "Ich musste Geld für Derya abheben, und der Geldautomat war kaputt. Deswegen war ich zu spät."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Mükemmel: iki cümle, bütün ana bilgi içinde."
+     },
+     {
+      "de": "Kurz gesagt: Geldautomat kaputt, deswegen zu spät.",
+      "tr": "Kısacası: bankamatik bozuk, bu yüzden geç.",
+      "accepted": [
+       "Kurz gesagt: Geldautomat kaputt, deswegen zu spät.",
+       "Kurz gesagt: Der Geldautomat war kaputt, deswegen war ich zu spät.",
+       "Kurz gesagt: Geldautomat kaputt, deswegen war ich zu spät."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Arkadaşla telefonda böyle çok kısa da olur."
+     },
+     {
+      "de": "Zuerst war mein Geldautomat kaputt. Danach musste ich eine Gebühr zahlen. Danach habe ich die Geheimzahl vergessen.",
+      "tr": "(uzun) Önce bankamatiğim bozuktu. Ondan sonra ücret ödemem gerekti. Ondan sonra şifreyi unuttum.",
+      "accepted": [
+       "Zuerst war mein Geldautomat kaputt. Danach musste ich eine Gebühr zahlen. Danach habe ich die Geheimzahl vergessen.",
+       "Zuerst war der Geldautomat kaputt. Danach musste ich eine Gebühr zahlen. Danach habe ich die Geheimzahl vergessen.",
+       "Zuerst war mein Geldautomat kaputt, danach musste ich eine Gebühr zahlen, danach habe ich die Geheimzahl vergessen."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu üçüncü tur: iki cümle yeter. Sonuç da eksik: **deswegen war ich zu spät**."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Passt scho! Und Derya hat ein schönes Geschenk. Servus!",
+    "tr": "Tamam, sorun yok! Derya'nın da güzel bir hediyesi var. Hoşça kal!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Haftanın son provası tamam. Pazartesi hikâyesini üç kez anlattın: dört, üç ve iki cümleyle. Her turda ayrıntı düştü, neden ve sonuç kaldı. Geçmişi **wollte**, **musste**, **konnte** ile söyledin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Derya'nın teşekkür mesajı",
+  "metin_de": "Liebe Kolleginnen und Kollegen, vielen Dank für den Blumenstrauß und den Gutschein! Ich war total froh. Jetzt weiß ich auch, warum am Montag jemand zu spät war. Morgen bringe ich Kuchen mit. Und keine Sorge: Wer zu spät kommt, bekommt trotzdem ein Stück! Eure Derya",
+  "metin_tr": "Sevgili iş arkadaşlarım, çiçek buketi ve hediye çeki için çok teşekkürler! Çok sevindim. Artık pazartesi birinin neden geç kaldığını da biliyorum. Yarın pasta getiriyorum. Ve merak etmeyin: Geç gelen de yine bir dilim alır! Sevgiler, Derya",
+  "sorular": [
+   {
+    "id": "m1:105:o1",
+    "kind": "gist",
+    "q_tr": "Derya neden yazıyor?",
+    "opts": [
+     "Hediye için teşekkür ediyor",
+     "Toplantıyı anlatıyor",
+     "Hasta olduğunu bildiriyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     0
+    ]
+   },
+   {
+    "id": "m1:105:o2",
+    "kind": "detail",
+    "q_tr": "Derya şimdi neyi biliyor?",
+    "opts": [
+     "Pazartesi birinin neden geç kaldığını",
+     "Hediyenin kaç euro olduğunu",
+     "Lena'nın ne zaman döneceğini"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:105:o3",
+    "kind": "detail",
+    "q_tr": "Derya yarın ne getiriyor?",
+    "opts": [
+     "Pasta",
+     "Çiçek",
+     "Kahve"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:105:o4",
+    "kind": "detail",
+    "q_tr": "Geç gelen ne olacak?",
+    "opts": [
+     "Yine de bir dilim pasta alacak",
+     "Pasta alamayacak",
+     "Kahve getirmeli"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:105:o5",
+    "k": "guided_response",
+    "situation_tr": "Derya'ya cevap yaz: Yarın tam zamanında geleceksin, çünkü otobüse erken bineceksin. Şaka yap: pastayı istiyorsun!",
+    "prompt_de": "Kommst du morgen pünktlich?",
+    "accepted": [
+     "Ja, morgen komme ich pünktlich. Ich nehme früh den Bus. Ich will doch ein Stück Kuchen!",
+     "Ja! Ich fahre früh mit dem Bus, deswegen komme ich pünktlich.",
+     "Ja, morgen bin ich pünktlich. Ich nehme den Bus früh.",
+     "Ja, ich komme pünktlich, ich will ein Stück Kuchen!",
+     "Morgen komme ich pünktlich, ich fahre früh mit dem Bus."
+    ],
+    "why_tr": "**pünktlich**: tam zamanında. Nedeni **deswegen** ile ekleyebilirsin."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Haftanı dört kısa cümleyle yaz. Pazartesi neden geç kaldın (**musste**)? Cumartesi hangi hatayı yaptın? Bu hataya ne dersin? Bugün ne oldu? Sonucu **deswegen** ile söyle.",
+   "ornek_de": "Am Montag musste ich Geld abheben, deswegen war ich zu spät. Am Samstag habe ich Lena fünfzig Euro überwiesen, nicht fünf. Das war blöd! Heute hatte mein Fahrrad keine Luft, deswegen sind wir mit dem Bus gefahren.",
+   "zorunlu": [
+    "musste",
+    "deswegen"
+   ],
+   "accepted_kaliplar": [
+    "Am Montag musste ich …, deswegen …",
+    "Am Samstag habe ich …",
+    "Das war blöd!",
+    "Heute hatte mein Fahrrad keine Luft, deswegen …"
+   ],
+   "kontrol_tr": [
+    "Pazartesiyi **musste** ile yazdın mı?",
+    "**deswegen**'den hemen sonra **war**, **bin** ya da **sind** gibi bir sözcük geldi mi?",
+    "Her günü ayrı bir cümleyle, sırayla yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:105:s",
+  "maddeler": [
+   {
+    "id": "m1:105:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich konnte nicht pünktlich kommen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich konnte nicht pünktlich kommen.",
+     "ich konnte nicht pünktlich kommen",
+     "Ich konnte nicht pünktlich kommen"
+    ],
+    "why_tr": "Geçmişte yapamamak: **konnte nicht**. **kommen** en sonda."
+   },
+   {
+    "id": "m1:105:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Das war blöd, der Geldautomat war kaputt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das war blöd, der Geldautomat war kaputt.",
+     "das war blöd der geldautomat war kaputt",
+     "Das war blöd, der Geldautomat war kaputt"
+    ],
+    "why_tr": "**blöd**: can sıkıcı. Arkadaşlar arasında söylenir."
+   },
+   {
+    "id": "m1:105:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Die Straßen sind heute gefährlich.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Straßen sind heute gefährlich.",
+     "die straßen sind heute gefährlich",
+     "Die Straßen sind heute gefährlich"
+    ],
+    "why_tr": "**gefährlich**: tehlikeli."
+   },
+   {
+    "id": "m1:105:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Wir sind mit dem Bus um drei gekommen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir sind mit dem Bus um drei gekommen.",
+     "wir sind mit dem bus um drei gekommen",
+     "Wir sind mit dem Bus um drei gekommen"
+    ],
+    "why_tr": "**Wir sind gekommen**: geldik. **gekommen** en sonda."
+   },
+   {
+    "id": "m1:105:s5",
+    "k": "tr_de",
+    "tr": "Daha para çekmem gerekiyordu.",
+    "accepted": [
+     "Ich musste noch Geld abheben.",
+     "Ich musste Geld abheben.",
+     "Ich musste zuerst noch Geld abheben."
+    ],
+    "why_tr": "**musste** ikinci yerde, **abheben** en sonda."
+   },
+   {
+    "id": "m1:105:s6",
+    "k": "tr_de",
+    "tr": "Bu yüzden otobüsle geldik.",
+    "accepted": [
+     "Deswegen sind wir mit dem Bus gekommen.",
+     "Deshalb sind wir mit dem Bus gekommen.",
+     "Deswegen sind wir mit dem Bus gefahren."
+    ],
+    "why_tr": "Burada **Deswegen**'den hemen sonra **sind** gelir: **Deswegen sind wir mit dem Bus gekommen.**"
+   },
+   {
+    "id": "m1:105:s7",
+    "k": "tr_de",
+    "tr": "Havası olmayan bisikletle gitmek tehlikeli.",
+    "accepted": [
+     "Mit dem Fahrrad ohne Luft fahren ist gefährlich.",
+     "Mit dem Fahrrad ohne Luft zu fahren ist gefährlich.",
+     "Ohne Luft mit dem Fahrrad fahren ist gefährlich."
+    ],
+    "why_tr": "**ohne Luft**: havasız. Sonra **ist gefährlich**."
+   },
+   {
+    "id": "m1:105:s8",
+    "k": "tr_de",
+    "tr": "Tam zamanında gelemedim.",
+    "accepted": [
+     "Ich konnte nicht pünktlich kommen.",
+     "Ich konnte nicht pünktlich sein.",
+     "Ich konnte leider nicht pünktlich kommen."
+    ],
+    "why_tr": "**Ich konnte nicht pünktlich kommen.** **kommen** en sonda."
+   },
+   {
+    "id": "m1:105:s9",
+    "k": "guided_response",
+    "situation_tr": "Tobi telefonda. Pazartesi neden geç kaldığını iki cümleyle söyle.",
+    "prompt_de": "Ganz kurz: Warum warst du am Montag zu spät?",
+    "accepted": [
+     "Ich musste Geld abheben. Der Geldautomat war kaputt, deswegen war ich zu spät.",
+     "Mein Geldautomat war kaputt. Deswegen war ich zu spät.",
+     "Kurz gesagt: Geldautomat kaputt, deswegen zu spät.",
+     "Ich musste noch Geld abheben, deswegen war ich zu spät.",
+     "Der Geldautomat war kaputt, deswegen bin ich zu spät gekommen."
+    ],
+    "why_tr": "En kısa tur: neden ve sonuç."
+   },
+   {
+    "id": "m1:105:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Die Besprechung ist morgen schon um halb neun. Bitte bringen Sie die Zahlen mit.",
+    "speed": "fast",
+    "situation_tr": "Herr Wimmer hızlı söylüyor. İki talimatı tekrar et.",
+    "accepted": [
+     "Um halb neun, und ich bringe die Zahlen mit.",
+     "Also: halb neun, und die Zahlen mitbringen.",
+     "Halb neun, und die Zahlen mitbringen. Richtig?",
+     "Morgen um halb neun, mit den Zahlen."
+    ],
+    "why_tr": "İki talimatı sırayla tekrar et: **halb neun** ve **die Zahlen**."
+   },
+   {
+    "id": "m1:105:s11",
+    "k": "guided_response",
+    "situation_tr": "Herr Wimmer soruyor: pazartesi neden geç kaldınız? Önce özür dile, sonra nedenini söyle.",
+    "prompt_de": "Warum waren Sie am Montag zu spät?",
+    "accepted": [
+     "Entschuldigung. Ich musste noch Geld abheben. Ich konnte nicht früher kommen.",
+     "Entschuldigen Sie. Ich musste noch Geld abheben, deswegen konnte ich nicht früher kommen.",
+     "Entschuldigung, mein Geldautomat war kaputt. Deswegen konnte ich nicht pünktlich kommen.",
+     "Das tut mir leid. Ich musste noch Geld abheben.",
+     "Entschuldigung. Der Geldautomat war kaputt, deswegen war ich zu spät."
+    ],
+    "why_tr": "Şefe **Sie** ile: önce **Entschuldigung**, sonra **musste**, **konnte nicht**."
+   }
+  ],
+  "sesli": [
+   "m1:105:s9",
+   "m1:105:s10"
+  ],
+  "dikte": [
+   "m1:105:s1",
+   "m1:105:s2",
+   "m1:105:s3",
+   "m1:105:s4"
+  ]
+ }
+}

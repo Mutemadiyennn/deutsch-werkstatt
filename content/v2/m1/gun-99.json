@@ -1,0 +1,1671 @@
+{
+ "schema": 1,
+ "id": "m1:gun:99",
+ "day": 99,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Geçmişte zorunda olmak ve yapabilmek: Ich musste, ich konnte",
+ "goal_tr": "Neden geç kaldığını musste ve konnte ile söylersin. Bankada para çekmeyi, ücreti ve havaleyi konuşursun.",
+ "can_do": {
+  "id": "cd:m1:99",
+  "tr": "Neden geç kaldığımı musste / konnte ile söylerim."
+ },
+ "unit": "u:a2:is-4",
+ "arm": "tiyatro",
+ "place": "pl:firma",
+ "characters": [
+  "ch:wimmer",
+  "ch:aksoy",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic17/dilbilimci-h15.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+ },
+ "dersler": [
+  "gr:a2-06:t1"
+ ],
+ "yeni_kartlar": [
+  "lx:Geheimzahl",
+  "lx:Gebühr",
+  "lx:abheben",
+  "lx:überweisen",
+  "lx:kostenlos",
+  "lx:um_…_zu",
+  "lx:Lebenslauf",
+  "lx:geboren",
+  "lx:Kindergarten"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:99:h1",
+   "title_tr": "Pazartesi sabahı: otomat, şifre, ücret",
+   "kartlar": [
+    "lx:Geheimzahl",
+    "lx:Gebühr",
+    "lx:abheben",
+    "lx:überweisen",
+    "lx:kostenlos"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich musste … – Ich konnte nicht …",
+     "tr": "… zorundaydım. – … yapamadım."
+    },
+    {
+     "de": "ich musste – du musstest – er/sie musste – wir mussten – ihr musstet – sie/Sie mussten",
+     "tr": "zorundaydım – zorundaydın – zorundaydı – zorundaydık – zorundaydınız – zorundaydılar / zorundaydınız"
+    },
+    {
+     "de": "ich konnte – du konntest – er/sie konnte – wir konnten – ihr konntet – sie/Sie konnten",
+     "tr": "yapabildim – yapabildin – yapabildi – yapabildik – yapabildiniz – yapabildiler / yapabildiniz"
+    },
+    {
+     "de": "ich war – du warst – er/sie war – wir waren – ihr wart – sie/Sie waren",
+     "tr": "idim – idin – idi – idik – idiniz – idiler / idiniz"
+    },
+    {
+     "de": "ich hatte – du hattest – er/sie hatte – wir hatten – ihr hattet – sie/Sie hatten",
+     "tr": "benim vardı – senin vardı – onun vardı – bizim vardı – sizin vardı – onların vardı / sizin vardı"
+    },
+    {
+     "de": "Ich habe … vergessen. – Ich bin zu spät gekommen.",
+     "tr": "… unuttum. – Geç geldim."
+    },
+    {
+     "de": "Ich hebe Geld ab. – Ich habe Geld abgehoben. – Ich habe … abgehoben.",
+     "tr": "Para çekiyorum. – Para çektim. – … çektim."
+    },
+    {
+     "de": "Ich überweise dir das Geld. – Ich habe dir das Geld … überwiesen.",
+     "tr": "Parayı sana havale ediyorum. – Parayı sana … havale ettim."
+    },
+    {
+     "de": "bei einer anderen Bank – Das kostet eine Gebühr. – Das hat fünf Euro gekostet. – Das ist kostenlos.",
+     "tr": "başka bir bankada – Bunun ücreti var. – Beş euro tuttu. – Bu ücretsiz."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Geheimzahl",
+     "de": "Ich habe meine Geheimzahl vergessen.",
+     "tr": "Kart şifremi unuttum.",
+     "accepted": [
+      "Ich habe meine Geheimzahl vergessen.",
+      "Ich habe die Geheimzahl vergessen.",
+      "Meine Geheimzahl habe ich vergessen."
+     ]
+    },
+    {
+     "kart": "lx:Geheimzahl",
+     "de": "Beim ersten Mal war die Geheimzahl falsch.",
+     "tr": "İlk denemede şifre yanlıştı.",
+     "accepted": [
+      "Beim ersten Mal war die Geheimzahl falsch.",
+      "Die Geheimzahl war beim ersten Mal falsch.",
+      "Beim ersten Mal war meine Geheimzahl falsch."
+     ]
+    },
+    {
+     "kart": "lx:Gebühr",
+     "de": "Bei einer anderen Bank kostet das eine Gebühr.",
+     "tr": "Başka bir bankada bunun için ücret ödenir.",
+     "accepted": [
+      "Bei einer anderen Bank kostet das eine Gebühr.",
+      "Das kostet bei einer anderen Bank eine Gebühr.",
+      "Bei einer anderen Bank kostet das eine Gebühr von fünf Euro."
+     ]
+    },
+    {
+     "kart": "lx:Gebühr",
+     "de": "Muss ich eine Gebühr bezahlen?",
+     "tr": "Ücret ödemem gerekiyor mu?",
+     "accepted": [
+      "Muss ich eine Gebühr bezahlen?",
+      "Muss ich eine Gebühr zahlen?",
+      "Muss ich hier eine Gebühr bezahlen?"
+     ]
+    },
+    {
+     "kart": "lx:abheben",
+     "de": "Ich musste heute Morgen Geld abheben.",
+     "tr": "Bu sabah para çekmem gerekiyordu.",
+     "accepted": [
+      "Ich musste heute Morgen Geld abheben.",
+      "Heute Morgen musste ich Geld abheben.",
+      "Ich musste heute Morgen schnell Geld abheben."
+     ]
+    },
+    {
+     "kart": "lx:abheben",
+     "de": "Wo kann ich hier Geld abheben?",
+     "tr": "Burada nereden para çekebilirim?",
+     "accepted": [
+      "Wo kann ich hier Geld abheben?",
+      "Wo kann man hier Geld abheben?",
+      "Entschuldigung, wo kann ich hier Geld abheben?"
+     ]
+    },
+    {
+     "kart": "lx:überweisen",
+     "de": "Du kannst das Geld auch überweisen.",
+     "tr": "Parayı havale de edebilirsin.",
+     "accepted": [
+      "Du kannst das Geld auch überweisen.",
+      "Das Geld kannst du auch überweisen.",
+      "Du kannst das Geld doch auch überweisen."
+     ]
+    },
+    {
+     "kart": "lx:überweisen",
+     "de": "Ich habe dir das Geld gestern überwiesen.",
+     "tr": "Parayı sana dün havale ettim.",
+     "accepted": [
+      "Ich habe dir das Geld gestern überwiesen.",
+      "Ich habe dir gestern das Geld überwiesen.",
+      "Das Geld habe ich dir gestern überwiesen."
+     ]
+    },
+    {
+     "kart": "lx:kostenlos",
+     "de": "Ist das kostenlos oder kostet das eine Gebühr?",
+     "tr": "Bu ücretsiz mi, yoksa ücreti var mı?",
+     "accepted": [
+      "Ist das kostenlos oder kostet das eine Gebühr?",
+      "Ist das kostenlos oder muss ich eine Gebühr bezahlen?",
+      "Kostet das eine Gebühr oder ist das kostenlos?"
+     ]
+    },
+    {
+     "kart": "lx:kostenlos",
+     "de": "Bei meiner Bank ist das kostenlos.",
+     "tr": "Benim bankamda bu ücretsiz.",
+     "accepted": [
+      "Bei meiner Bank ist das kostenlos.",
+      "Das ist bei meiner Bank kostenlos.",
+      "Bei meiner Bank ist das immer kostenlos."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Toplantıdan sonra mutfak. Derya kahve dolduruyor ve sabah neden geç kaldığını soruyor.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Du bist heute zu spät gekommen. Was war los?",
+      "tr": "Bugün geç geldin. Ne oldu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich musste heute Morgen Geld abheben. Der Geldautomat von meiner Bank war kaputt.",
+      "tr": "Bu sabah para çekmem gerekiyordu. Kendi bankamın otomatı bozuktu."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Und bei einer anderen Bank? Das kostet eine Gebühr, oder?",
+      "tr": "Peki başka bir bankada? Orada ücret alıyorlar, değil mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, fünf Euro! Und beim ersten Mal war die Geheimzahl falsch.",
+      "tr": "Evet, beş euro! Bir de ilk denemede şifre yanlıştı."
+     }
+    ],
+    "soru": {
+     "q_tr": "Kendi bankanın otomatında ne vardı?",
+     "opts": [
+      "Bozuktu",
+      "Ücretsizdi ama kapalıydı",
+      "Önünde uzun bir sıra vardı"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:99:h2",
+   "title_tr": "Akşam kursu: Ioana'nın özgeçmişi",
+   "kartlar": [
+    "lx:um_…_zu",
+    "lx:Lebenslauf",
+    "lx:geboren",
+    "lx:Kindergarten"
+   ],
+   "kaliplar": [
+    {
+     "de": "ich durfte – du durftest – er/sie durfte – wir durften – ihr durftet – sie/Sie durften",
+     "tr": "bana izin vardı – sana izin vardı – ona izin vardı – bize izin vardı – size izin vardı – onlara izin vardı / size izin vardı"
+    },
+    {
+     "de": "…, um … zu …",
+     "tr": "… yapmak için …"
+    },
+    {
+     "de": "Ich bin in … geboren. – Wo sind Sie geboren? – Wo bist du geboren?",
+     "tr": "…'da doğdum. – Nerede doğdunuz? – Nerede doğdun?"
+    },
+    {
+     "de": "in den Kindergarten gehen – im Kindergarten arbeiten",
+     "tr": "anaokuluna gitmek – anaokulunda çalışmak"
+    },
+    {
+     "de": "einen Lebenslauf schreiben – Ich habe den Lebenslauf geschrieben. – den Lebenslauf schicken",
+     "tr": "özgeçmiş yazmak – Özgeçmişi yazdım. – özgeçmişi göndermek"
+    },
+    {
+     "de": "Hast du meine Nachricht bekommen? – Ich habe … bekommen.",
+     "tr": "Mesajımı aldın mı? – … aldım."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:um_…_zu",
+     "de": "Ich musste zur Bank gehen, um Geld zu holen.",
+     "tr": "Para almak için bankaya gitmem gerekiyordu.",
+     "accepted": [
+      "Ich musste zur Bank gehen, um Geld zu holen.",
+      "Ich musste zur Bank, um Geld zu holen.",
+      "Um Geld zu holen, musste ich zur Bank gehen."
+     ]
+    },
+    {
+     "kart": "lx:um_…_zu",
+     "de": "Ioana lernt Deutsch, um im Kindergarten zu arbeiten.",
+     "tr": "Ioana anaokulunda çalışmak için Almanca öğreniyor.",
+     "accepted": [
+      "Ioana lernt Deutsch, um im Kindergarten zu arbeiten.",
+      "Ioana möchte Deutsch lernen, um im Kindergarten zu arbeiten.",
+      "Um im Kindergarten zu arbeiten, lernt Ioana Deutsch."
+     ]
+    },
+    {
+     "kart": "lx:Lebenslauf",
+     "de": "Ich musste meinen Lebenslauf neu schreiben.",
+     "tr": "Özgeçmişimi yeniden yazmak zorunda kaldım.",
+     "accepted": [
+      "Ich musste meinen Lebenslauf neu schreiben.",
+      "Meinen Lebenslauf musste ich neu schreiben.",
+      "Ich musste den Lebenslauf neu schreiben."
+     ]
+    },
+    {
+     "kart": "lx:Lebenslauf",
+     "de": "Konntest du deinen Lebenslauf gestern schicken?",
+     "tr": "Özgeçmişini dün gönderebildin mi?",
+     "accepted": [
+      "Konntest du deinen Lebenslauf gestern schicken?",
+      "Konntest du gestern deinen Lebenslauf schicken?",
+      "Konntest du den Lebenslauf gestern schicken?"
+     ]
+    },
+    {
+     "kart": "lx:geboren",
+     "de": "Wo sind Sie geboren?",
+     "tr": "Nerede doğdunuz?",
+     "accepted": [
+      "Wo sind Sie geboren?",
+      "Und wo sind Sie geboren?",
+      "Wo bist du geboren?"
+     ]
+    },
+    {
+     "kart": "lx:geboren",
+     "de": "Derya ist hier geboren. Sie musste nie Deutsch lernen.",
+     "tr": "Derya burada doğdu. Hiç Almanca öğrenmesi gerekmedi.",
+     "accepted": [
+      "Derya ist hier geboren. Sie musste nie Deutsch lernen.",
+      "Derya ist hier geboren und musste nie Deutsch lernen.",
+      "Derya ist hier geboren. Deutsch musste sie nie lernen."
+     ]
+    },
+    {
+     "kart": "lx:Kindergarten",
+     "de": "Im Kindergarten durften wir viel spielen.",
+     "tr": "Anaokulunda çok oyun oynayabiliyorduk.",
+     "accepted": [
+      "Im Kindergarten durften wir viel spielen.",
+      "Wir durften im Kindergarten viel spielen.",
+      "Im Kindergarten durften wir jeden Tag spielen."
+     ]
+    },
+    {
+     "kart": "lx:Kindergarten",
+     "de": "Mein Kollege musste um vier gehen, um sein Kind vom Kindergarten zu holen.",
+     "tr": "İş arkadaşım çocuğunu anaokulundan almak için saat dörtte çıkmak zorundaydı.",
+     "accepted": [
+      "Mein Kollege musste um vier gehen, um sein Kind vom Kindergarten zu holen.",
+      "Mein Kollege musste um vier Uhr gehen, um sein Kind vom Kindergarten zu holen.",
+      "Um sein Kind vom Kindergarten zu holen, musste mein Kollege um vier gehen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Akşam kursu, ders arası. Ioana elinde bir kâğıtla yanına oturuyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Ich muss einen Lebenslauf schreiben. Ich möchte im Kindergarten arbeiten.",
+      "tr": "Bir özgeçmiş yazmam lazım. Anaokulunda çalışmak istiyorum."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Super! Was musst du alles schreiben?",
+      "tr": "Süper! Neler yazman lazım?"
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Wann und wo ich geboren bin. Und ich brauche ein Foto.",
+      "tr": "Ne zaman ve nerede doğduğumu. Bir de fotoğraf lazım."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich kann dir helfen. Am Donnerstag im Kurs?",
+      "tr": "Sana yardım edebilirim. Perşembe kursta?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Ioana nerede çalışmak istiyor?",
+     "opts": [
+      "Anaokulunda",
+      "Bir bankada",
+      "Bir fırında"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:99:v1",
+  "title_tr": "Pazartesi: bozuk otomat ve geç kalınan toplantı",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ein Mann",
+    "sahne_tr": "Pazartesi, sabah 8.40. Kendi bankanın önündesin; otomatın ekranı karanlık. Yanındaki adam başını sallıyor.",
+    "de": "Der Geldautomat geht nicht. Er ist seit gestern kaputt.",
+    "tr": "Para otomatı çalışmıyor. Dünden beri bozuk."
+   },
+   {
+    "id": "s2",
+    "speaker": "ein Mann",
+    "sahne_tr": "Adam eliyle istasyon tarafını gösteriyor.",
+    "de": "Sie können zur Bank beim Bahnhof gehen. Aber da kostet das eine Gebühr.",
+    "tr": "İstasyonun yanındaki bankaya gidebilirsiniz. Ama orada bunun ücreti var."
+   },
+   {
+    "id": "s3",
+    "speaker": "eine Frau",
+    "sahne_tr": "8.50, istasyonun yanındaki banka. Arkanda bir kadın sabırsızca saatine bakıyor.",
+    "de": "Entschuldigung, geht das schnell? Ich muss um neun im Büro sein.",
+    "tr": "Pardon, hızlı olur mu? Dokuzda ofiste olmam lazım."
+   },
+   {
+    "id": "s4",
+    "speaker": "eine Frau",
+    "sahne_tr": "Ekranda kırmızı bir yazı çıkıyor. Kadın sesini yumuşatıyor.",
+    "de": "Die Geheimzahl war falsch? Versuchen Sie es noch einmal, ganz ruhig.",
+    "tr": "Şifre yanlış mıydı? Bir daha deneyin, sakin olun."
+   },
+   {
+    "id": "s5",
+    "speaker": "eine Frau",
+    "sahne_tr": "Otomat parayı veriyor. Kadın gülümsüyor.",
+    "de": "Jetzt geht es. Gut!",
+    "tr": "Şimdi çalışıyor. İyi!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "9.12, toplantı odası. Kapıyı açıyorsun. Herr Wimmer konuşmayı kesip sana bakıyor.",
+    "de": "Guten Morgen. Wir sind schon seit neun Uhr hier.",
+    "tr": "Günaydın. Biz saat dokuzdan beri buradayız."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer kaşlarını kaldırıyor.",
+    "de": "Was war denn los?",
+    "tr": "Ne oldu peki?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Kısaca açıklıyorsun: otomat bozuktu, başka bir bankaya gitmek zorundaydın. Herr Wimmer başını sallıyor.",
+    "de": "Gut, kein Problem. Aber bitte schreiben Sie mir dann kurz eine Nachricht.",
+    "tr": "Peki, sorun değil. Ama böyle olunca bana kısa bir mesaj yazın lütfen."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya yanındaki sandalyeyi çekiyor.",
+    "de": "Hier ist noch ein Platz frei.",
+    "tr": "Burada boş bir yer var."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer yeniden ekrana dönüyor.",
+    "de": "Gut, dann weiter. Frau Aksoy, bitte.",
+    "tr": "Peki, devam edelim. Frau Aksoy, buyurun."
+   },
+   {
+    "id": "s11",
+    "speaker": "Lena",
+    "sahne_tr": "Toplantıdan sonra koridor. Ekibe yeni katılan iş arkadaşın Lena yanına geliyor. Ekipte artık herkes birbirine du diyor. Derya duymasın diye alçak sesle konuşuyor.",
+    "de": "Hast du das Geld für das Geschenk von Derya?",
+    "tr": "Derya'nın hediyesi için para sende mi?"
+   },
+   {
+    "id": "s12",
+    "speaker": "Lena",
+    "sahne_tr": "Parayı veriyorsun. Lena zarfı çantasına koyuyor.",
+    "de": "Danke! Jetzt haben wir genug Geld. Und Derya darf nichts wissen!",
+    "tr": "Teşekkürler! Artık yeterince paramız var. Derya da hiçbir şey bilmemeli!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu bölümde ne oluyor?",
+     "opts": [
+      "Kendi bankanın otomatı bozuk; başka bir bankada ücretle para çekiyorsun",
+      "Bankada yeni bir hesap açıyorsun",
+      "Otomat kartını yutuyor ve içeri giriyorsun"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s2"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Otomat ne zamandan beri bozuk?",
+      "opts": [
+       "Bu sabahtan beri",
+       "Dünden beri",
+       "Bir haftadan beri"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s1"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Arkandaki kadın neden acele ediyor?",
+      "opts": [
+       "Dokuzda ofiste olmalı",
+       "Treni kaçıracak",
+       "Doktora gidecek"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s3"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "İstasyonun yanındaki bankada ne var?",
+      "opts": [
+       "Ücretsiz otomat",
+       "Ücret",
+       "Uzun bir sıra"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s2"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s3",
+      "seviye": "kolay",
+      "q_tr": "Hangi saati duydun?",
+      "opts": [
+       "neun",
+       "acht",
+       "zehn"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s1",
+      "seviye": "orta",
+      "de": "Er ist seit ___ kaputt.",
+      "accepted": [
+       "gestern",
+       "Gestern",
+       "gestern."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s2",
+      "seviye": "zor",
+      "banka": [
+       "Aber",
+       "da",
+       "kostet",
+       "das",
+       "eine",
+       "Gebühr",
+       "kostenlos",
+       "ist"
+      ],
+      "accepted": [
+       "Aber da kostet das eine Gebühr.",
+       "aber da kostet das eine gebühr",
+       "Aber da kostet das eine Gebühr"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Versuchen Sie es noch einmal, ganz ruhig.",
+       "versuchen sie es noch einmal ganz ruhig",
+       "Versuchen Sie es noch einmal, ganz ruhig"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Bu bölümde ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Der Geldautomat war kaputt. Bei der anderen Bank kostet das eine Gebühr.",
+      "zorunlu": [
+       "Geldautomat",
+       "Gebühr"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s4"
+    ],
+    "cevapla": {
+     "id": "m1:99:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Arkandaki kadın acele ediyor. Ona kibarca bir dakika daha beklemesini, şifrenin ilk denemede yanlış olduğunu söyle.",
+     "prompt_de": "Entschuldigung, geht das schnell?",
+     "accepted": [
+      "Einen Moment, bitte. Die Geheimzahl war beim ersten Mal falsch.",
+      "Moment, bitte. Die Geheimzahl war falsch.",
+      "Entschuldigung, einen Moment noch. Die Geheimzahl war beim ersten Mal falsch.",
+      "Einen Moment bitte, die Geheimzahl war falsch.",
+      "Moment noch, bitte. Beim ersten Mal war die Geheimzahl falsch."
+     ],
+     "why_tr": "Geçmişte olanı **war** ile söylersin: **Die Geheimzahl war falsch.**"
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu bölümde ne oluyor?",
+     "opts": [
+      "Toplantıya geç giriyorsun; Herr Wimmer anlayışla karşılıyor, sonra Lena hediye parasını alıyor",
+      "Herr Wimmer toplantıyı iptal ediyor",
+      "Derya'nın doğum günü toplantıda kutlanıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s8",
+      "s11"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Toplantı saat kaçta başlamış?",
+      "opts": [
+       "Sekizde",
+       "Dokuzda",
+       "Onda"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s6"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Herr Wimmer bir dahaki sefere ne istiyor?",
+      "opts": [
+       "Daha erken gelmeni",
+       "Ona kısa bir mesaj yazmanı",
+       "Derya'yı aramanı"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s8"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya neden hiçbir şey bilmemeli?",
+      "opts": [
+       "Para onun hediyesi için",
+       "Toplantı gizli",
+       "Lena ona kızgın"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11",
+       "s12"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s6",
+      "seviye": "kolay",
+      "q_tr": "Hangi sayıyı duydun?",
+      "opts": [
+       "neun",
+       "zehn",
+       "elf"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s9",
+      "seviye": "orta",
+      "de": "Hier ist noch ein Platz ___.",
+      "accepted": [
+       "frei",
+       "Frei",
+       "frei."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s11",
+      "seviye": "zor",
+      "banka": [
+       "Hast",
+       "du",
+       "das",
+       "Geld",
+       "für",
+       "das",
+       "Geschenk",
+       "von",
+       "Derya",
+       "Hat",
+       "dem"
+      ],
+      "accepted": [
+       "Hast du das Geld für das Geschenk von Derya?",
+       "hast du das geld für das geschenk von derya",
+       "Hast du das Geld für das Geschenk von Derya"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s8",
+      "seviye": "usta",
+      "accepted": [
+       "Gut, kein Problem.",
+       "gut kein problem",
+       "Gut, kein Problem"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Herr Wimmer'in ne dediğini Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Herr Wimmer sagt: Kein Problem. Ich soll ihm dann kurz eine Nachricht schreiben.",
+      "zorunlu": [
+       "Nachricht",
+       "Problem"
+      ]
+     }
+    ],
+    "golge": [
+     "s7",
+     "s9"
+    ],
+    "cevapla": {
+     "id": "m1:99:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Herr Wimmer ne olduğunu soruyor. Para çekmek zorundaydın. Bu yüzden daha erken gelemedin.",
+     "prompt_de": "Was war denn los?",
+     "accepted": [
+      "Entschuldigung, ich musste noch Geld abheben. Ich konnte nicht früher kommen.",
+      "Ich musste noch Geld abheben. Ich konnte nicht früher kommen.",
+      "Tut mir leid, ich musste noch Geld abheben.",
+      "Entschuldigung. Ich musste Geld abheben, ich konnte nicht früher kommen.",
+      "Der Geldautomat war kaputt. Ich musste noch Geld abheben.",
+      "Tut mir leid. Ich musste noch Geld abheben, ich konnte nicht früher kommen."
+     ],
+     "why_tr": "Zorunluluk geçmişte **ich musste**, yapamamak **ich konnte nicht** olur. **abheben** ve **kommen** en sona gider."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:99:a1",
+   "tur": "anons",
+   "title_tr": "Başka bankanın otomatı konuşuyor",
+   "ortam_tr": "İstasyonun yanındaki bankadasın. Kartını taktın; otomat sesli talimat veriyor.",
+   "speaker": "Geldautomat",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Willkommen. Bitte geben Sie Ihre Geheimzahl ein.",
+     "tr": "Hoş geldiniz. Lütfen şifrenizi girin."
+    },
+    {
+     "id": "c2",
+     "de": "Das ist falsch. Bitte noch einmal.",
+     "tr": "Bu yanlış. Lütfen bir kez daha."
+    },
+    {
+     "id": "c3",
+     "de": "Diese Bank ist nicht Ihre Bank.",
+     "tr": "Bu banka sizin bankanız değil."
+    },
+    {
+     "id": "c4",
+     "de": "Sie zahlen hier fünf Euro.",
+     "tr": "Burada beş euro ödersiniz."
+    },
+    {
+     "id": "c5",
+     "de": "Das ist eine Gebühr. Möchten Sie weiter?",
+     "tr": "Bu bir ücret. Devam etmek istiyor musunuz?"
+    },
+    {
+     "id": "c6",
+     "de": "Wie viel Geld möchten Sie abheben?",
+     "tr": "Ne kadar para çekmek istiyorsunuz?"
+    },
+    {
+     "id": "c7",
+     "de": "Bitte nehmen Sie Ihre Karte. Bitte nehmen Sie Ihr Geld.",
+     "tr": "Lütfen kartınızı alın. Lütfen paranızı alın."
+    },
+    {
+     "id": "c8",
+     "de": "Vielen Dank und auf Wiedersehen.",
+     "tr": "Çok teşekkürler, hoşça kalın."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7",
+      "c8"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Otomat sana ne anlatıyor?",
+      "opts": [
+       "Bu senin bankan değil; burada para çekmek beş euro tutuyor",
+       "Kartının bloke olduğunu söylüyor",
+       "Bankanın kapandığını söylüyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Bu otomatta para çekmek kaç euro?",
+       "opts": [
+        "Ücretsiz",
+        "Beş euro",
+        "On euro"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "İlk denemede ne oldu?",
+       "opts": [
+        "Girdiğin şey yanlıştı",
+        "Kart okunmadı",
+        "Para yoktu"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "En sonda neyi almalısın?",
+       "opts": [
+        "Yalnızca makbuzu",
+        "Kartını ve paranı",
+        "Yeni bir kart"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c7"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi sayıyı duydun?",
+       "opts": [
+        "fünf",
+        "sechs",
+        "zehn"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c1",
+       "seviye": "orta",
+       "de": "Bitte geben Sie Ihre ___ ein.",
+       "accepted": [
+        "Geheimzahl",
+        "geheimzahl",
+        "Geheimzahl."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Wie",
+        "viel",
+        "Geld",
+        "möchten",
+        "Sie",
+        "abheben",
+        "viele",
+        "überweisen"
+       ],
+       "accepted": [
+        "Wie viel Geld möchten Sie abheben?",
+        "wie viel geld möchten sie abheben",
+        "Wie viel Geld möchten Sie abheben"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Diese Bank ist nicht Ihre Bank.",
+        "diese bank ist nicht ihre bank",
+        "Diese Bank ist nicht Ihre Bank"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Otomatın ne söylediğini Almanca iki kısa cümleyle anlat.",
+       "ornek_de": "Die Geheimzahl war falsch. Das kostet hier eine Gebühr von fünf Euro.",
+       "zorunlu": [
+        "Geheimzahl",
+        "Gebühr"
+       ]
+      }
+     ],
+     "golge": [
+      "c5",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:99:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Akşam Ioana sabah ne olduğunu soruyor. Başka bir bankada para çekmek zorundaydın ve beş euro ücret ödedin.",
+      "prompt_de": "Und? Was war heute Morgen los?",
+      "accepted": [
+       "Ich musste bei einer anderen Bank Geld abheben. Das hat fünf Euro Gebühr gekostet.",
+       "Ich musste bei einer anderen Bank Geld abheben. Die Gebühr war fünf Euro.",
+       "Ich musste Geld abheben, bei einer anderen Bank. Das hat fünf Euro gekostet.",
+       "Mein Geldautomat war kaputt. Bei einer anderen Bank musste ich fünf Euro Gebühr bezahlen.",
+       "Ich musste bei einer anderen Bank fünf Euro Gebühr bezahlen."
+      ],
+      "why_tr": "**Ich musste bei einer anderen Bank Geld abheben.** **abheben** en sonda. Ücreti **Gebühr** ile söylersin."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:99:a1:e1",
+    "k": "pick",
+    "q_tr": "Bu otomattan para çekersen ne olur?",
+    "opts": [
+     "Beş euro ücret ödersin",
+     "Para ücretsiz çıkar",
+     "Kartın otomatta kalır"
+    ],
+    "ans": 0,
+    "why_tr": "Otomat bunun senin bankan olmadığını ve beş euro ücret alacağını söylüyor.",
+    "kanit": [
+     "c3",
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:99:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Lena'dan sesli mesaj",
+   "ortam_tr": "Öğle arası telefonuna bakıyorsun. Lena bir sesli mesaj bırakmış.",
+   "speaker": "Lena",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Lena. Danke für das Geld heute Morgen!",
+     "tr": "Merhaba, ben Lena. Bu sabahki para için teşekkürler!"
+    },
+    {
+     "id": "c2",
+     "de": "Derya sagt, du bist zu spät gekommen. Der Geldautomat war kaputt, oder?",
+     "tr": "Derya geç kaldığını söylüyor. Otomat bozukmuş, değil mi?"
+    },
+    {
+     "id": "c3",
+     "de": "Du musst nicht immer Geld abheben.",
+     "tr": "Her seferinde para çekmen gerekmiyor."
+    },
+    {
+     "id": "c4",
+     "de": "Du kannst das Geld auch überweisen, das ist kostenlos.",
+     "tr": "Parayı havale de edebilirsin, bu ücretsiz."
+    },
+    {
+     "id": "c5",
+     "de": "Dann musst du nicht zur Bank gehen, und es kostet nichts.",
+     "tr": "O zaman bankaya gitmen gerekmez, hem de hiçbir şey tutmaz."
+    },
+    {
+     "id": "c6",
+     "de": "Bis morgen!",
+     "tr": "Yarın görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Lena neden arıyor?",
+      "opts": [
+       "Teşekkür ediyor ve bir dahaki sefere bankaya gitmene gerek olmadığını söylüyor",
+       "Paranın eksik olduğunu söylüyor",
+       "Toplantıyı başka güne alıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Lena'nın önerdiği yol ne kadar tutuyor?",
+       "opts": [
+        "Beş euro",
+        "Hiçbir şey, ücretsiz",
+        "İki euro"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Derya, Lena'ya ne anlatmış?",
+       "opts": [
+        "Geç kaldığını",
+        "Hasta olduğunu",
+        "Kartını kaybettiğini"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c6",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "morgen",
+        "heute",
+        "Montag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Du kannst das Geld auch ___, das ist kostenlos.",
+       "accepted": [
+        "überweisen",
+        "Überweisen",
+        "überweisen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Du",
+        "musst",
+        "nicht",
+        "immer",
+        "Geld",
+        "abheben",
+        "kein",
+        "musste"
+       ],
+       "accepted": [
+        "Du musst nicht immer Geld abheben.",
+        "du musst nicht immer geld abheben",
+        "Du musst nicht immer Geld abheben"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Dann musst du nicht zur Bank gehen, und es kostet nichts.",
+        "dann musst du nicht zur bank gehen und es kostet nichts",
+        "Dann musst du nicht zur Bank gehen, und es kostet nichts"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Lena'nın önerisini Almanca iki kısa cümleyle söyle.",
+       "ornek_de": "Ich kann das Geld überweisen. Das ist kostenlos.",
+       "zorunlu": [
+        "überweisen",
+        "kostenlos"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:99:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Lena'ya geri dönüyorsun. Teşekkür et. Bir dahaki sefere parayı havale edeceğini söyle.",
+      "prompt_de": "Hallo! Hast du meine Nachricht bekommen?",
+      "accepted": [
+       "Ja, danke! Ich kann das Geld auch überweisen. Das ist kostenlos.",
+       "Ja, danke! Dann überweise ich das Geld.",
+       "Ja, danke, Lena. Ich überweise dir das Geld dann.",
+       "Ja! Gute Idee, ich kann das Geld auch überweisen.",
+       "Ja, danke. Dann muss ich keine Gebühr bezahlen."
+      ],
+      "why_tr": "Havale etmek **überweisen**: **Ich überweise dir das Geld.** Ücretsiz **kostenlos**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:99:a2:e1",
+    "k": "pick",
+    "q_tr": "Lena'ya göre bir dahaki sefere bankaya gitmen gerekiyor mu?",
+    "opts": [
+     "Hayır, gerek yok; parayı ücretsiz gönderebilirsin",
+     "Evet, her zaman otomata gitmelisin",
+     "Evet, ama başka bir bankaya"
+    ],
+    "ans": 0,
+    "why_tr": "Lena bankaya gitmene gerek olmadığını, bunun hiçbir şey tutmadığını söylüyor: parayı havale edebilirsin.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:99:g1",
+   "de": "Geheimzahl",
+   "dogru_img": "hand typing a PIN on an ATM keypad",
+   "celdirici_img": [
+    "credit card lying on a table",
+    "smartphone lock screen",
+    "house key in a door"
+   ]
+  },
+  {
+   "id": "m1:99:g2",
+   "de": "Lebenslauf",
+   "dogru_img": "printed CV with a small photo on a desk",
+   "celdirici_img": [
+    "newspaper on a table",
+    "shopping list on a fridge",
+    "letter in an envelope"
+   ]
+  },
+  {
+   "id": "m1:99:g3",
+   "de": "Kindergarten",
+   "dogru_img": "small children playing with blocks in a kindergarten room",
+   "celdirici_img": [
+    "school classroom with desks and a blackboard",
+    "playground in a city park",
+    "family living room with sofa"
+   ]
+  },
+  {
+   "id": "m1:99:g4",
+   "de": "Geld abheben",
+   "dogru_img": "person taking cash from an ATM",
+   "celdirici_img": [
+    "person paying with a card in a shop",
+    "person counting coins at home",
+    "bank clerk behind a counter"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:99:p1",
+  "title_tr": "Herr Wimmer'e geç kaldığını açıkla",
+  "durum_tr": "Saat 9.12. Toplantı odasının kapısını açıyorsun. Otomat bozuktu, başka bir bankada para çekmek zorundaydın. Herr Wimmer sana dönüyor.",
+  "karsi": "ch:wimmer",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Guten Morgen. Es ist schon zehn nach neun. Was war denn los?",
+    "tr": "Günaydın. Saat dokuzu on geçiyor. Ne oldu peki?",
+    "secenekler": [
+     {
+      "de": "Entschuldigung, ich musste noch Geld abheben. Ich konnte nicht früher kommen.",
+      "tr": "Özür dilerim, daha para çekmem gerekiyordu. Daha erken gelemedim.",
+      "accepted": [
+       "Entschuldigung, ich musste noch Geld abheben. Ich konnte nicht früher kommen.",
+       "Tut mir leid, ich musste noch Geld abheben. Ich konnte nicht früher kommen.",
+       "Entschuldigung. Ich musste Geld abheben, ich konnte nicht früher kommen.",
+       "Entschuldigung, ich musste noch Geld abheben."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Zorunluluk **ich musste**, yapamamak **ich konnte nicht**. Kısa ve açık."
+     },
+     {
+      "de": "Tut mir leid. Der Geldautomat war kaputt, ich musste zu einer anderen Bank gehen.",
+      "tr": "Kusura bakmayın. Otomat bozuktu, başka bir bankaya gitmek zorundaydım.",
+      "accepted": [
+       "Tut mir leid. Der Geldautomat war kaputt, ich musste zu einer anderen Bank gehen.",
+       "Tut mir leid, der Geldautomat war kaputt. Ich musste zu einer anderen Bank gehen.",
+       "Entschuldigung. Der Geldautomat war kaputt, ich musste zu einer anderen Bank gehen.",
+       "Der Geldautomat war kaputt. Ich musste zu einer anderen Bank gehen."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Önce sebep (**war kaputt**), sonra zorunluluk (**ich musste**)."
+     },
+     {
+      "de": "Entschuldigung, ich muss noch Geld abheben.",
+      "tr": "(yanlış) Özür dilerim, daha para çekmem gerekiyor.",
+      "accepted": [
+       "Entschuldigung, ich muss noch Geld abheben.",
+       "Ich muss noch Geld abheben.",
+       "Entschuldigung, ich muss Geld abheben.",
+       "Tut mir leid, ich muss noch Geld abheben."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "**ich muss** şimdi demek. Herr Wimmer şimdi gideceğini sanır. Geçmiş için **ich musste** de."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Jetzt noch? Aber die Besprechung ist doch jetzt.",
+    "tr": "Şimdi mi? Ama toplantı şimdi.",
+    "secenekler": [
+     {
+      "de": "Nein, heute Morgen. Ich musste noch Geld abheben.",
+      "tr": "Hayır, bu sabah. Daha para çekmem gerekiyordu.",
+      "accepted": [
+       "Nein, heute Morgen. Ich musste noch Geld abheben.",
+       "Nein, heute Morgen. Ich musste Geld abheben.",
+       "Nein, nein. Ich musste heute Morgen noch Geld abheben.",
+       "Nein, heute Morgen musste ich noch Geld abheben."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi oldu: **heute Morgen** ve **ich musste** ile geçmişi açıkça söyledin."
+     },
+     {
+      "de": "Ja, jetzt.",
+      "tr": "Evet, şimdi.",
+      "accepted": [
+       "Ja, jetzt.",
+       "Ja, jetzt noch.",
+       "Jetzt, ja.",
+       "Ja."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Para çekmek bu sabahtı, şimdi değil. Geçmiş için **Ich musste** de."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Alles klar. Und warum haben Sie mir nicht kurz geschrieben?",
+    "tr": "Anladım. Peki neden bana kısa bir mesaj yazmadınız?",
+    "secenekler": [
+     {
+      "de": "Ich konnte nicht schreiben, mein Handy war aus.",
+      "tr": "Yazamadım, telefonum kapalıydı.",
+      "accepted": [
+       "Ich konnte nicht schreiben, mein Handy war aus.",
+       "Ich konnte nicht schreiben. Mein Handy war aus.",
+       "Tut mir leid, ich konnte nicht schreiben, mein Handy war aus.",
+       "Mein Handy war aus, ich konnte nicht schreiben."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru: **ich konnte nicht** ve en sonda **schreiben**."
+     },
+     {
+      "de": "Tut mir leid, ich hatte keine Zeit. Ich musste schnell zur Bank.",
+      "tr": "Kusura bakmayın, vaktim yoktu. Hemen bankaya gitmem gerekiyordu.",
+      "accepted": [
+       "Tut mir leid, ich hatte keine Zeit. Ich musste schnell zur Bank.",
+       "Tut mir leid, ich hatte keine Zeit.",
+       "Entschuldigung, ich hatte keine Zeit. Ich musste schnell zur Bank.",
+       "Ich hatte keine Zeit, ich musste schnell zur Bank."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi. **hatte** ve **musste**: ikisi de geçmiş."
+     },
+     {
+      "de": "Ich kann nicht schreiben.",
+      "tr": "(yanlış) Yazamıyorum.",
+      "accepted": [
+       "Ich kann nicht schreiben.",
+       "Ich kann jetzt nicht schreiben.",
+       "Ich kann nicht.",
+       "Ich kann keine Nachricht schreiben."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu \"şimdi yazamıyorum\" demek. Sabah için **ich konnte nicht schreiben** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Gut, kein Problem. Setzen Sie sich bitte.",
+    "tr": "Peki, sorun değil. Lütfen oturun.",
+    "secenekler": [
+     {
+      "de": "Danke. Und noch einmal Entschuldigung.",
+      "tr": "Teşekkürler. Bir kez daha özür dilerim.",
+      "accepted": [
+       "Danke. Und noch einmal Entschuldigung.",
+       "Danke, und noch einmal Entschuldigung.",
+       "Danke schön. Noch einmal Entschuldigung.",
+       "Vielen Dank. Und noch einmal Entschuldigung."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar bir kapanış."
+     },
+     {
+      "de": "Danke schön, Herr Wimmer.",
+      "tr": "Çok teşekkürler, Herr Wimmer.",
+      "accepted": [
+       "Danke schön, Herr Wimmer.",
+       "Danke, Herr Wimmer.",
+       "Vielen Dank, Herr Wimmer.",
+       "Danke schön."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve kibar."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gern. Also, wir machen weiter.",
+    "tr": "Rica ederim. Evet, devam ediyoruz.",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Geç kaldığını ve nedenini **musste** ve **konnte** ile açıkladın. Herr Wimmer kısa ve net bir açıklama istiyordu. Tam da onu verdin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Ioana'nın mesajı: özgeçmiş planı",
+  "metin_de": "Hallo! Ich möchte im Kindergarten arbeiten. Dafür brauche ich einen Lebenslauf. Ich muss viel schreiben: wann und wo ich geboren bin, meine Schule und meine Arbeit. Ich brauche auch ein Foto. Am Mittwoch gehe ich in die Stadt, um ein Foto zu machen. Den Lebenslauf muss ich bis Freitag schicken. Kannst du mir am Donnerstag im Kurs helfen? Ioana",
+  "metin_tr": "Merhaba! Anaokulunda çalışmak istiyorum. Bunun için bir özgeçmiş lazım. Çok şey yazmam gerekiyor: ne zaman ve nerede doğduğumu, okulumu ve işimi. Bir de fotoğraf lazım. Çarşamba fotoğraf çektirmek için şehre gidiyorum. Özgeçmişi cumaya kadar göndermem lazım. Perşembe kursta bana yardım edebilir misin? Ioana",
+  "sorular": [
+   {
+    "id": "m1:99:o1",
+    "kind": "gist",
+    "q_tr": "Ioana neden yazıyor?",
+    "opts": [
+     "Özgeçmişi için senden yardım istiyor",
+     "Kursa gelemeyeceğini söylüyor",
+     "Seni bir anaokulu gezisine çağırıyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     2,
+     7
+    ]
+   },
+   {
+    "id": "m1:99:o2",
+    "kind": "detail",
+    "q_tr": "Ioana nerede çalışmak istiyor?",
+    "opts": [
+     "Anaokulunda",
+     "Bankada",
+     "Bir firmada"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:99:o3",
+    "kind": "detail",
+    "q_tr": "Ioana fotoğraf için ne zaman şehre gidiyor?",
+    "opts": [
+     "Pazartesi",
+     "Çarşamba",
+     "Cuma"
+    ],
+    "ans": 1,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:99:o4",
+    "kind": "detail",
+    "q_tr": "Özgeçmişi ne zamana kadar göndermeli?",
+    "opts": [
+     "Perşembeye kadar",
+     "Cumaya kadar",
+     "Gelecek haftaya kadar"
+    ],
+    "ans": 1,
+    "kanit": [
+     6
+    ]
+   },
+   {
+    "id": "m1:99:o5",
+    "k": "guided_response",
+    "situation_tr": "Ioana'ya cevap ver: perşembe kursta seve seve yardım edebilirsin.",
+    "prompt_de": "Kannst du mir am Donnerstag im Kurs helfen?",
+    "accepted": [
+     "Ja, ich kann dir am Donnerstag gern helfen.",
+     "Ja, gern! Am Donnerstag im Kurs.",
+     "Klar, ich kann dir am Donnerstag helfen.",
+     "Ja, am Donnerstag kann ich dir gern helfen.",
+     "Ja, gern. Ich kann dir im Kurs helfen."
+    ],
+    "why_tr": "**Ich kann dir helfen**: yardım edilen kişi **dir** (sana). **helfen** en sonda."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Ioana'ya kısa bir cevap yaz. Perşembe yardım edebileceğini söyle. Bugün neden geç kaldığını da bir cümleyle anlat.",
+   "ornek_de": "Ja, ich kann dir am Donnerstag gern helfen. Heute war ich zu spät, ich musste noch Geld abheben.",
+   "zorunlu": [
+    "Donnerstag",
+    "musste"
+   ],
+   "accepted_kaliplar": [
+    "Ja, ich kann dir am ___ gern helfen.",
+    "Heute war ich zu spät, ich musste ___."
+   ],
+   "kontrol_tr": [
+    "Perşembe gününü yazdın mı?",
+    "Geç kalma sebebini **ich musste** ile yazdın mı?",
+    "**helfen** ve **abheben** cümlenin sonunda mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:99:s",
+  "maddeler": [
+   {
+    "id": "m1:99:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich musste noch Geld abheben.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich musste noch Geld abheben.",
+     "ich musste noch geld abheben",
+     "Ich musste noch Geld abheben"
+    ],
+    "why_tr": "**musste** ikinci yerde, **abheben** en sonda."
+   },
+   {
+    "id": "m1:99:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Die Geheimzahl war beim ersten Mal falsch.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Geheimzahl war beim ersten Mal falsch.",
+     "die geheimzahl war beim ersten mal falsch",
+     "Die Geheimzahl war beim ersten Mal falsch"
+    ],
+    "why_tr": "**Geheimzahl** büyük harfle başlar. Almancada şeylerin adı büyük harfle yazılır."
+   },
+   {
+    "id": "m1:99:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Bei meiner Bank ist das kostenlos.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Bei meiner Bank ist das kostenlos.",
+     "bei meiner bank ist das kostenlos",
+     "Bei meiner Bank ist das kostenlos"
+    ],
+    "why_tr": "**kostenlos** ücretsiz demek, küçük harfle yazılır."
+   },
+   {
+    "id": "m1:99:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ioana schreibt einen Lebenslauf, um im Kindergarten zu arbeiten.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ioana schreibt einen Lebenslauf, um im Kindergarten zu arbeiten.",
+     "ioana schreibt einen lebenslauf um im kindergarten zu arbeiten",
+     "Ioana schreibt einen Lebenslauf, um im Kindergarten zu arbeiten"
+    ],
+    "why_tr": "Amacı **um** ve **zu** ile söylersin: **um im Kindergarten zu arbeiten**. **zu arbeiten** en sonda."
+   },
+   {
+    "id": "m1:99:s5",
+    "k": "tr_de",
+    "tr": "Daha erken gelemedim.",
+    "accepted": [
+     "Ich konnte nicht früher kommen.",
+     "Früher konnte ich nicht kommen.",
+     "Ich konnte leider nicht früher kommen."
+    ],
+    "why_tr": "Yapamamak geçmişte **ich konnte nicht** olur. **kommen** en sonda."
+   },
+   {
+    "id": "m1:99:s6",
+    "k": "tr_de",
+    "tr": "Parayı havale de edebilirsin.",
+    "accepted": [
+     "Du kannst das Geld auch überweisen.",
+     "Das Geld kannst du auch überweisen.",
+     "Du kannst das Geld doch auch überweisen."
+    ],
+    "why_tr": "**kannst** ikinci yerde, **überweisen** sonda."
+   },
+   {
+    "id": "m1:99:s7",
+    "k": "tr_de",
+    "tr": "Bankaya gitmek zorundaydık.",
+    "accepted": [
+     "Wir mussten zur Bank gehen.",
+     "Wir mussten zur Bank.",
+     "Wir mussten in die Bank gehen."
+    ],
+    "why_tr": "**wir** ile **mussten** olur: sonuna **-n** gelir."
+   },
+   {
+    "id": "m1:99:s8",
+    "k": "tr_de",
+    "tr": "Büroda yemek yememiz yasaktı.",
+    "accepted": [
+     "Wir durften im Büro nicht essen.",
+     "Im Büro durften wir nicht essen.",
+     "Wir durften nicht im Büro essen."
+    ],
+    "why_tr": "Yasak geçmişte **durften nicht** ile söylenir."
+   },
+   {
+    "id": "m1:99:s9",
+    "k": "guided_response",
+    "situation_tr": "Lena soruyor. Evet, elli euro çektin.",
+    "prompt_de": "Hast du das Geld schon abgehoben?",
+    "accepted": [
+     "Ja, ich habe fünfzig Euro abgehoben.",
+     "Ja, fünfzig Euro.",
+     "Ja, ich habe schon fünfzig Euro abgehoben.",
+     "Ja, ich habe das Geld abgehoben. Fünfzig Euro.",
+     "Ja, schon. Fünfzig Euro."
+    ],
+    "why_tr": "Geçmiş: **Ich habe fünfzig Euro abgehoben.** **ab** başa geçer, **ge** ortaya girer."
+   },
+   {
+    "id": "m1:99:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Musstest du heute noch zur Bank?",
+    "speed": "normal",
+    "situation_tr": "Derya soruyor. Evet, hem de başka bir bankaya gitmek zorundaydın.",
+    "accepted": [
+     "Ja, ich musste zu einer anderen Bank gehen.",
+     "Ja, ich musste zu einer anderen Bank.",
+     "Ja. Ich musste zu einer anderen Bank gehen.",
+     "Ja, mein Geldautomat war kaputt. Ich musste zu einer anderen Bank gehen.",
+     "Ja, leider. Ich musste zu einer anderen Bank gehen."
+    ],
+    "why_tr": "**Musstest du heute noch zur Bank?** sorusuna **ich musste** ile cevap verirsin."
+   },
+   {
+    "id": "m1:99:s11",
+    "k": "guided_response",
+    "situation_tr": "Toplantıya geç kaldın. Herr Wimmer'e kısaca açıkla: para çekmek zorundaydın, daha erken gelemedin.",
+    "prompt_de": "Was war denn los?",
+    "accepted": [
+     "Entschuldigung, ich musste noch Geld abheben. Ich konnte nicht früher kommen.",
+     "Tut mir leid, ich musste noch Geld abheben.",
+     "Ich musste noch Geld abheben, ich konnte nicht früher kommen.",
+     "Entschuldigung. Der Geldautomat war kaputt, ich musste noch Geld abheben.",
+     "Tut mir leid. Ich musste Geld abheben und konnte nicht früher kommen."
+    ],
+    "why_tr": "Önce özür, sonra **ich musste** ve **ich konnte nicht**."
+   }
+  ],
+  "sesli": [
+   "m1:99:s9",
+   "m1:99:s10"
+  ],
+  "dikte": [
+   "m1:99:s1",
+   "m1:99:s2",
+   "m1:99:s3",
+   "m1:99:s4"
+  ]
+ }
+}

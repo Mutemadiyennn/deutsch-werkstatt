@@ -1,0 +1,168 @@
+{
+ "id": "m1:hafta-sonu-testi:15",
+ "day": 105,
+ "maddeler": [
+  {
+   "id": "m1:105:t01",
+   "k": "listen_and_respond",
+   "audio_de": "Was war heute Morgen los? Sie waren nicht pünktlich.",
+   "speed": "normal",
+   "situation_tr": "Herr Wimmer soruyor. Önce para çekmen gerekiyordu, daha erken gelemedin.",
+   "accepted": [
+    "Entschuldigung. Ich musste noch Geld abheben. Ich konnte nicht früher kommen.",
+    "Ich musste noch Geld abheben. Ich konnte nicht früher kommen.",
+    "Entschuldigung, ich musste noch Geld abheben.",
+    "Ich musste noch Geld abheben, deswegen konnte ich nicht früher kommen."
+   ],
+   "why_tr": "Geçmişte zorunluluk **musste**, geçmişte yapamamak **konnte nicht**. **abheben** ve **kommen** en sonda."
+  },
+  {
+   "id": "m1:105:t02",
+   "k": "order",
+   "de": "nicht / Ich / früher / konnte / kommen",
+   "tr": "Daha erken gelemedim.",
+   "accepted": [
+    "Ich konnte nicht früher kommen.",
+    "Früher konnte ich nicht kommen.",
+    "Ich konnte nicht früher kommen!"
+   ],
+   "why_tr": "**konnte** ikinci yerde, **kommen** en sonda."
+  },
+  {
+   "id": "m1:105:t03",
+   "k": "gap",
+   "de": "Am anderen Geldautomaten musste ich eine ___ zahlen.",
+   "tr": "Öbür bankamatikte bir ücret ödemem gerekti.",
+   "accepted": [
+    "Gebühr",
+    "gebühr",
+    "Gebühr."
+   ],
+   "opts": [
+    "Gebühr",
+    "Geheimzahl",
+    "Überweisung"
+   ],
+   "why_tr": "**Gebühr**: ücret. **Geheimzahl** şifredir, **Überweisung** havaledir."
+  },
+  {
+   "id": "m1:105:t04",
+   "k": "guided_response",
+   "situation_tr": "Ioana yılbaşı kararını soruyor. Daha çok spor yapmak istiyordun, ama olmadı.",
+   "prompt_de": "Und dein Vorsatz für das neue Jahr? Hat das geklappt?",
+   "accepted": [
+    "Ich wollte mehr Sport machen, aber das hat nicht geklappt.",
+    "Nein. Ich wollte mehr Sport machen, aber das hat nicht geklappt.",
+    "Tja, ich wollte mehr Sport machen. Das hat nicht geklappt.",
+    "Leider nicht. Ich wollte mehr Sport machen.",
+    "Nein, das hat nicht geklappt. Ich wollte mehr Sport machen."
+   ],
+   "why_tr": "Geçmişteki istek **wollte**: **Ich wollte mehr Sport machen.** Olmadı: **Das hat nicht geklappt.**"
+  },
+  {
+   "id": "m1:105:t05",
+   "k": "transform",
+   "instr_tr": "Geçmişe çevir: **müssen** yerine **mussten**.",
+   "from_de": "Wir müssen am Samstag arbeiten.",
+   "accepted": [
+    "Wir mussten am Samstag arbeiten.",
+    "Am Samstag mussten wir arbeiten.",
+    "Wir mussten Samstag arbeiten."
+   ],
+   "why_tr": "**wir** ile geçmiş: **mussten**. **arbeiten** yine en sonda."
+  },
+  {
+   "id": "m1:105:t06",
+   "k": "listen_and_respond",
+   "audio_de": "Wie lange geht ein Kind hier in die Grundschule?",
+   "speed": "normal",
+   "situation_tr": "Kursta biri soruyor. Bavyera'da ilkokul dört yıl sürer.",
+   "accepted": [
+    "Vier Jahre.",
+    "In Bayern geht ein Kind vier Jahre in die Grundschule.",
+    "Vier Jahre lang.",
+    "In Bayern vier Jahre."
+   ],
+   "why_tr": "Bavyera'da **die Grundschule** dört yıl sürer. Sonra başka bir okul gelir."
+  },
+  {
+   "id": "m1:105:t07",
+   "k": "tr_de",
+   "tr": "Çocukken yüzemiyordum.",
+   "accepted": [
+    "Als Kind konnte ich nicht schwimmen.",
+    "Ich konnte als Kind nicht schwimmen.",
+    "Als Kind konnte ich noch nicht schwimmen."
+   ],
+   "why_tr": "**Als Kind** başta, **konnte** ikinci yerde, **schwimmen** en sonda."
+  },
+  {
+   "id": "m1:105:t08",
+   "k": "order",
+   "de": "zahlen / Danach / Gebühr / musste / eine / ich",
+   "tr": "Ondan sonra bir ücret ödemem gerekti.",
+   "accepted": [
+    "Danach musste ich eine Gebühr zahlen.",
+    "Ich musste danach eine Gebühr zahlen.",
+    "Danach musste ich eine Gebühr zahlen!"
+   ],
+   "why_tr": "**Danach** ile başlarsan **musste** hemen gelir."
+  },
+  {
+   "id": "m1:105:t09",
+   "k": "listen_and_respond",
+   "audio_de": "Die Besprechung ist morgen schon um halb neun. Bitte bringen Sie die Zahlen vom Freitag mit.",
+   "speed": "fast",
+   "situation_tr": "Herr Wimmer hızlı söylüyor. İki talimatı tekrar et.",
+   "accepted": [
+    "Um halb neun, und ich bringe die Zahlen vom Freitag mit.",
+    "Also: morgen um halb neun, und die Zahlen vom Freitag mitbringen.",
+    "Halb neun, und die Zahlen vom Freitag. Richtig?",
+    "Morgen um halb neun, mit den Zahlen vom Freitag."
+   ],
+   "why_tr": "İki talimat: saat (**halb neun**) ve ne getireceğin (**die Zahlen**)."
+  },
+  {
+   "id": "m1:105:t10",
+   "k": "transform",
+   "instr_tr": "İki cümleyi **um** ve **zu** ile birleştir.",
+   "from_de": "Ich gehe zum Geldautomaten. Ich will Geld abheben.",
+   "accepted": [
+    "Ich gehe zum Geldautomaten, um Geld abzuheben.",
+    "Um Geld abzuheben, gehe ich zum Geldautomaten.",
+    "Ich gehe zum Geldautomaten, um dort Geld abzuheben."
+   ],
+   "why_tr": "Amacı **um** ve **zu** ile söylersin. **abheben** kelimesinde **zu** ortaya girer: **abzuheben**."
+  },
+  {
+   "id": "m1:105:t11",
+   "k": "guided_response",
+   "situation_tr": "Dr. Weber'deki randevuna geç kalacaksın. Muayenehaneyi ara: otobüs rötarlı, yirmi dakika geç geleceksin.",
+   "prompt_de": "Praxis Dr. Weber, Huber, grüß Gott?",
+   "accepted": [
+    "Grüß Gott, hier ist {name}. Der Bus hat Verspätung, deswegen komme ich zwanzig Minuten später.",
+    "Guten Tag, hier ist {name}. Ich komme zwanzig Minuten später, der Bus hat Verspätung.",
+    "Grüß Gott. Hier ist {name}. Entschuldigung, der Bus hat Verspätung. Ich komme zwanzig Minuten später.",
+    "Guten Tag, {name} hier. Der Bus hat Verspätung, ich komme zwanzig Minuten später."
+   ],
+   "why_tr": "Önce kim olduğun, sonra neden (**Der Bus hat Verspätung**) ve sonuç (**zwanzig Minuten später**).",
+   "accepted_adsiz": [
+    "Grüß Gott. Der Bus hat Verspätung, deswegen komme ich zwanzig Minuten später.",
+    "Guten Tag. Ich komme zwanzig Minuten später, der Bus hat Verspätung.",
+    "Grüß Gott. Entschuldigung, der Bus hat Verspätung. Ich komme zwanzig Minuten später.",
+    "Guten Tag. Der Bus hat Verspätung, ich komme zwanzig Minuten später."
+   ]
+  },
+  {
+   "id": "m1:105:t12",
+   "k": "tr_de",
+   "tr": "Önce bankamatik bozuktu, bu yüzden geç kaldım.",
+   "accepted": [
+    "Zuerst war der Geldautomat kaputt, deswegen bin ich zu spät gekommen.",
+    "Zuerst war mein Geldautomat kaputt, deswegen bin ich zu spät gekommen.",
+    "Zuerst war der Geldautomat kaputt, deswegen war ich zu spät."
+   ],
+   "why_tr": "**Zuerst** ve **deswegen** başa gelince hemen arkasından **war** ya da **bin** gelir."
+  }
+ ]
+}
