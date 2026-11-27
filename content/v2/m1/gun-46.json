@@ -24,7 +24,9 @@
         { "de": "Wie ist Ihr Vorname? – Wie ist Ihre Adresse? – Wie ist Ihr Geburtsdatum?", "tr": "Adınız ne? – Adresiniz ne? – Doğum tarihiniz ne?" },
         { "de": "Wo sind Sie geboren? – Ich bin in … geboren. – Er ist in … geboren. – Sie ist in … geboren.", "tr": "Nerede doğdunuz? – …de doğdum. – O …de doğdu (erkek). – O …de doğdu (kadın)." },
         { "de": "Ich bin in … aufgewachsen. – Ich bin nach … umgezogen.", "tr": "…de büyüdüm. – …e taşındım." },
-        { "de": "Geburtsort – Familienstand – ledig – verheiratet", "tr": "doğum yeri – medeni durum – bekâr – evli" }
+        { "de": "Geburtsort – Familienstand – ledig – verheiratet", "tr": "doğum yeri – medeni durum – bekâr – evli" },
+        { "de": "Wie alt sind Sie? – Ich bin … Jahre alt. – Woher kommen Sie? – Ich komme aus …", "tr": "Kaç yaşındasınız? – Yaşım … – Nerelisiniz? – Memleketim …" },
+        { "de": "Welche Sprachen sprechen Sie? – Ich spreche … – Stellen Sie sich bitte vor.", "tr": "Hangi dilleri konuşuyorsunuz? – Konuştuğum diller … – Lütfen kendinizi tanıtın." }
       ],
       "gorev_cumleleri": [
         { "kart": "lx:verheiratet", "de": "Sind Sie verheiratet oder ledig?", "tr": "Evli misiniz, bekâr mı?",
@@ -35,6 +37,8 @@
           "accepted": ["Wo sind Sie geboren? Ist das Ihre Heimat?", "Wo sind Sie geboren? Ist das auch Ihre Heimat?", "Ist das Ihre Heimat? Wo sind Sie geboren?"] },
         { "kart": "lx:Heimat", "de": "Die Heimat von Ioana ist weit weg.", "tr": "Ioana'nın memleketi çok uzakta.",
           "accepted": ["Die Heimat von Ioana ist weit weg.", "Die Heimat von Ioana ist sehr weit weg.", "Ioanas Heimat ist weit weg."] },
+        { "kart": "lx:Heimat", "de": "Ich komme aus {ulke}. Das ist meine Heimat.", "tr": "Geldiğim ülke: {ulke}. Orası benim memleketim.",
+          "accepted": ["Ich komme aus {ulke}. Das ist meine Heimat.", "Ich komme aus {ulke}, das ist meine Heimat.", "Meine Heimat? Ich komme aus {ulke}."] },
         { "kart": "lx:aufwachsen", "de": "Wo sind Sie aufgewachsen?", "tr": "Nerede büyüdünüz?",
           "accepted": ["Wo sind Sie aufgewachsen?", "Wo sind Sie denn aufgewachsen?", "Und wo sind Sie aufgewachsen?"] },
         { "kart": "lx:aufwachsen", "de": "Herr Pichler ist in Wendlfing aufgewachsen.", "tr": "Pichler Bey Wendlfing'de büyüdü.",
@@ -102,7 +106,8 @@
       "kaliplar": [
         { "de": "in meiner Kindheit – in seiner Jugend – in ihrer Jugend", "tr": "çocukluğumda – onun gençliğinde (erkek) – onun gençliğinde (kadın)" },
         { "de": "Füllen Sie bitte … aus. – Erzählen Sie bitte …", "tr": "Lütfen …i doldurun. – Lütfen … anlatın." },
-        { "de": "Ich soll … – Sie soll …", "tr": "…mem gerekiyor – …mesi gerekiyor (dünün kalıbı)" }
+        { "de": "Ich soll … – Sie soll …", "tr": "…mem gerekiyor – …mesi gerekiyor (dünün kalıbı)" },
+        { "de": "Sehr geehrte Damen und Herren – Mit freundlichen Grüßen", "tr": "Sayın Yetkili (kime yazdığını bilmediğin resmî yazının başı) – Saygılarımla (resmî yazının sonu)" }
       ],
       "gorev_cumleleri": [
         { "kart": "lx:Kindheit", "de": "Erzählen Sie bitte von Ihrer Kindheit.", "tr": "Lütfen çocukluğunuzu anlatın.",
@@ -344,7 +349,7 @@
             "sonraki": "n6", "uygun": true, "geri_bildirim_tr": "Çözüm önerdin: **Soll ich …?**" },
           { "de": "Ja, sie kommt morgen um zehn.", "tr": "Evet, yarın saat onda geliyor.",
             "accepted": ["Ja, sie kommt morgen um zehn.", "Ja, morgen um zehn kommt sie.", "Ja, sie kommt morgen um zehn Uhr.", "Ja, sie kommt morgen.", "Ja, das geht.", "Ja, morgen um zehn.", "Ja, sie kann morgen kommen.", "Ja, sie kann morgen um zehn kommen.", "Ja, morgen kann sie kommen.", "Ja, morgen um zehn Uhr.", "Ja, das kann sie."],
-            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Kısa ve açık." }
+            "sonraki": "n7", "uygun": true, "geri_bildirim_tr": "Kısa ve açık." }
         ]
       },
       {
@@ -354,12 +359,48 @@
         "secenekler": [
           { "de": "Gut. Bis morgen, Frau Huber!", "tr": "Tamam. Yarın görüşürüz Huber Hanım!",
             "accepted": ["Gut. Bis morgen, Frau Huber!", "Okay, bis morgen!", "Gut, danke. Bis morgen!", "Bis morgen, Frau Huber!", "Okay, danke. Bis morgen!", "Gut, das mache ich. Bis morgen!", "Okay, das mache ich. Bis morgen!", "Gut. Ich bringe es morgen. Bis morgen!", "Gut, ich bringe es morgen mit. Bis morgen!", "Okay, ich bringe es morgen. Bis morgen, Frau Huber!", "Vielen Dank. Bis morgen!"],
-            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Nazik bir kapanış." }
+            "sonraki": "n7", "uygun": true, "geri_bildirim_tr": "Nazik bir kapanış." }
+        ]
+      },
+      {
+        "id": "n7",
+        "de": "Moment, noch etwas! Wir haben ein neues Formular, auch für Sie. Ihre Adresse habe ich schon. Wie alt sind Sie, und woher kommen Sie?",
+        "tr": "Bir dakika, bir şey daha! Yeni bir formumuz var, sizin için de. Adresiniz bende var. Kaç yaşındasınız, nerelisiniz?",
+        "secenekler": [
+          { "de": "Ich bin {yas} Jahre alt. Ich komme aus {ulke}.", "tr": "Yaşım: {yas}. Memleketim: {ulke}.",
+            "accepted": ["Ich bin {yas} Jahre alt. Ich komme aus {ulke}.", "Ich bin {yas} Jahre alt und komme aus {ulke}.", "Ich komme aus {ulke}. Ich bin {yas} Jahre alt.", "Ich bin {yas}. Ich komme aus {ulke}.", "{yas} Jahre. Und ich komme aus {ulke}."],
+            "sonraki": "n8", "uygun": true, "geri_bildirim_tr": "Yaşını **Ich bin … Jahre alt** ile, memleketini **Ich komme aus …** ile verdin." },
+          { "de": "Meine Adresse ist Brunnengasse sieben.", "tr": "Adresim Brunnengasse 7.",
+            "accepted": ["Meine Adresse ist Brunnengasse sieben.", "Ich wohne in der Brunnengasse sieben.", "Brunnengasse sieben."],
+            "sonraki": "n7", "uygun": false, "geri_bildirim_tr": "Adresin formda zaten var. Huber Hanım yaşını ve memleketini soruyor." }
+        ]
+      },
+      {
+        "id": "n8",
+        "de": "Danke. Und Ihr Beruf? Und Ihr Familienstand: ledig oder verheiratet?",
+        "tr": "Teşekkürler. Peki mesleğiniz? Medeni durumunuz: bekâr mı, evli mi?",
+        "secenekler": [
+          { "de": "Ich bin {meslek}. Ich bin {aile}.", "tr": "Mesleğim: {meslek}. Medeni durumum: {aile}.",
+            "accepted": ["Ich bin {meslek}. Ich bin {aile}.", "Ich bin {meslek} und ich bin {aile}.", "Mein Beruf ist {meslek}. Ich bin {aile}.", "Beruf: {meslek}. Ich bin {aile}.", "Ich arbeite als {meslek}. Ich bin {aile}.", "Ich bin {meslek} von Beruf. Ich bin {aile}."],
+            "sonraki": "n8b", "uygun": true, "geri_bildirim_tr": "Kendin için **Ich bin …** dedin. Brandl Hanım için **sie** demiştin." },
+          { "de": "Sie war verheiratet.", "tr": "O evliydi.",
+            "accepted": ["Sie war verheiratet.", "Nein, sie war verheiratet.", "Sie ist jetzt allein."],
+            "sonraki": "n8", "uygun": false, "geri_bildirim_tr": "Huber Hanım şimdi seni soruyor, Brandl Hanım'ı değil. Kendin için **Ich bin …** de." }
+        ]
+      },
+      {
+        "id": "n8b",
+        "de": "Gut. Und welche Sprachen sprechen Sie? Das ist für Dr. Weber wichtig.",
+        "tr": "Güzel. Peki hangi dilleri konuşuyorsunuz? Bu, Dr. Weber için önemli.",
+        "secenekler": [
+          { "de": "Ich spreche {diller}. Deutsch lerne ich noch.", "tr": "Konuştuğum diller: {diller}. Almancayı hâlâ öğreniyorum.",
+            "accepted": ["Ich spreche {diller}. Deutsch lerne ich noch.", "Ich spreche {diller}.", "Ich spreche {diller} und ein bisschen Deutsch.", "Ich spreche {diller}. Ich lerne noch Deutsch.", "{diller}. Und ein bisschen Deutsch."],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Dillerini **Ich spreche …** ile söyledin. Formun bu kısmı da tamam." }
         ]
       },
       { "id": "n9", "de": "Bis morgen! Frau Brandl soll viel schlafen.", "tr": "Yarın görüşürüz! Brandl Hanım bol bol uyusun.", "son": true }
     ],
-    "kapanis_tr": "Komşunun formunu onun adına doldurdun: onun bilgilerini **ihr** ve **ihre** ile verdin."
+    "kapanis_tr": "Komşunun formunu onun adına doldurdun: onun bilgilerini **ihr** ve **ihre** ile verdin. Sonra kendi formun için yaşını, memleketini, mesleğini, medeni durumunu ve dillerini **ich** ile söyledin."
   },
   "okuma_yazma": {
     "tur": "yazma",
@@ -371,11 +412,11 @@
       { "id": "m1:46:o2", "kind": "detail", "q_tr": "Pichler Bey'in mesleği ne?", "opts": ["Apartman görevlisi", "Doktor", "Fırıncı"], "ans": 0, "kanit": [3] }
     ],
     "yazma": {
-      "gorev_tr": "Pichler Bey'in formunu doldur: adı, soyadı, doğum yeri, mesleği. Sonra onun hakkında iki üç cümle yaz (**sein**, **seine** ile).",
-      "ornek_de": "Vorname: Josef. Nachname: Pichler. Geburtsort: Wendlfing. Beruf: Hausmeister. Sein Vorname ist Josef. Er ist in Wendlfing geboren. Sein Beruf ist Hausmeister.",
-      "zorunlu": ["Sein", "Hausmeister"],
-      "accepted_kaliplar": ["Vorname: ___.", "Nachname: ___.", "Geburtsort: ___.", "Beruf: Hausmeister.", "Beruf: ___.", "Adresse: ___.", "Sein Vorname ist ___.", "Sein Nachname ist ___.", "Er ist in ___ geboren.", "Er ist in ___ aufgewachsen.", "Er ist in ___ geboren und hier aufgewachsen.", "Sein Beruf ist Hausmeister.", "Sein Beruf ist ___.", "Er ist Hausmeister.", "Er ist ___.", "Seine Adresse ist ___."],
-      "kontrol_tr": ["Formdaki dört alanı doldurdun mu?", "Erkek için **sein** ya da **seine** yazdın mı?", "Doğum yerini **Er ist in … geboren** ile yazdın mı?"]
+      "gorev_tr": "Pichler Bey'in formunu doldur: adı, soyadı, doğum yeri, mesleği. Sonra onun hakkında iki üç cümle yaz (**sein**, **seine** ile). Formu e-postayla gönderiyorsun, kime gittiğini bilmiyorsun. **Sehr geehrte Damen und Herren,** ile başla. **Mit freundlichen Grüßen** ile bitir.",
+      "ornek_de": "Sehr geehrte Damen und Herren, hier ist das Formular von Josef Pichler. Vorname: Josef. Nachname: Pichler. Geburtsort: Wendlfing. Beruf: Hausmeister. Sein Vorname ist Josef. Er ist in Wendlfing geboren. Sein Beruf ist Hausmeister. Mit freundlichen Grüßen, {name}",
+      "zorunlu": ["Sein", "Hausmeister", "Sehr geehrte Damen und Herren", "Mit freundlichen Grüßen"],
+      "accepted_kaliplar": ["Sehr geehrte Damen und Herren,", "Hier ist das Formular von ___.", "Hier ist das Formular für ___.", "Mit freundlichen Grüßen, ___", "Mit freundlichen Grüßen", "Vorname: ___.", "Nachname: ___.", "Geburtsort: ___.", "Beruf: Hausmeister.", "Beruf: ___.", "Adresse: ___.", "Sein Vorname ist ___.", "Sein Nachname ist ___.", "Er ist in ___ geboren.", "Er ist in ___ aufgewachsen.", "Er ist in ___ geboren und hier aufgewachsen.", "Sein Beruf ist Hausmeister.", "Sein Beruf ist ___.", "Er ist Hausmeister.", "Er ist ___.", "Seine Adresse ist ___."],
+      "kontrol_tr": ["Dört alanı doldurup doğum yerini **Er ist in … geboren** ile yazdın mı?", "Erkek için **sein** ya da **seine** yazdın mı?", "Notu **Sehr geehrte Damen und Herren,** ile açıp **Mit freundlichen Grüßen** ile kapattın mı?"]
     }
   },
   "gun_sinavi": {

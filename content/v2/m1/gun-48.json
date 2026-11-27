@@ -25,6 +25,8 @@
         { "de": "für dich – für mich – ohne dich – ohne mich – ohne …", "tr": "senin için – benim için – sensiz – bensiz – …sız" },
         { "de": "Ich vermisse dich. – Wir vermissen dich.", "tr": "Seni özlüyorum. – Seni özlüyoruz." },
         { "de": "Ich koche für …", "tr": "… için yemek yapıyorum." },
+        { "de": "Geh zum Arzt, denn du hast Fieber. – Bleib im Bett, denn du bist krank.", "tr": "Doktora git, çünkü ateşin var. – Yatakta kal, çünkü hastasın." },
+        { "de": "Lieber … – Liebe … – Viele Grüße", "tr": "Sevgili … (erkeğe) – Sevgili … (kadına) – Sevgiler (mesajın sonu)" },
         { "de": "… gefällt mir. – Kannst du mir … leihen?", "tr": "…yı beğeniyorum. – Bana … ödünç verebilir misin?" }
       ],
       "gorev_cumleleri": [
@@ -340,10 +342,12 @@
       { "id": "m1:48:o1", "kind": "detail", "q_tr": "Tobi ne soruyor?", "opts": ["Ne yapması gerektiğini", "Antrenmanın saatini", "Doktorun adresini"], "ans": 0, "kanit": [4] }
     ],
     "yazma": {
-      "gorev_tr": "Tobi'ye kısa bir cevap yaz. Geçmiş olsun de, iki öğüt ver ve onun için ne yapacağını söyle.",
-      "ornek_de": "Hallo Tobi! Gute Besserung! Trink viel Wasser und bleib im Bett. Ich koche heute Abend für dich.",
-      "zorunlu": ["Gute Besserung", "für dich"],
+      "gorev_tr": "Tobi'ye kısa bir cevap yaz. **Lieber Tobi,** ile başla. Geçmiş olsun de ve iki öğüt ver. Bir öğüdün nedenini **denn** ile söyle. Onun için ne yapacağını da yaz. **Viele Grüße** ile bitir.",
+      "ornek_de": "Lieber Tobi, gute Besserung! Trink viel Wasser und bleib im Bett. Geh zum Arzt, denn du hast Fieber. Ich koche heute Abend für dich. Viele Grüße, {name}",
+      "zorunlu": ["Gute Besserung", "für dich", "Lieber Tobi", "denn", "Viele Grüße"],
       "accepted_kaliplar": [
+        "Lieber Tobi,",
+        "Lieber Tobi!",
         "Hallo ___!",
         "Gute Besserung!",
         "Trink viel Wasser und bleib im Bett.",
@@ -355,12 +359,19 @@
         "Ich koche heute Abend für dich.",
         "Ich koche ___ für dich.",
         "Ich kann dir ___ bringen.",
-        "Wir vermissen dich."
+        "Wir vermissen dich.",
+        "Geh zum Arzt, denn ___.",
+        "Bleib im Bett, denn ___.",
+        "Trink viel Wasser, denn ___.",
+        "___, denn ___.",
+        "Viele Grüße, ___",
+        "Viele Grüße!",
+        "Viele Grüße"
       ],
       "kontrol_tr": [
-        "**Gute Besserung** yazdın mı?",
-        "Öğütler **Trink**, **Bleib** gibi başlıyor mu, **du** yok mu?",
-        "**für dich** ile onun için ne yapacağını yazdın mı?"
+        "**Lieber Tobi,** ile başladın mı? **Gute Besserung** yazdın mı?",
+        "Öğütler **Trink**, **Bleib** ile mi başlıyor? Nedende **du** gelir: **denn du hast …**",
+        "**für dich** ile ne yapacağını yazdın mı? Sonda **Viele Grüße** var mı?"
       ]
     }
   },
