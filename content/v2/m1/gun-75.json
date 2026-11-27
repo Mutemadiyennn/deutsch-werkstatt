@@ -1,0 +1,1444 @@
+{
+ "schema": 1,
+ "id": "m1:gun:75",
+ "day": 75,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Restoranda hesap: Zusammen oder getrennt?",
+ "goal_tr": "Restoranda masa ister, tavsiye sorar, hesabı ister ve birlikte mi ayrı mı ödeyeceğinizi söylersin.",
+ "can_do": {
+  "id": "cd:m1:75",
+  "tr": "Restoranda hesabı ister, ayrı öder ve bahşişi söylerim."
+ },
+ "unit": "u:a2:hizmet-2",
+ "arm": "pazar",
+ "place": "pl:marktplatz",
+ "characters": [
+  "ch:aksoy",
+  "ch:lechner",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic9/dilbilimci-h11.md; dilbilimci ONAY. okur (OD-9) bekliyor."
+ },
+ "dersler": [
+  "gr:a2-03:t5"
+ ],
+ "yeni_kartlar": [
+  "lx:ruhig",
+  "lx:kümmern",
+  "lx:versprechen",
+  "lx:fast",
+  "lx:bestimmt",
+  "lx:runter"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:75:h1",
+   "title_tr": "Cuma akşamı restoranda",
+   "kartlar": [
+    "lx:ruhig",
+    "lx:kümmern",
+    "lx:versprechen",
+    "lx:fast",
+    "lx:bestimmt",
+    "lx:runter"
+   ],
+   "kaliplar": [
+    {
+     "de": "Haben Sie einen ruhigen Tisch?",
+     "tr": "Sakin bir masanız var mı?"
+    },
+    {
+     "de": "Ich kümmere mich um … – Er kümmert sich um …",
+     "tr": "…la ben ilgilenirim. – …la o ilgileniyor."
+    },
+    {
+     "de": "Würdest du …? – Ich würde …",
+     "tr": "… yapar mısın? – … yapardım."
+    },
+    {
+     "de": "Ich verspreche es dir.",
+     "tr": "Sana söz veriyorum."
+    },
+    {
+     "de": "Wir essen im Gasthaus zur Vils.",
+     "tr": "Gasthaus zur Vils'te yiyoruz."
+    },
+    {
+     "de": "Zusammen oder getrennt? – Getrennt, bitte.",
+     "tr": "Birlikte mi, ayrı mı? – Ayrı, lütfen."
+    },
+    {
+     "de": "Zahlen, bitte! – Heute zahle ich. – Jeder zahlt selbst.",
+     "tr": "Hesap, lütfen! – Bugün ben ödüyorum. – Herkes kendi hesabını ödüyor."
+    },
+    {
+     "de": "Versprochen!",
+     "tr": "Söz!"
+    },
+    {
+     "de": "Komm runter!",
+     "tr": "Aşağı gel!"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:ruhig",
+     "de": "Haben Sie einen ruhigen Tisch für drei Personen?",
+     "tr": "Üç kişilik sakin bir masanız var mı?",
+     "accepted": [
+      "Haben Sie einen ruhigen Tisch für drei Personen?",
+      "Haben Sie bitte einen ruhigen Tisch für drei Personen?",
+      "Haben Sie einen ruhigen Tisch für drei?"
+     ]
+    },
+    {
+     "kart": "lx:ruhig",
+     "de": "Hier ist es schön ruhig. Die Speisekarte, bitte.",
+     "tr": "Burası güzel sakin. Menü, lütfen.",
+     "accepted": [
+      "Hier ist es schön ruhig. Die Speisekarte, bitte.",
+      "Hier ist es schön ruhig. Die Speisekarte, bitte!",
+      "Hier ist es sehr ruhig. Die Speisekarte, bitte."
+     ]
+    },
+    {
+     "kart": "lx:kümmern",
+     "de": "Ich kümmere mich um die Rechnung.",
+     "tr": "Hesapla ben ilgilenirim.",
+     "accepted": [
+      "Ich kümmere mich um die Rechnung.",
+      "Ich kümmere mich heute um die Rechnung.",
+      "Um die Rechnung kümmere ich mich."
+     ]
+    },
+    {
+     "kart": "lx:kümmern",
+     "de": "Würdest du dich um den Tisch kümmern?",
+     "tr": "Masayla sen ilgilenir misin?",
+     "accepted": [
+      "Würdest du dich um den Tisch kümmern?",
+      "Würdest du dich bitte um den Tisch kümmern?",
+      "Würdest du dich um einen Tisch kümmern?"
+     ]
+    },
+    {
+     "kart": "lx:versprechen",
+     "de": "Zahlen, bitte! Heute zahle ich, versprochen.",
+     "tr": "Hesap, lütfen! Bugün ben ödüyorum, söz.",
+     "accepted": [
+      "Zahlen, bitte! Heute zahle ich, versprochen.",
+      "Zahlen, bitte! Heute zahle ich, versprochen!",
+      "Zahlen, bitte. Heute zahle ich, versprochen."
+     ]
+    },
+    {
+     "kart": "lx:versprechen",
+     "de": "Ich verspreche es dir: Morgen bin ich pünktlich.",
+     "tr": "Sana söz veriyorum: yarın dakik olacağım.",
+     "accepted": [
+      "Ich verspreche es dir: Morgen bin ich pünktlich.",
+      "Ich verspreche dir: Morgen bin ich pünktlich.",
+      "Ich verspreche es dir, morgen bin ich pünktlich."
+     ]
+    },
+    {
+     "kart": "lx:fast",
+     "de": "Das macht fast dreißig Euro. – Machen Sie dreißig.",
+     "tr": "Neredeyse otuz avro ediyor. – Otuz olsun.",
+     "accepted": [
+      "Das macht fast dreißig Euro. – Machen Sie dreißig.",
+      "Das macht fast dreißig Euro. – Machen Sie dreißig, bitte.",
+      "Das macht fast 30 Euro. – Machen Sie 30."
+     ]
+    },
+    {
+     "kart": "lx:fast",
+     "de": "Der Kaffee ist fast kalt.",
+     "tr": "Kahve neredeyse soğumuş.",
+     "accepted": [
+      "Der Kaffee ist fast kalt.",
+      "Der Kaffee ist schon fast kalt.",
+      "Mein Kaffee ist fast kalt."
+     ]
+    },
+    {
+     "kart": "lx:bestimmt",
+     "de": "Was können Sie empfehlen? Die Bratwurst ist bestimmt gut.",
+     "tr": "Ne tavsiye edersiniz? Sosis kesin iyidir.",
+     "accepted": [
+      "Was können Sie empfehlen? Die Bratwurst ist bestimmt gut.",
+      "Was können Sie empfehlen? Die Bratwurst ist hier bestimmt gut.",
+      "Was können Sie uns empfehlen? Die Bratwurst ist bestimmt gut."
+     ]
+    },
+    {
+     "kart": "lx:bestimmt",
+     "de": "Ich würde bestimmt wieder hier essen.",
+     "tr": "Burada kesinlikle yine yerim.",
+     "accepted": [
+      "Ich würde bestimmt wieder hier essen.",
+      "Ich würde hier bestimmt wieder essen.",
+      "Hier würde ich bestimmt wieder essen."
+     ]
+    },
+    {
+     "kart": "lx:runter",
+     "de": "Wir gehen die Straße runter zum Bahnhof.",
+     "tr": "Caddeden aşağı istasyona yürüyoruz.",
+     "accepted": [
+      "Wir gehen die Straße runter zum Bahnhof.",
+      "Wir gehen die Straße runter bis zum Bahnhof.",
+      "Wir gehen zum Bahnhof die Straße runter."
+     ]
+    },
+    {
+     "kart": "lx:runter",
+     "de": "Kommst du runter? Die Bratwurst ist da!",
+     "tr": "Aşağı geliyor musun? Sosis geldi!",
+     "accepted": [
+      "Kommst du runter? Die Bratwurst ist da!",
+      "Kommst du runter? Die Bratwurst ist schon da!",
+      "Kommst du bitte runter? Die Bratwurst ist da!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cuma akşamı, Gasthaus zur Vils. Derya kapıda garsonla konuşuyor, sen de yanındasın.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Guten Abend! Haben Sie einen ruhigen Tisch für drei?",
+      "tr": "İyi akşamlar! Üç kişilik sakin bir masanız var mı?"
+     },
+     {
+      "r": "Kellner",
+      "de": "Ja, natürlich. Bitte kommen Sie mit.",
+      "tr": "Evet, tabii. Lütfen benimle gelin."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Tobi kommt bestimmt gleich. Würdest du ihn anrufen?",
+      "tr": "Tobi kesin birazdan gelir. Onu arar mısın?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, ich kümmere mich um Tobi.",
+      "tr": "Evet, Tobi işini ben hallederim."
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya senden ne istiyor?",
+     "opts": [
+      "Tobi'yi aramanı",
+      "Hesabı ödemeni",
+      "Menüyü okumanı"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:75:v1",
+  "title_tr": "Tobi'nin sözü",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "Kellner",
+    "sahne_tr": "Cuma akşamı, Gasthaus zur Vils. Ahşap masalar, kalabalık. Garson kapıda.",
+    "de": "Grüß Gott! Haben Sie reserviert?",
+    "tr": "Merhaba! Rezervasyonunuz var mı?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya öne çıkıyor.",
+    "de": "Nein, leider nicht. Einen Tisch für drei Personen, bitte.",
+    "tr": "Hayır, maalesef yok. Üç kişilik bir masa, lütfen."
+   },
+   {
+    "id": "s3",
+    "speaker": "Kellner",
+    "sahne_tr": "Garson köşedeki masayı gösteriyor.",
+    "de": "Bitte kommen Sie mit. Hier ist es ruhig.",
+    "tr": "Lütfen gelin. Burası sakin."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi montunu çıkarıp oturuyor.",
+    "de": "Ich habe so einen Hunger!",
+    "tr": "Öyle açım ki!"
+   },
+   {
+    "id": "s5",
+    "speaker": "Kellner",
+    "sahne_tr": "Garson elinde not defteriyle geliyor.",
+    "de": "Was darf es sein?",
+    "tr": "Ne arzu edersiniz?"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya menüyü kapatıyor.",
+    "de": "Was können Sie empfehlen?",
+    "tr": "Ne tavsiye edersiniz?"
+   },
+   {
+    "id": "s7",
+    "speaker": "Kellner",
+    "sahne_tr": "Garson gülümsüyor.",
+    "de": "Der Schweinebraten ist heute sehr gut.",
+    "tr": "Domuz rostosu bugün çok iyi."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi hemen karar veriyor.",
+    "de": "Dann nehme ich den Schweinebraten und ein Wasser.",
+    "tr": "O zaman ben domuz rostosu ve bir su alıyorum."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Bir saat sonra. Tabaklar boş. Tobi elini kaldırıyor.",
+    "de": "Zahlen, bitte!",
+    "tr": "Hesap, lütfen!"
+   },
+   {
+    "id": "s10",
+    "speaker": "Kellner",
+    "sahne_tr": "Garson cüzdanını açıyor.",
+    "de": "Zusammen oder getrennt?",
+    "tr": "Birlikte mi, ayrı mı?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi Derya'ya göz kırpıyor.",
+    "de": "Zusammen. Heute zahle ich, das habe ich versprochen!",
+    "tr": "Birlikte. Bugün ben ödüyorum, söz vermiştim!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya şaşırıyor.",
+    "de": "Wirklich? Danke, Tobi!",
+    "tr": "Gerçekten mi? Teşekkürler Tobi!"
+   },
+   {
+    "id": "s13",
+    "speaker": "Kellner",
+    "sahne_tr": "Garson hesap makinesine bakıyor.",
+    "de": "Das macht siebenundfünfzig Euro achtzig.",
+    "tr": "Elli yedi avro seksen ediyor."
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi parayı uzatıyor.",
+    "de": "Machen Sie sechzig. Stimmt so.",
+    "tr": "Altmış olsun. Üstü kalsın."
+   },
+   {
+    "id": "s15",
+    "speaker": "Kellner",
+    "sahne_tr": "Garson başını eğiyor.",
+    "de": "Vielen Dank! Einen schönen Abend noch.",
+    "tr": "Çok teşekkürler! İyi akşamlar."
+   },
+   {
+    "id": "s16",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülerek Tobi'ye bakıyor.",
+    "de": "Tobi, du kümmerst dich heute um alles!",
+    "tr": "Tobi, bugün her şeyle sen ilgileniyorsun!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15",
+     "s16"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu sahnede ne oluyor?",
+     "opts": [
+      "Ekip restoranda yiyor, Tobi hesabı ödüyor",
+      "Ekip restoranda yer bulamıyor",
+      "Derya hesabı ödüyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s9"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Masa kaç kişilik?",
+      "opts": [
+       "İki",
+       "Üç",
+       "Dört"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Hesap ne kadar?",
+      "opts": [
+       "Elli yedi seksen",
+       "Altmış",
+       "Elli"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s13"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi garsona kaç avro veriyor?",
+      "opts": [
+       "Elli sekiz",
+       "Altmış",
+       "Yetmiş"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s14"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s2",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "drei",
+       "zwei",
+       "vier"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s6",
+      "seviye": "orta",
+      "de": "Was können Sie ___?",
+      "accepted": [
+       "empfehlen",
+       "Empfehlen",
+       "empfehlen."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s14",
+      "seviye": "zor",
+      "banka": [
+       "Machen",
+       "Sie",
+       "sechzig",
+       "Stimmt",
+       "so",
+       "siebzig",
+       "zahlen"
+      ],
+      "accepted": [
+       "Machen Sie sechzig. Stimmt so.",
+       "machen sie sechzig stimmt so",
+       "Machen Sie sechzig. Stimmt so"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Zusammen oder getrennt?",
+       "zusammen oder getrennt",
+       "Zusammen oder getrennt"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Tobi zahlt für alle. Das Essen kostet fast sechzig Euro.",
+      "zorunlu": [
+       "zahlt",
+       "Euro"
+      ]
+     }
+    ],
+    "golge": [
+     "s10",
+     "s14"
+    ],
+    "cevapla": {
+     "id": "m1:75:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Başka bir akşam Ioana ile yiyorsun. Garson soruyor. Herkes kendi payını ödüyor.",
+     "prompt_de": "Zusammen oder getrennt?",
+     "accepted": [
+      "Getrennt, bitte. Ich zahle die Bratwurst und das Wasser.",
+      "Getrennt, bitte.",
+      "Getrennt, bitte. Ich hatte die Bratwurst und ein Wasser.",
+      "Getrennt. Ich zahle die Bratwurst und das Wasser.",
+      "Getrennt, bitte, jeder für sich.",
+      "Bitte getrennt."
+     ],
+     "why_tr": "Ayrı ödemek için **Getrennt, bitte** dersin, sonra ne yediğini söylersin."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:75:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Restoranın telesekreteri",
+   "ortam_tr": "Cumartesi için masa ayırtmak istiyorsun. Restoranı arıyorsun, telesekreter açılıyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, hier ist das Gasthaus zur Vils.",
+     "tr": "Merhaba, burası Gasthaus zur Vils."
+    },
+    {
+     "id": "c2",
+     "de": "Wir haben von Dienstag bis Sonntag ab elf Uhr offen.",
+     "tr": "Salıdan pazara saat on birden itibaren açığız."
+    },
+    {
+     "id": "c3",
+     "de": "Am Montag haben wir geschlossen.",
+     "tr": "Pazartesi kapalıyız."
+    },
+    {
+     "id": "c4",
+     "de": "Wenn Sie einen Tisch möchten, sprechen Sie bitte nach dem Ton.",
+     "tr": "Masa isterseniz lütfen sinyal sesinden sonra konuşun."
+    },
+    {
+     "id": "c5",
+     "de": "Sagen Sie bitte Ihren Namen, die Uhrzeit und wie viele Personen kommen.",
+     "tr": "Lütfen adınızı, saati ve kaç kişi geleceğini söyleyin."
+    },
+    {
+     "id": "c6",
+     "de": "Vielen Dank!",
+     "tr": "Çok teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Bu ne?",
+      "opts": [
+       "Restoranın telesekreteri",
+       "Radyo reklamı",
+       "Bir arkadaşın mesajı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Restoran hangi gün kapalı?",
+       "opts": [
+        "Pazartesi",
+        "Pazar",
+        "Salı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Restoran kaçta açılıyor?",
+       "opts": [
+        "Onda",
+        "On birde",
+        "On ikide"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c2"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "elf",
+        "zehn",
+        "zwölf"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Am Montag haben wir ___.",
+       "accepted": [
+        "geschlossen",
+        "Geschlossen",
+        "geschlossen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Am",
+        "Montag",
+        "haben",
+        "wir",
+        "geschlossen",
+        "Sonntag",
+        "offen"
+       ],
+       "accepted": [
+        "Am Montag haben wir geschlossen.",
+        "am montag haben wir geschlossen",
+        "Am Montag haben wir geschlossen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Sagen Sie bitte Ihren Namen, die Uhrzeit und wie viele Personen kommen.",
+        "sagen sie bitte ihren namen die uhrzeit und wie viele personen kommen",
+        "Sagen Sie bitte Ihren Namen die Uhrzeit und wie viele Personen kommen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kayıtta ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Am Montag ist das Gasthaus geschlossen. Es ist ab elf Uhr offen.",
+       "zorunlu": [
+        "Montag",
+        "elf"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:75:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Sinyal sesi geldi. Adını, cumartesi saat yediyi ve iki kişi olduğunuzu söyle.",
+      "prompt_de": "Bitte sprechen Sie jetzt.",
+      "accepted": [
+       "Guten Tag, hier ist {name}. Ich hätte gern einen Tisch am Samstag um sieben Uhr für zwei Personen.",
+       "Hallo, hier ist {name}. Einen Tisch für zwei Personen am Samstag um sieben, bitte.",
+       "Guten Tag, mein Name ist {name}. Am Samstag um sieben, zwei Personen, bitte.",
+       "Hier ist {name}. Ich möchte einen Tisch für zwei Personen am Samstag um sieben Uhr.",
+       "Guten Tag, {name} hier. Ich hätte gern einen Tisch für zwei am Samstag um sieben.",
+       "Hallo, hier ist {name}. Samstag, sieben Uhr, zwei Personen, bitte."
+      ],
+      "accepted_adsiz": [
+       "Guten Tag. Ich hätte gern einen Tisch am Samstag um sieben Uhr für zwei Personen.",
+       "Hallo. Einen Tisch für zwei Personen am Samstag um sieben, bitte.",
+       "Guten Tag. Am Samstag um sieben, zwei Personen, bitte.",
+       "Ich möchte einen Tisch für zwei Personen am Samstag um sieben Uhr.",
+       "Guten Tag. Ich hätte gern einen Tisch für zwei am Samstag um sieben.",
+       "Hallo. Samstag, sieben Uhr, zwei Personen, bitte."
+      ],
+      "why_tr": "Sırayla söyle: ad, gün ve saat, kişi sayısı."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:75:a1:e1",
+    "k": "pick",
+    "q_tr": "Pazartesi akşamı orada yemek istiyorsun. Olur mu?",
+    "opts": [
+     "Evet, on birden sonra.",
+     "Hayır, pazartesi kapalı.",
+     "Sadece öğlen."
+    ],
+    "ans": 1,
+    "why_tr": "Restoran pazartesi kapalı.",
+    "kanit": [
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:75:a2",
+   "tur": "radyo",
+   "title_tr": "Radyo: hafta sonu önerisi",
+   "ortam_tr": "Cuma akşamı eve dönerken arabada radyo açık.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Und jetzt etwas für das Wochenende.",
+     "tr": "Ve şimdi hafta sonu için bir öneri."
+    },
+    {
+     "id": "c2",
+     "de": "Am Sonntag um zwei Uhr kommt der Faschingszug.",
+     "tr": "Pazar saat ikide Faşing alayı geliyor."
+    },
+    {
+     "id": "c3",
+     "de": "Nach dem Zug gibt es im Gasthaus zur Vils Kaffee und Krapfen.",
+     "tr": "Alaydan sonra Gasthaus zur Vils'te kahve ve Krapfen var."
+    },
+    {
+     "id": "c4",
+     "de": "Wenn Sie mit Kindern kommen, zahlen die Kinder nichts.",
+     "tr": "Çocuklarla gelirseniz çocuklar hiçbir şey ödemiyor."
+    },
+    {
+     "id": "c5",
+     "de": "Das Gasthaus ist nur fünf Minuten vom Stadtplatz.",
+     "tr": "Gasthaus meydana sadece beş dakika."
+    },
+    {
+     "id": "c6",
+     "de": "Viel Spaß am Wochenende!",
+     "tr": "İyi hafta sonları!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne öneriyor?",
+      "opts": [
+       "Pazar günü alaydan sonra kahve ve Krapfen",
+       "Cumartesi bir konser",
+       "Yeni bir spor salonu"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Çocuklar ne ödüyor?",
+       "opts": [
+        "Yarı fiyat",
+        "Hiçbir şey",
+        "Tam fiyat"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Gasthaus meydana ne kadar uzak?",
+       "opts": [
+        "Beş dakika",
+        "On dakika",
+        "Yarım saat"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c5",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "fünf",
+        "zehn",
+        "zwei"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Wenn Sie mit Kindern kommen, zahlen die Kinder ___.",
+       "accepted": [
+        "nichts",
+        "Nichts",
+        "nichts."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Viel",
+        "Spaß",
+        "am",
+        "Wochenende",
+        "Sonntag",
+        "viele"
+       ],
+       "accepted": [
+        "Viel Spaß am Wochenende!",
+        "viel spaß am wochenende",
+        "Viel Spaß am Wochenende"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Wenn Sie mit Kindern kommen, zahlen die Kinder nichts.",
+        "wenn sie mit kindern kommen zahlen die kinder nichts",
+        "Wenn Sie mit Kindern kommen zahlen die Kinder nichts"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyoda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Am Sonntag ist der Faschingszug. Dann gibt es Kaffee und Krapfen.",
+       "zorunlu": [
+        "Sonntag",
+        "Kaffee"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:75:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana pazar için fikir soruyor. Alaydan sonra Gasthaus'ta kahve içmeyi öner, würde ile.",
+      "prompt_de": "Was machen wir am Sonntag nach dem Zug?",
+      "accepted": [
+       "Ich würde gern im Gasthaus zur Vils einen Kaffee trinken.",
+       "Ich würde gern einen Kaffee trinken, im Gasthaus zur Vils.",
+       "Ich würde gern Kaffee und Krapfen im Gasthaus essen.",
+       "Wir könnten im Gasthaus zur Vils Kaffee trinken.",
+       "Ich würde gern ins Gasthaus zur Vils gehen.",
+       "Ich würde gerne im Gasthaus einen Kaffee trinken."
+      ],
+      "why_tr": "Öneriyi böyle yaparsın: **Ich würde gern einen Kaffee trinken.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:75:a2:e1",
+    "k": "pick",
+    "q_tr": "Pazar günü alaydan sonra kahve içmek istiyorsun. Nereye gidebilirsin?",
+    "opts": [
+     "Meydana beş dakika uzaklıktaki Gasthaus'a",
+     "İstasyona",
+     "Ofise"
+    ],
+    "ans": 0,
+    "why_tr": "Radyo alaydan sonra Gasthaus zur Vils'te kahve ve Krapfen olduğunu söylüyor.",
+    "kanit": [
+     "c3",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:75:g1",
+   "de": "Zusammen oder getrennt?",
+   "dogru_img": "waiter with a wallet at a restaurant table with two guests",
+   "celdirici_img": [
+    "cook in a kitchen",
+    "waiter carrying plates",
+    "empty restaurant at night"
+   ]
+  },
+  {
+   "id": "m1:75:g2",
+   "de": "Hier ist es ruhig.",
+   "dogru_img": "quiet empty park bench in the morning",
+   "celdirici_img": [
+    "crowded street festival",
+    "busy train station",
+    "loud concert"
+   ]
+  },
+  {
+   "id": "m1:75:g3",
+   "de": "Versprochen!",
+   "dogru_img": "two people making a pinky promise",
+   "celdirici_img": [
+    "two people shaking hands goodbye",
+    "two people arguing",
+    "two people waving"
+   ]
+  },
+  {
+   "id": "m1:75:g4",
+   "de": "Er kümmert sich um die Kinder.",
+   "dogru_img": "father helping two children with homework",
+   "celdirici_img": [
+    "man working alone at a computer",
+    "man sleeping on a sofa",
+    "man jogging alone"
+   ]
+  },
+  {
+   "id": "m1:75:g5",
+   "de": "Komm runter!",
+   "dogru_img": "child on a tree branch, parent below calling",
+   "celdirici_img": [
+    "child sleeping in bed",
+    "child running on a beach",
+    "child reading a book"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:75:p1",
+  "title_tr": "Hesap: ayrı ayrı",
+  "durum_tr": "Restorandasın, Ioana ile yemek bitti. Sen sosis ve su aldın. Ayrı ödemek istiyorsunuz.",
+  "karsi": "Kellner",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "War alles in Ordnung?",
+    "tr": "Her şey yolunda mıydı?",
+    "secenekler": [
+     {
+      "de": "Ja, danke, sehr gut. Zahlen, bitte!",
+      "tr": "Evet, teşekkürler, çok iyiydi. Hesap, lütfen!",
+      "accepted": [
+       "Ja, danke, sehr gut. Zahlen, bitte!",
+       "Ja, danke, sehr gut. Zahlen bitte!",
+       "Ja, sehr gut, danke. Zahlen, bitte."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Önce teşekkür, sonra hesap."
+     },
+     {
+      "de": "Ja, sehr lecker. Die Rechnung, bitte.",
+      "tr": "Evet, çok lezzetliydi. Hesap, lütfen.",
+      "accepted": [
+       "Ja, sehr lecker. Die Rechnung, bitte.",
+       "Ja, sehr lecker! Die Rechnung, bitte.",
+       "Ja, es war sehr lecker. Die Rechnung, bitte."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **Die Rechnung, bitte** da olur."
+     },
+     {
+      "de": "Rechnung.",
+      "tr": "Hesap.",
+      "accepted": [
+       "Rechnung.",
+       "Rechnung!",
+       "Die Rechnung."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Tek kelime kaba duyulur. **Die Rechnung, bitte** ya da **Zahlen, bitte** de."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Wie bitte?",
+    "tr": "Efendim?",
+    "secenekler": [
+     {
+      "de": "Entschuldigung. Wir möchten zahlen, bitte.",
+      "tr": "Pardon. Ödemek istiyoruz, lütfen.",
+      "accepted": [
+       "Entschuldigung. Wir möchten zahlen, bitte.",
+       "Entschuldigung, wir möchten bitte zahlen.",
+       "Entschuldigung. Zahlen, bitte."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi kibar oldu."
+     },
+     {
+      "de": "Rechnung, Rechnung!",
+      "tr": "Hesap, hesap!",
+      "accepted": [
+       "Rechnung, Rechnung!",
+       "Die Rechnung!"
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "**bitte** ekle ve tam söyle: **Die Rechnung, bitte.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Gern. Zusammen oder getrennt?",
+    "tr": "Memnuniyetle. Birlikte mi, ayrı mı?",
+    "secenekler": [
+     {
+      "de": "Getrennt, bitte. Jeder zahlt selbst.",
+      "tr": "Ayrı, lütfen. Herkes kendi hesabını ödüyor.",
+      "accepted": [
+       "Getrennt, bitte. Jeder zahlt selbst.",
+       "Getrennt, bitte, jeder zahlt selbst.",
+       "Getrennt bitte. Jeder zahlt selbst."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Almanya'da ayrı ödemek çok normal."
+     },
+     {
+      "de": "Zusammen, bitte. Ich lade dich ein, Ioana.",
+      "tr": "Birlikte, lütfen. Seni ben davet ediyorum Ioana.",
+      "accepted": [
+       "Zusammen, bitte. Ich lade dich ein, Ioana.",
+       "Zusammen, bitte. Ich lade dich ein.",
+       "Zusammen. Ich lade dich heute ein, Ioana."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok nazik. Sen ödüyorsun."
+     },
+     {
+      "de": "Ja.",
+      "tr": "Evet.",
+      "accepted": [
+       "Ja.",
+       "Ja, bitte.",
+       "Ja, gern."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Seçmeli soru: **Zusammen** ya da **Getrennt** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Und was hatten Sie?",
+    "tr": "Peki siz ne almıştınız?",
+    "secenekler": [
+     {
+      "de": "Ich hatte die Bratwurst und ein Wasser.",
+      "tr": "Sosis ve bir su almıştım.",
+      "accepted": [
+       "Ich hatte die Bratwurst und ein Wasser.",
+       "Ich hatte eine Bratwurst und ein Wasser.",
+       "Die Bratwurst und ein Wasser."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **hatte** ile ne aldığını söyledin."
+     },
+     {
+      "de": "Die Bratwurst und ein Wasser, bitte.",
+      "tr": "Sosis ve bir su, lütfen.",
+      "accepted": [
+       "Die Bratwurst und ein Wasser, bitte.",
+       "Eine Bratwurst und ein Wasser.",
+       "Bratwurst und Wasser, bitte."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa da olur."
+     },
+     {
+      "de": "Ich bin Bratwurst.",
+      "tr": "Ben sosisim.",
+      "accepted": [
+       "Ich bin Bratwurst.",
+       "Ich bin die Bratwurst."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Komik oldu! **Ich hatte die Bratwurst** de."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Das macht dreizehn Euro sechzig.",
+    "tr": "On üç altmış ediyor.",
+    "secenekler": [
+     {
+      "de": "Machen Sie fünfzehn, bitte.",
+      "tr": "On beş olsun, lütfen.",
+      "accepted": [
+       "Machen Sie fünfzehn, bitte.",
+       "Machen Sie fünfzehn.",
+       "Fünfzehn, bitte."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Bahşişi öderken söyledin."
+     },
+     {
+      "de": "Hier sind fünfzehn Euro. Stimmt so.",
+      "tr": "Buyurun on beş avro. Üstü kalsın.",
+      "accepted": [
+       "Hier sind fünfzehn Euro. Stimmt so.",
+       "Hier sind 15 Euro. Stimmt so.",
+       "Fünfzehn Euro. Stimmt so."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **Stimmt so** üstü kalsın demek."
+     },
+     {
+      "de": "Dreizehn sechzig. Hier, genau.",
+      "tr": "On üç altmış. Buyurun, tam.",
+      "accepted": [
+       "Dreizehn sechzig. Hier, genau.",
+       "Hier sind dreizehn sechzig.",
+       "Hier sind dreizehn Euro sechzig."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Bahşiş zorunlu değil ama yaygın."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Vielen Dank! Schönen Abend noch!",
+    "tr": "Çok teşekkürler! İyi akşamlar!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Kibarca hesabı istedin, ayrı ödemeyi söyledin ve bahşişi öderken ekledin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Restoran hesabı",
+  "metin_de": "Gasthaus zur Vils, Tisch 4. Ein Schweinebraten: 14,50 Euro. Eine Bratwurst: 8,90 Euro. Zwei Wasser: 6,00 Euro. Zusammen: 29,40 Euro. Vielen Dank für Ihren Besuch! Am Montag haben wir geschlossen.",
+  "metin_tr": "Gasthaus zur Vils, masa 4. Bir domuz rostosu: 14,50 avro. Bir sosis: 8,90 avro. İki su: 6,00 avro. Toplam: 29,40 avro. Ziyaretiniz için teşekkürler! Pazartesi kapalıyız.",
+  "sorular": [
+   {
+    "kind": "gist",
+    "q_tr": "Bu metin ne?",
+    "opts": [
+     "Bir restoran hesabı",
+     "Bir menü",
+     "Bir davet"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     4
+    ],
+    "id": "m1:75:o1"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Toplam ne kadar?",
+    "opts": [
+     "29,40 avro",
+     "14,50 avro",
+     "6,00 avro"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ],
+    "id": "m1:75:o2"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Sosis kaç avro?",
+    "opts": [
+     "6,00",
+     "8,90",
+     "14,50"
+    ],
+    "ans": 1,
+    "kanit": [
+     2
+    ],
+    "id": "m1:75:o3"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Restoran pazartesi açık mı?",
+    "opts": [
+     "Evet",
+     "Hayır",
+     "Sadece akşam"
+    ],
+    "ans": 1,
+    "kanit": [
+     6
+    ],
+    "id": "m1:75:o4"
+   },
+   {
+    "id": "m1:75:o5",
+    "k": "guided_response",
+    "situation_tr": "Garsona otuz avro veriyorsun. Üstü kalsın.",
+    "prompt_de": "Das macht neunundzwanzig Euro vierzig.",
+    "accepted": [
+     "Dreißig, bitte. Stimmt so.",
+     "Machen Sie dreißig.",
+     "Hier sind dreißig Euro. Stimmt so.",
+     "Dreißig Euro, stimmt so.",
+     "Machen Sie dreißig Euro, bitte.",
+     "Stimmt so, dreißig, bitte."
+    ],
+    "why_tr": "Üstü kalsın derken **Stimmt so** dersin."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:75:s",
+  "maddeler": [
+   {
+    "id": "m1:75:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Haben Sie einen Tisch für vier Personen?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Haben Sie einen Tisch für vier Personen?",
+     "haben sie einen tisch für vier personen",
+     "Haben Sie einen Tisch für vier Personen"
+    ],
+    "why_tr": "Masa sorarken kişi sayısını söylersin: **für vier Personen**."
+   },
+   {
+    "id": "m1:75:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Ich kümmere mich morgen um das Geschenk.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich kümmere mich morgen um das Geschenk.",
+     "ich kümmere mich morgen um das geschenk",
+     "Ich kümmere mich morgen um das Geschenk"
+    ],
+    "why_tr": "**sich kümmern um** bir şeyle ilgilenmek."
+   },
+   {
+    "id": "m1:75:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Das Restaurant ist ruhig und nicht teuer.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Restaurant ist ruhig und nicht teuer.",
+     "das restaurant ist ruhig und nicht teuer",
+     "Das Restaurant ist ruhig und nicht teuer"
+    ],
+    "why_tr": "**ruhig** sakin demek."
+   },
+   {
+    "id": "m1:75:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Wir sind fast fertig mit dem Essen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir sind fast fertig mit dem Essen.",
+     "wir sind fast fertig mit dem essen",
+     "Wir sind fast fertig mit dem Essen"
+    ],
+    "why_tr": "**fast** neredeyse demek."
+   },
+   {
+    "id": "m1:75:s5",
+    "k": "tr_de",
+    "tr": "Hesap, lütfen!",
+    "accepted": [
+     "Die Rechnung, bitte!",
+     "Zahlen, bitte!",
+     "Die Rechnung bitte.",
+     "Ich würde gern zahlen."
+    ],
+    "why_tr": "Hesabı **Die Rechnung, bitte** ya da **Zahlen, bitte** ile istersin."
+   },
+   {
+    "id": "m1:75:s6",
+    "k": "tr_de",
+    "tr": "Ayrı ayrı ödüyoruz.",
+    "accepted": [
+     "Wir zahlen getrennt.",
+     "Wir bezahlen getrennt.",
+     "Getrennt, bitte.",
+     "Wir zahlen getrennt, bitte."
+    ],
+    "why_tr": "Ayrı: **getrennt**."
+   },
+   {
+    "id": "m1:75:s7",
+    "k": "tr_de",
+    "tr": "Sakin bir masa rica ediyoruz.",
+    "accepted": [
+     "Wir hätten gern einen ruhigen Tisch.",
+     "Wir hätten gerne einen ruhigen Tisch.",
+     "Wir hätten gern einen ruhigen Tisch, bitte.",
+     "Wir möchten einen ruhigen Tisch."
+    ],
+    "why_tr": "**wir** için **hätten** dersin: **Wir hätten gern einen ruhigen Tisch.**"
+   },
+   {
+    "id": "m1:75:s8",
+    "k": "tr_de",
+    "tr": "Söz veriyorum, yarın geliyorum.",
+    "accepted": [
+     "Ich verspreche es dir, morgen komme ich.",
+     "Ich verspreche es, morgen komme ich.",
+     "Versprochen, morgen komme ich.",
+     "Ich verspreche dir, ich komme morgen."
+    ],
+    "why_tr": "Söz vermek: **versprechen**."
+   },
+   {
+    "id": "m1:75:s9",
+    "k": "guided_response",
+    "situation_tr": "Garson soruyor. Herkes kendi payını ödüyor.",
+    "prompt_de": "Zusammen oder getrennt?",
+    "accepted": [
+     "Getrennt, bitte, jeder zahlt für sich.",
+     "Getrennt, bitte.",
+     "Bitte getrennt.",
+     "Getrennt, jeder zahlt selbst.",
+     "Wir zahlen getrennt, bitte.",
+     "Getrennt, danke."
+    ],
+    "why_tr": "Ayrı ödemek için **Getrennt, bitte**."
+   },
+   {
+    "id": "m1:75:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Das macht achtzehn Euro fünfzig.",
+    "speed": "normal",
+    "situation_tr": "Yirmi avro veriyorsun, üstü kalsın. Cevap ver.",
+    "accepted": [
+     "Machen Sie zwanzig, bitte.",
+     "Zwanzig, bitte. Stimmt so.",
+     "Hier sind zwanzig Euro. Stimmt so.",
+     "Machen Sie zwanzig.",
+     "Zwanzig Euro, stimmt so.",
+     "Stimmt so, zwanzig, bitte."
+    ],
+    "why_tr": "Bahşişi öderken söylersin: **Machen Sie zwanzig.**"
+   },
+   {
+    "id": "m1:75:s11",
+    "k": "guided_response",
+    "situation_tr": "Restorandasın. Garson geliyor. Başka bir şey istemiyorsun. Hesabı iste ve ayrı ödeyeceğinizi söyle.",
+    "prompt_de": "Möchten Sie noch etwas?",
+    "accepted": [
+     "Nein, danke. Die Rechnung, bitte. Wir zahlen getrennt.",
+     "Nein, danke. Zahlen, bitte. Getrennt, bitte.",
+     "Nein danke, wir möchten zahlen. Getrennt, bitte.",
+     "Nein, danke. Die Rechnung, bitte, getrennt.",
+     "Nein, danke. Wir zahlen getrennt, bitte.",
+     "Nein, danke. Ich würde gern zahlen. Getrennt, bitte."
+    ],
+    "why_tr": "Önce **Nein, danke**, sonra hesap, sonra **getrennt**."
+   }
+  ],
+  "sesli": [
+   "m1:75:s9",
+   "m1:75:s10"
+  ],
+  "dikte": [
+   "m1:75:s1",
+   "m1:75:s2",
+   "m1:75:s3",
+   "m1:75:s4"
+  ]
+ }
+}
