@@ -1,0 +1,709 @@
+{
+ "schema": 1,
+ "review": {
+  "status": "draft"
+ },
+ "note_tr": "A2 Kurs izlencesi (PM-143, PM-139/140/141, ölçü PM-145 md. 1). A2 = 20 ünite = 20 hafta: ünite N = hafta 8+N (Ü1 = 9. hafta, gün 57–63 … Ü20 = 28. hafta, gün 190–196). Konu alanı, dil bilgisi ve ses noktaları PM-139 tablosundan; yapabilme cümleleri, sözcük seçimi ve bütün metinler özgündür. Ders kitabının metni, alıştırması ve görseli kullanılmaz (PM-138).",
+ "kural_tr": [
+  "Her ünite kendi başına açılır: yalnız A1 çekirdeğine (curriculum/a1-kesin.json, 1.–56. gün) ve kendi tanıttığına dayanır. Önceki A2 ünitesinin sözcüğü gerekiyorsa ünite onu kendi tablosunda yeniden tanıtır.",
+  "Yazılan ünitenin haftası curriculum/a2-kesin.json'da yeniden kurulur ve `bagimsiz: true` taşır; dikiş ve hafta kapısı o haftada önceki A2 haftalarının kartlarını, derslerini ve çerçevesini bilinmez sayar (content/tools/dikis.ts `oncekiSayilir`).",
+  "Hafta düzeni: 1.–4. gün dört bölüm (anla → fark et → alıştır → kendin üret); 5. gün dil bilgisi durağı + ses + sınıfla/tablo/dönüştür; 6. gün pekiştirme (sözcük, yazım, DTZ biçimli görev: örnekle öğret → ipuçları → sınavdaki gibi) + uzun üretim; 7. gün hafta sonu testi (alan puanı: sözcük / dil bilgisi / iletişim).",
+  "Ölçü (PM-145 md. 1): gün ≈ 60–100 dk malzeme; ilk 20–25 dk kendi içinde tamam çekirdek (anla + fark et + bir üretim); her gün en az iki konuşma görevi (biri rol/prova, biri kendin hakkında) ve bir yazma üretimi; dil bilgisi noktası başına en az 30 madde (5.–6. gün).",
+  "Haftalık yeni sözcük ≈ 45–60; sözcükler kendi sözlüğümüzden (registry/lexicon), ünitenin konu alanına göre; eksik kart lex hattında yazılır.",
+  "B1 29. haftadan başlar (b1-kesin.json bugün 25. haftadan başlıyor; numaralar şimdi taşınmaz, B1 yazımından önce kaydırılır)."
+ ],
+ "hafta_duzeni": [
+  {
+   "gun": 1,
+   "rol": "A bölümü"
+  },
+  {
+   "gun": 2,
+   "rol": "B bölümü"
+  },
+  {
+   "gun": 3,
+   "rol": "C bölümü"
+  },
+  {
+   "gun": 4,
+   "rol": "D bölümü"
+  },
+  {
+   "gun": 5,
+   "rol": "dil bilgisi durağı + ses"
+  },
+  {
+   "gun": 6,
+   "rol": "pekiştirme + DTZ görevi + uzun üretim"
+  },
+  {
+   "gun": 7,
+   "rol": "hafta sonu testi"
+  }
+ ],
+ "eski_haftalar_tr": "Yazılmış eski A2 haftaları (9.–12.: #226, #229, #219, #220; 13.–16.: #251–#254) olduğu gibi inmez (PM-142 md. 5); her ünitenin `yeniden_kullanim` satırı neyin nereye taşınacağını söyler. Taşınan her parça yeni ünitenin bağımsızlık kuralına göre uyarlanır ve dilbilimci fark turundan geçer.",
+ "uniteler": [
+  {
+   "unite": 1,
+   "hafta": 9,
+   "gunler": [
+    57,
+    63
+   ],
+   "konu_tr": "Yeni kurs: tanışma ve ilk gün",
+   "sozcuk_alani_tr": "tanışma, kurs, duygular, kurallar",
+   "yapabilmeler_tr": [
+    "Yeni bir grupta kendimi tanıtırım ve du mu Sie mi diyeceğimi seçerim.",
+    "Kursun ya da işin ilk gününü anlatırım.",
+    "Özel bir günü (doğum günü, taşınma) kısaca anlatırım.",
+    "Sınıf ve kurs kurallarını anlar, bir kural sorarım.",
+    "Nasıl hissettiğimi söylerim ve başkasına sorarım.",
+    "Kısa bir hikâyeyi dinleyip ne olduğunu anlatırım.",
+    "Grupta kaç kişinin ne yaptığını alle, viele, einige, niemand ile söylerim."
+   ],
+   "dil_bilgisi_tr": [
+    "Perfekt: be-, er-, ver- ile başlayan fiiller (ge- almaz: besucht, erzählt, vergessen)",
+    "alle, viele, einige, niemand"
+   ],
+   "ses_tr": "sözcük vurgusu",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Sprechen Teil 1",
+    "gorev_tr": "kendini tanıt + ek sorular"
+   },
+   "yeniden_kullanim_tr": [
+    "9. hafta 58. gün (ge- almayan Perfekt) dil noktası ve halkaları → doğrudan Ü1'e taşınır (yeniden dilbilimci turu)",
+    "9. hafta 57. gün (ayrılan önekli Perfekt) → Ü1'de tekrar halkası",
+    "9. haftanın telefon/doktor randevusu günleri → Ü7 pekiştirmesi ya da Köy"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 2,
+   "hafta": 10,
+   "gunler": [
+    64,
+    70
+   ],
+   "konu_tr": "Çalışmak ve öğrenmek",
+   "sozcuk_alani_tr": "iş deneyimi, meslekler, eğitim, iş ilanı, kurs",
+   "yapabilmeler_tr": [
+    "Eski işimi anlatırım: nerede çalıştım, ne yapmak zorundaydım.",
+    "Neyi iyi yaptığımı ve neyi henüz yapamadığımı söylerim.",
+    "Meslek ve eğitim isteğimi söylerim.",
+    "Kısa bir iş ilanını anlarım ve bana uygun olanı bulurum.",
+    "Telefonda bir kurs hakkında bilgi sorarım.",
+    "Yardım ister ve yardım öneririm.",
+    "Kısa bir iş profili okur ve kendi profilimi yazarım."
+   ],
+   "dil_bilgisi_tr": [
+    "modal fiillerin Präteritum'u: konnte, musste, durfte, wollte (bütün kişiler)",
+    "-ung ile biten adlar (hep die)"
+   ],
+   "ses_tr": "o / u",
+   "hedef_yeni_sozcuk": 52,
+   "dtz": {
+    "bolum": "Lesen Teil 2 (kişiye uygun ilan; biri eşleşmez)",
+    "gorev_tr": "5 kişi, 6 ilan, birine hiçbiri"
+   },
+   "yeniden_kullanim_tr": [
+    "15. hafta 99.–100. gün (musste, konnte, wollte) → Ü2 yazıldı, eski günler yalnız Köy'e ek alıştırma olarak",
+    "15. hafta 101. gün (okul) → Ü12"
+   ],
+   "durum": "yazildi",
+   "tur_bekliyor_tr": [
+    "doğru/yanlış dinleme ve okuma → pick (stimmt / stimmt nicht)",
+    "kişiye uygun ilan eşleştirme → kişi başına pick (+ keine Anzeige / Hiçbiri)",
+    "bilgi boşluğu telefon rolü → prova",
+    "sınıfla (-ung, der/die/das) → pick",
+    "çekim tablosunu tamamla → gap dizisi",
+    "o/u en küçük çift → dikte kolay maddesi + gölge + pick",
+    "hafta sonu testinde alan puanı (sözcük / dil bilgisi / iletişim) → şemada alan yok; dağılım yazar raporunda"
+   ]
+  },
+  {
+   "unite": 3,
+   "hafta": 11,
+   "gunler": [
+    71,
+    77
+   ],
+   "konu_tr": "Boş zaman",
+   "sozcuk_alani_tr": "dernek, kurs planı, hobiler, restoran",
+   "yapabilmeler_tr": [
+    "Bir derneği ya da kursu tanıtırım.",
+    "Neden bir şeyi yaptığımı weil ile söylerim.",
+    "Neyi daha çok sevdiğimi söylerim.",
+    "Restoranda sipariş verir, bir sorunu kibarca söylerim.",
+    "Boş zaman planı yapar, birini davet ederim.",
+    "Kısa bir şiiri dinler, sesli okurum."
+   ],
+   "dil_bilgisi_tr": [
+    "basteln, sammeln gibi fiiller (ich bastle, ich sammle)",
+    "weil ile neden"
+   ],
+   "ses_tr": "uzun / kısa ünlü",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Sprechen Teil 3",
+    "gorev_tr": "birlikte bir şey planla"
+   },
+   "yeniden_kullanim_tr": [
+    "9. hafta 59.–60. gün (weil) → Ü3",
+    "11. hafta 75. gün (restoranda hesap) → Ü3 D bölümü"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 4,
+   "hafta": 12,
+   "gunler": [
+    78,
+    84
+   ],
+   "konu_tr": "Konut ve komşular",
+   "sozcuk_alani_tr": "ev ilanı, oda, eşyalar, komşu, şikâyet",
+   "yapabilmeler_tr": [
+    "Ev ilanını anlar, ev sahibine kısa mesaj yazarım.",
+    "Odamı tarif ederim: ne nerede duruyor.",
+    "Eşyaları nereye koyduğumu söylerim.",
+    "Komşuyla kısa konuşur, rica ederim.",
+    "Bir sorunu kibarca şikâyet ederim.",
+    "Apartman duyurusunu anlarım."
+   ],
+   "dil_bilgisi_tr": [
+    "iki hâlli yer edatları: in, an, auf, unter, über, vor, hinter, neben, zwischen (Wo? / Wohin?)",
+    "stehen/stellen, liegen/legen, hängen, stecken"
+   ],
+   "ses_tr": "qu",
+   "hedef_yeni_sozcuk": 52,
+   "dtz": {
+    "bolum": "Schreiben",
+    "gorev_tr": "ev sahibine kısa mesaj"
+   },
+   "yeniden_kullanim_tr": [
+    "10. hafta 64.–67. gün (Wo/Wohin, im/ins, stellen/legen, gestellt) → Ü4'e taşınır (dilbilimci fark turu)",
+    "10. hafta 68. gün (apartman kuralları) → Ü14"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 5,
+   "hafta": 13,
+   "gunler": [
+    85,
+    91
+   ],
+   "konu_tr": "Yeni iş",
+   "sozcuk_alani_tr": "iş yerinde önemli olanlar, iş görüşmesi, sözleşme, öğrenme uygulamaları",
+   "yapabilmeler_tr": [
+    "İşte neyin önemli olduğunu söylerim.",
+    "Basit bir iş görüşmesinde soruları cevaplarım.",
+    "İş sözleşmesindeki temel bilgileri anlarım.",
+    "İşte soru sorarım: welche, diese.",
+    "Bir öğrenme uygulamasını tavsiye ederim.",
+    "Birinin dediğini dass ile aktarırım."
+   ],
+   "dil_bilgisi_tr": [
+    "dass",
+    "welch-, dies-"
+   ],
+   "ses_tr": "cümle ezgisi",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Sprechen Teil 1",
+    "gorev_tr": "iş görüşmesi gibi kendini tanıt"
+   },
+   "yeniden_kullanim_tr": [
+    "13. hafta 85.–87. gün (dass) → Ü5",
+    "13. haftanın iş sözleşmesi/deneme süresi kartları → Ü5 sözcük alanı"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 6,
+   "hafta": 14,
+   "gunler": [
+    92,
+    98
+   ],
+   "konu_tr": "İşe gidiş",
+   "sozcuk_alani_tr": "ulaşım, trafik duyurusu, otel, resmî e-posta",
+   "yapabilmeler_tr": [
+    "İşe gidiş yollarının artısını ve eksisini söylerim.",
+    "Koşulu wenn ile söylerim.",
+    "Trafik duyurusunu anlarım.",
+    "Şaşırdığımı söylerim.",
+    "Oda ayırtır, onay yazısını anlarım.",
+    "Kısa bir resmî e-posta yazarım."
+   ],
+   "dil_bilgisi_tr": [
+    "wenn",
+    "tarih söylemek (am 3. Mai)"
+   ],
+   "ses_tr": "ei/ai, au, eu/äu",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Hören Teil 2",
+    "gorev_tr": "trafik ve hat duyurusu"
+   },
+   "yeniden_kullanim_tr": [
+    "11. hafta 71.–72. gün (wenn) → Ü6",
+    "13. haftanın trafik/anons kartları (Stau, Durchsage) → Ü6"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 7,
+   "hafta": 15,
+   "gunler": [
+    99,
+    105
+   ],
+   "konu_tr": "Sağlık",
+   "sozcuk_alani_tr": "sigorta, hasta formu, doktor, kibar soru",
+   "yapabilmeler_tr": [
+    "Sağlık sigortası kartını ve formunu anlarım.",
+    "Doktorun önerilerini anlarım.",
+    "Kibar ve dolaylı soru sorarım: Können Sie mir sagen, wann …?",
+    "Sigortadan bilgi ister, değişikliği bildiririm.",
+    "Nereden yardım alabileceğimi söylerim.",
+    "Bildiğimi ve bilmediğimi wissen ile söylerim."
+   ],
+   "dil_bilgisi_tr": [
+    "dolaylı W-sorusu",
+    "wissen"
+   ],
+   "ses_tr": "ng, nk",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Hören Teil 1",
+    "gorev_tr": "muayenehaneden sesli mesaj"
+   },
+   "yeniden_kullanim_tr": [
+    "12. hafta (doktora şikâyet, zum Arzt/beim Arzt) → Ü7",
+    "9. haftanın doktor randevusu günleri → Ü7 pekiştirme"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 8,
+   "hafta": 16,
+   "gunler": [
+    106,
+    112
+   ],
+   "konu_tr": "İş yerinde güvenlik",
+   "sozcuk_alani_tr": "mola, kurallar, uyarı levhaları, tavsiye",
+   "yapabilmeler_tr": [
+    "Mola ve dinlenme kurallarını anlarım.",
+    "Kibar tavsiye veririm: Du solltest …",
+    "Uyarı levhalarını anlarım.",
+    "Birini bir tehlikeye karşı uyarırım.",
+    "Kendimi nasıl hissettiğimi dönüşlü fiillerle söylerim.",
+    "Kısa bir öğüt metnini anlarım."
+   ],
+   "dil_bilgisi_tr": [
+    "dönüşlü fiiller (sich ausruhen, sich fühlen)",
+    "sollte"
+   ],
+   "ses_tr": "ich-sesi / ach-sesi",
+   "hedef_yeni_sozcuk": 48,
+   "dtz": {
+    "bolum": "Lesen Teil 3",
+    "gorev_tr": "kural ve uyarı metni"
+   },
+   "yeniden_kullanim_tr": [
+    "14. hafta 92.–93. gün (dönüşlü fiiller) → Ü8",
+    "16. hafta 108. gün (sollte) → Ü8",
+    "13. hafta 89. gün (vardiya, hastalık bildirimi) → Ü8 pekiştirme"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 9,
+   "hafta": 17,
+   "gunler": [
+    113,
+    119
+   ],
+   "konu_tr": "Eşyalar",
+   "sozcuk_alani_tr": "eşya tarifi, satış, pazarlık, hediye, kutlama",
+   "yapabilmeler_tr": [
+    "Bir eşyayı tarif ederim.",
+    "İkinci el bir eşyayı satar ya da pazarlık ederim.",
+    "İki teklifi karşılaştırırım.",
+    "Hediye seçer, birine hediye veririm.",
+    "Duygumu söylerim ve birini tebrik ederim.",
+    "Malzemeyi aus ile söylerim: aus Holz."
+   ],
+   "dil_bilgisi_tr": [
+    "belirli artikelle sıfat çekimi (Nom., Akk.)",
+    "aus (malzeme)"
+   ],
+   "ses_tr": "sonda -e",
+   "hedef_yeni_sozcuk": 52,
+   "dtz": {
+    "bolum": "Lesen Teil 1",
+    "gorev_tr": "satış ilanları"
+   },
+   "yeniden_kullanim_tr": [
+    "16. hafta 110. gün (davete cevap) → Ü9 kutlama günü",
+    "eski sıfat çekimi günleri yoksa yeni yazılır"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 10,
+   "hafta": 18,
+   "gunler": [
+    120,
+    126
+   ],
+   "konu_tr": "Şehirde",
+   "sozcuk_alani_tr": "yön, yol tarifi, şehir turu",
+   "yapabilmeler_tr": [
+    "Yol tarifini anlar ve veririm.",
+    "Kibarca yol sorarım: Wissen Sie, ob …?",
+    "Bir şehir turunu takip ederim.",
+    "Sevdiğim bir yeri tanıtırım.",
+    "an … vorbei, gegenüber von, durch, über ile yolu anlatırım.",
+    "Kısa bir şiiri okurum."
+   ],
+   "dil_bilgisi_tr": [
+    "an … vorbei, gegenüber von, durch, über",
+    "ob'lu dolaylı soru"
+   ],
+   "ses_tr": "sp, st",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Hören Teil 3",
+    "gorev_tr": "yol tarifi dinle"
+   },
+   "yeniden_kullanim_tr": [
+    "19. hafta (şehirde yürüyüş) kartları → Ü10"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 11,
+   "hafta": 19,
+   "gunler": [
+    127,
+    133
+   ],
+   "konu_tr": "Bilgi ve eğlence",
+   "sozcuk_alani_tr": "medya, kuşaklar, dizi, kısa haber",
+   "yapabilmeler_tr": [
+    "Medya alışkanlıklarımı anlatırım.",
+    "Bir şeyin artısını ve eksisini söylerim.",
+    "Kuşaklar arasındaki farkı anlatırım.",
+    "Bir diziyi ya da filmi kısaca anlatırım.",
+    "Kısa bir haberi anlarım.",
+    "Yanlış haberi fark ederim."
+   ],
+   "dil_bilgisi_tr": [
+    "belirsiz artikelle sıfat çekimi (Nom., Akk.)"
+   ],
+   "ses_tr": "sıfat sonları",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Lesen Teil 4",
+    "gorev_tr": "görüş metni"
+   },
+   "yeniden_kullanim_tr": [
+    "22. hafta (haber) kartları → Ü11"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 12,
+   "hafta": 20,
+   "gunler": [
+    134,
+    140
+   ],
+   "konu_tr": "Okul",
+   "sozcuk_alani_tr": "okul anıları, veli toplantısı, öğretmene e-posta",
+   "yapabilmeler_tr": [
+    "Okul anılarımı anlatırım.",
+    "Kısa bir röportajı anlarım.",
+    "Veli mektubunu anlarım.",
+    "Veli toplantısında soru sorarım.",
+    "Öğretmene kısa e-posta yazarım.",
+    "Bileşik sözcükleri parçalarından anlarım."
+   ],
+   "dil_bilgisi_tr": [
+    "bileşik adlar",
+    "edatlı fiiller (warten auf, sich interessieren für)"
+   ],
+   "ses_tr": "b, p",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Schreiben",
+    "gorev_tr": "öğretmene e-posta"
+   },
+   "yeniden_kullanim_tr": [
+    "15. hafta 101.–102. gün (okul, früher) → Ü12",
+    "14. hafta 94.–95. gün (sich freuen auf, worauf) → Ü12"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 13,
+   "hafta": 21,
+   "gunler": [
+    141,
+    147
+   ],
+   "konu_tr": "Bağımsız çalışmak",
+   "sozcuk_alani_tr": "iş yerleri, serbest meslek, iş duyurusu",
+   "yapabilmeler_tr": [
+    "İş yerinde kısa sohbet ederim.",
+    "Farklı iş yerlerini anlatırım.",
+    "Bir şeyi açıklarım: Das ist ein Mann, der …",
+    "İş yeri duyurusunu anlarım.",
+    "Kendi işini kuran birini anlatırım.",
+    "Bir sözcüğü tanımlarım."
+   ],
+   "dil_bilgisi_tr": [
+    "Relativsatz (Nom., Akk.)"
+   ],
+   "ses_tr": "-ig",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Lesen Teil 5",
+    "gorev_tr": "duyuru metninde boşluk"
+   },
+   "yeniden_kullanim_tr": [
+    "yeni yazılır"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 14,
+   "hafta": 22,
+   "gunler": [
+    148,
+    154
+   ],
+   "konu_tr": "Birlikte oturmak",
+   "sozcuk_alani_tr": "apartman, şikâyet, çöp ayırma",
+   "yapabilmeler_tr": [
+    "Komşunun şikâyetine cevap veririm.",
+    "Apartman kurallarını anlarım ve anlatırım.",
+    "Çöp ayırmayı anlatırım.",
+    "Emin olduğumu ya da olmadığımı söylerim.",
+    "Gelecek için werden ile söz veririm.",
+    "Dativ edatlarıyla yer ve zaman söylerim."
+   ],
+   "dil_bilgisi_tr": [
+    "Dativ edatları (mit, bei, von, seit, zu, nach, aus)",
+    "werden"
+   ],
+   "ses_tr": "d",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Sprechen Teil 3",
+    "gorev_tr": "komşuyla birlikte plan"
+   },
+   "yeniden_kullanim_tr": [
+    "10. hafta 68. gün (Hausordnung) → Ü14",
+    "12. hafta 80.–81. gün (mit, bei, von, seit) → Ü14"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 15,
+   "hafta": 23,
+   "gunler": [
+    155,
+    161
+   ],
+   "konu_tr": "Arabayla",
+   "sozcuk_alani_tr": "ehliyet, sürücü kursu, trafik",
+   "yapabilmeler_tr": [
+    "Ehliyet ve sürücü kursu hakkında konuşurum.",
+    "Bir kursa kayıt görüşmesi yaparım.",
+    "Tavsiye isterim.",
+    "Trafik kurallarını ve durumlarını anlatırım.",
+    "Kısa bir hikâye anlatırım.",
+    "Kızgınlığımı söylerim."
+   ],
+   "dil_bilgisi_tr": [
+    "deshalb",
+    "Akkusativ edatları (für, ohne, gegen, um, durch)"
+   ],
+   "ses_tr": "(PM-139: okunamadı; yazılmadan önce PM'e sorulur)",
+   "hedef_yeni_sozcuk": 48,
+   "dtz": {
+    "bolum": "Sprechen Teil 2",
+    "gorev_tr": "resmi anlat, deneyimini söyle"
+   },
+   "yeniden_kullanim_tr": [
+    "yeni yazılır"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 16,
+   "hafta": 24,
+   "gunler": [
+    162,
+    168
+   ],
+   "konu_tr": "Spor ve beslenme",
+   "sozcuk_alani_tr": "spor, kaza, acil servis, beslenme, tarif",
+   "yapabilmeler_tr": [
+    "Spor alışkanlığımı anlatırım.",
+    "Hal hatır sorarım.",
+    "Bir kazayı anlatırım.",
+    "Acil serviste kısa konuşurum.",
+    "Amacımı damit ile söylerim.",
+    "Bir yemek tarifini anlarım."
+   ],
+   "dil_bilgisi_tr": [
+    "trotzdem, damit",
+    "(sich) … lassen"
+   ],
+   "ses_tr": "r",
+   "hedef_yeni_sozcuk": 52,
+   "dtz": {
+    "bolum": "Hören Teil 4",
+    "gorev_tr": "görüş dinle"
+   },
+   "yeniden_kullanim_tr": [
+    "12. hafta (acil, sağlık) kartları → Ü16 pekiştirme"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 17,
+   "hafta": 25,
+   "gunler": [
+    169,
+    175
+   ],
+   "konu_tr": "Hizmetler",
+   "sozcuk_alani_tr": "karşılaştırma, sipariş, teslimat, şikâyet e-postası",
+   "yapabilmeler_tr": [
+    "Hizmetleri karşılaştırırım.",
+    "Değerlendirme yazılarını okurum.",
+    "Sipariş veririm, irsaliyeyi anlarım.",
+    "Teslimat firmasıyla konuşurum.",
+    "Şikâyet e-postası yazarım.",
+    "un- ile zıt anlam yaparım."
+   ],
+   "dil_bilgisi_tr": [
+    "Komparativ, Superlativ",
+    "un-"
+   ],
+   "ses_tr": "ünsüz kümeleri",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Schreiben",
+    "gorev_tr": "şikâyet e-postası"
+   },
+   "yeniden_kullanim_tr": [
+    "21. hafta (paket, teslimat) kartları → Ü17"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 18,
+   "hafta": 26,
+   "gunler": [
+    176,
+    182
+   ],
+   "konu_tr": "Para",
+   "sozcuk_alani_tr": "ödeme, banka, havale, kredi",
+   "yapabilmeler_tr": [
+    "Ödeme yollarını karşılaştırırım.",
+    "Bankada konuşurum.",
+    "Hesap özetini anlarım.",
+    "Havale formunu doldururum.",
+    "Bankamatiği kullanırım.",
+    "Kredi ve borç hakkında temel bilgileri anlarım."
+   ],
+   "dil_bilgisi_tr": [
+    "Dativ + Akkusativ alan fiiller (geben, schicken, zeigen)"
+   ],
+   "ses_tr": "cümle vurgusu",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Lesen Teil 3",
+    "gorev_tr": "banka bilgi metni"
+   },
+   "yeniden_kullanim_tr": [
+    "12. hafta 78.–79. gün (Ich gebe dem Kind einen Apfel; es ihr) → Ü18",
+    "20. hafta (banka) kartları → Ü18"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 19,
+   "hafta": 27,
+   "gunler": [
+    183,
+    189
+   ],
+   "konu_tr": "Yolculuk",
+   "sozcuk_alani_tr": "sevilen yer, şirket gezisi, gezi planı, havalimanı",
+   "yapabilmeler_tr": [
+    "Bir yeri tarif ederim.",
+    "Sevdiğim bir yeri anlatırım.",
+    "Bir gezi planlarım.",
+    "Sevincimi söylerim.",
+    "Havalimanı anonsunu anlarım.",
+    "Gezi hakkında kısa bir yazı yazarım."
+   ],
+   "dil_bilgisi_tr": [
+    "artikelsiz sıfat çekimi (Nom., Akk.)"
+   ],
+   "ses_tr": "b, d, g / p, t, k",
+   "hedef_yeni_sozcuk": 50,
+   "dtz": {
+    "bolum": "Hören Teil 2",
+    "gorev_tr": "havalimanı anonsu"
+   },
+   "yeniden_kullanim_tr": [
+    "21. hafta (yolculuk, otel) kartları → Ü19"
+   ],
+   "durum": "yazilacak"
+  },
+  {
+   "unite": 20,
+   "hafta": 28,
+   "gunler": [
+    190,
+    196
+   ],
+   "konu_tr": "Anılar ve dilekler",
+   "sozcuk_alani_tr": "geçmiş, hikâye, planlar",
+   "yapabilmeler_tr": [
+    "Geçmişimden bir anı anlatırım.",
+    "Bir hikâyeyi baştan sona anlatırım.",
+    "Planlarımı ve dileklerimi söylerim.",
+    "Perfekt ve Präteritum'u doğru yerde kullanırım.",
+    "Bir kişiyi ya da şeyi Relativsatz ile anlatırım.",
+    "A2 sonu deneme sınavına girerim."
+   ],
+   "dil_bilgisi_tr": [
+    "tekrar: Perfekt, Präteritum, Relativsatz"
+   ],
+   "ses_tr": "Partizip vurgusu",
+   "hedef_yeni_sozcuk": 45,
+   "dtz": {
+    "bolum": "DTZ deneme (dört beceri)",
+    "gorev_tr": "A2 sonu deneme sınavı"
+   },
+   "yeniden_kullanim_tr": [
+    "15. hafta 102.–103. gün (früher, hikâyeyi kısaltarak anlatmak) → Ü20",
+    "16. hafta (würde, wäre) → B1 hazırlığı / Köy"
+   ],
+   "durum": "yazilacak"
+  }
+ ]
+}

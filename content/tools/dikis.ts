@@ -47,6 +47,14 @@ export interface GunSatiri { gun: number; hafta: number; dosya: string; durum: "
 export interface DikisSonuc { satirlar: GunSatiri[]; ihlaller: Ihlal[]; toplam: number }
 
 export const haftaOf = (gun: number) => Math.ceil(gun / 7);
+/** PM-143 md. 1 (Kurs ünitesi kendi başına açılır): tablonun `haftalar[].bagimsiz: true` haftası yalnız A1'e (1.–56. gün) ve kendine
+ *  dayanır. Önceki A2 haftalarının kartları, dersleri ve çerçevesi o haftada bilinmez sayılır (dikiş ve hafta kapısı aynı kural). */
+export const A1_SON_GUN = 56;
+export function bagimsizHaftalar(t: { haftalar?: unknown[] }): Set<number> {
+  return new Set(dizi(t.haftalar).map(nesne).filter((h) => h.bagimsiz === true && typeof h.no === "number").map((h) => h.no as number));
+}
+/** `hafta` haftasının K(t)'sine önceki `gn` günü girer mi (bağımsız haftada yalnız A1 ve kendi haftası) */
+export const oncekiSayilir = (bag: ReadonlySet<number>, hafta: number, gn: number) => !bag.has(hafta) || gn <= A1_SON_GUN || haftaOf(gn) === hafta;
 const haftaGunleri = (h: number) => Array.from({ length: 7 }, (_, i) => (h - 1) * 7 + i + 1);
 /** Karşılaştırma için sade biçim (m1check.sade + üç nokta; ümlaut korunur) */
 const sade = (s: string) => s.toLowerCase().replace(/[.,!?;:„“"'»«()–…-]/g, " ").replace(/\s+/g, " ").trim();
@@ -173,6 +181,7 @@ export interface DikisGirdi {
 
 export function dikisDenetle(g: DikisGirdi): DikisSonuc {
   const tablo = tabloGunleri(g.tablo);
+  const bag = bagimsizHaftalar(g.tablo);
   const omurgaDers = new Map(dizi(g.omurga.gunler).map(nesne).filter((x) => typeof x.day === "number").map((x) => [x.day as number, yazilar(x.dersler)] as const));
   const dersIlk = new Map<string, number>();
   for (const [gun, ds] of [...omurgaDers].sort((a, b) => a[0] - b[0])) for (const x of ds) if (!dersIlk.has(x)) dersIlk.set(x, gun);
@@ -285,8 +294,8 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
     // (b) K(t)
     const ilkGun = (hafta - 1) * 7 + 1;
     const onceKart = new Set<string>(), onceDers = new Set<string>();
-    for (const [gn, ks] of tablo) if (gn < ilkGun) for (const k of ks) onceKart.add(k);
-    for (const [gn, ds] of omurgaDers) if (gn < ilkGun) for (const x of ds) onceDers.add(x);
+    for (const [gn, ks] of tablo) if (gn < ilkGun && oncekiSayilir(bag, hafta, gn)) for (const k of ks) onceKart.add(k);
+    for (const [gn, ds] of omurgaDers) if (gn < ilkGun && oncekiSayilir(bag, hafta, gn)) for (const x of ds) onceDers.add(x);
     const tablodanAlinan: number[] = [];
     for (let gn = ilkGun; gn < n; gn++) {
       const f = dosyaGun.get(gn);
@@ -300,6 +309,7 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
     const cerceveVar = cerceveHafta.size > 0;
     const onceGoster = new Set<string>();
     if (cerceveVar) for (let gn = 1; gn < n; gn++) {
+      if (!oncekiSayilir(bag, hafta, gn)) continue;
       const f = dosyaGun.get(gn);
       if (f) { for (const x of yazilar(f.dersler)) dersGoster(onceGoster, x); for (const h of dizi(f.halkalar)) halkaGoster(onceGoster, nesne(h)); }
       else for (const x of omurgaDers.get(gn) ?? []) dersGoster(onceGoster, x);
@@ -323,7 +333,7 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
         if (t === YUVA_AD || ic.has(j) || dis.has(j) || bildirilen.has(t)) return;
         const ok = cerceveOkunus(t); if (!ok.length) return;
         if (S.has(t)) return;
-        const kisitli = (i: string) => cerceveHafta.has(i) && cerceveHafta.get(i)! >= hafta;
+        const kisitli = (i: string) => cerceveHafta.has(i) && (cerceveHafta.get(i)! >= hafta || (bag.has(hafta) && cerceveHafta.get(i)! > haftaOf(A1_SON_GUN)));
         // çok okunuşlu biçim (ihr: lx:ihr / lx:ihr#2): okunuşlardan biri serbestse (listede yok ya da önceki haftanın)
         // cümlede o okunuş olabilir; makine anlamı ayırt edemez, kırmızı yalnız bütün okunuşlar kısıtlıyken (bilinçli; yanlış kırmızıdan kaçınır)
         if (!ok.every(kisitli)) return;

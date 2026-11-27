@@ -3,7 +3,7 @@
  "review": {
   "status": "draft"
  },
- "note_tr": "A2 kesin kelime tablosu (PM-094, İÇ-P): 9.–24. hafta (57.–168. gün) için hafta → kesin kart kimlikleri. Bağlayıcı olan HAFTADIR (PM 7087835391 md. 2): haftanın kümesi haftalar[].kartlar; gunler[] yalnız öneridir, hat kartları haftası içinde konuya göre günlere dağıtabilir (günlük adet omurgadaki gunler[].kelime.adet ±2, haftalık toplam sabit). Haftalar arası taşıma yasak: [İÇ-BEKLİYOR] tablo: … ile PM'e. Tablo omurgadan (haftalar[].kelime), k1.json sırasından ve sözlük kayıtlarından betikle üretilir, elle kart seçilmez; yalnız kimliksiz bekleyen yuvalar lex hattında konuya göre seçilen kartlarla doldurulur (kural 7, lex_doldurma). K(t) = A1 tablosu (ogretilmis_sayilan + a1-kesin gunler) + bu tablodaki önceki haftalar + aynı haftanın o adıma kadar dosyalarda tanıtılanlar. k1_disi_bekleyen: omurganın K1 dışı yuvası için sözlükte henüz kart yok (lex işi); kart yazılınca yalnız o yuva doldurulur, haftanın sayısı değişmez.",
+ "note_tr": "A2 kesin kelime tablosu (PM-094, İÇ-P): 9.–24. hafta (57.–168. gün) için hafta → kesin kart kimlikleri. Bağlayıcı olan HAFTADIR (PM 7087835391 md. 2): haftanın kümesi haftalar[].kartlar; gunler[] yalnız öneridir, hat kartları haftası içinde konuya göre günlere dağıtabilir (günlük adet omurgadaki gunler[].kelime.adet ±2, haftalık toplam sabit). Haftalar arası taşıma yasak: [İÇ-BEKLİYOR] tablo: … ile PM'e. Tablo omurgadan (haftalar[].kelime), k1.json sırasından ve sözlük kayıtlarından betikle üretilir, elle kart seçilmez; yalnız kimliksiz bekleyen yuvalar lex hattında konuya göre seçilen kartlarla doldurulur (kural 7, lex_doldurma). K(t) = A1 tablosu (ogretilmis_sayilan + a1-kesin gunler) + bu tablodaki önceki haftalar + aynı haftanın o adıma kadar dosyalarda tanıtılanlar. k1_disi_bekleyen: omurganın K1 dışı yuvası için sözlükte henüz kart yok (lex işi); kart yazılınca yalnız o yuva doldurulur, haftanın sayısı değişmez. PM-143 (27.11): A2 artık 20 ünitelik Kurs izlencesidir (curriculum/a2-kurs.json; ünite N = hafta 8+N). Yazılan ünitenin haftası bu tabloda yeniden kurulur ve `bagimsiz: true` taşır; öbür haftaların satırları eski izlencedir, ünite yazılınca değişir.",
  "kaynak": {
   "omurga": "content/v2/curriculum/omurga.json",
   "k1": "content/v2/curriculum/k1.json",
@@ -128,110 +128,73 @@
   },
   {
    "no": 10,
-   "gruplar": [
-    {
-     "grup": "ihtiyac:wohnen",
-     "sira": [
-      552,
-      558
-     ],
-     "omurga_adet": 7,
-     "aralikta_aday": 7,
-     "alinan": 7
-    },
-    {
-     "grup": "v1-A2",
-     "sira": [
-      402,
-      417
-     ],
-     "omurga_adet": 15,
-     "aralikta_aday": 15,
-     "alinan": 15
-    },
-    {
-     "grup": "siklik-A2",
-     "sira": [
-      770,
-      832
-     ],
-     "omurga_adet": 23,
-     "aralikta_aday": 23,
-     "alinan": 23
-    }
-   ],
+   "bagimsiz": true,
+   "kurs_unite": 2,
+   "not_tr": "PM-143: Kurs Ü2 \"Çalışmak ve öğrenmek\". Kartlar ünitenin konu alanından elle seçildi (eski sıklık dağılımının yerine); hafta yalnız A1'e ve kendine dayanır (bagimsiz). Kaynak: curriculum/a2-kurs.json.",
    "gunler": [
     64,
     70
    ],
-   "planlanan_yeni": 45,
-   "k1": 45,
-   "k1_disi_omurga": 0,
-   "k1_disi_kesin": 0,
-   "k1_disi_bekleyen": 0,
-   "kesin": 45,
-   "kesin_arti_bekleyen": 45,
-   "fark": 0,
-   "omurga_birikimli": 785,
-   "kart_sayisi": 39,
+   "planlanan_yeni": 52,
+   "kesin": 52,
+   "kart_sayisi": 52,
    "kartlar": [
-    "lx:Speisekarte",
-    "lx:Löffel",
-    "lx:Gabel",
-    "lx:Hunger",
-    "lx:salzig",
-    "lx:Pause",
+    "lx:Fabrik",
+    "lx:Lager",
+    "lx:früher",
+    "lx:Kellner",
+    "lx:Koch",
+    "lx:Fahrer",
     "lx:Schicht",
-    "lx:Kantine",
-    "lx:Drucker",
-    "lx:Verein",
-    "lx:Spiel",
-    "lx:Fitnessstudio",
-    "lx:Schwimmbad",
-    "lx:sich_freuen_(auf/über)",
-    "lx:sich_ärgern_(über)",
-    "lx:Zähler",
-    "lx:Briefkasten",
-    "lx:Klingel",
-    "lx:Mietvertrag",
-    "lx:Mülltonne",
-    "lx:Wasserhahn",
-    "lx:Steckdose",
-    "lx:fallen",
-    "lx:Ding",
-    "lx:hin",
-    "lx:sorgen",
-    "lx:rein",
-    "lx:fühlen",
-    "lx:Welt",
+    "lx:Stelle",
+    "lx:damals",
+    "lx:Erfahrung",
+    "lx:versuchen",
+    "lx:Computer",
+    "lx:putzen",
+    "lx:Elektriker",
+    "lx:Handwerker",
+    "lx:fleißig",
+    "lx:zuverlässig",
+    "lx:höflich",
+    "lx:Team",
+    "lx:geduldig",
+    "lx:hilfsbereit",
     "lx:schaffen",
-    "lx:Angst",
-    "lx:wahr",
-    "lx:genug",
-    "lx:setzen",
-    "lx:sonst",
-    "lx:wenig",
-    "lx:erinnern",
-    "lx:hoch",
-    "lx:hoffen"
+    "lx:Stellenanzeige",
+    "lx:Teilzeit",
+    "lx:Vollzeit",
+    "lx:verdienen",
+    "lx:Bewerbung",
+    "lx:Lebenslauf",
+    "lx:Zeugnis",
+    "lx:Praktikum",
+    "lx:Erzieherin",
+    "lx:Pflegerin",
+    "lx:Arbeitgeber",
+    "lx:Sprachkurs",
+    "lx:Kursleiterin",
+    "lx:Unterricht",
+    "lx:regelmäßig",
+    "lx:Weiterbildung",
+    "lx:Abschluss",
+    "lx:Möglichkeit",
+    "lx:anbieten",
+    "lx:bitten",
+    "lx:Übung",
+    "lx:Erklärung",
+    "lx:Geduld",
+    "lx:Bedeutung",
+    "lx:Meinung",
+    "lx:Beratung",
+    "lx:Chefin",
+    "lx:Studium",
+    "lx:Überstunde",
+    "lx:Probezeit"
    ],
-   "cerceve": [
-    "lx:niemand",
-    "lx:wegen",
-    "lx:unter",
-    "lx:gegen",
-    "lx:halt",
-    "lx:ne"
-   ],
-   "sozlukte_yok": [
-    "lx:Mietvertrag",
-    "lx:Mülltonne",
-    "lx:Wasserhahn",
-    "lx:Steckdose"
-   ],
-   "hafta_ici_takas": [],
-   "birikimli": 785,
-   "birikimli_fark": 0
+   "cerceve": [],
+   "sozlukte_yok": [],
+   "hafta_ici_takas": []
   },
   {
    "no": 11,
@@ -1530,54 +1493,50 @@
    "day": 64,
    "hafta": 10,
    "id": "om:gun:64",
-   "title_tr": "Nerede, nereye: auf dem Tisch, auf den Tisch",
+   "title_tr": "Eskiden ve bugün: eski işini anlatmak",
    "dersler": [
-    "gr:a2-02:t1"
+    "dn:10-modal-praeteritum"
    ],
-   "adet": 8,
-   "yuva": 9,
-   "kart": 8,
-   "cerceve_adet": 1,
-   "bekleyen": 0,
-   "derse_ait": 0,
+   "adet": 11,
+   "kart": 11,
    "kartlar": [
-    "lx:Speisekarte",
-    "lx:Löffel",
-    "lx:Gabel",
-    "lx:Hunger",
-    "lx:salzig",
-    "lx:Pause",
+    "lx:Fabrik",
+    "lx:Lager",
+    "lx:früher",
+    "lx:Kellner",
+    "lx:Koch",
+    "lx:Fahrer",
     "lx:Schicht",
-    "lx:Kantine"
+    "lx:Stelle",
+    "lx:damals",
+    "lx:Erfahrung",
+    "lx:versuchen"
    ],
-   "cerceve": [
-    "lx:unter"
-   ],
+   "cerceve": [],
    "sozlukte_yok": []
   },
   {
    "day": 65,
    "hafta": 10,
    "id": "om:gun:65",
-   "title_tr": "Kısa biçimler: im, ins, am, ans",
+   "title_tr": "Neyi iyi yaparsın? İşte güçlü yanların",
    "dersler": [
-    "gr:a2-02:t2"
+    "dn:10-gut-koennen"
    ],
-   "adet": 8,
-   "yuva": 8,
-   "kart": 8,
-   "cerceve_adet": 0,
-   "bekleyen": 0,
-   "derse_ait": 0,
+   "adet": 11,
+   "kart": 11,
    "kartlar": [
-    "lx:Drucker",
-    "lx:Verein",
-    "lx:Spiel",
-    "lx:Fitnessstudio",
-    "lx:Schwimmbad",
-    "lx:sich_freuen_(auf/über)",
-    "lx:sich_ärgern_(über)",
-    "lx:Zähler"
+    "lx:Computer",
+    "lx:putzen",
+    "lx:Elektriker",
+    "lx:Handwerker",
+    "lx:fleißig",
+    "lx:zuverlässig",
+    "lx:höflich",
+    "lx:Team",
+    "lx:geduldig",
+    "lx:hilfsbereit",
+    "lx:schaffen"
    ],
    "cerceve": [],
    "sozlukte_yok": []
@@ -1586,127 +1545,103 @@
    "day": 66,
    "hafta": 10,
    "id": "om:gun:66",
-   "title_tr": "Koymak ve durmak: Ich stelle das Fahrrad in den Keller",
+   "title_tr": "İş ilanı ve meslek isteği",
    "dersler": [
-    "gr:a2-02:t3"
+    "dn:10-beruf-wunsch"
    ],
-   "adet": 6,
-   "yuva": 7,
-   "kart": 6,
-   "cerceve_adet": 1,
-   "bekleyen": 0,
-   "derse_ait": 0,
+   "adet": 11,
+   "kart": 11,
    "kartlar": [
-    "lx:Briefkasten",
-    "lx:Klingel",
-    "lx:Mietvertrag",
-    "lx:Wasserhahn",
-    "lx:Steckdose",
-    "lx:fallen"
+    "lx:Stellenanzeige",
+    "lx:Teilzeit",
+    "lx:Vollzeit",
+    "lx:verdienen",
+    "lx:Bewerbung",
+    "lx:Lebenslauf",
+    "lx:Zeugnis",
+    "lx:Praktikum",
+    "lx:Erzieherin",
+    "lx:Pflegerin",
+    "lx:Arbeitgeber"
    ],
-   "cerceve": [
-    "lx:niemand"
-   ],
-   "sozlukte_yok": [
-    "lx:Mietvertrag",
-    "lx:Wasserhahn",
-    "lx:Steckdose"
-   ]
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 67,
    "hafta": 10,
    "id": "om:gun:67",
-   "title_tr": "Koymak ve asmak geçmişte: gestellt, gelegt, gehängt",
+   "title_tr": "Kurs bilgisi almak, yardım istemek",
    "dersler": [
-    "gr:a2-02:t4"
+    "dn:10-hilfe"
    ],
-   "adet": 6,
-   "yuva": 7,
-   "kart": 6,
-   "cerceve_adet": 1,
-   "bekleyen": 0,
-   "derse_ait": 0,
+   "adet": 9,
+   "kart": 9,
    "kartlar": [
-    "lx:Ding",
-    "lx:hin",
-    "lx:sorgen",
-    "lx:rein",
-    "lx:fühlen",
-    "lx:Welt"
+    "lx:Sprachkurs",
+    "lx:Kursleiterin",
+    "lx:Unterricht",
+    "lx:regelmäßig",
+    "lx:Weiterbildung",
+    "lx:Abschluss",
+    "lx:Möglichkeit",
+    "lx:anbieten",
+    "lx:bitten"
    ],
-   "cerceve": [
-    "lx:wegen"
-   ],
+   "cerceve": [],
    "sozlukte_yok": []
   },
   {
    "day": 68,
    "hafta": 10,
    "id": "om:gun:68",
-   "title_tr": "Apartman kuralları: Fahrräder dürfen nicht im Treppenhaus stehen",
+   "title_tr": "Durak: konnte mi, kann mı?",
    "dersler": [
-    "gr:a2-02:t5"
+    "dn:10-modal-tuzak",
+    "dn:10-ung",
+    "dn:10-ses-o-u"
    ],
-   "adet": 5,
-   "yuva": 6,
-   "kart": 5,
-   "cerceve_adet": 1,
-   "bekleyen": 0,
-   "derse_ait": 1,
+   "adet": 6,
+   "kart": 6,
    "kartlar": [
-    "lx:Mülltonne",
-    "lx:schaffen",
-    "lx:Angst",
-    "lx:wahr",
-    "lx:genug"
+    "lx:Übung",
+    "lx:Erklärung",
+    "lx:Geduld",
+    "lx:Bedeutung",
+    "lx:Meinung",
+    "lx:Beratung"
    ],
-   "cerceve": [
-    "lx:gegen"
-   ],
-   "sozlukte_yok": [
-    "lx:Mülltonne"
-   ]
+   "cerceve": [],
+   "sozlukte_yok": []
   },
   {
    "day": 69,
    "hafta": 10,
    "id": "om:gun:69",
-   "title_tr": "Randevuyu kaydırmak ve iptal etmek",
-   "dersler": [],
-   "adet": 4,
-   "yuva": 6,
-   "kart": 4,
-   "cerceve_adet": 2,
-   "bekleyen": 0,
-   "derse_ait": 0,
+   "title_tr": "Kime hangi ilan? Sınav gibi oku",
+   "dersler": [
+    "dn:10-dtz-ilan"
+   ],
+   "adet": 2,
+   "kart": 2,
    "kartlar": [
-    "lx:setzen",
-    "lx:sonst",
-    "lx:wenig",
-    "lx:erinnern"
+    "lx:Chefin",
+    "lx:Studium"
    ],
-   "cerceve": [
-    "lx:halt",
-    "lx:ne"
-   ],
+   "cerceve": [],
    "sozlukte_yok": []
   },
   {
    "day": 70,
    "hafta": 10,
    "id": "om:gun:70",
-   "title_tr": "Haftanın sınavı: randevuyu başka güne almak",
+   "title_tr": "Haftanın sınavı: deneme süresi bitiyor",
    "dersler": [],
    "adet": 2,
-   "yuva": 2,
    "kart": 2,
-   "cerceve_adet": 0,
-   "bekleyen": 0,
-   "derse_ait": 0,
    "kartlar": [
-    "lx:hoch",
-    "lx:hoffen"
+    "lx:Überstunde",
+    "lx:Probezeit"
    ],
    "cerceve": [],
    "sozlukte_yok": []
