@@ -87,12 +87,15 @@ describe("PM-137: kabukta tanıma", () => {
     dinliyor = true; sr.length = 0; basHata = null;
     expect(await listenOnce("de-DE", 5000).result).toEqual(["Frau"]);
     expect(sr).toEqual(["isListening", "stop", "start"]);
+    sr.length = 0;
+    expect(await listenOnce("de-DE", 5000).result).toEqual(["Frau"]);
+    expect(sr).toEqual(["isListening", "start"]);
   });
   it("hata: ham metin tanılamaya yazılır", async () => {
     const { listenOnce, taniOku } = await import("./speech.ts");
     basHata = "Keine Sprache erkannt";
     await expect(listenOnce("de-DE", 5000).result).rejects.toThrow("Keine Sprache erkannt");
-    expect(taniOku().hata).toMatch(/^\d\d-\d\dT\d\d:\d\d yerel: Keine Sprache erkannt$/);
+    expect(taniOku().hata).toMatch(/^\d\d-\d\dT\d\d:\d\d UTC yerel: Keine Sprache erkannt$/);
     basHata = null;
   });
 });

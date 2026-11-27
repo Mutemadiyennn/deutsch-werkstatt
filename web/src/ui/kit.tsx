@@ -132,9 +132,14 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
   );
 }
 
-/** PM-132 md. 2b: dinlerken konuşanın adı ve rengi (metin kapalıyken de); renk sahnedeki sırasından, aynı sahnede iki konuşan aynı rengi almaz */
-export function KonusanRozet({ kim, kimler }: { kim?: string; kimler: (string | undefined)[] }) {
-  return <p class="konusan" data-test="konusan" aria-live="polite">{kim && <><i data-i={[...new Set(kimler)].indexOf(kim) % 6} />{konusanAdi(kim)}</>}</p>;
+/**
+ * PM-132 md. 2b: dinlerken konuşanın adı ve rengi (metin kapalıyken de); renk sahnedeki sırasından, aynı sahnede iki konuşan
+ * aynı rengi almaz. `gizle`: sonra sorulacak soruların metni; ad orada geçiyorsa cevabı önceden vermesin diye "Konuşan N"
+ * (RQ-Ş18; inceleme #274 Ö-3). aria-live yok: ekran okuyucu adı diyalog sesinin üstüne okumasın (Ö-2)
+ */
+export function KonusanRozet({ kim, kimler, gizle = "" }: { kim?: string; kimler: (string | undefined)[]; gizle?: string }) {
+  const i = [...new Set(kimler)].indexOf(kim), ad = kim ? konusanAdi(kim) : "";
+  return <p class="konusan" data-test="konusan">{kim && <><i data-i={i % 6} />{ad.split(/[\s„“"]+/).some((w) => w.length > 2 && gizle.includes(w)) ? `Konuşan ${i + 1}` : ad}</>}</p>;
 }
 
 /* ---------- Geri bildirim bandı: renk + titreşim + kısa Türkçe açıklama ---------- */

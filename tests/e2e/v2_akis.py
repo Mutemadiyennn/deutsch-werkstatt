@@ -140,6 +140,10 @@ def main():
                 kutu = pg.evaluate("() => { const r = document.querySelector('[data-test=akis-mikrofon] [data-test=mic-hata]').getBoundingClientRect(); return [r.left, r.right, innerWidth]; }")
                 check(kutu[0] >= 0 and kutu[1] <= kutu[2], f"mikrofon hata kutusu ekranın içinde (sol/sağ/genişlik {kutu})")
                 shot(pg, f"akis-mikrofon-hata-{sema}", full=False)
+                # klavyeyle de başlar (yalnız click gelir; inceleme #274 Ö-8)
+                pg.focus(mic); pg.keyboard.press("Enter"); pg.wait_for_timeout(300)
+                check(pg.get_attribute(mic, "aria-pressed") == "true" and pg.evaluate("window.__srDur") == 1, "klavye (Enter) kaydı başlatır")
+                pg.click(mic); pg.wait_for_timeout(300)
                 pg.evaluate("window.__srBekle = 0")
             b.close(); srv.shutdown(); finish(); return
         # bayrak PR'ı md. 7: Bugün (seanslar) — bayraklı günde Bahçe adımı akışa gider

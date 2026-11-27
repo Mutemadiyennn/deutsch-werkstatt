@@ -355,7 +355,7 @@ export function sttHataTuru(e: unknown): SttHata {
   return "diger";
 }
 export const STT_HATA_TR: Record<SttHata, string> = {
-  izin: "Mikrofon izni yok. iPhone'da Einstellungen → Datenschutz & Sicherheit → Mikrofon ve Spracherkennung altında uygulamayı aç.",
+  izin: "Mikrofon izni yok. iPhone'da Einstellungen → Datenschutz & Sicherheit → Mikrofon ve Spracherkennung listelerinde bu uygulamanın anahtarını aç.",
   mesgul: "Mikrofonu başka bir uygulama kullanıyor (arama, kayıt, başka sekme). Onu kapatıp tekrar dene.",
   sessiz: "Ses gelmedi. Telefonu ağzına yaklaştır, biraz daha yüksek sesle söyle ve tekrar dene.",
   hizmet: "Konuşma tanıma şu an kullanılamıyor. iPhone'da Einstellungen → Allgemein → Tastatur → Diktierfunktion açık olmalı ve internet bağlı olmalı. Şimdilik yazarak cevapla.",
@@ -363,7 +363,7 @@ export const STT_HATA_TR: Record<SttHata, string> = {
   diger: "Mikrofon kullanılamadı. Tekrar dene ya da yazarak cevapla."
 };
 /** Öğrenciye görünen metin; "diger"de ham metin de yazılır (ekran görüntüsüyle iletilebilsin; PM-137 md. 1) */
-export const sttHataMetni = (e: unknown) => { const t = sttHataTuru(e); return t === "diger" ? `${STT_HATA_TR.diger} (Kod: ${hamHata(e).slice(0, 60)})` : STT_HATA_TR[t]; };
+export const sttHataMetni = (e: unknown) => { const t = sttHataTuru(e); return t === "diger" ? `${STT_HATA_TR.diger} (Kod: ${hamHata(e).slice(0, 100)})` : STT_HATA_TR[t]; };
 
 /** Almanca konuşma tanıma: olası metinleri döndürür (en iyi ilk). Desteklenmiyorsa hata fırlatır; arayüz yazarak cevaba geçer. */
 export function listenOnce(lang = "de-DE", maxMs = 9000): { result: Promise<string[]>; stop: () => void } {
@@ -392,7 +392,7 @@ export function listenOnce(lang = "de-DE", maxMs = 9000): { result: Promise<stri
           const r: any = await Promise.race([bas, sure]);
           return ((r && r.matches) || []) as string[];
         } finally { clearTimeout(zaman); }
-      } catch (e) { taniYaz("hata", `${new Date().toISOString().slice(5, 16)} yerel: ${hamHata(e)}`); throw e; } finally { listening = false; }
+      } catch (e) { taniYaz("hata", `${new Date().toISOString().slice(5, 16)} UTC yerel: ${hamHata(e)}`); throw e; } finally { listening = false; }
     })();
     return { result, stop: () => { try { N.stop?.(); } catch {} } };
   }
@@ -403,7 +403,7 @@ export function listenOnce(lang = "de-DE", maxMs = 9000): { result: Promise<stri
   const result = new Promise<string[]>((res, rej) => {
     let got: string[] = [];
     rec.onresult = (e: any) => { const r = e.results[0]; got = Array.from({ length: r.length }, (_, i) => r[i].transcript as string); };
-    rec.onerror = (e: any) => { listening = false; clearTimeout(to); taniYaz("hata", `${new Date().toISOString().slice(5, 16)} tarayıcı: ${e.error}`); e.error === "no-speech" ? res([]) : rej(new Error(e.error || "stt_error")); };
+    rec.onerror = (e: any) => { listening = false; clearTimeout(to); taniYaz("hata", `${new Date().toISOString().slice(5, 16)} UTC tarayıcı: ${e.error}`); e.error === "no-speech" ? res([]) : rej(new Error(e.error || "stt_error")); };
     rec.onend = () => { listening = false; clearTimeout(to); res(got); };
   });
   listening = true;

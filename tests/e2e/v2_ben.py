@@ -118,6 +118,8 @@ def main():
         # PM-142 md. 2.4: Ben'in en altında Tanılama; tek ekranda kabuk, sesler, son sahne, son tanıma hatası
         pg.goto(base + "#/ben"); pg.wait_for_selector("[data-test=tanilama]")
         son = pg.evaluate("[...document.querySelectorAll('[data-test=ben] > *')].pop()?.dataset.test")
+        sh = pg.evaluate("document.querySelector('[data-test=tanilama] summary').getBoundingClientRect().height")
+        check(sh >= 44, f"Tanılama açma satırı ≥ 44 px ({sh})")
         pg.click("[data-test=tanilama] summary"); t = pg.inner_text("[data-test=tani-satir]")
         check(son == "tanilama" and all(x in t for x in ("Kabuk: yok", "Ses yolu:", "Almanca sesler", "Son sahne: henüz yok", "Tanıma:", "son hata: yok")), f"Ben → en altta Tanılama, dört satır ({son}, {t!r})")
         no_overflow(pg, "Tanılama açık"); shot(pg, "ben-tanilama", full=False)
