@@ -1,0 +1,2213 @@
+{
+ "schema": 1,
+ "id": "m1:gun:67",
+ "day": 67,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Kurs bilgisi almak, yardım istemek",
+ "goal_tr": "Bir kurs ilanını okur, kurs bürosunu arayıp kaydı, belgeyi ve yeri sorarsın. **Kannst du mir helfen?** ile yardım ister, **Soll ich dir helfen?** ile yardım önerirsin.",
+ "can_do": {
+  "id": "cd:m1:67",
+  "tr": "Telefonda bir kurs hakkında bilgi sorar, anlamadığımda yardım ister, başkasına yardım öneririm."
+ },
+ "unit": "u:m1:67",
+ "arm": "pazar",
+ "place": "pl:sprachkurs",
+ "characters": [
+  "ch:wimmer",
+  "ch:aksoy",
+  "ch:lechner",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "dn:10-hilfe"
+ ],
+ "yeni_kartlar": [
+  "lx:Sprachkurs",
+  "lx:Kursleiterin",
+  "lx:Unterricht",
+  "lx:regelmäßig",
+  "lx:Weiterbildung",
+  "lx:Abschluss",
+  "lx:Möglichkeit",
+  "lx:anbieten",
+  "lx:bitten"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:67:h1",
+   "title_tr": "Kursta",
+   "kartlar": [
+    "lx:Sprachkurs",
+    "lx:Kursleiterin",
+    "lx:Unterricht",
+    "lx:regelmäßig"
+   ],
+   "kaliplar": [
+    {
+     "de": "einen Sprachkurs machen – Ich mache einen Sprachkurs. – Machst du …?",
+     "tr": "dil kursuna gitmek – Bir dil kursuna gidiyorum. – … yapıyor musun?"
+    },
+    {
+     "de": "Der Unterricht ist am … – Wann fängt der Unterricht an?",
+     "tr": "Ders …de. – Ders ne zaman başlıyor?"
+    },
+    {
+     "de": "Ich habe eine Frage. – Ich habe eine Frage zum … – Bitte rufen Sie mich zurück.",
+     "tr": "Bir sorum var. – … hakkında bir sorum var. – Lütfen beni geri arayın."
+    },
+    {
+     "de": "zum Unterricht kommen – regelmäßig kommen",
+     "tr": "derse gelmek – düzenli gelmek"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Sprachkurs",
+     "de": "Ich mache einen Sprachkurs am Abend.",
+     "tr": "Akşamları bir dil kursuna gidiyorum.",
+     "accepted": [
+      "Ich mache einen Sprachkurs am Abend.",
+      "Ich mache am Abend einen Sprachkurs.",
+      "Am Abend mache ich einen Sprachkurs."
+     ]
+    },
+    {
+     "kart": "lx:Sprachkurs",
+     "de": "Ich habe eine Frage zum Sprachkurs.",
+     "tr": "Dil kursuyla ilgili bir sorum var.",
+     "accepted": [
+      "Ich habe eine Frage zum Sprachkurs.",
+      "Ich habe eine Frage zu dem Sprachkurs.",
+      "Ich habe noch eine Frage zum Sprachkurs."
+     ]
+    },
+    {
+     "kart": "lx:Sprachkurs",
+     "de": "Früher konnte ich keinen Sprachkurs machen.",
+     "tr": "Eskiden dil kursuna gidemiyordum.",
+     "accepted": [
+      "Früher konnte ich keinen Sprachkurs machen.",
+      "Ich konnte früher keinen Sprachkurs machen.",
+      "Früher konnte ich keinen Sprachkurs besuchen."
+     ]
+    },
+    {
+     "kart": "lx:Kursleiterin",
+     "de": "Unsere Kursleiterin ist sehr geduldig.",
+     "tr": "Kurs öğretmenimiz çok sabırlı.",
+     "accepted": [
+      "Unsere Kursleiterin ist sehr geduldig.",
+      "Unsere Kursleiterin ist geduldig.",
+      "Die Kursleiterin ist sehr geduldig."
+     ]
+    },
+    {
+     "kart": "lx:Kursleiterin",
+     "de": "Wir können die Kursleiterin fragen.",
+     "tr": "Kurs öğretmenine sorabiliriz.",
+     "accepted": [
+      "Wir können die Kursleiterin fragen.",
+      "Wir können doch die Kursleiterin fragen.",
+      "Wir können auch die Kursleiterin fragen."
+     ]
+    },
+    {
+     "kart": "lx:Unterricht",
+     "de": "Der Unterricht ist am Dienstag und am Donnerstag.",
+     "tr": "Ders salı ve perşembe günleri.",
+     "accepted": [
+      "Der Unterricht ist am Dienstag und am Donnerstag.",
+      "Der Unterricht ist am Dienstag und Donnerstag.",
+      "Am Dienstag und am Donnerstag ist der Unterricht."
+     ]
+    },
+    {
+     "kart": "lx:Unterricht",
+     "de": "Wann fängt der Unterricht an?",
+     "tr": "Ders ne zaman başlıyor?",
+     "accepted": [
+      "Wann fängt der Unterricht an?",
+      "Wann fängt denn der Unterricht an?",
+      "Um wie viel Uhr fängt der Unterricht an?"
+     ]
+    },
+    {
+     "kart": "lx:Unterricht",
+     "de": "Gestern konnte ich nicht zum Unterricht kommen.",
+     "tr": "Dün derse gelemedim.",
+     "accepted": [
+      "Gestern konnte ich nicht zum Unterricht kommen.",
+      "Ich konnte gestern nicht zum Unterricht kommen.",
+      "Gestern konnte ich leider nicht zum Unterricht kommen."
+     ]
+    },
+    {
+     "kart": "lx:regelmäßig",
+     "de": "Man muss regelmäßig üben.",
+     "tr": "Düzenli alıştırma yapmak gerekir.",
+     "accepted": [
+      "Man muss regelmäßig üben.",
+      "Man muss regelmäßig lernen.",
+      "Wir müssen regelmäßig üben."
+     ]
+    },
+    {
+     "kart": "lx:regelmäßig",
+     "de": "Kommen Sie bitte regelmäßig zum Unterricht.",
+     "tr": "Lütfen derse düzenli gelin.",
+     "accepted": [
+      "Kommen Sie bitte regelmäßig zum Unterricht.",
+      "Bitte kommen Sie regelmäßig zum Unterricht.",
+      "Kommen Sie regelmäßig zum Unterricht, bitte."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Akşam kursunda ara. Ioana yorgun görünüyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Ich war gestern nicht im Unterricht. Ich musste arbeiten.",
+      "tr": "Dün derste değildim. Çalışmak zorundaydım."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Kein Problem. Wir können die Kursleiterin fragen.",
+      "tr": "Sorun değil. Kurs öğretmenine sorabiliriz."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Gute Idee! Ich möchte regelmäßig kommen.",
+      "tr": "İyi fikir! Düzenli gelmek istiyorum."
+     }
+    ],
+    "soru": {
+     "q_tr": "Ioana dün neden derste değildi?",
+     "opts": [
+      "Çalışmak zorundaydı",
+      "Hastaydı",
+      "Unuttu"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:67:h2",
+   "title_tr": "Ek eğitim ve diploma",
+   "kartlar": [
+    "lx:Weiterbildung",
+    "lx:Abschluss",
+    "lx:Möglichkeit"
+   ],
+   "kaliplar": [
+    {
+     "de": "eine Weiterbildung machen – nach der Weiterbildung – einen Computerkurs machen",
+     "tr": "mesleki ek eğitim almak – ek eğitimden sonra – bilgisayar kursuna gitmek"
+    },
+    {
+     "de": "Haben Sie einen Abschluss? – einen Abschluss als …",
+     "tr": "Diplomanız var mı? – … diploması"
+    },
+    {
+     "de": "Gibt es eine Möglichkeit …? – Das ist eine gute Möglichkeit.",
+     "tr": "… imkânı var mı? – Bu iyi bir imkân."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Weiterbildung",
+     "de": "Ich möchte eine Weiterbildung machen.",
+     "tr": "Mesleki bir ek eğitim almak istiyorum.",
+     "accepted": [
+      "Ich möchte eine Weiterbildung machen.",
+      "Ich möchte gern eine Weiterbildung machen.",
+      "Ich will eine Weiterbildung machen."
+     ]
+    },
+    {
+     "kart": "lx:Weiterbildung",
+     "de": "Nach der Weiterbildung kann ich mehr Geld verdienen.",
+     "tr": "Ek eğitimden sonra daha çok para kazanabilirim.",
+     "accepted": [
+      "Nach der Weiterbildung kann ich mehr Geld verdienen.",
+      "Ich kann nach der Weiterbildung mehr Geld verdienen.",
+      "Nach der Weiterbildung kann ich mehr verdienen."
+     ]
+    },
+    {
+     "kart": "lx:Weiterbildung",
+     "de": "Derya wollte schon lange eine Weiterbildung machen.",
+     "tr": "Derya uzun zamandır bir ek eğitim almak istiyordu.",
+     "accepted": [
+      "Derya wollte schon lange eine Weiterbildung machen.",
+      "Derya wollte lange eine Weiterbildung machen.",
+      "Schon lange wollte Derya eine Weiterbildung machen."
+     ]
+    },
+    {
+     "kart": "lx:Abschluss",
+     "de": "Haben Sie einen Abschluss?",
+     "tr": "Diplomanız var mı?",
+     "accepted": [
+      "Haben Sie einen Abschluss?",
+      "Haben Sie schon einen Abschluss?",
+      "Haben Sie auch einen Abschluss?"
+     ]
+    },
+    {
+     "kart": "lx:Abschluss",
+     "de": "Nach der Prüfung bekommen Sie einen Abschluss.",
+     "tr": "Sınavdan sonra bir bitirme belgesi alırsınız.",
+     "accepted": [
+      "Nach der Prüfung bekommen Sie einen Abschluss.",
+      "Sie bekommen nach der Prüfung einen Abschluss.",
+      "Nach der Prüfung bekommen Sie auch einen Abschluss."
+     ]
+    },
+    {
+     "kart": "lx:Abschluss",
+     "de": "Ioana hat einen Abschluss als Erzieherin.",
+     "tr": "Ioana'nın anaokulu öğretmenliği diploması var.",
+     "accepted": [
+      "Ioana hat einen Abschluss als Erzieherin.",
+      "Ioana hat schon einen Abschluss als Erzieherin.",
+      "Ioana hat einen Abschluss als Erzieherin aus ihrer Heimat."
+     ]
+    },
+    {
+     "kart": "lx:Möglichkeit",
+     "de": "Gibt es eine Möglichkeit am Wochenende?",
+     "tr": "Hafta sonu bir imkân var mı?",
+     "accepted": [
+      "Gibt es eine Möglichkeit am Wochenende?",
+      "Gibt es am Wochenende eine Möglichkeit?",
+      "Gibt es auch eine Möglichkeit am Wochenende?"
+     ]
+    },
+    {
+     "kart": "lx:Möglichkeit",
+     "de": "Das ist eine gute Möglichkeit für dich.",
+     "tr": "Bu senin için iyi bir imkân.",
+     "accepted": [
+      "Das ist eine gute Möglichkeit für dich.",
+      "Das ist wirklich eine gute Möglichkeit für dich.",
+      "Das ist eine gute Möglichkeit für dich!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "İş yerinde mola. Wimmer Bey elinde bir kâğıtla geliyor.",
+    "satirlar": [
+     {
+      "r": "ch:wimmer",
+      "de": "Die Firma bezahlt eine Weiterbildung für das Team.",
+      "tr": "Firma ekip için bir ek eğitimin parasını ödüyor."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Super! Gibt es eine Möglichkeit am Abend?",
+      "tr": "Süper! Akşam bir imkân var mı?"
+     },
+     {
+      "r": "ch:wimmer",
+      "de": "Ja, am Montag und am Mittwoch, von sechs bis halb neun.",
+      "tr": "Evet, pazartesi ve çarşamba, altıdan sekiz buçuğa kadar."
+     }
+    ],
+    "soru": {
+     "q_tr": "Ek eğitim ne zaman?",
+     "opts": [
+      "Pazartesi ve çarşamba akşamı",
+      "Cumartesi sabahı",
+      "Her gün öğleden sonra"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:67:h3",
+   "title_tr": "Yardım istemek, yardım önermek",
+   "kartlar": [
+    "lx:anbieten",
+    "lx:bitten"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "Kannst du mir helfen? – Können Sie mir bitte helfen?",
+     "tr": "Bana yardım edebilir misin? – Bana yardım edebilir misiniz lütfen?"
+    },
+    {
+     "de": "Soll ich dir helfen? – Kann ich Ihnen helfen?",
+     "tr": "Sana yardım edeyim mi? – Size yardım edebilir miyim?"
+    },
+    {
+     "de": "… bietet … an. – Hilfe anbieten",
+     "tr": "… … sunuyor. – yardım önermek"
+    },
+    {
+     "de": "um Hilfe bitten – … bittet mich um Hilfe.",
+     "tr": "yardım istemek – … benden yardım istiyor."
+    },
+    {
+     "de": "Ich verstehe … nicht.",
+     "tr": "…i anlamıyorum."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:anbieten",
+     "de": "Die Firma bietet eine Weiterbildung an.",
+     "tr": "Firma bir ek eğitim sunuyor.",
+     "accepted": [
+      "Die Firma bietet eine Weiterbildung an.",
+      "Die Firma bietet jetzt eine Weiterbildung an.",
+      "Unsere Firma bietet eine Weiterbildung an."
+     ]
+    },
+    {
+     "kart": "lx:anbieten",
+     "de": "Kann ich Ihnen einen Kaffee anbieten?",
+     "tr": "Size bir kahve ikram edebilir miyim?",
+     "accepted": [
+      "Kann ich Ihnen einen Kaffee anbieten?",
+      "Darf ich Ihnen einen Kaffee anbieten?",
+      "Kann ich Ihnen noch einen Kaffee anbieten?"
+     ]
+    },
+    {
+     "kart": "lx:anbieten",
+     "de": "Derya bietet Hilfe an: Soll ich dir helfen?",
+     "tr": "Derya yardım öneriyor: Sana yardım edeyim mi?",
+     "accepted": [
+      "Derya bietet Hilfe an: Soll ich dir helfen?",
+      "Derya bietet Hilfe an. Sie fragt: Soll ich dir helfen?",
+      "Derya bietet ihre Hilfe an: Soll ich dir helfen?"
+     ]
+    },
+    {
+     "kart": "lx:anbieten",
+     "de": "Der Kurs bietet auch Unterricht am Samstag an.",
+     "tr": "Kurs cumartesi de ders veriyor.",
+     "accepted": [
+      "Der Kurs bietet auch Unterricht am Samstag an.",
+      "Der Kurs bietet am Samstag auch Unterricht an.",
+      "Der Kurs bietet Unterricht am Samstag an."
+     ]
+    },
+    {
+     "kart": "lx:bitten",
+     "de": "Ich bitte dich um Hilfe.",
+     "tr": "Senden yardım istiyorum.",
+     "accepted": [
+      "Ich bitte dich um Hilfe.",
+      "Ich möchte dich um Hilfe bitten.",
+      "Ich bitte dich um deine Hilfe."
+     ]
+    },
+    {
+     "kart": "lx:bitten",
+     "de": "Tobi bittet mich um Hilfe: Kannst du mir helfen?",
+     "tr": "Tobi benden yardım istiyor: Bana yardım edebilir misin?",
+     "accepted": [
+      "Tobi bittet mich um Hilfe: Kannst du mir helfen?",
+      "Tobi bittet mich um Hilfe. Er fragt: Kannst du mir helfen?",
+      "Tobi bittet mich um Hilfe: Kannst du mir bitte helfen?"
+     ]
+    },
+    {
+     "kart": "lx:bitten",
+     "de": "Darf ich Sie um Hilfe bitten? Ich verstehe das Formular nicht.",
+     "tr": "Sizden yardım isteyebilir miyim? Formu anlamıyorum.",
+     "accepted": [
+      "Darf ich Sie um Hilfe bitten? Ich verstehe das Formular nicht.",
+      "Kann ich Sie um Hilfe bitten? Ich verstehe das Formular nicht.",
+      "Darf ich Sie um Hilfe bitten? Ich verstehe dieses Formular nicht."
+     ]
+    },
+    {
+     "kart": "lx:bitten",
+     "de": "Ich wollte dich um Hilfe bitten.",
+     "tr": "Senden yardım isteyecektim.",
+     "accepted": [
+      "Ich wollte dich um Hilfe bitten.",
+      "Ich wollte dich noch um Hilfe bitten.",
+      "Ich wollte dich um deine Hilfe bitten."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Ofiste. Tobi bilgisayarın başında, saçını karıştırıyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Hast du kurz Zeit? Kannst du mir helfen?",
+      "tr": "Biraz vaktin var mı? Bana yardım edebilir misin?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Klar! Was ist los?",
+      "tr": "Tabii! Ne oldu?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Das Formular für die Weiterbildung ist so schwer!",
+      "tr": "Ek eğitim formu çok zor!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi neden yardım istiyor?",
+     "opts": [
+      "Ek eğitim formunu dolduramıyor",
+      "Bilgisayarı bozuldu",
+      "Kursa geç kaldı"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:67:v1",
+  "title_tr": "Firma bir ek eğitim sunuyor",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Mola odası. Wimmer Bey elinde kâğıtlarla hızlı hızlı giriyor.",
+    "de": "Haben Sie kurz Zeit? Ich habe gute Nachrichten.",
+    "tr": "Biraz vaktiniz var mı? İyi haberlerim var."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Wimmer Bey kâğıtları masaya koyuyor.",
+    "de": "Dieses Jahr gibt es zwei Weiterbildungen für Sie.",
+    "tr": "Bu yıl sizin için iki ek eğitim var."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Wimmer Bey iki kâğıdı gösteriyor.",
+    "de": "Es gibt einen Computerkurs und einen Sprachkurs für den Beruf.",
+    "tr": "Bir bilgisayar kursu ve meslek için bir dil kursu var."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Wimmer Bey takvime bakıyor.",
+    "de": "Der Unterricht ist am Montag und am Mittwoch.",
+    "tr": "Ders pazartesi ve çarşamba günleri."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya kahvesini bırakıyor.",
+    "de": "Und wer bezahlt das?",
+    "tr": "Peki parasını kim ödüyor?"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Wimmer Bey ciddi bir yüzle bakıyor.",
+    "de": "Die Firma. Aber Sie müssen regelmäßig kommen.",
+    "tr": "Firma. Ama düzenli gelmeniz gerekiyor."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Wimmer Bey çıkınca Derya sana dönüyor.",
+    "de": "Der Sprachkurs ist doch super für dich!",
+    "tr": "Dil kursu tam sana göre!"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Öğleden sonra ofiste. Tobi bilgisayarın başında, saçını karıştırıyor.",
+    "de": "Derya, kannst du mir helfen?",
+    "tr": "Derya, bana yardım edebilir misin?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya sandalyesini Tobi'ye doğru çeviriyor.",
+    "de": "Klar. Was ist los?",
+    "tr": "Tabii. Ne oldu?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi ekranı gösteriyor.",
+    "de": "Ich soll das Formular für die Weiterbildung ausfüllen, aber ich verstehe es nicht.",
+    "tr": "Ek eğitim formunu doldurmam gerekiyor ama anlamıyorum."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya ayağa kalkıyor.",
+    "de": "Soll ich dir helfen?",
+    "tr": "Sana yardım edeyim mi?"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya Tobi'nin yanına oturuyor.",
+    "de": "Ich kann es dir zeigen.",
+    "tr": "Sana gösterebilirim."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi bir satırı gösteriyor.",
+    "de": "Ja, bitte! Was bedeutet hier Abschluss?",
+    "tr": "Evet, lütfen! Burada Abschluss ne demek?"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya sabırla anlatıyor.",
+    "de": "Das ist dein Zeugnis von der Schule oder von der Ausbildung.",
+    "tr": "Okuldan ya da meslek eğitiminden aldığın diploma."
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi rahatlıyor, gülüyor.",
+    "de": "Okay, danke! Du bist super.",
+    "tr": "Tamam, sağ ol! Sen harikasın."
+   },
+   {
+    "id": "s16",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Akşam kursu, ders başlamadan önce. Ioana yanına oturuyor.",
+    "de": "Ich brauche für die Stelle als Erzieherin mehr Deutsch.",
+    "tr": "Anaokulu öğretmenliği işi için daha çok Almancaya ihtiyacım var."
+   },
+   {
+    "id": "s17",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana defterini açıyor.",
+    "de": "Gibt es hier einen Kurs für den Beruf?",
+    "tr": "Burada meslek için bir kurs var mı?"
+   },
+   {
+    "id": "s18",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana bir kâğıt parçası gösteriyor.",
+    "de": "Die Kursleiterin hat mir eine Nummer gegeben.",
+    "tr": "Kurs öğretmeni bana bir numara verdi."
+   },
+   {
+    "id": "s19",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana yüzünü buruşturuyor.",
+    "de": "Aber am Telefon verstehe ich nicht viel.",
+    "tr": "Ama telefonda pek bir şey anlamıyorum."
+   },
+   {
+    "id": "s20",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana ellerini birleştiriyor.",
+    "de": "Kannst du für mich anrufen? Bitte!",
+    "tr": "Benim için arayabilir misin? Lütfen!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Wimmer Bey ne haber veriyor?",
+     "opts": [
+      "Firma iki ek eğitim sunuyor ve parasını ödüyor",
+      "Yeni bir şef geliyor",
+      "Mola saatleri değişiyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s6"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Dersler hangi günler?",
+      "opts": [
+       "Pazartesi ve çarşamba",
+       "Hafta sonu",
+       "Her sabah"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Wimmer Bey ne istiyor?",
+      "opts": [
+       "Düzenli gelinmesini",
+       "Sınavın geçilmesini",
+       "Kursu çalışanların ödemesini"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s2",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Weiterbildungen",
+       "Wohnungen",
+       "Prüfungen"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s6",
+      "seviye": "orta",
+      "de": "Die Firma. Aber Sie müssen ___ kommen.",
+      "accepted": [
+       "regelmäßig",
+       "Regelmäßig",
+       "regelmäßig."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s4",
+      "seviye": "zor",
+      "banka": [
+       "Der",
+       "Unterricht",
+       "ist",
+       "am",
+       "Montag",
+       "und",
+       "am",
+       "Mittwoch",
+       "Dienstag",
+       "im"
+      ],
+      "accepted": [
+       "Der Unterricht ist am Montag und am Mittwoch.",
+       "der unterricht ist am montag und am mittwoch",
+       "Der Unterricht ist am Montag und am Mittwoch"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s7",
+      "seviye": "usta",
+      "accepted": [
+       "Der Sprachkurs ist doch super für dich!",
+       "der sprachkurs ist doch super für dich",
+       "Der Sprachkurs ist doch super für dich."
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Wimmer Bey ne söyledi? Almanca bir iki kısa cümleyle yaz.",
+      "ornek_de": "Es gibt zwei Weiterbildungen. Der Unterricht ist am Montag und am Mittwoch.",
+      "zorunlu": [
+       "Weiterbildungen",
+       "Unterricht"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s6"
+    ],
+    "cevapla": {
+     "id": "m1:67:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya soruyor: Dil kursuna gitmek istiyor musun? Kendin hakkında cevap ver.",
+     "prompt_de": "Und du? Möchtest du den Sprachkurs machen?",
+     "accepted": [
+      "Ja, ich möchte den Sprachkurs machen.",
+      "Ja, gern! Der Sprachkurs ist gut für mich.",
+      "Ja, ich möchte den Sprachkurs für den Beruf machen.",
+      "Nein, ich möchte lieber den Computerkurs machen.",
+      "Ja, klar! Ich möchte mehr Deutsch lernen.",
+      "Ja, das ist eine gute Möglichkeit für mich.",
+      "Vielleicht. Ich habe am Montag keine Zeit.",
+      "Ja, ich möchte gern den Sprachkurs machen.",
+      "Ja! Ich möchte regelmäßig kommen.",
+      "Ich möchte beide Kurse machen.",
+      "Ja, der Sprachkurs ist super für mich.",
+      "Nein, lieber den Computerkurs."
+     ],
+     "why_tr": "**Ich möchte** derken **machen** değişmez, en sona gider."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu bölümde ne oluyor?",
+     "opts": [
+      "Tobi yardım istiyor, Derya ona formu gösteriyor",
+      "Derya Tobi'den yardım istiyor",
+      "Tobi kursa gitmek istemiyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s8",
+      "s11"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Tobi hangi kelimeyi anlamıyor?",
+      "opts": [
+       "Abschluss",
+       "Unterricht",
+       "Weiterbildung"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s13"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya'ya göre Abschluss ne demek?",
+      "opts": [
+       "Okuldan ya da meslek eğitiminden alınan diploma",
+       "Kursun son günü",
+       "Kursun fiyatı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s14"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s10",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Formular",
+       "Fenster",
+       "Foto"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s11",
+      "seviye": "orta",
+      "de": "Soll ich dir ___?",
+      "accepted": [
+       "helfen",
+       "Helfen",
+       "helfen?"
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s14",
+      "seviye": "zor",
+      "banka": [
+       "Das",
+       "ist",
+       "dein",
+       "Zeugnis",
+       "von",
+       "der",
+       "Schule",
+       "oder",
+       "von",
+       "der",
+       "Ausbildung",
+       "mein",
+       "Arbeit"
+      ],
+      "accepted": [
+       "Das ist dein Zeugnis von der Schule oder von der Ausbildung.",
+       "das ist dein zeugnis von der schule oder von der ausbildung",
+       "Das ist dein Zeugnis von der Schule oder von der Ausbildung"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s8",
+      "seviye": "usta",
+      "accepted": [
+       "Derya, kannst du mir helfen?",
+       "derya kannst du mir helfen",
+       "Derya kannst du mir helfen?"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Tobi ne istedi, Derya ne yaptı? Almanca bir iki kısa cümleyle yaz.",
+      "ornek_de": "Tobi bittet Derya um Hilfe. Derya zeigt ihm das Formular.",
+      "zorunlu": [
+       "Hilfe",
+       "Formular"
+      ]
+     }
+    ],
+    "golge": [
+     "s8",
+     "s11"
+    ],
+    "cevapla": {
+     "id": "m1:67:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Bir iş arkadaşın formu anlamıyor. Ona yardım öner.",
+     "prompt_de": "Ich verstehe dieses Formular nicht.",
+     "accepted": [
+      "Soll ich dir helfen?",
+      "Soll ich dir helfen? Ich kann es dir zeigen.",
+      "Brauchst du Hilfe?",
+      "Kann ich dir helfen?",
+      "Ich helfe dir gern.",
+      "Soll ich dir helfen? Zeig mal!",
+      "Brauchst du Hilfe? Ich kann es dir zeigen.",
+      "Ich kann dir helfen.",
+      "Kein Problem, ich helfe dir.",
+      "Soll ich es dir zeigen?",
+      "Ich kann es dir zeigen."
+     ],
+     "why_tr": "Yardım önerirken **Soll ich dir helfen?** dersin."
+    }
+   },
+   {
+    "id": "b3",
+    "cumleler": [
+     "s16",
+     "s17",
+     "s18",
+     "s19",
+     "s20"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Ioana senden ne istiyor?",
+     "opts": [
+      "Kurs bürosunu onun için aramanı",
+      "Başvurusunu yazmanı",
+      "Ona ders vermeni"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s20"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Ioana neden daha çok Almanca istiyor?",
+      "opts": [
+       "Anaokulu öğretmenliği işi için",
+       "Bir sınav için",
+       "Tatil için"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s16"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Numarayı Ioana'ya kim verdi?",
+      "opts": [
+       "Kurs öğretmeni",
+       "Derya",
+       "Wimmer Bey"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s18"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s17",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Beruf",
+       "Bus",
+       "Brot"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s16",
+      "seviye": "orta",
+      "de": "Ich brauche für die Stelle als Erzieherin mehr ___.",
+      "accepted": [
+       "Deutsch",
+       "deutsch",
+       "Deutsch."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s19",
+      "seviye": "zor",
+      "banka": [
+       "Aber",
+       "am",
+       "Telefon",
+       "verstehe",
+       "ich",
+       "nicht",
+       "viel",
+       "Handy",
+       "viele"
+      ],
+      "accepted": [
+       "Aber am Telefon verstehe ich nicht viel.",
+       "aber am telefon verstehe ich nicht viel",
+       "Aber am Telefon verstehe ich nicht viel"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s17",
+      "seviye": "usta",
+      "accepted": [
+       "Gibt es hier einen Kurs für den Beruf?",
+       "gibt es hier einen kurs für den beruf",
+       "Gibt es hier einen Kurs für den Beruf"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Ioana ne istiyor? Almanca bir iki kısa cümleyle yaz.",
+      "ornek_de": "Ioana braucht einen Kurs für den Beruf. Ich soll für sie anrufen.",
+      "zorunlu": [
+       "Kurs",
+       "anrufen"
+      ]
+     }
+    ],
+    "golge": [
+     "s17",
+     "s20"
+    ],
+    "cevapla": {
+     "id": "m1:67:v1:c3",
+     "k": "guided_response",
+     "situation_tr": "Ioana yardım istiyor. Kabul et ve ne zaman arayacağını söyle.",
+     "prompt_de": "Kannst du für mich anrufen? Bitte!",
+     "accepted": [
+      "Ja, klar! Ich rufe morgen an.",
+      "Klar, ich helfe dir gern. Ich rufe morgen an.",
+      "Ja, gern. Ich rufe morgen an.",
+      "Ja, kein Problem. Ich rufe morgen an.",
+      "Klar! Ich rufe morgen für dich an.",
+      "Ja, ich helfe dir gern. Morgen rufe ich an.",
+      "Ja, klar. Ich rufe morgen am Vormittag an.",
+      "Ja, gern! Ich rufe heute noch an.",
+      "Klar, ich rufe für dich an.",
+      "Ja, ich rufe für dich an. Gib mir die Nummer.",
+      "Ja, klar! Gib mir die Nummer."
+     ],
+     "why_tr": "**anrufen** iki parçalı: **Ich rufe morgen an**. **an** en sona gider."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:67:a1",
+   "tur": "bekleme-anonsu",
+   "title_tr": "Kurs bürosunun telefon kaydı",
+   "ortam_tr": "Cuma öğleden sonra kurs bürosunu arıyorsun. Kimse açmıyor, bir kayıt çalıyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist das Büro für Sprachkurse.",
+     "tr": "İyi günler, burası dil kursları bürosu."
+    },
+    {
+     "id": "c2",
+     "de": "Im Moment sind wir nicht im Büro.",
+     "tr": "Şu anda büroda değiliz."
+    },
+    {
+     "id": "c3",
+     "de": "Unsere Sprechstunde ist von Montag bis Donnerstag, von neun bis zwölf Uhr.",
+     "tr": "Görüşme saatlerimiz pazartesiden perşembeye, dokuzdan on ikiye kadar."
+    },
+    {
+     "id": "c4",
+     "de": "Am Freitag ist das Büro geschlossen.",
+     "tr": "Cuma günü büro kapalı."
+    },
+    {
+     "id": "c5",
+     "de": "Neue Sprachkurse fangen im März an.",
+     "tr": "Yeni dil kursları martta başlıyor."
+    },
+    {
+     "id": "c6",
+     "de": "Bitte sagen Sie Ihren Namen und Ihre Telefonnummer.",
+     "tr": "Lütfen adınızı ve telefon numaranızı söyleyin."
+    },
+    {
+     "id": "c7",
+     "de": "Wir rufen Sie zurück.",
+     "tr": "Sizi geri arayacağız."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Bu kayıt ne diyor?",
+      "opts": [
+       "Büro şu an kapalı, ne zaman açık olduğunu söylüyor",
+       "Kurslar iptal edildi",
+       "Kurslarda yer kalmadı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Büro hangi günler açık?",
+       "opts": [
+        "Pazartesiden perşembeye",
+        "Her gün",
+        "Yalnız cuma"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Yeni kurslar ne zaman başlıyor?",
+       "opts": [
+        "Martta",
+        "Mayısta",
+        "Pazartesi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "Freitag",
+        "Samstag",
+        "Sonntag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Unsere Sprechstunde ist von Montag bis Donnerstag, von ___ bis zwölf Uhr.",
+       "accepted": [
+        "neun",
+        "Neun",
+        "neun,"
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Bitte",
+        "sagen",
+        "Sie",
+        "Ihren",
+        "Namen",
+        "und",
+        "Ihre",
+        "Telefonnummer",
+        "Adresse",
+        "deinen"
+       ],
+       "accepted": [
+        "Bitte sagen Sie Ihren Namen und Ihre Telefonnummer.",
+        "bitte sagen sie ihren namen und ihre telefonnummer",
+        "Bitte sagen Sie Ihren Namen und Ihre Telefonnummer"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Im Moment sind wir nicht im Büro.",
+        "im moment sind wir nicht im büro",
+        "Im Moment sind wir nicht im Büro"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kayıtta ne dendi? Almanca bir iki kısa cümleyle yaz.",
+       "ornek_de": "Das Büro ist von Montag bis Donnerstag offen. Ich soll meinen Namen und meine Nummer sagen.",
+       "zorunlu": [
+        "Büro",
+        "Montag"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:67:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Kayıttan sonra sinyal sesi geliyor. Adını söyle, dil kursuyla ilgili bir sorun olduğunu söyle ve geri aranmak iste.",
+      "prompt_de": "Bitte sprechen Sie jetzt.",
+      "accepted": [
+       "Guten Tag, hier ist {name}. Ich habe eine Frage zum Sprachkurs. Bitte rufen Sie mich zurück.",
+       "Guten Tag, mein Name ist {name}. Ich habe eine Frage zum Sprachkurs. Bitte rufen Sie zurück.",
+       "Hier ist {name}. Ich habe eine Frage zum Sprachkurs. Können Sie mich bitte zurückrufen?",
+       "Guten Tag, hier ist {name}. Ich habe eine Frage zum Sprachkurs für den Beruf. Bitte rufen Sie mich zurück.",
+       "Guten Tag, {name} hier. Ich habe eine Frage zum Sprachkurs. Bitte rufen Sie mich zurück. Danke!",
+       "Guten Tag, hier ist {name}. Ich habe eine Frage zum Sprachkurs. Können Sie mich bitte zurückrufen? Danke.",
+       "Hier ist {name}. Ich habe eine Frage zum Sprachkurs. Bitte rufen Sie mich zurück."
+      ],
+      "accepted_adsiz": [
+       "Guten Tag. Ich habe eine Frage zum Sprachkurs. Bitte rufen Sie mich zurück.",
+       "Guten Tag. Ich habe eine Frage zum Sprachkurs. Bitte rufen Sie zurück.",
+       "Guten Tag. Ich habe eine Frage zum Sprachkurs. Können Sie mich bitte zurückrufen?",
+       "Guten Tag. Ich habe eine Frage zum Sprachkurs für den Beruf. Bitte rufen Sie mich zurück.",
+       "Guten Tag. Ich habe eine Frage zum Sprachkurs. Bitte rufen Sie mich zurück. Danke!",
+       "Guten Tag. Ich habe eine Frage zum Sprachkurs. Können Sie mich bitte zurückrufen? Danke.",
+       "Ich habe eine Frage zum Sprachkurs. Bitte rufen Sie mich zurück."
+      ],
+      "why_tr": "Telefon kaydında önce adını, sonra konuyu söylersin. **zurückrufen** geri aramak demek."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:67:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Adını ve numaranı bırak ya da pazartesi dokuzla on iki arasında tekrar ara.",
+     "Cuma günü büroya git.",
+     "Mart ayına kadar bekle."
+    ],
+    "ans": 0,
+    "why_tr": "Büro cuma kapalı. Ya mesaj bırakırsın ya da görüşme saatinde ararsın.",
+    "kanit": [
+     "c3",
+     "c6"
+    ]
+   }
+  },
+  {
+   "id": "m1:67:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Kurs bürosundan sesli mesaj",
+   "ortam_tr": "Pazartesi sabahı telefonunda bir mesaj var. Kurs bürosundaki görevli seni geri aramış.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist noch einmal das Büro für Sprachkurse.",
+     "tr": "İyi günler, yine dil kursları bürosu arıyor."
+    },
+    {
+     "id": "c2",
+     "de": "Danke für Ihre Nachricht.",
+     "tr": "Mesajınız için teşekkürler."
+    },
+    {
+     "id": "c3",
+     "de": "Der Sprachkurs für den Beruf fängt am ersten März an.",
+     "tr": "Meslek için dil kursu bir martta başlıyor."
+    },
+    {
+     "id": "c4",
+     "de": "Der Unterricht ist am Montag und am Mittwoch, von sechs bis halb neun.",
+     "tr": "Ders pazartesi ve çarşamba, altıdan sekiz buçuğa kadar."
+    },
+    {
+     "id": "c5",
+     "de": "Der Kurs kostet 200 Euro.",
+     "tr": "Kurs 200 avro."
+    },
+    {
+     "id": "c6",
+     "de": "Aber vielleicht bezahlt Ihr Arbeitgeber den Kurs.",
+     "tr": "Ama belki işvereniniz kursun parasını öder."
+    },
+    {
+     "id": "c7",
+     "de": "Bitte rufen Sie mich zurück.",
+     "tr": "Lütfen beni geri arayın."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Büro neden aradı?",
+      "opts": [
+       "Kurs hakkında bilgi veriyor",
+       "Kursun iptal olduğunu söylüyor",
+       "Sınav sonucunu bildiriyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Kurs ne zaman başlıyor?",
+       "opts": [
+        "Bir martta",
+        "Bir mayısta",
+        "Bu pazartesi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Dersler hangi günler?",
+       "opts": [
+        "Pazartesi ve çarşamba",
+        "Salı ve perşembe",
+        "Cumartesi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kursun parasını belki kim öder?",
+       "opts": [
+        "İşverenin",
+        "Belediye",
+        "Kurs öğretmeni"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c6"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "Mittwoch",
+        "Donnerstag",
+        "Dienstag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Der Sprachkurs für den Beruf fängt am ersten ___ an.",
+       "accepted": [
+        "März",
+        "märz",
+        "März."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Aber",
+        "vielleicht",
+        "bezahlt",
+        "Ihr",
+        "Arbeitgeber",
+        "den",
+        "Kurs",
+        "Ihren",
+        "Firma"
+       ],
+       "accepted": [
+        "Aber vielleicht bezahlt Ihr Arbeitgeber den Kurs.",
+        "aber vielleicht bezahlt ihr arbeitgeber den kurs",
+        "Aber vielleicht bezahlt Ihr Arbeitgeber den Kurs"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Danke für Ihre Nachricht.",
+        "danke für ihre nachricht",
+        "Danke für Ihre Nachricht"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kurs hakkında iki bilgi yaz.",
+       "ornek_de": "Der Kurs fängt am ersten März an. Der Unterricht ist am Montag und am Mittwoch.",
+       "zorunlu": [
+        "März",
+        "Unterricht"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:67:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Kurs bürosunu geri arıyorsun. Kendini tanıt ve mesaj için teşekkür et.",
+      "prompt_de": "Büro für Sprachkurse, guten Tag.",
+      "accepted": [
+       "Guten Tag, hier ist {name}. Danke für Ihre Nachricht.",
+       "Guten Tag, hier ist {name}. Vielen Dank für Ihre Nachricht.",
+       "Guten Tag. Hier ist {name}. Danke für die Nachricht.",
+       "Hier ist {name}. Danke für Ihre Nachricht.",
+       "Guten Tag, {name} hier. Danke für Ihre Nachricht.",
+       "Guten Tag, hier ist {name}. Danke für Ihre Nachricht. Ich habe noch eine Frage.",
+       "Guten Tag, mein Name ist {name}. Danke für Ihre Nachricht."
+      ],
+      "accepted_adsiz": [
+       "Guten Tag. Danke für Ihre Nachricht.",
+       "Guten Tag. Vielen Dank für Ihre Nachricht.",
+       "Guten Tag. Danke für die Nachricht.",
+       "Danke für Ihre Nachricht.",
+       "Guten Tag. Danke für Ihre Nachricht.",
+       "Guten Tag. Danke für Ihre Nachricht. Ich habe noch eine Frage.",
+       "Guten Tag. Vielen Dank für Ihre Nachricht."
+      ],
+      "why_tr": "Geri ararken önce adını söyle, sonra **Danke für Ihre Nachricht** de."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:67:a2:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Büroyu geri ara. Kursun parasını belki işverenin öder.",
+     "Bir martta doğrudan kursa git.",
+     "Hiçbir şey, kayıt tamam."
+    ],
+    "ans": 0,
+    "why_tr": "Büro geri aranmak istiyor. Kursun parasını belki işveren öder.",
+    "kanit": [
+     "c6",
+     "c7"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:67:g1",
+   "de": "Sprachkurs",
+   "dogru_img": "adult language class with students sitting at tables and books open",
+   "celdirici_img": [
+    "children playing in a school yard",
+    "people sitting in a waiting room",
+    "workers in a warehouse"
+   ]
+  },
+  {
+   "id": "m1:67:g2",
+   "de": "Kursleiterin",
+   "dogru_img": "female teacher standing at a whiteboard in front of adult students",
+   "celdirici_img": [
+    "a doctor talking to a patient",
+    "a woman selling bread",
+    "a woman driving a bus"
+   ]
+  },
+  {
+   "id": "m1:67:g3",
+   "de": "Abschluss",
+   "dogru_img": "adult woman proudly holding a certificate after an exam",
+   "celdirici_img": [
+    "a woman holding a shopping bag",
+    "a woman holding a bus ticket",
+    "a woman holding a birthday cake"
+   ]
+  },
+  {
+   "id": "m1:67:g4",
+   "de": "anbieten",
+   "dogru_img": "woman offering a cup of coffee to a guest at a table",
+   "celdirici_img": [
+    "woman drinking coffee alone",
+    "man paying at a cafe counter",
+    "man reading a newspaper"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:67:p1",
+  "title_tr": "Kurs bürosunu geri aramak",
+  "durum_tr": "Kurs bürosunun mesajını dinledin ve büroyu geri arıyorsun. Üç şeyi bilmiyorsun. Kayıt ne zamana kadar? Kursun sonunda belge var mı? Ioana için de yer var mı? Anlamazsan tekrar iste.",
+  "karsi": "kurs bürosundaki görevli (yeni kişi)",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Büro für Sprachkurse, guten Tag.",
+    "tr": "Dil kursları bürosu, iyi günler.",
+    "secenekler": [
+     {
+      "de": "Guten Tag, hier ist {name}. Danke für Ihre Nachricht. Ich habe noch Fragen zum Sprachkurs.",
+      "de_adsiz": "Guten Tag. Danke für Ihre Nachricht. Ich habe noch Fragen zum Sprachkurs.",
+      "tr": "İyi günler, ben (adın). Mesajınız için teşekkürler. Dil kursuyla ilgili birkaç sorum daha var.",
+      "accepted": [
+       "Guten Tag, hier ist {name}. Danke für Ihre Nachricht. Ich habe noch Fragen zum Sprachkurs.",
+       "Guten Tag, hier ist {name}. Ich habe noch Fragen zum Sprachkurs.",
+       "Guten Tag. Hier ist {name}. Ich habe eine Frage zum Sprachkurs.",
+       "Hier ist {name}. Danke für Ihre Nachricht. Ich habe noch Fragen.",
+       "Guten Tag, {name} hier. Ich habe noch eine Frage zum Sprachkurs.",
+       "Guten Tag, mein Name ist {name}. Ich habe noch Fragen zum Sprachkurs."
+      ],
+      "accepted_adsiz": [
+       "Guten Tag. Danke für Ihre Nachricht. Ich habe noch Fragen zum Sprachkurs.",
+       "Guten Tag. Ich habe noch Fragen zum Sprachkurs.",
+       "Guten Tag. Ich habe eine Frage zum Sprachkurs.",
+       "Danke für Ihre Nachricht. Ich habe noch Fragen.",
+       "Guten Tag. Ich habe noch eine Frage zum Sprachkurs.",
+       "Guten Tag. Ich habe noch Fragen zum Sprachkurs."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Adını söyledin, teşekkür ettin ve konuyu açtın."
+     },
+     {
+      "de": "Hallo? Wer ist da?",
+      "tr": "Alo? Kim o?",
+      "accepted": [
+       "Hallo? Wer ist da?",
+       "Hallo, wer ist da?",
+       "Wer ist da?",
+       "Hallo? Wer spricht da?"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Arayan sensin. Önce adını söyle: **Guten Tag, hier ist** ve adın."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Gern. Was möchten Sie wissen?",
+    "tr": "Tabii. Ne öğrenmek istiyorsunuz?",
+    "secenekler": [
+     {
+      "de": "Bis wann ist die Anmeldung?",
+      "tr": "Kayıt ne zamana kadar?",
+      "accepted": [
+       "Bis wann ist die Anmeldung?",
+       "Bis wann ist denn die Anmeldung?",
+       "Wann ist die Anmeldung?",
+       "Bis wann kann ich die Anmeldung machen?",
+       "Erste Frage: Bis wann ist die Anmeldung?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "İlk eksik bilgiyi sordun: kaydın son günü."
+     },
+     {
+      "de": "Wie viel kostet der Kurs?",
+      "tr": "Kurs ne kadar?",
+      "accepted": [
+       "Wie viel kostet der Kurs?",
+       "Was kostet der Kurs?",
+       "Wie viel kostet der Sprachkurs?",
+       "Was kostet der Sprachkurs?"
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Fiyatı mesajda duydun: 200 avro. Bilmediğin şeyi sor: kayıt ne zamana kadar?"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Die Anmeldung ist bis zum zwanzigsten Februar. Sie müssen ein Formular ausfüllen.",
+    "tr": "Kayıt yirmi şubata kadar. Bir form doldurmanız gerekiyor.",
+    "secenekler": [
+     {
+      "de": "Entschuldigung, das war zu schnell. Können Sie das bitte wiederholen?",
+      "tr": "Pardon, çok hızlıydı. Lütfen tekrar eder misiniz?",
+      "accepted": [
+       "Entschuldigung, das war zu schnell. Können Sie das bitte wiederholen?",
+       "Entschuldigung, können Sie das bitte wiederholen?",
+       "Das war zu schnell. Können Sie das bitte wiederholen?",
+       "Können Sie das bitte wiederholen?",
+       "Entschuldigung, noch einmal, bitte.",
+       "Könnten Sie das bitte wiederholen?",
+       "Entschuldigung, können Sie bitte langsam sprechen?"
+      ],
+      "sonraki": "n3b",
+      "uygun": true,
+      "geri_bildirim_tr": "Anlamayınca tekrar istedin. Telefonda bu çok işe yarar."
+     },
+     {
+      "de": "Bis zum zwanzigsten Februar. Gut, danke.",
+      "tr": "Yirmi şubata kadar. Tamam, teşekkürler.",
+      "accepted": [
+       "Bis zum zwanzigsten Februar. Gut, danke.",
+       "Bis zum zwanzigsten Februar. Danke.",
+       "Gut, bis zum zwanzigsten Februar.",
+       "Okay, bis zum zwanzigsten Februar. Danke.",
+       "Zwanzigster Februar. Gut, danke."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Tarihi tekrar ettin. Böylece doğru anladığını gösterdin."
+     }
+    ]
+   },
+   {
+    "id": "n3b",
+    "de": "Natürlich. Die Anmeldung ist bis zum zwanzigsten Februar.",
+    "tr": "Tabii. Kayıt yirmi şubata kadar.",
+    "secenekler": [
+     {
+      "de": "Bis zum zwanzigsten Februar. Danke!",
+      "tr": "Yirmi şubata kadar. Teşekkürler!",
+      "accepted": [
+       "Bis zum zwanzigsten Februar. Danke!",
+       "Danke! Bis zum zwanzigsten Februar.",
+       "Okay, bis zum zwanzigsten Februar. Vielen Dank!",
+       "Gut, danke. Bis zum zwanzigsten Februar."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Bu sefer anladın ve tarihi tekrar ettin."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Haben Sie noch eine Frage?",
+    "tr": "Başka bir sorunuz var mı?",
+    "secenekler": [
+     {
+      "de": "Ja. Gibt es am Ende eine Prüfung und einen Abschluss?",
+      "tr": "Evet. Sonunda bir sınav ve bitirme belgesi var mı?",
+      "accepted": [
+       "Ja. Gibt es am Ende eine Prüfung und einen Abschluss?",
+       "Ja, gibt es am Ende einen Abschluss?",
+       "Gibt es am Ende eine Prüfung?",
+       "Ja. Bekomme ich am Ende einen Abschluss?",
+       "Gibt es einen Abschluss?",
+       "Ja, bitte. Gibt es am Ende eine Prüfung und einen Abschluss?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "İkinci eksik bilgiyi sordun: kursun sonunda belge."
+     },
+     {
+      "de": "Nein, danke. Auf Wiederhören!",
+      "tr": "Hayır, teşekkürler. Hoşça kalın!",
+      "accepted": [
+       "Nein, danke. Auf Wiederhören!",
+       "Nein, danke. Tschüss!",
+       "Nein, das ist alles. Auf Wiederhören!",
+       "Nein, danke."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Daha iki sorun var: kursun sonundaki belge ve Ioana'nın yeri."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Ja, am Ende gibt es eine Prüfung. Dann bekommen Sie einen Abschluss für den Beruf.",
+    "tr": "Evet, sonunda bir sınav var. Sonra meslek için bir bitirme belgesi alırsınız.",
+    "secenekler": [
+     {
+      "de": "Super. Eine Freundin möchte auch kommen. Gibt es noch einen Platz für sie?",
+      "tr": "Süper. Bir arkadaşım da gelmek istiyor. Onun için de yer var mı?",
+      "accepted": [
+       "Super. Eine Freundin möchte auch kommen. Gibt es noch einen Platz für sie?",
+       "Gibt es noch einen Platz für eine Freundin?",
+       "Eine Freundin möchte auch kommen. Gibt es noch einen Platz?",
+       "Super. Gibt es noch einen Platz für meine Freundin?",
+       "Und meine Freundin möchte auch kommen. Ist noch ein Platz frei?",
+       "Gut. Gibt es noch einen Platz für eine Freundin?"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Üçüncü bilgiyi Ioana için sordun."
+     },
+     {
+      "de": "Was bedeutet Abschluss?",
+      "tr": "Abschluss ne demek?",
+      "accepted": [
+       "Was bedeutet Abschluss?",
+       "Was bedeutet das: Abschluss?",
+       "Entschuldigung, was bedeutet Abschluss?",
+       "Was ist ein Abschluss?"
+      ],
+      "sonraki": "n5b",
+      "uygun": true,
+      "geri_bildirim_tr": "Bilmediğin kelimeyi **Was bedeutet Abschluss?** diye sordun."
+     }
+    ]
+   },
+   {
+    "id": "n5b",
+    "de": "Das ist ein Zeugnis nach der Prüfung. Das ist gut für Ihre Bewerbung.",
+    "tr": "Sınavdan sonra verilen bir belge. Başvurunuz için iyi olur.",
+    "secenekler": [
+     {
+      "de": "Danke! Eine Freundin möchte auch kommen. Gibt es noch einen Platz für sie?",
+      "tr": "Teşekkürler! Bir arkadaşım da gelmek istiyor. Onun için de yer var mı?",
+      "accepted": [
+       "Danke! Eine Freundin möchte auch kommen. Gibt es noch einen Platz für sie?",
+       "Danke. Gibt es noch einen Platz für eine Freundin?",
+       "Danke! Gibt es noch einen Platz für meine Freundin?",
+       "Verstehe, danke. Eine Freundin möchte auch kommen. Gibt es noch einen Platz?"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Anladın ve son sorunu sordun."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Ja, wir haben noch drei Plätze. Ihre Freundin soll auch ein Formular ausfüllen.",
+    "tr": "Evet, üç yerimiz daha var. Arkadaşınız da bir form doldurmalı.",
+    "secenekler": [
+     {
+      "de": "Können Sie mir bitte helfen? Wo bekomme ich die Formulare?",
+      "tr": "Bana yardım edebilir misiniz lütfen? Formları nereden alırım?",
+      "accepted": [
+       "Können Sie mir bitte helfen? Wo bekomme ich die Formulare?",
+       "Wo bekomme ich die Formulare?",
+       "Können Sie mir bitte helfen? Wo sind die Formulare?",
+       "Wo bekomme ich das Formular?",
+       "Können Sie mir helfen? Wo bekomme ich die Formulare?"
+      ],
+      "sonraki": "n7",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibarca yardım istedin: **Können Sie mir bitte helfen?**"
+     },
+     {
+      "de": "Gut, ich sage es ihr.",
+      "tr": "Tamam, ona söylerim.",
+      "accepted": [
+       "Gut, ich sage es ihr.",
+       "Okay, ich sage es ihr.",
+       "Gut, danke. Ich sage es ihr.",
+       "Danke, ich sage es ihr."
+      ],
+      "sonraki": "n7",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve net. Görevli şimdi yardım önerecek."
+     }
+    ]
+   },
+   {
+    "id": "n7",
+    "de": "Soll ich Ihnen zwei Formulare schicken? Dann können Sie alles zu Hause ausfüllen.",
+    "tr": "Size iki form göndereyim mi? O zaman her şeyi evde doldurabilirsiniz.",
+    "secenekler": [
+     {
+      "de": "Ja, gern! Das ist sehr nett. Meine Adresse ist Brunnengasse sieben.",
+      "tr": "Evet, memnuniyetle! Çok naziksiniz. Adresim Brunnengasse 7.",
+      "accepted": [
+       "Ja, gern! Das ist sehr nett. Meine Adresse ist Brunnengasse sieben.",
+       "Ja, gern. Meine Adresse ist Brunnengasse sieben.",
+       "Ja, bitte! Brunnengasse sieben.",
+       "Ja, das ist sehr nett. Brunnengasse sieben, in Wendlfing.",
+       "Ja, gern, danke! Meine Adresse ist Brunnengasse 7.",
+       "Ja, bitte. Meine Adresse ist Brunnengasse sieben in Wendlfing."
+      ],
+      "sonraki": "n9",
+      "uygun": true,
+      "geri_bildirim_tr": "Öneriyi kabul ettin ve adresini verdin."
+     },
+     {
+      "de": "Nein, danke. Ich komme am Montag ins Büro.",
+      "tr": "Hayır, teşekkürler. Pazartesi büroya gelirim.",
+      "accepted": [
+       "Nein, danke. Ich komme am Montag ins Büro.",
+       "Nein, danke. Ich komme ins Büro.",
+       "Nein, danke. Ich hole die Formulare am Montag.",
+       "Danke, aber ich komme am Montag ins Büro."
+      ],
+      "sonraki": "n9",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibarca hayır deyip kendi planını söyledin."
+     }
+    ]
+   },
+   {
+    "id": "n9",
+    "de": "Gern geschehen. Auf Wiederhören!",
+    "tr": "Rica ederim. Hoşça kalın!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Kurs bürosunu aradın. Kayıt tarihini, kursun sonundaki belgeyi ve arkadaşının yerini öğrendin. Anlamadığında tekrar istedin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Kurs ilanı ve kursa kısa mesaj",
+  "metin_de": "Sprachkurs für den Beruf. Sie möchten bei der Arbeit mehr Deutsch sprechen? Wir bieten einen Kurs am Abend an: am Montag und am Mittwoch, 18:00 bis 20:30 Uhr. Der Kurs dauert 12 Wochen und fängt am ersten März an. Am Ende gibt es eine Prüfung und einen Abschluss. Der Kurs kostet 200 Euro. Vielleicht bezahlt Ihr Arbeitgeber die Weiterbildung, fragen Sie ihn! Anmeldung bis zum zwanzigsten Februar im Büro, Zimmer 3. Sie haben Fragen? Wir helfen gern: Montag bis Donnerstag, 9 bis 12 Uhr.",
+  "metin_tr": "Meslek için dil kursu. İşte daha çok Almanca konuşmak mı istiyorsunuz? Akşam kursu sunuyoruz: pazartesi ve çarşamba, 18:00'den 20:30'a kadar. Kurs on iki hafta sürüyor ve bir martta başlıyor. Sonunda bir sınav ve bitirme belgesi var. Kurs 200 avro. Belki işvereniniz bu ek eğitimin parasını öder, ona sorun! Kayıt yirmi şubata kadar büroda, üç numaralı odada. Sorunuz mu var? Memnuniyetle yardım ederiz: pazartesiden perşembeye, 9'dan 12'ye kadar.",
+  "sorular": [
+   {
+    "id": "m1:67:o1",
+    "kind": "detail",
+    "q_tr": "Kurs kaç hafta sürüyor?",
+    "opts": [
+     "On iki hafta",
+     "Altı hafta",
+     "Bir yıl"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:67:o2",
+    "kind": "detail",
+    "q_tr": "Kayıt nerede yapılıyor?",
+    "opts": [
+     "Büroda, üç numaralı odada",
+     "Kursun ilk gününde",
+     "Telefonla"
+    ],
+    "ans": 0,
+    "kanit": [
+     7
+    ]
+   },
+   {
+    "id": "m1:67:o3",
+    "k": "pick",
+    "q_tr": "Doğru mu? **Der Kurs ist am Wochenende.**",
+    "opts": [
+     "stimmt",
+     "stimmt nicht"
+    ],
+    "ans": 1,
+    "why_tr": "Kurs pazartesi ve çarşamba akşamı."
+   },
+   {
+    "id": "m1:67:o4",
+    "k": "pick",
+    "q_tr": "Doğru mu? **Am Ende bekommt man einen Abschluss.**",
+    "opts": [
+     "stimmt",
+     "stimmt nicht"
+    ],
+    "ans": 0,
+    "why_tr": "İlanda sonunda bir sınav ve belge var deniyor."
+   },
+   {
+    "id": "m1:67:o5",
+    "k": "pick",
+    "q_tr": "Doğru mu? **Der Arbeitgeber muss den Kurs bezahlen.**",
+    "opts": [
+     "stimmt",
+     "stimmt nicht"
+    ],
+    "ans": 1,
+    "why_tr": "İlan **vielleicht** diyor: belki öder, zorunlu değil."
+   },
+   {
+    "id": "m1:67:o6",
+    "k": "transform",
+    "instr_tr": "Geçmişe çevir. **Letztes Jahr** ile başla.",
+    "from_de": "Ich kann keinen Kurs machen.",
+    "accepted": [
+     "Letztes Jahr konnte ich keinen Kurs machen.",
+     "Letztes Jahr konnte ich leider keinen Kurs machen.",
+     "Ich konnte letztes Jahr keinen Kurs machen."
+    ],
+    "why_tr": "**kann** geçmişte **konnte** olur: **a** yerine **o** gelir, araya **te** girer."
+   },
+   {
+    "id": "m1:67:o7",
+    "k": "transform",
+    "instr_tr": "Geçmişe çevir.",
+    "from_de": "Wir müssen jeden Abend lernen.",
+    "accepted": [
+     "Wir mussten jeden Abend lernen.",
+     "Früher mussten wir jeden Abend lernen.",
+     "Wir mussten damals jeden Abend lernen."
+    ],
+    "why_tr": "**müssen** geçmişte **mussten** olur. **ss** iki tane kalır."
+   },
+   {
+    "id": "m1:67:o8",
+    "k": "guided_response",
+    "situation_tr": "Ioana soruyor: Kursun ödevlerini düzenli yapıyor musun? Kendin hakkında bir iki cümle söyle.",
+    "prompt_de": "Machst du regelmäßig Hausaufgaben?",
+    "accepted": [
+     "Ja, ich mache regelmäßig Hausaufgaben.",
+     "Ja, ich mache jeden Tag Hausaufgaben.",
+     "Ja, regelmäßig, am Abend nach der Arbeit.",
+     "Nicht so regelmäßig. Ich habe nicht viel Zeit.",
+     "Ja, ich mache die Hausaufgaben am Wochenende.",
+     "Ja, immer am Abend.",
+     "Nicht immer. Ich muss viel arbeiten.",
+     "Leider nicht. Ich habe wenig Zeit.",
+     "Ja, regelmäßig. Ich mache die Hausaufgaben am Sonntag.",
+     "Meistens ja. Aber nicht jeden Tag.",
+     "Ja, ich mache sie regelmäßig.",
+     "Ich möchte regelmäßig Hausaufgaben machen, aber ich habe wenig Zeit."
+    ],
+    "why_tr": "**regelmäßig** düzenli demek. Ne zaman yaptığını da ekle."
+   },
+   {
+    "id": "m1:67:o9",
+    "k": "guided_response",
+    "situation_tr": "İlanda **Anmeldung** kelimesini anlamıyorsun. Ioana'dan yardım iste.",
+    "prompt_de": "Was ist los?",
+    "accepted": [
+     "Kannst du mir helfen? Was bedeutet Anmeldung?",
+     "Hast du kurz Zeit? Was bedeutet Anmeldung?",
+     "Kannst du mir bitte helfen? Ich verstehe das Wort Anmeldung nicht.",
+     "Was bedeutet Anmeldung? Kannst du mir helfen?",
+     "Ich verstehe Anmeldung nicht. Kannst du mir helfen?",
+     "Kannst du mir helfen? Ich verstehe ein Wort nicht.",
+     "Hast du kurz Zeit? Kannst du mir helfen?",
+     "Was bedeutet hier Anmeldung?",
+     "Kannst du mir das zeigen? Was bedeutet Anmeldung?"
+    ],
+    "why_tr": "Yardım isterken **Kannst du mir helfen?** dersin. Kelimeyi **Was bedeutet Anmeldung?** diye sorarsın."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Kurs bürosuna kısa bir mesaj yaz. Kendini tanıt, hangi kursu istediğini söyle, iki soru sor ve kibarca yardım iste.",
+   "ornek_de": "Guten Tag, mein Name ist {name}. Ich arbeite in Wendlfing und möchte den Sprachkurs für den Beruf machen. Gibt es noch einen Platz? Gibt es am Ende einen Abschluss? Ich verstehe das Formular nicht. Können Sie mir bitte helfen? Viele Grüße, {name}",
+   "ornek_de_adsiz": "Guten Tag. Ich arbeite in Wendlfing und möchte den Sprachkurs für den Beruf machen. Gibt es noch einen Platz? Gibt es am Ende einen Abschluss? Ich verstehe das Formular nicht. Können Sie mir bitte helfen? Viele Grüße",
+   "zorunlu": [
+    "Sprachkurs",
+    "bitte"
+   ],
+   "accepted_kaliplar": [
+    "Guten Tag, mein Name ist ___.",
+    "Guten Tag.",
+    "Guten Tag, ___.",
+    "Mein Name ist ___.",
+    "Ich arbeite in ___ und möchte den Sprachkurs für den Beruf machen.",
+    "Ich arbeite in ___.",
+    "Ich arbeite als ___.",
+    "Ich möchte den Sprachkurs für den Beruf machen.",
+    "Ich möchte den Sprachkurs machen.",
+    "Ich möchte eine Weiterbildung machen.",
+    "Ich möchte ___ machen.",
+    "Ich mache einen Sprachkurs ___.",
+    "Gibt es noch einen Platz?",
+    "Gibt es am Ende einen Abschluss?",
+    "Gibt es am Ende eine Prüfung?",
+    "Gibt es eine Möglichkeit ___?",
+    "Wann fängt der Unterricht an?",
+    "Wann fängt der Kurs an?",
+    "Wie viel kostet der Kurs?",
+    "Bis wann ist die Anmeldung?",
+    "Ich verstehe das Formular nicht.",
+    "Ich verstehe ___ nicht.",
+    "Können Sie mir bitte helfen?",
+    "Können Sie mir bitte ___ schicken?",
+    "Können Sie mich bitte zurückrufen?",
+    "Meine Telefonnummer ist ___.",
+    "Viele Grüße, ___",
+    "Viele Grüße"
+   ],
+   "kontrol_tr": [
+    "Kendini tanıttın mı?",
+    "En az iki soru sordun mu?",
+    "Yardımı **Können Sie mir bitte helfen?** gibi kibarca istedin mi?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:67:s",
+  "maddeler": [
+   {
+    "id": "m1:67:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Der Unterricht fängt um sechs Uhr an.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Unterricht fängt um sechs Uhr an.",
+     "der unterricht fängt um sechs uhr an",
+     "Der Unterricht fängt um 6 Uhr an."
+    ],
+    "why_tr": "**anfangen** iki parçalı: **an** en sona gider."
+   },
+   {
+    "id": "m1:67:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Kannst du mir bitte helfen?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Kannst du mir bitte helfen?",
+     "kannst du mir bitte helfen",
+     "Kannst du mir bitte helfen"
+    ],
+    "why_tr": "Yardım isterken soru **Kannst du** ile başlar."
+   },
+   {
+    "id": "m1:67:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Die Firma bietet einen Sprachkurs an.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Firma bietet einen Sprachkurs an.",
+     "die firma bietet einen sprachkurs an",
+     "Die Firma bietet einen Sprachkurs an"
+    ],
+    "why_tr": "**anbieten** iki parçalı: **bietet** ikinci yerde, **an** en sonda."
+   },
+   {
+    "id": "m1:67:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Wir mussten regelmäßig üben.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir mussten regelmäßig üben.",
+     "wir mussten regelmäßig üben",
+     "Wir mussten regelmäßig üben"
+    ],
+    "why_tr": "**mussten** iki s ile yazılır."
+   },
+   {
+    "id": "m1:67:s5",
+    "k": "tr_de",
+    "tr": "Sana yardım edeyim mi?",
+    "accepted": [
+     "Soll ich dir helfen?",
+     "Soll ich dir vielleicht helfen?",
+     "Kann ich dir helfen?",
+     "Soll ich dir mal helfen?"
+    ],
+    "why_tr": "Yardım önerirken **Soll ich dir helfen?** dersin."
+   },
+   {
+    "id": "m1:67:s6",
+    "k": "tr_de",
+    "tr": "Bir dil kursuna gidiyorum.",
+    "accepted": [
+     "Ich mache einen Sprachkurs.",
+     "Ich besuche einen Sprachkurs.",
+     "Ich gehe zum Sprachkurs.",
+     "Ich mache gerade einen Sprachkurs."
+    ],
+    "why_tr": "Bir kursa devam etmek **einen Sprachkurs machen** olur."
+   },
+   {
+    "id": "m1:67:s7",
+    "k": "tr_de",
+    "tr": "Hafta sonu bir imkân var mı?",
+    "accepted": [
+     "Gibt es eine Möglichkeit am Wochenende?",
+     "Gibt es am Wochenende eine Möglichkeit?",
+     "Gibt es auch eine Möglichkeit am Wochenende?"
+    ],
+    "why_tr": "Var mı diye sorarken **Gibt es** dersin. **die Möglichkeit** için **eine** gelir."
+   },
+   {
+    "id": "m1:67:s8",
+    "k": "tr_de",
+    "tr": "Dün derse gelemedim.",
+    "accepted": [
+     "Gestern konnte ich nicht zum Unterricht kommen.",
+     "Ich konnte gestern nicht zum Unterricht kommen.",
+     "Gestern konnte ich nicht in den Unterricht kommen.",
+     "Gestern konnte ich leider nicht zum Unterricht kommen."
+    ],
+    "why_tr": "Geçmişte **kann** yerine **konnte** gelir. **kommen** en sona gider."
+   },
+   {
+    "id": "m1:67:s9",
+    "k": "guided_response",
+    "situation_tr": "Kursta yeni biri kapıda duruyor, büroyu bulamıyor. Yardım öner.",
+    "prompt_de": "Entschuldigung, ich finde das Büro nicht.",
+    "accepted": [
+     "Soll ich Ihnen helfen? Ich kann es Ihnen zeigen.",
+     "Kann ich Ihnen helfen?",
+     "Kann ich Ihnen helfen? Das Büro ist hier links.",
+     "Soll ich Ihnen helfen?",
+     "Kann ich Ihnen helfen? Ich kann es Ihnen zeigen.",
+     "Soll ich Ihnen das Büro zeigen?",
+     "Kein Problem, ich kann es Ihnen zeigen.",
+     "Ich kann Ihnen helfen. Das Büro ist Zimmer drei.",
+     "Kann ich helfen? Das Büro ist dort.",
+     "Ich zeige es Ihnen gern."
+    ],
+    "why_tr": "Tanımadığın birine **Kann ich Ihnen helfen?** dersin."
+   },
+   {
+    "id": "m1:67:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Hast du kurz Zeit? Ich brauche Hilfe.",
+    "speed": "normal",
+    "situation_tr": "Bir arkadaşın yardım istiyor. Evet de ve ne olduğunu sor.",
+    "accepted": [
+     "Ja, klar. Was ist los?",
+     "Klar, ich helfe dir gern. Was ist los?",
+     "Ja, gern. Was brauchst du?",
+     "Ja, klar. Was brauchst du?",
+     "Klar! Was ist los?",
+     "Ja, ich habe Zeit. Was ist los?",
+     "Ja, natürlich. Was ist los?"
+    ],
+    "why_tr": "Önce evet de, sonra **Was ist los?** diye sor."
+   },
+   {
+    "id": "m1:67:s11",
+    "k": "guided_response",
+    "situation_tr": "Kurs bürosunu arıyorsun. Kendini tanıt ve kursun ne zaman başladığını sor.",
+    "prompt_de": "Büro für Sprachkurse, guten Tag.",
+    "accepted": [
+     "Guten Tag, hier ist {name}. Wann fängt der Sprachkurs an?",
+     "Guten Tag, mein Name ist {name}. Ich habe eine Frage zum Sprachkurs. Wann fängt der Kurs an?",
+     "Hier ist {name}. Wann fängt der Kurs an?",
+     "Guten Tag, hier ist {name}. Ich habe eine Frage: Wann fängt der Unterricht an?",
+     "Guten Tag, {name} hier. Wann fängt der Sprachkurs an?",
+     "Guten Tag, hier ist {name}. Ich habe eine Frage zum Sprachkurs. Wann fängt er an?"
+    ],
+    "accepted_adsiz": [
+     "Guten Tag. Wann fängt der Sprachkurs an?",
+     "Guten Tag. Ich habe eine Frage zum Sprachkurs. Wann fängt der Kurs an?",
+     "Wann fängt der Kurs an?",
+     "Guten Tag. Ich habe eine Frage: Wann fängt der Unterricht an?",
+     "Guten Tag. Wann fängt der Sprachkurs an, bitte?",
+     "Guten Tag. Ich habe eine Frage zum Sprachkurs. Wann fängt er an?"
+    ],
+    "why_tr": "Telefonda önce adını söyle. Sonra **Wann fängt der Kurs an?** diye sor."
+   }
+  ],
+  "sesli": [
+   "m1:67:s9",
+   "m1:67:s10"
+  ],
+  "dikte": [
+   "m1:67:s1",
+   "m1:67:s2",
+   "m1:67:s3",
+   "m1:67:s4"
+  ]
+ }
+}

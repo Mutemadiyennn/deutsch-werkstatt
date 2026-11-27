@@ -1,0 +1,463 @@
+{
+  "schema": 1,
+  "id": "m1:gun:68",
+  "day": 68,
+  "level": "A2",
+  "format": "gun",
+  "title_tr": "Durak: konnte mi, kann mı?",
+  "goal_tr": "Akşam kursunda eskiyle ilgili bir alıştırma var. Geçmişi anlatırken en sık yapılan dört yanlışı tanır, doğrusunu söylersin. **die Übung** gibi -ung ile biten kelimelere **die** dersin. **o** ile **u** sesini ayırırsın.",
+  "can_do": { "id": "cd:m1:68", "tr": "Geçmişte neyi yapabildiğimi, neyi yapmak zorunda kaldığımı doğru biçimle söylerim." },
+  "unit": "u:m1:68",
+  "arm": "pazar",
+  "place": "pl:sprachkurs",
+  "characters": ["ch:popescu", "ch:aksoy", "ch:petrovic"],
+  "requires": { "kelimeler": [], "kaliplar": [], "gramer": [], "tur": [], "baglayicilar": [], "akicilik": [] },
+  "review": { "status": "draft" },
+  "dersler": ["dn:10-modal-tuzak", "dn:10-ung", "dn:10-ses-o-u"],
+  "yeni_kartlar": ["lx:Übung", "lx:Erklärung", "lx:Geduld", "lx:Bedeutung", "lx:Meinung", "lx:Beratung"],
+  "halkalar": [
+    {
+      "id": "m1:68:h1",
+      "title_tr": "Kursta: alıştırma, açıklama, sabır",
+      "kartlar": ["lx:Übung", "lx:Erklärung", "lx:Geduld"],
+      "kaliplar": [
+        { "de": "Gestern konnte ich … nicht … – Gestern musste ich …", "tr": "Dün …yı …emedim. – Dün … zorunda kaldım." },
+        { "de": "Wir mussten … – Ihr musstet … – Ihr konntet …", "tr": "… zorunda kaldık. – … zorunda kaldınız. – …ebildiniz." },
+        { "de": "Danke für die Erklärung! – Danke für Ihre Geduld!", "tr": "Açıklama için teşekkürler! – Sabrınız için teşekkürler!" },
+        { "de": "Können Sie mir das bitte erklären? – Können Sie das bitte noch einmal erklären?", "tr": "Bunu bana lütfen açıklayabilir misiniz? – Bunu lütfen bir kez daha açıklayabilir misiniz?" },
+        { "de": "Ich habe eine Frage.", "tr": "Bir sorum var." },
+        { "de": "Guten Tag! – Viele Grüße", "tr": "İyi günler! (yazının başı) – Selamlar (yazının sonu)" }
+      ],
+      "dersten_sonra": true,
+      "gorev_cumleleri": [
+        { "kart": "lx:Übung", "de": "Gestern konnte ich die Übung nicht machen.", "tr": "Dün alıştırmayı yapamadım.",
+          "accepted": ["Gestern konnte ich die Übung nicht machen.", "Ich konnte gestern die Übung nicht machen.", "Ich konnte die Übung gestern nicht machen.", "Die Übung konnte ich gestern nicht machen."] },
+        { "kart": "lx:Übung", "de": "Wir mussten die Übung noch einmal machen.", "tr": "Alıştırmayı bir kez daha yapmak zorunda kaldık.",
+          "accepted": ["Wir mussten die Übung noch einmal machen.", "Wir mussten die Übung nochmal machen.", "Die Übung mussten wir noch einmal machen.", "Wir mussten die Übung noch mal machen."] },
+        { "kart": "lx:Übung", "de": "Konntet ihr die Übung zu Hause machen?", "tr": "Alıştırmayı evde yapabildiniz mi? (siz, arkadaşlar)",
+          "accepted": ["Konntet ihr die Übung zu Hause machen?", "Konntet ihr die Übung machen?", "Konntet ihr zu Hause die Übung machen?"] },
+        { "kart": "lx:Erklärung", "de": "Danke für die Erklärung!", "tr": "Açıklama için teşekkürler!",
+          "accepted": ["Danke für die Erklärung!", "Vielen Dank für die Erklärung!", "Danke für die Erklärung.", "Danke schön für die Erklärung!"] },
+        { "kart": "lx:Erklärung", "de": "Die Erklärung war gut, jetzt ist alles klar.", "tr": "Açıklama iyiydi, şimdi her şey açık.",
+          "accepted": ["Die Erklärung war gut, jetzt ist alles klar.", "Die Erklärung war gut. Jetzt ist alles klar.", "Die Erklärung war sehr gut, jetzt ist alles klar."] },
+        { "kart": "lx:Erklärung", "de": "Ohne die Erklärung konnte ich die Übung nicht machen.", "tr": "Açıklama olmadan alıştırmayı yapamadım.",
+          "accepted": ["Ohne die Erklärung konnte ich die Übung nicht machen.", "Ich konnte die Übung ohne die Erklärung nicht machen.", "Ohne Erklärung konnte ich die Übung nicht machen."] },
+        { "kart": "lx:Geduld", "de": "Danke für Ihre Geduld!", "tr": "Sabrınız için teşekkürler!",
+          "accepted": ["Danke für Ihre Geduld!", "Vielen Dank für Ihre Geduld!", "Danke für Ihre Geduld.", "Danke schön für Ihre Geduld!"] },
+        { "kart": "lx:Geduld", "de": "Bitte haben Sie Geduld mit mir.", "tr": "Lütfen bana karşı sabırlı olun.",
+          "accepted": ["Bitte haben Sie Geduld mit mir.", "Haben Sie bitte Geduld mit mir.", "Haben Sie bitte Geduld mit mir!", "Bitte haben Sie Geduld mit mir!"] },
+        { "kart": "lx:Geduld", "de": "Früher musste ich viel Geduld haben.", "tr": "Eskiden çok sabırlı olmak zorundaydım.",
+          "accepted": ["Früher musste ich viel Geduld haben.", "Ich musste früher viel Geduld haben.", "Früher musste ich sehr viel Geduld haben."] }
+      ],
+      "sahne": {
+        "ortam_tr": "Akşam kursu, ders başlıyor. Kurs öğretmeni sana soruyor.",
+        "satirlar": [
+          { "r": "die Kursleiterin", "de": "Konnten Sie die Übung zu Hause machen?", "tr": "Alıştırmayı evde yapabildiniz mi?" },
+          { "r": "ogrenci", "de": "Ja. Die Erklärung war gut, jetzt ist alles klar.", "tr": "Evet. Açıklama iyiydi, şimdi her şey açık." },
+          { "r": "die Kursleiterin", "de": "Super! Dann machen wir jetzt noch eine Übung.", "tr": "Süper! O zaman şimdi bir alıştırma daha yapıyoruz." }
+        ],
+        "soru": { "q_tr": "Alıştırmayı evde yapabildin mi?", "opts": ["Evet, açıklama iyiydi", "Hayır, vaktim yoktu", "Alıştırmayı unuttum"], "ans": 0 }
+      }
+    },
+    {
+      "id": "m1:68:h2",
+      "title_tr": "-ung ile biten kelimeler: anlam, fikir, danışma",
+      "kartlar": ["lx:Bedeutung", "lx:Meinung", "lx:Beratung"],
+      "kaliplar": [
+        { "de": "Was ist die Bedeutung von …?", "tr": "… kelimesinin anlamı ne?" },
+        { "de": "Was ist deine Meinung? – Was ist Ihre Meinung? – Meine Meinung ist: …", "tr": "Senin fikrin ne? – Sizin fikriniz ne? – Benim fikrim şu: …" },
+        { "de": "Ich möchte einen Termin für eine Beratung.", "tr": "Danışma için bir randevu istiyorum." },
+        { "de": "die Bedeutung – die Meinung – die Beratung – die Wohnung", "tr": "anlam – fikir – danışma – daire (hepsi die)" }
+      ],
+      "dersten_sonra": true,
+      "gorev_cumleleri": [
+        { "kart": "lx:Bedeutung", "de": "Was ist die Bedeutung von Abschluss?", "tr": "Abschluss kelimesinin anlamı ne?",
+          "accepted": ["Was ist die Bedeutung von Abschluss?", "Was ist die Bedeutung von dem Wort Abschluss?", "Was ist die Bedeutung von Abschluss, bitte?"] },
+        { "kart": "lx:Bedeutung", "de": "Ich konnte die Bedeutung nicht finden.", "tr": "Anlamını bulamadım.",
+          "accepted": ["Ich konnte die Bedeutung nicht finden.", "Die Bedeutung konnte ich nicht finden.", "Ich konnte die Bedeutung leider nicht finden."] },
+        { "kart": "lx:Bedeutung", "de": "Das Wort hat zwei Bedeutungen.", "tr": "Kelimenin iki anlamı var.",
+          "accepted": ["Das Wort hat zwei Bedeutungen.", "Das Wort hat zwei Bedeutungen!", "Das Wort hat auch zwei Bedeutungen."] },
+        { "kart": "lx:Meinung", "de": "Was ist deine Meinung?", "tr": "Senin fikrin ne?",
+          "accepted": ["Was ist deine Meinung?", "Und was ist deine Meinung?", "Und deine Meinung?"] },
+        { "kart": "lx:Meinung", "de": "Und was ist Ihre Meinung?", "tr": "Peki sizin fikriniz ne?",
+          "accepted": ["Und was ist Ihre Meinung?", "Was ist Ihre Meinung?", "Was ist denn Ihre Meinung?"] },
+        { "kart": "lx:Meinung", "de": "Meine Meinung ist: Übung ist wichtig.", "tr": "Benim fikrim şu: alıştırma önemli.",
+          "accepted": ["Meine Meinung ist: Übung ist wichtig.", "Meine Meinung: Übung ist wichtig.", "Meine Meinung ist, Übung ist wichtig."] },
+        { "kart": "lx:Beratung", "de": "Ich möchte einen Termin für eine Beratung.", "tr": "Danışma için bir randevu istiyorum.",
+          "accepted": ["Ich möchte einen Termin für eine Beratung.", "Ich möchte bitte einen Termin für eine Beratung.", "Ich möchte gern einen Termin für eine Beratung."] },
+        { "kart": "lx:Beratung", "de": "Die Beratung war gut, ich konnte viel fragen.", "tr": "Danışma iyiydi, çok şey sorabildim.",
+          "accepted": ["Die Beratung war gut, ich konnte viel fragen.", "Die Beratung war gut. Ich konnte viel fragen.", "Die Beratung war sehr gut, ich konnte viel fragen."] },
+        { "kart": "lx:Beratung", "de": "Wann ist die Beratung?", "tr": "Danışma ne zaman?",
+          "accepted": ["Wann ist die Beratung?", "Wann ist denn die Beratung?", "Entschuldigung, wann ist die Beratung?"] }
+      ],
+      "sahne": {
+        "ortam_tr": "İş yerinde öğle arası. Derya kurstaki danışmayı soruyor.",
+        "satirlar": [
+          { "r": "ch:aksoy", "de": "Gehst du am Montag zur Beratung im Kurs?", "tr": "Pazartesi kurstaki danışmaya gidiyor musun?" },
+          { "r": "ogrenci", "de": "Ja! Ich habe eine Frage zur Weiterbildung.", "tr": "Evet! Ek eğitimle ilgili bir sorum var." },
+          { "r": "ch:aksoy", "de": "Super. Und was ist deine Meinung? Ist eine Weiterbildung gut für dich?", "tr": "Süper. Peki senin fikrin ne? Bir ek eğitim sana iyi gelir mi?" }
+        ],
+        "soru": { "q_tr": "Derya ne soruyor?", "opts": ["Danışmaya gidip gitmediğini ve senin fikrini", "Kursun kaçta başladığını", "Yeni adresini"], "ans": 0 }
+      }
+    }
+  ],
+  "sahne": {
+    "id": "m1:68:v1",
+    "title_tr": "Kursta: eskiden ve bugün",
+    "sahneler": [
+      { "id": "s1", "speaker": "die Kursleiterin", "sahne_tr": "Akşam kursu. Kurs öğretmeni tahtaya iki sözcük yazıyor: früher ve heute.", "de": "Guten Abend! Heute machen wir eine Übung: früher und heute.", "tr": "İyi akşamlar! Bugün bir alıştırma yapıyoruz: eskiden ve bugün." },
+      { "id": "s2", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni Ioana'ya dönüyor.", "de": "Frau Popescu, was konnten Sie als Kind gut?", "tr": "Popescu Hanım, çocukken neyi iyi yapabiliyordunuz?" },
+      { "id": "s3", "speaker": "ch:popescu", "sahne_tr": "Ioana gülümsüyor, babasını anlatıyor.", "de": "Mein Vater war Koch.", "tr": "Babam aşçıydı." },
+      { "id": "s4", "speaker": "ch:popescu", "sahne_tr": "Ioana eliyle bir pasta çiziyor.", "de": "Als Kind konnte ich schon Kuchen backen.", "tr": "Çocukken pasta yapabiliyordum bile." },
+      { "id": "s5", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni tahtaya Koch ve Kuchen yazıp ağzını gösteriyor.", "de": "Hören Sie: Koch mit o, Kuchen mit u. Bei u ist der Mund klein.", "tr": "Dinleyin: Koch o ile, Kuchen u ile. u'da ağız küçük." },
+      { "id": "s6", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni yeniden Ioana'ya bakıyor.", "de": "Und was konnten Sie früher nicht?", "tr": "Peki eskiden neyi yapamıyordunuz?" },
+      { "id": "s7", "speaker": "ch:popescu", "sahne_tr": "Ioana gururla anahtarlığını gösteriyor.", "de": "Früher konnte ich nicht Auto fahren. Heute kann ich es.", "tr": "Eskiden araba süremiyordum. Bugün sürebiliyorum." },
+      { "id": "s8", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni defterine bakıyor.", "de": "Frau Popescu, gestern waren Sie nicht im Kurs.", "tr": "Popescu Hanım, dün kursta yoktunuz." },
+      { "id": "s9", "speaker": "ch:popescu", "sahne_tr": "Ioana hızlı cevap veriyor, sonra duruyor.", "de": "Gestern muss ich lange arbeiten.", "tr": "Dün uzun çalışmak zorundayım." },
+      { "id": "s10", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni tahtaya musste yazıyor.", "de": "Gestern? Dann nicht muss, sondern musste.", "tr": "Dün mü? O zaman muss değil, musste." },
+      { "id": "s11", "speaker": "ch:popescu", "sahne_tr": "Ioana gülüyor, cümleyi yeniden söylüyor.", "de": "Stimmt! Gestern musste ich lange arbeiten. Mit zwei s!", "tr": "Doğru! Dün uzun çalışmak zorundaydım. İki s ile!" },
+      { "id": "s12", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni bütün sınıfa soruyor.", "de": "Konntet ihr alle die Übung zu Hause machen?", "tr": "Hepiniz alıştırmayı evde yapabildiniz mi?" },
+      { "id": "s13", "speaker": "ch:popescu", "sahne_tr": "Ioana omuz silkiyor.", "de": "Nicht alle. Wir hatten keine Zeit, wir mussten arbeiten.", "tr": "Hepimiz değil. Vaktimiz yoktu, çalışmak zorundaydık." },
+      { "id": "s14", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni sakin, gülümsüyor.", "de": "Kein Problem. Am Montag gibt es vor dem Unterricht eine Beratung.", "tr": "Sorun değil. Pazartesi dersten önce danışma var." }
+    ],
+    "bolumler": [
+      {
+        "id": "b1",
+        "cumleler": ["s1", "s2", "s3", "s4", "s5", "s6", "s7"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Kursta ne konuşuluyor?", "opts": ["Eskiden neyi yapabildikleri", "Yeni bir iş ilanı", "Hafta sonu planı"], "ans": 0, "kanit": ["s1", "s6"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Ioana'nın babası ne iş yapıyordu?", "opts": ["Aşçıydı", "Şofördü", "Garsondu"], "ans": 0, "kanit": ["s3"] },
+          { "kind": "detail", "q_tr": "Ioana çocukken ne yapabiliyordu?", "opts": ["Pasta yapabiliyordu", "Araba sürebiliyordu", "Yüzebiliyordu"], "ans": 0, "kanit": ["s4"] },
+          { "kind": "detail", "q_tr": "Ioana eskiden neyi yapamıyordu?", "opts": ["Araba süremiyordu", "Yemek yapamıyordu", "Okuyamıyordu"], "ans": 0, "kanit": ["s7"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s3", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Koch", "Kuchen", "Kunde"], "ans": 0 },
+          { "id": "d2", "cumle": "s7", "seviye": "orta", "de": "Früher ___ ich nicht Auto fahren. Heute kann ich es.", "accepted": ["konnte", "Konnte", "konnte."] },
+          { "id": "d3", "cumle": "s4", "seviye": "zor", "banka": ["Als", "Kind", "konnte", "ich", "schon", "Kuchen", "backen", "kann", "Koch"], "accepted": ["Als Kind konnte ich schon Kuchen backen.", "als kind konnte ich schon kuchen backen", "Als Kind konnte ich schon Kuchen backen"] },
+          { "id": "d4", "cumle": "s6", "seviye": "usta", "accepted": ["Und was konnten Sie früher nicht?", "und was konnten sie früher nicht", "Und was konnten Sie früher nicht"] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Ioana eskiden neyi yapabiliyordu, neyi yapamıyordu? İki kısa cümleyle yaz.", "ornek_de": "Als Kind konnte Ioana Kuchen backen. Früher konnte sie nicht Auto fahren.", "zorunlu": ["konnte"] }
+        ],
+        "golge": ["s3", "s4"],
+        "cevapla": {
+          "id": "m1:68:v1:c1",
+          "k": "guided_response",
+          "situation_tr": "Kurs öğretmeni sana da soruyor. Eskiden yapamadığın bir şeyi ve bugün yapabildiğini söyle.",
+          "prompt_de": "Und Sie? Was konnten Sie früher nicht?",
+          "accepted": ["Früher konnte ich nicht Auto fahren. Heute kann ich es.", "Früher konnte ich nicht schwimmen. Heute kann ich es.", "Früher konnte ich nicht kochen. Heute kann ich gut kochen.", "Früher konnte ich kein Deutsch. Heute kann ich ein bisschen Deutsch.", "Früher konnte ich nicht gut Deutsch sprechen. Heute kann ich es.", "Früher konnte ich nicht Fahrrad fahren. Heute kann ich es.", "Früher konnte ich nicht mit dem Computer arbeiten. Heute kann ich es.", "Früher konnte ich nicht kochen. Heute kann ich es.", "Früher konnte ich kein Deutsch. Heute kann ich es ein bisschen.", "Früher konnte ich nicht schwimmen, heute kann ich es.", "Früher konnte ich nicht Auto fahren, heute kann ich es.", "Ich konnte früher nicht schwimmen. Heute kann ich es."],
+          "why_tr": "Eskiyi **konnte**, bugünü **kann** ile söylersin. **schwimmen** değişmez, en sona gider: **Heute kann ich schwimmen.**"
+        }
+      },
+      {
+        "id": "b2",
+        "cumleler": ["s8", "s9", "s10", "s11", "s12", "s13", "s14"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Kurs öğretmeni Ioana'ya ne öğretiyor?", "opts": ["Dün için muss değil musste denir", "Yarın kurs yok", "Kursun saati değişti"], "ans": 0, "kanit": ["s10"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Ioana dün neden kursa gelmedi?", "opts": ["Uzun çalışmak zorundaydı", "Hastaydı", "Treni gelmedi"], "ans": 0, "kanit": ["s11"] },
+          { "kind": "detail", "q_tr": "Sınıftakilerin hepsi alıştırmayı yapabildi mi?", "opts": ["Hayır, bazılarının vakti yoktu", "Evet, hepsi yaptı", "Hiç alıştırma yoktu"], "ans": 0, "kanit": ["s13"] },
+          { "kind": "detail", "q_tr": "Pazartesi dersten önce ne var?", "opts": ["Danışma", "Sınav", "Parti"], "ans": 0, "kanit": ["s14"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s11", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["musste", "konnte", "wollte"], "ans": 0 },
+          { "id": "d2", "cumle": "s13", "seviye": "orta", "de": "Nicht alle. Wir hatten keine Zeit, wir ___ arbeiten.", "accepted": ["mussten", "Mussten", "mussten."] },
+          { "id": "d3", "cumle": "s12", "seviye": "zor", "banka": ["Konntet", "ihr", "alle", "die", "Übung", "zu", "Hause", "machen", "Konntest", "Konnten"], "accepted": ["Konntet ihr alle die Übung zu Hause machen?", "konntet ihr alle die übung zu hause machen", "Konntet ihr alle die Übung zu Hause machen"] },
+          { "id": "d4", "cumle": "s8", "seviye": "usta", "accepted": ["Frau Popescu, gestern waren Sie nicht im Kurs.", "frau popescu gestern waren sie nicht im kurs", "Frau Popescu, gestern waren Sie nicht im Kurs"] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Ioana dün neden gelmedi, pazartesi ne var? İki kısa cümleyle yaz.", "ornek_de": "Ioana musste gestern lange arbeiten. Am Montag gibt es eine Beratung.", "zorunlu": ["musste"] }
+        ],
+        "golge": ["s11", "s12"],
+        "cevapla": {
+          "id": "m1:68:v1:c2",
+          "k": "guided_response",
+          "situation_tr": "Kurs öğretmeni sana soruyor. Alıştırmayı evde yapamadığını ve nedenini söyle.",
+          "prompt_de": "Und Sie? Konnten Sie die Übung zu Hause machen?",
+          "accepted": ["Nein, leider nicht. Ich musste lange arbeiten.", "Nein, ich konnte die Übung nicht machen. Ich musste arbeiten.", "Leider nicht. Ich hatte keine Zeit.", "Nein, leider nicht. Ich hatte keine Zeit, ich musste arbeiten.", "Nein. Ich musste lange arbeiten.", "Nein, ich konnte nicht. Ich musste lange arbeiten.", "Leider nicht, ich musste lange arbeiten.", "Nein, leider nicht. Ich war krank.", "Nein, ich hatte keine Zeit.", "Nein, leider nicht. Ich musste arbeiten.", "Nein. Gestern musste ich lange arbeiten.", "Nein, ich konnte die Übung leider nicht machen."],
+          "why_tr": "Dün oldu, o yüzden **konnte** ve **musste** dersin. **kann** ve **muss** bugün içindir."
+        }
+      }
+    ]
+  },
+  "sesler": [
+    {
+      "id": "m1:68:a1",
+      "tur": "sesli-mesaj",
+      "title_tr": "Derya'dan sesli mesaj",
+      "ortam_tr": "Akşam telefonuna bakıyorsun. İş arkadaşın Derya'dan bir sesli mesaj var.",
+      "speaker": "ch:aksoy",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Hallo, hier ist Derya.", "tr": "Merhaba, ben Derya." },
+        { "id": "c2", "de": "Gestern konnte ich nicht zur Arbeit kommen.", "tr": "Dün işe gelemedim." },
+        { "id": "c3", "de": "Ich war krank, ich musste zum Arzt.", "tr": "Hastaydım, doktora gitmek zorundaydım." },
+        { "id": "c4", "de": "Der Schichtplan ist jetzt neu, oder?", "tr": "Vardiya planı artık yeni, değil mi?" },
+        { "id": "c5", "de": "Kannst du mir das morgen kurz zeigen?", "tr": "Bunu bana yarın kısaca gösterebilir misin?" },
+        { "id": "c6", "de": "Danke! Bis morgen!", "tr": "Teşekkürler! Yarın görüşürüz!" }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5", "c6"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Derya ne istiyor?", "opts": ["Yeni vardiya planını ona göstermeni", "Onu doktora götürmeni", "Wimmer Bey'i aramanı"], "ans": 0, "kanit": ["c5"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Derya dün neden işe gelemedi?", "opts": ["Hastaydı, doktora gitmek zorundaydı", "Treni yoktu", "Kurstaydı"], "ans": 0, "kanit": ["c3"] },
+            { "kind": "detail", "q_tr": "Derya'ya göre ne yeni?", "opts": ["Vardiya planı", "Kurs", "Depo"], "ans": 0, "kanit": ["c4"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c2", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["konnte", "Kunde", "kann"], "ans": 0 },
+            { "id": "d2", "cumle": "c3", "seviye": "orta", "de": "Ich war krank, ich ___ zum Arzt.", "accepted": ["musste", "Musste", "musste."] },
+            { "id": "d3", "cumle": "c5", "seviye": "zor", "banka": ["Kannst", "du", "mir", "das", "morgen", "kurz", "zeigen", "dich", "heute"], "accepted": ["Kannst du mir das morgen kurz zeigen?", "kannst du mir das morgen kurz zeigen", "Kannst du mir das morgen kurz zeigen"] },
+            { "id": "d4", "cumle": "c2", "seviye": "usta", "accepted": ["Gestern konnte ich nicht zur Arbeit kommen.", "gestern konnte ich nicht zur arbeit kommen", "Gestern konnte ich nicht zur Arbeit kommen"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Derya ne istiyor? Bir iki kısa cümleyle yaz.", "ornek_de": "Derya war krank. Ich soll ihr morgen den Schichtplan zeigen.", "zorunlu": ["Schichtplan"] }
+          ],
+          "golge": ["c2", "c3"],
+          "cevapla": {
+            "id": "m1:68:a1:c1",
+            "k": "guided_response",
+            "situation_tr": "Derya'yı geri arıyorsun. Geçmiş olsun de ve yarın planı göstereceğini söyle.",
+            "prompt_de": "Hallo? Derya hier.",
+            "accepted": ["Hallo Derya! Gute Besserung! Ich zeige dir morgen den Schichtplan.", "Hallo Derya, gute Besserung! Ja, ich zeige es dir morgen.", "Gute Besserung! Ich kann dir das morgen zeigen.", "Hallo Derya! Gute Besserung! Klar, ich zeige es dir morgen.", "Gute Besserung, Derya! Ich zeige dir morgen den Schichtplan.", "Hallo Derya! Gute Besserung! Ich kann dir morgen den Schichtplan zeigen.", "Gute Besserung! Ja, ich zeige dir das morgen.", "Hallo Derya! Gute Besserung! Ja, kein Problem. Ich zeige es dir morgen.", "Gute Besserung! Kein Problem, ich zeige es dir morgen.", "Hallo! Gute Besserung! Morgen zeige ich dir den Schichtplan."],
+            "why_tr": "Hasta birine **Gute Besserung** dersin. **Ich zeige dir** sana gösteririm demek."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:68:a1:e1", "k": "pick", "q_tr": "Ne yapmalısın?", "opts": ["Yarın Derya'ya yeni vardiya planını göster.", "Derya'yı doktora götür.", "Wimmer Bey'e Derya'nın hasta olduğunu söyle."], "ans": 0, "why_tr": "Derya planı yarın kısaca göstermeni istiyor.", "kanit": ["c5"] }
+    },
+    {
+      "id": "m1:68:a2",
+      "tur": "anons",
+      "title_tr": "Kurs binasında anons",
+      "ortam_tr": "Kurs binasının girişindesin. Hoparlörden kısa bir anons geliyor.",
+      "speaker": "die Kursleiterin",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Achtung, bitte! Hier ist eine Information für den Sprachkurs am Abend.", "tr": "Dikkat lütfen! Akşam dil kursu için bir bilgi." },
+        { "id": "c2", "de": "Am Dienstag ist kein Unterricht.", "tr": "Salı günü ders yok." },
+        { "id": "c3", "de": "Die Kursleiterin ist krank.", "tr": "Kurs öğretmeni hasta." },
+        { "id": "c4", "de": "Bitte machen Sie die Hausaufgabe zu Hause.", "tr": "Lütfen ödevi evde yapın." },
+        { "id": "c5", "de": "Am Montag ist der Unterricht wieder um sechs Uhr.", "tr": "Pazartesi ders yine saat altıda." },
+        { "id": "c6", "de": "Vor dem Unterricht gibt es eine Beratung.", "tr": "Dersten önce danışma var." }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5", "c6"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Anons ne hakkında?", "opts": ["Salı ders yok", "Kurs ücreti değişti", "Yeni bir kurs başlıyor"], "ans": 0, "kanit": ["c2"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Neden ders yok?", "opts": ["Kurs öğretmeni hasta", "Bina kapalı", "Tatil var"], "ans": 0, "kanit": ["c3"] },
+            { "kind": "detail", "q_tr": "Pazartesi ders kaçta?", "opts": ["Saat altıda", "Saat beşte", "Saat yedide"], "ans": 0, "kanit": ["c5"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c6", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Beratung", "Bedeutung", "Meinung"], "ans": 0 },
+            { "id": "d2", "cumle": "c2", "seviye": "orta", "de": "Am Dienstag ist kein ___.", "accepted": ["Unterricht", "unterricht", "Unterricht."] },
+            { "id": "d3", "cumle": "c4", "seviye": "zor", "banka": ["Bitte", "machen", "Sie", "die", "Hausaufgabe", "zu", "Hause", "Übung", "im"], "accepted": ["Bitte machen Sie die Hausaufgabe zu Hause.", "bitte machen sie die hausaufgabe zu hause", "Bitte machen Sie die Hausaufgabe zu Hause"] },
+            { "id": "d4", "cumle": "c3", "seviye": "usta", "accepted": ["Die Kursleiterin ist krank.", "die kursleiterin ist krank", "Die Kursleiterin ist krank"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Anonsta ne dendi? Bir iki kısa cümleyle yaz.", "ornek_de": "Am Dienstag ist kein Unterricht. Am Montag ist der Unterricht wieder um sechs.", "zorunlu": ["Dienstag", "Unterricht"] }
+          ],
+          "golge": ["c3", "c6"],
+          "cevapla": {
+            "id": "m1:68:a2:c1",
+            "k": "guided_response",
+            "situation_tr": "Ioana salı kursa gelmek istiyor. Ona ders olmadığını ve nedenini söyle.",
+            "prompt_de": "Kommst du am Dienstag in den Kurs?",
+            "accepted": ["Nein, am Dienstag ist kein Unterricht. Die Kursleiterin ist krank.", "Am Dienstag ist kein Unterricht. Die Kursleiterin ist krank.", "Nein, am Dienstag ist kein Unterricht.", "Nein, die Kursleiterin ist krank.", "Nein. Am Dienstag ist kein Unterricht.", "Nein, leider nicht. Am Dienstag ist kein Unterricht.", "Nein, die Kursleiterin ist krank. Am Dienstag ist kein Unterricht.", "Nein, am Dienstag fällt der Unterricht aus.", "Nein, der Unterricht fällt aus. Die Kursleiterin ist krank.", "Am Dienstag ist kein Unterricht.", "Nein, leider nicht. Die Kursleiterin ist krank."],
+            "why_tr": "Ders yoksa **kein Unterricht** dersin. Nedeni de kısa söylersin."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:68:a2:e1", "k": "pick", "q_tr": "Salı günü ne yapmalısın?", "opts": ["Ödevi evde yap.", "Kursa git.", "Büroya git."], "ans": 0, "why_tr": "Salı ders yok. Ödevi evde yapmanı istiyorlar.", "kanit": ["c4"] }
+    }
+  ],
+  "prova": {
+    "id": "m1:68:p1",
+    "title_tr": "Kurstan sonra kurs öğretmeniyle",
+    "durum_tr": "Ders bitti. Dün kursa gelemedin ve alıştırmayı evde yapamadın. Kurs öğretmeninin yanına gidiyorsun.",
+    "karsi": "die Kursleiterin",
+    "baslangic": "n1",
+    "dugumler": [
+      {
+        "id": "n1",
+        "de": "Haben Sie noch eine Frage?",
+        "tr": "Başka bir sorunuz var mı?",
+        "secenekler": [
+          { "de": "Ja. Ich konnte die Übung nicht machen. Können Sie mir das bitte erklären?", "tr": "Evet. Alıştırmayı yapamadım. Bunu bana lütfen açıklayabilir misiniz?",
+            "accepted": ["Ja. Ich konnte die Übung nicht machen. Können Sie mir das bitte erklären?", "Ja. Ich konnte die Übung nicht machen. Können Sie das bitte noch einmal erklären?", "Ja, ich konnte die Übung nicht machen. Können Sie mir das erklären?", "Ja. Ich konnte die Übung nicht machen. Können Sie mir bitte helfen?", "Ja, ich habe eine Frage. Ich konnte die Übung nicht machen.", "Ja. Ich konnte die Übung leider nicht machen.", "Ja, ich konnte die Übung nicht machen.", "Ja. Können Sie mir die Übung bitte erklären?", "Ja, können Sie mir die Übung bitte erklären?", "Ja, ich habe eine Frage. Können Sie mir die Übung bitte erklären?"],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Sorunu açıkça söyledin ve kibarca yardım istedin." },
+          { "de": "Ja, ich habe eine Frage. Was ist die Bedeutung von Abschluss?", "tr": "Evet, bir sorum var. Abschluss kelimesinin anlamı ne?",
+            "accepted": ["Ja, ich habe eine Frage. Was ist die Bedeutung von Abschluss?", "Ja. Was ist die Bedeutung von Abschluss?", "Ich habe eine Frage. Was ist die Bedeutung von Abschluss?", "Ja, was ist die Bedeutung von Abschluss?", "Ja, ich habe eine Frage. Was bedeutet Abschluss?", "Ja. Was bedeutet Abschluss?"],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Bir kelimenin anlamını **Was ist die Bedeutung von** ile sordun." },
+          { "de": "Nein. Tschüss!", "tr": "Hayır. Hoşça kalın!",
+            "accepted": ["Nein. Tschüss!", "Nein, tschüss!", "Nein. Auf Wiedersehen!", "Nein, danke. Tschüss!", "Nein, auf Wiedersehen!", "Nein danke, tschüss!"],
+            "sonraki": "n1", "uygun": false, "geri_bildirim_tr": "Alıştırmayı yapamadın. Şimdi sorma fırsatın var, kaçırma." }
+        ]
+      },
+      {
+        "id": "n2",
+        "de": "Natürlich. Warum konnten Sie die Übung nicht machen?",
+        "tr": "Elbette. Alıştırmayı neden yapamadınız?",
+        "secenekler": [
+          { "de": "Ich musste gestern lange arbeiten.", "tr": "Dün uzun çalışmak zorundaydım.",
+            "accepted": ["Ich musste gestern lange arbeiten.", "Gestern musste ich lange arbeiten.", "Ich musste lange arbeiten.", "Ich hatte keine Zeit, ich musste lange arbeiten.", "Gestern musste ich lange arbeiten. Ich hatte keine Zeit.", "Ich musste gestern arbeiten.", "Ich hatte keine Zeit. Ich musste arbeiten.", "Ich musste gestern lange arbeiten, ich hatte keine Zeit."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Dün için **musste** dedin. Tam doğru biçim." },
+          { "de": "Ich war krank. Ich musste zu Hause bleiben.", "tr": "Hastaydım. Evde kalmak zorundaydım.",
+            "accepted": ["Ich war krank. Ich musste zu Hause bleiben.", "Ich war krank, ich musste zu Hause bleiben.", "Ich war krank.", "Ich war krank und musste zu Hause bleiben.", "Ich war gestern krank. Ich musste zu Hause bleiben.", "Gestern war ich krank. Ich musste zu Hause bleiben."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "**war** ve **musste** ile dünü doğru anlattın." },
+          { "de": "Ich muss gestern lange arbeiten.", "tr": "Dün uzun çalışmak zorundayım.",
+            "accepted": ["Ich muss gestern lange arbeiten.", "Gestern muss ich lange arbeiten.", "Ich muss lange arbeiten gestern.", "Ich muss gestern arbeiten.", "Gestern muss ich arbeiten.", "Ich kann gestern nicht."],
+            "sonraki": "n2", "uygun": false, "geri_bildirim_tr": "Dün geçmiştir. **muss** değil **musste** dersin: **Ich musste gestern lange arbeiten.**" }
+        ]
+      },
+      {
+        "id": "n3",
+        "de": "Kein Problem. Schauen Sie: wir mussten, ihr musstet. Ist das klar?",
+        "tr": "Sorun değil. Bakın: wir mussten, ihr musstet. Anlaşıldı mı?",
+        "secenekler": [
+          { "de": "Ja, danke für die Erklärung!", "tr": "Evet, açıklama için teşekkürler!",
+            "accepted": ["Ja, danke für die Erklärung!", "Ja, vielen Dank für die Erklärung!", "Ja, danke! Jetzt verstehe ich das.", "Ja, danke für die Erklärung. Jetzt verstehe ich das.", "Ja, das ist klar. Danke!", "Ja, danke für die Erklärung.", "Ja, das ist klar. Danke für die Erklärung!", "Danke für die Erklärung!"],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Kısa ve kibar bir teşekkür." },
+          { "de": "Nicht ganz. Können Sie das bitte noch einmal erklären?", "tr": "Tam değil. Bunu lütfen bir kez daha açıklayabilir misiniz?",
+            "accepted": ["Nicht ganz. Können Sie das bitte noch einmal erklären?", "Nein, nicht ganz. Können Sie das bitte noch einmal erklären?", "Können Sie das bitte noch einmal erklären?", "Nicht ganz. Können Sie das noch einmal erklären?", "Nicht ganz. Können Sie das bitte nochmal erklären?", "Können Sie das bitte nochmal erklären?", "Nein. Können Sie das bitte noch einmal erklären?"],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Anlamadığını söylemek cesaret ister. Kurs öğretmeni bunu sever." }
+        ]
+      },
+      {
+        "id": "n4",
+        "de": "Gern. Noch einmal: ihr musstet, ihr konntet, ihr durftet.",
+        "tr": "Memnuniyetle. Bir kez daha: ihr musstet, ihr konntet, ihr durftet. ihr'de son hep -tet.",
+        "secenekler": [
+          { "de": "Jetzt verstehe ich das. Danke für Ihre Geduld!", "tr": "Şimdi anlıyorum. Sabrınız için teşekkürler!",
+            "accepted": ["Jetzt verstehe ich das. Danke für Ihre Geduld!", "Jetzt verstehe ich das. Vielen Dank für Ihre Geduld!", "Danke für Ihre Geduld! Jetzt verstehe ich das.", "Danke für Ihre Geduld!", "Jetzt verstehe ich es. Danke für Ihre Geduld!", "Danke! Jetzt verstehe ich das.", "Vielen Dank für Ihre Geduld!", "Jetzt ist es klar. Danke für Ihre Geduld!"],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Sabırla açıklayan birine **Danke für Ihre Geduld** demek çok kibar." }
+        ]
+      },
+      {
+        "id": "n5",
+        "de": "Gern. Und was ist Ihre Meinung? Ist der Kurs gut für Sie?",
+        "tr": "Rica ederim. Peki sizin fikriniz ne? Kurs size iyi geliyor mu?",
+        "secenekler": [
+          { "de": "Ja, der Kurs ist gut. Aber ich brauche mehr Übung.", "tr": "Evet, kurs iyi. Ama daha çok alıştırmaya ihtiyacım var.",
+            "accepted": ["Ja, der Kurs ist gut. Aber ich brauche mehr Übung.", "Ja, sehr gut. Aber ich brauche mehr Übung.", "Der Kurs ist gut, aber ich brauche mehr Übung.", "Ja, der Kurs ist sehr gut. Ich brauche aber mehr Übung.", "Ja, gut. Aber ich brauche mehr Übung.", "Meine Meinung: Der Kurs ist gut. Aber ich brauche mehr Übung.", "Ja, der Kurs ist gut, aber ich brauche mehr Übung."],
+            "sonraki": "n6", "uygun": true, "geri_bildirim_tr": "Fikrini söyledin ve neye ihtiyacın olduğunu ekledin." },
+          { "de": "Ja, sehr gut. Früher konnte ich nicht viel verstehen. Heute kann ich mehr.", "tr": "Evet, çok iyi. Eskiden çok anlayamıyordum. Bugün daha çok anlıyorum.",
+            "accepted": ["Ja, sehr gut. Früher konnte ich nicht viel verstehen. Heute kann ich mehr.", "Ja, der Kurs ist gut. Früher konnte ich nicht viel verstehen.", "Sehr gut! Früher konnte ich nicht viel verstehen, heute kann ich mehr.", "Ja. Früher konnte ich nicht viel verstehen. Heute kann ich mehr.", "Ja, sehr gut. Früher konnte ich wenig verstehen. Heute kann ich mehr.", "Ja, sehr gut. Früher konnte ich nicht viel verstehen."],
+            "sonraki": "n6", "uygun": true, "geri_bildirim_tr": "Eskiyi **konnte**, bugünü **kann** ile karşılaştırdın." }
+        ]
+      },
+      { "id": "n6", "de": "Das freut mich. Am Montag ist vor dem Unterricht die Beratung. Kommen Sie doch vorbei!", "tr": "Buna sevindim. Pazartesi dersten önce danışma var. Uğrayın!", "son": true }
+    ],
+    "kapanis_tr": "Kurstan sonra öğretmenle konuştun. Dünü **konnte** ve **musste** ile anlattın, açıklama istedin, teşekkür ettin ve fikrini söyledin."
+  },
+  "okuma_yazma": {
+    "tur": "okuma",
+    "title_tr": "Kurs öğretmeninin örnek metni: eskiden ve bugün",
+    "metin_de": "Mein Beispiel: früher und heute. Als Kind wollte ich Köchin werden. Ich konnte gut kochen, aber ich durfte nicht allein in die Küche. Dann musste ich lange in einem Büro arbeiten. Das war nicht schön, ich wollte immer mit Menschen sprechen. Dann habe ich eine Ausbildung gemacht. Heute bin ich Kursleiterin. Ich habe viel Geduld und ich helfe gern. Meine Meinung: Übung ist alles! Und Sie? Was wollten Sie als Kind werden?",
+    "metin_tr": "Benim örneğim: eskiden ve bugün. Çocukken aşçı olmak istiyordum. İyi yemek yapabiliyordum ama mutfağa tek başıma girmem yasaktı. Sonra uzun süre bir büroda çalışmak zorunda kaldım. Bu hoş değildi, hep insanlarla konuşmak istiyordum. Sonra bir meslek eğitimi yaptım. Bugün kurs öğretmeniyim. Çok sabırlıyım ve severek yardım ederim. Benim fikrim: alıştırma her şeydir! Ya siz? Çocukken ne olmak istiyordunuz?",
+    "sorular": [
+      { "id": "m1:68:o1", "kind": "gist", "q_tr": "Kurs öğretmeni ne anlatıyor?", "opts": ["Çocukluktaki isteğini ve bugünkü işini", "Son tatilini", "Yeni dairesini"], "ans": 0, "kanit": [1, 6] },
+      { "id": "m1:68:o2", "kind": "detail", "q_tr": "Kurs öğretmeni çocukken ne olmak istiyordu?", "opts": ["Aşçı", "Doktor", "Şoför"], "ans": 0, "kanit": [1] },
+      { "id": "m1:68:o3", "kind": "detail", "q_tr": "Çocukken neyi yapması yasaktı?", "opts": ["Mutfağa tek başına girmek", "Dışarı çıkmak", "Uzun konuşmak"], "ans": 0, "kanit": [2] },
+      { "id": "m1:68:o4", "kind": "detail", "q_tr": "Büroda çalışmak neden hoş değildi?", "opts": ["Hep insanlarla konuşmak istiyordu", "Para azdı", "Büro çok uzaktı"], "ans": 0, "kanit": [4] },
+      { "id": "m1:68:o5", "k": "gap", "de": "Gestern ___ ich nicht in den Kurs kommen. Ich war krank.", "tr": "Dün kursa gelemedim. Hastaydım.", "opts": ["konnte", "kann"],
+        "accepted": ["konnte", "Konnte", "konnte."],
+        "why_tr": "**Gestern** geçmiştir. **kann** değil, **konnte** dersin." },
+      { "id": "m1:68:o6", "k": "pick", "q_tr": "Geçen hafta Tobi yardım etmek istedi. Hangisi doğru?", "opts": ["Letzte Woche wollte Tobi helfen.", "Letzte Woche will Tobi helfen."], "ans": 0,
+        "why_tr": "Geçmişte **will** kalmaz. **wollen**'den **woll** kalır, araya **-te-** girer: **wollte**." },
+      { "id": "m1:68:o7", "k": "transform", "instr_tr": "Cümleyi dün için söyle. **Heute** yerine **Gestern** gelsin.", "from_de": "Heute muss ich lange arbeiten.",
+        "accepted": ["Gestern musste ich lange arbeiten.", "Gestern musste ich lange arbeiten!", "Ich musste gestern lange arbeiten."],
+        "why_tr": "**muss** geçmişte **musste** olur. Noktalar yok, araya **-te-** girer." },
+      { "id": "m1:68:o8", "k": "gap", "de": "Früher ___ wir am Samstag arbeiten. Heute ist der Samstag frei.", "tr": "Eskiden cumartesi çalışmak zorundaydık. Bugün cumartesi boş.", "opts": ["mussten", "müssen"],
+        "accepted": ["mussten", "Mussten", "mussten."],
+        "why_tr": "**Früher** eskidir. **müssen** değil **mussten**: noktalar düşer, araya **-te-** girer." },
+      { "id": "m1:68:o9", "k": "gap", "de": "Du ___ gestern nicht kommen, oder?", "tr": "Sen dün gelemedin, değil mi?", "opts": ["konntest", "konnt", "konnte"],
+        "accepted": ["konntest", "Konntest", "konntest."],
+        "why_tr": "**du** ile son **-st** gelir: **du konntest**. **du konnt** yanlış." },
+      { "id": "m1:68:o10", "k": "pick", "q_tr": "Hangisi doğru? (Büroda yemek yemen yasaktı.)", "opts": ["Du durftest im Büro nicht essen.", "Du durft im Büro nicht essen.", "Du durfte im Büro nicht essen."], "ans": 0,
+        "why_tr": "**du** için **durftest** dersin. **durft** yarım kalmış biçimdir." },
+      { "id": "m1:68:o11", "k": "transform", "instr_tr": "Tobi'ye söyle: **ich** yerine **du** kullan.", "from_de": "Ich wollte Koch werden.",
+        "accepted": ["Du wolltest Koch werden.", "Du wolltest Koch werden!", "Du wolltest Koch werden, oder?"],
+        "why_tr": "**ich wollte** ama **du wolltest**. **du** ile son hep **-st** olur." },
+      { "id": "m1:68:o12", "k": "gap", "de": "Ihr ___ gestern lange warten. Das tut mir leid!", "tr": "Dün uzun süre beklemek zorunda kaldınız. Çok üzgünüm!", "opts": ["musstet", "mussten", "musstest"],
+        "accepted": ["musstet", "Musstet", "musstet."],
+        "why_tr": "**ihr** ile son **-tet** olur: **ihr musstet**." },
+      { "id": "m1:68:o13", "k": "pick", "q_tr": "Derya ile Tobi'ye soruyorsun: alıştırmayı yapabildiniz mi?", "opts": ["Konntet ihr die Übung machen?", "Konntest ihr die Übung machen?", "Konnten ihr die Übung machen?"], "ans": 0,
+        "why_tr": "**ihr** ile **konntet** dersin. **-test** du içindir, **-ten** wir içindir." },
+      { "id": "m1:68:o14", "k": "transform", "instr_tr": "**wir** yerine **ihr** kullan.", "from_de": "Wir durften früher gehen.",
+        "accepted": ["Ihr durftet früher gehen.", "Ihr durftet früher gehen!", "Ihr durftet früher gehen, oder?"],
+        "why_tr": "**wir durften** ama **ihr durftet**. **ihr** ile son **-tet** olur." },
+      { "id": "m1:68:o15", "k": "pick", "q_tr": "Hangisi doğru yazılmış?", "opts": ["Wir mussten lange warten.", "Wir musten lange warten."], "ans": 0,
+        "why_tr": "**müssen**'deki çift s kalır: **mussten**. Yalnız noktalar düşer." },
+      { "id": "m1:68:o16", "k": "gap", "de": "Ich ___ gestern früh aufstehen. (müssen)", "tr": "Dün erken kalkmak zorundaydım.",
+        "accepted": ["musste", "Musste", "musste."],
+        "why_tr": "Çift s kalır, araya **-te-** girer: **musste**. **muste** yanlıştır." },
+      { "id": "m1:68:o17", "k": "tr_de", "tr": "Uzun süre beklemek zorunda kaldık.",
+        "accepted": ["Wir mussten lange warten.", "Wir mussten sehr lange warten.", "Wir mussten lange warten!"],
+        "why_tr": "**wir** ile **mussten** dersin. İki s, sonda **-ten**." },
+      { "id": "m1:68:o18", "k": "transform", "instr_tr": "Geçmişte söyle. Ioana ve Luka eskiden çok alıştırma yapmak zorundaydı.", "from_de": "Sie müssen viel üben.",
+        "accepted": ["Sie mussten viel üben.", "Sie mussten früher viel üben.", "Früher mussten sie viel üben."],
+        "why_tr": "**müssen** geçmişte **mussten** olur. Noktalar düşer, çift s kalır." },
+      { "id": "m1:68:o19", "k": "guided_response", "situation_tr": "Ioana senin geçmişini soruyor. Eskiden ne yapmak zorundaydın, ne yapmak istiyordun? İki cümle söyle.", "prompt_de": "Und du? Was musstest du früher machen?",
+        "accepted": ["Früher musste ich in einer Fabrik arbeiten. Ich wollte Deutsch lernen.", "Früher musste ich viel arbeiten. Ich wollte immer Deutsch lernen.", "Ich musste früher in einem Lager arbeiten. Ich wollte {Koch|Köchin} werden.", "Früher musste ich früh aufstehen. Ich wollte einen Sprachkurs machen.", "Früher musste ich viel arbeiten. Ich wollte mehr Zeit haben.", "Früher musste ich in der Nacht arbeiten. Ich wollte eine andere Stelle.", "Früher musste ich viel arbeiten. Ich wollte eine Weiterbildung machen.", "Ich musste früher viel arbeiten. Ich wollte immer Deutsch lernen.", "Früher musste ich lange arbeiten. Ich wollte Deutsch lernen.", "Früher musste ich in einer Fabrik arbeiten. Ich wollte {Fahrer|Fahrerin} werden."],
+        "why_tr": "Zorunluluğu **musste**, isteği **wollte** ile söylersin. **arbeiten** değişmez, en sona gider: **Ich musste viel arbeiten.**" },
+      { "id": "m1:68:o20", "k": "pick", "q_tr": "**der**, **die** ya da **das**? ___ Meinung", "opts": ["der", "die", "das"], "ans": 1,
+        "why_tr": "**die Meinung**, **die Übung**: **-ung** ile bitenler hep **die** alır." },
+      { "id": "m1:68:o21", "k": "pick", "q_tr": "**der**, **die** ya da **das**? ___ Beratung", "opts": ["der", "die", "das"], "ans": 1,
+        "why_tr": "**beraten** fiilinden **die Beratung**. **-ung** hep **die**." },
+      { "id": "m1:68:o22", "k": "pick", "q_tr": "**der**, **die** ya da **das**? ___ Weiterbildung", "opts": ["der", "die", "das"], "ans": 1,
+        "why_tr": "Sözcük uzun olsa da sonu **-ung**: **die Weiterbildung**." },
+      { "id": "m1:68:o23", "k": "transform", "instr_tr": "**erklären**: sondaki **en** yerine **-ung** koy, önüne **die** yaz.", "from_de": "erklären",
+        "accepted": ["die Erklärung", "Die Erklärung", "die Erklärung."],
+        "why_tr": "**erklären**'den **en** düşer, yerine **-ung** gelir: **die Erklärung**." },
+      { "id": "m1:68:o24", "k": "transform", "instr_tr": "**üben**: sondaki **en** yerine **-ung** koy, önüne **die** yaz.", "from_de": "üben",
+        "accepted": ["die Übung", "Die Übung", "die Übung."],
+        "why_tr": "**üben**'den **en** düşer, yerine **-ung** gelir: **die Übung**." },
+      { "id": "m1:68:o25", "k": "gap", "de": "Ich habe am Freitag einen Termin für die ___. (beraten)", "tr": "Cuma danışma için randevum var.",
+        "accepted": ["Beratung", "beratung", "Beratung."],
+        "why_tr": "**beraten** fiilinden **die Beratung** olur." },
+      { "id": "m1:68:o26", "k": "pick", "q_tr": "Hangi sözcükte **u** sesi var?", "opts": ["Kuchen", "Koch"], "ans": 0,
+        "why_tr": "**Kuchen** u ile, dudaklar öne. **Koch** o ile, ağız daha açık." },
+      { "id": "m1:68:o27", "k": "pick", "q_tr": "Hangi sözcükte **o** sesi var?", "opts": ["konnte", "musste"], "ans": 0,
+        "why_tr": "**konnte** o ile söylenir. **musste** u ile söylenir." }
+    ],
+    "yazma": {
+      "gorev_tr": "Kurs öğretmenine kısa bir e-posta yaz. Dün neden gelemediğini söyle, alıştırma için bir soru sor ve teşekkür et.",
+      "ornek_de": "Guten Tag! Gestern konnte ich nicht in den Kurs kommen. Ich musste lange arbeiten. Ich habe eine Frage zur Übung. Was ist die Bedeutung von Abschluss? Danke für Ihre Erklärung! Viele Grüße, {name}",
+      "ornek_de_adsiz": "Guten Tag! Gestern konnte ich nicht in den Kurs kommen. Ich musste lange arbeiten. Ich habe eine Frage zur Übung. Was ist die Bedeutung von Abschluss? Danke für Ihre Erklärung! Viele Grüße",
+      "zorunlu": ["konnte", "musste"],
+      "accepted_kaliplar": ["Guten Tag!", "Hallo!", "Gestern konnte ich nicht in den Kurs kommen.", "Gestern konnte ich nicht ___.", "Ich konnte ___ nicht ___.", "Ich musste lange arbeiten.", "Ich musste ___.", "Ich war krank.", "Ich habe eine Frage zur Übung.", "Ich habe eine Frage.", "Was ist die Bedeutung von ___?", "Können Sie mir das bitte erklären?", "Können Sie mir ___ bitte erklären?", "Danke für Ihre Erklärung!", "Danke für Ihre Geduld!", "Vielen Dank!", "Viele Grüße, ___", "Viele Grüße"],
+      "kontrol_tr": ["Dün için **konnte** ve **musste** var mı, **kann** ve **muss** değil?", "**musste** iki s ile mi yazılı?", "Bir soru sordun ve teşekkür ettin mi?"]
+    }
+  },
+  "gun_sinavi": {
+    "id": "m1:68:s",
+    "maddeler": [
+      { "id": "m1:68:s1", "k": "listen_and_respond", "audio_de": "Der Koch backt heute einen Kuchen.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Der Koch backt heute einen Kuchen.", "der koch backt heute einen kuchen", "Der Koch backt heute einen Kuchen"], "why_tr": "**Koch** o ile, **Kuchen** u ile söylenir." },
+      { "id": "m1:68:s2", "k": "listen_and_respond", "audio_de": "Ihr musstet lange warten.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Ihr musstet lange warten.", "ihr musstet lange warten", "Ihr musstet lange warten"], "why_tr": "**ihr** ile son **-tet**: **musstet**." },
+      { "id": "m1:68:s3", "k": "listen_and_respond", "audio_de": "Danke für die Erklärung!", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Danke für die Erklärung!", "danke für die erklärung", "Danke für die Erklärung"], "why_tr": "**die Erklärung** açıklama demektir. **-ung** hep **die**." },
+      { "id": "m1:68:s4", "k": "listen_and_respond", "audio_de": "Früher konnte ich kein Deutsch.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Früher konnte ich kein Deutsch.", "früher konnte ich kein deutsch", "Früher konnte ich kein Deutsch"], "why_tr": "**konnte** o ile söylenir ve yazılır." },
+      { "id": "m1:68:s5", "k": "tr_de", "tr": "Dün gelemedim. Çalışmak zorundaydım.",
+        "accepted": ["Gestern konnte ich nicht kommen. Ich musste arbeiten.", "Ich konnte gestern nicht kommen. Ich musste arbeiten.", "Gestern konnte ich nicht kommen, ich musste arbeiten.", "Ich konnte gestern nicht kommen, ich musste arbeiten.", "Gestern konnte ich nicht kommen. Ich musste arbeiten!"],
+        "why_tr": "Dün için **konnte** ve **musste**. **kann** ve **muss** bugün içindir." },
+      { "id": "m1:68:s6", "k": "tr_de", "tr": "Tobi'ye: Sen eskiden aşçı olmak istiyordun.",
+        "accepted": ["Früher wolltest du Koch werden.", "Du wolltest früher Koch werden.", "Früher wolltest du Koch werden, oder?", "Du wolltest früher Koch werden, oder?"],
+        "why_tr": "**du** ile **wolltest** dersin. **wollt** eksik kalır." },
+      { "id": "m1:68:s7", "k": "transform", "instr_tr": "Soruyu iki arkadaşına sor: **du** yerine **ihr**.", "from_de": "Konntest du die Übung machen?",
+        "accepted": ["Konntet ihr die Übung machen?", "Konntet ihr die Übung zu Hause machen?", "Konntet ihr die Übung machen"],
+        "why_tr": "**ihr** ile son **-tet** olur: **konntet**." },
+      { "id": "m1:68:s8", "k": "tr_de", "tr": "Danışma için bir randevu istiyorum.",
+        "accepted": ["Ich möchte einen Termin für eine Beratung.", "Ich möchte bitte einen Termin für eine Beratung.", "Ich möchte gern einen Termin für eine Beratung.", "Ich möchte einen Termin für die Beratung."],
+        "why_tr": "**die Beratung** danışmadır. **für eine Beratung** dersin." },
+      { "id": "m1:68:s9", "k": "guided_response", "situation_tr": "Derya ile Tobi otobüs durağından yeni geldi. Uzun beklemek zorunda kaldılar mı, sor.", "prompt_de": "Endlich sind wir da! Der Bus war so spät.",
+        "accepted": ["Musstet ihr lange warten?", "Musstet ihr sehr lange warten?", "Oje! Musstet ihr lange warten?", "Musstet ihr lange warten? Das tut mir leid.", "Wie lange musstet ihr warten?", "Musstet ihr lange warten? Schade!"],
+        "why_tr": "İki kişiye **ihr** ile sorarsın: **Musstet ihr lange warten?**" },
+      { "id": "m1:68:s10", "k": "guided_response", "situation_tr": "Kurs öğretmeni soruyor: çocukken neyi iyi yapabiliyordun? Bir şey söyle.", "prompt_de": "Was konnten Sie als Kind gut?",
+        "accepted": ["Als Kind konnte ich gut schwimmen.", "Als Kind konnte ich gut Kuchen backen.", "Ich konnte als Kind gut schwimmen.", "Als Kind konnte ich gut lesen.", "Als Kind konnte ich gut kochen.", "Als Kind konnte ich gut laufen.", "Ich konnte gut schwimmen.", "Ich konnte gut Kuchen backen.", "Als Kind konnte ich schon gut lesen.", "Als Kind konnte ich gut Fahrrad fahren."],
+        "why_tr": "Çocukluğunu **Als Kind konnte ich** ile anlatırsın. **Als Kind konnte ich gut schwimmen**: **schwimmen** sonda." },
+      { "id": "m1:68:s11", "k": "guided_response", "situation_tr": "Kurs öğretmeni dün neden gelmediğini soruyor. Nedenini söyle ve alıştırmayı açıklamasını rica et.", "prompt_de": "Gestern waren Sie nicht da. Was war los?",
+        "accepted": ["Ich musste lange arbeiten. Können Sie mir das bitte erklären?", "Ich musste arbeiten. Können Sie mir die Übung erklären?", "Ich musste lange arbeiten. Können Sie mir die Übung bitte erklären?", "Ich war krank. Können Sie mir die Übung bitte erklären?", "Gestern musste ich lange arbeiten. Können Sie mir das bitte erklären?", "Ich musste lange arbeiten. Können Sie mir das bitte erklären?", "Ich war krank. Können Sie mir das bitte erklären?", "Ich musste gestern arbeiten. Können Sie mir die Übung bitte erklären?", "Ich konnte nicht kommen, ich musste arbeiten. Können Sie mir die Übung bitte erklären?", "Ich musste lange arbeiten. Können Sie mir bitte die Übung erklären?", "Ich war krank. Können Sie mir bitte die Übung erklären?"],
+        "why_tr": "Nedeni **musste** ile söylersin. Sonra **Können Sie mir das erklären?** diye rica edersin." }
+    ],
+    "sesli": ["m1:68:s9", "m1:68:s10"],
+    "dikte": ["m1:68:s1", "m1:68:s2", "m1:68:s3", "m1:68:s4"]
+  }
+}
