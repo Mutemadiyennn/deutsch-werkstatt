@@ -27,11 +27,14 @@ jobs:
       - name: Install Capacitor Dependencies
         run: |
           npm init -y
-          npm install @capacitor/core @capacitor/cli @capacitor/ios
+          # Kabuk 1.6 (PM-142 md. 2.1): ana sürüm sabit (8); yeni bir ana sürüm sessizce gelip eklentileri kırmasın
+          npm install @capacitor/core@^8 @capacitor/cli@^8 @capacitor/ios@^8
           # Yerel eklentiler: klavyedeki ^ v ✓ çubuğunu gizleme, doğru/yanlışta titreşim
-          npm install @capacitor/keyboard @capacitor/haptics @capacitor/status-bar @capacitor/local-notifications @capacitor/app @capawesome/capacitor-badge @capacitor/share
-          # Apple'ın cihaz üstü konuşma tanıma (topluluk eklentisi). PM-071 1. adım: kurulamaz ya da derlenmezse iş kırmızı; sessizce çıkarılmaz
-          npm install @capacitor-community/speech-recognition
+          npm install @capacitor/keyboard@^8 @capacitor/haptics@^8 @capacitor/status-bar@^8 @capacitor/local-notifications@^8 @capacitor/app@^8 @capawesome/capacitor-badge@^8 @capacitor/share@^8
+          # Apple'ın cihaz üstü konuşma tanıma (topluluk eklentisi). PM-071 1. adım: kurulamaz ya da derlenmezse iş kırmızı; sessizce çıkarılmaz.
+          # Kabuk 1.6 (PM-137 eki): sürüm sabit 7.0.1 (son sürüm; @capacitor/core >=7 ister, 8 ile uyumlu). Hata metni iOS'un
+          # yerelleştirilmiş açıklaması (Almanca arayüzde Almanca) ya da sabit İngilizce metindir; kod dönmez. Uygulama ham metni saklar ve gösterir.
+          npm install @capacitor-community/speech-recognition@7.0.1
           # Mikrofon kaydı uygulamanın içinde (iPhone'un kendi kaydedicisi; web görünümünün mikrofon hatalarına takılmaz)
           npm install @independo/capacitor-voice-recorder@^8
           # Kabuk 1.5 (PM 7042267632): iPhone'un kendi seslendirmesi (AVSpeechSynthesizer). Web görünümü yüklü premium/gelişmiş
@@ -44,19 +47,22 @@ jobs:
           for item in index.html manifest.webmanifest apple-touch-icon.png favicon.png icon-192.png icon-512.png robots.txt data; do
             if [ -e "$item" ]; then cp -r "$item" www/; fi
           done
-          # İnternet yokken açılışta gösterilecek sayfa
+          # İnternet yokken açılışta gösterilecek sayfa. Kabuk 1.6 (PM-128): "Tekrar dene" doğrudan v2'yi açar (kök sayfadaki
+          # yönlendirme kabukta ana çerçeve gezinmesini iptal edip bu sayfaya döngü kuruyordu)
           cat > www/offline.html <<'HTML'
           <!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
           <title>Deutsch-Werkstatt</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;font:17px -apple-system,system-ui,sans-serif;background:#F1F6FB;color:#13233A;text-align:center;padding:24px}
           button{margin-top:18px;font:inherit;font-weight:700;color:#fff;background:#1784D6;border:0;border-radius:16px;padding:14px 28px;box-shadow:0 4px 0 #0E5E9E}</style></head>
           <body><div><div style="font-size:3rem">📡</div><h2>İnternet bağlantısı yok</h2><p>Bağlantı gelince tekrar dene.</p>
-          <button onclick="location.href='https://mutemadiyennn.github.io/deutsch-werkstatt/'">Tekrar dene</button></div></body></html>
+          <button onclick="location.href='https://mutemadiyennn.github.io/deutsch-werkstatt/v2/'">Tekrar dene</button></div></body></html>
           HTML
 
       - name: Initialize Capacitor and Add iOS
         run: |
           npx cap init "Deutsch Werkstatt" "com.mutemadiyenn.deutschwerkstatt" --web-dir=www
-          # Kabuk, yayındaki sayfayı açar: güncellemeler anında gelir, Firebase girişi yetkili adreste çalışır
+          # Kabuk, yayındaki sayfayı açar: güncellemeler anında gelir, Firebase girişi yetkili adreste çalışır.
+          # Kabuk 1.6 (PM-128, PM-142 md. 2.1): adres doğrudan v2 (`/v2/`, sondaki eğik çizgiyle: yönlendirmesiz 200). Kök (v1)
+          # sayfadan geçilmez; v1 tarayıcıda kök adreste açık kalır.
           rm -f capacitor.config.ts capacitor.config.js
           cat > capacitor.config.json <<'JSON'
           {
@@ -64,7 +70,7 @@ jobs:
             "appName": "Deutsch Werkstatt",
             "webDir": "www",
             "server": {
-              "url": "https://mutemadiyennn.github.io/deutsch-werkstatt/",
+              "url": "https://mutemadiyennn.github.io/deutsch-werkstatt/v2/",
               "allowNavigation": ["mutemadiyennn.github.io"],
               "errorPath": "offline.html"
             },
@@ -89,10 +95,32 @@ jobs:
           # kurs ödevi fotoğrafı için (yoksa fotoğraf seçerken uygulama kapanır)
           /usr/libexec/PlistBuddy -c "Add :NSCameraUsageDescription string 'Ödev sayfasının fotoğrafını çekmek için.'" $P || true
           /usr/libexec/PlistBuddy -c "Add :NSPhotoLibraryUsageDescription string 'Ödev fotoğrafını seçmek için.'" $P || true
-          /usr/libexec/PlistBuddy -c "Add :NSSpeechRecognitionUsageDescription string 'İnternet yokken konuşmanı cihazda yazıya dökmek için.'" $P || true
+          /usr/libexec/PlistBuddy -c "Add :NSSpeechRecognitionUsageDescription string 'Söylediğin Almanca cümleyi yazıya çevirip kontrol etmek için.'" $P || /usr/libexec/PlistBuddy -c "Set :NSSpeechRecognitionUsageDescription 'Söylediğin Almanca cümleyi yazıya çevirip kontrol etmek için.'" $P
           # Arka planda ses (arabada sesli tekrar ekran kapanınca da sürsün)
           /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes array" $P || true
           /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes:0 string audio" $P || true
+
+      - name: Kabuk adresi ve izin anahtarları denetimi (Kabuk 1.6, PM-128)
+        run: |
+          # Kabul: kabuk adresiyle açılış hata sayfasına düşmez. server.url ve "Tekrar dene" aynı adres ve v2 (kabuk.json aynısını yazar);
+          # adres yönlendirmesiz 200 verir ve v2 uygulamasıdır (kök v1 sayfası değil); konuşma için iki izin anahtarı dolu
+          U=$(node -p 'require("./capacitor.config.json").server.url')
+          echo "server.url = $U"
+          [ "$U" = "https://mutemadiyennn.github.io/deutsch-werkstatt/v2/" ] || { echo "::error::server.url v2 değil: $U"; exit 1; }
+          grep -q "location.href='$U'" www/offline.html || { echo "::error::offline.html 'Tekrar dene' server.url'e gitmiyor"; exit 1; }
+          K=$(curl -sS --retry 3 --retry-delay 5 -o /tmp/acilis.html -w '%{http_code} %{redirect_url}' "$U") || { echo "::error::kabuk adresine ulaşılamadı: $U"; exit 1; }
+          echo "açılış: $K"
+          [ "$K" = "200 " ] || { echo "::error::kabuk adresi yönlendirmesiz 200 vermedi: $K"; exit 1; }
+          grep -qE 'src="\./assets/index-[^"]+\.js"' /tmp/acilis.html || { echo "::error::kabuk adresindeki sayfa v2 uygulaması değil"; exit 1; }
+          ! grep -q 'location.replace' /tmp/acilis.html || { echo "::error::kabuk adresindeki sayfada yönlendirme var"; exit 1; }
+          # pakete giren kopyalar da aynı (cap sync sonrası ios/App/App/ altındakiler)
+          node -e 'const u=require("./ios/App/App/capacitor.config.json").server.url; if(u!==process.argv[1]){console.error("::error::paketteki server.url farklı: "+u);process.exit(1)}' "$U"
+          grep -q "location.href='$U'" ios/App/App/public/offline.html || { echo "::error::paketteki offline.html farklı"; exit 1; }
+          P=ios/App/App/Info.plist
+          for k in NSMicrophoneUsageDescription NSSpeechRecognitionUsageDescription; do
+            v=$(/usr/libexec/PlistBuddy -c "Print :$k" $P) && [ -n "$v" ] || { echo "::error::$k yok"; exit 1; }
+            echo "$k = $v"
+          done
 
       - name: Native Tweaks
         run: |
@@ -141,7 +169,7 @@ jobs:
             const kaynak = ["ios/App/Podfile", "ios/App/CapApp-SPM/Package.swift"].filter((f) => fs.existsSync(f));
             const metin = kaynak.map((f) => fs.readFileSync(f, "utf8")).join("\n");
             const eksik = ad.filter((k) => k !== "@capacitor/core" && k !== "@capacitor/ios" && !metin.includes(`node_modules/${k}`));
-            const j = { kabuk: `${process.env.SURUM} (${process.env.YAPI})`, ios_hedef: "15.0", adres: "https://mutemadiyennn.github.io/deutsch-werkstatt/",
+            const j = { kabuk: `${process.env.SURUM} (${process.env.YAPI})`, ios_hedef: "15.0", adres: "https://mutemadiyennn.github.io/deutsch-werkstatt/v2/",
               capacitor: surum("@capacitor/core"), paket_yoneticisi: kaynak, eklentiler: Object.fromEntries(ad.map((k) => [k, surum(k)])), baglanmayan: eksik };
             fs.writeFileSync("kabuk.json", JSON.stringify(j, null, 2) + "\n");
             if (!kaynak.length || eksik.length) { console.error("::error::Yerel projeye baglanmayan eklenti: " + (eksik.join(", ") || "Podfile ya da Package.swift yok")); process.exit(1); }'
