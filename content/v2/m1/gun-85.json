@@ -1,0 +1,1771 @@
+{
+ "schema": 1,
+ "id": "m1:gun:85",
+ "day": 85,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Birinin dediğini aktarmak: Er sagt, dass er im Stau steht",
+ "goal_tr": "Bir anonsun ya da bir iş arkadaşının söylediğini başkasına dass ile aktarırsın.",
+ "can_do": {
+  "id": "cd:m1:85",
+  "tr": "Bir anonsun ya da birinin söylediğini başkasına dass ile aktarırım."
+ },
+ "unit": "u:a2:is-3",
+ "arm": "pazar",
+ "place": "pl:firma",
+ "characters": [
+  "ch:aksoy",
+  "ch:lechner",
+  "ch:wimmer"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic16/dilbilimci-h13.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+ },
+ "dersler": [
+  "gr:a2-04:t1"
+ ],
+ "yeni_kartlar": [
+  "lx:Verkehr",
+  "lx:Stau",
+  "lx:Baustelle",
+  "lx:Gleis",
+  "lx:Durchsage",
+  "lx:Anschluss",
+  "lx:beginnen",
+  "lx:schließen",
+  "lx:sympathisch"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:85:h1",
+   "title_tr": "Pazartesi sabahı istasyonda: peron, anons, trafik",
+   "kartlar": [
+    "lx:Verkehr",
+    "lx:Stau",
+    "lx:Baustelle",
+    "lx:Gleis",
+    "lx:Durchsage"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich stehe im Stau. – Er steht im Stau.",
+     "tr": "Trafikte sıkıştım. – Trafikte sıkıştı."
+    },
+    {
+     "de": "Der Zug fährt heute von Gleis fünf.",
+     "tr": "Tren bugün 5. perondan kalkıyor."
+    },
+    {
+     "de": "fahren – ist gefahren – Der Zug ist von Gleis fünf gefahren.",
+     "tr": "kalkmak – kalktı – Tren 5. perondan kalktı."
+    },
+    {
+     "de": "später – Ich komme später. – zehn Minuten später",
+     "tr": "daha geç – Daha geç geliyorum. – on dakika sonra"
+    },
+    {
+     "de": "Hast du die Durchsage gehört? – Ich habe nichts verstanden.",
+     "tr": "Anonsu duydun mu? – Hiçbir şey anlamadım."
+    },
+    {
+     "de": "Tobi hat mir eine Nachricht geschickt.",
+     "tr": "Tobi bana bir mesaj gönderdi."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Verkehr",
+     "de": "Am Montag ist in der Stadt immer viel Verkehr.",
+     "tr": "Pazartesi şehirde hep çok trafik oluyor.",
+     "accepted": [
+      "Am Montag ist in der Stadt immer viel Verkehr.",
+      "Am Montag ist immer viel Verkehr in der Stadt.",
+      "In der Stadt ist am Montag immer viel Verkehr."
+     ]
+    },
+    {
+     "kart": "lx:Verkehr",
+     "de": "Heute ist wenig Verkehr, ich bin schnell im Büro.",
+     "tr": "Bugün trafik az, hemen ofisteyim.",
+     "accepted": [
+      "Heute ist wenig Verkehr, ich bin schnell im Büro.",
+      "Heute ist wenig Verkehr. Ich bin schnell im Büro.",
+      "Heute gibt es wenig Verkehr, ich bin schnell im Büro."
+     ]
+    },
+    {
+     "kart": "lx:Stau",
+     "de": "Tobi steht wieder im Stau.",
+     "tr": "Tobi yine trafikte sıkışmış.",
+     "accepted": [
+      "Tobi steht wieder im Stau.",
+      "Tobi steht heute wieder im Stau.",
+      "Wieder steht Tobi im Stau."
+     ]
+    },
+    {
+     "kart": "lx:Stau",
+     "de": "Ich stehe im Stau und komme später.",
+     "tr": "Trafikte sıkıştım, daha geç geliyorum.",
+     "accepted": [
+      "Ich stehe im Stau und komme später.",
+      "Ich stehe im Stau, ich komme später.",
+      "Ich stehe im Stau. Ich komme später."
+     ]
+    },
+    {
+     "kart": "lx:Baustelle",
+     "de": "Wegen der Baustelle fährt der Zug heute von Gleis fünf.",
+     "tr": "Yol çalışması yüzünden tren bugün 5. perondan kalkıyor.",
+     "accepted": [
+      "Wegen der Baustelle fährt der Zug heute von Gleis fünf.",
+      "Wegen der Baustelle fährt der Zug heute von Gleis 5.",
+      "Der Zug fährt heute wegen der Baustelle von Gleis fünf."
+     ]
+    },
+    {
+     "kart": "lx:Baustelle",
+     "de": "Vor der Stadt ist eine Baustelle, da ist jeden Morgen Stau.",
+     "tr": "Şehrin girişinde yol çalışması var, orada her sabah trafik sıkışıyor.",
+     "accepted": [
+      "Vor der Stadt ist eine Baustelle, da ist jeden Morgen Stau.",
+      "Vor der Stadt ist eine Baustelle. Da ist jeden Morgen Stau.",
+      "Vor der Stadt gibt es eine Baustelle, da ist jeden Morgen Stau."
+     ]
+    },
+    {
+     "kart": "lx:Gleis",
+     "de": "Entschuldigung, von welchem Gleis fährt der Zug heute?",
+     "tr": "Affedersiniz, tren bugün hangi perondan kalkıyor?",
+     "accepted": [
+      "Entschuldigung, von welchem Gleis fährt der Zug heute?",
+      "Entschuldigung, von welchem Gleis fährt der Zug?",
+      "Entschuldigung, von welchem Gleis fährt unser Zug heute?"
+     ]
+    },
+    {
+     "kart": "lx:Gleis",
+     "de": "Unser Zug fährt heute von Gleis fünf, nicht von Gleis zwei.",
+     "tr": "Trenimiz bugün 2. perondan değil, 5. perondan kalkıyor.",
+     "accepted": [
+      "Unser Zug fährt heute von Gleis fünf, nicht von Gleis zwei.",
+      "Unser Zug fährt heute von Gleis 5, nicht von Gleis 2.",
+      "Heute fährt unser Zug von Gleis fünf, nicht von Gleis zwei."
+     ]
+    },
+    {
+     "kart": "lx:Durchsage",
+     "de": "Die Durchsage war so schnell, ich habe nichts verstanden.",
+     "tr": "Anons o kadar hızlıydı ki hiçbir şey anlamadım.",
+     "accepted": [
+      "Die Durchsage war so schnell, ich habe nichts verstanden.",
+      "Die Durchsage war so schnell. Ich habe nichts verstanden.",
+      "Die Durchsage war zu schnell, ich habe nichts verstanden."
+     ]
+    },
+    {
+     "kart": "lx:Durchsage",
+     "de": "Hast du die Durchsage am Gleis gehört?",
+     "tr": "Perondaki anonsu duydun mu?",
+     "accepted": [
+      "Hast du die Durchsage am Gleis gehört?",
+      "Hast du am Gleis die Durchsage gehört?",
+      "Hast du die Durchsage gehört?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Pazartesi sabahı, Bahnhof Wendlfing. Münih'e giden bir arkadaşını uğurluyorsun. Telefonun çalıyor: Derya.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Guten Morgen! Wo bist du denn?",
+      "tr": "Günaydın! Neredesin?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich bin noch am Bahnhof. Der Zug fährt heute von Gleis fünf.",
+      "tr": "Hâlâ istasyondayım. Tren bugün 5. perondan kalkıyor."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Wegen der Baustelle? Hat er auch Verspätung?",
+      "tr": "Yol çalışması yüzünden mi? Rötarı da var mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, zehn Minuten. Das war gerade in der Durchsage.",
+      "tr": "Evet, on dakika. Az önce anonsta söylendi."
+     }
+    ],
+    "soru": {
+     "q_tr": "Trenin rötarı ne kadar?",
+     "opts": [
+      "Rötar yok",
+      "On dakika",
+      "Yarım saat"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:85:h2",
+   "title_tr": "Peronda ve ofiste: duyduğunu aktarmak",
+   "kartlar": [
+    "lx:Anschluss",
+    "lx:beginnen",
+    "lx:schließen",
+    "lx:sympathisch"
+   ],
+   "kaliplar": [
+    {
+     "de": "Tobi sagt, dass er im Stau steht.",
+     "tr": "Tobi trafikte sıkıştığını söylüyor."
+    },
+    {
+     "de": "ich weiß – du weißt – er weiß – Ich hoffe, dass …",
+     "tr": "biliyorum – biliyorsun – biliyor – umarım"
+    },
+    {
+     "de": "Die Besprechung beginnt um neun. – Die Kantine schließt um zwei.",
+     "tr": "Toplantı dokuzda başlıyor. – Kantin ikide kapanıyor."
+    },
+    {
+     "de": "Ich schaffe den Anschluss. – Ich habe es nicht geschafft.",
+     "tr": "Aktarmaya yetişiyorum. – Yetişemedim."
+    },
+    {
+     "de": "neu – eine neue Kollegin – Frau Hoffmann ist neu.",
+     "tr": "yeni – yeni bir iş arkadaşı – Frau Hoffmann yeni."
+    },
+    {
+     "de": "die Bahn – Die Bahn schreibt, dass …",
+     "tr": "tren şirketi – Tren şirketi trenin geç geldiğini yazıyor."
+    },
+    {
+     "de": "Sag es bitte Herrn Wimmer. – Was hat er gesagt?",
+     "tr": "Lütfen Herr Wimmer'e söyle. – Ne dedi?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Anschluss",
+     "de": "Der Mann am Gleis sagt, dass unser Anschluss nicht wartet.",
+     "tr": "Perondaki adam aktarma trenimizin beklemediğini söylüyor.",
+     "accepted": [
+      "Der Mann am Gleis sagt, dass unser Anschluss nicht wartet.",
+      "Der Mann am Gleis sagt, unser Anschluss wartet nicht.",
+      "Der Mann am Gleis hat gesagt, dass unser Anschluss nicht wartet."
+     ]
+    },
+    {
+     "kart": "lx:Anschluss",
+     "de": "Ich hoffe, dass ich den Anschluss schaffe.",
+     "tr": "Umarım aktarmaya yetişirim.",
+     "accepted": [
+      "Ich hoffe, dass ich den Anschluss schaffe.",
+      "Ich hoffe, ich schaffe den Anschluss.",
+      "Ich hoffe, dass ich heute den Anschluss schaffe."
+     ]
+    },
+    {
+     "kart": "lx:beginnen",
+     "de": "Derya sagt, dass die Besprechung heute später beginnt.",
+     "tr": "Derya toplantının bugün daha geç başladığını söylüyor.",
+     "accepted": [
+      "Derya sagt, dass die Besprechung heute später beginnt.",
+      "Derya sagt, die Besprechung beginnt heute später.",
+      "Derya sagt, dass die Besprechung später beginnt."
+     ]
+    },
+    {
+     "kart": "lx:beginnen",
+     "de": "Ich weiß, dass der Kurs am Montag beginnt.",
+     "tr": "Kursun pazartesi başladığını biliyorum.",
+     "accepted": [
+      "Ich weiß, dass der Kurs am Montag beginnt.",
+      "Ich weiß, der Kurs beginnt am Montag.",
+      "Ich weiß, dass der Kurs Montag beginnt."
+     ]
+    },
+    {
+     "kart": "lx:schließen",
+     "de": "Tobi sagt, dass die Kantine heute um zwei schließt.",
+     "tr": "Tobi kantinin bugün ikide kapandığını söylüyor.",
+     "accepted": [
+      "Tobi sagt, dass die Kantine heute um zwei schließt.",
+      "Tobi sagt, die Kantine schließt heute um zwei.",
+      "Tobi sagt, dass die Kantine heute um zwei Uhr schließt."
+     ]
+    },
+    {
+     "kart": "lx:schließen",
+     "de": "Weißt du, dass die Apotheke am Samstag um zwölf schließt?",
+     "tr": "Eczanenin cumartesi on ikide kapandığını biliyor musun?",
+     "accepted": [
+      "Weißt du, dass die Apotheke am Samstag um zwölf schließt?",
+      "Weißt du, dass die Apotheke am Samstag um zwölf Uhr schließt?",
+      "Weißt du, die Apotheke schließt am Samstag um zwölf?"
+     ]
+    },
+    {
+     "kart": "lx:sympathisch",
+     "de": "Derya sagt, dass die neue Kollegin sympathisch ist.",
+     "tr": "Derya yeni iş arkadaşının cana yakın olduğunu söylüyor.",
+     "accepted": [
+      "Derya sagt, dass die neue Kollegin sympathisch ist.",
+      "Derya sagt, die neue Kollegin ist sympathisch.",
+      "Derya sagt, dass die neue Kollegin nett und sympathisch ist."
+     ]
+    },
+    {
+     "kart": "lx:sympathisch",
+     "de": "Ich hoffe, dass die neue Kollegin sympathisch ist.",
+     "tr": "Umarım yeni iş arkadaşı cana yakındır.",
+     "accepted": [
+      "Ich hoffe, dass die neue Kollegin sympathisch ist.",
+      "Ich hoffe, die neue Kollegin ist sympathisch.",
+      "Ich hoffe, dass die neue Kollegin nett und sympathisch ist."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Peronda arkadaşınla bekliyorsun. Yanınızdaki adam anonsu anlamamış, sana soruyor.",
+    "satirlar": [
+     {
+      "r": "ein Mann",
+      "de": "Entschuldigung, wartet mein Anschluss?",
+      "tr": "Affedersiniz, aktarma trenim bekliyor mu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Leider nicht. In der Durchsage haben sie gesagt, dass er nicht wartet.",
+      "tr": "Maalesef hayır. Anonsta beklemediğini söylediler."
+     },
+     {
+      "r": "ein Mann",
+      "de": "Und wann fährt ein Zug?",
+      "tr": "Peki ne zaman bir tren var?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Die Bahn schreibt, dass um acht Uhr fünf ein Zug fährt.",
+      "tr": "Tren şirketi saat sekizi beş geçe bir tren olduğunu yazıyor."
+     }
+    ],
+    "soru": {
+     "q_tr": "Adamın aktarması ne olacak?",
+     "opts": [
+      "Regensburg'da onu bekliyor",
+      "Bugün Münih'e hiç tren yok",
+      "Beklemiyor, 8.05'te başka bir tren var"
+     ],
+     "ans": 2
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:85:v1",
+  "title_tr": "Pazartesi: istasyonda kargaşa, ofiste perşembe planı",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "eine Frau",
+    "sahne_tr": "Bahnhof Wendlfing, 2. peron, sabah yediyi on geçiyor. Valizli bir kadın peron görevlisine koşuyor.",
+    "de": "Entschuldigung, fährt der Zug nach Regensburg nicht von Gleis zwei?",
+    "tr": "Affedersiniz, Regensburg treni 2. perondan kalkmıyor mu?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ein Bahnmitarbeiter",
+    "sahne_tr": "Kırmızı şapkalı görevli eliyle karşı peronu gösteriyor.",
+    "de": "Heute nicht. Wegen der Baustelle fährt er von Gleis fünf.",
+    "tr": "Bugün değil. Yol çalışması yüzünden 5. perondan kalkıyor."
+   },
+   {
+    "id": "s3",
+    "speaker": "eine Frau",
+    "sahne_tr": "Kadın saatine bakıyor.",
+    "de": "Und hat er Verspätung?",
+    "tr": "Peki rötarı var mı?"
+   },
+   {
+    "id": "s4",
+    "speaker": "ein Bahnmitarbeiter",
+    "sahne_tr": "Görevli hoparlörü gösteriyor.",
+    "de": "Ja, etwa zehn Minuten. Das war gerade in der Durchsage.",
+    "tr": "Evet, yaklaşık on dakika. Az önce anonsta söylendi."
+   },
+   {
+    "id": "s5",
+    "speaker": "eine Frau",
+    "sahne_tr": "Kadın derin bir nefes alıyor.",
+    "de": "Zehn Minuten! Dann schaffe ich meinen Anschluss in Regensburg nicht.",
+    "tr": "On dakika! O zaman Regensburg'daki aktarmama yetişemem."
+   },
+   {
+    "id": "s6",
+    "speaker": "ein Bahnmitarbeiter",
+    "sahne_tr": "Görevli sakin, elindeki kâğıda bakıyor.",
+    "de": "Leider nicht. Aber um acht Uhr fünf fährt noch ein Zug nach München.",
+    "tr": "Maalesef hayır. Ama saat sekizi beş geçe Münih'e bir tren daha var."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Firma Kerschbaum, saat dokuza yirmi var. Tobi montunu çıkarmadan içeri giriyor, yüzü kıpkırmızı.",
+    "de": "Servus! Eine Stunde im Stau, das war schlimm!",
+    "tr": "Selam! Bir saat trafikte, berbattı!"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer elinde bir dosyayla odasından çıkıyor.",
+    "de": "Gut, dass Sie jetzt da sind, Herr Lechner. Am Donnerstag um neun haben wir eine Besprechung.",
+    "tr": "İyi ki geldiniz Herr Lechner. Perşembe saat dokuzda bir toplantımız var."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer herkese bakıyor.",
+    "de": "Ich möchte, dass jeder kurz erzählt, was er gerade macht. Nur fünf Minuten.",
+    "tr": "Herkesin şu an ne yaptığını kısaca anlatmasını istiyorum. Yalnızca beş dakika."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya bilgisayarından başını kaldırıyor.",
+    "de": "Und am Mittwoch beginnt eine neue Kollegin bei uns, Frau Hoffmann.",
+    "tr": "Bir de çarşamba bizde yeni bir iş arkadaşı başlıyor, Frau Hoffmann."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer gülümsüyor.",
+    "de": "Richtig. Ich habe sie schon kennengelernt. Sie ist sehr sympathisch.",
+    "tr": "Doğru. Onunla tanıştım bile. Çok cana yakın biri."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya duvardaki kâğıdı gösteriyor.",
+    "de": "Und noch etwas: Die Kantine schließt diese Woche schon um zwei.",
+    "tr": "Bir şey daha: Kantin bu hafta ikide kapanıyor."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi montunu asıyor, gülüyor.",
+    "de": "Um zwei? Dann esse ich heute schon um zwölf!",
+    "tr": "İkide mi? O zaman bugün on ikide yerim!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Peronda ne oluyor?",
+     "opts": [
+      "Tren iptal oldu, herkes otobüse biniyor",
+      "Kadın yanlış trene binmiş",
+      "Tren başka perondan kalkıyor ve rötarlı, kadın aktarmasını kaçıracak"
+     ],
+     "ans": 2,
+     "kanit": [
+      "s2",
+      "s4",
+      "s5"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Regensburg treni bugün hangi perondan kalkıyor?",
+      "opts": [
+       "8. perondan",
+       "2. perondan",
+       "5. perondan"
+      ],
+      "ans": 2,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Trenin rötarı ne kadar?",
+      "opts": [
+       "Bir saat",
+       "Yaklaşık beş dakika",
+       "Yaklaşık on dakika"
+      ],
+      "ans": 2,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Kadın Münih'e hangi trenle gidebilir?",
+      "opts": [
+       "7.12 treniyle",
+       "Bugün gidemez",
+       "8.05 treniyle"
+      ],
+      "ans": 2,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi sayıyı duydun?",
+      "opts": [
+       "zehn",
+       "fünf",
+       "zwei"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s2",
+      "seviye": "orta",
+      "de": "Heute nicht. Wegen der ___ fährt er von Gleis fünf.",
+      "accepted": [
+       "Baustelle",
+       "baustelle",
+       "Baustelle."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s3",
+      "seviye": "zor",
+      "banka": [
+       "Und",
+       "hat",
+       "er",
+       "Verspätung",
+       "ist",
+       "Stau"
+      ],
+      "accepted": [
+       "Und hat er Verspätung?",
+       "und hat er verspätung",
+       "Und hat er Verspätung"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s5",
+      "seviye": "usta",
+      "accepted": [
+       "Zehn Minuten! Dann schaffe ich meinen Anschluss in Regensburg nicht.",
+       "zehn minuten dann schaffe ich meinen anschluss in regensburg nicht",
+       "Zehn Minuten. Dann schaffe ich meinen Anschluss in Regensburg nicht"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Peronda ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Der Zug fährt heute von Gleis fünf. Er hat zehn Minuten Verspätung.",
+      "zorunlu": [
+       "Gleis",
+       "Verspätung"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s4"
+    ],
+    "cevapla": {
+     "id": "m1:85:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Yaşlı bir adam anonsu duyamadı ve sana soruyor. Ona anonsta trenin bugün 5. perondan kalktığının söylendiğini aktar.",
+     "prompt_de": "Entschuldigung, was hat er gesagt? Welches Gleis?",
+     "accepted": [
+      "Er hat gesagt, dass der Zug heute von Gleis fünf fährt.",
+      "In der Durchsage haben sie gesagt, dass der Zug von Gleis fünf fährt.",
+      "Er sagt, dass der Zug heute von Gleis fünf fährt.",
+      "Gleis fünf. Der Zug fährt heute von Gleis fünf.",
+      "Heute Gleis fünf, wegen der Baustelle.",
+      "Er hat gesagt, der Zug fährt heute von Gleis fünf."
+     ],
+     "why_tr": "Duyduğunu **dass** ile aktarırsın: **dass der Zug von Gleis fünf fährt**. **fährt** en sona gider."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Ofiste ne konuşuluyor?",
+     "opts": [
+      "Perşembe toplantısı, yeni bir iş arkadaşı ve kantin saati",
+      "Tobi'nin kazası ve sigorta",
+      "Herr Wimmer'in tatili"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s8",
+      "s10",
+      "s12"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Toplantıda herkes ne kadar konuşacak?",
+      "opts": [
+       "Beş dakika",
+       "On dakika",
+       "Yarım saat"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Yeni iş arkadaşı ne zaman başlıyor?",
+      "opts": [
+       "Çarşamba",
+       "Perşembe",
+       "Pazartesi"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Kantin bu hafta saat kaçta kapanıyor?",
+      "opts": [
+       "On ikide",
+       "Dokuzda",
+       "İkide"
+      ],
+      "ans": 2,
+      "kanit": [
+       "s12"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s9",
+      "seviye": "kolay",
+      "q_tr": "Kaç dakika duydun?",
+      "opts": [
+       "fünf",
+       "zehn",
+       "drei"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s11",
+      "seviye": "orta",
+      "de": "Richtig. Ich habe sie schon kennengelernt. Sie ist sehr ___.",
+      "accepted": [
+       "sympathisch",
+       "Sympathisch",
+       "sympathisch."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s12",
+      "seviye": "zor",
+      "banka": [
+       "Und",
+       "noch",
+       "etwas",
+       "Die",
+       "Kantine",
+       "schließt",
+       "diese",
+       "Woche",
+       "schon",
+       "um",
+       "zwei",
+       "beginnt",
+       "drei"
+      ],
+      "accepted": [
+       "Und noch etwas: Die Kantine schließt diese Woche schon um zwei.",
+       "und noch etwas die kantine schließt diese woche schon um zwei",
+       "Und noch etwas, die Kantine schließt diese Woche schon um zwei."
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s7",
+      "seviye": "usta",
+      "accepted": [
+       "Servus! Eine Stunde im Stau, das war schlimm!",
+       "servus eine stunde im stau das war schlimm",
+       "Servus, eine Stunde im Stau, das war schlimm"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Perşembe toplantısı hakkında öğrendiğini Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Am Donnerstag um neun ist eine Besprechung. Jeder erzählt fünf Minuten.",
+      "zorunlu": [
+       "Donnerstag",
+       "Besprechung"
+      ]
+     }
+    ],
+    "golge": [
+     "s9",
+     "s12"
+    ],
+    "cevapla": {
+     "id": "m1:85:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Akşam kursta Ioana iş yerinde ne olduğunu soruyor. Şefinin perşembe dokuzda toplantı olduğunu söylediğini dass ile aktar.",
+     "prompt_de": "Und, wie war dein Tag bei der Arbeit?",
+     "accepted": [
+      "Gut. Mein Chef sagt, dass wir am Donnerstag um neun eine Besprechung haben.",
+      "Mein Chef sagt, dass wir am Donnerstag um neun eine Besprechung haben.",
+      "Gut. Herr Wimmer sagt, dass die Besprechung am Donnerstag um neun beginnt.",
+      "Mein Chef sagt, dass am Donnerstag um neun eine Besprechung ist.",
+      "Gut. Mein Chef sagt, wir haben am Donnerstag um neun eine Besprechung.",
+      "Gut, danke. Der Chef sagt, dass die Besprechung am Donnerstag um neun beginnt."
+     ],
+     "why_tr": "Şefin dediğini **dass** ile aktarırsın. **haben**, **ist** ya da **beginnt** en sona gider."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:85:a1",
+   "tur": "anons",
+   "title_tr": "Bahnhof Wendlfing'de anons",
+   "ortam_tr": "Pazartesi sabahı, saat yediyi beş geçiyor. Münih'e giden bir arkadaşınla 2. peronda bekliyorsun. Hoparlörden bir anons geliyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen am Bahnhof Wendlfing.",
+     "tr": "Bahnhof Wendlfing'e günaydın."
+    },
+    {
+     "id": "c2",
+     "de": "Der Zug nach Regensburg, Abfahrt sieben Uhr zwölf, fährt heute nicht von Gleis zwei.",
+     "tr": "Saat yediyi on iki geçe kalkan Regensburg treni bugün 2. perondan kalkmıyor."
+    },
+    {
+     "id": "c3",
+     "de": "Bitte gehen Sie zu Gleis fünf.",
+     "tr": "Lütfen 5. perona gidin."
+    },
+    {
+     "id": "c4",
+     "de": "Der Grund ist eine Baustelle.",
+     "tr": "Nedeni bir yol çalışması."
+    },
+    {
+     "id": "c5",
+     "de": "Der Zug hat heute etwa zehn Minuten Verspätung.",
+     "tr": "Trenin bugün yaklaşık on dakika rötarı var."
+    },
+    {
+     "id": "c6",
+     "de": "Fahren Sie weiter nach München? Ihr Anschluss in Regensburg wartet leider nicht.",
+     "tr": "Münih'e devam mı ediyorsunuz? Regensburg'daki aktarma treniniz maalesef beklemiyor."
+    },
+    {
+     "id": "c7",
+     "de": "Bitte nehmen Sie dort den Zug um acht Uhr fünf.",
+     "tr": "Lütfen orada saat sekizi beş geçe kalkan trene binin."
+    },
+    {
+     "id": "c8",
+     "de": "Wir bitten um Entschuldigung.",
+     "tr": "Özür dileriz."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7",
+      "c8"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Anons ne söylüyor?",
+      "opts": [
+       "Tren bugün erken kalkıyor",
+       "Tren bugün başka perondan kalkıyor ve geç geliyor",
+       "Tren bugün hiç yok, otobüse binin"
+      ],
+      "ans": 1,
+      "kanit": [
+       "c2",
+       "c3",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Tren bugün hangi perondan kalkıyor?",
+       "opts": [
+        "5. perondan",
+        "7. perondan",
+        "2. perondan"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Neden?",
+       "opts": [
+        "Bir yol çalışması yüzünden",
+        "Kar yüzünden",
+        "Bir kaza yüzünden"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Münih'e gidenler Regensburg'da ne yapmalı?",
+       "opts": [
+        "Aktarma trenini beklemeli",
+        "Saat 8.05 trenine binmeli",
+        "Otobüse binmeli"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c6",
+        "c7"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi peron numarasını duydun?",
+       "opts": [
+        "vier",
+        "fünf",
+        "zwei"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Der Zug hat heute etwa zehn Minuten ___.",
+       "accepted": [
+        "Verspätung",
+        "verspätung",
+        "Verspätung."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Der",
+        "Grund",
+        "ist",
+        "eine",
+        "Baustelle",
+        "ein",
+        "Stau"
+       ],
+       "accepted": [
+        "Der Grund ist eine Baustelle.",
+        "der grund ist eine baustelle",
+        "Der Grund ist eine Baustelle"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c8",
+       "seviye": "usta",
+       "accepted": [
+        "Wir bitten um Entschuldigung.",
+        "wir bitten um entschuldigung",
+        "Wir bitten um Entschuldigung"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Anonsu iki kısa Almanca cümleyle özetle.",
+       "ornek_de": "Der Zug fährt heute von Gleis fünf. Wegen einer Baustelle hat er Verspätung.",
+       "zorunlu": [
+        "Gleis",
+        "Baustelle"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c8"
+     ],
+     "cevapla": {
+      "id": "m1:85:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Peronda Derya seni arıyor ve neden geç kaldığını soruyor. Anonsta trenin on dakika rötarlı olduğunun söylendiğini dass ile aktar.",
+      "prompt_de": "Wo bist du? Kommst du heute später?",
+      "accepted": [
+       "Ja. In der Durchsage haben sie gesagt, dass der Zug zehn Minuten Verspätung hat.",
+       "Ja, in der Durchsage sagen sie, dass der Zug zehn Minuten Verspätung hat.",
+       "Ja, ich komme später. Der Zug hat zehn Minuten Verspätung.",
+       "Ja. Die Durchsage sagt, dass der Zug zehn Minuten Verspätung hat.",
+       "Ja, zehn Minuten später. Der Zug hat Verspätung.",
+       "Ja. In der Durchsage haben sie gesagt, der Zug hat zehn Minuten Verspätung."
+      ],
+      "why_tr": "**dass** ile başlayan parçada **hat** en sona gider. Örnek: **dass der Zug zehn Minuten Verspätung hat**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:85:a1:e1",
+    "k": "pick",
+    "q_tr": "Şimdi ne yapmalısın?",
+    "opts": [
+     "Eve dön, bugün tren yok",
+     "5. perona git, tren yaklaşık on dakika geç gelecek",
+     "2. peronda beklemeye devam et"
+    ],
+    "ans": 1,
+    "why_tr": "Anons 5. perona gitmeni söylüyor. Tren on dakika rötarlı.",
+    "kanit": [
+     "c3",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:85:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Tobi'nin sesli mesajı",
+   "ortam_tr": "Saat sekizi beş geçiyor, ofise yeni geldin. Telefonunda Tobi'den bir sesli mesaj var. Arabadan konuşuyor, hızlı.",
+   "speaker": "ch:lechner",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Servus, ich bin's, Tobi.",
+     "tr": "Selam, benim, Tobi."
+    },
+    {
+     "id": "c2",
+     "de": "Ich stehe im Stau, vor der Stadt ist eine Baustelle.",
+     "tr": "Trafikte sıkıştım, şehrin girişinde yol çalışması var."
+    },
+    {
+     "id": "c3",
+     "de": "Hier geht gar nichts.",
+     "tr": "Burada hiçbir şey kıpırdamıyor."
+    },
+    {
+     "id": "c4",
+     "de": "Kannst du bitte dem Chef sagen, dass ich um halb neun da bin?",
+     "tr": "Şefe sekiz buçukta orada olacağımı söyleyebilir misin lütfen?"
+    },
+    {
+     "id": "c5",
+     "de": "Ruf mich bitte nicht an, ich fahre gerade.",
+     "tr": "Beni lütfen arama, şu an araba kullanıyorum."
+    },
+    {
+     "id": "c6",
+     "de": "Danke dir, bis gleich!",
+     "tr": "Sağ ol, birazdan görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Tobi neden mesaj bırakıyor?",
+      "opts": [
+       "Hasta, bugün gelmeyecek",
+       "Treni kaçırmış",
+       "Trafikte sıkışmış, geç gelecek"
+      ],
+      "ans": 2,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Tobi'nin yolunda ne var?",
+       "opts": [
+        "Bir yol çalışması",
+        "Bir kaza",
+        "Kar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Tobi senden ne istiyor?",
+       "opts": [
+        "Onu hemen geri aramanı",
+        "Onu istasyondan almanı",
+        "Şefe sekiz buçukta geleceğini söylemeni"
+       ],
+       "ans": 2,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Tobi'yi neden aramamalısın?",
+       "opts": [
+        "Toplantıda",
+        "Telefonu bozuk",
+        "Araba kullanıyor"
+       ],
+       "ans": 2,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c1",
+       "seviye": "kolay",
+       "q_tr": "Tobi nasıl selam veriyor?",
+       "opts": [
+        "Servus",
+        "Hallo",
+        "Tschüss"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Ich stehe im Stau, vor der Stadt ist eine ___.",
+       "accepted": [
+        "Baustelle",
+        "baustelle",
+        "Baustelle."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Danke",
+        "dir",
+        "bis",
+        "gleich",
+        "dich",
+        "morgen"
+       ],
+       "accepted": [
+        "Danke dir, bis gleich!",
+        "danke dir bis gleich",
+        "Danke dir, bis gleich"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Kannst du bitte dem Chef sagen, dass ich um halb neun da bin?",
+        "kannst du bitte dem chef sagen dass ich um halb neun da bin",
+        "Kannst du bitte dem Chef sagen, dass ich um halb neun da bin"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Tobi'nin mesajını Herr Wimmer için iki kısa Almanca cümleyle aktar.",
+       "ornek_de": "Tobi sagt, dass er im Stau steht. Er ist um halb neun da.",
+       "zorunlu": [
+        "dass",
+        "Stau"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:85:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Herr Wimmer'e Tobi'nin mesajını aktar: trafikte sıkışmış, sekiz buçukta burada olacak.",
+      "prompt_de": "Herr Lechner ist noch nicht da. Wissen Sie etwas?",
+      "accepted": [
+       "Ja, Tobi sagt, dass er im Stau steht. Er ist um halb neun da.",
+       "Tobi sagt, dass er im Stau steht und um halb neun da ist.",
+       "Ja. Herr Lechner sagt, dass er im Stau steht.",
+       "Er hat mir eine Nachricht geschickt. Er steht im Stau, er ist um halb neun da.",
+       "Ja, er steht im Stau. Er sagt, dass er um halb neun da ist.",
+       "Tobi sagt, er steht im Stau. Er kommt um halb neun."
+      ],
+      "why_tr": "Tobi'nin dediğini **dass** ile aktarırsın: **dass er im Stau steht**. **steht** en sona gider."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:85:a2:e1",
+    "k": "pick",
+    "q_tr": "Şimdi ne yapmalısın?",
+    "opts": [
+     "Tobi'yi hemen ara",
+     "Toplantıyı iptal et",
+     "Herr Wimmer'e Tobi'nin trafikte olduğunu ve sekiz buçukta geleceğini söyle"
+    ],
+    "ans": 2,
+    "why_tr": "Tobi şefe haber vermeni istiyor ve aranmak istemiyor.",
+    "kanit": [
+     "c4",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:85:g1",
+   "de": "Stau",
+   "dogru_img": "long traffic jam on a highway",
+   "celdirici_img": [
+    "empty country road",
+    "parking lot with cars",
+    "bus stop with people"
+   ]
+  },
+  {
+   "id": "m1:85:g2",
+   "de": "Baustelle",
+   "dogru_img": "road construction site with orange barriers",
+   "celdirici_img": [
+    "finished new house",
+    "garden with flowers",
+    "car repair garage"
+   ]
+  },
+  {
+   "id": "m1:85:g3",
+   "de": "Gleis",
+   "dogru_img": "railway platform with platform number sign",
+   "celdirici_img": [
+    "airport gate",
+    "bus station",
+    "ticket machine"
+   ]
+  },
+  {
+   "id": "m1:85:g4",
+   "de": "Durchsage",
+   "dogru_img": "loudspeaker at a train station",
+   "celdirici_img": [
+    "departure board",
+    "train ticket",
+    "station clock"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:85:p1",
+  "title_tr": "Herr Wimmer'e aktar: tren ve Tobi",
+  "durum_tr": "Saat sekizi on geçiyor. Arkadaşının treni on dakika rötar yaptı. Ofise yeni geldin. Tobi sana mesaj bıraktı: trafikte sıkışmış, sekiz buçukta gelecek. Herr Wimmer yanına geliyor.",
+  "karsi": "ch:wimmer",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Guten Morgen! Sie kommen heute etwas spät. Was ist passiert?",
+    "tr": "Günaydın! Bugün biraz geç kaldınız. Ne oldu?",
+    "secenekler": [
+     {
+      "de": "Guten Morgen, Herr Wimmer. Ich war am Bahnhof, der Zug hatte zehn Minuten Verspätung.",
+      "tr": "Günaydın Herr Wimmer. İstasyondaydım, trenin on dakika rötarı vardı.",
+      "accepted": [
+       "Guten Morgen, Herr Wimmer. Ich war am Bahnhof, der Zug hatte zehn Minuten Verspätung.",
+       "Guten Morgen. Ich war am Bahnhof. Der Zug hatte zehn Minuten Verspätung.",
+       "Entschuldigung, ich war am Bahnhof. Der Zug hatte zehn Minuten Verspätung.",
+       "Ich war am Bahnhof, der Zug hatte Verspätung, zehn Minuten."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve net. Nedeni söyledin: **Verspätung**."
+     },
+     {
+      "de": "Entschuldigung. Wegen der Baustelle ist der Zug von Gleis fünf gefahren.",
+      "tr": "Özür dilerim. Yol çalışması yüzünden tren 5. perondan kalktı.",
+      "accepted": [
+       "Entschuldigung. Wegen der Baustelle ist der Zug von Gleis fünf gefahren.",
+       "Entschuldigung, wegen einer Baustelle ist der Zug von Gleis fünf gefahren.",
+       "Entschuldigung. Der Zug ist wegen der Baustelle von Gleis fünf gefahren.",
+       "Wegen der Baustelle ist der Zug von Gleis fünf gefahren."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **wegen der Baustelle** ile nedeni anlattın."
+     },
+     {
+      "de": "Ich stehe im Stau.",
+      "tr": "(yanlış) Trafikte sıkıştım.",
+      "accepted": [
+       "Ich stehe im Stau.",
+       "Ich stand im Stau.",
+       "Stau."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Trafikte sıkışan Tobi. Sen istasyondaydın: **Der Zug hatte Verspätung.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Kein Problem. Und wissen Sie, wo Herr Lechner ist?",
+    "tr": "Sorun değil. Peki Herr Lechner'in nerede olduğunu biliyor musunuz?",
+    "secenekler": [
+     {
+      "de": "Ja. Tobi sagt, dass er im Stau steht.",
+      "tr": "Evet. Tobi trafikte sıkıştığını söylüyor.",
+      "accepted": [
+       "Ja. Tobi sagt, dass er im Stau steht.",
+       "Ja, Tobi sagt, dass er im Stau steht.",
+       "Ja. Herr Lechner sagt, dass er im Stau steht.",
+       "Tobi sagt, dass er im Stau steht."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: **dass er im Stau steht**. **steht** en sonda."
+     },
+     {
+      "de": "Er hat mir eine Nachricht geschickt. Er steht im Stau.",
+      "tr": "Bana bir mesaj gönderdi. Trafikte sıkışmış.",
+      "accepted": [
+       "Er hat mir eine Nachricht geschickt. Er steht im Stau.",
+       "Tobi hat mir eine Nachricht geschickt. Er steht im Stau.",
+       "Er hat mir eine Nachricht geschickt, er steht im Stau.",
+       "Ja, er hat mir eine Nachricht geschickt. Er steht im Stau."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Bilginin nereden geldiğini de söyledin."
+     },
+     {
+      "de": "Tobi sagt, dass er steht im Stau.",
+      "tr": "(yanlış sıra) Tobi trafikte sıkıştığını söylüyor.",
+      "accepted": [
+       "Tobi sagt, dass er steht im Stau.",
+       "Er sagt, dass er steht im Stau.",
+       "Tobi sagt, dass steht er im Stau."
+      ],
+      "sonraki": "n2b",
+      "uygun": false,
+      "geri_bildirim_tr": "**dass** ile başlayan parçada **steht** en sona gider: **dass er im Stau steht**."
+     }
+    ]
+   },
+   {
+    "id": "n2b",
+    "de": "Wie bitte? Wo ist er?",
+    "tr": "Efendim? Nerede?",
+    "secenekler": [
+     {
+      "de": "Im Stau. Er sagt, dass er im Stau steht.",
+      "tr": "Trafikte. Trafikte sıkıştığını söylüyor.",
+      "accepted": [
+       "Im Stau. Er sagt, dass er im Stau steht.",
+       "Im Stau. Tobi sagt, dass er im Stau steht.",
+       "Er sagt, dass er im Stau steht.",
+       "Im Stau. Er steht im Stau."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi oldu: **dass er im Stau steht**."
+     },
+     {
+      "de": "Tobi sagt, dass er krank ist.",
+      "tr": "(yanlış) Tobi hasta olduğunu söylüyor.",
+      "accepted": [
+       "Tobi sagt, dass er krank ist.",
+       "Er ist krank.",
+       "Er sagt, er ist krank."
+      ],
+      "sonraki": "n2b",
+      "uygun": false,
+      "geri_bildirim_tr": "Tobi hasta değil, trafikte: **im Stau**."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Und wann kommt er?",
+    "tr": "Peki ne zaman geliyor?",
+    "secenekler": [
+     {
+      "de": "Er schreibt, dass er um halb neun da ist.",
+      "tr": "Sekiz buçukta burada olacağını yazıyor.",
+      "accepted": [
+       "Er schreibt, dass er um halb neun da ist.",
+       "Tobi schreibt, dass er um halb neun da ist.",
+       "Er sagt, dass er um halb neun da ist.",
+       "Er schreibt, dass er um halb neun kommt."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika: **dass er um halb neun da ist**. **ist** en sonda."
+     },
+     {
+      "de": "Um halb neun, sagt er.",
+      "tr": "Sekiz buçukta, diyor.",
+      "accepted": [
+       "Um halb neun, sagt er.",
+       "Um halb neun.",
+       "Er sagt, um halb neun.",
+       "Er kommt um halb neun."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa cevap da olur. Şef anladı."
+     },
+     {
+      "de": "Er schreibt, dass er ist um halb neun da.",
+      "tr": "(yanlış sıra) Sekiz buçukta burada olacağını yazıyor.",
+      "accepted": [
+       "Er schreibt, dass er ist um halb neun da.",
+       "Er sagt, dass er ist um halb neun da.",
+       "Er schreibt, dass ist er um halb neun da."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "**ist** en sona: **dass er um halb neun da ist**."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gut, danke. Am Donnerstag um neun haben wir eine Besprechung. Bitte erzählen Sie dort kurz, was Sie gerade machen.",
+    "tr": "Peki, teşekkürler. Perşembe saat dokuzda toplantımız var. Lütfen orada şu an ne yaptığınızı kısaca anlatın.",
+    "secenekler": [
+     {
+      "de": "Habe ich Sie richtig verstanden? Am Donnerstag um neun?",
+      "tr": "Sizi doğru anladım mı? Perşembe dokuzda mı?",
+      "accepted": [
+       "Habe ich Sie richtig verstanden? Am Donnerstag um neun?",
+       "Habe ich Sie richtig verstanden? Donnerstag um neun?",
+       "Entschuldigung, habe ich Sie richtig verstanden? Am Donnerstag um neun?",
+       "Habe ich Sie richtig verstanden? Die Besprechung ist am Donnerstag um neun?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Anladığını kontrol ettin: şefler bunu sever."
+     },
+     {
+      "de": "Alles klar. Am Donnerstag um neun, kein Problem.",
+      "tr": "Tamam. Perşembe dokuzda, sorun değil.",
+      "accepted": [
+       "Alles klar. Am Donnerstag um neun, kein Problem.",
+       "Alles klar, am Donnerstag um neun.",
+       "Gut, am Donnerstag um neun. Kein Problem.",
+       "Kein Problem. Am Donnerstag um neun."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Günü ve saati tekrar ettin. Güzel."
+     },
+     {
+      "de": "Gut, am Dienstag um neun.",
+      "tr": "(yanlış) Peki, salı dokuzda.",
+      "accepted": [
+       "Gut, am Dienstag um neun.",
+       "Am Dienstag um neun.",
+       "Dienstag um neun, gut."
+      ],
+      "sonraki": "n4r",
+      "uygun": false,
+      "geri_bildirim_tr": "Dikkat: **Donnerstag** perşembe, **Dienstag** salı."
+     }
+    ]
+   },
+   {
+    "id": "n4r",
+    "de": "Nein, nicht am Dienstag. Am Donnerstag um neun.",
+    "tr": "Hayır, salı değil. Perşembe dokuzda.",
+    "secenekler": [
+     {
+      "de": "Entschuldigung. Am Donnerstag um neun, alles klar.",
+      "tr": "Pardon. Perşembe dokuzda, tamam.",
+      "accepted": [
+       "Entschuldigung. Am Donnerstag um neun, alles klar.",
+       "Entschuldigung, am Donnerstag um neun.",
+       "Alles klar, am Donnerstag um neun.",
+       "Donnerstag um neun. Alles klar, danke."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **Donnerstag** perşembe."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Genau. Nur fünf Minuten, nicht mehr. Danke!",
+    "tr": "Aynen. Sadece beş dakika, fazla değil. Teşekkürler!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Trenin ve Tobi'nin durumunu şefe dass ile aktardın. Toplantı gününü de kontrol ettin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Arkadaşının telefonundaki tren bildirimi",
+  "metin_de": "Guten Morgen! Ihr Zug nach Regensburg um 7:12 Uhr hat heute etwa zehn Minuten Verspätung. Wegen einer Baustelle fährt der Zug heute von Gleis 5. In Regensburg wartet der Anschluss nach München nicht. Bitte nehmen Sie dort den Zug um 8:05 Uhr. Ab Mittwoch fährt der Zug wieder von Gleis 2. Wir bitten um Entschuldigung.",
+  "metin_tr": "Günaydın! Saat 7.12'deki Regensburg treninizin bugün yaklaşık on dakika rötarı var. Bir yol çalışması yüzünden tren bugün 5. perondan kalkıyor. Regensburg'da Münih aktarması beklemiyor. Lütfen orada saat 8.05'teki trene binin. Çarşambadan itibaren tren yine 2. perondan kalkıyor. Özür dileriz.",
+  "sorular": [
+   {
+    "id": "m1:85:o1",
+    "kind": "gist",
+    "q_tr": "Bildirim ne hakkında?",
+    "opts": [
+     "Biletinin iptal edildiği",
+     "Yeni bir tren hattının açıldığı",
+     "Trenin bugün rötarlı olduğu ve başka perondan kalktığı"
+    ],
+    "ans": 2,
+    "kanit": [
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:85:o2",
+    "kind": "detail",
+    "q_tr": "Tren bugün hangi perondan kalkıyor?",
+    "opts": [
+     "2",
+     "5",
+     "8"
+    ],
+    "ans": 1,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:85:o3",
+    "kind": "detail",
+    "q_tr": "Tren ne zamandan itibaren yine 2. perondan kalkacak?",
+    "opts": [
+     "Çarşambadan itibaren",
+     "Gelecek aydan itibaren",
+     "Yarından itibaren"
+    ],
+    "ans": 0,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:85:o4",
+    "kind": "detail",
+    "q_tr": "Münih'e gidenler Regensburg'da ne yapmalı?",
+    "opts": [
+     "Otobüse binmeli",
+     "Saat 8.05 trenine binmeli",
+     "Aktarma trenini beklemeli"
+    ],
+    "ans": 1,
+    "kanit": [
+     3,
+     4
+    ]
+   },
+   {
+    "id": "m1:85:o5",
+    "k": "guided_response",
+    "situation_tr": "Derya mesaj yazıyor: neden geç geliyorsun? Arkadaşının treni rötarlı. Bildirimde yazanı dass ile aktar.",
+    "prompt_de": "Warum kommst du heute später?",
+    "accepted": [
+     "Die Bahn schreibt, dass der Zug zehn Minuten Verspätung hat.",
+     "Die Bahn schreibt, dass ihr Zug zehn Minuten Verspätung hat.",
+     "Der Zug hat zehn Minuten Verspätung. Die Bahn schreibt, dass eine Baustelle da ist.",
+     "Die Bahn schreibt, der Zug hat zehn Minuten Verspätung.",
+     "Wegen einer Baustelle. Die Bahn schreibt, dass der Zug Verspätung hat.",
+     "Die Bahn schreibt, dass der Zug Verspätung hat. Zehn Minuten.",
+     "Die Bahn schreibt, dass sein Zug zehn Minuten Verspätung hat."
+    ],
+    "why_tr": "Yazılanı **Die Bahn schreibt, dass** ile aktarırsın. **hat** en sona gider."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Derya'ya kısa bir mesaj yaz. Tren şirketinin yazdığını dass ile aktar: rötar ve peron. Biraz geç geleceğini de yaz.",
+   "ornek_de": "Hallo Derya, die Bahn schreibt, dass der Zug zehn Minuten Verspätung hat. Er fährt heute von Gleis fünf. Ich komme etwas später.",
+   "zorunlu": [
+    "dass",
+    "Verspätung"
+   ],
+   "accepted_kaliplar": [
+    "Hallo ___",
+    "die Bahn schreibt",
+    "dass ___ Minuten Verspätung hat",
+    "Er fährt heute von Gleis ___.",
+    "Ich komme ___ später.",
+    "Die Bahn schreibt, dass ___ ___.",
+    "Ich komme ___ ___."
+   ],
+   "kontrol_tr": [
+    "Tren şirketinin yazdığını dass ile aktardın mı?",
+    "dass ile başlayan parçada hat en sonda mı?",
+    "Geç geleceğini yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:85:s",
+  "maddeler": [
+   {
+    "id": "m1:85:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Derya sagt, dass die Kantine um zwei schließt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Derya sagt, dass die Kantine um zwei schließt.",
+     "derya sagt dass die kantine um zwei schließt",
+     "Derya sagt, dass die Kantine um zwei schließt"
+    ],
+    "why_tr": "**dass** ile başlayan parçada **schließt** en sonda."
+   },
+   {
+    "id": "m1:85:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Der Zug fährt heute von Gleis fünf.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Zug fährt heute von Gleis fünf.",
+     "der zug fährt heute von gleis fünf",
+     "Der Zug fährt heute von Gleis fünf"
+    ],
+    "why_tr": "**von Gleis fünf**: 5. perondan."
+   },
+   {
+    "id": "m1:85:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Wegen der Baustelle ist viel Verkehr.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wegen der Baustelle ist viel Verkehr.",
+     "wegen der baustelle ist viel verkehr",
+     "Wegen der Baustelle ist viel Verkehr"
+    ],
+    "why_tr": "**wegen der Baustelle**: yol çalışması yüzünden."
+   },
+   {
+    "id": "m1:85:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ich weiß, dass die Besprechung um neun beginnt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich weiß, dass die Besprechung um neun beginnt.",
+     "ich weiß dass die besprechung um neun beginnt",
+     "Ich weiß, dass die Besprechung um neun beginnt"
+    ],
+    "why_tr": "**Ich weiß** ile başlar, **beginnt** en sonda."
+   },
+   {
+    "id": "m1:85:s5",
+    "k": "tr_de",
+    "tr": "Tobi trafikte sıkıştığını yazıyor.",
+    "accepted": [
+     "Tobi schreibt, dass er im Stau steht.",
+     "Tobi schreibt, er steht im Stau.",
+     "Tobi schreibt mir, dass er im Stau steht."
+    ],
+    "why_tr": "**dass er im Stau steht**: **steht** en sona gider."
+   },
+   {
+    "id": "m1:85:s6",
+    "k": "tr_de",
+    "tr": "Herr Wimmer yeni iş arkadaşının çok cana yakın olduğunu söylüyor.",
+    "accepted": [
+     "Herr Wimmer sagt, dass die neue Kollegin sehr sympathisch ist.",
+     "Herr Wimmer sagt, die neue Kollegin ist sehr sympathisch.",
+     "Herr Wimmer sagt, dass die neue Kollegin sympathisch ist."
+    ],
+    "why_tr": "**ist** en sona gider: **dass die neue Kollegin sehr sympathisch ist**."
+   },
+   {
+    "id": "m1:85:s7",
+    "k": "tr_de",
+    "tr": "Umarım aktarmaya yetişirim.",
+    "accepted": [
+     "Ich hoffe, dass ich den Anschluss schaffe.",
+     "Ich hoffe, ich schaffe den Anschluss.",
+     "Ich hoffe, dass ich den Anschluss noch schaffe."
+    ],
+    "why_tr": "**Ich hoffe, dass** umarım demektir. **schaffe** en sona gider."
+   },
+   {
+    "id": "m1:85:s8",
+    "k": "tr_de",
+    "tr": "Anonsta trenin on dakika rötarlı olduğunu söylüyorlar.",
+    "accepted": [
+     "In der Durchsage sagen sie, dass der Zug zehn Minuten Verspätung hat.",
+     "In der Durchsage sagen sie, der Zug hat zehn Minuten Verspätung.",
+     "In der Durchsage haben sie gesagt, dass der Zug zehn Minuten Verspätung hat."
+    ],
+    "why_tr": "**in der Durchsage**: anonsta. **hat** en sona gider."
+   },
+   {
+    "id": "m1:85:s9",
+    "k": "guided_response",
+    "situation_tr": "Derya Tobi'yi soruyor. Tobi'nin trafikte olduğunu söylediğini dass ile aktar.",
+    "prompt_de": "Weißt du, wo Tobi ist?",
+    "accepted": [
+     "Ja, er sagt, dass er im Stau steht.",
+     "Tobi sagt, dass er im Stau steht.",
+     "Ja. Er sagt, er steht im Stau.",
+     "Er hat mir eine Nachricht geschickt. Er steht im Stau.",
+     "Ja, Tobi sagt, dass er im Stau steht.",
+     "Im Stau. Er sagt, dass er um halb neun da ist."
+    ],
+    "why_tr": "**dass er im Stau steht**: **steht** en sonda."
+   },
+   {
+    "id": "m1:85:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wann beginnt die Besprechung am Donnerstag?",
+    "speed": "normal",
+    "situation_tr": "Tobi soruyor. Herr Wimmer toplantının saat dokuzda başladığını söyledi. Bunu aktar.",
+    "accepted": [
+     "Um neun. Herr Wimmer sagt, dass sie um neun beginnt.",
+     "Herr Wimmer sagt, dass die Besprechung um neun beginnt.",
+     "Um neun Uhr.",
+     "Der Chef sagt, sie beginnt um neun.",
+     "Um neun, sagt Herr Wimmer."
+    ],
+    "why_tr": "**dass sie um neun beginnt**: **beginnt** en sonda."
+   },
+   {
+    "id": "m1:85:s11",
+    "k": "guided_response",
+    "situation_tr": "Herr Wimmer Tobi'yi soruyor. Tobi'nin mesajını aktar: trafikte sıkışmış, sekiz buçukta burada.",
+    "prompt_de": "Wissen Sie, wo Herr Lechner ist?",
+    "accepted": [
+     "Ja. Tobi sagt, dass er im Stau steht. Er ist um halb neun da.",
+     "Er sagt, dass er im Stau steht und um halb neun da ist.",
+     "Tobi schreibt, dass er im Stau steht. Er kommt um halb neun.",
+     "Ja, er steht im Stau. Er schreibt, dass er um halb neun da ist.",
+     "Herr Lechner sagt, dass er im Stau steht. Um halb neun ist er da.",
+     "Ja. Er sagt, er steht im Stau. Er ist um halb neun da."
+    ],
+    "why_tr": "Önce nerede: **im Stau**. Sonra ne zaman: **um halb neun**. **dass** ile **steht** en sona gider."
+   }
+  ],
+  "sesli": [
+   "m1:85:s9",
+   "m1:85:s10"
+  ],
+  "dikte": [
+   "m1:85:s1",
+   "m1:85:s2",
+   "m1:85:s3",
+   "m1:85:s4"
+  ]
+ }
+}
