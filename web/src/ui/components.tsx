@@ -2,7 +2,7 @@
 import type { ComponentChildren } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { sekme, type Route } from "../state.ts";
-import { donus, sekmeHref } from "../services/gezinme.ts";
+import { cikisMi, donus, sekmeHref } from "../services/gezinme.ts";
 export { sekme };
 import { focus, subscribeFocus } from "../services/focusRuntime.ts";
 import { speak } from "../services/speech.ts";
@@ -33,10 +33,16 @@ export function TabBar({ route }: { route: Route }) {
   );
 }
 
+/** PM-133: hedef giriş noktası; tam ekran akıştan çıkış X, öbür her yerde ‹ */
+function GeriDugme({ back }: { back: string }) {
+  const hedef = donus(back), cik = cikisMi(hedef);
+  return <a class="iconbtn plain" href={hedef} aria-label={cik ? "Kapat" : "Geri"} data-test={cik ? "kapat" : "geri"}><Icon name={cik ? "x" : "back"} /></a>;
+}
+
 export function TopBar({ title, back, children }: { title: string; back?: string; children?: ComponentChildren }) {
   return (
     <header class="topbar">
-      {back && <a class="iconbtn plain" href={donus(back)} aria-label="Geri" data-test="geri"><Icon name="back" /></a>}
+      {back && <GeriDugme back={back} />}
       <h1>{title}</h1>
       {children}
     </header>

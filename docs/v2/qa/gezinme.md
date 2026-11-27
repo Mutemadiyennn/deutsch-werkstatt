@@ -23,7 +23,7 @@ artık akışa döner ve tek çıkışı X'tir; akışın ilerleme çubuğunu ta
 | Seviye tespiti `#/seviye`, rapor `…/rapor`, tekrar `…/tekrar/<g,…>` | eski | Bugün (davet), Ben (rapor), hafta testi | tespit ‹ → `#/today`, rapor ‹ → `#/ben` ✗ (Bugün'den) | giriş noktası; tekrar → rapor/plan ‹ (aynı akış) | aynı |
 | Senaryo bölümü `#/scenario/<id>/<bölüm>` | eski | senaryonun ana sayfası (Köy → Pazar → alan), gelen arama | ‹ → senaryo ana sayfası | aynı (giriş = ana sayfa); aramadan girilince aramanın girişi (Bugün) | "Senaryoya dön" (aynı) |
 | Gelen arama `#/call/<id>` | — | Bugün | "Sonra" → `#/today` | aynı | — |
-| Aylık ölçüm `#/assess` | eski | Ben → Ayarlar, Çalışma düzenim | ‹ → `#/today` ✗ (Ben'den) | giriş noktası | aynı |
+| Aylık ölçüm `#/assess` → sonuç `#/assess/result/<id>` | eski | Ben → Ayarlar, Çalışma düzenim | ‹ → `#/today` ✗ (Ben'den) | X → giriş noktası; sonuç (sekmeli) geri → `#/today` | aynı |
 
 ## Sekme içi ekranlar (geri oku: bir üst düzey, sekme değişmez)
 
@@ -41,13 +41,19 @@ artık akışa döner ve tek çıkışı X'tir; akışın ilerleme çubuğunu ta
 | Ses ve mikrofon `#/ses` | Ben | Ayarlar | `#/ben/ayarlar` | aynı |
 | Günlük görevler `#/gorevler`, Bugünkü süre `#/odak` | Bugün | Bugün | `#/today` | aynı |
 
+## Akıştan ileri geçiş (inceleme #275 P1-1, P1-2)
+Yalnız akış günü (`#/akis/<g>`) kendi duraklarını ve ekranlarını (ses, prova, okuma, Günün kayıtları, Rehber) açar; onlar akışa döner.
+Rehber her akıştan açılır ve o akışa döner. Öbür akışların bitiş geçişi akışın **yerine geçer**: tam ekransa akışın girişini devralır
+(kurulum → seviye tespiti: X kurulumun girişine), sekme içi ekransa giriş tutulmaz (ölçüm → sonuç: geri `#/today`; kayıt → "Güne dön"
+→ günün kayıtları: geri `#/koy`, bitmiş kayda dönülmez).
+
 ## Alt sekme (md. 1)
 Önce: her sekme kökünü açıyordu ✗. Sonra: öbür sekme o sekmenin son konumunu (ve geri zincirini) açar; etkin sekmeye ikinci
 dokunuş köke iner. Akıştan açılan ekran (ör. hafta sonucundan Rehber) sekmenin son konumu olmaz.
 
 ## Sınama
-- Birim: `web/src/core/donus.test.ts` (12 sav: akıştan X, durak → akış, aile içi üst adım, Köy zinciri, Rehber döngüsüzlüğü, sekme değiştiren bağlantı, son konum).
-- DN-2 gezgin (`tests/e2e/gezgin.py` → `donus_savlari`): Bugün ve Yol'dan akış → X; Yol → hafta testi → X; akış → durak → X → akış → X → Bugün; Köy → Radyo → gün → kayıt → geri ×3; Yol → Rehber → geri; Ben → Sözlük → geri; sekme son konumu ve ikinci dokunuş. WebKit üç cihaz KAPI'da.
+- Birim: `web/src/core/donus.test.ts` (16 sav: akıştan X, durak → akış, aile içi üst adım, Köy zinciri, Rehber döngüsüzlüğü, sekme değiştiren bağlantı, son konum, akıştan ileri geçiş).
+- DN-2 gezgin (`tests/e2e/gezgin.py` → `donus_savlari`): Bugün ve Yol'dan akış → X; Yol → hafta testi → X; akış → durak → X → akış → X → Bugün; Köy → Radyo → gün → kayıt → geri ×3; Bugün → kayıt → Güne dön → geri Köy; Yol → Rehber → geri; Ben → Sözlük → geri; sekme son konumu ve ikinci dokunuş. WebKit üç cihaz KAPI'da.
 - Var olan e2e'lerde "sekmeye dokun = kök" varsayımı `common.sekme_kok` ile (gerekirse ikinci dokunuş) güncellendi.
 
 ## Bilinen eksikler / takip

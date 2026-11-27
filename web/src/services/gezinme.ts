@@ -1,6 +1,6 @@
 /** Gezinme kuralının (PM-133) uygulama tarafı: `core/donus.ts` durumunu oturum boyunca tutar (sayfa yenilenince sürer).
  *  `app.tsx` her adres değişiminde `gezinmeGecis` çağırır; X / geri / sekme bağlantıları hedefi buradan alır. */
-import { BOS, donusHedefi, gecis, normal, sekmeAdresi, type Gezinme, type Sinif } from "../core/donus.ts";
+import { BOS, donusHedefi, gecis, sekmeAdresi, type Gezinme, type Sinif } from "../core/donus.ts";
 import { aile, KOKLER, parseHash, sekme } from "../state.ts";
 
 const ANAHTAR = "dw:gezinme";
@@ -8,7 +8,7 @@ const EN_COK = 24;
 
 export function sinif(hash: string): Sinif {
   const r = parseHash(hash).name;
-  return { kok: KOKLER.has(r), aile: aile(r), sekme: sekme(r) };
+  return { kok: KOKLER.has(r), aile: aile(r), sekme: sekme(r), ad: r };
 }
 
 function yukle(): Gezinme {
@@ -41,6 +41,3 @@ export function akisaDonus(varsayilan: string): string {
 /** Alt sekme bağlantısı: etkin sekme köküne, öbürü son konumuna */
 export const sekmeHref = (k: string, kok: string, etkin: boolean): string => sekmeAdresi(durum, k, kok, etkin);
 
-/** yalnız birim testleri */
-export const _sifirla = () => { durum = BOS; };
-export { normal };

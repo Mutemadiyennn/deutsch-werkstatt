@@ -76,9 +76,11 @@ def donus_savlari(pg, base):
         git(pg, giris); git(pg, f"#/akis/{akis}")
         check(pg.locator(".tabbar").count() == 0, f"dönüş: {akis}. günün akışında alt sekme yok")
         varis = cikis(pg); check(varis == giris, f"dönüş: {giris} → akış → X → {giris} ({varis})")
-    git(pg, "#/yol"); git(pg, "#/hafta/1")
-    if pg.locator(".pbar [data-test=kapat]").count():
-        varis = cikis(pg); check(varis == "#/yol", f"dönüş: Yol → hafta sonu testi → X → Yol ({varis})")
+    git(pg, "#/yol"); git(pg, "#/hafta/1"); pg.locator(".pbar [data-test=kapat]").wait_for(timeout=8000)
+    varis = cikis(pg); check(varis == "#/yol", f"dönüş: Yol → hafta sonu testi → X → Yol ({varis})")
+    # inceleme #275 P1-2: Bugün → kayıt → "Güne dön" → günün kayıtları; geri bitmiş kayda değil Köy'e
+    git(pg, "#/today"); git(pg, f"#/m1/{gunler[0]}/x"); git(pg, f"#/m1/{gunler[0]}")
+    varis = cikis(pg); check(varis == "#/koy", f"dönüş: kayıttan 'Güne dön' sonrası geri → Köy, döngü yok ({varis})")
     # 2) akıştan açılan durak ekranı akışa döner (PM-144 md. 1.2); X Bugün'e
     # gezginin dokunmadığı bir gün (2. günde "şimdi geç" basılmış olabilir); ilk durağı ses (adımsız durak)
     d2 = next((g for g in gunler if g != akis), akis)

@@ -15,7 +15,11 @@ export interface Sinif {
   aile: string | null;
   /** ekranın bağlı olduğu sekme */
   sekme: string;
+  /** rota adı */
+  ad?: string;
 }
+/** her akıştan açılıp o akışa dönen ekranlar */
+const ACIK = new Set(["rehber"]);
 export type Siniflandir = (hash: string) => Sinif;
 
 export interface Cerceve { ekran: string; giris: string | null }
@@ -50,6 +54,13 @@ export function gecis(d: Gezinme, eskiH: string | null, yeniH: string, sinif: Si
   if (ust && sy.aile && sinif(ust.ekran).aile === sy.aile) return kaydet([...d.yigin.slice(0, -1), { ekran: yeni, giris: ust.giris }]);
   if (eski === null) return kaydet([{ ekran: yeni, giris: null }]);
   const se = sinif(eski);
+  // akıştan ileri geçiş (inceleme #275 P1-1, P1-2): yalnız akış günü kendi duraklarını ve ekranlarını açar; Rehber her akıştan
+  // açılır ve akışa döner. Öbür akışların bitiş geçişi (ölçüm → sonuç, kurulum → tespit, kayıt → "Güne dön") akışın yerine
+  // geçer: tam ekransa akışın girişini devralır, sekme içi ekransa giriş tutulmaz (geri o ekranın kendi üst düzeyi)
+  if (se.aile && se.aile !== "akis" && !ACIK.has(sy.ad ?? "")) {
+    const alt = d.yigin.slice(0, -1);
+    return kaydet([...alt, { ekran: yeni, giris: sy.aile ? ust?.giris ?? null : null }]);
+  }
   // sekme değiştiren bağlantı (ör. Ben → Sözlük): geri oku o sekmenin içinde kalır (kural 2); sekmenin son konumu buysa yığını geri gelir
   if (!sy.aile && !se.aile && se.sekme !== sy.sekme) {
     const son = d.sonKonum[sy.sekme];

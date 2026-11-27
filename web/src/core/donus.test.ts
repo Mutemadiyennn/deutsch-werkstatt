@@ -91,3 +91,22 @@ describe("gezinme kuralı (PM-133)", () => {
     expect(sekmeAdresi(d, "yol", "#/yol", false)).toBe("#/yol");
   });
 });
+
+describe("akıştan ileri geçiş (inceleme #275)", () => {
+  it("P1-1a: ölçüm → sonuç; sonucun geri oku yeni ölçüme değil kendi üst adresine", () => {
+    const d = gez(["#/ben", "#/ben/ayarlar", "#/assess", "#/assess/result/x1"]);
+    expect(hedef(d, "#/assess/result/x1", "#/today")).toBe("#/today");
+  });
+  it("P1-1b: kurulum → tespit; tespitin X'i kurulumu değil kurulumun girişini açar", () => {
+    const d = gez(["#/ben", "#/ben/ayarlar", "#/onboarding", "#/seviye"]);
+    expect(hedef(d, "#/seviye", "#/today")).toBe("#/ben/ayarlar");
+  });
+  it("P1-2: Bugün → kayıt → Güne dön → günün kayıtları; geri bitmiş kayda değil Köy'e", () => {
+    const d = gez(["#/today", "#/m1/1/ses-01", "#/m1/1"]);
+    expect(hedef(d, "#/m1/1", "#/koy")).toBe("#/koy");
+  });
+  it("akış günü kendi ekranlarını açar ve onlar akışa döner (Günün kayıtları dahil)", () => {
+    const d = gez(["#/yol", "#/akis/1", "#/m1/1"]);
+    expect(hedef(d, "#/m1/1", "#/koy")).toBe("#/akis/1");
+  });
+});

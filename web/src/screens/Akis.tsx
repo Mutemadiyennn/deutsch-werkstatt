@@ -89,7 +89,7 @@ export function AkisOynatici({ kayit, lex, harita, emojiHarita, baglam, kaydet, 
   return (
     <section class="stack" data-test="akis" data-durak={s.durak.id} data-adim={s.adim.id} data-tur={s.adim.tur}>
       <header class="row" style={{ gap: 10, flexWrap: "nowrap", alignItems: "center" }}>
-        <button class="iconbtn plain" aria-label="Çık" data-test="akis-cik" onClick={cik}><Icon name="x" /></button>
+        <button class="iconbtn plain" aria-label="Kapat" data-test="akis-cik" onClick={cik}><Icon name="x" /></button>
         {/* PM 7055715440 md. 1: en çok 8 adımda elmas, fazlasında dolan çubuk (yapılanla kalan ayırt edilsin) */}
         {s.toplam <= 8
           ? <div class="akis-elmaslar" role="progressbar" aria-label="Durağın adımları" aria-valuemin={0} aria-valuemax={s.toplam} aria-valuenow={s.sira}>
@@ -444,7 +444,7 @@ export function AkisEkrani({ day }: { day: number }) {
     }
     setV({ ...v, kayit: k });
   };
-  return <AkisOynatici kayit={v.kayit} lex={v.lex} harita={v.harita} emojiHarita={v.emojiHarita} baglam={v.baglam} kaydet={(k, e, a) => void kaydet(k, e, a)} cik={() => { toast("Kaldığın yerden sürer."); location.hash = donus("#/today"); }} />;
+  return <AkisOynatici kayit={v.kayit} lex={v.lex} harita={v.harita} emojiHarita={v.emojiHarita} baglam={v.baglam} kaydet={(k, e, a) => void kaydet(k, e, a)} cik={() => { if (v.kayit.durak > 0 || v.kayit.adim > 0) toast("Kaldığın yerden sürer."); location.hash = donus("#/today"); }} />;
 }
 
 /**
