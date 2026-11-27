@@ -1,0 +1,341 @@
+{
+  "schema": 1,
+  "id": "m1:gun:50",
+  "day": 50,
+  "level": "A1",
+  "format": "gun",
+  "title_tr": "Pekiştirme: telefon ve randevu",
+  "goal_tr": "Telefonda bir günü ve saati ayarlar, yanlış duyduğunda sorar, yeni saati tekrarlayarak doğrularsın.",
+  "can_do": { "id": "cd:m1:50", "tr": "Telefonda randevu saati değişince yeni saati sorar ve doğrularım." },
+  "unit": "u:m1:50",
+  "arm": "pazar",
+  "place": "pl:haus",
+  "characters": ["ch:brandl", "ch:aksoy", "ch:huber"],
+  "requires": { "kelimeler": [], "kaliplar": [], "gramer": [], "tur": [], "baglayicilar": [], "akicilik": [] },
+  "review": { "status": "draft" },
+  "dersler": [],
+  "yeni_kartlar": ["lx:Aussicht", "lx:Teppich", "lx:schüchtern"],
+  "halkalar": [
+    {
+      "id": "m1:50:h1",
+      "title_tr": "Halı, manzara ve telefon çekingenliği",
+      "kartlar": ["lx:Teppich", "lx:Aussicht", "lx:schüchtern"],
+      "kaliplar": [
+        { "de": "Es geht um …", "tr": "Konu şu: …" },
+        { "de": "Ich rufe … zurück. – Rufen Sie … zurück.", "tr": "… geri ararım. – … geri arayın." },
+        { "de": "eine schöne Aussicht", "tr": "güzel bir manzara" }
+      ],
+      "gorev_cumleleri": [
+        { "kart": "lx:Teppich", "de": "Wann bringen Sie den Teppich?", "tr": "Halıyı ne zaman getiriyorsunuz?",
+          "accepted": ["Wann bringen Sie den Teppich?", "Wann bringen Sie bitte den Teppich?", "Wann kommt der Teppich?", "Um wie viel Uhr bringen Sie den Teppich?"] },
+        { "kart": "lx:Teppich", "de": "Es geht um den Teppich.", "tr": "Halı için arıyorum.",
+          "accepted": ["Es geht um den Teppich.", "Es geht um meinen Teppich.", "Es geht um den Teppich, bitte."] },
+        { "kart": "lx:Teppich", "de": "Der Teppich ist zu groß für das Zimmer.", "tr": "Halı oda için fazla büyük.",
+          "accepted": ["Der Teppich ist zu groß für das Zimmer.", "Der Teppich ist für das Zimmer zu groß.", "Für das Zimmer ist der Teppich zu groß."] },
+        { "kart": "lx:Aussicht", "de": "Mein Büro hat eine schöne Aussicht.", "tr": "Ofisimin güzel bir manzarası var.",
+          "accepted": ["Mein Büro hat eine schöne Aussicht.", "Mein Büro hat eine tolle Aussicht.", "Das Büro hat eine schöne Aussicht."] },
+        { "kart": "lx:Aussicht", "de": "Die Aussicht ist toll!", "tr": "Manzara harika!",
+          "accepted": ["Die Aussicht ist toll!", "Die Aussicht ist super!", "Toll, die Aussicht!", "Die Aussicht ist wirklich toll!"] },
+        { "kart": "lx:schüchtern", "de": "Am Telefon bin ich ein bisschen schüchtern.", "tr": "Telefonda biraz çekingenim.",
+          "accepted": ["Am Telefon bin ich ein bisschen schüchtern.", "Ich bin am Telefon ein bisschen schüchtern.", "Am Telefon bin ich etwas schüchtern."] },
+        { "kart": "lx:schüchtern", "de": "Sie müssen nicht schüchtern sein.", "tr": "Çekingen olmanıza gerek yok.",
+          "accepted": ["Sie müssen nicht schüchtern sein.", "Sie brauchen nicht schüchtern zu sein.", "Seien Sie nicht schüchtern."] }
+      ],
+      "sahne": {
+        "ortam_tr": "İş yerinde öğle arası. Masadaki telefon çalıyor. Derya ellerini kaldırıyor, telefonu sana gösteriyor.",
+        "satirlar": [
+          { "r": "ch:aksoy", "de": "Das Telefon! Kannst du bitte abnehmen?", "tr": "Telefon! Açabilir misin lütfen?" },
+          { "r": "ogrenci", "de": "Ich? Am Telefon bin ich schüchtern.", "tr": "Ben mi? Telefonda çekingenim." },
+          { "r": "ch:aksoy", "de": "Du musst nicht schüchtern sein. Du kannst das!", "tr": "Çekingen olmana gerek yok. Sen bunu yapabilirsin!" }
+        ],
+        "soru": { "q_tr": "Derya senden ne istiyor?", "opts": ["Telefonu açmanı", "Telefonu kapatmanı", "Onu sonra aramanı"], "ans": 0 }
+      }
+    }
+  ],
+  "sahne": {
+    "id": "m1:50:v1",
+    "title_tr": "Halı ne zaman geliyor?",
+    "sahneler": [
+      { "id": "s1", "speaker": "der Verkäufer", "sahne_tr": "Bir halı dükkânı. Genç bir satıcı tezgâhta telefonu kulağına götürüyor.", "de": "Guten Tag, Frau Brandl. Es geht um Ihren Teppich.", "tr": "İyi günler Brandl Hanım. Halınız için arıyorum." },
+      { "id": "s2", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl evinde, koridorda. Telefonu kulağına bastırıyor, yerdeki eski halıya bakıyor.", "de": "Ja, hallo! Der Teppich für den Flur, ja?", "tr": "Evet, merhaba! Koridorun halısı, değil mi?" },
+      { "id": "s3", "speaker": "der Verkäufer", "sahne_tr": "Satıcı önündeki takvime bakıyor.", "de": "Genau. Wir können den Teppich am Dienstag bringen. Um acht Uhr.", "tr": "Evet. Halıyı salı günü getirebiliriz. Saat sekizde." },
+      { "id": "s4", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl kaşlarını kaldırıyor, iyi duyamamış.", "de": "Am Donnerstag? Um acht?", "tr": "Perşembe mi? Sekizde mi?" },
+      { "id": "s5", "speaker": "der Verkäufer", "sahne_tr": "Satıcı daha yavaş ve yüksek sesle konuşuyor.", "de": "Nein, am Dienstag. Dienstag um acht.", "tr": "Hayır, salı. Salı saat sekiz." },
+      { "id": "s6", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl başını iki yana sallıyor, saate bakıyor.", "de": "Ach so, Dienstag. Acht Uhr ist zu früh.", "tr": "Ha, salı. Saat sekiz çok erken." },
+      { "id": "s7", "speaker": "der Verkäufer", "sahne_tr": "Satıcı takvimde parmağıyla başka bir saati gösteriyor.", "de": "Geht Dienstag um halb zehn?", "tr": "Salı dokuz buçuk olur mu?" },
+      { "id": "s8", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl bir kâğıda not alıyor.", "de": "Halb zehn geht. Also Dienstag um halb zehn?", "tr": "Dokuz buçuk olur. Yani salı dokuz buçukta, değil mi?" },
+      { "id": "s9", "speaker": "der Verkäufer", "sahne_tr": "Satıcı başını sallıyor, bilgisayara yazıyor.", "de": "Richtig. Wie schreibt man Ihren Namen?", "tr": "Doğru. Adınız nasıl yazılıyor?" },
+      { "id": "s10", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl harfleri parmaklarıyla sayıyor.", "de": "Brandl. B wie Berta, R wie Richard, A wie Anton.", "tr": "Brandl. Berta'nın B'si, Richard'ın R'si, Anton'un A'sı." },
+      { "id": "s11", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl devam ediyor, son harfte gülümsüyor.", "de": "N wie Nordpol, D wie Dora, L wie Ludwig.", "tr": "Nordpol'un N'si, Dora'nın D'si, Ludwig'in L'si." },
+      { "id": "s12", "speaker": "der Verkäufer", "sahne_tr": "Satıcı yazdığını ekranda kontrol ediyor.", "de": "Danke. Und die Adresse?", "tr": "Teşekkürler. Peki adres?" },
+      { "id": "s13", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl kapının yanındaki numaraya bakıyor.", "de": "Brunnengasse sieben. Ich wohne links.", "tr": "Brunnengasse yedi. Soldaki dairede oturuyorum." },
+      { "id": "s14", "speaker": "der Verkäufer", "sahne_tr": "Satıcı telefonu kapatmaya hazırlanıyor.", "de": "Gut. Dann bis Dienstag um halb zehn!", "tr": "Tamam. O zaman salı dokuz buçukta görüşürüz!" },
+      { "id": "s15", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl telefonu bırakıyor, merdivende seni görüp el sallıyor.", "de": "Am Dienstag kommt mein Teppich!", "tr": "Salı günü halım geliyor!" }
+    ],
+    "bolumler": [
+      {
+        "id": "b1",
+        "cumleler": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Telefon konuşması ne hakkında?", "opts": ["Halının getirileceği gün ve saat", "Halının fiyatı", "Bir doktor randevusu"], "ans": 0, "kanit": ["s3", "s8"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Frau Brandl günü önce yanlış anlıyor. Hangi günü anlıyor?", "opts": ["Salı", "Perşembe", "Cuma"], "ans": 1, "kanit": ["s4"] },
+          { "kind": "detail", "q_tr": "Halı sonunda saat kaçta geliyor?", "opts": ["Sekizde", "Dokuz buçukta", "Onda"], "ans": 1, "kanit": ["s8"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s4", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Dienstag", "Donnerstag", "Freitag"], "ans": 1 },
+          { "id": "d2", "cumle": "s7", "seviye": "orta", "de": "Geht Dienstag um halb ___?", "accepted": ["zehn", "Zehn", "zehn."] },
+          { "id": "d3", "cumle": "s12", "seviye": "zor", "banka": ["Und", "die", "Adresse", "Nummer", "der", "wo"], "accepted": ["Und die Adresse?", "und die adresse", "Und die Adresse"] },
+          { "id": "d4", "cumle": "s6", "seviye": "usta", "accepted": ["Acht Uhr ist zu früh.", "acht uhr ist zu früh", "Acht Uhr ist zu früh"] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Telefonda ne kararlaştırıldı? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Der Teppich kommt am Dienstag. Um halb zehn.", "zorunlu": ["Teppich", "Dienstag"] }
+        ],
+        "golge": ["s8", "s9"],
+        "cevapla": {
+          "id": "m1:50:v1:c1",
+          "k": "guided_response",
+          "situation_tr": "Frau Brandl merdivende sana soruyor. Halının gününü ve saatini unutmuş. Ona söyle.",
+          "prompt_de": "Wann kommt mein Teppich?",
+          "accepted": ["Am Dienstag um halb zehn.", "Ihr Teppich kommt am Dienstag um halb zehn.", "Dienstag, halb zehn.", "Am Dienstag, um halb zehn.", "Der Teppich kommt am Dienstag um halb zehn.", "Dienstag um halb zehn.", "Am Dienstag um neun Uhr dreißig.", "Er kommt am Dienstag um halb zehn.", "Am Dienstag um halb zehn, Frau Brandl."],
+          "why_tr": "Önce günü, sonra saati söyle: **am Dienstag um halb zehn**."
+        }
+      }
+    ]
+  },
+  "sesler": [
+    {
+      "id": "m1:50:a1",
+      "tur": "sesli-mesaj",
+      "title_tr": "Muayenehaneden sesli mesaj",
+      "ortam_tr": "Akşam telefonuna bakıyorsun. Dr. Weber'in muayenehanesinden Frau Huber mesaj bırakmış.",
+      "speaker": "ch:huber",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Guten Tag, hier ist die Praxis Dr. Weber, Huber.", "tr": "İyi günler, Dr. Weber muayenehanesinden Huber arıyor." },
+        { "id": "c2", "de": "Ihr Termin am Donnerstag um zehn geht leider nicht.", "tr": "Perşembe saat ondaki randevunuz maalesef olmuyor." },
+        { "id": "c3", "de": "Dr. Weber ist am Donnerstag nicht da.", "tr": "Dr. Weber perşembe günü burada değil." },
+        { "id": "c4", "de": "Geht Freitag um Viertel nach acht?", "tr": "Cuma sekizi çeyrek geçe olur mu?" },
+        { "id": "c5", "de": "Bitte rufen Sie uns zurück. Danke!", "tr": "Lütfen bizi geri arayın. Teşekkürler!" }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Mesaj ne söylüyor?", "opts": ["Randevun değişiyor", "Muayenehane taşınıyor", "Reçeten hazır"], "ans": 0, "kanit": ["c2", "c4"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Eski randevu ne zamandı?", "opts": ["Perşembe saat on", "Cuma saat on", "Perşembe sekizi çeyrek geçe"], "ans": 0, "kanit": ["c2"] },
+            { "kind": "detail", "q_tr": "Frau Huber hangi saati öneriyor?", "opts": ["Cuma 8.15", "Cuma 8.45", "Cuma 7.45"], "ans": 0, "kanit": ["c4"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c3", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Mittwoch", "Donnerstag", "Dienstag"], "ans": 1 },
+            { "id": "d2", "cumle": "c4", "seviye": "orta", "de": "Geht Freitag um Viertel nach ___?", "accepted": ["acht", "Acht", "acht."] },
+            { "id": "d3", "cumle": "c3", "seviye": "zor", "banka": ["Dr.", "Weber", "ist", "am", "Donnerstag", "nicht", "da", "hier", "Dienstag"], "accepted": ["Dr. Weber ist am Donnerstag nicht da.", "dr weber ist am donnerstag nicht da", "Dr. Weber ist am Donnerstag nicht da"] },
+            { "id": "d4", "cumle": "c2", "seviye": "usta", "accepted": ["Ihr Termin am Donnerstag um zehn geht leider nicht.", "ihr termin am donnerstag um zehn geht leider nicht", "Ihr Termin am Donnerstag um zehn geht leider nicht"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Mesajda ne dendi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Donnerstag geht nicht. Geht Freitag um Viertel nach acht?", "zorunlu": ["Donnerstag", "Freitag"] }
+          ],
+          "golge": ["c4", "c5"],
+          "cevapla": {
+            "id": "m1:50:a1:c1",
+            "k": "guided_response",
+            "situation_tr": "Muayenehaneyi geri arıyorsun. Cuma 8.15 sana uyuyor. Adını söyle ve kabul et.",
+            "prompt_de": "Praxis Dr. Weber, Huber?",
+            "accepted": ["Hier ist {name}. Freitag um Viertel nach acht geht.", "Guten Tag, hier ist {name}. Freitag um Viertel nach acht geht.", "{name} hier. Freitag um Viertel nach acht passt.", "Guten Tag, mein Name ist {name}. Freitag um Viertel nach acht geht gut.", "Hier ist {name}. Freitag geht, um Viertel nach acht.", "Guten Tag, {name} hier. Am Freitag um acht Uhr fünfzehn geht es.", "Hier ist {name}. Freitag um Viertel nach acht passt.", "Guten Tag, hier ist {name}. Freitag um Viertel nach acht passt.", "Guten Tag, {name} hier. Freitag um Viertel nach acht geht.", "{name} hier. Freitag um Viertel nach acht geht.", "Guten Tag, mein Name ist {name}. Freitag um Viertel nach acht geht.", "Hier ist {name}. Am Freitag um Viertel nach acht geht es.", "Guten Tag, hier ist {name}. Am Freitag um Viertel nach acht geht es.", "Hier ist {name}. Ja, Freitag um Viertel nach acht geht.", "Hier ist {name}. Freitag um Viertel nach acht geht gut."],
+            "why_tr": "Önce adını söyle, sonra önerilen saati tekrar et: **Freitag um Viertel nach acht geht**."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:50:a1:e1", "k": "pick", "q_tr": "Ne yapmalısın?", "opts": ["Muayenehaneyi geri ara.", "Perşembe saat onda muayenehaneye git.", "Hiçbir şey yapma, cuma günü git."], "ans": 0, "why_tr": "Frau Huber geri aramanı ve cumanın uyup uymadığını söylemeni istiyor.", "kanit": ["c5"] }
+    },
+    {
+      "id": "m1:50:a2",
+      "tur": "radyo",
+      "title_tr": "Radyoda otel reklamı",
+      "ortam_tr": "Mutfakta radyo açık. Bir otelin reklamı çıkıyor.",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Sie wollen am Wochenende weg?", "tr": "Hafta sonu bir yere gitmek mi istiyorsunuz?" },
+        { "id": "c2", "de": "Das Hotel am See hat Zimmer mit Aussicht.", "tr": "Göl kenarındaki otelin manzaralı odaları var." },
+        { "id": "c3", "de": "Ein Zimmer für zwei Personen kostet neunzig Euro.", "tr": "İki kişilik bir oda doksan avro." },
+        { "id": "c4", "de": "Unsere Nummer ist null acht sieben eins, vier vier zwei null.", "tr": "Numaramız: sıfır sekiz yedi bir, dört dört iki sıfır." },
+        { "id": "c5", "de": "Wir sind von Montag bis Freitag von neun bis achtzehn Uhr da.", "tr": "Pazartesiden cumaya dokuzdan on sekize kadar buradayız." }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Bu ne?", "opts": ["Bir otel reklamı", "Bir hava durumu", "Bir tren anonsu"], "ans": 0, "kanit": ["c2"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "İki kişilik oda ne kadar?", "opts": ["90 avro", "19 avro", "80 avro"], "ans": 0, "kanit": ["c3"] },
+            { "kind": "detail", "q_tr": "Oteli ne zaman arayabilirsin?", "opts": ["Pazartesiden cumaya, 9 ile 18 arası", "Her gün, 9 ile 18 arası", "Yalnız hafta sonu"], "ans": 0, "kanit": ["c5"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c3", "seviye": "kolay", "q_tr": "Hangi sayıyı duydun?", "opts": ["neunzehn", "neunzig", "achtzig"], "ans": 1 },
+            { "id": "d2", "cumle": "c5", "seviye": "orta", "de": "Wir sind von Montag bis ___ von neun bis achtzehn Uhr da.", "accepted": ["Freitag", "freitag", "Freitag."] },
+            { "id": "d3", "cumle": "c2", "seviye": "zor", "banka": ["Das", "Hotel", "am", "See", "hat", "Zimmer", "mit", "Aussicht", "Meer", "ohne"], "accepted": ["Das Hotel am See hat Zimmer mit Aussicht.", "das hotel am see hat zimmer mit aussicht", "Das Hotel am See hat Zimmer mit Aussicht"] },
+            { "id": "d4", "cumle": "c3", "seviye": "usta", "accepted": ["Ein Zimmer für zwei Personen kostet neunzig Euro.", "ein zimmer für zwei personen kostet neunzig euro", "Ein Zimmer für zwei Personen kostet neunzig Euro"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Reklamda ne dendi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Das Hotel hat Zimmer mit Aussicht. Ein Zimmer kostet neunzig Euro.", "zorunlu": ["Aussicht", "neunzig"] }
+          ],
+          "golge": ["c2", "c5"],
+          "cevapla": {
+            "id": "m1:50:a2:c1",
+            "k": "guided_response",
+            "situation_tr": "Arkadaşın da reklamı duymuş ama fiyatı kaçırmış. Ona söyle.",
+            "prompt_de": "Was kostet ein Zimmer?",
+            "accepted": ["Neunzig Euro.", "Ein Zimmer kostet neunzig Euro.", "Das kostet neunzig Euro.", "Neunzig Euro für zwei Personen.", "Es kostet neunzig Euro.", "Für zwei Personen neunzig Euro.", "Das Zimmer kostet neunzig Euro.", "Ein Zimmer für zwei Personen kostet neunzig Euro."],
+            "why_tr": "Fiyatı söylerken **kostet** ve sayıyı kullan: **neunzig Euro**."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:50:a2:e1", "k": "pick", "q_tr": "Oteli cumartesi öğleden sonra aramak istiyorsun. Ne olur?", "opts": ["Kimse açmaz. Hafta içi aramalısın.", "Açarlar, sorun yok.", "Yalnız sabah açarlar."], "ans": 0, "why_tr": "Otel yalnız pazartesiden cumaya, dokuzdan on sekize kadar telefona bakıyor.", "kanit": ["c5"] }
+    }
+  ],
+  "gorsel": [
+    { "id": "m1:50:g1", "de": "Teppich", "dogru_img": "colorful patterned carpet on a living room floor", "celdirici_img": ["bare wooden floor without a carpet", "curtain at a window", "blanket on a sofa"] },
+    { "id": "m1:50:g2", "de": "Aussicht", "dogru_img": "view from a hotel window over a lake and mountains", "celdirici_img": ["hotel room with closed curtains", "dark hotel corridor", "brick wall right outside a window"] },
+    { "id": "m1:50:g3", "de": "Viertel nach acht", "dogru_img": "analog clock showing 8:15", "celdirici_img": ["analog clock showing 7:45", "analog clock showing 8:45", "analog clock showing 8:30"] },
+    { "id": "m1:50:g4", "de": "Handy", "dogru_img": "smartphone ringing on an office desk", "celdirici_img": ["old landline telephone", "open laptop", "wristwatch"] }
+  ],
+  "prova": {
+    "id": "m1:50:p1",
+    "title_tr": "Muayenehaneyi geri arıyorsun",
+    "durum_tr": "Frau Huber perşembe randevunun olmadığını söyledi ve geri aramanı istedi. Sen arıyorsun. Bu kez cuma sabahı işin var, o saat sana uymuyor.",
+    "karsi": "ch:huber",
+    "baslangic": "n1",
+    "dugumler": [
+      {
+        "id": "n1",
+        "de": "Praxis Dr. Weber, Sie sprechen mit Frau Huber.",
+        "tr": "Dr. Weber muayenehanesi, Huber Hanım ile görüşüyorsunuz.",
+        "secenekler": [
+          { "de": "Guten Tag, hier ist {name}. Es geht um den Termin am Donnerstag.", "tr": "İyi günler, ben {name}. Perşembe günkü randevu için arıyorum.",
+            "accepted": ["Guten Tag, hier ist {name}. Es geht um den Termin am Donnerstag.", "Guten Tag, {name} hier. Es geht um meinen Termin.", "Guten Tag, mein Name ist {name}. Es geht um meinen Termin.", "Guten Tag, hier ist {name}. Es geht um meinen Termin.", "Guten Tag, hier ist {name}. Es geht um meinen Termin am Donnerstag.", "Hallo, hier ist {name}. Es geht um meinen Termin.", "Guten Tag, {name} hier. Es geht um den Termin am Donnerstag.", "Hier ist {name}. Es geht um meinen Termin.", "Guten Tag, Frau Huber, hier ist {name}. Es geht um meinen Termin.", "Guten Tag, hier ist {name}. Es geht um den Termin.", "Guten Tag, mein Name ist {name}. Es geht um den Termin am Donnerstag.", "Hallo, hier ist {name}. Es geht um den Termin am Donnerstag."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Çok iyi. Adını ve neden aradığını hemen söyledin." },
+          { "de": "Hallo, {name} hier. Mein Termin am Donnerstag?", "tr": "Merhaba, ben {name}. Perşembe randevum?",
+            "accepted": ["Hallo, {name} hier. Mein Termin am Donnerstag?", "Hallo, hier ist {name}. Mein Termin am Donnerstag?", "Hallo, ich bin {name}. Mein Termin am Donnerstag?"],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Anlaşılır. **Es geht um den Termin** daha tam bir cümle." },
+          { "de": "Freitag geht nicht!", "tr": "Cuma olmaz!",
+            "accepted": ["Freitag geht nicht!", "Am Freitag geht es nicht!", "Freitag nicht!"],
+            "sonraki": "n1b", "uygun": false, "geri_bildirim_tr": "Frau Huber henüz kim olduğunu bilmiyor. Önce adını söyle." }
+        ]
+      },
+      {
+        "id": "n1b",
+        "de": "Wie bitte? Wer ist da, bitte?",
+        "tr": "Efendim? Kiminle görüşüyorum?",
+        "secenekler": [
+          { "de": "Entschuldigung, hier ist {name}. Es geht um meinen Termin.", "tr": "Pardon, ben {name}. Randevum için arıyorum.",
+            "accepted": ["Entschuldigung, hier ist {name}. Es geht um meinen Termin.", "Entschuldigung, {name} hier. Es geht um meinen Termin.", "Entschuldigung, mein Name ist {name}. Es geht um meinen Termin.", "Entschuldigung, hier ist {name}.", "Entschuldigung, hier ist {name}. Es geht um den Termin am Donnerstag.", "Entschuldigung, ich bin {name}. Es geht um meinen Termin."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "İyi toparladın. Özür diledin ve kim olduğunu söyledin." }
+        ]
+      },
+      {
+        "id": "n2",
+        "de": "Ach, {Herr|Frau} {name}! Geht Freitag um Viertel nach acht?",
+        "tr": "Ah, {Herr|Frau} {name}! Cuma sekizi çeyrek geçe olur mu?",
+        "secenekler": [
+          { "de": "Viertel nach acht ist zu früh. Ich muss arbeiten.", "tr": "Sekizi çeyrek geçe çok erken. Çalışmam lazım.",
+            "accepted": ["Viertel nach acht ist zu früh. Ich muss arbeiten.", "Das ist zu früh. Ich muss arbeiten.", "Leider ist Viertel nach acht zu früh. Ich muss arbeiten.", "Viertel nach acht geht leider nicht. Ich muss arbeiten.", "Das ist zu früh.", "Viertel nach acht ist zu früh.", "Das ist leider zu früh. Ich muss arbeiten.", "Viertel nach acht ist leider zu früh. Ich muss arbeiten.", "Das geht leider nicht. Ich muss arbeiten.", "Das geht nicht. Ich muss arbeiten.", "Freitag um Viertel nach acht geht nicht. Ich muss arbeiten.", "Nein, das ist zu früh. Ich muss arbeiten.", "Leider nicht. Ich muss arbeiten."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Neden olmadığını da söyledin. Frau Huber başka bir saat arayacak." },
+          { "de": "Viertel vor acht?", "tr": "Sekize çeyrek kala mı?",
+            "accepted": ["Viertel vor acht?", "Um Viertel vor acht?", "Also Viertel vor acht?"],
+            "sonraki": "n2b", "uygun": false, "geri_bildirim_tr": "Frau Huber **nach** dedi: sekizi çeyrek geçe. Emin değilsen tekrar ettir." }
+        ]
+      },
+      {
+        "id": "n2b",
+        "de": "Nein, Viertel nach acht. Acht Uhr fünfzehn.",
+        "tr": "Hayır, sekizi çeyrek geçe. Sekiz on beş.",
+        "secenekler": [
+          { "de": "Ach so. Acht Uhr fünfzehn ist zu früh. Ich muss arbeiten.", "tr": "Ha, anladım. Sekiz on beş çok erken. Çalışmam lazım.",
+            "accepted": ["Ach so. Acht Uhr fünfzehn ist zu früh. Ich muss arbeiten.", "Ach so. Das ist zu früh. Ich muss arbeiten.", "Okay. Acht Uhr fünfzehn ist zu früh, ich muss arbeiten.", "Ach so, Viertel nach acht. Das ist zu früh. Ich muss arbeiten.", "Ach so. Das ist leider zu früh. Ich muss arbeiten."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Saati duydun ve neden olmadığını söyledin." }
+        ]
+      },
+      {
+        "id": "n3",
+        "de": "Freitag ist leider voll. Montag um halb fünf?",
+        "tr": "Cuma maalesef dolu. Pazartesi dört buçukta?",
+        "secenekler": [
+          { "de": "Wie bitte? Montag um wie viel Uhr?", "tr": "Efendim? Pazartesi saat kaçta?",
+            "accepted": ["Wie bitte? Montag um wie viel Uhr?", "Montag um wie viel Uhr, bitte?", "Entschuldigung, um wie viel Uhr?", "Wie bitte? Um wie viel Uhr?", "Um wie viel Uhr, bitte?", "Wie bitte? Können Sie das wiederholen?", "Können Sie das bitte wiederholen?", "Wie bitte? Nochmal, bitte.", "Entschuldigung, können Sie das wiederholen?", "Wie bitte?", "Können Sie das wiederholen?", "Wie bitte? Können Sie das bitte wiederholen?", "Noch einmal, bitte."],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Doğru hamle. Kaçırdığın yeri, yani saati sordun." },
+          { "de": "Montag um halb fünf geht.", "tr": "Pazartesi dört buçuk olur.",
+            "accepted": ["Montag um halb fünf geht.", "Ja, Montag um halb fünf geht.", "Montag um halb fünf passt.", "Ja, am Montag um halb fünf geht es.", "Montag um halb fünf geht gut.", "Ja, Montag um halb fünf ist gut.", "Montag um halb fünf? Das geht."],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Günü ve saati tekrar ettin. Yanlış anlama kalmadı." },
+          { "de": "Halb fünf? Das ist zu früh.", "tr": "Dört buçuk mu? Bu çok erken.",
+            "accepted": ["Halb fünf? Das ist zu früh.", "Um halb fünf? Das ist zu früh.", "Halb fünf ist zu früh."],
+            "sonraki": "n3", "uygun": false, "geri_bildirim_tr": "**halb fünf** öğleden sonra dört buçuk demek. İşten sonra olur, erken değil." }
+        ]
+      },
+      {
+        "id": "n4",
+        "de": "Montag. Um halb fünf. Also sechzehn Uhr dreißig.",
+        "tr": "Pazartesi. Dört buçukta. Yani on altı otuzda.",
+        "secenekler": [
+          { "de": "Also Montag um sechzehn Uhr dreißig. Das geht.", "tr": "Yani pazartesi on altı otuzda. Olur.",
+            "accepted": ["Also Montag um sechzehn Uhr dreißig. Das geht.", "Montag um sechzehn Uhr dreißig geht.", "Also Montag um halb fünf. Das geht.", "Ja, Montag um sechzehn Uhr dreißig passt.", "Also Montag um sechzehn Uhr dreißig. Das passt.", "Ach so, sechzehn Uhr dreißig. Das geht."],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Saati iki biçimde de duydun ve onayladın." },
+          { "de": "Montag um fünf Uhr dreißig?", "tr": "Pazartesi beş otuzda mı?",
+            "accepted": ["Montag um fünf Uhr dreißig?", "Um fünf Uhr dreißig?", "Also fünf Uhr dreißig?"],
+            "sonraki": "n4", "uygun": false, "geri_bildirim_tr": "**halb fünf** beşe yarım saat kala demek: dört buçuk. Beş otuz değil." }
+        ]
+      },
+      {
+        "id": "n5",
+        "de": "Gut, dann Montag um halb fünf.",
+        "tr": "Tamam, o zaman pazartesi dört buçuk.",
+        "secenekler": [
+          { "de": "Danke schön. Bis Montag, Frau Huber!", "tr": "Çok teşekkürler. Pazartesi görüşürüz, Huber Hanım!",
+            "accepted": ["Danke schön. Bis Montag, Frau Huber!", "Danke, Frau Huber. Bis Montag!", "Vielen Dank. Bis Montag!", "Danke schön, bis Montag um halb fünf!", "Danke, bis Montag!", "Danke schön. Bis Montag!", "Vielen Dank, Frau Huber. Bis Montag!", "Danke schön, Frau Huber. Bis Montag!", "Vielen Dank. Bis Montag, Frau Huber!"],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Teşekkür ettin ve günü bir kez daha söyledin." }
+        ]
+      },
+      { "id": "n9", "de": "Auf Wiederhören, {Herr|Frau} {name}!", "tr": "Hoşça kalın, {Herr|Frau} {name}!", "son": true }
+    ],
+    "kapanis_tr": "Randevu değişti, yanlış duyduğunda sordun ve yeni saati doğruladın."
+  },
+  "okuma_yazma": {
+    "tur": "okuma",
+    "title_tr": "Derya'dan mesaj",
+    "metin_de": "Hallo {name}! Am Montag kommt eine Kollegin. Sie ist neu und ein bisschen schüchtern. Kannst du ihr um neun das Büro zeigen? Am Nachmittag habe ich einen Termin. Danke! Derya",
+    "metin_tr": "Merhaba {name}! Pazartesi bir iş arkadaşı geliyor. Yeni ve biraz çekingen. Ona saat dokuzda ofisi gösterebilir misin? Öğleden sonra benim randevum var. Teşekkürler! Derya",
+    "sorular": [
+      { "id": "m1:50:o1", "kind": "gist", "q_tr": "Derya neden yazıyor?", "opts": ["Yeni iş arkadaşına yardım etmeni istiyor", "Toplantıyı iptal ediyor", "Seni yemeğe çağırıyor"], "ans": 0, "kanit": [1, 3] },
+      { "id": "m1:50:o2", "kind": "detail", "q_tr": "Yeni iş arkadaşı nasıl biri?", "opts": ["Biraz çekingen", "Çok konuşkan", "Hasta"], "ans": 0, "kanit": [2] },
+      { "id": "m1:50:o3", "kind": "detail", "q_tr": "Ofisi saat kaçta göstereceksin?", "opts": ["Dokuzda", "Onda", "Öğleden sonra"], "ans": 0, "kanit": [3] },
+      { "id": "m1:50:o4", "k": "guided_response", "situation_tr": "Derya'ya cevap ver: Olur, dokuzda gösterirsin.", "prompt_de": "Geht das um neun?",
+        "accepted": ["Ja, um neun geht es.", "Ja, klar, um neun.", "Ja, das geht.", "Ja, um neun Uhr geht es.", "Klar, neun Uhr geht.", "Kein Problem, um neun geht es.", "Ja, um neun geht's.", "Ja, um neun geht das.", "Ja, das geht um neun.", "Ja, um neun.", "Ja, neun Uhr geht.", "Klar, um neun geht es.", "Klar, das geht.", "Ja, um neun passt es.", "Kein Problem.", "Ja, klar.", "Ja, um neun Uhr."],
+        "why_tr": "Saati tekrar et ve **geht es** ile onayla." }
+    ]
+  },
+  "gun_sinavi": {
+    "id": "m1:50:s",
+    "maddeler": [
+      { "id": "m1:50:s1", "k": "listen_and_respond", "audio_de": "Können Sie die Adresse bitte buchstabieren?", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Können Sie die Adresse bitte buchstabieren?", "können sie die adresse bitte buchstabieren", "Koennen Sie die Adresse bitte buchstabieren?"], "why_tr": "**buchstabieren** harf harf söylemek demektir." },
+      { "id": "m1:50:s2", "k": "listen_and_respond", "audio_de": "Der Teppich ist für den Flur.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Der Teppich ist für den Flur.", "der teppich ist für den flur", "Der Teppich ist fuer den Flur."], "why_tr": "**der Teppich** halı, **der Flur** koridor demektir." },
+      { "id": "m1:50:s3", "k": "listen_and_respond", "audio_de": "Ich rufe morgen um zehn zurück.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Ich rufe morgen um zehn zurück.", "ich rufe morgen um zehn zurück", "Ich rufe morgen um zehn zurueck."], "why_tr": "**zurück** cümlenin sonuna gelir." },
+      { "id": "m1:50:s4", "k": "listen_and_respond", "audio_de": "Die Aussicht vom Balkon ist schön.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Die Aussicht vom Balkon ist schön.", "die aussicht vom balkon ist schön", "Die Aussicht vom Balkon ist schoen."], "why_tr": "**die Aussicht** manzara demektir." },
+      { "id": "m1:50:s5", "k": "tr_de", "tr": "Halı salı günü geliyor.",
+        "accepted": ["Der Teppich kommt am Dienstag.", "Am Dienstag kommt der Teppich.", "Der Teppich kommt Dienstag.", "Der Teppich kommt am Dienstag an."], "why_tr": "Gün için **am Dienstag** dersin." },
+      { "id": "m1:50:s6", "k": "tr_de", "tr": "Cuma sekizi çeyrek geçe olmuyor.",
+        "accepted": ["Freitag um Viertel nach acht geht nicht.", "Am Freitag um Viertel nach acht geht es nicht.", "Freitag um Viertel nach acht geht leider nicht.", "Am Freitag um acht Uhr fünfzehn geht es nicht.", "Freitag um Viertel nach acht passt nicht.", "Freitag um Viertel nach acht geht es nicht.", "Am Freitag um Viertel nach acht passt es nicht."], "why_tr": "Sekizi çeyrek geçe **Viertel nach acht** demektir." },
+      { "id": "m1:50:s7", "k": "tr_de", "tr": "Ofiste çekingen misin?",
+        "accepted": ["Bist du im Büro schüchtern?", "Bist du schüchtern im Büro?", "Im Büro bist du schüchtern?"], "why_tr": "Soruda **Bist du** başa gelir." },
+      { "id": "m1:50:s8", "k": "tr_de", "tr": "Sizi yarın geri ararım.",
+        "accepted": ["Ich rufe Sie morgen zurück.", "Morgen rufe ich Sie zurück.", "Ich rufe Sie morgen wieder an."], "why_tr": "**Ich rufe Sie morgen zurück** cümlesinde **zurück** en sona gelir." },
+      { "id": "m1:50:s9", "k": "guided_response", "situation_tr": "Satıcı halıyı sabah sekizde getirmek istiyor. Senin için çok erken. Söyle ve dokuz buçuğu sor.", "prompt_de": "Wir bringen den Teppich um acht Uhr.",
+        "accepted": ["Acht Uhr ist zu früh. Geht halb zehn?", "Das ist zu früh. Geht halb zehn?", "Um acht ist zu früh. Geht es um halb zehn?", "Acht ist zu früh. Geht halb zehn?", "Das ist leider zu früh. Geht halb zehn?", "Acht Uhr ist zu früh. Geht es um neun Uhr dreißig?", "Das ist zu früh. Geht es um halb zehn?", "Das ist mir zu früh. Geht halb zehn?", "Acht Uhr ist zu früh. Können Sie um halb zehn kommen?", "Das ist zu früh. Können Sie um halb zehn kommen?", "Acht Uhr ist zu früh. Um halb zehn?", "Das ist zu früh. Um halb zehn?", "Acht Uhr ist zu früh. Geht auch halb zehn?", "Acht Uhr ist leider zu früh. Geht halb zehn?"],
+        "why_tr": "Önce **zu früh** de, sonra **Geht halb zehn?** diye başka bir saat öner." },
+      { "id": "m1:50:s10", "k": "guided_response", "situation_tr": "Sekreter yeni saati söyledi ama tam duymadın. Tekrar etmesini rica et.", "prompt_de": "Dann Montag um halb fünf, geht das?",
+        "accepted": ["Entschuldigung, können Sie das bitte wiederholen?", "Können Sie das bitte wiederholen?", "Wie bitte? Können Sie das wiederholen?", "Wie bitte?", "Noch einmal, bitte.", "Nochmal, bitte.", "Können Sie das wiederholen?", "Wie bitte? Können Sie das bitte wiederholen?", "Können Sie das bitte noch einmal sagen?", "Können Sie das noch einmal sagen?", "Wie bitte? Noch einmal, bitte.", "Bitte wiederholen Sie das."],
+        "why_tr": "Anlamadığında **Können Sie das wiederholen?** dersin." },
+      { "id": "m1:50:s11", "k": "guided_response", "situation_tr": "Muayenehaneyi arıyorsun. Selam ver, adını söyle ve perşembe randevun için aradığını belirt.", "prompt_de": "Praxis Dr. Weber, was kann ich für Sie tun?",
+        "accepted": ["Hallo, hier ist {name}. Es geht um den Termin am Donnerstag.", "Guten Tag, hier ist {name}. Es geht um den Termin am Donnerstag.", "Guten Tag, {name} hier. Es geht um meinen Termin am Donnerstag.", "Guten Tag, mein Name ist {name}. Es geht um den Termin am Donnerstag.", "Guten Tag, hier ist {name}. Es geht um meinen Termin am Donnerstag.", "Hallo, hier ist {name}. Es geht um meinen Termin am Donnerstag.", "Guten Tag, mein Name ist {name}. Es geht um meinen Termin am Donnerstag.", "Guten Tag, {name} hier. Es geht um den Termin am Donnerstag.", "Hallo, {name} hier. Es geht um den Termin am Donnerstag.", "Guten Morgen, hier ist {name}. Es geht um den Termin am Donnerstag."],
+        "why_tr": "Telefonda önce adını, sonra **Es geht um den Termin** diyerek konuyu söyle." }
+    ],
+    "sesli": ["m1:50:s9", "m1:50:s10"],
+    "dikte": ["m1:50:s1", "m1:50:s2", "m1:50:s3", "m1:50:s4"]
+  }
+}
