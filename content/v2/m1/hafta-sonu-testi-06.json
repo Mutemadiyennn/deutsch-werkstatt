@@ -167,14 +167,16 @@
   },
   {
    "id": "m1:42:t12",
-   "k": "tr_de",
-   "tr": "Eskiden burada bir okul vardı.",
+   "k": "guided_response",
+   "situation_tr": "Sınav kartları: **Land** (ülke), **Wohnort** (oturduğun yer), **Beruf**, **Hobby**. Sınavdaki partnerin soruyor. Her karta bir kısa cümleyle kendini tanıt.",
+   "prompt_de": "Woher kommen Sie? Wo wohnen Sie? Was sind Sie von Beruf? Und was ist Ihr Hobby?",
    "accepted": [
-    "Früher war hier eine Schule.",
-    "Hier war früher eine Schule.",
-    "Früher war hier mal eine Schule."
+    "Ich komme aus {ulke}. Ich wohne in {sehir}. Ich bin {meslek} von Beruf. Mein Hobby ist {hobi}.",
+    "Ich komme aus {ulke} und wohne in {sehir}. Ich arbeite als {meslek}. Mein Hobby ist {hobi}.",
+    "Ich komme aus {ulke}. Ich wohne jetzt in {sehir}. Ich bin {meslek}. Mein Hobby ist {hobi}.",
+    "Aus {ulke}. Ich wohne in {sehir}. Ich bin {meslek} von Beruf, und mein Hobby ist {hobi}."
    ],
-   "why_tr": "Geçmişte bir yerde ne olduğunu **war** ile söylersin."
+   "why_tr": "Her karta tam bir cümle kur. Ülke ve şehir: **Ich komme aus …**, **Ich wohne in …**. Meslek ve hobi: **Ich bin … von Beruf**, **Mein Hobby ist …**."
   }
  ]
 }

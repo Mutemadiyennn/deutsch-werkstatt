@@ -1343,30 +1343,30 @@
     "tr": "Çok iyi! Şimdi gerçekten: Sen ne iş yapıyorsun?",
     "secenekler": [
      {
-      "de": "Ich arbeite in einer Firma, mit Tobi und Derya.",
-      "tr": "Bir firmada çalışıyorum, Tobi ve Derya'yla.",
+      "de": "Ich bin {meslek} von Beruf.",
+      "tr": "Mesleğim {meslek}.",
       "accepted": [
-       "Ich arbeite in einer Firma, mit Tobi und Derya.",
-       "Ich arbeite in einer Firma.",
-       "Ich arbeite in einer Firma mit Tobi und Derya.",
-       "Ich arbeite in einer Firma hier in Wendlfing."
+       "Ich bin {meslek} von Beruf.",
+       "Ich bin {meslek}.",
+       "Von Beruf bin ich {meslek}.",
+       "Ich arbeite als {meslek}."
       ],
       "sonraki": "n5",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel. Nerede ve kimlerle çalıştığını söyledin."
+      "geri_bildirim_tr": "Güzel. **Ich bin … von Beruf** ile gerçek mesleğini söyledin."
      },
      {
-      "de": "Ich arbeite hier in Wendlfing in einer Firma.",
-      "tr": "Burada, Wendlfing'de bir firmada çalışıyorum.",
+      "de": "Ich arbeite als {meslek}, mit Tobi und Derya.",
+      "tr": "{meslek} olarak çalışıyorum, Tobi ve Derya'yla.",
       "accepted": [
-       "Ich arbeite hier in Wendlfing in einer Firma.",
-       "Ich arbeite hier in einer Firma.",
-       "Hier in Wendlfing, in einer Firma.",
-       "In einer Firma hier in Wendlfing."
+       "Ich arbeite als {meslek}, mit Tobi und Derya.",
+       "Ich arbeite als {meslek} mit Tobi und Derya.",
+       "Als {meslek}, mit Tobi und Derya.",
+       "Ich bin {meslek}, ich arbeite mit Tobi und Derya."
       ],
       "sonraki": "n5",
       "uygun": true,
-      "geri_bildirim_tr": "Doğru. Nerede çalıştığını açıkça söyledin."
+      "geri_bildirim_tr": "Doğru. **als** ile mesleğini, **mit** ile kimlerle çalıştığını söyledin."
      },
      {
       "de": "Ich bin von Beruf.",
@@ -1379,7 +1379,7 @@
       ],
       "sonraki": "n4",
       "uygun": false,
-      "geri_bildirim_tr": "Cümle eksik kaldı. **Ich arbeite in einer Firma.** de ya da mesleğini söyle."
+      "geri_bildirim_tr": "Cümle eksik kaldı. Mesleğin araya gelir: **Ich bin … von Beruf.**"
      }
     ]
    },

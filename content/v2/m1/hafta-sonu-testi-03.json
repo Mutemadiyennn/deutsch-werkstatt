@@ -127,15 +127,16 @@
   },
   {
    "id": "m1:21:t09",
-   "k": "tr_de",
-   "tr": "Wimmer Bey, vaktiniz var mı?",
+   "k": "guided_response",
+   "situation_tr": "Sınav kartları: **Beruf?** (meslek) ve **Sprachen?** (diller). Sınavdaki partnerin soruyor. Ne iş yaptığını ve hangi dilleri konuştuğunu söyle.",
+   "prompt_de": "Was arbeiten Sie? Und welche Sprachen sprechen Sie?",
    "accepted": [
-    "Herr Wimmer, haben Sie Zeit?",
-    "Haben Sie Zeit, Herr Wimmer?",
-    "Herr Wimmer, haben Sie kurz Zeit?",
-    "Haben Sie kurz Zeit, Herr Wimmer?"
+    "Ich arbeite als {meslek}. Ich spreche {diller}.",
+    "Ich bin {meslek}. Ich spreche {diller}.",
+    "Ich arbeite als {meslek} und ich spreche {diller}.",
+    "Ich bin {meslek} und spreche {diller}."
    ],
-   "why_tr": "Kibar evet ya da hayır sorusunda **Haben Sie** başa gelir."
+   "why_tr": "Meslek için **Ich bin …** ya da **Ich arbeite als …** dersin, araya **ein** girmez. Diller için **Ich spreche …**."
   },
   {
    "id": "m1:21:t10",

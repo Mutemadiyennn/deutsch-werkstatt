@@ -411,6 +411,10 @@
     {
      "de": "im ersten Stock – im zweiten Stock",
      "tr": "birinci katta – ikinci katta"
+    },
+    {
+     "de": "Liebe …, – Lieber …, – Viele Grüße, …",
+     "tr": "Sevgili … (kadına) – Sevgili … (erkeğe) – Selamlar, …"
     }
    ],
    "gorev_cumleleri": [
@@ -1578,13 +1582,18 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Derya'ya cevap yaz. Evin Brunnengasse 7'de, istasyona uzak değil, süpermarketin arkasında. Sen ikinci kattasın.",
-   "ornek_de": "Hallo Derya! Mein Haus ist in der Brunnengasse sieben. Es ist nicht weit vom Bahnhof, hinter dem Supermarkt. Ich wohne im zweiten Stock. Bis Samstag!",
+   "gorev_tr": "Derya'ya cevap yaz. **Liebe Derya,** ile başla, **Viele Grüße** ve adınla bitir. Evin Brunnengasse 7'de, istasyona uzak değil, süpermarketin arkasında. Sen ikinci kattasın.",
+   "ornek_de": "Liebe Derya, mein Haus ist in der Brunnengasse sieben. Es ist nicht weit vom Bahnhof, hinter dem Supermarkt. Ich wohne im zweiten Stock. Bis Samstag! Viele Grüße, {name}",
+   "ornek_de_adsiz": "Liebe Derya, mein Haus ist in der Brunnengasse sieben. Es ist nicht weit vom Bahnhof, hinter dem Supermarkt. Ich wohne im zweiten Stock. Bis Samstag! Viele Grüße!",
    "zorunlu": [
+    "Liebe",
     "Brunnengasse",
     "Stock"
    ],
    "accepted_kaliplar": [
+    "Liebe ___,",
+    "Liebe ___!",
+    "Lieber ___,",
     "Hallo ___!",
     "Hallo ___,",
     "Mein Haus ist in der Brunnengasse ___.",
@@ -1596,11 +1605,14 @@
     "Es ist hinter ___.",
     "Ich wohne im ___ Stock.",
     "Bis Samstag!",
-    "Bis ___!"
+    "Bis ___!",
+    "Viele Grüße, ___",
+    "Viele Grüße ___",
+    "Viele Grüße!"
    ],
    "kontrol_tr": [
-    "Sokağı ve numarayı yazdın mı?",
-    "Kat için **im zweiten Stock** yazdın mı?",
+    "**Liebe Derya,** ile başlayıp **Viele Grüße** ve adınla bitirdin mi?",
+    "Sokağı, numarayı ve katı (**im zweiten Stock**) yazdın mı?",
     "Yer için **hinter** ya da **neben** kullandın mı?"
    ]
   }

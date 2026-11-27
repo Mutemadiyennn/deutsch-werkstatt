@@ -102,15 +102,17 @@
   },
   {
    "id": "m1:28:t08",
-   "k": "order",
-   "de": "Der / Führerschein / liegt / im / Schrank",
-   "tr": "Ehliyet dolapta duruyor.",
+   "k": "guided_response",
+   "situation_tr": "Sınav kartları: **Land?** (ülke) ve **Beruf?** (meslek). Sınavdaki partnerin soruyor. Nereli olduğunu ve ne iş yaptığını söyle.",
+   "prompt_de": "Woher kommst du? Und was arbeitest du?",
    "accepted": [
-    "Der Führerschein liegt im Schrank.",
-    "Der Führerschein liegt im Schrank",
-    "der Führerschein liegt im Schrank."
+    "Ich komme aus {ulke}. Ich arbeite als {meslek}.",
+    "Ich komme aus {ulke}. Ich bin {meslek}.",
+    "Ich komme aus {ulke} und ich bin {meslek}.",
+    "Aus {ulke}. Ich arbeite als {meslek}.",
+    "Ich komme aus {ulke} und arbeite als {meslek}."
    ],
-   "why_tr": "**Der Führerschein** ilk parça, **liegt** hemen arkasından gelir."
+   "why_tr": "Ülke için **Ich komme aus …**. Meslek için **Ich bin …** ya da **Ich arbeite als …**. Araya **ein** girmez."
   },
   {
    "id": "m1:28:t09",
