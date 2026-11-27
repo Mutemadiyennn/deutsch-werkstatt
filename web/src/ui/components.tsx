@@ -1,7 +1,9 @@
 /** Ortak bileşenler: sekme çubuğu, üst çubuk, odak halkası, hata paneli, konuş düğmesi */
 import type { ComponentChildren } from "preact";
 import { useEffect, useState } from "preact/hooks";
-import type { Route } from "../state.ts";
+import { sekme, type Route } from "../state.ts";
+import { donus, sekmeHref } from "../services/gezinme.ts";
+export { sekme };
 import { focus, subscribeFocus } from "../services/focusRuntime.ts";
 import { speak } from "../services/speech.ts";
 import type { Speed } from "@dw/shared";
@@ -14,15 +16,6 @@ const SEKMELER: [string, string, IconName, string][] = [
   ["koy", "#/koy", "koy", "Köy"],
   ["ben", "#/ben", "ben", "Ben"]
 ];
-/** Ekranın bağlı olduğu sekme: Köy'ün mekânları (durumlar, senaryo, sözlük, kalıplar, günün kayıtları) Köy'de, ayarlar Ben'de kalır */
-export function sekme(r: Route["name"]): string {
-  switch (r) {
-    case "yol": case "rehber": return "yol";
-    case "koy": case "mekan": case "domain": case "scenario": case "sozluk": case "kalip": case "m1day": return "koy";
-    case "ben": case "benDuzen": case "profile": case "ses": return "ben";
-    default: return "today";
-  }
-}
 
 export function TabBar({ route }: { route: Route }) {
   const tab = sekme(route.name);
@@ -30,7 +23,7 @@ export function TabBar({ route }: { route: Route }) {
     <div class="tabbar" role="navigation" aria-label="Ana menü">
       <nav>
         {SEKMELER.map(([k, href, ic, label]) => (
-          <a href={href} aria-current={tab === k ? "page" : undefined} data-tab={k}>
+          <a href={sekmeHref(k, href, tab === k)} aria-current={tab === k ? "page" : undefined} data-tab={k}>
             <span class="ic" aria-hidden="true"><Icon name={ic} size={26} /></span>
             <span>{label}</span>
           </a>
@@ -43,7 +36,7 @@ export function TabBar({ route }: { route: Route }) {
 export function TopBar({ title, back, children }: { title: string; back?: string; children?: ComponentChildren }) {
   return (
     <header class="topbar">
-      {back && <a class="iconbtn plain" href={back} aria-label="Geri"><Icon name="back" /></a>}
+      {back && <a class="iconbtn plain" href={donus(back)} aria-label="Geri" data-test="geri"><Icon name="back" /></a>}
       <h1>{title}</h1>
       {children}
     </header>

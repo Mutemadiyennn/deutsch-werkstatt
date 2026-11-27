@@ -11,7 +11,7 @@ Ben (Hedef 3, PM-084 md. 5; hedef docs/v2/design/TARGET3.png "Ben"). Kabul liste
 """
 import re
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, no_overflow, content_file
+from common import sekme_kok, serve, launch, new_page, login_onboard, check, finish, shot, no_overflow, content_file
 
 PORT = 4251
 DB = """async (is) => { const d = await new Promise((ok, no) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); q.onerror = no; });
@@ -29,7 +29,7 @@ def oge(i, uretim=False):
 
 def ben(pg, base):
     pg.goto(base + "#/today"); pg.wait_for_selector("[data-tab=today][aria-current=page]")
-    pg.click("[data-tab=ben]"); pg.wait_for_selector("[data-test=ben] [data-test=ben-bu-hafta]")
+    sekme_kok(pg, "ben"); pg.wait_for_selector("[data-test=ben] [data-test=ben-bu-hafta]")
 
 def noktalar(pg):
     return pg.evaluate("[...document.querySelectorAll('[data-test=ben-cd]')].map((e) => [Number(e.dataset.gun), Number(e.dataset.dolu), e.querySelectorAll('.ben-noktalar i').length])")
