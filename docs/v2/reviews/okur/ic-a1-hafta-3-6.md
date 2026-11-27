@@ -110,3 +110,61 @@ GERİ olan kimlikler:
 3. `hafta-sonu-testi-06.json` `m1:42:t12.why_tr`: cümle 18 kelime.
 
 OD-9.4: `hafta-sonu-testi-04`, `-05`, `-06` bu turda "reviewed" sayılamaz. Öbür dosyalarda (gun-16, 19, 22, 27, 31, 32, 33, 39, 40, hafta-sonu-testi-03) okunan metinlerde GERİ yok.
+
+## 2. tur (OD-9.3, PM-148)
+
+Girdi: 1. turdaki 3 GERİ satırının şimdiki hâli ve `git diff 0325ce8c e3b2e3f6 -- content/v2/` içindeki değişen öğrenci metinleri. Metinler `e3b2e3f6` hâliyle okundu.
+Yeni düzen: `tr` satırlarında öğrencinin kendi bilgisi `…` ile gösteriliyor. Üstteki Almanca satır kendi bilgimle dolu geldiği için `…` boşluğun yeri olarak okundu, sembol sayılmadı.
+Görünürlük 1. turdaki gibi: uygun olmayan "(yanlış)" seçeneklerin `tr` satırı görünmüyor (`web/src/core/prova.ts`). Bu turda yine de okundu, "(görünmez)" diye işaretlendi.
+
+### 1. turdaki GERİ satırları
+
+| # | Öğe | Alan | Açıklama (şimdiki) | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|---|
+| 2-1 | hafta-sonu-testi-04 · `m1:28:t08` | `why_tr` | Ülke için **Ich komme aus …**. Meslek için **Ich bin …** ya da **Ich arbeite als …**. Araya **ein** girmez. | Ülke için **Ich komme aus**, iş için **Ich bin** ya da **Ich arbeite als** derim. **ein** koymam. | GEÇTİ | `;` gitti. Üç kısa cümle (5, 9, 3 kelime). (1. tur #64) |
+| 2-2 | hafta-sonu-testi-05 · `m1:35:t09` | `why_tr` | Meslek için **Ich bin … von Beruf**. Araya **ein** girmez. Hobi için **Mein Hobby ist …**. | İş için **Ich bin … von Beruf**, **ein** yok. Hobi için **Mein Hobby ist**. | GEÇTİ | `;` gitti. (1. tur #66) |
+| 2-3 | hafta-sonu-testi-06 · `m1:42:t12` | `why_tr` | Her karta tam bir cümle kur. Ülke ve şehir: **Ich komme aus …**, **Ich wohne in …**. Meslek ve hobi: **Ich bin … von Beruf**, **Mein Hobby ist …**. | Her kart için bir cümle. Ülke ve şehir için iki kalıp, iş ve hobi için iki kalıp. | GEÇTİ | Cümleler 6, 9, 10 kelime. İkişer ikişer gruplanınca telefonda da izlenebiliyor. (1. tur #68) |
+
+### 2.–3. turda değişen öteki metinler
+
+| # | Öğe | Alan | Açıklama | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|---|
+| 2-4 | gun-16 · görev `lx:Name` | `tr` | Adım {name}. … olarak çalışıyorum. | Adımı ve işimi söylüyorum. | GEÇTİ | |
+| 2-5 | gun-16 · görev `lx:Name` | `tr_adsiz` | … olarak çalışıyorum. | İşimi söylüyorum. | GEÇTİ | |
+| 2-6 | gun-16 · n8 · seçenek 1 | `tr` | … olarak çalışıyorum. | İşimi söylüyorum. | GEÇTİ | |
+| 2-7 | gun-16 · n8 · seçenek 2 | `tr` | Mesleğim … | İşim şu. | GEÇTİ | |
+| 2-8 | gun-16 · n8 · seçenek 3 (görünmez) | `tr` | Mesleğim … (yanlış) | Aynısı, ama yanlış. | GEÇTİ | |
+| 2-9 | gun-19 · `prova.durum_tr` | `durum_tr` | Kurs bitti. Ioana ile istasyonun önündesiniz. Ioana kimin nereye gittiğini, kimin hangi dili konuştuğunu soruyor. Sonra ne iş yaptığını soruyor. | Kurstan sonra Ioana'yla istasyondayım. Kim nereye gidiyor, kim hangi dili konuşuyor diye soruyor. Sonra işimi soruyor. | GEÇTİ | En uzun cümle 9 kelime. "pratik için" gitti, daha düz. |
+| 2-10 | gun-19 · n7 | `tr` | İyi! Peki sen ne iş yapıyorsun? | İşimi soruyor. | GEÇTİ | |
+| 2-11 | gun-19 · n7 · seçenek 1 | `tr` | Mesleğim … | İşim şu. | GEÇTİ | |
+| 2-12 | gun-19 · n7 · seçenek 2 | `tr` | … olarak çalışıyorum. | İşimi söylüyorum. | GEÇTİ | |
+| 2-13 | gun-19 · n7 · seçenek 3 (görünmez) | `tr` | … olarak çalışıyorum. (yanlış) | Aynısı, ama yanlış. | GEÇTİ | |
+| 2-14 | gun-31 · n4 · seçenek 1 | `tr` | Mesleğim … | Gerçek işimi söylüyorum. | GEÇTİ | |
+| 2-15 | gun-31 · n4 · seçenek 2 | `tr` | … olarak çalışıyorum, Tobi ve Derya'yla. | Tobi ve Derya'yla şu işte çalışıyorum. | GEÇTİ | |
+| 2-16 | gun-32 · n5 · seçenek 1 | `tr` | Evet! Hobim … | Hobimi söylüyorum. | GEÇTİ | |
+| 2-17 | gun-32 · n5 · seçenek 2 | `tr` | Hobim mi? …! Ya sen, Tobi? | Hobimi söyleyip Tobi'ye soruyorum. | GEÇTİ | "…!" bir an göze takılıyor, ama üstteki dolu Almanca satırla anlaşılıyor. |
+| 2-18 | gun-32 · n5 · seçenek 3 (görünmez) | `tr` | Evet, hobim … (yanlış) | Aynısı, ama yanlış. | GEÇTİ | |
+| 2-19 | gun-32 · n6 | `tr` | Gerçekten mi? Güzel! Benim hobim yüzmek. Birazdan görüşürüz! | Tobi'nin hobisi yüzmek, sonra vedalaşıyor. | GEÇTİ | |
+| 2-20 | gun-33 · görev `lx:Land` | `tr` | Memleketim: … Ya sen hangi ülkedensin? | Memleketimi söyleyip karşımdakine soruyorum. | GEÇTİ | 1. turdaki "der Türkei" notu (#45) bu düzenle kapandı. |
+| 2-21 | gun-39 · n6 · seçenek 1 | `tr` | Evli ya da bekâr olduğumu söylüyorum: … | Evli miyim bekâr mıyım, onu söylüyorum. | GEÇTİ | Not (karar değil): cümlenin çevirisi değil, ne yaptığımın anlatımı. Yine de ne söyleyeceğim açık. |
+| 2-22 | gun-39 · n6 · seçenek 2 (görünmez) | `tr` | Evli ya da bekâr olduğumu söylüyorum: … (yanlış) | Aynısı, ama yanlış. | GEÇTİ | |
+| 2-23 | gun-39 · n7 · seçenek 1 | `tr` | Evet, … Bu benim hobim. | Hobimi söylüyorum. | GEÇTİ | |
+| 2-24 | gun-39 · n7 · seçenek 2 | `tr` | Boş zamanımda … severim. | Boş vaktimde şunu severim. | GEÇTİ | |
+| 2-25 | gun-39 · n7 · seçenek 3 (görünmez) | `tr` | Evet, hobim … (yanlış) | Aynısı, ama yanlış. | GEÇTİ | |
+| 2-26 | gun-40 · kalıp "Guten Tag, … – Mit freundlichen Grüßen, …" | `tr` | İyi günler, … – Saygılarımla, … (resmî mesajın sonu) | Resmî mesaja "İyi günler" diye başlarım, "Saygılarımla" ve adımla bitiririm. | GEÇTİ | Ayraç yalnız ikinci parçaya ait. Tire ayırdığı için karışmadı. |
+| 2-27 | gun-40 · `m1:40:o5` | `q_tr` | Mesajı kim yazdı? | Mesajı kimin gönderdiğini soruyor. | GEÇTİ | |
+| 2-28 | gun-40 · `m1:40:o5` | `opts` | Dr. Weber muayenehanesi · Derya · Brandl Hanım | Üç seçenek: muayenehane, Derya, Brandl Hanım. | GEÇTİ | Doğru cevap metnin sonundaki imzadan çıkıyor. |
+
+gun-27 `accepted_kaliplar`, hafta-sonu-testi-03/05/06 `accepted` eklemeleri ve HST-05 `can_do` öğrenciye Türkçe metin göstermiyor, okunmadı.
+
+### 2. tur notları (karar değil)
+
+1. gun-40'ta mektup metni (`metin_tr`) "Saygılarımızla" diyor, yeni kalıp "Saygılarımla". Almancası ikisinde de **Mit freundlichen Grüßen**. Gönderen muayenehane olduğu için doğal, karışmadı.
+
+### 2. tur sayıları
+
+- Okunan: 28 (1. tur GERİ düzeltmesi 3 + 25 değişen metin; bunlardan 5'i görünmeyen "(yanlış)" satırı)
+- GEÇTİ: 28
+- GERİ: 0
+
+OD-9.4: 1. turdaki 3 GERİ kapandı, 2. turda yeni GERİ yok. gun-16, 19, 31, 32, 33, 39, 40 ve hafta-sonu-testi-03…06 okur açısından "reviewed" sayılabilir.
