@@ -33,7 +33,7 @@ jobs:
           npm install @capacitor/keyboard@^8 @capacitor/haptics@^8 @capacitor/status-bar@^8 @capacitor/local-notifications@^8 @capacitor/app@^8 @capawesome/capacitor-badge@^8 @capacitor/share@^8
           # Apple'ın cihaz üstü konuşma tanıma (topluluk eklentisi). PM-071 1. adım: kurulamaz ya da derlenmezse iş kırmızı; sessizce çıkarılmaz.
           # Kabuk 1.6 (PM-137 eki): sürüm sabit 7.0.1 (son sürüm; @capacitor/core >=7 ister, 8 ile uyumlu). Hata metni iOS'un
-          # yerelleştirilmiş açıklamasıdır (Almanca arayüzde Almanca); uygulama ham metni Ben → Tanılama'da gösterir.
+          # yerelleştirilmiş açıklaması (Almanca arayüzde Almanca) ya da sabit İngilizce metindir; kod dönmez. Uygulama ham metni saklar ve gösterir.
           npm install @capacitor-community/speech-recognition@7.0.1
           # Mikrofon kaydı uygulamanın içinde (iPhone'un kendi kaydedicisi; web görünümünün mikrofon hatalarına takılmaz)
           npm install @independo/capacitor-voice-recorder@^8
@@ -108,11 +108,14 @@ jobs:
           echo "server.url = $U"
           [ "$U" = "https://mutemadiyennn.github.io/deutsch-werkstatt/v2/" ] || { echo "::error::server.url v2 değil: $U"; exit 1; }
           grep -q "location.href='$U'" www/offline.html || { echo "::error::offline.html 'Tekrar dene' server.url'e gitmiyor"; exit 1; }
-          K=$(curl -sS -o /tmp/acilis.html -w '%{http_code} %{redirect_url}' "$U")
+          K=$(curl -sS --retry 3 --retry-delay 5 -o /tmp/acilis.html -w '%{http_code} %{redirect_url}' "$U") || { echo "::error::kabuk adresine ulaşılamadı: $U"; exit 1; }
           echo "açılış: $K"
           [ "$K" = "200 " ] || { echo "::error::kabuk adresi yönlendirmesiz 200 vermedi: $K"; exit 1; }
           grep -qE 'src="\./assets/index-[^"]+\.js"' /tmp/acilis.html || { echo "::error::kabuk adresindeki sayfa v2 uygulaması değil"; exit 1; }
           ! grep -q 'location.replace' /tmp/acilis.html || { echo "::error::kabuk adresindeki sayfada yönlendirme var"; exit 1; }
+          # pakete giren kopyalar da aynı (cap sync sonrası ios/App/App/ altındakiler)
+          node -e 'const u=require("./ios/App/App/capacitor.config.json").server.url; if(u!==process.argv[1]){console.error("::error::paketteki server.url farklı: "+u);process.exit(1)}' "$U"
+          grep -q "location.href='$U'" ios/App/App/public/offline.html || { echo "::error::paketteki offline.html farklı"; exit 1; }
           P=ios/App/App/Info.plist
           for k in NSMicrophoneUsageDescription NSSpeechRecognitionUsageDescription; do
             v=$(/usr/libexec/PlistBuddy -c "Print :$k" $P) && [ -n "$v" ] || { echo "::error::$k yok"; exit 1; }
