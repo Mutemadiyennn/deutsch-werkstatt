@@ -12,8 +12,8 @@ import { useApp } from "../state.ts";
 import { loadM1Gun } from "../services/content.ts";
 import { gunBittiYaz, haftaSonuclari, ilerlemeOku, xpOku, type HaftaSonuc } from "../services/ilerleme.ts";
 import { gecilenGunler } from "../services/seviye.ts";
-import { akisOzetleri } from "../services/akisOzet.ts";
-import { adimAdi, gunAdimlari, gunOzeti, haftaBitti, haftaOf, haftalara, haftaSonuMu, seri, siradaki, yol, yolGunleri, yuklenecekHafta, type Adim, type GunDurum, type XpKayit } from "../core/gun.ts";
+import { akisOzetleri, isinmaVar } from "../services/akisOzet.ts";
+import { adimAdi, gunAdimlari, gunSonuId, gunOzeti, haftaBitti, haftaOf, haftalara, haftaSonuMu, seri, siradaki, yol, yolGunleri, yuklenecekHafta, type Adim, type GunDurum, type XpKayit } from "../core/gun.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import POLICY from "../policy.json" with { type: "json" };
@@ -60,6 +60,9 @@ export function usePlan(): { plan: Plan | null; err: string | null; yok: boolean
         const ilr = await ilerlemeOku(gunler.flatMap((g) => g.yeni_kartlar));
         // akış günlerinin kaydı (PM-148 [ANA-T] md. 2): BAŞLA akıştaki yerin düğümünde, düğüm ✓'i akıştan
         ilr.akisOzet = await akisOzetleri(gunler.map((g) => g.day).filter((d) => ilr.akisBasladi?.has(d)));
+        // kaydı olmayan ilk bitmemiş akış gününde planlayıcı ısınmayla mı başlayacak (inceleme #282 P1-1): BAŞLA'nın yeri doğru olsun
+        const ilkGunu = gunler.find((g) => !ilr.gunBitti?.has(g.day) && g.halkalar?.length && !ilr.akisBasladi?.has(g.day));
+        if (ilkGunu) ilr.isinmaOnce = (await isinmaVar(ilkGunu, index.m1)) ? new Set([ilkGunu.day]) : new Set();
         ilr.kartlar = kartlar;
         ilr.denemeler = new Set(Object.keys(index.files.deneme ?? {}));
         durumlar = gunler.map((g: Gun) => gunAdimlari(g, ilr, basliklar));
@@ -150,7 +153,8 @@ export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Pla
     : <section class="card" data-test="hafta-bitti"><h2>Hazır günlerin hepsi bitti</h2><p>Sıradaki günler hazırlanıyor. Bu arada Kelime Bahçesi'nde tekrar yapabilirsin.</p></section>;
   const gunBolumu = (g: Plan["gunler"][number]) => {
         const hazirAdim = g.adimlar.filter((a) => a.hazir);
-        const biten = hazirAdim.filter((a) => a.bitti).length;
+        // akışta biten düğüm de sayılır (inceleme #282 P2-2)
+        const biten = hazirAdim.filter((a) => a.bitti || a.akisTamam).length;
         const hs = haftaSonuMu(g.day), gh = haftaOf(g.day), son = hs ? "kupa" : "gunsonu";
         return (
           <section class={`yolgun ${g.durum}`} style={{ "--vurgu": haftaRengi(gh), "--vurgu-acik": haftaAcik(gh) } as Record<string, string>} data-test={`gun-${g.day}`} data-durum={g.durum} aria-label={`${g.day}. gün: ${g.title_tr}, ${g.durum === "bitti" ? "bitti" : g.durum === "simdi" ? "şimdi" : "kilitli"}`}>
@@ -194,7 +198,7 @@ export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Pla
                 if ((ai + 1) % 3 !== 0 || ai === g.adimlar.length - 1) return [dugum];
                 const k = (ai + 1) / 3, anahtar = `${g.day}:${k}`;
                 // önündeki adımlar hazır ve bitmiş olmalı (hazırlanan adım varsa sandık beklemez ama bedava da açılmaz; inceleme #108 P2)
-                const onceBitti = g.adimlar.slice(0, ai + 1).every((x) => x.hazir && x.bitti) && g.durum !== "kilitli";
+                const onceBitti = g.adimlar.slice(0, ai + 1).every((x) => x.hazir && (x.bitti || x.akisTamam)) && g.durum !== "kilitli";
                 const sd = acik.has(anahtar) ? "acik" : onceBitti ? "hazir" : "kilitli";
                 const kay2 = KAYMA[sira++ % KAYMA.length]!;
                 const ac = async () => { if (await yolSandigiAc(g.day, k)) setAcik(new Set([...acik, anahtar])); };
@@ -206,13 +210,20 @@ export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Pla
                     <span class="dugum-ad tiny">{sd === "acik" ? `+${YOL_SANDIK_XP} XP alındı` : "Sandık"}</span>
                   </li>)];
               })}
-              <li class={`dugum-yer ${g.bitti ? "bitti" : "kilitli"} son`} style={{ "--kay": `${KAYMA[sira++ % KAYMA.length]}px` } as Record<string, string>}>
-                {/* hafta sonu (her 7. gün): hafta bitince testi açar (PR B-3 md. 5); test yoksa yalnız simge */}
-                {hs && g.bitti && testAcik(gh)
+              {(() => {
+                // akış gün sonu durağında BAŞLA bu uçta ve akışı açar (inceleme #282 P1-2)
+                const gsSimdi = plan.sonraki?.id === gunSonuId(g.day);
+                return (
+              <li class={`dugum-yer ${g.bitti ? "bitti" : gsSimdi ? "simdi" : "kilitli"} son`} style={{ "--kay": `${KAYMA[sira++ % KAYMA.length]}px` } as Record<string, string>}>
+                {gsSimdi && <span class="basla-balon" aria-hidden="true">BAŞLA</span>}
+                {gsSimdi
+                  ? <span data-test="next-activity" data-m1="1" data-seans={4}><a class="dugum" href={plan.sonraki!.href} aria-label="Kaldığın yerden sür: Gün sonu" aria-current="step" data-test="m1-devam" onClick={onBasla}><span class="dugum-yuz"><DugumSimge tur="gunsonu" /></span></a><span class="sr-only">{`${g.day}. gün · Gün sonu`}</span></span>
+                  : hs && g.bitti && testAcik(gh)
                   ? <a class="dugum" href={testAdresi(gh)} data-test={`hafta-sonu-${gh}`} aria-label={`${gh}. hafta sonu testi${plan.sonuclar.get(gh) ? `: ${plan.sonuclar.get(gh)!.dogru}/${plan.sonuclar.get(gh)!.toplam}` : ""}`}><span class="dugum-yuz"><DugumSimge tur={son} /></span>{plan.sonuclar.get(gh) && <span class="dugum-onay" aria-hidden="true"><Icon name="check" size={14} stroke={3} /></span>}</a>
                   : <span class="dugum" role="img" aria-label={hs ? `Hafta sonu ${g.bitti ? "tamam" : "kilitli"}` : `Gün sonu ${g.bitti ? "tamam" : "kilitli"}`}><span class="dugum-yuz"><DugumSimge tur={son} /></span></span>}
                 <span class="dugum-ad tiny">{hs ? (plan.sonuclar.get(gh) ? `Hafta sonu · ${plan.sonuclar.get(gh)!.dogru}/${plan.sonuclar.get(gh)!.toplam}` : g.bitti && testAcik(gh) ? "Hafta sonu testi" : "Hafta sonu") : "Gün sonu"}</span>
-              </li>
+              </li>);
+              })()}
             </ol>
           </section>
         );

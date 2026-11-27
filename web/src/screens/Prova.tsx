@@ -15,7 +15,7 @@ import { addClaim, setMeta } from "../data/db.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
-import { useGunIzi } from "../services/akisOzet.ts";
+import { useGunIzi } from "../ui/gunIzi.tsx";
 import { Rich } from "../ui/rich.tsx";
 import { Icon } from "../ui/icons.tsx";
 

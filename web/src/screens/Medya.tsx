@@ -6,7 +6,7 @@
  * Kaldığı yer cihazda saklanır (yarıda bırakılıp sürdürülebilir). Uzun kayıt hiçbir zaman baştan sona yazdırılmaz.
  */
 import { akisaDonus, donus } from "../services/gezinme.ts";
-import { useGunIzi } from "../services/akisOzet.ts";
+import { useGunIzi } from "../ui/gunIzi.tsx";
 import { parseHash, sekme } from "../state.ts";
 import { gorevSay } from "../services/gorev.ts";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
@@ -162,8 +162,10 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
   }, []);
   const geri = `#/m1/${veri.gun.day}`;
   const baslik = m.kind === "video" ? "Video" : m.kind === "ses" ? "Dinle" : "Köy dizisi";
-  // "Sıradaki adım" (#275 P2-7): akıştan açıldıysa akışa; Köy'den (günün kayıtları) açıldıysa o listeye, Bugün sekmesine taşımaz; yoksa Bugün
-  const sonrakiAdres = akisaDonus("") || (sekme(parseHash(donus(geri)).name) === "koy" ? geri : "#/today");
+  // "Sıradaki adım" (#275 P2-7): akıştan açıldıysa akışa; Köy'den açıldıysa giriş noktasına (günün kayıtları ya da Radyo/Sinema;
+  // #282 P2-6), Bugün sekmesine taşımaz; yoksa Bugün
+  const giris = donus(geri);
+  const sonrakiAdres = akisaDonus("") || (sekme(parseHash(giris).name) === "koy" ? giris : "#/today");
 
   if (p.bitti) return (
     <div class="stack" data-test="medya">

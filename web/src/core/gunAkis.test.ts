@@ -9,7 +9,9 @@ import { genelAdlarAyikla, kumeDizini } from "@dw/shared";
 import { loadContent, ROOT } from "../../../content/tools/load.ts";
 import { planGun } from "./akis.ts";
 import { yeniKayit, ilerle, simdiki, type AkisKaydi } from "./akisKayit.ts";
-import { akisKonumu, durakDugumleri, gunAdimlari, siradaki, type AkisOzet, type Ilerleme } from "./gun.ts";
+import { akisKonumu, durakDugumleri, gunAdimlari, gunSonuId, siradaki, type AkisOzet, type Ilerleme } from "./gun.ts";
+import type { LearnerItem } from "@dw/shared";
+import POLICY from "../policy.json" with { type: "json" };
 
 const c = loadContent();
 const genel = genelAdlarAyikla(readFileSync(join(ROOT, "docs/v2/reviews/genel-adlar.md"), "utf8"));
@@ -88,5 +90,43 @@ describe("akış günü: BAŞLA ve düğümler (PM-148 [ANA-T] md. 2)", () => {
   it("kayıt yoksa ve gün sessizse BAŞLA Bahçe'de", () => {
     const d = gunAdimlari({ ...g1, sesler: [] }, ilr(null), basliklar, "hepsi");
     expect(akisKonumu({ day: 1, sesler: [] }, d.adimlar, ilr(null)).adim).toBe("bahce:1");
+  });
+  it("#282 P1-2: gün sonu durağında BAŞLA yolun 'Gün sonu' ucunda ve akışı açar", () => {
+    const k = durakBasina(yeniKayit(plan), (d) => d.tur === "gunsonu");
+    const d = gun(ilr(k, { medyaBitti: new Set(g1.sesler.flatMap((s) => [`${s.id}:1`, `${s.id}:2`])) }));
+    expect(d.akisKonum).toMatchObject({ adim: gunSonuId(1), baslik: "Gün sonu" });
+    const s = siradaki(d)!;
+    expect(s.id).toBe(gunSonuId(1)); expect(s.href).toBe("#/akis/1");
+  });
+  it("#282 P2-7: ikinci ses turu bitmeden ses düğümü ✓ almaz; o turda BAŞLA ses düğümünde", () => {
+    const k = durakBasina(yeniKayit(plan), (d) => d.tur === "ses" && d.ses_turu === "ikinci");
+    if (!k.plan.duraklar.some((x) => x.ses_turu === "ikinci")) return;
+    const ilk = new Set(g1.sesler.map((s) => `${s.id}:1`));
+    const d = gun(ilr(k, { medyaBitti: ilk, bahceBitti: new Set([1]) }));
+    expect(d.adimlar.filter((a) => a.alt === "ses").some((a) => a.akisTamam)).toBe(false);
+    expect(siradaki(d)!.alt).toBe("ses");
+  });
+  it("#282 P2-1: gün bitince de akıştan gelen ✓'ler kalır", () => {
+    let k = yeniKayit(plan); for (let n = 0; simdiki(k) && n < 2000; n++) k = ilerle(k, []).kayit;
+    const d = gun(ilr(k, { gunBitti: new Set([1]), medyaBitti: new Set(g1.sesler.flatMap((s) => [`${s.id}:1`, `${s.id}:2`])) }));
+    expect(d.bitti).toBe(true);
+    expect(d.adimlar.find((a) => a.tur === "bahce")!.akisTamam || d.adimlar.find((a) => a.tur === "bahce")!.bitti).toBe(true);
+    expect(d.adimlar.filter((a) => a.alt === "ses").every((a) => a.akisTamam)).toBe(true);
+  });
+  it("#282 P1-1: kayıtsız günde ısınma bekleniyorsa BAŞLA Bahçe'de ('Isınma'); planlayıcının kuralıyla aynı eşik", () => {
+    const d = gunAdimlari(g1, ilr(null, { isinmaOnce: new Set([1]) }), basliklar, "hepsi");
+    expect(d.akisKonum).toMatchObject({ adim: "bahce:1", baslik: "Isınma", baslandi: false });
+    expect(d.adimlar[0]!.tur).toBe("bahce");
+    // eşik: 2. gün, 1. günün kartlarının hepsi vadeli → planlayıcı ısınmayla başlar ancak vadeli > halka × halka_tekrar[0] ise
+    const g2 = c.m1.find((x) => x.data.day === 2)?.data;
+    if (!g2?.halkalar?.length) return;
+    const fsrs = { due: "2026-11-30T00:00:00Z", stability: 3, difficulty: 5, scheduled_days: 1, reps: 2, lapses: 0, learning_steps: 0, state: 2 };
+    const vadeli = (n: number) => new Map(g1.yeni_kartlar.slice(0, n).map((id) => [id, { itemId: id, kind: "lexeme", passive: { s: 1, n: 2, ok: 2, fsrs }, active: { s: 1, n: 1, ok: 1, sessions: [], fsrs }, durable: false } as unknown as LearnerItem]));
+    const esik = g2.halkalar.length * POLICY.akis.halka_tekrar[0]!;
+    for (const n of [esik, esik + 1]) {
+      if (n > g1.yeni_kartlar.length) continue;
+      const p2 = planGun({ gun: g2, dersler, dizin, items: vadeli(n), oncekiKartlar: new Set(g1.yeni_kartlar), bitenDersler: new Set(g1.dersler), tohum: "akis:2", simdi: new Date("2026-12-01T08:00:00Z") })!;
+      expect(p2.duraklar[0]!.tur === "isinma", `${n} vadeli kart, eşik ${esik}`).toBe(n > esik);
+    }
   });
 });

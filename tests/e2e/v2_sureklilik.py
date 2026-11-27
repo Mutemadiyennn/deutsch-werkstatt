@@ -65,6 +65,12 @@ def main():
         pg.evaluate(META, ["m1:bahce:1", "2026-12-01T08:00:00Z"])
         pg.reload(); s3 = basla(pg)
         check(s3["href"] == "#/akis/1" and s3["tur"] != "ders", f"D1-7: Bahçe bittikten sonra BAŞLA eski derse değil akışa ({s3['tur']}, {s3['href']})")
+        # #282 P1-2: gün sonu durağında BAŞLA yolun "Gün sonu" ucunda, akışı açar
+        k3 = pg.evaluate(META, ["akis:1"])
+        k3["durak"] = next(i for i, d in enumerate(k3["plan"]["duraklar"]) if d["tur"] == "gunsonu"); k3["adim"] = 0
+        pg.evaluate(META, ["akis:1", k3]); pg.reload(); pg.wait_for_selector("[data-test=m1-devam]", timeout=15000)
+        uc = pg.evaluate("""() => { const a = document.querySelector('[data-test=m1-devam]'); return { son: !!a.closest('li.son'), href: a.getAttribute('href'), konum: document.querySelector('[data-test=akis-konum]')?.textContent || '' }; }""")
+        check(uc["son"] and uc["href"] == "#/akis/1" and "Gün sonu" in uc["konum"], f"gün sonu durağında BAŞLA yolun 'Gün sonu' ucunda ({uc})")
         # P2-7 (#275): Köy → günün kayıtları → kayıt (bitmiş) → "Sıradaki adım" günün kayıtlarına döner, Bugün sekmesine taşımaz
         sid = (video_id or ses_id)[0]
         pg.evaluate(META, [f"m1:medya:{sid}", {"b": 0, "s": 0, "k": 0, "dogru": 0, "toplam": 0, "bitti": True, "ilkBitti": True}])

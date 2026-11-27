@@ -18,7 +18,7 @@ import { stopSpeaking } from "../services/speech.ts";
 import { DrillView } from "../ui/drill.tsx";
 import { ActionBar, CevapXp, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
-import { useGunIzi } from "../services/akisOzet.ts";
+import { useGunIzi } from "../ui/gunIzi.tsx";
 import { DokunMetin, KelimeSayfasi } from "../ui/kelime.tsx";
 import { Rich } from "../ui/rich.tsx";
 

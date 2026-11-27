@@ -1,10 +1,9 @@
 /** Akış kayıtlarının Bugün/Yol özeti (PM-148 [ANA-T] md. 2): `akis:<gün>` kaydından durakların kimliği, türü, adı ve süresi */
-import { useEffect, useState } from "preact/hooks";
-import { getMeta } from "../data/db.ts";
-import { parseHash } from "../state.ts";
-import { akisaDonus } from "./gezinme.ts";
+import type { Gun, LearnerItem } from "@dw/shared";
+import { getMeta, itemsMap } from "../data/db.ts";
 import type { AkisKaydi } from "../core/akisKayit.ts";
 import type { AkisOzet } from "../core/gun.ts";
+import POLICY from "../policy.json" with { type: "json" };
 
 export const akisOzeti = (k: AkisKaydi): AkisOzet => ({
   durak: k.durak, biten: k.biten,
@@ -12,21 +11,21 @@ export const akisOzeti = (k: AkisKaydi): AkisOzet => ({
 });
 
 export async function akisOzetleri(gunler: number[]): Promise<Map<number, AkisOzet>> {
-  const m = new Map<number, AkisOzet>();
-  for (const g of gunler) { const k = await getMeta<AkisKaydi>(`akis:${g}`); if (k?.plan?.duraklar) m.set(g, akisOzeti(k)); }
-  return m;
+  const k = await Promise.all(gunler.map((g) => getMeta<AkisKaydi>(`akis:${g}`)));
+  return new Map(gunler.flatMap((g, i) => (k[i]?.plan?.duraklar ? [[g, akisOzeti(k[i]!)] as const] : [])));
 }
 
 /**
- * Akıştan açılan durak ekranında günün çubuğu (P2-6, PM-144 md. 1.2 "akışın çerçevesi: X ve ilerleme"): ekran akıştan açıldıysa
- * (`akisaDonus`) o günün kaydından "durak k/N"; değilse null (ekran kendi başına açılmıştır, çubuk yok).
+ * Kaydı olmayan akış günü ısınmayla mı başlayacak (inceleme #282 P1-1): planlayıcının kuralı (`akis.ts` ısınma) — önceki günlerin
+ * kartlarından vadesi gelmişlerin sayısı halka payını (`halka sayısı × halka_tekrar[0]`) aşıyor. Önceki kartlar paket özetinden
+ * (`index.m1[].kartlar`); sözlük yüklenmez. Planlayıcının K(t)'sine yakın bir sayım (aynı vadeli kart kümesi, cihazdaki kayıtlar).
  */
-export function useGunIzi(): { sira: number; toplam: number } | null {
-  const [iz, setIz] = useState<{ sira: number; toplam: number } | null>(null);
-  useEffect(() => {
-    const r = parseHash(akisaDonus(""));
-    if (r.name !== "akis") return;
-    void getMeta<AkisKaydi>(`akis:${r.day}`).then((k) => { if (k?.plan?.duraklar?.length) setIz({ sira: Math.min(k.durak + 1, k.plan.duraklar.length), toplam: k.plan.duraklar.length }); });
-  }, []);
-  return iz;
+export async function isinmaVar(g: Pick<Gun, "day" | "halkalar">, ozet: readonly { day: number; kartlar: string[] }[], simdi = new Date()): Promise<boolean> {
+  const halka = g.halkalar?.length ?? 0;
+  if (!halka) return false;
+  const ids = [...new Set(ozet.filter((x) => x.day < g.day).flatMap((x) => x.kartlar))];
+  if (!ids.length) return false;
+  const vade = (it: LearnerItem) => Math.min(...[it.passive?.fsrs?.due, it.active?.fsrs?.due].filter((d): d is string => !!d).map((d) => +new Date(d)));
+  const vadeli = [...(await itemsMap(ids)).values()].filter((it) => it.kind === "lexeme" && vade(it) <= +simdi).length;
+  return vadeli > halka * POLICY.akis.halka_tekrar[0]!;
 }

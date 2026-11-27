@@ -44,6 +44,8 @@ export interface Ilerleme {
   kartlar?: Set<string>;
   /** sınav günü (PM-110): biten deneme bölümleri (`<deneme>:<bölüm>`, `m1:sinav:` kayıtları) */
   sinavBitti?: Set<string>;
+  /** kaydı olmayan akış gününde planlayıcı ısınmayla başlayacak (vadeli tekrar halka payını aşıyor; Bugün sayar, sözlük yüklemez) */
+  isinmaOnce?: ReadonlySet<number>;
   /** akış kayıtlarının özeti (gün → özet); kaydı olmayan akış günü "başlamadı" sayılır */
   akisOzet?: ReadonlyMap<number, AkisOzet>;
   /** paketteki denemeler (`index.files.deneme`); verilmezse hepsi var sayılır. Denemesi pakette olmayan sınav günü "hazırlanıyor" */
@@ -114,8 +116,8 @@ export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<strin
   if (akis) for (const x of a) if (x.tur === "bahce") x.href = `#/akis/${g.day}`;
   // gün, hazır olan bütün adımlar bitince biter (hazırlanmakta olan adım öğrenciyi bekletmez)
   const bitti = !!ilr.gunBitti?.has(g.day) || a.filter((x) => x.hazir).every((x) => x.bitti);
+  if (akis) { akisIsaretle(g, a, ilr); akisSirasi(g, a, ilr); }
   const konum = akis && !bitti ? akisKonumu(g, a, ilr) : undefined;
-  if (konum) akisSirasi(g, a, ilr);
   return { day: g.day, title_tr: isaretsiz(g.title_tr), adimlar: a, bitti, ...(akis && !bitti ? { akis: `#/akis/${g.day}`, ...(konum ? { akisKonum: konum } : {}) } : {}) };
 }
 
@@ -136,43 +138,59 @@ export function durakDugumleri(day: number, d: AkisOzet["duraklar"][number], a: 
   return [];
 }
 
+/** Gün sonu durağı (yolun "Gün sonu" ucu): BAŞLA orada durduğunda `siradaki()`'nin kimliği (inceleme #282 P1-2) */
+export const gunSonuId = (day: number) => `gunsonu:${day}`;
+
 /**
  * Akış gününde düğümler akışın sırasıyla dizilir (BAŞLA'nın önünde yapılmamış düğüm kalmasın): her düğüm kendisine eşlenen ilk
- * durağın sırasında; kayıt yoksa günün ilk durağı sesler olduğundan ses düğümleri öne (planlayıcının dizisi: ısınma · ses · halka …).
+ * durağın sırasında. Kayıt yoksa planlayıcının dizisi tahmin edilir: ısınma (vadeli tekrar halka payını aşıyorsa; `isinmaOnce`)
+ * → Bahçe önde; sonra sesler.
  */
 export function akisSirasi(g: Pick<Gun, "day">, a: Adim[], ilr: Ilerleme): void {
   const k = ilr.akisOzet?.get(g.day);
   const ilk = new Map<string, number>();
   if (k) k.duraklar.forEach((d, i) => { for (const id of durakDugumleri(g.day, d, a)) if (!ilk.has(id)) ilk.set(id, i); });
-  else a.forEach((x) => { if (x.tur === "medya" && x.alt === "ses") ilk.set(x.id, -1); });
+  else a.forEach((x) => { if (x.tur === "medya" && x.alt === "ses") ilk.set(x.id, -1); else if (x.tur === "bahce" && ilr.isinmaOnce?.has(g.day)) ilk.set(x.id, -2); });
   const yer = new Map(a.map((x, i) => [x.id, i]));
   a.sort((x, y) => (ilk.get(x.id) ?? (k ? 1e6 : 0)) - (ilk.get(y.id) ?? (k ? 1e6 : 0)) || yer.get(x.id)! - yer.get(y.id)!);
 }
 
 /**
- * Akış gününde düğümlerin ✓'i ve BAŞLA'nın yeri (DENETİM-1 P1-4, P1-5, P1-7). Kayıt varsa şimdiki durağın düğümü; yoksa ilk
- * durağın tahmini (ses kaydı olan gün sesle, yoksa Bahçe ile başlar). ✓: halka ve dil durağı akışta bitince; ekranı olan durak
- * (ses, video, prova, okuma) yalnız kendi ekranının anahtarıyla ("şimdi geç" ile atlanan ✓ almaz). Ses düğümünün ✓'i ilk turdan.
+ * Akış gününde düğümlerin ✓'i (gün bitse de; inceleme #282 P2-1). Halka, ısınma ve dil: akışta bitince. Ses: ilk turun anahtarı;
+ * ikinci ses turu şimdiki durakken o turun anahtarı da (#282 P2-7). Video, prova, okuma: yalnız kendi
+ * ekranının anahtarı (`bitti`; "şimdi geç" ile atlanan ✓ almaz).
  */
-export function akisKonumu(g: Pick<Gun, "day" | "sesler">, a: Adim[], ilr: Ilerleme): AkisKonum {
+export function akisIsaretle(g: Pick<Gun, "day">, a: Adim[], ilr: Ilerleme): void {
   const k = ilr.akisOzet?.get(g.day);
-  if (!k) {
-    const ilk = (g.sesler?.length ? a.find((x) => x.tur === "medya" && x.alt === "ses" && !x.bitti) : undefined) ?? a.find((x) => x.tur === "bahce");
-    return { adim: ilk?.id ?? null, baslik: ilk?.tur === "medya" ? "Sesler" : "Kelime Bahçesi", sira: 1, toplam: 0, kalan_dk: 0, baslandi: false };
-  }
+  if (!k) return;
   const biten = new Set(k.biten);
+  // ikinci ses turu şimdiki durakken BAŞLA ses düğümündedir: ✓ o turun anahtarını bekler (#282 P2-7); öncesinde ve sonrasında ilk tur yeter
+  const ses2Simdi = k.duraklar[k.durak]?.tur === "ses" && k.duraklar[k.durak]?.ses_turu === "ikinci";
   const dugumDurak = new Map<string, AkisOzet["duraklar"][number][]>();
   for (const d of k.duraklar) for (const id of durakDugumleri(g.day, d, a)) dugumDurak.set(id, [...(dugumDurak.get(id) ?? []), d]);
   for (const x of a) {
     const ds = dugumDurak.get(x.id);
     if (!ds?.length || x.bitti) continue;
-    // ses: ilk turun anahtarı (kendi ekranı yazar); halka, ısınma, dil: akışta biten durak; video, prova, okuma: yalnız `bitti`
-    if (x.tur === "medya" && x.alt === "ses") x.akisTamam = ilr.medyaBitti.has(`${x.id}:1`);
+    if (x.tur === "medya" && x.alt === "ses") x.akisTamam = ilr.medyaBitti.has(`${x.id}:1`) && (!ses2Simdi || ilr.medyaBitti.has(`${x.id}:2`));
     else if (ds.every((d) => d.tur === "halka" || d.tur === "isinma" || d.tur === "dil")) x.akisTamam = ds.every((d) => biten.has(d.id));
+  }
+}
+
+/**
+ * BAŞLA'nın yeri (DENETİM-1 P1-4, P1-5, P1-7). Kayıt varsa şimdiki durağın düğümü; gün sonu durağında yolun "Gün sonu" ucu
+ * (`gunSonuId`). Kayıt yoksa ilk durağın tahmini: ısınma varsa Bahçe, yoksa sesli gün sesle, sessiz gün Bahçe ile.
+ * `akisIsaretle`'den sonra çağrılır.
+ */
+export function akisKonumu(g: Pick<Gun, "day" | "sesler">, a: Adim[], ilr: Ilerleme): AkisKonum {
+  const k = ilr.akisOzet?.get(g.day);
+  if (!k) {
+    const isinma = !!ilr.isinmaOnce?.has(g.day);
+    const ilk = (!isinma && g.sesler?.length ? a.find((x) => x.tur === "medya" && x.alt === "ses" && !x.bitti) : undefined) ?? a.find((x) => x.tur === "bahce");
+    return { adim: ilk?.id ?? null, baslik: isinma ? "Isınma" : ilk?.tur === "medya" ? "Sesler" : "Kelime Bahçesi", sira: 1, toplam: 0, kalan_dk: 0, baslandi: false };
   }
   const d = k.duraklar[k.durak];
   const ids = d ? durakDugumleri(g.day, d, a) : [];
-  const adim = (ids.map((id) => a.find((x) => x.id === id)).find((x) => x && !x.bitti && !x.akisTamam) ?? a.find((x) => x.id === ids[0]))?.id ?? null;
+  const adim = d?.tur === "gunsonu" || !d ? gunSonuId(g.day) : (ids.map((id) => a.find((x) => x.id === id)).find((x) => x && !x.bitti && !x.akisTamam) ?? a.find((x) => x.id === ids[0]))?.id ?? gunSonuId(g.day);
   const kalan = k.duraklar.slice(k.durak).reduce((t, x) => t + x.tahmini_dk, 0);
   return { adim, baslik: d?.title_tr ?? "Gün sonu", sira: Math.min(k.durak + 1, k.duraklar.length), toplam: k.duraklar.length, kalan_dk: Math.round(kalan), baslandi: true };
 }
@@ -234,6 +252,8 @@ export function haftalara<T extends { day: number; durum: "bitti" | "simdi" | "k
 /** Sıradaki adım: şu anki günün ilk hazır ve bitmemiş adımı (seans sırasıyla) */
 export function siradaki(g: GunDurum | null): Adim | null {
   // akış günü: BAŞLA akıştaki yerin düğümünde (PM-148 [ANA-T] md. 2; DENETİM-1 P1-5: "BAŞLA Bahçe'de, açtığı Sesler" bitti)
+  // gün sonu durağı: BAŞLA yolun "Gün sonu" ucunda (düğüm değil; inceleme #282 P1-2)
+  if (g?.akis && g.akisKonum?.adim === gunSonuId(g.day)) { const son = g.adimlar[g.adimlar.length - 1]; if (son) return { ...son, id: gunSonuId(g.day), title_tr: "Gün sonu", href: g.akis }; }
   const k = g?.akisKonum?.adim ? g.adimlar.find((y) => y.id === g.akisKonum!.adim && y.hazir) : undefined;
   const x = k ?? g?.adimlar.find((y) => y.hazir && !y.bitti && !y.akisTamam) ?? g?.adimlar.find((y) => y.hazir && !y.bitti) ?? null;
   // akış günü: Bahçe bitince BAŞLA eski derse değil akışa döner; akış ders, ses, video, prova ve okuma duraklarını kendisi açar
