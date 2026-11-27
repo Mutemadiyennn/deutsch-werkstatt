@@ -152,3 +152,61 @@ Okurun bilgi notlarından açık kalan (karar değil):
 - lx:Praktikum boşluk cümlelerinde **machte** ve **bekam** var. Kart başka turda incelendi, bu turun kapsamında değil.
 
 Sonuç: okur maddeleri kapandı. Yeniden okur turu gerekiyor (OD-9.4); ondan sonra dosyalar "reviewed" yapılabilir.
+
+## İnceleme düzeltme turu (#279 inceleme yorumu + `docs/v2/reviews/orneklem/kurs-u02.md`)
+
+lx:Koch kart partisinden bilerek çıkarıldı (A1'de öğretilmiş); geri eklenmedi.
+
+Değişen ya da eklenen Almanca satırlar:
+
+**1. o/u dinle-ayırt et (P1).** Yeni `listen_and_respond` maddeleri:
+- Yalnız bilinen sözcükler kullanıldı. Aynı cümle iskeletinde yalnız o/u sözcüğü değişiyor.
+- situation_tr: "Dinle. o mu, u mu? Duyduğunu yaz."
+- Her maddede 3 kabul yazımı var (büyük/küçük harf, nokta var/yok).
+- why_tr örneği: "**konnte**'de o, **musste**'de u. Burada o duydun: **konnte**."
+- Maddeler:
+  - gun-68 o28: Ich konnte nicht kommen.
+  - gun-68 o29: Ich musste nicht kommen.
+  - gun-68 o30: Er wollte arbeiten.
+  - gun-68 o31: Er durfte arbeiten.
+  - gun-69 o19: Wir konnten lange warten.
+  - gun-69 o20: Wir mussten lange warten.
+- Ton/tun, Mond/Mund gibi sözcükler görevlerde istenmiyor; yalnız dn tablosunda gösteriliyor.
+
+**2. Test kırmızısı:**
+- gun-68 o14 kabullerine "Früher durftet ihr gehen." eklendi.
+- hafta-sonu-testi-10 t09'dan "Ich möchte gern {Koch|Köchin} werden." çıkarıldı; 5 kabul kaldı. Derecelendiricideki "gern" sırası web işi.
+
+**3. gun-64:**
+- v1 s15: "Heute arbeite ich lieber im Lager. Ohne Schichten!" → "… Am Wochenende habe ich frei!" (tr: "Hafta sonu boşum!"). Aynı günün anonsundaki "Schicht" ve 68. gündeki Schichtplan ile çelişiyordu.
+- h2: "Tobi hat als Kellner gearbeitet." (+3 kabul) → "Luka hat als Kellner gearbeitet." (tr: "Luka garson olarak çalıştı."). Tobi'nin aşçı geçmişiyle çelişiyordu; Luka'nın iş profili zaten garsonluk diyor.
+- sınav s8 kabullerine "Hast du als Kellner Erfahrung?" eklendi.
+
+**4. gun-69 h1 ve s8:** öğrencinin ağzından "Meine Chefin" (öğrencinin şefi Wimmer, erkek) üçüncü kişiye çevrildi:
+- "Meine Chefin ist sehr nett." → "Die Chefin von Ioana ist sehr nett."
+- "Gestern konnte ich nicht mit der Chefin sprechen." → "Gestern konnte Ioana nicht mit der Chefin sprechen."
+- "Ich muss meine Chefin fragen." → "Ioana muss ihre Chefin fragen."
+- s8 (tr_de): "Meine Chefin ist sehr hilfsbereit." → "Die Chefin von Ioana ist sehr hilfsbereit."
+- Kabul listeleri ve Türkçe karşılıklar birlikte güncellendi. "Ioanas" doğrulayıcıda bilinmeyen sözcük çıktı; yalnız kabul listesinde duruyor.
+- gun-69 s1 dikte sesi "Meine Chefin hatte viel Geduld." duyulan cümle olarak kaldı (Luka bağlamı).
+
+**4b. gun-68 a2:** anonsta konuşan kurs öğretmeni kendinden üçüncü kişi olarak söz ediyordu ("Die Kursleiterin ist krank."). speaker "die Kursleiterin" → "das Kursbüro".
+
+**5. Takvim, kurs günleri, belge adları, danışma yeri:**
+- **Ay adları (gun-70):** Dünya takvimine göre 10. hafta ocak sonu. Dezember → Februar (19 yer), Januar → März (7 yer, dikte bankası dahil). Türkçe karşılıklar güncellendi: Aralık → Şubat, ocak → mart.
+- **Kurs günleri:** Öğrencinin akşam kursu pazartesi, salı ve perşembe. Firmanın ve kurs bürosunun kursları (Weiterbildung, meslek için dil kursu, Computerkurs) "am Montag und am Mittwoch" → "am Mittwoch und am Freitag" yapıldı.
+  - gun-67: 8 Almanca satır, dikte bankası, küçük harfli kabul ve kabul cümlesi "Vielleicht. Ich habe am Mittwoch keine Zeit."
+  - gun-70: okuma metni, Derya maddesi (o7) ve açıklaması. Tobi maddesi (o6) etkilenmedi.
+- **Abschluss / Zeugnis:**
+  - Abschluss = "bitirme belgesi, mezuniyet" (kart, gun-67 kalıp, görev cümlesi, sahne ve şık).
+  - Zeugnis = "belge" (gun-66'nın Türkçe karşılıkları).
+  - Almanca değişmedi.
+- **Danışma yeri (görülmemiş g5):** Bürgerbüro / Schneider Hanım → Volkshochschule'nin bürosu, karşı taraf "eine Mitarbeiterin". prompt ve kabul listesi aynı.
+
+Kapılar:
+- `npm run content:validate` → 0 hata (298 uyarı)
+- `dikis-kos.ts` → İhlal 0
+- `hafta-kapisi-kos.ts --hafta 10` → GEÇTİ (öğretilmeden istenen 0)
+- `npx vitest run web/src/core/esdeger.icerik.test.ts content/` → 19 dosya, 234/234 yeşil
+
+Açık kalan: `lx:Zeugnis` başka bir partide; kartın Türkçe karşılığı ("diploma" ise) o partinin dilbilimcisine.

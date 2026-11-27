@@ -225,7 +225,7 @@
       "tur": "anons",
       "title_tr": "Kurs binasında anons",
       "ortam_tr": "Kurs binasının girişindesin. Hoparlörden kısa bir anons geliyor.",
-      "speaker": "die Kursleiterin",
+      "speaker": "das Kursbüro",
       "hizlar": ["slow", "normal"],
       "script": [
         { "id": "c1", "de": "Achtung, bitte! Hier ist eine Information für den Sprachkurs am Abend.", "tr": "Dikkat lütfen! Akşam dil kursu için bir bilgi." },
@@ -379,7 +379,7 @@
       { "id": "m1:68:o13", "k": "pick", "q_tr": "Derya ile Tobi'ye soruyorsun: alıştırmayı yapabildiniz mi?", "opts": ["Konntet ihr die Übung machen?", "Konntest ihr die Übung machen?", "Konnten ihr die Übung machen?"], "ans": 0,
         "why_tr": "**ihr** ile **konntet** dersin. **-test** du içindir, **-ten** wir içindir." },
       { "id": "m1:68:o14", "k": "transform", "instr_tr": "**wir** yerine **ihr** kullan.", "from_de": "Wir durften früher gehen.",
-        "accepted": ["Ihr durftet früher gehen.", "Ihr durftet früher gehen!", "Ihr durftet früher gehen, oder?"],
+        "accepted": ["Ihr durftet früher gehen.", "Ihr durftet früher gehen!", "Ihr durftet früher gehen, oder?", "Früher durftet ihr gehen."],
         "why_tr": "**wir durften** ama **ihr durftet**. **ihr** ile son **-tet** olur." },
       { "id": "m1:68:o15", "k": "pick", "q_tr": "Hangisi doğru yazılmış?", "opts": ["Wir mussten lange warten.", "Wir musten lange warten."], "ans": 0,
         "why_tr": "**müssen**'deki çift s kalır: **mussten**. Yalnız noktalar düşer." },
@@ -413,7 +413,15 @@
       { "id": "m1:68:o26", "k": "pick", "q_tr": "Hangi sözcükte **u** sesi var?", "opts": ["Kuchen", "Koch"], "ans": 0,
         "why_tr": "**Kuchen** u ile, dudaklar öne. **Koch** o ile, ağız daha açık." },
       { "id": "m1:68:o27", "k": "pick", "q_tr": "Hangi sözcükte **o** sesi var?", "opts": ["konnte", "musste"], "ans": 0,
-        "why_tr": "**konnte** o ile söylenir. **musste** u ile söylenir." }
+        "why_tr": "**konnte** o ile söylenir. **musste** u ile söylenir." },
+      { "id": "m1:68:o28", "k": "listen_and_respond", "audio_de": "Ich konnte nicht kommen.", "speed": "normal", "situation_tr": "Dinle. o mu, u mu? Duyduğunu yaz.",
+        "accepted": ["Ich konnte nicht kommen.", "ich konnte nicht kommen", "Ich konnte nicht kommen"], "why_tr": "**konnte**'de o, **musste**'de u. Burada o duydun: **konnte**." },
+      { "id": "m1:68:o29", "k": "listen_and_respond", "audio_de": "Ich musste nicht kommen.", "speed": "normal", "situation_tr": "Dinle. o mu, u mu? Duyduğunu yaz.",
+        "accepted": ["Ich musste nicht kommen.", "ich musste nicht kommen", "Ich musste nicht kommen"], "why_tr": "**konnte**'de o, **musste**'de u. Burada u duydun: **musste**." },
+      { "id": "m1:68:o30", "k": "listen_and_respond", "audio_de": "Er wollte arbeiten.", "speed": "normal", "situation_tr": "Dinle. o mu, u mu? Duyduğunu yaz.",
+        "accepted": ["Er wollte arbeiten.", "er wollte arbeiten", "Er wollte arbeiten"], "why_tr": "**wollte**'de o, **durfte**'de u. Burada o duydun: **wollte**." },
+      { "id": "m1:68:o31", "k": "listen_and_respond", "audio_de": "Er durfte arbeiten.", "speed": "normal", "situation_tr": "Dinle. o mu, u mu? Duyduğunu yaz.",
+        "accepted": ["Er durfte arbeiten.", "er durfte arbeiten", "Er durfte arbeiten"], "why_tr": "**wollte**'de o, **durfte**'de u. Burada u duydun: **durfte**." }
     ],
     "yazma": {
       "gorev_tr": "Kurs öğretmenine kısa bir e-posta yaz. Dün neden gelemediğini söyle, alıştırma için bir soru sor ve teşekkür et.",
