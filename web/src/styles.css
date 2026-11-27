@@ -757,6 +757,12 @@ svg.sandik { overflow: visible; }
 /* yerleşim kuralı (docs/v2/TASARIM.md): ekranın ana blokları arasında ≥ 24 px */
 .bugun-yol > * + *, .gorevler-sayfa > * + *, .odak-sayfa > * + * { margin-top: 24px; }
 .gun-bant-ek { margin-top: 6px; }
+/* akış günü: BAŞLA'nın açacağı yer (PM-148 [ANA-T] md. 2) */
+.gun-bant-konum { margin-top: 6px; font-size: .9rem; opacity: .95; }
+/* akıştan açılan ekranda günün çubuğu (P2-6) */
+.gun-izi { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: .78rem; color: var(--muted); }
+.gun-izi > i { flex: 1; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
+.gun-izi > i > b { display: block; height: 100%; background: var(--accent); }
 .gun-bant-sinav { display: inline-block; padding: 2px 10px; border-radius: 999px; background: rgba(255, 255, 255, .22); color: #fff; font-size: .85rem; font-weight: 800; }
 /* B16 hızlı şerit bandı: çıkış düğmesi ≥ 44 pt (inceleme #113 P1-5) */
 .bilgi-bant { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: 0; padding: 8px 14px; border-radius: 14px; background: var(--himmel-2); color: var(--ink); }

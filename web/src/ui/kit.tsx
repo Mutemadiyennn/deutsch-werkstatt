@@ -191,7 +191,9 @@ export function YanlisIci({ dogrusu, cevap, children }: { dogrusu: string; cevap
 
 /* ---------- Üst ilerleme: aşama x/6 · seans x/4 · kalan süre ---------- */
 /** `right`: başlık satırının sağı (#58 A6: öğrenme ekranlarında seans ve kalan dakika çipi) */
-export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], right, sub, ilerleme }: { title: string; back: string; step?: number; steps?: number; doneSteps?: number[]; right?: ComponentChildren; sub?: ComponentChildren; ilerleme?: { n: number; toplam: number } }) {
+export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], right, sub, ilerleme, gunIzi }: { title: string; back: string; step?: number; steps?: number; doneSteps?: number[]; right?: ComponentChildren; sub?: ComponentChildren; ilerleme?: { n: number; toplam: number };
+  /** akıştan açılan durak ekranı: günün akışındaki yer (P2-6; "akışın çerçevesi": X + ilerleme) */
+  gunIzi?: { sira: number; toplam: number } | null }) {
   // PM-133: hedef giriş noktasıdır; tam ekran akıştan çıkış X, akışın içinde bir üst adım ‹
   const hedef = donus(back), cik = cikisMi(hedef);
   return (
@@ -207,6 +209,7 @@ export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], r
       {ilerleme && ilerleme.toplam > 0 && <div class={`ilerleme${ilerleme.n >= ilerleme.toplam ? " son" : ""}`} data-test="ilerleme" role="progressbar" aria-valuemin={0} aria-valuemax={ilerleme.toplam} aria-valuenow={Math.min(Math.floor(ilerleme.n) + 1, ilerleme.toplam)}>
         <i style={{ width: `${Math.min(100, (ilerleme.n / ilerleme.toplam) * 100)}%` }} /><span class="sr-only">{Math.min(Math.floor(ilerleme.n) + 1, ilerleme.toplam)} / {ilerleme.toplam}</span></div>}
       {sub && <div class="sub">{sub}</div>}
+      {gunIzi && <div class="gun-izi" data-test="gun-izi" aria-label={`Bugünün akışı: durak ${gunIzi.sira} / ${gunIzi.toplam}`}><span>Bugün · durak {gunIzi.sira}/{gunIzi.toplam}</span><i aria-hidden="true"><b style={{ width: `${Math.round(((gunIzi.sira - 1) / gunIzi.toplam) * 100)}%` }} /></i></div>}
       {!sub && step !== undefined && <div class="steps" data-progress="" aria-label={`Aşama ${Math.min(step, 6)}/6`}>{Array.from({ length: steps }, (_, i) => <i class={doneSteps.includes(i) ? "done" : i === step ? "cur" : ""} />)}</div>}
     </header>
   );

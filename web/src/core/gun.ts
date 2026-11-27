@@ -14,9 +14,17 @@ export type SeansNo = 1 | 2 | 3 | 4;
 /** Yol ve Bugün'deki adım başlıkları düz metindir: içerikteki **kalın** işareti ekrana yıldızla çıkmaz (D-092; KAPI 7059696028) */
 const isaretsiz = (t: string) => t.replace(/\*\*(.+?)\*\*/g, "$1");
 
-export interface Adim { seans: SeansNo; tur: "bahce" | "ders" | "medya" | "prova" | "okuma" | "sinav"; id: string; title_tr: string; href: string; bitti: boolean; hazir: boolean; alt?: "video" | "ses" }
+export interface Adim { seans: SeansNo; tur: "bahce" | "ders" | "medya" | "prova" | "okuma" | "sinav"; id: string; title_tr: string; href: string; bitti: boolean; hazir: boolean; alt?: "video" | "ses";
+  /** akış gününde düğümün durakları akışta bitti (✓ gösterimi; günün bitişini değiştirmez; PM-148 [ANA-T] md. 2, DENETİM-1 P1-4) */
+  akisTamam?: boolean }
 /** `akis`: bayraklı günde akış bitmeden "BAŞLA" bu adrese gider (akış durakları sırayla açar; öğrenci simülasyonu P1-1) */
-export interface GunDurum { day: number; title_tr: string; adimlar: Adim[]; bitti: boolean; akis?: string; /** PM-114 B: başlangıçtan önceki, bitmemiş gün (yolda geçilmiş sayılır, "tamam" değil) */ atlandi?: boolean }
+export interface GunDurum { day: number; title_tr: string; adimlar: Adim[]; bitti: boolean; akis?: string; /** PM-114 B: başlangıçtan önceki, bitmemiş gün (yolda geçilmiş sayılır, "tamam" değil) */ atlandi?: boolean;
+  /** akış gününde öğrencinin akıştaki yeri (BAŞLA bu düğümde durur, akışı açar; PM-148 [ANA-T] md. 2, DENETİM-1 P1-5) */
+  akisKonum?: AkisKonum }
+/** Akış kaydının Bugün/Yol için özeti (cihazdaki `akis:<gün>`; plan bütünüyle yüklenmez, durakların kimliği ve türü yeter) */
+export interface AkisOzet { durak: number; biten: readonly string[]; duraklar: readonly { id: string; tur: string; title_tr: string; tahmini_dk: number; eski_anahtar?: string; ses_turu?: "ilk" | "ikinci" }[] }
+/** `adim`: BAŞLA'nın duracağı düğüm (null: gün sonu durağı ya da eşlenemeyen durak); `sira` 1'den; `baslandi`: kayıt var */
+export interface AkisKonum { adim: string | null; baslik: string; sira: number; toplam: number; kalan_dk: number; baslandi: boolean }
 /** Cihazda saklanan ilerlemeden okunanlar (meta anahtarları ekranda doldurulur) */
 export interface Ilerleme {
   dersBitti: Set<string>; medyaBitti: Set<string>;
@@ -36,6 +44,8 @@ export interface Ilerleme {
   kartlar?: Set<string>;
   /** sınav günü (PM-110): biten deneme bölümleri (`<deneme>:<bölüm>`, `m1:sinav:` kayıtları) */
   sinavBitti?: Set<string>;
+  /** akış kayıtlarının özeti (gün → özet); kaydı olmayan akış günü "başlamadı" sayılır */
+  akisOzet?: ReadonlyMap<number, AkisOzet>;
   /** paketteki denemeler (`index.files.deneme`); verilmezse hepsi var sayılır. Denemesi pakette olmayan sınav günü "hazırlanıyor" */
   denemeler?: ReadonlySet<string>;
 }
@@ -104,7 +114,67 @@ export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<strin
   if (akis) for (const x of a) if (x.tur === "bahce") x.href = `#/akis/${g.day}`;
   // gün, hazır olan bütün adımlar bitince biter (hazırlanmakta olan adım öğrenciyi bekletmez)
   const bitti = !!ilr.gunBitti?.has(g.day) || a.filter((x) => x.hazir).every((x) => x.bitti);
-  return { day: g.day, title_tr: isaretsiz(g.title_tr), adimlar: a, bitti, ...(akis && !bitti ? { akis: `#/akis/${g.day}` } : {}) };
+  const konum = akis && !bitti ? akisKonumu(g, a, ilr) : undefined;
+  if (konum) akisSirasi(g, a, ilr);
+  return { day: g.day, title_tr: isaretsiz(g.title_tr), adimlar: a, bitti, ...(akis && !bitti ? { akis: `#/akis/${g.day}`, ...(konum ? { akisKonum: konum } : {}) } : {}) };
+}
+
+/**
+ * Akış durağının yol düğümü (PM-148 [ANA-T] md. 2): halka ve ısınma → Bahçe; dil noktası → dersi; ses → günün ses kayıtları;
+ * video → kaydı; prova, okuma → kendileri; gün sonu → yok (yolun "Gün sonu" ucu).
+ */
+export function durakDugumleri(day: number, d: AkisOzet["duraklar"][number], a: readonly Adim[]): string[] {
+  if (d.tur === "halka" || d.tur === "isinma") return [`bahce:${day}`];
+  if (d.tur === "dil") {
+    const ders = d.eski_anahtar?.startsWith("ders:") ? d.eski_anahtar.slice(5) : d.id.replace(/^dil:/, "").replace(/:[12]$/, "");
+    return a.some((x) => x.id === ders) ? [ders] : [];
+  }
+  if (d.tur === "ses") return a.filter((x) => x.tur === "medya" && x.alt === "ses").map((x) => x.id);
+  if (d.tur === "video") { const id = d.eski_anahtar?.replace(/^m1:medya:/, ""); return a.some((x) => x.id === id) ? [id!] : []; }
+  if (d.tur === "prova") return [`prova:${day}`];
+  if (d.tur === "okuma") return [`okuma:${day}`];
+  return [];
+}
+
+/**
+ * Akış gününde düğümler akışın sırasıyla dizilir (BAŞLA'nın önünde yapılmamış düğüm kalmasın): her düğüm kendisine eşlenen ilk
+ * durağın sırasında; kayıt yoksa günün ilk durağı sesler olduğundan ses düğümleri öne (planlayıcının dizisi: ısınma · ses · halka …).
+ */
+export function akisSirasi(g: Pick<Gun, "day">, a: Adim[], ilr: Ilerleme): void {
+  const k = ilr.akisOzet?.get(g.day);
+  const ilk = new Map<string, number>();
+  if (k) k.duraklar.forEach((d, i) => { for (const id of durakDugumleri(g.day, d, a)) if (!ilk.has(id)) ilk.set(id, i); });
+  else a.forEach((x) => { if (x.tur === "medya" && x.alt === "ses") ilk.set(x.id, -1); });
+  const yer = new Map(a.map((x, i) => [x.id, i]));
+  a.sort((x, y) => (ilk.get(x.id) ?? (k ? 1e6 : 0)) - (ilk.get(y.id) ?? (k ? 1e6 : 0)) || yer.get(x.id)! - yer.get(y.id)!);
+}
+
+/**
+ * Akış gününde düğümlerin ✓'i ve BAŞLA'nın yeri (DENETİM-1 P1-4, P1-5, P1-7). Kayıt varsa şimdiki durağın düğümü; yoksa ilk
+ * durağın tahmini (ses kaydı olan gün sesle, yoksa Bahçe ile başlar). ✓: halka ve dil durağı akışta bitince; ekranı olan durak
+ * (ses, video, prova, okuma) yalnız kendi ekranının anahtarıyla ("şimdi geç" ile atlanan ✓ almaz). Ses düğümünün ✓'i ilk turdan.
+ */
+export function akisKonumu(g: Pick<Gun, "day" | "sesler">, a: Adim[], ilr: Ilerleme): AkisKonum {
+  const k = ilr.akisOzet?.get(g.day);
+  if (!k) {
+    const ilk = (g.sesler?.length ? a.find((x) => x.tur === "medya" && x.alt === "ses" && !x.bitti) : undefined) ?? a.find((x) => x.tur === "bahce");
+    return { adim: ilk?.id ?? null, baslik: ilk?.tur === "medya" ? "Sesler" : "Kelime Bahçesi", sira: 1, toplam: 0, kalan_dk: 0, baslandi: false };
+  }
+  const biten = new Set(k.biten);
+  const dugumDurak = new Map<string, AkisOzet["duraklar"][number][]>();
+  for (const d of k.duraklar) for (const id of durakDugumleri(g.day, d, a)) dugumDurak.set(id, [...(dugumDurak.get(id) ?? []), d]);
+  for (const x of a) {
+    const ds = dugumDurak.get(x.id);
+    if (!ds?.length || x.bitti) continue;
+    // ses: ilk turun anahtarı (kendi ekranı yazar); halka, ısınma, dil: akışta biten durak; video, prova, okuma: yalnız `bitti`
+    if (x.tur === "medya" && x.alt === "ses") x.akisTamam = ilr.medyaBitti.has(`${x.id}:1`);
+    else if (ds.every((d) => d.tur === "halka" || d.tur === "isinma" || d.tur === "dil")) x.akisTamam = ds.every((d) => biten.has(d.id));
+  }
+  const d = k.duraklar[k.durak];
+  const ids = d ? durakDugumleri(g.day, d, a) : [];
+  const adim = (ids.map((id) => a.find((x) => x.id === id)).find((x) => x && !x.bitti && !x.akisTamam) ?? a.find((x) => x.id === ids[0]))?.id ?? null;
+  const kalan = k.duraklar.slice(k.durak).reduce((t, x) => t + x.tahmini_dk, 0);
+  return { adim, baslik: d?.title_tr ?? "Gün sonu", sira: Math.min(k.durak + 1, k.duraklar.length), toplam: k.duraklar.length, kalan_dk: Math.round(kalan), baslandi: true };
 }
 
 /** Yol: günler sırayla; şu anki gün = ilk bitmemiş gün. Sonraki günler kilitli (bir önceki bitmeden açılmaz). */
@@ -163,7 +233,9 @@ export function haftalara<T extends { day: number; durum: "bitti" | "simdi" | "k
 
 /** Sıradaki adım: şu anki günün ilk hazır ve bitmemiş adımı (seans sırasıyla) */
 export function siradaki(g: GunDurum | null): Adim | null {
-  const x = g?.adimlar.find((y) => y.hazir && !y.bitti) ?? null;
+  // akış günü: BAŞLA akıştaki yerin düğümünde (PM-148 [ANA-T] md. 2; DENETİM-1 P1-5: "BAŞLA Bahçe'de, açtığı Sesler" bitti)
+  const k = g?.akisKonum?.adim ? g.adimlar.find((y) => y.id === g.akisKonum!.adim && y.hazir) : undefined;
+  const x = k ?? g?.adimlar.find((y) => y.hazir && !y.bitti && !y.akisTamam) ?? g?.adimlar.find((y) => y.hazir && !y.bitti) ?? null;
   // akış günü: Bahçe bitince BAŞLA eski derse değil akışa döner; akış ders, ses, video, prova ve okuma duraklarını kendisi açar
   // (öğrenci simülasyonu 1. gün P1-1). Yol düğümleri kendi ekranlarında kalır (inceleme #184 Y-3)
   return x && g?.akis ? { ...x, href: g.akis } : x;

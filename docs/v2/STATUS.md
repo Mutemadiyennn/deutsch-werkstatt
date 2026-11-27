@@ -16,6 +16,16 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 - Sınama: gezgin `donus_savlari` (DN-2). Takip: kenardan kaydırma kabukta kapalı (ANA-K), eski kuşak ekran akışın ilerleme çubuğunu taşımıyor (ANA-T "tek yol").
 - #267 (`plan-not` PM finali) main'de (`8b6a6c7`); #275 tabanı main.
 
+## Hat T (ANA-T): akış sürekliliği (PM-148 [ANA-T] md. 2; DENETİM-1 P1-4/5/7/13, #275 P2-6/7; 2026-11-27)
+- **Kök neden:** Bugün'ün BAŞLA balonu `siradaki()`'nin akış adresini değil düğümün kendi adresini açıyordu. Bahçe düğümü akışı Sesler'den açıyordu (P1-5). Son halka `m1:bahce` yazınca balon Ders düğümüne geçiyor, `#/ders/r0:01-tage` baştan açılıyordu (P1-7).
+- **Şimdi:**
+  - Akış gününde düğümler akışın sırasıyla diziliyor. BAŞLA akıştaki yerin düğümünde duruyor ve hep `#/akis/<g>`'yi açıyor. Gün bandında "Kaldığın yer: <durak> · durak k/N".
+  - ✓ işaretleri akıştan geliyor: ses ilk tur anahtarıyla, halka ve dil akışta bitince (`core/gun.ts` `akisKonumu`, `akisSirasi`, `durakDugumleri`).
+  - Halka sonunda "Bugün: b/N durak tamam" ve "Bugünlük yeter" yazıyor; tek "seans" sayacı odak süresi.
+  - Akıştan açılan ekranda günün çubuğu var.
+  - Köy'den açılan kaydın "Sıradaki adım"ı Köy'de kalıyor.
+- **Kanıt:** `gunAkis.test.ts` (gerçek 1. gün planı), e2e `v2_sureklilik.py` (ci-v2).
+
 ## Hat K (ANA-K): Kabuk 1.6 (PM-128, PM-142 md. 2.1; 2026-11-27)
 - Dal `ana-k/kabuk-1.6`, PR #271 (yalnız `ios-build.yml`): `server.url` ve "Tekrar dene" doğrudan `/v2/`; Capacitor `^8`, konuşma tanıma 7.0.1 sabit; derlemede kabuk adresi + izin anahtarı denetimi.
 - **Açık:** IPA koşusu yok. Actions 20.11'den beri kapalı (koşu #19 sonuncusu); bu oturumdan `workflow_dispatch` 403. #12'de [PM-İSTEK].

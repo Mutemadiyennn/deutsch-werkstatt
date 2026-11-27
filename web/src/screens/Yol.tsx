@@ -12,6 +12,7 @@ import { useApp } from "../state.ts";
 import { loadM1Gun } from "../services/content.ts";
 import { gunBittiYaz, haftaSonuclari, ilerlemeOku, xpOku, type HaftaSonuc } from "../services/ilerleme.ts";
 import { gecilenGunler } from "../services/seviye.ts";
+import { akisOzetleri } from "../services/akisOzet.ts";
 import { adimAdi, gunAdimlari, gunOzeti, haftaBitti, haftaOf, haftalara, haftaSonuMu, seri, siradaki, yol, yolGunleri, yuklenecekHafta, type Adim, type GunDurum, type XpKayit } from "../core/gun.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
@@ -57,6 +58,8 @@ export function usePlan(): { plan: Plan | null; err: string | null; yok: boolean
         const gunler = (eksik < 0 ? sonuc : sonuc.slice(0, eksik)).map((r) => (r as PromiseFulfilledResult<Gun>).value);
         if (!gunler.length) throw new Error(`Günün dosyası yüklenemedi${sonuc[0]?.status === "rejected" ? `: ${String((sonuc[0] as PromiseRejectedResult).reason?.message || sonuc[0].reason)}` : ""}`);
         const ilr = await ilerlemeOku(gunler.flatMap((g) => g.yeni_kartlar));
+        // akış günlerinin kaydı (PM-148 [ANA-T] md. 2): BAŞLA akıştaki yerin düğümünde, düğüm ✓'i akıştan
+        ilr.akisOzet = await akisOzetleri(gunler.map((g) => g.day).filter((d) => ilr.akisBasladi?.has(d)));
         ilr.kartlar = kartlar;
         ilr.denemeler = new Set(Object.keys(index.files.deneme ?? {}));
         durumlar = gunler.map((g: Gun) => gunAdimlari(g, ilr, basliklar));
@@ -157,6 +160,10 @@ export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Pla
                 <div class="gun-bant-ad">{g.title_tr}</div>
                 {selam && g.day === simdiGun && <div class="gun-bant-selam" data-test="selam">{selam}</div>}
                 {ek && g.day === simdiGun && <div class="gun-bant-ek">{ek}</div>}
+                {/* akış günü (PM-148 [ANA-T] md. 2): BAŞLA'nın açacağı yer tek satırda; Bugün'de tek birincil eylem */}
+                {g.akisKonum && g.day === simdiGun && <div class="gun-bant-konum" data-test="akis-konum">{g.akisKonum.baslandi
+                  ? <>Kaldığın yer: <b>{g.akisKonum.baslik}</b> · durak {g.akisKonum.sira}/{g.akisKonum.toplam}</>
+                  : <>Bugünün akışı <b>{g.akisKonum.baslik}</b> ile başlar</>}</div>}
               </div>
               <a class="rehber-btn" href={`#/rehber/${g.day}`} data-test={`rehber-${g.day}`} aria-label={`${g.day}. günün rehberi: hedef ve kelimeler`}>Rehber</a>
             </div>
@@ -164,17 +171,21 @@ export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Pla
               {g.adimlar.flatMap((a, ai) => {
                 const kay = KAYMA[sira++ % KAYMA.length]!;
                 const simdi = plan.sonraki?.id === a.id;
-                const durum = a.bitti ? "bitti" : simdi ? "simdi" : g.durum === "kilitli" || !a.hazir ? "kilitli" : "acik";
-                const ad = `Seans ${a.seans} · ${TUR_AD[a.tur]}: ${a.title_tr}${!a.hazir ? " (hazırlanıyor)" : ""}${a.bitti ? ", bitti" : ""}`;
-                const ic = <><span class="dugum-yuz"><DugumSimge tur={a.tur === "medya" ? a.alt ?? "ses" : a.tur} /></span>{a.bitti && <span class="dugum-onay" aria-hidden="true"><Icon name="check" size={14} stroke={3} /></span>}</>;
+                // akışta biten düğüm ✓ gösterir (akisTamam); BAŞLA o düğümde durabilir mi: hayır, akış sıradakine geçmiştir
+                const tamam = a.bitti || !!a.akisTamam;
+                const durum = tamam && !simdi ? "bitti" : simdi ? "simdi" : g.durum === "kilitli" || !a.hazir ? "kilitli" : "acik";
+                // D1-13: tek "seans" sayacı odak süresidir; düğümün adında seans numarası yok
+                const ad = `${TUR_AD[a.tur]}: ${a.title_tr}${!a.hazir ? " (hazırlanıyor)" : ""}${tamam ? ", bitti" : ""}`;
+                const ic = <><span class="dugum-yuz"><DugumSimge tur={a.tur === "medya" ? a.alt ?? "ses" : a.tur} /></span>{tamam && <span class="dugum-onay" aria-hidden="true"><Icon name="check" size={14} stroke={3} /></span>}</>;
                 // şimdiki düğüm Bugün'ün tek çağrısıdır (mavi şerit kalktı; #104 PM notu 2); eski "next-activity" sözleşmesi korunur
                 const dugum = (
-                  <li class={`dugum-yer ${durum}`} style={{ "--kay": `${kay}px` } as Record<string, string>} data-test="adim" data-tur={a.tur} data-bitti={a.bitti ? "1" : "0"} data-durum={durum}>
+                  <li class={`dugum-yer ${durum}`} style={{ "--kay": `${kay}px` } as Record<string, string>} data-test="adim" data-id={a.id} data-tur={a.tur} data-alt={a.alt} data-bitti={a.bitti ? "1" : "0"} data-akis-tamam={a.akisTamam ? "1" : "0"} data-durum={durum}>
                     {simdi && <span class="basla-balon" aria-hidden="true">BAŞLA</span>}
                     {simdi && <svg class="dugum-halka" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" /><circle class="dolu" cx="50" cy="50" r="46" style={{ strokeDasharray: `${2 * Math.PI * 46 * (hazirAdim.length ? biten / hazirAdim.length : 0)} 999` }} /></svg>}
-                    {a.hazir && !a.bitti && g.durum !== "kilitli"
+                    {a.hazir && (!a.bitti || simdi) && g.durum !== "kilitli"
                       ? (simdi
-                        ? <span data-test="next-activity" data-m1="1" data-seans={a.seans}><a class="dugum" href={a.href} aria-label={ad} aria-current="step" data-test="m1-devam" onClick={onBasla}>{ic}</a><span class="sr-only">{`${g.day}. gün · ${adimAdi(a)} · ${a.title_tr}`}</span></span>
+                        // BAŞLA siradaki()'nin adresini açar: akış gününde akışın kendisi (DENETİM-1 P1-5, P1-7: düğümün eski ekranı değil)
+                        ? <span data-test="next-activity" data-m1="1" data-seans={a.seans}><a class="dugum" href={plan.sonraki!.href} aria-label={g.akisKonum ? `${g.akisKonum.baslandi ? "Kaldığın yerden sür" : "Başla"}: ${g.akisKonum.baslik}` : ad} aria-current="step" data-test="m1-devam" onClick={onBasla}>{ic}</a><span class="sr-only">{`${g.day}. gün · ${g.akisKonum ? g.akisKonum.baslik : `${adimAdi(a)} · ${a.title_tr}`}`}</span></span>
                         : <a class="dugum" href={a.href} aria-label={ad}>{ic}</a>)
                       : <span class="dugum" role="img" aria-label={ad}>{ic}</span>}
                     <span class="dugum-ad tiny">{dugumAdi(a, g.title_tr)}</span>
