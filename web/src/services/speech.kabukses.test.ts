@@ -65,6 +65,8 @@ describe("RQ-Ş18: konuşanın adı seçeneklerdeki cevabı önceden vermez", ()
     expect(adCevapMi("Frau Huber", JSON.stringify([["Frau Demir", "Herr Demir"]]))).toBe(false);
     expect(adCevapMi("Dr. Thomas Weber", JSON.stringify([["Dr. Kaya"]]))).toBe(false);
     expect(adCevapMi("Tobias „Tobi“ Lechner", JSON.stringify([["Tobi", "Luka"]]))).toBe(true);
+    // tam sözcük: "Sen" seçeneklerin içindeki "Sena"/"Senin" ile eşleşmez (inceleme #274 fark P2)
+    expect(adCevapMi("Sen", JSON.stringify([["Senin adın", "Sena"]]))).toBe(false);
   });
 });
 

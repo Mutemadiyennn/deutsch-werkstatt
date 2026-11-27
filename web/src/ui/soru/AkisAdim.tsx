@@ -205,7 +205,7 @@ export function SahneAdimi({ sahne, onBitti }: { sahne: SahneVeri; onBitti: (dog
         <ListenButton text={sahne.satirlar.map((s) => s.de).join(" ")} label="Sahneyi dinle" slowToggle={false} metinGizli={!bitti} />
         <button class="btn sm" data-test="sahne-dinle" disabled={calisiyor} onClick={() => void dinle()}>{calisiyor ? "Dinleniyor…" : dinledi ? "Yeniden dinle" : "Sesleriyle dinle"}</button>
       </div>
-      <KonusanRozet kim={kim} kimler={kimler} gizle={JSON.stringify(sahne.soru.opts)} />
+      {calisiyor && <KonusanRozet kim={kim} kimler={kimler} gizle={JSON.stringify(sahne.soru.opts)} />}
       {(dinledi || metin) ? (
         <section class="card stack" style={{ gap: 8 }} data-test="sahne-metin">
           {sahne.satirlar.map((s) => (
