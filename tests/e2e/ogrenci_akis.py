@@ -419,6 +419,10 @@ def akis_adim(pg):
         bos = [t for t in bt if t not in gt] or bt[:1]
         dogru_kelime = next((w for w in re.split(r"\s+", cumle) if PUNCT.sub("", w).lower() == bos[0]), bos[0])
         dogru_kelime = PUNCT.sub("", dogru_kelime)
+        # iki parçalı fiil (DENETİM-A1 P1-1): iki boşluk, iki kelime cümledeki sırayla
+        if gor.count("____") > 1:
+            m = re.fullmatch("(.+?)".join(re.escape(x) for x in gor.split("____")), cumle.strip())
+            if m: dogru_kelime = " ".join(x.strip() for x in m.groups())
         kes, sin = [], []
         for t in bos:
             if t in ADLAR or t in onceki: continue

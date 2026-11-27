@@ -33,6 +33,7 @@ import { Question } from "../ui/soru/Soru.tsx";
 import { DrillView } from "../ui/drill.tsx";
 import { BoslukAdimi, KalipAdimi, SahneAdimi, TanitAdimi, UretAdimi, YapbozAdimi, type CumleBilgi, type SahneVeri } from "../ui/soru/AkisAdim.tsx";
 import { meaningOptions, type QType, type Yakinlik } from "../core/garden.ts";
+import { boslukDoldur, eskiDoldurma } from "../core/ikiParca.ts";
 
 /** Bahçe soru bileşeninin karşıladığı tek kartlı adım türleri */
 const SORU = new Set<string>(["listen_meaning", "article", "colloc"]);
@@ -136,7 +137,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, emojiHarita, baglam, tohum, b
     return <YapbozAdimi key={adim.id} bilgi={b} tohum={tohum} ipucu={baglam.ipucu} onBitti={(ok) => { baglam.gordu(b.de.split(/\s+/)); hepsi(ok); }} />;
   if (b && adim.tur === "gap") {
     const l0 = kartlar[0];
-    return <BoslukAdimi key={adim.id} bilgi={b} bosluk={l0 ? [l0.de, ...(l0.forms ?? []).map((f) => f.answer)] : []} onBitti={hepsi} />;
+    return <BoslukAdimi key={adim.id} bilgi={b} bosluk={l0 ? [l0.de, ...(l0.forms ?? []).map((f) => f.answer)] : []} formlar={l0?.forms ?? []} onBitti={hepsi} />;
   }
   // dil noktası durağı (`gr:`/`dn:`; PM 7087668356 md. 7): başlık, açıklama, tablo, sesli örnekler; soru yok
   if (adim.ders?.oge === DIL_NOKTASI) {
@@ -256,7 +257,13 @@ export function AkisEkrani({ day }: { day: number }) {
         const cumleler = new Map<string, CumleBilgi>();
         for (const l of lexemes) for (const e of l.examples) if (!cumleler.has(e.de)) cumleler.set(e.de, { de: e.de, tr: e.tr, accepted: [e.de] });
         // kartın biçim cümleleri: planlayıcının boşluk adımı `form.de`yi cevabıyla doldurup sorar (inceleme #184 P0)
-        for (const l of lexemes) for (const f of l.forms ?? []) { const de = f.de.replace(/___/g, f.answer); if (!cumleler.has(de)) cumleler.set(de, { de, tr: f.tr ?? "", accepted: [de] }); }
+        // iki parçalı boşluk (DENETİM-A1 P1-1): her "___" kendi parçasıyla; cihazda kalmış eski plandaki hatalı cümle de doğrusuna bağlanır
+        for (const l of lexemes) for (const f of l.forms ?? []) {
+          const de = boslukDoldur(f.de, f.answer); if (de === null) continue;
+          const bilgi = cumleler.get(de) ?? { de, tr: f.tr ?? "", accepted: [de] };
+          cumleler.set(de, bilgi);
+          const eski = eskiDoldurma(f.de, f.answer); if (eski !== de && !cumleler.has(eski)) cumleler.set(eski, bilgi);
+        }
         for (const h of gun.halkalar) for (const g of h.gorev_cumleleri) cumleler.set(g.de, { de: g.de, tr: g.tr, accepted: [g.de, ...g.accepted] });
         const kaliplar = new Map<string, string>();
         for (const t of temel) for (const x of t.teach) kaliplar.set(x.de, x.tr);

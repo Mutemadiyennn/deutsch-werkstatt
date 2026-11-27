@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
 import { dikteKarar, ruleVerdict, type Verdict } from "../../core/answer.ts";
 import { tohumluRng } from "../../core/halkaTur.ts";
+import { boslukGorunumu } from "../../core/ikiParca.ts";
 import { konusanAdi, speak, speakDizi, sttAvailable } from "../../services/speech.ts";
 import { haptic } from "../../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, KonusanRozet, ListenButton, MicButton } from "../kit.tsx";
@@ -62,26 +63,27 @@ export function UretAdimi({ bilgi, kip, onBitti }: { bilgi: CumleBilgi; /** yaz:
   );
 }
 
-/** Boşluk: kartın sözcüğü (planlayıcının `haric` sözcükleri yerine kartın yüzeyi) cümlede boş bırakılır, öğrenci yazar */
-export function BoslukAdimi({ bilgi, bosluk, onBitti }: { bilgi: CumleBilgi; bosluk: string[]; onBitti: (dogru: boolean) => void }) {
+/**
+ * Boşluk: cümle kartın bir biçim cümlesinden geliyorsa (`formlar`) boşluklar o biçimin "___" yerleridir; iki parçalı fiilde iki boşluk,
+ * cevap iki parça sırayla ("stelle vor" ya da "stelle … vor"; DENETİM-A1 P1-1). Gelmiyorsa kartın sözcüğü (planlayıcının `haric`
+ * sözcükleri yerine kartın yüzeyi) cümlede boş bırakılır. Öğrenci yazar.
+ */
+export function BoslukAdimi({ bilgi, bosluk, formlar = [], onBitti }: { bilgi: CumleBilgi; bosluk: string[]; formlar?: { de: string; answer: string; also_ok?: string[] }[]; onBitti: (dogru: boolean) => void }) {
   const [v, setV] = useState<Verdict | "bilmiyorum" | null>(null);
   const [cevap, setCevap] = useState("");
-  const parca = useMemo(() => {
-    const k = new Set(bosluk.map((x) => x.toLowerCase()));
-    const t = bilgi.de.split(/(\s+)/);
-    const i = t.findIndex((x) => k.has(x.replace(/[.,!?;:]/g, "").toLowerCase()));
-    return i < 0 ? null : { once: t.slice(0, i).join(""), dogru: t[i]!.replace(/[.,!?;:]/g, ""), sonra: t[i]!.replace(/^[^.,!?;:]*/, "") + t.slice(i + 1).join("") };
-  }, [bilgi.de]);
+  const parca = useMemo(() => boslukGorunumu(bilgi.de, bosluk, formlar), [bilgi.de]);
   if (!parca) return <UretAdimi bilgi={bilgi} kip={bilgi.tr ? "yaz" : "duy"} onBitti={onBitti} />;
-  const kontrol = (s: string) => { const r = ruleVerdict([parca.dogru], s.trim()); setCevap(s); setV(r); haptic(r.kind === "correct" ? "success" : "error"); };
+  const iki = parca.dogru.length > 1;
+  const kontrol = (s: string) => { const r = ruleVerdict(parca.kabul, s.trim()); setCevap(s); setV(r); haptic(r.kind === "correct" ? "success" : "error"); };
   return (
     <section class="stack fade" data-test="akis-bosluk">
       <div>
-        <div class="kicker icerik" style={{ color: "var(--accent)" }}>Boşluğu doldur</div>
-        <div class="de-lg" lang="de">{parca.once}<span class="bosluk" aria-label="boşluk">____</span>{parca.sonra}</div>
+        <div class="kicker icerik" style={{ color: "var(--accent)" }}>{iki ? "Boşlukları doldur" : "Boşluğu doldur"}</div>
+        <div class="de-lg" lang="de">{parca.metin.flatMap((m, n) => (n < parca.metin.length - 1 ? [m, <span key={n} class="bosluk" aria-label="boşluk">____</span>] : [m]))}</div>
         {bilgi.tr && <p class="small muted" style={{ margin: 0 }}>{bilgi.tr}</p>}
+        {iki && <p class="small muted" style={{ margin: 0 }} data-test="bosluk-iki">İki boşluk var: iki kelimeyi sırayla yaz.</p>}
       </div>
-      {v === null && <AnswerField onSubmit={(s) => kontrol(s)} voice={false} placeholder="Eksik kelime…" />}
+      {v === null && <AnswerField onSubmit={(s) => kontrol(s)} voice={false} placeholder={iki ? "Eksik kelimeler…" : "Eksik kelime…"} />}
       {v === null && <div style={{ textAlign: "center" }}><button class="ikincil-eylem" style={{ alignSelf: "center" }} data-test="akis-bilmiyorum" onClick={() => setV("bilmiyorum")}>Bilmiyorum</button></div>}
       {v !== null && <Sonuc v={v} cevap={cevap} bilgi={bilgi} onDevam={() => onBitti(v !== "bilmiyorum" && v.kind === "correct")} />}
     </section>
