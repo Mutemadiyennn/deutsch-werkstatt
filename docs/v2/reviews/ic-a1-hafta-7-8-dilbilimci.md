@@ -61,3 +61,23 @@ Bu dosyalardaki dil hatalarının hepsi kapandı: **KAPANDI**. Hata oranı: 10/3
 
 Not: Alter ve Wohnort kartları 1.–2. hafta PR'ında geliyor (bu PR ona yığılı). Cevaplarda kart sözcüğü kullanılmıyor, kural sürüyor.
 Denetimler (2. tur): validate 0 hata, 292 uyarı · dikiş İhlal 0 · hafta kapısı: öğretilmeden istenen 0, anlaşılmayan karşı soru 0 · `npx vitest run content/tools`: 18/18 dosya, 230/230 test geçti. Sonuç: KAPANDI.
+
+## 3. tur: PR #285 incelemesi, 1. tur (yorum 7226717277)
+| Bulgu | Düzeltme |
+|---|---|
+| P1-1 sınav kartı | HST-07 m1:49:t13 artık 3 kart sınıyor: Name, Alter, Land (`can_do` "cd:m1:46"). Kabul listesinde 6 sıranın hepsi × 2×2×2 biçim = 48 cevap. HST-08 m1:54:t13 de 3 kart: Wohnort, Sprachen, Beruf (`can_do` "cd:m1:53"). Kabul listesi 6 sıra × 2×2×3 biçim = 72 cevap (Beruf için **von Beruf** da var). `situation_tr` ve `why_tr` kısaltıldı. Tam 7 maddelik tanıtma `serbest_konus` olarak geldi: m1:46:k1 (sınav provası, Sie, 7 hedef, en az 5 cümle) ve m1:53:k1 (iş yerinde ekip toplantısı, du, soruyu ch:lechner soruyor, 7 hedef). Pekiştirme için m1:52:k1 eklendi (kuaförde yeni komşu, du, 4 hedef: ülke, diller, iş, hobi). |
+| Hedef kalıpları | Her hedefte 3–4 kalıp var. Bir hedefin kalıbı başka bir hedefin kalıbını kapsamıyor. **Ich bin ___.** hiçbir hedefte yok (#281 P1-2). Ses dökümünde **und** ile bağlanan cümleler kaçmasın diye özne olmadan da kalıp var: **komme aus ___**, **wohne in ___**, **und spreche ___**, **arbeite als ___**, **und bin ___ Jahre alt**. Tek sözcüklük kalıp yok. |
+| P1-2 yazma | 45: "Gute Besserung und viele Grüße, ___" ve "Gute Besserung, viele Grüße, ___", "Gute Besserung, ___"ın önüne alındı. 48: "denn ___." eklendi. Sınamada çıkan yeni bulgu: "Ich koche für dich." hiçbir kalıba uymuyordu ("Ich koche ___ für dich." yuvası boş kalamıyor). 48'e bu kalıp da eklendi. `yazmaKontrol` sınaması: dört örnek ve 6 öğrenci biçimi, hepsi TAMAM. |
+| Türkçe satırda yuva | 46 (görev cümlesi, n7, n8, n8b) ve 53 (n1c, iki seçenek, n1d, n1e) `tr` alanlarında yeni yuvaların yerine "…" yazıldı ({name} kaldı). |
+| P2-2 gösterilmemiş biçim | 46 n8b: yeni cümle "Ich spreche {diller}. Ich spreche schon ein bisschen Deutsch." Bu biçim 41. günde gösterildi. 53 n1e: yeni cümle "Mein Hobby ist {hobi}. Ich habe am Wochenende Freizeit." Bu biçim daha önce gösterildi. Eski biçimler kabul listesinde kaldı. |
+| P2-4 Nehmen Sie | HST-07'ye m1:49:t10 (order, "Nehmen Sie am Abend zwei Tropfen.") geri kondu, m1:49:t05 ("Die Jacke steht dir gut.") çıktı. Kişi biçimini (**dir**/**mir**) t12 ("Gefällt dir mein Zimmer?") zaten sınıyor. Karışım: dinleme 4, kurma 5, konuşma 3. |
+
+Değerlendirici sınaması (ornek_de ve elle yazılmış dökümler; profil örneği: Ayşe, der Türkei, München, 35, Türkisch und Englisch, Lehrerin, Lesen):
+- `serbest_konus` noktalamasız tam döküm: 46 için 7/7, 52 için 4/4, 53 için 7/7.
+- t13: sırası değişmiş ve kısa biçimli cevaplar "correct" çıktı. Eksik kartlı cevap ("Ich heiße … Ich komme aus …") "ask_ai"ye düştü.
+
+Kalan şüpheler (bunlara 4. tur notu da eklendi):
+- `serbest_konus`'ta **Ich bin 35.** (Jahre olmadan) ve **Ich bin Lehrerin.** hedef sayılmıyor. Nedeni bilerek seçilen kural: **Ich bin ___.** hiçbir hedefte yok. Değerlendirme cezalandırmıyor, "bunu da söyleyebilirsin" diyor. Ama 46 ve 53 provaları **Ich bin {meslek}.** öğretiyor. Örnekte **Ich arbeite als** / **Mein Beruf ist** kullanılıyor.
+- Ortam notu: `/home/claude/wt-c/node_modules` ana depoya bağlı. Bu yüzden vitest'te `@dw/shared` ana deponun `packages/shared` klasörüne çözülüyor (kume.ts ve m1.ts farklı). İçerik araçları paylaşılan koda göreli yolla eriştiği için doğrulayıcı sonucu etkilenmiyor. Değerlendirici sınamasını, takma adı worktree'ye çeviren ayrı bir yapılandırmayla koştum.
+
+Denetimler (3. tur): validate 0 hata, 315 uyarı (taban #284'e geçtiği için uyarı sayısı değişti; t13 artık "bağlanamayan" listesinde yok) · dikiş İhlal 0 · hafta kapısı: öğretilmeden istenen 0, anlaşılmayan karşı soru 0, hafta sonu testi %100 · `npx vitest run content/tools`: 19/19 dosya, 238/238 test geçti.

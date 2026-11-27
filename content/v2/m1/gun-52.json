@@ -315,5 +315,22 @@
     ],
     "sesli": ["m1:52:s9", "m1:52:s10"],
     "dikte": ["m1:52:s1", "m1:52:s2", "m1:52:s3", "m1:52:s4"]
-  }
+  },
+  "serbest_konus": [
+    {
+      "id": "m1:52:k1",
+      "durum_tr": "Kuaförde sıra bekliyorsun. Yanındaki kadın mahalleye yeni taşınmış ve seninle tanışmak istiyor.",
+      "gorev_tr": "Ona kendini anlat: nereli olduğunu, hangi dilleri konuştuğunu, ne iş yaptığını ve boş zamanında ne yaptığını söyle.",
+      "soru_de": "Hallo! Ich wohne jetzt auch hier. Woher kommst du?",
+      "en_az_cumle": 3,
+      "hedefler": [
+        {"id": "h1", "tr": "nereli olduğunu söyle", "kaliplar": ["Ich komme aus ___.", "komme aus ___.", "Ich bin aus ___.", "Meine Heimat ist ___."], "yuva": "ulke"},
+        {"id": "h2", "tr": "hangi dilleri konuştuğunu söyle", "kaliplar": ["Ich spreche ___.", "und spreche ___.", "Ich spreche ___ und ein bisschen Deutsch.", "Ich kann ___ sprechen."], "yuva": "diller"},
+        {"id": "h3", "tr": "mesleğini söyle", "kaliplar": ["Ich arbeite als ___.", "arbeite als ___.", "Mein Beruf ist ___.", "Ich bin ___ von Beruf."], "yuva": "meslek"},
+        {"id": "h4", "tr": "hobini söyle", "kaliplar": ["Mein Hobby ist ___.", "Meine Hobbys sind ___.", "In meiner Freizeit ___."], "yuva": "hobi"}
+      ],
+      "ornek_de": "Ich komme aus {ulke}. Ich spreche {diller}. Ich arbeite als {meslek}. Mein Hobby ist {hobi}.",
+      "ornek_tr": "Memleketim … Konuştuğum diller … Mesleğim … Hobim …"
+    }
+  ]
 }

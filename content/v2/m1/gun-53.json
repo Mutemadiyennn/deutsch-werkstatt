@@ -236,10 +236,10 @@
         "de": "Freut mich! Woher kommst du? Und wo wohnst du?",
         "tr": "Memnun oldum! Nerelisin? Peki nerede oturuyorsun?",
         "secenekler": [
-          { "de": "Ich komme aus {ulke}. Jetzt wohne ich in {sehir}.", "tr": "Memleketim: {ulke}. Şimdi oturduğum yer: {sehir}.",
+          { "de": "Ich komme aus {ulke}. Jetzt wohne ich in {sehir}.", "tr": "…'den geliyorum. Şimdi …'de oturuyorum.",
             "accepted": ["Ich komme aus {ulke}. Jetzt wohne ich in {sehir}.", "Ich komme aus {ulke}. Ich wohne jetzt in {sehir}.", "Ich komme aus {ulke}, aber jetzt wohne ich in {sehir}.", "Ich komme aus {ulke} und wohne in {sehir}.", "Aus {ulke}. Und ich wohne in {sehir}.", "Ich komme aus {ulke}. Ich wohne in {sehir}."],
             "sonraki": "n1d", "uygun": true, "geri_bildirim_tr": "İki soruya da cevap verdin: memleket **aus** ile, oturduğun yer **in** ile." },
-          { "de": "Ich komme von {ulke}.", "tr": "Memleketim: {ulke}.",
+          { "de": "Ich komme von {ulke}.", "tr": "…'den geliyorum.",
             "accepted": ["Ich komme von {ulke}.", "Von {ulke}.", "Ich komme von {ulke}. Ich wohne in {sehir}."],
             "sonraki": "n1c", "uygun": false, "geri_bildirim_tr": "Memleket için **von** değil **aus** dersin: **Ich komme aus …**" }
         ]
@@ -249,7 +249,7 @@
         "de": "Schön! Was machst du hier in der Firma? Und welche Sprachen sprichst du? Ich spreche leider nur Deutsch.",
         "tr": "Güzel! Sen bu şirkette ne iş yapıyorsun? Peki hangi dilleri konuşuyorsun? Ben maalesef yalnızca Almanca konuşuyorum.",
         "secenekler": [
-          { "de": "Ich bin {meslek}. Ich spreche {diller}.", "tr": "Mesleğim: {meslek}. Konuştuğum diller: {diller}.",
+          { "de": "Ich bin {meslek}. Ich spreche {diller}.", "tr": "Mesleğim: …, konuştuğum diller: …",
             "accepted": ["Ich bin {meslek}. Ich spreche {diller}.", "Ich bin {meslek}. Ich spreche {diller} und ein bisschen Deutsch.", "Ich spreche {diller}. Ich bin {meslek}.", "Ich bin {meslek} hier. Ich spreche {diller}.", "Ich arbeite hier als {meslek}. Ich spreche {diller}.", "Ich arbeite als {meslek}. Ich spreche {diller}."],
             "sonraki": "n1e", "uygun": true, "geri_bildirim_tr": "İşini ve dillerini kısa iki cümleyle söyledin." }
         ]
@@ -259,8 +259,8 @@
         "de": "Super! Und was machst du gern in der Freizeit?",
         "tr": "Harika! Peki boş zamanında ne yapmayı seversin?",
         "secenekler": [
-          { "de": "Mein Hobby ist {hobi}. Das mache ich oft am Wochenende.", "tr": "Hobim: {hobi}. Bunu sık sık hafta sonu yaparım.",
-            "accepted": ["Mein Hobby ist {hobi}. Das mache ich oft am Wochenende.", "Mein Hobby ist {hobi}. Das mache ich am Wochenende.", "Mein Hobby ist {hobi}. Am Wochenende mache ich das oft.", "{hobi}. Das ist mein Hobby.", "Mein Hobby ist {hobi}."],
+          { "de": "Mein Hobby ist {hobi}. Ich habe am Wochenende Freizeit.", "tr": "Hobim: …, hafta sonu boş vaktim var.",
+            "accepted": ["Mein Hobby ist {hobi}. Ich habe am Wochenende Freizeit.", "Mein Hobby ist {hobi}. Am Wochenende habe ich Freizeit.", "Mein Hobby ist {hobi}. Das mache ich oft am Wochenende.", "Mein Hobby ist {hobi}. Das mache ich am Wochenende.", "Mein Hobby ist {hobi}. Am Wochenende mache ich das oft.", "{hobi}. Das ist mein Hobby.", "Mein Hobby ist {hobi}."],
             "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Hobini söyledin ve konuyu hafta sonuna bağladın." },
           { "de": "Ich arbeite am Wochenende.", "tr": "Hafta sonu çalışıyorum.",
             "accepted": ["Ich arbeite am Wochenende.", "Am Wochenende arbeite ich.", "Ich arbeite auch am Wochenende."],
@@ -364,5 +364,26 @@
     ],
     "sesli": ["m1:53:s9", "m1:53:s10"],
     "dikte": ["m1:53:s1", "m1:53:s2", "m1:53:s3", "m1:53:s4"]
-  }
+  },
+  "serbest_konus": [
+    {
+      "id": "m1:53:k1",
+      "durum_tr": "İş yerinde başka bir ekiple ilk toplantı. Herkes sırayla kendini tanıtıyor, şimdi sıra sende.",
+      "gorev_tr": "Kendini tanıt: adını, yaşını, nereli olduğunu, nerede oturduğunu, hangi dilleri konuştuğunu, ne iş yaptığını ve hobini söyle.",
+      "soru_de": "Und jetzt du, bitte!",
+      "konusan": "ch:lechner",
+      "en_az_cumle": 5,
+      "hedefler": [
+        {"id": "h1", "tr": "adını söyle", "kaliplar": ["Ich heiße ___.", "Mein Name ist ___.", "Mein Vorname ist ___."], "yuva": "name"},
+        {"id": "h2", "tr": "yaşını söyle", "kaliplar": ["Ich bin ___ Jahre alt.", "Ich bin ___ Jahre.", "___ Jahre alt.", "und bin ___ Jahre alt."], "yuva": "yas"},
+        {"id": "h3", "tr": "nereli olduğunu söyle", "kaliplar": ["Ich komme aus ___.", "komme aus ___.", "Ich bin aus ___.", "Meine Heimat ist ___."], "yuva": "ulke"},
+        {"id": "h4", "tr": "nerede oturduğunu söyle", "kaliplar": ["Ich wohne in ___.", "wohne in ___.", "Ich wohne jetzt in ___.", "wohne jetzt in ___."], "yuva": "sehir"},
+        {"id": "h5", "tr": "hangi dilleri konuştuğunu söyle", "kaliplar": ["Ich spreche ___.", "und spreche ___.", "Ich spreche ___ und ein bisschen Deutsch.", "Ich kann ___ sprechen."], "yuva": "diller"},
+        {"id": "h6", "tr": "mesleğini söyle", "kaliplar": ["Ich arbeite als ___.", "arbeite als ___.", "Mein Beruf ist ___.", "Ich bin ___ von Beruf."], "yuva": "meslek"},
+        {"id": "h7", "tr": "hobini söyle", "kaliplar": ["Mein Hobby ist ___.", "Meine Hobbys sind ___.", "In meiner Freizeit ___."], "yuva": "hobi"}
+      ],
+      "ornek_de": "Ich heiße {name}. Ich bin {yas} Jahre alt. Ich komme aus {ulke}. Ich wohne jetzt in {sehir}. Ich spreche {diller} und ein bisschen Deutsch. Mein Beruf ist {meslek}. Mein Hobby ist {hobi}.",
+      "ornek_tr": "Adım … Yaşım … Memleketim … Şimdi oturduğum yer … Konuştuğum diller … ve biraz Almanca. Mesleğim … Hobim …"
+    }
+  ]
 }
