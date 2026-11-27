@@ -42,6 +42,10 @@ jobs:
           DW_E2E_FIXTURES=1 npm run content:build
           (cd web && npx vite build --mode e2e --outDir dist-e2e)
           ! grep -q "$A" web/dist-e2e/assets/*.js || { echo "::error::e2e paketine gerçek Worker adresi sızdı"; exit 1; }
+          # PM-147 md. 2: e2e paketinde seviye tespiti fikstür havuzuyla; gerçek havuzla ayrı e2e paketi (webkit: v2_seviye yalnız A yolu)
+          DW_E2E_FIXTURES=1 DW_E2E_TESPIT=gercek npm run content:build
+          (cd web && npx vite build --mode e2e --outDir dist-e2e-gercek)
+          ! grep -q "$A" web/dist-e2e-gercek/assets/*.js || { echo "::error::e2e paketine gerçek Worker adresi sızdı"; exit 1; }
           # D-126 (PM 7061394696, phases/05 md. 5): ilk açılış JS'i = index.html'in bağladığı giriş parçası + statik bağımlıları
           # (modulepreload); liste derleme çıktısından okunur. Toplam (tembel parçalar dahil) büyüme bekçisidir; sınırı PM kararıyla değişir.
           I=0; for f in $(grep -oE '(src|href)="\./assets/[^"]+\.js"' web/dist/index.html | sed -E 's/^[a-z]+="\.\///; s/"$//' | sort -u); do I=$((I + $(gzip -9c "web/dist/$f" | wc -c))); done
@@ -54,6 +58,8 @@ jobs:
         run: (cd worker && npx wrangler deploy --dry-run --outdir /tmp/wb)
       - uses: actions/upload-artifact@v4
         with: { name: dist-e2e, path: web/dist-e2e, retention-days: 3 }
+      - uses: actions/upload-artifact@v4
+        with: { name: dist-e2e-gercek, path: web/dist-e2e-gercek, retention-days: 3 }
 
   webkit:
     # Kabul ölçütü (DECISIONS D-040): iPhone profilleriyle WebKit
@@ -69,6 +75,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with: { name: dist-e2e, path: web/dist-e2e }
+      - uses: actions/download-artifact@v4
+        with: { name: dist-e2e-gercek, path: web/dist-e2e-gercek }
       - uses: actions/setup-node@v4   # v2_raf.py gerçek raf Function'ını Node ile koşar (inceleme #98 2. tur)
         with: { node-version: 22 }
       - uses: actions/setup-python@v5
@@ -191,6 +199,8 @@ jobs:
         run: cd tests/e2e && python v2_sinav.py --shots /tmp/shots && python v2_sinav.py --scheme dark --shots /tmp/shots
       - name: "Seviye tespiti (PM-115 PR 2b): giriş, madde + Bilmiyorum, bölüm arası, sürdür, rapor, üç karar yolu, gün kilidi; açık + koyu"
         run: cd tests/e2e && python v2_seviye.py --shots /tmp/shots && python v2_seviye.py --scheme dark --shots /tmp/shots
+      - name: "Seviye tespiti, gerçek havuz (PM-147 md. 2): A yolu (hepsi doğru → A2'ye hazırsın → 57. gün); B/C fikstür sayılarına bağlı"
+        run: cd tests/e2e && E2E_DIST=web/dist-e2e-gercek python v2_seviye.py --yol A
       - name: "8. gün fikstürü (#231 P1-3): gr: dersli gün baştan sona, dil noktası durağı, ders:<id> yazımı"
         run: cd tests/e2e && python v2_akis.py --tam --gun 8
       - name: Görsel regresyon (açık + koyu)
