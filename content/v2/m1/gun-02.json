@@ -432,6 +432,10 @@
     {
      "de": "Ich wohne in … – Wohnen Sie in …?",
      "tr": "…'de oturuyorum – …'de mi oturuyorsunuz? (şehir adıyla)"
+    },
+    {
+     "de": "Woher kommen Sie? – Ich komme aus …",
+     "tr": "Nerelisiniz? – …'den geliyorum. (ülke adıyla)"
     }
    ],
    "gorev_cumleleri": [
@@ -553,6 +557,18 @@
       "Ich wohne in Wendlfing. Und Sie?",
       "Und Sie? Ich wohne in Wendlfing.",
       "Ich wohne in Wendlfing. Wohnen Sie in Wendlfing?"
+     ]
+    },
+    {
+     "kart": "lx:wohnen",
+     "de": "Ich komme aus {ulke}, aber ich wohne in Wendlfing.",
+     "tr": "Memleketim {ulke}, ama Wendlfing'de oturuyorum.",
+     "accepted": [
+      "Ich komme aus {ulke}, aber ich wohne in Wendlfing.",
+      "Ich komme aus {ulke}. Aber ich wohne in Wendlfing.",
+      "Aus {ulke}, aber ich wohne in Wendlfing.",
+      "Ich komme aus {ulke}, aber wohne in Wendlfing.",
+      "Ich komme aus {ulke}, wohne aber in Wendlfing."
      ]
     }
    ],
@@ -1853,7 +1869,7 @@
        "Ja, Anfang August.",
        "Ja, Ende August."
       ],
-      "sonraki": "n4",
+      "sonraki": "n3c",
       "uygun": true,
       "geri_bildirim_tr": "Açık bir cevap: önce **Ja**, sonra ay."
      },
@@ -1868,7 +1884,7 @@
        "Nein, ich hab im Winter Urlaub.",
        "Im Winter."
       ],
-      "sonraki": "n4",
+      "sonraki": "n3c",
       "uygun": true,
       "geri_bildirim_tr": "Güzel. **Nein** dedin ve doğru zamanı da ekledin."
      },
@@ -1883,6 +1899,39 @@
       "sonraki": "n3",
       "uygun": false,
       "geri_bildirim_tr": "Ocak yaz ayı değil. Yaz için **im August** söyleyebilirsin."
+     }
+    ]
+   },
+   {
+    "id": "n3c",
+    "de": "Und woher kommen Sie?",
+    "tr": "Peki siz nerelisiniz?",
+    "secenekler": [
+     {
+      "de": "Ich komme aus {ulke}.",
+      "tr": "Memleketim {ulke}.",
+      "accepted": [
+       "Ich komme aus {ulke}.",
+       "Aus {ulke}.",
+       "Ich komme aus {ulke}, Frau Brandl.",
+       "Aus {ulke}, Frau Brandl.",
+       "Ich bin aus {ulke}."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Açık bir cevap. Memleketini **aus** ile söyledin."
+     },
+     {
+      "de": "Ich komme in {ulke}.",
+      "tr": "Memleketim {ulke}. (yanlış kelimeyle)",
+      "accepted": [
+       "Ich komme in {ulke}.",
+       "In {ulke}.",
+       "Ich komme in {ulke}, Frau Brandl."
+      ],
+      "sonraki": "n3c",
+      "uygun": false,
+      "geri_bildirim_tr": "Nereli olduğunu söylerken **in** değil **aus** gelir: **Ich komme aus …**"
      }
     ]
    },
@@ -1945,7 +1994,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Komşunun doğum gününü kutladın ve kendi doğum ayını söyledin. Onu bugün sevindirdin."
+  "kapanis_tr": "Komşunun doğum gününü kutladın, kendi doğum ayını ve memleketini söyledin. Onu bugün sevindirdin."
  },
  "okuma_yazma": {
   "tur": "yazma",

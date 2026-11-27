@@ -1,0 +1,264 @@
+{
+ "batch": "018",
+ "review": {
+  "status": "draft"
+ },
+ "items": [
+  {
+   "id": "lx:Wohnort",
+   "de": "Wohnort",
+   "tr": "oturduğun yer, ikamet yeri",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Wohnorte",
+   "collocations": [
+    {
+     "de": "Ihr Wohnort",
+     "tr": "oturduğunuz yer"
+    },
+    {
+     "de": "Wohnort: …",
+     "tr": "Oturduğu yer: … (formda)"
+    },
+    {
+     "de": "Mein Wohnort ist …",
+     "tr": "Oturduğum yer …"
+    },
+    {
+     "de": "Wie heißt Ihr Wohnort?",
+     "tr": "Oturduğunuz yer neresi?"
+    }
+   ],
+   "patterns": [
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Oturduğum yer Wendlfing derken **Mein Wohnort Wendlfing** eksik kalır. Araya **ist** gelir: **Mein Wohnort ist Wendlfing**.",
+    "**Wohnort** yalnızca şehrin ya da köyün adıdır. Sokak ve numara **Adresse** satırına yazılır.",
+    "**Wohnort** büyük harfle başlar. Almancada **der**, **die** ya da **das** alan her kelime büyük harfle yazılır."
+   ],
+   "examples": [
+    {
+     "id": "lx:Wohnort:1",
+     "de": "Wie heißt Ihr Wohnort?",
+     "tr": "Oturduğunuz yer neresi?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Wohnort:2",
+     "de": "Ihr Wohnort ist Wendlfing, ja?",
+     "tr": "Oturduğunuz yer Wendlfing, değil mi?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Wohnort:3",
+     "de": "Vorname: Rosa. Nachname: Brandl. Wohnort: Wendlfing.",
+     "tr": "Adı: Rosa. Soyadı: Brandl. Oturduğu yer: Wendlfing.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Wohnort:4",
+     "de": "– Und der Wohnort? – Wendlfing. – Danke sehr.",
+     "tr": "– Peki oturduğunuz yer? – Wendlfing. – Çok teşekkürler.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:Wohnort:5",
+     "de": "– Herr Pichler, wie heißt Ihr Wohnort? – Wie bitte? – Ihr Wohnort, bitte. – Ah, Wendlfing.",
+     "tr": "– Pichler Bey, oturduğunuz yer neresi? – Efendim? – Oturduğunuz yer, lütfen. – Ha, Wendlfing.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A1",
+   "tier": "K1",
+   "domains": [
+    "amt",
+    "smalltalk",
+    "arzt",
+    "telefon"
+   ],
+   "exp": {
+    "anlam_tr": "**Wohnort** oturduğun şehir ya da köydür.",
+    "ne_zaman_tr": "Form doldururken ve kendini tanıtırken.",
+    "parcalar": [
+     {
+      "de": "Wohn",
+      "tr": "oturma"
+     },
+     {
+      "de": "ort",
+      "tr": "yeri"
+     }
+    ],
+    "ipucu_tr": "Sınav kartında **Wohnort** yazıyorsa oturduğun şehri söylersin."
+   },
+   "forms": [
+    {
+     "de": "Mein ___ ist Wendlfing.",
+     "answer": "Wohnort",
+     "tr": "Oturduğum yer Wendlfing.",
+     "hint_tr": "Oturduğum yer derken **mein Wohnort** denir."
+    },
+    {
+     "de": "Wie heißt Ihr ___?",
+     "answer": "Wohnort",
+     "tr": "Oturduğunuz yer neresi?",
+     "hint_tr": "Oturduğunuz yer derken **Ihr Wohnort** denir."
+    },
+    {
+     "de": "Vorname: Rosa. Nachname: Brandl. ___: Wendlfing.",
+     "answer": "Wohnort",
+     "tr": "Adı: Rosa. Soyadı: Brandl. Oturduğu yer: Wendlfing.",
+     "hint_tr": "Formda oturulan şehrin satırı **Wohnort** olur."
+    },
+    {
+     "de": "Der ___ ist Wendlfing, ja?",
+     "answer": "Wohnort",
+     "tr": "Oturduğu yer Wendlfing, değil mi?",
+     "hint_tr": "Oturulan yer **der Wohnort** olur."
+    },
+    {
+     "de": "Telefonnummer und ___, bitte.",
+     "answer": "Wohnort",
+     "tr": "Telefon numaranız ve oturduğunuz yer, lütfen.",
+     "hint_tr": "Oturduğunuz yer derken **Wohnort** denir."
+    }
+   ],
+   "unit": "u:m1:07",
+   "can_do": [
+    "cd:m1:07"
+   ],
+   "arm": "pazar",
+   "place": "pl:praxis"
+  },
+  {
+   "id": "lx:Alter",
+   "de": "Alter",
+   "tr": "yaş",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Alter",
+   "collocations": [
+    {
+     "de": "Ihr Alter",
+     "tr": "yaşınız"
+    },
+    {
+     "de": "Alter: …",
+     "tr": "Yaşı: … (formda)"
+    },
+    {
+     "de": "Alter und Wohnort",
+     "tr": "yaş ve oturulan yer"
+    },
+    {
+     "de": "Wie alt sind Sie?",
+     "tr": "Kaç yaşındasınız?"
+    }
+   ],
+   "patterns": [
+    "pt:w-frage",
+    "pt:ich-bin"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Yaşınız kaç derken **Wie viel ist Ihr Alter** denmez. Doğrusu **Wie alt sind Sie**.",
+    "Yaşım otuz derken **Mein Alter ist dreißig** pek denmez. Doğrusu **Ich bin dreißig** ya da **Ich bin dreißig Jahre alt**.",
+    "**Alter** yaş demek, **alt** yaşlı ya da eski demek. İkisini karıştırma."
+   ],
+   "examples": [
+    {
+     "id": "lx:Alter:1",
+     "de": "Und Ihr Alter, bitte?",
+     "tr": "Peki yaşınız, lütfen?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Alter:2",
+     "de": "Vorname: Josef. Nachname: Pichler. Alter: 66.",
+     "tr": "Adı: Josef. Soyadı: Pichler. Yaşı: 66.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Alter:3",
+     "de": "Alter und Wohnort, bitte.",
+     "tr": "Yaşınız ve oturduğunuz yer, lütfen.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Alter:4",
+     "de": "Mein Alter? Das sag ich nicht!",
+     "tr": "Yaşım mı? Onu söylemem!",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Alter:5",
+     "de": "– Frau Brandl, wie alt sind Sie? – Mein Alter? Neunundsiebzig!",
+     "tr": "– Brandl Hanım, kaç yaşındasınız? – Yaşım mı? Yetmiş dokuz!",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:Alter:6",
+     "de": "– Und Ihr Alter, Herr Lechner? – Ich bin einunddreißig.",
+     "tr": "– Peki yaşınız, Lechner Bey? – Otuz bir yaşındayım.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A1",
+   "tier": "K1",
+   "domains": [
+    "amt",
+    "smalltalk",
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "**Alter** bir kişinin kaç yaşında olduğudur.",
+    "ne_zaman_tr": "Formda ve sınav kartında yazar.",
+    "parcalar": [],
+    "ipucu_tr": "Konuşmada çoğu zaman **Wie alt sind Sie** diye sorulur."
+   },
+   "forms": [
+    {
+     "de": "Und Ihr ___, bitte?",
+     "answer": "Alter",
+     "tr": "Peki yaşınız, lütfen?",
+     "hint_tr": "Yaşınız derken **Ihr Alter** denir."
+    },
+    {
+     "de": "Vorname: Josef. Nachname: Pichler. ___: 66.",
+     "answer": "Alter",
+     "tr": "Adı: Josef. Soyadı: Pichler. Yaşı: 66.",
+     "hint_tr": "Formda yaş satırı **Alter** olur."
+    },
+    {
+     "de": "___ und Wohnort, bitte.",
+     "answer": "Alter",
+     "tr": "Yaşınız ve oturduğunuz yer, lütfen.",
+     "hint_tr": "Yaş derken **Alter** denir."
+    },
+    {
+     "de": "Mein ___? Das sag ich nicht!",
+     "answer": "Alter",
+     "tr": "Yaşım mı? Onu söylemem!",
+     "hint_tr": "Yaşım derken **mein Alter** denir."
+    },
+    {
+     "de": "Wie ___ sind Sie?",
+     "answer": "alt",
+     "tr": "Kaç yaşındasınız?",
+     "hint_tr": "Soruda **Alter** değil **alt** gelir: **Wie alt sind Sie?**"
+    }
+   ],
+   "unit": "u:a1:12",
+   "can_do": [
+    "cd:m1:12"
+   ],
+   "arm": "pazar"
+  }
+ ]
+}

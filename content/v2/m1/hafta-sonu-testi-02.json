@@ -143,20 +143,22 @@
   },
   {
    "id": "m1:14:t10",
-   "k": "gap",
-   "de": "Ich hätte gern ___ Apfel.",
-   "tr": "Bir elma rica ediyorum.",
+   "k": "guided_response",
+   "situation_tr": "Sınav kartı: **Name? Alter? Wohnort?** Görevli soruyor. Adını, yaşını ve oturduğun yeri söyle.",
+   "prompt_de": "Wie heißen Sie? Wie alt sind Sie? Und wo wohnen Sie?",
    "accepted": [
-    "einen",
-    "Einen",
-    "einen."
+    "Ich heiße {name}. Ich bin {yas} Jahre alt. Ich wohne in {sehir}.",
+    "Ich heiße {name}, ich bin {yas} Jahre alt und ich wohne in {sehir}.",
+    "Ich heiße {name}. Ich bin {yas} Jahre alt. Mein Wohnort ist {sehir}.",
+    "Ich heiße {name}. Ich bin {yas}. Mein Wohnort ist {sehir}.",
+    "Ich bin {name}. Ich bin {yas} Jahre alt und wohne in {sehir}."
    ],
-   "opts": [
-    "einen",
-    "ein",
-    "eine"
-   ],
-   "why_tr": "**der Apfel** isterken **ein** değil **einen** olur."
+   "why_tr": "Üç soru, üç kısa cümle: **Ich heiße …**, **Ich bin … Jahre alt**, **Ich wohne in …**.",
+   "accepted_adsiz": [
+    "Ich bin {yas} Jahre alt. Ich wohne in {sehir}.",
+    "Ich bin {yas} Jahre alt und ich wohne in {sehir}.",
+    "Ich bin {yas}. Mein Wohnort ist {sehir}."
+   ]
   },
   {
    "id": "m1:14:t11",
