@@ -13,7 +13,7 @@ import { DERS_ADIM_TR, TANIT_GRUP, adimlarDers, altSayisi, bahcePlani, dersAnaht
 import { speak, speakDizi, stopSpeaking } from "../services/speech.ts";
 import { adimXpVer, xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
-import { ActionBar, CevapXp, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
+import { ActionBar, CevapXp, FeedbackBand, KonusanRozet, ListenButton, ProgressHeader } from "../ui/kit.tsx";
 import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Chips, Rich } from "../ui/rich.tsx";
@@ -207,27 +207,34 @@ function Tablo({ t, onNext }: { t: TemelDers; onNext: () => void }) {
   );
 }
 
-/** Konuşulanı sırayla seslendirir; yeni çalma ya da ekrandan çıkış öncekini keser (inceleme #65 P1-7) */
-function useSesDizisi() {
+/**
+ * Konuşulanı sırayla, her satırı kendi konuşanının sesiyle seslendirir (PM-132: sahne tek sesle okunuyordu); şu an konuşan
+ * döner (ekranda ad + renk). Yeni çalma ya da ekrandan çıkış öncekini keser (inceleme #65 P1-7)
+ */
+type Satir = { de: string; kim?: string };
+function useSesDizisi(): [(lines: Satir[], sp?: "slow" | "normal") => Promise<void>, string | undefined] {
   const tok = useRef(0);
+  const [kim, setKim] = useState<string>();
   useEffect(() => () => { tok.current++; stopSpeaking(); }, []);
-  return async (lines: string[], sp: "slow" | "normal" = "normal") => {
+  return [async (lines, sp = "normal") => {
     const my = ++tok.current; stopSpeaking();
-    await speakDizi(lines.map((de) => ({ de })), sp, 0, () => tok.current !== my);
-  };
+    try { await speakDizi(lines, sp, 0, () => tok.current !== my, (i) => setKim(lines[i]!.kim)); } finally { if (tok.current === my) setKim(undefined); }
+  }, kim];
 }
 
 /** Önce dinle (phases/09 madde 1): diyalog önce altyazısız dinlenir, sonra metin ve çeviri açılır */
 function Diyalog({ d, onNext }: { d: NonNullable<TemelDers["dialogue"]>; onNext: () => void }) {
-  const cal = useSesDizisi();
+  const [cal, kim] = useSesDizisi();
+  const satirlar = d.lines.map((l) => ({ de: l.de, kim: l.speaker ?? (l.r === "B" ? "ogrenci" : "karsi") }));
   const [dinledi, setDinledi] = useState(false);
   const [altyazi, setAltyazi] = useState(false);
   return (
     <section class="card stack fade" data-test="ders-diyalog">
       <div class="kicker icerik">{d.title_tr}</div>
       <p class="small">{altyazi ? "Şimdi metinle birlikte dinle." : "Önce yalnızca dinle: kim ne istiyor? Kelimelerin hepsini anlaman gerekmiyor."}</p>
-      <div class="row"><button class="btn primary grow" data-test="diyalog-dinle" onClick={() => { setDinledi(true); void cal(d.lines.map((l) => l.de)); }}>{dinledi ? "Bir daha dinle" : "Dinle"}</button>
-        <button class="btn grow" onClick={() => { setDinledi(true); void cal(d.lines.map((l) => l.de), "slow"); }}>Yavaş</button></div>
+      <div class="row"><button class="btn primary grow" data-test="diyalog-dinle" onClick={() => { setDinledi(true); void cal(satirlar); }}>{dinledi ? "Bir daha dinle" : "Dinle"}</button>
+        <button class="btn grow" onClick={() => { setDinledi(true); void cal(satirlar, "slow"); }}>Yavaş</button></div>
+      <KonusanRozet kim={kim} kimler={satirlar.map((x) => x.kim)} />
       {altyazi && <ul class="list" data-test="diyalog-metin">{d.lines.map((l) => (
         <li class="row" style={{ flexWrap: "nowrap" }}>
           <span class="tiny muted" style={{ width: 28 }}>{l.r === "B" ? "Sen" : ""}</span>
@@ -248,14 +255,16 @@ function Dinleme({ l, onNext }: { l: TemelDers["listening"][number]; onNext: (s:
   const [sec, setSec] = useState<number | null>(null);
   const [dogru, setDogru] = useState(0);
   const [dinledi, setDinledi] = useState(false);
-  const ses = useSesDizisi();
-  const cal = (sp: "slow" | "normal") => { setDinledi(true); void ses(l.script.map((c) => c.de), sp); };
+  const [ses, kim] = useSesDizisi();
+  const satirlar = l.script.map((c) => ({ de: c.de, kim: c.speaker ?? c.r }));
+  const cal = (sp: "slow" | "normal") => { setDinledi(true); void ses(satirlar, sp); };
   const soru = l.qs[q];
   return (
     <section class="card stack fade" data-test="ders-dinleme">
       <div class="kicker icerik">{l.title_tr}</div>
       <div class="row"><button class="btn primary grow" data-test="dinle" onClick={() => cal(l.speed === "slow" ? "slow" : "normal")}>Dinle</button>
         {l.speeds.includes("slow") && l.speeds.length > 1 && <button class="btn grow" onClick={() => cal("slow")}>Yavaş</button>}</div>
+      <KonusanRozet kim={kim} kimler={satirlar.map((x) => x.kim)} gizle={JSON.stringify(l.qs.map((q) => q.opts))} />
       {!dinledi && !E2E ? <p class="small muted">Önce dinle; sorular sonra gelecek.</p> : soru ? (
         <div class="stack">
           <h3><Rich text={soru.q_tr} /></h3>
