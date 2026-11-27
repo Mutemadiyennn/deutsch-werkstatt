@@ -29,9 +29,10 @@ import type { Lexeme, TemelDers, World } from "./index.ts";
 
 const HARF = "A-Za-zÄÖÜäöüßıİşŞğĞçÇéè";
 const TOK = new RegExp(`[${HARF}]+(?:-[${HARF}]+)*|\\d+`, "g");
-/** Yer tutucular: {name} sayılmaz; {a|b} iki seçeneğiyle sayılır */
+/** Yer tutucular: {name} (ve profil yuvaları) sayılmaz; {a|b} iki seçeneğiyle sayılır */
 const AD_YERI = "Adyeriqqq";
-const yerTutucu = (s: string | undefined, ad = " ") => String(s ?? "").replace(/\{name\}/gi, ad).replace(/\{([^}]*)\}/g, (_, x: string) => ` ${x.replace(/\|/g, " ")} `);
+/** {name} ve profil yuvaları ({ulke}, {sehir}…; PM-148 karar 2) ad yeri gibi: sayılmaz, kalıp yuvasını doldurur */
+const yerTutucu = (s: string | undefined, ad = " ") => String(s ?? "").replace(/\{(?:name|ulke|sehir|yas|diller|meslek|hobi|aile)\}/gi, ad).replace(/\{([^}]*)\}/g, (_, x: string) => ` ${x.replace(/\|/g, " ")} `);
 /** Cümleyi küçük harfli sözcüklere böler ({name} sayılmaz; {a|b} → a b) */
 export const toks = (s: string | undefined): string[] => (yerTutucu(s).match(TOK) ?? []).map((t) => t.toLowerCase());
 /** Özgün harfli sözcükler ve cümle başı bilgisi (harf büyüklüğü cümle başında ayırt edici değildir) */

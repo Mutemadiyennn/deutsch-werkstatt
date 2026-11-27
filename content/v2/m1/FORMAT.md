@@ -166,3 +166,35 @@ Doğrulayıcı (`m1check.ts`) şunları denetler:
 
 ## Kalıp dolgu anlamları (`patterns.json` → `slots[].fills_tr`)
 İsteğe bağlı. `fills` ile aynı sırada ve uzunlukta kısa Türkçe anlamlar ("im Büro" → "ofiste"). Boş anlam yazılmaz (hata). Kalıp kartı (B2) seçilen dolgunun anlamını buradan gösterir; örnek cümle varsa o da öne çıkar. Uzunluk farkı doğrulayıcıda hatadır.
+
+## Serbest konuşma (`serbest_konus`; PM-148 [ANA-V] md. 1, karar 2–4)
+Hazırlıksız, ipucusuz, sesli görev. Öğrenci durumu ve görevi Türkçe okur, karşıdakinin sorusunu (varsa) yalnız duyar, en az iki cümle söyler; sonra hedef listesi, çevrimiçiyse öğretmen notu, örnek cevap ve "Bir daha dene". Planlayıcı maddeleri **gün sonu durağının başına**, "kendini dene"den önce koyar (yeni durak türü yok). Bayrak: `policy.json → serbest_konus.acik` (kapalı iner; PM-135 ek 14).
+
+```jsonc
+"serbest_konus": [                 // gün başına 1–2 madde (karar 3: her gün ≥ 1); yoksa alan yazılmaz
+  {
+    "id": "m1:NN:k1",              // m1:<gün>:k<n>, gün içinde tekil
+    "durum_tr": "Yeni kursta yanındaki kişi seninle tanışmak istiyor.",   // sahne: kim, nerede. 1–2 cümle, OD-9
+    "gorev_tr": "Kendini tanıt: adını, nereli olduğunu ve nerede yaşadığını söyle.",
+    "soru_de": "Hallo! Wer bist du?",   // isteğe bağlı: karşıdakinin açılış sorusu; yalnız ses, metni cevaptan sonra görünür
+    "konusan": "ch:...",                // isteğe bağlı: soru_de'nin sesi
+    "en_az_cumle": 2,                   // ≥ 2 (varsayılan 2)
+    "hedefler": [                       // 2–7 (sınav "kendini tanıt" 7 madde)
+      { "id": "h1", "tr": "adını söyle", "kaliplar": ["Ich heiße ___.", "Mein Name ist ___.", "Ich bin ___."], "yuva": "name" },
+      { "id": "h2", "tr": "nereli olduğunu söyle", "kaliplar": ["Ich komme aus ___.", "Ich bin aus ___.", "Aus ___."], "yuva": "ulke" },
+      { "id": "h3", "tr": "nerede yaşadığını söyle", "kaliplar": ["Ich wohne in ___.", "Ich lebe in ___.", "In ___."], "yuva": "sehir" }
+    ],
+    "ornek_de": "Ich heiße {name}. Ich komme aus {ulke}. Ich wohne in {sehir}.",   // cevaptan SONRA gösterilir ve dinletilir
+    "ornek_tr": "Benim adım …. …'den geliyorum. …'de yaşıyorum."
+  }
+]
+```
+
+Kurallar (doğrulayıcı `m1check.ts`, hafta kapısı `hafta-kapisi.ts`):
+- **Öğretmeden isteme yok:** her hedefin en az bir kalıbı (`___` ad yeri gibi bilinir) ve `soru_de`, günün sonundaki K(t) ile kurulabilir. Hafta kapısı her hedefi bir madde sayar.
+- **İpucu yok:** `gorev_tr` ve `durum_tr` içinde `**`, „ “ " » « ve yer tutucu olmaz; Almanca sözcük yazılmaz (görev Türkçe anlatılır).
+- **Kalıplar ≥ 3** (D-064). `___` 1–4 sözcüklük serbest yuvadır (yazma `accepted_kaliplar` ile aynı eşleştirici: büyük/küçük harf, noktalama, ä/ae farkı yok). Yuvasız kalıp tam cümledir (nokta, ünlem ya da soru işaretiyle biter). Değerlendirme kalıbı dökümün **içinde** arar (ses tanıma noktalama koymayabilir); "Ich bin ___." gibi geniş kalıp başka hedefi de karşılayabilir, hedefler buna göre seçilir.
+- `ornek_de`'nin her cümlesi bir hedefin kalıbına uyar, her hedef en az bir cümleyle karşılanır, cümle sayısı ≥ `en_az_cumle`.
+- **Profil yuvaları** (karar 2; değerler yalnız cihazda, depoya hiç girmez): `{name}`, `{ulke}`, `{sehir}`, `{yas}`, `{diller}`, `{meslek}`, `{hobi}`, `{aile}`. Yalnız `ornek_de`'de geçer; kume ve doğrulayıcı onları ad yeri sayar. Değer, kalıptaki yerine olduğu gibi konan Almanca biçimdir: `ulke` "aus"tan sonraki biçim (Polen, der Schweiz), `yas` sayı, `diller` "… und …", `meslek` "Ich bin …" sonrası, `hobi` ad (Fußball, Lesen), `aile` ledig | verheiratet | geschieden | verwitwet. Alan boşsa örnekte "…" görünür.
+- `soru_de`, `durum_tr` ve `gorev_tr` içinde yer tutucu olmaz (ses önceden üretilir).
+- **Sayım (karar 4):** adım yalnız mikrofonla yapıldıysa "konuşuldu" sayılır; yazarak geçilirse kaydedilir ama konuşma sayılmaz. Süre `policy.akis.adim_sn.serbest_konus`.

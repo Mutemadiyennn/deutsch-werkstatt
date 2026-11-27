@@ -54,6 +54,15 @@ export function uyanKaliplar(cumle: string, kaliplar: string[]): string[] {
   return her.every(Boolean) ? (her as string[]) : [];
 }
 export const kalipliMi = (cumle: string, kaliplar: string[]) => uyanKaliplar(cumle, kaliplar).length > 0;
+/**
+ * Konuşma dökümünde kalıp (PM-148 serbest konuşma): ses tanıma noktalama koymayabilir ("ich heiße … ich komme aus …"),
+ * bu yüzden kalıp metnin İÇİNDE, sözcük sınırında aranır; `___` yine 1–4 sözcük.
+ */
+export function kalipIcinde(metin: string, kalip: string): boolean {
+  const k = kalipRe(kalip);
+  if (!k.trim()) return false;
+  return new RegExp(`(?:^|\\s)${k}(?=\\s|$)`).test(temiz(metin));
+}
 
 /** Zorunlu kelime: tam kelime ya da çekimli biçim (kostet ~ kosten, habe ~ hast); kök en az 4 harf (inceleme #70 P2) */
 function kelimeVar(kelimeler: string[], z: string): boolean {

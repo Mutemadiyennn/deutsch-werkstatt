@@ -138,6 +138,39 @@ export const OkumaYazma = z.object({
 });
 
 /**
+ * PM-148 karar 2: cihaz profilindeki isteğe bağlı "Kendim hakkında" alanları (değerler yalnız cihazda; depoya, Worker günlüğüne,
+ * yedeğe girmez). İçerikte `{ulke}` gibi yuva olarak geçer; değer kalıptaki yerine olduğu gibi konan Almanca biçimdir.
+ */
+export const PROFIL_YUVALARI = ["ulke", "sehir", "yas", "diller", "meslek", "hobi", "aile"] as const;
+export type ProfilYuvasi = (typeof PROFIL_YUVALARI)[number];
+const YUVA_ADI = z.enum(["name", ...PROFIL_YUVALARI]);
+
+/** "Ich heiße ___." gibi kalıp: `___` 1–4 sözcüklük serbest yuva (yazma `accepted_kaliplar` ile aynı eşleştirici) */
+const KonusKalip = z.string().min(1);
+/**
+ * PM-148 [ANA-V] md. 1: serbest sesli konuşma. Durum + görev Türkçe, ipucu yok, hazırlık dinletisi yok; öğrenci en az iki cümle
+ * söyler. Değerlendirme hedef listesidir (kalıp eşleşmesi, çevrimdışı) + çevrimiçiyse `feedback_tr`. Biçim: content/v2/m1/FORMAT.md.
+ */
+export const SerbestKonus = z.object({
+  id: z.string().regex(new RegExp(`^m1:${GUN_NN}:k\\d+$`)),
+  durum_tr: z.string().min(1),
+  gorev_tr: z.string().min(1),
+  /** karşıdakinin açılış sorusu: yalnız ses çalınır, metni cevaptan sonra görünür */
+  soru_de: z.string().min(1).optional(),
+  konusan: z.string().optional(),
+  en_az_cumle: z.number().int().min(2).max(10).default(2),
+  hedefler: z.array(z.object({
+    id: z.string().regex(/^h\d+$/),
+    tr: z.string().min(1),
+    kaliplar: z.array(KonusKalip).min(3),
+    yuva: YUVA_ADI.optional()
+  })).min(2).max(7),
+  ornek_de: z.string().min(1),
+  ornek_tr: z.string().min(1)
+});
+export type SerbestKonus = z.infer<typeof SerbestKonus>;
+
+/**
  * AKIS AK-5 (PM-078 B; PM #160): günün "halkaları" — İÇ'in grupladığı 2–6 yeni kart (policy `akis.halka_kart`; PM-098 md. 2), kapıdan geçen görev cümleleri ve mini sahne.
  * Alan yoksa gün bugünkü düzenle çalışır. Halka kendi kalıplarını öğretir (`kaliplar`; "…" yuvadır) ve günün dersi VARSAYILMAZ
  * (#165 kuralı): `dersten_sonra: true` yalnız halka bilerek dersten sonra konduysa yazılır (planlayıcı sırayı K(t)'den hesaplar, K8).
@@ -224,6 +257,8 @@ export const Gun = z.object({
   gorsel: z.array(Gorsel).default([]),
   prova: Prova.optional(),
   okuma_yazma: OkumaYazma.optional(),
+  /** PM-148: serbest sesli konuşma (gün başına 1–2; planlayıcı gün sonu durağının başına koyar, bayrak `policy.serbest_konus.acik`) */
+  serbest_konus: z.array(SerbestKonus).max(2).optional(),
   /** PM-066 madde 3 (B16 "Günü sınavla geç"): 10–12 madde (4 dikte, 6 üretim — 2'si sesli —, 1 mini prova); mevcut Drill türleri */
   gun_sinavi: z.object({ id: z.string(), maddeler: z.array(Drill).min(10).max(12), sesli: z.array(z.string()).default([]),
     /** dikte maddeleri (İÇ #110 P1-1): sınav ekranı bunları `dikteDegerlendir` ile puanlar; sesli ile kesişmez, seçmeli olamaz */

@@ -10,7 +10,7 @@ import { Gun, medyalar } from "../../packages/shared/src/m1.ts";
 import { Deneme } from "../../packages/shared/src/deneme.ts";
 import { readdirSync } from "node:fs";
 import { kartMi, type ContentIndex } from "../../packages/shared/src/content.ts";
-import { Halka, genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
+import { Halka, SerbestKonus, genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
 import { z } from "zod";
 import { klipVideolari } from "./klip.ts";
 import { notoDosya, notoSvg } from "./emoji.ts";
@@ -51,6 +51,9 @@ if (process.env.DW_E2E_FIXTURES === "1") {
     const r = z.array(Halka).safeParse(JSON.parse(readFileSync(f, "utf8")).halkalar);
     if (r.success) d.data = { ...d.data, halkalar: r.data }; else { console.error(`${f}: ${r.error.message}`); process.exit(1); }
   }
+  // PM-148 serbest konuşma: içeriği gelmemiş günlere e2e maddesi (fixtures/serbest-konus-e2e.json, gün → maddeler) — yayın paketine girmez
+  const sk = z.record(z.string(), z.array(SerbestKonus)).parse(JSON.parse(readFileSync(join(ROOT, "content/tools/fixtures/serbest-konus-e2e.json"), "utf8")));
+  for (const d of days) { const m = sk[String(d.data.day)]; if (m && !d.data.serbest_konus?.length) d.data = { ...d.data, serbest_konus: m }; }
   if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
 }
 // sınav günü (PM-110): incelenmiş düzey denemeleri pakete girer (taslak deneme öğrenciye gitmez; sınav günü "hazırlanıyor" der).

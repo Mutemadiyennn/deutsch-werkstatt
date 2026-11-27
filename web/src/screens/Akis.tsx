@@ -10,7 +10,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Rich } from "../ui/rich.tsx";
 import { hucreDili, sikTablo, tabloBol } from "../core/tablo.ts";
-import { bilinmeyenler, kalipOrtu, kalipSecenekleri, kalipToks, kumeDizini, toks, YUVA, type Drill, type Lexeme, type LearnerItem } from "@dw/shared";
+import { bilinmeyenler, kalipOrtu, kalipSecenekleri, kalipToks, kumeDizini, toks, YUVA, type Drill, type Lexeme, type LearnerItem, type SerbestKonus } from "@dw/shared";
 import { loadDilNoktalari, loadFoto, loadGenelAdlar, loadResim, loadLexicon, loadM1Gun, loadTemeller, loadWorld, type FotoKayit } from "../services/content.ts";
 import { oncekiBilinen } from "../services/onceki.ts";
 import { getMeta, itemsMap, putItems, setMeta } from "../data/db.ts";
@@ -18,7 +18,10 @@ import { review } from "../core/srs.ts";
 import { adimXpVer, bahceTamam, gunBittiYaz, soruXpVer } from "../services/ilerleme.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { useApp } from "../state.ts";
-import { akisGunu, DIL_NOKTASI, GUN_SINAVI, KIP, planGun } from "../core/akis.ts";
+import { akisGunu, DIL_NOKTASI, GUN_SINAVI, KIP, planGun, SERBEST_KONUS } from "../core/akis.ts";
+import { SerbestKonusAdimi } from "../ui/soru/SerbestKonus.tsx";
+import { konusmaYaz, serbestKonusAcik } from "../services/konusma.ts";
+import type { ProfilDegerleri } from "../core/serbestKonus.ts";
 import { akisAnahtar, yeniKayit } from "../core/akisKayit.ts";
 import { ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
@@ -58,7 +61,9 @@ export interface DurakHedef { href: string; /** hepsi bitince durak biter (ses d
 /** Dil noktası durağının gövdesi (grammar.json / dn-HH.json biçimi; PM-092 md. 1) */
 export interface DilNoktasiVeri { h_tr: string; tr: string; table?: { head: string[]; rows: string[][] }; ex: { de: string; tr: string }[] }
 
-export interface AkisBaglam { dilNoktasi: (id: string) => DilNoktasiVeri | undefined; gorev: (dersId: string) => string | undefined; hatirlatma: (dersId: string, adimId: string) => { de: string; tr: string }[]; adGerekli: (a: Adim) => boolean; tablo: (dersId: string) => { baslik_tr: string; sutunlar: string[]; satirlar: string[][] } | undefined; kalipOrnek: (kalip: string, d: Durak, adimId: string) => CumleBilgi[]; yakin: (adimId: string, d: Durak) => Yakinlik; teach: (dersId: string, oge: string) => { de: string; tr: string; ipucu?: string } | undefined; hedef: (d: Durak) => DurakHedef | null; cumle: (de: string) => CumleBilgi; sahne: (satirlar: string[]) => SahneVeri | undefined; isaretli: (de: string, adimId: string) => { sozcuk: string; tr?: string }[]; vurgu: (kart: string) => string[]; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void }
+export interface AkisBaglam { dilNoktasi: (id: string) => DilNoktasiVeri | undefined; gorev: (dersId: string) => string | undefined; hatirlatma: (dersId: string, adimId: string) => { de: string; tr: string }[]; adGerekli: (a: Adim) => boolean; tablo: (dersId: string) => { baslik_tr: string; sutunlar: string[]; satirlar: string[][] } | undefined; kalipOrnek: (kalip: string, d: Durak, adimId: string) => CumleBilgi[]; yakin: (adimId: string, d: Durak) => Yakinlik; teach: (dersId: string, oge: string) => { de: string; tr: string; ipucu?: string } | undefined; hedef: (d: Durak) => DurakHedef | null; cumle: (de: string) => CumleBilgi; sahne: (satirlar: string[]) => SahneVeri | undefined; isaretli: (de: string, adimId: string) => { sozcuk: string; tr?: string }[]; vurgu: (kart: string) => string[]; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void;
+  /** PM-148 serbest konuşma: günün maddesi, profil yuvaları (yalnız cihazda) ve konuşma kaydı (karar 4) */
+  serbest: (oge: string) => SerbestKonus | undefined; profil: ProfilDegerleri; konustu: (adimId: string, sesli: boolean) => void }
 
 export function AkisOynatici({ kayit, lex, harita, emojiHarita, baglam, kaydet, cik }: AkisOynaticiProps) {
   const [neden, setNeden] = useState(false);
@@ -123,6 +128,11 @@ function AdimGovdesi({ adim, durakOf, lex, harita, emojiHarita, baglam, tohum, b
   if (adim.tur === "eslestir" && kartlar.length >= ESLESTIR_EN_AZ) return <Eslestir kartlar={kartlar} tohum={tohum} onBitti={bitir} />;
   // görsel gelmezse (çevrimdışı, önbellekte yok) resimden seç o adımda dinle-anlam sorusuna düşer (tek doğru cevap; inceleme #183 P1-2)
   if (adim.tur === "resimden_sec" && soru && !gorselYok) return <ResimSec soru={soru} lex={lex} harita={resim!.h} onYok={() => setGorselYok(true)} onBitti={(ok) => bitir([{ kart: soru.kart, dogru: ok }])} />;
+  // serbest konuşma (PM-148): kart sonucu yok; yalnız mikrofonla yapıldıysa konuşma sayılır (karar 4)
+  if (adim.tur === "serbest_konus" && adim.ders?.id === SERBEST_KONUS) {
+    const k = baglam.serbest(adim.ders.oge);
+    if (k) return <SerbestKonusAdimi key={adim.id} k={k} profil={baglam.profil} onBitti={(sesli) => { baglam.konustu(adim.id, sesli); bitir([]); }} />;
+  }
   // dersin alıştırma maddesi (K8 `kaynak: "ders"`): Ders oynatıcısının bileşeniyle, aynı denetimle
   const drill = adim.ders ? baglam.drill(adim.ders.id, adim.ders.oge) : undefined;
   if (drill && adim.tur !== "kalip" && adim.tur !== "tanit") return <div class="akis-soru"><DrillView key={adim.id} d={drill} onDone={(r) => bitir(adim.kartlar.map((kart) => ({ kart, dogru: r !== "wrong" })))} /></div>;
@@ -247,7 +257,7 @@ export function AkisEkrani({ day }: { day: number }) {
         let kayit = await getMeta<AkisKaydi>(akisAnahtar(day));
         if (!kayit || kayit.surum !== 1) {
           const plan = planGun({ gun, dersler: new Map(temel.map((t) => [t.id, t])), dizin, items, oncekiKartlar: onceki.kartlar, dilNoktalari,
-            bitenDersler: onceki.dersler, tohum: `akis:${day}`, simdi: new Date(),
+            bitenDersler: onceki.dersler, tohum: `akis:${day}`, simdi: new Date(), serbestKonus: serbestKonusAcik(),
             gorselli: new Set([...Object.keys(harita), ...Object.keys(emojiHarita)].filter((k) => k.endsWith("#kart")).map((k) => k.slice(0, -"#kart".length))) });
           if (!plan) { setV("degil"); return; }
           kayit = yeniKayit(plan); await setMeta(akisAnahtar(day), kayit);
@@ -400,7 +410,10 @@ export function AkisEkrani({ day }: { day: number }) {
           },
           // K10 ipucu tek ve kısa anlam: "veya, ya da, değil mi" → "veya" (PM 7055715440 md. 8)
           ipucu: (w) => { const k = w.toLowerCase(); const tr = cerceve.get(k); return tr && (k10[k] ?? 0) < 2 ? ilkAnlam(tr) : undefined; },
-          gordu: (ws) => { for (const w of ws) { const k = w.replace(/[.,!?;:]/g, "").toLowerCase(); if (cerceve.has(k)) k10[k] = (k10[k] ?? 0) + 1; } void setMeta("akis:k10", k10); }
+          gordu: (ws) => { for (const w of ws) { const k = w.replace(/[.,!?;:]/g, "").toLowerCase(); if (cerceve.has(k)) k10[k] = (k10[k] ?? 0) + 1; } void setMeta("akis:k10", k10); },
+          serbest: (oge) => gun.serbest_konus?.find((x) => x.id === oge),
+          profil: { name: kisi.name },
+          konustu: (adimId, sesli) => { void konusmaYaz({ id: adimId, gun: day, sesli }); }
         };
         setV({ kayit, lex, harita, emojiHarita, items, baglam });
       } catch (e) { setHata(e instanceof Error ? e.message : String(e)); }

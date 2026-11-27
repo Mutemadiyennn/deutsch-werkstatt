@@ -193,6 +193,8 @@ jobs:
         run: cd tests/e2e && python v2_seviye.py --shots /tmp/shots && python v2_seviye.py --scheme dark --shots /tmp/shots
       - name: "8. gün fikstürü (#231 P1-3): gr: dersli gün baştan sona, dil noktası durağı, ders:<id> yazımı"
         run: cd tests/e2e && python v2_akis.py --tam --gun 8
+      - name: "Serbest konuşma (PM-148 [ANA-V] md. 1): bayrak kapalı ve açık, gün sonunun ilk adımı, ipucu yok, sesli/yazılı sayım, mikrofonsuz; açık + koyu"
+        run: cd tests/e2e && python v2_serbest.py --shots /tmp/shots && python v2_serbest.py --scheme dark --shots /tmp/shots
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4
