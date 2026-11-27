@@ -1473,7 +1473,7 @@
    {
     "id": "m1:14:s12",
     "k": "guided_response",
-    "situation_tr": "Sınav kartı: **Alter? Sprachen?** (**Sprachen**: diller) Görevli soruyor. Yaşını ve konuştuğun dilleri söyle.",
+    "situation_tr": "Sınav kartı: **Alter? Sprachen?** (**Sprachen**: diller) Görevli soruyor. Gerçek sınavdaki gibi kendi bilgilerinle söyle.",
     "prompt_de": "Wie alt sind Sie? Und was sprechen Sie?",
     "accepted": [
      "Ich bin {yas} Jahre alt und ich spreche {diller}.",
@@ -1481,7 +1481,12 @@
      "Ich bin {yas} Jahre alt. Ich spreche {diller}.",
      "Ich bin {yas}. Ich spreche {diller}.",
      "Ich bin {yas} und ich spreche {diller}.",
-     "Mein Alter? Ich bin {yas}. Ich spreche {diller}."
+     "Mein Alter? Ich bin {yas}. Ich spreche {diller}.",
+     "Ich spreche {diller}. Ich bin {yas} Jahre alt.",
+     "Ich spreche {diller}. Ich bin {yas}.",
+     "Ich bin {yas} und spreche {diller}.",
+     "Ich spreche {diller} und ich bin {yas} Jahre alt.",
+     "Ich spreche {diller} und ich bin {yas}."
     ],
     "why_tr": "Yaş **Ich bin … Jahre alt** ile, diller **Ich spreche …** ile söylenir. Kartta **Alter** yazsa da cümlede **alt** gelir."
    }
