@@ -71,3 +71,41 @@ Bu turda yalnız okurun işaret ettiği Türkçe metinler düzeltildi. Almanca v
 Koordinatörün talimatıyla `…` kuralına önceki m1 raporlarındaki gibi dokunulmadı.
 Denetimler: validate 0 hata (291 uyarı) · dikiş İhlal: 0 · hafta kapısı öğretilmeden istenen 0, anlaşılmayan karşı soru 0 · vitest 230/230.
 2. turun sonucu: **KAPANDI**.
+
+## 3. tur (PR #283 incelemesi 1. tur, yorum 7226703952; dal #281 üstünde, baş bd04df4a)
+Almanca `de` ve `accepted[0]` hiçbir maddede değişmedi. Eklenen bütün varyantlar yuvalı, sabit kişisel bilgi yok.
+1. **Türkçe satırda yuva:** `tr` ve `tr_adsiz` alanlarındaki {ulke}, {sehir}, {yas}, {diller} yuvalarının yerine "…" yazıldı. Bu yuvalar Almanca öbekle dolar ("der Türkei"), Türkçe satırda bozuk görünürdü. {name} olduğu gibi kaldı. Değişen 14 alan:
+   - gun-02: lx:wohnen görev cümlesi "Memleketim …, ama Wendlfing'de oturuyorum." · n3c s1 "Memleketim: …" · n3c s2 "Memleketim: … (yanlış kelimeyle)"
+   - gun-06: lx:heißen `tr` "Adım {name}, memleketim …" · lx:woher "Memleketim: … Ya siz nerelisiniz, Luka?" · n6b s1 "Memleketim …, Brandl Hanım." · n6b s2 "Oturduğum yer: … (yanlış kelimeyle)"
+   - gun-07: lx:Wohnort "Oturduğum yer: …"
+   - gun-12: lx:Alter 1 "Yaşım mı? … yaşındayım." · lx:Alter 2 "Yaşım: … Oturduğum yer: … (formdaki gibi kısa)"
+   - gun-13: n3c s1 "… yaşındayım. Ya sen?" · n3c s2 "Yaşım: …" · n3d s1 "Konuştuğum diller: …" · n3d s2 "Konuştuğum diller: … (kelimenin sonu yanlış)"
+2. **situation_tr çerçevesi:** gun-07 m1:07:s12, gun-14 m1:14:s12, HST-01 m1:07:t09 ve HST-02 m1:14:t10 aynı kalıpla bitiyor: "Sınav kartı: **…** (gerekirse **Land**: ülke / **Sprachen**: diller) Görevli soruyor. Gerçek sınavdaki gibi kendi bilgilerinle söyle." Ayrıntılı "Adını, … söyle." cümlesi kalktı; kart sözcükleri görevi zaten gösteriyor.
+3. **Kabul kapsamı:** her parçada şu biçimler ve parçaların bütün sıraları eklendi. Ayırıcı nokta ya da virgül, son iki parça arasında "und" (öznesiz "und wohne" dahil).
+   - Ad: "Ich heiße / Ich bin / Mein Name ist {name}"
+   - Köken: "Ich komme aus / Ich bin aus {ulke}" ve tek başına "Aus {ulke}."
+   - Yer: "Ich wohne in / Mein Wohnort ist {sehir}"
+   - Yaş: "Ich bin {yas} Jahre alt / Ich bin {yas}"
+   - Dil: "Ich spreche {diller}"
+
+   Yeni sayılar:
+
+   | Madde | accepted | accepted_adsiz |
+   |---|---|---|
+   | gun-07 m1:07:s12 | 91 | 25 |
+   | gun-14 m1:14:s12 | 11 | — |
+   | HST-01 m1:07:t09 | 25 | — |
+   | HST-02 m1:14:t10 | 90 | 18 |
+
+   t09'da istenen "Ich komme aus {ulke} und mein Wohnort ist {sehir}." ve "Ich bin aus {ulke}. Ich wohne in {sehir}." var.
+4. **gun-06 lx:heißen, adsız biçim:** `de_adsiz` "Ich komme aus {ulke}. Und wie heißen Sie?", `tr_adsiz` "Memleketim: … Peki sizin adınız ne?". `accepted_adsiz`: "…. Und wie heißen Sie?", "…. Wie heißen Sie?", "Aus {ulke}. Und wie heißen Sie?", "Ich bin aus {ulke}. Und wie heißen Sie?". Önerilen "Wie heißen Sie? Ich komme aus …" sırası yerine bu sıra seçildi: önce kendini tanıtıp sonra karşıdakinin adını sormak daha doğal.
+5. **gun-13 n3c "Mein Alter ist {yas}.":** `uygun: true`, `sonraki: n3d`, geri bildirim "Anlaşılır. Daha doğal: **Ich bin … Jahre alt.**"
+6. **batch-018 `review`:** `{status: "reviewed", by: "dilbilimci-ajan", at: "2026-11-27", notes: bu rapor + okur raporu, okur: "passed", okur_at: "2026-11-27"}` (batch-015/016 biçimi).
+
+Denetimler:
+- validate: 0 hata, 298 uyarı. Önceki 291'e 7 "öğretilmemiş kelime isteniyor: {ulke}/{sehir}/{yas}/{diller}" uyarısı eklendi (gun-06 n6b, gun-07 s12, gun-13 n3c ×2 ve n3d, gun-14 s12). Bunlar dalın #281 üstüne taşınmasıyla geldi, içerik değişikliğinden değil: n6b ve n3d'nin accepted[0]'ı bu turda değişmedi. Yerel teach.ts yuva yaması artık çalışma ağacında yok. Uyarı, engel değil.
+- dikiş: İhlal: 0
+- hafta kapısı: öğretilmeden istenen 0, anlaşılmayan karşı soru 0
+- vitest content/tools: 238/238
+
+3. turun sonucu: **KAPANDI**.
