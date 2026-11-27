@@ -1,0 +1,180 @@
+{
+ "id": "m1:hafta-sonu-testi:09",
+ "day": 63,
+ "maddeler": [
+  {
+   "id": "m1:63:t01",
+   "k": "listen_and_respond",
+   "audio_de": "Wann sind Sie heute aufgestanden?",
+   "speed": "normal",
+   "situation_tr": "Dr. Weber soruyor. Bugün yedi buçukta kalktın.",
+   "accepted": [
+    "Ich bin um halb acht aufgestanden.",
+    "Ich bin heute um halb acht aufgestanden.",
+    "Heute bin ich um halb acht aufgestanden.",
+    "Um halb acht.",
+    "Ich bin um sieben Uhr dreißig aufgestanden."
+   ],
+   "why_tr": "Kalkmak için **bin** kullanırsın: **Ich bin um halb acht aufgestanden.**"
+  },
+  {
+   "id": "m1:63:t02",
+   "k": "order",
+   "de": "angerufen / heute / Ich / die Praxis / habe",
+   "tr": "Bugün muayenehaneyi aradım.",
+   "accepted": [
+    "Ich habe heute die Praxis angerufen.",
+    "Heute habe ich die Praxis angerufen.",
+    "Ich habe die Praxis heute angerufen.",
+    "Die Praxis habe ich heute angerufen."
+   ],
+   "why_tr": "**habe** ikinci yerde, **angerufen** en sonda durur."
+  },
+  {
+   "id": "m1:63:t03",
+   "k": "gap",
+   "de": "Am Sonntag haben wir unsere Freunde ___.",
+   "tr": "Pazar günü arkadaşlarımızı ziyaret ettik.",
+   "accepted": [
+    "besucht",
+    "Besucht",
+    "besucht."
+   ],
+   "opts": [
+    "besucht",
+    "gebesucht",
+    "besuchen"
+   ],
+   "why_tr": "**besuchen** başında **be** var, bu yüzden **ge** almaz: **besucht**."
+  },
+  {
+   "id": "m1:63:t04",
+   "k": "guided_response",
+   "situation_tr": "Frau Huber perşembe saat onu öneriyor. O saatte toplantın var. Sebebini söyle ve öğleden sonrayı sor.",
+   "prompt_de": "Donnerstag um zehn, passt Ihnen das?",
+   "accepted": [
+    "Um zehn kann ich leider nicht, weil ich eine Besprechung habe. Geht es am Nachmittag?",
+    "Leider nicht, weil ich um zehn eine Besprechung habe. Geht es am Nachmittag?",
+    "Am Donnerstag um zehn habe ich leider eine Besprechung. Geht es auch am Nachmittag?",
+    "Das geht leider nicht, weil ich eine Besprechung habe. Haben Sie am Nachmittag noch etwas frei?",
+    "Um zehn geht es leider nicht, ich habe eine Besprechung. Geht es am Nachmittag?",
+    "Leider nicht. Ich habe um zehn eine Besprechung. Was halten Sie von Donnerstag am Nachmittag?"
+   ],
+   "why_tr": "Önce sebebi **weil** ile söyle, sonra başka bir saat sor."
+  },
+  {
+   "id": "m1:63:t05",
+   "k": "listen_and_respond",
+   "audio_de": "Warum rufen Sie an?",
+   "speed": "normal",
+   "situation_tr": "Muayenehaneyi aradın. Sırtın ağrıyor, randevu istiyorsun.",
+   "accepted": [
+    "Ich rufe an, weil ich einen Termin brauche. Mein Rücken tut weh.",
+    "Weil mein Rücken weh tut. Ich brauche einen Termin.",
+    "Ich brauche einen Termin, weil mein Rücken wehtut.",
+    "Mein Rücken tut weh. Ich brauche einen Termin.",
+    "Ich rufe an, weil mein Rücken weh tut.",
+    "Weil ich einen Termin brauche. Mein Rücken tut weh.",
+    "Ich rufe an, weil mein Rücken wehtut.",
+    "Weil mein Rücken wehtut. Ich brauche einen Termin."
+   ],
+   "why_tr": "**weil** ile **brauche** en sona gider: **weil ich einen Termin brauche**."
+  },
+  {
+   "id": "m1:63:t06",
+   "k": "transform",
+   "instr_tr": "İki cümleyi **weil** ile birleştir.",
+   "from_de": "Derya ist heute nicht da. Sie ist nach Hause gefahren.",
+   "accepted": [
+    "Derya ist heute nicht da, weil sie nach Hause gefahren ist.",
+    "Derya ist nicht da, weil sie nach Hause gefahren ist.",
+    "Derya ist heute nicht da, weil sie nach Hause gefahren ist!"
+   ],
+   "why_tr": "**weil** cümlesinde **ist** en sona gider: **gefahren ist**."
+  },
+  {
+   "id": "m1:63:t07",
+   "k": "listen_and_respond",
+   "audio_de": "Und, hast du am Wochenende etwas gemacht?",
+   "speed": "normal",
+   "situation_tr": "Tobi soruyor. Pazar günü belediyedeki sergideydin.",
+   "accepted": [
+    "Ja, am Sonntag war ich in der Ausstellung im Rathaus.",
+    "Ja, ich war am Sonntag in der Ausstellung.",
+    "Am Sonntag war ich in einer Ausstellung im Rathaus.",
+    "Ja, am Sonntag bin ich in eine Ausstellung gegangen.",
+    "Ja, ich war am Sonntag in der Ausstellung im Rathaus.",
+    "Am Sonntag war ich in der Ausstellung."
+   ],
+   "why_tr": "Bir yerde bulunduysan **war** dersin: **Ich war in der Ausstellung.**"
+  },
+  {
+   "id": "m1:63:t08",
+   "k": "gap",
+   "de": "Kann ich heute noch einen Termin ___?",
+   "tr": "Bugün içinde randevu alabilir miyim?",
+   "accepted": [
+    "kriegen",
+    "Kriegen",
+    "kriegen."
+   ],
+   "opts": [
+    "kriegen",
+    "kriege",
+    "gekriegt"
+   ],
+   "why_tr": "**kann** varsa **kriegen** değişmeden sona gider."
+  },
+  {
+   "id": "m1:63:t09",
+   "k": "order",
+   "de": "nicht / kommen / weil / Ich / kann / arbeiten / muss / ich",
+   "tr": "Gelemiyorum, çünkü çalışmam gerek.",
+   "accepted": [
+    "Ich kann nicht kommen, weil ich arbeiten muss.",
+    "Ich kann nicht kommen weil ich arbeiten muss.",
+    "Ich kann nicht kommen, weil ich arbeiten muss!"
+   ],
+   "why_tr": "**weil** cümlesinde **muss** en sona gider: **arbeiten muss**."
+  },
+  {
+   "id": "m1:63:t10",
+   "k": "tr_de",
+   "tr": "Haklısın, ikimiz de çok yorgunuz.",
+   "accepted": [
+    "Du hast recht, wir sind beide sehr müde.",
+    "Da hast du recht, wir sind beide sehr müde.",
+    "Du hast recht. Wir sind beide sehr müde.",
+    "Du hast recht, wir sind beide so müde.",
+    "Du hast recht, wir beide sind sehr müde."
+   ],
+   "why_tr": "Hak verirken **Du hast recht** dersin. İkimiz de: **wir beide**."
+  },
+  {
+   "id": "m1:63:t11",
+   "k": "transform",
+   "instr_tr": "Cümleyi olup bitmiş gibi söyle, **hat** ile.",
+   "from_de": "Ich stelle den Müll vor die Tür.",
+   "accepted": [
+    "Ich habe den Müll vor die Tür gestellt.",
+    "Den Müll habe ich vor die Tür gestellt.",
+    "Ich habe den Müll schon vor die Tür gestellt."
+   ],
+   "why_tr": "Geçmişte **hat** ikinci yerde, **gestellt** en sonda durur."
+  },
+  {
+   "id": "m1:63:t12",
+   "k": "guided_response",
+   "situation_tr": "Molada Derya hafta sonunu soruyor. Cuma fazla mesai yaptın, cumartesi uzun uzun uyudun. Ona da sor.",
+   "prompt_de": "Und? Was hast du am Wochenende so gemacht?",
+   "accepted": [
+    "Am Freitag habe ich Überstunden gemacht, und am Samstag habe ich lange geschlafen. Und du?",
+    "Am Freitag habe ich Überstunden gemacht. Am Samstag habe ich lange geschlafen. Und du?",
+    "Ich habe am Freitag Überstunden gemacht und am Samstag lange geschlafen. Und du?",
+    "Freitag habe ich Überstunden gemacht, Samstag habe ich lange geschlafen. Was hast du gemacht?",
+    "Am Freitag habe ich Überstunden gemacht. Und am Samstag habe ich lange geschlafen. Und bei dir?"
+   ],
+   "why_tr": "Her gün için bir cümle kur, **habe** ikinci yerde. Sonra **Und du?** diye sor."
+  }
+ ]
+}

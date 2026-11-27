@@ -1,0 +1,1415 @@
+{
+ "schema": 1,
+ "id": "m1:gun:58",
+ "day": 58,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Taşınma ve yeni ev: Ich habe die Hausordnung bekommen",
+ "goal_tr": "Taşınmayı, apartmanı ve komşuları anlatırsın.",
+ "can_do": {
+  "id": "cd:m1:58",
+  "tr": "Yeni evde ne olduğunu anlatırım: Ich habe die Nachbarin besucht."
+ },
+ "unit": "u:a2:58",
+ "arm": "telefon",
+ "place": "pl:haus",
+ "characters": [
+  "ch:popescu",
+  "ch:pichler",
+  "ch:brandl"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-01:t3"
+ ],
+ "yeni_kartlar": [
+  "lx:Umzug",
+  "lx:Stelle",
+  "lx:Unterkunft",
+  "lx:Regal",
+  "lx:Keller",
+  "lx:Treppenhaus",
+  "lx:Müll",
+  "lx:Hausordnung"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:58:h1",
+   "title_tr": "Ioana taşınıyor",
+   "kartlar": [
+    "lx:Umzug",
+    "lx:Stelle",
+    "lx:Unterkunft",
+    "lx:Regal"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich helfe dir beim …",
+     "tr": "…'da sana yardım ederim."
+    },
+    {
+     "de": "Ich suche eine … – Suchst du eine …?",
+     "tr": "Bir … arıyorum. – Bir … mi arıyorsun?"
+    },
+    {
+     "de": "Ich habe eine neue … – Suchst du eine neue …?",
+     "tr": "Yeni bir …'m var. – Yeni bir … mi arıyorsun?"
+    },
+    {
+     "de": "Ich habe … gefunden.",
+     "tr": "… buldum."
+    },
+    {
+     "de": "Ich brauche …",
+     "tr": "…'a ihtiyacım var."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Umzug",
+     "de": "Ich helfe Ioana am Samstag beim Umzug.",
+     "tr": "Cumartesi Ioana'ya taşınmada yardım ediyorum.",
+     "accepted": [
+      "Ich helfe Ioana am Samstag beim Umzug.",
+      "Am Samstag helfe ich Ioana beim Umzug.",
+      "Ich helfe Ioana beim Umzug am Samstag."
+     ]
+    },
+    {
+     "kart": "lx:Umzug",
+     "de": "Der Umzug hat um sieben angefangen.",
+     "tr": "Taşınma yedide başladı.",
+     "accepted": [
+      "Der Umzug hat um sieben angefangen.",
+      "Der Umzug hat um sieben Uhr angefangen.",
+      "Um sieben hat der Umzug angefangen."
+     ]
+    },
+    {
+     "kart": "lx:Stelle",
+     "de": "Ioana hat eine Stelle in Wendlfing gefunden.",
+     "tr": "Ioana Wendlfing'de bir iş buldu.",
+     "accepted": [
+      "Ioana hat eine Stelle in Wendlfing gefunden.",
+      "Ioana hat in Wendlfing eine Stelle gefunden.",
+      "In Wendlfing hat Ioana eine Stelle gefunden."
+     ]
+    },
+    {
+     "kart": "lx:Stelle",
+     "de": "Suchst du eine neue Stelle?",
+     "tr": "Yeni bir iş mi arıyorsun?",
+     "accepted": [
+      "Suchst du eine neue Stelle?",
+      "Suchst du jetzt eine neue Stelle?",
+      "Du suchst eine neue Stelle?"
+     ]
+    },
+    {
+     "kart": "lx:Unterkunft",
+     "de": "Ich brauche für Freitag noch eine Unterkunft.",
+     "tr": "Cuma için hâlâ kalacak bir yere ihtiyacım var.",
+     "accepted": [
+      "Ich brauche für Freitag noch eine Unterkunft.",
+      "Für Freitag brauche ich noch eine Unterkunft.",
+      "Ich brauche noch eine Unterkunft für Freitag."
+     ]
+    },
+    {
+     "kart": "lx:Unterkunft",
+     "de": "Die Unterkunft ist billig und nah am Bahnhof.",
+     "tr": "Kalacak yer ucuz ve gara yakın.",
+     "accepted": [
+      "Die Unterkunft ist billig und nah am Bahnhof.",
+      "Die Unterkunft ist nah am Bahnhof und billig.",
+      "Die Unterkunft ist billig, und sie ist nah am Bahnhof."
+     ]
+    },
+    {
+     "kart": "lx:Regal",
+     "de": "Das Regal kommt in die Küche.",
+     "tr": "Raf mutfağa konacak.",
+     "accepted": [
+      "Das Regal kommt in die Küche.",
+      "Das Regal kommt in die Küche, bitte.",
+      "Das Regal bitte in die Küche."
+     ]
+    },
+    {
+     "kart": "lx:Regal",
+     "de": "Hast du das Regal schon aufgeräumt?",
+     "tr": "Rafı topladın mı?",
+     "accepted": [
+      "Hast du das Regal schon aufgeräumt?",
+      "Hast du das Regal aufgeräumt?",
+      "Hast du schon das Regal aufgeräumt?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Akşam telefonun çalıyor. Kurstan arkadaşın Ioana çok heyecanlı.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Hallo! Ich habe eine neue Stelle, hier in Wendlfing!",
+      "tr": "Merhaba! Yeni bir işim var, burada, Wendlfing'de!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Toll! Und wann ist der Umzug?",
+      "tr": "Harika! Peki taşınma ne zaman?"
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Am Samstag. Hilfst du mir beim Umzug?",
+      "tr": "Cumartesi. Taşınmada bana yardım eder misin?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Ioana ne zaman taşınıyor?",
+     "opts": [
+      "Cumartesi",
+      "Pazar",
+      "Yarın"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:58:h2",
+   "title_tr": "Yeni evde: Hausmeister ile",
+   "kartlar": [
+    "lx:Keller",
+    "lx:Treppenhaus",
+    "lx:Müll",
+    "lx:Hausordnung"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich habe … nicht verstanden.",
+     "tr": "…'ı anlamadım."
+    },
+    {
+     "de": "Grüß Gott!",
+     "tr": "İyi günler! Bavyera'da günün her saatinde böyle selam verilir."
+    },
+    {
+     "de": "Was ist … passiert?",
+     "tr": "… ne oldu?"
+    },
+    {
+     "de": "Das ist die neue Nachbarin.",
+     "tr": "Bu, yeni komşu."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Keller",
+     "de": "Haben Sie den Schlüssel für den Keller bekommen?",
+     "tr": "Bodrumun anahtarını aldınız mı?",
+     "accepted": [
+      "Haben Sie den Schlüssel für den Keller bekommen?",
+      "Haben Sie schon den Schlüssel für den Keller bekommen?",
+      "Haben Sie den Kellerschlüssel bekommen?"
+     ]
+    },
+    {
+     "kart": "lx:Keller",
+     "de": "Ioana hat beim Umzug eine Lampe im Keller vergessen.",
+     "tr": "Ioana taşınırken bodrumda bir lamba unuttu.",
+     "accepted": [
+      "Ioana hat beim Umzug eine Lampe im Keller vergessen.",
+      "Beim Umzug hat Ioana eine Lampe im Keller vergessen.",
+      "Ioana hat eine Lampe im Keller vergessen."
+     ]
+    },
+    {
+     "kart": "lx:Treppenhaus",
+     "de": "Herr Pichler hat die Lampe im Treppenhaus repariert.",
+     "tr": "Herr Pichler merdivendeki lambayı tamir etti.",
+     "accepted": [
+      "Herr Pichler hat die Lampe im Treppenhaus repariert.",
+      "Die Lampe im Treppenhaus hat Herr Pichler repariert.",
+      "Herr Pichler hat die Lampe im Treppenhaus schon repariert."
+     ]
+    },
+    {
+     "kart": "lx:Treppenhaus",
+     "de": "Was ist im Treppenhaus passiert?",
+     "tr": "Merdiven boşluğunda ne oldu?",
+     "accepted": [
+      "Was ist im Treppenhaus passiert?",
+      "Was ist denn im Treppenhaus passiert?",
+      "Was ist im Treppenhaus los?"
+     ]
+    },
+    {
+     "kart": "lx:Müll",
+     "de": "Ich habe den Müll heute vergessen.",
+     "tr": "Bugün çöpü unuttum.",
+     "accepted": [
+      "Ich habe den Müll heute vergessen.",
+      "Heute habe ich den Müll vergessen.",
+      "Ich habe heute den Müll vergessen."
+     ]
+    },
+    {
+     "kart": "lx:Müll",
+     "de": "Wohin kommt der Müll, Herr Pichler?",
+     "tr": "Çöp nereye atılıyor, Pichler Bey?",
+     "accepted": [
+      "Wohin kommt der Müll, Herr Pichler?",
+      "Herr Pichler, wohin kommt der Müll?",
+      "Wohin kommt der Müll?"
+     ]
+    },
+    {
+     "kart": "lx:Hausordnung",
+     "de": "Ich habe die Hausordnung nicht ganz verstanden.",
+     "tr": "Apartman kurallarını tam anlamadım.",
+     "accepted": [
+      "Ich habe die Hausordnung nicht ganz verstanden.",
+      "Die Hausordnung habe ich nicht ganz verstanden.",
+      "Ich habe die Hausordnung nicht richtig verstanden."
+     ]
+    },
+    {
+     "kart": "lx:Hausordnung",
+     "de": "Haben Sie die Hausordnung schon bekommen?",
+     "tr": "Apartman kurallarını aldınız mı?",
+     "accepted": [
+      "Haben Sie die Hausordnung schon bekommen?",
+      "Haben Sie schon die Hausordnung bekommen?",
+      "Haben Sie die Hausordnung bekommen?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Apartmanın merdiveni. Hausmeister Herr Pichler elinde bir kâğıtla duruyor.",
+    "satirlar": [
+     {
+      "r": "ch:pichler",
+      "de": "Grüß Gott! Haben Sie die Hausordnung schon gelesen?",
+      "tr": "İyi günler! Apartman kurallarını okudunuz mu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, aber ich habe nicht alles verstanden.",
+      "tr": "Evet, ama her şeyi anlamadım."
+     },
+     {
+      "r": "ch:pichler",
+      "de": "Ganz einfach: Fahrräder in den Keller. Und der Müll bleibt nicht vor der Tür!",
+      "tr": "Çok basit: bisikletler bodruma. Çöp de kapının önünde kalmaz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Bisikletler nereye konuyor?",
+     "opts": [
+      "Bodruma",
+      "Merdiven boşluğuna",
+      "Kapının önüne"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:58:v1",
+  "title_tr": "Merdivende sohbet: yeni komşu",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Apartmanın merdiveni. Frau Brandl kapısını açıp seni görüyor, heyecanla fısıldıyor.",
+    "de": "Grüß Gott! Haben Sie es schon gehört? Wir haben eine neue Nachbarin.",
+    "tr": "İyi günler! Duydunuz mu? Yeni bir komşumuz var."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl yukarıyı gösteriyor.",
+    "de": "Sie ist am Samstag umgezogen.",
+    "tr": "Cumartesi taşındı."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl ellerini iki yana açıyor.",
+    "de": "Der Umzug hat den ganzen Tag gedauert!",
+    "tr": "Taşınma bütün gün sürdü!"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler merdivenden iniyor, kucağında bir karton kutu.",
+    "de": "Und jetzt stehen ihre Kisten im Treppenhaus. Das geht so nicht.",
+    "tr": "Şimdi de kutuları merdivende duruyor. Böyle olmaz."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl yeni komşuyu savunuyor.",
+    "de": "Herr Pichler, sie hat eine neue Stelle bekommen. Sie hat viel zu tun.",
+    "tr": "Pichler Bey, yeni bir iş bulmuş. Çok işi var."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler kutuyu yere bırakıyor.",
+    "de": "Ich habe sie gestern besucht und ihr die Hausordnung gegeben.",
+    "tr": "Dün onu ziyaret ettim ve ona apartman kurallarını verdim."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler bodrum kapısını gösteriyor.",
+    "de": "Die Kisten müssen in den Keller.",
+    "tr": "Kutular bodruma inmeli."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl merakla öne eğiliyor.",
+    "de": "Und hat sie alles verstanden?",
+    "tr": "Peki her şeyi anladı mı?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler başını sallıyor.",
+    "de": "Nein. Sie hat gleich eine Freundin angerufen und lange telefoniert.",
+    "tr": "Hayır. Hemen bir arkadaşını aradı ve uzun uzun telefonda konuştu."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl kapının önündeki çöp torbasını gösteriyor.",
+    "de": "Und den Müll hat sie auch vergessen. Er steht noch vor der Tür!",
+    "tr": "Çöpü de unutmuş. Hâlâ kapının önünde duruyor!"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler iç çekip torbayı alıyor.",
+    "de": "Gut. Ich mache das schnell.",
+    "tr": "Peki. Ben hemen hallederim."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl gülümsüyor.",
+    "de": "Sie sind zu gut, Herr Pichler!",
+    "tr": "Siz çok iyisiniz, Pichler Bey!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Merdivende kim hakkında konuşuluyor?",
+     "opts": [
+      "Yeni bir komşu hakkında",
+      "Herr Pichler'in tatili hakkında",
+      "Frau Brandl'ın doktoru hakkında"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Yeni komşu ne zaman taşındı?",
+      "opts": [
+       "Cumartesi",
+       "Pazar",
+       "Dün"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Herr Pichler dün ne yaptı?",
+      "opts": [
+       "Yeni komşuyu ziyaret edip apartman kurallarını verdi",
+       "Kutuları bodruma taşıdı",
+       "Çöpü dışarı çıkardı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Yeni komşu neyi unuttu?",
+      "opts": [
+       "Çöpü",
+       "Anahtarı",
+       "Bisikletini"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s6",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "besucht",
+       "bekommen",
+       "telefoniert"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Herr Pichler, sie hat eine neue Stelle ___. Sie hat viel zu tun.",
+      "accepted": [
+       "bekommen",
+       "Bekommen",
+       "bekommen."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s3",
+      "seviye": "zor",
+      "banka": [
+       "Der",
+       "Umzug",
+       "hat",
+       "den",
+       "ganzen",
+       "Tag",
+       "gedauert",
+       "Woche",
+       "ist"
+      ],
+      "accepted": [
+       "Der Umzug hat den ganzen Tag gedauert!",
+       "der umzug hat den ganzen tag gedauert",
+       "Der Umzug hat den ganzen Tag gedauert"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s8",
+      "seviye": "usta",
+      "accepted": [
+       "Und hat sie alles verstanden?",
+       "und hat sie alles verstanden",
+       "Und hat sie alles verstanden"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Merdivende ne öğrendin? Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Eine neue Nachbarin ist umgezogen. Sie hat den Müll vergessen.",
+      "zorunlu": [
+       "Nachbarin",
+       "vergessen"
+      ]
+     }
+    ],
+    "golge": [
+     "s6",
+     "s8"
+    ],
+    "cevapla": {
+     "id": "m1:58:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Frau Brandl sana dönüp soruyor. Sen dün akşam yeni komşuyu ziyaret ettin.",
+     "prompt_de": "Haben Sie die neue Nachbarin schon besucht?",
+     "accepted": [
+      "Ja, ich habe sie gestern Abend besucht.",
+      "Ja, gestern Abend.",
+      "Ja, ich habe sie gestern besucht.",
+      "Ja, ich habe die neue Nachbarin gestern Abend besucht.",
+      "Ja, schon. Gestern Abend."
+     ],
+     "why_tr": "**besucht** başında ge almaz. **be** ile başlayan kelimeler böyledir."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:58:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Ioana'dan sesli mesaj",
+   "ortam_tr": "İşten çıkınca telefonuna bakıyorsun. Ioana bir mesaj bırakmış, sesi çok mutlu.",
+   "speaker": "ch:popescu",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Ioana!",
+     "tr": "Merhaba, ben Ioana!"
+    },
+    {
+     "id": "c2",
+     "de": "Weißt du was? Ich habe die Stelle in Wendlfing bekommen!",
+     "tr": "Biliyor musun? Wendlfing'deki işi aldım!"
+    },
+    {
+     "id": "c3",
+     "de": "Ich habe am Montag angefangen.",
+     "tr": "Pazartesi başladım."
+    },
+    {
+     "id": "c4",
+     "de": "Am Samstag ist mein Umzug. Ich habe schon ein Auto reserviert.",
+     "tr": "Cumartesi taşınıyorum. Bir araba bile ayırttım."
+    },
+    {
+     "id": "c5",
+     "de": "Kannst du mir am Samstag helfen? Ruf mich bitte heute Abend an!",
+     "tr": "Cumartesi bana yardım edebilir misin? Lütfen bu akşam beni ara!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Ioana neden arıyor?",
+      "opts": [
+       "İşi aldı, taşınmak için yardım istiyor",
+       "Hasta, kursa gelemiyor",
+       "Seni yemeğe çağırıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Ioana yeni işe ne zaman başladı?",
+       "opts": [
+        "Pazartesi",
+        "Cumartesi",
+        "Yarın"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Taşınma ne zaman?",
+       "opts": [
+        "Cumartesi",
+        "Pazar",
+        "Pazartesi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "bekommen",
+        "besucht",
+        "bestellt"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Am Samstag ist mein Umzug. Ich habe schon ein Auto ___.",
+       "accepted": [
+        "reserviert",
+        "Reserviert",
+        "reserviert."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "habe",
+        "am",
+        "Montag",
+        "angefangen",
+        "bin",
+        "Freitag",
+        "fange"
+       ],
+       "accepted": [
+        "Ich habe am Montag angefangen.",
+        "ich habe am montag angefangen",
+        "Ich habe am Montag angefangen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Ich habe die Stelle in Wendlfing bekommen!",
+        "ich habe die stelle in wendlfing bekommen",
+        "Ich habe die Stelle in Wendlfing bekommen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Ioana hat eine Stelle bekommen. Am Samstag ist ihr Umzug.",
+       "zorunlu": [
+        "Stelle",
+        "Umzug"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:58:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana'yı geri arıyorsun. Cumartesi ona yardım edebilirsin.",
+      "prompt_de": "Hallo? Hast du meine Nachricht bekommen?",
+      "accepted": [
+       "Ja! Ich helfe dir am Samstag beim Umzug.",
+       "Ja, ich habe sie bekommen. Ich helfe dir am Samstag.",
+       "Ja, klar! Am Samstag helfe ich dir beim Umzug.",
+       "Ja, ich habe deine Nachricht bekommen. Ich kann am Samstag helfen.",
+       "Ja! Am Samstag kann ich dir helfen."
+      ],
+      "why_tr": "Önce **Ja** de, sonra **beim Umzug** ile yardım edeceğini söyle."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:58:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Bu akşam Ioana'yı ara.",
+     "Cumartesi sabahı ona mesaj yaz.",
+     "Pazartesi onu ziyaret et."
+    ],
+    "ans": 0,
+    "why_tr": "Ioana bu akşam onu aramanı istiyor.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:58:a2",
+   "tur": "radyo",
+   "title_tr": "Radyoda taşınma önerileri",
+   "ortam_tr": "Pazar sabahı kahvaltıda yerel radyo açık.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Radio Wendlfing, guten Morgen! Heute: drei Tipps für den Umzug.",
+     "tr": "Radyo Wendlfing, günaydın! Bugün taşınma için üç öneri."
+    },
+    {
+     "id": "c2",
+     "de": "Bitte lesen Sie im neuen Haus die Hausordnung.",
+     "tr": "Yeni binada lütfen apartman kurallarını okuyun."
+    },
+    {
+     "id": "c3",
+     "de": "Besuchen Sie die Nachbarn und sagen Sie Hallo.",
+     "tr": "Komşuları ziyaret edin ve merhaba deyin."
+    },
+    {
+     "id": "c4",
+     "de": "Gehen Sie nach dem Umzug ins Rathaus zur Anmeldung.",
+     "tr": "Taşındıktan sonra kayıt için belediyeye gidin."
+    },
+    {
+     "id": "c5",
+     "de": "Und bitte, der Müll kommt nicht ins Treppenhaus!",
+     "tr": "Bir de lütfen, çöp merdiven boşluğuna konmaz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne anlatıyor?",
+      "opts": [
+       "Taşınanlar için öneriler",
+       "Hava durumu",
+       "Yeni bir iş ilanı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Taşındıktan sonra nereye gitmelisin?",
+       "opts": [
+        "Kayıt için belediyeye",
+        "Bankaya",
+        "Doktora"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Komşular için ne öneriliyor?",
+       "opts": [
+        "Onları ziyaret edip merhaba demek",
+        "Onları telefonla aramak",
+        "Onlara mektup yazmak"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Nachbarn",
+        "Hausmeister",
+        "Kollegen"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Bitte lesen Sie im neuen Haus die ___.",
+       "accepted": [
+        "Hausordnung",
+        "hausordnung",
+        "Hausordnung."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Und",
+        "bitte",
+        "der",
+        "Müll",
+        "kommt",
+        "nicht",
+        "ins",
+        "Treppenhaus",
+        "Keller",
+        "in"
+       ],
+       "accepted": [
+        "Und bitte, der Müll kommt nicht ins Treppenhaus!",
+        "und bitte der müll kommt nicht ins treppenhaus",
+        "Und bitte, der Müll kommt nicht ins Treppenhaus"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Gehen Sie nach dem Umzug ins Rathaus zur Anmeldung.",
+        "gehen sie nach dem umzug ins rathaus zur anmeldung",
+        "Gehen Sie nach dem Umzug ins Rathaus zur Anmeldung"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyodaki iki öneriyi Almanca yaz.",
+       "ornek_de": "Im neuen Haus soll ich die Hausordnung lesen. Ich soll auch die Nachbarn besuchen.",
+       "zorunlu": [
+        "Hausordnung",
+        "Nachbarn"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:58:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana radyoyu dinlemedi. Ona bir öneri söyle.",
+      "prompt_de": "Was muss ich nach dem Umzug machen?",
+      "accepted": [
+       "Du musst ins Rathaus zur Anmeldung gehen.",
+       "Geh ins Rathaus zur Anmeldung.",
+       "Lies die Hausordnung und besuch die Nachbarn.",
+       "Du musst zur Anmeldung ins Rathaus.",
+       "Besuch die Nachbarn und lies die Hausordnung."
+      ],
+      "why_tr": "Arkadaşına öneri için **Du musst** ya da **Geh** dersin."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:58:a2:e1",
+    "k": "pick",
+    "q_tr": "Yeni bir eve taşındın. Radyoya göre ilk ne yaparsın?",
+    "opts": [
+     "Apartman kurallarını okursun.",
+     "Bodrumu boyarsın.",
+     "Komşulara mektup yazarsın."
+    ],
+    "ans": 0,
+    "why_tr": "Radyo yeni binada önce apartman kurallarını okumayı öneriyor.",
+    "kanit": [
+     "c2"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:58:g1",
+   "de": "Regal",
+   "dogru_img": "empty wooden bookshelf against a wall",
+   "celdirici_img": [
+    "wooden table",
+    "kitchen chair",
+    "bed with pillows"
+   ]
+  },
+  {
+   "id": "m1:58:g2",
+   "de": "Keller",
+   "dogru_img": "basement storage room with shelves and bicycles",
+   "celdirici_img": [
+    "sunny balcony with plants",
+    "modern office",
+    "bakery counter"
+   ]
+  },
+  {
+   "id": "m1:58:g3",
+   "de": "Treppenhaus",
+   "dogru_img": "stairwell in an apartment building",
+   "celdirici_img": [
+    "elevator in a shopping mall",
+    "train station platform",
+    "garden path"
+   ]
+  },
+  {
+   "id": "m1:58:g4",
+   "de": "Müll",
+   "dogru_img": "garbage bins in a courtyard",
+   "celdirici_img": [
+    "flower pots",
+    "parked bicycles",
+    "shopping bags"
+   ]
+  },
+  {
+   "id": "m1:58:g5",
+   "de": "Umzug",
+   "dogru_img": "moving boxes next to a small van",
+   "celdirici_img": [
+    "picnic in a park",
+    "people in a waiting room",
+    "christmas market stall"
+   ]
+  },
+  {
+   "id": "m1:58:g6",
+   "de": "Unterkunft",
+   "dogru_img": "simple guesthouse room with a bed",
+   "celdirici_img": [
+    "supermarket shelf",
+    "school classroom",
+    "car repair shop"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:58:p1",
+  "title_tr": "Hausmeister'i aramak",
+  "durum_tr": "Akşam. Merdiven boşluğunun ışığı yanmıyor. Bir de bodrumun anahtarını henüz almadın. Herr Pichler'i arıyorsun.",
+  "karsi": "ch:pichler",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Pichler, guten Abend?",
+    "tr": "Pichler, iyi akşamlar?",
+    "secenekler": [
+     {
+      "de": "Guten Abend, Herr Pichler. Hier ist {name}.",
+      "tr": "İyi akşamlar Pichler Bey. Ben {name}.",
+      "accepted": [
+       "Guten Abend, Herr Pichler. Hier ist {name}.",
+       "Guten Abend, hier ist {name}.",
+       "Hallo, Herr Pichler, hier ist {name}.",
+       "Guten Abend, Herr Pichler, {name} hier."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi başlangıç: önce selam, sonra adın."
+     },
+     {
+      "de": "Das Licht ist kaputt!",
+      "tr": "Işık bozuk!",
+      "accepted": [
+       "Das Licht ist kaputt!",
+       "Das Licht geht nicht!",
+       "Licht kaputt!",
+       "Das Licht ist kaputt."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Telefonda önce selam ver ve adını söyle."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Guten Abend. Was gibt's denn?",
+    "tr": "İyi akşamlar. Ne oldu?",
+    "secenekler": [
+     {
+      "de": "Das Licht im Treppenhaus ist kaputt.",
+      "tr": "Merdiven boşluğunun ışığı bozuk.",
+      "accepted": [
+       "Das Licht im Treppenhaus ist kaputt.",
+       "Im Treppenhaus ist das Licht kaputt.",
+       "Das Licht im Treppenhaus geht nicht.",
+       "Das Licht im Treppenhaus funktioniert nicht."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Açık ve kısa. Sorunu hemen söyledin."
+     },
+     {
+      "de": "Das Licht im Treppenhaus geht nicht mehr.",
+      "tr": "Merdiven boşluğunun ışığı artık yanmıyor.",
+      "accepted": [
+       "Das Licht im Treppenhaus geht nicht mehr.",
+       "Das Licht im Treppenhaus geht seit gestern nicht mehr.",
+       "Im Treppenhaus geht das Licht nicht mehr.",
+       "Das Licht im Treppenhaus geht leider nicht mehr."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **nicht mehr**, artık değil demektir."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Schon wieder? Das habe ich doch am Freitag repariert! Gut, ich komme morgen um acht. Noch etwas?",
+    "tr": "Yine mi? Onu daha cuma tamir ettim! Peki, yarın sekizde gelirim. Başka bir şey var mı?",
+    "secenekler": [
+     {
+      "de": "Ja, ich habe den Schlüssel für den Keller noch nicht bekommen.",
+      "tr": "Evet, bodrumun anahtarını henüz almadım.",
+      "accepted": [
+       "Ja, ich habe den Schlüssel für den Keller noch nicht bekommen.",
+       "Ja. Ich habe den Schlüssel für den Keller noch nicht bekommen.",
+       "Ja, den Schlüssel für den Keller habe ich noch nicht bekommen.",
+       "Ja, ich habe noch keinen Schlüssel für den Keller bekommen."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **bekommen** ge almaz, sözlükteki hâliyle aynıdır."
+     },
+     {
+      "de": "Ja. Wo ist der Schlüssel für den Keller?",
+      "tr": "Evet. Bodrumun anahtarı nerede?",
+      "accepted": [
+       "Ja. Wo ist der Schlüssel für den Keller?",
+       "Ja, wo ist der Schlüssel für den Keller?",
+       "Wo ist der Schlüssel für den Keller?",
+       "Ja. Wo ist mein Schlüssel für den Keller?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Anahtarı da sordun."
+     },
+     {
+      "de": "Nein, nichts.",
+      "tr": "Hayır, bir şey yok.",
+      "accepted": [
+       "Nein, nichts.",
+       "Nein, danke.",
+       "Nein.",
+       "Nichts, danke."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Anahtarı unuttun! Bodrumun anahtarını da sor."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gut. Kommen Sie morgen um acht ins Treppenhaus. Dann gehen wir in den Keller, und Sie bekommen den Schlüssel.",
+    "tr": "Tamam. Yarın sekizde merdivene gelin. O zaman bodruma ineriz, anahtarı da alırsınız.",
+    "secenekler": [
+     {
+      "de": "Gut, um acht bin ich da. Danke!",
+      "tr": "Tamam, sekizde oradayım. Teşekkürler!",
+      "accepted": [
+       "Gut, um acht bin ich da. Danke!",
+       "Gut, ich bin um acht da. Danke!",
+       "Okay, um acht bin ich da. Vielen Dank!",
+       "Um acht passt. Danke, Herr Pichler!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Saati onayladın ve teşekkür ettin."
+     },
+     {
+      "de": "Um acht arbeite ich leider schon. Geht es auch um sieben?",
+      "tr": "Sekizde maalesef işteyim. Yedide de olur mu?",
+      "accepted": [
+       "Um acht arbeite ich leider schon. Geht es auch um sieben?",
+       "Um acht arbeite ich leider. Geht es um sieben?",
+       "Leider arbeite ich um acht schon. Geht es auch um sieben?",
+       "Um acht geht es leider nicht. Geht es auch um sieben?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Uymayan saat için kibarca başka bir saat önerdin."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Passt. Bis morgen dann!",
+    "tr": "Uyar. Yarın görüşürüz o zaman!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Telefonda kendini tanıttın, iki sorunu söyledin ve bir saat üzerinde anlaştın."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Apartmanın kuralları",
+  "metin_de": "Hier ist die Hausordnung für alle Wohnungen im Haus. Von 22 bis 6 Uhr und am Sonntag bitte keine laute Musik. Fahrräder kommen in den Keller, nicht ins Treppenhaus. Jede Wohnung putzt einmal im Monat das Treppenhaus. Der Müll kommt in die Tonnen im Hof. Im Keller hat jede Wohnung einen Platz mit Nummer. Bei Problemen bitte Herrn Pichler, den Hausmeister, anrufen.",
+  "metin_tr": "Binadaki bütün daireler için apartman kuralları şunlar. Saat 22'den 6'ya kadar ve pazar günü lütfen yüksek sesle müzik yok. Bisikletler bodruma, merdiven boşluğuna değil. Her daire ayda bir kez merdiveni temizler. Çöp avludaki çöp kutularına atılır. Bodrumda her dairenin numaralı bir yeri var. Sorun olursa lütfen apartman görevlisi Herr Pichler'i arayın.",
+  "sorular": [
+   {
+    "id": "m1:58:o1",
+    "kind": "gist",
+    "q_tr": "Bu metin ne?",
+    "opts": [
+     "Apartmanın kuralları",
+     "Bir kira sözleşmesi",
+     "Bir iş ilanı"
+    ],
+    "ans": 0,
+    "kanit": [
+     0
+    ]
+   },
+   {
+    "id": "m1:58:o2",
+    "kind": "detail",
+    "q_tr": "Pazar günü ne yapmamalısın?",
+    "opts": [
+     "Yüksek sesle müzik dinlemek",
+     "Bisiklete binmek",
+     "Çöpü atmak"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:58:o3",
+    "kind": "detail",
+    "q_tr": "Bisikletler nerede durur?",
+    "opts": [
+     "Bodrumda",
+     "Merdiven boşluğunda",
+     "Avluda"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:58:o4",
+    "kind": "detail",
+    "q_tr": "Bir sorun olursa kimi ararsın?",
+    "opts": [
+     "Hausmeister Herr Pichler'i",
+     "Belediyeyi",
+     "Frau Brandl'ı"
+    ],
+    "ans": 0,
+    "kanit": [
+     6
+    ]
+   },
+   {
+    "id": "m1:58:o5",
+    "k": "guided_response",
+    "situation_tr": "Yeni komşu bisikletini merdivende bırakmış. Kibarca bodruma koymasını söyle.",
+    "prompt_de": "Ist das okay? Mein Fahrrad steht im Treppenhaus.",
+    "accepted": [
+     "Leider nicht. Das Fahrrad kommt in den Keller.",
+     "Das geht leider nicht. Das Fahrrad kommt in den Keller.",
+     "Nein, leider nicht. Bitte in den Keller.",
+     "Leider nicht. In der Hausordnung steht: Fahrräder in den Keller.",
+     "Das geht leider nicht. Bitte in den Keller."
+    ],
+    "why_tr": "Kibar bir hayır için **Leider nicht** dersin. Sonra kuralı söyle."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:58:s",
+  "maddeler": [
+   {
+    "id": "m1:58:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Frau Brandl hat die neue Nachbarin besucht.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Frau Brandl hat die neue Nachbarin besucht.",
+     "frau brandl hat die neue nachbarin besucht",
+     "Frau Brandl hat die neue Nachbarin besucht"
+    ],
+    "why_tr": "**besucht** başında ge yok."
+   },
+   {
+    "id": "m1:58:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Herr Pichler hat gestern die Heizung repariert.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Herr Pichler hat gestern die Heizung repariert.",
+     "herr pichler hat gestern die heizung repariert",
+     "Herr Pichler hat gestern die Heizung repariert"
+    ],
+    "why_tr": "Sonu **ieren** olan kelimeler ge almaz: **repariert**."
+   },
+   {
+    "id": "m1:58:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Im Keller ist am Wochenende etwas passiert.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Im Keller ist am Wochenende etwas passiert.",
+     "im keller ist am wochenende etwas passiert",
+     "Im Keller ist am Wochenende etwas passiert"
+    ],
+    "why_tr": "**passiert** ge almaz ve **ist** ile gelir."
+   },
+   {
+    "id": "m1:58:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ioana ist am Samstag umgezogen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ioana ist am Samstag umgezogen.",
+     "ioana ist am samstag umgezogen",
+     "Ioana ist am Samstag umgezogen"
+    ],
+    "why_tr": "**um-ge-zogen**: ge ortada, **ist** ile gelir."
+   },
+   {
+    "id": "m1:58:s5",
+    "k": "tr_de",
+    "tr": "Merdiven boşluğunun ışığını kim tamir etti?",
+    "accepted": [
+     "Wer hat das Licht im Treppenhaus repariert?",
+     "Wer hat im Treppenhaus das Licht repariert?",
+     "Wer hat denn das Licht im Treppenhaus repariert?"
+    ],
+    "why_tr": "**repariert** sonu **ieren** olduğu için ge almaz."
+   },
+   {
+    "id": "m1:58:s6",
+    "k": "tr_de",
+    "tr": "Taşındıktan sonra apartman kurallarını okudum.",
+    "accepted": [
+     "Nach dem Umzug habe ich die Hausordnung gelesen.",
+     "Ich habe nach dem Umzug die Hausordnung gelesen.",
+     "Ich habe die Hausordnung nach dem Umzug gelesen."
+    ],
+    "why_tr": "Taşınmadan sonra derken **nach dem Umzug** dersin."
+   },
+   {
+    "id": "m1:58:s7",
+    "k": "tr_de",
+    "tr": "Kalacak yer bulamadım.",
+    "accepted": [
+     "Ich habe keine Unterkunft gefunden.",
+     "Ich habe noch keine Unterkunft gefunden.",
+     "Ich habe leider keine Unterkunft gefunden."
+    ],
+    "why_tr": "Kalacak yer **die Unterkunft**. Bulamadım derken **keine Unterkunft gefunden** dersin."
+   },
+   {
+    "id": "m1:58:s8",
+    "k": "tr_de",
+    "tr": "Yeni bir rafa ihtiyacım var.",
+    "accepted": [
+     "Ich brauche ein neues Regal.",
+     "Ich brauche noch ein neues Regal.",
+     "Ich brauche ein Regal."
+    ],
+    "why_tr": "**das Regal**, yeni bir raf derken **ein neues Regal** olur."
+   },
+   {
+    "id": "m1:58:s9",
+    "k": "guided_response",
+    "situation_tr": "Herr Pichler mesajını alıp almadığını soruyor. Aldın, bu akşam bodruma ineceksin.",
+    "prompt_de": "Haben Sie meine Nachricht bekommen?",
+    "accepted": [
+     "Ja, ich habe sie bekommen. Ich gehe heute Abend in den Keller.",
+     "Ja, danke. Heute Abend gehe ich in den Keller.",
+     "Ja, ich habe Ihre Nachricht bekommen.",
+     "Ja, ich habe sie bekommen.",
+     "Ja, danke. Ich gehe heute Abend in den Keller."
+    ],
+    "why_tr": "**bekommen** ge almaz. Bu akşam için **Ich gehe** demen yeter."
+   },
+   {
+    "id": "m1:58:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Was hast du am Wochenende gemacht?",
+    "speed": "normal",
+    "situation_tr": "Hafta sonu Ioana'yı ziyaret ettin. Söyle.",
+    "accepted": [
+     "Ich habe Ioana besucht.",
+     "Am Wochenende habe ich Ioana besucht.",
+     "Ich habe am Wochenende Ioana besucht.",
+     "Ioana besucht.",
+     "Ich habe meine Freundin Ioana besucht."
+    ],
+    "why_tr": "**habe** ikinci yerde, **besucht** en sonda."
+   },
+   {
+    "id": "m1:58:s11",
+    "k": "guided_response",
+    "situation_tr": "Herr Pichler'i arıyorsun. Merdivenin ışığı bozuk ve bodrum anahtarını henüz almadın.",
+    "prompt_de": "Ja, Pichler?",
+    "accepted": [
+     "Guten Tag, Herr Pichler. Das Licht im Treppenhaus ist kaputt, und ich habe den Schlüssel für den Keller noch nicht bekommen.",
+     "Hallo, Herr Pichler, hier ist {name}. Das Licht im Treppenhaus ist kaputt. Und ich habe den Schlüssel für den Keller noch nicht bekommen.",
+     "Guten Tag. Im Treppenhaus ist das Licht kaputt. Ich habe auch den Schlüssel für den Keller noch nicht bekommen.",
+     "Guten Abend, Herr Pichler. Das Licht im Treppenhaus geht nicht, und ich habe noch keinen Schlüssel für den Keller bekommen."
+    ],
+    "why_tr": "Önce selam ver, sonra iki sorunu sırayla söyle."
+   }
+  ],
+  "sesli": [
+   "m1:58:s9",
+   "m1:58:s10"
+  ],
+  "dikte": [
+   "m1:58:s1",
+   "m1:58:s2",
+   "m1:58:s3",
+   "m1:58:s4"
+  ]
+ }
+}
