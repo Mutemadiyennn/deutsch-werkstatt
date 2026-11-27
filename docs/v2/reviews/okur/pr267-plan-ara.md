@@ -22,3 +22,13 @@ Bu ekranda bir GERİ olduğu için ekran "reviewed" sayılamaz (OD-9.4).
 ## Öneriler (karar PM'in)
 - **Not (3):** `;` kaldırılıp iki kısa cümle olabilir. "O zaman" yerine ne zaman olduğu açıkça yazılabilir: plan gelince mi, plan bitince mi? Öğrenci şu an gördüğü listenin planın ilk adımı olduğunu da anlamalı. Yoksa başlık "Planın" ile not çelişir.
 - **Liste başlığı (2), engel değil:** "zorlandın" başlığının altında "…yapabiliyorum" satırlarının durması bir an kafa karıştırıyor. Liste satırları onaylı. Bu yalnız bilgi için yazıldı.
+
+## Fark turu (27.11)
+
+Kaynak: `web/src/screens/Seviye.tsx` satır 432 (`data-test="plan-not"`). Yalnız bu satır okundu.
+
+| # | Öğe | Açıklama | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|
+| 3 | not (PM metni, yeni) | Bu liste planının ilk adımı. Günlere bölünmüş tam plan birkaç gün içinde burada olacak. Planı bitirince A2 açılır. | "Şu an gördüğüm liste planımın başı. Her güne ayrılmış planın tamamı birkaç güne buraya gelecek. O planı bitirdiğimde A2 açılacak." | GEÇTİ | Cümleler 5, 9 ve 5 kelime. `;`, `=`, `…` ya da terim yok. Önceki turdaki dört sorun da çözüldü: (a) `;` yok; (b) her cümlede tek fikir var; (c) "o zaman" yerine "bitirince" yazıyor, bu da önceki ekrandaki "A2'den önce … planın var" sözüyle uyuşuyor; (d) "ilk adımı" sözü listeyi plana bağlıyor, başlık "Planın" ile artık çelişmiyor. Tek okumada anladım. Küçük not, engel değil: "Planı bitirince" sözünde bir an "bu listeyi mi, tam planı mı?" diye düşündüm. Önceki cümle "tam plan" dediği için tam plan olarak anladım. |
+
+Fark turu sonucu: Toplam 1 · GEÇTİ 1 · GERİ 0. Önceki turda GEÇTİ alan 1 ve 2 değişmedi. Ekranın üç satırı da GEÇTİ, ekran "reviewed" sayılabilir (OD-9.4).

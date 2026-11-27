@@ -186,7 +186,7 @@ def main():
           not: (document.querySelector('[data-test=plan-not]') || {}).innerText || '',
           birincil: [...document.querySelectorAll('.btn.primary')].map((x) => [x.innerText.trim(), x.getAttribute('href')]) })""")
         check(pl["gun"] == ["15", "29"] and pl["rehber"] == ["#/rehber/15", "#/rehber/29"], f"zorlanılan cümleler + Rehber ({pl['gun']}, {pl['rehber']})")
-        check(pl["not"] == "Tamamlama planın birkaç gün içinde burada olacak; A2 o zaman açılır.", f"tek satır not ({pl['not']!r})")
+        check(pl["not"] == "Bu liste planının ilk adımı. Günlere bölünmüş tam plan birkaç gün içinde burada olacak. Planı bitirince A2 açılır.", f"tek satır not ({pl['not']!r})")
         check(pl["birincil"] == [["Bunları tekrar et", "#/seviye/tekrar/15,29"]], f"tek birincil 'Bunları tekrar et' ({pl['birincil']})")
         check(re.search(r"15\. GÜN · \d+/\d+ DOĞRU", pg.inner_text("[data-test=zayif-liste]")) is not None, "#244 dili: 'N. GÜN · d/t DOĞRU'")
         no_overflow(pg, "planın (ara hâl)"); shot(pg, f"tespit-11-plan-ara-{sema}", full=False)

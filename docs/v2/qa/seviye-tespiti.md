@@ -23,7 +23,7 @@ Hedef ekran: PM-124 md. 4.1 tarifi + #244'ün hafta sonu "zorlandın" listesi (a
 
 | # | Ölçüt | Sınama |
 |---|---|---|
-| 13 | "Planımı gör" (#264'te doğrudan `#/seviye/tekrar/<g,…>`'e gidiyordu) → `#/seviye/plan`: zorlanılan cümleler ("N. GÜN · d/t DOĞRU" + cümle, satır o günün tekrarına gider) + **Rehber**; tek birincil **Bunları tekrar et** (#244'ün tekrar akışı, `#/seviye/tekrar/<g,…>`) + Bugüne dön; tek satır not "Tamamlama planın birkaç gün içinde burada olacak; A2 o zaman açılır."; A2 kapalı | `v2_seviye.py` B |
+| 13 | "Planımı gör" (#264'te doğrudan `#/seviye/tekrar/<g,…>`'e gidiyordu) → `#/seviye/plan`: zorlanılan cümleler ("N. GÜN · d/t DOĞRU" + cümle, satır o günün tekrarına gider) + **Rehber**; tek birincil **Bunları tekrar et** (#244'ün tekrar akışı, `#/seviye/tekrar/<g,…>`) + Bugüne dön; tek satır not "Bu liste planının ilk adımı. Günlere bölünmüş tam plan birkaç gün içinde burada olacak. Planı bitirince A2 açılır."; A2 kapalı | `v2_seviye.py` B |
 | 14 | Tekrarın geri oku listeye döner; adresle açılan ara plan aynı listeyi gösterir; karar "tamamla" değilse `#/seviye/plan` rapora yönlenir | B, A |
 | 15 | Seviye + sınav günü ekranları ana paketten çıkar (tek ayrı parça, ortak deneme kartıyla); ilk açılış ≤ 250 KB; toplam JS ≤ 307.200 − 25 KB (281.600 B) | `ci-v2.yml` bütçe adımı (yerel ölçü PR'da) |
 | 16 | Davranış aynı: giriş (Firebase adlı yükleme; üretim derlemesinde giriş ekranı + e-posta yolu), sandık töreni (`preact/compat` yerine body katmanı), çevrimdışı (yeni parça servis işçisinde), açık + koyu taşma yok | `v2_gorev`, `ucak`, `yukleme`, `gezgin` (`#/seviye/plan`), `v2_sinav`, `v2_core` |

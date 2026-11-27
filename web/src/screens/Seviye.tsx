@@ -429,7 +429,7 @@ export function TespitPlanAra() {
               <a class="rehber-btn" href={`#/rehber/${z.gun}`} aria-label={`${z.gun}. günün rehberi`}>Rehber</a>
             </li>))}</ol>
         </>}
-        <p class="small muted" style={{ margin: 0 }} data-test="plan-not">Tamamlama planın birkaç gün içinde burada olacak; A2 o zaman açılır.</p>
+        <p class="small muted" style={{ margin: 0 }} data-test="plan-not">Bu liste planının ilk adımı. Günlere bölünmüş tam plan birkaç gün içinde burada olacak. Planı bitirince A2 açılır.</p>
       </section>
       <ActionBar>
         {gunler.length > 0
