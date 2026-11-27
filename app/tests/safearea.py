@@ -19,7 +19,7 @@ async def main():
       await route.fulfill(json={"candidates":[{"content":{"parts":[{"text":json.dumps(fill(t))}]}}]})
     await pg.route("**/generativelanguage.googleapis.com/**", gem)
     await pg.add_init_script("localStorage.setItem('dw-gemini','AIzaTESTKEYxxxxxxxxxxxxxxxxxxxxxxxxxxx'); localStorage.setItem('dw-gate', JSON.stringify({h:'2a4fd738768c5609c205edf6dcd7dd72c2da1add10f40b3d013ffa70660e0135', t:Date.now()}));")
-    await pg.goto("http://localhost:8765/_sa.html"); await pg.wait_for_timeout(1800)
+    await pg.goto("http://localhost:8765/_sa.html?eski=1"); await pg.wait_for_timeout(1800)
     await pg.evaluate("S.state.setupDone=true; say=async()=>true; sayMixed=async()=>true; (async()=>{ for(const x of coreNext(8)) await Store.put('words', coreWord(x, {sents:[{de:'Wo ist die Bäckerei?', answer:'Wo', tr:'Fırın nerede?'}]})); })(); 0"); await pg.wait_for_timeout(600)
     res = {}
     for sess in (False, True):

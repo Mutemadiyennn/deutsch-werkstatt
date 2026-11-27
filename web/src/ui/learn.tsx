@@ -1,4 +1,5 @@
 import { fotoHaritasi, loadFoto, type FotoKayit } from "../services/content.ts";
+import { ilkFoto } from "../services/kartFoto.ts";
 /** Oynatıcının ortak parçaları: cevap kutusu, karar gösterimi, "Bu ne demek?", "Almanca nasıl derim?", "Duyduğum kelime", fotoğraf */
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Chunk, Lexeme, Pattern, PhotoResult } from "@dw/shared";
@@ -170,10 +171,11 @@ export function Photo({ q, sira, yer, alt = "", enCok = 200, oran = "3 / 2", onY
     let live = true;
     (async () => {
       // önce seçilmiş açık fotoğraf (atıflı); yoksa eski yol (sunucu araması). Harita çözülmüşse beklemeden (eşzamanlı)
+      // PM 7088230583 md. 3: haritada raf kaydı öne geçer (`raf:` adresi anahtarla çözülür); gelmezse açık fotoğraf
       const harita = !yer?.length ? {} : fotoHaritasi() ?? await loadFoto();
-      const f = (yer ?? []).map((y) => harita[y]).find(Boolean);
+      const sec = await ilkFoto(harita, yer ?? []);
       if (!live) return;
-      if (f) { setAtif(f); setP({ id: 0, src: f.src, w: 0, h: 0, alt, credit: f.yazar || "Wikimedia/Openverse", url: f.sayfa || f.src }); return; }
+      if (sec) { const f = sec.atif; setAtif(f); setP({ id: 0, src: sec.src, w: 0, h: 0, alt, credit: f.yazar || "Wikimedia/Openverse", url: f.sayfa || sec.src }); return; }
       setAtif(null);
       if (!q || !api.configured) { setP(null); return; }
       let list = await cacheGet<PhotoResult[]>(`photo:${q}`, 30 * 86400_000);
@@ -188,7 +190,7 @@ export function Photo({ q, sira, yer, alt = "", enCok = 200, oran = "3 / 2", onY
   }, [q, sira, yer?.join("|")]);
   if (!p) return null;
   // yüklenemezse (çevrimdışı, kaldırılmış dosya) alan tümden kalkar; yer ayrılır, düzen kaymaz (inceleme #121 P1-3)
-  return <figure style={{ margin: 0 }} data-test="foto" data-kaynak={atif ? "secim" : "arama"}>
+  return <figure style={{ margin: 0 }} data-test="foto" data-kaynak={atif ? (atif.sinif === "kapali" ? "raf" : "secim") : "arama"}>
     <img src={p.src} alt={alt || p.alt} onError={() => setP(null)} style={{ width: "100%", aspectRatio: oran, maxHeight: enCok, objectFit: "cover", borderRadius: 12, background: "var(--soft)" }} loading="lazy" />
     {atif
       ? <figcaption class="tiny muted foto-atif" data-test="foto-atif">Fotoğraf: {atif.sayfa && /^https:\/\//.test(atif.sayfa) ? <a class="foto-yazar" href={atif.sayfa} target="_blank" rel="noopener noreferrer">{atif.yazar || "kaynak"}</a> : <span class="foto-yazar">{atif.yazar}</span>} · {atif.lisans_url && /^https:\/\//.test(atif.lisans_url) ? <a class="foto-lisans" href={atif.lisans_url} target="_blank" rel="noopener noreferrer">{atif.lisans}</a> : <span class="foto-lisans">{atif.lisans}</span>} · kırpıldı</figcaption>

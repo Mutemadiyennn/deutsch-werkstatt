@@ -11,6 +11,7 @@ import { TopBar, useFocusTick } from "../ui/components.tsx";
 import { XpSeri } from "../ui/solen.tsx";
 import { GecenHaftakiSen } from "../ui/gorev.tsx";
 import { useXp } from "../ui/durum.tsx";
+import { HATIRLATMA_SAATLERI, hatirlatmaAyar, hatirlatmaIzni, hatirlatmaKaydet, hatirlatmaVar, type HatirlatmaAyar } from "../services/hatirlatma.ts";
 
 const addDays = (d: Date, n: number) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
 const DOW = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"];
@@ -106,6 +107,27 @@ export function Progress() {
         })()}
         <p class="tiny muted">Pasif = tanıma; aktif = kendin üretme. Kalıcı: en az 3 saat arayla iki ayrı oturumda doğru üretilmiş.</p>
       </section>
+      {hatirlatmaVar() && <HatirlatmaKarti hedefDk={goal} />}
     </div>
+  );
+}
+
+/** Günlük hatırlatma (PM-121 md. 3.3): akşam tek bildirim; kapatılabilir, saati seçilir. Yalnız iPhone kabuğunda görünür. */
+function HatirlatmaKarti({ hedefDk }: { hedefDk: number }) {
+  const [a, setA] = useState<HatirlatmaAyar | null>(null);
+  const [izin, setIzin] = useState<string | null>(null);
+  useEffect(() => { void hatirlatmaAyar().then(setA); void hatirlatmaIzni().then(setIzin); }, []);
+  if (!a) return null;
+  const degis = (y: HatirlatmaAyar) => { setA(y); void hatirlatmaKaydet(y, hedefDk).then(() => hatirlatmaIzni()).then(setIzin); };
+  return (
+    <section class="card stack" data-test="hatirlatma">
+      <div class="sechead"><span class="ic" aria-hidden="true"><Icon name="zil" /></span><div><h2>Günlük hatırlatma</h2><div class="tiny muted">Akşam tek bildirim. O gün hedefinin yarısını geçtiysen gelmez.</div></div></div>
+      <label class="row hatirlatma-satir"><input type="checkbox" checked={a.acik} data-test="hatirlatma-acik" onChange={(e) => degis({ ...a, acik: (e.target as HTMLInputElement).checked })} /><span>Her akşam hatırlat</span></label>
+      {a.acik && izin === "denied" && <p class="small muted" data-test="hatirlatma-izin">Bildirim izni kapalı. iPhone'da Ayarlar → Bildirimler'den bu uygulamaya izin ver.</p>}
+      {a.acik && <><label class="lbl" for="hatirlatma-saat">Saat</label>
+        <select id="hatirlatma-saat" class="input" value={a.saat} data-test="hatirlatma-saat" onChange={(e) => degis({ ...a, saat: (e.target as HTMLSelectElement).value })}>
+          {HATIRLATMA_SAATLERI.map((s) => <option value={s}>{s}</option>)}
+        </select></>}
+    </section>
   );
 }

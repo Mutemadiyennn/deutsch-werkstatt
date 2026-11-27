@@ -1,0 +1,396 @@
+{
+  "schema": 1,
+  "id": "m1:gun:48",
+  "day": 48,
+  "level": "A1",
+  "format": "gun",
+  "title_tr": "Arkadaşa öğüt",
+  "goal_tr": "Tobi gripli. Ona telefonda öğüt verir, onun için yemek yapmayı önerirsin. **ohne dich** (sensiz) ve **für dich** (senin için) dersin.",
+  "can_do": { "id": "cd:m1:48", "tr": "Hasta bir arkadaşa öğüt veririm." },
+  "unit": "u:m1:48",
+  "arm": "pazar",
+  "place": "pl:firma",
+  "characters": ["ch:lechner", "ch:aksoy", "ch:brandl"],
+  "requires": { "kelimeler": [], "kaliplar": [], "gramer": ["gr:a1-13:t4", "gr:a1-13:t5"], "tur": [], "baglayicilar": [], "akicilik": [] },
+  "review": { "status": "draft" },
+  "dersler": ["gr:a1-14:t1", "gr:a1-14:t2", "gr:a1-10:t3"],
+  "yeni_kartlar": ["lx:kennenlernen", "lx:sich_treffen", "lx:siezen", "lx:zusagen", "lx:vermissen", "lx:Freundschaft", "lx:leihen", "lx:kochen", "lx:Tisch", "lx:Messer"],
+  "halkalar": [
+    {
+      "id": "m1:48:h1",
+      "title_tr": "Tobi hasta: öğüt ve yardım",
+      "kartlar": ["lx:vermissen", "lx:kochen", "lx:leihen", "lx:Tisch", "lx:Messer"],
+      "kaliplar": [
+        { "de": "Trink viel Wasser! – Bleib im Bett! – Geh ins Bett! – Schlaf viel! – Nimm …! – Frag …!", "tr": "Bol su iç! – Yatakta kal! – Yatağa git! – Bol uyu! – … al! – …ya sor!" },
+        { "de": "für dich – für mich – ohne dich – ohne mich – ohne …", "tr": "senin için – benim için – sensiz – bensiz – …sız" },
+        { "de": "Ich vermisse dich. – Wir vermissen dich.", "tr": "Seni özlüyorum. – Seni özlüyoruz." },
+        { "de": "Ich koche für …", "tr": "… için yemek yapıyorum." },
+        { "de": "… gefällt mir. – Kannst du mir … leihen?", "tr": "…yı beğeniyorum. – Bana … ödünç verebilir misin?" }
+      ],
+      "gorev_cumleleri": [
+        { "kart": "lx:vermissen", "de": "Ich vermisse dich.", "tr": "Seni özlüyorum.",
+          "accepted": ["Ich vermisse dich.", "Ich vermisse dich!", "Ich vermisse dich, Tobi."] },
+        { "kart": "lx:vermissen", "de": "Bleib im Bett! Wir vermissen dich.", "tr": "Yatakta kal! Seni özlüyoruz.",
+          "accepted": ["Bleib im Bett! Wir vermissen dich.", "Bleib im Bett. Wir vermissen dich!", "Wir vermissen dich. Bleib im Bett!"] },
+        { "kart": "lx:vermissen", "de": "Ohne dich ist die Arbeit nicht schön. Wir vermissen dich!", "tr": "Sensiz iş güzel değil. Seni özlüyoruz!",
+          "accepted": ["Ohne dich ist die Arbeit nicht schön. Wir vermissen dich!", "Die Arbeit ist ohne dich nicht schön. Wir vermissen dich!", "Wir vermissen dich! Ohne dich ist die Arbeit nicht schön."] },
+        { "kart": "lx:kochen", "de": "Ich koche für dich.", "tr": "Senin için yemek yapıyorum.",
+          "accepted": ["Ich koche für dich.", "Ich koche heute für dich.", "Für dich koche ich."] },
+        { "kart": "lx:kochen", "de": "Bleib im Bett, ich koche!", "tr": "Yatakta kal, yemeği ben yapıyorum!",
+          "accepted": ["Bleib im Bett, ich koche!", "Bleib im Bett! Ich koche.", "Ich koche, bleib im Bett!"] },
+        { "kart": "lx:leihen", "de": "Kannst du mir dein Messer leihen?", "tr": "Bana bıçağını ödünç verebilir misin?",
+          "accepted": ["Kannst du mir dein Messer leihen?", "Kannst du mir bitte dein Messer leihen?", "Kannst du mir mal dein Messer leihen?"] },
+        { "kart": "lx:leihen", "de": "Frag Frau Brandl, sie kann dir ein Messer leihen.", "tr": "Brandl Hanım'a sor, o sana bir bıçak ödünç verebilir.",
+          "accepted": ["Frag Frau Brandl, sie kann dir ein Messer leihen.", "Frag Frau Brandl! Sie kann dir ein Messer leihen.", "Frag doch Frau Brandl, sie kann dir ein Messer leihen."] },
+        { "kart": "lx:Tisch", "de": "Bleib nicht am Tisch! Geh ins Bett!", "tr": "Masada kalma! Yatağa git!",
+          "accepted": ["Bleib nicht am Tisch! Geh ins Bett!", "Bleib nicht am Tisch, geh ins Bett!", "Geh ins Bett! Bleib nicht am Tisch!"] },
+        { "kart": "lx:Tisch", "de": "Das Wasser ist auf dem Tisch. Trink viel!", "tr": "Su masanın üstünde. Bol iç!",
+          "accepted": ["Das Wasser ist auf dem Tisch. Trink viel!", "Das Wasser ist auf dem Tisch, trink viel!", "Auf dem Tisch ist Wasser. Trink viel!"] },
+        { "kart": "lx:Tisch", "de": "Der Kaffee auf dem Tisch ist für dich.", "tr": "Masadaki kahve senin için.",
+          "accepted": ["Der Kaffee auf dem Tisch ist für dich.", "Der Kaffee ist für dich. Er ist auf dem Tisch.", "Der Kaffee da auf dem Tisch ist für dich."] },
+        { "kart": "lx:Messer", "de": "Nimm das Messer hier!", "tr": "Şu bıçağı al!",
+          "accepted": ["Nimm das Messer hier!", "Nimm das Messer!", "Hier, nimm das Messer!"] },
+        { "kart": "lx:Messer", "de": "Ohne Messer kann ich nicht kochen.", "tr": "Bıçaksız yemek yapamam.",
+          "accepted": ["Ohne Messer kann ich nicht kochen.", "Ich kann ohne Messer nicht kochen.", "Ohne ein Messer kann ich nicht kochen."] },
+        { "kart": "lx:Messer", "de": "Das Messer gefällt mir.", "tr": "Bıçağı beğendim.",
+          "accepted": ["Das Messer gefällt mir.", "Mir gefällt das Messer.", "Das Messer gefällt mir gut."] }
+      ],
+      "sahne": {
+        "ortam_tr": "Akşam. Tobi'yi arıyorsun. Sesi kısık, burnu tıkalı.",
+        "satirlar": [
+          { "r": "ch:lechner", "de": "Hallo … Ich bin krank. Ich habe Fieber.", "tr": "Alo… Hastayım. Ateşim var." },
+          { "r": "ogrenci", "de": "Ach nein! Trink viel Wasser und bleib im Bett!", "tr": "Eyvah! Bol su iç ve yatakta kal!" },
+          { "r": "ch:lechner", "de": "Danke! Und morgen? Gehst du ohne mich ins Büro?", "tr": "Sağ ol! Peki yarın? Bensiz mi gideceksin ofise?" }
+        ],
+        "soru": { "q_tr": "Tobi'ye ne öğüt veriyorsun?", "opts": ["Bol su içmesini ve yatakta kalmasını", "İşe gelmesini", "Spora gitmesini"], "ans": 0 }
+      }
+    },
+    {
+      "id": "m1:48:h2",
+      "title_tr": "Arkadaşlık: tanışmak, buluşmak, söz vermek",
+      "kartlar": ["lx:kennenlernen", "lx:sich_treffen", "lx:siezen", "lx:zusagen", "lx:Freundschaft"],
+      "kaliplar": [
+        { "de": "Komm …! – Ruf mich an! – Ich rufe … an.", "tr": "… gel! – Beni ara! – …yı arıyorum." },
+        { "de": "mich – dich – ihn", "tr": "beni – seni – onu (erkek)" },
+        { "de": "Passt dir …?", "tr": "… sana uyar mı?" }
+      ],
+      "gorev_cumleleri": [
+        { "kart": "lx:kennenlernen", "de": "Ich möchte ihn kennenlernen.", "tr": "Onunla (erkek) tanışmak istiyorum.",
+          "accepted": ["Ich möchte ihn kennenlernen.", "Ihn möchte ich kennenlernen.", "Ich will ihn kennenlernen."] },
+        { "kart": "lx:kennenlernen", "de": "Komm am Samstag! Du kannst meine Freundin kennenlernen.", "tr": "Cumartesi gel! Kız arkadaşımla tanışabilirsin.",
+          "accepted": ["Komm am Samstag! Du kannst meine Freundin kennenlernen.", "Komm am Samstag, du kannst meine Freundin kennenlernen!", "Du kannst meine Freundin kennenlernen. Komm am Samstag!"] },
+        { "kart": "lx:sich_treffen", "de": "Treffen wir uns am Freitag? Passt dir das?", "tr": "Cuma buluşalım mı? Sana uyar mı?",
+          "accepted": ["Treffen wir uns am Freitag? Passt dir das?", "Treffen wir uns am Freitag? Passt dir Freitag?", "Passt dir Freitag? Treffen wir uns?"] },
+        { "kart": "lx:sich_treffen", "de": "Ruf mich an! Wir treffen uns am Wochenende.", "tr": "Beni ara! Hafta sonu buluşuruz.",
+          "accepted": ["Ruf mich an! Wir treffen uns am Wochenende.", "Ruf mich an, wir treffen uns am Wochenende.", "Wir treffen uns am Wochenende. Ruf mich an!"] },
+        { "kart": "lx:siezen", "de": "Soll ich ihn siezen?", "tr": "Ona (erkek) siz mi demeliyim?",
+          "accepted": ["Soll ich ihn siezen?", "Muss ich ihn siezen?", "Soll ich ihn auch siezen?"] },
+        { "kart": "lx:siezen", "de": "Ich muss ihn siezen, er ist mein Chef.", "tr": "Ona siz demem gerekiyor, o benim şefim.",
+          "accepted": ["Ich muss ihn siezen, er ist mein Chef.", "Er ist mein Chef, ich muss ihn siezen.", "Ich muss ihn siezen. Er ist mein Chef."] },
+        { "kart": "lx:zusagen", "de": "Ich kann für Samstag zusagen.", "tr": "Cumartesi için gelirim diyebilirim.",
+          "accepted": ["Ich kann für Samstag zusagen.", "Für Samstag kann ich zusagen.", "Ja, ich kann für Samstag zusagen."] },
+        { "kart": "lx:zusagen", "de": "Ohne dich kann ich nicht zusagen.", "tr": "Sensiz gelirim diyemem.",
+          "accepted": ["Ohne dich kann ich nicht zusagen.", "Ich kann ohne dich nicht zusagen.", "Ohne dich kann ich leider nicht zusagen."] },
+        { "kart": "lx:Freundschaft", "de": "Danke für unsere Freundschaft!", "tr": "Dostluğumuz için teşekkürler!",
+          "accepted": ["Danke für unsere Freundschaft!", "Danke für unsere Freundschaft.", "Danke schön für unsere Freundschaft!"] },
+        { "kart": "lx:Freundschaft", "de": "Unsere Freundschaft ist wichtig für mich.", "tr": "Dostluğumuz benim için önemli.",
+          "accepted": ["Unsere Freundschaft ist wichtig für mich.", "Für mich ist unsere Freundschaft wichtig.", "Unsere Freundschaft ist für mich wichtig."] }
+      ],
+      "sahne": {
+        "ortam_tr": "Ofiste öğle arası. Derya Tobi'nin boş masasını gösteriyor.",
+        "satirlar": [
+          { "r": "ch:aksoy", "de": "Tobi ist krank. Wir treffen uns heute ohne ihn.", "tr": "Tobi hasta. Bugün onsuz toplanıyoruz." },
+          { "r": "ogrenci", "de": "Ach nein! Ich kann ihn heute anrufen.", "tr": "Eyvah! Onu bugün arayabilirim." },
+          { "r": "ch:aksoy", "de": "Super! Gute Besserung für ihn!", "tr": "Süper! Ona geçmiş olsun!" }
+        ],
+        "soru": { "q_tr": "Bugün toplantı nasıl olacak?", "opts": ["Tobi'siz", "Tobi telefonla katılacak", "Toplantı iptal"], "ans": 0 }
+      }
+    }
+  ],
+  "sahne": {
+    "id": "m1:48:v1",
+    "title_tr": "Tobi telefonda",
+    "sahneler": [
+      { "id": "s1", "speaker": "ch:aksoy", "sahne_tr": "Ofis. Derya telefonu hoparlöre almış, sen yanındasın.", "de": "Tobi! Na, wie geht es dir?", "tr": "Tobi! Eee, nasılsın?" },
+      { "id": "s2", "speaker": "ch:lechner", "sahne_tr": "Tobi yatakta, battaniyeye sarılmış, burnunu siliyor.", "de": "Nicht gut. Ich habe Fieber und Husten.", "tr": "İyi değil. Ateşim ve öksürüğüm var." },
+      { "id": "s3", "speaker": "ch:aksoy", "sahne_tr": "Derya kaşlarını çatıyor.", "de": "Ach nein! Geh zum Arzt, Tobi!", "tr": "Eyvah! Doktora git, Tobi!" },
+      { "id": "s4", "speaker": "ch:lechner", "sahne_tr": "Tobi komodindeki kâğıdı gösteriyor.", "de": "Ich war beim Arzt. Ich habe eine Krankmeldung.", "tr": "Doktora gittim. Raporum var." },
+      { "id": "s5", "speaker": "ch:aksoy", "sahne_tr": "Derya başını sallıyor.", "de": "Gut. Bleib im Bett und schlaf viel.", "tr": "Güzel. Yatakta kal ve bol uyu." },
+      { "id": "s6", "speaker": "ch:lechner", "sahne_tr": "Tobi doğrulmaya çalışıyor, öksürüyor.", "de": "Aber das Training am Samstag! Ohne mich geht das nicht.", "tr": "Ama cumartesi antrenmanı var! Bensiz olmaz." },
+      { "id": "s7", "speaker": "ch:aksoy", "sahne_tr": "Derya gülüyor.", "de": "Doch, das geht. Wir machen das Training ohne dich.", "tr": "Olur olur. Antrenmanı sensiz yaparız." },
+      { "id": "s8", "speaker": "ch:lechner", "sahne_tr": "Tobi yastığa geri düşüyor.", "de": "Und ich kann nicht kochen. Ich bin so müde.", "tr": "Bir de yemek yapamıyorum. Çok yorgunum." },
+      { "id": "s9", "speaker": "ch:aksoy", "sahne_tr": "Derya sana bakıp göz kırpıyor.", "de": "Kein Problem. Wir kochen heute Abend für dich!", "tr": "Sorun değil. Bu akşam senin için yemek yapıyoruz!" },
+      { "id": "s10", "speaker": "ch:lechner", "sahne_tr": "Tobi gülümsüyor.", "de": "Echt? Danke! Ihr seid super. Ich vermisse euch!", "tr": "Gerçekten mi? Sağ olun! Harikasınız. Sizi özlüyorum!" },
+      { "id": "s11", "speaker": "ch:aksoy", "sahne_tr": "Derya telefona doğru eğiliyor.", "de": "Wir vermissen dich auch. Gute Besserung!", "tr": "Biz de seni özlüyoruz. Geçmiş olsun!" }
+    ],
+    "bolumler": [
+      {
+        "id": "b1",
+        "cumleler": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Telefon konuşması ne hakkında?", "opts": ["Tobi hasta, Derya öğüt veriyor ve yardım öneriyor", "Tobi yeni bir iş buldu", "Derya hastaneye gidiyor"], "ans": 0, "kanit": ["s2", "s9"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Tobi'nin nesi var?", "opts": ["Ateşi ve öksürüğü var", "Bacağı ağrıyor", "Başı dönüyor"], "ans": 0, "kanit": ["s2"] },
+          { "kind": "detail", "q_tr": "Tobi doktora gitti mi?", "opts": ["Evet, rapor da aldı", "Hayır, gitmedi", "Yarın gidecek"], "ans": 0, "kanit": ["s4"] },
+          { "kind": "detail", "q_tr": "Cumartesi antrenmanı ne olacak?", "opts": ["Tobi'siz yapılacak", "İptal edilecek", "Pazara kalacak"], "ans": 0, "kanit": ["s7"] },
+          { "kind": "detail", "q_tr": "Bu akşam kim yemek yapacak?", "opts": ["Derya ve sen, Tobi için", "Tobi kendisi", "Brandl Hanım"], "ans": 0, "kanit": ["s9"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s2", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Fieber", "Bein", "Allergie"], "ans": 0 },
+          { "id": "d2", "cumle": "s7", "seviye": "orta", "de": "Doch, das geht. Wir machen das Training ohne ___.", "accepted": ["dich", "Dich", "dich."] },
+          { "id": "d3", "cumle": "s9", "seviye": "zor", "banka": ["Wir", "kochen", "heute", "Abend", "für", "dich", "ohne", "mich"], "accepted": ["Wir kochen heute Abend für dich!", "wir kochen heute abend für dich", "Wir kochen heute Abend für dich"] },
+          { "id": "d4", "cumle": "s6", "seviye": "usta", "accepted": ["Ohne mich geht das nicht.", "ohne mich geht das nicht", "Ohne mich geht das nicht"] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Tobi'nin durumu ne? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Tobi ist krank. Er hat Fieber und Husten. Wir kochen für ihn.", "zorunlu": ["krank", "für ihn"] }
+        ],
+        "golge": ["s3", "s9"],
+        "cevapla": {
+          "id": "m1:48:v1:c1",
+          "k": "guided_response",
+          "situation_tr": "Tobi sana da soruyor: Ne yapayım? Ona iki öğüt ver.",
+          "prompt_de": "Und du? Was soll ich machen?",
+          "accepted": ["Trink viel Wasser und schlaf viel!", "Bleib im Bett und trink viel Wasser!", "Schlaf viel und geh zum Arzt!", "Trink viel Wasser! Bleib im Bett!", "Nimm eine Tablette und schlaf viel!", "Bleib im Bett und schlaf viel!", "Schlaf viel und trink viel Wasser!", "Trink viel Wasser und bleib im Bett!", "Schlaf viel und bleib im Bett!", "Bleib im Bett! Schlaf viel!", "Trink viel Wasser! Schlaf viel!", "Bleib im Bett! Trink viel Wasser!", "Geh ins Bett und schlaf viel!", "Geh zum Arzt und bleib im Bett!", "Geh zum Arzt und trink viel Wasser!", "Trink viel Wasser und geh zum Arzt!", "Bleib zu Hause und schlaf viel!"],
+          "why_tr": "Arkadaşa öğütte **Trink**, **Schlaf**, **Bleib** öne gelir. **du** söylenmez."
+        }
+      }
+    ]
+  },
+  "sesler": [
+    {
+      "id": "m1:48:a1",
+      "tur": "sesli-mesaj",
+      "title_tr": "Tobi'den sesli mesaj",
+      "ortam_tr": "Sabah işe giderken telefonuna bakıyorsun. Tobi'nin sesi kısık.",
+      "speaker": "ch:lechner",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Hallo, hier ist Tobi.", "tr": "Merhaba, ben Tobi." },
+        { "id": "c2", "de": "Ich bin krank. Morgen komme ich nicht ins Büro.", "tr": "Hastayım. Yarın ofise gelmiyorum." },
+        { "id": "c3", "de": "Kannst du bitte den Chef anrufen?", "tr": "Lütfen şefi arayabilir misin?" },
+        { "id": "c4", "de": "Ich habe eine Krankmeldung bis Freitag.", "tr": "Cumaya kadar raporum var." },
+        { "id": "c5", "de": "Und die Party am Samstag ist ohne mich.", "tr": "Cumartesi partisi de bensiz olacak." },
+        { "id": "c6", "de": "Ruf mich am Abend an, okay?", "tr": "Akşam beni ara, tamam mı?" }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5", "c6"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Tobi neden arıyor?", "opts": ["Hasta, yarın işe gelmeyecek", "Seni partiye çağırıyor", "Arabasını ödünç istiyor"], "ans": 0, "kanit": ["c2"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Tobi senden ne istiyor?", "opts": ["Şefi aramanı", "İlaç almanı", "Yemek yapmanı"], "ans": 0, "kanit": ["c3"] },
+            { "kind": "detail", "q_tr": "Tobi'nin raporu ne zamana kadar?", "opts": ["Cumaya kadar", "Pazartesiye kadar", "Cumartesiye kadar"], "ans": 0, "kanit": ["c4"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c4", "seviye": "kolay", "q_tr": "Hangi günü duydun?", "opts": ["Samstag", "Freitag", "Montag"], "ans": 1 },
+            { "id": "d2", "cumle": "c3", "seviye": "orta", "de": "Kannst du bitte den ___ anrufen?", "accepted": ["Chef", "chef", "Chef."] },
+            { "id": "d3", "cumle": "c2", "seviye": "zor", "banka": ["Morgen", "komme", "ich", "nicht", "ins", "Büro", "heute", "Arzt"], "accepted": ["Morgen komme ich nicht ins Büro.", "morgen komme ich nicht ins büro", "Morgen komme ich nicht ins Büro"] },
+            { "id": "d4", "cumle": "c6", "seviye": "usta", "accepted": ["Ruf mich am Abend an, okay?", "ruf mich am abend an okay", "Ruf mich am Abend an okay"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Tobi ne diyor? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Tobi ist krank. Ich soll den Chef anrufen.", "zorunlu": ["krank", "Chef"] }
+          ],
+          "golge": ["c2", "c6"],
+          "cevapla": {
+            "id": "m1:48:a1:c1",
+            "k": "guided_response",
+            "situation_tr": "Akşam Tobi'yi arıyorsun. Şefi arayacağını söyle ve ona bir öğüt ver.",
+            "prompt_de": "Hallo? Tobi hier.",
+            "accepted": ["Hallo, Tobi! Ich rufe den Chef an. Trink viel Wasser!", "Hallo Tobi! Ich rufe den Chef an. Bleib im Bett!", "Tobi, ich rufe den Chef an. Schlaf viel!", "Ich rufe den Chef an. Trink viel Wasser!", "Ich rufe den Chef an. Bleib im Bett!", "Ich rufe den Chef an. Schlaf viel!", "Hallo Tobi, hier ist {name}. Ich rufe den Chef an. Trink viel Wasser!", "Hallo Tobi, hier ist {name}. Ich rufe den Chef an. Bleib im Bett!", "Hallo Tobi, hier ist {name}. Ich rufe den Chef an. Schlaf viel!", "Hallo Tobi! Ich rufe den Chef an. Bleib im Bett und schlaf viel!", "Hallo Tobi! Kein Problem, ich rufe den Chef an. Bleib im Bett!", "Hallo Tobi! Kein Problem, ich rufe den Chef an. Trink viel Wasser!", "Hallo Tobi! Klar, ich rufe den Chef an. Schlaf viel!", "Hallo Tobi! Ich rufe den Chef an. Geh ins Bett!", "Hallo Tobi! Ich rufe den Chef an. Bleib im Bett! Gute Besserung!"],
+            "why_tr": "Önce ne yapacağını söylersin: **Ich rufe den Chef an**. Sonra öğüt: **Trink viel Wasser!**"
+          }
+        }
+      ],
+      "eylem": { "id": "m1:48:a1:e1", "k": "pick", "q_tr": "Ne yapmalısın?", "opts": ["Şefi ara, Tobi'nin hasta olduğunu söyle.", "Tobi'ye ilaç götür.", "Cumartesi partiye git."], "ans": 0, "why_tr": "Tobi hasta, yarın ofise gelmiyor ve şefi aramanı istiyor.", "kanit": ["c2", "c3"] }
+    },
+    {
+      "id": "m1:48:a2",
+      "tur": "anons",
+      "title_tr": "Eczanenin kapısındaki kayıt",
+      "ortam_tr": "Akşam saat dokuz. Tobi için ilaç almaya geldin. Eczane kapalı, kapıdaki düğmeye basınca bir kayıt çalıyor.",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Guten Abend, hier ist Ihre Apotheke.", "tr": "İyi akşamlar, burası eczaneniz." },
+        { "id": "c2", "de": "Heute Abend sind wir geschlossen.", "tr": "Bu akşam kapalıyız." },
+        { "id": "c3", "de": "Die Apotheke am Bahnhof ist bis zweiundzwanzig Uhr offen.", "tr": "İstasyondaki eczane saat yirmi ikiye kadar açık." },
+        { "id": "c4", "de": "Sie ist gegenüber vom Hotel.", "tr": "Otelin karşısında." },
+        { "id": "c5", "de": "Morgen sind wir ab acht Uhr wieder da.", "tr": "Yarın saat sekizden itibaren yine buradayız." }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Bu kayıt ne söylüyor?", "opts": ["Bu eczane kapalı, istasyondaki eczane açık", "Eczane taşındı", "İlaçlar bitti"], "ans": 0, "kanit": ["c2", "c3"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "İstasyondaki eczane saat kaça kadar açık?", "opts": ["22.00", "20.00", "12.00"], "ans": 0, "kanit": ["c3"] },
+            { "kind": "detail", "q_tr": "O eczane nerede?", "opts": ["Otelin karşısında", "Muayenehanenin yanında", "Belediyede"], "ans": 0, "kanit": ["c4"] },
+            { "kind": "detail", "q_tr": "Bu eczane yarın saat kaçta açılıyor?", "opts": ["8.00", "10.00", "18.00"], "ans": 0, "kanit": ["c5"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c4", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Rathaus", "Hotel", "Supermarkt"], "ans": 1 },
+            { "id": "d2", "cumle": "c5", "seviye": "orta", "de": "Morgen sind wir ab acht Uhr ___ da.", "accepted": ["wieder", "Wieder", "wieder."] },
+            { "id": "d3", "cumle": "c2", "seviye": "zor", "banka": ["Heute", "Abend", "sind", "wir", "geschlossen", "offen", "Morgen"], "accepted": ["Heute Abend sind wir geschlossen.", "heute abend sind wir geschlossen", "Heute Abend sind wir geschlossen"] },
+            { "id": "d4", "cumle": "c3", "seviye": "usta", "accepted": ["Die Apotheke am Bahnhof ist bis zweiundzwanzig Uhr offen.", "die apotheke am bahnhof ist bis zweiundzwanzig uhr offen", "Die Apotheke am Bahnhof ist bis zweiundzwanzig Uhr offen"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Kayıtta ne dendi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Heute ist die Apotheke am Bahnhof offen. Sie ist gegenüber vom Hotel.", "zorunlu": ["Bahnhof"] }
+          ],
+          "golge": ["c3", "c4"],
+          "cevapla": {
+            "id": "m1:48:a2:c1",
+            "k": "guided_response",
+            "situation_tr": "Tobi mesajla soruyor: bu akşam hangi eczane açık? Söyle.",
+            "prompt_de": "Welche Apotheke ist heute offen?",
+            "accepted": ["Die Apotheke am Bahnhof.", "Die Apotheke am Bahnhof ist offen.", "Am Bahnhof, gegenüber vom Hotel.", "Die Apotheke am Bahnhof, bis zweiundzwanzig Uhr.", "Heute ist die Apotheke am Bahnhof offen.", "Die Apotheke am Bahnhof ist heute offen.", "Die Apotheke am Bahnhof ist bis zweiundzwanzig Uhr offen.", "Die am Bahnhof.", "Am Bahnhof.", "Die Apotheke am Bahnhof ist heute bis zweiundzwanzig Uhr offen.", "Die Apotheke am Bahnhof, gegenüber vom Hotel.", "Die Apotheke am Bahnhof ist offen. Sie ist gegenüber vom Hotel.", "Die Apotheke am Bahnhof ist offen, bis zweiundzwanzig Uhr."],
+            "why_tr": "Yeri **am Bahnhof** ile söylersin: **Die Apotheke am Bahnhof**."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:48:a2:e1", "k": "pick", "q_tr": "Saat 21'de Tobi'ye ilaç lazım. Ne yapmalısın?", "opts": ["İstasyondaki eczaneye git.", "Bu eczanenin kapısında bekle.", "Yarın sabah sekizi bekle."], "ans": 0, "why_tr": "Bu eczane kapalı, istasyondaki eczane saat yirmi ikiye kadar açık.", "kanit": ["c2", "c3"] }
+    }
+  ],
+  "gorsel": [
+    { "id": "m1:48:g1", "de": "Messer", "dogru_img": "a kitchen knife on a cutting board", "celdirici_img": ["a fork on a plate", "a spoon in a cup", "a pair of scissors"] },
+    { "id": "m1:48:g2", "de": "Tisch", "dogru_img": "a wooden kitchen table with four chairs", "celdirici_img": ["a single chair", "a sofa in a living room", "a kitchen cupboard"] },
+    { "id": "m1:48:g3", "de": "Bett", "dogru_img": "a bed with a pillow and a blanket", "celdirici_img": ["a sofa", "a bathtub", "a wardrobe"] },
+    { "id": "m1:48:g4", "de": "Wasser", "dogru_img": "a glass of water on a table", "celdirici_img": ["a cup of coffee", "a glass of milk", "a bottle of beer"] },
+    { "id": "m1:48:g5", "de": "Tablette", "dogru_img": "a white tablet in a hand", "celdirici_img": ["a tube of ointment", "a bottle of drops", "a thermometer"] }
+  ],
+  "prova": {
+    "id": "m1:48:p1",
+    "title_tr": "Tobi'yi aramak",
+    "durum_tr": "Tobi gripli. Akşam onu arıyorsun. Nasıl olduğunu sor, öğüt ver, yardım öner.",
+    "karsi": "ch:lechner",
+    "baslangic": "n1",
+    "dugumler": [
+      {
+        "id": "n1",
+        "de": "Ja, hallo? Hier ist Tobi.",
+        "tr": "Evet, alo? Ben Tobi.",
+        "secenekler": [
+          { "de": "Hallo, Tobi! Wie geht es dir?", "tr": "Merhaba Tobi! Nasılsın?",
+            "accepted": ["Hallo, Tobi! Wie geht es dir?", "Hallo Tobi, wie geht's dir?", "Hallo Tobi! Wie geht es dir heute?", "Hallo! Wie geht es dir?", "Hallo Tobi! Wie geht's?", "Wie geht es dir?", "Hallo Tobi, hier ist {name}. Wie geht es dir?", "Hallo Tobi, hier ist {name}. Wie geht's dir?", "Hallo Tobi! Na, wie geht es dir?", "Hallo Tobi! Wie geht es dir denn?", "Hallo Tobi! Wie geht es dir jetzt?"],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Hasta arkadaşa ilk soru budur." },
+          { "de": "Hallo, Tobi! Bist du krank?", "tr": "Merhaba Tobi! Hasta mısın?",
+            "accepted": ["Hallo, Tobi! Bist du krank?", "Hallo Tobi! Bist du krank?", "Tobi, hallo! Bist du krank?", "Hallo! Bist du krank?", "Bist du krank?", "Hallo Tobi, hier ist {name}. Bist du krank?", "Hallo Tobi! Bist du noch krank?", "Hallo Tobi! Du bist krank?", "Hallo Tobi! Bist du sehr krank?", "Hallo, hier ist {name}. Bist du krank?", "Bist du krank, Tobi?"],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Doğrudan ve sıcak bir soru." },
+          { "de": "Warum bist du nicht im Büro?", "tr": "Neden ofiste değilsin?",
+            "accepted": ["Warum bist du nicht im Büro?", "Wo bist du denn?", "Warum bist du nicht da?", "Warum bist du nicht im Büro, Tobi?", "Hallo Tobi! Warum bist du nicht im Büro?", "Wo bist du?", "Hallo Tobi! Wo bist du denn?", "Warum kommst du nicht ins Büro?", "Warum bist du heute nicht im Büro?", "Hallo Tobi! Wo bist du?", "Warum bist du nicht hier?"],
+            "sonraki": "n1", "uygun": false, "geri_bildirim_tr": "Tobi hasta. Önce nasıl olduğunu sor." }
+        ]
+      },
+      {
+        "id": "n2",
+        "de": "Nicht gut. Ich habe Fieber und mein Kopf tut weh.",
+        "tr": "İyi değil. Ateşim var ve başım ağrıyor.",
+        "secenekler": [
+          { "de": "Ach nein! Geh bitte zum Arzt!", "tr": "Eyvah! Lütfen doktora git!",
+            "accepted": ["Ach nein! Geh bitte zum Arzt!", "Ach nein! Geh zum Arzt!", "Geh bitte zum Arzt, Tobi!", "Geh zum Arzt!", "Geh bitte zum Arzt!", "Ach nein! Geh zum Arzt, Tobi!", "Geh zum Arzt, Tobi!", "Ach nein! Bitte geh zum Arzt!", "Ach nein, Tobi! Geh bitte zum Arzt!", "Ach nein! Geh doch zum Arzt!", "Geh doch zum Arzt!"],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Arkadaşa öğütte **du** söylenmez: **Geh zum Arzt!**" },
+          { "de": "Ach nein! Trink viel Wasser!", "tr": "Eyvah! Bol su iç!",
+            "accepted": ["Ach nein! Trink viel Wasser!", "Trink viel Wasser, Tobi!", "Ach nein! Trink bitte viel Wasser!", "Ach nein! Du musst viel Wasser trinken!", "Trink viel Wasser!", "Ach nein! Trink viel Wasser, Tobi!", "Trink bitte viel Wasser!", "Ach nein! Trink viel!", "Trink viel!", "Ach nein! Trink viel Wasser und schlaf viel!", "Trink viel Wasser und schlaf viel!", "Ach nein! Trink viel Wasser und bleib im Bett!"],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Kısa ve doğru bir öğüt." }
+        ]
+      },
+      {
+        "id": "n3",
+        "de": "Ich war beim Arzt. Ich habe Tabletten.",
+        "tr": "Doktora gittim. Tabletlerim var.",
+        "secenekler": [
+          { "de": "Gut. Nimm die Tabletten und schlaf viel!", "tr": "Güzel. Tabletleri al ve bol uyu!",
+            "accepted": ["Gut. Nimm die Tabletten und schlaf viel!", "Gut! Nimm die Tabletten und schlaf viel.", "Nimm die Tabletten und schlaf viel!", "Gut. Du musst die Tabletten nehmen und viel schlafen.", "Gut. Nimm die Tabletten und bleib im Bett!", "Gut. Nimm die Tabletten und trink viel Wasser!", "Nimm die Tabletten und trink viel Wasser!", "Gut. Nimm die Tabletten und schlaf!", "Gut. Nimm die Tabletten und geh ins Bett!", "Nimm die Tabletten und bleib im Bett!", "Sehr gut. Nimm die Tabletten und schlaf viel!", "Gut. Nimm deine Tabletten und schlaf viel!"],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "İki öğüdü **und** ile bağladın." },
+          { "de": "Super. Bleib im Bett, Tobi!", "tr": "Süper. Yatakta kal, Tobi!",
+            "accepted": ["Super. Bleib im Bett, Tobi!", "Gut. Bleib im Bett!", "Super, bleib im Bett!", "Gut. Bleib im Bett, Tobi!", "Super. Bleib im Bett und schlaf viel!", "Gut. Bleib im Bett und schlaf viel!", "Sehr gut. Bleib im Bett!", "Super. Dann bleib im Bett!", "Gut. Dann bleib im Bett!", "Super. Bleib im Bett und trink viel Wasser!", "Gut. Bleib im Bett und trink viel Wasser!"],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "**Bleib im Bett** hasta arkadaşa en sık öğüttür." }
+        ]
+      },
+      {
+        "id": "n4",
+        "de": "Aber ich habe nichts zu essen.",
+        "tr": "Ama yiyecek hiçbir şeyim yok.",
+        "secenekler": [
+          { "de": "Kein Problem. Ich koche heute für dich.", "tr": "Sorun değil. Bugün senin için yemek yapıyorum.",
+            "accepted": ["Kein Problem. Ich koche heute für dich.", "Kein Problem, ich koche für dich.", "Ich koche heute Abend für dich.", "Ich koche heute für dich.", "Ich koche für dich.", "Kein Problem. Ich koche heute Abend für dich.", "Kein Problem, Tobi. Ich koche heute für dich.", "Kein Problem. Heute koche ich für dich.", "Kein Problem. Ich koche etwas für dich.", "Ich koche etwas für dich.", "Ich koche heute etwas für dich."],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "**für dich** ile yardım önerdin." },
+          { "de": "Ich kann dir heute Abend etwas bringen.", "tr": "Bu akşam sana bir şey getirebilirim.",
+            "accepted": ["Ich kann dir heute Abend etwas bringen.", "Ich kann dir heute etwas bringen.", "Heute Abend kann ich dir etwas bringen.", "Ich kann dir etwas bringen.", "Ich bringe dir heute Abend etwas.", "Ich bringe dir etwas.", "Ich bringe dir heute etwas.", "Kein Problem. Ich kann dir heute Abend etwas bringen.", "Kein Problem. Ich bringe dir etwas.", "Ich kann dir heute Abend etwas zu essen bringen.", "Ich kann dir etwas zu essen bringen."],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Kibar bir öneri: **Ich kann dir … bringen**." },
+          { "de": "Geh doch in den Supermarkt!", "tr": "Süpermarkete gitsene!",
+            "accepted": ["Geh doch in den Supermarkt!", "Geh in den Supermarkt!", "Kauf doch etwas!", "Geh zum Supermarkt!", "Geh doch zum Supermarkt!", "Geh in den Supermarkt, Tobi!", "Kauf etwas!", "Geh doch einkaufen!", "Geh einkaufen!", "Geh in den Supermarkt und kauf etwas!", "Du musst in den Supermarkt gehen."],
+            "sonraki": "n4", "uygun": false, "geri_bildirim_tr": "Tobi'nin ateşi var, dışarı çıkamaz. Yardım öner." }
+        ]
+      },
+      {
+        "id": "n5",
+        "de": "Echt? Danke! Ohne dich ist alles schwer.",
+        "tr": "Gerçekten mi? Sağ ol! Sensiz her şey zor.",
+        "secenekler": [
+          { "de": "Bitte! Gute Besserung, Tobi!", "tr": "Rica ederim! Geçmiş olsun, Tobi!",
+            "accepted": ["Bitte! Gute Besserung, Tobi!", "Gute Besserung, Tobi!", "Bitte, bitte! Gute Besserung!", "Bitte! Gute Besserung!", "Gute Besserung!", "Kein Problem! Gute Besserung, Tobi!", "Kein Problem. Gute Besserung!", "Bitte, Tobi! Gute Besserung!", "Gern, Tobi! Gute Besserung!", "Bitte! Und gute Besserung!", "Und gute Besserung, Tobi!"],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Hasta birine vedalaşırken **Gute Besserung!** denir." },
+          { "de": "Das ist doch klar. Bis heute Abend!", "tr": "Bu çok doğal. Akşam görüşürüz!",
+            "accepted": ["Das ist doch klar. Bis heute Abend!", "Klar! Bis heute Abend!", "Das ist doch klar! Bis heute Abend.", "Bis heute Abend!", "Das ist klar. Bis heute Abend!", "Das ist doch klar! Bis heute Abend, Tobi!", "Bis heute Abend, Tobi!", "Kein Problem. Bis heute Abend!", "Kein Problem! Bis heute Abend, Tobi!", "Das ist doch klar. Bis später!", "Klar! Bis später!"],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Arkadaşça bir kapanış." }
+        ]
+      },
+      { "id": "n9", "de": "Danke, du bist super!", "tr": "Sağ ol, harikasın!", "son": true }
+    ],
+    "kapanis_tr": "Hasta arkadaşına nasıl olduğunu sordun, öğüt verdin, onun için yemek yapmayı önerdin."
+  },
+  "okuma_yazma": {
+    "tur": "yazma",
+    "title_tr": "Tobi'ye öğüt mesajı",
+    "metin_de": "Hallo! Ich bin krank. Ich habe Fieber und Husten. Am Samstag ist das Training ohne mich. Was soll ich machen? Tobi",
+    "metin_tr": "Merhaba! Hastayım. Ateşim ve öksürüğüm var. Cumartesi antrenman bensiz. Ne yapayım? Tobi",
+    "sorular": [
+      { "id": "m1:48:o1", "kind": "detail", "q_tr": "Tobi ne soruyor?", "opts": ["Ne yapması gerektiğini", "Antrenmanın saatini", "Doktorun adresini"], "ans": 0, "kanit": [4] }
+    ],
+    "yazma": {
+      "gorev_tr": "Tobi'ye kısa bir cevap yaz. Geçmiş olsun de, iki öğüt ver ve onun için ne yapacağını söyle.",
+      "ornek_de": "Hallo Tobi! Gute Besserung! Trink viel Wasser und bleib im Bett. Ich koche heute Abend für dich.",
+      "zorunlu": ["Gute Besserung", "für dich"],
+      "accepted_kaliplar": [
+        "Hallo ___!",
+        "Gute Besserung!",
+        "Trink viel Wasser und bleib im Bett.",
+        "Trink viel ___.",
+        "Bleib im Bett.",
+        "Schlaf viel.",
+        "Geh zum Arzt.",
+        "Nimm ___.",
+        "Ich koche heute Abend für dich.",
+        "Ich koche ___ für dich.",
+        "Ich kann dir ___ bringen.",
+        "Wir vermissen dich."
+      ],
+      "kontrol_tr": [
+        "**Gute Besserung** yazdın mı?",
+        "Öğütler **Trink**, **Bleib** gibi başlıyor mu, **du** yok mu?",
+        "**für dich** ile onun için ne yapacağını yazdın mı?"
+      ]
+    }
+  },
+  "gun_sinavi": {
+    "id": "m1:48:s",
+    "maddeler": [
+      { "id": "m1:48:s1", "k": "listen_and_respond", "audio_de": "Geh zum Arzt und schlaf viel.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Geh zum Arzt und schlaf viel.", "geh zum arzt und schlaf viel", "Geh zum Arzt und schlaf viel!"], "why_tr": "Arkadaşa öğütte **Geh** ve **schlaf** başa gelir, **du** söylenmez." },
+      { "id": "m1:48:s2", "k": "listen_and_respond", "audio_de": "Das Geschenk ist für ihn.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Das Geschenk ist für ihn.", "das geschenk ist für ihn", "Das Geschenk ist für ihn"], "why_tr": "**für** sonrasında onu (erkek) **ihn** olur." },
+      { "id": "m1:48:s3", "k": "listen_and_respond", "audio_de": "Wir treffen uns ohne dich.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Wir treffen uns ohne dich.", "wir treffen uns ohne dich", "Wir treffen uns ohne dich"], "why_tr": "**ohne dich** sensiz demektir." },
+      { "id": "m1:48:s4", "k": "listen_and_respond", "audio_de": "Ich vermisse meine Familie.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Ich vermisse meine Familie.", "ich vermisse meine familie", "Ich vermisse meine Familie"], "why_tr": "**vermissen** özlemek demektir." },
+      { "id": "m1:48:s5", "k": "tr_de", "tr": "Yatakta kal ve bol uyu!",
+        "accepted": ["Bleib im Bett und schlaf viel!", "Bleib im Bett und schlaf viel.", "Schlaf viel und bleib im Bett!", "Bleib im Bett! Schlaf viel!"], "why_tr": "Arkadaşa öğütte **Bleib** ve **schlaf** öne gelir." },
+      { "id": "m1:48:s6", "k": "tr_de", "tr": "Seni özlüyoruz.",
+        "accepted": ["Wir vermissen dich.", "Wir vermissen dich!", "Wir vermissen dich, Tobi."], "why_tr": "Özlenen kişi **dich** olur." },
+      { "id": "m1:48:s7", "k": "tr_de", "tr": "Bensiz gitme!",
+        "accepted": ["Geh nicht ohne mich!", "Geh bitte nicht ohne mich!", "Bitte geh nicht ohne mich!", "Geh ohne mich nicht!"], "why_tr": "**ohne** sonrasında beni **mich** olur." },
+      { "id": "m1:48:s8", "k": "tr_de", "tr": "Onun (erkek) kız arkadaşıyla tanışmak istiyorum.",
+        "accepted": ["Ich möchte seine Freundin kennenlernen.", "Ich will seine Freundin kennenlernen.", "Seine Freundin möchte ich kennenlernen.", "Ich möchte gern seine Freundin kennenlernen.", "Ich möchte gerne seine Freundin kennenlernen."], "why_tr": "Erkeğin kız arkadaşı için **seine Freundin** dersin. **kennenlernen** sona gelir." },
+      { "id": "m1:48:s9", "k": "guided_response", "situation_tr": "Tobi telefonda başının çok ağrıdığını söylüyor. Ona iki öğüt ver.", "prompt_de": "Mein Kopf tut so weh!",
+        "accepted": ["Nimm eine Tablette und schlaf viel!", "Geh zum Arzt und bleib im Bett!", "Nimm eine Tablette! Trink viel Wasser!", "Bleib im Bett und nimm eine Tablette!", "Trink viel Wasser und geh zum Arzt!", "Nimm eine Tablette und bleib im Bett!", "Nimm eine Tablette und trink viel Wasser!", "Trink viel Wasser und nimm eine Tablette!", "Nimm eine Tablette und geh ins Bett!", "Bleib im Bett und schlaf viel!", "Trink viel Wasser und schlaf viel!", "Schlaf viel und trink viel Wasser!", "Geh zum Arzt und nimm eine Tablette!", "Nimm eine Tablette und geh zum Arzt!", "Trink viel Wasser und bleib im Bett!", "Bleib im Bett und trink viel Wasser!", "Geh ins Bett und schlaf viel!"], "why_tr": "Öğüt **Nimm**, **Geh** gibi bir kelimeyle başlar: **Nimm eine Tablette!**" },
+      { "id": "m1:48:s10", "k": "guided_response", "situation_tr": "Derya soruyor: cumartesi buluşalım mı? Sana uyduğunu söyle.", "prompt_de": "Treffen wir uns am Samstag?",
+        "accepted": ["Ja, Samstag passt mir.", "Ja, am Samstag passt es mir.", "Ja, Samstag passt.", "Ja, wir treffen uns am Samstag.", "Klar, Samstag passt mir gut.", "Ja, am Samstag passt es.", "Ja, am Samstag passt es mir gut.", "Ja, Samstag passt mir gut.", "Ja, das passt mir.", "Ja, das passt.", "Ja, das passt mir gut.", "Ja, gern. Samstag passt mir.", "Ja, klar. Samstag passt mir."], "why_tr": "Uyduğunu **passt mir** ile söylersin." },
+      { "id": "m1:48:s11", "k": "guided_response", "situation_tr": "Tobi gripli, seni arıyor. Ona öğüt ver ve onun için yemek yapacağını söyle.", "prompt_de": "Ich bin krank und kann nicht kochen.",
+        "accepted": ["Bleib im Bett! Ich koche für dich.", "Trink viel Wasser! Ich koche heute für dich.", "Kein Problem, ich koche für dich. Schlaf viel!", "Bleib im Bett, ich koche heute Abend für dich.", "Schlaf viel! Ich koche für dich.", "Bleib im Bett! Ich koche heute für dich.", "Trink viel Wasser! Ich koche für dich.", "Schlaf viel! Ich koche heute für dich.", "Schlaf viel! Ich koche heute Abend für dich.", "Kein Problem. Bleib im Bett! Ich koche für dich.", "Kein Problem, ich koche für dich. Bleib im Bett!", "Ich koche für dich. Bleib im Bett!", "Ich koche für dich. Schlaf viel!", "Ich koche für dich. Trink viel Wasser!", "Bleib im Bett und schlaf viel! Ich koche für dich.", "Geh ins Bett! Ich koche für dich.", "Bleib im Bett und trink viel Wasser! Ich koche für dich."], "why_tr": "Önce öğüt ver, sonra **für dich** ile yardım öner." }
+    ],
+    "sesli": ["m1:48:s9", "m1:48:s10"],
+    "dikte": ["m1:48:s1", "m1:48:s2", "m1:48:s3", "m1:48:s4"]
+  }
+}

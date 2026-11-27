@@ -1,6 +1,5 @@
 import { useState } from "preact/hooks";
 import { auth, authErrorTr, isNative } from "../services/auth.ts";
-import { EskiyeDon, v2AcAcik } from "../ui/EskiyeDon.tsx";
 
 /** Giriş. Web: Google. iPhone uygulaması: e-posta + uygulama şifresi (v1'de belirlenen şifre). */
 export function Login() {
@@ -36,8 +35,6 @@ export function Login() {
           </form>
         </details>
         {err && <div class="fb bad" role="alert">{err}</div>}
-        {/* ayar açıkken eski uygulama her açılışta buraya yönlenir: giriş olmazsa da geri dönüş yolu (inceleme #130 B3) */}
-        {v2AcAcik() && <EskiyeDon cls="btn sm ghost block" />}
       </div>
     </main>
   );

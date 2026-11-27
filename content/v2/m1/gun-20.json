@@ -1,0 +1,1884 @@
+{
+ "schema": 1,
+ "id": "m1:gun:20",
+ "day": 20,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Ayın kaçında? am ersten Mai",
+ "goal_tr": "Muayenehane randevunu başka bir tarihe aldığında tarihi am ile söyler, emin değilsen sorup doğrularsın.",
+ "can_do": {
+  "id": "cd:m1:20",
+  "tr": "Randevunun tarihini söyler ve doğrularım."
+ },
+ "unit": "u:m1:20",
+ "arm": "pazar",
+ "place": "pl:praxis",
+ "characters": [
+  "ch:huber",
+  "ch:weber",
+  "ch:brandl",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:Montag",
+   "lx:Dienstag",
+   "lx:Donnerstag",
+   "lx:Freitag",
+   "lx:Tag",
+   "lx:heute",
+   "lx:morgen",
+   "lx:gehen",
+   "lx:hallo",
+   "lx:danke",
+   "lx:bitte",
+   "lx:ja",
+   "lx:nein",
+   "lx:Frau",
+   "lx:Praxis",
+   "lx:geschlossen",
+   "lx:Herr",
+   "lx:Januar",
+   "lx:Mai",
+   "lx:Dezember",
+   "lx:haben",
+   "lx:kommen",
+   "lx:wann",
+   "lx:neun",
+   "lx:zehn",
+   "lx:zwölf",
+   "lx:offen",
+   "lx:Karte",
+   "lx:Brot",
+   "lx:noch",
+   "lx:Uhr",
+   "lx:spät",
+   "lx:halb",
+   "lx:also",
+   "lx:Termin",
+   "lx:Arzt",
+   "lx:passen#2",
+   "lx:leider",
+   "lx:wieder",
+   "lx:da",
+   "lx:nur",
+   "lx:gern",
+   "lx:dann",
+   "lx:erster",
+   "lx:zweiter",
+   "lx:dritter",
+   "lx:vierter",
+   "lx:Datum",
+   "lx:wie",
+   "lx:wie_viel",
+   "lx:sehr",
+   "lx:sein",
+   "lx:können",
+   "lx:dürfen",
+   "lx:essen",
+   "lx:Fieber",
+   "lx:wiederholen",
+   "lx:sagen",
+   "lx:erst",
+   "lx:viel",
+   "lx:gut",
+   "lx:immer",
+   "lx:jetzt",
+   "lx:ganz",
+   "lx:hier",
+   "lx:meinen",
+   "lx:Entschuldigung",
+   "lx:anfangen",
+   "lx:einladen",
+   "lx:Bus",
+   "lx:zu#2",
+   "lx:so",
+   "lx:tun",
+   "lx:auch",
+   "lx:geben",
+   "lx:Mal",
+   "lx:krank",
+   "lx:mitkommen",
+   "lx:Name",
+   "lx:Jacke",
+   "lx:Mantel",
+   "lx:einkaufen",
+   "lx:zurückrufen",
+   "lx:zurück",
+   "lx:glauben",
+   "lx:vielleicht",
+   "lx:nie",
+   "lx:schön"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-03.md"
+ },
+ "dersler": [
+  "gr:a1-12:t4"
+ ],
+ "yeni_kartlar": [
+  "lx:Größe",
+  "lx:Ei",
+  "lx:regnen",
+  "lx:fragen",
+  "lx:sicher",
+  "lx:helfen",
+  "lx:lieben",
+  "lx:leid",
+  "lx:klein",
+  "lx:groß",
+  "lx:stehen",
+  "lx:Kind"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:20:h1",
+   "title_tr": "Üzgünüm, yağmur var",
+   "kartlar": [
+    "lx:leid",
+    "lx:fragen",
+    "lx:helfen",
+    "lx:regnen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Es tut mir leid.",
+     "tr": "Üzgünüm. Kusura bakmayın."
+    },
+    {
+     "de": "Ich frage …",
+     "tr": "…'e soruyorum"
+    },
+    {
+     "de": "ich helfe – du hilfst – er hilft",
+     "tr": "yardım ediyorum – yardım ediyorsun – yardım ediyor"
+    },
+    {
+     "de": "Es regnet.",
+     "tr": "Yağmur yağıyor."
+    },
+    {
+     "de": "Grüß Gott! – Auf Wiederhören!",
+     "tr": "Merhaba! – Telefonda: hoşça kalın!"
+    },
+    {
+     "de": "Bitte rufen Sie zurück.",
+     "tr": "Lütfen geri arayın."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:leid",
+     "de": "Es tut mir leid, ich komme zu spät.",
+     "tr": "Kusura bakmayın, geç kalıyorum.",
+     "accepted": [
+      "Es tut mir leid, ich komme zu spät.",
+      "Tut mir leid, ich komme zu spät.",
+      "Entschuldigung, ich komme zu spät."
+     ]
+    },
+    {
+     "kart": "lx:leid",
+     "de": "Es tut mir leid, heute geht es nicht.",
+     "tr": "Üzgünüm, bugün olmuyor.",
+     "accepted": [
+      "Es tut mir leid, heute geht es nicht.",
+      "Tut mir leid, heute geht es nicht.",
+      "Es tut mir leid, heute geht das nicht."
+     ]
+    },
+    {
+     "kart": "lx:fragen",
+     "de": "Ich frage Dr. Weber.",
+     "tr": "Dr. Weber'e soruyorum.",
+     "accepted": [
+      "Ich frage Dr. Weber.",
+      "Ich frage mal Dr. Weber.",
+      "Ich frage Doktor Weber."
+     ]
+    },
+    {
+     "kart": "lx:fragen",
+     "de": "Darf ich etwas fragen?",
+     "tr": "Bir şey sorabilir miyim?",
+     "accepted": [
+      "Darf ich etwas fragen?",
+      "Darf ich bitte etwas fragen?",
+      "Darf ich Sie etwas fragen?"
+     ]
+    },
+    {
+     "kart": "lx:helfen",
+     "de": "Kann ich Ihnen helfen?",
+     "tr": "Size yardım edebilir miyim?",
+     "accepted": [
+      "Kann ich Ihnen helfen?",
+      "Darf ich Ihnen helfen?",
+      "Kann ich Ihnen vielleicht helfen?"
+     ]
+    },
+    {
+     "kart": "lx:helfen",
+     "de": "Frau Huber hilft mir immer.",
+     "tr": "Huber Hanım bana hep yardım ediyor.",
+     "accepted": [
+      "Frau Huber hilft mir immer.",
+      "Frau Huber hilft mir immer sehr.",
+      "Frau Huber hilft mir wirklich immer."
+     ]
+    },
+    {
+     "kart": "lx:regnen",
+     "de": "Es regnet, ich komme mit dem Bus.",
+     "tr": "Yağmur yağıyor, otobüsle geliyorum.",
+     "accepted": [
+      "Es regnet, ich komme mit dem Bus.",
+      "Es regnet. Ich komme mit dem Bus.",
+      "Es regnet, also komme ich mit dem Bus."
+     ]
+    },
+    {
+     "kart": "lx:regnen",
+     "de": "Regnet es heute?",
+     "tr": "Bugün yağmur yağıyor mu?",
+     "accepted": [
+      "Regnet es heute?",
+      "Regnet es denn heute?",
+      "Heute regnet es?"
+     ]
+    },
+    {
+     "kart": "lx:helfen",
+     "de": "Hilfst du mir? Ich helfe dir auch.",
+     "tr": "Bana yardım eder misin? Ben de sana yardım ederim.",
+     "accepted": [
+      "Hilfst du mir? Ich helfe dir auch.",
+      "Hilfst du mir? Dann helfe ich dir auch.",
+      "Ich helfe dir auch. Hilfst du mir?"
+     ]
+    },
+    {
+     "kart": "lx:helfen",
+     "de": "Er hilft mir am Montag.",
+     "tr": "Pazartesi bana yardım ediyor.",
+     "accepted": [
+      "Er hilft mir am Montag.",
+      "Am Montag hilft er mir.",
+      "Er hilft mir am Montag, ja."
+     ]
+    },
+    {
+     "kart": "lx:fragen",
+     "de": "Grüß Gott! Ich frage Frau Huber.",
+     "tr": "Merhaba! Huber Hanım'a soruyorum.",
+     "accepted": [
+      "Grüß Gott! Ich frage Frau Huber.",
+      "Grüß Gott, ich frage Frau Huber.",
+      "Grüß Gott! Ich frage mal Frau Huber."
+     ]
+    },
+    {
+     "kart": "lx:leid",
+     "de": "Es tut mir leid, ich muss auflegen. Auf Wiederhören!",
+     "tr": "Kusura bakmayın, kapatmam lazım. Hoşça kalın!",
+     "accepted": [
+      "Es tut mir leid, ich muss auflegen. Auf Wiederhören!",
+      "Tut mir leid, ich muss auflegen. Auf Wiederhören!",
+      "Entschuldigung, ich muss auflegen. Auf Wiederhören!"
+     ]
+    },
+    {
+     "kart": "lx:leid",
+     "de": "Es tut mir leid, ich bin nicht da. Bitte rufen Sie zurück.",
+     "tr": "Kusura bakmayın, burada değilim. Lütfen geri arayın.",
+     "accepted": [
+      "Es tut mir leid, ich bin nicht da. Bitte rufen Sie zurück.",
+      "Tut mir leid, ich bin nicht da. Bitte rufen Sie zurück.",
+      "Entschuldigung, ich bin nicht da. Bitte rufen Sie zurück."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Randevuna geç kalacaksın, muayenehaneyi arıyorsun.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Praxis Dr. Weber, Huber. Kann ich Ihnen helfen?",
+      "tr": "Dr. Weber muayenehanesi, ben Huber. Size yardım edebilir miyim?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Guten Tag, hier ist {name}. Es tut mir leid, ich komme heute zu spät. Es regnet.",
+      "tr": "İyi günler, ben {name}. Kusura bakmayın, bugün geç kalıyorum. Yağmur yağıyor."
+     },
+     {
+      "r": "ch:huber",
+      "de": "Gut, ich frage Dr. Weber.",
+      "tr": "Tamam, Dr. Weber'e soruyorum."
+     }
+    ],
+    "soru": {
+     "q_tr": "Huber Hanım ne yapıyor?",
+     "opts": [
+      "Dr. Weber'e soruyor.",
+      "Randevuyu iptal ediyor.",
+      "Seni yarına çağırıyor."
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:20:h2",
+   "title_tr": "Tarihi doğrulamak: am ersten …",
+   "kartlar": [
+    "lx:sicher",
+    "lx:stehen",
+    "lx:Kind",
+    "lx:Ei"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "Heute ist der erste … – am ersten …",
+     "tr": "Bugün ayın biri – ayın birinde"
+    },
+    {
+     "de": "Auf der Karte steht …",
+     "tr": "Kartta … yazıyor"
+    },
+    {
+     "de": "auf der Karte – auf meiner Karte",
+     "tr": "kartta – kartımda"
+    },
+    {
+     "de": "ich esse – er isst",
+     "tr": "yiyorum – yiyor"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:sicher",
+     "de": "Sind Sie sicher? Am vierzehnten?",
+     "tr": "Emin misiniz? Ayın on dördünde mi?",
+     "accepted": [
+      "Sind Sie sicher? Am vierzehnten?",
+      "Am vierzehnten? Sind Sie sicher?",
+      "Sind Sie sicher? Am vierzehnten Dezember?"
+     ]
+    },
+    {
+     "kart": "lx:sicher",
+     "de": "Ich bin nicht sicher: am vierten oder am vierzehnten?",
+     "tr": "Emin değilim: ayın dördünde mi, on dördünde mi?",
+     "accepted": [
+      "Ich bin nicht sicher: am vierten oder am vierzehnten?",
+      "Ich bin nicht sicher. Am vierten oder am vierzehnten?",
+      "Am vierten oder am vierzehnten? Ich bin nicht sicher."
+     ]
+    },
+    {
+     "kart": "lx:stehen",
+     "de": "Auf meiner Karte steht der vierte Dezember.",
+     "tr": "Kartımda 4 Aralık yazıyor.",
+     "accepted": [
+      "Auf meiner Karte steht der vierte Dezember.",
+      "Auf der Karte steht der vierte Dezember.",
+      "Der vierte Dezember steht auf meiner Karte."
+     ]
+    },
+    {
+     "kart": "lx:stehen",
+     "de": "Da steht: am zweiten Dezember um neun.",
+     "tr": "Orada 2 Aralık saat dokuz yazıyor.",
+     "accepted": [
+      "Da steht: am zweiten Dezember um neun.",
+      "Da steht am zweiten Dezember um neun.",
+      "Da steht: am zweiten Dezember um neun Uhr."
+     ]
+    },
+    {
+     "kart": "lx:Kind",
+     "de": "Das Kind ist krank, es hat Fieber.",
+     "tr": "Çocuk hasta, ateşi var.",
+     "accepted": [
+      "Das Kind ist krank, es hat Fieber.",
+      "Das Kind ist krank. Es hat Fieber.",
+      "Das Kind hat Fieber, es ist krank."
+     ]
+    },
+    {
+     "kart": "lx:Kind",
+     "de": "Am ersten Dezember war das Kind beim Arzt.",
+     "tr": "1 Aralık'ta çocuk doktordaydı.",
+     "accepted": [
+      "Am ersten Dezember war das Kind beim Arzt.",
+      "Das Kind war am ersten Dezember beim Arzt.",
+      "Am ersten Dezember war das Kind bei Dr. Weber."
+     ]
+    },
+    {
+     "kart": "lx:Ei",
+     "de": "Das Kind isst kein Ei.",
+     "tr": "Çocuk yumurta yemiyor.",
+     "accepted": [
+      "Das Kind isst kein Ei.",
+      "Das Kind isst keine Eier.",
+      "Ein Ei isst das Kind nicht."
+     ]
+    },
+    {
+     "kart": "lx:Ei",
+     "de": "Am zehnten essen Sie bitte nichts, auch kein Ei!",
+     "tr": "Ayın onunda lütfen hiçbir şey yemeyin, yumurta bile!",
+     "accepted": [
+      "Am zehnten essen Sie bitte nichts, auch kein Ei!",
+      "Am zehnten bitte nichts essen, auch kein Ei!",
+      "Bitte essen Sie am zehnten nichts, auch kein Ei!",
+      "Am zehnten essen Sie bitte nichts, kein Ei!"
+     ]
+    },
+    {
+     "kart": "lx:sicher",
+     "de": "Ich bin sicher, heute ist der erste Dezember.",
+     "tr": "Eminim, bugün 1 Aralık.",
+     "accepted": [
+      "Ich bin sicher, heute ist der erste Dezember.",
+      "Heute ist der erste Dezember, ich bin sicher.",
+      "Ich bin ganz sicher, heute ist der erste Dezember."
+     ]
+    },
+    {
+     "kart": "lx:Ei",
+     "de": "Ich esse kein Ei, er isst zwei Eier.",
+     "tr": "Ben yumurta yemem, o iki yumurta yiyor.",
+     "accepted": [
+      "Ich esse kein Ei, er isst zwei Eier.",
+      "Ich esse kein Ei, aber er isst zwei Eier.",
+      "Er isst zwei Eier, ich esse kein Ei."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Muayenehanenin kayıt masası. Randevu kartına bakıyorsun.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Ihr Termin ist am vierzehnten Dezember.",
+      "tr": "Randevunuz 14 Aralık'ta."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Am vierzehnten? Auf der Karte steht der vierte!",
+      "tr": "On dördünde mi? Kartta dördü yazıyor!"
+     },
+     {
+      "r": "ch:huber",
+      "de": "Es tut mir leid! Der vierzehnte, nicht der vierte.",
+      "tr": "Kusura bakmayın! On dördü, dördü değil."
+     }
+    ],
+    "soru": {
+     "q_tr": "Randevu gerçekte hangi tarihte?",
+     "opts": [
+      "4 Aralık",
+      "14 Aralık",
+      "24 Aralık"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:20:h3",
+   "title_tr": "Beden: küçük, büyük",
+   "kartlar": [
+    "lx:Größe",
+    "lx:klein",
+    "lx:groß",
+    "lx:lieben"
+   ],
+   "kaliplar": [
+    {
+     "de": "zu klein – zu groß",
+     "tr": "fazla küçük – fazla büyük"
+    },
+    {
+     "de": "Ich liebe … – Er liebt …",
+     "tr": "…'e bayılıyorum – …'e bayılıyor"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Größe",
+     "de": "Haben Sie die Jacke in Größe 40?",
+     "tr": "Bu ceketin 40 bedeni var mı?",
+     "accepted": [
+      "Haben Sie die Jacke in Größe 40?",
+      "Die Jacke in Größe 40, haben Sie die?",
+      "Gibt es die Jacke in Größe 40?"
+     ]
+    },
+    {
+     "kart": "lx:Größe",
+     "de": "Größe 38 ist zu klein.",
+     "tr": "38 beden fazla küçük.",
+     "accepted": [
+      "Größe 38 ist zu klein.",
+      "Die Größe 38 ist zu klein.",
+      "Größe 38 ist mir zu klein."
+     ]
+    },
+    {
+     "kart": "lx:klein",
+     "de": "Die Jacke ist zu klein.",
+     "tr": "Ceket fazla küçük.",
+     "accepted": [
+      "Die Jacke ist zu klein.",
+      "Die Jacke ist mir zu klein.",
+      "Die Jacke ist leider zu klein."
+     ]
+    },
+    {
+     "kart": "lx:klein",
+     "de": "Das Kind ist noch klein.",
+     "tr": "Çocuk daha küçük.",
+     "accepted": [
+      "Das Kind ist noch klein.",
+      "Das Kind ist ja noch klein.",
+      "Das Kind ist noch sehr klein."
+     ]
+    },
+    {
+     "kart": "lx:groß",
+     "de": "Der Mantel ist zu groß.",
+     "tr": "Palto fazla büyük.",
+     "accepted": [
+      "Der Mantel ist zu groß.",
+      "Der Mantel ist mir zu groß.",
+      "Der Mantel ist leider zu groß."
+     ]
+    },
+    {
+     "kart": "lx:groß",
+     "de": "Wendlfing ist nicht groß.",
+     "tr": "Wendlfing büyük değil.",
+     "accepted": [
+      "Wendlfing ist nicht groß.",
+      "Wendlfing ist nicht sehr groß.",
+      "Wendlfing ist nicht so groß."
+     ]
+    },
+    {
+     "kart": "lx:lieben",
+     "de": "Tobi liebt den ersten Mai!",
+     "tr": "Tobi 1 Mayıs'a bayılıyor!",
+     "accepted": [
+      "Tobi liebt den ersten Mai!",
+      "Tobi liebt den ersten Mai.",
+      "Tobi liebt den ersten Mai sehr."
+     ]
+    },
+    {
+     "kart": "lx:lieben",
+     "de": "Das Kind liebt Eier.",
+     "tr": "Çocuk yumurtaya bayılıyor.",
+     "accepted": [
+      "Das Kind liebt Eier.",
+      "Das Kind liebt Eier sehr.",
+      "Das Kind liebt Eier wirklich."
+     ]
+    },
+    {
+     "kart": "lx:lieben",
+     "de": "Ich liebe den Winter, er liebt den Sommer.",
+     "tr": "Ben kışı severim, o yazı sever.",
+     "accepted": [
+      "Ich liebe den Winter, er liebt den Sommer.",
+      "Ich liebe den Winter und er liebt den Sommer.",
+      "Er liebt den Sommer, ich liebe den Winter."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Bir giyim dükkânı. Ioana ayna önünde bir ceket deniyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Die Jacke ist schön, aber zu groß.",
+      "tr": "Ceket güzel ama fazla büyük."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Welche Größe ist das?",
+      "tr": "Bu kaç beden?"
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Größe 40. Ich habe Größe 38.",
+      "tr": "40 beden. Benim bedenim 38."
+     }
+    ],
+    "soru": {
+     "q_tr": "Ioana'nın bedeni kaç?",
+     "opts": [
+      "38",
+      "40",
+      "42"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:20:v1",
+  "title_tr": "Dördü mü, on dördü mü?",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:huber",
+    "sahne_tr": "Muayenehanenin kayıt masası. Telefon çalıyor, Huber Hanım bir elinde dosya, ahizeyi alıyor.",
+    "de": "Praxis Dr. Weber, Huber, guten Tag.",
+    "tr": "Dr. Weber muayenehanesi, ben Huber, iyi günler."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Brandl Hanım evinde, mutfak masasında, elinde küçük bir randevu kartı.",
+    "de": "Grüß Gott, Frau Huber! Hier ist Rosa Brandl.",
+    "tr": "Merhaba Huber Hanım! Ben Rosa Brandl."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Brandl Hanım gözlüğünü takıp karta bakıyor.",
+    "de": "Mein Termin ist am vierten Dezember, ja?",
+    "tr": "Randevum 4 Aralık'ta, değil mi?"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım bilgisayarda bir şey arıyor ve başını sallıyor.",
+    "de": "Nein, Frau Brandl. Ihr Termin ist am vierzehnten Dezember.",
+    "tr": "Hayır Brandl Hanım. Randevunuz 14 Aralık'ta."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Brandl Hanım kartı havaya kaldırıyor, şaşkın.",
+    "de": "Am vierzehnten? Sind Sie sicher?",
+    "tr": "On dördünde mi? Emin misiniz?"
+   },
+   {
+    "id": "s5b",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Brandl Hanım parmağıyla karttaki tarihi gösteriyor.",
+    "de": "Auf meiner Karte steht der vierte!",
+    "tr": "Kartımda dördü yazıyor!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım eliyle alnına vuruyor.",
+    "de": "Es tut mir leid!",
+    "tr": "Kusura bakmayın!"
+   },
+   {
+    "id": "s6b",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım ekrandaki tarihi parmağıyla gösteriyor.",
+    "de": "Der Termin ist am vierzehnten, nicht am vierten.",
+    "tr": "Randevu on dördünde, dördünde değil."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Brandl Hanım duvar takvimine bakıyor.",
+    "de": "Am vierzehnten … das ist ein Montag, ja?",
+    "tr": "On dördü … pazartesi, değil mi?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım ekrandaki satırı parmağıyla gösteriyor.",
+    "de": "Ja, Montag, der vierzehnte Dezember, um neun Uhr.",
+    "tr": "Evet, pazartesi, 14 Aralık, saat dokuzda."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Brandl Hanım kartın üstüne yeni tarihi yazıyor.",
+    "de": "Gut. Und darf ich etwas fragen?",
+    "tr": "İyi. Bir şey sorabilir miyim?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım sabırla gülümsüyor.",
+    "de": "Ja, bitte.",
+    "tr": "Evet, buyurun."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Brandl Hanım'ın masasında bir yumurta kutusu duruyor.",
+    "de": "Darf ich an dem Tag ein Ei essen?",
+    "tr": "O gün bir yumurta yiyebilir miyim?"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım başını iki yana sallıyor.",
+    "de": "Nein, bitte nichts essen. Kein Ei und kein Brot.",
+    "tr": "Hayır, lütfen hiçbir şey yemeyin. Ne yumurta ne ekmek."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Brandl Hanım yumurta kutusunu geri itiyor ve gülüyor.",
+    "de": "Ach so. Danke, Frau Huber! Sie helfen mir immer.",
+    "tr": "Anladım. Teşekkürler Huber Hanım! Bana hep yardım ediyorsunuz."
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:huber",
+    "sahne_tr": "Huber Hanım not kâğıdına bir şey yazıyor.",
+    "de": "Gern! Bis Montag, den vierzehnten!",
+    "tr": "Rica ederim! Pazartesi, ayın on dördünde görüşürüz!"
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Brandl Hanım ahizeyi yavaşça bırakıyor.",
+    "de": "Auf Wiederhören!",
+    "tr": "Hoşça kalın!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s5b",
+     "s6",
+     "s6b",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Brandl Hanım neden arıyor?",
+     "opts": [
+      "Randevusunun tarihini doğrulamak için",
+      "Yeni bir randevu almak için",
+      "Randevusunu iptal etmek için"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s3",
+      "s5",
+      "s5b"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Randevu gerçekte ne zaman?",
+      "opts": [
+       "14 Aralık pazartesi, saat dokuzda",
+       "4 Aralık pazartesi, saat dokuzda",
+       "14 Aralık pazartesi, saat onda"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s8"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Randevu günü Brandl Hanım ne yapmamalı?",
+      "opts": [
+       "Bir şey yememeli",
+       "Otobüse binmemeli",
+       "Telefon etmemeli"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s12"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi tarihi duydun?",
+      "opts": [
+       "vierzehnten",
+       "vierten",
+       "zwölften"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s8",
+      "seviye": "orta",
+      "de": "Ja, Montag, der ___ Dezember, um neun Uhr.",
+      "accepted": [
+       "vierzehnte",
+       "Vierzehnte",
+       "vierzehnte."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s6b",
+      "seviye": "zor",
+      "banka": [
+       "Der",
+       "Termin",
+       "ist",
+       "am",
+       "vierzehnten",
+       "nicht",
+       "am",
+       "vierten",
+       "im",
+       "erste"
+      ],
+      "accepted": [
+       "Der Termin ist am vierzehnten, nicht am vierten.",
+       "der termin ist am vierzehnten nicht am vierten",
+       "Der Termin ist am vierzehnten nicht am vierten"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s5b",
+      "seviye": "usta",
+      "accepted": [
+       "Auf meiner Karte steht der vierte!",
+       "auf meiner karte steht der vierte",
+       "Auf meiner Karte steht der vierte."
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Brandl Hanım'ın randevusunu Almanca bir kısa cümleyle yaz.",
+      "ornek_de": "Der Termin von Frau Brandl ist am vierzehnten Dezember um neun.",
+      "zorunlu": [
+       "vierzehnten",
+       "Dezember"
+      ]
+     }
+    ],
+    "golge": [
+     "s7",
+     "s8"
+    ],
+    "cevapla": {
+     "id": "m1:20:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Huber Hanım sana da soruyor. Senin randevun 10 Aralık'ta.",
+     "prompt_de": "Und Ihr Termin? Wann ist der?",
+     "accepted": [
+      "Mein Termin ist am zehnten Dezember.",
+      "Am zehnten Dezember.",
+      "Am zehnten.",
+      "Mein Termin ist am zehnten.",
+      "Der ist am zehnten Dezember.",
+      "Am zehnten Dezember, glaube ich.",
+      "Mein Termin ist am Donnerstag, am zehnten Dezember.",
+      "Am Donnerstag, dem zehnten Dezember.",
+      "Er ist am zehnten Dezember."
+     ],
+     "why_tr": "Tarih için **am** dersin. Sayının sonu **en** olur: **am zehnten**."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:20:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Huber Hanım'dan tarihli mesaj",
+   "ortam_tr": "Telefonunda muayenehaneden bir sesli mesaj var. Huber Hanım hızlı konuşuyor.",
+   "speaker": "ch:huber",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist Huber, Praxis Dr. Weber.",
+     "tr": "İyi günler, ben Huber, Dr. Weber muayenehanesi."
+    },
+    {
+     "id": "c2",
+     "de": "Es tut mir leid, Ihr Termin am zehnten Dezember geht leider nicht.",
+     "tr": "Kusura bakmayın, 10 Aralık'taki randevunuz maalesef olmuyor."
+    },
+    {
+     "id": "c3",
+     "de": "Dr. Weber ist an dem Tag nicht da.",
+     "tr": "Dr. Weber o gün burada değil."
+    },
+    {
+     "id": "c4",
+     "de": "Geht auch Dienstag, der fünfzehnte Dezember, um halb neun?",
+     "tr": "15 Aralık salı, saat sekiz buçuk da olur mu?"
+    },
+    {
+     "id": "c5",
+     "de": "Bitte rufen Sie zurück.",
+     "tr": "Lütfen geri arayın."
+    },
+    {
+     "id": "c6",
+     "de": "Danke und auf Wiederhören!",
+     "tr": "Teşekkürler, hoşça kalın!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Huber Hanım neden arıyor?",
+      "opts": [
+       "Randevunu başka bir tarihe almak için",
+       "Randevunu hatırlatmak için",
+       "Bir ilaç için"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Önerilen yeni tarih ne?",
+       "opts": [
+        "15 Aralık salı",
+        "10 Aralık perşembe",
+        "5 Aralık cumartesi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Yeni saat kaç?",
+       "opts": [
+        "Sekiz buçuk",
+        "Dokuz buçuk",
+        "Saat sekiz"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi tarihi duydun?",
+       "opts": [
+        "zehnten",
+        "zwölften",
+        "zweiten"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Geht auch Dienstag, der ___ Dezember, um halb neun?",
+       "accepted": [
+        "fünfzehnte",
+        "Fünfzehnte",
+        "fünfzehnte."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Dr.",
+        "Weber",
+        "ist",
+        "an",
+        "dem",
+        "Tag",
+        "nicht",
+        "da",
+        "am",
+        "im"
+       ],
+       "accepted": [
+        "Dr. Weber ist an dem Tag nicht da.",
+        "dr weber ist an dem tag nicht da",
+        "Dr. Weber ist an dem Tag nicht da"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Bitte rufen Sie zurück.",
+        "bitte rufen sie zurück",
+        "Bitte rufen Sie zurück"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajdaki yeni tarihi ve saati Almanca bir cümleyle yaz.",
+       "ornek_de": "Mein Termin ist jetzt am fünfzehnten Dezember um halb neun.",
+       "zorunlu": [
+        "fünfzehnten",
+        "halb neun"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:20:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Huber Hanım'ı geri arıyorsun. 15 Aralık saat sekiz buçuk sana uyuyor. Tarihi tekrar et.",
+      "prompt_de": "Geht der fünfzehnte Dezember um halb neun?",
+      "accepted": [
+       "Ja, am fünfzehnten Dezember um halb neun geht es.",
+       "Ja, der fünfzehnte Dezember um halb neun geht.",
+       "Ja, am fünfzehnten um halb neun geht es.",
+       "Ja, das geht. Am fünfzehnten Dezember um halb neun.",
+       "Ja, der fünfzehnte geht.",
+       "Ja, am fünfzehnten Dezember geht es.",
+       "Ja, Dienstag, der fünfzehnte, um halb neun geht.",
+       "Ja, das passt. Der fünfzehnte Dezember um halb neun.",
+       "Ja, gern, am fünfzehnten um halb neun."
+      ],
+      "why_tr": "Tarihi tekrar et. **am fünfzehnten** ya da **der fünfzehnte** ikisi de olur."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:20:a1:e1",
+    "k": "pick",
+    "q_tr": "Mesajdan sonra ne yapmalısın?",
+    "opts": [
+     "Muayenehaneyi geri ara, 15 Aralık'ın uyup uymadığını söyle.",
+     "10 Aralık'ta yine de muayenehaneye git.",
+     "Hiçbir şey yapma, randevu aynı kaldı."
+    ],
+    "ans": 0,
+    "why_tr": "Randevu 10 Aralık'ta olmuyor. Huber Hanım yeni tarih öneriyor ve geri aramanı istiyor.",
+    "kanit": [
+     "c2",
+     "c4",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:20:a2",
+   "tur": "bekleme-anonsu",
+   "title_tr": "Muayenehanenin tatil kaydı",
+   "ortam_tr": "Aralık sonunda muayenehaneyi arıyorsun. Telefonda bu kayıt çalıyor.",
+   "speaker": "ch:huber",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Praxis Dr. Weber, guten Tag.",
+     "tr": "Dr. Weber muayenehanesi, iyi günler."
+    },
+    {
+     "id": "c2",
+     "de": "Vom vierundzwanzigsten Dezember bis zum dritten Januar ist die Praxis geschlossen.",
+     "tr": "24 Aralık'tan 3 Ocak'a kadar muayenehane kapalı."
+    },
+    {
+     "id": "c3",
+     "de": "Ab dem vierten Januar sind wir wieder für Sie da.",
+     "tr": "4 Ocak'tan itibaren yine sizin için buradayız."
+    },
+    {
+     "id": "c4",
+     "de": "Am dreiundzwanzigsten Dezember ist die Praxis nur bis zwölf Uhr offen.",
+     "tr": "23 Aralık'ta muayenehane yalnızca saat on ikiye kadar açık."
+    },
+    {
+     "id": "c5",
+     "de": "Danke und bis Januar!",
+     "tr": "Teşekkürler, ocakta görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Kayıt ne hakkında?",
+      "opts": [
+       "Muayenehanenin tatil günleri",
+       "Yeni bir doktor",
+       "Her gün için yeni açılış saatleri"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Muayenehane hangi tarihte yeniden açık?",
+       "opts": [
+        "4 Ocak",
+        "3 Ocak",
+        "24 Aralık"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "23 Aralık'ta muayenehane saat kaça kadar açık?",
+       "opts": [
+        "On ikiye kadar",
+        "Akşama kadar",
+        "Hiç açık değil"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi tarihi duydun?",
+       "opts": [
+        "vierten",
+        "zweiten",
+        "ersten"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Vom vierundzwanzigsten Dezember bis zum ___ Januar ist die Praxis geschlossen.",
+       "accepted": [
+        "dritten",
+        "Dritten",
+        "dritten."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Am",
+        "dreiundzwanzigsten",
+        "Dezember",
+        "ist",
+        "die",
+        "Praxis",
+        "nur",
+        "bis",
+        "zwölf",
+        "Uhr",
+        "offen",
+        "um",
+        "dritten"
+       ],
+       "accepted": [
+        "Am dreiundzwanzigsten Dezember ist die Praxis nur bis zwölf Uhr offen.",
+        "am dreiundzwanzigsten dezember ist die praxis nur bis zwölf uhr offen",
+        "Am dreiundzwanzigsten Dezember ist die Praxis nur bis zwölf Uhr offen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Ab dem vierten Januar sind wir wieder für Sie da.",
+        "ab dem vierten januar sind wir wieder für sie da",
+        "Ab dem vierten Januar sind wir wieder für Sie da"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Muayenehanenin ne zaman yeniden açık olduğunu Almanca bir cümleyle yaz.",
+       "ornek_de": "Die Praxis ist ab dem vierten Januar wieder offen.",
+       "zorunlu": [
+        "vierten",
+        "Januar"
+       ]
+      }
+     ],
+     "golge": [
+      "c1",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:20:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana soruyor. Muayenehane 4 Ocak'tan itibaren yine açık.",
+      "prompt_de": "Wann ist die Praxis wieder offen?",
+      "accepted": [
+       "Ab dem vierten Januar.",
+       "Am vierten Januar.",
+       "Ab vierten Januar.",
+       "Ab dem vierten Januar wieder.",
+       "Sie ist ab dem vierten Januar wieder offen.",
+       "Erst ab dem vierten Januar.",
+       "Wieder ab dem vierten Januar.",
+       "Die Praxis ist ab dem vierten Januar wieder offen."
+      ],
+      "why_tr": "Bir tarihten itibaren derken **ab dem vierten Januar** dersin."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:20:a2:e1",
+    "k": "pick",
+    "q_tr": "28 Aralık için bir randevu düşünüyorsun. Ne yapmalısın?",
+    "opts": [
+     "28 Aralık'ta muayenehaneye git.",
+     "4 Ocak ya da sonrası için bir gün seç.",
+     "24 Aralık öğleden sonra git."
+    ],
+    "ans": 1,
+    "why_tr": "Muayenehane 24 Aralık ile 3 Ocak arasında kapalı. 4 Ocak'ta yeniden açık.",
+    "kanit": [
+     "c2",
+     "c3"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:20:g1",
+   "de": "das Ei",
+   "dogru_img": "single brown egg on a white plate",
+   "celdirici_img": [
+    "bread roll on a white plate",
+    "apple on a white plate",
+    "piece of cheese on a white plate"
+   ]
+  },
+  {
+   "id": "m1:20:g2",
+   "de": "Es regnet.",
+   "dogru_img": "street in the rain, people with umbrellas, wet pavement",
+   "celdirici_img": [
+    "sunny street with people in t-shirts",
+    "snowy street with snowman",
+    "street at night with lamps, dry"
+   ]
+  },
+  {
+   "id": "m1:20:g3",
+   "de": "das Kind",
+   "dogru_img": "small child of about six years standing",
+   "celdirici_img": [
+    "old woman standing",
+    "adult man standing",
+    "teenage boy with backpack"
+   ]
+  },
+  {
+   "id": "m1:20:g4",
+   "de": "Die Jacke ist zu groß.",
+   "dogru_img": "person wearing a far too big jacket, sleeves cover the hands",
+   "celdirici_img": [
+    "person wearing a far too small jacket, sleeves end at the elbows",
+    "person wearing a well fitting jacket",
+    "jacket hanging on a hanger"
+   ]
+  },
+  {
+   "id": "m1:20:g5",
+   "de": "am ersten Mai",
+   "dogru_img": "calendar page May with day 1 circled",
+   "celdirici_img": [
+    "calendar page March with day 1 circled",
+    "calendar page May with day 11 circled",
+    "calendar page May with day 21 circled"
+   ]
+  },
+  {
+   "id": "m1:20:g6",
+   "de": "der vierzehnte Dezember",
+   "dogru_img": "calendar page December with day 14 circled",
+   "celdirici_img": [
+    "calendar page December with day 4 circled",
+    "calendar page December with day 24 circled",
+    "calendar page December with day 13 circled"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:20:p1",
+  "title_tr": "Yeni tarihi doğruluyorsun",
+  "durum_tr": "Huber Hanım'ın sesli mesajını duydun. 10 Aralık'taki randevun olmuyor. Muayenehaneyi geri arıyorsun.",
+  "karsi": "ch:huber",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Praxis Dr. Weber, Huber, guten Tag.",
+    "tr": "Dr. Weber muayenehanesi, ben Huber, iyi günler.",
+    "secenekler": [
+     {
+      "de": "Guten Tag, hier ist {name}. Es geht um meinen Termin.",
+      "tr": "İyi günler, ben {name}. Randevum hakkında arıyorum.",
+      "accepted": [
+       "Guten Tag, hier ist {name}. Es geht um meinen Termin.",
+       "Guten Tag, {name} hier. Es geht um meinen Termin.",
+       "Grüß Gott, hier ist {name}. Es geht um meinen Termin.",
+       "Guten Tag, mein Name ist {name}. Es geht um meinen Termin.",
+       "Guten Tag, hier ist {name}. Es geht um den Termin am zehnten."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Adını ve neden aradığını hemen söyledin."
+     },
+     {
+      "de": "Hallo, hier ist {name}. Mein Termin am zehnten geht nicht?",
+      "tr": "Merhaba, ben {name}. 10'undaki randevum olmuyor mu?",
+      "accepted": [
+       "Hallo, hier ist {name}. Mein Termin am zehnten geht nicht?",
+       "Guten Tag, hier ist {name}. Mein Termin am zehnten geht nicht?",
+       "Hallo, {name} hier. Der Termin am zehnten geht nicht?",
+       "Guten Tag, {name} hier. Mein Termin am zehnten Dezember geht nicht?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Tarihi söyleyerek konuya hemen girdin."
+     },
+     {
+      "de": "Wann ist mein Termin?",
+      "tr": "Randevum ne zaman?",
+      "accepted": [
+       "Wann ist mein Termin?",
+       "Wann ist mein Termin jetzt?",
+       "Mein Termin, wann ist der?"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Huber Hanım kimin aradığını bilmiyor. Önce selam ver ve adını söyle."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "{Herr|Frau} {name}, es tut mir leid, am zehnten ist Dr. Weber nicht da. Geht der fünfzehnte Dezember um halb neun?",
+    "tr": "{Herr|Frau} {name}, kusura bakmayın, ayın onunda Dr. Weber yok. 15 Aralık saat sekiz buçuk olur mu?",
+    "secenekler": [
+     {
+      "de": "Wie bitte? Der fünfte oder der fünfzehnte?",
+      "tr": "Efendim? Beşi mi, on beşi mi?",
+      "accepted": [
+       "Wie bitte? Der fünfte oder der fünfzehnte?",
+       "Der fünfte oder der fünfzehnte?",
+       "Wie bitte? Am fünften oder am fünfzehnten?",
+       "Entschuldigung, der fünfte oder der fünfzehnte?",
+       "Könnten Sie das bitte wiederholen?",
+       "Wie bitte? Welches Datum?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Emin olmadığın tarihi hemen sordun."
+     },
+     {
+      "de": "Am fünfzehnten Dezember um halb neun? Ja, das geht.",
+      "tr": "15 Aralık saat sekiz buçukta mı? Evet, olur.",
+      "accepted": [
+       "Am fünfzehnten Dezember um halb neun? Ja, das geht.",
+       "Der fünfzehnte Dezember um halb neun? Ja, das geht.",
+       "Am fünfzehnten um halb neun? Ja, das geht.",
+       "Ja, am fünfzehnten Dezember um halb neun geht es.",
+       "Am fünfzehnten? Ja, das passt."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Tarihi tekrar ederek onayladın. Yanlış anlama kalmadı."
+     },
+     {
+      "de": "Am fünften Dezember? Ja, gut.",
+      "tr": "5 Aralık'ta mı? Evet, iyi.",
+      "accepted": [
+       "Am fünften Dezember? Ja, gut.",
+       "Der fünfte? Ja, gut.",
+       "Am fünften? Ja, das geht."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "**fünfzehnten** on beş demek, **fünften** beş. Emin değilsen tekrar iste."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Der fünfzehnte Dezember. Ein Dienstag. Um halb neun.",
+    "tr": "15 Aralık. Bir salı. Saat sekiz buçukta.",
+    "secenekler": [
+     {
+      "de": "Der fünfzehnte, also Dienstag. Gut!",
+      "tr": "On beşi, yani salı. Tamam!",
+      "accepted": [
+       "Der fünfzehnte, also Dienstag. Gut!",
+       "Also Dienstag, der fünfzehnte. Gut!",
+       "Dienstag, der fünfzehnte. Ja, gut.",
+       "Der fünfzehnte, Dienstag, um halb neun. Das geht.",
+       "Am fünfzehnten, also am Dienstag. Ja, das geht."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Tarihi ve günü birlikte söyledin. Böyle hata olmaz."
+     },
+     {
+      "de": "Ist das sicher? Auf der Karte steht der zehnte.",
+      "tr": "Bu kesin mi? Kartta ayın onu yazıyor.",
+      "accepted": [
+       "Ist das sicher? Auf der Karte steht der zehnte.",
+       "Sind Sie sicher? Auf der Karte steht der zehnte.",
+       "Auf der Karte steht der zehnte. Ist das sicher?",
+       "Aber auf der Karte steht der zehnte.",
+       "Ist das sicher? Hier steht der zehnte.",
+       "Ist das sicher? Auf meiner Karte steht der zehnte.",
+       "Sind Sie sicher? Auf meiner Karte steht der zehnte."
+      ],
+      "sonraki": "n3c",
+      "uygun": true,
+      "geri_bildirim_tr": "Kartını kontrol ettin. Emin olmak için sormak doğru."
+     },
+     {
+      "de": "Am Donnerstag?",
+      "tr": "Perşembe mi?",
+      "accepted": [
+       "Am Donnerstag?",
+       "Donnerstag?",
+       "Also am Donnerstag?"
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Huber Hanım salı dedi. **Dienstag** ile **Donnerstag** telefonda kolay karışır."
+     }
+    ]
+   },
+   {
+    "id": "n3c",
+    "de": "Ja, ganz sicher. Es tut mir leid. Der zehnte geht nicht.",
+    "tr": "Evet, kesin. Kusura bakmayın. Onu olmuyor.",
+    "secenekler": [
+     {
+      "de": "Okay, dann der fünfzehnte um halb neun.",
+      "tr": "Tamam, o zaman on beşinde sekiz buçukta.",
+      "accepted": [
+       "Okay, dann der fünfzehnte um halb neun.",
+       "Gut, dann der fünfzehnte um halb neun.",
+       "Okay, dann am fünfzehnten um halb neun.",
+       "Dann am fünfzehnten um halb neun, okay.",
+       "Okay, der fünfzehnte geht."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Yeni tarihi kabul ettin ve tekrar ettin."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gut, dann Dienstag, der fünfzehnte, um halb neun. Und bitte nichts essen, auch kein Ei!",
+    "tr": "İyi, o zaman salı, on beşinde, sekiz buçukta. Ve lütfen hiçbir şey yemeyin, yumurta da!",
+    "secenekler": [
+     {
+      "de": "Gut: am fünfzehnten um halb neun, und ich esse nichts.",
+      "tr": "Tamam: on beşinde sekiz buçukta, ve hiçbir şey yemiyorum.",
+      "accepted": [
+       "Gut: am fünfzehnten um halb neun, und ich esse nichts.",
+       "Gut, am fünfzehnten um halb neun. Ich esse nichts.",
+       "Am fünfzehnten um halb neun, und nichts essen. Gut.",
+       "Okay, am fünfzehnten um halb neun, und ich esse nichts.",
+       "Gut, also am fünfzehnten um halb neun und nichts essen."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Tarihi, saati ve isteği tekrar ettin."
+     },
+     {
+      "de": "Nichts essen? Kein Ei? Okay, danke!",
+      "tr": "Hiçbir şey yememek mi? Yumurta da mı yok? Tamam, teşekkürler!",
+      "accepted": [
+       "Nichts essen? Kein Ei? Okay, danke!",
+       "Nichts essen, kein Ei. Okay, danke!",
+       "Kein Ei? Okay, danke!",
+       "Nichts essen? Gut, danke!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Önemli isteği tekrar ederek kontrol ettin."
+     },
+     {
+      "de": "Kann ich ein Ei essen?",
+      "tr": "Bir yumurta yiyebilir miyim?",
+      "accepted": [
+       "Kann ich ein Ei essen?",
+       "Darf ich ein Ei essen?",
+       "Ein Ei geht?"
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Huber Hanım yumurta da yok dedi. **auch kein Ei** bunu söylüyor."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Ja, so ist es. Auf Wiederhören, {Herr|Frau} {name}!",
+    "tr": "Evet, öyle. Hoşça kalın, {Herr|Frau} {name}!",
+    "secenekler": [
+     {
+      "de": "Danke, Frau Huber! Auf Wiederhören!",
+      "tr": "Teşekkürler Huber Hanım! Hoşça kalın!",
+      "accepted": [
+       "Danke, Frau Huber! Auf Wiederhören!",
+       "Danke! Auf Wiederhören!",
+       "Vielen Dank, Frau Huber! Auf Wiederhören!",
+       "Danke schön, auf Wiederhören!",
+       "Danke, Frau Huber, auf Wiederhören!"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Telefonda doğru veda. **Auf Wiederhören** dedin."
+     },
+     {
+      "de": "Bis morgen!",
+      "tr": "Yarın görüşürüz!",
+      "accepted": [
+       "Bis morgen!",
+       "Danke, bis morgen!",
+       "Bis morgen, Frau Huber!"
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "Randevu yarın değil, ayın on beşinde. **Auf Wiederhören** de."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Auf Wiederhören!",
+    "tr": "Hoşça kalın!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Yeni tarihi duydun, emin olmadığında sordun ve tarihi tekrar ederek doğruladın."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Muayenehaneden kısa mesaj",
+  "metin_de": "Guten Tag! Ihr Termin ist jetzt am Dienstag, dem fünfzehnten Dezember, um halb neun. Bitte vor dem Termin nichts essen. Am vierundzwanzigsten Dezember ist die Praxis geschlossen. Wir helfen gern.",
+  "metin_tr": "İyi günler! Randevunuz artık 15 Aralık salı, saat sekiz buçukta. Lütfen randevudan önce hiçbir şey yemeyin. 24 Aralık'ta muayenehane kapalı. Memnuniyetle yardım ederiz.",
+  "sorular": [
+   {
+    "id": "m1:20:o1",
+    "kind": "detail",
+    "q_tr": "Randevu ne zaman?",
+    "opts": [
+     "15 Aralık salı, sekiz buçukta",
+     "5 Aralık salı, sekiz buçukta",
+     "15 Aralık salı, dokuz buçukta"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:20:o2",
+    "kind": "detail",
+    "q_tr": "Randevudan önce ne yapmamalısın?",
+    "opts": [
+     "Bir şey yememelisin",
+     "Telefon etmemelisin",
+     "Otobüse binmemelisin"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:20:o3",
+    "kind": "detail",
+    "q_tr": "24 Aralık'ta muayenehane açık mı?",
+    "opts": [
+     "Hayır, kapalı",
+     "Evet, açık",
+     "Yalnızca sabah açık"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:20:o4",
+    "k": "guided_response",
+    "situation_tr": "Ioana randevunu soruyor. Yeni tarihi söyle.",
+    "prompt_de": "Wann ist dein Termin jetzt?",
+    "accepted": [
+     "Am Dienstag, dem fünfzehnten Dezember.",
+     "Am fünfzehnten Dezember.",
+     "Jetzt am fünfzehnten Dezember, um halb neun.",
+     "Am Dienstag, am fünfzehnten.",
+     "Mein Termin ist am fünfzehnten Dezember.",
+     "Am fünfzehnten, am Dienstag.",
+     "Am Dienstag um halb neun, am fünfzehnten Dezember.",
+     "Der ist jetzt am fünfzehnten Dezember."
+    ],
+    "why_tr": "Tarih için **am fünfzehnten** dersin. Günü de eklersen daha açık olur."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:20:s",
+  "maddeler": [
+   {
+    "id": "m1:20:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Heute ist der zweite Dezember.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Heute ist der zweite Dezember.",
+     "heute ist der zweite dezember",
+     "Heute ist der zweite Dezember"
+    ],
+    "why_tr": "**Heute ist der zweite** bugün ayın ikisi demektir."
+   },
+   {
+    "id": "m1:20:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Der Termin ist am dritten Dezember um zehn.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Termin ist am dritten Dezember um zehn.",
+     "der termin ist am dritten dezember um zehn",
+     "Der Termin ist am dritten Dezember um zehn"
+    ],
+    "why_tr": "**am dritten** ayın üçünde demektir."
+   },
+   {
+    "id": "m1:20:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Das Kind ist noch sehr klein.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Kind ist noch sehr klein.",
+     "das kind ist noch sehr klein",
+     "Das Kind ist noch sehr klein"
+    ],
+    "why_tr": "**klein** küçük demektir."
+   },
+   {
+    "id": "m1:20:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Auf der Karte steht der zwölfte.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Auf der Karte steht der zwölfte.",
+     "auf der karte steht der zwölfte",
+     "Auf der Karte steht der zwoelfte."
+    ],
+    "why_tr": "**steht** burada yazıyor demektir."
+   },
+   {
+    "id": "m1:20:s5",
+    "k": "tr_de",
+    "tr": "Bugün ayın on biri.",
+    "accepted": [
+     "Heute ist der elfte.",
+     "Heute ist der Elfte.",
+     "Heute haben wir den elften.",
+     "Heute ist der elfte Dezember."
+    ],
+    "why_tr": "Bugünün tarihi için **der elfte** dersin."
+   },
+   {
+    "id": "m1:20:s6",
+    "k": "tr_de",
+    "tr": "Randevum 21 Aralık'ta.",
+    "accepted": [
+     "Mein Termin ist am einundzwanzigsten Dezember.",
+     "Mein Termin ist am 21. Dezember.",
+     "Ich habe am einundzwanzigsten Dezember einen Termin.",
+     "Am einundzwanzigsten Dezember ist mein Termin.",
+     "Mein Termin ist am einundzwanzigsten."
+    ],
+    "why_tr": "Bir şeyin tarihi için **am** dersin: **am einundzwanzigsten**."
+   },
+   {
+    "id": "m1:20:s7",
+    "k": "tr_de",
+    "tr": "Kusura bakmayın, cuma günü olmuyor.",
+    "accepted": [
+     "Es tut mir leid, am Freitag geht es nicht.",
+     "Es tut mir leid, Freitag geht nicht.",
+     "Tut mir leid, am Freitag geht es nicht.",
+     "Es tut mir leid, am Freitag geht das nicht.",
+     "Es tut mir leid, aber am Freitag geht es nicht."
+    ],
+    "why_tr": "Özür dilerken **Es tut mir leid** dersin."
+   },
+   {
+    "id": "m1:20:s8",
+    "k": "tr_de",
+    "tr": "Doktora soruyorum.",
+    "accepted": [
+     "Ich frage den Arzt.",
+     "Ich frage mal den Arzt.",
+     "Ich frage den Doktor.",
+     "Ich frage Dr. Weber."
+    ],
+    "why_tr": "Soruyorum derken **ich frage** dersin."
+   },
+   {
+    "id": "m1:20:s9",
+    "k": "guided_response",
+    "situation_tr": "Huber Hanım bir tarih söyledi. On dördü mü dördü mü, emin değilsin. Sor.",
+    "prompt_de": "Ihr Termin ist am vierzehnten.",
+    "accepted": [
+     "Am vierzehnten oder am vierten?",
+     "Am vierzehnten? Nicht am vierten?",
+     "Sind Sie sicher? Am vierzehnten?",
+     "Wie bitte? Am vierzehnten oder am vierten?",
+     "Der vierzehnte oder der vierte?",
+     "Am vierzehnten? Ist das sicher?",
+     "Entschuldigung, am vierzehnten oder am vierten?",
+     "Am vierzehnten oder am vierten Dezember?"
+    ],
+    "why_tr": "Karışan iki tarihi yan yana söyle. Böylece doğru olanı duyarsın."
+   },
+   {
+    "id": "m1:20:s10",
+    "k": "guided_response",
+    "situation_tr": "Brandl Hanım bugünün tarihini soruyor. Bugün 7 Aralık.",
+    "prompt_de": "Welches Datum haben wir heute?",
+    "accepted": [
+     "Heute ist der siebte Dezember.",
+     "Der siebte Dezember.",
+     "Heute ist der siebte.",
+     "Der siebte.",
+     "Heute haben wir den siebten Dezember.",
+     "Es ist der siebte Dezember.",
+     "Heute ist Montag, der siebte Dezember."
+    ],
+    "why_tr": "Bugünün tarihi **der** ile söylenir: **der siebte Dezember**."
+   },
+   {
+    "id": "m1:20:s11",
+    "k": "guided_response",
+    "situation_tr": "Huber Hanım yeni tarih öneriyor. Tarihi tekrar ederek onayla ve teşekkür et.",
+    "prompt_de": "Geht der fünfzehnte Dezember?",
+    "accepted": [
+     "Ja, der fünfzehnte Dezember geht. Danke!",
+     "Ja, am fünfzehnten Dezember geht es. Danke!",
+     "Ja, der fünfzehnte geht. Danke schön!",
+     "Der fünfzehnte Dezember? Ja, das geht. Danke!",
+     "Ja, am fünfzehnten geht es, danke.",
+     "Ja, der fünfzehnte passt. Danke!",
+     "Ja, das geht, am fünfzehnten Dezember. Vielen Dank!",
+     "Ja, gern, am fünfzehnten. Danke!"
+    ],
+    "why_tr": "Tarihi tekrar et, sonra teşekkür et. Huber Hanım doğru duyduğunu anlar."
+   }
+  ],
+  "sesli": [
+   "m1:20:s9",
+   "m1:20:s10"
+  ],
+  "dikte": [
+   "m1:20:s1",
+   "m1:20:s2",
+   "m1:20:s3",
+   "m1:20:s4"
+  ]
+ }
+}

@@ -2,7 +2,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import type { LearnerItem } from "@dw/shared";
-import { KOY_ADI, acikAdimlar, acikGunler, bekleyenKart, dukkanlar, hazirDurum, mekanMedya, mekanMi, telefon, vadesiGelen, type KoyVeri, type YolGunu } from "./koy.ts";
+import { KOY_ADI, YAKIN_HAFTA, acikAdimlar, acikGunler, bekleyenKart, dukkanlar, haftaKatla, hazirDurum, katDokunus, mekanMedya, mekanMi, telefon, vadesiGelen, type KoyVeri, type YolGunu } from "./koy.ts";
 import type { Adim } from "./gun.ts";
 import { parseHash } from "../state.ts";
 import { sekme } from "../ui/components.tsx";
@@ -134,5 +134,63 @@ describe("Köy: Bahçe'de bekleyen kart", () => {
     expect(vadesiGelen(oge("lx:Tag", { passive: { s: 0, n: 1, ok: 1, fsrs: fsrs(dun) } }), simdi)).toBe(true);
     expect(vadesiGelen(oge("lx:Tag"), simdi)).toBe(false);
     expect(vadesiGelen(oge("ch:x", { kind: "chunk", passive: { s: 0, n: 1, ok: 1, fsrs: fsrs(dun) } }), simdi)).toBe(false);
+  });
+});
+
+describe("Köy: listeler haftaya göre katlanır (PM-122 md. 2.1)", () => {
+  const d = (...gunler: number[]) => gunler.map((day) => ({ day }));
+  it("tek hafta: hepsi açık, satır yok (ekran eskisi gibi)", () => {
+    const k = haftaKatla(d(3, 1, 2));
+    expect(k.acik).toEqual({ hafta: 1, ogeler: d(1, 2, 3) });
+    expect(k.yakin).toEqual([]); expect(k.eski).toEqual([]);
+    expect(katDokunus(k, () => 1)).toBe(3);
+    expect(haftaKatla([])).toEqual({ acik: null, yakin: [], eski: [] });
+  });
+  it("son hafta açık, öncekiler tek satır; içinde bulunulan haftada öğe yoksa öğesi olan son hafta açık", () => {
+    const k = haftaKatla(d(1, 2, 8, 9, 15));
+    expect(k.acik?.hafta).toBe(3);
+    expect(k.yakin.map((h) => [h.hafta, h.ogeler.length])).toEqual([[1, 2], [2, 2]]);
+    expect(katDokunus(k, () => 1)).toBe(2 + 1);
+    // hafta 2 boş (o hafta bu mekânda kayıt yok): satırı yok, sayı atlanır
+    expect(haftaKatla(d(1, 15)).yakin.map((h) => h.hafta)).toEqual([1]);
+  });
+  it(`${YAKIN_HAFTA} haftadan eskisi tek "1.–N. hafta" satırında`, () => {
+    const k = haftaKatla(d(...Array.from({ length: 70 }, (_, i) => i + 1)));
+    expect(k.acik?.hafta).toBe(10);
+    expect(k.yakin.map((h) => h.hafta)).toEqual([6, 7, 8, 9]);
+    expect(k.eski.map((h) => h.hafta)).toEqual([1, 2, 3, 4, 5]);
+    expect(katDokunus(k, () => 1)).toBe(1 + YAKIN_HAFTA + 7);
+  });
+  it("açık haftadan önce 5 hafta: eski küme tek haftayla kurulmaz, beşi de ayrı satır (inceleme #265 P1-1); boşluklu haftalar", () => {
+    const k = haftaKatla(d(...Array.from({ length: 36 }, (_, i) => i + 1)));
+    expect(k.acik?.hafta).toBe(6);
+    expect(k.eski).toEqual([]); expect(k.yakin.map((h) => h.hafta)).toEqual([1, 2, 3, 4, 5]);
+    const b = haftaKatla(d(1, 15, 29, 36, 50, 64, 78));
+    expect(b.acik?.hafta).toBe(12);
+    expect(b.eski.map((h) => h.hafta)).toEqual([1, 3]);
+    expect(b.yakin.map((h) => h.hafta)).toEqual([5, 6, 8, 10]);
+    expect(haftaKatla(d(...Array.from({ length: 43 }, (_, i) => i + 1))).eski.map((h) => h.hafta)).toEqual([1, 2]);
+  });
+  it("52 hafta (364 gün, gün başına bol kayıt): Sinema, Radyo, Kütüphane, Pazar ilk açılışta gezgin sınırının altında", () => {
+    const CAP = Number(/^CAP = (\d+)/m.exec(readFileSync(new URL("../../../tests/e2e/gezgin.py", import.meta.url), "utf8"))![1]);
+    expect(CAP).toBeGreaterThan(0);
+    const SABIT = 4 + 1; // sekme çubuğu + geri
+    const bol = (day: number) => [
+      ...[1, 2, 3, 4].map((i) => ({ id: `m1:${day}:a${i}`, kind: "ses" as const, title_tr: "Kayıt" })),
+      { id: `m1:${day}:v`, kind: "video" as const, title_tr: "Video" }, { id: `m1:${day}:s`, kind: "sahne" as const, title_tr: "Sahne" }];
+    const ix = index({ m1: Array.from({ length: 364 }, (_, i) => ({ ...gun(i + 1), medya: bol(i + 1) })) });
+    for (const kac of [7, 8, 35, 36, 200, 364]) {
+      const acik = new Set(Array.from({ length: kac }, (_, i) => i + 1));
+      for (const mekan of ["sinema", "radyo"] as const) {
+        const k = haftaKatla(mekanMedya(ix, mekan, acik));
+        const n = SABIT + katDokunus(k, (g) => 1 + g.kayitlar.length);
+        expect(n, `${mekan}, ${kac} gün açık`).toBeLessThan(CAP);
+        // katlanmadan aynı liste sınırı aşar (bekçi gerçek)
+        if (kac >= 35) expect(SABIT + mekanMedya(ix, mekan, acik).reduce((t, g) => t + 1 + g.kayitlar.length, 0)).toBeGreaterThan(CAP);
+      }
+      // Kütüphane (sözlük + 11 temel ders) ve Pazar (20 durum + mevsim kartı): sabit bölüm ≤ 25; gün başına iki okuma / iki prova
+      const gunler = Array.from({ length: kac }, (_, i) => yolGunu(i + 1, i + 1 < kac ? "bitti" : "simdi", [adim("okuma", `o${i}a`), adim("okuma", `o${i}b`), adim("prova", `p${i}a`), adim("prova", `p${i}b`)]));
+      for (const tur of ["okuma", "prova"] as const) expect(SABIT + 25 + katDokunus(haftaKatla(acikAdimlar(gunler, tur)), () => 1)).toBeLessThan(CAP);
+    }
   });
 });

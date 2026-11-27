@@ -23,6 +23,7 @@ import { loadLexicon, loadTespit } from "../services/content.ts";
 import { cevapYaz, kararUygula, raporKaydet, tamamlaNotEt, tespitOku, type TespitKayit } from "../services/tespit.ts";
 import { ai, aiState } from "../services/ai.ts";
 import { sttAvailable } from "../services/speech.ts";
+import { setLearning } from "../services/focusRuntime.ts";
 import { DrillIstem, drillVerdict, KICKER, OrderChips } from "../ui/drill.tsx";
 import { MaddeView } from "../ui/denemeMadde.tsx";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
@@ -61,6 +62,10 @@ export function TespitEkrani() {
   // plan bitti: rapor bir kez yazılır, sonra rapor ekranı (render içinde durum değişmez); son haftanın bölüm arası önce görünür
   const ara = typeof gorunum === "object";
   const bitti = !!v?.paket && (!!v.kayit.rapor || tespitPlani(v.paket, cevapMap(v.kayit)).asama === "bitti");
+  // Odak sayacı (PM-127 md. 2.3–2.4): giriş ekranı öğrenme değil. Kurulumdan buraya gelen dokunuş seansı başlatmasın,
+  // taze cihazda "Baştan başla" sonrası Odak "Sırada seans 1/4" kalsın; madde ve bölüm arası öğrenme sayılır.
+  useEffect(() => { setLearning(gorunum !== "giris", "vocab"); }, [gorunum]);
+  useEffect(() => () => setLearning(false), []);
   useEffect(() => {
     if (!bitti || !v?.paket || ara) return;
     if (v.kayit.rapor) { go("seviye/rapor"); return; }

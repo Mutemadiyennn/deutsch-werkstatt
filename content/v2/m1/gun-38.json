@@ -1,0 +1,1448 @@
+{
+ "schema": 1,
+ "id": "m1:gun:38",
+ "day": 38,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Gitmek ve gelmek geçmişte: Ich bin gegangen",
+ "goal_tr": "Derya'nın pazar yolculuğunu dinlersin. Sen de nereye ve neyle gittiğini söylersin.",
+ "can_do": {
+  "id": "cd:m1:38",
+  "tr": "Nereye ve neyle gittiğimi geçmişte söylerim."
+ },
+ "unit": "u:a1:38",
+ "arm": "kafe",
+ "place": "pl:firma",
+ "characters": [
+  "ch:aksoy",
+  "ch:lechner",
+  "ch:brandl"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic5-hafta-06.md; okur: docs/v2/reviews/okur/ic5-hafta-06.md (28 GERİ, okurun önerisiyle düzeltildi)",
+  "okur": "passed",
+  "okur_at": "2026-11-23"
+ },
+ "dersler": [
+  "gr:a1-07:t4",
+  "gr:a2-01:t1",
+  "dn:kaydet-dinle"
+ ],
+ "yeni_kartlar": [
+  "lx:Eltern",
+  "lx:Papa",
+  "lx:Onkel",
+  "lx:Hund",
+  "lx:Straßenbahn",
+  "lx:Fahrkarte",
+  "lx:umsteigen",
+  "lx:abbiegen",
+  "lx:Straße",
+  "lx:fremd"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:38:h1",
+   "title_tr": "Hafta sonu aile yanında",
+   "kartlar": [
+    "lx:Eltern",
+    "lx:Papa",
+    "lx:Onkel",
+    "lx:Hund"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich bin … gefahren. – Wir sind … gefahren.",
+     "tr": "… gittim. – … gittik."
+    },
+    {
+     "de": "zu meinen Eltern – bei meinen Eltern",
+     "tr": "anne babama – anne babamın yanında"
+    },
+    {
+     "de": "mein Papa – mein Onkel – unser Hund",
+     "tr": "babam – amcam – köpeğimiz"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Eltern",
+     "de": "Ich bin am Samstag zu meinen Eltern gefahren.",
+     "tr": "Cumartesi anne babama gittim.",
+     "accepted": [
+      "Ich bin am Samstag zu meinen Eltern gefahren.",
+      "Am Samstag bin ich zu meinen Eltern gefahren.",
+      "Ich bin Samstag zu meinen Eltern gefahren."
+     ]
+    },
+    {
+     "kart": "lx:Eltern",
+     "de": "Sind deine Eltern auch gekommen?",
+     "tr": "Senin annenler de geldi mi?",
+     "accepted": [
+      "Sind deine Eltern auch gekommen?",
+      "Sind auch deine Eltern gekommen?",
+      "Sind deine Eltern auch da gewesen?"
+     ]
+    },
+    {
+     "kart": "lx:Papa",
+     "de": "Ich habe meinen Papa angerufen.",
+     "tr": "Babamı aradım.",
+     "accepted": [
+      "Ich habe meinen Papa angerufen.",
+      "Meinen Papa habe ich angerufen.",
+      "Ich hab meinen Papa angerufen."
+     ]
+    },
+    {
+     "kart": "lx:Papa",
+     "de": "Mein Papa ist zum Bahnhof gekommen.",
+     "tr": "Babam gara geldi.",
+     "accepted": [
+      "Mein Papa ist zum Bahnhof gekommen.",
+      "Mein Papa ist auch zum Bahnhof gekommen.",
+      "Zum Bahnhof ist mein Papa gekommen."
+     ]
+    },
+    {
+     "kart": "lx:Onkel",
+     "de": "Mein Onkel ist auch gekommen.",
+     "tr": "Amcam da geldi.",
+     "accepted": [
+      "Mein Onkel ist auch gekommen.",
+      "Auch mein Onkel ist gekommen.",
+      "Mein Onkel ist auch da gewesen."
+     ]
+    },
+    {
+     "kart": "lx:Onkel",
+     "de": "Mein Onkel hat einen Hund.",
+     "tr": "Amcamın bir köpeği var.",
+     "accepted": [
+      "Mein Onkel hat einen Hund.",
+      "Mein Onkel hat auch einen Hund.",
+      "Einen Hund hat mein Onkel."
+     ]
+    },
+    {
+     "kart": "lx:Hund",
+     "de": "Der Hund ist sehr groß!",
+     "tr": "Köpek çok büyük!",
+     "accepted": [
+      "Der Hund ist sehr groß!",
+      "Der Hund ist aber sehr groß!",
+      "Der Hund ist echt groß!"
+     ]
+    },
+    {
+     "kart": "lx:Hund",
+     "de": "Der Hund ist auch zum Bahnhof gekommen.",
+     "tr": "Köpek de gara geldi.",
+     "accepted": [
+      "Der Hund ist auch zum Bahnhof gekommen.",
+      "Auch der Hund ist zum Bahnhof gekommen.",
+      "Der Hund ist auch mit zum Bahnhof gekommen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Çarşamba molası. Başka bölümden bir iş arkadaşı pazar gününü anlatıyor.",
+    "satirlar": [
+     {
+      "r": "eine Kollegin",
+      "de": "Am Sonntag war ich bei meinen Eltern.",
+      "tr": "Pazar günü anne babamın yanındaydım."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Schön! Wer war noch da?",
+      "tr": "Güzel! Başka kim vardı?"
+     },
+     {
+      "r": "eine Kollegin",
+      "de": "Mein Onkel und sein Hund. Der Hund ist so groß!",
+      "tr": "Amcam ve köpeği. Köpek o kadar büyük ki!"
+     }
+    ],
+    "soru": {
+     "q_tr": "İş arkadaşının anne babasının yanında başka kim vardı?",
+     "opts": [
+      "Amcası ve köpeği",
+      "Tobi",
+      "Kız kardeşi",
+      "Kimse"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:38:h2",
+   "title_tr": "Tramvay, aktarma, yanlış sokak",
+   "kartlar": [
+    "lx:Straßenbahn",
+    "lx:Fahrkarte",
+    "lx:umsteigen",
+    "lx:abbiegen",
+    "lx:Straße",
+    "lx:fremd"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich bin in … umgestiegen. – Wir sind … abgebogen.",
+     "tr": "…'de aktarma yaptım. – …'e saptık."
+    },
+    {
+     "de": "Muss ich umsteigen? – Steigen Sie am … um.",
+     "tr": "Aktarma yapmam lazım mı? – …'de aktarma yapın."
+    },
+    {
+     "de": "Tut mir leid, ich bin hier fremd.",
+     "tr": "Kusura bakmayın, buranın yabancısıyım."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Straßenbahn",
+     "de": "Wir sind mit der Straßenbahn in die Stadt gefahren.",
+     "tr": "Tramvayla şehre gittik.",
+     "accepted": [
+      "Wir sind mit der Straßenbahn in die Stadt gefahren.",
+      "Wir sind mit der Straßenbahn in die Stadt gefahren!",
+      "In die Stadt sind wir mit der Straßenbahn gefahren."
+     ]
+    },
+    {
+     "kart": "lx:Straßenbahn",
+     "de": "Wann kommt die Straßenbahn?",
+     "tr": "Tramvay ne zaman geliyor?",
+     "accepted": [
+      "Wann kommt die Straßenbahn?",
+      "Wann kommt denn die Straßenbahn?",
+      "Wann kommt die nächste Straßenbahn?"
+     ]
+    },
+    {
+     "kart": "lx:Fahrkarte",
+     "de": "Ich habe eine Fahrkarte gekauft.",
+     "tr": "Bir bilet aldım.",
+     "accepted": [
+      "Ich habe eine Fahrkarte gekauft.",
+      "Eine Fahrkarte habe ich gekauft.",
+      "Ich hab eine Fahrkarte gekauft."
+     ]
+    },
+    {
+     "kart": "lx:Fahrkarte",
+     "de": "Wo kann ich eine Fahrkarte kaufen?",
+     "tr": "Nereden bilet alabilirim?",
+     "accepted": [
+      "Wo kann ich eine Fahrkarte kaufen?",
+      "Wo kann ich hier eine Fahrkarte kaufen?",
+      "Entschuldigung, wo kann ich eine Fahrkarte kaufen?"
+     ]
+    },
+    {
+     "kart": "lx:umsteigen",
+     "de": "Derya ist am Bahnhof umgestiegen.",
+     "tr": "Derya garda aktarma yaptı.",
+     "accepted": [
+      "Derya ist am Bahnhof umgestiegen.",
+      "Am Bahnhof ist Derya umgestiegen.",
+      "Derya ist beim Bahnhof umgestiegen."
+     ]
+    },
+    {
+     "kart": "lx:umsteigen",
+     "de": "Muss ich umsteigen?",
+     "tr": "Aktarma yapmam lazım mı?",
+     "accepted": [
+      "Muss ich umsteigen?",
+      "Muss ich da umsteigen?",
+      "Muss ich hier umsteigen?"
+     ]
+    },
+    {
+     "kart": "lx:abbiegen",
+     "de": "Wir sind falsch abgebogen!",
+     "tr": "Yanlış yere saptık!",
+     "accepted": [
+      "Wir sind falsch abgebogen!",
+      "Wir sind leider falsch abgebogen!",
+      "Wir sind falsch abgebogen."
+     ]
+    },
+    {
+     "kart": "lx:abbiegen",
+     "de": "Hier müssen Sie links abbiegen.",
+     "tr": "Burada sola dönmeniz lazım.",
+     "accepted": [
+      "Hier müssen Sie links abbiegen.",
+      "Sie müssen hier links abbiegen.",
+      "Hier links abbiegen, bitte."
+     ]
+    },
+    {
+     "kart": "lx:Straße",
+     "de": "Die Straße war sehr lang.",
+     "tr": "Sokak çok uzundu.",
+     "accepted": [
+      "Die Straße war sehr lang.",
+      "Die Straße war aber sehr lang.",
+      "Die Straße war so lang."
+     ]
+    },
+    {
+     "kart": "lx:Straße",
+     "de": "Wie heißt die Straße?",
+     "tr": "Sokağın adı ne?",
+     "accepted": [
+      "Wie heißt die Straße?",
+      "Wie heißt diese Straße?",
+      "Wie heißt die Straße hier?"
+     ]
+    },
+    {
+     "kart": "lx:fremd",
+     "de": "Tut mir leid, ich bin hier fremd.",
+     "tr": "Kusura bakmayın, buranın yabancısıyım.",
+     "accepted": [
+      "Tut mir leid, ich bin hier fremd.",
+      "Entschuldigung, ich bin hier fremd.",
+      "Tut mir leid, ich bin fremd hier."
+     ]
+    },
+    {
+     "kart": "lx:fremd",
+     "de": "In der Stadt war ich ganz fremd.",
+     "tr": "Şehirde tamamen yabancıydım.",
+     "accepted": [
+      "In der Stadt war ich ganz fremd.",
+      "Ich war in der Stadt ganz fremd.",
+      "In der Stadt war ich total fremd."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Şimdi Derya anlatıyor, ellerini açıp gülüyor.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Ich bin in München mit der Straßenbahn gefahren. Aber ich bin falsch umgestiegen!",
+      "tr": "Münih'te tramvaya bindim. Ama yanlış yerde aktarma yaptım!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nein! Und dann?",
+      "tr": "Yok artık! Sonra?"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Dann bin ich zu Fuß gegangen.",
+      "tr": "Sonra yürüyerek gittim."
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya'ya ne oldu?",
+     "opts": [
+      "Yanlış yerde aktarma yaptı",
+      "Biletini kaybetti",
+      "Tramvay gelmedi",
+      "Uyuyakaldı"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:38:v1",
+  "title_tr": "Derya'nın pazar yolculuğu",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Çarşamba, öğle arası. Tobi, Derya ve sen masada oturuyorsunuz.",
+    "de": "Derya, was hast du am Sonntag gemacht?",
+    "tr": "Derya, pazar günü ne yaptın?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülümsüyor.",
+    "de": "Ich habe in München eine Freundin besucht. Wir haben zusammen gegessen.",
+    "tr": "Münih'te bir kız arkadaşımı ziyaret ettim. Birlikte yemek yedik."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi merakla bakıyor.",
+    "de": "Und wie bist du gefahren? Mit dem Auto?",
+    "tr": "Peki neyle gittin? Arabayla mı?"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya başını sallıyor.",
+    "de": "Nein, mit dem Bus und mit der Straßenbahn. Ich bin am Bahnhof umgestiegen.",
+    "tr": "Hayır, otobüs ve tramvayla. Garda aktarma yaptım."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya alnına vuruyor.",
+    "de": "Aber dann bin ich falsch abgebogen!",
+    "tr": "Ama sonra yanlış yere saptım!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi gülüyor.",
+    "de": "Echt? Bist du in München fremd?",
+    "tr": "Gerçekten mi? Münih'in yabancısı mısın?"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya omuz silkiyor.",
+    "de": "Na ja, die Straße war neu für mich.",
+    "tr": "Eh, o sokak benim için yeniydi."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya telefonuna bakıp gülümsüyor.",
+    "de": "Meine Freundin ist dann mit dem Hund gekommen.",
+    "tr": "Sonra arkadaşım köpekle geldi."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi alkışlıyor.",
+    "de": "Mit dem Hund? Toll!",
+    "tr": "Köpekle mi? Harika!"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya sana dönüyor.",
+    "de": "Und du? Bist du am Wochenende zu Hause geblieben?",
+    "tr": "Ya sen? Hafta sonu evde mi kaldın?"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Derya pazar günü ne yaptı?",
+     "opts": [
+      "Münih'te bir arkadaşını ziyaret etti",
+      "Tatile gitti",
+      "Evde kaldı"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Derya neyle gitti?",
+      "opts": [
+       "otobüs ve tramvayla",
+       "arabayla",
+       "bisikletle"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Sonunda kim geldi?",
+      "opts": [
+       "Arkadaşı, köpekle",
+       "Tobi",
+       "Bir taksi"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s8"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Bahnhof",
+       "Haltestelle",
+       "Ampel"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Aber dann bin ich falsch ___!",
+      "accepted": [
+       "abgebogen",
+       "Abgebogen",
+       "abgebogen."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s8",
+      "seviye": "zor",
+      "banka": [
+       "Meine",
+       "Freundin",
+       "ist",
+       "dann",
+       "mit",
+       "dem",
+       "Hund",
+       "gekommen",
+       "hat",
+       "Onkel"
+      ],
+      "accepted": [
+       "Meine Freundin ist dann mit dem Hund gekommen.",
+       "meine freundin ist dann mit dem hund gekommen",
+       "Meine Freundin ist dann mit dem Hund gekommen"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s3",
+      "seviye": "usta",
+      "accepted": [
+       "Und wie bist du gefahren? Mit dem Auto?",
+       "und wie bist du gefahren mit dem auto",
+       "Und wie bist du gefahren? Mit dem Auto"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Derya'nın pazar gününü Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Derya hat in München eine Freundin besucht. Sie ist mit der Straßenbahn gefahren.",
+      "zorunlu": [
+       "gefahren"
+      ]
+     }
+    ],
+    "golge": [
+     "s4",
+     "s8"
+    ],
+    "cevapla": {
+     "id": "m1:38:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya soruyor. Hayır, cumartesi şehre gittin. Söyle.",
+     "prompt_de": "Und du? Bist du zu Hause geblieben?",
+     "accepted": [
+      "Nein, am Samstag bin ich in die Stadt gefahren.",
+      "Nein, ich bin in die Stadt gefahren.",
+      "Nein, ich bin am Samstag in die Stadt gefahren.",
+      "Nein, ich war in der Stadt.",
+      "Nein, ich bin in die Stadt gegangen."
+     ],
+     "why_tr": "Gitmekte **habe** değil **bin** gelir: **Ich bin gefahren.**"
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:38:a1",
+   "tur": "anons",
+   "title_tr": "Durakta anons",
+   "ortam_tr": "Münih'te bir durakta bekliyorsun. Hoparlörden bir anons geliyor.",
+   "speaker": "der Sprecher",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Der Bus Nummer acht fährt heute nicht zum Bahnhof.",
+     "tr": "Sekiz numaralı otobüs bugün gara gitmiyor."
+    },
+    {
+     "id": "c2",
+     "de": "Am Rathaus gibt es ein Problem.",
+     "tr": "Belediye binasının orada bir sorun var."
+    },
+    {
+     "id": "c3",
+     "de": "Bitte fahren Sie mit der U-Bahn.",
+     "tr": "Lütfen metroyla gidin."
+    },
+    {
+     "id": "c4",
+     "de": "Die nächste U-Bahn kommt in fünf Minuten.",
+     "tr": "Bir sonraki metro beş dakika sonra geliyor."
+    },
+    {
+     "id": "c5",
+     "de": "Vielen Dank.",
+     "tr": "Çok teşekkürler."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Anons ne diyor?",
+      "opts": [
+       "Sekiz numaralı otobüs bugün gara gitmiyor",
+       "Otobüs geç geliyor",
+       "Bilet fiyatı değişti"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Neyle gitmelisin?",
+       "opts": [
+        "metroyla",
+        "tramvayla",
+        "bisikletle"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Bir sonraki metro ne zaman geliyor?",
+       "opts": [
+        "beş dakika sonra",
+        "bir saat sonra",
+        "on beş dakika sonra"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c1",
+       "seviye": "kolay",
+       "q_tr": "Hangi sayıyı duydun?",
+       "opts": [
+        "acht",
+        "sechs",
+        "achtzehn"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Die nächste U-Bahn kommt in fünf ___.",
+       "accepted": [
+        "Minuten",
+        "minuten",
+        "Minuten."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Am",
+        "Rathaus",
+        "gibt",
+        "es",
+        "ein",
+        "Problem",
+        "Bahnhof",
+        "kein"
+       ],
+       "accepted": [
+        "Am Rathaus gibt es ein Problem.",
+        "am rathaus gibt es ein problem",
+        "Am Rathaus gibt es ein Problem"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Bitte fahren Sie mit der U-Bahn.",
+        "bitte fahren sie mit der u-bahn",
+        "Bitte fahren Sie mit der U-Bahn"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Anonsu bir arkadaşına Almanca iki kısa cümleyle anlat.",
+       "ornek_de": "Der Bus Nummer acht fährt heute nicht. Wir fahren mit der U-Bahn.",
+       "zorunlu": [
+        "U-Bahn"
+       ]
+      }
+     ],
+     "golge": [
+      "c1",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:38:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Yaşlı bir kadın soruyor. Hayır de, metroyu öner.",
+      "prompt_de": "Fährt der Bus zum Bahnhof?",
+      "accepted": [
+       "Nein, heute nicht. Fahren Sie mit der U-Bahn.",
+       "Nein, heute nicht. Bitte fahren Sie mit der U-Bahn.",
+       "Heute nicht. Nehmen Sie die U-Bahn.",
+       "Nein, leider nicht. Die U-Bahn fährt zum Bahnhof.",
+       "Nein, heute fährt er nicht. Fahren Sie mit der U-Bahn."
+      ],
+      "why_tr": "Kibarca öneri: **Fahren Sie mit der U-Bahn.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:38:a1:e1",
+    "k": "pick",
+    "q_tr": "Gara gitmek istiyorsun. Ne yapmalısın?",
+    "opts": [
+     "Metroya bin.",
+     "Sekiz numaralı otobüsü bekle.",
+     "Belediye binasına git."
+    ],
+    "ans": 0,
+    "why_tr": "Otobüs bugün gara gitmiyor. Anons metroyu söylüyor.",
+    "kanit": [
+     "c1",
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:38:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Komşun Frau Brandl'dan mesaj",
+   "ortam_tr": "Akşam telefonuna alt kattaki komşun Frau Brandl'dan bir mesaj geliyor.",
+   "speaker": "ch:brandl",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist Rosa Brandl.",
+     "tr": "İyi günler, ben Rosa Brandl."
+    },
+    {
+     "id": "c2",
+     "de": "Ich besuche am Freitag meine Tochter.",
+     "tr": "Cuma günü kızımı ziyaret ediyorum."
+    },
+    {
+     "id": "c3",
+     "de": "Ich bin bis Montag weg.",
+     "tr": "Pazartesiye kadar yokum."
+    },
+    {
+     "id": "c4",
+     "de": "Bitte sagen Sie es dem Hausmeister.",
+     "tr": "Lütfen bunu apartman görevlisine söyleyin."
+    },
+    {
+     "id": "c5",
+     "de": "Vielen Dank und bis Montag!",
+     "tr": "Çok teşekkürler, pazartesi görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Frau Brandl neden arıyor?",
+      "opts": [
+       "Hafta sonu kızını ziyaret ediyor, haber veriyor",
+       "Seni kahveye çağırıyor",
+       "Evinde bir sorun var"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Frau Brandl ne zamana kadar yok?",
+       "opts": [
+        "pazartesiye kadar",
+        "cumaya kadar",
+        "pazara kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kime haber vermelisin?",
+       "opts": [
+        "apartman görevlisine",
+        "kızına",
+        "Tobi'ye"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Tochter",
+        "Mutter",
+        "Schwester"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Ich bin bis Montag ___.",
+       "accepted": [
+        "weg",
+        "Weg",
+        "weg."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Bitte",
+        "sagen",
+        "Sie",
+        "es",
+        "dem",
+        "Hausmeister",
+        "Nachbarin",
+        "fragen"
+       ],
+       "accepted": [
+        "Bitte sagen Sie es dem Hausmeister.",
+        "bitte sagen sie es dem hausmeister",
+        "Bitte sagen Sie es dem Hausmeister"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Ich besuche am Freitag meine Tochter.",
+        "ich besuche am freitag meine tochter",
+        "Ich besuche am Freitag meine Tochter"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Frau Brandl'ın mesajını Almanca iki kısa cümleyle anlat.",
+       "ornek_de": "Frau Brandl besucht ihre Tochter. Sie ist bis Montag weg.",
+       "zorunlu": [
+        "Tochter",
+        "Montag"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:38:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Pazartesi Frau Brandl dönüyor. Onu karşıla ve hafta sonunu sor.",
+      "prompt_de": "Hallo! Ich bin wieder da!",
+      "accepted": [
+       "Willkommen zurück, Frau Brandl! Wie war das Wochenende?",
+       "Willkommen zurück! Wie war es?",
+       "Hallo, Frau Brandl! Willkommen zurück!",
+       "Willkommen zurück! Wie war das Wochenende?",
+       "Schön, willkommen zurück, Frau Brandl!"
+      ],
+      "why_tr": "Dönen birini **Willkommen zurück!** ile karşılarsın."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:38:a2:e1",
+    "k": "pick",
+    "q_tr": "Frau Brandl'ın mesajından sonra ne yapmalısın?",
+    "opts": [
+     "Apartman görevlisine haber ver.",
+     "Cuma günü Frau Brandl'ı gara götür.",
+     "Pazartesi Frau Brandl'ın kızını ara."
+    ],
+    "ans": 0,
+    "why_tr": "Frau Brandl apartman görevlisine haber vermeni istiyor.",
+    "kanit": [
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:38:g1",
+   "de": "Straßenbahn",
+   "dogru_img": "tram on a city street",
+   "celdirici_img": [
+    "city bus at a stop",
+    "train at a station platform",
+    "taxi on a street"
+   ]
+  },
+  {
+   "id": "m1:38:g2",
+   "de": "Fahrkarte",
+   "dogru_img": "paper public transport ticket in a hand",
+   "celdirici_img": [
+    "credit card in a hand",
+    "passport in a hand",
+    "shopping receipt"
+   ]
+  },
+  {
+   "id": "m1:38:g3",
+   "de": "Hund",
+   "dogru_img": "big dog sitting on grass",
+   "celdirici_img": [
+    "cat sitting on a sofa",
+    "horse in a field",
+    "bird on a branch"
+   ]
+  },
+  {
+   "id": "m1:38:g4",
+   "de": "Straße",
+   "dogru_img": "quiet street with houses in a small town",
+   "celdirici_img": [
+    "forest path",
+    "railway tracks",
+    "parking garage"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:38:p1",
+  "title_tr": "Tobi soruyor: evde mi kaldın?",
+  "durum_tr": "Mola. Tobi hafta sonunu soruyor. Nereye ve neyle gittiğini geçmişte anlat.",
+  "karsi": "ch:lechner",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Und du? Bist du am Samstag zu Hause geblieben?",
+    "tr": "Ya sen? Cumartesi evde mi kaldın?",
+    "secenekler": [
+     {
+      "de": "Nein, ich bin in die Stadt gefahren.",
+      "tr": "Hayır, şehre gittim.",
+      "accepted": [
+       "Nein, ich bin in die Stadt gefahren.",
+       "Nein, am Samstag bin ich in die Stadt gefahren.",
+       "Nein, ich bin in die Stadt gegangen."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru! Gitmekte **bin** gelir: **Ich bin in die Stadt gefahren.**"
+     },
+     {
+      "de": "Ja, ich bin zu Hause geblieben. Ich war müde.",
+      "tr": "Evet, evde kaldım. Yorgundum.",
+      "accepted": [
+       "Ja, ich bin zu Hause geblieben. Ich war müde.",
+       "Ja, ich bin zu Hause geblieben.",
+       "Ja. Ich war müde, ich bin zu Hause geblieben."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Kalmak da **bin** ister: **Ich bin zu Hause geblieben.**"
+     },
+     {
+      "de": "Nein, ich habe in die Stadt gegangen.",
+      "tr": "Hayır, şehre gittim.",
+      "accepted": [
+       "Nein, ich habe in die Stadt gegangen.",
+       "Nein, ich habe in die Stadt gegangen!",
+       "Ich habe in die Stadt gegangen."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Gitmekte **habe** değil **bin** kullanırsın: **Ich bin gegangen.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Echt? Mit dem Auto?",
+    "tr": "Gerçekten mi? Arabayla mı?",
+    "secenekler": [
+     {
+      "de": "Nein, mit dem Bus. Ich bin am Rathaus umgestiegen.",
+      "tr": "Hayır, otobüsle. Belediye binasının orada aktarma yaptım.",
+      "accepted": [
+       "Nein, mit dem Bus. Ich bin am Rathaus umgestiegen.",
+       "Nein, mit dem Bus. Ich bin umgestiegen.",
+       "Mit dem Bus. Am Rathaus bin ich umgestiegen."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika! **umsteigen** geçmişte **Ich bin umgestiegen** olur."
+     },
+     {
+      "de": "Nein, ich bin mit dem Fahrrad gefahren.",
+      "tr": "Hayır, bisikletle gittim.",
+      "accepted": [
+       "Nein, ich bin mit dem Fahrrad gefahren.",
+       "Nein, mit dem Fahrrad.",
+       "Nein, ich bin mit dem Fahrrad in die Stadt gefahren."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **mit dem Fahrrad** bisikletle demek."
+     },
+     {
+      "de": "Nein, mit dem Bus. Ich habe umgestiegen.",
+      "tr": "Hayır, otobüsle. Aktarma yaptım.",
+      "accepted": [
+       "Nein, mit dem Bus. Ich habe umgestiegen.",
+       "Mit dem Bus. Ich habe umgestiegen.",
+       "Ich habe umgestiegen."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Aktarma da bir yerden bir yere gitmek. **Ich bin umgestiegen** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Und am Sonntag? Bist du auch zu Hause geblieben?",
+    "tr": "Ya pazar? Pazar da evde mi kaldın?",
+    "secenekler": [
+     {
+      "de": "Nein, am Sonntag bin ich zu Ioana gegangen.",
+      "tr": "Hayır, pazar günü Ioana'ya gittim.",
+      "accepted": [
+       "Nein, am Sonntag bin ich zu Ioana gegangen.",
+       "Nein, ich bin am Sonntag zu Ioana gegangen.",
+       "Am Sonntag bin ich zu Ioana gegangen."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi! Yürüyerek gittiysen **gegangen**."
+     },
+     {
+      "de": "Ja, ich habe ein Buch gelesen.",
+      "tr": "Evet, bir kitap okudum.",
+      "accepted": [
+       "Ja, ich habe ein Buch gelesen.",
+       "Ja, und ich habe ein Buch gelesen.",
+       "Ja. Ich habe ein Buch gelesen."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Okumak gitmek değil, bu yüzden **Ich habe gelesen**."
+     },
+     {
+      "de": "Ja, ich habe zu Hause geblieben.",
+      "tr": "Evet, evde kaldım.",
+      "accepted": [
+       "Ja, ich habe zu Hause geblieben.",
+       "Ich habe zu Hause geblieben.",
+       "Ja, ich habe am Sonntag zu Hause geblieben."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Kalmak **bin** ister: **Ich bin zu Hause geblieben.**"
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Und bist du gut nach Hause gekommen?",
+    "tr": "Peki eve sağ salim döndün mü?",
+    "secenekler": [
+     {
+      "de": "Ja, aber ich bin falsch abgebogen!",
+      "tr": "Evet, ama yanlış yere saptım!",
+      "accepted": [
+       "Ja, aber ich bin falsch abgebogen!",
+       "Ja, aber ich bin einmal falsch abgebogen!",
+       "Ja. Aber ich bin falsch abgebogen."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Komik ve doğru. **abbiegen** geçmişte **Ich bin abgebogen**."
+     },
+     {
+      "de": "Ja, um acht Uhr bin ich nach Hause gekommen.",
+      "tr": "Evet, saat sekizde eve geldim.",
+      "accepted": [
+       "Ja, um acht Uhr bin ich nach Hause gekommen.",
+       "Ja, ich bin um acht Uhr nach Hause gekommen.",
+       "Ja, um acht bin ich nach Hause gekommen."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Saat başta, **gekommen** en sonda. Tam doğru."
+     },
+     {
+      "de": "Ja, ich komme nach Hause.",
+      "tr": "Evet, eve geliyorum.",
+      "accepted": [
+       "Ja, ich komme nach Hause.",
+       "Ich komme nach Hause.",
+       "Ja, ich komme jetzt nach Hause."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu şimdi. Geçmiş için **Ich bin nach Hause gekommen** de."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Das passiert!",
+    "tr": "Olur öyle!",
+    "son": true
+   },
+   {
+    "id": "n6",
+    "de": "Dann war dein Wochenende ja gut!",
+    "tr": "O zaman hafta sonun iyi geçmiş!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Gitmeyi ve gelmeyi geçmişte anlattın: **bin gefahren**, **bin geblieben**, **bin gekommen**."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Münih'te duraktaki duyuru",
+  "metin_de": "Am Samstag und Sonntag fährt die Straßenbahn nicht zum Bahnhof. Bitte steigen Sie am Rathaus in den Bus um. Der Bus fährt alle zehn Minuten. Sie brauchen keine zweite Fahrkarte für den Bus.",
+  "metin_tr": "Cumartesi ve pazar tramvay gara gitmiyor. Lütfen belediye binasının orada otobüse aktarma yapın. Otobüs on dakikada bir geliyor. Otobüs için ikinci bir bilete ihtiyacınız yok.",
+  "sorular": [
+   {
+    "id": "m1:38:o1",
+    "kind": "gist",
+    "q_tr": "Bu duyuru ne hakkında?",
+    "opts": [
+     "Hafta sonu tramvay gara gitmiyor",
+     "Tramvay artık ücretsiz",
+     "Durak taşındı"
+    ],
+    "ans": 0,
+    "kanit": [
+     0
+    ]
+   },
+   {
+    "id": "m1:38:o2",
+    "kind": "detail",
+    "q_tr": "Nerede aktarma yapmalısın?",
+    "opts": [
+     "belediye binasının orada",
+     "garda",
+     "kursta"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:38:o3",
+    "kind": "detail",
+    "q_tr": "Otobüs için ikinci bir bilet lazım mı?",
+    "opts": [
+     "Hayır",
+     "Evet",
+     "Sadece pazar günü"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:38:o4",
+    "k": "guided_response",
+    "situation_tr": "Bir turist soruyor. Duyuruya göre cevap ver.",
+    "prompt_de": "Fährt die Straßenbahn am Samstag zum Bahnhof?",
+    "accepted": [
+     "Nein, Sie müssen am Rathaus umsteigen.",
+     "Nein. Steigen Sie am Rathaus in den Bus um.",
+     "Nein, am Samstag nicht. Sie müssen am Rathaus umsteigen.",
+     "Leider nicht. Am Rathaus müssen Sie umsteigen.",
+     "Nein, Sie müssen am Rathaus in den Bus umsteigen."
+    ],
+    "why_tr": "**umsteigen** aktarma yapmak demek."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Hafta sonunu üç kısa cümleyle yaz: nereye gittin, neyle gittin, orada ne yaptın?",
+   "ornek_de": "Am Samstag bin ich in die Stadt gefahren. Ich bin mit dem Bus gefahren. Dort habe ich ein Buch gekauft.",
+   "zorunlu": [
+    "bin"
+   ],
+   "accepted_kaliplar": [
+    "Am ___ bin ich ___ gefahren.",
+    "Ich bin mit ___ gefahren.",
+    "Ich bin ___ gefahren.",
+    "Ich bin ___ gegangen.",
+    "Ich bin ___ geblieben.",
+    "Dort habe ich ___ gekauft.",
+    "Ich habe ___ gekauft.",
+    "Ich habe ___ gegessen.",
+    "Ich habe ___ gesehen."
+   ],
+   "kontrol_tr": [
+    "Üç cümle yazdın mı?",
+    "Gitmek için **bin** ve **gefahren** ya da **gegangen** var mı?",
+    "Her cümlede son kelime geçmiş biçimi mi?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:38:s",
+  "maddeler": [
+   {
+    "id": "m1:38:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Wir sind am Sonntag zu Hause geblieben.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir sind am Sonntag zu Hause geblieben.",
+     "wir sind am sonntag zu hause geblieben",
+     "Wir sind am Sonntag zu Hause geblieben"
+    ],
+    "why_tr": "Kalmakta **sind** ve **geblieben** gelir."
+   },
+   {
+    "id": "m1:38:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Mein Onkel ist mit dem Auto gekommen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Mein Onkel ist mit dem Auto gekommen.",
+     "mein onkel ist mit dem auto gekommen",
+     "Mein Onkel ist mit dem Auto gekommen"
+    ],
+    "why_tr": "**kommen** geçmişte **ist gekommen** olur."
+   },
+   {
+    "id": "m1:38:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Die Straßenbahn ist schon weg.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Straßenbahn ist schon weg.",
+     "die straßenbahn ist schon weg",
+     "Die Straßenbahn ist schon weg"
+    ],
+    "why_tr": "**schon weg** çoktan gitti demek."
+   },
+   {
+    "id": "m1:38:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Am Abend bin ich nach Hause gegangen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Am Abend bin ich nach Hause gegangen.",
+     "am abend bin ich nach hause gegangen",
+     "Am Abend bin ich nach Hause gegangen"
+    ],
+    "why_tr": "**gehen** geçmişte **bin gegangen** olur."
+   },
+   {
+    "id": "m1:38:s5",
+    "k": "tr_de",
+    "tr": "Tramvayla gittim.",
+    "accepted": [
+     "Ich bin mit der Straßenbahn gefahren.",
+     "Mit der Straßenbahn bin ich gefahren.",
+     "Ich bin Straßenbahn gefahren."
+    ],
+    "why_tr": "Araçla gitmek **fahren**, geçmişte **Ich bin gefahren**."
+   },
+   {
+    "id": "m1:38:s6",
+    "k": "tr_de",
+    "tr": "Garda aktarma yaptım.",
+    "accepted": [
+     "Ich bin am Bahnhof umgestiegen.",
+     "Am Bahnhof bin ich umgestiegen.",
+     "Ich bin beim Bahnhof umgestiegen."
+    ],
+    "why_tr": "**umsteigen** geçmişte **Ich bin umgestiegen** olur."
+   },
+   {
+    "id": "m1:38:s7",
+    "k": "tr_de",
+    "tr": "Evde kaldım.",
+    "accepted": [
+     "Ich bin zu Hause geblieben.",
+     "Ich bin daheim geblieben.",
+     "Zu Hause bin ich geblieben."
+    ],
+    "why_tr": "Kalmak da **bin** ister."
+   },
+   {
+    "id": "m1:38:s8",
+    "k": "tr_de",
+    "tr": "Sola döndük.",
+    "accepted": [
+     "Wir sind links abgebogen.",
+     "Links sind wir abgebogen.",
+     "Wir sind nach links abgebogen."
+    ],
+    "why_tr": "**abbiegen** geçmişte **Wir sind abgebogen** olur."
+   },
+   {
+    "id": "m1:38:s9",
+    "k": "guided_response",
+    "situation_tr": "Sokakta biri yol soruyor. Sen de buranın yabancısısın.",
+    "prompt_de": "Entschuldigung, wo ist hier die Apotheke?",
+    "accepted": [
+     "Tut mir leid, ich bin auch fremd hier.",
+     "Tut mir leid, ich bin hier auch fremd.",
+     "Entschuldigung, ich bin hier fremd.",
+     "Leider weiß ich das nicht. Ich bin hier fremd.",
+     "Tut mir leid, ich bin auch fremd."
+    ],
+    "why_tr": "Yolu bilmiyorsan **Ich bin hier fremd.** dersin."
+   },
+   {
+    "id": "m1:38:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wie bist du zur Arbeit gekommen?",
+    "speed": "normal",
+    "situation_tr": "Tobi soruyor. Bisikletle geldin.",
+    "accepted": [
+     "Ich bin mit dem Fahrrad gekommen.",
+     "Mit dem Fahrrad.",
+     "Mit dem Fahrrad bin ich gekommen.",
+     "Ich bin mit dem Fahrrad zur Arbeit gekommen.",
+     "Ich bin mit dem Fahrrad gefahren."
+    ],
+    "why_tr": "Geçmişte gelmek: **Ich bin mit dem Fahrrad gekommen.**"
+   },
+   {
+    "id": "m1:38:s11",
+    "k": "guided_response",
+    "situation_tr": "Derya hafta sonunu soruyor. Nereye ve neyle gittiğini söyle.",
+    "prompt_de": "Was hast du am Wochenende gemacht?",
+    "accepted": [
+     "Ich bin mit dem Bus in die Stadt gefahren.",
+     "Am Samstag bin ich mit der U-Bahn in die Stadt gefahren.",
+     "Ich bin mit dem Fahrrad zu Ioana gefahren.",
+     "Ich bin mit der Straßenbahn zu meinen Eltern gefahren.",
+     "Ich bin mit dem Auto in die Stadt gefahren.",
+     "Am Sonntag bin ich mit dem Bus zu Derya gefahren."
+    ],
+    "why_tr": "Nereye ve neyle: **Ich bin mit dem Bus in die Stadt gefahren.**"
+   }
+  ],
+  "sesli": [
+   "m1:38:s9",
+   "m1:38:s10"
+  ],
+  "dikte": [
+   "m1:38:s1",
+   "m1:38:s2",
+   "m1:38:s3",
+   "m1:38:s4"
+  ]
+ }
+}

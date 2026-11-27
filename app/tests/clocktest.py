@@ -5,7 +5,7 @@ async def main():
     b = await p.chromium.launch(); ctx = await b.new_context(viewport={"width":390,"height":844}); pg = await ctx.new_page(); errs=[]; pg.on("pageerror", lambda e: errs.append(str(e)))
     await pg.clock.install(time=datetime.datetime(2026,11,10,9,0,0))
     await pg.add_init_script("localStorage.setItem('dw-gate', JSON.stringify({h:'2a4fd738768c5609c205edf6dcd7dd72c2da1add10f40b3d013ffa70660e0135', t:Date.now()}));")
-    await pg.goto("http://localhost:8765/index.html"); await pg.clock.run_for(3000)
+    await pg.goto("http://localhost:8765/index.html?eski=1"); await pg.clock.run_for(3000)
     await pg.evaluate("S.state.setupDone=true; S.state.mins={}; S.state.pomo={day:dayKey(),work:0}; 0")
     async def secs(): return await pg.evaluate("Math.round((S.state.mins||{})[dayKey()]||0)")
     async def pw(): return await pg.evaluate("Math.round(pomo().work)")

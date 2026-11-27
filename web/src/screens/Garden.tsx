@@ -3,6 +3,7 @@
  * Kartlar öğrenciye soru olarak döner; cevap öğrenciden beklenir. Yanlışta doğrusu öğrencinin cevabıyla yan yana
  * gösterilir, kart turun sonunda başka örnek ve başka türle yeniden gelir ve kişisel bankaya girer (srs.review).
  */
+import { RAF_ONEK } from "../services/kartFoto.ts";
 import { gorevSay } from "../services/gorev.ts";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
@@ -90,7 +91,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       // B4: "Fotoğraftaki ne?" yalnızca seçilmiş fotoğrafı olan kartta; çevrimdışında yalnız paketteki (yerel yollu) fotoğraflar
       // (dış adres çevrimdışı gelmez; pakettekini servis işçisi önbelleğe alır — inceleme #187 P2-5)
       const fotoTum = await loadFoto();
-      const fotoHarita = navigator.onLine === false ? Object.fromEntries(Object.entries(fotoTum).filter(([, f]) => f.src.startsWith("content/"))) : fotoTum;
+      // raf kaydı da kalır: görülmüş raf fotoğrafı kapalı önbellekte; gelmezse soru fotoğrafsız biçime döner (inceleme #204 P2-3)
+      const fotoHarita = navigator.onLine === false ? Object.fromEntries(Object.entries(fotoTum).filter(([, f]) => f.src.startsWith("content/") || f.src.startsWith(RAF_ONEK))) : fotoTum;
       fotoluKartlar(new Set(Object.keys(fotoHarita).filter((k) => k.endsWith("#kart")).map((k) => k.slice(0, -"#kart".length))));
       // PM 7030294523 P0: "kendi cümleni kur" yalnızca İlk Hafta bitmiş ve en az bir kalıp bitirilmişse (kartın kararlılığı garden.ts'de)
       const kendiCumle = { ilkHaftaBitti: !!(await getMeta(`m1:gun:${POLICY.own_sentence.ilk_hafta_son_gun}`)), kalipBitti: (await metaPrefix("kalip:bitti:")).length > 0 };
