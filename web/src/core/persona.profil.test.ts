@@ -1,6 +1,7 @@
 /** PM-148 karar 2: profil yuvaları ({ulke}, {sehir}…) gösterimde, seslendirmede, kabulde ve yapay zekâ maskesinde */
 import { afterEach, describe, expect, it } from "vitest";
-import { expandAccepted, fillName, hakkimdaAyarla, personalizeDeep, profilDoldur, redact, showText, speakText, unredact } from "./persona.ts";
+import { expandAccepted, fillName, hakkimdaAyarla, personalizeDeep, profilDoldur, profilGeriAl, redact, showText, speakText, unredact } from "./persona.ts";
+import { sesMetni } from "../services/speech.ts";
 import { tokens } from "../../../content/tools/teach.ts";
 
 afterEach(() => hakkimdaAyarla({}));
@@ -22,14 +23,28 @@ describe("profil yuvaları", () => {
     expect(profilDoldur("Ich bin {yas} Jahre alt.", "Ich bin 34 Jahre alt.")).toBe("Ich bin 34 Jahre alt.");
     // uymazsa yuva gösterimdeki yeriyle kalır (doğru sayılmaz)
     expect(profilDoldur("Ich komme aus {ulke}.", "Ich wohne in Rosenheim.")).toBe("Ich komme aus (ülken).");
+    // inceleme #286 P1-2: yuvaya giremeyenler
+    expect(profilDoldur("Ich bin {aile}.", "Ich bin müde.")).toBe("Ich bin (medeni durumun).");
+    expect(profilDoldur("Ich bin {aile}.", "Ich bin Lehrer.")).toBe("Ich bin (medeni durumun).");
+    expect(profilDoldur("Ich bin {yas} Jahre alt.", "Ich bin sehr Jahre alt.")).toBe("Ich bin (yaşın) Jahre alt.");
+    expect(profilDoldur("Ich komme aus {ulke}.", "Ich komme aus nicht.")).toBe("Ich komme aus (ülken).");
+    expect(profilDoldur("Ich bin {meslek}.", "Ich bin Lehrer.")).toBe("Ich bin Lehrer.");
     // ad yuvasıyla birlikte: fillName ikisini de doldurur
     expect(fillName("Ich heiße {name} und komme aus {ulke}.", "Ich heiße Mila und komme aus Polen.")).toBe("Ich heiße Mila und komme aus Polen.");
   });
   it("yapay zekâ: profil değerleri [...] olur, ad [Name]; unredact adı geri koyar, maskeyi … yapar", () => {
     const p = { name: "Mila", profil: { ulke: "Türkei", sehir: "Bad Aibling" } };
-    const r = redact("Ich heiße Mila, ich komme aus der Tuerkei und wohne in Bad Aibling.", p);
+    const r = redact("Ich heiße Mila, ich komme aus der Tuerkei und wohne in Bad Aibling.", p, { profil: true });
     expect(r).toBe("Ich heiße [Name], ich komme aus der […] und wohne in […].");
+    // inceleme #286 P1-5: içerik ve karşı tarafın satırı için profil maskesi yok (varsayılan); sayı hiç maskelenmez
+    expect(redact("Wohnen Sie in Bad Aibling?", p)).toBe("Wohnen Sie in Bad Aibling?");
+    expect(redact("um 7:30 Uhr", { profil: { yas: "30" } }, { profil: true })).toBe("um 7:30 Uhr");
     expect(unredact("Gut, [Name]! Wie ist es in […]?", p)).toBe("Gut, Mila! Wie ist es in …?");
+  });
+  it("inceleme #286 P1-3/P1-6: yer okunmaz; yedeğe giren metinde değer yuvasına döner", () => {
+    expect(sesMetni("Ich komme aus (ülken). Ich bin (medeni durumun).")).toBe("Ich komme aus. Ich bin.");
+    hakkimdaAyarla({ sehir: "Hamburg" });
+    expect(profilGeriAl("Ich wohne in Hamburg.")).toBe("Ich wohne in {sehir}.");
   });
   it("içerik denetiminde yuvalar sözcük sayılmaz (teach.ts)", () => {
     expect(tokens("Ich komme aus {ulke} und bin {meslek}.")).toEqual(["ich", "komme", "aus", "und", "bin"]);

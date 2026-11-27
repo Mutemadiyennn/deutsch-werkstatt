@@ -16,7 +16,7 @@ export function HakkimdaEkrani() {
   const [v, setV] = useState<Hakkimda | null>(null);
   useEffect(() => { void hakkimdaYukle().then(setV); }, []);
   if (!v) return null;
-  const kaydet = async () => { setV(await hakkimdaKaydet(v)); toast("Kaydedildi. Yalnız bu telefonda."); };
+  const kaydet = async () => { try { setV(await hakkimdaKaydet(v)); toast("Kaydedildi. Yalnız bu telefonda."); } catch { toast("Kaydedilemedi; tekrar dene."); } };
   return (
     <section class="stack" data-test="hakkimda">
       <TopBar title="Kendim hakkında" back="#/ben" />

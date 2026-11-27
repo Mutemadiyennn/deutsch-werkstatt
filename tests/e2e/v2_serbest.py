@@ -59,6 +59,8 @@ def main():
         b, pg = ac(p, sema, None)
         s, _ = plan_serbest(pg)
         check(not s, f"bayrak kapalı: 2. günün planında serbest konuşma yok ({len(s)})")
+        pg.goto(f"http://127.0.0.1:{PORT}/#/ben"); pg.wait_for_selector("[data-test=ben]")
+        check(not pg.locator("[data-test=hakkimda-ac]").count(), "bayrak kapalı: Ben'de 'Kendim hakkında' yok (PM-135 ek 14)")
         b.close()
 
         # 2) bayrak açık: gün sonunun ilk adımı
@@ -139,12 +141,15 @@ def main():
 
         # 5) md. 2: "Kendim hakkında" (Ben) ve görevde boş alanı o an sorma; değer yalnız cihazda (meta), profilde/yedekte yok
         b, pg = ac(p, sema, "1"); gunsonu(pg); pg.wait_for_selector("[data-test=akis-serbest]")
-        check(pg.locator("[data-test=serbest-profil]").count() == 1, "boş şehir: görev cevaptan önce isteğe bağlı sorar")
-        pg.click("[data-test=serbest-profil] summary"); pg.fill("[data-test=hakkimda-sehir] input", "Hamburg"); pg.click("[data-test=serbest-profil-kaydet]")
+        check(not pg.locator("[data-test=serbest-profil]").count(), "boş şehir: cevaptan önce sorulmaz (Almanca çerçeve ipucu olurdu)")
         pg.click("[data-test=mic]"); bekle_kosul(pg, "() => document.querySelectorAll('[data-test=serbest-dokum] [lang=de]').length >= 1")
         pg.click("[data-test=mic]"); bekle_kosul(pg, "() => document.querySelectorAll('[data-test=serbest-dokum] [lang=de]').length >= 2")
         pg.click("[data-test=serbest-bitirdim]"); pg.wait_for_selector("[data-test=akis-serbest-sonuc]")
+        check(pg.locator("[data-test=serbest-profil]").count() == 1, "boş şehir: sonuçta isteğe bağlı sorulur")
+        pg.click("[data-test=serbest-profil] summary"); pg.fill("[data-test=hakkimda-sehir] input", "Hamburg"); pg.click("[data-test=serbest-profil-kaydet]")
+        pg.wait_for_selector("[data-test=serbest-profil-tamam]")
         check("Ich wohne in Hamburg." in pg.inner_text("[data-test=serbest-ornek]"), "örnek cevap profildeki şehirle")
+        if shots: shot(pg, f"serbest-profil-{sema}", full=False)
         hk = pg.evaluate(META, "hakkimda")
         prof = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
           const r = await new Promise((ok) => { const t = d.transaction('profile').objectStore('profile').getAll(); t.onsuccess = () => ok(t.result); }); d.close(); return JSON.stringify(r); }""")

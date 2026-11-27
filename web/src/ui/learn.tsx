@@ -8,7 +8,7 @@ import { ai, aiState } from "../services/ai.ts";
 import { ApiError } from "../services/api.ts";
 import { AnswerField, FeedbackBand } from "./kit.tsx";
 import { haptic } from "../services/haptics.ts";
-import { fillName, redact } from "../core/persona.ts";
+import { fillName, profilGeriAl, redact } from "../core/persona.ts";
 import { verdict, type Verdict } from "../core/answer.ts";
 import { localSayIt, type LocalEntry } from "../core/sayit.ts";
 import { addClaim, addPersonal, cacheGet, cachePut } from "../data/db.ts";
@@ -46,12 +46,13 @@ export function useGrader() {
   const { api, profile } = useApp();
   const persona = { name: profile.displayName, address: profile.address };
   // D-061: ad girilmemişse {name} yuvası cevaptan doldurulur
-  return (accepted0: string[], answer: string, prompt_tr: string) => { const accepted = accepted0.map((a) => fillName(a, answer)); return verdict(accepted, answer, prompt_tr, aiState(api).available ? async (exp, ans, p) => ai(api, "equiv_check", { prompt_tr: p.slice(0, 300), expected: exp.slice(0, 6).map((x) => redact(x, persona)), answer: redact(ans, persona).slice(0, 300) }) : undefined); };
+  return (accepted0: string[], answer: string, prompt_tr: string) => { const accepted = accepted0.map((a) => fillName(a, answer)); return verdict(accepted, answer, prompt_tr, aiState(api).available ? async (exp, ans, p) => ai(api, "equiv_check", { prompt_tr: p.slice(0, 300), expected: exp.slice(0, 6).map((x) => redact(x, persona, { profil: true })), answer: redact(ans, persona, { profil: true }).slice(0, 300) }) : undefined); };
 }
 
 export function VerdictView({ v, answer, onNext, onClaim, itemId, scenarioId, prompt, accepted, nextLabel = "Devam" }: { v: Verdict; answer: string; onNext: () => void; onClaim?: () => void; itemId: string; scenarioId?: string; prompt: string; accepted: string[]; nextLabel?: string }) {
   const [claimed, setClaimed] = useState(false);
-  const claim = async () => { await addClaim({ at: new Date().toISOString(), scenarioId, itemId, prompt, answer, expected: accepted }); setClaimed(true); onClaim?.(); };
+  // itiraz kaydı yedeğe girer (exportAll): profil değeri yuvaya geri döner (inceleme #286 P1-6)
+  const claim = async () => { await addClaim({ at: new Date().toISOString(), scenarioId, itemId, prompt: profilGeriAl(prompt), answer: profilGeriAl(answer), expected: accepted.map((x) => profilGeriAl(x)) }); setClaimed(true); onClaim?.(); };
   return (
     <div class="stack fade" data-test="verdict">
       {v.kind === "correct" && <FeedbackBand kind="ok" title="Doğru">{v.via !== "exact" && v.best ? <>Örnek: <span class="de" lang="de">{v.best}</span>{v.note ? <> · {v.note}</> : null}</> : v.note}</FeedbackBand>}

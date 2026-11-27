@@ -19,10 +19,11 @@ import { ActionBar, ListenButton, MicButton } from "../kit.tsx";
 type Rapor = AiOutput<"feedback_tr">;
 
 export function SerbestKonusAdimi({ k, profil: profil0, onBitti, onProfil }: { k: SerbestKonus; profil: ProfilDegerleri; onBitti: (sesli: boolean) => void;
-  /** karar 2: görevin kullandığı boş alanı öğrenci o an yazarsa (isteğe bağlı) cihaza kaydedilir */ onProfil?: (v: Hakkimda) => Promise<void> }) {
+  /** karar 2: görevin kullandığı boş alan cevaptan SONRA sorulur (önce sorulursa Almanca çerçeve ipucu olurdu; inceleme #286 P1-1) */ onProfil?: (v: Hakkimda) => Promise<void> }) {
   const [profil, setProfil] = useState(profil0);
   const [sor] = useState(() => bosYuvalar(k, profil0));
   const [taslakP, setTaslakP] = useState<Hakkimda>({});
+  const [kaydedildi, setKaydedildi] = useState<boolean | null>(null);
   const { api } = useApp();
   const mik = sttAvailable();
   const [parcalar, setParcalar] = useState<string[]>([]);
@@ -77,15 +78,6 @@ export function SerbestKonusAdimi({ k, profil: profil0, onBitti, onProfil }: { k
         <h2 style={{ margin: "6px 0 0" }} data-test="serbest-gorev">{k.gorev_tr}</h2>
         <p class="tiny muted" style={{ margin: "6px 0 0" }}>Hazırlık yok. Bildiğin gibi, en az {k.en_az_cumle} cümle söyle.</p>
       </div>
-      {sor.length > 0 && onProfil && !parcalar.length && (
-        <details class="card" data-test="serbest-profil">
-          <summary class="small"><b>İstersen önce bilgilerini yaz</b> <span class="muted">(isteğe bağlı, yalnız bu telefonda)</span></summary>
-          <div class="stack" style={{ gap: 12, marginTop: 10 }}>
-            {sor.map((y) => <YuvaAlani y={y} cerceve={false} deger={taslakP[y] ?? ""} degis={(x) => setTaslakP({ ...taslakP, [y]: x })} />)}
-            <button class="btn" data-test="serbest-profil-kaydet" onClick={() => { const v = { ...profil, ...taslakP }; setProfil(v); void onProfil(taslakP); }}>Kaydet</button>
-          </div>
-        </details>
-      )}
       {k.soru_de && (
         <div class="row" style={{ justifyContent: "center", alignItems: "center", gap: 10 }} data-test="serbest-soru">
           <span class="small muted">Karşındaki sana bir şey söyledi:</span>
@@ -168,6 +160,16 @@ export function SerbestKonusAdimi({ k, profil: profil0, onBitti, onProfil }: { k
           <ListenButton text={ornek.replace(/…/g, "")} small slowToggle={false} />
         </div>
       </section>
+      {sor.length > 0 && onProfil && (
+        <details class="card" data-test="serbest-profil">
+          <summary class="small"><b>Örnek cevap senin bilgilerinle gelsin mi?</b> <span class="muted">(isteğe bağlı, yalnız bu telefonda)</span></summary>
+          <div class="stack" style={{ gap: 12, marginTop: 10 }}>
+            {sor.map((y) => <YuvaAlani y={y} deger={taslakP[y] ?? ""} degis={(x) => setTaslakP({ ...taslakP, [y]: x })} />)}
+            <button class="btn" data-test="serbest-profil-kaydet" onClick={() => { const v = { ...profil, ...taslakP }; setProfil(v); void onProfil(taslakP).then(() => setKaydedildi(true), () => setKaydedildi(false)); }}>Kaydet</button>
+            {kaydedildi && <p class="tiny muted" style={{ margin: 0 }} data-test="serbest-profil-tamam">Kaydedildi. Yalnız bu telefonda.</p>}
+          </div>
+        </details>
+      )}
       <ActionBar>
         <div class="row" style={{ gap: 8, flexWrap: "nowrap", width: "100%" }}>
           <button class="btn" style={{ flex: 1 }} data-test="serbest-yeniden" onClick={yeniden}>Bir daha dene</button>

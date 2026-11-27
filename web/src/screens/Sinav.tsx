@@ -22,9 +22,11 @@ import { ActionBar, ProgressHeader } from "../ui/kit.tsx";
 import { Rich } from "../ui/rich.tsx";
 import { MaddeView } from "../ui/denemeMadde.tsx";
 
+import { showText } from "../core/persona.ts";
+
 const E2E = import.meta.env.MODE === "e2e";
 /** örnek cevapta ad yuvası: profilde ad yoksa "(adın)" görünür (süslü yuva öğrenciye çıkmaz) */
-const adli = (s: string) => s.replace(/\{name\}/g, "(adın)");
+const adli = (s: string) => showText(s.replace(/\{name\}/g, "(adın)"), {});
 type Veri = { gun: Gun; deneme: Deneme; sonuclar: Map<string, SinavBolumSonuc> };
 type Asama = { t: "giris" } | { t: "coz"; b: DenemeBolum; i: number } | { t: "puanla"; b: DenemeBolum } | { t: "sonuc"; b: DenemeBolum; s: SinavBolumSonuc };
 

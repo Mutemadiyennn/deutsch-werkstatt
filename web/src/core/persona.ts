@@ -44,7 +44,13 @@ const parca = (s: string) => s.replace(AYIR, " ").replace(/(^|\s)[-'’]+|[-'’
  * "Hier ist die Praxis." ad sanılmasın. Sözlük yüklenince `bilinenKelimeler` ile genişler; sözlükteki bir kelimeyle aynı
  * olan ad (ör. Rose) adsız profilde tanınmaz — ad profile girilince bu kural devreye girmez.
  */
-const BILINEN = new Set("der die das den dem des ein eine einen einem einer kein keine keinen nicht nichts ich du er sie es wir ihr mein meine dein deine sein seine hier da dort ja nein bitte danke auch und oder aber noch schon sehr gut krank müde heute morgen jetzt gerne gern frau herr doktor praxis termin".split(" "));
+const BILINEN_SABIT = "der die das den dem des ein eine einen einem einer kein keine keinen nicht nichts ich du er sie es wir ihr mein meine dein deine sein seine hier da dort ja nein bitte danke auch und oder aber noch schon sehr gut krank müde heute morgen jetzt gerne gern frau herr doktor praxis termin".split(" ");
+const BILINEN = new Set(BILINEN_SABIT);
+/** {aile} yuvasına girebilen dört biçim; ülke/şehir öbeğinin başında artikel olabilir ("aus der Schweiz") */
+export const AILE_DURUMU = ["ledig", "verheiratet", "geschieden", "verwitwet"];
+const ARTIKEL_OK = new Set(["der", "dem", "den", "die"]);
+/** profil yuvasına giremeyen işlev sözcükleri ve sıfatlar: BILINEN'in sabit hâli (sözlükle genişlemez: "Lehrer", "Polen" girebilsin) */
+const ISLEV = new Set([...BILINEN_SABIT, "sehr", "nicht", "müde", "krank", "gut", "schlecht", "alt", "jung", "hier", "da"]);
 export function bilinenKelimeler(l: Iterable<string>) {
   for (const de of l) for (const w of de.toLocaleLowerCase("de").split(/[\s,/]+/)) if (w.length > 1) BILINEN.add(w);
 }
@@ -88,11 +94,12 @@ const desen = (x: string) => {
   }
   return out;
 };
-export function redact(t: string, p: Persona): string {
-  // PM-148 karar 2: profil değerleri de yapay zekâya gitmez ("[…]"); ad "[Name]" (unredact geri koyar)
-  for (const v of Object.values(profilOf(p))) {
+export function redact(t: string, p: Persona, secenek: { profil?: boolean } = {}): string {
+  // PM-148 karar 2: istenirse profil değerleri de "[…]" (öğrencinin cevabı ve ona göre doldurulmuş beklenen); içerik ve karşı tarafın
+  // satırları maskelenmez (inceleme #286 P1-5: "Lesen", "Arzt", "30" içerikte de geçer). Sayı maskelenmez. Ad "[Name]" (unredact geri koyar)
+  if (secenek.profil) for (const v of Object.values(profilOf(p))) {
     const x = v?.normalize("NFC").trim().replace(/\s+/g, " ");
-    if (x && [...x].length >= 2) t = t.normalize("NFC").replace(new RegExp(`(?<![\\p{L}\\p{N}])(?:${desen(x)})(?![\\p{L}\\p{N}])`, "giu"), "[…]");
+    if (x && [...x].length >= 2 && !/^\d+$/.test(x)) t = t.normalize("NFC").replace(new RegExp(`(?<![\\p{L}\\p{N}])(?:${desen(x)})(?![\\p{L}\\p{N}])`, "giu"), "[…]");
   }
   const ad = p.name?.normalize("NFC").trim().replace(/\s+/g, " ");
   if (!ad) return t;
@@ -116,7 +123,24 @@ export function profilDoldur(expected: string, answer: string): string {
   const desenler = bol.map((x, i) => (i % 2 ? "(\\S+(?:\\s+\\S+){0,3}?)" : parca(x.replace(/\{name\}/g, ` ${AD} `)).map(kac).join("\\s+"))).filter(Boolean);
   const m = new RegExp(`^${desenler.join("\\s+")}$`, "iu").exec(parca(answer).join(" "));
   let n = 0;
-  return expected.replace(PROFIL_RE, (_m, y: ProfilYuvasi) => m?.[++n] ?? YUVA_GOSTERIM[y]);
+  // yuvaya girebilecek olan (inceleme #286 P1-2): aile durumu dört sözcükten biri, yaş sayı; öbürlerinde bilinen işlev sözcüğü ve sıfat yok
+  const uygun = (y: ProfilYuvasi, v: string) => {
+    const w = v.toLocaleLowerCase("de").split(/\s+/);
+    if (y === "aile") return AILE_DURUMU.includes(v.toLocaleLowerCase("de"));
+    if (y === "yas") return /^\d{1,3}$/.test(v);
+    if (y === "diller") return w.every((x) => x === "und" || !ISLEV.has(x));
+    return !w.some((x) => ISLEV.has(x) && !ARTIKEL_OK.has(x));
+  };
+  return expected.replace(PROFIL_RE, (_m, y: ProfilYuvasi) => { const v = m?.[++n]; return v && uygun(y, v) ? v : YUVA_GOSTERIM[y]; });
+}
+/** Yedeğe giren metinde (itiraz kaydı) cihazdaki profil değeri yuvasına geri döner: değer yalnız cihazda kalır (karar 2) */
+export function profilGeriAl(t: string, p: Persona = {}): string {
+  let out = t;
+  for (const [y, v] of Object.entries(profilOf(p)) as [ProfilYuvasi, string | undefined][]) {
+    const x = v?.normalize("NFC").trim();
+    if (x && [...x].length >= 2) out = out.normalize("NFC").replace(new RegExp(`(?<![\\p{L}\\p{N}])(?:${desen(x)})(?![\\p{L}\\p{N}])`, "giu"), `{${y}}`);
+  }
+  return out;
 }
 /** Yapay zekâdan gelen metin: [Name] → ad (yoksa hitap kalır); profil maskesi "[…]" → "…" */
 export function unredact(t: string, p: Persona): string {
