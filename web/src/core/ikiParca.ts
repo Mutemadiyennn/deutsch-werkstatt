@@ -24,17 +24,17 @@ export function boslukParcalari(de: string, cevap: string): { metin: string[]; d
 
 export interface BoslukGorunumu { metin: string[]; dogru: string[]; kabul: string[] }
 /**
- * Boşluk adımının görünümü: cümle kartın bir biçiminden geliyorsa boşluklar o biçimin "___" yerleri (iki parçalıda iki boşluk);
- * gelmiyorsa `bosluk` sözcüklerinden cümlede ilk geçen tek sözcük boş bırakılır. `metin` boşluklar arası parçalar
+ * Boşluk adımının görünümü: cümle kartın iki parçalı bir biçiminden geliyorsa boşluklar o biçimin iki "___" yeri;
+ * gelmiyorsa (tek boşluklu biçim dahil) `bosluk` sözcüklerinden cümlede ilk geçen tek sözcük boş bırakılır. `metin` boşluklar arası parçalar
  * (metin.length = dogru.length + 1); `kabul` doğru sayılan cevaplar. Hiçbiri yoksa null (çağıran üretim adımına düşer).
  */
 export function boslukGorunumu(de: string, bosluk: string[], formlar: { de: string; answer: string; also_ok?: string[] }[] = []): BoslukGorunumu | null {
+  // yalnız iki parçalı biçim kendi "___" yerleriyle gösterilir; tek boşluklu biçimde eski davranış (kartın sözcüğü) sürer (inceleme #280 P2-1)
   for (const f of formlar) {
     const p = boslukDoldur(f.de, f.answer) === de ? boslukParcalari(f.de, f.answer) : null;
-    if (!p) continue;
-    const iki = p.dogru.length > 1;
+    if (!p || p.dogru.length < 2) continue;
     // iki parçada kabul: "stelle vor", "stelle … vor", "stelle ... vor" (parçalar sırayla); biçimin eş anlamlı cevapları da
-    const kabul = [...(iki ? [p.dogru.join(" "), p.dogru.join(" … "), p.dogru.join(" ... ")] : p.dogru), ...(f.also_ok ?? []).map((a) => a.replace(/\s*…\s*/g, " ").trim())];
+    const kabul = [p.dogru.join(" "), p.dogru.join(" … "), p.dogru.join(" ... "), ...(f.also_ok ?? []).map((a) => a.replace(/\s*…\s*/g, " ").trim())];
     return { ...p, kabul: [...new Set(kabul)] };
   }
   const k = new Set(bosluk.map((x) => x.toLowerCase()));

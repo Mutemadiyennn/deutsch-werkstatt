@@ -64,7 +64,7 @@ export function UretAdimi({ bilgi, kip, onBitti }: { bilgi: CumleBilgi; /** yaz:
 }
 
 /**
- * Boşluk: cümle kartın bir biçim cümlesinden geliyorsa (`formlar`) boşluklar o biçimin "___" yerleridir; iki parçalı fiilde iki boşluk,
+ * Boşluk: cümle kartın iki parçalı bir biçiminden geliyorsa (`formlar`) boşluklar o biçimin iki "___" yeridir,
  * cevap iki parça sırayla ("stelle vor" ya da "stelle … vor"; DENETİM-A1 P1-1). Gelmiyorsa kartın sözcüğü (planlayıcının `haric`
  * sözcükleri yerine kartın yüzeyi) cümlede boş bırakılır. Öğrenci yazar.
  */

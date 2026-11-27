@@ -24,10 +24,14 @@ describe("iki parçalı boşluk (DENETİM-A1 P1-1, PM-148 [ANA-T] md. 1)", () =>
     for (const c of ["lege auf", "lege … auf", "lege ... auf", "Lege auf"]) expect(ruleVerdict(g.kabul, c).kind, c).toBe("correct");
     for (const c of ["lege", "auf lege", "auflegen"]) expect(ruleVerdict(g.kabul, c).kind, c).not.toBe("correct");
   });
-  it("tek boşluklu biçim: boşluk biçimin yeri, eş anlamlı cevap da kabul", () => {
+  it("tek boşluklu biçim: eski davranış, kartın sözcüğü boş (inceleme #280 P2-1: boşluk yeri değişmez)", () => {
     const g = boslukGorunumu("Am Mittwoch rufe ich an.", ["Mittwoch", "Am"], [{ de: "Am ___ rufe ich an.", answer: "Mittwoch", also_ok: ["Dienstag"] }])!;
-    expect(g.metin).toEqual(["Am ", " rufe ich an."]);
-    expect(g.kabul).toEqual(["Mittwoch", "Dienstag"]);
+    expect(g.metin).toEqual(["", " Mittwoch rufe ich an."]);
+    expect(g.kabul).toEqual(["Am"]);
+  });
+  it("iki parçalı biçimin eş anlamlı cevabı da kabul", () => {
+    const g = boslukGorunumu("Ich lege jetzt auf.", [], [{ ...f, also_ok: ["lege … hin"] }])!;
+    expect(g.kabul).toContain("lege hin");
   });
   it("biçimden gelmeyen cümle: eskisi gibi ilk eşleşen tek sözcük boş", () => {
     const g = boslukGorunumu("Ich komme morgen.", ["morgen"])!;
