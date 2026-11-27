@@ -63,6 +63,20 @@ def main():
         # inceleme #150 P2: içerikten gelen başlık büyük harfe çevrilmez (Türkçe yerelde Almanca adlar "PİCHLER" olmasın)
         tt = pg.evaluate("() => { const k = document.querySelector('[data-test=ders-diyalog] .kicker'); return k ? [k.className, getComputedStyle(k).textTransform] : null; }")
         check(tt is not None and "icerik" in tt[0] and tt[1] == "none", f"diyalog başlığı içerik kicker'ı, büyük harf dönüşümü yok ({tt})")
+        # PM-132: sahnede her konuşan kendi sesiyle; dinlerken konuşanın adı ekranda (metin kapalıyken de)
+        pg.evaluate("""() => { const V = [['Anna', 'a'], ['Petra', 'p'], ['Markus', 'm'], ['Martin', 't']].map(([name, id]) => ({ name, lang: 'de-DE', voiceURI: id }));
+          window.__soz = []; window.SpeechSynthesisUtterance = function (t) { this.text = t; };
+          const s = { speaking: false, getVoices: () => V, cancel() {}, addEventListener() {}, removeEventListener() {},
+            speak(u) { setTimeout(() => { window.__soz.push([u.text, u.voice ? u.voice.name : '', document.querySelector('[data-test=konusan]')?.innerText || '']); u.onend && u.onend(); }, 250); } };
+          Object.defineProperty(window, 'speechSynthesis', { value: s, configurable: true }); }""")
+        pg.click("[data-test=diyalog-dinle]")
+        pg.wait_for_function("() => (document.querySelector('[data-test=konusan]')?.innerText || '').includes('Ioana')", timeout=5000)
+        check(pg.locator("[data-test=diyalog-metin]").count() == 0, "dinlerken metin kapalı, konuşanın adı görünüyor (Ioana)")
+        if shots: shot(pg, "d00-diyalog-konusan", full=False)
+        pg.wait_for_function("() => window.__soz.length >= 2 && document.querySelector('[data-test=konusan]').innerText === ''", timeout=20000)
+        soz = pg.evaluate("window.__soz")
+        adlar = {k: {v for _, v, kk in soz if kk == k} for k in ("Ioana Popescu", "Sen")}
+        check(len(adlar["Ioana Popescu"]) == 1 and len(adlar["Sen"]) == 1 and adlar["Ioana Popescu"] != adlar["Sen"], f"iki konuşan iki ayrı sesle, her biri hep aynı sesle ({adlar})")
         step(pg); pg.wait_for_selector("[data-test=ders-tanit]")
         n_teach = pg.locator("[data-test=teach]").count()
         check(1 <= n_teach <= 4, f"tanıtım 4'lük gruplarla ({n_teach} kart)")

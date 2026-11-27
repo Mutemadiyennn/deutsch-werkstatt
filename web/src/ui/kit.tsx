@@ -5,7 +5,7 @@
 import { createContext, type ComponentChildren } from "preact";
 import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
-import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive, STT_HATA_TR, sttHataTuru, konusanAta } from "../services/speech.ts";
+import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive, STT_HATA_TR, sttHataMetni, konusanAta, konusanAdi, adCevapMi } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { efekt, ustUsteDizi, ustUsteSay, xpUcur } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
@@ -92,6 +92,9 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
   const [err, setErr] = useState<string | null>(null);
   const stopRef = useRef<() => void>(() => {});
   const holdRef = useRef(false);
+  /** başlatan dokunuşun click'i yutulur: tek dokunuş başlatır, kaydı hemen durdurmaz (PM-137: 1 sn'de "kullanılamadı") */
+  const basRef = useRef(false);
+  const holdT = useRef<ReturnType<typeof setTimeout>>();
   useEffect(() => {
     // kesinti: uygulama arka plana giderse kaydı güvenle durdur
     const vis = () => { if (document.visibilityState === "hidden") stopRef.current(); };
@@ -106,14 +109,14 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
     setErr(null); setState("rec"); stopSpeaking();
     const h = listenOnce("de-DE", 12000); stopRef.current = h.stop;
     try { const alts = await h.result; setState("idle"); if (alts[0]) { haptic("selection"); onText(alts[0]); } else setErr(STT_HATA_TR.sessiz); }
-    catch (e) { setState("idle"); setErr(STT_HATA_TR[sttHataTuru(e)]); }
+    catch (e) { setState("idle"); setErr(sttHataMetni(e)); }
   };
   return (
     <>
       <button type="button" class={wide ? `btn primary block micwide${state === "rec" ? " on" : ""}` : `micbtn${state === "rec" ? " on" : ""}`} disabled={disabled} aria-label={state === "rec" ? "Kaydı bitir" : "Konuşarak cevapla (basılı tut ya da dokun)"} aria-pressed={state === "rec"} data-test="mic"
-        onPointerDown={() => { holdRef.current = false; setTimeout(() => { holdRef.current = true; }, 350); if (state !== "rec") void start(); }}
+        onPointerDown={() => { holdRef.current = false; clearTimeout(holdT.current); holdT.current = setTimeout(() => { holdRef.current = true; }, 350); if (state !== "rec") { basRef.current = true; void start(); } else basRef.current = false; }}
         onPointerUp={() => { if (state === "rec" && holdRef.current) stopRef.current(); }}
-        onClick={() => { if (state === "rec" && !holdRef.current) stopRef.current(); }}>
+        onClick={() => { if (basRef.current) basRef.current = false; else if (state !== "rec") void start(); else if (!holdRef.current) stopRef.current(); }}>
         {state === "rec" ? <><span class="recdot" aria-hidden="true" />{wide && <span>Dinliyorum · bitince dokun</span>}</> : <><Icon name="mic" />{wide && <span>{label}</span>}</>}
       </button>
       {state === "explain" && (
@@ -124,9 +127,20 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
         </div>
       )}
       {state === "rec" && <span class="sr-only" aria-live="assertive">Kayıt yapılıyor</span>}
-      {err && <div class="fb warn small" style={{ position: "absolute", marginTop: 60 }}>{err}</div>}
+      {/* PM-137 md. 3: kutu sağdan taşmasın; geniş düğmede akışta, satır içi düğmede iki kenara 16 px bağlı */}
+      {err && <div role="alert" data-test="mic-hata" class={wide ? "fb warn small" : "fb warn small mic-hata-in"}>{err}</div>}
     </>
   );
+}
+
+/**
+ * PM-132 md. 2b: dinlerken konuşanın adı ve rengi (metin kapalıyken de); renk sahnedeki sırasından, aynı sahnede iki konuşan
+ * aynı rengi almaz. `gizle`: sonra sorulacak soruların seçenekleri; ad (unvansız) orada geçiyorsa cevabı önceden vermesin diye "Konuşan N"
+ * (RQ-Ş18; inceleme #274 Ö-3). aria-live yok: ekran okuyucu adı diyalog sesinin üstüne okumasın (Ö-2)
+ */
+export function KonusanRozet({ kim, kimler, gizle = "" }: { kim?: string; kimler: (string | undefined)[]; gizle?: string }) {
+  const i = [...new Set(kimler)].indexOf(kim), ad = kim ? konusanAdi(kim) : "";
+  return <p class="konusan" data-test="konusan">{kim && <><i data-i={i % 6} />{adCevapMi(ad, gizle) ? `Konuşan ${i + 1}` : ad}</>}</p>;
 }
 
 /* ---------- Geri bildirim bandı: renk + titreşim + kısa Türkçe açıklama ---------- */

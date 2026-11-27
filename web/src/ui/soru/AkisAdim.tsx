@@ -7,9 +7,9 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
 import { dikteKarar, ruleVerdict, type Verdict } from "../../core/answer.ts";
 import { tohumluRng } from "../../core/halkaTur.ts";
-import { speak, speakDizi, sttAvailable } from "../../services/speech.ts";
+import { konusanAdi, speak, speakDizi, sttAvailable } from "../../services/speech.ts";
 import { haptic } from "../../services/haptics.ts";
-import { ActionBar, AnswerField, FeedbackBand, ListenButton, MicButton } from "../kit.tsx";
+import { ActionBar, AnswerField, FeedbackBand, KonusanRozet, ListenButton, MicButton } from "../kit.tsx";
 
 export interface CumleBilgi { de: string; tr: string; accepted: string[]; /** kalıp örneğinde yuvaya giren sözcükler (vurgulu) */ vurgu?: string[]; /** yuvaya giren, henüz öğretilmemiş tek sözcük: altında Türkçesi, sorulmaz (PM 7059008858 md. 2) */ yeni?: { sozcuk: string; tr?: string } }
 
@@ -194,7 +194,9 @@ export function SahneAdimi({ sahne, onBitti }: { sahne: SahneVeri; onBitti: (dog
   const [secim, setSecim] = useState<number | null>(null);
   const [bitti, setBitti] = useState(false);
   const kimler = sahne.satirlar.map((s) => s.r);
-  const dinle = async () => { setCalisiyor(true); try { await speakDizi(sahne.satirlar.map((s) => ({ de: s.de, kim: s.r })), "normal", 400); } finally { setCalisiyor(false); setDinledi(true); } };
+  // PM-132 md. 2b: dinlerken konuşanın adı; DENETİM-1 P1-2: ekranda ham kimlik (ch:…, ogrenci) değil ad
+  const [kim, setKim] = useState<string>();
+  const dinle = async () => { setCalisiyor(true); try { await speakDizi(sahne.satirlar.map((s) => ({ de: s.de, kim: s.r })), "normal", 400, undefined, (i) => setKim(kimler[i])); } finally { setKim(undefined); setCalisiyor(false); setDinledi(true); } };
   const ok = secim === sahne.soru.ans;
   return (
     <section class="stack fade" data-test="akis-sahne" data-dinledi={dinledi ? "1" : "0"}>
@@ -203,11 +205,12 @@ export function SahneAdimi({ sahne, onBitti }: { sahne: SahneVeri; onBitti: (dog
         <ListenButton text={sahne.satirlar.map((s) => s.de).join(" ")} label="Sahneyi dinle" slowToggle={false} metinGizli={!bitti} />
         <button class="btn sm" data-test="sahne-dinle" disabled={calisiyor} onClick={() => void dinle()}>{calisiyor ? "Dinleniyor…" : dinledi ? "Yeniden dinle" : "Sesleriyle dinle"}</button>
       </div>
+      {calisiyor && <KonusanRozet kim={kim} kimler={kimler} gizle={JSON.stringify(sahne.soru.opts)} />}
       {(dinledi || metin) ? (
         <section class="card stack" style={{ gap: 8 }} data-test="sahne-metin">
           {sahne.satirlar.map((s) => (
             <div class="row" style={{ flexWrap: "nowrap", gap: 8, alignItems: "flex-start" }}>
-              <span class="grow"><span class="tiny muted">{s.r}</span><br /><b lang="de">{s.de}</b><br /><span class="small muted">{s.tr}</span></span>
+              <span class="grow"><span class="tiny muted">{konusanAdi(s.r)}</span><br /><b lang="de">{s.de}</b><br /><span class="small muted">{s.tr}</span></span>
               <ListenButton text={s.de} small slowToggle={false} kim={s.r} sahne={kimler} />
             </div>))}
         </section>

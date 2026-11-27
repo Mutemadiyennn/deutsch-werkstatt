@@ -14,11 +14,22 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## Hat G (ANA-G): gezinme kuralı (PM-133, PM-142 md. 3, PM-144 md. 1.2; 2026-11-27)
 - Dal `v2/gezinme-donus`. Kural TASARIM TS-1.1; döküm `docs/v2/qa/gezinme.md`. `core/donus.ts` (giriş yığını, birim testli) + `services/gezinme.ts`; bütün `ProgressHeader`/`TopBar` geri hedefi, akışın X'i ve "Sıradaki adım" giriş noktasından. Tam ekran akışta sol düğme X (aynı akışın üst adımında ‹). Akış X'i artık Köy'ün gün listesine değil girdiği ekrana; akıştan açılan durak akışa döner. Alt sekme son konumunu açar, etkin sekmeye ikinci dokunuş köke.
 - Sınama: gezgin `donus_savlari` (DN-2). Takip: kenardan kaydırma kabukta kapalı (ANA-K), eski kuşak ekran akışın ilerleme çubuğunu taşımıyor (ANA-T "tek yol").
-- #267 (taban main, `plan-not` PM finali) `951decdc` KAPI'da.
+- #267 (`plan-not` PM finali) main'de (`8b6a6c7`); #275 tabanı main.
+
+## Hat K (ANA-K): Kabuk 1.6 (PM-128, PM-142 md. 2.1; 2026-11-27)
+- Dal `ana-k/kabuk-1.6`, PR #271 (yalnız `ios-build.yml`): `server.url` ve "Tekrar dene" doğrudan `/v2/`; Capacitor `^8`, konuşma tanıma 7.0.1 sabit; derlemede kabuk adresi + izin anahtarı denetimi.
+- **Açık:** IPA koşusu yok. Actions 20.11'den beri kapalı (koşu #19 sonuncusu); bu oturumdan `workflow_dispatch` 403. #12'de [PM-İSTEK].
 
 ## Hat F (ANA-F7): Köy listeleri haftaya göre katlanır (PM-122 md. 2.1; 2026-11-24)
 - Dal `v2/koy-hafta-katla`. Sinema, Radyo, Kütüphane (okuma), Pazar meydanı (prova): listedeki son hafta açık, öbür haftalar tek satır (dokununca açılır); son 4 haftadan eskisi tek "1.–N. hafta" satırında (`haftaKatla`, `YAKIN_HAFTA`). "Yalnız açılmış günler" kuralı (#224) aynen. 52 haftalık fikstürde dört sayfa gezgin sınırının (80) altında (`koy.test.ts`); e2e `v2_koy_hafta.py`.
 - Takip: plan yalnız içinde bulunulan haftanın gün dosyasını yüklediği için (#243) önceki haftaların okuma ve provası Kütüphane/Pazar'da görünmüyor (katlama hazır, veri yok).
+
+## Hat K (ANA-K): kabukta ses, mikrofon, tanılama (PM-132, PM-137, PM-142 md. 2.2–2.4; 2026-11-27)
+- Dal `ana-k/kabukta-ses`.
+  - **Ses kökü:** `Ders.tsx`'in "Önce dinle" ve "Dinle" adımları satırları konuşansız çalıyordu, bütün sahne tek sesle okunuyordu. Artık her satır `speaker`/`r` ile çalınıyor; dinlerken konuşanın adı ve renk noktası ekranda.
+  - **Mikrofon kökü:** `MicButton`'da başlatan dokunuşun `click`'i kaydı hemen durduruyordu; iOS'ta boş tanıma "diger"e düşüyordu. Başlatan dokunuş artık yutuluyor; açık kalmış oturum önce kapatılıyor; eklentinin Almanca/İngilizce metinleri sınıflanıyor; "diger"de ham metin görünüyor; hata kutusu taşmıyor.
+  - **Ben → Tanılama:** kabuk, Almanca sesler, son sahnenin atamaları, son tanıma hatası.
+- Açık: toplam JS bütçesi 377 B aşıyor (D-126; #12'de [PM-İSTEK]).
 
 ## Hat F (ANA-F4): sınav günü uçtan uca (PM-110, PM-112 B; 2026-11-23)
 - Dal `v2/sinav-gunu` (yığın #231 → #243 → #244 + main). `Gun.sinav_bolumler` (55: dinleme + okuma, 56: yazma + konuşma), `Deneme` şeması (`packages/shared/src/deneme.ts`, assess/*.json; pakette `index.files.deneme`), doğrulayıcı (bölüm denemede yok / iki günde aynı / hiç açılmıyor hata; sınav gününde medya, prova, gün sınavı hata), dikiş (sınav günü halkasız geçerli), hafta kapısı (sınav gününün can_do'su denemeyle sınanır).

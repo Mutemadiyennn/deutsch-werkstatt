@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { havuzlar, KALITE_TR, sesKalitesi, type Ses } from "../core/sesSec.ts";
-import { cihazSesleri, gecerliOlcum, onSesler, stopSpeaking, sesAnahtar, sesBul, sesYolu, hizKaydet, hizKaydi, hizOrani, karakterSesi, listenOnce, olcCal, olcGecikme, ORAN_ESIK, RATE, speak, STT_HATA_TR, sttHataTuru, sttYolu, ttsAvailable, YAVAS_SECENEK, type HizOlcum, type YavasOran } from "../services/speech.ts";
+import { cihazSesleri, gecerliOlcum, onSesler, stopSpeaking, sesAnahtar, sesBul, sesYolu, hizKaydet, hizKaydi, hizOrani, karakterSesi, listenOnce, olcCal, olcGecikme, ORAN_ESIK, RATE, speak, STT_HATA_TR, sttHataMetni, sttHataTuru, sttYolu, ttsAvailable, YAVAS_SECENEK, type HizOlcum, type YavasOran } from "../services/speech.ts";
 import { useApp } from "../state.ts";
 import { loadWorld } from "../services/content.ts";
 import { kabukBilgisi, kabukSatiri, type KabukBilgisi } from "../services/kabuk.ts";
@@ -192,14 +192,14 @@ function MikrofonDeneme({ yavasNot }: { yavasNot: string }) {
       const ol = () => { an.getByteTimeDomainData(buf); let m = 0; for (const b of buf) m = Math.max(m, Math.abs(b - 128)); setSeviye(Math.min(1, m / 64)); raf = requestAnimationFrame(ol); };
       ol();
       akis.current = { stop: () => { cancelAnimationFrame(raf); st.getTracks().forEach((t) => t.stop()); void ac.close(); setSeviye(0); } };
-    } catch (e) { const t = sttHataTuru(e); if (t === "izin") setIzin("reddedildi"); setHata(STT_HATA_TR[t]); }
+    } catch (e) { const t = sttHataTuru(e); if (t === "izin") setIzin("reddedildi"); setHata(sttHataMetni(e)); }
   };
   const dene = async () => {
     setHata(null); setMetin(null); setDurum("dinliyor");
     if (!akis.current && yol !== "yerel") await seviyeAc();
     const l = listenOnce("de-DE", 8000);
     try { const r = await l.result; if (r[0]) { setMetin(r[0]); setIzin("verildi"); } else setHata(STT_HATA_TR.sessiz); }
-    catch (e) { const t = sttHataTuru(e); if (t === "izin") setIzin("reddedildi"); setHata(STT_HATA_TR[t]); }
+    catch (e) { const t = sttHataTuru(e); if (t === "izin") setIzin("reddedildi"); setHata(sttHataMetni(e)); }
     akis.current?.stop(); akis.current = null; setDurum("sonuc");
   };
   return (
