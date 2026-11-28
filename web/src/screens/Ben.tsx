@@ -3,6 +3,7 @@
  * can_do cümleleri, kanıttan hesaplanan noktalar), bu hafta (gerçek sayılar), kelime haritası (Sözlük), çalışma düzeni
  * (eski İlerlemem, sıfırsız) ve Ayarlar (Profil). Sesli günlük özelliği olmadığı için o kutu çizilmez.
  */
+import { serbestKonusAcik } from "../services/konusma.ts";
 import { useTespitDurumu } from "../ui/tespitDurum.tsx";
 import { useEffect, useState } from "preact/hooks";
 import type { Gun, LearnerItem } from "@dw/shared";
@@ -97,6 +98,11 @@ export function BenEkrani() {
         {tespit && <a class="ben-satir" href={tespit.durum === "bitti" ? "#/seviye/rapor" : "#/seviye"} data-test="ben-tespit">
           <span class="ben-ic" style={{ background: "var(--m-kutuphane)" }} aria-hidden="true"><Icon name="chart" size={22} /></span>
           <span class="grow"><b>{tespit.durum === "bitti" ? "Seviye raporun" : "Seviye tespiti"}</b><span>{tespit.durum === "bitti" ? "Beceriler, haftalar, zorlandıkların" : tespit.durum === "yarida" ? "Yarıda; kaldığın yerden sürer" : "Nereden başlayacağını bulalım"}</span></span>
+          <span aria-hidden="true">›</span>
+        </a>}
+        {serbestKonusAcik() && <a class="ben-satir" href="#/ben/hakkimda" data-test="hakkimda-ac">
+          <span class="ben-ic" style={{ background: "var(--m-pazar)" }} aria-hidden="true"><Icon name="user" size={22} /></span>
+          <span class="grow"><b>Kendim hakkında</b><span>İsteğe bağlı; konuşma görevlerinde örnek cevap senin bilgilerinle</span></span>
           <span aria-hidden="true">›</span>
         </a>}
         <a class="ben-satir" href="#/ben/duzen" data-test="duzen-ac">

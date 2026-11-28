@@ -11,7 +11,7 @@ Köy (Hedef 3, PM-084 md. 4; hedef docs/v2/design/TARGET3.png "Köy").
 """
 import re
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, no_overflow, content_file
+from common import sekme_kok, serve, launch, new_page, login_onboard, check, finish, shot, no_overflow, content_file
 
 PORT = 4245
 ACIK = [("bahce", "Bahçe"), ("sinema", "Sinema"), ("radyo", "Radyo"), ("atolye", "Atölye"), ("kutuphane", "Kütüphane"), ("pazar", "Pazar meydanı")]
@@ -31,7 +31,7 @@ def kartlar(pg):
 
 def koy(pg, base):
     pg.goto(base + "#/today"); pg.wait_for_selector("[data-tab=today][aria-current=page]")
-    pg.click("[data-tab=koy]"); pg.wait_for_selector("[data-test=koy] [data-mekan=gazete]"); pg.wait_for_timeout(350)
+    sekme_kok(pg, "koy"); pg.wait_for_selector("[data-test=koy] [data-mekan=gazete]"); pg.wait_for_timeout(350)
 
 def main():
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
@@ -49,7 +49,7 @@ def main():
                 b, ctx = launch(p, color_scheme=tema, viewport=vp); pg = new_page(ctx)
                 login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
                 # ızgara görünür olduğu an ile sonrası aynı yerde: Telefonun kartı sonradan eklenip dükkânları itmez (inceleme #200 P1-3)
-                pg.goto(base + "#/today"); pg.wait_for_selector("[data-tab=today][aria-current=page]"); pg.click("[data-tab=koy]")
+                pg.goto(base + "#/today"); pg.wait_for_selector("[data-tab=today][aria-current=page]"); sekme_kok(pg, "koy")
                 pg.wait_for_function("() => { const g = document.querySelector('.koy-izgara'); return g && getComputedStyle(g).visibility === 'visible'; }")
                 y0 = pg.evaluate("document.querySelector('[data-mekan=bahce]').getBoundingClientRect().top"); pg.wait_for_timeout(900)
                 y1 = pg.evaluate("document.querySelector('[data-mekan=bahce]').getBoundingClientRect().top")

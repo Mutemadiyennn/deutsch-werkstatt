@@ -44,6 +44,16 @@ Tam ekran akışlar (sekmesiz):  Ders oynatıcısı · Tekrar · Gelen arama · 
 
 **Telefon** (sesli mesajlar, aramalar, mesaj grupları, akış) ve **Posta kutusu**, hem Bugün'deki gelen kutusu satırından hem de Köy'den açılır.
 
+### TS-1.1 Gezinme kuralı (PM-133; bütün ekranlar için tek kaynak)
+1. **Dört kök:** Bugün · Yol · Köy · Ben. Alt sekme her zaman o kökün kendi son konumunu açar.
+2. **Geri oku (‹):** aynı sekme içinde **bir üst düzeye** çıkar; asla başka sekmeye atlamaz.
+3. **X (dersi/görevi kapat):** öğrenciyi **girdiği ekrana** geri bırakır (Bugün'den girdiyse Bugün, Yol'dan girdiyse Yol, Köy listesinden girdiyse o liste). Hedef "üst rota"dan değil **giriş noktasından** hesaplanır. İlerleme kaydedilir; yarıda bırakılan adım varsa tek satır bilgi ("Kaldığın yerden sürer").
+4. Tam ekran akışta (ders, sınav, seviye tespiti) alt sekme görünmez; tek çıkış X'tir.
+5. iOS kenardan kaydırma = geri oku ile aynı sonuç.
+6. Hiçbir ekran öğrenciyi beklemediği bir sekmeye düşürmez; "Bu durağı şimdi geç" akışın içinde kalır.
+
+Uygulama: `web/src/core/donus.ts` (kural, birim testli) + `services/gezinme.ts`; ekran → giriş → dönüş dökümü `docs/v2/qa/gezinme.md`. Akıştan (`#/akis/<gün>`) açılan durak ekranı akışa döner (PM-144 md. 1.2).
+
 ---
 
 ## TS-2 Ekran envanteri

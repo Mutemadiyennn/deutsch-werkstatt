@@ -7,6 +7,7 @@ PM-135 ek 14: bayrak kapalı ve açık iki kez koşar.
   - "Bir daha dene" sıfırlar; yazarak cevap → "konuşma sayılmaz", kayıt sesli değil; tek cümle de konuşma sayılmaz
   - yapay zekâ isteğinde söylenen şehir yok ("[…]"); "Bitirdim" sonrası odak sonuç başlığında
   - mikrofonsuz tarayıcı: yazı alanı doğrudan, "Mikrofon yok" notu
+  - md. 2: görevde boş alanı o an sorma, Ben → "Kendim hakkında"; değer yalnız meta'da; md. 3: Bugün'de "Bugün N kez konuştun"
   - taşma yok; --shots DIR ile açık/koyu ekran görüntüsü
 python3 tests/e2e/v2_serbest.py [--browser webkit] [--device "iPhone 15 Pro Max"] [--scheme dark] [--shots DIR]
 """
@@ -58,6 +59,8 @@ def main():
         b, pg = ac(p, sema, None)
         s, _ = plan_serbest(pg)
         check(not s, f"bayrak kapalı: 2. günün planında serbest konuşma yok ({len(s)})")
+        pg.goto(f"http://127.0.0.1:{PORT}/#/ben"); pg.wait_for_selector("[data-test=ben]")
+        check(not pg.locator("[data-test=hakkimda-ac]").count(), "bayrak kapalı: Ben'de 'Kendim hakkında' yok (PM-135 ek 14)")
         b.close()
 
         # 2) bayrak açık: gün sonunun ilk adımı
@@ -71,7 +74,7 @@ def main():
         gorev = pg.inner_text("[data-test=serbest-gorev]"); durum = pg.inner_text("[data-test=serbest-durum]")
         check(gorev.strip() and durum.strip(), f"durum ve görev Türkçe görünüyor ({durum!r} / {gorev!r})")
         govde = pg.inner_text("[data-test=akis-serbest]")
-        check("Geburtstag" not in govde and "wohne" not in govde and not pg.locator("[data-test=akis-serbest] [lang=de]").count(),
+        check("Geburtstag" not in govde and "wohne" not in govde and not pg.locator("[data-test=akis-serbest] [lang=de]:not(input)").count(),
               "cevaptan önce Almanca ipucu yok: soru metni ve örnek gizli")
         check(pg.is_disabled("[data-test=serbest-bitirdim]"), "konuşmadan 'Bitirdim' kapalı")
         no_overflow(pg, "serbest konuşma (görev)")
@@ -129,6 +132,36 @@ def main():
         bekle_kosul(pg, f"async () => ((await ({META})('konusma:{tarih}')) || {{adimlar: []}}).adimlar.some((a) => a.sesli)")
         kay = pg.evaluate(META, f"konusma:{tarih}")
         check(kay and kay["adimlar"][0]["sesli"] is True, f"konuşma kaydı: mikrofonla en az iki cümle → sesli ({kay})")
+        # md. 3: Bugün'ün gün sonu özetinde "Bugün N kez konuştun" (özet, bitmiş adım varsa görünür)
+        pg.goto(f"http://127.0.0.1:{PORT}/#/today"); pg.wait_for_selector("[data-tab=today]")
+        bekle_kosul(pg, "() => !!document.querySelector('[data-test=gun-sonu-konusma]')", timeout=5000)
+        satir = pg.inner_text("[data-test=gun-sonu-konusma]").strip() if pg.locator("[data-test=gun-sonu-konusma]").count() else ""
+        check(satir == "Bugün 1 kez konuştun.", f"Bugün: 'Bugün 1 kez konuştun.' ({satir!r})")
+        b.close()
+
+        # 5) md. 2: "Kendim hakkında" (Ben) ve görevde boş alanı o an sorma; değer yalnız cihazda (meta), profilde/yedekte yok
+        b, pg = ac(p, sema, "1"); gunsonu(pg); pg.wait_for_selector("[data-test=akis-serbest]")
+        check(not pg.locator("[data-test=serbest-profil]").count(), "boş şehir: cevaptan önce sorulmaz (Almanca çerçeve ipucu olurdu)")
+        pg.click("[data-test=mic]"); bekle_kosul(pg, "() => document.querySelectorAll('[data-test=serbest-dokum] [lang=de]').length >= 1")
+        pg.click("[data-test=mic]"); bekle_kosul(pg, "() => document.querySelectorAll('[data-test=serbest-dokum] [lang=de]').length >= 2")
+        pg.click("[data-test=serbest-bitirdim]"); pg.wait_for_selector("[data-test=akis-serbest-sonuc]")
+        check(pg.locator("[data-test=serbest-profil]").count() == 1, "boş şehir: sonuçta isteğe bağlı sorulur")
+        pg.click("[data-test=serbest-profil] summary"); pg.fill("[data-test=hakkimda-sehir] input", "Hamburg"); pg.click("[data-test=serbest-profil-kaydet]")
+        pg.wait_for_selector("[data-test=serbest-profil-tamam]")
+        check("Ich wohne in Hamburg." in pg.inner_text("[data-test=serbest-ornek]"), "örnek cevap profildeki şehirle")
+        if shots: shot(pg, f"serbest-profil-{sema}", full=False)
+        hk = pg.evaluate(META, "hakkimda")
+        prof = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
+          const r = await new Promise((ok) => { const t = d.transaction('profile').objectStore('profile').getAll(); t.onsuccess = () => ok(t.result); }); d.close(); return JSON.stringify(r); }""")
+        check(hk == {"sehir": "Hamburg"} and "Hamburg" not in prof, f"değer meta'da (yedeğe girmez), profilde yok ({hk})")
+        pg.goto(f"http://127.0.0.1:{PORT}/#/ben"); pg.wait_for_selector("[data-test=ben]")
+        pg.click("[data-test=hakkimda-ac]"); pg.wait_for_selector("[data-test=hakkimda]")
+        check(pg.input_value("[data-test=hakkimda-sehir] input") == "Hamburg", "Ben → Kendim hakkında: kayıtlı şehir görünür")
+        pg.fill("[data-test=hakkimda-ulke] input", "Polen"); pg.select_option("[data-test=hakkimda-aile] select", "ledig"); pg.click("[data-test=hakkimda-kaydet]")
+        bekle_kosul(pg, f"async () => ((await ({META})('hakkimda')) || {{}}).aile === 'ledig'")
+        check(pg.evaluate(META, "hakkimda") == {"ulke": "Polen", "sehir": "Hamburg", "aile": "ledig"}, "Kaydet: alanlar meta'da")
+        no_overflow(pg, "Kendim hakkında")
+        if shots: shot(pg, f"hakkimda-{sema}", full=False)
         b.close()
 
         # 4) mikrofonsuz tarayıcı
