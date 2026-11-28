@@ -157,7 +157,7 @@ describe("hafta kapısı: 2. hafta (önceki hafta öğretilmiş)", () => {
 });
 
 describe("komut satırı", () => {
-  const cli = (...a: string[]) => spawnSync(process.execPath, ["--experimental-strip-types", "--no-warnings", join(ROOT, "content/tools/hafta-kapisi-kos.ts"), ...a], { encoding: "utf8" });
+  const cli = (...a: string[]) => spawnSync(process.execPath, ["--experimental-transform-types", "--no-warnings", join(ROOT, "content/tools/hafta-kapisi-kos.ts"), ...a], { encoding: "utf8" });
   /** Yalnız 1. haftanın gün dosyaları: içerik ağacında hangi haftalar olursa olsun aynı sonuç (PM-117 A.1, KAPI-İŞ 7104231689) */
   let hafta1 = "";
   beforeAll(() => {
@@ -176,6 +176,16 @@ describe("komut satırı", () => {
     expect(r.stdout).toContain("denetlenecek hafta yok");
     expect(r.status).toBe(0);
   }, 30000);
+  it("konuşma payı (PM-148 karar 3): 1. hafta da ölçülür; bayrak kapalıyken eşik altı uyarı (çıkış 0), --konusma-zorunlu ile KALDI (çıkış 1)", () => {
+    const t = join(ROOT, "content/tools/fixtures/dikis-tablo.json");
+    const r = cli("--hepsi", "--tablo", t, "--m1", hafta1);
+    expect(r.stdout).toMatch(/Konuşma payı \(süreye göre\) 1\. hafta: %\d+,\d · eşik %30,0 · ⚠ uyarı \(bayrak kapalı\)/);
+    expect(r.stdout).not.toMatch(/ 8 %/);   // yalnız --m1'in günleri (içerikten bağımsız, PM-117 A.1)
+    expect(r.status).toBe(0);
+    const z = cli("--hepsi", "--tablo", t, "--m1", hafta1, "--konusma-zorunlu");
+    expect(z.stdout).toContain("✗ KALDI");
+    expect(z.status).toBe(1);
+  }, 60000);
   it("dosyası olmayan hafta (gerçek 1. hafta, 3. hafta yok): KALDI, çıkış 1, rapor yazılır", () => {
     const r = cli("--hafta", "3", "--tablo", join(ROOT, "content/tools/fixtures/dikis-tablo.json"), "--m1", hafta1);
     expect(r.status).toBe(1);

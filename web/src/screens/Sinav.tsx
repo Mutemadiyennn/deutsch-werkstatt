@@ -21,6 +21,8 @@ import { ErrorPanel, Loading } from "../ui/components.tsx";
 import { ActionBar, ProgressHeader } from "../ui/kit.tsx";
 import { Rich } from "../ui/rich.tsx";
 import { MaddeView } from "../ui/denemeMadde.tsx";
+import { a1Askida } from "../services/a1Tamam.ts";
+import { denemeAskidaSatir } from "../core/a1Tamam.ts";
 
 import { showText } from "../core/persona.ts";
 
@@ -183,13 +185,16 @@ function SonucKarti({ d, sonuc, kalan, onYeniden }: { d: Deneme; sonuc: ReturnTy
     </section>
   );
   const zayif = d.bolumler.filter((b) => sonuc.zayif.includes(b.id));
+  // PM-148 karar 1: içerik koşulları inene kadar A1 denemesini geçmek "A1 tamam" sayılmaz (bayrak `policy.a1_tamam.acik`)
+  const askida = a1Askida();
   return (
     <section class="card stack" data-test="deneme-sonuc" data-gecti={sonuc.gecti ? "1" : "0"} data-toplam={sonuc.toplam}>
       <div class="kicker">{d.seviye} deneme sonucu</div>
       <h2>{puanTr(sonuc.toplam)}/{sonuc.enCok} puan</h2>
       <p class="small">Konuşma: {puanTr(sonuc.konusma ?? 0)}/{sonuc.konusmaEnCok} puan.</p>
       {sonuc.gecti
-        ? <p data-test="deneme-gecti">Geçme sınırına ulaştın. Yazma ve konuşmanın puanını kendin verdin; gerçek sınavda bunu bir değerlendirici verir.</p>
+        ? <><p data-test="deneme-gecti">Geçme sınırına ulaştın. Yazma ve konuşmanın puanını kendin verdin; gerçek sınavda bunu bir değerlendirici verir.</p>
+          {askida && d.seviye === "A1" && <p class="small" data-test="deneme-a1-askida">{denemeAskidaSatir(askida)}</p>}</>
         : <p data-test="deneme-gecmedi">Henüz geçme sınırında değilsin. Geçmek için toplamda %{Math.round(d.gecme.toplam * 100)}, konuşmada ayrıca %{Math.round(d.gecme.konusma * 100)} gerekir.</p>}
       {zayif.length > 0 && <ul class="zayif-liste" data-test="deneme-zayif">{zayif.map((b) => (
         <li class="row"><span class="grow">{BOLUM_TR[b.id]}: {puanTr(sonuc.bolumler[b.id] ?? 0)}/{b.puan}</span>

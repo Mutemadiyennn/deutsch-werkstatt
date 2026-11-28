@@ -28,7 +28,7 @@ import { akisAnahtar, yeniKayit } from "../core/akisKayit.ts";
 import { ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
 import type { Adim, Durak } from "../core/akis.ts";
-import { durakGecisi, halkaOzeti, ilerle, seansDurumu, simdiki, type AkisKaydi } from "../core/akisKayit.ts";
+import { durakGecisi, halkaOzeti, ilerle, simdiki, type AkisKaydi } from "../core/akisKayit.ts";
 import { ESLESTIR_EN_AZ, resimSecenekleri } from "../core/halkaTur.ts";
 import { ikinciTurVar, ilerlemeAnahtari } from "../core/medya.ts";
 import { ResimSec } from "../ui/soru/ResimdenSec.tsx";
@@ -38,6 +38,7 @@ import { Question } from "../ui/soru/Soru.tsx";
 import { DrillView } from "../ui/drill.tsx";
 import { BoslukAdimi, KalipAdimi, SahneAdimi, TanitAdimi, UretAdimi, YapbozAdimi, type CumleBilgi, type SahneVeri } from "../ui/soru/AkisAdim.tsx";
 import { meaningOptions, type QType, type Yakinlik } from "../core/garden.ts";
+import { boslukDoldur, eskiDoldurma } from "../core/ikiParca.ts";
 
 /** Bahçe soru bileşeninin karşıladığı tek kartlı adım türleri */
 const SORU = new Set<string>(["listen_meaning", "article", "colloc"]);
@@ -74,7 +75,7 @@ export function AkisOynatici({ kayit, lex, harita, emojiHarita, baglam, kaydet, 
   /** az önce biten halka (halka sonu ekranı; TARGET3b 6) */
   const [ozet, setOzet] = useState<{ durak: Durak; kayit: AkisKaydi } | null>(null);
   const s = simdiki(kayit);
-  if (ozet) return <HalkaSonu ozet={halkaOzeti(ozet.kayit, ozet.durak)} lex={lex} sonraki={ozet.kayit.plan.duraklar[ozet.kayit.durak]} seans={seansDurumu(ozet.kayit)}
+  if (ozet) return <HalkaSonu ozet={halkaOzeti(ozet.kayit, ozet.durak)} lex={lex} sonraki={ozet.kayit.plan.duraklar[ozet.kayit.durak]} gun={{ biten: ozet.kayit.biten.length, toplam: ozet.kayit.plan.duraklar.length }}
     devam={() => setOzet(null)} mola={cik} />;
   // gün bitti: çıkmaz sayfa yok — tek birincil eylem Bugün'e döner; gün sonu özeti (kurduğun cümle, yeni kelimeler) orada (#58 B3)
   if (!s) return (
@@ -151,7 +152,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, emojiHarita, baglam, tohum, b
     return <YapbozAdimi key={adim.id} bilgi={b} tohum={tohum} ipucu={baglam.ipucu} onBitti={(ok) => { baglam.gordu(b.de.split(/\s+/)); hepsi(ok); }} />;
   if (b && adim.tur === "gap") {
     const l0 = kartlar[0];
-    return <BoslukAdimi key={adim.id} bilgi={b} bosluk={l0 ? [l0.de, ...(l0.forms ?? []).map((f) => f.answer)] : []} onBitti={hepsi} />;
+    return <BoslukAdimi key={adim.id} bilgi={b} bosluk={l0 ? [l0.de, ...(l0.forms ?? []).map((f) => f.answer)] : []} formlar={l0?.forms ?? []} onBitti={hepsi} />;
   }
   // dil noktası durağı (`gr:`/`dn:`; PM 7087668356 md. 7): başlık, açıklama, tablo, sesli örnekler; soru yok
   if (adim.ders?.oge === DIL_NOKTASI) {
@@ -271,7 +272,13 @@ export function AkisEkrani({ day }: { day: number }) {
         const cumleler = new Map<string, CumleBilgi>();
         for (const l of lexemes) for (const e of l.examples) if (!cumleler.has(e.de)) cumleler.set(e.de, { de: e.de, tr: e.tr, accepted: [e.de] });
         // kartın biçim cümleleri: planlayıcının boşluk adımı `form.de`yi cevabıyla doldurup sorar (inceleme #184 P0)
-        for (const l of lexemes) for (const f of l.forms ?? []) { const de = f.de.replace(/___/g, f.answer); if (!cumleler.has(de)) cumleler.set(de, { de, tr: f.tr ?? "", accepted: [de] }); }
+        // iki parçalı boşluk (DENETİM-A1 P1-1): her "___" kendi parçasıyla; cihazda kalmış eski plandaki hatalı cümle de doğrusuna bağlanır
+        for (const l of lexemes) for (const f of l.forms ?? []) {
+          const de = boslukDoldur(f.de, f.answer); if (de === null) continue;
+          const bilgi = cumleler.get(de) ?? { de, tr: f.tr ?? "", accepted: [de] };
+          cumleler.set(de, bilgi);
+          const eski = eskiDoldurma(f.de, f.answer); if (eski !== de && !cumleler.has(eski)) cumleler.set(eski, bilgi);
+        }
         for (const h of gun.halkalar) for (const g of h.gorev_cumleleri) cumleler.set(g.de, { de: g.de, tr: g.tr, accepted: [g.de, ...g.accepted] });
         const kaliplar = new Map<string, string>();
         for (const t of temel) for (const x of t.teach) kaliplar.set(x.de, x.tr);
@@ -486,9 +493,12 @@ function DilNoktasiAdimi({ n, onBitti }: { n: DilNoktasiVeri; onBitti: () => voi
   );
 }
 
-/** Halka sonu (TARGET3b 6): beş elmas dolu, başlık, kelime başına dört nokta; sıradaki durak ve seans satırı; Filiz yok */
-function HalkaSonu({ ozet, lex, sonraki, seans, devam, mola }: { ozet: ReturnType<typeof halkaOzeti>; lex: ReadonlyMap<string, Lexeme>; sonraki?: Durak; seans: ReturnType<typeof seansDurumu>; devam: () => void; mola: () => void }) {
-  const s = sonraki ? seans.find((x) => x.seans === sonraki.seans) : undefined;
+/**
+ * Halka sonu (TARGET3b 6): beş elmas dolu, başlık, kelime başına dört nokta; sıradaki durak ve günün durak satırı; Filiz yok.
+ * D1-13 (PM-148 [ANA-T] md. 2): akış "seans" saymaz (tek seans sayacı odak süresi); günün durakları "Bugün: b/N". PM-145 md. 2:
+ * "Devam et" ya da "Bugünlük yeter" (zorlamadan; çıkınca akış kaldığı yerden sürer).
+ */
+function HalkaSonu({ ozet, lex, sonraki, gun, devam, mola }: { ozet: ReturnType<typeof halkaOzeti>; lex: ReadonlyMap<string, Lexeme>; sonraki?: Durak; gun: { biten: number; toplam: number }; devam: () => void; mola: () => void }) {
   return (
     <section class="stack fade" data-test="halka-sonu">
       <div class="row" style={{ justifyContent: "center", gap: 6 }} aria-hidden="true">{[0, 1, 2, 3, 4].map(() => <i class="akis-elmas dolu" style={{ flex: "none", width: 18 }} />)}</div>
@@ -510,10 +520,10 @@ function HalkaSonu({ ozet, lex, sonraki, seans, devam, mola }: { ozet: ReturnTyp
       </section>
       <p class="tiny muted" style={{ margin: 0 }}>Boş kalan nokta bugün sonraki duraklarda dolacak.</p>
       {sonraki && <section class="card row" style={{ flexWrap: "nowrap", gap: 10 }} data-test="halka-sonu-sonraki"><span class="grow"><b>Sıradaki durak: {sonraki.title_tr}</b><br /><span class="small muted">Yaklaşık {Math.max(1, Math.round(sonraki.tahmini_dk))} dakika.</span></span></section>}
-      {s && <p class="small muted" style={{ margin: 0 }} data-test="halka-sonu-seans">{s.seans}. seans: {s.biten}/{s.toplam} durak tamam.</p>}
+      <p class="small muted" style={{ margin: 0 }} data-test="halka-sonu-gun">Bugün: {gun.biten}/{gun.toplam} durak tamam.</p>
       <ActionBar>
         <button class="btn primary" style={{ width: "100%" }} data-test="halka-sonu-devam" onClick={devam}>Devam et</button>
-        <div style={{ textAlign: "center" }}><button class="ikincil-eylem" style={{ alignSelf: "center" }} data-test="halka-sonu-mola" onClick={mola}>Mola ver</button></div>
+        <div style={{ textAlign: "center" }}><button class="ikincil-eylem" style={{ alignSelf: "center" }} data-test="halka-sonu-mola" onClick={mola}>Bugünlük yeter</button></div>
       </ActionBar>
     </section>
   );

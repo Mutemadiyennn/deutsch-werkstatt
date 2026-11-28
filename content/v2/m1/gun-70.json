@@ -1,0 +1,368 @@
+{
+  "schema": 1,
+  "id": "m1:gun:70",
+  "day": 70,
+  "level": "A2",
+  "format": "gun",
+  "title_tr": "Haftanın sınavı: deneme süresi bitiyor",
+  "goal_tr": "Deneme sürenin sonunda Wimmer Bey seni odasına çağırıyor. Başta neyi yapamadığını, bugün neyi iyi yaptığını, ne istediğini anlatırsın. Fazla mesai sorusuna cevap verir, mesleki ek eğitim istersin.",
+  "can_do": { "id": "cd:m1:70", "tr": "Şefime işteki başlangıcımı, bugün neyi iyi yaptığımı ve ne istediğimi anlatırım." },
+  "unit": "u:m1:70",
+  "arm": "pazar",
+  "place": "pl:firma",
+  "characters": ["ch:wimmer", "ch:aksoy", "ch:popescu"],
+  "requires": { "kelimeler": [], "kaliplar": [], "gramer": [], "tur": [], "baglayicilar": [], "akicilik": [] },
+  "review": { "status": "draft" },
+  "dersler": [],
+  "yeni_kartlar": ["lx:Überstunde", "lx:Probezeit"],
+  "halkalar": [
+    {
+      "id": "m1:70:h1",
+      "title_tr": "İşte: fazla mesai ve deneme süresi",
+      "kartlar": ["lx:Überstunde", "lx:Probezeit"],
+      "kaliplar": [
+        { "de": "Überstunden machen – Ich kann am Samstag Überstunden machen.", "tr": "fazla mesai yapmak – Cumartesi fazla mesai yapabilirim." },
+        { "de": "Ich bin noch in der Probezeit. – Die Probezeit ist bald zu Ende.", "tr": "Hâlâ deneme süresindeyim. – Deneme süresi yakında bitiyor." },
+        { "de": "Am Anfang konnte ich … – Am Anfang musste ich …", "tr": "Başta …ebiliyordum. – Başta … zorundaydım." },
+        { "de": "Früher konnte ich … – Heute kann ich gut …", "tr": "Eskiden …ebiliyordum. – Bugün … iyi yapabiliyorum." },
+        { "de": "Ich habe Erfahrung mit … – Ich arbeite gern im Team.", "tr": "… ile deneyimim var. – Ekipte çalışmayı severim." },
+        { "de": "Ich möchte eine Weiterbildung machen. – Gibt es eine Möglichkeit?", "tr": "Mesleki bir ek eğitim almak istiyorum. – Bir imkân var mı?" },
+        { "de": "der Computerkurs – Der Computerkurs fängt im … an.", "tr": "bilgisayar kursu – Bilgisayar kursu …da başlıyor." },
+        { "de": "Können Sie mir bitte helfen? – Soll ich Ihnen helfen?", "tr": "Bana lütfen yardım edebilir misiniz? – Size yardım edeyim mi?" },
+        { "de": "Danke für Ihre Hilfe! – Danke für Ihre Geduld!", "tr": "Yardımınız için teşekkürler! – Sabrınız için teşekkürler!" }
+      ],
+      "gorev_cumleleri": [
+        { "kart": "lx:Überstunde", "de": "Letzte Woche musste ich zwei Überstunden machen.", "tr": "Geçen hafta iki saat fazla mesai yapmak zorunda kaldım.",
+          "accepted": ["Letzte Woche musste ich zwei Überstunden machen.", "Ich musste letzte Woche zwei Überstunden machen.", "Letzte Woche musste ich zwei Überstunden machen!"] },
+        { "kart": "lx:Überstunde", "de": "Am Samstag kann ich Überstunden machen.", "tr": "Cumartesi fazla mesai yapabilirim.",
+          "accepted": ["Am Samstag kann ich Überstunden machen.", "Ich kann am Samstag Überstunden machen.", "Am Samstag kann ich gern Überstunden machen."] },
+        { "kart": "lx:Überstunde", "de": "Im Februar machen wir oft Überstunden.", "tr": "Şubatta sık sık fazla mesai yapıyoruz.",
+          "accepted": ["Im Februar machen wir oft Überstunden.", "Wir machen im Februar oft Überstunden.", "Im Februar machen wir sehr oft Überstunden."] },
+        { "kart": "lx:Probezeit", "de": "Ich bin noch in der Probezeit.", "tr": "Hâlâ deneme süresindeyim.",
+          "accepted": ["Ich bin noch in der Probezeit.", "Ich bin noch in der Probezeit!", "Ich bin jetzt noch in der Probezeit."] },
+        { "kart": "lx:Probezeit", "de": "Die Probezeit ist bald zu Ende.", "tr": "Deneme süresi yakında bitiyor.",
+          "accepted": ["Die Probezeit ist bald zu Ende.", "Meine Probezeit ist bald zu Ende.", "Bald ist die Probezeit zu Ende."] },
+        { "kart": "lx:Probezeit", "de": "In der Probezeit durfte ich keinen Urlaub nehmen.", "tr": "Deneme süresinde izin almam yasaktı.",
+          "accepted": ["In der Probezeit durfte ich keinen Urlaub nehmen.", "Ich durfte in der Probezeit keinen Urlaub nehmen.", "In der Probezeit durfte ich keinen Urlaub machen."] }
+      ],
+      "sahne": {
+        "ortam_tr": "Firma Kerschbaum, sabah. Derya dolabın yanında seni görüyor.",
+        "satirlar": [
+          { "r": "ch:aksoy", "de": "Deine Probezeit ist bald zu Ende, oder?", "tr": "Deneme süren yakında bitiyor, değil mi?" },
+          { "r": "ogrenci", "de": "Ja. Heute muss ich zum Chef.", "tr": "Evet. Bugün şefin yanına gitmem gerekiyor." },
+          { "r": "ch:aksoy", "de": "Du schaffst das! Du bist fleißig und zuverlässig.", "tr": "Başarırsın! Çalışkansın ve güvenilirsin." }
+        ],
+        "soru": { "q_tr": "Derya sana ne diyor?", "opts": ["Başarırsın, çalışkan ve güvenilirsin", "Şefe gitme", "Bugün fazla mesai yap"], "ans": 0 }
+      }
+    }
+  ],
+  "sahne": {
+    "id": "m1:70:v1",
+    "title_tr": "Wimmer Bey'in odasında",
+    "sahneler": [
+      { "id": "s1", "speaker": "ch:wimmer", "sahne_tr": "Firma Kerschbaum, sabah. Wimmer Bey kapıda, elinde bir dosya. Seni çağırıyor.", "de": "Kommen Sie bitte kurz in mein Büro.", "tr": "Lütfen bir dakika odama gelin." },
+      { "id": "s2", "speaker": "ch:wimmer", "sahne_tr": "Wimmer Bey masasına oturuyor, dosyayı açıyor.", "de": "Ihre Probezeit ist bald zu Ende.", "tr": "Deneme süreniz yakında bitiyor." },
+      { "id": "s3", "speaker": "ch:wimmer", "sahne_tr": "Wimmer Bey sakin, hızlı konuşuyor.", "de": "Am Anfang konnten Sie nicht viel verstehen. Das war kein Problem.", "tr": "Başta çok şey anlayamıyordunuz. Bu sorun değildi." },
+      { "id": "s4", "speaker": "ch:wimmer", "sahne_tr": "Wimmer Bey dosyadan bir sayfa çeviriyor.", "de": "Sie mussten viel fragen, und Sie haben viel gelernt.", "tr": "Çok soru sormak zorundaydınız ve çok şey öğrendiniz." },
+      { "id": "s5", "speaker": "ch:wimmer", "sahne_tr": "Wimmer Bey başını kaldırıp gülümsüyor.", "de": "Heute arbeiten Sie gut im Team. Sie sind fleißig und zuverlässig.", "tr": "Bugün ekipte iyi çalışıyorsunuz. Çalışkan ve güvenilirsiniz." },
+      { "id": "s6", "speaker": "ch:wimmer", "sahne_tr": "Wimmer Bey dosyayı kapatıyor.", "de": "Sie können gern bei uns bleiben.", "tr": "Bizde memnuniyetle kalabilirsiniz." },
+      { "id": "s7", "speaker": "ch:wimmer", "sahne_tr": "Wimmer Bey takvime bakıyor.", "de": "Im Februar haben wir viel Arbeit im Lager.", "tr": "Şubatta depoda çok işimiz var." },
+      { "id": "s8", "speaker": "ch:wimmer", "sahne_tr": "Wimmer Bey sana doğru eğiliyor.", "de": "Können Sie manchmal am Samstag Überstunden machen?", "tr": "Ara sıra cumartesi fazla mesai yapabilir misiniz?" },
+      { "id": "s9", "speaker": "ch:wimmer", "sahne_tr": "Wimmer Bey bir not kâğıdını gösteriyor.", "de": "Und Sie wollten eine Weiterbildung machen, richtig?", "tr": "Bir de mesleki bir ek eğitim almak istiyordunuz, değil mi?" },
+      { "id": "s10", "speaker": "ch:wimmer", "sahne_tr": "Wimmer Bey kâğıdı sana uzatıyor.", "de": "Der Computerkurs fängt im März an.", "tr": "Bilgisayar kursu martta başlıyor." },
+      { "id": "s11", "speaker": "ch:wimmer", "sahne_tr": "Wimmer Bey saatine bakıyor, kalkıyor.", "de": "Die Firma bezahlt den Kurs. Sie müssen nur regelmäßig kommen.", "tr": "Kursu firma ödüyor. Yalnız düzenli gelmeniz gerekiyor." },
+      { "id": "s12", "speaker": "ch:aksoy", "sahne_tr": "Öğle arası. Derya mutfakta seni merakla bekliyor.", "de": "Und? Wie war es beim Chef?", "tr": "Eee? Şefte nasıl geçti?" },
+      { "id": "s13", "speaker": "ch:aksoy", "sahne_tr": "Derya yüzündeki gülümsemeyi görüyor, sarılıyor.", "de": "Du darfst bleiben? Super! Herzlichen Glückwunsch!", "tr": "Kalabiliyor musun? Süper! Tebrikler!" }
+    ],
+    "bolumler": [
+      {
+        "id": "b1",
+        "cumleler": ["s1", "s2", "s3", "s4", "s5", "s6"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Wimmer Bey ne söylüyor?", "opts": ["Deneme süresi bitiyor ve firmada kalabilirsin", "Başka bir depoya gidiyorsun", "Yarın izinlisin"], "ans": 0, "kanit": ["s2", "s6"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Başta ne zordu?", "opts": ["Çok şey anlayamamak", "Erken kalkmak", "Araba sürmek"], "ans": 0, "kanit": ["s3"] },
+          { "kind": "detail", "q_tr": "Wimmer Bey seni bugün nasıl buluyor?", "opts": ["Çalışkan ve güvenilir", "Sabırsız", "Hep geç kalan"], "ans": 0, "kanit": ["s5"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s2", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Probezeit", "Teilzeit", "Freizeit"], "ans": 0 },
+          { "id": "d2", "cumle": "s3", "seviye": "orta", "de": "Am Anfang ___ Sie nicht viel verstehen. Das war kein Problem.", "accepted": ["konnten", "Konnten", "konnten."] },
+          { "id": "d3", "cumle": "s6", "seviye": "zor", "banka": ["Sie", "können", "gern", "bei", "uns", "bleiben", "konnten", "mit"], "accepted": ["Sie können gern bei uns bleiben.", "sie können gern bei uns bleiben", "Sie können gern bei uns bleiben"] },
+          { "id": "d4", "cumle": "s4", "seviye": "usta", "accepted": ["Sie mussten viel fragen, und Sie haben viel gelernt.", "sie mussten viel fragen und sie haben viel gelernt", "Sie mussten viel fragen und Sie haben viel gelernt."] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Wimmer Bey ne dedi? İki kısa cümleyle yaz.", "ornek_de": "Die Probezeit ist bald zu Ende. Ich kann bei der Firma bleiben.", "zorunlu": ["Probezeit"] }
+        ],
+        "golge": ["s3", "s6"],
+        "cevapla": {
+          "id": "m1:70:v1:c1",
+          "k": "guided_response",
+          "situation_tr": "Wimmer Bey kalabileceğini söyledi. Teşekkür et ve kalmak istediğini söyle.",
+          "prompt_de": "Sie können gern bei uns bleiben.",
+          "accepted": ["Vielen Dank! Ich bleibe gern.", "Danke! Ich bleibe gern bei Ihnen.", "Vielen Dank! Ich möchte gern bleiben.", "Danke schön! Ich bleibe sehr gern.", "Danke! Ich möchte gern hier bleiben.", "Vielen Dank, Herr Wimmer! Ich bleibe gern.", "Danke! Ich arbeite gern hier.", "Vielen Dank! Ich arbeite sehr gern hier.", "Danke! Das freut mich. Ich bleibe gern.", "Vielen Dank für Ihre Hilfe! Ich bleibe gern.", "Danke, Herr Wimmer! Ich möchte gern bleiben."],
+          "why_tr": "Önce teşekkür edersin, sonra **Ich bleibe gern** dersin. **gern** isteğini gösterir."
+        }
+      },
+      {
+        "id": "b2",
+        "cumleler": ["s7", "s8", "s9", "s10", "s11", "s12", "s13"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Wimmer Bey neyi soruyor ve öneriyor?", "opts": ["Fazla mesaiyi soruyor, bir kurs öneriyor", "Tatil planını soruyor", "Yeni adresini soruyor"], "ans": 0, "kanit": ["s8", "s10"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Şubatta ne var?", "opts": ["Depoda çok iş", "Uzun bir tatil", "Bir parti"], "ans": 0, "kanit": ["s7"] },
+          { "kind": "detail", "q_tr": "Bilgisayar kursunu kim ödüyor?", "opts": ["Firma", "Sen", "Kurs bürosu"], "ans": 0, "kanit": ["s11"] },
+          { "kind": "detail", "q_tr": "Derya neden seviniyor?", "opts": ["Firmada kalabildiğin için", "Kursa gittiği için", "Tatile çıktığı için"], "ans": 0, "kanit": ["s13"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s9", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["wollten", "konnten", "durften"], "ans": 0 },
+          { "id": "d2", "cumle": "s8", "seviye": "orta", "de": "Können Sie manchmal am Samstag ___ machen?", "accepted": ["Überstunden", "überstunden", "Überstunden."] },
+          { "id": "d3", "cumle": "s10", "seviye": "zor", "banka": ["Der", "Computerkurs", "fängt", "im", "März", "an", "Juni", "auf", "Sprachkurs"], "accepted": ["Der Computerkurs fängt im März an.", "der computerkurs fängt im märz an", "Der Computerkurs fängt im März an"] },
+          { "id": "d4", "cumle": "s7", "seviye": "usta", "accepted": ["Im Februar haben wir viel Arbeit im Lager.", "im februar haben wir viel arbeit im lager", "Im Februar haben wir viel Arbeit im Lager"] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Wimmer Bey neyi soruyor, neyi öneriyor? İki kısa cümleyle yaz.", "ornek_de": "Wir können am Samstag Überstunden machen. Im März fängt der Computerkurs an.", "zorunlu": ["Überstunden"] }
+        ],
+        "golge": ["s8", "s9"],
+        "cevapla": {
+          "id": "m1:70:v1:c2",
+          "k": "guided_response",
+          "situation_tr": "Wimmer Bey fazla mesai soruyor. Cumartesi yapabileceğini ama akşamları kursun olduğunu söyle.",
+          "prompt_de": "Können Sie manchmal am Samstag Überstunden machen?",
+          "accepted": ["Ja, am Samstag kann ich Überstunden machen. Aber am Abend habe ich meinen Sprachkurs.", "Ja, am Samstag kann ich. Am Abend habe ich meinen Sprachkurs.", "Am Samstag kann ich Überstunden machen, aber nicht am Abend. Da habe ich meinen Sprachkurs.", "Ja, am Samstag geht das. Aber am Abend habe ich den Sprachkurs.", "Ja, gern. Aber am Abend habe ich meinen Sprachkurs.", "Ja, am Samstag kann ich. Aber am Abend nicht, ich habe einen Sprachkurs.", "Ja, am Samstag kann ich Überstunden machen.", "Ja, manchmal kann ich am Samstag Überstunden machen.", "Ja, das geht. Aber am Abend habe ich meinen Sprachkurs.", "Am Samstag ja, aber am Abend habe ich meinen Sprachkurs."],
+          "why_tr": "Önce **Ja, am Samstag kann ich** dersin. Sınırını **aber** ile eklersin."
+        }
+      }
+    ]
+  },
+  "sesler": [
+    {
+      "id": "m1:70:a1",
+      "tur": "anons",
+      "title_tr": "Depoda Wimmer Bey'in anonsu",
+      "ortam_tr": "Depodasın. Hoparlörden Wimmer Bey bütün çalışanlara konuşuyor.",
+      "speaker": "ch:wimmer",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Hallo, hier ist Stefan Wimmer.", "tr": "Merhaba, ben Stefan Wimmer." },
+        { "id": "c2", "de": "Im Februar haben wir sehr viel Arbeit.", "tr": "Şubatta çok işimiz var." },
+        { "id": "c3", "de": "Wir brauchen Hilfe am Samstag.", "tr": "Cumartesi yardıma ihtiyacımız var." },
+        { "id": "c4", "de": "Wer kann am Samstag arbeiten?", "tr": "Cumartesi kim çalışabilir?" },
+        { "id": "c5", "de": "Bitte sagen Sie es mir bis Freitag.", "tr": "Lütfen bana cumaya kadar söyleyin." },
+        { "id": "c6", "de": "Vielen Dank!", "tr": "Çok teşekkürler!" }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5", "c6"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Wimmer Bey ne istiyor?", "opts": ["Cumartesi çalışacak kişiler arıyor", "Yeni bir kurs açıyor", "Depoyu kapatıyor"], "ans": 0, "kanit": ["c3", "c4"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Ne zamana kadar söylemelisin?", "opts": ["Cumaya kadar", "Cumartesiye kadar", "Şubata kadar"], "ans": 0, "kanit": ["c5"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c5", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Freitag", "Samstag", "Sonntag"], "ans": 0 },
+            { "id": "d2", "cumle": "c3", "seviye": "orta", "de": "Wir brauchen ___ am Samstag.", "accepted": ["Hilfe", "hilfe", "Hilfe."] },
+            { "id": "d3", "cumle": "c4", "seviye": "zor", "banka": ["Wer", "kann", "am", "Samstag", "arbeiten", "Wann", "Sonntag"], "accepted": ["Wer kann am Samstag arbeiten?", "wer kann am samstag arbeiten", "Wer kann am Samstag arbeiten"] },
+            { "id": "d4", "cumle": "c2", "seviye": "usta", "accepted": ["Im Februar haben wir sehr viel Arbeit.", "im februar haben wir sehr viel arbeit", "Im Februar haben wir sehr viel Arbeit"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Anonsta ne dendi? Bir iki kısa cümleyle yaz.", "ornek_de": "Im Februar gibt es viel Arbeit. Wer am Samstag arbeiten kann, sagt es bis Freitag.", "zorunlu": ["Samstag", "Freitag"] }
+          ],
+          "golge": ["c3", "c5"],
+          "cevapla": {
+            "id": "m1:70:a1:c1",
+            "k": "guided_response",
+            "situation_tr": "Koridorda Wimmer Bey'i görüyorsun. Cumartesi fazla mesai yapabileceğini söyle.",
+            "prompt_de": "Und Sie? Können Sie am Samstag?",
+            "accepted": ["Ja, am Samstag kann ich Überstunden machen.", "Ja, ich kann am Samstag Überstunden machen.", "Ja, am Samstag kann ich arbeiten.", "Ja, ich kann am Samstag arbeiten.", "Ja, gern. Am Samstag kann ich.", "Ja, am Samstag kann ich gern Überstunden machen.", "Ja, ich kann am Samstag helfen.", "Ja, am Samstag kann ich helfen.", "Ja, das geht. Ich kann am Samstag arbeiten.", "Ja, kein Problem. Am Samstag kann ich Überstunden machen."],
+            "why_tr": "Zamanı başa koyarsan fiil hemen arkasından gelir: **Am Samstag kann ich**."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:70:a1:e1", "k": "pick", "q_tr": "Cumartesi çalışmak istiyorsan ne yapmalısın?", "opts": ["Cumaya kadar Wimmer Bey'e söyle.", "Cumartesi sabah depoya git.", "Derya'ya bir e-posta yaz."], "ans": 0, "why_tr": "Wimmer Bey cumaya kadar kendisine söylemeni istiyor.", "kanit": ["c5"] }
+    },
+    {
+      "id": "m1:70:a2",
+      "tur": "sesli-mesaj",
+      "title_tr": "Ioana'dan sesli mesaj",
+      "ortam_tr": "Akşam telefonuna bakıyorsun. Ioana çok heyecanlı bir mesaj bırakmış.",
+      "speaker": "ch:popescu",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Hallo, hier ist Ioana!", "tr": "Merhaba, ben Ioana!" },
+        { "id": "c2", "de": "Ich habe die Stelle als Erzieherin!", "tr": "Anaokulu öğretmenliği işini aldım!" },
+        { "id": "c3", "de": "Ich bin noch in der Probezeit, drei Monate.", "tr": "Hâlâ deneme süresindeyim, üç ay." },
+        { "id": "c4", "de": "Heute musste ich schon um sieben Uhr anfangen.", "tr": "Bugün daha saat yedide başlamak zorundaydım." },
+        { "id": "c5", "de": "Früher konnte ich nie so früh aufstehen!", "tr": "Eskiden hiç bu kadar erken kalkamazdım!" },
+        { "id": "c6", "de": "Hast du am Sonntag Zeit? Ich backe einen Kuchen für dich.", "tr": "Pazar günü vaktin var mı? Senin için bir pasta yapıyorum." }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5", "c6"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Ioana neden arıyor?", "opts": ["Anaokulundaki işi aldığını anlatıyor", "İşini kaybetti", "Kursa gelemiyor"], "ans": 0, "kanit": ["c2"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Ioana bugün kaçta başlamak zorundaydı?", "opts": ["Yedide", "Sekizde", "Onda"], "ans": 0, "kanit": ["c4"] },
+            { "kind": "detail", "q_tr": "Ioana pazar günü için ne yapıyor?", "opts": ["Senin için pasta yapıyor", "Çalışıyor", "Kursa gidiyor"], "ans": 0, "kanit": ["c6"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c6", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Kuchen", "Koch", "Kunde"], "ans": 0 },
+            { "id": "d2", "cumle": "c3", "seviye": "orta", "de": "Ich bin noch in der ___, drei Monate.", "accepted": ["Probezeit", "probezeit", "Probezeit."] },
+            { "id": "d3", "cumle": "c5", "seviye": "zor", "banka": ["Früher", "konnte", "ich", "nie", "so", "früh", "aufstehen", "kann", "spät"], "accepted": ["Früher konnte ich nie so früh aufstehen!", "früher konnte ich nie so früh aufstehen", "Früher konnte ich nie so früh aufstehen."] },
+            { "id": "d4", "cumle": "c4", "seviye": "usta", "accepted": ["Heute musste ich schon um sieben Uhr anfangen.", "heute musste ich schon um sieben uhr anfangen", "Heute musste ich schon um sieben Uhr anfangen"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Ioana'nın haberi ne? Bir iki kısa cümleyle yaz.", "ornek_de": "Ioana hat die Stelle als Erzieherin. Sie ist noch in der Probezeit.", "zorunlu": ["Probezeit"] }
+          ],
+          "golge": ["c4", "c5"],
+          "cevapla": {
+            "id": "m1:70:a2:c1",
+            "k": "guided_response",
+            "situation_tr": "Ioana'yı geri arıyorsun. Onu tebrik et ve pazar günü vaktin olduğunu söyle.",
+            "prompt_de": "Hallo, hier ist Ioana! Und? Hast du am Sonntag Zeit?",
+            "accepted": ["Ja! Herzlichen Glückwunsch! Am Sonntag habe ich Zeit.", "Herzlichen Glückwunsch, Ioana! Ja, am Sonntag habe ich Zeit.", "Ja, super! Herzlichen Glückwunsch! Am Sonntag habe ich Zeit.", "Herzlichen Glückwunsch! Ich habe am Sonntag Zeit.", "Ja! Herzlichen Glückwunsch zur Stelle! Am Sonntag habe ich Zeit.", "Herzlichen Glückwunsch! Am Sonntag passt es mir.", "Ja, toll! Herzlichen Glückwunsch! Am Sonntag habe ich Zeit.", "Herzlichen Glückwunsch! Ja, am Sonntag habe ich Zeit. Komm gern!", "Ja! Glückwunsch! Am Sonntag habe ich Zeit.", "Herzlichen Glückwunsch zur Stelle! Am Sonntag habe ich Zeit."],
+            "why_tr": "Güzel bir habere **Herzlichen Glückwunsch** dersin. Zamanı **am Sonntag** ile söylersin."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:70:a2:e1", "k": "pick", "q_tr": "Ne yapmalısın?", "opts": ["Ioana'ya pazar için cevap ver.", "Yarın saat yedide anaokuluna git.", "Ioana'ya bir pasta getir."], "ans": 0, "why_tr": "Ioana pazar günü vaktin olup olmadığını soruyor.", "kanit": ["c6"] }
+    }
+  ],
+  "prova": {
+    "id": "m1:70:p1",
+    "title_tr": "Wimmer Bey ile: haftanın son konuşması",
+    "durum_tr": "Deneme süren bitiyor. Wimmer Bey seni odasına çağırdı. Başlangıcını ve bugün neyi iyi yaptığını anlat. Fazla mesai sorusuna cevap ver, bir isteğini söyle.",
+    "karsi": "ch:wimmer",
+    "baslangic": "n1",
+    "dugumler": [
+      {
+        "id": "n1",
+        "de": "Guten Morgen! Ihre Probezeit ist bald zu Ende. Wie war der Anfang für Sie?",
+        "tr": "Günaydın! Deneme süreniz yakında bitiyor. Başlangıç sizin için nasıldı?",
+        "secenekler": [
+          { "de": "Am Anfang war es schwer. Ich konnte nicht viel verstehen.", "tr": "Başta zordu. Çok şey anlayamıyordum.",
+            "accepted": ["Am Anfang war es schwer. Ich konnte nicht viel verstehen.", "Am Anfang war es schwer, ich konnte nicht viel verstehen.", "Es war schwer. Ich konnte nicht viel verstehen.", "Am Anfang konnte ich nicht viel verstehen.", "Am Anfang war es schwer. Ich konnte nicht so viel verstehen.", "Am Anfang war es nicht leicht. Ich konnte nicht viel verstehen.", "Schwer. Am Anfang konnte ich nicht viel verstehen.", "Am Anfang war es schwer. Ich konnte wenig verstehen."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Başlangıcı dürüstçe **konnte** ile anlattın." },
+          { "de": "Am Anfang musste ich viel fragen, aber die Kollegen waren hilfsbereit.", "tr": "Başta çok soru sormak zorundaydım ama iş arkadaşları yardımseverdi.",
+            "accepted": ["Am Anfang musste ich viel fragen, aber die Kollegen waren hilfsbereit.", "Am Anfang musste ich viel fragen. Aber die Kollegen waren hilfsbereit.", "Ich musste viel fragen, aber die Kollegen waren sehr hilfsbereit.", "Am Anfang musste ich viel fragen. Die Kollegen waren sehr hilfsbereit.", "Am Anfang musste ich viel fragen, aber alle waren hilfsbereit.", "Ich musste am Anfang viel fragen, aber die Kollegen waren hilfsbereit.", "Am Anfang musste ich viel fragen."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Zorluğu **musste** ile söyledin ve iş arkadaşlarını övdün." },
+          { "de": "Am Anfang kann ich nicht viel verstehen.", "tr": "Başta çok şey anlayamıyorum.",
+            "accepted": ["Am Anfang kann ich nicht viel verstehen.", "Am Anfang kann ich nichts verstehen.", "Am Anfang muss ich viel fragen.", "Ich kann am Anfang nicht viel verstehen."],
+            "sonraki": "n1", "uygun": false, "geri_bildirim_tr": "Başlangıç geçmişte kaldı. **kann** değil **konnte**: **Am Anfang konnte ich nicht viel verstehen.**" }
+        ]
+      },
+      {
+        "id": "n2",
+        "de": "Und heute? Was können Sie gut?",
+        "tr": "Peki bugün? Neyi iyi yapabiliyorsunuz?",
+        "secenekler": [
+          { "de": "Heute kann ich gut im Lager arbeiten. Ich bin zuverlässig.", "tr": "Bugün depoda iyi çalışabiliyorum. Güvenilirim.",
+            "accepted": ["Heute kann ich gut im Lager arbeiten. Ich bin zuverlässig.", "Heute kann ich gut im Lager arbeiten, und ich bin zuverlässig.", "Ich kann gut im Lager arbeiten. Ich bin zuverlässig.", "Heute kann ich gut im Lager arbeiten.", "Heute kann ich gut im Lager arbeiten. Ich bin fleißig und zuverlässig.", "Heute kann ich gut arbeiten. Ich bin zuverlässig.", "Heute kann ich viel verstehen und gut im Lager arbeiten."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Bugünü **kann gut** ile söyledin, bir de özelliğini ekledin." },
+          { "de": "Ich kann gut im Team arbeiten, und ich habe jetzt Erfahrung mit dem Computer.", "tr": "Ekipte iyi çalışabiliyorum ve artık bilgisayar deneyimim var.",
+            "accepted": ["Ich kann gut im Team arbeiten, und ich habe jetzt Erfahrung mit dem Computer.", "Ich kann gut im Team arbeiten. Ich habe jetzt Erfahrung mit dem Computer.", "Ich arbeite gern im Team und ich habe Erfahrung mit dem Computer.", "Ich kann gut im Team arbeiten.", "Heute kann ich gut im Team arbeiten.", "Ich habe jetzt Erfahrung mit dem Computer.", "Ich kann gut im Team arbeiten, und ich bin hilfsbereit."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Ekip ve deneyim: şefin duymak istediği iki şey." }
+        ]
+      },
+      {
+        "id": "n3",
+        "de": "Im Februar haben wir viel Arbeit. Können Sie manchmal Überstunden machen?",
+        "tr": "Şubatta çok işimiz var. Ara sıra fazla mesai yapabilir misiniz?",
+        "secenekler": [
+          { "de": "Ja, am Samstag kann ich Überstunden machen.", "tr": "Evet, cumartesi fazla mesai yapabilirim.",
+            "accepted": ["Ja, am Samstag kann ich Überstunden machen.", "Ja, ich kann am Samstag Überstunden machen.", "Ja, am Samstag kann ich.", "Ja, gern. Am Samstag kann ich Überstunden machen.", "Ja, manchmal kann ich Überstunden machen.", "Ja, das geht. Am Samstag kann ich Überstunden machen.", "Ja, kein Problem."],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Açık ve olumlu bir cevap. Günü de söyledin." },
+          { "de": "Manchmal, ja. Aber am Abend habe ich meinen Sprachkurs.", "tr": "Ara sıra, evet. Ama akşamları dil kursum var.",
+            "accepted": ["Manchmal, ja. Aber am Abend habe ich meinen Sprachkurs.", "Manchmal ja, aber am Abend habe ich meinen Sprachkurs.", "Ja, manchmal. Aber am Abend habe ich den Sprachkurs.", "Manchmal, ja. Am Abend habe ich meinen Sprachkurs.", "Ja, aber nicht am Abend. Da habe ich meinen Sprachkurs.", "Manchmal ja. Aber am Abend habe ich einen Sprachkurs."],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Evet dedin ama sınırını da kibarca söyledin. Bu çok iyi." },
+          { "de": "Nein.", "tr": "Hayır.",
+            "accepted": ["Nein.", "Nein, das geht nicht.", "Nein, ich kann nicht.", "Nein, das will ich nicht."],
+            "sonraki": "n3", "uygun": false, "geri_bildirim_tr": "Şefe yalnız **Nein** sert duyulur. Nedenini söyle ya da başka bir gün öner." }
+        ]
+      },
+      {
+        "id": "n4",
+        "de": "Gut, danke. Haben Sie noch einen Wunsch?",
+        "tr": "İyi, teşekkürler. Başka bir isteğiniz var mı?",
+        "secenekler": [
+          { "de": "Ja, ich möchte eine Weiterbildung machen. Gibt es eine Möglichkeit?", "tr": "Evet, mesleki bir ek eğitim almak istiyorum. Bir imkân var mı?",
+            "accepted": ["Ja, ich möchte eine Weiterbildung machen. Gibt es eine Möglichkeit?", "Ja. Ich möchte gern eine Weiterbildung machen. Gibt es eine Möglichkeit?", "Ich möchte eine Weiterbildung machen. Gibt es eine Möglichkeit?", "Ja, ich möchte eine Weiterbildung machen.", "Ja. Gibt es eine Möglichkeit für eine Weiterbildung?", "Ja, ich möchte gern eine Weiterbildung machen.", "Ja. Früher konnte ich keine Weiterbildung machen. Gibt es eine Möglichkeit?"],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "İsteğini **möchte** ile kibarca söyledin ve imkân sordun." },
+          { "de": "Ja. Ich möchte gern mehr mit dem Computer arbeiten. Gibt es einen Kurs?", "tr": "Evet. Bilgisayarla daha çok çalışmak isterim. Bir kurs var mı?",
+            "accepted": ["Ja. Ich möchte gern mehr mit dem Computer arbeiten. Gibt es einen Kurs?", "Ja, ich möchte mehr mit dem Computer arbeiten. Gibt es einen Kurs?", "Ich möchte gern mehr mit dem Computer arbeiten. Gibt es einen Kurs?", "Ja. Gibt es einen Computerkurs?", "Ja, gibt es einen Kurs für den Computer?", "Ja, ich möchte gern mehr am Computer arbeiten. Gibt es einen Kurs?"],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Somut bir istek ve net bir soru. Çok iyi." },
+          { "de": "Ich will mehr Geld.", "tr": "Daha çok para istiyorum.",
+            "accepted": ["Ich will mehr Geld.", "Ich will mehr Geld haben.", "Mehr Geld!", "Ich will mehr verdienen."],
+            "sonraki": "n4", "uygun": false, "geri_bildirim_tr": "Para sormak olur ama **Ich will** şefe çok sert duyulur. **Ich möchte gern mehr verdienen** daha kibar." }
+        ]
+      },
+      {
+        "id": "n5",
+        "de": "Ja, der Computerkurs fängt im März an. Und Sie können gern bei uns bleiben!",
+        "tr": "Evet, bilgisayar kursu martta başlıyor. Bir de bizde memnuniyetle kalabilirsiniz!",
+        "secenekler": [
+          { "de": "Vielen Dank! Ich bleibe gern.", "tr": "Çok teşekkürler! Memnuniyetle kalırım.",
+            "accepted": ["Vielen Dank! Ich bleibe gern.", "Danke! Ich bleibe sehr gern.", "Vielen Dank, ich bleibe gern!", "Danke schön! Ich bleibe gern.", "Vielen Dank! Ich möchte gern bleiben.", "Danke! Ich bleibe gern bei Ihnen.", "Vielen Dank! Ich arbeite gern hier."],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Sevincini kısa ve sıcak söyledin." },
+          { "de": "Danke für Ihre Hilfe und Ihre Geduld!", "tr": "Yardımınız ve sabrınız için teşekkürler!",
+            "accepted": ["Danke für Ihre Hilfe und Ihre Geduld!", "Vielen Dank für Ihre Hilfe und Ihre Geduld!", "Danke für Ihre Geduld!", "Danke für Ihre Hilfe!", "Vielen Dank für Ihre Geduld!", "Danke für die Hilfe und die Geduld!"],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Haftanın kelimesiyle teşekkür ettin: **Geduld**." }
+        ]
+      },
+      { "id": "n9", "de": "Gern. Und jetzt: zurück an die Arbeit!", "tr": "Rica ederim. Şimdi de haydi işbaşına!", "son": true }
+    ],
+    "kapanis_tr": "Şefinle deneme süresinin sonunu konuştun. Başlangıcı **konnte** ve **musste** ile, bugünü **kann gut** ile anlattın. Fazla mesaiye cevap verdin ve bir ek eğitim istedin."
+  },
+  "okuma_yazma": {
+    "tur": "okuma",
+    "title_tr": "Wimmer Bey'den e-posta",
+    "metin_de": "Hallo zusammen! Im Februar haben wir im Lager sehr viel Arbeit. Wir brauchen Hilfe am Samstag. Für Überstunden bekommen Sie mehr Geld. In der Probezeit dürfen Sie im Februar keinen Urlaub nehmen. Eine gute Nachricht: Der Computerkurs fängt im März an. Der Unterricht ist am Mittwoch und am Freitag von 16 bis 18 Uhr. Die Firma bezahlt den Kurs. Wer möchte den Kurs machen? Bitte sagen Sie es mir bis Freitag. Viele Grüße, Stefan Wimmer",
+    "metin_tr": "Herkese merhaba! Şubatta depoda çok işimiz var. Cumartesi yardıma ihtiyacımız var. Fazla mesai için daha çok para alırsınız. Deneme süresindeyseniz şubatta izin alamazsınız. Güzel bir haber: Bilgisayar kursu martta başlıyor. Ders çarşamba ve cuma 16'dan 18'e kadar. Kursu firma ödüyor. Kim kursa katılmak istiyor? Lütfen bana cumaya kadar söyleyin. Selamlar, Stefan Wimmer",
+    "sorular": [
+      { "id": "m1:70:o1", "kind": "gist", "q_tr": "Wimmer Bey neden yazıyor?", "opts": ["Şubattaki iş ve marttaki bir kurs için", "Bir parti için", "Yeni bir çalışan için"], "ans": 0, "kanit": [1, 5] },
+      { "id": "m1:70:o2", "kind": "detail", "q_tr": "Fazla mesai için ne alıyorsun?", "opts": ["Daha çok para", "Bir gün izin", "Hiçbir şey"], "ans": 0, "kanit": [3] },
+      { "id": "m1:70:o3", "kind": "detail", "q_tr": "Deneme süresindeki biri şubatta neyi yapamaz?", "opts": ["İzin alamaz", "Fazla mesai yapamaz", "Kursa gidemez"], "ans": 0, "kanit": [4] },
+      { "id": "m1:70:o4", "kind": "detail", "q_tr": "Kursa katılmak istiyorsan ne zamana kadar söylemelisin?", "opts": ["Cumaya kadar", "Marta kadar", "Salıya kadar"], "ans": 0, "kanit": [9] },
+      { "id": "m1:70:o5", "k": "guided_response", "situation_tr": "Koridorda Wimmer Bey soruyor. Kursu yapmak istediğini söyle.", "prompt_de": "Wer möchte den Kurs machen?",
+        "accepted": ["Ich möchte den Kurs machen!", "Ich! Ich möchte den Kurs machen.", "Ich möchte gern den Kurs machen.", "Ich möchte den Computerkurs machen.", "Ich möchte gern den Computerkurs machen.", "Ich! Ich möchte gern mitmachen.", "Ich möchte bitte den Kurs machen.", "Ich. Ich möchte den Kurs gern machen.", "Ich möchte den Kurs gern machen."],
+        "why_tr": "İsteğini **Ich möchte** ile söylersin. **machen** en sona gider." },
+      { "id": "m1:70:o6", "k": "pick", "q_tr": "Sınavdaki gibi: Tobi yalnız akşam altıdan sonra vakit bulabiliyor. Bilgisayar kursu ona uyar mı?", "opts": ["Evet, uyar", "Hayır, kurs 16'dan 18'e kadar", "Metinde bilgi yok"], "ans": 1,
+        "why_tr": "Önce saate bakarsın. Kurs 16'da başlıyor, Tobi 18'den sonra gelebiliyor. Uymuyor." },
+      { "id": "m1:70:o7", "k": "pick", "q_tr": "Sınavdaki gibi: Derya çarşamba ve cuma öğleden sonra boş. Martta bir kurs istiyor. Bilgisayar kursu ona uyar mı?", "opts": ["Evet, uyar", "Hayır, kurs cumartesi", "Metinde bilgi yok"], "ans": 0,
+        "why_tr": "Gün ve saat uyuyor: çarşamba ve cuma, 16'dan 18'e. Ay da mart." }
+    ],
+    "yazma": {
+      "gorev_tr": "Wimmer Bey'e kısa bir cevap yaz. Kursu yapmak istediğini ve cumartesi fazla mesai yapabileceğini söyle.",
+      "ornek_de": "Hallo Herr Wimmer, ich möchte den Kurs machen. Am Samstag kann ich auch Überstunden machen. Viele Grüße, {name}",
+      "ornek_de_adsiz": "Hallo Herr Wimmer, ich möchte den Kurs machen. Am Samstag kann ich auch Überstunden machen. Viele Grüße",
+      "zorunlu": ["Überstunden", "Kurs"],
+      "accepted_kaliplar": ["Hallo Herr Wimmer,", "Hallo Herr Wimmer, ich möchte den Kurs machen.", "ich möchte den Kurs machen.", "ich möchte den Computerkurs machen.", "Ich möchte den Kurs machen.", "Ich möchte den Computerkurs machen.", "Ich möchte gern den Kurs machen.", "Am Samstag kann ich auch Überstunden machen.", "Am Samstag kann ich Überstunden machen.", "Am ___ kann ich Überstunden machen.", "Ich kann am ___ Überstunden machen.", "Am Abend habe ich meinen Sprachkurs.", "Ich bin noch in der Probezeit.", "Danke für die Information!", "Viele Grüße, ___", "Viele Grüße"],
+      "kontrol_tr": ["Kursu istediğini **Ich möchte** ile yazdın mı?", "**Überstunden** sözcüğü var mı?", "Zamanla başlayan cümlede fiil ikinci yerde mi? **Am Samstag kann ich**"]
+    }
+  },
+  "gun_sinavi": {
+    "id": "m1:70:s",
+    "maddeler": [
+      { "id": "m1:70:s1", "k": "listen_and_respond", "audio_de": "Ich bin noch in der Probezeit.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Ich bin noch in der Probezeit.", "ich bin noch in der probezeit", "Ich bin noch in der Probezeit"], "why_tr": "**die Probezeit** yeni işte deneme süresidir." },
+      { "id": "m1:70:s2", "k": "listen_and_respond", "audio_de": "Am Anfang konnten wir nicht viel verstehen.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Am Anfang konnten wir nicht viel verstehen.", "am anfang konnten wir nicht viel verstehen", "Am Anfang konnten wir nicht viel verstehen"], "why_tr": "**wir** ile **konnten**, sonda **-ten**." },
+      { "id": "m1:70:s3", "k": "listen_and_respond", "audio_de": "Im Februar machen wir Überstunden.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Im Februar machen wir Überstunden.", "im februar machen wir überstunden", "Im Februar machen wir Überstunden"], "why_tr": "Fazla mesai **Überstunden machen** diye söylenir." },
+      { "id": "m1:70:s4", "k": "listen_and_respond", "audio_de": "Musstet ihr am Samstag arbeiten?", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Musstet ihr am Samstag arbeiten?", "musstet ihr am samstag arbeiten", "Musstet ihr am Samstag arbeiten"], "why_tr": "**ihr** ile **musstet**: çift s ve sonda **-tet**." },
+      { "id": "m1:70:s5", "k": "tr_de", "tr": "Deneme süresi yakında bitiyor.",
+        "accepted": ["Die Probezeit ist bald zu Ende.", "Meine Probezeit ist bald zu Ende.", "Bald ist die Probezeit zu Ende."],
+        "why_tr": "Bitmek burada **zu Ende sein** olur: **ist bald zu Ende**." },
+      { "id": "m1:70:s6", "k": "tr_de", "tr": "Başta çok soru sormak zorundaydım.",
+        "accepted": ["Am Anfang musste ich viel fragen.", "Ich musste am Anfang viel fragen.", "Am Anfang musste ich sehr viel fragen."],
+        "why_tr": "Başlangıç geçmiştir: **musste**. **fragen** en sona gider." },
+      { "id": "m1:70:s7", "k": "tr_de", "tr": "Bugün ekipte iyi çalışabiliyorum.",
+        "accepted": ["Heute kann ich gut im Team arbeiten.", "Ich kann heute gut im Team arbeiten.", "Heute kann ich im Team gut arbeiten."],
+        "why_tr": "Bugün için **kann gut**. Zaman başta olunca fiil ikinci yerde kalır." },
+      { "id": "m1:70:s8", "k": "tr_de", "tr": "Mesleki bir ek eğitim almak istiyorum. Bir imkân var mı?",
+        "accepted": ["Ich möchte eine Weiterbildung machen. Gibt es eine Möglichkeit?", "Ich möchte gern eine Weiterbildung machen. Gibt es eine Möglichkeit?", "Ich möchte eine Weiterbildung machen. Gibt es da eine Möglichkeit?"],
+        "why_tr": "Kibar istek **Ich möchte**, imkân sormak **Gibt es eine Möglichkeit?**" },
+      { "id": "m1:70:s9", "k": "guided_response", "situation_tr": "Derya soruyor: şefle konuşma nasıl geçti? Deneme süresinin bittiğini ve kalabileceğini söyle.", "prompt_de": "Und? Wie war es beim Chef?",
+        "accepted": ["Gut! Die Probezeit ist zu Ende. Ich kann bleiben.", "Super! Ich kann bei der Firma bleiben.", "Sehr gut! Die Probezeit ist bald zu Ende und ich kann bleiben.", "Gut! Ich darf bleiben.", "Sehr gut! Ich kann bleiben.", "Gut. Die Probezeit ist bald zu Ende. Ich kann bleiben.", "Super! Ich darf bleiben!", "Toll! Ich kann bei euch bleiben.", "Gut! Ich kann hier bleiben."],
+        "why_tr": "Sonucu kısaca söylersin: **Ich kann bleiben** ya da **Ich darf bleiben**." },
+      { "id": "m1:70:s10", "k": "guided_response", "situation_tr": "Wimmer Bey fazla mesai soruyor. Cumartesi yapabileceğini söyle.", "prompt_de": "Können Sie im Februar Überstunden machen?",
+        "accepted": ["Ja, am Samstag kann ich Überstunden machen.", "Ja, ich kann am Samstag Überstunden machen.", "Ja, am Samstag kann ich.", "Ja, am Samstag geht das.", "Ja, gern. Am Samstag kann ich Überstunden machen.", "Ja, am Samstag kann ich gern Überstunden machen.", "Ja, ich kann im Februar am Samstag Überstunden machen."],
+        "why_tr": "**Am Samstag** başta olunca **kann** hemen arkasından gelir." },
+      { "id": "m1:70:s11", "k": "guided_response", "situation_tr": "Haftanın son konuşması. Wimmer Bey başlangıcı soruyor. Başta çok anlayamadığını, bugün ekipte iyi çalıştığını söyle.", "prompt_de": "Wie war der Anfang für Sie?",
+        "accepted": ["Am Anfang konnte ich nicht viel verstehen. Heute kann ich gut im Team arbeiten.", "Am Anfang konnte ich nicht viel verstehen, heute kann ich gut im Team arbeiten.", "Am Anfang war es schwer. Ich konnte nicht viel verstehen. Heute kann ich gut im Team arbeiten.", "Am Anfang konnte ich wenig verstehen. Heute arbeite ich gut im Team.", "Am Anfang konnte ich nicht viel verstehen. Heute arbeite ich gut im Team.", "Früher konnte ich nicht viel verstehen. Heute kann ich gut im Team arbeiten.", "Am Anfang musste ich viel fragen. Heute kann ich gut im Team arbeiten.", "Am Anfang konnte ich nicht viel verstehen. Aber heute kann ich gut im Team arbeiten."],
+        "why_tr": "Eskiyi **konnte** ile, bugünü **kann** ile söylersin. İkisi yan yana farkı gösterir." }
+    ],
+    "sesli": ["m1:70:s9", "m1:70:s10"],
+    "dikte": ["m1:70:s1", "m1:70:s2", "m1:70:s3", "m1:70:s4"]
+  }
+}

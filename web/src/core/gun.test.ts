@@ -90,7 +90,7 @@ describe("AKIS pilot bayrağı (AK-6, 4b)", () => {
     expect(akisAcik(g8, bos(), "hepsi")).toBe(true);
     expect(akisAcik(g8, bos(), [1])).toBe(false);
     expect(akisAcik({ ...g1, day: 8 } as typeof g1, bos(), "hepsi")).toBe(false);
-    expect(gunAdimlari(g8, bos(), {}, "hepsi").adimlar[0]!.href).toBe("#/akis/8");
+    expect(gunAdimlari(g8, bos(), {}, "hepsi").adimlar.find((a) => a.tur === "bahce")!.href).toBe("#/akis/8");
     // eski düzenle başlanmış gün "hepsi"de de eski düzenle biter
     expect(akisAcik(g8, { ...bos(), bahceBitti: new Set([8]) }, "hepsi")).toBe(false);
     expect(bayrakli(3, "hepsi")).toBe(true);
