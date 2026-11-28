@@ -16,6 +16,7 @@
  */
 import POLICY from "../policy.json" with { type: "json" };
 import { ikinciTurVar } from "./medya.ts";
+import { boslukDoldur } from "./ikiParca.ts";
 import { bilinmeyenler, kalipOrtu, kartsizMi, kalipSecenekleri, toks, YUVA, type Bilinen, type Drill, type Gun, type Halka, type KumeDizini, type LearnerItem, type Lexeme, type TemelDers } from "@dw/shared";
 
 export type Kip = "gor" | "duy" | "kur" | "soyle";
@@ -447,8 +448,9 @@ class Planlayici {
       const tanit: Aday = { tur: "tanit", kartlar: [c], cumleler: ilk ? [ilk, ...cs.filter((x) => x !== ilk)] : cs, kaynak: t ? "ders" : "halka", neden: `${l.de}: yeni kelime, hemen cümle içinde`, ...(t ? { ders: { id: t.ders, oge: t.oge } } : {}) };
       const gorev = this.dondur(cs.filter((de) => de !== ilk && gecerSim(de)));
       const secenek: Aday[] = [];
-      const form = (l.forms ?? []).find((f) => gecerSim(f.de.replace(/___/g, " "), toks(f.answer.replace(/…/g, " "))));
-      if (form) secenek.push({ tur: "gap", kartlar: [c], cumle: form.de.replace(/___/g, form.answer), haric: toks(form.answer.replace(/…/g, " ")), kaynak: "halka", neden: `${l.de}: cümlede boşluk` });
+      // iki parçalı boşlukta her "___" kendi parçasıyla dolar (DENETİM-A1 P1-1); dolmayan biçim seçilmez
+      const form = (l.forms ?? []).find((f) => boslukDoldur(f.de, f.answer) !== null && gecerSim(f.de.replace(/___/g, " "), toks(f.answer.replace(/…/g, " "))));
+      if (form) secenek.push({ tur: "gap", kartlar: [c], cumle: boslukDoldur(form.de, form.answer)!, haric: toks(form.answer.replace(/…/g, " ")), kaynak: "halka", neden: `${l.de}: cümlede boşluk` });
       const orderC = gorev.find((de) => toks(de).length >= pol.yapboz_min_sozcuk);
       if (orderC) secenek.push({ tur: "order", kartlar: [c], cumle: orderC, kaynak: "halka", neden: `${l.de}: cümleyi kur` });
       for (const t2 of turleri(l, this.g.gorselli)) secenek.push({ tur: t2, kartlar: [c], kaynak: "halka", neden: `${l.de}: ${TUR_NEDEN[t2]}` });

@@ -9,6 +9,7 @@ import { join } from "node:path";
 import { z } from "zod";
 import { Halka, bilinmeyenler, genelAdlarAyikla, kalipOrtu, kartsizMi, kalipSecenekleri, kumeDizini, toks, YUVA, type Bilinen, type LearnerItem } from "@dw/shared";
 import { loadContent, ROOT } from "../../../content/tools/load.ts";
+import { boslukDoldur } from "./ikiParca.ts";
 import { ADIM_TURLERI, DIL_NOKTASI, GOSTERIM, GUN_SINAVI, KIP, planGun, politikaHatalari, POLITIKA, type Adim, type AkisPolitikasi, type GunPlani, type PlanGirdi } from "./akis.ts";
 
 const c = loadContent();
@@ -412,5 +413,43 @@ describe("dil noktası durağı (PM-092 md. 1, PM 7087668356 md. 7)", () => {
     const p = plan("1:dn", "sifir", { gun: { ...gun, dersler: [...g1.dersler, "gr:a1-99:t9"] }, dilNoktalari: dn });
     expect(p.duraklar.some((d) => d.id === "dil:gr:a1-99:t9")).toBe(false);
     expect(p.gevseme.some((g) => g.kural === "hata" && g.yer === "ders:gr:a1-99:t9")).toBe(true);
+  });
+});
+
+describe("iki parçalı fiil boşluğu (DENETİM-A1 P1-1, PM-148 [ANA-T] md. 1)", () => {
+  // denetimin girdisi (docs/v2/qa/a1-denetim/sayim.ts): önceki günlerin kartları ve dersleri bilinir, dil noktaları planda
+  const dn = (c.dn ?? []).flatMap((x) => x.data);
+  const dilNoktalari = new Map<string, any>([...c.grammar.map((g) => [g.id, g] as const), ...dn.map((d: any) => [d.id, d] as const)]);
+  const dizinDn = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genel, [...c.grammar, ...dn] as any);
+  const lex = new Map(c.lexemes.map((l) => [l.id, l]));
+  const gunler = c.m1.map((x) => x.data).filter((g) => (g.halkalar?.length ?? 0) > 0).sort((a, b) => a.day - b.day);
+  const planlar = gunler.map((g) => {
+    const onceK = new Set(gunler.filter((x) => x.day < g.day).flatMap((x) => x.yeni_kartlar));
+    const onceD = new Set(gunler.filter((x) => x.day < g.day).flatMap((x) => x.dersler));
+    return { g, p: planGun({ gun: g, dersler, dizin: dizinDn, items: new Map(), oncekiKartlar: onceK, bitenDersler: onceD, dilNoktalari, tohum: `akis:${g.day}`, simdi })! };
+  });
+  const bosluklar = planlar.flatMap(({ g, p }) => p.duraklar.flatMap((d) => d.adimlar).filter((a) => a.tur === "gap" && a.kaynak === "halka").map((a) => ({ gun: g.day, a })));
+  it("hiçbir boşluk cümlesinde '…' ya da '___' kalmaz; her halka boşluğu kartın bir biçiminin doğru doldurulmuşu", () => {
+    expect(bosluklar.length).toBeGreaterThan(24);
+    const bozuk = bosluklar.filter(({ a }) => /…|___/.test(a.cumle ?? "")).map(({ gun, a }) => `${gun} ${a.id}: ${a.cumle}`);
+    expect(bozuk).toEqual([]);
+    const kaynaksiz = bosluklar.filter(({ a }) => !(lex.get(a.kartlar[0]!)?.forms ?? []).some((f) => boslukDoldur(f.de, f.answer) === a.cumle)).map(({ gun, a }) => `${gun} ${a.id}: ${a.cumle}`);
+    expect(kaynaksiz).toEqual([]);
+  });
+  // DENETİM-A1'in saydığı 24 bozuk adım (10.–54. gün): hepsi planda, doğru cümleyle. İçerik bu günleri değiştirirse liste birlikte güncellenir.
+  const YIRMI_DORT: [number, string][] = [
+    [10, "Ich fange um acht an."], [11, "Ich stehe um sechs auf."], [11, "Siehst du gern fern?"], [15, "Ich komme gern mit."],
+    [17, "Ich lege jetzt auf."], [17, "Ich steige hier aus."], [17, "Ich kaufe heute ein."], [22, "Tobi gibt die Tasse am Stand zurück."],
+    [22, "Ich sage den Termin ab."], [22, "Ich schreibe die Nummer auf."], [22, "Räumst du heute die Küche auf?"], [30, "Ich fülle das Formular aus."],
+    [37, "Ich probiere die Jacke an."], [38, "Du steigst am Bahnhof in den Bus um."], [38, "Ich biege hier links ab."], [44, "Ich nehme jeden Monat ein Kilo ab."],
+    [44, "Ich gebe zu viel Geld aus."], [45, "Was schlägst du vor?"], [46, "Der Junge wächst auf dem Land auf."], [48, "Ich sage gern für Samstag zu."],
+    [49, "Ich komme um acht an."], [51, "Ich habe heute nichts vor."], [53, "Der Zug fällt heute aus."], [54, "Ich packe das Geschenk ein."]
+  ];
+  it.each(YIRMI_DORT)("%i. gün: \"%s\" iki boşlukla, iki parçalı cevapla", (gun, cumle) => {
+    const b = bosluklar.find((x) => x.gun === gun && x.a.cumle === cumle);
+    expect(b, `${gun}. günde "${cumle}" boşluk adımı`).toBeTruthy();
+    const f = (lex.get(b!.a.kartlar[0]!)?.forms ?? []).find((f) => boslukDoldur(f.de, f.answer) === cumle)!;
+    expect(f.de.split("___").length - 1).toBe(2);
+    expect(f.answer).toMatch(/…/);
   });
 });
