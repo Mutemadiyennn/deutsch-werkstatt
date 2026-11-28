@@ -225,6 +225,10 @@
     {
      "de": "Wie lange hat das gedauert? – Das hat … gedauert.",
      "tr": "Ne kadar sürdü? – … sürdü."
+    },
+    {
+     "de": "Sind Sie verheiratet oder ledig? – Ich bin verheiratet. – Ich bin ledig.",
+     "tr": "Evli misiniz, bekâr mı? – Evliyim. – Bekârım."
     }
    ],
    "dersten_sonra": true,
@@ -987,7 +991,7 @@
  "prova": {
   "id": "m1:39:p1",
   "title_tr": "Frau Brandl hafta sonunu soruyor",
-  "durum_tr": "Merdivende Frau Brandl ile karşılaşıyorsun. Hafta sonunun nasıl geçtiğini anlat: ne vardı, ne yoktu.",
+  "durum_tr": "Merdivende Frau Brandl ile karşılaşıyorsun. Hafta sonunun nasıl geçtiğini anlat: ne vardı, ne yoktu. Frau Brandl çok meraklı: evli mi bekâr mı olduğunu ve hobini de soruyor.",
   "karsi": "ch:brandl",
   "baslangic": "n1",
   "dugumler": [
@@ -1133,7 +1137,7 @@
        "Wirklich? Was war hier 1970?",
        "Was war denn hier im Jahr 1970?"
       ],
-      "sonraki": "n5",
+      "sonraki": "n6",
       "uygun": true,
       "geri_bildirim_tr": "Çok iyi! Yılı doğru söyledin: **neunzehnhundertsiebzig**."
      },
@@ -1145,7 +1149,7 @@
        "War hier auch eine Schule?",
        "Und war hier eine Schule?"
       ],
-      "sonraki": "n5",
+      "sonraki": "n6",
       "uygun": true,
       "geri_bildirim_tr": "Güzel bir soru. **war** ile geçmişi sordun."
      },
@@ -1164,13 +1168,90 @@
     ]
    },
    {
+    "id": "n6",
+    "de": "Da war eine Schule. Heute ist da ein Parkplatz. Sagen Sie mal: Sind Sie verheiratet oder ledig?",
+    "tr": "Orada bir okul vardı. Bugün orada bir otopark var. Söyleyin bakalım: Evli misiniz, bekâr mı?",
+    "secenekler": [
+     {
+      "de": "Ich bin {aile}.",
+      "tr": "Evli ya da bekâr olduğumu söylüyorum: …",
+      "accepted": [
+       "Ich bin {aile}.",
+       "Ich bin {aile}, Frau Brandl.",
+       "Also, ich bin {aile}.",
+       "{aile}, Frau Brandl."
+      ],
+      "sonraki": "n7",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Evli ya da bekâr olduğunu **Ich bin …** ile söyledin."
+     },
+     {
+      "de": "Ich habe {aile}.",
+      "tr": "Evli ya da bekâr olduğumu söylüyorum: … (yanlış)",
+      "accepted": [
+       "Ich habe {aile}.",
+       "Ich habe {aile}, Frau Brandl.",
+       "Ja, ich habe {aile}."
+      ],
+      "sonraki": "n6",
+      "uygun": false,
+      "geri_bildirim_tr": "Burada **Ich habe** değil, **Ich bin** dersin: **Ich bin ledig.**"
+     }
+    ]
+   },
+   {
+    "id": "n7",
+    "de": "Ach so. Und was machen Sie gern? Haben Sie ein Hobby?",
+    "tr": "Öyle mi. Peki ne yapmayı seversiniz? Bir hobiniz var mı?",
+    "secenekler": [
+     {
+      "de": "Ja, {hobi}. Das ist mein Hobby.",
+      "tr": "Evet, … Bu benim hobim.",
+      "accepted": [
+       "Ja, {hobi}. Das ist mein Hobby.",
+       "{hobi}, das ist mein Hobby.",
+       "Ja, mein Hobby ist {hobi}.",
+       "Mein Hobby ist {hobi}, Frau Brandl."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Hobini söyledin."
+     },
+     {
+      "de": "In der Freizeit mag ich {hobi}.",
+      "tr": "Boş zamanımda … severim.",
+      "accepted": [
+       "In der Freizeit mag ich {hobi}.",
+       "Ich mag {hobi}.",
+       "In der Freizeit: {hobi}.",
+       "Ich mag {hobi}, das ist mein Hobby."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **In der Freizeit** ile başladın, **mag ich** doğru sırada."
+     },
+     {
+      "de": "Ja, ich bin {hobi}.",
+      "tr": "Evet, hobim … (yanlış)",
+      "accepted": [
+       "Ja, ich bin {hobi}.",
+       "Ich bin {hobi}.",
+       "Ja, ich bin {hobi}, Frau Brandl."
+      ],
+      "sonraki": "n7",
+      "uygun": false,
+      "geri_bildirim_tr": "**Ich bin** ile hobi söylenmez. **Mein Hobby ist …** dersin."
+     }
+    ]
+   },
+   {
     "id": "n5",
-    "de": "Da war eine kleine Schule. Heute ist da ein Parkplatz. Möchten Sie einen Kaffee?",
-    "tr": "Orada küçük bir okul vardı. Bugün orada bir otopark var. Kahve ister misiniz?",
+    "de": "Ach, schön! Möchten Sie einen Kaffee?",
+    "tr": "Ah, ne güzel! Kahve ister misiniz?",
     "son": true
    }
   ],
-  "kapanis_tr": "Geçmişi anlattın: **war**, **hatte**, **gedauert** ve bir yıl."
+  "kapanis_tr": "Geçmişi anlattın: **war**, **hatte**, **gedauert** ve bir yıl. Evli ya da bekâr olduğunu ve hobini de söyledin."
  },
  "okuma_yazma": {
   "tur": "okuma",

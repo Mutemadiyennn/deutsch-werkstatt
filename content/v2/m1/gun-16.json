@@ -175,6 +175,10 @@
     {
      "de": "Ihren Namen – meinen Namen",
      "tr": "adınızı – adımı"
+    },
+    {
+     "de": "Was arbeiten Sie? – Ich arbeite als … – Ich bin …",
+     "tr": "Ne iş yapıyorsunuz? – … olarak çalışıyorum – Mesleğim …"
     }
    ],
    "dersten_sonra": true,
@@ -338,6 +342,24 @@
       "Auf welchen Namen ist der Termin?",
       "Auf welchen Namen ist der Termin, bitte?",
       "Der Termin ist auf welchen Namen?"
+     ]
+    },
+    {
+     "kart": "lx:Name",
+     "de": "Mein Name ist {name}. Ich arbeite als {meslek}.",
+     "de_adsiz": "Ich arbeite als {meslek}.",
+     "tr": "Adım {name}. … olarak çalışıyorum.",
+     "tr_adsiz": "… olarak çalışıyorum.",
+     "accepted": [
+      "Mein Name ist {name}. Ich arbeite als {meslek}.",
+      "Mein Name ist {name}, ich arbeite als {meslek}.",
+      "Ich heiße {name}. Ich arbeite als {meslek}.",
+      "Mein Name ist {name}. Ich bin {meslek}."
+     ],
+     "accepted_adsiz": [
+      "Ich arbeite als {meslek}.",
+      "Ich bin {meslek}.",
+      "Ich arbeite hier als {meslek}."
      ]
     }
    ],
@@ -1413,7 +1435,7 @@
  "prova": {
   "id": "m1:16:p1",
   "title_tr": "Huber Hanım'ı geri arıyorsun",
-  "durum_tr": "Huber Hanım adının ve adresinin yazılışını soruyor. Onu geri arıyorsun. Adresin Brunnengasse 7.",
+  "durum_tr": "Huber Hanım adının ve adresinin yazılışını soruyor. Onu geri arıyorsun. Adresin Brunnengasse 7. Sonunda mesleğini de soruyor.",
   "karsi": "ch:huber",
   "baslangic": "n1",
   "dugumler": [
@@ -1563,7 +1585,7 @@
        "Ja, mit zwei N.",
        "Ja, zwei N."
       ],
-      "sonraki": "n6",
+      "sonraki": "n8",
       "uygun": true,
       "geri_bildirim_tr": "Doğru. **Brunnen** kelimesinde iki **N** var."
      },
@@ -1578,6 +1600,50 @@
       "sonraki": "n5",
       "uygun": false,
       "geri_bildirim_tr": "**Brunnen** kelimesinde iki **N** var. **Ja, mit Doppel-N** de."
+     }
+    ]
+   },
+   {
+    "id": "n8",
+    "de": "Gut. Und was arbeiten Sie?",
+    "tr": "Tamam. Peki ne iş yapıyorsunuz?",
+    "secenekler": [
+     {
+      "de": "Ich arbeite als {meslek}.",
+      "tr": "… olarak çalışıyorum.",
+      "accepted": [
+       "Ich arbeite als {meslek}.",
+       "Ich arbeite hier als {meslek}.",
+       "Als {meslek}.",
+       "Ich bin {meslek}."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Mesleğini **als** ile söyledin."
+     },
+     {
+      "de": "Ich bin {meslek}.",
+      "tr": "Mesleğim …",
+      "accepted": [
+       "Ich bin {meslek}.",
+       "Ich bin {meslek}, Frau Huber.",
+       "Ich arbeite als {meslek}."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve doğru. **Ich bin** ve hemen arkasından meslek."
+     },
+     {
+      "de": "Ich bin ein {meslek}.",
+      "tr": "Mesleğim … (yanlış)",
+      "accepted": [
+       "Ich bin ein {meslek}.",
+       "Ich arbeite als ein {meslek}.",
+       "Ich bin eine {meslek}."
+      ],
+      "sonraki": "n8",
+      "uygun": false,
+      "geri_bildirim_tr": "Meslekten önce **ein** gelmez. **Ich bin …** ya da **Ich arbeite als …** de."
      }
     ]
    },
@@ -1620,7 +1686,7 @@
     "secenekler": []
    }
   ],
-  "kapanis_tr": "Telefonda kendini tanıttın, adını ve sokağını harf harf doğruladın."
+  "kapanis_tr": "Telefonda kendini tanıttın, adını ve sokağını harf harf doğruladın, mesleğini de söyledin."
  },
  "okuma_yazma": {
   "tur": "okuma",

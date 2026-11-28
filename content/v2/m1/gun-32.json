@@ -81,6 +81,10 @@
     {
      "de": "Heute gibt es …",
      "tr": "Bugün … var"
+    },
+    {
+     "de": "Ich trinke lieber …, denn … – Ich esse gern hier, denn …",
+     "tr": "Daha çok … içerim, çünkü … – Burada yemeyi severim, çünkü …"
     }
    ],
    "dersten_sonra": true,
@@ -183,6 +187,26 @@
       "Ich bin fertig, ich esse lieber nichts mehr.",
       "Ich bin fertig. Ich esse lieber nichts mehr.",
       "Ich bin fertig und esse lieber nichts mehr."
+     ]
+    },
+    {
+     "kart": "lx:nett",
+     "de": "Ich esse gern hier, denn die Kollegen sind nett.",
+     "tr": "Burada yemeyi severim, çünkü iş arkadaşları iyi.",
+     "accepted": [
+      "Ich esse gern hier, denn die Kollegen sind nett.",
+      "Ich esse gerne hier, denn die Kollegen sind nett.",
+      "Ich esse gern hier, denn die Kollegen sind sehr nett."
+     ]
+    },
+    {
+     "kart": "lx:egal",
+     "de": "Das ist mir egal, denn ich esse alles gern.",
+     "tr": "Bana fark etmez, çünkü her şeyi severek yerim.",
+     "accepted": [
+      "Das ist mir egal, denn ich esse alles gern.",
+      "Mir ist das egal, denn ich esse alles gern.",
+      "Das ist mir egal, denn ich esse alles gerne."
      ]
     }
    ],
@@ -1155,7 +1179,7 @@
  "prova": {
   "id": "m1:32:p1",
   "title_tr": "Kantinde Tobi ile",
-  "durum_tr": "Öğle arası. Tobi tepsisiyle yanına oturuyor ve ne sevdiğini soruyor.",
+  "durum_tr": "Öğle arası. Tobi tepsisiyle yanına oturuyor ve ne sevdiğini soruyor. Sonunda hobini de soruyor.",
   "karsi": "ch:lechner",
   "baslangic": "n1",
   "dugumler": [
@@ -1345,12 +1369,57 @@
    },
    {
     "id": "n5",
-    "de": "Gern! Bis gleich!",
-    "tr": "Rica ederim! Birazdan görüşürüz!",
+    "de": "Gern! Sag mal: Was machst du gern? Hast du ein Hobby?",
+    "tr": "Rica ederim! Baksana: Ne yapmayı seversin? Bir hobin var mı?",
+    "secenekler": [
+     {
+      "de": "Ja! Mein Hobby ist {hobi}.",
+      "tr": "Evet! Hobim …",
+      "accepted": [
+       "Ja! Mein Hobby ist {hobi}.",
+       "Mein Hobby ist {hobi}.",
+       "Ja, mein Hobby ist {hobi}.",
+       "Ja, {hobi}. Das ist mein Hobby."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **Mein Hobby ist …** ile hobini söyledin."
+     },
+     {
+      "de": "Mein Hobby? {hobi}! Und du, Tobi?",
+      "tr": "Hobim mi? …! Ya sen, Tobi?",
+      "accepted": [
+       "Mein Hobby? {hobi}! Und du, Tobi?",
+       "Mein Hobby ist {hobi}. Und du?",
+       "{hobi}! Und du, Tobi?",
+       "Mein Hobby? {hobi}. Und dein Hobby?"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Cevap verdin ve soruyu Tobi'ye geri sordun."
+     },
+     {
+      "de": "Ja, ich bin {hobi}.",
+      "tr": "Evet, hobim … (yanlış)",
+      "accepted": [
+       "Ja, ich bin {hobi}.",
+       "Ich bin {hobi}.",
+       "Ja, ich bin gern {hobi}."
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "**Ich bin** ile mesleğini söylersin. Hobi için **Mein Hobby ist …** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Echt? Schön! Mein Hobby ist Schwimmen. Bis gleich!",
+    "tr": "Gerçekten mi? Güzel! Benim hobim yüzmek. Birazdan görüşürüz!",
     "son": true
    }
   ],
-  "kapanis_tr": "Neyi sevdiğini, neyi daha çok sevdiğini söyledin ve teşekkür ettin."
+  "kapanis_tr": "Neyi sevdiğini, neyi daha çok sevdiğini söyledin, teşekkür ettin ve hobini anlattın."
  },
  "okuma_yazma": {
   "tur": "okuma",

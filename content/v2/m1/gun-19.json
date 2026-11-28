@@ -148,6 +148,10 @@
     {
      "de": "jeder – jeden Tag",
      "tr": "herkes – her gün"
+    },
+    {
+     "de": "Was arbeitest du? – Ich arbeite als …",
+     "tr": "Ne iş yapıyorsun? – … olarak çalışıyorum"
     }
    ],
    "gorev_cumleleri": [
@@ -1311,7 +1315,7 @@
  "prova": {
   "id": "m1:19:p1",
   "title_tr": "Durakta Ioana ile",
-  "durum_tr": "Kurs bitti. Ioana ile istasyonun önündesiniz. Ioana kimin nereye gittiğini, kimin hangi dili konuştuğunu soruyor.",
+  "durum_tr": "Kurs bitti. Ioana ile istasyonun önündesiniz. Ioana kimin nereye gittiğini, kimin hangi dili konuştuğunu soruyor. Sonra ne iş yaptığını soruyor.",
   "karsi": "ch:popescu",
   "baslangic": "n1",
   "dugumler": [
@@ -1518,7 +1522,7 @@
        "Okay, ich bleibe noch hier.",
        "Gut, dann bleibe ich noch hier."
       ],
-      "sonraki": "n6",
+      "sonraki": "n7",
       "uygun": true,
       "geri_bildirim_tr": "Sakin bir cevap. **ich bleibe** doğru."
      },
@@ -1531,7 +1535,7 @@
        "Wirklich? Dann fahre ich erst um halb neun.",
        "Okay, dann fahre ich um halb neun."
       ],
-      "sonraki": "n6",
+      "sonraki": "n7",
       "uygun": true,
       "geri_bildirim_tr": "Güzel. Saat için **um** dedin, **ich fahre** de doğru."
      },
@@ -1550,13 +1554,57 @@
     ]
    },
    {
+    "id": "n7",
+    "de": "Gut! Und was arbeitest du?",
+    "tr": "İyi! Peki sen ne iş yapıyorsun?",
+    "secenekler": [
+     {
+      "de": "Ich bin {meslek}.",
+      "tr": "Mesleğim …",
+      "accepted": [
+       "Ich bin {meslek}.",
+       "Ich bin {meslek}, Ioana.",
+       "Ich arbeite als {meslek}."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Meslekten önce **ein** koymadın."
+     },
+     {
+      "de": "Ich arbeite als {meslek}.",
+      "tr": "… olarak çalışıyorum.",
+      "accepted": [
+       "Ich arbeite als {meslek}.",
+       "Ich arbeite jetzt als {meslek}.",
+       "Als {meslek}.",
+       "Ich bin {meslek}."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **ich** ile **arbeite**, sonra **als** ve mesleğin."
+     },
+     {
+      "de": "Ich arbeitest als {meslek}.",
+      "tr": "… olarak çalışıyorum. (yanlış)",
+      "accepted": [
+       "Ich arbeitest als {meslek}.",
+       "Ich arbeitet als {meslek}.",
+       "Ich arbeitest {meslek}."
+      ],
+      "sonraki": "n7",
+      "uygun": false,
+      "geri_bildirim_tr": "**ich** ile **arbeite** dersin. **arbeitest** yalnızca **du** için."
+     }
+    ]
+   },
+   {
     "id": "n6",
     "de": "Schön! Dann reden wir noch Deutsch!",
     "tr": "Güzel! O zaman biraz daha Almanca konuşuruz!",
     "son": true
    }
   ],
-  "kapanis_tr": "Nereye gittiğini, kimin nasıl konuştuğunu söyledin. **du** ve **er** biçimlerini karıştırmadın."
+  "kapanis_tr": "Nereye gittiğini, kimin nasıl konuştuğunu ve ne iş yaptığını söyledin. **du** ve **er** biçimlerini karıştırmadın."
  },
  "okuma_yazma": {
   "tur": "okuma",
