@@ -18,6 +18,7 @@ import { stopSpeaking } from "../services/speech.ts";
 import { DrillView } from "../ui/drill.tsx";
 import { ActionBar, CevapXp, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
+import { useGunIzi } from "../ui/gunIzi.tsx";
 import { DokunMetin, KelimeSayfasi } from "../ui/kelime.tsx";
 import { Rich } from "../ui/rich.tsx";
 
@@ -26,6 +27,7 @@ const soruKimligi = (o: OkumaYazmaT, i: number) => { const q = o.sorular[i]!; re
 type Asama = { a: "metin" } | { a: "soru"; i: number } | { a: "yaz" } | { a: "ornek" } | { a: "kontrol" } | { a: "bitti" };
 
 export function OkumaEkrani({ day }: { day: number }) {
+  const gunIzi = useGunIzi();
   const { profile } = useApp();
   const [o, setO] = useState<OkumaYazmaT | null>(null);
   const [lex, setLex] = useState<Lexeme[]>([]);
@@ -67,7 +69,7 @@ export function OkumaEkrani({ day }: { day: number }) {
 
   return (
     <div class="stack" data-test="okuma" data-asama={as.a}>
-      <ProgressHeader title={o.title_tr} back="#/today" right={<FocusChip />} sub={etiket[as.a]} ilerleme={{ n: as.a === "bitti" ? adimlar : Math.min(sira, adimlar) - 1, toplam: adimlar }} />
+      <ProgressHeader title={o.title_tr} back="#/today" right={<FocusChip />} sub={etiket[as.a]} ilerleme={{ n: as.a === "bitti" ? adimlar : Math.min(sira, adimlar) - 1, toplam: adimlar }} gunIzi={gunIzi} />
       {(as.a === "metin" || as.a === "soru") && o.metin_de && <Metin key={as.a} o={o} lex={lex} kisa={as.a === "soru"} />}
       {as.a === "metin" && <ActionBar><button class="btn primary block" data-test="next" onClick={() => (o.sorular.length ? git({ a: "soru", i: 0 }) : sorulardanSonra())}>{o.sorular.length ? "Sorulara geç" : "Devam"}</button></ActionBar>}
       {as.a === "soru" && (() => {

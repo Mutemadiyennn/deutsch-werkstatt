@@ -1,0 +1,2221 @@
+{
+  "schema": 1,
+  "id": "m1:gun:66",
+  "day": 66,
+  "level": "A2",
+  "format": "gun",
+  "title_tr": "İş ilanı ve meslek isteği",
+  "goal_tr": "Ne olmak istediğini **Ich möchte Erzieherin werden** gibi söylersin. Kısa iş ilanlarında saati, günü ve istenen belgeyi bulursun. Bir arkadaşın için fırındaki ilanı sorarsın.",
+  "can_do": {
+    "id": "cd:m1:66",
+    "tr": "Kısa bir iş ilanını anlar, kimin hangi işi istediğini ve ne zaman çalışabileceğini söylerim."
+  },
+  "unit": "u:m1:66",
+  "arm": "pazar",
+  "place": "pl:baeckerei",
+  "characters": [
+    "ch:popescu",
+    "ch:stadler",
+    "ch:aksoy"
+  ],
+  "requires": {
+    "kelimeler": [],
+    "kaliplar": [],
+    "gramer": [],
+    "tur": [],
+    "baglayicilar": [],
+    "akicilik": []
+  },
+  "review": {
+    "status": "draft"
+  },
+  "dersler": [
+    "dn:10-beruf-wunsch"
+  ],
+  "yeni_kartlar": [
+    "lx:Stellenanzeige",
+    "lx:Teilzeit",
+    "lx:Vollzeit",
+    "lx:verdienen",
+    "lx:Bewerbung",
+    "lx:Lebenslauf",
+    "lx:Zeugnis",
+    "lx:Praktikum",
+    "lx:Erzieherin",
+    "lx:Pflegerin",
+    "lx:Arbeitgeber"
+  ],
+  "halkalar": [
+    {
+      "id": "m1:66:h1",
+      "title_tr": "İlandaki sözcükler",
+      "kartlar": [
+        "lx:Stellenanzeige",
+        "lx:Teilzeit",
+        "lx:Vollzeit",
+        "lx:verdienen"
+      ],
+      "kaliplar": [
+        {
+          "de": "eine Stelle in Teilzeit – eine Stelle in Vollzeit",
+          "tr": "yarı zamanlı bir iş – tam zamanlı bir iş"
+        },
+        {
+          "de": "Ich arbeite Teilzeit. – Arbeiten Sie Vollzeit?",
+          "tr": "Yarı zamanlı çalışıyorum. – Tam zamanlı mı çalışıyorsunuz?"
+        },
+        {
+          "de": "Wir suchen … – Er sucht … – Sie sucht …",
+          "tr": "… arıyoruz – … arıyor (erkek) – … arıyor (kadın)"
+        },
+        {
+          "de": "… Stunden in der Woche – von Montag bis Freitag",
+          "tr": "haftada … saat – pazartesiden cumaya"
+        },
+        {
+          "de": "Ich verdiene … – Verdienst du …?",
+          "tr": "… kazanıyorum – … kazanıyor musun?"
+        }
+      ],
+      "gorev_cumleleri": [
+        {
+          "kart": "lx:Stellenanzeige",
+          "de": "Hast du die Stellenanzeige im Fenster gesehen?",
+          "tr": "Vitrindeki iş ilanını gördün mü?",
+          "accepted": [
+            "Hast du die Stellenanzeige im Fenster gesehen?",
+            "Hast du die Stellenanzeige im Fenster schon gesehen?",
+            "Hast du im Fenster die Stellenanzeige gesehen?"
+          ]
+        },
+        {
+          "kart": "lx:Stellenanzeige",
+          "de": "Ich habe eine Stellenanzeige für Ioana gefunden.",
+          "tr": "Ioana için bir iş ilanı buldum.",
+          "accepted": [
+            "Ich habe eine Stellenanzeige für Ioana gefunden.",
+            "Ich habe für Ioana eine Stellenanzeige gefunden.",
+            "Für Ioana habe ich eine Stellenanzeige gefunden."
+          ]
+        },
+        {
+          "kart": "lx:Teilzeit",
+          "de": "Ist die Stelle in Teilzeit?",
+          "tr": "İş yarı zamanlı mı?",
+          "accepted": [
+            "Ist die Stelle in Teilzeit?",
+            "Ist die Stelle Teilzeit?",
+            "Ist das eine Stelle in Teilzeit?"
+          ]
+        },
+        {
+          "kart": "lx:Teilzeit",
+          "de": "Am Abend habe ich einen Kurs, also kann ich nur Teilzeit arbeiten.",
+          "tr": "Akşamları kursum var, yani yalnızca yarı zamanlı çalışabilirim.",
+          "accepted": [
+            "Am Abend habe ich einen Kurs, also kann ich nur Teilzeit arbeiten.",
+            "Ich habe am Abend einen Kurs, also kann ich nur Teilzeit arbeiten.",
+            "Am Abend habe ich einen Kurs. Ich kann nur Teilzeit arbeiten."
+          ]
+        },
+        {
+          "kart": "lx:Vollzeit",
+          "de": "Arbeiten Sie Vollzeit oder Teilzeit?",
+          "tr": "Tam zamanlı mı çalışıyorsunuz, yarı zamanlı mı?",
+          "accepted": [
+            "Arbeiten Sie Vollzeit oder Teilzeit?",
+            "Arbeiten Sie Teilzeit oder Vollzeit?",
+            "Arbeiten Sie in Vollzeit oder in Teilzeit?"
+          ]
+        },
+        {
+          "kart": "lx:Vollzeit",
+          "de": "Früher musste ich Vollzeit arbeiten.",
+          "tr": "Eskiden tam zamanlı çalışmak zorundaydım.",
+          "accepted": [
+            "Früher musste ich Vollzeit arbeiten.",
+            "Ich musste früher Vollzeit arbeiten.",
+            "Früher musste ich in Vollzeit arbeiten."
+          ]
+        },
+        {
+          "kart": "lx:Vollzeit",
+          "de": "Vollzeit sind vierzig Stunden in der Woche.",
+          "tr": "Tam zamanlı, haftada kırk saat demek.",
+          "accepted": [
+            "Vollzeit sind vierzig Stunden in der Woche.",
+            "Vollzeit, das sind vierzig Stunden in der Woche.",
+            "Vollzeit sind 40 Stunden in der Woche."
+          ]
+        },
+        {
+          "kart": "lx:verdienen",
+          "de": "Ich möchte mehr Geld verdienen.",
+          "tr": "Daha çok para kazanmak istiyorum.",
+          "accepted": [
+            "Ich möchte mehr Geld verdienen.",
+            "Ich möchte gern mehr Geld verdienen.",
+            "Ich will mehr Geld verdienen."
+          ]
+        },
+        {
+          "kart": "lx:verdienen",
+          "de": "Ich verdiene in Teilzeit nicht viel.",
+          "tr": "Yarı zamanlı çalışınca çok kazanmıyorum.",
+          "accepted": [
+            "Ich verdiene in Teilzeit nicht viel.",
+            "Ich verdiene in Teilzeit nicht so viel.",
+            "Ich verdiene in Teilzeit leider nicht viel."
+          ]
+        },
+        {
+          "kart": "lx:verdienen",
+          "de": "Verdienst du in der Bäckerei gut?",
+          "tr": "Fırında iyi kazanıyor musun?",
+          "accepted": [
+            "Verdienst du in der Bäckerei gut?",
+            "Verdienst du gut in der Bäckerei?",
+            "Verdienst du in der Bäckerei genug?"
+          ]
+        }
+      ],
+      "sahne": {
+        "ortam_tr": "Cumartesi sabahı Stadler fırınının önü. Ioana vitrindeki kâğıdı gösteriyor.",
+        "satirlar": [
+          {
+            "r": "ch:popescu",
+            "de": "Schau mal, eine Stellenanzeige!",
+            "tr": "Bak, bir iş ilanı!"
+          },
+          {
+            "r": "ogrenci",
+            "de": "Ist die Stelle in Teilzeit oder in Vollzeit?",
+            "tr": "İş yarı zamanlı mı, tam zamanlı mı?"
+          },
+          {
+            "r": "ch:popescu",
+            "de": "In Teilzeit. Zwanzig Stunden in der Woche.",
+            "tr": "Yarı zamanlı. Haftada yirmi saat."
+          }
+        ],
+        "soru": {
+          "q_tr": "İş haftada kaç saat?",
+          "opts": [
+            "Yirmi saat, yarı zamanlı",
+            "Kırk saat, tam zamanlı",
+            "Yalnız hafta sonu"
+          ],
+          "ans": 0
+        }
+      }
+    },
+    {
+      "id": "m1:66:h2",
+      "title_tr": "Başvuru dosyası",
+      "kartlar": [
+        "lx:Bewerbung",
+        "lx:Lebenslauf",
+        "lx:Zeugnis",
+        "lx:Praktikum",
+        "lx:Erzieherin"
+      ],
+      "kaliplar": [
+        {
+          "de": "eine Bewerbung schreiben – die Bewerbung schicken",
+          "tr": "başvuru yazmak – başvuruyu göndermek"
+        },
+        {
+          "de": "Ich schicke … – Schicken Sie …",
+          "tr": "… gönderiyorum – … gönderin"
+        },
+        {
+          "de": "ein Praktikum machen – Ich habe ein Praktikum gemacht.",
+          "tr": "staj yapmak – Staj yaptım."
+        },
+        {
+          "de": "Guten Tag, Frau … – Viele Grüße, …",
+          "tr": "İyi günler … Hanım (mesajın başı) – Selamlar (mesajın sonu, sonra adın)"
+        }
+      ],
+      "gorev_cumleleri": [
+        {
+          "kart": "lx:Bewerbung",
+          "de": "Ich möchte eine Bewerbung schreiben.",
+          "tr": "Bir başvuru yazmak istiyorum.",
+          "accepted": [
+            "Ich möchte eine Bewerbung schreiben.",
+            "Ich möchte gern eine Bewerbung schreiben.",
+            "Ich will eine Bewerbung schreiben."
+          ]
+        },
+        {
+          "kart": "lx:Bewerbung",
+          "de": "Für die Bewerbung musste ich lange am Computer sitzen.",
+          "tr": "Başvuru için uzun süre bilgisayar başında oturmak zorunda kaldım.",
+          "accepted": [
+            "Für die Bewerbung musste ich lange am Computer sitzen.",
+            "Ich musste für die Bewerbung lange am Computer sitzen.",
+            "Für die Bewerbung musste ich lange vor dem Computer sitzen."
+          ]
+        },
+        {
+          "kart": "lx:Lebenslauf",
+          "de": "Ich schicke Ihnen meinen Lebenslauf.",
+          "tr": "Size özgeçmişimi gönderiyorum.",
+          "accepted": [
+            "Ich schicke Ihnen meinen Lebenslauf.",
+            "Ich schicke Ihnen gern meinen Lebenslauf.",
+            "Meinen Lebenslauf schicke ich Ihnen."
+          ]
+        },
+        {
+          "kart": "lx:Lebenslauf",
+          "de": "Brauchen Sie auch einen Lebenslauf?",
+          "tr": "Özgeçmiş de gerekiyor mu?",
+          "accepted": [
+            "Brauchen Sie auch einen Lebenslauf?",
+            "Brauchen Sie einen Lebenslauf?",
+            "Brauchen Sie auch meinen Lebenslauf?"
+          ]
+        },
+        {
+          "kart": "lx:Zeugnis",
+          "de": "Mein Zeugnis ist aus meiner Heimat.",
+          "tr": "Belgem memleketimden.",
+          "accepted": [
+            "Mein Zeugnis ist aus meiner Heimat.",
+            "Mein Zeugnis ist aus meinem Land.",
+            "Das Zeugnis ist aus meiner Heimat."
+          ]
+        },
+        {
+          "kart": "lx:Zeugnis",
+          "de": "Ich habe kein Zeugnis auf Deutsch.",
+          "tr": "Almanca bir belgem yok.",
+          "accepted": [
+            "Ich habe kein Zeugnis auf Deutsch.",
+            "Ich habe leider kein Zeugnis auf Deutsch.",
+            "Mein Zeugnis ist nicht auf Deutsch."
+          ]
+        },
+        {
+          "kart": "lx:Praktikum",
+          "de": "Ich habe ein Praktikum in einem Krankenhaus gemacht.",
+          "tr": "Bir hastanede staj yaptım.",
+          "accepted": [
+            "Ich habe ein Praktikum in einem Krankenhaus gemacht.",
+            "Ich habe in einem Krankenhaus ein Praktikum gemacht.",
+            "Ich habe ein Praktikum im Krankenhaus gemacht."
+          ]
+        },
+        {
+          "kart": "lx:Praktikum",
+          "de": "Damals konnte ich kein Praktikum machen.",
+          "tr": "O zamanlar staj yapamadım.",
+          "accepted": [
+            "Damals konnte ich kein Praktikum machen.",
+            "Ich konnte damals kein Praktikum machen.",
+            "Damals konnte ich leider kein Praktikum machen."
+          ]
+        },
+        {
+          "kart": "lx:Erzieherin",
+          "de": "Ioana war in ihrer Heimat Erzieherin.",
+          "tr": "Ioana memleketinde anaokulu öğretmeniydi.",
+          "accepted": [
+            "Ioana war in ihrer Heimat Erzieherin.",
+            "In ihrer Heimat war Ioana Erzieherin.",
+            "Ioana war in ihrer Heimat schon Erzieherin."
+          ]
+        },
+        {
+          "kart": "lx:Erzieherin",
+          "de": "Ist deine Schwester Erzieherin?",
+          "tr": "Kız kardeşin anaokulu öğretmeni mi?",
+          "accepted": [
+            "Ist deine Schwester Erzieherin?",
+            "Ist deine Schwester auch Erzieherin?",
+            "Ist deine Schwester Erzieherin von Beruf?"
+          ]
+        }
+      ],
+      "sahne": {
+        "ortam_tr": "Fırında küçük bir masa. Ioana çantasından kâğıtlar çıkarıyor.",
+        "satirlar": [
+          {
+            "r": "ch:popescu",
+            "de": "Für die Bewerbung brauche ich einen Lebenslauf.",
+            "tr": "Başvuru için bir özgeçmişe ihtiyacım var."
+          },
+          {
+            "r": "ogrenci",
+            "de": "Und ein Zeugnis?",
+            "tr": "Peki belge?"
+          },
+          {
+            "r": "ch:popescu",
+            "de": "Ja, mein Zeugnis ist aus meiner Heimat.",
+            "tr": "Evet, belgem memleketimden."
+          }
+        ],
+        "soru": {
+          "q_tr": "Ioana'nın başvuru için neye ihtiyacı var?",
+          "opts": [
+            "Özgeçmiş ve belge",
+            "Yalnız bir fotoğraf",
+            "Ehliyet"
+          ],
+          "ans": 0
+        }
+      }
+    },
+    {
+      "id": "m1:66:h3",
+      "title_tr": "Ne olmak istiyorsun, nerede çalışıyorsun?",
+      "kartlar": [
+        "lx:Pflegerin",
+        "lx:Arbeitgeber"
+      ],
+      "dersten_sonra": true,
+      "kaliplar": [
+        {
+          "de": "Ich möchte … werden. – Möchtest du … werden?",
+          "tr": "… olmak istiyorum. – … olmak istiyor musun?"
+        },
+        {
+          "de": "eine Stelle als … – Sie arbeitet als … – Arbeiten Sie als …?",
+          "tr": "… olarak bir iş – … olarak çalışıyor – … olarak mı çalışıyorsunuz?"
+        },
+        {
+          "de": "Als Kind wollte sie … werden.",
+          "tr": "Çocukken … olmak istiyordu."
+        },
+        {
+          "de": "eine Ausbildung als … machen",
+          "tr": "… olmak için meslek eğitimi almak"
+        },
+        {
+          "de": "mit Kindern – mit alten Menschen",
+          "tr": "çocuklarla – yaşlılarla"
+        }
+      ],
+      "gorev_cumleleri": [
+        {
+          "kart": "lx:Pflegerin",
+          "de": "Sie arbeitet als Pflegerin im Krankenhaus.",
+          "tr": "Hastanede bakıcı olarak çalışıyor.",
+          "accepted": [
+            "Sie arbeitet als Pflegerin im Krankenhaus.",
+            "Sie arbeitet im Krankenhaus als Pflegerin.",
+            "Sie arbeitet als Pflegerin in einem Krankenhaus."
+          ]
+        },
+        {
+          "kart": "lx:Pflegerin",
+          "de": "Meine Schwester möchte Pflegerin werden.",
+          "tr": "Kız kardeşim bakıcı olmak istiyor.",
+          "accepted": [
+            "Meine Schwester möchte Pflegerin werden.",
+            "Meine Schwester möchte gern Pflegerin werden.",
+            "Meine Schwester will Pflegerin werden."
+          ]
+        },
+        {
+          "kart": "lx:Pflegerin",
+          "de": "Als Pflegerin arbeitet sie gern mit alten Menschen.",
+          "tr": "Bakıcı olarak yaşlılarla çalışmayı seviyor.",
+          "accepted": [
+            "Als Pflegerin arbeitet sie gern mit alten Menschen.",
+            "Sie arbeitet als Pflegerin gern mit alten Menschen.",
+            "Als Pflegerin arbeitet sie sehr gern mit alten Menschen."
+          ]
+        },
+        {
+          "kart": "lx:Pflegerin",
+          "de": "Sie sucht eine Stelle als Pflegerin.",
+          "tr": "Bakıcı olarak bir iş arıyor.",
+          "accepted": [
+            "Sie sucht eine Stelle als Pflegerin.",
+            "Sie sucht jetzt eine Stelle als Pflegerin.",
+            "Sie sucht eine Stelle als Pflegerin in Vollzeit."
+          ]
+        },
+        {
+          "kart": "lx:Pflegerin",
+          "de": "Als Kind wollte sie Pflegerin werden.",
+          "tr": "Çocukken bakıcı olmak istiyordu.",
+          "accepted": [
+            "Als Kind wollte sie Pflegerin werden.",
+            "Sie wollte als Kind Pflegerin werden.",
+            "Schon als Kind wollte sie Pflegerin werden."
+          ]
+        },
+        {
+          "kart": "lx:Arbeitgeber",
+          "de": "Wer ist Ihr Arbeitgeber? Arbeiten Sie als Fahrer?",
+          "tr": "İşvereniniz kim? Şoför olarak mı çalışıyorsunuz?",
+          "accepted": [
+            "Wer ist Ihr Arbeitgeber? Arbeiten Sie als Fahrer?",
+            "Wer ist denn Ihr Arbeitgeber? Arbeiten Sie als Fahrer?",
+            "Arbeiten Sie als Fahrer? Wer ist Ihr Arbeitgeber?"
+          ]
+        },
+        {
+          "kart": "lx:Arbeitgeber",
+          "de": "Bei meinem Arbeitgeber kann man eine Ausbildung als Elektriker machen.",
+          "tr": "İşverenimin yanında elektrikçilik eğitimi alınabiliyor.",
+          "accepted": [
+            "Bei meinem Arbeitgeber kann man eine Ausbildung als Elektriker machen.",
+            "Man kann bei meinem Arbeitgeber eine Ausbildung als Elektriker machen.",
+            "Bei meinem Arbeitgeber kann man auch eine Ausbildung als Elektriker machen."
+          ]
+        },
+        {
+          "kart": "lx:Arbeitgeber",
+          "de": "Ihr Arbeitgeber sucht noch eine Pflegerin.",
+          "tr": "İşvereni bir bakıcı daha arıyor.",
+          "accepted": [
+            "Ihr Arbeitgeber sucht noch eine Pflegerin.",
+            "Ihr Arbeitgeber sucht jetzt noch eine Pflegerin.",
+            "Ihr Arbeitgeber sucht noch eine Pflegerin in Teilzeit."
+          ]
+        }
+      ],
+      "sahne": {
+        "ortam_tr": "Fırında kahve içiyorsunuz. Ioana gülümsüyor.",
+        "satirlar": [
+          {
+            "r": "ch:popescu",
+            "de": "Als Kind wollte ich Erzieherin werden.",
+            "tr": "Çocukken anaokulu öğretmeni olmak istiyordum."
+          },
+          {
+            "r": "ogrenci",
+            "de": "Und heute? Möchtest du immer noch Erzieherin werden?",
+            "tr": "Peki bugün? Hâlâ anaokulu öğretmeni olmak istiyor musun?"
+          },
+          {
+            "r": "ch:popescu",
+            "de": "Ja! Ich arbeite gern mit Kindern.",
+            "tr": "Evet! Çocuklarla çalışmayı seviyorum."
+          }
+        ],
+        "soru": {
+          "q_tr": "Ioana ne olmak istiyor?",
+          "opts": [
+            "Anaokulu öğretmeni",
+            "Hasta bakıcı",
+            "Aşçı"
+          ],
+          "ans": 0
+        }
+      }
+    }
+  ],
+  "sahne": {
+    "id": "m1:66:v1",
+    "title_tr": "Ioana'nın iş ilanları",
+    "sahneler": [
+      {
+        "id": "s1",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Cumartesi sabahı, Stadler fırınında küçük bir masa. Ioana elinde telefonla oturuyor, sana el sallıyor.",
+        "de": "Guten Morgen! Komm, hier ist noch Platz.",
+        "tr": "Günaydın! Gel, burada yer var."
+      },
+      {
+        "id": "s2",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana telefonu masaya koyuyor.",
+        "de": "Ich suche eine neue Stelle. Ich möchte nicht mehr putzen.",
+        "tr": "Yeni bir iş arıyorum. Artık temizlik yapmak istemiyorum."
+      },
+      {
+        "id": "s3",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana eski bir fotoğraf gösteriyor: çocuklarla bir oda.",
+        "de": "In meiner Heimat war ich Erzieherin.",
+        "tr": "Memleketimde anaokulu öğretmeniydim."
+      },
+      {
+        "id": "s4",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana omuz silkiyor.",
+        "de": "Hier konnte ich das am Anfang nicht machen.",
+        "tr": "Burada başta bunu yapamadım."
+      },
+      {
+        "id": "s5",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana gülüyor.",
+        "de": "Mein Deutsch war zu schlecht.",
+        "tr": "Almancam yeterli değildi."
+      },
+      {
+        "id": "s6",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana kahvesini karıştırıyor.",
+        "de": "Ich musste schnell Geld verdienen, also habe ich geputzt.",
+        "tr": "Hızlıca para kazanmam gerekiyordu, o yüzden temizlik yaptım."
+      },
+      {
+        "id": "s7",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana kararlı bir yüzle sana bakıyor.",
+        "de": "Aber jetzt möchte ich wieder Erzieherin werden!",
+        "tr": "Ama şimdi yeniden anaokulu öğretmeni olmak istiyorum!"
+      },
+      {
+        "id": "s8",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana telefonu sana uzatıyor. Ekranda üç ilan var.",
+        "de": "Schau mal, hier sind drei Stellenanzeigen.",
+        "tr": "Bak, burada üç iş ilanı var."
+      },
+      {
+        "id": "s9",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana birinci ilanı gösteriyor.",
+        "de": "Das Krankenhaus sucht eine Pflegerin in Vollzeit.",
+        "tr": "Hastane tam zamanlı bir bakıcı arıyor."
+      },
+      {
+        "id": "s10",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana başını sallıyor.",
+        "de": "Aber Vollzeit geht nicht. Am Abend habe ich doch den Kurs.",
+        "tr": "Ama tam zamanlı olmaz. Akşamları kursum var ya."
+      },
+      {
+        "id": "s11",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana ikinci ilanı gösteriyor, gözleri parlıyor.",
+        "de": "Hier: Erzieherin in Teilzeit, nur am Vormittag.",
+        "tr": "Burada: yarı zamanlı anaokulu öğretmeni, yalnız öğleden önce."
+      },
+      {
+        "id": "s12",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana ilanın son satırını okuyor, yüzü düşüyor.",
+        "de": "Das passt super! Aber sie wollen Erfahrung in Deutschland.",
+        "tr": "Bu çok uygun! Ama Almanya'da deneyim istiyorlar."
+      },
+      {
+        "id": "s13",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana üçüncü ilanı açıyor.",
+        "de": "Die dritte Stellenanzeige ist ein Praktikum mit Kindern.",
+        "tr": "Üçüncü ilan çocuklarla bir staj."
+      },
+      {
+        "id": "s14",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana düşünüyor, sonra gülümsüyor.",
+        "de": "Mit einem Praktikum habe ich dann hier Erfahrung.",
+        "tr": "Bir stajla o zaman burada deneyimim olur."
+      },
+      {
+        "id": "s15",
+        "speaker": "ch:stadler",
+        "sahne_tr": "Gerti Stadler kahveleri getiriyor, telefona göz atıyor.",
+        "de": "Sie suchen eine Stelle? Wir suchen auch eine Person für den Laden.",
+        "tr": "İş mi arıyorsunuz? Biz de dükkân için birini arıyoruz."
+      },
+      {
+        "id": "s16",
+        "speaker": "ch:stadler",
+        "sahne_tr": "Gerti vitrindeki kâğıdı gösteriyor.",
+        "de": "Die Stellenanzeige ist im Fenster: Teilzeit, von sechs bis elf Uhr.",
+        "tr": "İlan vitrinde: yarı zamanlı, saat altıdan on bire kadar."
+      },
+      {
+        "id": "s17",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana gözlerini açıyor.",
+        "de": "Um sechs Uhr? Das ist sehr früh!",
+        "tr": "Saat altıda mı? Bu çok erken!"
+      },
+      {
+        "id": "s18",
+        "speaker": "ch:stadler",
+        "sahne_tr": "Gerti gülüyor.",
+        "de": "Ja, in der Bäckerei fängt die Arbeit früh an.",
+        "tr": "Evet, fırında iş erken başlar."
+      },
+      {
+        "id": "s19",
+        "speaker": "ch:popescu",
+        "sahne_tr": "Ioana nazikçe gülümsüyor.",
+        "de": "Danke, Frau Stadler. Aber ich möchte lieber mit Kindern arbeiten.",
+        "tr": "Teşekkürler Stadler Hanım. Ama çocuklarla çalışmayı tercih ederim."
+      },
+      {
+        "id": "s20",
+        "speaker": "ch:stadler",
+        "sahne_tr": "Gerti sana dönüyor.",
+        "de": "Kein Problem. Kennen Sie vielleicht eine Person für uns?",
+        "tr": "Sorun değil. Bizim için birini tanıyor musunuz belki?"
+      }
+    ],
+    "bolumler": [
+      {
+        "id": "b1",
+        "cumleler": [
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s7"
+        ],
+        "ana_fikir": {
+          "kind": "gist",
+          "q_tr": "Ioana ne anlatıyor?",
+          "opts": [
+            "Eski mesleğine geri dönmek istiyor",
+            "Memleketine dönmek istiyor",
+            "Fırında çalışmaya başladı"
+          ],
+          "ans": 0,
+          "kanit": [
+            "s2",
+            "s7"
+          ]
+        },
+        "ayrinti": [
+          {
+            "kind": "detail",
+            "q_tr": "Ioana memleketinde ne iş yapıyordu?",
+            "opts": [
+              "Anaokulu öğretmeniydi",
+              "Hasta bakıcıydı",
+              "Temizlik yapıyordu"
+            ],
+            "ans": 0,
+            "kanit": [
+              "s3"
+            ]
+          },
+          {
+            "kind": "detail",
+            "q_tr": "Ioana burada başta neden anaokulu öğretmeni olarak çalışamadı?",
+            "opts": [
+              "Almancası yeterli değildi",
+              "İş yoktu",
+              "Çocukları sevmiyordu"
+            ],
+            "ans": 0,
+            "kanit": [
+              "s4",
+              "s5"
+            ]
+          },
+          {
+            "kind": "detail",
+            "q_tr": "Ioana neden temizlik yaptı?",
+            "opts": [
+              "Hızlıca para kazanması gerekiyordu",
+              "Temizliği seviyordu",
+              "Kurs için gerekliydi"
+            ],
+            "ans": 0,
+            "kanit": [
+              "s6"
+            ]
+          }
+        ],
+        "dikte": [
+          {
+            "id": "d1",
+            "cumle": "s6",
+            "seviye": "kolay",
+            "q_tr": "Hangi kelimeyi duydun?",
+            "opts": [
+              "verdienen",
+              "bezahlen",
+              "kaufen"
+            ],
+            "ans": 0
+          },
+          {
+            "id": "d2",
+            "cumle": "s3",
+            "seviye": "orta",
+            "de": "In meiner Heimat war ich ___.",
+            "accepted": [
+              "Erzieherin",
+              "erzieherin",
+              "Erzieherin."
+            ]
+          },
+          {
+            "id": "d3",
+            "cumle": "s4",
+            "seviye": "zor",
+            "banka": [
+              "Hier",
+              "konnte",
+              "ich",
+              "das",
+              "am",
+              "Anfang",
+              "nicht",
+              "machen",
+              "kann",
+              "musste"
+            ],
+            "accepted": [
+              "Hier konnte ich das am Anfang nicht machen.",
+              "hier konnte ich das am anfang nicht machen",
+              "Hier konnte ich das am Anfang nicht machen"
+            ]
+          },
+          {
+            "id": "d4",
+            "cumle": "s7",
+            "seviye": "usta",
+            "accepted": [
+              "Aber jetzt möchte ich wieder Erzieherin werden!",
+              "aber jetzt möchte ich wieder erzieherin werden",
+              "Aber jetzt möchte ich wieder Erzieherin werden."
+            ]
+          },
+          {
+            "id": "d5",
+            "seviye": "gercek",
+            "gorev_tr": "Ioana ne istiyor? Almanca bir iki kısa cümleyle yaz.",
+            "ornek_de": "Ioana war in ihrer Heimat Erzieherin. Jetzt möchte sie wieder Erzieherin werden.",
+            "zorunlu": [
+              "Erzieherin",
+              "werden"
+            ]
+          }
+        ],
+        "golge": [
+          "s4",
+          "s7"
+        ],
+        "cevapla": {
+          "id": "m1:66:v1:c1",
+          "k": "guided_response",
+          "situation_tr": "Ioana sana soruyor: Çocukken ne olmak istiyordun? **Als Kind wollte ich** ile başla.",
+          "prompt_de": "Und du? Was wolltest du als Kind werden?",
+          "accepted": [
+            "Als Kind wollte ich {Koch|Köchin} werden.",
+            "Als Kind wollte ich {Fahrer|Fahrerin} werden.",
+            "Als Kind wollte ich {Arzt|Ärztin} werden.",
+            "Als Kind wollte ich {Lehrer|Lehrerin} werden.",
+            "Als Kind wollte ich {Elektriker|Elektrikerin} werden.",
+            "Als Kind wollte ich {Techniker|Technikerin} werden.",
+            "Als Kind wollte ich {Verkäufer|Verkäuferin} werden.",
+            "Als Kind wollte ich {Pfleger|Pflegerin} werden.",
+            "Als Kind wollte ich {Erzieher|Erzieherin} werden.",
+            "Ich wollte als Kind {Koch|Köchin} werden.",
+            "Ich wollte als Kind {Arzt|Ärztin} werden.",
+            "Ich wollte als Kind {Fahrer|Fahrerin} werden.",
+            "Als Kind wollte ich {Polizist|Polizistin} werden.",
+            "Als Kind wollte ich Musik machen.",
+            "Das weiß ich nicht mehr."
+          ],
+          "why_tr": "Çocukluktaki isteği **wollte** ile söylersin. **werden** en sona gider."
+        }
+      },
+      {
+        "id": "b2",
+        "cumleler": [
+          "s8",
+          "s9",
+          "s10",
+          "s11",
+          "s12",
+          "s13",
+          "s14"
+        ],
+        "ana_fikir": {
+          "kind": "gist",
+          "q_tr": "Ioana ilanlara bakınca ne düşünüyor?",
+          "opts": [
+            "Önce staj yapıp burada deneyim kazanmak iyi olur",
+            "Hastanede tam zamanlı çalışmak istiyor",
+            "Hiçbir ilanı beğenmiyor"
+          ],
+          "ans": 0,
+          "kanit": [
+            "s13",
+            "s14"
+          ]
+        },
+        "ayrinti": [
+          {
+            "kind": "detail",
+            "q_tr": "Ioana neden tam zamanlı çalışamıyor?",
+            "opts": [
+              "Akşamları kursu var",
+              "Çocuğu var",
+              "Ehliyeti yok"
+            ],
+            "ans": 0,
+            "kanit": [
+              "s10"
+            ]
+          },
+          {
+            "kind": "detail",
+            "q_tr": "İkinci ilanın sorunu ne?",
+            "opts": [
+              "Almanya'da deneyim istiyorlar",
+              "Hafta sonu da çalışmak gerekiyor",
+              "Tam zamanlı"
+            ],
+            "ans": 0,
+            "kanit": [
+              "s12"
+            ]
+          }
+        ],
+        "dikte": [
+          {
+            "id": "d1",
+            "cumle": "s9",
+            "seviye": "kolay",
+            "q_tr": "Hangi kelimeyi duydun?",
+            "opts": [
+              "Vollzeit",
+              "Teilzeit",
+              "Freizeit"
+            ],
+            "ans": 0
+          },
+          {
+            "id": "d2",
+            "cumle": "s11",
+            "seviye": "orta",
+            "de": "Hier: Erzieherin in ___, nur am Vormittag.",
+            "accepted": [
+              "Teilzeit",
+              "teilzeit",
+              "Teilzeit,"
+            ]
+          },
+          {
+            "id": "d3",
+            "cumle": "s13",
+            "seviye": "zor",
+            "banka": [
+              "Die",
+              "dritte",
+              "Stellenanzeige",
+              "ist",
+              "ein",
+              "Praktikum",
+              "mit",
+              "Kindern",
+              "zweite",
+              "Kind"
+            ],
+            "accepted": [
+              "Die dritte Stellenanzeige ist ein Praktikum mit Kindern.",
+              "die dritte stellenanzeige ist ein praktikum mit kindern",
+              "Die dritte Stellenanzeige ist ein Praktikum mit Kindern"
+            ]
+          },
+          {
+            "id": "d4",
+            "cumle": "s14",
+            "seviye": "usta",
+            "accepted": [
+              "Mit einem Praktikum habe ich dann hier Erfahrung.",
+              "mit einem praktikum habe ich dann hier erfahrung",
+              "Mit einem Praktikum habe ich dann hier Erfahrung"
+            ]
+          },
+          {
+            "id": "d5",
+            "seviye": "gercek",
+            "gorev_tr": "Üç ilanda ne var? Almanca iki kısa cümleyle yaz.",
+            "ornek_de": "Das Krankenhaus sucht eine Pflegerin in Vollzeit. Die Stelle als Erzieherin ist in Teilzeit.",
+            "zorunlu": [
+              "Vollzeit",
+              "Teilzeit"
+            ]
+          }
+        ],
+        "golge": [
+          "s11",
+          "s14"
+        ],
+        "cevapla": {
+          "id": "m1:66:v1:c2",
+          "k": "guided_response",
+          "situation_tr": "Ioana senin fikrini soruyor. Stajın iyi olduğunu söyle: o zaman burada deneyimi olur.",
+          "prompt_de": "Was meinst du? Welche Stelle ist gut für mich?",
+          "accepted": [
+            "Das Praktikum ist gut für dich. Dann hast du hier Erfahrung.",
+            "Das Praktikum ist gut für dich.",
+            "Mach das Praktikum! Dann hast du Erfahrung.",
+            "Ich finde das Praktikum gut.",
+            "Das Praktikum. Dann hast du hier Erfahrung.",
+            "Ich finde das Praktikum gut für dich.",
+            "Das Praktikum mit Kindern ist gut.",
+            "Mach zuerst das Praktikum.",
+            "Das Praktikum! Dann hast du Erfahrung in Deutschland.",
+            "Ich glaube, das Praktikum ist gut für dich.",
+            "Das Praktikum ist super für dich."
+          ],
+          "why_tr": "Öneri verirken **Mach das Praktikum!** ya da **Ich finde das Praktikum gut** dersin."
+        }
+      },
+      {
+        "id": "b3",
+        "cumleler": [
+          "s15",
+          "s16",
+          "s17",
+          "s18",
+          "s19",
+          "s20"
+        ],
+        "ana_fikir": {
+          "kind": "gist",
+          "q_tr": "Stadler Hanım ne söylüyor?",
+          "opts": [
+            "Fırın da yarı zamanlı birini arıyor",
+            "Fırın kapanıyor",
+            "Ioana'ya bedava kahve veriyor"
+          ],
+          "ans": 0,
+          "kanit": [
+            "s15",
+            "s16"
+          ]
+        },
+        "ayrinti": [
+          {
+            "kind": "detail",
+            "q_tr": "Fırındaki iş saat kaçta başlıyor?",
+            "opts": [
+              "Altıda",
+              "Sekizde",
+              "On birde"
+            ],
+            "ans": 0,
+            "kanit": [
+              "s16"
+            ]
+          },
+          {
+            "kind": "detail",
+            "q_tr": "Ioana fırındaki işi neden istemiyor?",
+            "opts": [
+              "Çocuklarla çalışmayı tercih ediyor",
+              "Para az",
+              "Fırın uzak"
+            ],
+            "ans": 0,
+            "kanit": [
+              "s19"
+            ]
+          }
+        ],
+        "dikte": [
+          {
+            "id": "d1",
+            "cumle": "s16",
+            "seviye": "kolay",
+            "q_tr": "Hangi sayıyı duydun?",
+            "opts": [
+              "sechs",
+              "sieben",
+              "zehn"
+            ],
+            "ans": 0
+          },
+          {
+            "id": "d2",
+            "cumle": "s16",
+            "seviye": "orta",
+            "de": "Die Stellenanzeige ist im Fenster: ___, von sechs bis elf Uhr.",
+            "accepted": [
+              "Teilzeit",
+              "teilzeit",
+              "Teilzeit,"
+            ]
+          },
+          {
+            "id": "d3",
+            "cumle": "s15",
+            "seviye": "zor",
+            "banka": [
+              "Wir",
+              "suchen",
+              "auch",
+              "eine",
+              "Person",
+              "für",
+              "den",
+              "Laden",
+              "sucht",
+              "einen"
+            ],
+            "accepted": [
+              "Wir suchen auch eine Person für den Laden.",
+              "wir suchen auch eine person für den laden",
+              "Wir suchen auch eine Person für den Laden"
+            ]
+          },
+          {
+            "id": "d4",
+            "cumle": "s18",
+            "seviye": "usta",
+            "accepted": [
+              "Ja, in der Bäckerei fängt die Arbeit früh an.",
+              "ja in der bäckerei fängt die arbeit früh an",
+              "Ja in der Bäckerei fängt die Arbeit früh an."
+            ]
+          },
+          {
+            "id": "d5",
+            "seviye": "gercek",
+            "gorev_tr": "Fırının ilanında ne var? Almanca bir iki kısa cümleyle yaz.",
+            "ornek_de": "Die Bäckerei sucht eine Person in Teilzeit. Die Arbeit ist von sechs bis elf Uhr.",
+            "zorunlu": [
+              "Teilzeit",
+              "Uhr"
+            ]
+          }
+        ],
+        "golge": [
+          "s16",
+          "s19"
+        ],
+        "cevapla": {
+          "id": "m1:66:v1:c3",
+          "k": "guided_response",
+          "situation_tr": "Stadler Hanım soruyor: Fırın için birini tanıyor musun? Kurs arkadaşın Nina iş arıyor. Onun öğleden önce vakti var.",
+          "prompt_de": "Kennen Sie vielleicht eine Person für uns?",
+          "accepted": [
+            "Ja, meine Freundin sucht eine Stelle in Teilzeit.",
+            "Ja, eine Freundin aus dem Kurs sucht eine Stelle.",
+            "Ja, meine Freundin hat am Vormittag Zeit.",
+            "Ja, meine Freundin Nina sucht eine Stelle in Teilzeit.",
+            "Ja, Nina aus meinem Kurs sucht eine Stelle.",
+            "Ja, meine Freundin Nina. Sie hat am Vormittag Zeit.",
+            "Vielleicht Nina, eine Freundin aus dem Kurs. Sie sucht Arbeit.",
+            "Ja, Nina sucht eine Stelle in Teilzeit. Sie hat am Vormittag Zeit.",
+            "Ja, meine Freundin Nina sucht Arbeit.",
+            "Ja! Nina aus dem Kurs sucht eine Stelle am Vormittag.",
+            "Ja, eine Freundin. Sie heißt Nina und sucht eine Stelle.",
+            "Meine Freundin Nina sucht eine Stelle. Sie kann am Vormittag arbeiten.",
+            "Ja, Nina. Sie kann am Vormittag arbeiten.",
+            "Ja, ich kenne eine Person: Nina. Sie sucht eine Stelle in Teilzeit."
+          ],
+          "why_tr": "Bir kadın için **sie sucht** dersin. Saati **am Vormittag** ile söylersin."
+        }
+      }
+    ]
+  },
+  "sesler": [
+    {
+      "id": "m1:66:a1",
+      "tur": "radyo",
+      "title_tr": "Radyoda iş ilanları",
+      "ortam_tr": "Pazartesi sabahı mutfakta yerel radyo açık. Sunucu kasabanın iş ilanlarını okuyor.",
+      "hizlar": [
+        "slow",
+        "normal"
+      ],
+      "script": [
+        {
+          "id": "c1",
+          "de": "Und jetzt: Stellenanzeigen aus Wendlfing.",
+          "tr": "Ve şimdi: Wendlfing'den iş ilanları."
+        },
+        {
+          "id": "c2",
+          "de": "Das Krankenhaus sucht zwei Pflegerinnen in Vollzeit.",
+          "tr": "Hastane tam zamanlı iki hasta bakıcı arıyor."
+        },
+        {
+          "id": "c3",
+          "de": "Sie brauchen Erfahrung und ein Zeugnis.",
+          "tr": "Deneyiminiz ve belgeniz olmalı."
+        },
+        {
+          "id": "c4",
+          "de": "Ein Restaurant in der Stadt sucht einen Koch, nur am Wochenende.",
+          "tr": "Şehirde bir restoran bir aşçı arıyor, yalnız hafta sonu."
+        },
+        {
+          "id": "c5",
+          "de": "Sie haben keine Erfahrung? Kein Problem, Sie können auch ein Praktikum machen.",
+          "tr": "Deneyiminiz yok mu? Sorun değil, staj da yapabilirsiniz."
+        },
+        {
+          "id": "c6",
+          "de": "Schicken Sie Ihre Bewerbung bitte bis Freitag.",
+          "tr": "Başvurunuzu lütfen cumaya kadar gönderin."
+        }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5",
+            "c6"
+          ],
+          "ana_fikir": {
+            "kind": "gist",
+            "q_tr": "Radyoda ne duyuyorsun?",
+            "opts": [
+              "Wendlfing'deki iş ilanlarını",
+              "Hava durumunu",
+              "Kurs ilanlarını"
+            ],
+            "ans": 0,
+            "kanit": [
+              "c1"
+            ]
+          },
+          "ayrinti": [
+            {
+              "kind": "detail",
+              "q_tr": "Hastane kimi arıyor?",
+              "opts": [
+                "İki bakıcı, tam zamanlı",
+                "Bir aşçı, hafta sonu",
+                "Bir anaokulu öğretmeni, yarı zamanlı"
+              ],
+              "ans": 0,
+              "kanit": [
+                "c2"
+              ]
+            },
+            {
+              "kind": "detail",
+              "q_tr": "Restoranda deneyimin yoksa ne yapabilirsin?",
+              "opts": [
+                "Staj yapabilirsin",
+                "Önce kursa gitmelisin",
+                "Hafta içi çalışabilirsin"
+              ],
+              "ans": 0,
+              "kanit": [
+                "c5"
+              ]
+            }
+          ],
+          "dikte": [
+            {
+              "id": "d1",
+              "cumle": "c4",
+              "seviye": "kolay",
+              "q_tr": "Hangi kelimeyi duydun?",
+              "opts": [
+                "Koch",
+                "Kellner",
+                "Fahrer"
+              ],
+              "ans": 0
+            },
+            {
+              "id": "d2",
+              "cumle": "c3",
+              "seviye": "orta",
+              "de": "Sie brauchen Erfahrung und ein ___.",
+              "accepted": [
+                "Zeugnis",
+                "zeugnis",
+                "Zeugnis."
+              ]
+            },
+            {
+              "id": "d3",
+              "cumle": "c6",
+              "seviye": "zor",
+              "banka": [
+                "Schicken",
+                "Sie",
+                "Ihre",
+                "Bewerbung",
+                "bitte",
+                "bis",
+                "Freitag",
+                "Samstag",
+                "schreiben"
+              ],
+              "accepted": [
+                "Schicken Sie Ihre Bewerbung bitte bis Freitag.",
+                "schicken sie ihre bewerbung bitte bis freitag",
+                "Schicken Sie Ihre Bewerbung bitte bis Freitag"
+              ]
+            },
+            {
+              "id": "d4",
+              "cumle": "c2",
+              "seviye": "usta",
+              "accepted": [
+                "Das Krankenhaus sucht zwei Pflegerinnen in Vollzeit.",
+                "das krankenhaus sucht zwei pflegerinnen in vollzeit",
+                "Das Krankenhaus sucht zwei Pflegerinnen in Vollzeit"
+              ]
+            },
+            {
+              "id": "d5",
+              "seviye": "gercek",
+              "gorev_tr": "Restoran ne arıyor? Almanca bir iki kısa cümleyle yaz.",
+              "ornek_de": "Ein Restaurant sucht einen Koch für das Wochenende. Ohne Erfahrung kann man ein Praktikum machen.",
+              "zorunlu": [
+                "Koch",
+                "Wochenende"
+              ]
+            }
+          ],
+          "golge": [
+            "c3",
+            "c6"
+          ],
+          "cevapla": {
+            "id": "m1:66:a1:c1",
+            "k": "guided_response",
+            "situation_tr": "Derya radyoyu duymamış. Restoranın ne aradığını ona söyle.",
+            "prompt_de": "Was sucht das Restaurant?",
+            "accepted": [
+              "Das Restaurant sucht einen Koch für das Wochenende.",
+              "Einen Koch, nur am Wochenende.",
+              "Das Restaurant sucht einen Koch, nur am Wochenende.",
+              "Einen Koch für das Wochenende.",
+              "Sie suchen einen Koch für das Wochenende.",
+              "Einen Koch. Nur am Wochenende.",
+              "Ein Restaurant in der Stadt sucht einen Koch.",
+              "Das Restaurant sucht einen Koch am Wochenende.",
+              "Einen Koch am Wochenende.",
+              "Sie suchen einen Koch, nur am Wochenende."
+            ],
+            "why_tr": "Aranan kişi için **einen Koch** dersin, çünkü **der Koch** burada **einen** olur."
+          }
+        }
+      ],
+      "eylem": {
+        "id": "m1:66:a1:e1",
+        "k": "pick",
+        "q_tr": "Hastanedeki işi istiyorsun. Ne yapmalısın?",
+        "opts": [
+          "Başvurunu cumaya kadar gönder.",
+          "Cumartesi hastaneye git.",
+          "Restoranı ara."
+        ],
+        "ans": 0,
+        "why_tr": "Başvurular cumaya kadar gönderilmeli.",
+        "kanit": [
+          "c2",
+          "c6"
+        ]
+      }
+    },
+    {
+      "id": "m1:66:a2",
+      "tur": "sesli-mesaj",
+      "title_tr": "Derya'dan sesli mesaj",
+      "ortam_tr": "Cumartesi öğleden sonra telefonuna bakıyorsun. İş arkadaşın Derya mesaj bırakmış.",
+      "speaker": "ch:aksoy",
+      "hizlar": [
+        "slow",
+        "normal"
+      ],
+      "script": [
+        {
+          "id": "c1",
+          "de": "Hallo, hier ist Derya.",
+          "tr": "Merhaba, ben Derya."
+        },
+        {
+          "id": "c2",
+          "de": "Deine Freundin Ioana wollte doch Erzieherin werden, oder?",
+          "tr": "Arkadaşın Ioana anaokulu öğretmeni olmak istiyordu, değil mi?"
+        },
+        {
+          "id": "c3",
+          "de": "Meine Schwester arbeitet als Erzieherin, und ihr Arbeitgeber sucht noch eine Person.",
+          "tr": "Kız kardeşim anaokulu öğretmeni olarak çalışıyor ve işvereni bir kişi daha arıyor."
+        },
+        {
+          "id": "c4",
+          "de": "Die Stelle ist in Teilzeit, am Vormittag.",
+          "tr": "İş yarı zamanlı, öğleden önce."
+        },
+        {
+          "id": "c5",
+          "de": "Ioana soll ihren Lebenslauf bis Mittwoch schicken.",
+          "tr": "Ioana özgeçmişini çarşambaya kadar göndermeli."
+        },
+        {
+          "id": "c6",
+          "de": "Ruf mich heute Abend an, dann gebe ich dir die Nummer.",
+          "tr": "Bu akşam beni ara, sana numarayı vereyim."
+        }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5",
+            "c6"
+          ],
+          "ana_fikir": {
+            "kind": "gist",
+            "q_tr": "Derya neden aradı?",
+            "opts": [
+              "Ioana için bir iş haberi var",
+              "Seni yemeğe çağırıyor",
+              "İşe geç kalacak"
+            ],
+            "ans": 0,
+            "kanit": [
+              "c3",
+              "c4"
+            ]
+          },
+          "ayrinti": [
+            {
+              "kind": "detail",
+              "q_tr": "Ioana özgeçmişini ne zamana kadar göndermeli?",
+              "opts": [
+                "Çarşambaya kadar",
+                "Cumaya kadar",
+                "Bu akşama kadar"
+              ],
+              "ans": 0,
+              "kanit": [
+                "c5"
+              ]
+            },
+            {
+              "kind": "detail",
+              "q_tr": "Derya'nın kız kardeşi ne iş yapıyor?",
+              "opts": [
+                "Anaokulu öğretmeni",
+                "Bakıcı",
+                "Aşçı"
+              ],
+              "ans": 0,
+              "kanit": [
+                "c3"
+              ]
+            }
+          ],
+          "dikte": [
+            {
+              "id": "d1",
+              "cumle": "c4",
+              "seviye": "kolay",
+              "q_tr": "Hangi kelimeyi duydun?",
+              "opts": [
+                "Teilzeit",
+                "Vollzeit",
+                "Freizeit"
+              ],
+              "ans": 0
+            },
+            {
+              "id": "d2",
+              "cumle": "c2",
+              "seviye": "orta",
+              "de": "Deine Freundin Ioana wollte doch ___ werden, oder?",
+              "accepted": [
+                "Erzieherin",
+                "erzieherin",
+                "Erzieherin,"
+              ]
+            },
+            {
+              "id": "d3",
+              "cumle": "c5",
+              "seviye": "zor",
+              "banka": [
+                "Ioana",
+                "soll",
+                "ihren",
+                "Lebenslauf",
+                "bis",
+                "Mittwoch",
+                "schicken",
+                "sollst",
+                "Zeugnis"
+              ],
+              "accepted": [
+                "Ioana soll ihren Lebenslauf bis Mittwoch schicken.",
+                "ioana soll ihren lebenslauf bis mittwoch schicken",
+                "Ioana soll ihren Lebenslauf bis Mittwoch schicken"
+              ]
+            },
+            {
+              "id": "d4",
+              "cumle": "c4",
+              "seviye": "usta",
+              "accepted": [
+                "Die Stelle ist in Teilzeit, am Vormittag.",
+                "die stelle ist in teilzeit am vormittag",
+                "Die Stelle ist in Teilzeit am Vormittag."
+              ]
+            },
+            {
+              "id": "d5",
+              "seviye": "gercek",
+              "gorev_tr": "Ioana'ya Derya'nın haberini kısa bir mesajla yaz.",
+              "ornek_de": "Hallo Ioana! Derya hat eine Stelle für dich: Erzieherin in Teilzeit, am Vormittag. Schick deinen Lebenslauf bis Mittwoch!",
+              "zorunlu": [
+                "Teilzeit",
+                "Lebenslauf"
+              ]
+            }
+          ],
+          "golge": [
+            "c2",
+            "c5"
+          ],
+          "cevapla": {
+            "id": "m1:66:a2:c1",
+            "k": "guided_response",
+            "situation_tr": "Akşam Derya'yı geri arıyorsun. Mesaj için teşekkür et, numarayı iste.",
+            "prompt_de": "Ja, hallo?",
+            "accepted": [
+              "Hallo Derya! Danke für die Nachricht. Wie ist die Nummer?",
+              "Hallo Derya, danke für die Nachricht! Kannst du mir die Nummer geben?",
+              "Hallo Derya! Vielen Dank. Wie ist die Nummer von deiner Schwester?",
+              "Hallo Derya, danke! Ich brauche die Nummer für Ioana.",
+              "Hallo Derya! Danke für die Nachricht. Kannst du mir die Nummer geben?",
+              "Hallo, Derya! Danke für die Nachricht. Ich möchte die Nummer für Ioana.",
+              "Hallo Derya! Danke. Wie ist die Nummer?",
+              "Hallo Derya, vielen Dank für die Nachricht! Wie ist die Nummer?",
+              "Hallo Derya! Danke für die Stelle. Wie ist die Nummer?"
+            ],
+            "why_tr": "Önce teşekkür et: **Danke für die Nachricht**. Sonra numarayı sor."
+          }
+        }
+      ],
+      "eylem": {
+        "id": "m1:66:a2:e1",
+        "k": "pick",
+        "q_tr": "Ne yapmalısın?",
+        "opts": [
+          "Ioana'ya haber ver, akşam Derya'yı ara.",
+          "Derya'nın kız kardeşini hemen ara.",
+          "Hiçbir şey, Ioana kendisi arayacak."
+        ],
+        "ans": 0,
+        "why_tr": "Derya akşam aranmak istiyor. Ioana'nın da çarşambaya kadar özgeçmiş göndermesi gerek.",
+        "kanit": [
+          "c5",
+          "c6"
+        ]
+      }
+    }
+  ],
+  "gorsel": [
+    {
+      "id": "m1:66:g1",
+      "de": "Lebenslauf",
+      "dogru_img": "one page resume document with a small photo on a desk",
+      "celdirici_img": [
+        "a restaurant menu on a table",
+        "a calendar page on a wall",
+        "a shopping receipt"
+      ]
+    },
+    {
+      "id": "m1:66:g2",
+      "de": "Zeugnis",
+      "dogru_img": "school certificate with a stamp and signature",
+      "celdirici_img": [
+        "a passport",
+        "a bus ticket",
+        "a birthday card"
+      ]
+    },
+    {
+      "id": "m1:66:g3",
+      "de": "Pflegerin",
+      "dogru_img": "caregiver helping an elderly woman to walk",
+      "celdirici_img": [
+        "a cook in a restaurant kitchen",
+        "a driver in a delivery van",
+        "a woman selling bread at a counter"
+      ]
+    },
+    {
+      "id": "m1:66:g4",
+      "de": "Erzieherin",
+      "dogru_img": "kindergarten teacher sitting on the floor playing with small children",
+      "celdirici_img": [
+        "a nurse in a hospital corridor",
+        "a baker holding bread",
+        "an office worker at a computer"
+      ]
+    },
+    {
+      "id": "m1:66:g5",
+      "de": "Stellenanzeige",
+      "dogru_img": "job advertisement note taped inside a bakery shop window",
+      "celdirici_img": [
+        "a menu board outside a cafe",
+        "an apartment for rent sign",
+        "an opening hours sign on a door"
+      ]
+    }
+  ],
+  "prova": {
+    "id": "m1:66:p1",
+    "title_tr": "Vitrindeki ilan: Nina için sor",
+    "durum_tr": "Kurs arkadaşın Nina iş arıyor. Yalnız öğleden önce vakti var, dükkân deneyimi yok. Stadler fırınının vitrininde bir ilan görüyorsun. Stadler Hanım'a Nina için sor: saatler, deneyim, gereken belge.",
+    "karsi": "ch:stadler",
+    "baslangic": "n1",
+    "dugumler": [
+      {
+        "id": "n1",
+        "de": "Grüß Gott! Zwei Semmeln, wie immer?",
+        "tr": "Merhaba! Her zamanki gibi iki küçük ekmek mi?",
+        "secenekler": [
+          {
+            "de": "Heute nicht, danke. Ich habe eine Frage zur Stellenanzeige im Fenster.",
+            "tr": "Bugün değil, teşekkürler. Vitrindeki ilanla ilgili bir sorum var.",
+            "accepted": [
+              "Heute nicht, danke. Ich habe eine Frage zur Stellenanzeige im Fenster.",
+              "Nein, danke. Ich habe eine Frage zur Stellenanzeige.",
+              "Heute nicht. Ich habe eine Frage zu der Stellenanzeige im Fenster.",
+              "Heute nicht, danke. Ich habe eine Frage zur Stellenanzeige.",
+              "Nein, heute nicht. Ich habe eine Frage zur Stellenanzeige im Fenster.",
+              "Danke, heute nicht. Eine Frage zur Stellenanzeige im Fenster, bitte.",
+              "Heute nicht, Frau Stadler. Ich habe eine Frage zur Stellenanzeige."
+            ],
+            "sonraki": "n2",
+            "uygun": true,
+            "geri_bildirim_tr": "Kibarca hayır deyip hemen konuya geçtin."
+          },
+          {
+            "de": "Ja, zwei Semmeln, bitte.",
+            "tr": "Evet, iki küçük ekmek lütfen.",
+            "accepted": [
+              "Ja, zwei Semmeln, bitte.",
+              "Ja, gern. Zwei Semmeln, bitte.",
+              "Ja, bitte, wie immer.",
+              "Ja, wie immer, bitte.",
+              "Ja, zwei Semmeln."
+            ],
+            "sonraki": "n1b",
+            "uygun": true,
+            "geri_bildirim_tr": "Siparişini verdin. Şimdi ilanı sormayı unutma."
+          }
+        ]
+      },
+      {
+        "id": "n1b",
+        "de": "Bitte schön. Noch etwas?",
+        "tr": "Buyurun. Başka bir şey?",
+        "secenekler": [
+          {
+            "de": "Ja, eine Frage: Ist die Stelle im Fenster noch frei?",
+            "tr": "Evet, bir soru: Vitrindeki iş hâlâ boş mu?",
+            "accepted": [
+              "Ja, eine Frage: Ist die Stelle im Fenster noch frei?",
+              "Ja. Ist die Stelle im Fenster noch frei?",
+              "Ist die Stelle noch frei?",
+              "Eine Frage: Ist die Stelle noch frei?",
+              "Ja, ich habe eine Frage zur Stellenanzeige.",
+              "Ja, eine Frage zur Stellenanzeige im Fenster."
+            ],
+            "sonraki": "n2",
+            "uygun": true,
+            "geri_bildirim_tr": "Yerinde bir soru: **noch frei** hâlâ boş demek."
+          }
+        ]
+      },
+      {
+        "id": "n2",
+        "de": "Die Stellenanzeige? Ja, die Stelle ist noch frei. Suchen Sie Arbeit?",
+        "tr": "İlan mı? Evet, iş hâlâ boş. Siz mi iş arıyorsunuz?",
+        "secenekler": [
+          {
+            "de": "Nicht für mich. Für eine Freundin. Sie sucht eine Stelle in Teilzeit.",
+            "tr": "Kendim için değil. Bir arkadaşım için. Yarı zamanlı bir iş arıyor.",
+            "accepted": [
+              "Nicht für mich. Für eine Freundin. Sie sucht eine Stelle in Teilzeit.",
+              "Nein, für eine Freundin. Sie sucht eine Stelle in Teilzeit.",
+              "Nicht für mich, für eine Freundin.",
+              "Für eine Freundin. Sie sucht Arbeit in Teilzeit.",
+              "Nein, nicht für mich. Meine Freundin Nina sucht eine Stelle.",
+              "Nein, für eine Freundin aus dem Kurs.",
+              "Nicht ich, eine Freundin sucht eine Stelle in Teilzeit."
+            ],
+            "sonraki": "n3",
+            "uygun": true,
+            "geri_bildirim_tr": "Kimin için sorduğunu açıkça söyledin."
+          },
+          {
+            "de": "Ja, ich suche eine Stelle in Vollzeit.",
+            "tr": "Evet, tam zamanlı bir iş arıyorum.",
+            "accepted": [
+              "Ja, ich suche eine Stelle in Vollzeit.",
+              "Ja, ich suche Arbeit in Vollzeit.",
+              "Ja, in Vollzeit.",
+              "Ja, ich suche eine Stelle."
+            ],
+            "sonraki": "n2",
+            "uygun": false,
+            "geri_bildirim_tr": "Bu ilan yarı zamanlı ve sen Nina için soruyorsun. **Für eine Freundin** de."
+          }
+        ]
+      },
+      {
+        "id": "n3",
+        "de": "Schön! Die Arbeit ist von Montag bis Freitag, von sechs bis elf Uhr. Geht das für Ihre Freundin?",
+        "tr": "Güzel! İş pazartesiden cumaya, altıdan on bire kadar. Arkadaşınıza uyar mı?",
+        "secenekler": [
+          {
+            "de": "Ja, das geht. Sie hat nur am Vormittag Zeit.",
+            "tr": "Evet, olur. Yalnız öğleden önce vakti var.",
+            "accepted": [
+              "Ja, das geht. Sie hat nur am Vormittag Zeit.",
+              "Ja, das passt. Sie hat nur am Vormittag Zeit.",
+              "Ja, das geht gut. Sie kann nur am Vormittag arbeiten.",
+              "Ja, sie hat am Vormittag Zeit.",
+              "Ja, das geht. Sie kann nur am Vormittag.",
+              "Ja, perfekt. Sie hat nur am Vormittag Zeit.",
+              "Ja, das ist gut. Am Vormittag hat sie Zeit."
+            ],
+            "sonraki": "n4",
+            "uygun": true,
+            "geri_bildirim_tr": "Saatin uyduğunu söyledin: **am Vormittag**."
+          },
+          {
+            "de": "Nein, sie kann nur am Nachmittag arbeiten.",
+            "tr": "Hayır, yalnız öğleden sonra çalışabilir.",
+            "accepted": [
+              "Nein, sie kann nur am Nachmittag arbeiten.",
+              "Nein, nur am Nachmittag.",
+              "Sie hat nur am Nachmittag Zeit.",
+              "Nein, das geht nicht. Sie kann nur am Nachmittag."
+            ],
+            "sonraki": "n3",
+            "uygun": false,
+            "geri_bildirim_tr": "Nina'nın öğleden önce vakti var. **am Vormittag** de."
+          }
+        ]
+      },
+      {
+        "id": "n4",
+        "de": "Sehr gut. Hat sie Erfahrung im Laden?",
+        "tr": "Çok iyi. Dükkânda deneyimi var mı?",
+        "secenekler": [
+          {
+            "de": "Nein, leider nicht. Aber sie ist fleißig und zuverlässig.",
+            "tr": "Hayır, maalesef yok. Ama çalışkan ve güvenilir.",
+            "accepted": [
+              "Nein, leider nicht. Aber sie ist fleißig und zuverlässig.",
+              "Nein, leider nicht. Aber sie ist sehr fleißig.",
+              "Nein, aber sie ist zuverlässig und höflich.",
+              "Leider nicht. Aber sie ist fleißig.",
+              "Nein, sie hat keine Erfahrung. Aber sie ist fleißig und zuverlässig.",
+              "Nein, leider nicht. Aber sie ist hilfsbereit und fleißig.",
+              "Nein, aber sie ist sehr zuverlässig."
+            ],
+            "sonraki": "n5",
+            "uygun": true,
+            "geri_bildirim_tr": "Eksiği dürüstçe söyledin, ardından iyi yanını ekledin."
+          },
+          {
+            "de": "Ja, sie war zehn Jahre im Laden.",
+            "tr": "Evet, on yıl dükkânda çalıştı.",
+            "accepted": [
+              "Ja, sie war zehn Jahre im Laden.",
+              "Ja, sie hat viel Erfahrung.",
+              "Ja, zehn Jahre.",
+              "Ja, sie hat Erfahrung im Laden."
+            ],
+            "sonraki": "n4",
+            "uygun": false,
+            "geri_bildirim_tr": "Nina'nın deneyimi yok. **Nein, leider nicht** de, sonra iyi bir yanını söyle."
+          }
+        ]
+      },
+      {
+        "id": "n5",
+        "de": "Das ist nicht so wichtig. Sie kann hier lernen. Sie soll mir eine Bewerbung bringen.",
+        "tr": "O kadar önemli değil. Burada öğrenebilir. Bana bir başvuru getirsin.",
+        "secenekler": [
+          {
+            "de": "Braucht sie auch einen Lebenslauf und ein Zeugnis?",
+            "tr": "Özgeçmiş ve belge de gerekiyor mu?",
+            "accepted": [
+              "Braucht sie auch einen Lebenslauf und ein Zeugnis?",
+              "Braucht sie einen Lebenslauf und ein Zeugnis?",
+              "Braucht sie auch ein Zeugnis?",
+              "Braucht sie einen Lebenslauf?",
+              "Und einen Lebenslauf und ein Zeugnis?",
+              "Soll sie auch einen Lebenslauf und ein Zeugnis bringen?"
+            ],
+            "sonraki": "n6",
+            "uygun": true,
+            "geri_bildirim_tr": "Gereken belgeleri sordun."
+          },
+          {
+            "de": "Was soll sie bringen? Einen Lebenslauf?",
+            "tr": "Ne getirsin? Özgeçmiş mi?",
+            "accepted": [
+              "Was soll sie bringen? Einen Lebenslauf?",
+              "Was soll sie bringen?",
+              "Einen Lebenslauf?",
+              "Was soll sie denn bringen?"
+            ],
+            "sonraki": "n6",
+            "uygun": true,
+            "geri_bildirim_tr": "Emin olmak için sordun. Bu iyi bir alışkanlık."
+          }
+        ]
+      },
+      {
+        "id": "n6",
+        "de": "Nur einen Lebenslauf, bitte. Ein Zeugnis brauche ich nicht.",
+        "tr": "Yalnız bir özgeçmiş, lütfen. Belgeye ihtiyacım yok.",
+        "secenekler": [
+          {
+            "de": "Gut, ich sage es ihr. Bis wann soll sie den Lebenslauf bringen?",
+            "tr": "Tamam, ona söylerim. Özgeçmişi ne zamana kadar getirsin?",
+            "accepted": [
+              "Gut, ich sage es ihr. Bis wann soll sie den Lebenslauf bringen?",
+              "Gut. Bis wann soll sie den Lebenslauf bringen?",
+              "Okay, ich sage es ihr. Bis wann?",
+              "Gut, danke. Bis wann soll sie kommen?",
+              "Bis wann soll sie den Lebenslauf bringen?",
+              "Gut, ich sage es ihr. Bis wann?"
+            ],
+            "sonraki": "n7",
+            "uygun": true,
+            "geri_bildirim_tr": "Tarihi **Bis wann?** ile sordun."
+          },
+          {
+            "de": "Danke, ich sage es ihr.",
+            "tr": "Teşekkürler, ona söylerim.",
+            "accepted": [
+              "Danke, ich sage es ihr.",
+              "Gut, ich sage es ihr.",
+              "Okay, danke. Ich sage es ihr.",
+              "Vielen Dank, ich sage es ihr."
+            ],
+            "sonraki": "n7",
+            "uygun": true,
+            "geri_bildirim_tr": "Kısa ve kibar. Tarihi Stadler Hanım kendisi söyleyecek."
+          }
+        ]
+      },
+      {
+        "id": "n7",
+        "de": "Am besten bis Mittwoch. Und jetzt? Doch zwei Semmeln?",
+        "tr": "En iyisi çarşambaya kadar. Peki şimdi? Yine de iki küçük ekmek mi?",
+        "secenekler": [
+          {
+            "de": "Ja, gern! Zwei Semmeln, bitte. Vielen Dank, Frau Stadler!",
+            "tr": "Evet, memnuniyetle! İki küçük ekmek lütfen. Çok teşekkürler Stadler Hanım!",
+            "accepted": [
+              "Ja, gern! Zwei Semmeln, bitte. Vielen Dank, Frau Stadler!",
+              "Ja, zwei Semmeln, bitte. Danke!",
+              "Ja, gern. Vielen Dank, Frau Stadler!",
+              "Ja, bitte! Und vielen Dank!",
+              "Ja, gern, zwei Semmeln. Danke, Frau Stadler!"
+            ],
+            "sonraki": "n9",
+            "uygun": true,
+            "geri_bildirim_tr": "Sohbeti sıcak bir şekilde bitirdin."
+          },
+          {
+            "de": "Nein, danke. Bis Mittwoch, Frau Stadler!",
+            "tr": "Hayır, teşekkürler. Çarşambaya görüşürüz Stadler Hanım!",
+            "accepted": [
+              "Nein, danke. Bis Mittwoch, Frau Stadler!",
+              "Nein, danke. Bis Mittwoch!",
+              "Heute nicht, danke. Bis Mittwoch!",
+              "Nein, danke. Bis bald, Frau Stadler!"
+            ],
+            "sonraki": "n9",
+            "uygun": true,
+            "geri_bildirim_tr": "Kibar bir kapanış."
+          }
+        ]
+      },
+      {
+        "id": "n9",
+        "de": "Gern! Schönen Tag noch!",
+        "tr": "Rica ederim! İyi günler!",
+        "son": true
+      }
+    ],
+    "kapanis_tr": "Bir arkadaşın için iş ilanını sordun. Saatleri, deneyimi ve gereken belgeyi öğrendin."
+  },
+  "okuma_yazma": {
+    "tur": "okuma",
+    "title_tr": "Dört iş ilanı: kime hangisi?",
+    "metin_de": "A: Das Krankenhaus Wendlfing sucht eine Pflegerin oder einen Pfleger (m/w/d) in Vollzeit. Sie arbeiten auch am Wochenende. Sie brauchen drei Jahre Erfahrung.\nB: Wir suchen eine Erzieherin oder einen Erzieher (m/w/d) in Teilzeit, von Montag bis Freitag am Vormittag. Wir sind ein kleines Team mit zwanzig Kindern.\nC: Die Bäckerei Stadler sucht eine Verkäuferin oder einen Verkäufer (m/w/d) für den Laden, Teilzeit, 6 bis 11 Uhr. Sie brauchen keine Erfahrung.\nD: Unsere Firma hat ein Praktikum im Lager, drei Monate. Sie lernen viel und verdienen auch ein bisschen Geld.",
+    "metin_tr": "A: Wendlfing Hastanesi tam zamanlı bir hasta bakıcı (m/w/d) arıyor. (m/w/d: erkek, kadın ya da diğer. Almanya'da iş ilanlarında hep yazılır.) Hafta sonu da çalışırsınız. Üç yıl deneyim gerekiyor.\nB: Yarı zamanlı bir anaokulu öğretmeni (m/w/d) arıyoruz, pazartesiden cumaya, öğleden önce. Yirmi çocuklu küçük bir ekibiz.\nC: Stadler fırını dükkân için bir satış elemanı (m/w/d) arıyor, yarı zamanlı, 6'dan 11'e kadar. Deneyim gerekmiyor.\nD: Firmamızda depoda bir staj var, üç ay. Çok şey öğrenirsiniz ve biraz da para kazanırsınız.",
+    "sorular": [
+      {
+        "id": "m1:66:o1",
+        "kind": "detail",
+        "q_tr": "Hangi ilanda hafta sonu da çalışırsın?",
+        "opts": [
+          "İlan A",
+          "İlan B",
+          "İlan C"
+        ],
+        "ans": 0,
+        "kanit": [
+          1
+        ]
+      },
+      {
+        "id": "m1:66:o2",
+        "kind": "detail",
+        "q_tr": "Hangi ilanda deneyim gerekmiyor?",
+        "opts": [
+          "İlan C",
+          "İlan A",
+          "İlan B"
+        ],
+        "ans": 0,
+        "kanit": [
+          6
+        ]
+      },
+      {
+        "id": "m1:66:o3",
+        "k": "pick",
+        "q_tr": "Nina: **Ich habe nur am Vormittag Zeit. Ich möchte gern in einem Laden arbeiten.** Nina'ya hangi ilan uygun?",
+        "opts": [
+          "İlan A",
+          "İlan B",
+          "İlan C",
+          "İlan D",
+          "Hiçbiri"
+        ],
+        "ans": 2,
+        "why_tr": "Fırın dükkân için birini arıyor, iş öğleden önce."
+      },
+      {
+        "id": "m1:66:o4",
+        "k": "pick",
+        "q_tr": "Jonas: **Ich bin jung und habe keine Erfahrung. Ich möchte viel lernen und ein bisschen Geld verdienen.** Jonas'a hangi ilan uygun?",
+        "opts": [
+          "İlan A",
+          "İlan B",
+          "İlan C",
+          "İlan D",
+          "Hiçbiri"
+        ],
+        "ans": 3,
+        "why_tr": "Stajda çok şey öğrenir ve biraz para kazanır."
+      },
+      {
+        "id": "m1:66:o5",
+        "k": "pick",
+        "q_tr": "Elif: **Ich war zehn Jahre Pflegerin in meiner Heimat. Ich möchte Vollzeit arbeiten, auch am Wochenende.** Elif'e hangi ilan uygun?",
+        "opts": [
+          "İlan A",
+          "İlan B",
+          "İlan C",
+          "İlan D",
+          "Hiçbiri"
+        ],
+        "ans": 0,
+        "why_tr": "Hastane deneyimli, tam zamanlı bir bakıcı arıyor."
+      },
+      {
+        "id": "m1:66:o6",
+        "k": "pick",
+        "q_tr": "David: **Ich bin Koch und suche eine Stelle in Vollzeit.** David'e hangi ilan uygun?",
+        "opts": [
+          "İlan A",
+          "İlan B",
+          "İlan C",
+          "İlan D",
+          "Hiçbiri"
+        ],
+        "ans": 4,
+        "why_tr": "Hiçbir ilan aşçı aramıyor. Sınavda da böyle bir kişi olur."
+      },
+      {
+        "id": "m1:66:o7",
+        "k": "pick",
+        "q_tr": "Ioana: **Ich möchte wieder Erzieherin werden. Am Abend habe ich einen Kurs.** Ioana'ya hangi ilan uygun?",
+        "opts": [
+          "İlan A",
+          "İlan B",
+          "İlan C",
+          "İlan D",
+          "Hiçbiri"
+        ],
+        "ans": 1,
+        "why_tr": "Anaokulu öğretmeni ilanı yarı zamanlı ve öğleden önce. Akşam kursuna engel değil."
+      },
+      {
+        "id": "m1:66:o8",
+        "k": "transform",
+        "instr_tr": "Geçmişe çevir. **Früher** ile başla.",
+        "from_de": "Ich muss viel arbeiten.",
+        "accepted": [
+          "Früher musste ich viel arbeiten.",
+          "Früher musste ich sehr viel arbeiten.",
+          "Ich musste früher viel arbeiten."
+        ],
+        "why_tr": "**muss** geçmişte **musste** olur. **arbeiten** en sonda kalır."
+      },
+      {
+        "id": "m1:66:o9",
+        "k": "transform",
+        "instr_tr": "Geçmişe çevir. **Als Kind** ile başla.",
+        "from_de": "Elif will Pflegerin werden.",
+        "accepted": [
+          "Als Kind wollte Elif Pflegerin werden.",
+          "Elif wollte als Kind Pflegerin werden.",
+          "Schon als Kind wollte Elif Pflegerin werden."
+        ],
+        "why_tr": "**will** geçmişte **wollte** olur. Cümle **Als Kind** ile başlayınca **wollte** ikinci yere gelir."
+      },
+      {
+        "id": "m1:66:o10",
+        "k": "guided_response",
+        "situation_tr": "Ioana soruyor: Sen tam zamanlı mı yarı zamanlı mı çalışmak istersin? Kendin hakkında bir iki cümle söyle.",
+        "prompt_de": "Und du? Möchtest du Vollzeit oder Teilzeit arbeiten?",
+        "accepted": [
+          "Ich möchte Vollzeit arbeiten.",
+          "Ich möchte lieber Teilzeit arbeiten.",
+          "Ich arbeite schon Vollzeit. Das ist gut für mich.",
+          "Ich möchte Teilzeit arbeiten, am Vormittag.",
+          "Vollzeit. Ich möchte mehr Geld verdienen.",
+          "Teilzeit. Am Abend habe ich einen Kurs.",
+          "Ich arbeite Vollzeit, von Montag bis Freitag.",
+          "Lieber Teilzeit. Ich habe am Abend einen Kurs.",
+          "Ich möchte Vollzeit arbeiten und mehr Geld verdienen.",
+          "Ich arbeite jetzt Vollzeit, aber ich möchte Teilzeit arbeiten.",
+          "Ich möchte Teilzeit arbeiten. Ich habe Kinder.",
+          "Vollzeit, das ist gut für mich.",
+          "Ich möchte gern Vollzeit arbeiten."
+        ],
+        "why_tr": "**Ich möchte** derken **arbeiten** değişmez, en sona gider."
+      }
+    ],
+    "yazma": {
+      "gorev_tr": "İlanlardan birini seç ve kısa bir başvuru mesajı yaz. Hangi ilanı gördün, ne zaman çalışabilirsin, neyi iyi yaparsın? Bilgiyi uydurabilirsin. Sonuna adını yaz.",
+      "ornek_de": "Guten Tag, Frau Stadler, ich habe Ihre Stellenanzeige im Fenster gesehen. Ich suche eine Stelle in Teilzeit. Ich kann von Montag bis Freitag am Vormittag arbeiten. Früher habe ich in einem Laden gearbeitet. Ich kann gut mit Kunden sprechen. Meinen Lebenslauf bringe ich am Mittwoch. Viele Grüße, {name}",
+      "ornek_de_adsiz": "Guten Tag, Frau Stadler, ich habe Ihre Stellenanzeige im Fenster gesehen. Ich suche eine Stelle in Teilzeit. Ich kann von Montag bis Freitag am Vormittag arbeiten. Früher habe ich in einem Laden gearbeitet. Ich kann gut mit Kunden sprechen. Meinen Lebenslauf bringe ich am Mittwoch. Viele Grüße",
+      "zorunlu": [
+        "Stellenanzeige",
+        "Ich kann"
+      ],
+      "accepted_kaliplar": [
+        "Guten Tag, ___,",
+        "Guten Tag, Frau Stadler, ich habe Ihre Stellenanzeige im Fenster gesehen.",
+        "Guten Tag, ___, ich habe Ihre Stellenanzeige ___ gesehen.",
+        "Ich habe Ihre Stellenanzeige ___ gesehen.",
+        "Ich habe Ihre Stellenanzeige gelesen.",
+        "Ich suche eine Stelle in Teilzeit.",
+        "Ich suche eine Stelle in Vollzeit.",
+        "Ich suche eine Stelle als ___.",
+        "Ich möchte ___ werden.",
+        "Ich kann ___ arbeiten.",
+        "Ich kann von ___ bis ___ arbeiten.",
+        "Ich kann von Montag bis Freitag am Vormittag arbeiten.",
+        "Früher habe ich ___ gearbeitet.",
+        "Früher habe ich in einem Laden gearbeitet.",
+        "Früher musste ich ___.",
+        "Früher konnte ich ___.",
+        "Ich habe Erfahrung mit ___.",
+        "Ich kann gut ___.",
+        "Ich kann gut mit Kunden sprechen.",
+        "Ich bin ___ und ___.",
+        "Meinen Lebenslauf bringe ich am ___.",
+        "Meinen Lebenslauf schicke ich ___.",
+        "Ich schicke Ihnen meinen Lebenslauf.",
+        "Viele Grüße, ___",
+        "Viele Grüße"
+      ],
+      "kontrol_tr": [
+        "Hangi ilanı gördüğünü yazdın mı?",
+        "Ne zaman çalışabileceğini yazdın mı?",
+        "Neyi iyi yaptığını **Ich kann gut** ile yazdın mı?"
+      ]
+    }
+  },
+  "gun_sinavi": {
+    "id": "m1:66:s",
+    "maddeler": [
+      {
+        "id": "m1:66:s1",
+        "k": "listen_and_respond",
+        "audio_de": "Ich suche eine Stelle in Teilzeit.",
+        "speed": "normal",
+        "situation_tr": "Duyduğunu yaz.",
+        "accepted": [
+          "Ich suche eine Stelle in Teilzeit.",
+          "ich suche eine stelle in teilzeit",
+          "Ich suche eine Stelle in Teilzeit"
+        ],
+        "why_tr": "**in Teilzeit** yarı zamanlı demek."
+      },
+      {
+        "id": "m1:66:s2",
+        "k": "listen_and_respond",
+        "audio_de": "Sie möchte Erzieherin werden.",
+        "speed": "normal",
+        "situation_tr": "Duyduğunu yaz.",
+        "accepted": [
+          "Sie möchte Erzieherin werden.",
+          "sie möchte erzieherin werden",
+          "Sie möchte Erzieherin werden"
+        ],
+        "why_tr": "**werden** en sona gider."
+      },
+      {
+        "id": "m1:66:s3",
+        "k": "listen_and_respond",
+        "audio_de": "Schicken Sie bitte Ihren Lebenslauf.",
+        "speed": "normal",
+        "situation_tr": "Duyduğunu yaz.",
+        "accepted": [
+          "Schicken Sie bitte Ihren Lebenslauf.",
+          "schicken sie bitte ihren lebenslauf",
+          "Schicken Sie bitte Ihren Lebenslauf"
+        ],
+        "why_tr": "**der Lebenslauf** burada **Ihren Lebenslauf** olur."
+      },
+      {
+        "id": "m1:66:s4",
+        "k": "listen_and_respond",
+        "audio_de": "Früher musste er Vollzeit arbeiten.",
+        "speed": "normal",
+        "situation_tr": "Duyduğunu yaz.",
+        "accepted": [
+          "Früher musste er Vollzeit arbeiten.",
+          "früher musste er vollzeit arbeiten",
+          "Früher musste er Vollzeit arbeiten"
+        ],
+        "why_tr": "**musste** iki s ile yazılır."
+      },
+      {
+        "id": "m1:66:s5",
+        "k": "tr_de",
+        "tr": "Tam zamanlı mı çalışıyorsunuz?",
+        "accepted": [
+          "Arbeiten Sie Vollzeit?",
+          "Arbeiten Sie in Vollzeit?",
+          "Arbeiten Sie Vollzeit oder Teilzeit?",
+          "Arbeiten Sie denn Vollzeit?"
+        ],
+        "why_tr": "Evet ya da hayır sorusunda **Arbeiten Sie** başa gelir."
+      },
+      {
+        "id": "m1:66:s6",
+        "k": "tr_de",
+        "tr": "Bir staj yapmak istiyorum.",
+        "accepted": [
+          "Ich möchte ein Praktikum machen.",
+          "Ich möchte gern ein Praktikum machen.",
+          "Ich will ein Praktikum machen.",
+          "Ich möchte gerne ein Praktikum machen."
+        ],
+        "why_tr": "Staj yapmak **ein Praktikum machen** olur. **machen** en sona gider."
+      },
+      {
+        "id": "m1:66:s7",
+        "k": "tr_de",
+        "tr": "İşvereniniz kim?",
+        "accepted": [
+          "Wer ist Ihr Arbeitgeber?",
+          "Wer ist denn Ihr Arbeitgeber?",
+          "Und wer ist Ihr Arbeitgeber?",
+          "Wer ist Ihr Arbeitgeber, bitte?"
+        ],
+        "why_tr": "Kim diye sorarken **Wer** başa gelir."
+      },
+      {
+        "id": "m1:66:s8",
+        "k": "tr_de",
+        "tr": "Çocukken aşçı olmak istiyordu (erkek).",
+        "accepted": [
+          "Als Kind wollte er Koch werden.",
+          "Er wollte als Kind Koch werden.",
+          "Schon als Kind wollte er Koch werden."
+        ],
+        "why_tr": "Geçmişteki istek **wollte** olur. Meslek adının önüne **ein** gelmez."
+      },
+      {
+        "id": "m1:66:s9",
+        "k": "guided_response",
+        "situation_tr": "Stadler Hanım arkadaşının ne zaman çalışabileceğini soruyor. Yalnız öğleden önce çalışabileceğini söyle.",
+        "prompt_de": "Wann kann Ihre Freundin arbeiten?",
+        "accepted": [
+          "Sie kann nur am Vormittag arbeiten.",
+          "Nur am Vormittag.",
+          "Sie hat nur am Vormittag Zeit.",
+          "Am Vormittag.",
+          "Sie kann am Vormittag arbeiten.",
+          "Nur am Vormittag, von Montag bis Freitag.",
+          "Am Vormittag, Frau Stadler.",
+          "Sie kann nur am Vormittag.",
+          "Sie arbeitet nur am Vormittag.",
+          "Meine Freundin kann nur am Vormittag arbeiten."
+        ],
+        "why_tr": "**am Vormittag** öğleden önce demek. **arbeiten** en sona gider."
+      },
+      {
+        "id": "m1:66:s10",
+        "k": "listen_and_respond",
+        "audio_de": "Haben Sie auch ein Zeugnis?",
+        "speed": "normal",
+        "situation_tr": "Bir iş yerinde soruyorlar. Evet de, ama belgenin Almanca olmadığını ekle.",
+        "accepted": [
+          "Ja, aber mein Zeugnis ist nicht auf Deutsch.",
+          "Ja, aber das Zeugnis ist nicht auf Deutsch.",
+          "Ja. Mein Zeugnis ist aber nicht auf Deutsch.",
+          "Ja, aber ich habe kein Zeugnis auf Deutsch.",
+          "Ja, aber es ist nicht auf Deutsch.",
+          "Ja, ich habe ein Zeugnis, aber nicht auf Deutsch."
+        ],
+        "why_tr": "**aber** iki fikri bağlar: evet ama."
+      },
+      {
+        "id": "m1:66:s11",
+        "k": "guided_response",
+        "situation_tr": "Bir dükkâna giriyorsun. İlanı sor: iş yarı zamanlı mı, saatler ne?",
+        "prompt_de": "Guten Tag! Was kann ich für Sie tun?",
+        "accepted": [
+          "Guten Tag! Ich habe eine Frage zur Stellenanzeige. Ist die Stelle in Teilzeit?",
+          "Ich habe eine Frage zur Stellenanzeige. Ist die Stelle in Teilzeit? Und wann ist die Arbeit?",
+          "Guten Tag! Ist die Stelle in Teilzeit? Von wann bis wann ist die Arbeit?",
+          "Ich habe eine Frage zur Stellenanzeige im Fenster. Ist das Teilzeit?",
+          "Guten Tag! Ist die Stelle im Fenster in Teilzeit? Und um wie viel Uhr?",
+          "Eine Frage zur Stellenanzeige: Ist die Stelle in Teilzeit? Wann ist die Arbeit?",
+          "Guten Tag! Ich habe eine Frage zur Stellenanzeige. Wann ist die Arbeit?",
+          "Ist die Stelle in Teilzeit oder in Vollzeit? Und wann ist die Arbeit?"
+        ],
+        "why_tr": "Önce konuyu söyle: **eine Frage zur Stellenanzeige**. Sonra soruyu sor."
+      }
+    ],
+    "sesli": [
+      "m1:66:s9",
+      "m1:66:s10"
+    ],
+    "dikte": [
+      "m1:66:s1",
+      "m1:66:s2",
+      "m1:66:s3",
+      "m1:66:s4"
+    ]
+  }
+}
