@@ -22,6 +22,15 @@ export function a1TamamAskida(P: A1TamamPolitika = A1_TAMAM, acik: boolean = P.a
   return acik && a1TamamEksik(P).length > 0;
 }
 
+/** Askıdaki A2 kararının adı (rapor başlığı ve "Raporu kopyala" metni; "A2'ye hazırsın" yerine) */
+export const A2_ASKIDA = "A1'i iyi biliyorsun; A2 kararı şimdilik askıda.";
+/** Seviye raporundaki açıklama */
+export const a2AskidaSatir = (eksik: readonly { tr: string }[]) =>
+  `A1 sınavının istediği bazı konular derslerde daha yok: ${eksikMetni(eksik)}. Bu konular derslere gelince karar açılır ve A2'ye buradan başlarsın. O zamana kadar A1 günlerinden devam edersin.`;
+/** Deneme sonucundaki açıklama */
+export const denemeAskidaSatir = (eksik: readonly { tr: string }[]) =>
+  `Bu sonuçla A1'i bitirmiş sayılmıyorsun: sınavın istediği bazı konular derslerde daha yok (${eksikMetni(eksik)}). Bu konular derslere gelince denemeyi bir kez daha çöz.`;
+
 /** Öğrenciye gösterilen eksik listesi: "kendini tanıtma (…), hazırlıksız serbest konuşma ve …" */
 export function eksikMetni(eksik: readonly { tr: string }[]): string {
   const t = eksik.map((e) => e.tr);

@@ -11,7 +11,7 @@ deneme `assess:e2e-deneme:1` (content/tools/fixtures/assess).
 python3 tests/e2e/v2_sinav.py [--browser webkit] [--device "iPhone 15"] [--scheme dark] [--shots DIR]
 """
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, SHOTS
 
 PORT = 4261
 DENEME = "assess:e2e-deneme:1"
@@ -156,8 +156,9 @@ def main():
         pg.evaluate("() => sessionStorage.setItem('e2e-a1-tamam', '1')"); pg.reload(); pg.wait_for_selector("[data-test=deneme-sonuc]", timeout=20000)
         t = pg.inner_text("[data-test=deneme-sonuc]")
         check(pg.get_attribute("[data-test=deneme-sonuc]", "data-gecti") == "1" and pg.locator("[data-test=deneme-gecti]").count() == 1, "bayrak açık: puan ve 'geçti' değişmez")
-        check(pg.locator("[data-test=deneme-a1-askida]").count() == 1 and '"A1 tamam" sayılmıyor' in t and "kendini tanıtma" in t, "bayrak açık: 'A1 tamam sayılmıyor' + eksik konular")
+        check(pg.locator("[data-test=deneme-a1-askida]").count() == 1 and "A1'i bitirmiş sayılmıyorsun" in t and "kendini tanıtma" in t, "bayrak açık: 'A1'i bitirmiş sayılmıyorsun' + eksik konular")
         no_overflow(pg, "deneme sonucu (A1 askıda)"); shot(pg, f"sinav-sonuc-a1-askida-{sema}")
+        if SHOTS: pg.locator("[data-test=deneme-sonuc]").screenshot(path=f"{SHOTS}/sinav-sonuc-a1-askida-kart-{sema}.png")
         pg.evaluate("() => sessionStorage.removeItem('e2e-a1-tamam')")
         # tek bölüm adresi doğrudan başlar
         pg.goto(base + "#/sinav/55/okuma"); pg.wait_for_selector("[data-test=sinav-coz][data-bolum=okuma]", timeout=15000)

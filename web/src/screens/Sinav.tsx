@@ -22,7 +22,7 @@ import { ActionBar, ProgressHeader } from "../ui/kit.tsx";
 import { Rich } from "../ui/rich.tsx";
 import { MaddeView } from "../ui/denemeMadde.tsx";
 import { a1Askida } from "../services/a1Tamam.ts";
-import { eksikMetni } from "../core/a1Tamam.ts";
+import { denemeAskidaSatir } from "../core/a1Tamam.ts";
 
 import { showText } from "../core/persona.ts";
 
@@ -194,7 +194,7 @@ function SonucKarti({ d, sonuc, kalan, onYeniden }: { d: Deneme; sonuc: ReturnTy
       <p class="small">Konuşma: {puanTr(sonuc.konusma ?? 0)}/{sonuc.konusmaEnCok} puan.</p>
       {sonuc.gecti
         ? <><p data-test="deneme-gecti">Geçme sınırına ulaştın. Yazma ve konuşmanın puanını kendin verdin; gerçek sınavda bunu bir değerlendirici verir.</p>
-          {askida && d.seviye === "A1" && <p class="small" data-test="deneme-a1-askida">Bu sonuç henüz "A1 tamam" sayılmıyor. Sınavın istediği bazı konular derslerde henüz yok: {eksikMetni(askida)}. Bu konular gelince denemeyi bir daha çöz.</p>}</>
+          {askida && d.seviye === "A1" && <p class="small" data-test="deneme-a1-askida">{denemeAskidaSatir(askida)}</p>}</>
         : <p data-test="deneme-gecmedi">Henüz geçme sınırında değilsin. Geçmek için toplamda %{Math.round(d.gecme.toplam * 100)}, konuşmada ayrıca %{Math.round(d.gecme.konusma * 100)} gerekir.</p>}
       {zayif.length > 0 && <ul class="zayif-liste" data-test="deneme-zayif">{zayif.map((b) => (
         <li class="row"><span class="grow">{BOLUM_TR[b.id]}: {puanTr(sonuc.bolumler[b.id] ?? 0)}/{b.puan}</span>

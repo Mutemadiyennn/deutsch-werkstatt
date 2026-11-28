@@ -22,7 +22,7 @@ import { personalizeDeep } from "../core/persona.ts";
 import { loadLexicon, loadTespit } from "../services/content.ts";
 import { cevapYaz, kararUygula, raporKaydet, tamamlaNotEt, tespitOku, type TespitKayit } from "../services/tespit.ts";
 import { a1Askida } from "../services/a1Tamam.ts";
-import { eksikMetni } from "../core/a1Tamam.ts";
+import { A2_ASKIDA, a2AskidaSatir } from "../core/a1Tamam.ts";
 import { ai, aiState } from "../services/ai.ts";
 import { sttAvailable } from "../services/speech.ts";
 import { setLearning } from "../services/focusRuntime.ts";
@@ -357,18 +357,19 @@ export function TespitRaporu() {
     catch { setMesgul(false); toast("Kaydedilemedi; tekrar dene."); }
   };
   const planGunleri = [...new Set(r.zayifCanDo.map((z) => z.gun))];
-  // PM-148 karar 1: içerik koşulları inene kadar "A2'ye hazırsın" askıda (bayrak `policy.a1_tamam.acik`); kayıtlı rapor değişmez
-  const eksik = r.karar === "a2" ? a1Askida() : null;
-  const askidaTr = eksik ? `Sınavın istediği bazı konular derslerde henüz yok: ${eksikMetni(eksik)}. Bu konular gelince karar açılır; A2'ye buradan başlarsın.` : "";
+  // PM-148 karar 1: içerik koşulları inene kadar "A2'ye hazırsın" askıda (bayrak `policy.a1_tamam.acik`); kayıtlı rapor değişmez.
+  // A2 kararı bayrak kapalıyken zaten uygulandıysa askıya alınmaz (öğrenci A2'de)
+  const eksik = r.karar === "a2" && v.kayit.uygulandi !== "a2" ? a1Askida() : null;
+  const askidaTr = eksik ? a2AskidaSatir(eksik) : "";
   const kopyala = async () => {
-    const t = raporMetni(r, { beceri: BECERI_TR, karar: KARAR_TR }) + (eksik ? `\nKarar askıda: ${askidaTr}` : "");
+    const t = raporMetni(r, { beceri: BECERI_TR, karar: eksik ? { ...KARAR_TR, a2: A2_ASKIDA } : KARAR_TR }) + (eksik ? `\n${askidaTr}` : "");
     try { await navigator.clipboard.writeText(t); toast("Rapor kopyalandı"); } catch { toast("Kopyalanamadı; metni seçip kopyalayabilirsin."); }
   };
   return (
     <div class="stack tespit-rapor" data-test="tespit-rapor" data-karar={r.karar} data-askida={eksik ? "1" : "0"} data-genel={Math.round(r.genel * 100)}>
       <ProgressHeader title="Seviye raporun" back="#/ben" />
       <section class={`card stack tespit-karar ${eksik ? "tamamla" : r.karar}`} data-test="tespit-karar">
-        <h2 style={{ margin: 0 }}>{eksik ? "A2 sınırını geçtin; \"A2'ye hazırsın\" kararı askıda." : r.karar === "tamamla" && planGunleri.length ? `A2'den önce ${planGunleri.length} günlük bir tamamlama planın var.` : KARAR_TR[r.karar]}</h2>
+        <h2 style={{ margin: 0 }}>{eksik ? A2_ASKIDA : r.karar === "tamamla" && planGunleri.length ? `A2'den önce ${planGunleri.length} günlük bir tamamlama planın var.` : KARAR_TR[r.karar]}</h2>
         <p class="small muted" style={{ margin: 0 }} data-test="tespit-gerekce">{gerekce(r)}</p>
         {eksik && <p class="small" style={{ margin: 0 }} data-test="tespit-a1-askida">{askidaTr}</p>}
       </section>

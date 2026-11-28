@@ -146,7 +146,7 @@ def main():
         pg.evaluate("() => sessionStorage.setItem('e2e-a1-tamam', '1')"); pg.reload(); pg.wait_for_selector("[data-test=tespit-rapor]", timeout=20000)
         ra = rapor(pg)
         check(ra["karar"] == "a2" and pg.get_attribute("[data-test=tespit-rapor]", "data-askida") == "1", "bayrak açık: kayıtlı karar a2, ekranda askıda")
-        check("A2'ye hazırsın." not in ra["metin"] and "kararı askıda" in ra["metin"] and "kendini tanıtma" in pg.inner_text("[data-test=tespit-a1-askida]"), "bayrak açık: 'A2'ye hazırsın' yok; askıda + eksik konular")
+        check("A2'ye hazırsın." not in ra["metin"] and "A2 kararı şimdilik askıda" in ra["metin"] and "A1 günlerinden devam edersin" in ra["metin"] and "kendini tanıtma" in pg.inner_text("[data-test=tespit-a1-askida]"), "bayrak açık: 'A2'ye hazırsın' yok; askıda + eksik konular")
         check(pg.locator("[data-test=tespit-a2]").count() == 0 and ra["birincil"] == ["Bugüne dön"], f"bayrak açık: A2'ye geçiş yok, tek birincil 'Bugüne dön' ({ra['birincil']})")
         no_overflow(pg, "seviye raporu (A2 askıda)"); shot(pg, f"tespit-rapor-a2-askida-{sema}", full=False)
         pg.evaluate("() => sessionStorage.removeItem('e2e-a1-tamam')"); pg.reload(); pg.wait_for_selector("[data-test=tespit-a2]", timeout=20000)
