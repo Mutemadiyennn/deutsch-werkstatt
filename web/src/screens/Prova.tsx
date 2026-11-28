@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { useApp } from "../state.ts";
 import { loadLexicon, loadM1Gun } from "../services/content.ts";
 import { adimXpVer } from "../services/ilerleme.ts";
-import { personalizeDeep } from "../core/persona.ts";
+import { personalizeDeep, profilGeriAl } from "../core/persona.ts";
 import { beyanSecenegi, dugumBul, eslestir, hazirlikCumleleri, rapor, sonMu, sonrakiDugum, type Eslesme, type Kayit, type ProvaT } from "../core/prova.ts";
 import { addClaim, setMeta } from "../data/db.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
@@ -162,7 +162,7 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
               {beyanI !== null && <button class="btn block" data-test="dogru-soyledim" onClick={() => {
                 const i = beyanI;
                 const s = dugum!.secenekler[i]!;
-                void addClaim({ at: new Date().toISOString(), scenarioId: "m1:prova", itemId: `${p.id}:${id}`, prompt: dugum!.de, answer: cevap.a, expected: s.accepted.length ? s.accepted : [s.de] });
+                void addClaim({ at: new Date().toISOString(), scenarioId: "m1:prova", itemId: `${p.id}:${id}`, prompt: profilGeriAl(dugum!.de), answer: profilGeriAl(cevap.a), expected: (s.accepted.length ? s.accepted : [s.de]).map((x) => profilGeriAl(x)) });
                 ilerle(i, { dugum: id, cevap: cevap.a, secenek: i, uygun: s.uygun, beyan: true });
               }}>{cevap.mode === "voice" ? "Doğru söyledim" : "Benimki de doğru"}</button>}
               {cevap.e.kind === "wrong" && <button class="btn block ghost" data-test="dogrusuyla-gec" onClick={() => {
