@@ -28,6 +28,11 @@ describe("profil yuvaları", () => {
     expect(profilDoldur("Ich bin {aile}.", "Ich bin Lehrer.")).toBe("Ich bin (medeni durumun).");
     expect(profilDoldur("Ich bin {yas} Jahre alt.", "Ich bin sehr Jahre alt.")).toBe("Ich bin (yaşın) Jahre alt.");
     expect(profilDoldur("Ich komme aus {ulke}.", "Ich komme aus nicht.")).toBe("Ich komme aus (ülken).");
+    // yuva edatla başlayamaz (K-00 tümleşik koşu: 31. gün "Ich bin von Beruf." meslek sayılıyordu); değerin içinde edat olabilir
+    expect(profilDoldur("Ich bin {meslek}.", "Ich bin von Beruf.")).toBe("Ich bin (mesleğin).");
+    expect(profilDoldur("Ich arbeite als {meslek}.", "Ich arbeite als in Hamburg.")).toBe("Ich arbeite als (mesleğin).");
+    expect(profilDoldur("Ich bin {meslek}.", "Ich bin Koch von Beruf.")).toBe("Ich bin Koch von Beruf.");
+    expect(profilDoldur("Mein Hobby ist {hobi}.", "Mein Hobby ist Fußball mit Freunden.")).toBe("Mein Hobby ist Fußball mit Freunden.");
     expect(profilDoldur("Ich bin {meslek}.", "Ich bin Lehrer.")).toBe("Ich bin Lehrer.");
     // 2. tur R2-1: yazıyla yaş; R2-4: yalnız artikel
     for (const y of ["dreißig", "vierunddreißig", "achtzehn", "dreissig"]) expect(profilDoldur("Ich bin {yas} Jahre alt.", `Ich bin ${y} Jahre alt.`)).toBe(`Ich bin ${y} Jahre alt.`);
