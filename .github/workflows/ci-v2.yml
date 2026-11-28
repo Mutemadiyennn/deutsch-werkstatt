@@ -191,6 +191,8 @@ jobs:
         run: cd tests/e2e && python v2_akis.py --mikrofon --gun 1
       - name: "Akış bayrağı 'hepsi' (PM-090 md. 3): 1. gün bitince 2. günün BAŞLA'sı akışa gider; [1] ve [] ile eski düzen"
         run: cd tests/e2e && python v2_akis_hepsi.py
+      - name: "İki parçalı fiil boşluğu (PM-148 [ANA-T] md. 1, DENETİM-A1 P1-1): iki boşluk, iki parça sırayla; eski plan da doğru"
+        run: cd tests/e2e && python v2_bosluk_iki.py
       - name: "Akış sürekliliği (PM-148 [ANA-T] md. 2; DENETİM-1 P1-4/5/7/13): BAŞLA akıştaki yerde, düğüm ✓, günün çubuğu, eski derse gidilmez"
         run: cd tests/e2e && python v2_sureklilik.py --shots /tmp/shots && python v2_sureklilik.py --scheme dark
       - name: "Dil noktası durağı (PM-092 md. 1, #231): paketteki bütün dil noktaları telefonda sığar, tablo bölünmez, sesli örnekler, tek 'Anladım'"
