@@ -131,3 +131,29 @@ GERİ listesi:
 5. `gun-54.json` · okuma `metin_tr` Patientinnen und Patienten / Sprechzeiten cümlesi
 
 Bu dilimdeki beş dosyada (gün 25, 27, 30, 52, 54) GERİ var; OD-9.4'e göre bu dosyalar "reviewed" sayılamaz. Gün 15, 31, 34, 49 ve 53 farkında GERİ yok.
+
+## 2. tur
+
+1. turda GERİ dönen beş metnin düzeltilmiş hâli okundu. Kalıplardaki boşluk işareti 1. turdaki gibi değerlendirildi: kalıbın boş yeri sayıldı, açıklama sembolü sayılmadı (gün 31 ve 49 kalıplarıyla aynı).
+
+| Kimlik | Alan | Metin | Kendi sözlerimle | Karar | Neden / not |
+|---|---|---|---|---|---|
+| m1:25:h2 | görev (Markt 1) | Cumartesi pazar yerindeyim. | Cumartesi günü pazarda, tezgâhların olduğu yerdeyim. | GEÇTİ | |
+| m1:25:h2 | görev (Markt 2) | Pazar yeri cumartesi kuruluyor. | Pazar cumartesi günleri kurulur. | GEÇTİ | "Pazar yeri" deyince gün değil yer olduğu hemen anlaşılıyor. Tek okumada anladım. |
+| m1:27:h3 | kalıp 1 | … nerede? (tek şey) – … nerede? (birden çok şey) | Tek bir şeyin yerini sorarken soldakini, birkaç şeyin yerini sorarken sağdakini diyorum. | GEÇTİ | Parantezler sırayı Almancayla eşleştiriyor; terim yok. |
+| m1:30 okuma | metin_tr (market cümlesi) | Belediye binasının yanındaki süpermarket, açılış saatleri: pazartesi–cuma (Mo–Fr) 7–20, cumartesi (Sa) 7–14. | Belediyenin yanındaki market hafta içi 7'den 20'ye, cumartesi 7'den 14'e açık. Tabelada bu günler Mo–Fr ve Sa diye yazıyor. | GEÇTİ | `=` kalktı; Türkçe gün adı kısaltmanın yanında. 12 kelime. |
+| m1:52 okuma | metin_tr (ikinci not) | Sevgili kiracılar, salı günü saat sekizden on bire kadar su yok. | Kiracılara: salı sabah 8'den 11'e kadar su kesik. | GEÇTİ | Parantez kalktı; 10 kelime, tek fikir. |
+| m1:52 okuma | metin_tr (imza) | Bina yönetiminiz | Notu binanın yönetimi yazmış. | GEÇTİ | Parantez kalkınca da anlaşılıyor. Başlık artık "iki not" diyor; 1. turdaki not da kalktı. |
+| m1:54 okuma | metin_tr (ek, cümle 1) | Sevgili hastalarımız, muayene saatlerimiz: pazartesi–cuma (Mo–Fr) 8–12 ve 14–18. | Hastalara: doktor hafta içi sabah 8–12 ve öğleden sonra 14–18 bakıyor. | GEÇTİ | Tek parantez kaldı; 9 kelime. Saat bilgisi hemen bulunuyor. |
+| m1:54 okuma | metin_tr (ek, cümle 2) | Çarşamba günü muayenehane saat on ikiden sonra kapalı. | Çarşamba öğleden sonra doktor yok, 12'de kapanıyor. | GEÇTİ | Artık üstteki cümleyle çelişmiyor. |
+| m1:54:o6 | soru + şıklar | Muayenehane çarşamba öğleden sonra açık mı? · Hayır, saat on ikiden sonra kapalı / Evet, akşama kadar açık / Yalnızca cumartesi açık | Çarşamba öğleden sonra gidebilir miyim? Hayır, 12'de kapanıyor. | GEÇTİ | Soru artık anlamlı: başka günler öğleden sonra açık, çarşamba değil. |
+
+Gün 54 "çarşamba" mantık sorunu: kalktı; metin artık hafta içi 14–18'i de yazıyor, çarşamba öğleden sonra kapanması bir istisna olarak okunuyor.
+
+### 2. tur sayım
+
+- Okunan: 9
+- GEÇTİ: 9
+- GERİ: 0
+
+1. turdaki beş GERİ (gün 25, 27, 30, 52, 54) kapandı. Bu dilimde okur açısından açık GERİ kalmadı; gün 25, 27, 30, 52 ve 54 okur kontrolünden geçti (OD-9.4).

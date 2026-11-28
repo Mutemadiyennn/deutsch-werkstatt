@@ -16,7 +16,7 @@
   "2. Hafta: omurganın her k1_aralik grubu için o grubun, sıra aralığındaki, öğretilmemiş, daha önce atanmamış, takvim kolunda olmayan kartları; K1 sırasıyla; adet kadar. r0 grubu r0:* gruplarının tamamıdır. 2. haftanın ilk grubu omurganın 8. gün listesidir.",
   "3. Gün: gunler[].kelime.adet kadar. Önce günün başlığında ya da derslerinin grammar.json kaydında (başlık, tablo, örnek cümle; Türkçe açıklama sayılmaz) tam sözcük olarak geçen kartlar ve dersin K1 grubundaki kartlar (r0:10-buchstabieren ↔ r0:heceleme), en erken uyan güne; kalanı K1 sırasıyla, gün sırasıyla. 8. gün omurgadaki listesinin kalanını öğretir.",
   "4. Dilbilimci gün sırası denetimi: bulgular yalnız aynı hafta içinde gün değiştirerek düzeltilir (duzeltmeler alanı).",
-  "5. Kart ve çerçeve (PM 7088230583 md. 1, PM-047 §2): kartlar = kartMi (card:false değil ve tür det/pron/conj/prep/particle/num değil) ya da sözlükte henüz kaydı olmayan kimlik; cerceve = öteki işlev sözcükleri. Hafta kümesi kuralı yalnız kartlar içindir. cerceve sözcüğü yeni_kartlar'a yazılmaz, ama o hafta bir kalıpta ya da dil noktasında gösterilmeden kullanılamaz. Boşalan yer doldurulmaz; planlanan_yeni üst sınırdır. sozlukte_yok: registry/lexicon/batch-*.json içinde derin kaydı olmayan kimlik; işaretli kimlik (kimlik_isaretleri) lex kaydı girene kadar günün en sonuna bırakılır. Şu an 0: tablodaki 13 kimlik batch-015 ile sözlüğe girdi (İÇ-K2)."
+  "5. Kart ve çerçeve (PM 7088230583 md. 1, PM-047 §2): kartlar = kartMi (card:false değil ve tür det/pron/conj/prep/particle/num değil) ya da sözlükte henüz kaydı olmayan kimlik; cerceve = öteki işlev sözcükleri. Hafta kümesi kuralı yalnız kartlar içindir. cerceve sözcüğü yeni_kartlar'a yazılmaz, ama o hafta bir kalıpta ya da dil noktasında gösterilmeden kullanılamaz. Boşalan yer doldurulmaz; planlanan_yeni üst sınırdır. sozlukte_yok: registry/lexicon/batch-*.json içinde derin kaydı olmayan kimlik; işaretli kimlik (kimlik_isaretleri) lex kaydı girene kadar günün en sonuna bırakılır. Şu an 0: tablodaki 13 kimlik batch-015 ile sözlüğe girdi (İÇ-K2). İstisna (PM-148 md. 3): deneme sınavının metin türü (tabela, anons) için A2'den öne alınan kartlar hafta kümesine eklenir; her biri duzeltmeler'de yazılıdır."
  ],
  "takaslar": {
   "not_tr": "main'deki gun-0N.json dosyalarında takas yok; bilinen takaslar halka dalında duruyor (PM-090 md. 1: tablo onları hesaba katar). one_gelen kartlar 1. haftada öğretilmiş sayılır ve 8. günden düşer. hafta_ici takaslar 1. haftanın içinde kalır, tabloyu değiştirmez.",
@@ -472,15 +472,15 @@
     15,
     21
    ],
-   "adet": 83,
+   "adet": 82,
    "cerceve_adet": 14,
-   "onceki_adet": 97,
+   "onceki_adet": 96,
    "planlanan_yeni": 95,
-   "fark": -12,
-   "birikimli": 367,
+   "fark": -13,
+   "birikimli": 366,
    "omurga_birikimli": 365,
-   "birikimli_fark": 2,
-   "kart_birikimli": 277,
+   "birikimli_fark": 1,
+   "kart_birikimli": 276,
    "gruplar": [
     {
      "grup": "r0",
@@ -531,9 +531,16 @@
      "omurga_adet": 21,
      "aralikta_aday": 21,
      "alinan": 21
+    },
+    {
+     "grup": "PM-148 md. 3: A2'den öne alınan tabela ve anons kartları",
+     "sira": null,
+     "omurga_adet": 0,
+     "aralikta_aday": 1,
+     "alinan": 1
     }
    ],
-   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123).  PM-148 md. 3 (DENETİM-A1 P1-3): 2 tabela ve anons kartı A2 tablosundan öne alındı (duzeltmeler); üst sınır aşılmadı.",
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123).  PM-148 md. 3 (DENETİM-A1 P1-3): 1 tabela ve anons kartı A2 tablosundan öne alındı (duzeltmeler); üst sınır aşılmadı.",
    "kartlar": [
     "lx:krank",
     "lx:nochmal",
@@ -615,7 +622,8 @@
     "lx:Kind",
     "lx:genau",
     "lx:Vater",
-    "lx:passieren"
+    "lx:passieren",
+    "lx:Information"
    ],
    "cerceve": [
     "lx:vor",
@@ -646,10 +654,10 @@
    "onceki_adet": 97,
    "planlanan_yeni": 90,
    "fark": 0,
-   "birikimli": 464,
+   "birikimli": 463,
    "omurga_birikimli": 455,
-   "birikimli_fark": 9,
-   "kart_birikimli": 367,
+   "birikimli_fark": 8,
+   "kart_birikimli": 366,
    "gruplar": [
     {
      "grup": "ihtiyac:wohnen",
@@ -690,6 +698,13 @@
      "omurga_adet": 25,
      "aralikta_aday": 25,
      "alinan": 25
+    },
+    {
+     "grup": "PM-148 md. 3: A2'den öne alınan tabela ve anons kartları",
+     "sira": null,
+     "omurga_adet": 0,
+     "aralikta_aday": 7,
+     "alinan": 7
     }
    ],
    "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123).  PM-148 md. 3 (DENETİM-A1 P1-3): 7 tabela ve anons kartı A2 tablosundan öne alındı (duzeltmeler); üst sınır aşılmadı.",
@@ -776,7 +791,14 @@
     "lx:Garantie",
     "lx:Bruder",
     "lx:Musik",
-    "lx:Sohn"
+    "lx:Sohn",
+    "lx:Angebot",
+    "lx:Markt",
+    "lx:Eingang",
+    "lx:hinten",
+    "lx:Obst",
+    "lx:Getränk",
+    "lx:Öffnungszeiten"
    ],
    "cerceve": [
     "lx:ab",
@@ -800,10 +822,10 @@
    "onceki_adet": 87,
    "planlanan_yeni": 85,
    "fark": 0,
-   "birikimli": 551,
+   "birikimli": 550,
    "omurga_birikimli": 540,
-   "birikimli_fark": 11,
-   "kart_birikimli": 452,
+   "birikimli_fark": 10,
+   "kart_birikimli": 451,
    "gruplar": [
     {
      "grup": "ihtiyac:verkehr",
@@ -854,6 +876,13 @@
      "omurga_adet": 20,
      "aralikta_aday": 20,
      "alinan": 20
+    },
+    {
+     "grup": "PM-148 md. 3: A2'den öne alınan tabela ve anons kartları",
+     "sira": null,
+     "omurga_adet": 0,
+     "aralikta_aday": 2,
+     "alinan": 2
     }
    ],
    "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123).  PM-148 md. 3 (DENETİM-A1 P1-3): 2 tabela ve anons kartı A2 tablosundan öne alındı (duzeltmeler); üst sınır aşılmadı.",
@@ -940,7 +969,9 @@
     "lx:Bett",
     "lx:Job",
     "lx:Mama",
-    "lx:gefallen"
+    "lx:gefallen",
+    "lx:Gleis",
+    "lx:Linie"
    ],
    "cerceve": [
     "lx:beim",
@@ -959,10 +990,10 @@
    "onceki_adet": 60,
    "planlanan_yeni": 60,
    "fark": 0,
-   "birikimli": 611,
+   "birikimli": 610,
    "omurga_birikimli": 600,
-   "birikimli_fark": 11,
-   "kart_birikimli": 512,
+   "birikimli_fark": 10,
+   "kart_birikimli": 511,
    "gruplar": [
     {
      "grup": "senaryo",
@@ -1082,10 +1113,10 @@
    "onceki_adet": 82,
    "planlanan_yeni": 80,
    "fark": 0,
-   "birikimli": 693,
+   "birikimli": 692,
    "omurga_birikimli": 680,
-   "birikimli_fark": 13,
-   "kart_birikimli": 592,
+   "birikimli_fark": 12,
+   "kart_birikimli": 591,
    "gruplar": [
     {
      "grup": "ihtiyac:arzt",
@@ -1126,6 +1157,13 @@
      "omurga_adet": 39,
      "aralikta_aday": 39,
      "alinan": 39
+    },
+    {
+     "grup": "PM-148 md. 3: A2'den öne alınan tabela ve anons kartları",
+     "sira": null,
+     "omurga_adet": 0,
+     "aralikta_aday": 2,
+     "alinan": 2
     }
    ],
    "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123).  PM-148 md. 3 (DENETİM-A1 P1-3): 2 tabela ve anons kartı A2 tablosundan öne alındı (duzeltmeler); üst sınır aşılmadı.",
@@ -1207,7 +1245,9 @@
     "lx:Fenster",
     "lx:kochen",
     "lx:Zug",
-    "lx:Bier"
+    "lx:Bier",
+    "lx:Fahrgast",
+    "lx:halten"
    ],
    "cerceve": [
     "lx:gegenüber",
@@ -1226,10 +1266,10 @@
    "onceki_adet": 15,
    "planlanan_yeni": 15,
    "fark": 0,
-   "birikimli": 708,
+   "birikimli": 707,
    "omurga_birikimli": 695,
-   "birikimli_fark": 13,
-   "kart_birikimli": 607,
+   "birikimli_fark": 12,
+   "kart_birikimli": 606,
    "gruplar": [
     {
      "grup": "v1-A2",
@@ -1509,7 +1549,7 @@
    "dersler": [
     "gr:a1-02:t3"
    ],
-   "adet": 20,
+   "adet": 19,
    "omurga_adet": 20,
    "derse_ait": 0,
    "kartlar": [
@@ -1531,8 +1571,7 @@
     "lx:wehtun",
     "lx:mitkommen",
     "lx:üben",
-    "lx:Information",
-    "lx:bitten"
+    "lx:Information"
    ],
    "cerceve_adet": 2,
    "cerceve": [
@@ -2746,12 +2785,6 @@
    "neden_tr": "PM-148 md. 3 (DENETİM-A1 P1-3): tabela ve anons sözcüğü; A1 deneme sınavında okunuyor ya da duyuluyor, önce öğretilmeli. A2 tablosunda 108. günde de duruyor (orada artık tekrar)."
   },
   {
-   "kart": "lx:bitten",
-   "onceki_gun": null,
-   "yeni_gun": 15,
-   "neden_tr": "PM-148 md. 3 (DENETİM-A1 P1-3): tabela ve anons sözcüğü; A1 deneme sınavında okunuyor ya da duyuluyor, önce öğretilmeli. A2 tablosunda 60. günde de duruyor (orada artık tekrar)."
-  },
-  {
    "kart": "lx:Angebot",
    "onceki_gun": null,
    "yeni_gun": 25,
@@ -2929,7 +2962,7 @@
   "kartlarda_kart_olmayan": 0,
   "cercevede_kart": 0,
   "ust_siniri_asan_hafta": 0,
-  "kart_toplam": 484,
+  "kart_toplam": 483,
   "cerceve_toplam": 60,
   "sozlukte_olmayan": 0
  },

@@ -68,3 +68,30 @@ hafta-kapisi-kos.ts --hepsi   → 8 haftanın hepsinde "Öğretilmeden istenen: 
 4. `review.status`: inceleme yalnızca farkı kapsadığı için günler `draft` kaldı.
 
 ## Sonuç: KAPANDI (dilimin farkı için). Hata oranı 17/59 ≈ 0,29 (P1 2/59).
+
+## 2. tur (2026-11-28, yalnız 1. tur düzeltmeleri; fark `356d641f..` → `content`)
+İncelenen: 8 değişiklik yeri. Bunlar dört mini sahne (`m1:15:h5`, `m1:27:h3`, `m1:31:h4`, `m1:49:h2`; 15 satır, 4 soru, 12 şık), `m1:15` kart düzeni, `gun-25` c1b, `gun-30` başlığı ve o1, `gun-54` başlığı.
+
+### Düzeltmeler (önce → sonra, gerekçe)
+1. **`m1:31:h4` 1. satır (P1, bilinmeyen sözcük):** **Die Abfahrt nach München ist um acht. Und das Gleis?** → **Die Abfahrt ist um acht. Und das Gleis?** (tr: "Kalkış saat sekizde. Peki peron?"). Bilinmeyen sözcük **München**'di: özel ad kümede yok, 31. güne kadar kart olarak da öğretilmedi. Soru da buna göre değişti: "Münih'e kalkış hangi perondan?" → "Tren hangi perondan kalkıyor?" Doğru şık ve çeldiriciler aynı kaldı. 31. gündeki sahne uyarısı 3'ten 2'ye indi; kalan ikisi h2'deki eski **Krankenpflegerin** ve **Koch**.
+2. **`m1:49:h2` sahne (P2, durum mantığı):** Brandl Hanım da Wendlfing'de oturuyor, trenin Wendlfing'de durup durmadığını sorması yapay. **Dann warte ich auch.** cümlesi de garip: tren tünelde duruyor, herkes zaten bekliyor. Yeni sahne şöyle: **Warum hält der Zug hier?** / **Ich weiß es nicht. Alle Fahrgäste müssen warten.** / **Und hält er dann in Wendlfing?** / **Ja, er hält in Wendlfing.** İki kart (**halten** ×3, **Fahrgäste**) yerinde ve doğal kullanılıyor. Soru artık Fahrgast satırını ölçüyor: "Şimdi bütün yolcular ne yapmak zorunda?" → Beklemek / Trenden inmek / Bilet almak (ans 0). Eski doğru şık ("Evet, ama şimdi bütün yolcular bekliyor") soru ile cevabı birbirine karıştırıyordu.
+3. **`m1:15:h5` sahne (P3, tekrar mantığı):** Öğrenci "bir daha söyler misiniz" diyor, Huber Hanım ise tekrar etmek yerine yeni bilgi (saat) ekliyordu. Saat artık ilk satırda var: **… Ihr Termin ist am Freitag um neun Uhr.** Cevap kısa bir tekrar oldu: **Gern. Am Freitag, um neun Uhr.** (tr: "Tabii. Cuma, saat dokuzda."). Bu, telefonda gerçek tekrar rica akışı. Soru ve şıklar aynı kaldı.
+
+### Doğru bulunanlar
+- `m1:15` kart düzeni: **bitten** çıktı, **nochmal** h4'ten h5'e taşındı, h4'te 3 kart kaldı (2–6 sınırı içinde). **nochmal**'ın görev cümleleri ve 3'er kabul cevabı aynen taşınmış. "Telefonda: bilgi ve tekrar rica" başlığı içeriğe uyuyor. Sahnedeki öğrenci satırında ad ya da cinsiyet yok (D-061). Huber Hanım WORLD'deki muayenehane sekreteri, aile hekimi Dr. Weber (H4).
+- `m1:27:h3` sahne: **Wo sind die Getränke, bitte?** / **Hinten links. Das Obst ist am Eingang.** / **Und die Öffnungszeiten?** / **Die stehen am Eingang, rechts.** Hepsi doğal market Almancası. Türkçe OD-9'a uyuyor, soru ve çeldiriciler doğru.
+- `gun-25` c1b **Heute auf dem Markt: viel im Angebot!** hoparlör ve reklam anonsu üslubuna uyuyor; Türkçesi doğru.
+- `gun-30` başlığı ("… ve market tabelası"), satır sonuyla ayrılmış iki metin ve o1 "İlk metin ne?" doğru. `okuma.ts` bölücüsüyle cümle 6 = Öffnungszeiten, 7 = Obst, 8 = Getränke çıkıyor; o6 [6] ve o7 [8] hâlâ doğru cümleye bağlı.
+- `gun-54` başlığı "Doktorun notu ve muayenehane duyurusu" iki metne uyuyor. o1 "Bu not ne?" ilk metni soruyor, ikinci metin "not" değil; değişiklik gerekmedi.
+
+### Denetim çıktıları (düzeltmelerden sonra)
+```
+npm run content:validate      → 0 hata, 337 uyarı (gun-31: "2 sahne satırında 1 bilinmeyen")
+dikis-kos.ts                  → İhlal: 0
+hafta-kapisi-kos.ts --hepsi   → Öğretilmeden istenen: **0** (kesin 0, sınırda 0) · Hafta sonu testi: **%100** (12/12)
+```
+
+### Kalan şüpheler
+- 1. turun takip işleri (31. gün c2/c5'teki DB dili, araçlardaki farklı cümle bölücüleri, **Zug**'un geç gelmesi) açık; bu dilimi engellemiyor.
+
+## 2. tur sonucu: KAPANDI. Hata oranı 3/8 ≈ 0,38 (P1 1, P2 1, P3 1).

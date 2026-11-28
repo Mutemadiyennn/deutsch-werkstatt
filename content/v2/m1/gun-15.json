@@ -137,8 +137,7 @@
   "lx:wehtun",
   "lx:mitkommen",
   "lx:üben",
-  "lx:Information",
-  "lx:bitten"
+  "lx:Information"
  ],
  "halkalar": [
   {
@@ -633,7 +632,6 @@
    "kartlar": [
     "lx:Ohr",
     "lx:Fuß",
-    "lx:nochmal",
     "lx:üben"
    ],
    "kaliplar": [
@@ -685,26 +683,6 @@
       "Nein, mir tut der Fuß weh.",
       "Nein, der Fuß tut mir weh.",
       "Nein, mein Fuß tut weh."
-     ]
-    },
-    {
-     "kart": "lx:nochmal",
-     "de": "Kannst du das nochmal sagen?",
-     "tr": "Bunu bir daha söyleyebilir misin?",
-     "accepted": [
-      "Kannst du das nochmal sagen?",
-      "Kannst du das bitte nochmal sagen?",
-      "Sag das bitte nochmal."
-     ]
-    },
-    {
-     "kart": "lx:nochmal",
-     "de": "Bitte nochmal, langsam!",
-     "tr": "Lütfen bir daha, yavaş!",
-     "accepted": [
-      "Bitte nochmal, langsam!",
-      "Nochmal, bitte, langsam!",
-      "Langsam, bitte, nochmal!"
      ]
     },
     {
@@ -761,10 +739,10 @@
   },
   {
    "id": "m1:15:h5",
-   "title_tr": "Telefonda bilgi ve rica",
+   "title_tr": "Telefonda: bilgi ve tekrar rica",
    "kartlar": [
     "lx:Information",
-    "lx:bitten"
+    "lx:nochmal"
    ],
    "dersten_sonra": true,
    "kaliplar": [
@@ -799,26 +777,55 @@
      ]
     },
     {
-     "kart": "lx:bitten",
-     "de": "Wir bitten um Entschuldigung.",
-     "tr": "Özür dileriz.",
+     "kart": "lx:nochmal",
+     "de": "Kannst du das nochmal sagen?",
+     "tr": "Bunu bir daha söyleyebilir misin?",
      "accepted": [
-      "Wir bitten um Entschuldigung.",
-      "Wir bitten um Entschuldigung!",
-      "Wir bitten Sie um Entschuldigung."
+      "Kannst du das nochmal sagen?",
+      "Kannst du das bitte nochmal sagen?",
+      "Sag das bitte nochmal."
      ]
     },
     {
-     "kart": "lx:bitten",
-     "de": "Ich bitte um einen Termin.",
-     "tr": "Bir randevu rica ediyorum.",
+     "kart": "lx:nochmal",
+     "de": "Bitte nochmal, langsam!",
+     "tr": "Lütfen bir daha, yavaş!",
      "accepted": [
-      "Ich bitte um einen Termin.",
-      "Ich bitte Sie um einen Termin.",
-      "Guten Tag, ich bitte um einen Termin."
+      "Bitte nochmal, langsam!",
+      "Nochmal, bitte, langsam!",
+      "Langsam, bitte, nochmal!"
      ]
     }
-   ]
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon çalıyor. Arayan, aile hekiminin muayenehanesinden Huber Hanım.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Praxis Dr. Weber, Huber. Ich habe eine Information für Sie: Ihr Termin ist am Freitag um neun Uhr.",
+      "tr": "Dr. Weber muayenehanesi, Huber. Size bir bilgim var: randevunuz cuma saat dokuzda."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Wie bitte? Können Sie das nochmal sagen?",
+      "tr": "Efendim? Bunu bir daha söyleyebilir misiniz?"
+     },
+     {
+      "r": "ch:huber",
+      "de": "Gern. Am Freitag, um neun Uhr.",
+      "tr": "Tabii. Cuma, saat dokuzda."
+     }
+    ],
+    "soru": {
+     "q_tr": "Randevu ne zaman?",
+     "opts": [
+      "Cuma saat dokuzda",
+      "Pazartesi saat dokuzda",
+      "Cuma saat on ikide"
+     ],
+     "ans": 0
+    }
+   }
   }
  ],
  "sahne": {
