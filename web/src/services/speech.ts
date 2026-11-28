@@ -6,7 +6,7 @@
  */
 import type { Speed } from "@dw/shared";
 import { splitForSpeech } from "../core/ttsClean.ts";
-import { almancaMi, konusanBul, OGRENCI_ID, sahneAta, sesCinsi, type Atama, type KarakterSes, type Konusan } from "../core/sesSec.ts";
+import { almancaMi, ANLATICI_ID, BILINMEYEN_ID, konusanBul, OGRENCI_ID, sahneAta, sesCinsi, type Atama, type KarakterSes, type Konusan } from "../core/sesSec.ts";
 
 /**
  * PM 7042161522-1: iOS WebKit 0,72'yi duyulur biçimde yavaşlatmıyordu. Yavaş hedefi: normalin en az 1,5 katı süre.
@@ -33,13 +33,19 @@ export function setKarakterler(k: KarakterSes[]) { karakterler = k; }
 let ogrenciCins: "kadin" | "erkek" | undefined;
 export function setOgrenciHitap(h?: "Herr" | "Frau") { ogrenciCins = h === "Herr" ? "erkek" : h === "Frau" ? "kadin" : undefined; }
 const OGRENCI = /^(sen|du|ich|öğrenci|ogrenci|\{name\}|learner|student|kullanıcı)$/i;
-/** T-0 (K-00c md. 3): konuşanı boş cümle anlatıcınındır; sahnede sabit, ötekilerden ayrı bir ses ve "Anlatıcı" etiketi */
-export const ANLATICI = "anlatici";
-/** İçerikteki konuşan alanı: boşsa anlatıcı */
-export const konusanKimi = (a: string | undefined): string => (a && a.trim() ? a : ANLATICI);
+/**
+ * T-0 (K-00c md. 3; inceleme #291 P1-2): içerikte konuşanı "anlatici" yazılan satır anlatıcınındır ("Anlatıcı" etiketi). Konuşanı BOŞ
+ * satır kimliği belirsiz biridir (anons, santral, yeni biri): "Başka biri". İkisi de sahnede sabit, karakterlerden ayrı bir gerçek ses alır.
+ */
+export const ANLATICI = ANLATICI_ID;
+export const BILINMEYEN = BILINMEYEN_ID;
+/** İçerikteki konuşan alanı: boşsa kimliği belirsiz konuşan */
+export const konusanKimi = (a: string | undefined): string => (a && a.trim() ? a : BILINMEYEN);
+/** Kaydın hiçbir satırında konuşan yok: tek ses, ekranda ad gösterilmez (anons, radyo kaydı) */
+export const konusansiz = (kimler: string[]) => kimler.every((k) => k === BILINMEYEN);
 function konusanCoz(a: string | undefined): Konusan | null {
   if (a && OGRENCI.test(a.trim())) return { id: OGRENCI_ID, cinsiyet: ogrenciCins, sira: 0 };
-  if (a === ANLATICI) return { id: ANLATICI, sira: 3 };
+  if (a === ANLATICI || a === BILINMEYEN) return { id: a, sira: 3 };
   return konusanBul(a, karakterler);
 }
 /**
@@ -113,7 +119,7 @@ export async function sahneHazirla(adlar: (string | undefined)[]): Promise<Map<s
 /** PM-132 md. 2b: dinlerken ekranda konuşanın adı (öğrenci "Sen", karakter adı, yoksa içerikteki ad) */
 /** Adın bir sözcüğü (unvan hariç) sonra gelecek seçeneklerde geçiyorsa ad cevabı verir (RQ-Ş18; inceleme #274 Ö-3, 2. tur P1-A) */
 export const adCevapMi = (ad: string, secenekler: string) => { const k = secenekler.split(/[^\p{L}]+/u); return ad.split(/[^\p{L}.]+/u).some((w) => w.length > 2 && !/^(herr|frau|dr\.)$/i.test(w) && k.includes(w)); };
-export const konusanAdi = (kim: string): string => (OGRENCI.test(kim.trim()) ? "Sen" : kim === "karsi" ? "Karşındaki" : kim === ANLATICI ? "Anlatıcı" : karakterler.find((c) => c.id === kim)?.name ?? kim);
+export const konusanAdi = (kim: string): string => (OGRENCI.test(kim.trim()) ? "Sen" : kim === "karsi" ? "Karşındaki" : kim === ANLATICI ? "Anlatıcı" : kim === BILINMEYEN ? "Başka biri" : karakterler.find((c) => c.id === kim)?.name ?? kim);
 
 /**
  * Tanılama (PM-142 md. 2.4): son sahnenin ses atamaları ve son tanıma hatasının ham metni cihazda saklanır;
@@ -273,7 +279,7 @@ export function ilkHiz(text: string, speed: Speed = "normal"): Speed {
 /** Satır satır çalınan diyalog/dinleme: hız bütün dizi için bir kez belirlenir (satırlar arasında karışmaz; inceleme #77 P2) */
 export async function speakDizi(lines: { de: string; speed?: Speed; kim?: string }[], speed: Speed = "normal", ara = 0, iptal?: () => boolean, onSatir?: (i: number) => void): Promise<void> {
   const ilk = ilkHiz(lines.map((l) => l.de).join("\n"), "normal") === "slow";
-  // sahne: konuşanlar birlikte, sesler gelince bir kez atanır (yavaşta da aynı sesler). Konuşanı olan dizide konuşansız satır anlatıcının
+  // sahne: konuşanlar birlikte, sesler gelince bir kez atanır (yavaşta da aynı sesler). Konuşanı olan dizide konuşansız satır "Başka biri"
   if (lines.some((l) => l.kim)) lines = lines.map((l) => ({ ...l, kim: konusanKimi(l.kim) }));
   const sahne = await sahneHazirla(lines.map((l) => l.kim));
   for (const [i, l] of lines.entries()) {

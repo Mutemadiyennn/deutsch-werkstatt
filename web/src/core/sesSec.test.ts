@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { havuzlar, KALITE_TR, konusanBul, OGRENCI_ID, PERDE_SINIR, sahneAta, sesAta, sesCinsi, sesKalitesi, tekillestir, type Ses } from "./sesSec.ts";
+import { ANLATICI_ID, BILINMEYEN_ID, havuzlar, KALITE_TR, konusanBul, OGRENCI_ID, PERDE_SINIR, sahneAta, sesAta, sesCinsi, sesKalitesi, tekillestir, type Ses } from "./sesSec.ts";
 import { RATE } from "../services/speech.ts";
 
 const v = (name: string, lang = "de-DE"): Ses => ({ name, lang });
@@ -123,7 +123,7 @@ describe("T-0: \"Sen\" karşıdakinden her zaman farklı ses (PM-153 md. 1 satı
       expect([once.ses?.name, once.pitch]).toEqual([yalniz.ses?.name, yalniz.pitch]);
     }
   });
-  it("beş konuşanlı sahne, tek kadın sesi: aynı sesi paylaşanlar en az %4 perde farkıyla", () => {
+  it("üç kadın konuşan, tek kadın sesi: aynı sesi paylaşanlar en az %4 perde farkıyla", () => {
     const ks = [0, 1, 2].map((i) => ({ id: `k${i}`, cinsiyet: "kadin" as const, sira: i }));
     const m = sahneAta(ks, KUTU);
     const p = ks.map((k) => m.get(k.id)!.pitch).sort();
@@ -136,5 +136,15 @@ describe("T-0: \"Sen\" karşıdakinden her zaman farklı ses (PM-153 md. 1 satı
     expect(konusanBul("der Verkäufer", [])!.cinsiyet).toBe("erkek");
     expect(konusanBul("ein Mann", [])!.cinsiyet).toBe("erkek");
     expect(konusanBul("Kassierer", [])!.cinsiyet).toBeUndefined();
+  });
+  it("belirsiz konuşan (anlatıcı, konuşanı boş) karakterden sonra: karakterin sesi değişmez, eğlence sesi en son (inceleme #291 P1-1/2)", () => {
+    const lechner = { id: "ch:lechner", cinsiyet: "erkek" as const, sira: 2 };
+    const AM = [v("Anna"), v("Markus")];
+    const yalniz = sahneAta([lechner], AM).get("ch:lechner")!;
+    const ile = sahneAta([{ id: BILINMEYEN_ID, sira: 3 }, lechner], AM);
+    expect([ile.get("ch:lechner")!.ses!.name, ile.get("ch:lechner")!.pitch]).toEqual([yalniz.ses!.name, yalniz.pitch]);
+    expect(ile.get(BILINMEYEN_ID)!.ses!.name).toBe("Anna");
+    const m = sahneAta([{ id: ANLATICI_ID, sira: 3 }], KUTU);
+    expect(m.get(ANLATICI_ID)!.ses!.name).toBe("Anna");
   });
 });

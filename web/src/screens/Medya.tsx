@@ -22,7 +22,7 @@ import { plain, Rich } from "../ui/rich.tsx";
 import { ADIM_TR, BASLANGIC, dikteSuz, adimlar, turaGore, ikinciTurVar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
-import { baslangicYavas, konusanKimi, sahneHazirla, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
+import { baslangicYavas, konusanKimi, konusansiz, sahneHazirla, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
 import type { Atama } from "../core/sesSec.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, CevapXp, FeedbackBand, KonusanAd, KonusanRozet, MicButton, ProgressHeader, YanlisIci } from "../ui/kit.tsx";
@@ -261,7 +261,7 @@ function DinleAdimi({ m, cs, oy, onNext, onOgretim }: { m: Medya; cs: MedyaCumle
     <section class="card stack fade" data-test="adim-dinle">
       {!!onOgretim?.length && <OnOgretim w={onOgretim} />}
       <p class="small" style={{ marginBottom: 0 }}>Önce kulağınla dene. Her kelimeyi anlaman gerekmiyor.</p>
-      {m.kind !== "video" && <KonusanRozet kim={oy.kim} kimler={oy.kimler} gizle={oy.gizle} />}
+      {m.kind !== "video" && !konusansiz(oy.kimler) && <KonusanRozet kim={oy.kim} kimler={oy.kimler} gizle={oy.gizle} />}
       {ikiHiz && <div class="seg" role="group" aria-label="Hız" data-test="hiz">{(["slow", "normal"] as const).map((h) => <button type="button" aria-pressed={hiz === h} disabled={oy.calisiyor !== null} onClick={() => setHiz(h)}>{h === "slow" ? "Yavaş" : "Normal"}</button>)}</div>}
       <ActionBar>
         {oy.calisiyor !== null
@@ -350,7 +350,7 @@ function CumleAdimi({ cs, oy, onNext }: { cs: MedyaCumle[]; oy: OynaticiDurum; o
       <div class="row"><div class="kicker grow">Cümle cümle dinle</div>
         <button class={`btn sm${yavas ? " primary" : ""}`} aria-pressed={yavas} data-test="yavas" onClick={() => setYavas(!yavas)}>0,75×</button></div>
       <p class="small muted">Cümleye dokun: o cümle çalar. Anlamadığın cümleyi yavaş dinle; metni birazdan göreceksin.</p>
-      <KonusanRozet kim={oy.kim} kimler={oy.kimler} gizle={oy.gizle} />
+      {!konusansiz(oy.kimler) && <KonusanRozet kim={oy.kim} kimler={oy.kimler} gizle={oy.gizle} />}
       <ol class="list cumleler">{cs.map((c, i) => (
         <li class={`row${oy.calisiyor === c.id ? " on" : ""}`} style={{ flexWrap: "nowrap" }}>
           <button class="btn sm" data-test={`cumle-${c.id}`} aria-label={`${i + 1}. cümleyi dinle`} onClick={() => void oy.cumle(c, yavas)}><Icon name="play" /> {i + 1}</button>
@@ -424,7 +424,7 @@ function TranskriptAdimi({ cs, lex, oy, onNext }: { cs: MedyaCumle[]; lex: Lexem
       {cs.map((c) => (
         // dinle düğmesi cümlenin sağında sabit: uzun cümlede alt satıra tek başına düşmez (öğrenci günlüğü 7057160147 N8)
         <p class={`transkript-satir${oy.calisiyor === c.id ? " on" : ""}`}>
-          <span class="grow"><KonusanAd kim={konusanKimi(c.speaker)} kimler={oy.kimler} /><DokunMetin de={c.de} onKelime={setKelime} />
+          <span class="grow">{!konusansiz(oy.kimler) && <KonusanAd kim={konusanKimi(c.speaker)} kimler={oy.kimler} gizle={oy.gizle} />}<DokunMetin de={c.de} onKelime={setKelime} />
             <br /><span class="small muted"><Rich text={c.tr} /></span></span>
           <button class="btn ghost sm" aria-label="Bu cümleyi dinle" data-test="transkript-dinle" onClick={() => void oy.cumle(c, false)}><Icon name="play" /></button></p>))}
       {kelime && <KelimeSayfasi kelime={kelime} lex={lex} onClose={() => setKelime(null)} />}

@@ -3,12 +3,12 @@
  * ekranda çözülür (`CumleBilgi`: halka görev cümleleri → kart örnekleri). Bahçe'nin soru bileşeni kartın kendi örneğini sorar;
  * bunlar ise planlayıcının kapıdan geçirdiği cümleyi sorar (bilinmeyen 0, AK-3).
  */
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
 import { dikteKarar, ruleVerdict, type Verdict } from "../../core/answer.ts";
 import { tohumluRng } from "../../core/halkaTur.ts";
 import { boslukGorunumu } from "../../core/ikiParca.ts";
-import { speak, speakDizi, sttAvailable } from "../../services/speech.ts";
+import { speak, speakDizi, stopSpeaking, sttAvailable } from "../../services/speech.ts";
 import { haptic } from "../../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, KonusanAd, KonusanRozet, ListenButton, MicButton } from "../kit.tsx";
 import { Icon } from "../icons.tsx";
@@ -199,7 +199,10 @@ export function SahneAdimi({ sahne, onBitti }: { sahne: SahneVeri; onBitti: (dog
   const kimler = sahne.satirlar.map((s) => s.r);
   // PM-132 md. 2b: dinlerken konuşanın adı; DENETİM-1 P1-2: ekranda ham kimlik (ch:…, ogrenci) değil ad
   const [kim, setKim] = useState<string>();
-  const dinle = async () => { setCalisiyor(true); try { await speakDizi(sahne.satirlar.map((s) => ({ de: s.de, kim: s.r })), "normal", 400, undefined, (i) => setKim(kimler[i])); } finally { setKim(undefined); setCalisiyor(false); setDinledi(true); } };
+  // ekrandan çıkınca (ya da sesler beklenirken adım değişince) dizi sonraki ekranda çalmaz (inceleme #291 P2-7)
+  const kosu = useRef(0);
+  useEffect(() => () => { kosu.current++; stopSpeaking(); }, []);
+  const dinle = async () => { const k = ++kosu.current; setCalisiyor(true); try { await speakDizi(sahne.satirlar.map((s) => ({ de: s.de, kim: s.r })), "normal", 400, () => kosu.current !== k, (i) => setKim(kimler[i])); } finally { if (kosu.current === k) { setKim(undefined); setCalisiyor(false); setDinledi(true); } } };
   const ok = secim === sahne.soru.ans;
   return (
     <section class="stack fade" data-test="akis-sahne" data-dinledi={dinledi ? "1" : "0"}>
@@ -213,7 +216,7 @@ export function SahneAdimi({ sahne, onBitti }: { sahne: SahneVeri; onBitti: (dog
         <section class="card stack" style={{ gap: 8 }} data-test="sahne-metin">
           {sahne.satirlar.map((s) => (
             <div class="row" style={{ flexWrap: "nowrap", gap: 8, alignItems: "flex-start" }}>
-              <span class="grow"><KonusanAd kim={s.r} kimler={kimler} /><b lang="de">{s.de}</b><br /><span class="small muted">{s.tr}</span></span>
+              <span class="grow"><KonusanAd kim={s.r} kimler={kimler} gizle={JSON.stringify(sahne.soru.opts)} /><b lang="de">{s.de}</b><br /><span class="small muted">{s.tr}</span></span>
               <ListenButton text={s.de} small slowToggle={false} kim={s.r} sahne={kimler} />
             </div>))}
         </section>

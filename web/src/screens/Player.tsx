@@ -441,8 +441,8 @@ function DialogueSection({ ctx, finish, back }: SP) {
         </section>
       )}
       <div class="chat" aria-live="polite">
-        {shown.map((l) => <div class={`bubble ${l.r === "A" ? "them" : "me"}`}><div class="who">{l.r === "A" ? d.roles.A : `${d.roles.B} (sen)`}</div><div class="dline"><div class="grow"><div lang="de">{l.de}</div>{support >= 1 && <div class="tr2">{l.tr}</div>}</div>{l.r === "A" && <ListenButton text={l.de} speed={l.speed} small slowToggle={false} />}</div></div>)}
-        {line.r === "A" && <div class="bubble them fade"><div class="who">{d.roles.A}</div><DeLine de={line.de} tr={support >= 1 ? line.tr : undefined} size="md" speed={line.speed} /><ExplainBtn de={line.de} chunks={ctx.s.chunks} /></div>}
+        {shown.map((l) => <div class={`bubble ${l.r === "A" ? "them" : "me"}`}><div class="who">{l.r === "A" ? d.roles.A : `${d.roles.B} (sen)`}</div><div class="dline"><div class="grow"><div lang="de">{l.de}</div>{support >= 1 && <div class="tr2">{l.tr}</div>}</div>{l.r === "A" && <ListenButton text={l.de} speed={l.speed} small slowToggle={false} kim={l.speaker ?? d.roles.A} sahne={d.lines.map((x) => x.speaker ?? d.roles[x.r])} />}</div></div>)}
+        {line.r === "A" && <div class="bubble them fade"><div class="who">{d.roles.A}</div><DeLine de={line.de} tr={support >= 1 ? line.tr : undefined} size="md" speed={line.speed} kim={line.speaker ?? d.roles.A} sahne={d.lines.map((x) => x.speaker ?? d.roles[x.r])} /><ExplainBtn de={line.de} chunks={ctx.s.chunks} /></div>}
         <ChatEnd dep={li} />
       </div>
       {line.r === "A" && <ActionBar><button class="btn primary block" onClick={() => setLi(li + 1)} data-test="next">Cevap ver</button></ActionBar>}

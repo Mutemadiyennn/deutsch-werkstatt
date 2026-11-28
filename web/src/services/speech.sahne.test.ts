@@ -37,19 +37,26 @@ describe("T-0: sahnede ses eşlemesi", () => {
     expect(["Flo (Deutsch (Deutschland))", "Sandy (Deutsch (Deutschland))"]).toContain(sen!.ses);
     expect(taniOku().sahne).toMatch(/^ch:brandl → Anna 1 · ogrenci → (Flo|Sandy)/);
   });
-  it("konuşanı boş satır anlatıcının: sabit, ötekilerden ayrı ses; ad 'Anlatıcı'", async () => {
-    const { speakDizi, konusanAdi, konusanKimi, ANLATICI, sahneHazirla } = await import("./speech.ts");
-    expect(konusanKimi(undefined)).toBe(ANLATICI);
-    expect(konusanKimi("  ")).toBe(ANLATICI);
+  it("konuşanı boş satır 'Başka biri', yazılı anlatıcı 'Anlatıcı': sabit, ötekilerden ayrı GERÇEK ses (eğlence sesi değil)", async () => {
+    const { speakDizi, konusanAdi, konusanKimi, konusansiz, ANLATICI, BILINMEYEN, sahneHazirla } = await import("./speech.ts");
+    expect(konusanKimi(undefined)).toBe(BILINMEYEN);
+    expect(konusanKimi("  ")).toBe(BILINMEYEN);
     expect(konusanKimi("ch:brandl")).toBe("ch:brandl");
     expect(konusanAdi(ANLATICI)).toBe("Anlatıcı");
+    expect(konusanAdi(BILINMEYEN)).toBe("Başka biri");
+    expect(konusansiz([BILINMEYEN, BILINMEYEN])).toBe(true);
+    expect(konusansiz([BILINMEYEN, "ch:brandl"])).toBe(false);
+    // konuşansız kayıt (anons, radyo): kutudan çıkmış iPhone'da gerçek ses (Anna), eğlence sesi değil (inceleme #291 P1-1)
+    const tek = await sahneHazirla([undefined, undefined].map(konusanKimi));
+    expect(tek.get(BILINMEYEN)?.ses?.name).toBe("Anna");
+    expect((await sahneHazirla([ANLATICI])).get(ANLATICI)?.ses?.name).toBe("Anna");
     okunan.length = 0;
     await speakDizi([{ de: "Es ist Montag.", kim: undefined }, { de: "Hallo!", kim: "ch:brandl" }, { de: "Sie geht.", kim: undefined }]);
     const [a1, b, a2] = okunan;
     expect([a1!.ses, a1!.pitch]).toEqual([a2!.ses, a2!.pitch]);
     expect([a1!.ses, a1!.pitch]).not.toEqual([b!.ses, b!.pitch]);
-    const m = await sahneHazirla([undefined, "ch:brandl"].map(konusanKimi));
-    expect(m.get(ANLATICI)?.ses?.name).toBe(a1!.ses);
+    // karakterin sesi belirsiz konuşan olsa da değişmez (karakterlerden sonra atanır)
+    expect(b!.ses).toBe("Anna");
   });
   it("aynı sahne eşlemesi: tek satır düğmesi (konusanAta + sahne) diziyle aynı sesi verir", async () => {
     const { konusanAta, sahneHazirla } = await import("./speech.ts");

@@ -5,7 +5,7 @@
 import { createContext, type ComponentChildren } from "preact";
 import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
-import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive, STT_HATA_TR, sttHataMetni, konusanAta, konusanAdi, adCevapMi } from "../services/speech.ts";
+import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive, STT_HATA_TR, sttHataMetni, konusanAta, konusanAdi, konusanKimi, adCevapMi } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { efekt, ustUsteDizi, ustUsteSay, xpUcur } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
@@ -16,7 +16,7 @@ import { Mucevher } from "./solen.tsx";
 /* ---------- Ses düğmesi: büyük, tek dokunuşla yavaş/normal ---------- */
 export function ListenButton({ text, speed = "normal", label = "Dinle", slowToggle = true, small = false, kim, sahne, metinGizli = false }: { text: string; /** erişilebilirlik etiketinde Almanca metin yok (cevabı ele vermesin; PM 7052062209 md. 4) */ metinGizli?: boolean; speed?: Speed; label?: string; slowToggle?: boolean; small?: boolean; /** konuşan: karakterin sabit sesi (PM-064) */ kim?: string; /** sahnedeki bütün konuşanlar: aynı sahnede iki kişi aynı sesi almasın (2. tur P1-B) */ sahne?: (string | undefined)[] }) {
   const [busy, setBusy] = useState<false | "n" | "s">(false);
-  const play = async (s: Speed, k: "n" | "s") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(k); try { await speak(text, "de", s, false, kim && sahne ? konusanAta(sahne).get(kim) ?? kim : kim); } finally { setBusy(false); } };
+  const play = async (s: Speed, k: "n" | "s") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(k); try { await speak(text, "de", s, false, kim && sahne ? konusanAta(sahne.some(Boolean) ? sahne.map(konusanKimi) : sahne).get(kim) ?? kim : kim); } finally { setBusy(false); } };
   return (
     <span class={`listen${small ? " sm" : ""}`} role="group" aria-label={label}>
       <button type="button" onClick={() => play(speed, "n")} aria-label={metinGizli ? label : `${label}: ${text}`} data-test="listen">{busy === "n" ? <Icon name="stop" /> : <Icon name="volume" />}</button>
@@ -26,7 +26,7 @@ export function ListenButton({ text, speed = "normal", label = "Dinle", slowTogg
 }
 
 /** Almanca satır: büyük metin + ses; Türkçe ikincil; isteğe bağlı katman rozeti */
-export function DeLine({ de, tr, layer, size = "lg", speed, showTr = true }: { de: string; tr?: string; layer?: "hd" | "alltag" | "bair"; size?: "md" | "lg" | "xl"; speed?: Speed; showTr?: boolean }) {
+export function DeLine({ de, tr, layer, size = "lg", speed, showTr = true, kim, sahne }: { de: string; tr?: string; layer?: "hd" | "alltag" | "bair"; size?: "md" | "lg" | "xl"; speed?: Speed; showTr?: boolean; /** T-0: konuşan ve sahnesi (ListenButton'a) */ kim?: string; sahne?: (string | undefined)[] }) {
   return (
     <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start" }}>
       <div class="grow">
@@ -34,7 +34,7 @@ export function DeLine({ de, tr, layer, size = "lg", speed, showTr = true }: { d
         <div lang="de" class={size === "xl" ? "de-xl" : size === "lg" ? "de-lg" : "de"}>{de}</div>
         {showTr && tr && <div class="tr2">{tr}</div>}
       </div>
-      <ListenButton text={de} speed={speed} />
+      <ListenButton text={de} speed={speed} kim={kim} sahne={sahne} />
     </div>
   );
 }
@@ -143,10 +143,11 @@ export function KonusanRozet({ kim, kimler, gizle = "" }: { kim?: string; kimler
   return <p class="konusan" data-test="konusan" data-kim={kim}>{kim && <><i data-i={i % 6} />{adCevapMi(ad, gizle) ? `Konuşan ${i + 1}` : ad}</>}</p>;
 }
 /** T-0 (K-00c md. 2): dökümde satır başında konuşanın adı ve rengi (KonusanRozet'le aynı renk sırası) */
-export function KonusanAd({ kim, kimler }: { kim?: string; kimler: (string | undefined)[] }) {
+/** `gizle`: aynı ekranda sorulacak seçenekler; ad orada geçiyorsa "Konuşan N" (RQ-Ş18; inceleme #291 P2-6) */
+export function KonusanAd({ kim, kimler, gizle = "" }: { kim?: string; kimler: (string | undefined)[]; gizle?: string }) {
   if (!kim) return null;
-  const i = [...new Set(kimler)].indexOf(kim);
-  return <span class="konusan konusan-ad" data-test="konusan-ad" data-kim={kim}><i data-i={i % 6} />{konusanAdi(kim)}</span>;
+  const i = [...new Set(kimler)].indexOf(kim), ad = konusanAdi(kim);
+  return <span class="konusan konusan-ad" data-test="konusan-ad" data-kim={kim}><i data-i={i % 6} />{adCevapMi(ad, gizle) ? `Konuşan ${i + 1}` : ad}</span>;
 }
 
 /* ---------- Geri bildirim bandı: renk + titreşim + kısa Türkçe açıklama ---------- */

@@ -25,7 +25,7 @@ SAHTE = """(() => {
     .map((name) => ({ name, lang: "de-DE", voiceURI: name, localService: true, default: false }));
   const t0 = Date.now();
   window.__oku = []; window.__rozet = [];
-  const ss = { speaking: false, pending: false, paused: false, getVoices: () => (Date.now() - t0 < 400 ? [] : V), cancel() {}, addEventListener() {}, removeEventListener() {},
+  const ss = { speaking: false, pending: false, paused: false, getVoices: () => (window.__sesYok || Date.now() - t0 < 400 ? [] : V), cancel() {}, addEventListener() {}, removeEventListener() {},
     speak(u) { window.__oku.push({ text: u.text, ses: u.voice ? u.voice.name : null, pitch: u.pitch, rate: u.rate });
       // çalan satırın konuşan rozeti (ekrandaki ad) cümle başlarken kaydedilir
       const i = window.__rozet.length; window.__rozet.push(null);
@@ -63,13 +63,17 @@ def main():
             sc = pg.evaluate("window.visualViewport ? visualViewport.scale : 1")
             check(abs(sc - 1) < 1e-6, f"çift dokunuştan sonra ölçek 1 ({sc})")
 
-        # --- akış sahnesi: "Sen" ile Brandl farklı ses (PM-153 md. 1 satır 2) ---
+        # --- akış sahnesi: "Sen" ile karşıdaki farklı ses (PM-153 md. 1 satır 2). Hitap Frau: kutudan çıkmış iPhone'da tek gerçek
+        # kadın sesi (Anna) karşıdakinde; eski kod öğrenciye de Anna'yı (%2 perde farkıyla) veriyordu ---
+        pg.goto(base + "#/profile"); pg.wait_for_selector("#nm"); pg.click("[data-address=Frau]")
+        pg.wait_for_function("() => document.querySelector('[data-address=Frau]')?.getAttribute('aria-pressed') === 'true'"); pg.wait_for_timeout(600)
         pg.goto(base + "#/akis/1"); pg.wait_for_selector("[data-test=akis]", timeout=20000)
         check(sahne_bul(pg), "1. günün akışında sahne adımı bulundu")
         if pg.locator("[data-test=akis-sahne]").count():
             metin = pg.inner_text("[data-test=akis-sahne]")
             check("Sahneyi dinle" not in metin and pg.locator("[data-test=akis-sahne] [aria-label^='Sahneyi dinle']").count() == 0, "sahnede bütün satırları tek sesle okuyan düğme yok")
-            pg.evaluate("window.__oku = []; window.__rozet = []"); pg.click("[data-test=sahne-dinle]")
+            # sesler sahne başında henüz yok (geç yüklenen liste): 400 ms sonra gelir; sahne onları beklemeli
+            pg.evaluate("window.__oku = []; window.__rozet = []; window.__sesYok = true; setTimeout(() => { window.__sesYok = false; }, 400)"); pg.click("[data-test=sahne-dinle]")
             pg.wait_for_function("() => !document.querySelector('[data-test=sahne-dinle][disabled]') && window.__oku.length >= 2", timeout=15000); pg.wait_for_timeout(100)
             o = pg.evaluate("window.__oku"); rz = pg.evaluate("window.__rozet")
             kimler = [r[0] if r else "" for r in rz[:len(o)]]
@@ -93,7 +97,7 @@ def main():
 
         # --- Köy dizisi (4. gün: üç kadın konuşan; kutudan çıkmış iPhone'da tek kadın sesi), sabit eşleme, ad ekranda, Tanılama (K-00c md. 1, 2, 5) ---
         pg.goto(base + "#/m1/4/m1%3A04%3Av1"); pg.reload(); pg.wait_for_selector("[data-test=dinle-bolum]", timeout=20000)
-        pg.evaluate("window.__oku = []; window.__rozet = []; localStorage.removeItem('dw2-tani')")
+        pg.evaluate("window.__oku = []; window.__rozet = []; localStorage.removeItem('dw2-tani'); window.__sesYok = true; setTimeout(() => { window.__sesYok = false; }, 400)")
         pg.click("[data-test=dinle-bolum]")
         pg.wait_for_function("() => window.__oku.length >= 4", timeout=15000)
         pg.wait_for_function("() => !document.querySelector('[data-test=durdur]')", timeout=30000)

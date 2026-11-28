@@ -127,9 +127,30 @@ export function ogrenciAta(k: Konusan, sesler: Ses[], digerleri: Konusan[], dolu
   return { ses: s, pitch, cinsiyetYok: !!cins };
 }
 
+/** Kimliği belirsiz konuşanlar: içerikte yazılı anlatıcı ve konuşanı boş satır (karakterlerden sonra atanır) */
+export const ANLATICI_ID = "anlatici";
+export const BILINMEYEN_ID = "bilinmeyen";
 /**
- * Bir sahnedeki konuşanlara sırayla ses: aynı sahnede iki konuşan aynı (ses, perde) almaz. Öğrenci en son atanır (karakterlerin
- * sesi öğrencinin sahnede olup olmamasından bağımsız kalır) ve karşıdakinden farklı ses alır (`ogrenciAta`).
+ * T-0 (inceleme #291 P1-1/2): anlatıcıya ya da konuşanı boş satıra boş bir GERÇEK ses (eğlence sesi en son; PM-064); boş ses
+ * yoksa ilk gerçek ses, sahnedeki perdelerden en uzak perdeyle. Karakterlerden sonra atandığı için karakterin sesini değiştirmez.
+ */
+export function belirsizAta(sesler: Ses[], doluSesler: Iterable<string>, perdeler: ReadonlyMap<string, ReadonlySet<number>>): Atama {
+  const dolu = new Set(doluSesler);
+  const h = havuzlar(sesler);
+  const adaylar = [...h.kadin, ...h.erkek, ...h.diger].sort((a, b) => Number(sesKalitesi(a) < 0) - Number(sesKalitesi(b) < 0));
+  const bos = adaylar.find((s) => !dolu.has(s.name));
+  if (bos) return { ses: bos, pitch: 1 };
+  const s = adaylar[0];
+  if (!s) return { pitch: 1 };
+  const kul = [...(perdeler.get(s.name) ?? [])];
+  const uzak = (p: number) => (kul.length ? Math.min(...kul.map((u) => Math.abs(u - p))) : 1);
+  return { ses: s, pitch: PERDE_IZGARA.slice().sort((a, b) => uzak(b) - uzak(a) || Math.abs(a - 1) - Math.abs(b - 1))[0]! };
+}
+
+/**
+ * Bir sahnedeki konuşanlara sırayla ses: aynı sahnede iki konuşan aynı (ses, perde) almaz. Önce karakterler (satır sırasıyla),
+ * sonra anlatıcı / konuşanı boş satır (`belirsizAta`), en son öğrenci (karşıdakinden farklı ses, `ogrenciAta`). Böylece bir
+ * karakterin sesi sahnede öğrenci ya da anlatıcı olup olmamasından bağımsız kalır (PM-064).
  */
 export function sahneAta(konusanlar: Konusan[], sesler: Ses[]): Map<string, Atama> {
   const out = new Map<string, Atama>();
@@ -139,8 +160,10 @@ export function sahneAta(konusanlar: Konusan[], sesler: Ses[]): Map<string, Atam
     if (a.ses) { dolu.push(a.ses.name); let p = perdeler.get(a.ses.name); if (!p) perdeler.set(a.ses.name, (p = new Set())); p.add(a.pitch); }
     out.set(k.id, a);
   };
-  const digerleri = konusanlar.filter((k) => k.id !== OGRENCI_ID);
+  const belirsiz = (k: Konusan) => k.id === ANLATICI_ID || k.id === BILINMEYEN_ID;
+  const digerleri = konusanlar.filter((k) => k.id !== OGRENCI_ID && !belirsiz(k));
   for (const k of digerleri) if (!out.has(k.id)) yaz(k, sesAta(k, sesler, dolu, perdeler));
+  for (const k of konusanlar) if (belirsiz(k) && !out.has(k.id)) yaz(k, belirsizAta(sesler, dolu, perdeler));
   const ogr = konusanlar.find((k) => k.id === OGRENCI_ID);
   if (ogr) yaz(ogr, ogrenciAta(ogr, sesler, digerleri, dolu, perdeler));
   return out;
