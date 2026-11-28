@@ -11,7 +11,7 @@ export const FUNCTION_WORDS = new Set(`der die das den dem des ein eine einen ei
 ich du er sie es wir ihr mich mir dich dir ihn ihm uns euch ihnen mein meine meinen meinem meiner dein deine ihr ihre ihren Ihr Ihre Ihren Ihrem Ihrer
 bin bist ist sind seid habe hast hat haben habt und oder aber nicht ja nein bitte danke herr frau`.toLowerCase().split(/\s+/));
 
-export const tokens = (s: string) => s.replace(/\{[^}|]*\|[^}]*\}/g, " ").replace(/\{name\}/g, " ").toLowerCase().replace(/[^a-zäöüß' ]/g, " ").split(/\s+/).map((t) => t.replace(/^'+|'+$/g, "")).filter((t) => t.length > 1);
+export const tokens = (s: string) => s.replace(/\{[^}|]*\|[^}]*\}/g, " ").replace(/\{(?:name|ulke|sehir|yas|diller|meslek|hobi|aile)\}/g, " ").toLowerCase().replace(/[^a-zäöüß' ]/g, " ").split(/\s+/).map((t) => t.replace(/^'+|'+$/g, "")).filter((t) => t.length > 1);
 const alts = (s: string) => [...s.matchAll(/\{([^}|]*)\|([^}]*)\}/g)].flatMap((m) => [m[1]!, m[2]!]).join(" ");
 
 /** Çekim eki: öğretilmiş biçime yalnızca bu ekler eklenmiş/çıkarılmışsa aynı kelime sayılır (inceleme #49: önek sezgisi

@@ -24,7 +24,7 @@
  */
 import { bilinmeyenler, kalipOrtu, kalipSecenekleri, toks, toksAsil, YUVA_AD, type Bilinen, type KumeDizini } from "../../packages/shared/src/kume.ts";
 import type { TemelDers } from "../../packages/shared/src/index.ts";
-import { dilNoktasiMetni, gosterilenKaliplar, icOrtu, tabloCerceve, tabloGunleri, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
+import { A1_SON_GUN, bagimsizHaftalar, dilNoktasiMetni, haftaOf, oncekiSayilir, gosterilenKaliplar, icOrtu, tabloCerceve, tabloGunleri, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
 
 export { dilNoktasiMetni };
 const dizi = (x: unknown): unknown[] => (Array.isArray(x) ? x : []);
@@ -122,6 +122,7 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
   const { hafta, dizin: d } = g;
   const ilk = (hafta - 1) * 7 + 1, son = hafta * 7;
   const tablo = tabloGunleri(g.tablo);
+  const bag = bagimsizHaftalar(g.tablo);
   const omurga = new Map(dizi(g.omurga.gunler).map(nesne).filter((x) => typeof x.day === "number").map((x) => [x.day as number, yazilar(x.dersler)] as const));
   const dosya = new Map(g.gunler.filter((x) => typeof x.data?.day === "number").map((x) => [x.data.day, x.data] as const));
 
@@ -136,7 +137,7 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     if (b.bicim.has(t)) return false;
     const ok = [...[...(d.idx.get(t) ?? [])].filter((i) => d.cerceve.has(i)), ...(cerceveHafta.has(`söz:${t}`) ? [`söz:${t}`] : [])];
     // bu ve sonraki haftaların çerçevesi her zaman; önceki haftanınki o haftanın 7 gün dosyası daldaysa (yoksa o hafta öğretilmiş sayılır)
-    const kisitli = (i: string) => { const h = cerceveHafta.get(i) ?? 0; return h >= hafta || (h > 1 && tamHafta(h)); };
+    const kisitli = (i: string) => { const h = cerceveHafta.get(i) ?? 0; return h >= hafta || (h > 1 && tamHafta(h)) || (bag.has(hafta) && h > haftaOf(A1_SON_GUN)); };
     if (!ok.length || !ok.every(kisitli)) return false;
     return ![...(d.idx.get(t) ?? [])].some((i) => !d.cerceve.has(i) && b.kart.has(i) && d.gost.get(i)?.has(t));
   };
@@ -199,8 +200,9 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
 
   // önceki haftalar öğretilmiş: tablo kartları, omurga dersleri, dosyası olan günlerin kalıpları
   const b: Bilgi = { kart: new Set(), biten: new Set(), kaliplar: [], bicim: new Set() };
-  for (const [gn, ks] of tablo) if (gn < ilk) for (const k of ks) b.kart.add(k);
+  for (const [gn, ks] of tablo) if (gn < ilk && oncekiSayilir(bag, hafta, gn)) for (const k of ks) b.kart.add(k);
   for (let gn = 1; gn < ilk; gn++) {
+    if (!oncekiSayilir(bag, hafta, gn)) continue;
     const f = dosya.get(gn);
     for (const x of f ? yazilar(f.dersler) : omurga.get(gn) ?? []) dersEkle(b, x);
     if (f) for (const h of dizi(f.halkalar)) halkaKalip(b, nesne(h));

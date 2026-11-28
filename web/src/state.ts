@@ -16,6 +16,7 @@ export type Route =
   | { name: "ben" }
   | { name: "profile"; bolum?: "raf" }
   | { name: "benDuzen" }
+  | { name: "benHakkimda" }
   | { name: "assess" }
   | { name: "assessResult"; id?: string }
   | { name: "onboarding" }
@@ -49,7 +50,7 @@ export function parseHash(h: string): Route {
     // Hedef 3 sekmeleri (PM-084 md. 3): Bugün · Yol · Köy · Ben. Eski adresler (learn, progress, profile) yeni yerlerini açar;
     // adres çubuğunu `yeniAdres` düzeltir.
     case "koy": return mekanMi(p[1]) ? { name: "mekan", id: p[1] } : { name: "koy" };
-    case "ben": return p[1] === "ayarlar" ? (p[2] === "raf" ? { name: "profile", bolum: "raf" } : { name: "profile" }) : p[1] === "duzen" ? { name: "benDuzen" } : { name: "ben" };
+    case "ben": return p[1] === "ayarlar" ? (p[2] === "raf" ? { name: "profile", bolum: "raf" } : { name: "profile" }) : p[1] === "duzen" ? { name: "benDuzen" } : p[1] === "hakkimda" ? { name: "benHakkimda" } : { name: "ben" };
     case "learn": return p[1] ? { name: "domain", id: p[1] } : { name: "koy" };
     case "scenario": return p[2] ? { name: "section", id: p[1]!, section: p[2] } : { name: "scenario", id: p[1] || "" };
     case "progress": return { name: "ben" };
@@ -88,6 +89,27 @@ export function yeniAdres(h: string): string | null {
   return p.length === 1 || (p.length === 2 && p[1] === "") ? ESKI_ADRES.get(p[0]!) ?? null : null;
 }
 export const go = (path: string) => { location.hash = "#/" + path.replace(/^#?\/?/, ""); };
+
+/** Ekranın bağlı olduğu sekme: Köy'ün mekânları (durumlar, senaryo, sözlük, kalıplar, günün kayıtları) Köy'de, ayarlar Ben'de kalır */
+export function sekme(r: Route["name"]): string {
+  switch (r) {
+    case "yol": case "rehber": return "yol";
+    case "koy": case "mekan": case "domain": case "scenario": case "sozluk": case "kalip": case "m1day": return "koy";
+    case "ben": case "benDuzen": case "profile": case "ses": return "ben";
+    default: return "today";
+  }
+}
+/** Tam ekran akışlar (sekme çubuğu yok, tek çıkış X / geri; PM-133 md. 4) ve aileleri: aynı ailenin adresleri tek akıştır
+ *  (sınav günü → bölüm, tespit → rapor → tekrar, hafta testi → sonuç); gelen arama rol oyunuyla aynı akış */
+const TAM_TEK = new Set<string>(["onboarding", "assess", "section", "garden", "m1medya", "akis", "ders", "prova", "okuma", "sinav"]);
+export function aile(r: string): string | null {
+  if (r.startsWith("seviye")) return "seviye";
+  if (r.startsWith("hafta")) return "hafta";
+  if (r === "call") return "section";
+  return TAM_TEK.has(r) ? r : null;
+}
+export const tamEkran = (r: string) => aile(r) !== null;
+export const KOKLER = new Set<string>(["today", "yol", "koy", "ben"]);
 
 /** Öğrenme ekranları: odak süresi yalnızca bunlarda sayılır (v1: menü ekranları sayılmaz) */
 export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section", "garden", "m1medya", "ders", "prova", "okuma", "akis", "hafta", "haftaTekrar", "sinav", "seviye", "seviyeTekrar"]);

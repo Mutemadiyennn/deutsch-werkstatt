@@ -3,12 +3,13 @@
  * Karşı taraf öğrencinin cevabına göre tepki verir (içerikteki dallar). Sesli cevapta "Duyduğum: …", "Tekrar söyle",
  * "Doğru söyledim" (PM-054.3, D-097). Sonda 1 iyi şey + en fazla 3 düzeltme. Bitiş cihazda `m1:prova:<gün>` olarak kalır.
  */
+import { akisaDonus } from "../services/gezinme.ts";
 import { cumleKaydet } from "../services/kullanim.ts";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { useApp } from "../state.ts";
 import { loadLexicon, loadM1Gun } from "../services/content.ts";
 import { adimXpVer } from "../services/ilerleme.ts";
-import { personalizeDeep } from "../core/persona.ts";
+import { personalizeDeep, profilGeriAl } from "../core/persona.ts";
 import { beyanSecenegi, dugumBul, eslestir, hazirlikCumleleri, rapor, sonMu, sonrakiDugum, type Eslesme, type Kayit, type ProvaT } from "../core/prova.ts";
 import { addClaim, setMeta } from "../data/db.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
@@ -161,7 +162,7 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
               {beyanI !== null && <button class="btn block" data-test="dogru-soyledim" onClick={() => {
                 const i = beyanI;
                 const s = dugum!.secenekler[i]!;
-                void addClaim({ at: new Date().toISOString(), scenarioId: "m1:prova", itemId: `${p.id}:${id}`, prompt: dugum!.de, answer: cevap.a, expected: s.accepted.length ? s.accepted : [s.de] });
+                void addClaim({ at: new Date().toISOString(), scenarioId: "m1:prova", itemId: `${p.id}:${id}`, prompt: profilGeriAl(dugum!.de), answer: profilGeriAl(cevap.a), expected: (s.accepted.length ? s.accepted : [s.de]).map((x) => profilGeriAl(x)) });
                 ilerle(i, { dugum: id, cevap: cevap.a, secenek: i, uygun: s.uygun, beyan: true });
               }}>{cevap.mode === "voice" ? "Doğru söyledim" : "Benimki de doğru"}</button>}
               {cevap.e.kind === "wrong" && <button class="btn block ghost" data-test="dogrusuyla-gec" onClick={() => {
@@ -208,7 +209,7 @@ function Rapor({ p, kayitlar, again }: { p: ProvaT; kayitlar: Kayit[]; again: ()
         <div class="kicker">Bir dahaki sefere</div>
         <ol class="list">{r.duzeltmeler.map((d) => <li class="small" data-test="duzeltme"><Rich text={d} /></li>)}</ol>
       </div>}
-      <div class="row"><a class="btn primary grow" href="#/today" data-test="prova-sonraki">Sıradaki adım</a>
+      <div class="row"><a class="btn primary grow" href={akisaDonus("#/today")} data-test="prova-sonraki">Sıradaki adım</a>
         <button class="btn grow" data-test="prova-tekrar" onClick={again}>Bir daha prova et</button></div>
     </section>
   );

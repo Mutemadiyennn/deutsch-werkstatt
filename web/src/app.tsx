@@ -16,7 +16,8 @@ import { KalipEkrani } from "./screens/Kalip.tsx";
 import { YolEkrani } from "./screens/Yol.tsx";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Assessment, ContentIndex, Profile } from "@dw/shared";
-import { Ctx, LEARNING_ROUTES, parseHash, yeniAdres, type AppCtx, type Route } from "./state.ts";
+import { Ctx, LEARNING_ROUTES, parseHash, tamEkran, yeniAdres, type AppCtx, type Route } from "./state.ts";
+import { gezinmeGecis } from "./services/gezinme.ts";
 import { auth, type AuthUser } from "./services/auth.ts";
 import { createApi } from "./services/api.ts";
 import { SesDeneme } from "./screens/SesDeneme.tsx";
@@ -40,6 +41,9 @@ import { BreakOverlay, OdakEkrani } from "./screens/Today.tsx";
 import { AssessRun, AssessResult } from "./screens/Assess.tsx";
 import { Progress } from "./screens/Progress.tsx";
 import { BenEkrani } from "./screens/Ben.tsx";
+import { HakkimdaEkrani } from "./screens/Hakkimda.tsx";
+import { hakkimdaYukle } from "./services/hakkimda.ts";
+import { serbestKonusAcik } from "./services/konusma.ts";
 import { Garden } from "./screens/Garden.tsx";
 import { ProfileView } from "./screens/Profile.tsx";
 import { hatirlatmaKur, hatirlatmaVar } from "./services/hatirlatma.ts";
@@ -107,6 +111,8 @@ export function App() {
   const [profile, setP] = useState<Profile | null>(null);
   // öğrencinin satırları hitaba göre seslendirilir; Profil'de değişince hemen (PM-064, inceleme #117 P1-4)
   useEffect(() => { setOgrenciHitap(profile?.address); }, [profile?.address]);
+  // PM-148 karar 2: "Kendim hakkında" değerleri bellekte (persona yuvaları); yalnız cihazda
+  useEffect(() => { if (user) void hakkimdaYukle().catch(() => undefined); }, [user]);
   const [index, setIndex] = useState<ContentIndex | null>(null);
   const [indexError, setIndexError] = useState<string | null>(null);
   const [placement, setPlacement] = useState<Assessment | undefined>();
@@ -141,8 +147,10 @@ export function App() {
     // ekran değişince "üst üste" sayacı sıfırlanır (inceleme #87 P2)
     // eski sekme adresi (#/learn, #/progress, #/profile) yenisiyle değişir; geçmişe ikinci kayıt düşmez (PM-084 md. 3.2)
     const duzelt = () => { const y = yeniAdres(location.hash); if (y) history.replaceState(history.state, "", y); };
-    const on = () => { duzelt(); ustUsteSifirla(); setRoute(parseHash(location.hash)); };
+    // gezinme kuralı (PM-133): giriş noktası her adres değişiminde, ekran çizilmeden önce kaydedilir
+    const on = (e: HashChangeEvent) => { duzelt(); gezinmeGecis(new URL(e.oldURL).hash, location.hash); ustUsteSifirla(); setRoute(parseHash(location.hash)); };
     duzelt();
+    gezinmeGecis(null, location.hash);
     addEventListener("hashchange", on);
     // ilk çizimle dinleyici arasında adres değiştiyse kaçmasın (açılışta hemen başka sekmeye geçilince eski ekran kalıyordu)
     setRoute(parseHash(location.hash));
@@ -214,6 +222,8 @@ export function App() {
     // Ben (PM-084 md. 5); eski İlerlemem "Çalışma düzenim" olarak #/ben/duzen'de
     case "ben": screen = <BenEkrani />; break;
     case "benDuzen": screen = <Progress />; break;
+    // PM-135 ek 14: serbest konuşma bayrağıyla birlikte açılır (inceleme #286 P1-7)
+    case "benHakkimda": screen = serbestKonusAcik() ? <HakkimdaEkrani /> : <BenEkrani />; break;
     case "profile": screen = <ProfileView />; break;
     case "assess": screen = <AssessRun />; break;
     case "assessResult": screen = <AssessResult id={route.id} />; break;
@@ -243,7 +253,8 @@ export function App() {
     // yalnız e2e: AK-10 3. adımın iki türü, ekran (4. adım) gelene kadar (üretimde bu dal ve modül paketten düşer)
     default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri") ? <HalkaTurRota key={location.hash} /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__dil-noktasi/") ? <DilNoktasiRota key={location.hash} /> : <Today />;
   }
-  const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && (location.hash.startsWith("#/__halka-turleri") || location.hash.startsWith("#/__dil-noktasi/"))) && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "akis" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma" && route.name !== "hafta" && route.name !== "haftaTekrar" && route.name !== "haftaSonuc" && route.name !== "sinav" && route.name !== "seviye" && route.name !== "seviyeRapor" && route.name !== "seviyePlan" && route.name !== "seviyeTekrar";
+  // tam ekran akışta (ders, sınav, tespit …) sekme çubuğu yok; tek çıkış X / geri (PM-133 md. 4)
+  const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && (location.hash.startsWith("#/__halka-turleri") || location.hash.startsWith("#/__dil-noktasi/"))) && !tamEkran(route.name);
   return (
     <Ctx.Provider value={ctx}>
       <main class={`app${tabs ? "" : " notabs"}`}>{tabs && (sekme(route.name) === "today" || sekme(route.name) === "yol") && <DurumCubugu />}<ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
