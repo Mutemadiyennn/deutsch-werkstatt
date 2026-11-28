@@ -142,5 +142,17 @@
   "serbest_konus": {
     "aciklama": "PM-148 karar 3-4, [ANA-V] md. 1: serbest sesli konuşma adımı. `acik`: bayrak (PM-135 ek 14; kapalı iner, o haftanın yürüyüşü açık ve kapalı iki kez koşunca açılır). Açıkken planlayıcı günün `serbest_konus` maddelerini gün sonu durağının başına koyar. Adım yalnız mikrofonla yapılınca 'konuşuldu' sayılır.",
     "acik": false
+  },
+  "a1_tamam": {
+    "aciklama": "PM-148 karar 1, [ANA-V] md. 4: 'A1 tamam' kapısı. Deneme sınavını geçmek ve seviye tespitinin 'A2'ye hazırsın' kararı, aşağıdaki içerik koşullarının hepsi inene kadar 'A1 tamam' sayılmaz. `acik`: bayrak (PM-135 ek 14; kapalı iner, kapalıyken ekranlar eskisi gibi). `kosullar`: DENETİM-A1 (docs/v2/qa/a1-gercek-mi.md §7) maddeleri; bir koşulun içeriği main'e inince `indi: true` yapmak baş geliştiricinin küçük PR'ıdır (içerik motoru #12'ye yazar). `tr`: öğrenciye gösterilen kısa ad.",
+    "acik": false,
+    "kosullar": {
+      "P0-1": { "tr": "kendini tanıtma", "indi": false },
+      "P0-2": { "tr": "hazırlıksız konuşma", "indi": false },
+      "P1-2": { "tr": "mektup ve e-posta kalıpları", "indi": false },
+      "P1-3": { "tr": "tabela ve anons dili", "indi": false },
+      "P1-4": { "tr": "sınavda sık çıkan sözcükler", "indi": false },
+      "P1-5": { "tr": "denemedeki metinlerin sözcükleri", "indi": false }
+    }
   }
 }
