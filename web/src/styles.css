@@ -87,6 +87,10 @@ body {
   background-repeat: no-repeat; min-height: 100vh;
 }
 button, input, select, textarea { font: inherit; color: inherit; }
+/* T-0 (PM-153 md. 1 satır 1): çift dokunma yakınlaştırması kapalı (iki parmakla yakınlaştırma kalır); girişe odaklanınca iOS
+   otomatik yakınlaşmasın diye giriş yazısı en az 16 px */
+html, body, * { touch-action: manipulation; }
+input, textarea, select { font-size: max(16px, 1em); }
 a { color: var(--accent); }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 10px; }
 h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; margin: 0 0 8px; font-weight: 800; letter-spacing: -0.01em; }
@@ -914,6 +918,10 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .konusan i { width: 12px; height: 12px; border-radius: 50%; flex: none; background: #1784D6; }
 .konusan i[data-i="1"] { background: #C2410C; } .konusan i[data-i="2"] { background: #15803D; } .konusan i[data-i="3"] { background: #9333EA; }
 .konusan i[data-i="4"] { background: #B45309; } .konusan i[data-i="5"] { background: #0F766E; }
+/* T-0: dökümde satır başı adı (küçük, rozetle aynı renk noktası) */
+.konusan-ad { font-size: 0.78rem; min-height: 0; gap: 6px; color: var(--muted); margin-bottom: 2px; }
+.konusan-ad i { width: 9px; height: 9px; }
+.bubble.me .konusan-ad { color: rgba(255, 255, 255, 0.9); }
 /* PM-137 md. 3: satır içi mikrofon düğmesinin hata kutusu iki kenara bağlı (sağdan taşmaz) */
 .mic-hata-in { position: absolute; left: 16px; right: 16px; margin-top: 60px; }
 .tanilama { margin-top: 12px; } .tanilama p { margin: 8px 0 0; overflow-wrap: anywhere; }

@@ -27,7 +27,7 @@ import { baslangicYavas, konusanAta, speak, speakDizi, stopSpeaking } from "../s
 import { haptic } from "../services/haptics.ts";
 import { FocusChip } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
-import { ActionBar, AnswerField, DeLine, Empty, FeedbackBand, ListenButton, LoadingCard, MicButton, ProgressHeader } from "../ui/kit.tsx";
+import { ActionBar, AnswerField, DeLine, Empty, FeedbackBand, KonusanAd, ListenButton, LoadingCard, MicButton, ProgressHeader } from "../ui/kit.tsx";
 import { ExplainBtn, SayItBox, VerdictView, useGrader } from "../ui/learn.tsx";
 import { HearSection, LearnSection } from "./Stage12.tsx";
 import { ayracBagla } from "../core/ayrac.ts";
@@ -382,7 +382,7 @@ function ListeningItem({ li, progress, onDone }: { li: Scenario["listening"][num
   return (
     <div class="stack fade">{progress}
       <section class="card stack"><div class="kicker">Transkript · bilmediğin kelimeye dokun → listene eklenir</div>
-        {li.script.map((l) => <div><div class="tiny muted">{l.r}</div><TapLine de={l.de} /><div class="row" style={{ marginTop: 4 }}><ListenButton text={l.de} speed={li.speed} kim={l.r} sahne={li.script.map((x) => x.r)} /><ShadowBtn de={l.de} /></div>{l.tr && <div class="tr2">{l.tr}</div>}</div>)}
+        {li.script.map((l) => <div><KonusanAd kim={l.r} kimler={li.script.map((x) => x.r)} /><TapLine de={l.de} /><div class="row" style={{ marginTop: 4 }}><ListenButton text={l.de} speed={li.speed} kim={l.r} sahne={li.script.map((x) => x.r)} /><ShadowBtn de={l.de} /></div>{l.tr && <div class="tr2">{l.tr}</div>}</div>)}
       </section>
       <ActionBar><button class="btn primary block" onClick={() => onDone(ok, li.qs.length)} data-test="next">Devam</button></ActionBar>
     </div>
@@ -441,8 +441,8 @@ function DialogueSection({ ctx, finish, back }: SP) {
         </section>
       )}
       <div class="chat" aria-live="polite">
-        {shown.map((l) => <div class={`bubble ${l.r === "A" ? "them" : "me"}`}><div class="who">{l.r === "A" ? d.roles.A : `${d.roles.B} (sen)`}</div><div class="dline"><div class="grow"><div lang="de">{l.de}</div>{support >= 1 && <div class="tr2">{l.tr}</div>}</div>{l.r === "A" && <ListenButton text={l.de} speed={l.speed} small slowToggle={false} />}</div></div>)}
-        {line.r === "A" && <div class="bubble them fade"><div class="who">{d.roles.A}</div><DeLine de={line.de} tr={support >= 1 ? line.tr : undefined} size="md" speed={line.speed} /><ExplainBtn de={line.de} chunks={ctx.s.chunks} /></div>}
+        {shown.map((l) => <div class={`bubble ${l.r === "A" ? "them" : "me"}`}><div class="who">{l.r === "A" ? d.roles.A : `${d.roles.B} (sen)`}</div><div class="dline"><div class="grow"><div lang="de">{l.de}</div>{support >= 1 && <div class="tr2">{l.tr}</div>}</div>{l.r === "A" && <ListenButton text={l.de} speed={l.speed} small slowToggle={false} kim={l.speaker ?? d.roles.A} sahne={d.lines.map((x) => x.speaker ?? d.roles[x.r])} />}</div></div>)}
+        {line.r === "A" && <div class="bubble them fade"><div class="who">{d.roles.A}</div><DeLine de={line.de} tr={support >= 1 ? line.tr : undefined} size="md" speed={line.speed} kim={line.speaker ?? d.roles.A} sahne={d.lines.map((x) => x.speaker ?? d.roles[x.r])} /><ExplainBtn de={line.de} chunks={ctx.s.chunks} /></div>}
         <ChatEnd dep={li} />
       </div>
       {line.r === "A" && <ActionBar><button class="btn primary block" onClick={() => setLi(li + 1)} data-test="next">Cevap ver</button></ActionBar>}

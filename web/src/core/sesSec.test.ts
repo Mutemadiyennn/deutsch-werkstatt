@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { havuzlar, KALITE_TR, konusanBul, PERDE_SINIR, sahneAta, sesAta, sesCinsi, sesKalitesi, tekillestir, type Ses } from "./sesSec.ts";
+import { ANLATICI_ID, BILINMEYEN_ID, havuzlar, KALITE_TR, konusanBul, OGRENCI_ID, PERDE_SINIR, sahneAta, sesAta, sesCinsi, sesKalitesi, tekillestir, type Ses } from "./sesSec.ts";
 import { RATE } from "../services/speech.ts";
 
 const v = (name: string, lang = "de-DE"): Ses => ({ name, lang });
@@ -83,5 +83,68 @@ describe("ses seçimi (PM-064, B15 1. adım)", () => {
     expect(Math.max(m.get("e1")!.pitch, m.get("e2")!.pitch)).toBeLessThan(Math.min(m.get("k1")!.pitch, m.get("k2")!.pitch));
     const dort = sahneAta([0, 1, 2, 3].map((i) => ({ id: `e${i}`, cinsiyet: "erkek" as const, sira: i })), yalniz);
     expect(new Set([...dort.values()].map((a) => a.pitch)).size).toBe(4);
+  });
+});
+
+describe("T-0: \"Sen\" karşıdakinden her zaman farklı ses (PM-153 md. 1 satır 2)", () => {
+  const KAR = [{ id: "ch:brandl", name: "Rosa Brandl", ses: { cinsiyet: "kadin" as const, sira: 1 } }, { id: "ch:pichler", name: "Josef Pichler", ses: { cinsiyet: "erkek" as const, sira: 6 } }];
+  const brandl = konusanBul("ch:brandl", KAR)!;
+  // kutudan çıkmış iPhone: tek gerçek Almanca ses (Anna) + eğlence sesleri
+  const KUTU = [v("Anna"), v("Eddy (Deutsch (Deutschland))"), v("Flo (Deutsch (Deutschland))"), v("Grandma (Deutsch (Deutschland))"), v("Grandpa (Deutsch (Deutschland))"), v("Reed (Deutsch (Deutschland))"), v("Rocko (Deutsch (Deutschland))"), v("Sandy (Deutsch (Deutschland))"), v("Shelley (Deutsch (Deutschland))")];
+  const ses = (m: Map<string, { ses?: Ses; pitch: number }>, id: string) => m.get(id)!.ses?.name;
+  it("hitap Frau, kadın sesi tek (Anna): öğrenci Anna'yı paylaşmaz, başka ses alır", () => {
+    const m = sahneAta([brandl, { id: OGRENCI_ID, cinsiyet: "kadin", sira: 0 }, brandl], KUTU);
+    expect(ses(m, "ch:brandl")).toBe("Anna");
+    expect(ses(m, OGRENCI_ID)).toBeDefined();
+    expect(ses(m, OGRENCI_ID)).not.toBe("Anna");
+    // önce kendi cinsinden (eğlence sesi de olsa), sonra öbür cins
+    expect(sesCinsi(m.get(OGRENCI_ID)!.ses!)).toBe("kadin");
+  });
+  it("hitap yok: karşıdaki kadınsa öğrenci erkek sesi (karşı cins)", () => {
+    const m = sahneAta([{ id: OGRENCI_ID, sira: 0 }, brandl], IPHONE);
+    expect(sesCinsi(m.get(OGRENCI_ID)!.ses!)).toBe("erkek");
+    expect(ses(m, OGRENCI_ID)).not.toBe(ses(m, "ch:brandl"));
+  });
+  it("hitap Frau, birçok kadın sesi: öğrenci kadın sesi, karşıdakinden farklı", () => {
+    const m = sahneAta([brandl, { id: OGRENCI_ID, cinsiyet: "kadin", sira: 0 }], IPHONE);
+    expect(sesCinsi(m.get(OGRENCI_ID)!.ses!)).toBe("kadin");
+    expect(ses(m, OGRENCI_ID)).not.toBe(ses(m, "ch:brandl"));
+  });
+  it("cihazda tek Almanca ses: aynı ses, sahnedeki perdeden en uzak perde (fark ≥ %8)", () => {
+    const m = sahneAta([brandl, { id: OGRENCI_ID, cinsiyet: "kadin", sira: 0 }], [v("Anna")]);
+    expect(ses(m, OGRENCI_ID)).toBe("Anna");
+    expect(Math.abs(m.get(OGRENCI_ID)!.pitch - m.get("ch:brandl")!.pitch)).toBeGreaterThanOrEqual(0.08 - 1e-9);
+    expect(Math.abs(m.get(OGRENCI_ID)!.pitch - 1)).toBeLessThanOrEqual(PERDE_SINIR + 1e-9);
+  });
+  it("karakterin sesi öğrencinin sahnede olup olmamasından ve satır sırasından bağımsız", () => {
+    for (const sesler of [IPHONE, KUTU, [v("Anna")]]) {
+      const yalniz = sahneAta([brandl], sesler).get("ch:brandl")!;
+      const once = sahneAta([{ id: OGRENCI_ID, cinsiyet: "kadin", sira: 0 }, brandl], sesler).get("ch:brandl")!;
+      expect([once.ses?.name, once.pitch]).toEqual([yalniz.ses?.name, yalniz.pitch]);
+    }
+  });
+  it("üç kadın konuşan, tek kadın sesi: aynı sesi paylaşanlar en az %4 perde farkıyla", () => {
+    const ks = [0, 1, 2].map((i) => ({ id: `k${i}`, cinsiyet: "kadin" as const, sira: i }));
+    const m = sahneAta(ks, KUTU);
+    const p = ks.map((k) => m.get(k.id)!.pitch).sort();
+    expect(new Set(ks.map((k) => ses(m, k.id)))).toEqual(new Set(["Anna"]));
+    for (let i = 1; i < p.length; i++) expect(p[i]! - p[i - 1]!).toBeGreaterThanOrEqual(0.04 - 1e-9);
+  });
+  it("artikelli tanınmayan konuşan: die/eine kadın, der/ein erkek", () => {
+    expect(konusanBul("die Sprecherin", [])!.cinsiyet).toBe("kadin");
+    expect(konusanBul("eine Frau", [])!.cinsiyet).toBe("kadin");
+    expect(konusanBul("der Verkäufer", [])!.cinsiyet).toBe("erkek");
+    expect(konusanBul("ein Mann", [])!.cinsiyet).toBe("erkek");
+    expect(konusanBul("Kassierer", [])!.cinsiyet).toBeUndefined();
+  });
+  it("belirsiz konuşan (anlatıcı, konuşanı boş) karakterden sonra: karakterin sesi değişmez, eğlence sesi en son (inceleme #291 P1-1/2)", () => {
+    const lechner = { id: "ch:lechner", cinsiyet: "erkek" as const, sira: 2 };
+    const AM = [v("Anna"), v("Markus")];
+    const yalniz = sahneAta([lechner], AM).get("ch:lechner")!;
+    const ile = sahneAta([{ id: BILINMEYEN_ID, sira: 3 }, lechner], AM);
+    expect([ile.get("ch:lechner")!.ses!.name, ile.get("ch:lechner")!.pitch]).toEqual([yalniz.ses!.name, yalniz.pitch]);
+    expect(ile.get(BILINMEYEN_ID)!.ses!.name).toBe("Anna");
+    const m = sahneAta([{ id: ANLATICI_ID, sira: 3 }], KUTU);
+    expect(m.get(ANLATICI_ID)!.ses!.name).toBe("Anna");
   });
 });
