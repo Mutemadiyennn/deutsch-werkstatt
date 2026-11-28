@@ -151,6 +151,14 @@ def main():
         r = pg.evaluate("() => { const e = document.querySelector('[data-test=deneme-sonuc]'); return { g: e.dataset.gecti, t: e.dataset.toplam }; }")
         check(r == {"g": "1", "t": "87.5"}, f"yeniden çözümden sonra geçti (son çözüm sayılır) ({r})")
         shot(pg, f"sinav-sonuc-gecti-{sema}")
+        # PM-148 karar 1 ("A1 tamam" kapısı, bayrak `policy.a1_tamam.acik`): kapalıyken satır yok; açıkken geçti + askıda satırı
+        check(pg.locator("[data-test=deneme-a1-askida]").count() == 0, "a1_tamam bayrağı kapalı: 'A1 tamam sayılmıyor' satırı yok")
+        pg.evaluate("() => sessionStorage.setItem('e2e-a1-tamam', '1')"); pg.reload(); pg.wait_for_selector("[data-test=deneme-sonuc]", timeout=20000)
+        t = pg.inner_text("[data-test=deneme-sonuc]")
+        check(pg.get_attribute("[data-test=deneme-sonuc]", "data-gecti") == "1" and pg.locator("[data-test=deneme-gecti]").count() == 1, "bayrak açık: puan ve 'geçti' değişmez")
+        check(pg.locator("[data-test=deneme-a1-askida]").count() == 1 and '"A1 tamam" sayılmıyor' in t and "kendini tanıtma" in t, "bayrak açık: 'A1 tamam sayılmıyor' + eksik konular")
+        no_overflow(pg, "deneme sonucu (A1 askıda)"); shot(pg, f"sinav-sonuc-a1-askida-{sema}")
+        pg.evaluate("() => sessionStorage.removeItem('e2e-a1-tamam')")
         # tek bölüm adresi doğrudan başlar
         pg.goto(base + "#/sinav/55/okuma"); pg.wait_for_selector("[data-test=sinav-coz][data-bolum=okuma]", timeout=15000)
         check(True, "#/sinav/55/okuma doğrudan okuma bölümünü açar")

@@ -21,6 +21,8 @@ import { haftaOf } from "../core/gun.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { loadLexicon, loadTespit } from "../services/content.ts";
 import { cevapYaz, kararUygula, raporKaydet, tamamlaNotEt, tespitOku, type TespitKayit } from "../services/tespit.ts";
+import { a1Askida } from "../services/a1Tamam.ts";
+import { eksikMetni } from "../core/a1Tamam.ts";
 import { ai, aiState } from "../services/ai.ts";
 import { sttAvailable } from "../services/speech.ts";
 import { setLearning } from "../services/focusRuntime.ts";
@@ -355,16 +357,20 @@ export function TespitRaporu() {
     catch { setMesgul(false); toast("Kaydedilemedi; tekrar dene."); }
   };
   const planGunleri = [...new Set(r.zayifCanDo.map((z) => z.gun))];
+  // PM-148 karar 1: içerik koşulları inene kadar "A2'ye hazırsın" askıda (bayrak `policy.a1_tamam.acik`); kayıtlı rapor değişmez
+  const eksik = r.karar === "a2" ? a1Askida() : null;
+  const askidaTr = eksik ? `Sınavın istediği bazı konular derslerde henüz yok: ${eksikMetni(eksik)}. Bu konular gelince karar açılır; A2'ye buradan başlarsın.` : "";
   const kopyala = async () => {
-    const t = raporMetni(r, { beceri: BECERI_TR, karar: KARAR_TR });
+    const t = raporMetni(r, { beceri: BECERI_TR, karar: KARAR_TR }) + (eksik ? `\nKarar askıda: ${askidaTr}` : "");
     try { await navigator.clipboard.writeText(t); toast("Rapor kopyalandı"); } catch { toast("Kopyalanamadı; metni seçip kopyalayabilirsin."); }
   };
   return (
-    <div class="stack tespit-rapor" data-test="tespit-rapor" data-karar={r.karar} data-genel={Math.round(r.genel * 100)}>
+    <div class="stack tespit-rapor" data-test="tespit-rapor" data-karar={r.karar} data-askida={eksik ? "1" : "0"} data-genel={Math.round(r.genel * 100)}>
       <ProgressHeader title="Seviye raporun" back="#/ben" />
-      <section class={`card stack tespit-karar ${r.karar}`} data-test="tespit-karar">
-        <h2 style={{ margin: 0 }}>{r.karar === "tamamla" && planGunleri.length ? `A2'den önce ${planGunleri.length} günlük bir tamamlama planın var.` : KARAR_TR[r.karar]}</h2>
+      <section class={`card stack tespit-karar ${eksik ? "tamamla" : r.karar}`} data-test="tespit-karar">
+        <h2 style={{ margin: 0 }}>{eksik ? "A2 sınırını geçtin; \"A2'ye hazırsın\" kararı askıda." : r.karar === "tamamla" && planGunleri.length ? `A2'den önce ${planGunleri.length} günlük bir tamamlama planın var.` : KARAR_TR[r.karar]}</h2>
         <p class="small muted" style={{ margin: 0 }} data-test="tespit-gerekce">{gerekce(r)}</p>
+        {eksik && <p class="small" style={{ margin: 0 }} data-test="tespit-a1-askida">{askidaTr}</p>}
       </section>
       <section class="card stack" data-test="tespit-beceriler" style={{ gap: 10 }}>
         <h3 style={{ margin: 0 }}>Beceriler</h3>
@@ -389,7 +395,9 @@ export function TespitRaporu() {
       <p class="small tespit-kelime-satir" data-test="tespit-bilinmeyen">Bilmediğin kelimeler: <b>{r.bilinmeyenKelime.length}</b>{r.bilinmeyenKelime.length > 0 && (r.karar === "bastan" ? " · günlerinde öğreneceksin" : <> → <a href="#/garden">Kelime Bahçesi'nde</a></>)}</p>
       <div class="tespit-orta"><button class="ikincil-eylem" data-test="tespit-kopyala" onClick={() => void kopyala()}>Raporu kopyala</button></div>
       <ActionBar>
-        {r.karar === "a2"
+        {eksik
+          ? <a class="btn primary block" href="#/today" data-test="tespit-bugune">Bugüne dön</a>
+          : r.karar === "a2"
           ? <div class="stack" style={{ gap: 6 }}>
               <button class="btn primary block" data-test="tespit-a2" disabled={mesgul || !a2} onClick={() => void uygula("a2")}>A2'ye başla</button>
               {!a2 && <p class="tiny muted" style={{ margin: 0, textAlign: "center" }} data-test="a2-hazirlaniyor">A2'nin günleri hazırlanıyor; hazır olunca buradan başlarsın.</p>}
