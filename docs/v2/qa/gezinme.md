@@ -13,7 +13,7 @@ artık akışa döner ve tek çıkışı X'tir; akışın ilerleme çubuğunu ta
 | Ekran (adres) | Kuşak | Giriş noktaları | Önce: X / geri | Sonra: X | Bitiş "Sıradaki adım" (önce → sonra) |
 |---|---|---|---|---|---|
 | Akış günü `#/akis/<g>` | yeni | Bugün (günün kartı), Yol (gün düğümü, "Gir") | X → `#/m1/<g>` (Köy'ün gün listesi; oradan geri → Köy) ✗ | giriş noktası (Bugün / Yol) + "Kaldığın yerden sürer." | "Bugün'e dön" (aynı) |
-| Ses / video / dizi `#/m1/<g>/<kayıt>[/1\|/2]` | eski | akış durağı "Başla", Bugün (gün adımı), Köy → Sinema/Radyo → kayıt, günün kayıtları | ‹ → `#/m1/<g>` ✗ (Bugün'den ve akıştan girince Köy'e düşüyordu) | giriş noktası (akış / Bugün / Radyo / gün listesi) | `#/today` → akıştan girildiyse akış (durak ilerler); "Güne dön" akıştan girilince gizli |
+| Ses / video / dizi `#/m1/<g>/<kayıt>[/1\|/2]` | eski | akış durağı "Başla", Bugün (gün adımı), Köy → Sinema/Radyo → kayıt, günün kayıtları | ‹ → `#/m1/<g>` ✗ (Bugün'den ve akıştan girince Köy'e düşüyordu) | giriş noktası (akış / Bugün / Radyo / gün listesi) | `#/today` → akıştan girildiyse akış (durak ilerler); Köy'den (gün listesi, Radyo) girildiyse günün kayıtları, "Güne dön" o zaman tekrarlanmaz (ANA-T, #275 P2-7); "Güne dön" akıştan girilince gizli |
 | Prova `#/prova/<g>` | eski | akış durağı, Bugün | ‹ → `#/today` ✗ (akıştan / Yol'dan girince) | giriş noktası | `#/today` → akıştan girildiyse akış |
 | Okuma ve yazma `#/okuma/<g>` | eski | akış durağı, Bugün | ‹ → `#/today` ✗ | giriş noktası | `#/today` → akıştan girildiyse akış |
 | Kelime Bahçesi `#/garden[/<g>]` | eski | Bugün (akışsız gün), Bugün "tekrar et", Köy → Bahçe | ‹ → `#/today` ✗ (Köy'den girince) | giriş noktası | aynı (`#/today`) |
@@ -58,6 +58,6 @@ dokunuş köke iner. Akıştan açılan ekran (ör. hafta sonucundan Rehber) sek
 
 ## Bilinen eksikler / takip
 - **md. 5 (kenardan kaydırma):** kabukta (`WKWebView`) geri-ileri kaydırma hareketi açık değil (Capacitor varsayılanı); bu yüzden şu an çelişki yok. Açılırsa geri oku `history.back()` ile eşlenmeli (kabuk işi, ANA-K; bu PR'da `ios-build.yml`'e dokunulmadı).
-- **PM-144 md. 1.2 çerçeve:** akıştan açılan eski kuşak ekran X'i ve akışa dönüşü taşıyor, akışın elmas/çubuk ilerlemesini taşımıyor. "Tek yol" (ANA-T) ile tek çerçeveye inmesi önerilir.
+- ~~**PM-144 md. 1.2 çerçeve:** akıştan açılan eski kuşak ekran akışın ilerlemesini taşımıyor.~~ ANA-T (PM-148 md. 2): akıştan açılan ses, video, prova ve okuma ekranında başlığın altında günün çubuğu "Bugün · durak k/N" (`ProgressHeader gunIzi`, `services/akisOzet.ts`).
 - Bitiş ekranlarındaki açık etiketli "Bugün'e dön" düğmeleri olduğu gibi Bugün'e gider (etiket ne diyorsa o).
 - md. 3'ün "Kaldığın yerden sürer" satırı yalnız akış X'inde; eski kuşak ekranlar kendi ilerlemesini zaten sürdürüyor, satır eklenmedi.

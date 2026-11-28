@@ -1,0 +1,409 @@
+{
+  "schema": 1,
+  "id": "m1:gun:69",
+  "day": 69,
+  "level": "A2",
+  "format": "gun",
+  "title_tr": "Kime hangi ilan? Sınav gibi oku",
+  "goal_tr": "Haftanın kelimelerini tekrar edersin. Sınavdaki gibi kısa ilanları okur, her kişiye uygun ilanı bulursun. Danışmada kendini anlatır, sonra kursta yapacağın kısa sunumu yazarsın.",
+  "can_do": { "id": "cd:m1:69", "tr": "Kısa iş ve kurs ilanlarında bir kişiye uygun olanı bulurum. Kendimi ve iş geçmişimi birkaç cümleyle anlatırım." },
+  "unit": "u:m1:69",
+  "arm": "pazar",
+  "place": "pl:sprachkurs",
+  "characters": ["ch:popescu", "ch:stadler", "ch:petrovic", "ch:lechner"],
+  "requires": { "kelimeler": [], "kaliplar": [], "gramer": [], "tur": [], "baglayicilar": [], "akicilik": [] },
+  "review": { "status": "draft" },
+  "dersler": ["dn:10-dtz-ilan"],
+  "yeni_kartlar": ["lx:Chefin", "lx:Studium"],
+  "halkalar": [
+    {
+      "id": "m1:69:h1",
+      "title_tr": "Şefler, okul, ilanlar",
+      "kartlar": ["lx:Chefin", "lx:Studium"],
+      "kaliplar": [
+        { "de": "die Anzeige – Welche Anzeige passt? – keine Anzeige", "tr": "ilan – Hangi ilan uyuyor? – hiçbir ilan" },
+        { "de": "Wir suchen … – … gesucht!", "tr": "… arıyoruz. – … aranıyor!" },
+        { "de": "nur vormittags – am Wochenende – ohne Erfahrung – in Teilzeit – in Vollzeit", "tr": "yalnız öğleden önce – hafta sonu – deneyimsiz – yarım gün – tam gün" },
+        { "de": "Ich heiße … – Ich wohne in … – Heute arbeite ich …", "tr": "Adım … – …de oturuyorum. – Bugün …de çalışıyorum." },
+        { "de": "Ich habe ein paar Fragen. – Wann fängt der Kurs an? – Wie viel kostet der Kurs?", "tr": "Birkaç sorum var. – Kurs ne zaman başlıyor? – Kurs ne kadar?" },
+        { "de": "Ich habe einen Termin für die Beratung. – Am Ende gibt es eine Prüfung. – Gibt es am Ende einen Abschluss?", "tr": "Danışma için randevum var. – Sonunda bir sınav var. – Sonunda bir belge var mı?" },
+        { "de": "Früher habe ich als … gearbeitet. – Ich habe … gelernt.", "tr": "Eskiden … olarak çalıştım. – … öğrendim." }
+      ],
+      "dersten_sonra": true,
+      "gorev_cumleleri": [
+        { "kart": "lx:Chefin", "de": "Die Chefin von Ioana ist sehr nett.", "tr": "Ioana'nın şefi (kadın) çok nazik.",
+          "accepted": ["Die Chefin von Ioana ist sehr nett.", "Die Chefin von Ioana ist nett.", "Ioanas Chefin ist sehr nett."] },
+        { "kart": "lx:Chefin", "de": "Gestern konnte Ioana nicht mit der Chefin sprechen.", "tr": "Dün Ioana şefiyle (kadın) konuşamadı.",
+          "accepted": ["Gestern konnte Ioana nicht mit der Chefin sprechen.", "Ioana konnte gestern nicht mit der Chefin sprechen.", "Gestern konnte Ioana nicht mit ihrer Chefin sprechen.", "Ioana konnte gestern nicht mit ihrer Chefin sprechen."] },
+        { "kart": "lx:Chefin", "de": "Die Chefin hat noch eine Stelle in Teilzeit frei.", "tr": "Şefin (kadın) yarım günlük boş bir kadrosu daha var.",
+          "accepted": ["Die Chefin hat noch eine Stelle in Teilzeit frei.", "Die Chefin hat noch eine Stelle in Teilzeit frei!", "Unsere Chefin hat noch eine Stelle in Teilzeit frei."] },
+        { "kart": "lx:Chefin", "de": "Ioana muss ihre Chefin fragen.", "tr": "Ioana'nın şefine (kadın) sorması gerekiyor.",
+          "accepted": ["Ioana muss ihre Chefin fragen.", "Ioana muss erst ihre Chefin fragen.", "Ioana muss ihre Chefin noch fragen."] },
+        { "kart": "lx:Studium", "de": "Für die Stelle brauchen Sie kein Studium.", "tr": "Bu iş için üniversite okumuş olmanız gerekmiyor.",
+          "accepted": ["Für die Stelle brauchen Sie kein Studium.", "Sie brauchen für die Stelle kein Studium.", "Für diese Stelle brauchen Sie kein Studium."] },
+        { "kart": "lx:Studium", "de": "Ich habe kein Studium, aber viel Erfahrung.", "tr": "Üniversite okumadım ama çok deneyimim var.",
+          "accepted": ["Ich habe kein Studium, aber viel Erfahrung.", "Ich habe kein Studium, aber ich habe viel Erfahrung.", "Ich habe kein Studium. Aber ich habe viel Erfahrung."] },
+        { "kart": "lx:Studium", "de": "Früher wollte ich ein Studium machen, aber ich musste arbeiten.", "tr": "Eskiden üniversite okumak istiyordum ama çalışmak zorundaydım.",
+          "accepted": ["Früher wollte ich ein Studium machen, aber ich musste arbeiten.", "Ich wollte früher ein Studium machen, aber ich musste arbeiten.", "Früher wollte ich ein Studium machen. Aber ich musste arbeiten."] },
+        { "kart": "lx:Studium", "de": "Nach dem Studium habe ich eine Stelle gesucht.", "tr": "Üniversiteden sonra iş aradım.",
+          "accepted": ["Nach dem Studium habe ich eine Stelle gesucht.", "Ich habe nach dem Studium eine Stelle gesucht.", "Nach dem Studium habe ich Arbeit gesucht."] }
+      ],
+      "sahne": {
+        "ortam_tr": "Luka'nın salonu. Saçını kesiyor, kendi ilk işini anlatıyor.",
+        "satirlar": [
+          { "r": "ch:petrovic", "de": "Früher hatte ich eine Chefin. Sie war streng.", "tr": "Eskiden bir şefim (kadın) vardı. Sertti." },
+          { "r": "ogrenci", "de": "Und? Konntest du viel lernen?", "tr": "Eee? Çok şey öğrenebildin mi?" },
+          { "r": "ch:petrovic", "de": "Ja, sehr viel! Ein Studium hatte ich nicht, aber ich hatte eine gute Chefin.", "tr": "Evet, çok! Üniversite okumamıştım ama iyi bir şefim vardı." }
+        ],
+        "soru": { "q_tr": "Luka eski şefi için ne diyor?", "opts": ["Sertti ama ondan çok şey öğrendi", "Hiç konuşmazdı", "Ona yardım etmezdi"], "ans": 0 }
+      }
+    }
+  ],
+  "sahne": {
+    "id": "m1:69:v1",
+    "title_tr": "Kursta: sınav görevi, kime hangi ilan?",
+    "sahneler": [
+      { "id": "s1", "speaker": "die Kursleiterin", "sahne_tr": "Akşam kursu. Kurs öğretmeni tahtaya küçük kâğıtlar asıyor: kişiler ve ilanlar.", "de": "Heute üben wir eine Aufgabe aus der Prüfung.", "tr": "Bugün sınavdan bir görev çalışıyoruz." },
+      { "id": "s2", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni solda kişileri, sağda ilanları gösteriyor.", "de": "Sie lesen Personen und Stellenanzeigen. Welche Anzeige passt?", "tr": "Kişileri ve iş ilanlarını okuyorsunuz. Hangi ilan uyuyor?" },
+      { "id": "s3", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni ilk kâğıdı okuyor.", "de": "Schauen Sie: Emil kann nur am Wochenende arbeiten.", "tr": "Bakın: Emil yalnız hafta sonu çalışabiliyor." },
+      { "id": "s4", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni birinci ilanı gösteriyor.", "de": "Anzeige A: Kellner, Montag bis Freitag. Passt das?", "tr": "İlan A: garson, pazartesiden cumaya. Uyuyor mu?" },
+      { "id": "s5", "speaker": "ch:popescu", "sahne_tr": "Ioana başını sallıyor.", "de": "Nein. Emil kann nur am Wochenende.", "tr": "Hayır. Emil yalnız hafta sonu yapabiliyor." },
+      { "id": "s6", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni ikinci ilanı gösteriyor.", "de": "Richtig. Anzeige B: Lager, Samstag und Sonntag, in Teilzeit.", "tr": "Doğru. İlan B: depo, cumartesi ve pazar, yarım gün." },
+      { "id": "s7", "speaker": "ch:popescu", "sahne_tr": "Ioana parmağıyla iki kâğıdı birleştiriyor.", "de": "Das passt! Samstag und Sonntag, das ist das Wochenende.", "tr": "Bu uyuyor! Cumartesi ve pazar, işte hafta sonu." },
+      { "id": "s8", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni tahtaya üç sözcük yazıyor: Zeit, Tag, Geld.", "de": "Genau. Suchen Sie immer drei Wörter: Zeit, Tag und Geld.", "tr": "Aynen. Hep üç sözcüğü arayın: saat, gün ve para." },
+      { "id": "s9", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni bir kişinin kâğıdını tek başına bırakıyor.", "de": "Manchmal passt keine Anzeige. Das gibt es in der Prüfung auch.", "tr": "Bazen hiçbir ilan uymaz. Bu sınavda da olur." },
+      { "id": "s10", "speaker": "ch:popescu", "sahne_tr": "Ioana iç çekiyor.", "de": "Früher konnte ich das nicht. Ich musste immer alles lesen.", "tr": "Eskiden bunu yapamıyordum. Hep her şeyi okumak zorundaydım." },
+      { "id": "s11", "speaker": "die Kursleiterin", "sahne_tr": "Kurs öğretmeni gülümsüyor.", "de": "Sie müssen nicht alles verstehen. Suchen Sie nur Zeit, Tag und Geld.", "tr": "Her şeyi anlamak zorunda değilsiniz. Yalnız saati, günü ve parayı arayın." },
+      { "id": "s12", "speaker": "ch:popescu", "sahne_tr": "Ioana kalemini alıyor.", "de": "Gut. Das kann ich schaffen!", "tr": "İyi. Bunu başarabilirim!" }
+    ],
+    "bolumler": [
+      {
+        "id": "b1",
+        "cumleler": ["s1", "s2", "s3", "s4", "s5", "s6", "s7"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Kursta ne yapıyorlar?", "opts": ["Kişilere uygun ilanı arıyorlar", "Bir mektup yazıyorlar", "Bir şarkı dinliyorlar"], "ans": 0, "kanit": ["s2"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Emil ne zaman çalışabiliyor?", "opts": ["Yalnız hafta sonu", "Yalnız sabah", "Her gün"], "ans": 0, "kanit": ["s3"] },
+          { "kind": "detail", "q_tr": "İlan A neden uymuyor?", "opts": ["İş pazartesiden cumaya", "İş çok uzakta", "Para az"], "ans": 0, "kanit": ["s4", "s5"] },
+          { "kind": "detail", "q_tr": "Emil'e hangi ilan uyuyor?", "opts": ["İlan B, depo", "İlan A, garson", "Hiçbiri"], "ans": 0, "kanit": ["s6", "s7"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s6", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Teilzeit", "Vollzeit", "Freizeit"], "ans": 0 },
+          { "id": "d2", "cumle": "s3", "seviye": "orta", "de": "Schauen Sie: Emil kann nur am ___ arbeiten.", "accepted": ["Wochenende", "wochenende", "Wochenende."] },
+          { "id": "d3", "cumle": "s7", "seviye": "zor", "banka": ["Das", "passt", "Samstag", "und", "Sonntag", "das", "ist", "das", "Wochenende", "Montag", "Freitag"], "accepted": ["Das passt! Samstag und Sonntag, das ist das Wochenende.", "das passt samstag und sonntag das ist das wochenende", "Das passt. Samstag und Sonntag, das ist das Wochenende."] },
+          { "id": "d4", "cumle": "s5", "seviye": "usta", "accepted": ["Nein. Emil kann nur am Wochenende.", "nein emil kann nur am wochenende", "Nein, Emil kann nur am Wochenende."] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Emil'e hangi ilan uyuyor, neden? Bir iki kısa cümleyle yaz.", "ornek_de": "Emil kann nur am Wochenende arbeiten. Die Stelle im Lager passt.", "zorunlu": ["Wochenende"] }
+        ],
+        "golge": ["s2", "s7"],
+        "cevapla": {
+          "id": "m1:69:v1:c1",
+          "k": "guided_response",
+          "situation_tr": "Kurs öğretmeni sana soruyor: sen hangi günler ve saatler çalışabiliyorsun? Kısa söyle.",
+          "prompt_de": "Und Sie? Wann können Sie arbeiten?",
+          "accepted": ["Ich kann nur vormittags arbeiten.", "Ich kann von Montag bis Freitag arbeiten.", "Ich kann nur am Wochenende arbeiten.", "Ich kann am Tag arbeiten, am Abend habe ich den Kurs.", "Ich kann von Montag bis Freitag arbeiten, aber nicht am Wochenende.", "Ich kann nur am Tag arbeiten.", "Ich kann in Vollzeit arbeiten.", "Ich kann in Teilzeit arbeiten, nur vormittags.", "Von Montag bis Freitag.", "Ich kann am Montag, Mittwoch und Freitag arbeiten.", "Ich kann nur vormittags arbeiten, am Nachmittag nicht."],
+          "why_tr": "Zamanı **nur vormittags** ya da **von Montag bis Freitag** ile söylersin. İlanlarda tam bunu ararsın."
+        }
+      },
+      {
+        "id": "b2",
+        "cumleler": ["s8", "s9", "s10", "s11", "s12"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Kurs öğretmeni hangi ipucunu veriyor?", "opts": ["Her şeyi değil, saati, günü ve parayı ara", "Her ilanı iki kez oku", "Sözlük kullan"], "ans": 0, "kanit": ["s8", "s11"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Hangi sözcükleri aramalısın?", "opts": ["Saat, gün ve para", "Ad, adres ve telefon", "Renk ve büyüklük"], "ans": 0, "kanit": ["s8"] },
+          { "kind": "detail", "q_tr": "Sınavda ne olabilir?", "opts": ["Bir kişiye hiçbir ilan uymayabilir", "İlan hiç olmayabilir", "Kişiler ilanı yazar"], "ans": 0, "kanit": ["s9"] },
+          { "kind": "detail", "q_tr": "Ioana eskiden ne yapmak zorundaydı?", "opts": ["Hep her şeyi okumak", "Hep erken kalkmak", "Hep yazmak"], "ans": 0, "kanit": ["s10"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s10", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["konnte", "wollte", "durfte"], "ans": 0 },
+          { "id": "d2", "cumle": "s9", "seviye": "orta", "de": "Manchmal passt ___ Anzeige. Das gibt es in der Prüfung auch.", "accepted": ["keine", "Keine", "keine."] },
+          { "id": "d3", "cumle": "s11", "seviye": "zor", "banka": ["Sie", "müssen", "nicht", "alles", "verstehen", "dürfen", "lesen"], "accepted": ["Sie müssen nicht alles verstehen.", "sie müssen nicht alles verstehen", "Sie müssen nicht alles verstehen"] },
+          { "id": "d4", "cumle": "s12", "seviye": "usta", "accepted": ["Gut. Das kann ich schaffen!", "gut das kann ich schaffen", "Gut, das kann ich schaffen!"] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Sınavdaki bu görevde ne yapmalısın? İki kısa cümleyle yaz.", "ornek_de": "Ich suche Zeit, Tag und Geld. Manchmal passt keine Anzeige.", "zorunlu": ["passt"] }
+        ],
+        "golge": ["s10", "s11"],
+        "cevapla": {
+          "id": "m1:69:v1:c2",
+          "k": "guided_response",
+          "situation_tr": "Kurs öğretmeni senin iş geçmişini soruyor. Eskiden ne iş yaptığını ve ne yapmak zorunda olduğunu iki cümleyle söyle.",
+          "prompt_de": "Und Sie? Was haben Sie früher gemacht?",
+          "accepted": ["Früher habe ich in einer Fabrik gearbeitet. Ich musste früh aufstehen.", "Früher habe ich als {Fahrer|Fahrerin} gearbeitet. Ich musste viel fahren.", "Früher habe ich im Lager gearbeitet. Ich musste in der Nacht arbeiten.", "Früher habe ich als {Kellner|Kellnerin} gearbeitet. Ich musste am Wochenende arbeiten.", "Früher habe ich als {Koch|Köchin} gearbeitet. Ich musste am Abend arbeiten.", "Ich habe früher in einer Fabrik gearbeitet. Ich musste viel arbeiten.", "Früher habe ich in einem Restaurant gearbeitet. Ich musste lange arbeiten.", "Früher habe ich im Büro gearbeitet. Ich musste viel am Computer arbeiten.", "Früher habe ich in einer Fabrik gearbeitet. Ich musste in Schichten arbeiten.", "Früher habe ich im Lager gearbeitet. Ich musste früh aufstehen.", "Früher war ich {Fahrer|Fahrerin}. Ich musste viel fahren.", "Früher war ich {Koch|Köchin}. Ich musste am Wochenende arbeiten."],
+          "why_tr": "İşi **Früher habe ich im Lager gearbeitet** gibi söylersin. Zorunluluk **Ich musste** ile gelir."
+        }
+      }
+    ]
+  },
+  "sesler": [
+    {
+      "id": "m1:69:a1",
+      "tur": "sesli-mesaj",
+      "title_tr": "Kurs öğretmeninden sesli mesaj",
+      "ortam_tr": "Öğle arasında telefonuna bakıyorsun. Kurs öğretmeni bütün sınıfa bir sesli mesaj göndermiş.",
+      "speaker": "die Kursleiterin",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Guten Tag, hier ist Ihre Kursleiterin.", "tr": "İyi günler, ben kurs öğretmeniniz." },
+        { "id": "c2", "de": "Am Montag üben wir eine Aufgabe aus der Prüfung.", "tr": "Pazartesi sınavdan bir görev çalışıyoruz." },
+        { "id": "c3", "de": "Bitte lesen Sie zu Hause schon die Stellenanzeigen.", "tr": "Lütfen iş ilanlarını evde önceden okuyun." },
+        { "id": "c4", "de": "Der Unterricht fängt am Montag um halb sechs an, nicht um sechs.", "tr": "Pazartesi ders saat altıda değil, beş buçukta başlıyor." },
+        { "id": "c5", "de": "Bitte kommen Sie pünktlich!", "tr": "Lütfen tam vaktinde gelin!" }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Kurs öğretmeni neden arıyor?", "opts": ["Pazartesi dersi için bilgi veriyor", "Kurs iptal oldu", "Sınav sonucunu söylüyor"], "ans": 0, "kanit": ["c2", "c4"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Pazartesi ders kaçta başlıyor?", "opts": ["Beş buçukta", "Altıda", "Altı buçukta"], "ans": 0, "kanit": ["c4"] },
+            { "kind": "detail", "q_tr": "Evde ne yapmalısın?", "opts": ["İş ilanlarını okumak", "Bir mektup yazmak", "Bir kelime listesi ezberlemek"], "ans": 0, "kanit": ["c3"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c4", "seviye": "kolay", "q_tr": "Hangi saati duydun?", "opts": ["halb sechs", "halb sieben", "halb acht"], "ans": 0 },
+            { "id": "d2", "cumle": "c2", "seviye": "orta", "de": "Am Montag üben wir eine Aufgabe aus der ___.", "accepted": ["Prüfung", "prüfung", "Prüfung."] },
+            { "id": "d3", "cumle": "c3", "seviye": "zor", "banka": ["Bitte", "lesen", "Sie", "zu", "Hause", "schon", "die", "Stellenanzeigen", "Stelle", "im"], "accepted": ["Bitte lesen Sie zu Hause schon die Stellenanzeigen.", "bitte lesen sie zu hause schon die stellenanzeigen", "Bitte lesen Sie zu Hause schon die Stellenanzeigen"] },
+            { "id": "d4", "cumle": "c5", "seviye": "usta", "accepted": ["Bitte kommen Sie pünktlich!", "bitte kommen sie pünktlich", "Bitte kommen Sie pünktlich."] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Pazartesi için ne bilmelisin? Bir iki kısa cümleyle yaz.", "ornek_de": "Am Montag fängt der Unterricht um halb sechs an. Ich lese zu Hause die Stellenanzeigen.", "zorunlu": ["halb sechs"] }
+          ],
+          "golge": ["c2", "c4"],
+          "cevapla": {
+            "id": "m1:69:a1:c1",
+            "k": "guided_response",
+            "situation_tr": "Ioana mesajı dinlemedi. Pazartesi dersin beş buçukta başladığını söyle.",
+            "prompt_de": "Wann fängt der Unterricht am Montag an?",
+            "accepted": ["Um halb sechs, nicht um sechs.", "Am Montag fängt der Unterricht um halb sechs an.", "Um halb sechs.", "Der Unterricht fängt um halb sechs an.", "Am Montag um halb sechs.", "Um halb sechs! Nicht um sechs.", "Er fängt um halb sechs an.", "Am Montag fängt er um halb sechs an, nicht um sechs.", "Um halb sechs. Komm bitte pünktlich!", "Um halb sechs. Und lies zu Hause die Stellenanzeigen!"],
+            "why_tr": "Saati **um halb sechs** ile söylersin. **fängt** ikinci yerde, **an** en sonda."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:69:a1:e1", "k": "pick", "q_tr": "Pazartesi ne yapmalısın?", "opts": ["Beş buçukta kursta ol.", "Altıda kursta ol.", "Kursa gitme."], "ans": 0, "why_tr": "Ders altıda değil, beş buçukta başlıyor.", "kanit": ["c4"] }
+    },
+    {
+      "id": "m1:69:a2",
+      "tur": "sesli-mesaj",
+      "title_tr": "Tobi'den sesli mesaj",
+      "ortam_tr": "Akşam telefonuna bakıyorsun. İş arkadaşın Tobi bir sesli mesaj bırakmış.",
+      "speaker": "ch:lechner",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Hallo, hier ist Tobi.", "tr": "Merhaba, ben Tobi." },
+        { "id": "c2", "de": "Heute konnte ich nicht kommen, ich musste zum Zahnarzt.", "tr": "Bugün gelemedim, dişçiye gitmek zorundaydım." },
+        { "id": "c3", "de": "Wolltest du heute nicht mit dem Chef sprechen?", "tr": "Bugün şefle konuşmak istemiyor muydun?" },
+        { "id": "c4", "de": "Wie war es? Hatte er Zeit für dich?", "tr": "Nasıl geçti? Sana vakit ayırabildi mi?" },
+        { "id": "c5", "de": "Ruf mich bitte heute Abend an! Tschüss!", "tr": "Lütfen bu akşam beni ara! Görüşürüz!" }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Tobi neden arıyor?", "opts": ["Şefle konuşmanın nasıl geçtiğini merak ediyor", "İşe geç kalacağını söylüyor", "Seni yemeğe çağırıyor"], "ans": 0, "kanit": ["c3", "c4"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Tobi bugün neden gelemedi?", "opts": ["Dişçiye gitmek zorundaydı", "Hastaydı", "Kurstaydı"], "ans": 0, "kanit": ["c2"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c3", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Wolltest", "Durftest", "Musstest"], "ans": 0 },
+            { "id": "d2", "cumle": "c2", "seviye": "orta", "de": "Heute konnte ich nicht kommen, ich ___ zum Zahnarzt.", "accepted": ["musste", "Musste", "musste."] },
+            { "id": "d3", "cumle": "c4", "seviye": "zor", "banka": ["Wie", "war", "es", "Hatte", "er", "Zeit", "für", "dich", "mich", "Hat"], "accepted": ["Wie war es? Hatte er Zeit für dich?", "wie war es hatte er zeit für dich", "Wie war es? Hatte er Zeit für dich"] },
+            { "id": "d4", "cumle": "c3", "seviye": "usta", "accepted": ["Wolltest du heute nicht mit dem Chef sprechen?", "wolltest du heute nicht mit dem chef sprechen", "Wolltest du heute nicht mit dem Chef sprechen"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Tobi ne istiyor? Bir iki kısa cümleyle yaz.", "ornek_de": "Tobi war beim Zahnarzt. Ich soll ihn heute Abend anrufen.", "zorunlu": ["anrufen"] }
+          ],
+          "golge": ["c2", "c3"],
+          "cevapla": {
+            "id": "m1:69:a2:c1",
+            "k": "guided_response",
+            "situation_tr": "Tobi'yi geri arıyorsun. Şefle, yani Wimmer Bey'le konuşamadığını, onun vakti olmadığını söyle.",
+            "prompt_de": "Hallo! Und? Wie war es mit dem Chef?",
+            "accepted": ["Ich konnte nicht mit dem Chef sprechen. Er hatte keine Zeit.", "Ich konnte nicht mit ihm sprechen. Er hatte keine Zeit.", "Leider konnte ich nicht mit ihm sprechen. Er hatte keine Zeit.", "Er hatte keine Zeit. Ich konnte nicht mit ihm sprechen.", "Ich konnte heute nicht mit ihm sprechen, er hatte keine Zeit.", "Leider nicht. Herr Wimmer hatte keine Zeit.", "Er hatte heute keine Zeit. Ich konnte nicht mit ihm sprechen.", "Ich konnte nicht mit dem Chef sprechen, er hatte keine Zeit.", "Leider hatte er keine Zeit.", "Er hatte keine Zeit. Ich spreche morgen mit ihm."],
+            "why_tr": "Bugün olmuş, bitmiş: **Ich konnte nicht** ve **Er hatte keine Zeit** dersin."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:69:a2:e1", "k": "pick", "q_tr": "Ne yapmalısın?", "opts": ["Bu akşam Tobi'yi ara.", "Şefi ara.", "Dişçiden randevu al."], "ans": 0, "why_tr": "Tobi bu akşam onu aramanı istiyor.", "kanit": ["c5"] }
+    }
+  ],
+  "prova": {
+    "id": "m1:69:p1",
+    "title_tr": "Danışmada: kendini anlat",
+    "durum_tr": "Kursta danışma saati. Kurs öğretmeni seninle konuşuyor. Eski işini, neyi iyi yapabildiğini ve ne istediğini soruyor. Sonunda meslek için dil kursu hakkında bilgi al: ne zaman başlıyor, sonunda ne var?",
+    "karsi": "die Kursleiterin",
+    "baslangic": "n1",
+    "dugumler": [
+      {
+        "id": "n1",
+        "de": "Guten Tag! Kommen Sie zur Beratung?",
+        "tr": "İyi günler! Danışmaya mı geldiniz?",
+        "secenekler": [
+          { "de": "Ja, guten Tag. Ich habe einen Termin für die Beratung.", "tr": "Evet, iyi günler. Danışma için randevum var.",
+            "accepted": ["Ja, guten Tag. Ich habe einen Termin für die Beratung.", "Ja, guten Tag! Ich habe einen Termin für die Beratung.", "Guten Tag! Ich habe einen Termin für die Beratung.", "Ja. Ich habe einen Termin für die Beratung.", "Ja, ich habe einen Termin für die Beratung.", "Ja, guten Tag. Ich habe einen Termin um fünf.", "Ja, guten Tag. Ich habe einen Termin."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Selam verdin ve neden geldiğini söyledin." },
+          { "de": "Ja, guten Tag. Ich habe ein paar Fragen.", "tr": "Evet, iyi günler. Birkaç sorum var.",
+            "accepted": ["Ja, guten Tag. Ich habe ein paar Fragen.", "Ja, guten Tag! Ich habe ein paar Fragen.", "Guten Tag! Ich habe ein paar Fragen.", "Ja. Ich habe ein paar Fragen.", "Ja, ich habe ein paar Fragen.", "Ja, guten Tag. Ich habe eine Frage."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Kısa ve açık bir başlangıç." }
+        ]
+      },
+      {
+        "id": "n2",
+        "de": "Gern. Erzählen Sie bitte: Was haben Sie früher gemacht?",
+        "tr": "Memnuniyetle. Lütfen anlatın: eskiden ne yaptınız?",
+        "secenekler": [
+          { "de": "Früher habe ich in einer Fabrik gearbeitet. Ich musste oft in der Nacht arbeiten.", "tr": "Eskiden bir fabrikada çalıştım. Çoğu zaman gece çalışmak zorundaydım.",
+            "accepted": ["Früher habe ich in einer Fabrik gearbeitet. Ich musste oft in der Nacht arbeiten.", "Früher habe ich in einer Fabrik gearbeitet, ich musste oft in der Nacht arbeiten.", "Ich habe früher in einer Fabrik gearbeitet. Ich musste oft in der Nacht arbeiten.", "Früher habe ich in einer Fabrik gearbeitet.", "Früher habe ich in einer Fabrik gearbeitet. Ich musste in Schichten arbeiten.", "Früher habe ich in einer Fabrik gearbeitet. Ich musste früh aufstehen.", "Früher habe ich im Lager gearbeitet. Ich musste oft in der Nacht arbeiten."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Eski işini **habe gearbeitet**, zorunluluğu **musste** ile anlattın." },
+          { "de": "Früher habe ich in einem Restaurant gearbeitet. Damals konnte ich nur ein bisschen Deutsch.", "tr": "Eskiden bir restoranda çalıştım. O zamanlar sadece biraz Almanca biliyordum.",
+            "accepted": ["Früher habe ich in einem Restaurant gearbeitet. Damals konnte ich nur ein bisschen Deutsch.", "Früher habe ich in einem Restaurant gearbeitet. Damals konnte ich nicht viel Deutsch.", "Ich habe früher in einem Restaurant gearbeitet. Damals konnte ich nur ein bisschen Deutsch.", "Früher habe ich in einem Restaurant gearbeitet.", "Früher habe ich in einem Hotel gearbeitet. Damals konnte ich nur ein bisschen Deutsch.", "Früher habe ich in einem Restaurant gearbeitet, damals konnte ich nur ein bisschen Deutsch."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "**Damals konnte ich** ile o zamanki durumunu da ekledin." },
+          { "de": "Früher arbeite ich in einer Fabrik.", "tr": "Eskiden bir fabrikada çalışıyorum.",
+            "accepted": ["Früher arbeite ich in einer Fabrik.", "Früher arbeite ich in einem Restaurant.", "Früher ich arbeite in einer Fabrik.", "Früher arbeite ich im Lager."],
+            "sonraki": "n2", "uygun": false, "geri_bildirim_tr": "**Früher** ile **arbeite** olmaz. **Früher habe ich in einer Fabrik gearbeitet** dersin." }
+        ]
+      },
+      {
+        "id": "n3",
+        "de": "Und was können Sie gut?",
+        "tr": "Peki neyi iyi yapabiliyorsunuz?",
+        "secenekler": [
+          { "de": "Ich kann gut im Team arbeiten. Ich bin zuverlässig und fleißig.", "tr": "Ekipte iyi çalışabiliyorum. Güvenilir ve çalışkanım.",
+            "accepted": ["Ich kann gut im Team arbeiten. Ich bin zuverlässig und fleißig.", "Ich kann gut im Team arbeiten, und ich bin zuverlässig.", "Ich arbeite gern im Team. Ich bin zuverlässig und fleißig.", "Ich kann gut im Team arbeiten.", "Ich bin zuverlässig und fleißig.", "Ich kann gut im Team arbeiten. Ich bin hilfsbereit."],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Yeteneğini ve bir özelliğini söyledin." },
+          { "de": "Ich kann gut mit dem Computer arbeiten. Und ich habe Erfahrung im Lager.", "tr": "Bilgisayarla iyi çalışabiliyorum. Depoda da deneyimim var.",
+            "accepted": ["Ich kann gut mit dem Computer arbeiten. Und ich habe Erfahrung im Lager.", "Ich kann gut mit dem Computer arbeiten. Ich habe Erfahrung im Lager.", "Ich kann gut am Computer arbeiten, und ich habe Erfahrung im Lager.", "Ich kann gut mit dem Computer arbeiten.", "Ich habe Erfahrung im Lager.", "Ich kann ein bisschen mit dem Computer arbeiten. Und ich habe Erfahrung im Lager."],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "**Ich kann gut** ve **Ich habe Erfahrung** ile iki güçlü yanını söyledin." }
+        ]
+      },
+      {
+        "id": "n4",
+        "de": "Sehr gut. Und was möchten Sie machen?",
+        "tr": "Çok iyi. Peki ne yapmak istiyorsunuz?",
+        "secenekler": [
+          { "de": "Ich möchte den Sprachkurs für den Beruf machen. Wann fängt der Kurs an?", "tr": "Meslek için dil kursuna gitmek istiyorum. Kurs ne zaman başlıyor?",
+            "accepted": ["Ich möchte den Sprachkurs für den Beruf machen. Wann fängt der Kurs an?", "Ich möchte den Sprachkurs für den Beruf machen. Wann fängt er an?", "Ich möchte einen Sprachkurs für den Beruf machen. Wann fängt der Kurs an?", "Ich möchte den Sprachkurs für den Beruf machen.", "Wann fängt der Sprachkurs für den Beruf an?", "Ich möchte gern den Sprachkurs für den Beruf machen. Wann fängt der Kurs an?"],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "İsteğini söyledin ve hemen önemli soruyu sordun." },
+          { "de": "Ich möchte eine Weiterbildung machen. Gibt es eine Möglichkeit am Abend?", "tr": "Mesleki bir ek eğitim almak istiyorum. Akşam bir imkân var mı?",
+            "accepted": ["Ich möchte eine Weiterbildung machen. Gibt es eine Möglichkeit am Abend?", "Ich möchte eine Weiterbildung machen. Gibt es eine Möglichkeit?", "Ich möchte gern eine Weiterbildung machen. Gibt es eine Möglichkeit am Abend?", "Ich möchte eine Weiterbildung machen.", "Gibt es eine Möglichkeit für eine Weiterbildung am Abend?", "Ich möchte eine Weiterbildung machen. Ich kann nur am Abend."],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "**Ich möchte** ile kibar istek, **Gibt es eine Möglichkeit** ile soru." }
+        ]
+      },
+      {
+        "id": "n5",
+        "de": "Der Sprachkurs für den Beruf ist am Abend. Er fängt im März an.",
+        "tr": "Meslek için dil kursu akşamları. Martta başlıyor.",
+        "secenekler": [
+          { "de": "Im März, gut. Gibt es am Ende eine Prüfung?", "tr": "Martta, iyi. Sonunda bir sınav var mı?",
+            "accepted": ["Im März, gut. Gibt es am Ende eine Prüfung?", "Gut. Gibt es am Ende eine Prüfung?", "Im März. Gibt es am Ende eine Prüfung?", "Gibt es am Ende eine Prüfung?", "Gibt es am Ende einen Abschluss?", "Im März, gut. Gibt es am Ende einen Abschluss?"],
+            "sonraki": "n6", "uygun": true, "geri_bildirim_tr": "Tarihi tekrar edip yeni bir soru sordun." },
+          { "de": "Danke für die Beratung!", "tr": "Danışma için teşekkürler!",
+            "accepted": ["Danke für die Beratung!", "Vielen Dank für die Beratung!", "Danke für die Beratung.", "Danke! Das ist gut.", "Danke schön für die Beratung!"],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Kibar bir kapanış. İstersen sınavı da sorabilirdin." }
+        ]
+      },
+      {
+        "id": "n6",
+        "de": "Ja. Am Ende gibt es eine Prüfung und einen Abschluss.",
+        "tr": "Evet. Sonunda bir sınav ve bir belge var.",
+        "secenekler": [
+          { "de": "Super, danke für die Beratung!", "tr": "Süper, danışma için teşekkürler!",
+            "accepted": ["Super, danke für die Beratung!", "Super! Vielen Dank für die Beratung!", "Danke für die Beratung!", "Vielen Dank für die Beratung!", "Gut, danke für die Beratung.", "Super, danke! Das ist sehr gut."],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Haftanın kelimesiyle teşekkür ettin: **die Beratung**." }
+        ]
+      },
+      { "id": "n9", "de": "Gern. Bis Montag!", "tr": "Rica ederim. Pazartesi görüşürüz!", "son": true }
+    ],
+    "kapanis_tr": "Danışmada kendini anlattın: eskiden ne yaptın, neyi iyi yapıyorsun, ne istiyorsun. Kursun ne zaman başladığını ve sonunda sınav olup olmadığını öğrendin."
+  },
+  "okuma_yazma": {
+    "tur": "okuma",
+    "title_tr": "Sınav gibi: kime hangi ilan?",
+    "metin_de": "Moritz: Ich habe einen Führerschein und möchte als Fahrer arbeiten. Ich kann nur vormittags arbeiten. Lea: Ich möchte Erzieherin werden. Ich habe noch keine Erfahrung. Julia: Ich arbeite am Tag. Ich suche einen Sprachkurs am Abend. Paul: Ich bin Elektriker. Ich suche eine Stelle in Vollzeit. Jan: Ich bin Kellner. Ich möchte nur am Wochenende arbeiten. Anzeige A: Wir suchen einen Fahrer (m/w/d) in Vollzeit. Die Arbeit ist in der Nacht, von 22 bis 6 Uhr. Anzeige B: Ein Supermarkt sucht einen Fahrer (m/w/d) in Teilzeit. Arbeitszeit: Montag bis Freitag, 6 bis 11 Uhr. Anzeige C: Das Restaurant am See sucht einen Kellner (m/w/d). Arbeitszeit: Montag bis Freitag, 11 bis 15 Uhr. Anzeige D: Eine Firma in Wendlfing sucht einen Elektriker (m/w/d) in Vollzeit. Erfahrung ist wichtig. Anzeige E: Sie möchten Erzieherin oder Erzieher werden? Bei uns können Sie ein Praktikum machen, auch ohne Erfahrung. Anzeige F: Sprachkurs am Abend. Der Unterricht ist am Montag und Mittwoch von 18 bis 20 Uhr.",
+    "metin_tr": "Moritz: Ehliyetim var, şoför olarak çalışmak istiyorum. Yalnız öğleden önce çalışabilirim. Lea: Anaokulu öğretmeni olmak istiyorum. Henüz deneyimim yok. Julia: Gündüz çalışıyorum. Akşam bir dil kursu arıyorum. Paul: Elektrikçiyim. Tam gün bir iş arıyorum. Jan: Garsonum. Yalnız hafta sonu çalışmak istiyorum. İlan A: Tam gün bir şoför (m/w/d) arıyoruz. İş gece, 22'den 6'ya kadar. İlan B: Bir süpermarket yarım gün bir şoför (m/w/d) arıyor. Çalışma saati: pazartesiden cumaya, 6'dan 11'e. İlan C: Göl kenarındaki restoran bir garson (m/w/d) arıyor. Çalışma saati: pazartesiden cumaya, 11'den 15'e. İlan D: Wendlfing'de bir firma tam gün bir elektrikçi (m/w/d) arıyor. Deneyim önemli. İlan E: Anaokulu öğretmeni olmak mı istiyorsunuz? Bizde deneyimsiz de staj yapabilirsiniz. İlan F: Akşam dil kursu. Ders pazartesi ve çarşamba 18'den 20'ye kadar.",
+    "sorular": [
+      { "id": "m1:69:o1", "kind": "gist", "q_tr": "Bu metinde ne var?", "opts": ["Beş kişi ve altı ilan", "Bir mektup", "Bir kursun programı"], "ans": 0, "kanit": [0, 10] },
+      { "id": "m1:69:o2", "k": "pick", "q_tr": "Moritz için hangi ilan? İpucu: önce saatine bak, yalnız öğleden önce.", "opts": ["A", "B", "C", "D", "E", "F", "keine Anzeige"], "ans": 1,
+        "why_tr": "Moritz yalnız öğleden önce çalışabilir. **B** sabah altıdan on bire kadar. **A** gece." },
+      { "id": "m1:69:o3", "k": "pick", "q_tr": "Lea için hangi ilan? İpucu: deneyim sözcüğünü ara.", "opts": ["A", "B", "C", "D", "E", "F", "keine Anzeige"], "ans": 4,
+        "why_tr": "Lea'nın deneyimi yok. **E** diyor ki: **auch ohne Erfahrung**." },
+      { "id": "m1:69:o4", "k": "pick", "q_tr": "Julia için hangi ilan?", "opts": ["A", "B", "C", "D", "E", "F", "keine Anzeige"], "ans": 5,
+        "why_tr": "Julia akşam bir kurs arıyor. **F** akşam altıdan sekize." },
+      { "id": "m1:69:o5", "k": "pick", "q_tr": "Paul için hangi ilan?", "opts": ["A", "B", "C", "D", "E", "F", "keine Anzeige"], "ans": 3,
+        "why_tr": "Paul elektrikçi, tam gün istiyor. **D** tam bunu arıyor." },
+      { "id": "m1:69:o6", "k": "pick", "q_tr": "Jan için hangi ilan?", "opts": ["A", "B", "C", "D", "E", "F", "keine Anzeige"], "ans": 6,
+        "why_tr": "Jan yalnız hafta sonu çalışmak istiyor. **C** pazartesiden cumaya. Ona hiçbir ilan uymuyor: **keine Anzeige**." },
+      { "id": "m1:69:o7", "k": "gap", "de": "Letzte Woche ___ ich nicht zur Beratung gehen. (können)", "tr": "Geçen hafta danışmaya gidemedim.",
+        "accepted": ["konnte", "Konnte", "konnte."],
+        "why_tr": "**Letzte Woche** geçmiştir. **kann** değil **konnte**: **a** yerine **o**, araya **-te-** girer." },
+      { "id": "m1:69:o8", "k": "gap", "de": "___ du früher in einer Fabrik arbeiten? (müssen)", "tr": "Eskiden bir fabrikada çalışmak zorunda mıydın?",
+        "accepted": ["Musstest", "musstest", "Musstest."],
+        "why_tr": "**du** ile **musstest**: çift s kalır, sonda **-test**." },
+      { "id": "m1:69:o9", "k": "pick", "q_tr": "Derya ile Tobi'ye: eskiden vardiyalı çalışmak zorundaydınız, değil mi?", "opts": ["Früher musstet ihr in Schichten arbeiten, oder?", "Früher musstest ihr in Schichten arbeiten, oder?", "Früher mussten ihr in Schichten arbeiten, oder?"], "ans": 0,
+        "why_tr": "**ihr** ile son **-tet**: **musstet**." },
+      { "id": "m1:69:o10", "k": "transform", "instr_tr": "Cümleyi eskiye taşı. Başa **Früher** koy.", "from_de": "Wir dürfen im Lager nicht essen.",
+        "accepted": ["Früher durften wir im Lager nicht essen.", "Wir durften früher im Lager nicht essen.", "Früher durften wir im Lager nicht essen!"],
+        "why_tr": "**dürfen** geçmişte **durften** olur. **Früher** başa gelince **durften** hemen arkasından gelir." },
+      { "id": "m1:69:o11", "k": "transform", "instr_tr": "Soru geçen cumartesi için. Geçmiş biçimle sor.", "from_de": "Kannst du am Samstag arbeiten?",
+        "accepted": ["Konntest du am Samstag arbeiten?", "Konntest du letzten Samstag arbeiten?", "Konntest du am letzten Samstag arbeiten?"],
+        "why_tr": "**kannst** geçmişte **konntest** olur. **du** ile son **-st** kalır." },
+      { "id": "m1:69:o12", "k": "tr_de", "tr": "Eskiden Almanca konuşamıyordum.",
+        "accepted": ["Früher konnte ich kein Deutsch sprechen.", "Früher konnte ich nicht Deutsch sprechen.", "Ich konnte früher kein Deutsch sprechen.", "Ich konnte früher nicht Deutsch sprechen.", "Früher konnte ich kein Deutsch."],
+        "why_tr": "Eskiyi **Früher konnte ich** ile söylersin. **sprechen** en sona gider." },
+      { "id": "m1:69:o13", "k": "tr_de", "tr": "Dün erken gitmek zorunda mıydınız? (siz, arkadaşlar)",
+        "accepted": ["Musstet ihr gestern früh gehen?", "Musstet ihr gestern früher gehen?", "Musstet ihr gestern so früh gehen?"],
+        "why_tr": "Arkadaş grubuna **ihr** dersin: **Musstet ihr gestern früh gehen?**" },
+      { "id": "m1:69:o14", "k": "pick", "q_tr": "Hangisi doğru yazılmış?", "opts": ["Sie mussten am Wochenende arbeiten.", "Sie musten am Wochenende arbeiten."], "ans": 0,
+        "why_tr": "**müssen**'in çift s'si geçmişte de kalır: **mussten**." },
+      { "id": "m1:69:o15", "k": "gap", "de": "Als Kind ___ ich immer Auto fahren. (wollen)", "tr": "Çocukken hep araba sürmek istiyordum.",
+        "accepted": ["wollte", "Wollte", "wollte."],
+        "why_tr": "**ich** ile **wollte**. **will** bugündür, çocukluk geçmiştir." },
+      { "id": "m1:69:o16", "k": "pick", "q_tr": "**der**, **die** ya da **das**? ___ Bewerbung", "opts": ["der", "die", "das"], "ans": 1,
+        "why_tr": "Sonu **-ung**: hep **die**. **die Bewerbung**." },
+      { "id": "m1:69:o17", "k": "gap", "de": "Danke für die ___! Jetzt ist alles klar. (erklären)", "tr": "Açıklama için teşekkürler! Şimdi her şey açık.",
+        "accepted": ["Erklärung", "erklärung", "Erklärung."],
+        "why_tr": "**erklären** fiilinden **die Erklärung**." },
+      { "id": "m1:69:o18", "k": "pick", "q_tr": "Hangi sözcükte **u** sesi var?", "opts": ["Stunde", "Sohn"], "ans": 0,
+        "why_tr": "**Stunde** u ile, dudaklar öne. **Sohn** o ile." },
+      { "id": "m1:69:o19", "k": "listen_and_respond", "audio_de": "Wir konnten lange warten.", "speed": "normal", "situation_tr": "Dinle. o mu, u mu? Duyduğunu yaz.",
+        "accepted": ["Wir konnten lange warten.", "wir konnten lange warten", "Wir konnten lange warten"], "why_tr": "**konnte**'de o, **musste**'de u. Burada o duydun: **konnten**." },
+      { "id": "m1:69:o20", "k": "listen_and_respond", "audio_de": "Wir mussten lange warten.", "speed": "normal", "situation_tr": "Dinle. o mu, u mu? Duyduğunu yaz.",
+        "accepted": ["Wir mussten lange warten.", "wir mussten lange warten", "Wir mussten lange warten"], "why_tr": "**konnte**'de o, **musste**'de u. Burada u duydun: **mussten**." }
+    ],
+    "yazma": {
+      "gorev_tr": "Pazartesi kursta kendini kısaca tanıtacaksın. Söyleyeceklerini yaz. Kimsin, eskiden ne yaptın, ne yapmak zorundaydın? Bugün ne yapıyorsun, neyi iyi yaparsın, ne istiyorsun? Altı sekiz cümle.",
+      "ornek_de": "Ich heiße {name}. Ich wohne in Wendlfing. Früher habe ich in einer Fabrik gearbeitet. Ich musste oft in der Nacht arbeiten. Damals konnte ich nur ein bisschen Deutsch. Heute arbeite ich im Lager. Ich kann gut im Team arbeiten und ich bin zuverlässig. Ich möchte eine Weiterbildung machen.",
+      "ornek_de_adsiz": "Ich wohne in Wendlfing. Früher habe ich in einer Fabrik gearbeitet. Ich musste oft in der Nacht arbeiten. Damals konnte ich nur ein bisschen Deutsch. Heute arbeite ich im Lager. Ich kann gut im Team arbeiten und ich bin zuverlässig. Ich möchte eine Weiterbildung machen.",
+      "zorunlu": ["Früher", "Heute"],
+      "accepted_kaliplar": ["Ich heiße ___.", "Ich wohne in ___.", "Ich komme aus ___.", "Früher habe ich in einer Fabrik gearbeitet.", "Früher habe ich in einem ___ gearbeitet.", "Früher habe ich in einer ___ gearbeitet.", "Früher habe ich im ___ gearbeitet.", "Früher habe ich als ___ gearbeitet.", "Früher war ich ___.", "Ich musste oft in der Nacht arbeiten.", "Ich musste ___.", "Wir durften ___ nicht ___.", "Damals konnte ich nur ein bisschen Deutsch.", "Damals konnte ich ___.", "Früher konnte ich ___.", "Heute arbeite ich im Lager.", "Heute arbeite ich ___.", "Heute kann ich ___.", "Ich kann gut im Team arbeiten und ich bin zuverlässig.", "Ich kann gut ___.", "Ich kann ein bisschen ___.", "Ich bin ___.", "Ich habe Erfahrung mit ___.", "Ich möchte eine Weiterbildung machen.", "Ich möchte ___ werden.", "Ich möchte ___ machen.", "Ich suche eine Stelle als ___."],
+      "kontrol_tr": ["Eskiyi **Früher** ile, bugünü **Heute** ile anlattın mı?", "En az bir **musste**, **konnte** ya da **durfte** var mı?", "Sonda ne istediğini **Ich möchte** ile yazdın mı?"]
+    }
+  },
+  "gun_sinavi": {
+    "id": "m1:69:s",
+    "maddeler": [
+      { "id": "m1:69:s1", "k": "listen_and_respond", "audio_de": "Meine Chefin hatte viel Geduld.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Meine Chefin hatte viel Geduld.", "meine chefin hatte viel geduld", "Meine Chefin hatte viel Geduld"], "why_tr": "**die Chefin** kadın şeftir. **Geduld** sabırdır." },
+      { "id": "m1:69:s2", "k": "listen_and_respond", "audio_de": "Wir durften am Wochenende nicht arbeiten.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Wir durften am Wochenende nicht arbeiten.", "wir durften am wochenende nicht arbeiten", "Wir durften am Wochenende nicht arbeiten"], "why_tr": "**dürfen** geçmişte noktalarını kaybeder: **durften**." },
+      { "id": "m1:69:s3", "k": "listen_and_respond", "audio_de": "Die Stelle ist nur vormittags.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Die Stelle ist nur vormittags.", "die stelle ist nur vormittags", "Die Stelle ist nur vormittags"], "why_tr": "**vormittags** öğleden önce demektir. İlanlarda çok çıkar." },
+      { "id": "m1:69:s4", "k": "listen_and_respond", "audio_de": "Für die Stelle brauchen Sie kein Studium.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Für die Stelle brauchen Sie kein Studium.", "für die stelle brauchen sie kein studium", "Für die Stelle brauchen Sie kein Studium"], "why_tr": "**das Studium** üniversite eğitimidir. Olumsuzu **kein Studium**." },
+      { "id": "m1:69:s5", "k": "tr_de", "tr": "Eskiden üniversite okumak istiyordum.",
+        "accepted": ["Früher wollte ich ein Studium machen.", "Ich wollte früher ein Studium machen.", "Früher wollte ich studieren.", "Ich wollte früher studieren."],
+        "why_tr": "İsteği **wollte** ile söylersin. **machen** en sona gider." },
+      { "id": "m1:69:s6", "k": "tr_de", "tr": "Siz (arkadaşlar) eskiden bir fabrikada çalışmak zorundaydınız.",
+        "accepted": ["Früher musstet ihr in einer Fabrik arbeiten.", "Ihr musstet früher in einer Fabrik arbeiten.", "Früher musstet ihr in der Fabrik arbeiten."],
+        "why_tr": "**ihr** ile son **-tet**: **musstet**. Çift s kalır." },
+      { "id": "m1:69:s7", "k": "tr_de", "tr": "Yalnız hafta sonu çalışabiliyorum.",
+        "accepted": ["Ich kann nur am Wochenende arbeiten.", "Ich kann nur am Wochenende.", "Nur am Wochenende kann ich arbeiten."],
+        "why_tr": "İlandaki gibi: **nur am Wochenende**." },
+      { "id": "m1:69:s8", "k": "tr_de", "tr": "Ioana'nın şefi (kadın) çok yardımsever.",
+        "accepted": ["Die Chefin von Ioana ist sehr hilfsbereit.", "Die Chefin von Ioana ist hilfsbereit.", "Ioanas Chefin ist sehr hilfsbereit."],
+        "why_tr": "Kadın şef **die Chefin**: **die Chefin von Ioana**." },
+      { "id": "m1:69:s9", "k": "guided_response", "situation_tr": "Ioana danışmayı soruyor. Kursun martta başladığını ve sonunda bir sınav olduğunu söyle.", "prompt_de": "Und? Wie war die Beratung?",
+        "accepted": ["Gut! Der Kurs fängt im März an. Am Ende gibt es eine Prüfung.", "Sehr gut. Der Kurs fängt im März an, und am Ende gibt es eine Prüfung.", "Gut! Im März fängt der Kurs an. Am Ende gibt es eine Prüfung.", "Der Kurs fängt im März an. Am Ende gibt es eine Prüfung.", "Gut. Der Kurs fängt im März an. Am Ende gibt es eine Prüfung und einen Abschluss.", "Super! Der Kurs fängt im März an. Am Ende gibt es eine Prüfung.", "Gut! Im März fängt der Kurs an, am Ende gibt es eine Prüfung.", "Die Beratung war gut. Der Kurs fängt im März an. Am Ende gibt es eine Prüfung."],
+        "why_tr": "Zamanı **im März** ile söylersin. **Am Ende gibt es** sonunda var demektir." },
+      { "id": "m1:69:s10", "k": "guided_response", "situation_tr": "Kursta kendini kısaca tanıt: eskiden ne iş yaptın, bugün ne yapıyorsun?", "prompt_de": "Erzählen Sie bitte: früher und heute.",
+        "accepted": ["Früher habe ich in einer Fabrik gearbeitet. Heute arbeite ich im Lager.", "Früher war ich {Kellner|Kellnerin}. Heute arbeite ich in einer Firma.", "Früher habe ich als {Fahrer|Fahrerin} gearbeitet. Heute arbeite ich im Lager.", "Früher habe ich im Restaurant gearbeitet. Heute arbeite ich in einer Firma.", "Früher habe ich als {Koch|Köchin} gearbeitet. Heute arbeite ich im Lager.", "Früher habe ich in einer Fabrik gearbeitet. Heute arbeite ich in einer Firma.", "Früher war ich {Fahrer|Fahrerin}. Heute arbeite ich im Lager.", "Früher habe ich im Lager gearbeitet. Heute arbeite ich im Büro.", "Früher habe ich in der Nacht gearbeitet. Heute arbeite ich am Tag.", "Früher konnte ich kein Deutsch. Heute arbeite ich in einer Firma."],
+        "why_tr": "Eskiyi **Früher habe ich gearbeitet**, bugünü **Heute arbeite ich** ile söylersin." },
+      { "id": "m1:69:s11", "k": "guided_response", "situation_tr": "Kurstan Jan yalnız hafta sonu çalışmak istiyor. Baktığın ilanlarda hafta sonu işi yok, garson ilanı da pazartesiden cumaya. Ona uygun bir iş olmadığını söyle.", "prompt_de": "Gibt es eine Stelle für mich? Ich kann nur am Wochenende.",
+        "accepted": ["Nein, leider nicht. Alle Stellen sind von Montag bis Freitag.", "Leider nicht. Die Stellen sind alle von Montag bis Freitag.", "Nein, leider passt keine Anzeige. Alle sind von Montag bis Freitag.", "Leider passt keine Anzeige. Die Arbeit ist immer von Montag bis Freitag.", "Nein, leider nicht. Die Arbeit ist von Montag bis Freitag.", "Nein, keine Anzeige passt. Alles ist von Montag bis Freitag.", "Leider nicht. Am Wochenende gibt es keine Stelle.", "Nein, leider nicht. Es gibt keine Stelle am Wochenende."],
+        "why_tr": "Olumsuz cevabı **leider** ile yumuşatırsın. Nedenini de söylersin: **von Montag bis Freitag**." }
+    ],
+    "sesli": ["m1:69:s9", "m1:69:s10"],
+    "dikte": ["m1:69:s1", "m1:69:s2", "m1:69:s3", "m1:69:s4"]
+  }
+}

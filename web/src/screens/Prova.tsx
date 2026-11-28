@@ -15,6 +15,7 @@ import { addClaim, setMeta } from "../data/db.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
+import { useGunIzi } from "../ui/gunIzi.tsx";
 import { Rich } from "../ui/rich.tsx";
 import { Icon } from "../ui/icons.tsx";
 
@@ -22,6 +23,7 @@ const E2E = import.meta.env.MODE === "e2e";
 export const provaAnahtari = (day: number) => `m1:prova:${day}`;
 
 export function ProvaEkrani({ day }: { day: number }) {
+  const gunIzi = useGunIzi();
   const { profile } = useApp();
   const [p, setP] = useState<ProvaT | null>(null);
   const [err, setErr] = useState<string | null>(null);
@@ -43,7 +45,7 @@ export function ProvaEkrani({ day }: { day: number }) {
   const sira = asama === "hazirlik" ? 0 : asama === "konusma" ? 1 : 3; // geri bildirim: iki aşama bitti, çubuk dolu
   return (
     <div class="stack" data-test="prova" data-asama={asama}>
-      <ProgressHeader title={p.title_tr} back="#/today" right={<FocusChip />} sub={sub} ilerleme={{ n: sira, toplam: 3 }} />
+      <ProgressHeader title={p.title_tr} back="#/today" right={<FocusChip />} sub={sub} ilerleme={{ n: sira, toplam: 3 }} gunIzi={gunIzi} />
       {asama === "hazirlik" && <Hazirlik p={p} onBasla={() => setAsama("konusma")} />}
       {asama === "konusma" && <Konusma p={p} onBitti={(k) => {
         setKayitlar(k); setAsama("bitti");
