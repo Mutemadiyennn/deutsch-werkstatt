@@ -27,7 +27,7 @@ import { baslangicYavas, konusanAta, speak, speakDizi, stopSpeaking } from "../s
 import { haptic } from "../services/haptics.ts";
 import { FocusChip } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
-import { ActionBar, AnswerField, DeLine, Empty, FeedbackBand, ListenButton, LoadingCard, MicButton, ProgressHeader } from "../ui/kit.tsx";
+import { ActionBar, AnswerField, DeLine, Empty, FeedbackBand, KonusanAd, ListenButton, LoadingCard, MicButton, ProgressHeader } from "../ui/kit.tsx";
 import { ExplainBtn, SayItBox, VerdictView, useGrader } from "../ui/learn.tsx";
 import { HearSection, LearnSection } from "./Stage12.tsx";
 import { ayracBagla } from "../core/ayrac.ts";
@@ -382,7 +382,7 @@ function ListeningItem({ li, progress, onDone }: { li: Scenario["listening"][num
   return (
     <div class="stack fade">{progress}
       <section class="card stack"><div class="kicker">Transkript · bilmediğin kelimeye dokun → listene eklenir</div>
-        {li.script.map((l) => <div><div class="tiny muted">{l.r}</div><TapLine de={l.de} /><div class="row" style={{ marginTop: 4 }}><ListenButton text={l.de} speed={li.speed} kim={l.r} sahne={li.script.map((x) => x.r)} /><ShadowBtn de={l.de} /></div>{l.tr && <div class="tr2">{l.tr}</div>}</div>)}
+        {li.script.map((l) => <div><KonusanAd kim={l.r} kimler={li.script.map((x) => x.r)} /><TapLine de={l.de} /><div class="row" style={{ marginTop: 4 }}><ListenButton text={l.de} speed={li.speed} kim={l.r} sahne={li.script.map((x) => x.r)} /><ShadowBtn de={l.de} /></div>{l.tr && <div class="tr2">{l.tr}</div>}</div>)}
       </section>
       <ActionBar><button class="btn primary block" onClick={() => onDone(ok, li.qs.length)} data-test="next">Devam</button></ActionBar>
     </div>

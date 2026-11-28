@@ -12,8 +12,8 @@ import { adimXpVer } from "../services/ilerleme.ts";
 import { personalizeDeep, profilGeriAl } from "../core/persona.ts";
 import { beyanSecenegi, dugumBul, eslestir, hazirlikCumleleri, rapor, sonMu, sonrakiDugum, type Eslesme, type Kayit, type ProvaT } from "../core/prova.ts";
 import { addClaim, setMeta } from "../data/db.ts";
-import { speak, stopSpeaking } from "../services/speech.ts";
-import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
+import { konusanAta, speak, stopSpeaking } from "../services/speech.ts";
+import { ActionBar, AnswerField, FeedbackBand, KonusanAd, ListenButton, ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { useGunIzi } from "../ui/gunIzi.tsx";
 import { Rich } from "../ui/rich.tsx";
@@ -96,6 +96,9 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
   const ziyaret = useRef(new Map<string, number>());
   const once = useRef<string | null>(null);
   const dugum = dugumBul(p, id);
+  // T-0 (PM-153 md. 1 satır 2): "doğrusunu söyleyip geç"te okunan cümle öğrencinin; karşıdakinden farklı ses (aynı sahne eşlemesi)
+  const kimler = [p.karsi, "ogrenci"];
+  const senSesi = () => konusanAta(kimler).get("ogrenci");
   const son = sonMu(dugum);
   useEffect(() => {
     if (!dugum) return;
@@ -103,7 +106,7 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
     setSatirlar((s) => [...s, { kim: "karsi", de: dugum.de, tr: dugum.tr }]);
     // "Doğrusunu söyleyip geç": önce doğru cümle duyulur, sonra karşı tarafın sözü (biri ötekini kesmez)
     const ilk = once.current; once.current = null;
-    void (async () => { if (ilk) await speak(ilk, "de", "normal", false, p.karsi); await speak(dugum.de, "de", "normal", false, p.karsi); })();
+    void (async () => { if (ilk) await speak(ilk, "de", "normal", false, senSesi()); await speak(dugum.de, "de", "normal", false, p.karsi); })();
     setIpucu(false);
   }, [id]);
   useEffect(() => { window.scrollTo(0, document.body.scrollHeight); }, [satirlar.length, !!cevap]);
@@ -124,7 +127,7 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
       ziyaret.current.set(id, (ziyaret.current.get(id) ?? 0) + 1);
       setSatirlar((x) => [...x, { kim: "karsi", de: dugum!.de, tr: dugum!.tr }]);
       const ilk = once.current; once.current = null;
-      void (async () => { if (ilk) await speak(ilk, "de", "normal", false, p.karsi); await speak(dugum!.de, "de", "normal", false, p.karsi); })();
+      void (async () => { if (ilk) await speak(ilk, "de", "normal", false, senSesi()); await speak(dugum!.de, "de", "normal", false, p.karsi); })();
     } else setId(hedef);
     if (!dugumBul(p, hedef)) onBitti(yeni);
   };
@@ -141,8 +144,10 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
         </div>
         <div class="chat" aria-live="polite" data-test="prova-chat">{satirlar.map((s) => (
           <div class={`bubble ${s.kim === "sen" ? "me" : "them"}`} data-kim={s.kim}>
+            {/* T-0 (K-00c md. 2): balonda konuşanın adı ve rengi; tek satır düğmesi karşıdakinin sahnedeki sesiyle */}
+            <KonusanAd kim={s.kim === "sen" ? "ogrenci" : p.karsi} kimler={kimler} />
             <div class="dline"><div class="grow"><div lang="de">{s.de}</div>{ceviri && s.tr && <div class="tr2">{s.tr}</div>}</div>
-              {s.kim === "karsi" && <ListenButton text={s.de} small slowToggle={false} />}</div>
+              {s.kim === "karsi" && <ListenButton text={s.de} small slowToggle={false} kim={p.karsi} sahne={kimler} />}</div>
           </div>))}</div>
       </section>
       {son ? (

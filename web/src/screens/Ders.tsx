@@ -13,7 +13,7 @@ import { DERS_ADIM_TR, TANIT_GRUP, adimlarDers, altSayisi, bahcePlani, dersAnaht
 import { speak, speakDizi, stopSpeaking } from "../services/speech.ts";
 import { adimXpVer, xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
-import { ActionBar, CevapXp, FeedbackBand, KonusanRozet, ListenButton, ProgressHeader } from "../ui/kit.tsx";
+import { ActionBar, CevapXp, FeedbackBand, KonusanAd, KonusanRozet, ListenButton, ProgressHeader } from "../ui/kit.tsx";
 import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Chips, Rich } from "../ui/rich.tsx";
@@ -226,6 +226,7 @@ function useSesDizisi(): [(lines: Satir[], sp?: "slow" | "normal") => Promise<vo
 function Diyalog({ d, onNext }: { d: NonNullable<TemelDers["dialogue"]>; onNext: () => void }) {
   const [cal, kim] = useSesDizisi();
   const satirlar = d.lines.map((l) => ({ de: l.de, kim: l.speaker ?? (l.r === "B" ? "ogrenci" : "karsi") }));
+  const kimler = satirlar.map((x) => x.kim);
   const [dinledi, setDinledi] = useState(false);
   const [altyazi, setAltyazi] = useState(false);
   return (
@@ -235,11 +236,11 @@ function Diyalog({ d, onNext }: { d: NonNullable<TemelDers["dialogue"]>; onNext:
       <div class="row"><button class="btn primary grow" data-test="diyalog-dinle" onClick={() => { setDinledi(true); void cal(satirlar); }}>{dinledi ? "Bir daha dinle" : "Dinle"}</button>
         <button class="btn grow" onClick={() => { setDinledi(true); void cal(satirlar, "slow"); }}>Yavaş</button></div>
       <KonusanRozet kim={kim} kimler={satirlar.map((x) => x.kim)} />
-      {altyazi && <ul class="list" data-test="diyalog-metin">{d.lines.map((l) => (
+      {/* T-0 (K-00c md. 2): döküm açıkken her satırın başında konuşanın adı ve rengi; tek satır düğmesi sahnenin eşlemesiyle çalar */}
+      {altyazi && <ul class="list" data-test="diyalog-metin">{d.lines.map((l, i) => (
         <li class="row" style={{ flexWrap: "nowrap" }}>
-          <span class="tiny muted" style={{ width: 28 }}>{l.r === "B" ? "Sen" : ""}</span>
-          <span class="grow"><span lang="de">{l.de}</span><br /><span class="small muted">{l.tr}</span></span>
-          <ListenButton text={l.de} small slowToggle={false} />
+          <span class="grow"><KonusanAd kim={satirlar[i]!.kim} kimler={kimler} /><span lang="de">{l.de}</span><br /><span class="small muted">{l.tr}</span></span>
+          <ListenButton text={l.de} small slowToggle={false} kim={satirlar[i]!.kim} sahne={kimler} />
         </li>))}</ul>}
       <ActionBar>{altyazi
         ? <button class="btn primary block" data-test="next" onClick={onNext}>Kelimelere geç</button>
@@ -277,7 +278,8 @@ function Dinleme({ l, onNext }: { l: TemelDers["listening"][number]; onNext: (s:
       ) : (
         <div class="stack" data-test="dinleme-metin">
           <p class="small muted">Şimdi metne bak ve bir daha dinle.</p>
-          {l.script.map((c) => <p><span lang="de">{c.de}</span>{c.tr && <><br /><span class="small muted">{c.tr}</span></>}</p>)}
+          {l.script.map((c, i) => <p class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start" }}><span class="grow"><KonusanAd kim={satirlar[i]!.kim} kimler={satirlar.map((x) => x.kim)} /><span lang="de">{c.de}</span>{c.tr && <><br /><span class="small muted">{c.tr}</span></>}</span>
+            <ListenButton text={c.de} small slowToggle={false} kim={satirlar[i]!.kim} sahne={satirlar.map((x) => x.kim)} /></p>)}
           <ActionBar><button class="btn primary block" data-test="next" onClick={() => onNext({ dogru, toplam: l.qs.length })}>Devam</button></ActionBar>
         </div>
       )}

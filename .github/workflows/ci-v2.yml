@@ -151,6 +151,8 @@ jobs:
         run: cd tests/e2e && python v2_foto.py
       - name: "Ses ve mikrofon (#58 B15 1. adım, PM-064): karaktere göre ses, Yavaş yalnızca hız, mikrofon yolu ve Türkçe hata türleri"
         run: cd tests/e2e && python v2_ses.py --shots /tmp/shots
+      - name: "Ses ve dokunma (T-0, PM-153 md. 1): sahne başında sabit ses eşlemesi, Sen karşıdakinden farklı ses, konuşan adı, çift dokunma yakınlaşması kapalı"
+        run: cd tests/e2e && python v2_ses_sahne.py --shots /tmp/shots
       - name: "Günlük görevler, sandık, seri dondurma, geçen haftaki sen (#58 B11b, PM-065 5–7)"
         run: cd tests/e2e && python v2_gorev.py --shots /tmp/shots
       - name: "Yerleşim kuralları Y1–Y6 (TASARIM TS-4.7): Bugün, Görevler, Odak; iki tema"

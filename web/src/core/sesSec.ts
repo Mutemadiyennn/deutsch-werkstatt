@@ -64,8 +64,11 @@ export function havuzlar(sesler: Ses[]): { kadin: Ses[]; erkek: Ses[]; diger: Se
  * o da yoksa öteki havuzdan + perde (erkek için alçak, kadın için hafif yüksek) ve `cinsiyetYok` işareti (Profil uyarısı).
  * `dolu`: aynı sahnede başka konuşanlara verilmiş ses adları; çakışırsa havuzdaki sonraki, havuz biterse perde farkı.
  */
-/** Perde ızgarası (±%8 içinde): aynı sesi paylaşan konuşanlar bu değerlerden farklı birini alır (inceleme #164 P1-2) */
-const PERDE_IZGARA = [0.92, 0.95, 0.98, 1, 1.02, 1.05, 1.08];
+/**
+ * Perde ızgarası (±%8 içinde): aynı sesi paylaşan konuşanlar bu değerlerden farklı birini alır (inceleme #164 P1-2).
+ * T-0 (PM-153 md. 1 satır 2): adım %4 — %2–3'lük fark kulakta aynı ses gibi duyuluyordu.
+ */
+export const PERDE_IZGARA = [0.92, 0.96, 1, 1.04, 1.08];
 /** Tabana en yakın, o seste sahnede henüz kullanılmamış perde (eşitlikte alçak olan); hepsi doluysa taban */
 function bosPerde(taban: number, kullanilan: ReadonlySet<number>): number {
   const aday = PERDE_IZGARA.slice().sort((a, b) => Math.abs(a - taban) - Math.abs(b - taban) || a - b);
@@ -95,17 +98,51 @@ export function sesAta(k: Konusan, sesler: Ses[], doluSesler: Iterable<string> =
   return { ses: s, pitch: bosPerde(perdeSinirla(pitch), perdeler.get(s.name) ?? new Set()), cinsiyetYok };
 }
 
-/** Bir sahnedeki konuşanlara sırayla ses: aynı sahnede iki konuşan aynı (ses, perde) almaz */
+/** Öğrencinin konuşan kimliği ("Sen" satırları) */
+export const OGRENCI_ID = "ogrenci";
+/**
+ * T-0 (PM-153 md. 1 satır 2): "Sen" satırları karşıdaki kişiden HER ZAMAN farklı sesle. Öğrencinin cinsi profilden; yoksa
+ * sahnedeki ilk karşı konuşanın karşı cinsi. Sıra: kendi havuzunda boş ses → cinsiyeti bilinmeyen boş ses → öbür havuzda boş ses.
+ * Cihazda boş Almanca ses hiç yoksa aynı ses, sahnedeki perdelerden en uzak perdeyle (±%8 içinde).
+ */
+export function ogrenciAta(k: Konusan, sesler: Ses[], digerleri: Konusan[], doluSesler: Iterable<string>, perdeler: ReadonlyMap<string, ReadonlySet<number>>): Atama {
+  const dolu = new Set(doluSesler);
+  const h = havuzlar(sesler);
+  const karsi = digerleri.find((x) => x.cinsiyet)?.cinsiyet;
+  const cins: Cins | undefined = k.cinsiyet ?? (karsi === "kadin" ? "erkek" : karsi === "erkek" ? "kadin" : undefined);
+  const obur: Cins | undefined = cins === "kadin" ? "erkek" : cins === "erkek" ? "kadin" : undefined;
+  const sira = (xs: Ses[]) => xs.length ? [...xs.slice(k.sira % xs.length), ...xs.slice(0, k.sira % xs.length)] : [];
+  // kendi cinsinin eğlence sesleri (havuzdan elenmiş: Flo, Sandy…) öbür cinse geçmeden önce denenir
+  const oyunKendi = cins ? tekillestir(sesler.filter(almancaMi)).filter((s) => sesKalitesi(s) < 0 && sesCinsi(s) === cins && !h[cins].includes(s)) : [];
+  const adaylar = cins ? [...sira(h[cins]), ...h.diger, ...oyunKendi, ...(obur ? h[obur] : [])] : [...h.kadin, ...h.erkek, ...h.diger];
+  const bos = adaylar.find((s) => !dolu.has(s.name));
+  if (bos) return { ses: bos, pitch: 1, cinsiyetYok: !!cins && sesCinsi(bos) !== cins && sesCinsi(bos) !== null };
+  const s = adaylar[0];
+  if (!s) return { pitch: 1, cinsiyetYok: !!cins };
+  // boş ses yok: sahnede o sesin kullandığı perdelerden en uzak perde (eşitlikte öğrencinin cinsine uygun yön)
+  const kul = [...(perdeler.get(s.name) ?? [])];
+  const uzak = (p: number) => (kul.length ? Math.min(...kul.map((u) => Math.abs(u - p))) : 1);
+  const yon = (p: number) => (cins === "erkek" ? p : -p);
+  const pitch = PERDE_IZGARA.slice().sort((a, b) => uzak(b) - uzak(a) || yon(a) - yon(b))[0]!;
+  return { ses: s, pitch, cinsiyetYok: !!cins };
+}
+
+/**
+ * Bir sahnedeki konuşanlara sırayla ses: aynı sahnede iki konuşan aynı (ses, perde) almaz. Öğrenci en son atanır (karakterlerin
+ * sesi öğrencinin sahnede olup olmamasından bağımsız kalır) ve karşıdakinden farklı ses alır (`ogrenciAta`).
+ */
 export function sahneAta(konusanlar: Konusan[], sesler: Ses[]): Map<string, Atama> {
   const out = new Map<string, Atama>();
   const dolu: string[] = [];
   const perdeler = new Map<string, Set<number>>();
-  for (const k of konusanlar) {
-    if (out.has(k.id)) continue;
-    const a = sesAta(k, sesler, dolu, perdeler);
+  const yaz = (k: Konusan, a: Atama) => {
     if (a.ses) { dolu.push(a.ses.name); let p = perdeler.get(a.ses.name); if (!p) perdeler.set(a.ses.name, (p = new Set())); p.add(a.pitch); }
     out.set(k.id, a);
-  }
+  };
+  const digerleri = konusanlar.filter((k) => k.id !== OGRENCI_ID);
+  for (const k of digerleri) if (!out.has(k.id)) yaz(k, sesAta(k, sesler, dolu, perdeler));
+  const ogr = konusanlar.find((k) => k.id === OGRENCI_ID);
+  if (ogr) yaz(ogr, ogrenciAta(ogr, sesler, digerleri, dolu, perdeler));
   return out;
 }
 
@@ -119,7 +156,8 @@ export function konusanBul(ad: string | undefined, karakterler: KarakterSes[]): 
     return parcalar.some((p) => new RegExp(`(^|\\s)${p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|\\s|[,.:])`, "i").test(a));
   });
   if (k?.ses) return { id: k.id, cinsiyet: k.ses.cinsiyet, sira: k.ses.sira };
-  const cins: Cins | undefined = /\bfrau\b/i.test(a) ? "kadin" : /\bherr\b/i.test(a) ? "erkek" : undefined;
+  // hitap ya da artikel: "Frau Kurz", "die Sprecherin", "eine Frau" → kadın; "Herr Maier", "der Verkäufer", "ein Mann" → erkek
+  const cins: Cins | undefined = /\bfrau\b|^(die|eine)\s/i.test(a) ? "kadin" : /\bherr\b|^(der|ein)\s/i.test(a) ? "erkek" : undefined;
   // bilinmeyen konuşan: addan kararlı sıra (aynı ad her zaman aynı ses)
   let h = 0; for (const ch of a.toLowerCase()) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
   return { id: k?.id ?? `ad:${a.toLowerCase()}`, cinsiyet: cins, sira: 7 + (h % 13) };

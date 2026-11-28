@@ -22,9 +22,10 @@ import { plain, Rich } from "../ui/rich.tsx";
 import { ADIM_TR, BASLANGIC, dikteSuz, adimlar, turaGore, ikinciTurVar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
-import { baslangicYavas, konusanAta, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
+import { baslangicYavas, konusanKimi, sahneHazirla, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
+import type { Atama } from "../core/sesSec.ts";
 import { haptic } from "../services/haptics.ts";
-import { ActionBar, AnswerField, CevapXp, FeedbackBand, MicButton, ProgressHeader, YanlisIci } from "../ui/kit.tsx";
+import { ActionBar, AnswerField, CevapXp, FeedbackBand, KonusanAd, KonusanRozet, MicButton, ProgressHeader, YanlisIci } from "../ui/kit.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { DokunMetin, KelimeSayfasi } from "../ui/kelime.tsx";
@@ -35,7 +36,10 @@ const E2E = import.meta.env.MODE === "e2e";
 /** Video: zaman aralığı oynatır (hizalanmış cümleler). Ses/sahne: cümleleri cihaz sesiyle sırayla okur. */
 interface Oynatici { cumle(c: MedyaCumle, yavas: boolean): Promise<void>; bolum(cs: MedyaCumle[], yavas: boolean): Promise<void>; dur(): void }
 
-function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynatici & { calisiyor: string | null } {
+/** T-0 (K-00c md. 2): çalan cümlenin konuşanı ekranda; ad sorulacak seçeneklerde geçiyorsa "Konuşan N" (RQ-Ş18) */
+type OynaticiDurum = Oynatici & { calisiyor: string | null; kim?: string; kimler: string[]; gizle: string };
+const seceneklerMetni = (x: unknown): string[] => (Array.isArray(x) ? x.flatMap(seceneklerMetni) : x && typeof x === "object" ? Object.entries(x).flatMap(([k, v]) => (k === "opts" && Array.isArray(v) ? v.map(String) : seceneklerMetni(v))) : []);
+function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): OynaticiDurum {
   const [calisiyor, setCalisiyor] = useState<string | null>(null);
   const iptal = useRef(0);
   const sesEl = useRef<HTMLAudioElement | null>(null);
@@ -70,12 +74,24 @@ function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynat
     if (iptal.current !== my) return end();
     void a.play().catch(end);
   });
+  /**
+   * T-0 (K-00c md. 1): ses eşlemesi sahne başında BİR KEZ (sesler beklenir) ve kayıt boyunca sabit; cümle başına yeniden atama yok.
+   * Konuşanı boş cümle anlatıcının (md. 3). Eşleme kayıt değişince yenilenir.
+   */
+  const esleme = useRef<{ m: Medya; e: Promise<Map<string, Atama>> } | null>(null);
+  const eslemeAl = () => {
+    if (esleme.current?.m !== m) esleme.current = { m, e: sahneHazirla(m.cumleler.map((x) => konusanKimi(x.speaker))) };
+    return esleme.current.e;
+  };
   const sesle = async (cs: MedyaCumle[], yavas: boolean) => {
     const my = ++iptal.current;
+    const sahne = cs.some((c) => !c.audio?.src) ? await eslemeAl() : undefined;
+    const dolu = (a?: Atama) => new Set([...(sahne?.values() ?? [])].map((x) => x.ses?.name).filter((x): x is string => !!x && x !== a?.ses?.name));
     for (const c of cs) {
       if (iptal.current !== my) return;
       setCalisiyor(c.id);
-      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal", true, c.speaker ? konusanAta(m.cumleler.map((x) => x.speaker)).get(c.speaker) : undefined);
+      const a = sahne?.get(konusanKimi(c.speaker));
+      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal", true, a, dolu(a));
     }
   };
   const o: Oynatici = {
@@ -93,7 +109,10 @@ function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynat
   };
   // mola başlayınca çok cümleli ses bölümü de susar (yalnızca o anki cümle değil; inceleme #67 2. tur)
   useEffect(() => { const f = () => o.dur(); window.addEventListener("dw:mola", f); return () => window.removeEventListener("dw:mola", f); });
-  return { ...o, calisiyor };
+  const kimler = useMemo(() => m.cumleler.map((x) => konusanKimi(x.speaker)), [m]);
+  const gizle = useMemo(() => JSON.stringify([...seceneklerMetni(m.bolumler), ...(m.eylem?.opts ?? [])]), [m]);
+  const cal = calisiyor && calisiyor !== "*" ? m.cumleler.find((x) => x.id === calisiyor) : undefined;
+  return { ...o, calisiyor, kim: cal ? konusanKimi(cal.speaker) : undefined, kimler, gizle };
 }
 
 /* ============================ Ekran ============================ */
@@ -227,7 +246,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
 }
 
 /* (a) baştan sona, altyazısız */
-function DinleAdimi({ m, cs, oy, onNext, onOgretim }: { m: Medya; cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: () => void; onOgretim?: { de: string; tr: string }[] }) {
+function DinleAdimi({ m, cs, oy, onNext, onOgretim }: { m: Medya; cs: MedyaCumle[]; oy: OynaticiDurum; onNext: () => void; onOgretim?: { de: string; tr: string }[] }) {
   const [dinledi, setDinledi] = useState(false);
   const ilkYavas = baslangicYavas() && !dinledi;
   // PM-074 md. 2: tek oynat düğmesi + hız anahtarı (Yavaş / Normal). B7: ilk dinleme yavaşsa (kaydın ya da öğrencinin
@@ -242,6 +261,7 @@ function DinleAdimi({ m, cs, oy, onNext, onOgretim }: { m: Medya; cs: MedyaCumle
     <section class="card stack fade" data-test="adim-dinle">
       {!!onOgretim?.length && <OnOgretim w={onOgretim} />}
       <p class="small" style={{ marginBottom: 0 }}>Önce kulağınla dene. Her kelimeyi anlaman gerekmiyor.</p>
+      {m.kind !== "video" && <KonusanRozet kim={oy.kim} kimler={oy.kimler} gizle={oy.gizle} />}
       {ikiHiz && <div class="seg" role="group" aria-label="Hız" data-test="hiz">{(["slow", "normal"] as const).map((h) => <button type="button" aria-pressed={hiz === h} disabled={oy.calisiyor !== null} onClick={() => setHiz(h)}>{h === "slow" ? "Yavaş" : "Normal"}</button>)}</div>}
       <ActionBar>
         {oy.calisiyor !== null
@@ -322,7 +342,7 @@ function EylemSoru({ m, onDone }: { m: Medya; onDone: (ok: boolean) => void }) {
 }
 
 /* (c) cümle cümle: her cümle tek dokunuşla, 0,75× */
-function CumleAdimi({ cs, oy, onNext }: { cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: () => void }) {
+function CumleAdimi({ cs, oy, onNext }: { cs: MedyaCumle[]; oy: OynaticiDurum; onNext: () => void }) {
   // #58 B7: 0,75× düğmesi Profil'deki başlangıç hızıyla açılır (görünür; öğrenci kapatabilir)
   const [yavas, setYavas] = useState(baslangicYavas());
   return (
@@ -330,6 +350,7 @@ function CumleAdimi({ cs, oy, onNext }: { cs: MedyaCumle[]; oy: ReturnType<typeo
       <div class="row"><div class="kicker grow">Cümle cümle dinle</div>
         <button class={`btn sm${yavas ? " primary" : ""}`} aria-pressed={yavas} data-test="yavas" onClick={() => setYavas(!yavas)}>0,75×</button></div>
       <p class="small muted">Cümleye dokun: o cümle çalar. Anlamadığın cümleyi yavaş dinle; metni birazdan göreceksin.</p>
+      <KonusanRozet kim={oy.kim} kimler={oy.kimler} gizle={oy.gizle} />
       <ol class="list cumleler">{cs.map((c, i) => (
         <li class={`row${oy.calisiyor === c.id ? " on" : ""}`} style={{ flexWrap: "nowrap" }}>
           <button class="btn sm" data-test={`cumle-${c.id}`} aria-label={`${i + 1}. cümleyi dinle`} onClick={() => void oy.cumle(c, yavas)}><Icon name="play" /> {i + 1}</button>
@@ -342,7 +363,7 @@ function CumleAdimi({ cs, oy, onNext }: { cs: MedyaCumle[]; oy: ReturnType<typeo
 }
 
 /* (d) dikte merdiveni */
-function DikteAdimi({ d, sira, cs, oy, onNext }: { d: Dikte; sira: string; cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: (ok: boolean | null) => void }) {
+function DikteAdimi({ d, sira, cs, oy, onNext }: { d: Dikte; sira: string; cs: MedyaCumle[]; oy: OynaticiDurum; onNext: (ok: boolean | null) => void }) {
   const c = "cumle" in d ? cs.find((x) => x.id === d.cumle) : undefined;
   const [res, setRes] = useState<{ ok: boolean; cevap: string; beklenen: string; not?: string } | null>(null);
   const [secim, setSecim] = useState<number[]>([]);
@@ -395,7 +416,7 @@ function DikteSec({ d, onPick, done }: { d: Extract<Dikte, { seviye: "kolay" }>;
 }
 
 /* (e) metin açılır; kelimeye dokununca kart ve "bankaya ekle" */
-function TranskriptAdimi({ cs, lex, oy, onNext }: { cs: MedyaCumle[]; lex: Lexeme[]; oy: ReturnType<typeof useOynatici>; onNext: () => void }) {
+function TranskriptAdimi({ cs, lex, oy, onNext }: { cs: MedyaCumle[]; lex: Lexeme[]; oy: OynaticiDurum; onNext: () => void }) {
   const [kelime, setKelime] = useState<string | null>(null);
   return (
     <section class="card stack fade" data-test="adim-transkript">
@@ -403,7 +424,7 @@ function TranskriptAdimi({ cs, lex, oy, onNext }: { cs: MedyaCumle[]; lex: Lexem
       {cs.map((c) => (
         // dinle düğmesi cümlenin sağında sabit: uzun cümlede alt satıra tek başına düşmez (öğrenci günlüğü 7057160147 N8)
         <p class={`transkript-satir${oy.calisiyor === c.id ? " on" : ""}`}>
-          <span class="grow"><DokunMetin de={c.de} onKelime={setKelime} />
+          <span class="grow"><KonusanAd kim={konusanKimi(c.speaker)} kimler={oy.kimler} /><DokunMetin de={c.de} onKelime={setKelime} />
             <br /><span class="small muted"><Rich text={c.tr} /></span></span>
           <button class="btn ghost sm" aria-label="Bu cümleyi dinle" data-test="transkript-dinle" onClick={() => void oy.cumle(c, false)}><Icon name="play" /></button></p>))}
       {kelime && <KelimeSayfasi kelime={kelime} lex={lex} onClose={() => setKelime(null)} />}
@@ -415,7 +436,7 @@ function TranskriptAdimi({ cs, lex, oy, onNext }: { cs: MedyaCumle[]; lex: Lexem
 /* (f) gölge konuşma: dinle, aynısını söyle */
 /** XP yalnızca tanıma "çok iyi" dediyse ve bir kez (tekrar söyleyince yeniden uçmaz); "Söyledim"/"Doğru söyledim" beyandır,
  *  XP almaz (D-102; inceleme #87 2. tur) */
-function GolgeAdimi({ c, sira, oy, onNext }: { c: MedyaCumle; sira: string; oy: ReturnType<typeof useOynatici>; onNext: (ok: boolean, xp: boolean) => void }) {
+function GolgeAdimi({ c, sira, oy, onNext }: { c: MedyaCumle; sira: string; oy: OynaticiDurum; onNext: (ok: boolean, xp: boolean) => void }) {
   const [duydum, setDuydum] = useState<string | null>(null);
   const [iyiSayisi, setIyiSayisi] = useState(0);
   const skor = duydum ? scoreHeard(c.de, duydum) : null;

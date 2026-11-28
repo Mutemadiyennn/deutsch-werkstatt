@@ -140,7 +140,13 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
  */
 export function KonusanRozet({ kim, kimler, gizle = "" }: { kim?: string; kimler: (string | undefined)[]; gizle?: string }) {
   const i = [...new Set(kimler)].indexOf(kim), ad = kim ? konusanAdi(kim) : "";
-  return <p class="konusan" data-test="konusan">{kim && <><i data-i={i % 6} />{adCevapMi(ad, gizle) ? `Konuşan ${i + 1}` : ad}</>}</p>;
+  return <p class="konusan" data-test="konusan" data-kim={kim}>{kim && <><i data-i={i % 6} />{adCevapMi(ad, gizle) ? `Konuşan ${i + 1}` : ad}</>}</p>;
+}
+/** T-0 (K-00c md. 2): dökümde satır başında konuşanın adı ve rengi (KonusanRozet'le aynı renk sırası) */
+export function KonusanAd({ kim, kimler }: { kim?: string; kimler: (string | undefined)[] }) {
+  if (!kim) return null;
+  const i = [...new Set(kimler)].indexOf(kim);
+  return <span class="konusan konusan-ad" data-test="konusan-ad" data-kim={kim}><i data-i={i % 6} />{konusanAdi(kim)}</span>;
 }
 
 /* ---------- Geri bildirim bandı: renk + titreşim + kısa Türkçe açıklama ---------- */
