@@ -593,6 +593,11 @@
    ],
    "script": [
     {
+     "id": "c0",
+     "de": "Achtung, eine Information zur Linie drei und zur Linie fünf.",
+     "tr": "Dikkat, 3 ve 5 numaralı hatlar için bir bilgi."
+    },
+    {
      "id": "c1",
      "de": "Der Bus Nummer drei zum Bahnhof fährt heute um vierzehn Uhr zehn.",
      "tr": "Gara giden üç numaralı otobüs bugün on dört on'da kalkıyor."
@@ -617,6 +622,7 @@
     {
      "id": "b1",
      "cumleler": [
+      "c0",
       "c1",
       "c2",
       "c3",
@@ -661,6 +667,19 @@
        "ans": 0,
        "kanit": [
         "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Duyuru hangi hatlar için?",
+       "opts": [
+        "3 ve 5 numaralı hatlar",
+        "2 ve 4 numaralı hatlar",
+        "Yalnızca 7 numaralı hat"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c0"
        ]
       }
      ],

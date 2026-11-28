@@ -14,7 +14,7 @@
   "requires": { "kelimeler": [], "kaliplar": [], "gramer": ["gr:a1-10:t1", "gr:a1-09:t2", "gr:a1-09:t3", "gr:a1-09:t4", "gr:a1-10:t4", "gr:a1-10:t2", "gr:a1-09:t5", "gr:a1-13:t4", "gr:a1-13:t5", "gr:a1-14:t1", "gr:a1-14:t2", "gr:a1-10:t3"], "tur": [], "baglayicilar": [], "akicilik": [] },
   "review": { "status": "draft" },
   "dersler": [],
-  "yeni_kartlar": ["lx:Blutdruck", "lx:Bier", "lx:Zug", "lx:Tunnel", "lx:ankommen"],
+  "yeni_kartlar": ["lx:Blutdruck", "lx:Bier", "lx:Zug", "lx:Tunnel", "lx:ankommen", "lx:Fahrgast", "lx:halten"],
   "halkalar": [
     {
       "id": "m1:49:h1",
@@ -82,6 +82,25 @@
         ],
         "soru": { "q_tr": "Neden geç kaldın?", "opts": ["Tren tünelde kaldı", "Otobüs gelmedi", "Randevu saatini unuttun"], "ans": 0 }
       }
+    },
+    {
+      "id": "m1:49:h2",
+      "title_tr": "Trende anons: yolcular ve duraklar",
+      "kartlar": ["lx:Fahrgast", "lx:halten"],
+      "kaliplar": [
+        { "de": "Liebe Fahrgäste, …", "tr": "Sevgili yolcular, … (trende ve otobüste anons böyle başlar)" },
+        { "de": "Der Zug hält in … – Der Bus hält vor …", "tr": "Tren …de duruyor. – Otobüs …in önünde duruyor." }
+      ],
+      "gorev_cumleleri": [
+        { "kart": "lx:Fahrgast", "de": "Alle Fahrgäste bleiben im Zug.", "tr": "Bütün yolcular trende kalıyor.",
+          "accepted": ["Alle Fahrgäste bleiben im Zug.", "Die Fahrgäste bleiben alle im Zug.", "Alle Fahrgäste bleiben bitte im Zug."] },
+        { "kart": "lx:Fahrgast", "de": "Alle Fahrgäste müssen warten.", "tr": "Bütün yolcular beklemek zorunda.",
+          "accepted": ["Alle Fahrgäste müssen warten.", "Alle Fahrgäste müssen jetzt warten.", "Die Fahrgäste müssen alle warten."] },
+        { "kart": "lx:halten", "de": "Wir halten in fünf Minuten in Wendlfing.", "tr": "Beş dakika sonra Wendlfing'de duruyoruz.",
+          "accepted": ["Wir halten in fünf Minuten in Wendlfing.", "In fünf Minuten halten wir in Wendlfing.", "Wir halten in fünf Minuten in Wendlfing an."] },
+        { "kart": "lx:halten", "de": "Halten Sie bitte hier!", "tr": "Lütfen burada durun!",
+          "accepted": ["Halten Sie bitte hier!", "Bitte halten Sie hier!", "Halten Sie hier, bitte!"] }
+      ]
     }
   ],
   "sahne": {
@@ -142,20 +161,22 @@
       "ortam_tr": "Sabah trendesin, muayenehaneye gidiyorsun. Tren bir tünelde duruyor. Hoparlörden bir anons geliyor.",
       "hizlar": ["slow", "normal"],
       "script": [
-        { "id": "c1", "de": "Guten Morgen! Unser Zug steht im Moment im Tunnel.", "tr": "Günaydın! Trenimiz şu an tünelde duruyor." },
+        { "id": "c1", "de": "Liebe Fahrgäste, unser Zug steht im Moment im Tunnel.", "tr": "Sevgili yolcular, trenimiz şu an tünelde duruyor." },
         { "id": "c2", "de": "Vor uns steht ein Zug.", "tr": "Önümüzde bir tren duruyor." },
         { "id": "c3", "de": "Wir müssen zehn Minuten warten.", "tr": "On dakika beklememiz gerekiyor." },
         { "id": "c4", "de": "Wir kommen fünfzehn Minuten zu spät in Wendlfing an.", "tr": "Wendlfing'e on beş dakika geç varıyoruz." },
+        { "id": "c4b", "de": "In Wendlfing hält der Zug heute an Gleis vier.", "tr": "Tren bugün Wendlfing'de dört numaralı peronda duruyor." },
         { "id": "c5", "de": "Bitte bleiben Sie im Zug.", "tr": "Lütfen trende kalın." }
       ],
       "bolumler": [
         {
           "id": "b1",
-          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "cumleler": ["c1", "c2", "c3", "c4", "c4b", "c5"],
           "ana_fikir": { "kind": "gist", "q_tr": "Anons ne söylüyor?", "opts": ["Tren tünelde bekliyor, Wendlfing'e geç varacak", "Tren iptal edildi", "Herkes trenden inmeli"], "ans": 0, "kanit": ["c1", "c4"] },
           "ayrinti": [
             { "kind": "detail", "q_tr": "Tren kaç dakika bekleyecek?", "opts": ["On dakika", "Beş dakika", "Bir saat"], "ans": 0, "kanit": ["c3"] },
-            { "kind": "detail", "q_tr": "Tren Wendlfing'e ne kadar geç varacak?", "opts": ["On beş dakika", "Yirmi dakika", "Bir saat"], "ans": 0, "kanit": ["c4"] }
+            { "kind": "detail", "q_tr": "Tren Wendlfing'e ne kadar geç varacak?", "opts": ["On beş dakika", "Yirmi dakika", "Bir saat"], "ans": 0, "kanit": ["c4"] },
+            { "kind": "detail", "q_tr": "Tren Wendlfing'de hangi peronda duruyor?", "opts": ["İki numaralı peronda", "Dört numaralı peronda", "Wendlfing'de durmuyor"], "ans": 1, "kanit": ["c4b"] }
           ],
           "dikte": [
             { "id": "d1", "cumle": "c2", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Bus", "Zug", "Auto"], "ans": 1 },

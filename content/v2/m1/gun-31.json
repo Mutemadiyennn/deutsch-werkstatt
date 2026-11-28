@@ -53,7 +53,9 @@
   "lx:Abfahrt",
   "lx:Bahnsteig",
   "lx:Fahrplan",
-  "lx:Zugausfall"
+  "lx:Zugausfall",
+  "lx:Gleis",
+  "lx:Linie"
  ],
  "halkalar": [
   {
@@ -499,6 +501,67 @@
      "ans": 0
     }
    }
+  },
+  {
+   "id": "m1:31:h4",
+   "title_tr": "Duyuru dili: peron ve hat",
+   "kartlar": [
+    "lx:Gleis",
+    "lx:Linie"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "von Gleis … – an Gleis …",
+     "tr": "… numaralı perondan – … numaralı peronda"
+    },
+    {
+     "de": "die Linie … – mit der Linie …",
+     "tr": "… numaralı hat – … numaralı hatla"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Gleis",
+     "de": "Abfahrt heute von Gleis drei.",
+     "tr": "Kalkış bugün üç numaralı perondan.",
+     "accepted": [
+      "Abfahrt heute von Gleis drei.",
+      "Heute Abfahrt von Gleis drei.",
+      "Die Abfahrt ist heute von Gleis drei."
+     ]
+    },
+    {
+     "kart": "lx:Gleis",
+     "de": "Wo ist Gleis vier, bitte?",
+     "tr": "Dört numaralı peron nerede, lütfen?",
+     "accepted": [
+      "Wo ist Gleis vier, bitte?",
+      "Entschuldigung, wo ist Gleis vier?",
+      "Wo ist denn Gleis vier?"
+     ]
+    },
+    {
+     "kart": "lx:Linie",
+     "de": "Die Linie fünf fährt zum Rathaus.",
+     "tr": "Beş numaralı hat belediye binasına gidiyor.",
+     "accepted": [
+      "Die Linie fünf fährt zum Rathaus.",
+      "Die Linie fünf fährt auch zum Rathaus.",
+      "Zum Rathaus fährt die Linie fünf."
+     ]
+    },
+    {
+     "kart": "lx:Linie",
+     "de": "Fährt die Linie zwei zum Bahnhof?",
+     "tr": "İki numaralı hat gara gidiyor mu?",
+     "accepted": [
+      "Fährt die Linie zwei zum Bahnhof?",
+      "Fährt die Linie zwei auch zum Bahnhof?",
+      "Die Linie zwei fährt zum Bahnhof?"
+     ]
+    }
+   ]
   }
  ],
  "sahne": {
@@ -959,7 +1022,7 @@
    "script": [
     {
      "id": "c1",
-     "de": "Bahnsteig zwei: Abfahrt nach München um acht Uhr.",
+     "de": "Gleis zwei: Abfahrt nach München um acht Uhr.",
      "tr": "İki numaralı peron: Münih'e kalkış saat sekizde."
     },
     {

@@ -114,19 +114,22 @@
       "ortam_tr": "Pazar akşamı göl kenarındaki küçük istasyondasın. Eve dönmek istiyorsun. Bir anons geliyor.",
       "hizlar": ["slow", "normal"],
       "script": [
+        { "id": "c0", "de": "Liebe Fahrgäste, eine Information.", "tr": "Sevgili yolcular, bir bilgi." },
         { "id": "c1", "de": "Der Zug nach Wendlfing um achtzehn Uhr fällt heute aus.", "tr": "Saat on sekizdeki Wendlfing treni bugün iptal." },
         { "id": "c2", "de": "Bitte nehmen Sie den Bus um achtzehn Uhr zwanzig.", "tr": "Lütfen on sekiz yirmideki otobüse binin." },
+        { "id": "c2b", "de": "Das ist die Linie sieben.", "tr": "Bu, yedi numaralı hat." },
         { "id": "c3", "de": "Die Haltestelle ist links vom Bahnhof.", "tr": "Durak istasyonun solunda." },
-        { "id": "c4", "de": "Entschuldigen Sie bitte.", "tr": "Özür dileriz." }
+        { "id": "c4", "de": "Wir bitten um Entschuldigung.", "tr": "Özür dileriz." }
       ],
       "bolumler": [
         {
           "id": "b1",
-          "cumleler": ["c1", "c2", "c3", "c4"],
+          "cumleler": ["c0", "c1", "c2", "c2b", "c3", "c4"],
           "ana_fikir": { "kind": "gist", "q_tr": "Anons ne söylüyor?", "opts": ["Tren iptal, otobüse binmelisin", "Tren erken kalkıyor", "İstasyon kapanıyor"], "ans": 0, "kanit": ["c1", "c2"] },
           "ayrinti": [
             { "kind": "detail", "q_tr": "Otobüs saat kaçta?", "opts": ["18.20", "18.00", "20.18"], "ans": 0, "kanit": ["c2"] },
-            { "kind": "detail", "q_tr": "Durak nerede?", "opts": ["İstasyonun solunda", "İstasyonun sağında", "Gölün yanında"], "ans": 0, "kanit": ["c3"] }
+            { "kind": "detail", "q_tr": "Durak nerede?", "opts": ["İstasyonun solunda", "İstasyonun sağında", "Gölün yanında"], "ans": 0, "kanit": ["c3"] },
+            { "kind": "detail", "q_tr": "Otobüs kaç numaralı hat?", "opts": ["Yedi numaralı hat", "İki numaralı hat", "On sekiz numaralı hat"], "ans": 0, "kanit": ["c2b"] }
           ],
           "dikte": [
             { "id": "d1", "cumle": "c3", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["rechts", "links", "geradeaus"], "ans": 1 },

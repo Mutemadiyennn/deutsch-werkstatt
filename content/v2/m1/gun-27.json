@@ -131,7 +131,12 @@
   "lx:liegen",
   "lx:lang",
   "lx:Moment",
-  "lx:schauen"
+  "lx:schauen",
+  "lx:Eingang",
+  "lx:hinten",
+  "lx:Obst",
+  "lx:Getränk",
+  "lx:Öffnungszeiten"
  ],
  "halkalar": [
   {
@@ -619,6 +624,130 @@
      "ans": 1
     }
    }
+  },
+  {
+   "id": "m1:27:h3",
+   "title_tr": "Süpermarkette: tabelayı oku",
+   "kartlar": [
+    "lx:Eingang",
+    "lx:hinten",
+    "lx:Obst",
+    "lx:Getränk",
+    "lx:Öffnungszeiten"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "am Eingang – hinten links – hinten rechts",
+     "tr": "girişte – arkada solda – arkada sağda"
+    },
+    {
+     "de": "Wo ist …? – Wo sind …?",
+     "tr": "… nerede? (tek şey) – … nerede? (birden çok şey)"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Eingang",
+     "de": "Das Obst ist am Eingang rechts.",
+     "tr": "Meyveler girişte, sağda.",
+     "accepted": [
+      "Das Obst ist am Eingang rechts.",
+      "Obst ist am Eingang rechts.",
+      "Am Eingang rechts ist das Obst."
+     ]
+    },
+    {
+     "kart": "lx:Eingang",
+     "de": "Wir warten am Eingang.",
+     "tr": "Girişte bekliyoruz.",
+     "accepted": [
+      "Wir warten am Eingang.",
+      "Wir warten hier am Eingang.",
+      "Wir warten vor dem Eingang."
+     ]
+    },
+    {
+     "kart": "lx:hinten",
+     "de": "Die Getränke sind hinten links.",
+     "tr": "İçecekler arkada, solda.",
+     "accepted": [
+      "Die Getränke sind hinten links.",
+      "Getränke sind hinten links.",
+      "Hinten links sind die Getränke."
+     ]
+    },
+    {
+     "kart": "lx:hinten",
+     "de": "Das Brot ist hinten rechts.",
+     "tr": "Ekmek arkada, sağda.",
+     "accepted": [
+      "Das Brot ist hinten rechts.",
+      "Brot ist hinten rechts.",
+      "Hinten rechts ist das Brot."
+     ]
+    },
+    {
+     "kart": "lx:Obst",
+     "de": "Wo ist das Obst, bitte?",
+     "tr": "Meyveler nerede, lütfen?",
+     "accepted": [
+      "Wo ist das Obst, bitte?",
+      "Entschuldigung, wo ist das Obst?",
+      "Wo ist hier das Obst?"
+     ]
+    },
+    {
+     "kart": "lx:Obst",
+     "de": "Das Obst ist heute billig.",
+     "tr": "Meyve bugün ucuz.",
+     "accepted": [
+      "Das Obst ist heute billig.",
+      "Heute ist das Obst billig.",
+      "Das Obst ist heute sehr billig."
+     ]
+    },
+    {
+     "kart": "lx:Getränk",
+     "de": "Wo sind die Getränke?",
+     "tr": "İçecekler nerede?",
+     "accepted": [
+      "Wo sind die Getränke?",
+      "Entschuldigung, wo sind die Getränke?",
+      "Wo sind hier die Getränke?"
+     ]
+    },
+    {
+     "kart": "lx:Getränk",
+     "de": "Ein Getränk kostet zwei Euro.",
+     "tr": "Bir içecek iki avro.",
+     "accepted": [
+      "Ein Getränk kostet zwei Euro.",
+      "Ein Getränk kostet nur zwei Euro.",
+      "Ein Getränk kostet hier zwei Euro."
+     ]
+    },
+    {
+     "kart": "lx:Öffnungszeiten",
+     "de": "Wie sind die Öffnungszeiten?",
+     "tr": "Açılış saatleri nasıl?",
+     "accepted": [
+      "Wie sind die Öffnungszeiten?",
+      "Was sind die Öffnungszeiten?",
+      "Wie sind die Öffnungszeiten, bitte?"
+     ]
+    },
+    {
+     "kart": "lx:Öffnungszeiten",
+     "de": "Die Öffnungszeiten stehen am Eingang.",
+     "tr": "Açılış saatleri girişte yazıyor.",
+     "accepted": [
+      "Die Öffnungszeiten stehen am Eingang.",
+      "Die Öffnungszeiten stehen hier am Eingang.",
+      "Am Eingang stehen die Öffnungszeiten."
+     ]
+    }
+   ]
   }
  ],
  "sahne": {

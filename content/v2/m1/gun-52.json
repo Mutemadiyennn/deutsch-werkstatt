@@ -272,13 +272,14 @@
   },
   "okuma_yazma": {
     "tur": "okuma",
-    "title_tr": "Apartman panosunda bir not",
-    "metin_de": "Hallo, liebe Nachbarn! Am Wochenende bin ich nicht da. Ich gehe wandern. Am Montag bin ich wieder hier. Ist etwas kaputt? Bitte schreiben Sie mir eine Nachricht. Josef Pichler, Hausmeister",
-    "metin_tr": "Merhaba sevgili komşular! Hafta sonu burada değilim. Doğa yürüyüşüne gidiyorum. Pazartesi yine buradayım. Bir şey mi bozuldu? Lütfen bana mesaj yazın. Josef Pichler, apartman görevlisi",
+    "title_tr": "Apartman panosunda iki not",
+    "metin_de": "Hallo, liebe Nachbarn! Am Wochenende bin ich nicht da. Ich gehe wandern. Am Montag bin ich wieder hier. Ist etwas kaputt? Bitte schreiben Sie mir eine Nachricht. Josef Pichler, Hausmeister.\nLiebe Mieterinnen und Mieter, am Dienstag von acht bis elf Uhr gibt es kein Wasser. Ihre Hausverwaltung",
+    "metin_tr": "Merhaba sevgili komşular! Hafta sonu burada değilim. Doğa yürüyüşüne gidiyorum. Pazartesi yine buradayım. Bir şey mi bozuldu? Lütfen bana mesaj yazın. Josef Pichler, apartman görevlisi.\nSevgili kiracılar, salı günü saat sekizden on bire kadar su yok. Bina yönetiminiz",
     "sorular": [
       { "id": "m1:52:o1", "kind": "gist", "q_tr": "Herr Pichler ne duyuruyor?", "opts": ["Hafta sonu burada olmadığını", "Kiranın arttığını", "Kaloriferin bozulduğunu"], "ans": 0, "kanit": [1] },
       { "id": "m1:52:o2", "kind": "detail", "q_tr": "Hafta sonu ne yapıyor?", "opts": ["Doğa yürüyüşüne gidiyor", "Maça gidiyor", "Çalışıyor"], "ans": 0, "kanit": [2] },
       { "id": "m1:52:o3", "kind": "detail", "q_tr": "Bir şey bozulursa ne yapmalısın?", "opts": ["Ona mesaj yazmalısın", "Frau Brandl'ı aramalısın", "Hiçbir şey, pazartesi beklemelisin"], "ans": 0, "kanit": [4, 5] },
+      { "id": "m1:52:o5", "kind": "detail", "q_tr": "Panodaki ikinci not: su ne zaman yok?", "opts": ["Salı, saat sekizden on bire kadar", "Pazartesi, bütün gün", "Salı, öğleden sonra"], "ans": 0, "kanit": [7] },
       { "id": "m1:52:o4", "k": "guided_response", "situation_tr": "Pazar günü banyoda bir şey bozuldu. Herr Pichler'e kısa bir mesaj yaz.", "prompt_de": "Ist etwas kaputt?",
         "accepted": ["Ja, im Bad ist etwas kaputt.", "Ja, das Bad ist kaputt.", "Hallo Herr Pichler, im Bad ist etwas kaputt.", "Im Bad ist etwas kaputt, Herr Pichler.", "Ja, bei mir im Bad ist etwas kaputt.", "Guten Tag, Herr Pichler, im Bad ist etwas kaputt.", "Ja, etwas ist im Bad kaputt.", "Ja, im Bad ist was kaputt.", "Ja, Herr Pichler, im Bad ist etwas kaputt.", "Ja, im Bad."],
         "why_tr": "Bozuk bir şey için **kaputt** dersin, yeri de **im Bad** diye söylersin." }

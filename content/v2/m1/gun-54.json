@@ -288,13 +288,14 @@
   "okuma_yazma": {
     "tur": "okuma",
     "title_tr": "Doktorun notu",
-    "metin_de": "Frau Rosa Brandl. Tabletten: am Morgen und am Abend eine Tablette. Salbe: am Abend auf das Bein. Drei Tage zu Hause bleiben. Termin: Montag, zehn Uhr. Dr. Weber",
-    "metin_tr": "Rosa Brandl Hanım. Tabletler: sabah ve akşam birer tablet. Merhem: akşam bacağa. Üç gün evde kalmak. Randevu: pazartesi saat on. Dr. Weber",
+    "metin_de": "Frau Rosa Brandl. Tabletten: am Morgen und am Abend eine Tablette. Salbe: am Abend auf das Bein. Drei Tage zu Hause bleiben. Termin: Montag, zehn Uhr. Dr. Weber.\nLiebe Patientinnen und Patienten, unsere Sprechzeiten: Mo–Fr 8–12 Uhr und 14–18 Uhr. Am Mittwoch ist die Praxis ab zwölf Uhr geschlossen.",
+    "metin_tr": "Rosa Brandl Hanım. Tabletler: sabah ve akşam birer tablet. Merhem: akşam bacağa. Üç gün evde kalmak. Randevu: pazartesi saat on. Dr. Weber.\nSevgili hastalarımız, muayene saatlerimiz: pazartesi–cuma (Mo–Fr) 8–12 ve 14–18. Çarşamba günü muayenehane saat on ikiden sonra kapalı.",
     "sorular": [
       { "id": "m1:54:o1", "kind": "gist", "q_tr": "Bu not ne?", "opts": ["Doktorun ilaç talimatı", "Eczanenin faturası", "Bir doğum günü kartı"], "ans": 0, "kanit": [1, 2] },
       { "id": "m1:54:o2", "kind": "detail", "q_tr": "Merhem ne zaman sürülecek?", "opts": ["Akşam", "Sabah", "Öğlen"], "ans": 0, "kanit": [2] },
       { "id": "m1:54:o3", "kind": "detail", "q_tr": "Frau Brandl kaç gün evde kalmalı?", "opts": ["Üç gün", "On gün", "Bir hafta"], "ans": 0, "kanit": [3] },
       { "id": "m1:54:o4", "kind": "detail", "q_tr": "Bir sonraki randevu ne zaman?", "opts": ["Pazartesi saat on", "Cuma saat on", "Pazartesi saat iki"], "ans": 0, "kanit": [4] },
+      { "id": "m1:54:o6", "kind": "detail", "q_tr": "Muayenehane çarşamba öğleden sonra açık mı?", "opts": ["Hayır, saat on ikiden sonra kapalı", "Evet, akşama kadar açık", "Yalnızca cumartesi açık"], "ans": 0, "kanit": [7] },
       { "id": "m1:54:o5", "k": "guided_response", "situation_tr": "Frau Brandl notu okuyamıyor, merhemi soruyor. Söyle.", "prompt_de": "Und die Salbe? Wann?",
         "accepted": ["Am Abend, auf das Bein.", "Die Salbe am Abend auf das Bein.", "Am Abend.", "Am Abend auf das Bein, Frau Brandl.", "Die Salbe kommt am Abend auf das Bein.", "Die Salbe am Abend.", "Am Abend, Frau Brandl.", "Abends auf das Bein.", "Abends.", "Die Salbe kommt am Abend aufs Bein.", "Am Abend aufs Bein.", "Am Abend kommt die Salbe auf das Bein."],
         "why_tr": "Zamanı **am Abend** ile, yeri **auf das Bein** ile söylersin." }

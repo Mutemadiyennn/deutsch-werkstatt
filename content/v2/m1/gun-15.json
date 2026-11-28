@@ -136,7 +136,9 @@
   "lx:Kollege",
   "lx:wehtun",
   "lx:mitkommen",
-  "lx:üben"
+  "lx:üben",
+  "lx:Information",
+  "lx:bitten"
  ],
  "halkalar": [
   {
@@ -756,6 +758,67 @@
      "ans": 0
     }
    }
+  },
+  {
+   "id": "m1:15:h5",
+   "title_tr": "Telefonda bilgi ve rica",
+   "kartlar": [
+    "lx:Information",
+    "lx:bitten"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "eine Information für Sie",
+     "tr": "size bir bilgi"
+    },
+    {
+     "de": "Wir bitten um …",
+     "tr": "… rica ederiz"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Information",
+     "de": "Ich habe eine Information für Sie.",
+     "tr": "Size bir bilgim var.",
+     "accepted": [
+      "Ich habe eine Information für Sie.",
+      "Ich habe eine Information für euch.",
+      "Hier ist eine Information für Sie."
+     ]
+    },
+    {
+     "kart": "lx:Information",
+     "de": "Wo ist die Information, bitte?",
+     "tr": "Danışma nerede, lütfen?",
+     "accepted": [
+      "Wo ist die Information, bitte?",
+      "Entschuldigung, wo ist die Information?",
+      "Wo ist hier die Information?"
+     ]
+    },
+    {
+     "kart": "lx:bitten",
+     "de": "Wir bitten um Entschuldigung.",
+     "tr": "Özür dileriz.",
+     "accepted": [
+      "Wir bitten um Entschuldigung.",
+      "Wir bitten um Entschuldigung!",
+      "Wir bitten Sie um Entschuldigung."
+     ]
+    },
+    {
+     "kart": "lx:bitten",
+     "de": "Ich bitte um einen Termin.",
+     "tr": "Bir randevu rica ediyorum.",
+     "accepted": [
+      "Ich bitte um einen Termin.",
+      "Ich bitte Sie um einen Termin.",
+      "Guten Tag, ich bitte um einen Termin."
+     ]
+    }
+   ]
   }
  ],
  "sahne": {
@@ -1258,6 +1321,11 @@
      "tr": "Birazdan sizinle ilgileneceğiz."
     },
     {
+     "id": "c3b",
+     "de": "Eine Information für Sie:",
+     "tr": "Size bir bilgi:"
+    },
+    {
      "id": "c4",
      "de": "Am Freitag ist das Büro nur am Vormittag offen.",
      "tr": "Cuma günü ofis yalnızca öğleden önce açık."
@@ -1275,6 +1343,7 @@
       "c1",
       "c2",
       "c3",
+      "c3b",
       "c4",
       "c5"
      ],
