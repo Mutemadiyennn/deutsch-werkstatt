@@ -71,7 +71,8 @@
         { "de": "Der Arzt sagt, ich soll …", "tr": "Doktor …mem gerektiğini söylüyor." },
         { "de": "Seien Sie bitte pünktlich. – Machen Sie bitte … auf.", "tr": "Lütfen dakik olun. – Lütfen …i açın." },
         { "de": "Was schlagen Sie vor? – Was schlagen Sie … vor? – Ich schlage … vor.", "tr": "Ne önerirsiniz? – … için ne önerirsiniz? – … öneriyorum." },
-        { "de": "Ich möchte … – Ich will …", "tr": "… istiyorum, kibar – … istiyorum, güçlü (dünün kalıbı)" }
+        { "de": "Ich möchte … – Ich will …", "tr": "… istiyorum, kibar – … istiyorum, güçlü (dünün kalıbı)" },
+        { "de": "Liebe Frau … – Lieber Herr … – Viele Grüße", "tr": "Sevgili … Hanım – Sevgili … Bey – Sevgiler (kısa mektubun ya da notun sonu)" }
       ],
       "gorev_cumleleri": [
         { "kart": "lx:Impfung", "de": "Ich soll eine Impfung bekommen.", "tr": "Aşı olmam gerekiyor (doktor öyle dedi).",
@@ -351,11 +352,11 @@
       { "id": "m1:45:o2", "kind": "detail", "q_tr": "Damladan sonra ne yapmamalı?", "opts": ["Bir saat araba kullanmamalı", "Yemek yememeli", "Dışarı çıkmamalı"], "ans": 0, "kanit": [2] }
     ],
     "yazma": {
-      "gorev_tr": "Brandl Hanım eczane etiketini okuyamıyor. Ona kısa bir not yaz. Damlayı günde kaç kez ve ne zaman alacak? Sonra neyi yapmamalı?",
-      "ornek_de": "Hallo Frau Brandl! Sie sollen dreimal am Tag zwei Tropfen nehmen. Am Morgen, am Mittag und am Abend. Nach den Tropfen eine Stunde nicht Auto fahren! Gute Besserung, {name}",
-      "zorunlu": ["Tropfen", "sollen"],
-      "accepted_kaliplar": ["Hallo Frau Brandl!", "Hallo ___!", "Sie sollen ___ am Tag ___ Tropfen nehmen.", "Sie sollen die Tropfen ___ am Tag nehmen.", "Nehmen Sie ___ am Tag ___ Tropfen.", "Am Morgen, am Mittag und am Abend.", "Am ___ und am ___.", "Nach den Tropfen eine Stunde nicht Auto fahren!", "Nach den Tropfen dürfen Sie eine Stunde nicht Auto fahren.", "Sie dürfen ___ nicht Auto fahren.", "Gute Besserung, ___", "Gute Besserung!"],
-      "kontrol_tr": ["Günde kaç kez olduğunu yazdın mı?", "Talimatı **Sie sollen** ile aktardın mı?", "Damladan sonra yasak olanı yazdın mı?"]
+      "gorev_tr": "Brandl Hanım eczane etiketini okuyamıyor. Ona kısa bir not yaz. Damlayı günde kaç kez ve ne zaman alacak? Sonra neyi yapmamalı? Notu **Liebe Frau Brandl,** ile başlat, **Viele Grüße** ile bitir.",
+      "ornek_de": "Liebe Frau Brandl, Sie sollen dreimal am Tag zwei Tropfen nehmen. Am Morgen, am Mittag und am Abend. Nach den Tropfen eine Stunde nicht Auto fahren! Gute Besserung! Viele Grüße, {name}",
+      "zorunlu": ["Tropfen", "sollen", "Liebe Frau Brandl", "Viele Grüße"],
+      "accepted_kaliplar": ["Liebe Frau Brandl,", "Liebe Frau Brandl!", "Hallo Frau Brandl!", "Hallo ___!", "Sie sollen ___ am Tag ___ Tropfen nehmen.", "Sie sollen die Tropfen ___ am Tag nehmen.", "Nehmen Sie ___ am Tag ___ Tropfen.", "Am Morgen, am Mittag und am Abend.", "Am ___ und am ___.", "Nach den Tropfen eine Stunde nicht Auto fahren!", "Nach den Tropfen dürfen Sie eine Stunde nicht Auto fahren.", "Sie dürfen ___ nicht Auto fahren.", "Gute Besserung und viele Grüße, ___", "Gute Besserung, viele Grüße, ___", "Gute Besserung, ___", "Gute Besserung!", "Viele Grüße, ___", "Viele Grüße!", "Viele Grüße"],
+      "kontrol_tr": ["**Liebe Frau Brandl,** ile başlayıp **Viele Grüße** ile bitirdin mi?", "Talimatı **Sie sollen** ile aktardın mı?", "Günde kaç kez olduğunu ve damladan sonra yasak olanı yazdın mı?"]
     }
   },
   "gun_sinavi": {
