@@ -51,9 +51,9 @@ export const AILE_DURUMU = ["ledig", "verheiratet", "geschieden", "verwitwet"];
 const ARTIKEL_OK = new Set(["der", "dem", "den", "die"]);
 /** yazıyla yaş: 13–19, onluklar ve "vierunddreißig" biçimi (ß / ss, ü / ue) */
 const YAS_SOZ = /^(?:(?:dreizehn|vierzehn|f(?:ü|ue)nfzehn|sechzehn|siebzehn|achtzehn|neunzehn)|(?:(?:ein|zwei|drei|vier|f(?:ü|ue)nf|sechs|sieben|acht|neun)und)?(?:zwanzig|drei(?:ß|ss)ig|vierzig|f(?:ü|ue)nfzig|sechzig|siebzig|achtzig|neunzig))$/;
+/** profil yuvasının ilk sözcüğü olamayan edatlar, kaynaşıklar dahil (değerin içinde olabilir: "Fußball mit Freunden", "Frankfurt am Main") */
+const EDAT_BAS = new Set(["von", "vom", "aus", "in", "im", "ins", "als", "mit", "bei", "beim", "zu", "zum", "zur", "für", "nach", "an", "am", "ans", "auf", "um", "ums"]);
 /** profil yuvasına giremeyen işlev sözcükleri ve sıfatlar: BILINEN'in sabit hâli (sözlükle genişlemez: "Lehrer", "Polen" girebilsin) */
-/** profil yuvasının ilk sözcüğü olamayan edatlar (değerin içinde olabilir: "Fußball mit Freunden") */
-const EDAT_BAS = new Set(["von", "aus", "in", "im", "als", "mit", "bei", "zu", "zum", "zur", "für", "nach", "an", "auf"]);
 const ISLEV = new Set([...BILINEN_SABIT, "sehr", "nicht", "müde", "krank", "gut", "schlecht", "alt", "jung", "hier", "da"]);
 export function bilinenKelimeler(l: Iterable<string>) {
   for (const de of l) for (const w of de.toLocaleLowerCase("de").split(/[\s,/]+/)) if (w.length > 1) BILINEN.add(w);
@@ -133,8 +133,11 @@ export function profilDoldur(expected: string, answer: string): string {
     if (y === "aile") return AILE_DURUMU.includes(v.toLocaleLowerCase("de"));
     if (y === "yas") return /^\d{1,3}$/.test(v) || YAS_SOZ.test(v.toLocaleLowerCase("de"));   // "dreißig", "vierunddreißig" (inceleme #286 R2-1)
     if (w.every((x) => ARTIKEL_OK.has(x))) return false;   // "aus der." (R2-4)
-    // yuva edatla başlayamaz: "Ich bin {meslek}." ↔ "Ich bin von Beruf." (meslek söylenmedi; 31. gün yanlış dalı, K-00 tümleşik koşu)
-    if (EDAT_BAS.has(w[0]!)) return false;
+    // yuva edatla başlayamaz: "Ich bin {meslek}." ↔ "Ich bin von Beruf." / "Ich bin beim Arzt." (meslek söylenmedi; K-00 tümleşik koşu)
+    // istisna: öğretilen kalıp "Ich bin von Beruf Koch." (≥ 3 sözcük; #288 inceleme P1-1)
+    if (EDAT_BAS.has(w[0]!) && !(y === "meslek" && w[0] === "von" && w[1] === "beruf" && w.length > 2)) return false;
+    // aile durumu yalnız {aile} yuvasına girer: "Ich bin ledig." meslek değildir (#288 inceleme P2-4)
+    if (w.some((x) => AILE_DURUMU.includes(x))) return false;
     if (y === "diller") return w.every((x) => x === "und" || !ISLEV.has(x));
     return !w.some((x) => ISLEV.has(x) && !ARTIKEL_OK.has(x));
   };

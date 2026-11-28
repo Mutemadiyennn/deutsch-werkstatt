@@ -32,6 +32,11 @@ describe("profil yuvaları", () => {
     expect(profilDoldur("Ich bin {meslek}.", "Ich bin von Beruf.")).toBe("Ich bin (mesleğin).");
     expect(profilDoldur("Ich arbeite als {meslek}.", "Ich arbeite als in Hamburg.")).toBe("Ich arbeite als (mesleğin).");
     expect(profilDoldur("Ich bin {meslek}.", "Ich bin Koch von Beruf.")).toBe("Ich bin Koch von Beruf.");
+    expect(profilDoldur("Ich bin {meslek}.", "Ich bin von Beruf Koch.")).toBe("Ich bin von Beruf Koch.");   // #288 P1-1: öğretilen kalıp
+    expect(profilDoldur("Ich bin {meslek}.", "Ich bin beim Arzt.")).toBe("Ich bin (mesleğin).");             // #288 P2-1: kaynaşık edat
+    expect(profilDoldur("Ich bin {meslek}.", "Ich bin vom Jobcenter.")).toBe("Ich bin (mesleğin).");
+    expect(profilDoldur("Ich wohne in {sehir}.", "Ich wohne in Frankfurt am Main.")).toBe("Ich wohne in Frankfurt am Main.");
+    expect(profilDoldur("Ich bin {meslek}.", "Ich bin ledig.")).toBe("Ich bin (mesleğin).");                 // #288 P2-4: aile durumu meslek değil
     expect(profilDoldur("Mein Hobby ist {hobi}.", "Mein Hobby ist Fußball mit Freunden.")).toBe("Mein Hobby ist Fußball mit Freunden.");
     expect(profilDoldur("Ich bin {meslek}.", "Ich bin Lehrer.")).toBe("Ich bin Lehrer.");
     // 2. tur R2-1: yazıyla yaş; R2-4: yalnız artikel
