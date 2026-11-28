@@ -13,7 +13,9 @@ const lexDir = join(import.meta.dirname, "../../../content/v2/registry/lexicon")
 bilinenKelimeler(readdirSync(lexDir).filter((f) => f.endsWith(".json")).flatMap((f) => (JSON.parse(readFileSync(join(lexDir, f), "utf8")).items as { de: string }[]).map((x) => x.de)));
 /** profil yuvalarına örnek cevap değerleri (yuvası dolu profilde metinde yuva kalmaz) */
 const ORNEK_DEGER: Record<string, string> = { ulke: "Polen", sehir: "Hamburg", yas: "34", diller: "Türkisch und Deutsch", meslek: "Koch", hobi: "Fußball", aile: "verheiratet" };
-const profiller = [{}, { name: "Ayşe", address: "Frau" as const }, { name: "Jean-Luc", address: "Herr" as const }];
+const profiller = [{}, { name: "Ayşe", address: "Frau" as const }, { name: "Jean-Luc", address: "Herr" as const },
+  // yuvaları dolu profil (#288 P2-3): kabul cümlesinde yuva kalmaz
+  { name: "Derya", address: "Frau" as const, profil: { ulke: "der Türkei", sehir: "Bad Tölz", yas: "dreißig", diller: "Türkisch und Deutsch", meslek: "Krankenpflegerin", hobi: "Fußball spielen", aile: "ledig" } }];
 
 describe("Konuşma provası (#58 A7)", () => {
   it("içerikte prova var", () => { expect(provalar.length).toBeGreaterThan(0); });
