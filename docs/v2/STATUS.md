@@ -11,9 +11,10 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 - **GitHub Actions bu depoda GitHub tarafından kapalı** (16:53 UTC'den beri). Kabul **KAPI oturumunda** (PM 7047288255): temiz worktree, `ci-v2.yml` sırası, WebKit üç cihaz; PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI". Ortak betik `scripts/kapi.sh` (dal `kapi/betik`). Yayın ve medya hatları durdu; kod PR'ları KAPI sırasıyla birleşir.
 - **Hedef ekranlar:** `design/TARGET3c` (kalıp, yapboz + K10, söyle, gün sonu sınaması, Yol, Bahçe boş hâli; TASARIM "Hedef 3c").
 
-## Hat T (ANA-T): iki parçalı fiil boşluğu (PM-148 [ANA-T] md. 1, DENETİM-A1 P1-1; 2026-11-27)
-- **Ne:** akışın boşluk adımı iki parçalı fiilde ("Ich ___ um acht ___." / "fange … an") bütün cevabı her boşluğa yazıyordu ("Ich fange … an um acht fange … an."); 10.–54. günde 24 adım. Artık her boşluk kendi parçasıyla dolar (`core/ikiParca.ts`), ekranda iki boşluk ve "iki kelimeyi sırayla yaz"; cevap "fange an" / "fange … an". Cihazda kalmış eski plan doğru cümleye bağlanır.
-- **Kanıt:** `ikiParca.test.ts` + `akis.test.ts` (bütün akış günlerinde bozuk cümle 0; denetimin 24 adımının her biri doğru cümleyle planda) · e2e `v2_bosluk_iki.py` (ci-v2 adımı). Denetimin `sayim.ts`'i: bozuk_bosluk 24 → 0.
+## Hat G (ANA-G): gezinme kuralı (PM-133, PM-142 md. 3, PM-144 md. 1.2; 2026-11-27)
+- Dal `v2/gezinme-donus`. Kural TASARIM TS-1.1; döküm `docs/v2/qa/gezinme.md`. `core/donus.ts` (giriş yığını, birim testli) + `services/gezinme.ts`; bütün `ProgressHeader`/`TopBar` geri hedefi, akışın X'i ve "Sıradaki adım" giriş noktasından. Tam ekran akışta sol düğme X (aynı akışın üst adımında ‹). Akış X'i artık Köy'ün gün listesine değil girdiği ekrana; akıştan açılan durak akışa döner. Alt sekme son konumunu açar, etkin sekmeye ikinci dokunuş köke.
+- Sınama: gezgin `donus_savlari` (DN-2). Takip: kenardan kaydırma kabukta kapalı (ANA-K), eski kuşak ekran akışın ilerleme çubuğunu taşımıyor (ANA-T "tek yol").
+- #267 (`plan-not` PM finali) main'de (`8b6a6c7`); #275 tabanı main.
 
 ## Hat K (ANA-K): Kabuk 1.6 (PM-128, PM-142 md. 2.1; 2026-11-27)
 - Dal `ana-k/kabuk-1.6`, PR #271 (yalnız `ios-build.yml`): `server.url` ve "Tekrar dene" doğrudan `/v2/`; Capacitor `^8`, konuşma tanıma 7.0.1 sabit; derlemede kabuk adresi + izin anahtarı denetimi.
