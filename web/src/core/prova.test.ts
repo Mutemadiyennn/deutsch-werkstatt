@@ -11,6 +11,8 @@ const provalar = gunler.filter((g) => g.prova).map((g) => ({ day: g.day, ham: g.
 // uygulamada sözlük yüklenince yapılır: adsız profilde bilinen kelime ad sayılmaz
 const lexDir = join(import.meta.dirname, "../../../content/v2/registry/lexicon");
 bilinenKelimeler(readdirSync(lexDir).filter((f) => f.endsWith(".json")).flatMap((f) => (JSON.parse(readFileSync(join(lexDir, f), "utf8")).items as { de: string }[]).map((x) => x.de)));
+/** profil yuvalarına örnek cevap değerleri (yuvası dolu profilde metinde yuva kalmaz) */
+const ORNEK_DEGER: Record<string, string> = { ulke: "Polen", sehir: "Hamburg", yas: "34", diller: "Türkisch und Deutsch", meslek: "Koch", hobi: "Fußball", aile: "verheiratet" };
 const profiller = [{}, { name: "Ayşe", address: "Frau" as const }, { name: "Jean-Luc", address: "Herr" as const }];
 
 describe("Konuşma provası (#58 A7)", () => {
@@ -22,7 +24,8 @@ describe("Konuşma provası (#58 A7)", () => {
       const p = personalizeDeep(ham, pr) as ProvaT;
       for (const d of p.dugumler) d.secenekler.forEach((s, i) => {
         for (const a of s.accepted.length ? s.accepted : [s.de]) {
-          const cevap = a.replace(/\{name\}/g, "Gülşah Yıldırım");
+          // profil yuvası boşken öğrenci kendi değerini söyler (PM-148 karar 2): örnek değerlerle
+          const cevap = a.replace(/\{name\}/g, "Gülşah Yıldırım").replace(/\{(\w+)\}/g, (m, y: string) => ORNEK_DEGER[y] ?? m);
           const e = eslestir(d, cevap);
           // aynı cevap iki seçenekte de kabul ediliyorsa ilk eşleşen seçilir; dal aynı olmalı
           if (e.kind !== "correct" || (e.i !== i && d.secenekler[e.i!]!.sonraki !== s.sonraki)) red.push(`gün ${day} ${d.id}#${i} ${JSON.stringify(pr)}: ${cevap} → ${e.kind} ${e.i}`);
