@@ -259,8 +259,14 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     dersVer();
     bolum("sesler", "uretim");   // ses · ikinci tur: son halkadan sonra
     for (const [hi, adlar] of Object.entries(ARA)) if (+hi >= halkalar.length) for (const ad of adlar) bolum(ad);
-    const bilinen = new Set(["halkalar", "yeni_kartlar", "dersler", "requires", "review", "can_do", "sesler", "sahne", "video", "prova", "okuma_yazma", "gun_sinavi", "sinav", "sinav_bolumler"]);
+    const bilinen = new Set(["halkalar", "yeni_kartlar", "dersler", "requires", "review", "can_do", "sesler", "sahne", "video", "prova", "okuma_yazma", "gun_sinavi", "sinav", "sinav_bolumler", "serbest_konus"]);
     for (const ad of Object.keys(f).filter((k) => !bilinen.has(k))) bolum(ad);   // resimden seç (gorsel) ve bilinmeyen bölümler: günün bütün kartlarıyla
+    // serbest konuşma (PM-148): gün sonunun başında; her hedef bir madde (kalıplarından biri kurulabilmeli, `___` ad yeri gibi bilinir),
+    // karşıdakinin açılış sorusu ilk hedefin sorusu
+    for (const k of dizi(f.serbest_konus).map(nesne)) dizi(k.hedefler).map(nesne).forEach((h, i) => {
+      const secenekler = yazilar(h.kaliplar).map((kp) => kp.replace(/_{3,}/g, "{name}"));
+      if (secenekler.length) adimlar.push(degerle(gn, { yer: `gün/serbest_konus[${String(k.id ?? "?")}]/${String(h.id ?? i)}`, secenekler, ...(i === 0 && yazi(k.soru_de) ? { soru: yazi(k.soru_de) } : {}) }, gunB));
+    });
     bolum("gun_sinavi");
     for (const k of [...gunB.kart]) b.kart.add(k); for (const x of gunB.biten) b.biten.add(x);
     for (const t of gunB.bicim) b.bicim.add(t); b.kaliplar = gunB.kaliplar;

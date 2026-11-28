@@ -87,7 +87,7 @@ export function useKeyboardSafe(ref: { current: HTMLElement | null }) {
 
 /* ---------- Mikrofon: önce Türkçe açıklama, görünür kayıt göstergesi, bas-konuş ya da dokun-başlat/bitir, kesinti yönetimi ---------- */
 const MIC_OK_KEY = "dw2-mic-explained";
-export function MicButton({ onText, disabled, wide = false, label = "Sesli söyle" }: { onText: (t: string) => void; disabled?: boolean; wide?: boolean; label?: string }) {
+export function MicButton({ onText, disabled, wide = false, label = "Sesli söyle", birincil = true }: { onText: (t: string) => void; disabled?: boolean; wide?: boolean; label?: string; /** geniş düğme ekranın birincil eylemi mi (tek birincil eylem; PM-074 G2) */ birincil?: boolean }) {
   const [state, setState] = useState<"idle" | "explain" | "rec">("idle");
   const [err, setErr] = useState<string | null>(null);
   const stopRef = useRef<() => void>(() => {});
@@ -113,7 +113,7 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
   };
   return (
     <>
-      <button type="button" class={wide ? `btn primary block micwide${state === "rec" ? " on" : ""}` : `micbtn${state === "rec" ? " on" : ""}`} disabled={disabled} aria-label={state === "rec" ? "Kaydı bitir" : "Konuşarak cevapla (basılı tut ya da dokun)"} aria-pressed={state === "rec"} data-test="mic"
+      <button type="button" class={wide ? `btn${birincil ? " primary" : ""} block micwide${state === "rec" ? " on" : ""}` : `micbtn${state === "rec" ? " on" : ""}`} disabled={disabled} aria-label={state === "rec" ? "Kaydı bitir" : "Konuşarak cevapla (basılı tut ya da dokun)"} aria-pressed={state === "rec"} data-test="mic"
         onPointerDown={() => { holdRef.current = false; clearTimeout(holdT.current); holdT.current = setTimeout(() => { holdRef.current = true; }, 350); if (state !== "rec") { basRef.current = true; void start(); } else basRef.current = false; }}
         onPointerUp={() => { if (state === "rec" && holdRef.current) stopRef.current(); }}
         onClick={() => { if (basRef.current) basRef.current = false; else if (state !== "rec") void start(); else if (!holdRef.current) stopRef.current(); }}>

@@ -22,11 +22,11 @@ import { bilinmeyenler, kalipOrtu, kartsizMi, kalipSecenekleri, toks, YUVA, type
 export type Kip = "gor" | "duy" | "kur" | "soyle";
 export type AdimTuru =
   | "tanit" | "kalip" | "listen_meaning" | "resimden_sec" | "dikte" | "article" | "colloc" | "eslestir"
-  | "gap" | "order" | "tr_de" | "soyle" | "sahne" | "tekrar" | "ders_madde" | "tablo" | "hatirlat";
+  | "gap" | "order" | "tr_de" | "soyle" | "sahne" | "tekrar" | "ders_madde" | "tablo" | "hatirlat" | "serbest_konus";
 export const KIP: Record<AdimTuru, Kip> = {
   tanit: "gor", kalip: "gor", article: "gor", colloc: "gor", eslestir: "gor", tablo: "gor", hatirlat: "gor",
   listen_meaning: "duy", resimden_sec: "duy", dikte: "duy", sahne: "duy", tekrar: "duy",
-  gap: "kur", order: "kur", tr_de: "kur", ders_madde: "kur", soyle: "soyle"
+  gap: "kur", order: "kur", tr_de: "kur", ders_madde: "kur", soyle: "soyle", serbest_konus: "soyle"
 };
 export const ADIM_TURLERI = Object.keys(KIP) as AdimTuru[];
 /** Gösterim adımı: öğrenci üretmez (satır başına K(t) dışında ≤ 1 sözcük, işaretli); öteki her cümleli adım görev adımıdır */
@@ -46,6 +46,8 @@ export interface Adim {
 }
 /** gün sonu "kendini dene" maddeleri dersin değil günün sınavından gelir (`Adim.ders.id`) */
 export const GUN_SINAVI = "gun_sinavi";
+/** serbest konuşma adımı (PM-148): `Adim.ders = { id: SERBEST_KONUS, oge: <madde kimliği> }` */
+export const SERBEST_KONUS = "serbest_konus";
 export type DurakTuru = "isinma" | "ses" | "halka" | "dil" | "video" | "prova" | "okuma" | "gunsonu";
 export interface Durak {
   id: string; tur: DurakTuru; seans: number; title_tr: string; tahmini_dk: number; adimlar: Adim[];
@@ -115,6 +117,8 @@ export interface PlanGirdi {
   gorselli?: ReadonlySet<string>;
   /** dil noktaları (`gr:` grammar.json, `dn:` dn-HH.json; PM-092 md. 1): günün `dersler`indeki bu kimlikler dil noktası durağı olur */
   dilNoktalari?: ReadonlyMap<string, { h_tr: string }>;
+  /** PM-148 serbest konuşma bayrağı (`policy.serbest_konus.acik`; PM-135 ek 14): açıksa günün maddeleri gün sonunun başına */
+  serbestKonus?: boolean;
 }
 
 /** Dil noktası kimliği mi (`gr:` / `dn:`; tam temel ders `r0:` değil) */
@@ -212,6 +216,20 @@ class Planlayici {
     for (const m of uygun) { if (sec.length >= 4) break; if (!sec.includes(m)) sec.push(m); }
     return sec.slice(0, 4).map((m) => ({ id: `gunsonu:${gun.day}:${m.id}`, tur: "ders_madde" as AdimTuru, kip: KIP.ders_madde, kartlar: [], kaynak: "ders" as const, sn: 45,
       neden: "kendini dene: bugün öğrendiklerinle", ders: { id: GUN_SINAVI, oge: m.id } }));
+  }
+  /**
+   * Serbest konuşma (PM-148 [ANA-V] md. 1): bayrak açıksa günün maddeleri gün sonunun başında. Cümlesi yok (öğrenci kendi kurar);
+   * açılış sorusu varsa gösterim satırıdır ve gösterim kapısından geçmeyen, ya da bir hedefinin hiçbir kalıbı görev kapısından
+   * geçmeyen madde konmaz (hafta kapısı içerikte ayrıca sayar).
+   */
+  private serbestKonus(gun: Gun): Adim[] {
+    if (!(this.g.serbestKonus ?? POLICY.serbest_konus.acik)) return [];
+    // her hedefin en az bir kalıbı K(t) ile kurulabilmeli (yuva ad yeri gibi bilinir; hafta kapısıyla aynı kural, inceleme #281 P2-8)
+    const kurulur = (k: NonNullable<Gun["serbest_konus"]>[number]) => k.hedefler.every((h) => h.kaliplar.some((kp) => this.gorevGecer(kp.replace(/_{3,}/g, "{name}"))));
+    return (gun.serbest_konus ?? []).filter((k) => (!k.soru_de || this.gosterimGecer(k.soru_de)) && kurulur(k)).map((k) => ({
+      id: `gunsonu:${gun.day}:${k.id}`, tur: "serbest_konus" as AdimTuru, kip: KIP.serbest_konus, kartlar: [], kaynak: "ders" as const,
+      sn: this.pol.adim_sn.serbest_konus, neden: "serbest konuşma: hazırlıksız, kendi cümlelerinle", ...(k.soru_de ? { satirlar: [k.soru_de] } : {}),
+      ders: { id: SERBEST_KONUS, oge: k.id } }));
   }
   private gorevGecer(de: string, haric: string[] = []): boolean { return this.bilinmeyen(de, haric) <= this.pol.gorev_bilinmeyen_max; }
   private gosterimGecer(de: string, ek: string[][] = []): boolean { return this.bilinmeyen(de, [], ek) <= this.pol.gosterim_bilinmeyen_max; }
@@ -662,7 +680,7 @@ class Planlayici {
       if (hi < halkalar.length - 1) duraklar.push(...bekleyen.splice(0));
     });
     duraklar.push(...bekleyen.splice(0), ...Object.entries(ara).filter(([k]) => +k >= halkalar.length).flatMap(([, d]) => d));
-    const gs = [...this.yerlestir(gunSonuEk, "gunsonu", halkalar.at(-1)?.adimlar ?? []), ...this.kendiniDene(gun)];
+    const gs = [...this.serbestKonus(gun), ...this.yerlestir(gunSonuEk, "gunsonu", halkalar.at(-1)?.adimlar ?? []), ...this.kendiniDene(gun)];
     duraklar.push({ ...sabit("gunsonu", `gunsonu:${gun.day}`, "Gün sonu", Math.max(pol.sabit_dk.gunsonu_ek, dk(gs) + pol.sabit_dk.gunsonu_ek), `m1:gun:${gun.day}`, "bugün neyi yapabiliyorsun: 4 kısa madde"), adimlar: gs });
     // son halka eski Bahçe anahtarını yazar (AK-6)
     const sonHalka = [...duraklar].reverse().find((d) => d.tur === "halka");

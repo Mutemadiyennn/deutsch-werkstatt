@@ -54,6 +54,31 @@ export function uyanKaliplar(cumle: string, kaliplar: string[]): string[] {
   return her.every(Boolean) ? (her as string[]) : [];
 }
 export const kalipliMi = (cumle: string, kaliplar: string[]) => uyanKaliplar(cumle, kaliplar).length > 0;
+/**
+ * Konuşma dökümünde kalıp (PM-148 serbest konuşma): ses tanıma noktalama koymayabilir ("ich heiße … ich komme aus …"),
+ * bu yüzden kalıp metnin İÇİNDE, sözcük sınırında aranır; `___` yine 1–4 sözcük.
+ */
+export function kalipIcinde(metin: string, kalip: string): boolean {
+  return kalipEslesmeleri(metin, kalip).length > 0;
+}
+/**
+ * Dökümde kalıbın bütün eşleşmeleri (çakışmasız, soldan): sadeleştirilmiş metinde [bas, son) ve yuvaya düşen sözcükler.
+ * `tembel`: yuva en kısa (noktalamasız dökümde sonraki cümleyi yutmasın; sayım için); değilse en uzun (gizleme için)
+ */
+export function kalipEslesmeleri(metin: string, kalip: string, tembel = false): { bas: number; son: number; yuva: string[] }[] {
+  const parcalar = temiz(kalip).replace(/___/g, " ___ ").split(/\s+/).filter(Boolean);
+  if (!parcalar.length) return [];
+  const k = parcalar.map((t) => (t === "___" ? `(\\S+(?:\\s+\\S+){0,3}${tembel ? "?" : ""})` : kacis(t))).join("\\s+");
+  const t = temiz(metin), re = new RegExp(`(?:^|\\s)(${k})(?=\\s|$)`, "g"), out: { bas: number; son: number; yuva: string[] }[] = [];
+  for (let m = re.exec(t); m; m = re.exec(t)) {
+    const bas = m.index + m[0].length - m[1]!.length;
+    out.push({ bas, son: bas + m[1]!.length, yuva: m.slice(2).filter((x): x is string => !!x) });
+    if (re.lastIndex === m.index) re.lastIndex++;
+  }
+  return out;
+}
+/** Kalıbın sabit (yuva olmayan) sözcük sayısı: aynı yeri iki kalıp tutarsa daha belirgin olan kazanır */
+export const kalipSabitSayisi = (kalip: string) => temiz(kalip).replace(/___/g, " ___ ").split(/\s+/).filter((t) => t && t !== "___").length;
 
 /** Zorunlu kelime: tam kelime ya da çekimli biçim (kostet ~ kosten, habe ~ hast); kök en az 4 harf (inceleme #70 P2) */
 function kelimeVar(kelimeler: string[], z: string): boolean {

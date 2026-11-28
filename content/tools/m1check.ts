@@ -4,6 +4,7 @@
  */
 import type { Bolum, Gun, MedyaCumle } from "../../packages/shared/src/m1.ts";
 import { medyalar } from "../../packages/shared/src/m1.ts";
+import { cumleler, uyanKaliplar } from "../../web/src/core/okuma.ts";
 
 /** Karşılaştırma için: küçük harf, noktalama ve fazla boşluk yok (ümlaut korunur) */
 export const sade = (s: string) => s.toLowerCase().replace(/[.,!?;:„“"'»«()–-]/g, " ").replace(/\s+/g, " ").trim();
@@ -122,7 +123,41 @@ export function checkGun(g: Gun, ctx: { lexicon: Set<string>; temel: Set<string>
     // sınav yalnızca o güne kadar öğretilenleri ister (requires kuralı; cevapla ile aynı denetim; inceleme #109 P1-1)
     for (const m of g.gun_sinavi.maddeler) if ("accepted" in m && m.accepted.length && ctx.taught && m.accepted.every((a) => ogretilmemis(a, ctx.taught!).length)) ist(`gun_sinavi/${m.id}`, m.accepted[0]!);
   }
+  if (g.serbest_konus) checkSerbestKonus(g, errors, ist, ctx.taught);
   return { errors, warnings };
+}
+
+/** PM-148 serbest konuşma (FORMAT.md "Serbest konuşma"): ipucu yok, kalıplar ≥ 3, örnek her cümlesiyle bir hedefe uyar */
+function checkSerbestKonus(g: Gun, errors: string[], ist: (where: string, text: string) => void, taught?: Set<string>) {
+  const ids = new Set<string>();
+  const YUVA = /\{(name|ulke|sehir|yas|diller|meslek|hobi|aile)\}/g;
+  for (const k of g.serbest_konus ?? []) {
+    const at = `serbest_konus/${k.id}`;
+    if (ids.has(k.id)) errors.push(`${at}: kimlik tekil değil`); ids.add(k.id);
+    if (!k.id.startsWith(`m1:${String(g.day).padStart(2, "0")}:`)) errors.push(`${at}: kimlik günün numarasıyla başlamalı (m1:${String(g.day).padStart(2, "0")}:kN)`);
+    // ipucu yok: görev ve durum metninde Almanca işaretleme, tırnak ya da yer tutucu olmaz
+    for (const [ad, v] of [["gorev_tr", k.gorev_tr], ["durum_tr", k.durum_tr]] as const) if (/\*\*|[„“"»«{]/.test(v)) errors.push(`${at}: ${ad} içinde ipucu işareti (**, tırnak ya da yer tutucu) olmaz`);
+    if (k.soru_de && /[{]/.test(k.soru_de)) errors.push(`${at}: soru_de içinde yer tutucu olmaz (ses önceden üretilir)`);
+    // profil yuvaları yalnız ornek_de'de (ekranda yalnız orada çözülür; inceleme #281 P2-2)
+    if (/[{}]/.test(k.ornek_tr)) errors.push(`${at}: ornek_tr içinde yer tutucu olmaz (… yazılır)`);
+    for (const h of k.hedefler) if (/[{}]/.test(h.tr) || h.kaliplar.some((kp) => /[{}]/.test(kp))) errors.push(`${at}/${h.id}: hedefte yer tutucu olmaz (kalıpta ___)`);
+    const yabanci = [...k.ornek_de.matchAll(/\{([^}]*)\}/g)].map((m) => m[1]!).filter((y) => !/^(name|ulke|sehir|yas|diller|meslek|hobi|aile)$/.test(y));
+    if (yabanci.length) errors.push(`${at}: ornek_de içinde bilinmeyen yuva: ${yabanci.join(", ")}`);
+    const hid = k.hedefler.map((h) => h.id);
+    if (new Set(hid).size !== hid.length) errors.push(`${at}: hedef kimlikleri tekil değil`);
+    const kaliplar = k.hedefler.flatMap((h) => h.kaliplar);
+    for (const h of k.hedefler) for (const kp of h.kaliplar) if (!kp.includes("___") && !/[.!?]$/.test(kp.trim())) errors.push(`${at}/${h.id}: "${kp}" ne yuva (___) taşıyor ne tam cümle`);
+    // örnek: her cümlesi bir hedefin kalıbına uyar; her hedef en az bir cümleyle karşılanır
+    const ornek = cumleler(k.ornek_de.replace(YUVA, "Xyz"));
+    for (const c of ornek) if (!uyanKaliplar(c, kaliplar).length) errors.push(`${at}: ornek_de cümlesi hiçbir hedef kalıbına uymuyor: "${c}"`);
+    for (const h of k.hedefler) if (!ornek.some((c) => uyanKaliplar(c, h.kaliplar).length)) errors.push(`${at}/${h.id}: ornek_de bu hedefi karşılamıyor`);
+    if (ornek.length < k.en_az_cumle) errors.push(`${at}: ornek_de ${ornek.length} cümle (en_az_cumle ${k.en_az_cumle})`);
+    // öğretmeden isteme yok (uyarı; hafta kapısı ayrıca sayar)
+    // hedef: en az bir kalıbı bütünüyle öğretilmiş olmalı (kalıplardan biri yeter; hepsi eksikse ilkini bildir)
+    for (const h of k.hedefler) if (taught && h.kaliplar.every((kp) => ogretilmemis(kp.replace(/___/g, " "), taught).length)) ist(`${at}/${h.id}`, h.kaliplar[0]!.replace(/___/g, " "));
+    ist(`${at}/ornek_de`, k.ornek_de.replace(YUVA, " "));
+    if (k.soru_de) ist(`${at}/soru_de`, k.soru_de);
+  }
 }
 
 function checkBolum(b: Bolum, byId: Map<string, MedyaCumle>, own: Set<string>, err: (s: string) => void, warn: (s: string) => void) {
