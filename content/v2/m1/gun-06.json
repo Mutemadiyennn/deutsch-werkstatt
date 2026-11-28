@@ -380,6 +380,25 @@
       "Der Nachname ist nicht Weber, sondern Huber.",
       "Huber ist der Nachname, nicht Weber."
      ]
+    },
+    {
+     "kart": "lx:heißen",
+     "de": "Ich heiße {name} und ich komme aus {ulke}.",
+     "de_adsiz": "Ich komme aus {ulke}. Und wie heißen Sie?",
+     "tr": "Adım {name}, memleketim …",
+     "tr_adsiz": "Memleketim: … Peki sizin adınız ne?",
+     "accepted": [
+      "Ich heiße {name} und ich komme aus {ulke}.",
+      "Ich heiße {name} und komme aus {ulke}.",
+      "Ich heiße {name}. Ich komme aus {ulke}.",
+      "Ich heiße {name}, ich komme aus {ulke}."
+     ],
+     "accepted_adsiz": [
+      "Ich komme aus {ulke}. Und wie heißen Sie?",
+      "Ich komme aus {ulke}. Wie heißen Sie?",
+      "Aus {ulke}. Und wie heißen Sie?",
+      "Ich bin aus {ulke}. Und wie heißen Sie?"
+     ]
     }
    ],
    "sahne": {
@@ -506,6 +525,17 @@
       "Woher kommt Derya? Aus Wendlfing?",
       "Woher kommt Derya? Kommt Derya aus Wendlfing?",
       "Derya kommt woher? Aus Wendlfing?"
+     ]
+    },
+    {
+     "kart": "lx:woher",
+     "de": "Ich komme aus {ulke}. Und woher kommen Sie, Luka?",
+     "tr": "Memleketim: … Ya siz nerelisiniz, Luka?",
+     "accepted": [
+      "Ich komme aus {ulke}. Und woher kommen Sie, Luka?",
+      "Ich komme aus {ulke}. Woher kommen Sie, Luka?",
+      "Aus {ulke}. Und woher kommen Sie, Luka?",
+      "Ich komme aus {ulke}. Und Sie, Luka? Woher kommen Sie?"
      ]
     }
    ],
@@ -1814,7 +1844,7 @@
        "Der Termin ist am Montag um 10:30 Uhr.",
        "Der Termin ist am Montag um 10:30."
       ],
-      "sonraki": "n7",
+      "sonraki": "n6b",
       "uygun": true,
       "geri_bildirim_tr": "Doğru. Günü ve saati birlikte söyledin."
      },
@@ -1839,13 +1869,46 @@
     ]
    },
    {
+    "id": "n6b",
+    "de": "Ja, am Montag um halb elf. Danke! Und Sie kommen aus …?",
+    "tr": "Evet, pazartesi on buçukta. Teşekkürler! Peki siz nereliydiniz?",
+    "secenekler": [
+     {
+      "de": "Aus {ulke}, Frau Brandl.",
+      "tr": "Memleketim …, Brandl Hanım.",
+      "accepted": [
+       "Aus {ulke}, Frau Brandl.",
+       "Aus {ulke}.",
+       "Ich komme aus {ulke}.",
+       "Ich komme aus {ulke}, Frau Brandl.",
+       "Ich bin aus {ulke}."
+      ],
+      "sonraki": "n7",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve doğru. Yarım kalan soruya **Aus …** diye tamamlamak yeter."
+     },
+     {
+      "de": "Ich wohne aus {ulke}.",
+      "tr": "Oturduğum yer: … (yanlış kelimeyle)",
+      "accepted": [
+       "Ich wohne aus {ulke}.",
+       "Ich wohne aus {ulke}, Frau Brandl.",
+       "Wohne aus {ulke}."
+      ],
+      "sonraki": "n6b",
+      "uygun": false,
+      "geri_bildirim_tr": "**wohnen** oturmak demek. Memleketini söylerken **Ich komme aus …** de."
+     }
+    ]
+   },
+   {
     "id": "n7",
     "de": "Danke! Bis Montag!",
     "tr": "Teşekkürler! Pazartesi görüşürüz!",
     "son": true
    }
   ],
-  "kapanis_tr": "Soruları sen sordun, tarihi ve numarayı kontrol ettin. Komşun sana güvenebilir."
+  "kapanis_tr": "Soruları sen sordun, tarihi ve numarayı kontrol ettin, sonunda memleketini de söyledin. Komşun sana güvenebilir."
  },
  "okuma_yazma": {
   "tur": "yazma",

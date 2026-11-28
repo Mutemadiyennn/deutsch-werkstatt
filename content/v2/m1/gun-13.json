@@ -1089,7 +1089,7 @@
        "Ja, das ist meine Telefonnummer.",
        "Ja, meine Nummer ist null eins sieben, drei drei, neun neun."
       ],
-      "sonraki": "n4",
+      "sonraki": "n3c",
       "uygun": true,
       "geri_bildirim_tr": "Doğru. **deine Nummer** sorusuna **meine Nummer** ile cevap verdin."
      },
@@ -1118,6 +1118,69 @@
       "sonraki": "n3",
       "uygun": false,
       "geri_bildirim_tr": "Ioana **senin** numaranı soruyor. **Ja, das ist meine Nummer** de."
+     }
+    ]
+   },
+   {
+    "id": "n3c",
+    "de": "Danke! Und wie alt bist du?",
+    "tr": "Sağ ol! Peki sen kaç yaşındasın?",
+    "secenekler": [
+     {
+      "de": "Ich bin {yas}. Und du?",
+      "tr": "… yaşındayım. Ya sen?",
+      "accepted": [
+       "Ich bin {yas}. Und du?",
+       "Ich bin {yas} Jahre alt. Und du?",
+       "{yas}. Und du?",
+       "Ich bin {yas}. Und wie alt bist du?"
+      ],
+      "sonraki": "n3d",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Arkadaşa kısa cevap yeter: **Ich bin …** Sonra **Und du?** ile sen de sordun."
+     },
+     {
+      "de": "Mein Alter ist {yas}.",
+      "tr": "Yaşım: …",
+      "accepted": [
+       "Mein Alter ist {yas}.",
+       "Mein Alter ist {yas} Jahre.",
+       "Mein Alter ist {yas}. Und du?"
+      ],
+      "sonraki": "n3d",
+      "uygun": true,
+      "geri_bildirim_tr": "Anlaşılır. Daha doğal: **Ich bin … Jahre alt.**"
+     }
+    ]
+   },
+   {
+    "id": "n3d",
+    "de": "Ich bin vierunddreißig. Und jetzt wie im Kurs: Was sprechen Sie?",
+    "tr": "Ben otuz dört yaşındayım. Şimdi de kurstaki gibi: Hangi dilleri konuşuyorsunuz?",
+    "secenekler": [
+     {
+      "de": "Ich spreche {diller}.",
+      "tr": "Konuştuğum diller: …",
+      "accepted": [
+       "Ich spreche {diller}.",
+       "Ich spreche {diller}. Und Sie?",
+       "Ich spreche {diller}. Und du?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Kurstaki gibi tam cümle: **Ich spreche …**"
+     },
+     {
+      "de": "Ich spricht {diller}.",
+      "tr": "Konuştuğum diller: … (kelimenin sonu yanlış)",
+      "accepted": [
+       "Ich spricht {diller}.",
+       "Ich spricht {diller}. Und Sie?",
+       "Ich sprechen {diller}."
+      ],
+      "sonraki": "n3d",
+      "uygun": false,
+      "geri_bildirim_tr": "**ich** ile **spreche** gelir: **Ich spreche …**"
      }
     ]
    },
@@ -1174,7 +1237,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Kursun yeni saatini öğrendin, numaranı doğruladın ve kısa biçimleri anladın. Arkadaşa du denir."
+  "kapanis_tr": "Kursun yeni saatini öğrendin, numaranı doğruladın, yaşını ve dillerini söyledin, kısa biçimleri anladın. Arkadaşa du denir."
  },
  "okuma_yazma": {
   "tur": "okuma",

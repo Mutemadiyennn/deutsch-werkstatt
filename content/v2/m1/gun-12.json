@@ -43,7 +43,8 @@
   "lx:Rechnung",
   "lx:zu#2",
   "lx:so",
-  "lx:schwimmen"
+  "lx:schwimmen",
+  "lx:Alter"
  ],
  "halkalar": [
   {
@@ -53,7 +54,8 @@
     "lx:Rechnung",
     "lx:zu#2",
     "lx:so",
-    "lx:schwimmen"
+    "lx:schwimmen",
+    "lx:Alter"
    ],
    "kaliplar": [
     {
@@ -63,6 +65,14 @@
     {
      "de": "Wie geht es Ihnen? – Wie geht es dir? – Woher kommen Sie? – Aus …",
      "tr": "Nasılsınız? – Nasılsın? – Nerelisiniz? – …'den."
+    },
+    {
+     "de": "Wie alt sind Sie? – Ich bin … Jahre alt.",
+     "tr": "Kaç yaşındasınız? – … yaşındayım."
+    },
+    {
+     "de": "Was sprechen Sie? – Ich spreche …",
+     "tr": "Hangi dilleri konuşuyorsunuz? – … konuşuyorum. (dil adlarıyla)"
     }
    ],
    "dersten_sonra": true,
@@ -247,6 +257,28 @@
       "Guten Abend, Herr Wimmer. Gehen Sie am Sonntag schwimmen?",
       "Guten Abend, Herr Wimmer! Gehen Sie Sonntag schwimmen?",
       "Herr Wimmer, guten Abend! Gehen Sie am Sonntag schwimmen?"
+     ]
+    },
+    {
+     "kart": "lx:Alter",
+     "de": "Mein Alter? Ich bin {yas} Jahre alt.",
+     "tr": "Yaşım mı? … yaşındayım.",
+     "accepted": [
+      "Mein Alter? Ich bin {yas} Jahre alt.",
+      "Mein Alter? Ich bin {yas}.",
+      "Mein Alter? {yas} Jahre.",
+      "Mein Alter? {yas} Jahre alt."
+     ]
+    },
+    {
+     "kart": "lx:Alter",
+     "de": "Alter: {yas}. Wohnort: {sehir}.",
+     "tr": "Yaşım: … Oturduğum yer: … (formdaki gibi kısa)",
+     "accepted": [
+      "Alter: {yas}. Wohnort: {sehir}.",
+      "Alter {yas}, Wohnort {sehir}.",
+      "Mein Alter: {yas}. Mein Wohnort: {sehir}.",
+      "Alter: {yas} Jahre. Wohnort: {sehir}."
      ]
     }
    ],

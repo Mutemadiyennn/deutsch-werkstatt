@@ -84,7 +84,8 @@
   "lx:sprechen",
   "lx:warten",
   "lx:arbeiten",
-  "lx:müde"
+  "lx:müde",
+  "lx:Wohnort"
  ],
  "halkalar": [
   {
@@ -95,7 +96,8 @@
     "lx:müde",
     "lx:Fieber",
     "lx:arbeiten",
-    "lx:sagen"
+    "lx:sagen",
+    "lx:Wohnort"
    ],
    "kaliplar": [
     {
@@ -105,6 +107,10 @@
     {
      "de": "Ich bin müde. – Ich bin krank.",
      "tr": "Yorgunum. – Hastayım."
+    },
+    {
+     "de": "Wohnort: … – Mein Wohnort ist …",
+     "tr": "Oturduğu yer: … (formda) – Oturduğum yer …"
     }
    ],
    "gorev_cumleleri": [
@@ -216,6 +222,27 @@
       "Herr Wimmer sagt: Am Freitag um zehn.",
       "Herr Wimmer sagt: Am Freitag um zehn Uhr.",
       "Am Freitag um zehn, sagt Herr Wimmer."
+     ]
+    },
+    {
+     "kart": "lx:Wohnort",
+     "de": "Mein Wohnort ist {sehir}.",
+     "tr": "Oturduğum yer: …",
+     "accepted": [
+      "Mein Wohnort ist {sehir}.",
+      "Mein Wohnort: {sehir}.",
+      "Wohnort: {sehir}.",
+      "Ich wohne in {sehir}."
+     ]
+    },
+    {
+     "kart": "lx:Wohnort",
+     "de": "Wohnort oder Adresse?",
+     "tr": "Şehrin adı mı, adres mi?",
+     "accepted": [
+      "Wohnort oder Adresse?",
+      "Adresse oder Wohnort?",
+      "Den Wohnort oder die Adresse?"
      ]
     }
    ],
@@ -1807,7 +1834,7 @@
        "In Wendlfing, Brunnengasse sieben.",
        "Ich wohne in der Brunnengasse sieben in Wendlfing."
       ],
-      "sonraki": "n5",
+      "sonraki": "n4b",
       "uygun": true,
       "geri_bildirim_tr": "Doğru. Sokak adı önce, numara sonra geliyor."
      },
@@ -1839,6 +1866,39 @@
       "sonraki": "n4",
       "uygun": false,
       "geri_bildirim_tr": "Oturuyorum derken **Ich habe** yanlış. Doğrusu **Ich wohne**."
+     }
+    ]
+   },
+   {
+    "id": "n4b",
+    "de": "Brunnengasse sieben. Und der Wohnort? Wendlfing?",
+    "tr": "Brunnengasse yedi. Peki oturduğunuz yer? Wendlfing mi?",
+    "secenekler": [
+     {
+      "de": "Ja, mein Wohnort ist Wendlfing.",
+      "tr": "Evet, oturduğum yer Wendlfing.",
+      "accepted": [
+       "Ja, mein Wohnort ist Wendlfing.",
+       "Ja, Wendlfing.",
+       "Ja, in Wendlfing.",
+       "Mein Wohnort ist Wendlfing.",
+       "Ja, ich wohne in Wendlfing."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **Wohnort** şehrin ya da köyün adıdır."
+     },
+     {
+      "de": "Mein Wohnort ist Brunnengasse sieben.",
+      "tr": "Oturduğum yer Brunnengasse yedi.",
+      "accepted": [
+       "Mein Wohnort ist Brunnengasse sieben.",
+       "Wohnort Brunnengasse sieben.",
+       "Mein Wohnort ist die Brunnengasse."
+      ],
+      "sonraki": "n4b",
+      "uygun": false,
+      "geri_bildirim_tr": "Sokak ve numara adrestir. **Wohnort** yalnızca şehrin ya da köyün adıdır: **Mein Wohnort ist Wendlfing.**"
      }
     ]
    },
@@ -3644,11 +3704,138 @@
      "Am Donnerstag kann ich leider nicht. Ich möchte am Samstag einen Termin."
     ],
     "why_tr": "Cumartesi gelebilir miyim derken **Kann ich am Samstag kommen?** dersin."
+   },
+   {
+    "id": "m1:07:s12",
+    "k": "guided_response",
+    "situation_tr": "Sınav kartı: **Name? Land? Wohnort?** (**Land**: ülke) Görevli soruyor. Gerçek sınavdaki gibi kendi bilgilerinle söyle.",
+    "prompt_de": "Wie heißen Sie? Woher kommen Sie? Und Ihr Wohnort?",
+    "accepted": [
+     "Ich heiße {name}. Ich komme aus {ulke}. Mein Wohnort ist {sehir}.",
+     "Ich heiße {name}. Ich komme aus {ulke}. Ich wohne in {sehir}.",
+     "Ich heiße {name}, ich komme aus {ulke} und mein Wohnort ist {sehir}.",
+     "Ich heiße {name}, ich komme aus {ulke} und ich wohne in {sehir}.",
+     "Ich bin {name}. Ich komme aus {ulke}. Mein Wohnort ist {sehir}.",
+     "Ich bin {name}. Ich komme aus {ulke} und wohne in {sehir}.",
+     "Ich heiße {name}. Aus {ulke}. Mein Wohnort ist {sehir}.",
+     "Ich heiße {name}. Ich bin aus {ulke}. Ich wohne in {sehir}.",
+     "Ich heiße {name}. Ich bin aus {ulke}. Mein Wohnort ist {sehir}.",
+     "Ich bin {name}. Ich komme aus {ulke}. Ich wohne in {sehir}.",
+     "Ich bin {name}. Ich bin aus {ulke}. Mein Wohnort ist {sehir}.",
+     "Ich bin {name}. Ich bin aus {ulke}. Ich wohne in {sehir}.",
+     "Mein Name ist {name}. Ich komme aus {ulke}. Mein Wohnort ist {sehir}.",
+     "Mein Name ist {name}. Ich komme aus {ulke}. Ich wohne in {sehir}.",
+     "Mein Name ist {name}. Ich bin aus {ulke}. Mein Wohnort ist {sehir}.",
+     "Mein Name ist {name}. Ich bin aus {ulke}. Ich wohne in {sehir}.",
+     "Ich heiße {name}. Mein Wohnort ist {sehir}. Ich komme aus {ulke}.",
+     "Ich heiße {name}. Mein Wohnort ist {sehir}. Ich bin aus {ulke}.",
+     "Ich heiße {name}. Ich wohne in {sehir}. Ich komme aus {ulke}.",
+     "Ich heiße {name}. Ich wohne in {sehir}. Ich bin aus {ulke}.",
+     "Ich bin {name}. Mein Wohnort ist {sehir}. Ich komme aus {ulke}.",
+     "Ich bin {name}. Mein Wohnort ist {sehir}. Ich bin aus {ulke}.",
+     "Ich bin {name}. Ich wohne in {sehir}. Ich komme aus {ulke}.",
+     "Ich bin {name}. Ich wohne in {sehir}. Ich bin aus {ulke}.",
+     "Mein Name ist {name}. Mein Wohnort ist {sehir}. Ich komme aus {ulke}.",
+     "Mein Name ist {name}. Mein Wohnort ist {sehir}. Ich bin aus {ulke}.",
+     "Mein Name ist {name}. Ich wohne in {sehir}. Ich komme aus {ulke}.",
+     "Mein Name ist {name}. Ich wohne in {sehir}. Ich bin aus {ulke}.",
+     "Ich komme aus {ulke}. Ich heiße {name}. Mein Wohnort ist {sehir}.",
+     "Ich komme aus {ulke}. Ich heiße {name}. Ich wohne in {sehir}.",
+     "Ich komme aus {ulke}. Ich bin {name}. Mein Wohnort ist {sehir}.",
+     "Ich komme aus {ulke}. Ich bin {name}. Ich wohne in {sehir}.",
+     "Ich komme aus {ulke}. Mein Name ist {name}. Mein Wohnort ist {sehir}.",
+     "Ich komme aus {ulke}. Mein Name ist {name}. Ich wohne in {sehir}.",
+     "Ich bin aus {ulke}. Ich heiße {name}. Mein Wohnort ist {sehir}.",
+     "Ich bin aus {ulke}. Ich heiße {name}. Ich wohne in {sehir}.",
+     "Ich bin aus {ulke}. Ich bin {name}. Mein Wohnort ist {sehir}.",
+     "Ich bin aus {ulke}. Ich bin {name}. Ich wohne in {sehir}.",
+     "Ich bin aus {ulke}. Mein Name ist {name}. Mein Wohnort ist {sehir}.",
+     "Ich bin aus {ulke}. Mein Name ist {name}. Ich wohne in {sehir}.",
+     "Ich komme aus {ulke}. Mein Wohnort ist {sehir}. Ich heiße {name}.",
+     "Ich komme aus {ulke}. Mein Wohnort ist {sehir}. Ich bin {name}.",
+     "Ich komme aus {ulke}. Mein Wohnort ist {sehir}. Mein Name ist {name}.",
+     "Ich komme aus {ulke}. Ich wohne in {sehir}. Ich heiße {name}.",
+     "Ich komme aus {ulke}. Ich wohne in {sehir}. Ich bin {name}.",
+     "Ich komme aus {ulke}. Ich wohne in {sehir}. Mein Name ist {name}.",
+     "Ich bin aus {ulke}. Mein Wohnort ist {sehir}. Ich heiße {name}.",
+     "Ich bin aus {ulke}. Mein Wohnort ist {sehir}. Ich bin {name}.",
+     "Ich bin aus {ulke}. Mein Wohnort ist {sehir}. Mein Name ist {name}.",
+     "Ich bin aus {ulke}. Ich wohne in {sehir}. Ich heiße {name}.",
+     "Ich bin aus {ulke}. Ich wohne in {sehir}. Ich bin {name}.",
+     "Ich bin aus {ulke}. Ich wohne in {sehir}. Mein Name ist {name}.",
+     "Mein Wohnort ist {sehir}. Ich heiße {name}. Ich komme aus {ulke}.",
+     "Mein Wohnort ist {sehir}. Ich heiße {name}. Ich bin aus {ulke}.",
+     "Mein Wohnort ist {sehir}. Ich bin {name}. Ich komme aus {ulke}.",
+     "Mein Wohnort ist {sehir}. Ich bin {name}. Ich bin aus {ulke}.",
+     "Mein Wohnort ist {sehir}. Mein Name ist {name}. Ich komme aus {ulke}.",
+     "Mein Wohnort ist {sehir}. Mein Name ist {name}. Ich bin aus {ulke}.",
+     "Ich wohne in {sehir}. Ich heiße {name}. Ich komme aus {ulke}.",
+     "Ich wohne in {sehir}. Ich heiße {name}. Ich bin aus {ulke}.",
+     "Ich wohne in {sehir}. Ich bin {name}. Ich komme aus {ulke}.",
+     "Ich wohne in {sehir}. Ich bin {name}. Ich bin aus {ulke}.",
+     "Ich wohne in {sehir}. Mein Name ist {name}. Ich komme aus {ulke}.",
+     "Ich wohne in {sehir}. Mein Name ist {name}. Ich bin aus {ulke}.",
+     "Mein Wohnort ist {sehir}. Ich komme aus {ulke}. Ich heiße {name}.",
+     "Mein Wohnort ist {sehir}. Ich komme aus {ulke}. Ich bin {name}.",
+     "Mein Wohnort ist {sehir}. Ich komme aus {ulke}. Mein Name ist {name}.",
+     "Mein Wohnort ist {sehir}. Ich bin aus {ulke}. Ich heiße {name}.",
+     "Mein Wohnort ist {sehir}. Ich bin aus {ulke}. Ich bin {name}.",
+     "Mein Wohnort ist {sehir}. Ich bin aus {ulke}. Mein Name ist {name}.",
+     "Ich wohne in {sehir}. Ich komme aus {ulke}. Ich heiße {name}.",
+     "Ich wohne in {sehir}. Ich komme aus {ulke}. Ich bin {name}.",
+     "Ich wohne in {sehir}. Ich komme aus {ulke}. Mein Name ist {name}.",
+     "Ich wohne in {sehir}. Ich bin aus {ulke}. Ich heiße {name}.",
+     "Ich wohne in {sehir}. Ich bin aus {ulke}. Ich bin {name}.",
+     "Ich wohne in {sehir}. Ich bin aus {ulke}. Mein Name ist {name}.",
+     "Ich heiße {name}. Ich bin aus {ulke} und mein Wohnort ist {sehir}.",
+     "Ich heiße {name}. Ich bin aus {ulke} und ich wohne in {sehir}.",
+     "Ich bin {name}. Ich komme aus {ulke} und mein Wohnort ist {sehir}.",
+     "Ich bin {name}. Ich komme aus {ulke} und ich wohne in {sehir}.",
+     "Ich bin {name}. Ich bin aus {ulke} und mein Wohnort ist {sehir}.",
+     "Ich bin {name}. Ich bin aus {ulke} und ich wohne in {sehir}.",
+     "Mein Name ist {name}. Ich komme aus {ulke} und mein Wohnort ist {sehir}.",
+     "Mein Name ist {name}. Ich komme aus {ulke} und ich wohne in {sehir}.",
+     "Mein Name ist {name}. Ich bin aus {ulke} und mein Wohnort ist {sehir}.",
+     "Mein Name ist {name}. Ich bin aus {ulke} und ich wohne in {sehir}.",
+     "Ich heiße {name}, ich komme aus {ulke} und wohne in {sehir}.",
+     "Ich heiße {name}, ich bin aus {ulke} und wohne in {sehir}.",
+     "Ich bin {name}, ich bin aus {ulke} und wohne in {sehir}.",
+     "Mein Name ist {name}, ich komme aus {ulke} und wohne in {sehir}.",
+     "Mein Name ist {name}, ich bin aus {ulke} und wohne in {sehir}."
+    ],
+    "accepted_adsiz": [
+     "Ich komme aus {ulke}. Mein Wohnort ist {sehir}.",
+     "Ich komme aus {ulke}. Ich wohne in {sehir}.",
+     "Ich komme aus {ulke} und mein Wohnort ist {sehir}.",
+     "Ich komme aus {ulke} und wohne in {sehir}.",
+     "Ich bin aus {ulke}. Ich wohne in {sehir}.",
+     "Ich bin aus {ulke}. Mein Wohnort ist {sehir}.",
+     "Mein Wohnort ist {sehir}. Ich komme aus {ulke}.",
+     "Mein Wohnort ist {sehir}. Ich bin aus {ulke}.",
+     "Ich wohne in {sehir}. Ich komme aus {ulke}.",
+     "Ich wohne in {sehir}. Ich bin aus {ulke}.",
+     "Aus {ulke}. Ich wohne in {sehir}.",
+     "Aus {ulke}. Mein Wohnort ist {sehir}.",
+     "Ich komme aus {ulke} und ich wohne in {sehir}.",
+     "Ich bin aus {ulke} und mein Wohnort ist {sehir}.",
+     "Ich bin aus {ulke} und ich wohne in {sehir}.",
+     "Ich bin aus {ulke} und wohne in {sehir}.",
+     "Mein Wohnort ist {sehir} und ich komme aus {ulke}.",
+     "Mein Wohnort ist {sehir} und ich bin aus {ulke}.",
+     "Ich wohne in {sehir} und ich komme aus {ulke}.",
+     "Ich wohne in {sehir} und komme aus {ulke}.",
+     "Ich wohne in {sehir} und ich bin aus {ulke}.",
+     "Ich komme aus {ulke}, aber ich wohne in {sehir}.",
+     "Ich komme aus {ulke}, wohne aber in {sehir}.",
+     "Ich bin aus {ulke}, aber ich wohne in {sehir}."
+    ],
+    "why_tr": "Kartın her sorusuna bir cümle: **Ich heiße …**, **Ich komme aus …**, **Mein Wohnort ist …**."
    }
   ],
   "sesli": [
    "m1:07:s9",
-   "m1:07:s10"
+   "m1:07:s10",
+   "m1:07:s12"
   ],
   "dikte": [
    "m1:07:s1",
