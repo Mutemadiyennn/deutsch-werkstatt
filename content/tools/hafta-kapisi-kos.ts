@@ -1,6 +1,6 @@
 /**
  * Hafta kapısının komut satırı (PM-087 B.1; ayrıntı hafta-kapisi.ts).
- *   node --experimental-strip-types content/tools/hafta-kapisi-kos.ts (--hafta N | --hepsi) [--tablo <yol>] [--esik 0.8] [--m1 <dizin>] [--json <çıktı>] [--md <çıktı>]
+ *   node --experimental-transform-types content/tools/hafta-kapisi-kos.ts (--hafta N | --hepsi) [--tablo <yol>] [--esik 0.8] [--m1 <dizin>] [--json <çıktı>] [--md <çıktı>]
  *   --hepsi: gün dosyası olan her hafta (2. hafta ve sonrası; 1. hafta tablo öncesi/eski biçim); KAPI içerik adımı bununla koşar
  *   --m1 <dizin>: gün dosyalarının dizini (varsayılan content/v2/m1; testler içerikten bağımsız fikstür dizini verir, PM-117 A.1)
  * Girdi: content/v2/m1/gun-NN.json (o haftanın 7 günü), hafta-sonu-testi-HH.json, gorulmemis-HH.json, dn-HH.json;
@@ -13,6 +13,7 @@ import { genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts
 import { haftaOf, type GunHam, type KesinTablo, type Omurga } from "./dikis.ts";
 import { dilNoktasiMetni, haftaKapisi, kapiRaporu } from "./hafta-kapisi.ts";
 import { kesinTabloBirlesik } from "./ktablo.ts";
+import { konusmaPaylari, payRaporu } from "./konusma-payi.ts";
 import { CDIR, ROOT, loadContent } from "./load.ts";
 
 const argv = process.argv.slice(2);
@@ -58,8 +59,11 @@ const sonuclar = haftalar.map((hafta) => {
   const gorulmemis = oku<unknown>(join(mdir, `gorulmemis-${HH}.json`), "görülmemiş durum", false);
   return haftaKapisi({ hafta, gunler, tablo, omurga, dizin, dersler, dilNoktalari, test, gorulmemis, denemeler, esik });
 });
-const md = sonuclar.map(kapiRaporu).join("\n\n");
+// konuşma payı (PM-148 karar 3): bayrak kapalıyken uyarı, açıkken kapı
+const paylar = konusmaPaylari(c, haftalar);
+const md = sonuclar.map((r, i) => `${kapiRaporu(r)}\n${payRaporu(paylar[i]!)}`).join("\n\n");
 console.log(md);
-if (deger("--json")) writeFileSync(deger("--json")!, JSON.stringify(hepsi ? sonuclar : sonuclar[0], null, 2));
+const json = sonuclar.map((r, i) => ({ ...r, konusma_payi: paylar[i] }));
+if (deger("--json")) writeFileSync(deger("--json")!, JSON.stringify(hepsi ? json : json[0], null, 2));
 if (deger("--md")) writeFileSync(deger("--md")!, md + "\n");
-process.exit(sonuclar.every((r) => r.gecti) ? 0 : 1);
+process.exit(sonuclar.every((r) => r.gecti) && paylar.every((p) => p.gecti || !p.zorunlu) ? 0 : 1);

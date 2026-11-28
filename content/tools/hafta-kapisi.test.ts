@@ -157,7 +157,7 @@ describe("hafta kapısı: 2. hafta (önceki hafta öğretilmiş)", () => {
 });
 
 describe("komut satırı", () => {
-  const cli = (...a: string[]) => spawnSync(process.execPath, ["--experimental-strip-types", "--no-warnings", join(ROOT, "content/tools/hafta-kapisi-kos.ts"), ...a], { encoding: "utf8" });
+  const cli = (...a: string[]) => spawnSync(process.execPath, ["--experimental-transform-types", "--no-warnings", join(ROOT, "content/tools/hafta-kapisi-kos.ts"), ...a], { encoding: "utf8" });
   /** Yalnız 1. haftanın gün dosyaları: içerik ağacında hangi haftalar olursa olsun aynı sonuç (PM-117 A.1, KAPI-İŞ 7104231689) */
   let hafta1 = "";
   beforeAll(() => {
