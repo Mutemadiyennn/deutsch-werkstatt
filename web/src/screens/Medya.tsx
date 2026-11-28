@@ -5,7 +5,9 @@
  * (e) metin + kelimeye dokununca kart ve "bankaya ekle", (f) gölge konuşma, (g) "Sen ne derdin?".
  * Kaldığı yer cihazda saklanır (yarıda bırakılıp sürdürülebilir). Uzun kayıt hiçbir zaman baştan sona yazdırılmaz.
  */
-import { akisaDonus } from "../services/gezinme.ts";
+import { akisaDonus, donus } from "../services/gezinme.ts";
+import { useGunIzi } from "../ui/gunIzi.tsx";
+import { parseHash, sekme } from "../state.ts";
 import { gorevSay } from "../services/gorev.ts";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Gun, bilinmeyenler, kumeDizini, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
@@ -143,6 +145,7 @@ export function MedyaEkrani({ day, id, tur }: { day: number; id: string; tur?: M
 }
 
 function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; base: string }; p: MedyaIlerleme; setP: (p: MedyaIlerleme) => void }) {
+  const gunIzi = useGunIzi();
   const { m, lex, base } = veri;
   const [video, setVideo] = useState<HTMLVideoElement | null>(null);
   const [vidHata, setVidHata] = useState(false);
@@ -159,16 +162,20 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
   }, []);
   const geri = `#/m1/${veri.gun.day}`;
   const baslik = m.kind === "video" ? "Video" : m.kind === "ses" ? "Dinle" : "Köy dizisi";
+  // "Sıradaki adım" (#275 P2-7): akıştan açıldıysa akışa; Köy'den açıldıysa giriş noktasına (günün kayıtları ya da Radyo/Sinema;
+  // #282 P2-6), Bugün sekmesine taşımaz; yoksa Bugün
+  const giris = donus(geri);
+  const sonrakiAdres = akisaDonus("") || (sekme(parseHash(giris).name) === "koy" ? giris : "#/today");
 
   if (p.bitti) return (
     <div class="stack" data-test="medya">
-      <ProgressHeader title={plain(m.title_tr)} back={geri} right={<FocusChip />} sub={baslik} />
+      <ProgressHeader title={plain(m.title_tr)} back={geri} right={<FocusChip />} sub={baslik} gunIzi={gunIzi} />
       {m.eylem && !p.eylem ? <EylemSoru m={m} onDone={(ok) => setP({ ...p, eylem: true, dogru: p.dogru + (ok ? 1 : 0), toplam: p.toplam + 1 })} />
         : <section class="card stack" data-test="medya-bitti"><h2>Bitti</h2>
             <p>{p.toplam} soruda {p.dogru} doğru. {m.bolumler.length > 1 ? `${m.bolumler.length} bölümün hepsini çalıştın.` : ""}</p>
-            <div class="row"><a class="btn primary grow" href={akisaDonus("#/today")} data-test="medya-sonraki">Sıradaki adım</a>
+            <div class="row"><a class="btn primary grow" href={sonrakiAdres} data-test="medya-sonraki">Sıradaki adım</a>
               {/* akıştan açıldıysa "Sıradaki adım" akışa döner; Köy'ün gün listesine atlanmaz (PM-133 md. 6) */}
-              {!akisaDonus("") && <a class="btn grow" href={geri} data-test="medya-geri">Güne dön</a>}
+              {!akisaDonus("") && sonrakiAdres !== geri && <a class="btn grow" href={geri} data-test="medya-geri">Güne dön</a>}
               <button class="btn grow" data-test="medya-bastan" onClick={() => setP({ ...BASLANGIC, ilkBitti: true })}>Baştan çalış</button></div>
           </section>}
     </div>
@@ -184,7 +191,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
   // doğru cevabın XP'si cevap anında uçar (ilk çalışmada; tekrar çalışmada XP yok — inceleme #87 P1-2)
   return (<CevapXp.Provider value={p.ilkBitti ? 0 : XP.dogru}>
     <div class="stack" data-test="medya" data-adim={adim} data-pos={`${p.b}.${p.s}.${p.k}`}>
-      <ProgressHeader title={plain(m.title_tr)} back={geri} right={<FocusChip />} sub={`Bölüm ${p.b + 1}/${m.bolumler.length} · ${ADIM_TR[adim]}`} />
+      <ProgressHeader title={plain(m.title_tr)} back={geri} right={<FocusChip />} sub={`Bölüm ${p.b + 1}/${m.bolumler.length} · ${ADIM_TR[adim]}`} gunIzi={gunIzi} />
       {/* PM-053 §4: video üstte sabit, sorular altta akar */}
       <div class="medya-ust" data-test="medya-ust">
         {m.kind === "video" && m.video ? (
