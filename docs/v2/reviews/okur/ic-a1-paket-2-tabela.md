@@ -157,3 +157,46 @@ Gün 54 "çarşamba" mantık sorunu: kalktı; metin artık hafta içi 14–18'i 
 - GERİ: 0
 
 1. turdaki beş GERİ (gün 25, 27, 30, 52, 54) kapandı. Bu dilimde okur açısından açık GERİ kalmadı; gün 25, 27, 30, 52 ve 54 okur kontrolünden geçti (OD-9.4).
+
+## 3. tur
+
+Fark `356d641f` ile karşılaştırıldı: dört yeni mini sahne (gün 15, 27, 31, 49), gün 15 kalıp kartı başlığı, gün 25 `c1b`, gün 30 okuma başlığı ve `m1:30:o1`, gün 54 okuma başlığı. Sahne satırlarının üstündeki konuşan adı da ekranda okundu (karakter adı ya da "Sen").
+
+| Kimlik | Alan | Metin | Kendi sözlerimle | Karar | Neden / not |
+|---|---|---|---|---|---|
+| m1:15:h5 | title_tr | Telefonda: bilgi ve tekrar rica | Telefonda bir şey öğreniyorum ve yine bir şey rica ediyorum. (Karta bakınca: "bir daha söyler misiniz" demek.) | GERİ | İki okuma var. "Tekrar rica" önce "yeniden rica etmek" diye okunuyor. "Tekrarlamasını rica etmek" anlamını ancak kartları görünce anladım. |
+| m1:15:h5 | sahne ortam_tr | Telefon çalıyor. Arayan, aile hekiminin muayenehanesinden Huber Hanım. | Doktorumun muayenehanesinden Huber Hanım beni arıyor. | GEÇTİ | İki kısa cümle. Huber sekreter, karakterle uyumlu. |
+| m1:15:h5 | satır 1 tr | Dr. Weber muayenehanesi, Huber. Size bir bilgim var: randevunuz cuma saat dokuzda. | Kendini tanıtıyor ve randevumun cuma 9'da olduğunu söylüyor. | GEÇTİ | "Size bir bilgim var" biraz çeviri kokuyor ama tek okumada anlaşılıyor. |
+| m1:15:h5 | satır 2 tr | Efendim? Bunu bir daha söyleyebilir misiniz? | Anlamadım, bir daha söylemesini istiyorum. | GEÇTİ | Kartın öğrettiği şeyin kendisi; kibar biçim. |
+| m1:15:h5 | satır 3 tr | Tabii. Cuma, saat dokuzda. | Tekrar ediyor: cuma, 9. | GEÇTİ | |
+| m1:15:h5 | soru + şıklar | Randevu ne zaman? · Cuma saat dokuzda / Pazartesi saat dokuzda / Cuma saat on ikide | Randevu cuma 9'da. | GEÇTİ | Şıklar birer yerden farklı; doğru cevap sahneyle uyumlu. |
+| m1:27:h3 | sahne ortam_tr | Süpermarketin girişi. Bir satıcı raflara mal diziyor. | Marketin kapısındayım; bir çalışan rafları dolduruyor. | GEÇTİ | Not: satırların üstünde konuşan adı Almanca "die Verkäuferin" görünüyor. Kelimeyi tanıdım, açıklamayı bozmuyor. |
+| m1:27:h3 | satır 1 tr | Pardon, içecekler nerede acaba? | İçeceklerin yerini soruyorum. | GEÇTİ | |
+| m1:27:h3 | satır 2 tr | Arkada solda. Meyveler girişte. | İçecekler arkada solda, meyveler kapıda. | GEÇTİ | Gün 30'daki tabelayla aynı yerler. |
+| m1:27:h3 | satır 3 tr | Teşekkürler! Peki açılış saatleri? | Marketin kaçta açık olduğunu soruyorum. | GEÇTİ | |
+| m1:27:h3 | satır 4 tr | Girişte yazıyor, sağda. | Saatler kapıda, sağ tarafta yazılı. | GEÇTİ | |
+| m1:27:h3 | soru + şıklar | İçecekler nerede? · Arkada solda / Girişte / Arkada sağda | Arkada solda. | GEÇTİ | "Girişte" şıkkı meyvelerle karışabilir; iyi çeldirici, sahneyi dinleyen ayırır. |
+| m1:31:h4 | sahne ortam_tr | Wendlfing garında kalkış tablosunun önündesin. Yanında Ioana var. | Garda, trenlerin saatlerinin yazdığı panonun önündeyim; Ioana yanımda. | GEÇTİ | Konuşan adı "Ioana Popescu" olarak görünüyor; uyumlu. |
+| m1:31:h4 | satır 1 tr | Kalkış saat sekizde. Peki peron? | Tren 8'de kalkıyor; hangi perondan diye soruyorum. | GEÇTİ | |
+| m1:31:h4 | satır 2 tr | İki numaralı peron. | 2. peron. | GEÇTİ | |
+| m1:31:h4 | satır 3 tr | Peki belediye binasına? Beş numaralı hat gidiyor mu? | Belediyeye 5 numara gidiyor mu diye soruyorum. | GEÇTİ | |
+| m1:31:h4 | satır 4 tr | Evet, beş numaralı hat belediye binasına gidiyor. | Evet, 5 numara gidiyor. | GEÇTİ | |
+| m1:31:h4 | soru + şıklar | Tren hangi perondan kalkıyor? · İki numaralı perondan / Beş numaralı perondan / Dört numaralı perondan | 2. perondan. | GEÇTİ | "Beş" hat numarasından gelen iyi çeldirici. |
+| m1:49:h2 | sahne ortam_tr | Trendesin, tren tünelde duruyor. Komşun Brandl Hanım da trende, yanına geliyor. | Tren tünelde durdu; komşum Brandl Hanım yanıma geliyor. | GEÇTİ | İki kısa cümle; karakter (alt kattaki komşu) uyumlu. |
+| m1:49:h2 | satır 1 tr | Tren neden burada duruyor? | Neden durduğumuzu soruyor. | GEÇTİ | |
+| m1:49:h2 | satır 2 tr | Bilmiyorum. Bütün yolcular beklemek zorunda. | Ben de bilmiyorum; herkes beklemeli. | GEÇTİ | |
+| m1:49:h2 | satır 3 tr | Peki sonra Wendlfing'de duruyor mu? | Tren sonra Wendlfing'de duracak mı diye soruyor. | GEÇTİ | |
+| m1:49:h2 | satır 4 tr | Evet, Wendlfing'de duruyor. | Evet, duracak. | GEÇTİ | |
+| m1:49:h2 | soru + şıklar | Şimdi bütün yolcular ne yapmak zorunda? · Beklemek / Trenden inmek / Bilet almak | Beklemek. | GEÇTİ | |
+| m1:25:a1 c1b | tr | Bugün pazarda: birçok şey indirimde! | Bugün pazarda çok şey ucuz. | GEÇTİ | Kısa, tek fikir; anons için doğal. |
+| m1:30 okuma | title_tr | Derya'nın haftalık planı ve market tabelası | Burada iki şey var: Derya'nın hafta planı ve marketin tabelası. | GEÇTİ | Başlık artık metnin ikinci kısmını da söylüyor. |
+| m1:30:o1 | soru + şıklar | İlk metin ne? · Derya'nın haftalık planı / Bir iş ilanı / Bir doktor mektubu | Baştaki metin Derya'nın planı. | GEÇTİ | Başlık iki metni söylediği için "ilk" anlaşılıyor. Not: ekranda iki metin arasında boşluk görünmüyor; Türkçe metin tek paragraf. Ayrım yalnız başlıktan çıkıyor. |
+| m1:54 okuma | title_tr | Doktorun notu ve muayenehane duyurusu | İki şey var: doktorun yazdığı not ve muayenehanenin saat duyurusu. | GEÇTİ | Başlık ikinci metni de söylüyor. |
+
+### 3. tur sayım
+
+- Okunan: 28
+- GEÇTİ: 27
+- GERİ: 1 — `m1:15:h5` title_tr
+
+Gün 15 dosyasında bir GERİ olduğu için gün 15 bu turda "reviewed" sayılamaz (OD-9.4). Gün 25, 27, 30, 31, 49 ve 54 farkında GERİ yok.
