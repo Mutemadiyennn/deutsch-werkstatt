@@ -83,7 +83,7 @@ def answer_current(page, i):
 def main():
     srv = serve()
     with sync_playwright() as p:
-        from common import launch, BROWSER, DEVICE
+        from common import launch, BROWSER, DEVICE, sekme_kok
         b, ctx = launch(p)
         print(f"tarayıcı={BROWSER} cihaz={DEVICE or '390×844'}")
         page = ctx.new_page()
@@ -231,7 +231,7 @@ def main():
         check(True, "mola bitince sırada seans 2")
 
         print("6) Ben → Çalışma düzenim (eski İlerlemem; PM-084 md. 5)")
-        page.click("[data-tab=ben]"); page.wait_for_selector("[data-test=ben] [data-test=ben-bu-hafta]")
+        sekme_kok(page, "ben"); page.wait_for_selector("[data-test=ben] [data-test=ben-bu-hafta]")
         page.click("[data-test=duzen-ac]")
         page.wait_for_selector("[data-test=panel-focus]")
         pf = page.inner_text("[data-test=panel-focus]")
@@ -245,7 +245,7 @@ def main():
 
         print("7) Profil: hedef değişikliği kalıcı; sunucu iletişimi")
         page.clock.resume()
-        page.click("[data-tab=ben]"); page.click("[data-test=ayarlar-ac]")
+        sekme_kok(page, "ben"); page.click("[data-test=ayarlar-ac]")
         check(page.inner_text("[data-test=uid]") == "e2e-user" and page.locator("[data-test=uid-kopyala]").count() == 1, "Profil: hesap kimliği ve 'Kopyala' (ALLOWED_UIDS için)")
         page.select_option("[data-test=goal]", "120")
         page.wait_for_selector("text=Kaydedildi")
@@ -265,7 +265,7 @@ def main():
         shot(page, "08-profile")
         no_overflow(page, "Profil")
         page.reload()
-        page.click("[data-tab=today]")
+        sekme_kok(page, "today")
         # Bugün önce eski düzenle (today-min) çizilir, M1 gün planı yüklenince gün görünümüne geçer (today-min yok; CI TANI a29fda2).
         # Hedef her iki düzende de görünür: eski düzende today-min'de, gün görünümünde durum çubuğunda ("/120 dk")
         page.wait_for_function("() => /\\/\\s?120 dk/.test(document.body.innerText)", timeout=15_000)
@@ -273,16 +273,16 @@ def main():
         check(re.search(r"/\s?120 dk", hedef_txt) is not None, "yeni hedef (120 dk) yeniden yüklemeden sonra korunuyor")
 
         print("7b) B1 hedefi: SAHTE tarihle (PM-001: gerçek tarih depoda yok)")
-        page.click("[data-tab=ben]"); page.click("[data-test=ayarlar-ac]")
+        sekme_kok(page, "ben"); page.click("[data-test=ayarlar-ac]")
         page.check("text=B1 sınavına hazırlık")
         page.fill("input[aria-label='Sınav tarihi']", "2099-01-01"); page.press("input[aria-label='Sınav tarihi']", "Tab")
         page.wait_for_timeout(300)
-        page.click("[data-tab=today]")
+        sekme_kok(page, "today")
         page.wait_for_selector("[data-test=exam-badge]")
         check("gün" in page.inner_text("[data-test=exam-badge]"), "B1 açıkken Bugün'de sınav rozeti (kalan gün)")
 
         print("8) Köy → Pazar meydanı: gerçek hayat durumları")
-        page.click("[data-tab=koy]"); page.click("[data-mekan=pazar]")
+        sekme_kok(page, "koy"); page.click("[data-mekan=pazar]")
         page.wait_for_selector("[data-domain=telefon]")
         check(page.locator("[data-domain]").count() == 20, "20 gerçek hayat alanı listeleniyor")
         check(page.locator("[data-domain]").first.get_attribute("data-domain") == "strategie" and page.locator("[data-domain]").nth(1).get_attribute("data-domain") == "telefon", "alanlar öncelik sırasına göre (strateji, telefon)")
@@ -292,7 +292,7 @@ def main():
         shot(page, "09-learn-domain")
 
         print("9) sekme çubuğu içeriği örtmüyor; koyu tema")
-        page.click("[data-tab=ben]"); page.click("[data-test=ayarlar-ac]")
+        sekme_kok(page, "ben"); page.click("[data-test=ayarlar-ac]")
         page.wait_for_selector("text=Çıkış yap")
         page.wait_for_timeout(300)
         page.evaluate("window.scrollTo(0, document.documentElement.scrollHeight)")
@@ -300,7 +300,7 @@ def main():
         last = page.evaluate("(() => { const m = document.querySelector('main'); const r = m.lastElementChild.getBoundingClientRect(); const t = document.querySelector('.tabbar').getBoundingClientRect(); return [r.bottom, t.top]; })()")
         check(last[0] <= last[1] + 1, f"son kart sekme çubuğunun üstünde ({last[0]:.0f} ≤ {last[1]:.0f})")
         page.click("text=Koyu")
-        page.click("[data-tab=today]")
+        sekme_kok(page, "today")
         shot(page, "10-today-dark")
 
         b.close()

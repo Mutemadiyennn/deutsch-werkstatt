@@ -42,6 +42,7 @@ import { meaningOptions, type QType, type Yakinlik } from "../core/garden.ts";
 /** Bahçe soru bileşeninin karşıladığı tek kartlı adım türleri */
 const SORU = new Set<string>(["listen_meaning", "article", "colloc"]);
 import { Icon } from "../ui/icons.tsx";
+import { donus } from "../services/gezinme.ts";
 
 export interface AkisOynaticiProps {
   kayit: AkisKaydi;
@@ -95,7 +96,7 @@ export function AkisOynatici({ kayit, lex, harita, emojiHarita, baglam, kaydet, 
   return (
     <section class="stack" data-test="akis" data-durak={s.durak.id} data-adim={s.adim.id} data-tur={s.adim.tur}>
       <header class="row" style={{ gap: 10, flexWrap: "nowrap", alignItems: "center" }}>
-        <button class="iconbtn plain" aria-label="Çık" data-test="akis-cik" onClick={cik}><Icon name="x" /></button>
+        <button class="iconbtn plain" aria-label="Kapat" data-test="akis-cik" onClick={cik}><Icon name="x" /></button>
         {/* PM 7055715440 md. 1: en çok 8 adımda elmas, fazlasında dolan çubuk (yapılanla kalan ayırt edilsin) */}
         {s.toplam <= 8
           ? <div class="akis-elmaslar" role="progressbar" aria-label="Durağın adımları" aria-valuemin={0} aria-valuemax={s.toplam} aria-valuenow={s.sira}>
@@ -244,7 +245,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, emojiHarita, baglam, tohum, b
  * 4a: eski ilerleme anahtarları (Yol, Bugün) ve Bugün/Yol bağlaması 4b'de.
  */
 export function AkisEkrani({ day }: { day: number }) {
-  const { profile } = useApp();
+  const { profile, toast } = useApp();
   const [v, setV] = useState<{ kayit: AkisKaydi; lex: Map<string, Lexeme>; harita: Record<string, FotoKayit>; emojiHarita: Record<string, FotoKayit>; items: Map<string, LearnerItem>; baglam: AkisBaglam } | null | "degil">(null);
   const [hata, setHata] = useState<string | null>(null);
   useEffect(() => {
@@ -462,7 +463,7 @@ export function AkisEkrani({ day }: { day: number }) {
     }
     setV({ ...v, kayit: k });
   };
-  return <AkisOynatici kayit={v.kayit} lex={v.lex} harita={v.harita} emojiHarita={v.emojiHarita} baglam={v.baglam} kaydet={(k, e, a) => void kaydet(k, e, a)} cik={() => { location.hash = `#/m1/${day}`; }} />;
+  return <AkisOynatici kayit={v.kayit} lex={v.lex} harita={v.harita} emojiHarita={v.emojiHarita} baglam={v.baglam} kaydet={(k, e, a) => void kaydet(k, e, a)} cik={() => { if (v.kayit.durak > 0 || v.kayit.adim > 0) toast("Kaldığın yerden sürer."); location.hash = donus("#/today"); }} />;
 }
 
 /**

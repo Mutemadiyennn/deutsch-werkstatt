@@ -3,6 +3,7 @@
  * Karşı taraf öğrencinin cevabına göre tepki verir (içerikteki dallar). Sesli cevapta "Duyduğum: …", "Tekrar söyle",
  * "Doğru söyledim" (PM-054.3, D-097). Sonda 1 iyi şey + en fazla 3 düzeltme. Bitiş cihazda `m1:prova:<gün>` olarak kalır.
  */
+import { akisaDonus } from "../services/gezinme.ts";
 import { cumleKaydet } from "../services/kullanim.ts";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { useApp } from "../state.ts";
@@ -208,7 +209,7 @@ function Rapor({ p, kayitlar, again }: { p: ProvaT; kayitlar: Kayit[]; again: ()
         <div class="kicker">Bir dahaki sefere</div>
         <ol class="list">{r.duzeltmeler.map((d) => <li class="small" data-test="duzeltme"><Rich text={d} /></li>)}</ol>
       </div>}
-      <div class="row"><a class="btn primary grow" href="#/today" data-test="prova-sonraki">Sıradaki adım</a>
+      <div class="row"><a class="btn primary grow" href={akisaDonus("#/today")} data-test="prova-sonraki">Sıradaki adım</a>
         <button class="btn grow" data-test="prova-tekrar" onClick={again}>Bir daha prova et</button></div>
     </section>
   );

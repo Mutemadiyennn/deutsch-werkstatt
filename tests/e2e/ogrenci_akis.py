@@ -2,7 +2,7 @@
 LS-16.3 öğrenci simülasyonu, akış günü (bayrak PR'ının kabul listesi md. 6, PM #12 7059008858).
 Bilgi kısıtlı öğrenci: Bugün'den başlar, `#/akis/<gün>`ü gün sonuna kadar yürür (halkalar, dil noktası, adımsız duraklar:
 ses, video, prova, okuma; gün sonu). Adımsız durakta "Başla"ya basar, var olan ekranı (Medya, Prova, Okuma) bitirir,
-"Sıradaki adım" ile Bugün'e döner ve BAŞLA ile akışa geri girer.
+"Sıradaki adım" ile akışa döner (PM-133; Bugün'e düşerse BAŞLA ile akışa geri girer).
 
 Bilgi kuralı (mekanik, tekrarlanabilir):
   - "Gösterilmiş" sözcük: ekranda görünen Almanca öğe ([lang=de], .de-lg, .de-xl, .de) içindeki her sözcük. Kaynağı ayrıca yazılır:

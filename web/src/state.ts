@@ -90,6 +90,27 @@ export function yeniAdres(h: string): string | null {
 }
 export const go = (path: string) => { location.hash = "#/" + path.replace(/^#?\/?/, ""); };
 
+/** Ekranın bağlı olduğu sekme: Köy'ün mekânları (durumlar, senaryo, sözlük, kalıplar, günün kayıtları) Köy'de, ayarlar Ben'de kalır */
+export function sekme(r: Route["name"]): string {
+  switch (r) {
+    case "yol": case "rehber": return "yol";
+    case "koy": case "mekan": case "domain": case "scenario": case "sozluk": case "kalip": case "m1day": return "koy";
+    case "ben": case "benDuzen": case "profile": case "ses": return "ben";
+    default: return "today";
+  }
+}
+/** Tam ekran akışlar (sekme çubuğu yok, tek çıkış X / geri; PM-133 md. 4) ve aileleri: aynı ailenin adresleri tek akıştır
+ *  (sınav günü → bölüm, tespit → rapor → tekrar, hafta testi → sonuç); gelen arama rol oyunuyla aynı akış */
+const TAM_TEK = new Set<string>(["onboarding", "assess", "section", "garden", "m1medya", "akis", "ders", "prova", "okuma", "sinav"]);
+export function aile(r: string): string | null {
+  if (r.startsWith("seviye")) return "seviye";
+  if (r.startsWith("hafta")) return "hafta";
+  if (r === "call") return "section";
+  return TAM_TEK.has(r) ? r : null;
+}
+export const tamEkran = (r: string) => aile(r) !== null;
+export const KOKLER = new Set<string>(["today", "yol", "koy", "ben"]);
+
 /** Öğrenme ekranları: odak süresi yalnızca bunlarda sayılır (v1: menü ekranları sayılmaz) */
 export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section", "garden", "m1medya", "ders", "prova", "okuma", "akis", "hafta", "haftaTekrar", "sinav", "seviye", "seviyeTekrar"]);
 

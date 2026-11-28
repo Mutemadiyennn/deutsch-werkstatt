@@ -7,7 +7,8 @@ import re
 import json, os, sys, threading, functools, http.server, socketserver, time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DIST = os.path.join(ROOT, "web", "dist-e2e")
+# E2E_DIST: başka e2e paketi (ROOT'a göre; ör. web/dist-e2e-gercek: gerçek seviye tespiti havuzu, PM-147 md. 2)
+DIST = os.path.join(ROOT, os.environ.get("E2E_DIST") or os.path.join("web", "dist-e2e"))
 ERR: list = []
 API_CALLS: list = []
 HELD: list = []   # "hold": yanıtı test kendisi sonra verir (geç yanıt senaryosu)
@@ -232,6 +233,13 @@ def bekle_kosul(page, js, arg=None, timeout=5000, adim=150):
         except Exception: pass
         if time.time() > son: return False
         page.wait_for_timeout(adim)
+
+
+def sekme_kok(pg, k):
+    """Sekmenin köküne in (PM-133 md. 1): alt sekme o sekmenin son konumunu açar; etkin sekmeye bir kez daha dokunmak köke indirir"""
+    pg.click(f"[data-tab={k}]"); pg.wait_for_selector(f"[data-tab={k}][aria-current=page]")
+    if pg.evaluate("location.hash") != f"#/{k}": pg.click(f"[data-tab={k}]")
+    pg.wait_for_function("(k) => location.hash === '#/' + k", arg=k)
 
 
 def finish():

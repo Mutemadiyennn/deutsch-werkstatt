@@ -1,0 +1,922 @@
+# A1 seviye tespiti havuzu — okunur döküm (İÇ-21)
+
+Kaynak: `content/v2/assess/a1-seviye-tespiti.json`. Her satır: kimlik · aşama · beceri · ölçtüğü can_do / dil noktası; altında maddenin metni (durum / soru → kabul edilen ilk cevap).
+
+
+## 1. hafta
+
+- `tespit:a1:m001` **YENİ** · tarama · konusma · guided_response — cd:m1:07 «Kendimi tanıtır, basit bir randevu isterim.»; r0:09-modalverben «Yapabilmek, gerekmek, istemek»
+ - Muayenehaneyi arıyorsun. Kendini tanıt ve yarın gelip gelemeyeceğini sor. DE: Praxis Dr. Weber, guten Tag! → Guten Tag, hier ist {name}. Kann ich morgen kommen?
+- `tespit:a1:m002` **YENİ** · tarama · konusma · guided_response — cd:m1:05 «Saati sorar, randevu saatini doğrularım.»; r0:01-tage «Günler»; r0:05-uhrzeit «Saat»
+ - Ioana buluşmak için cumartesiyi soruyor. Cumartesinin sana uymadığını söyle. Pazar saat on bir buçuk olur mu, sor. DE: Geht Samstag? → Samstag geht nicht. Geht Sonntag um halb zwölf?
+- `tespit:a1:m003` **YENİ** · tarama · yazma · tr_de — cd:m1:04 «Fiyat sorar, yaşımı söylerim.»; r0:04-zahlen-21-100 «Sayılar 21–100»
+ - TR: Peynir ne kadar? Yirmi dört avro mu? → Was kostet der Käse? Vierundzwanzig Euro?
+- `m1:01:s5` · derin · yazma · tr_de — cd:m1:01 «Selam verir, bugünün hangi gün olduğunu söylerim.»; r0:01-tage «Günler»
+ - TR: Bugün cuma, yarın cumartesi. → Heute ist Freitag, morgen ist Samstag.
+- `m1:01:s10` · derin · konusma · guided_response — cd:m1:01 «Selam verir, bugünün hangi gün olduğunu söylerim.»; r0:01-tage «Günler»
+ - Arkadaşın dünü soruyor. Dün salıydı. DE: Heute ist Mittwoch. Und gestern? → Gestern war Dienstag.
+- `m1:01:s11` · derin · konusma · guided_response — cd:m1:01 «Selam verir, bugünün hangi gün olduğunu söylerim.»; r0:01-tage «Günler»
+ - Frau Stadler selam verip günü soruyor. Bugün çarşamba. Selam ver ve günü söyle. DE: Guten Tag! Welcher Tag ist heute? → Guten Tag! Heute ist Mittwoch.
+- `m1:01:s2` · derin · dinleme · listen_and_respond — r0:01-tage «Günler»
+ - Duyduğunu yaz. DE: Gestern war Sonntag, heute ist Montag. → Gestern war Sonntag, heute ist Montag.
+- `r0:01:d15` · derin · konusma · listen_and_respond — r0:01-tage «Günler»
+ - Ioana soruyor. Bugün salı. DE: Welcher Tag ist heute? → Heute ist Dienstag.
+- `m1:02:s5` · derin · yazma · tr_de — cd:m1:02 «Bir şeyin hangi ayda olduğunu söylerim.»; r0:02-monate «Aylar ve mevsimler»
+ - TR: Muayenehane ocak ayında kapalı. → Im Januar ist die Praxis geschlossen.
+- `m1:02:s9` · derin · konusma · guided_response — cd:m1:02 «Bir şeyin hangi ayda olduğunu söylerim.»; r0:02-monate «Aylar ve mevsimler»
+ - Ioana soruyor: Frau Stadler temmuzda tatilde mi? Hayır de, ağustosta de. DE: Hat Frau Stadler im Juli Urlaub? → Nein, im August.
+- `m1:02:s11` · derin · konusma · guided_response — cd:m1:02 «Bir şeyin hangi ayda olduğunu söylerim.»; r0:02-monate «Aylar ve mevsimler»
+ - Fırıncı Frau Stadler senin iznini soruyor. Senin iznin mayısta. DE: Im August haben wir Urlaub. Und Sie? → Ich habe im Mai Urlaub.
+- `m1:07:t12` · derin · konusma · guided_response — cd:m1:02 «Bir şeyin hangi ayda olduğunu söylerim.»; r0:02-monate «Aylar ve mevsimler»
+ - Görevli randevunun ne zaman olduğunu soruyor. Randevun mayısta. Ayı söyle. DE: Wann ist der Termin? → Im Mai.
+- `r0:02:d15` · derin · dil · tr_de — r0:02-monate «Aylar ve mevsimler»
+ - TR: Doğum günüm ekimde. → Mein Geburtstag ist im Oktober.
+- `r0:11:d18` · derin · dil · tr_de — r0:11-praesens «Sonu kişiye göre değişir: heiße, heißt»
+ - TR: Burada oturuyorum. → Ich wohne hier.
+- `r0:11:d19` · derin · dil · tr_de — r0:11-praesens «Sonu kişiye göre değişir: heiße, heißt»
+ - TR: Yarın geliyorum. → Ich komme morgen.
+- `r0:11:d20` · derin · dil · tr_de — r0:11-praesens «Sonu kişiye göre değişir: heiße, heißt»
+ - TR: Cumartesi günü geliyoruz. → Wir kommen am Samstag.
+- `m1:03:s5` · derin · yazma · tr_de — cd:m1:03 «Telefon numaramı ve ev numaramı söylerim.»; r0:03-zahlen-0-20 «Sayılar 0–20»; r0:11-praesens «Sonu kişiye göre değişir: heiße, heißt»
+ - TR: On beş numarada oturuyorum. → Ich wohne in Nummer fünfzehn.
+- `m1:03:s8` · derin · yazma · tr_de — cd:m1:03 «Telefon numaramı ve ev numaramı söylerim.»; r0:03-zahlen-0-20 «Sayılar 0–20»
+ - TR: Numaram sıfır yedi sekiz, iki iki beş. → Meine Nummer ist null sieben acht, zwei zwei fünf.
+- `m1:03:s11` · derin · konusma · guided_response — cd:m1:03 «Telefon numaramı ve ev numaramı söylerim.»; r0:03-zahlen-0-20 «Sayılar 0–20»
+ - Herr Pichler yeni telefon numaranı soruyor. Numaran 0176 3581. Rakam rakam söyle. DE: Wie ist Ihre neue Nummer? → Meine Nummer ist null eins sieben sechs, drei fünf acht eins.
+- `m1:03:s7` · derin · dil · tr_de — r0:03-zahlen-0-20 «Sayılar 0–20»
+ - TR: Hayır, on üç değil. On dört! → Nein, nicht dreizehn. Vierzehn!
+- `m1:07:t11` · derin · konusma · listen_and_respond — cd:m1:03 «Telefon numaramı ve ev numaramı söylerim.»
+ - Görevli numaranı soruyor. Numaran 0 3 5 7. Rakamları tek tek söyle. DE: Wie ist Ihre Telefonnummer? → Null drei fünf sieben.
+- `m1:04:s1` · derin · dinleme · listen_and_respond — r0:04-zahlen-21-100 «Sayılar 21–100»
+ - Duyduğunu yaz. DE: Das macht einundzwanzig Euro fünfzig. → Das macht einundzwanzig Euro fünfzig.
+- `m1:04:s7` · derin · dil · tr_de — r0:04-zahlen-21-100 «Sayılar 21–100»
+ - TR: Frau Brandl yetmiş dokuz yaşında. → Frau Brandl ist neunundsiebzig Jahre alt.
+- `m1:04:s8` · derin · dil · tr_de — r0:04-zahlen-21-100 «Sayılar 21–100»
+ - TR: Yetmiş sent mi? Bu pahalı değil! → Siebzig Cent? Das ist nicht teuer!
+- `m1:04:s11` · derin · konusma · guided_response — cd:m1:04 «Fiyat sorar, yaşımı söylerim.»
+ - Meyve tezgâhında elma alıyorsun. Satıcıya bir kilonun fiyatını sor. DE: Guten Tag! → Wie viel kostet ein Kilo Äpfel?
+- `m1:04:s9` · derin · konusma · guided_response — cd:m1:04 «Fiyat sorar, yaşımı söylerim.»
+ - Kasada Frau Stadler fiyatı söylüyor. Fiyatı tekrar et ve doğru mu diye sor. DE: Das macht sieben Euro vierzig. → Sieben Euro vierzig?
+- `r0:04:d12` · derin · yazma · order — cd:m1:04 «Fiyat sorar, yaşımı söylerim.»; r0:04-zahlen-21-100 «Sayılar 21–100»
+ - TR: Kırk yaşındayım. DE: alt / Jahre / bin / Ich / vierzig → Ich bin vierzig Jahre alt.
+- `r0:04:d14` · derin · dil · order — r0:04-zahlen-21-100 «Sayılar 21–100»
+ - TR: Toplam elli avro. DE: Euro / Das / fünfzig / macht → Das macht fünfzig Euro.
+- `m1:05:s9` · derin · konusma · guided_response — cd:m1:05 «Saati sorar, randevu saatini doğrularım.»; r0:05-uhrzeit «Saat»
+ - Biri saati soruyor. Saat beş buçuk. DE: Wie spät ist es, bitte? → Es ist halb sechs.
+- `m1:05:s11` · derin · konusma · guided_response — cd:m1:05 «Saati sorar, randevu saatini doğrularım.»; r0:05-uhrzeit «Saat»
+ - Ioana buluşmak için bir saat öneriyor. Bu saat sana uymuyor. Sekiz buçuk olur mu diye sor. DE: Kommst du um Viertel nach acht? → Das passt leider nicht. Geht halb neun?
+- `m1:05:s6` · derin · yazma · tr_de — cd:m1:05 «Saati sorar, randevu saatini doğrularım.»; r0:05-uhrzeit «Saat»
+ - TR: Saat on ikiye çeyrek var. → Es ist Viertel vor zwölf.
+- `m1:07:t04` · derin · konusma · listen_and_respond — cd:m1:05 «Saati sorar, randevu saatini doğrularım.»
+ - Görevli randevu saatini söylüyor. Saati ve dakikayı sayıyla söyle ve doğru mu diye sor. DE: Der Termin ist um Viertel vor elf. → Also zehn Uhr fünfundvierzig?
+- `m1:06:s6` · derin · yazma · tr_de — cd:m1:06 «Tarih söyler, kim, ne, nerede diye sorarım.»; r0:06-datum «Tarih: hangi gün, ayın kaçı»
+ - TR: Randevum dört haziranda. → Mein Termin ist am vierten Juni.
+- `m1:06:s9` · derin · konusma · guided_response — cd:m1:06 «Tarih söyler, kim, ne, nerede diye sorarım.»; r0:06-datum «Tarih: hangi gün, ayın kaçı»
+ - Ioana ofisin hangi gün kapalı olduğunu soruyor. Ofis 3 Ekim'de kapalı. DE: Wann ist das Büro geschlossen? → Am dritten Oktober.
+- `m1:06:s11` · derin · konusma · guided_response — cd:m1:06 «Tarih söyler, kim, ne, nerede diye sorarım.»; r0:06-datum «Tarih: hangi gün, ayın kaçı»
+ - Tobi tarihi yanlış söylüyor. Bugün 2 Aralık. Hayır de ve doğru tarihi söyle. DE: Heute ist der dritte Dezember, ja? → Nein, heute ist der zweite Dezember.
+- `m1:06:s5` · derin · yazma · tr_de — cd:m1:06 «Tarih söyler, kim, ne, nerede diye sorarım.»; r0:07-fragewoerter «Soru kelimeleri: kim, ne, nerede, ne zaman»
+ - TR: Ofis nerede? → Wo ist das Büro?
+- `m1:06:s7` · derin · yazma · tr_de — cd:m1:06 «Tarih söyler, kim, ne, nerede diye sorarım.»; r0:07-fragewoerter «Soru kelimeleri: kim, ne, nerede, ne zaman»
+ - TR: Muayenehane neden kapalı? → Warum ist die Praxis geschlossen?
+- `m1:06:s10` · derin · konusma · guided_response — r0:07-fragewoerter «Soru kelimeleri: kim, ne, nerede, ne zaman»
+ - Herr Pichler yarın gelemiyor. Nedenini sor. DE: Morgen geht es leider nicht. → Warum?
+- `r0:07:d16` · derin · dil · tr_de — r0:07-fragewoerter «Soru kelimeleri: kim, ne, nerede, ne zaman»
+ - TR: Randevu ne zaman? → Wann ist der Termin?
+- `m1:07:s11` · derin · konusma · guided_response — cd:m1:07 «Kendimi tanıtır, basit bir randevu isterim.»
+ - Kuaför Luka'ya telefon ettin. Perşembe günkü randevuna gelemiyorsun. Adını söyle ve cumartesi gelip gelemeyeceğini sor. DE: Salon Haarwerk, Luka, guten Tag! → Hallo Luka, hier ist {name}. Kann ich am Samstag kommen?
+- `m1:07:t03` · derin · konusma · guided_response — cd:m1:07 «Kendimi tanıtır, basit bir randevu isterim.»
+ - Muayenehaneyi aradın, Frau Huber açtı. Selam ver, adını söyle ve randevu almak istediğini söyle. DE: Praxis Dr. Weber, Huber, guten Tag. → Guten Tag, hier ist {name}. Ich möchte einen Termin machen.
+- `m1:07:t09` · derin · konusma · guided_response — cd:m1:07 «Kendimi tanıtır, basit bir randevu isterim.»; r0:11-praesens «Sonu kişiye göre değişir: heiße, heißt»
+ - Yeni komşun seninle tanışıyor. Kendini iki üç cümleyle tanıt: adını ve Wendlfing'de oturduğunu söyle. DE: Guten Tag! Sind Sie neu hier? → Ich bin {name}. Ich wohne in Wendlfing.
+- `m1:07:t08` · derin · yazma · transform — cd:m1:07 «Kendimi tanıtır, basit bir randevu isterim.»; r0:09-modalverben «Yapabilmek, gerekmek, istemek»
+ -  → Ich möchte einen Termin machen.
+- `m1:07:s5` · derin · dil · tr_de — r0:08-sein-haben «sein ve haben: -im ve var»; r0:09-modalverben «Yapabilmek, gerekmek, istemek»
+ - TR: Ateşim var, bugün gelemem. → Ich habe Fieber, ich kann heute nicht kommen.
+- `m1:07:s7` · derin · dil · tr_de — r0:09-modalverben «Yapabilmek, gerekmek, istemek»
+ - TR: Bugün gelmem gerekiyor mu? → Muss ich heute kommen?
+- `m1:07:s9` · derin · konusma · guided_response — r0:09-modalverben «Yapabilmek, gerekmek, istemek»
+ - Frau Huber pazartesi saat sekizi öneriyor. Pazartesi sabahı çalışıyorsun. Ne yazık ki olmaz de ve nedenini söyle. DE: Passt Montag um acht Uhr? → Leider nicht, ich muss arbeiten.
+- `m1:07:s10` · derin · konusma · guided_response — r0:08-sein-haben «sein ve haben: -im ve var»
+ - Derya bu akşam yemeğe çıkmayı öneriyor. Yorgunsun. Hayır de ve yorgun olduğunu söyle. DE: Wollen wir heute Abend essen gehen? → Nein, danke. Ich bin müde.
+- `m1:07:t02` · derin · dil · order — r0:09-modalverben «Yapabilmek, gerekmek, istemek»
+ - TR: Yarın gelemem. DE: nicht / morgen / kommen / Ich / kann → Ich kann morgen nicht kommen.
+- `r0:08:d18` · derin · dil · tr_de — r0:08-sein-haben «sein ve haben: -im ve var»
+ - TR: Salı günü randevum var. → Am Dienstag habe ich einen Termin.
+
+## 2. hafta
+
+- `m1:h02:g3` · tarama · konusma · durum — cd:m1:10 «Bir şeyin olup olmadığını söylerim, telefonda boş randevu sorarım.»
+ - Kuaför Luka Petrović'i ilk kez arıyorsun. Telefonu kendisi açıyor. Cumartesi için boş randevu var mı, sor. DE: Petrović, guten Tag! → Hallo, hier ist {name}. Haben Sie am Samstag einen Termin frei?
+- `m1:h02:g4` · tarama · konusma · durum — cd:m1:11 «Fırında kaç tane istediğimi kibarca söylerim: Ich möchte zehn Semmeln.»
+ - Akşam kursunda çarşamba günü küçük bir kutlama var. Alışverişi Ioana yapıyor ve ne gerektiğini soruyor. Altı şişe ve üç pasta gerekiyor. DE: Du, was brauchen wir für Mittwoch? → Wir brauchen sechs Flaschen und drei Kuchen.
+- `m1:h02:g7` · tarama · konusma · durum — cd:m1:14 «Fırında bütün alışverişi Almanca yaparım: selamlaşır, ister, fiyat sorar, öderim.»
+ - Stadtplatz'taki Noel pazarında bir pasta standındasın. Satıcı sana Sie diyor. Selam ver, iki pasta iste, fiyatını sor ve nakit ödeyeceğini söyle. DE: Hallo! Was hätten Sie gern? → Guten Tag! Ich hätte gern zwei Kuchen. Was kostet das? Ich zahle bar.
+- `m1:h02:g1` · derin · konusma · durum — cd:m1:08 «Fırında fiyat sorar, birazdan, yalnızca ve artık yok gibi kısa cevapları anlar ve söylerim.»; gr:a1-03:t5 «Fiyat sormak: Was kostet das? Das macht drei Euro»
+ - Pazartesi sabahı garda küçük bir büfedesin. Satıcı ekmeğin bittiğini, yalnızca küçük ekmek kaldığını söylüyor. Fiyatını sor. DE: Wir haben leider kein Brot mehr. Nur noch Semmeln. → Ach so. Was kostet eine Semmel?
+- `m1:08:s5` · derin · yazma · tr_de — cd:m1:08 «Fırında fiyat sorar, birazdan, yalnızca ve artık yok gibi kısa cevapları anlar ve söylerim.»; dn:kucuk-sozcukler «Küçük sözcükler: noch, schon, nur, erst, gleich, immer, mehr»
+ - TR: Artık küçük ekmek yok mu? → Keine Semmeln mehr?
+- `m1:08:s7` · derin · yazma · tr_de — cd:m1:08 «Fırında fiyat sorar, birazdan, yalnızca ve artık yok gibi kısa cevapları anlar ve söylerim.»; gr:a1-03:t5 «Fiyat sormak: Was kostet das? Das macht drei Euro»; dn:kucuk-sozcukler «Küçük sözcükler: noch, schon, nur, erst, gleich, immer, mehr»
+ - TR: Ekmek ne kadar? Hâlâ üç avro doksan mı? → Was kostet das Brot? Noch drei Euro neunzig?
+- `m1:08:s9` · derin · konusma · guided_response — cd:m1:08 «Fırında fiyat sorar, birazdan, yalnızca ve artık yok gibi kısa cevapları anlar ve söylerim.»; dn:kucuk-sozcukler «Küçük sözcükler: noch, schon, nur, erst, gleich, immer, mehr»
+ - Frau Stadler her zamanki siparişini soruyor. Bugün yalnızca bir küçük ekmek istiyorsun. DE: Wie immer? Zwei Semmeln? → Nein, heute nur eine Semmel, bitte.
+- `m1:08:s11` · derin · konusma · guided_response — cd:m1:08 «Fırında fiyat sorar, birazdan, yalnızca ve artık yok gibi kısa cevapları anlar ve söylerim.»; gr:a1-03:t5 «Fiyat sormak: Was kostet das? Das macht drei Euro»
+ - Fırındasın. İki küçük ekmek iste ve fiyatını sor. DE: Guten Morgen! Was darf es sein? → Zwei Semmeln, bitte. Was kostet das?
+- `m1:08:s10` · derin · konusma · listen_and_respond — dn:kucuk-sozcukler «Küçük sözcükler: noch, schon, nur, erst, gleich, immer, mehr»
+ - Herr Wimmer soruyor. Birazdan gelebilirsin. DE: Haben Sie kurz Zeit? → Ja, ich komme gleich.
+- `m1:08:s1` · derin · dinleme · listen_and_respond — dn:kucuk-sozcukler «Küçük sözcükler: noch, schon, nur, erst, gleich, immer, mehr»
+ - Duyduğunu yaz. DE: Die Semmeln kommen erst um acht. → Die Semmeln kommen erst um acht.
+- `m1:08:s3` · derin · dinleme · listen_and_respond — gr:a1-03:t5 «Fiyat sormak: Was kostet das? Das macht drei Euro»
+ - Duyduğunu yaz. DE: Eine Semmel kostet sechzig Cent. → Eine Semmel kostet sechzig Cent.
+- `m1:14:t07` · derin · konusma · listen_and_respond — cd:m1:08 «Fırında fiyat sorar, birazdan, yalnızca ve artık yok gibi kısa cevapları anlar ve söylerim.»
+ - Saat yedi buçuk, fırındasın. Frau Stadler bunu söylüyor. Tobi soruyor: küçük ekmekler ne zaman geliyor? DE: Die Semmeln kommen erst um acht. → Erst um acht.
+- `m1:14:t09` · derin · yazma · tr_de — cd:m1:14 «Fırında bütün alışverişi Almanca yaparım: selamlaşır, ister, fiyat sorar, öderim.»; dn:kucuk-sozcukler «Küçük sözcükler: noch, schon, nur, erst, gleich, immer, mehr»
+ - TR: Bana bir ekmek daha verin lütfen. → Geben Sie mir bitte noch ein Brot.
+- `m1:09:s6` · derin · yazma · tr_de — cd:m1:09 «Fırında bir şey alır, ismi der, die ya da das ile söylerim.»
+ - TR: Ne dersin Tobi? Kek mi, ekmek mi? → Was meinst du, Tobi? Der Kuchen oder das Brot?
+- `m1:09:s11` · derin · konusma · guided_response — cd:m1:09 «Fırında bir şey alır, ismi der, die ya da das ile söylerim.»; gr:a1-04:t1 «der, die, das: das Brot, die Semmel, der Kuchen»
+ - Fırındasın. Ekmeği al ve bir poşet iste. DE: Guten Tag! Was darf es sein? → Ich nehme das Brot, bitte. Bekomme ich eine Tüte?
+- `m1:09:s5` · derin · dil · tr_de — gr:a1-03:t1 «ein, eine: bir»
+ - TR: Bir poşet alabilir miyim? → Bekomme ich eine Tüte?
+- `m1:09:s2` · derin · dinleme · listen_and_respond — gr:a1-04:t1 «der, die, das: das Brot, die Semmel, der Kuchen»
+ - Duyduğunu yaz. DE: Ich nehme das Brot hier. → Ich nehme das Brot hier.
+- `m1:09:s4` · derin · dinleme · listen_and_respond — gr:a1-04:t1 «der, die, das: das Brot, die Semmel, der Kuchen»; gr:a1-03:t5 «Fiyat sormak: Was kostet das? Das macht drei Euro»
+ - Duyduğunu yaz. DE: Was kostet der Kuchen? → Was kostet der Kuchen?
+- `m1:h02:g2` · derin · konusma · durum — cd:m1:09 «Fırında bir şey alır, ismi der, die ya da das ile söylerim.»; gr:a1-04:t1 «der, die, das: das Brot, die Semmel, der Kuchen»
+ - Pazar yerindesin. Ioana tezgâhta peyniri ve elmaları arıyor. Peynir burada, elmalar şurada. DE: Du, wo ist der Käse? Und die Äpfel? → Der Käse ist hier. Die Äpfel sind da.
+- `m1:10:s6` · derin · yazma · tr_de — cd:m1:10 «Bir şeyin olup olmadığını söylerim, telefonda boş randevu sorarım.»
+ - TR: Pazartesi boş randevunuz var mı? → Haben Sie am Montag einen Termin frei?
+- `m1:10:s10` · derin · konusma · listen_and_respond — cd:m1:10 «Bir şeyin olup olmadığını söylerim, telefonda boş randevu sorarım.»; gr:a1-03:t1 «ein, eine: bir»
+ - Ioana bir resim gösteriyor. Resimde bir ayakkabı var. Cevap ver. DE: Ist das eine Hose? → Nein, das ist keine Hose. Das ist ein Schuh.
+- `m1:10:s9` · derin · konusma · guided_response — cd:m1:10 «Bir şeyin olup olmadığını söylerim, telefonda boş randevu sorarım.»
+ - Tobi seni davet ediyor. Bugün vaktin yok, kibarca hayır de. DE: Kommst du heute mit? Ich lade dich ein! → Danke, aber ich habe heute keine Zeit.
+- `m1:10:s5` · derin · dil · tr_de — gr:a1-03:t2 «kein, keine: yok, değil»
+ - TR: Tek kelime anlamıyorum. → Ich verstehe kein Wort.
+- `m1:10:s8` · derin · dil · tr_de — gr:a1-03:t1 «ein, eine: bir»
+ - TR: Bir pantolon almak istiyorum. → Ich möchte eine Hose kaufen.
+- `m1:10:s11` · derin · konusma · guided_response — cd:m1:10 «Bir şeyin olup olmadığını söylerim, telefonda boş randevu sorarım.»
+ - Muayenehaneyi arıyorsun. Kendini tanıt ve pazartesi boş randevu olup olmadığını sor. DE: Praxis Dr. Weber, guten Tag? → Guten Tag, hier ist {name}. Haben Sie am Montag einen Termin frei?
+- `m1:14:t05` · derin · dil · transform — gr:a1-03:t2 «kein, keine: yok, değil»; gr:a1-06:t1 «İstenen şey: einen Kuchen, keinen Termin»
+ -  → Ich habe keinen Termin.
+- `m1:14:t11` · derin · konusma · listen_and_respond — cd:m1:11 «Fırında kaç tane istediğimi kibarca söylerim: Ich möchte zehn Semmeln.»; gr:a1-03:t3 «Birden çok: zwei Semmeln, zwei Brötchen»
+ - Fırında ekmek kalmamış. Küçük ekmek de olur: üç tane iste. DE: Wir haben leider kein Brot mehr. Möchten Sie Semmeln? → Ja, gern. Drei Semmeln, bitte.
+- `m1:11:s5` · derin · yazma · tr_de — cd:m1:11 «Fırında kaç tane istediğimi kibarca söylerim: Ich möchte zehn Semmeln.»; gr:a1-03:t3 «Birden çok: zwei Semmeln, zwei Brötchen»
+ - TR: İki küçük ekmek istiyorum, lütfen. → Ich möchte zwei Semmeln, bitte.
+- `m1:11:s9` · derin · konusma · guided_response — cd:m1:11 «Fırında kaç tane istediğimi kibarca söylerim: Ich möchte zehn Semmeln.»; gr:a1-03:t3 «Birden çok: zwei Semmeln, zwei Brötchen»
+ - Frau Stadler her zamanki siparişini soruyor. Bu akşam misafirin var, on küçük ekmek istiyorsun. DE: Wie immer? Zwei Semmeln? → Nein, heute zehn Semmeln, bitte. Ich habe Gäste.
+- `m1:11:s11` · derin · konusma · guided_response — cd:m1:11 «Fırında kaç tane istediğimi kibarca söylerim: Ich möchte zehn Semmeln.»; gr:a1-03:t3 «Birden çok: zwei Semmeln, zwei Brötchen»
+ - Fırındasın. Misafirlerin var. Kibarca on küçük ekmek ve iki ekmek iste. DE: Guten Morgen! Was möchten Sie? → Ich möchte zehn Semmeln und zwei Brote, bitte.
+- `m1:11:s3` · derin · dinleme · listen_and_respond — gr:a1-03:t3 «Birden çok: zwei Semmeln, zwei Brötchen»; gr:a1-03:t4 «möchten ve mögen: istemek ve sevmek»
+ - Duyduğunu yaz. DE: Ich möchte zwei Flaschen, bitte. → Ich möchte zwei Flaschen, bitte.
+- `m1:11:s1` · derin · dinleme · listen_and_respond — gr:a1-03:t3 «Birden çok: zwei Semmeln, zwei Brötchen»
+ - Duyduğunu yaz. DE: Das sind vier Semmeln. → Das sind vier Semmeln.
+- `m1:14:t01` · derin · konusma · listen_and_respond — cd:m1:12 «Kibarca bir şey ister, hesabı isterim. Selamı karşımdakine göre seçerim.»; gr:a1-06:t1 «İstenen şey: einen Kuchen, keinen Termin»; gr:a1-03:t3 «Birden çok: zwei Semmeln, zwei Brötchen»
+ - Fırındasın. Bir pasta ve iki küçük ekmek istiyorsun. DE: Guten Tag! Was hätten Sie gern? → Ich hätte gern einen Kuchen und zwei Semmeln.
+- `m1:12:s5` · derin · yazma · tr_de — cd:m1:12 «Kibarca bir şey ister, hesabı isterim. Selamı karşımdakine göre seçerim.»; gr:a1-06:t1 «İstenen şey: einen Kuchen, keinen Termin»
+ - TR: Pazartesi için bir randevu rica ediyorum. → Ich hätte gern einen Termin für Montag.
+- `m1:12:s6` · derin · yazma · tr_de — cd:m1:12 «Kibarca bir şey ister, hesabı isterim. Selamı karşımdakine göre seçerim.»
+ - TR: Hesabı rica ediyoruz. → Wir hätten gern die Rechnung.
+- `m1:12:s8` · derin · yazma · tr_de — cd:m1:12 «Kibarca bir şey ister, hesabı isterim. Selamı karşımdakine göre seçerim.»; gr:a1-01:t1 «Selamlaşma: Sie mi, du mu?»
+ - TR: Nasılsınız, Huber Hanım? → Wie geht es Ihnen, Frau Huber?
+- `m1:12:s9` · derin · konusma · guided_response — cd:m1:12 «Kibarca bir şey ister, hesabı isterim. Selamı karşımdakine göre seçerim.»; gr:a1-06:t1 «İstenen şey: einen Kuchen, keinen Termin»
+ - Fırındasın. Frau Stadler soruyor. Bir pasta istiyorsun. DE: Guten Tag! Was hätten Sie gern? → Guten Tag! Ich hätte gern einen Kuchen.
+- `m1:12:s10` · derin · konusma · listen_and_respond — cd:m1:12 «Kibarca bir şey ister, hesabı isterim. Selamı karşımdakine göre seçerim.»; gr:a1-01:t1 «Selamlaşma: Sie mi, du mu?»
+ - Tobi soruyor. İyisin. Sen de ona sor. DE: Hallo! Wie geht es dir? → Danke, gut. Und dir?
+- `m1:12:s11` · derin · konusma · guided_response — cd:m1:12 «Kibarca bir şey ister, hesabı isterim. Selamı karşımdakine göre seçerim.»
+ - Kafedesin. Garson soruyor. Başka bir şey istemiyorsun. Hesabı iste, kartla ödemek istediğini söyle. DE: Möchten Sie noch etwas? → Nein, danke. Wir hätten gern die Rechnung. Kann ich mit Karte zahlen?
+- `m1:12:s3` · derin · dinleme · listen_and_respond — gr:a1-06:t1 «İstenen şey: einen Kuchen, keinen Termin»; gr:a1-03:t2 «kein, keine: yok, değil»
+ - Duyduğunu yaz. DE: Haben Sie am Freitag keinen Termin frei? → Haben Sie am Freitag keinen Termin frei?
+- `m1:14:t02` · derin · dil · order — gr:a1-12:t2 «Kibar istek: Ich hätte gern einen Termin»
+ - TR: Hesabı rica ediyoruz. DE: gern / die / Wir / Rechnung / hätten → Wir hätten gern die Rechnung.
+- `m1:14:t06` · derin · konusma · guided_response — gr:a1-06:t1 «İstenen şey: einen Kuchen, keinen Termin»
+ - Muayenehaneyi arıyorsun. Frau Huber açıyor. Kendini tanıt ve randevu iste. DE: Praxis Dr. Weber, Huber, guten Tag? → Guten Tag, hier ist {name}. Ich hätte gern einen Termin.
+- `m1:14:t04` · derin · konusma · listen_and_respond — dn:kisaltma-1 «Hızlı konuşma 1: hab, komm, geh, geht's»
+ - Tobi soruyor. İyisin ama biraz yorgunsun. DE: Na, wie geht's? → Gut, aber ich bin müde. Und dir?
+- `m1:h02:g5` · derin · konusma · durum — cd:m1:12 «Kibarca bir şey ister, hesabı isterim. Selamı karşımdakine göre seçerim.»; gr:a1-01:t1 «Selamlaşma: Sie mi, du mu?»
+ - Stadtplatz'ta bir mağazadasın. Satıcıyı tanımıyorsun. Selam ver, şuradaki pantolonu kibarca iste ve bir fatura iste. DE: Guten Tag! Was kann ich für Sie tun? → Guten Tag! Ich hätte gern die Hose da. Und eine Rechnung, bitte.
+- `m1:13:s5` · derin · yazma · tr_de — cd:m1:13 «Bir şeyin benim mi senin mi olduğunu sorar, söylerim. Hızlı konuşmada kısa biçimleri tanırım.»
+ - TR: Senin kursun ne zaman? → Wann ist dein Kurs?
+- `m1:13:s7` · derin · yazma · tr_de — cd:m1:13 «Bir şeyin benim mi senin mi olduğunu sorar, söylerim. Hızlı konuşmada kısa biçimleri tanırım.»; gr:a1-02:t1 «mein, dein, Ihr: benim, senin, sizin»
+ - TR: Bu benim kartım. → Das ist meine Karte.
+- `m1:13:s10` · derin · konusma · guided_response — cd:m1:13 «Bir şeyin benim mi senin mi olduğunu sorar, söylerim. Hızlı konuşmada kısa biçimleri tanırım.»
+ - Ioana soruyor. Senin kursun cumartesi saat onda. DE: Wann ist dein Kurs? → Mein Kurs ist am Samstag um zehn.
+- `m1:13:s11` · derin · konusma · guided_response — cd:m1:13 «Bir şeyin benim mi senin mi olduğunu sorar, söylerim. Hızlı konuşmada kısa biçimleri tanırım.»; gr:a1-02:t1 «mein, dein, Ihr: benim, senin, sizin»
+ - Havuzda bir adam bir kart buluyor. Kart senin. Teşekkür et ve onda kursa geleceğini söyle. DE: Ist das deine Karte? → Ja, das ist meine Karte. Danke! Ich komme um zehn.
+- `m1:13:s9` · derin · konusma · listen_and_respond — cd:m1:13 «Bir şeyin benim mi senin mi olduğunu sorar, söylerim. Hızlı konuşmada kısa biçimleri tanırım.»; dn:kisaltma-1 «Hızlı konuşma 1: hab, komm, geh, geht's»
+ - Ioana soruyor. İyisin. Ona da sor. DE: Na, wie geht's? → Gut, danke! Und dir?
+- `m1:13:s1` · derin · dinleme · listen_and_respond — gr:a1-02:t1 «mein, dein, Ihr: benim, senin, sizin»
+ - Duyduğunu yaz. DE: Mein Kurs ist am Mittwoch um sieben. → Mein Kurs ist am Mittwoch um sieben.
+- `m1:h02:g6` · derin · konusma · durum — cd:m1:13 «Bir şeyin benim mi senin mi olduğunu sorar, söylerim. Hızlı konuşmada kısa biçimleri tanırım.»; gr:a1-02:t1 «mein, dein, Ihr: benim, senin, sizin»; dn:kisaltma-1 «Hızlı konuşma 1: hab, komm, geh, geht's»
+ - Salon Haarwerk'ten çıkıyorsun. Luka hızlı konuşuyor ve sandalyedeki bir poşeti gösteriyor. Poşet senin değil, senin poşetin elinde. DE: Du, ich hab hier 'ne Tüte. Ist das deine? → Nein, das ist nicht meine Tüte. Meine Tüte ist hier.
+- `m1:14:s11` · derin · konusma · guided_response — cd:m1:14 «Fırında bütün alışverişi Almanca yaparım: selamlaşır, ister, fiyat sorar, öderim.»; gr:a1-03:t5 «Fiyat sormak: Was kostet das? Das macht drei Euro»
+ - Fırındasın. Selam ver, bir pasta iste ve fiyatını sor. DE: Guten Tag! Was hätten Sie gern? → Guten Tag! Ich hätte gern einen Kuchen. Was kostet der Kuchen?
+- `m1:14:s9` · derin · konusma · guided_response — cd:m1:14 «Fırında bütün alışverişi Almanca yaparım: selamlaşır, ister, fiyat sorar, öderim.»
+ - Fırındasın. Frau Stadler başka bir şey isteyip istemediğini soruyor. İstemiyorsun. DE: Noch etwas? → Nein, danke. Das ist alles.
+- `m1:14:s7` · derin · yazma · tr_de — cd:m1:14 «Fırında bütün alışverişi Almanca yaparım: selamlaşır, ister, fiyat sorar, öderim.»; gr:a1-03:t3 «Birden çok: zwei Semmeln, zwei Brötchen»
+ - TR: Bana iki ekmek verin lütfen. → Geben Sie mir bitte zwei Brote.
+- `m1:14:s10` · derin · konusma · listen_and_respond — cd:m1:14 «Fırında bütün alışverişi Almanca yaparım: selamlaşır, ister, fiyat sorar, öderim.»
+ - Fırında bir müşteri sana soruyor. Notta ekmek üç avro doksan yazıyor. DE: Was kostet das Brot heute? → Drei Euro neunzig.
+- `tespit:a1:m008` **YENİ** · derin · dil · tr_de — gr:a1-03:t4 «möchten ve mögen: istemek ve sevmek»
+ - TR: Peyniri severim. **mögen** ile yaz. → Ich mag Käse.
+- `tespit:a1:m009` **YENİ** · derin · dil · tr_de — gr:a1-03:t4 «möchten ve mögen: istemek ve sevmek»; gr:a1-06:t1 «İstenen şey: einen Kuchen, keinen Termin»
+ - TR: Tobi bir kahve istiyor. **möchten** ile yaz. → Tobi möchte einen Kaffee.
+- `tespit:a1:m010` **YENİ** · derin · dil · transform — gr:a1-12:t2 «Kibar istek: Ich hätte gern einen Termin»; gr:a1-06:t1 «İstenen şey: einen Kuchen, keinen Termin»
+ -  → Ich hätte gern einen Termin.
+- `m1:12:s1` · derin · dinleme · listen_and_respond — gr:a1-12:t2 «Kibar istek: Ich hätte gern einen Termin»; gr:a1-06:t1 «İstenen şey: einen Kuchen, keinen Termin»
+ - Duyduğunu yaz. DE: Ich hätte gern einen Kuchen für Samstag. → Ich hätte gern einen Kuchen für Samstag.
+
+## 3. hafta
+
+- `m1:h03:g1` · tarama · konusma · durum — cd:m1:15 «Evet ya da hayır sorusu sorar, kısa cevap veririm.»
+ - Bir eczaneyi arıyorsun. Eczacı açıyor. Kendini tanıt ve cumartesi açık mı diye sor. DE: Guten Tag! Wie kann ich helfen? → Guten Tag, hier ist {name}. Haben Sie am Samstag offen?
+- `m1:h03:g4` · tarama · konusma · durum — cd:m1:20 «Randevunun tarihini söyler ve doğrularım.»
+ - Ioana'yı arıyorsun, annesi açıyor. Ioana'nın döneceği günü duyunca tarihiyle doğrula. Salı ayın on beşi. DE: Ioana ist nicht zu Hause. Sie kommt am Dienstag zurück. → Also am Dienstag, dem fünfzehnten?
+- `m1:h03:g7` · tarama · konusma · durum — cd:m1:21 «Telefonda randevunun gün ve saatini doğrularım.»
+ - Fizyoterapi muayenehanesi randevunu söylüyor. Tekrar ederek doğrula: gün ya da tarih, yanında saat. DE: Ihr Termin ist am Freitag, dem achtzehnten, um Viertel nach drei. → Am Freitag, dem achtzehnten, um Viertel nach drei? Danke!
+- `m1:15:s5` · derin · yazma · tr_de — cd:m1:15 «Evet ya da hayır sorusu sorar, kısa cevap veririm.»; gr:a1-02:t3 «Evet ya da hayır sorusu: Hast du Zeit?»
+ - TR: Bugün vaktiniz var mı? → Haben Sie heute Zeit?
+- `m1:15:s6` · derin · yazma · tr_de — cd:m1:15 «Evet ya da hayır sorusu sorar, kısa cevap veririm.»; gr:a1-02:t3 «Evet ya da hayır sorusu: Hast du Zeit?»
+ - TR: Tobi, hasta mısın? → Tobi, bist du krank?
+- `m1:15:s11` · derin · konusma · guided_response — cd:m1:15 «Evet ya da hayır sorusu sorar, kısa cevap veririm.»; gr:a1-02:t3 «Evet ya da hayır sorusu: Hast du Zeit?»
+ - Wimmer Bey'in kapısındasın. Yarın vakti var mı diye sor. DE: Ja, bitte? → Haben Sie morgen Zeit, Herr Wimmer?
+- `m1:15:s9` · derin · konusma · guided_response — cd:m1:15 «Evet ya da hayır sorusu sorar, kısa cevap veririm.»
+ - Derya kutlama için hediyen var mı diye soruyor. Henüz yok. DE: Hast du schon ein Geschenk? → Nein, leider noch nicht.
+- `m1:15:s10` · derin · konusma · guided_response — cd:m1:15 «Evet ya da hayır sorusu sorar, kısa cevap veririm.»
+ - Tobi bu akşam tezgâha çağırıyor. Sen de gidiyorsun. DE: Ich gehe heute Abend an den Stand. Kommst du mit? → Ja, ich komme mit.
+- `m1:21:t09` · derin · yazma · tr_de — cd:m1:15 «Evet ya da hayır sorusu sorar, kısa cevap veririm.»; gr:a1-02:t3 «Evet ya da hayır sorusu: Hast du Zeit?»
+ - TR: Wimmer Bey, vaktiniz var mı? → Herr Wimmer, haben Sie Zeit?
+- `m1:21:t11` · derin · dil · order — gr:a1-02:t3 «Evet ya da hayır sorusu: Hast du Zeit?»
+ - TR: Babanız da hasta mı? DE: Ist / Ihr / Vater / auch / krank → Ist Ihr Vater auch krank?
+- `m1:15:s1` · derin · dinleme · listen_and_respond — gr:a1-02:t3 «Evet ya da hayır sorusu: Hast du Zeit?»
+ - Duyduğunu yaz. DE: Haben Sie am Montag Zeit? → Haben Sie am Montag Zeit?
+- `m1:16:s5` · derin · yazma · tr_de — cd:m1:16 «Telefonda adımı söyler, harf harf hecelerim.»; gr:a1-12:t5 «Telefonda: kendini tanıt, sorunu söyle»
+ - TR: İyi günler Stadler Hanım, ben {name}. → Guten Tag, Frau Stadler, hier ist {name}.
+- `m1:16:s6` · derin · dil · tr_de — r0:10-buchstabieren «Heceleme: adını harf harf söyle»
+ - TR: Adınızı harf harf söyleyebilir misiniz lütfen? → Können Sie Ihren Namen bitte buchstabieren?
+- `m1:16:s10` · derin · konusma · guided_response — cd:m1:16 «Telefonda adımı söyler, harf harf hecelerim.»; r0:10-buchstabieren «Heceleme: adını harf harf söyle»
+ - Huber Hanım sokağının ilk harfini soruyor. Brunnengasse'nin ilk harfini bir adla söyle. DE: Brunnengasse? Wie ist der erste Buchstabe? → Mit B wie Berta.
+- `m1:16:s11` · derin · konusma · guided_response — cd:m1:16 «Telefonda adımı söyler, harf harf hecelerim.»; gr:a1-12:t5 «Telefonda: kendini tanıt, sorunu söyle»
+ - Bir dükkânı arıyorsun. Kendini tanıt ve gömlek hâlâ duruyor mu diye sor. DE: Ja, hallo? → Guten Tag, hier ist {name}. Ist das Hemd noch da?
+- `m1:16:s8` · derin · dil · tr_de — gr:a1-12:t5 «Telefonda: kendini tanıt, sorunu söyle»
+ - TR: Teşekkürler, hoşça kalın! Bunu telefonda söylüyorsun. → Danke, auf Wiederhören!
+- `m1:16:s9` · derin · konusma · guided_response — cd:m1:16 «Telefonda adımı söyler, harf harf hecelerim.»
+ - Satıcı ayırttığın ceket için kimin adına diye soruyor. DE: Auf welchen Namen, bitte? → Auf den Namen {name}.
+- `m1:21:t04` · derin · konusma · listen_and_respond — cd:m1:16 «Telefonda adımı söyler, harf harf hecelerim.»; r0:10-buchstabieren «Heceleme: adını harf harf söyle»
+ - Adresin Brunnengasse yedi numara. Sokağın adını söyle ve ilk harfi bir adla netleştir. DE: Wo wohnen Sie? Wie schreibt man das? → Brunnengasse sieben, B wie Berta.
+- `m1:h03:g2` · derin · konusma · durum — cd:m1:16 «Telefonda adımı söyler, harf harf hecelerim.»
+ - Spor salonundan bir görevli seni arıyor. Deneme antrenmanı için adını ve yazılışını soruyor. DE: Gern, am Samstag um zehn. Und Ihr Name? Können Sie das buchstabieren? → {name}. Gern, ich buchstabiere langsam.
+- `m1:16:s3` · derin · dinleme · listen_and_respond — r0:10-buchstabieren «Heceleme: adını harf harf söyle»
+ - Duyduğunu yaz. DE: Ich buchstabiere: B wie Berta. → Ich buchstabiere: B wie Berta.
+- `m1:17:s5` · derin · yazma · tr_de — cd:m1:17 «Anlamadığımda kibarca tekrar etmesini isterim.»
+ - TR: Bugün beni geri arayabilir misiniz? Kibarca sor. → Könnten Sie mich heute zurückrufen?
+- `m1:17:s6` · derin · yazma · tr_de — cd:m1:17 «Anlamadığımda kibarca tekrar etmesini isterim.»
+ - TR: Lütfen yavaş konuşabilir misiniz? Kibarca sor. → Könnten Sie bitte langsam sprechen?
+- `m1:17:s10` · derin · konusma · guided_response — cd:m1:17 «Anlamadığımda kibarca tekrar etmesini isterim.»; gr:a1-12:t1 «Kibar rica: Könnten Sie das wiederholen?»
+ - Pichler Bey çok hızlı bir saat söyledi. Anlamadın. Kibarca tekrar etmesini iste. DE: Morgen komme ich um Viertel nach acht. → Wie bitte? Könnten Sie das wiederholen?
+- `m1:17:s11` · derin · konusma · guided_response — gr:a1-12:t5 «Telefonda: kendini tanıt, sorunu söyle»
+ - Belediye santralini arıyorsun. Kendini tanıt ve kibarca Schneider Hanım'a bağlanmak iste. DE: Guten Tag! Was kann ich für Sie tun? → Guten Tag, hier ist {name}. Könnten Sie mich bitte mit Frau Schneider verbinden?
+- `m1:21:t02` · derin · dil · order — gr:a1-12:t1 «Kibar rica: Könnten Sie das wiederholen?»
+ - TR: Bana numarayı verebilir misiniz? DE: Könnten / Sie / mir / die / Nummer / geben → Könnten Sie mir die Nummer geben?
+- `m1:21:t05` · derin · dil · transform — gr:a1-12:t1 «Kibar rica: Könnten Sie das wiederholen?»
+ -  → Könnten Sie mich verbinden?
+- `m1:21:t12` · derin · konusma · guided_response — gr:a1-12:t5 «Telefonda: kendini tanıt, sorunu söyle»
+ - Firmayı arıyorsun. Kendini tanıt ve kibarca Derya Aksoy'a bağlanmak iste. DE: Hallo, guten Tag? → Guten Tag, hier ist {name}. Könnten Sie mich mit Derya Aksoy verbinden?
+- `m1:h03:g3` · derin · konusma · durum — cd:m1:17 «Anlamadığımda kibarca tekrar etmesini isterim.»; gr:a1-12:t1 «Kibar rica: Könnten Sie das wiederholen?»
+ - Bisiklet tamircisi hızlı bir sesli mesaj bırakmış. Geri arıyorsun. Saati anlamadın, kibarca tekrar ettir. DE: Ihr Fahrrad geht wieder. Kommen Sie am Freitag um Viertel vor fünf. → Entschuldigung, könnten Sie das langsam wiederholen?
+- `m1:18:s5` · derin · yazma · tr_de — cd:m1:18 «Bir şeyin ne zaman olduğunu um, am, im ile söylerim.»; gr:a1-05:t3 «Ne zaman? um, am, in der Nacht»; gr:a1-12:t3 «Zamanı söylemek: um, am, im, von, bis, ab»
+ - TR: Pazartesi günü saat ikide bir randevum var. → Ich habe am Montag um zwei einen Termin.
+- `m1:18:s6` · derin · yazma · tr_de — cd:m1:18 «Bir şeyin ne zaman olduğunu um, am, im ile söylerim.»; gr:a1-12:t3 «Zamanı söylemek: um, am, im, von, bis, ab»
+ - TR: Aralıkta Luka'nın vakti yok. → Im Dezember hat Luka keine Zeit.
+- `m1:18:s8` · derin · yazma · tr_de — cd:m1:18 «Bir şeyin ne zaman olduğunu um, am, im ile söylerim.»; gr:a1-12:t3 «Zamanı söylemek: um, am, im, von, bis, ab»
+ - TR: Dokuzdan on ikiye kadar buradayım. → Ich bin von neun bis zwölf hier.
+- `m1:18:s10` · derin · konusma · guided_response — cd:m1:18 «Bir şeyin ne zaman olduğunu um, am, im ile söylerim.»; gr:a1-05:t3 «Ne zaman? um, am, in der Nacht»
+ - Luka salı saat onu soruyor. Saat on olmuyor, öğleden sonra olur. DE: Kommen Sie am Dienstag um zehn? → Nein, um zehn geht es nicht. Vielleicht am Nachmittag?
+- `m1:18:s11` · derin · konusma · guided_response — cd:m1:18 «Bir şeyin ne zaman olduğunu um, am, im ile söylerim.»; gr:a1-05:t3 «Ne zaman? um, am, in der Nacht»; gr:a1-12:t3 «Zamanı söylemek: um, am, im, von, bis, ab»
+ - Luka'nın salonunu arıyorsun. Selam ver, adını söyle, cuma günü saat dört için randevu iste. DE: Salon Haarwerk, Luka, hallo! → Guten Tag, hier ist {name}. Ich möchte einen Termin am Freitag um vier.
+- `m1:21:t01` · derin · konusma · listen_and_respond — cd:m1:18 «Bir şeyin ne zaman olduğunu um, am, im ile söylerim.»; gr:a1-05:t3 «Ne zaman? um, am, in der Nacht»
+ - Cuma saat on birde vaktin var. Evet de, günü ve saati tekrar et. DE: Haben Sie am Freitag um elf Zeit? → Ja, am Freitag um elf habe ich Zeit.
+- `m1:21:t08` · derin · konusma · guided_response — cd:m1:15 «Evet ya da hayır sorusu sorar, kısa cevap veririm.»
+ - Tobi seni cumartesi alışverişe çağırıyor. Cumartesi vaktin yok. DE: Kommst du am Samstag mit einkaufen? → Nein, am Samstag habe ich leider keine Zeit.
+- `m1:21:t10` · derin · konusma · listen_and_respond — cd:m1:18 «Bir şeyin ne zaman olduğunu um, am, im ile söylerim.»
+ - Muayenehaneye ne zaman gitmelisin? Günü ve saati Almanca söyle. DE: Die Praxis ist am Mittwoch geschlossen. Kommen Sie bitte am Donnerstag um acht. → Am Donnerstag um acht.
+- `m1:h03:g5` · derin · konusma · durum — cd:m1:18 «Bir şeyin ne zaman olduğunu um, am, im ile söylerim.»; gr:a1-05:t3 «Ne zaman? um, am, in der Nacht»
+ - Diş hekiminin sekreteri bu hafta yer olmadığını söylüyor ve ocakta ne zaman gelebileceğini soruyor. Sana pazartesi saat dokuz uyuyor. DE: Diese Woche geht es leider nicht. Wann geht es im Januar? → Am Montag um neun, bitte.
+- `m1:18:s1` · derin · dinleme · listen_and_respond — gr:a1-12:t3 «Zamanı söylemek: um, am, im, von, bis, ab»
+ - Duyduğunu yaz. DE: Am Samstag bin ich von acht bis zwölf hier. → Am Samstag bin ich von acht bis zwölf hier.
+- `m1:19:s5` · derin · yazma · tr_de — cd:m1:19 «Başkasının ne yaptığını söylerim: er spricht, sie fährt.»; gr:a1-02:t4 «sprechen: du sprichst, er spricht»
+ - TR: Dr. Weber yavaş konuşuyor. → Dr. Weber spricht langsam.
+- `m1:19:s6` · derin · dil · tr_de — gr:a1-06:t2 «Harfi değişen kelimeler: du liest, er fährt»
+ - TR: Otobüsle mi gidiyorsun? → Fährst du mit dem Bus?
+- `m1:19:s7` · derin · dil · tr_de — gr:a1-06:t2 «Harfi değişen kelimeler: du liest, er fährt»
+ - TR: Sen de pasta yiyor musun? → Isst du auch Kuchen?
+- `m1:19:s8` · derin · yazma · tr_de — cd:m1:19 «Başkasının ne yaptığını söylerim: er spricht, sie fährt.»
+ - TR: Ioana hiç İngilizce konuşmuyor. → Ioana spricht nie Englisch.
+- `m1:19:s9` · derin · konusma · guided_response — cd:m1:19 «Başkasının ne yaptığını söylerim: er spricht, sie fährt.»
+ - Ioana Basti'nin nasıl konuştuğunu soruyor. Çok hızlı konuşuyor. DE: Und wie spricht Basti? → Er spricht sehr schnell.
+- `m1:19:s11` · derin · konusma · guided_response — cd:m1:19 «Başkasının ne yaptığını söylerim: er spricht, sie fährt.»
+ - Kurs bitti. Ioana soruyor. Sen eve gidiyorsun, Basti burada kalıyor. İkisini de söyle. DE: Fährst du nach Hause? Und Basti? → Ja, ich fahre nach Hause, aber Basti bleibt hier.
+- `m1:h03:g6` · derin · konusma · durum — cd:m1:19 «Başkasının ne yaptığını söylerim: er spricht, sie fährt.»; gr:a1-06:t2 «Harfi değişen kelimeler: du liest, er fährt»
+ - Kafede yeni tanıştığın biri arkadaşın Ioana'yı soruyor. Ioana her gün bisikletle gidiyor ve iyi Almanca konuşuyor. DE: Und Ioana? Fährt sie mit dem Bus oder mit dem Fahrrad? → Sie fährt mit dem Fahrrad.
+- `m1:19:s1` · derin · dinleme · listen_and_respond — gr:a1-02:t4 «sprechen: du sprichst, er spricht»
+ - Duyduğunu yaz. DE: Frau Huber spricht sehr schnell. → Frau Huber spricht sehr schnell.
+- `m1:19:s3` · derin · dinleme · listen_and_respond — gr:a1-06:t2 «Harfi değişen kelimeler: du liest, er fährt»
+ - Duyduğunu yaz. DE: Tobi isst jeden Tag Kuchen. → Tobi isst jeden Tag Kuchen.
+- `m1:19:s2` · derin · dinleme · listen_and_respond — gr:a1-06:t2 «Harfi değişen kelimeler: du liest, er fährt»
+ - Duyduğunu yaz. DE: Er sieht den Bus nicht. → Er sieht den Bus nicht.
+- `m1:20:s5` · derin · yazma · tr_de — cd:m1:20 «Randevunun tarihini söyler ve doğrularım.»; gr:a1-12:t4 «Tarih: der erste Mai, am ersten Mai»
+ - TR: Bugün ayın on biri. → Heute ist der elfte.
+- `m1:20:s6` · derin · yazma · tr_de — cd:m1:20 «Randevunun tarihini söyler ve doğrularım.»
+ - TR: Randevum 21 Aralık'ta. → Mein Termin ist am einundzwanzigsten Dezember.
+- `m1:20:s9` · derin · konusma · guided_response — cd:m1:20 «Randevunun tarihini söyler ve doğrularım.»; gr:a1-12:t4 «Tarih: der erste Mai, am ersten Mai»
+ - Huber Hanım bir tarih söyledi. On dördü mü dördü mü, emin değilsin. Sor. DE: Ihr Termin ist am vierzehnten. → Am vierzehnten oder am vierten?
+- `m1:20:s10` · derin · konusma · guided_response — gr:a1-12:t4 «Tarih: der erste Mai, am ersten Mai»
+ - Brandl Hanım bugünün tarihini soruyor. Bugün 7 Aralık. DE: Welches Datum haben wir heute? → Heute ist der siebte Dezember.
+- `m1:20:s11` · derin · konusma · guided_response — cd:m1:20 «Randevunun tarihini söyler ve doğrularım.»; gr:a1-12:t4 «Tarih: der erste Mai, am ersten Mai»
+ - Huber Hanım yeni tarih öneriyor. Tarihi tekrar ederek onayla ve teşekkür et. DE: Geht der fünfzehnte Dezember? → Ja, der fünfzehnte Dezember geht. Danke!
+- `m1:21:s9` · derin · konusma · guided_response — cd:m1:21 «Telefonda randevunun gün ve saatini doğrularım.»
+ - Huber Hanım saati çok hızlı söyledi. Kibarca tekrar etmesini iste. DE: Ihr Termin ist am Freitag um zwanzig nach acht. → Wie bitte? Könnten Sie die Uhrzeit bitte wiederholen?
+- `m1:21:s10` · derin · konusma · guided_response — cd:m1:21 «Telefonda randevunun gün ve saatini doğrularım.»
+ - Huber Hanım 16 Aralık çarşambayı öneriyor. Sana uyuyor. DE: Geht Mittwoch, der sechzehnte? → Ja, am sechzehnten geht es.
+- `m1:21:s11` · derin · konusma · guided_response — cd:m1:21 «Telefonda randevunun gün ve saatini doğrularım.»; gr:a1-05:t3 «Ne zaman? um, am, in der Nacht»
+ - Huber Hanım randevuyu söylüyor. Tekrar ederek doğrula: gün ya da tarih, yanında saat. DE: Ihr Termin ist am Montag, dem vierzehnten, um neun. → Am Montag, dem vierzehnten, um neun? Danke!
+- `m1:21:t06` · derin · konusma · listen_and_respond — cd:m1:21 «Telefonda randevunun gün ve saatini doğrularım.»
+ - Huber Hanım randevuyu söylüyor. Tekrar ederek doğrula: gün ya da tarih, yanında saat. DE: Ihr Termin ist am Dienstag, dem zweiundzwanzigsten Dezember, um Viertel vor neun. → Am Dienstag, dem zweiundzwanzigsten, um Viertel vor neun?
+- `m1:21:s6` · derin · dil · tr_de — r0:10-buchstabieren «Heceleme: adını harf harf söyle»
+ - TR: Bunu harf harf söyleyebilir misiniz lütfen? Kibarca sor. → Könnten Sie das bitte buchstabieren?
+- `tespit:a1:m011` **YENİ** · derin · dil · tr_de — gr:a1-02:t4 «sprechen: du sprichst, er spricht»; gr:a1-02:t3 «Evet ya da hayır sorusu: Hast du Zeit?»
+ - TR: İngilizce konuşuyor musun? **sprechen** ile yaz. → Sprichst du Englisch?
+
+## 4. hafta
+
+- `m1:h04:g2` · tarama · konusma · durum — cd:m1:22 «Bir eşyanın nerede olduğunu sorar, er, sie, es ile cevap veririm.»
+ - Bir arkadaşın telefonda ehliyetini bulamıyor. Ona olası yerleri sor. DE: Mensch, mein Führerschein ist weg! → Ist er vielleicht im Schrank?
+- `m1:h04:g4` · tarama · konusma · durum — cd:m1:26 «Ev ilanlarını karşılaştırır, en ucuzunu bulurum.»
+ - Bir iş arkadaşın telefonunda üç ev ilanı gösteriyor: 500, 700 ve 900 avro. En ucuzunu soruyor. DE: Welches ist am billigsten? Das für 500, 700 oder 900 Euro? → Das für 500 Euro ist am billigsten.
+- `m1:h04:g7` · tarama · konusma · durum — cd:m1:28 «Komşuma evimi ve nerede oturduğumu anlatırım.»
+ - Otobüs durağında yeni tanıştığın biri evini soruyor. Evin büyük değil ama aydınlık, ikinci kattasın. DE: Und wie ist es bei dir? Ist es groß? → Nein, es ist nicht groß, aber hell. Ich wohne im zweiten Stock.
+- `m1:22:s5` · derin · yazma · tr_de — cd:m1:22 «Bir eşyanın nerede olduğunu sorar, er, sie, es ile cevap veririm.»
+ - TR: Reçete nerede? Mutfakta mı? → Wo ist das Rezept? Ist es in der Küche?
+- `m1:22:s9` · derin · konusma · guided_response — cd:m1:22 «Bir eşyanın nerede olduğunu sorar, er, sie, es ile cevap veririm.»
+ - Ioana fincanını soruyor. Fincan mutfakta. DE: Wo ist meine Tasse? → Sie ist in der Küche.
+- `m1:22:s11` · derin · konusma · guided_response — cd:m1:22 «Bir eşyanın nerede olduğunu sorar, er, sie, es ile cevap veririm.»; gr:a1-04:t2 «Eşyalar için er, sie, es»
+ - Ioana ehliyeti ve davetiyeyi soruyor. Ehliyet ceketin içinde, davetiye dolapta. İkisini de er ve sie ile söyle. DE: Wo ist der Führerschein? Und die Einladung? → Er ist in der Jacke, und sie ist im Schrank.
+- `m1:28:t01` · derin · konusma · listen_and_respond — cd:m1:22 «Bir eşyanın nerede olduğunu sorar, er, sie, es ile cevap veririm.»; gr:a1-11:t2 «Nerede? neben, vor, hinter, zwischen»
+ - Hayır, eczane süpermarketin yanında. Düzelt. DE: Wo ist die Apotheke? Neben dem Rathaus? → Nein, sie ist neben dem Supermarkt.
+- `m1:22:s1` · derin · dinleme · listen_and_respond — gr:a1-11:t1 «Nerede? in, an, auf»
+ - Duyduğunu yaz. DE: Die Tasse ist in der Küche. → Die Tasse ist in der Küche.
+- `m1:23:s5` · derin · yazma · tr_de — cd:m1:23 «Bir eşyayı büyüklüğü ve görünüşüyle anlatırım.»; gr:a1-04:t3 «Eşya nasıl? groß, klein ve renkler»
+ - TR: Kanepe yeni. → Das Sofa ist neu.
+- `m1:23:s9` · derin · konusma · guided_response — cd:m1:23 «Bir eşyayı büyüklüğü ve görünüşüyle anlatırım.»; gr:a1-04:t3 «Eşya nasıl? groß, klein ve renkler»
+ - Ioana mutfağını nasıl bulduğunu soruyor. Büyük ve aydınlık buluyorsun. DE: Wie findest du meine Küche? → Ich finde sie groß und hell.
+- `m1:23:s11` · derin · konusma · guided_response — cd:m1:23 «Bir eşyayı büyüklüğü ve görünüşüyle anlatırım.»; gr:a1-04:t3 «Eşya nasıl? groß, klein ve renkler»
+ - Pichler Bey kayıp ceketinin nasıl olduğunu soruyor. Büyük ve yeni. DE: Wie ist Ihre Jacke? → Sie ist groß und neu.
+- `m1:28:t07` · derin · konusma · listen_and_respond — cd:m1:23 «Bir eşyayı büyüklüğü ve görünüşüyle anlatırım.»; gr:a1-04:t3 «Eşya nasıl? groß, klein ve renkler»
+ - Koridoru aydınlık ve güzel buluyorsun. Söyle. DE: Wie finden Sie den Flur? Er ist neu. → Ich finde ihn hell und schön.
+- `m1:h04:g5` · derin · konusma · durum — cd:m1:23 «Bir eşyayı büyüklüğü ve görünüşüyle anlatırım.»; gr:a1-04:t3 «Eşya nasıl? groß, klein ve renkler»
+ - Bir kafede ceketini unuttun. Ertesi gün kafeyi arıyorsun. Garson ceketin nasıl olduğunu soruyor. Ceketin küçük ve yeni. DE: Ihre Jacke? Wie ist sie? → Sie ist klein und neu.
+- `m1:23:s1` · derin · dinleme · listen_and_respond — gr:a1-04:t3 «Eşya nasıl? groß, klein ve renkler»
+ - Duyduğunu yaz. DE: Der Flur ist sehr hell. → Der Flur ist sehr hell.
+- `m1:24:s5` · derin · yazma · tr_de — cd:m1:24 «Bir şey için çok pahalı, fazla küçük ya da büyük değil derim.»; gr:a1-04:t4 «sehr, ziemlich, zu ve nicht»
+ - TR: Mutfak fazla küçük. → Die Küche ist zu klein.
+- `m1:24:s6` · derin · yazma · tr_de — cd:m1:24 «Bir şey için çok pahalı, fazla küçük ya da büyük değil derim.»; gr:a1-04:t4 «sehr, ziemlich, zu ve nicht»
+ - TR: Ev sahibi çok genç. → Der Vermieter ist sehr jung.
+- `m1:24:s9` · derin · konusma · guided_response — cd:m1:24 «Bir şey için çok pahalı, fazla küçük ya da büyük değil derim.»
+ - Tobi mutfağındaki küfü anlatıyor ve fikrini soruyor. Bence çok kötü. DE: In der Küche ist Schimmel. Wie findest du das? → Das ist sehr schlimm.
+- `m1:24:s11` · derin · konusma · guided_response — cd:m1:24 «Bir şey için çok pahalı, fazla küçük ya da büyük değil derim.»; gr:a1-04:t4 «sehr, ziemlich, zu ve nicht»
+ - Tobi bir ev soruyor: 900 avro, mutfak küçük. Sence fiyat fazla, mutfak da fazla küçük. DE: 900 Euro, und die Küche ist klein. Wie findest du das? → Das ist zu teuer, und die Küche ist zu klein.
+- `m1:28:t05` · derin · yazma · transform — cd:m1:24 «Bir şey için çok pahalı, fazla küçük ya da büyük değil derim.»; gr:a1-04:t4 «sehr, ziemlich, zu ve nicht»
+ -  → Das Sofa ist zu groß.
+- `m1:h04:g6` · derin · konusma · durum — cd:m1:24 «Bir şey için çok pahalı, fazla küçük ya da büyük değil derim.»; gr:a1-04:t4 «sehr, ziemlich, zu ve nicht»
+ - Spor salonunda görevli sana bir dolap gösteriyor. Dolap senin çantan için fazla küçük. DE: Hier ist Ihr Schrank. Ist er gut? → Nein, er ist zu klein.
+- `m1:24:s3` · derin · dinleme · listen_and_respond — gr:a1-04:t4 «sehr, ziemlich, zu ve nicht»
+ - Duyduğunu yaz. DE: Am Morgen bin ich sehr müde. → Am Morgen bin ich sehr müde.
+- `m1:25:s5` · derin · yazma · tr_de — cd:m1:25 «İki şeyden hangisini istediğimi ve hangisinin daha ucuz olduğunu söylerim.»; gr:a1-13:t2 «Karşılaştırma: billiger als, so teuer wie»
+ - TR: Bu ceket daha ucuz. → Diese Jacke ist billiger.
+- `m1:25:s6` · derin · yazma · tr_de — cd:m1:25 «İki şeyden hangisini istediğimi ve hangisinin daha ucuz olduğunu söylerim.»; gr:a1-13:t1 «Hangi ve bu: welcher ve dieser»; gr:a1-13:t2 «Karşılaştırma: billiger als, so teuer wie»
+ - TR: Hangi sandalye daha iyi? → Welcher Stuhl ist besser?
+- `m1:25:s7` · derin · yazma · tr_de — cd:m1:25 «İki şeyden hangisini istediğimi ve hangisinin daha ucuz olduğunu söylerim.»; gr:a1-13:t2 «Karşılaştırma: billiger als, so teuer wie»
+ - TR: Palto ceketten daha pahalı. → Der Mantel ist teurer als die Jacke.
+- `m1:25:s8` · derin · dil · tr_de — gr:a1-13:t2 «Karşılaştırma: billiger als, so teuer wie»
+ - TR: Kanepe sandalyeden daha büyük. → Das Sofa ist größer als der Stuhl.
+- `m1:25:s9` · derin · konusma · guided_response — cd:m1:25 «İki şeyden hangisini istediğimi ve hangisinin daha ucuz olduğunu söylerim.»; gr:a1-13:t2 «Karşılaştırma: billiger als, so teuer wie»
+ - Stadler Hanım hangi fincanı aldığını soruyor. Bunu alıyorsun, çünkü daha ucuz. DE: Welche Tasse nehmen Sie? → Ich nehme diese, sie ist billiger.
+- `m1:25:s10` · derin · konusma · guided_response — cd:m1:25 «İki şeyden hangisini istediğimi ve hangisinin daha ucuz olduğunu söylerim.»
+ - Ioana iki ceketi gösteriyor. Sence bu daha güzel. DE: Welche Jacke ist schöner? → Diese hier ist schöner.
+- `m1:25:s11` · derin · konusma · guided_response — cd:m1:25 «İki şeyden hangisini istediğimi ve hangisinin daha ucuz olduğunu söylerim.»; gr:a1-13:t2 «Karşılaştırma: billiger als, so teuer wie»
+ - Pazarda iki sandalye var: biri 10, biri 15 avro. Ucuz olanı al ve nedenini söyle. DE: Welchen Stuhl nehmen Sie? → Ich nehme diesen, er ist billiger als der da.
+- `m1:28:t06` · derin · yazma · tr_de — cd:m1:25 «İki şeyden hangisini istediğimi ve hangisinin daha ucuz olduğunu söylerim.»; gr:a1-13:t2 «Karşılaştırma: billiger als, so teuer wie»
+ - TR: Bu ceket şundan daha ucuz. → Diese Jacke ist billiger als die da.
+- `m1:28:t04` · derin · konusma · listen_and_respond — cd:m1:25 «İki şeyden hangisini istediğimi ve hangisinin daha ucuz olduğunu söylerim.»; gr:a1-13:t2 «Karşılaştırma: billiger als, so teuer wie»
+ - Ucuz olanı al ve nedenini söyle. DE: Dieses Sofa kostet 200 Euro, das da 150. Welches nehmen Sie? → Ich nehme das da, es ist billiger.
+- `m1:h04:g3` · derin · konusma · durum — cd:m1:25 «İki şeyden hangisini istediğimi ve hangisinin daha ucuz olduğunu söylerim.»
+ - Arkadaşın internette iki kanepe buldu: biri 300, biri 200 avro. 300 avroluk fazla büyük. Hangisini alması gerektiğini söyle. DE: Welches Sofa nehme ich? Das für 300 oder das für 200 Euro? → Das für 200 Euro. Es ist billiger, und das für 300 ist zu groß.
+- `m1:25:s1` · derin · dinleme · listen_and_respond — gr:a1-13:t1 «Hangi ve bu: welcher ve dieser»; gr:a1-13:t2 «Karşılaştırma: billiger als, so teuer wie»
+ - Duyduğunu yaz. DE: Dieser Stuhl ist billiger. → Dieser Stuhl ist billiger.
+- `m1:26:s5` · derin · yazma · tr_de — cd:m1:26 «Ev ilanlarını karşılaştırır, en ucuzunu bulurum.»; gr:a1-13:t3 «En ucuz, en iyi: am billigsten, am besten»
+ - TR: Hangi ev en ucuz? → Welches Haus ist am billigsten?
+- `m1:26:s6` · derin · dil · tr_de — gr:a1-13:t3 «En ucuz, en iyi: am billigsten, am besten»
+ - TR: Burası en güzeli. → Hier ist es am schönsten.
+- `m1:26:s11` · derin · konusma · guided_response — cd:m1:26 «Ev ilanlarını karşılaştırır, en ucuzunu bulurum.»; gr:a1-13:t3 «En ucuz, en iyi: am billigsten, am besten»
+ - Üç ilan var: 650, 800 ve 450 avro. İkincisi en büyük. Ioana soruyor. En ucuzu ve en büyüğü söyle. DE: Welches ist am billigsten, und welches ist am größten? → Nummer drei ist am billigsten, Nummer zwei ist am größten.
+- `m1:26:s9` · derin · konusma · guided_response — cd:m1:26 «Ev ilanlarını karşılaştırır, en ucuzunu bulurum.»
+ - Ioana yan giderleri soruyor. 120 avro. DE: Wie viel sind die Nebenkosten? → Die Nebenkosten sind 120 Euro.
+- `m1:26:s10` · derin · konusma · guided_response — cd:m1:26 «Ev ilanlarını karşılaştırır, en ucuzunu bulurum.»
+ - Tobi soruyor: Balkonu var mı? Evet, var. DE: Hat das Haus einen Balkon? → Ja, es hat einen Balkon.
+- `m1:26:s1` · derin · dinleme · listen_and_respond — gr:a1-13:t3 «En ucuz, en iyi: am billigsten, am besten»
+ - Duyduğunu yaz. DE: Dort sind die Nebenkosten am billigsten. → Dort sind die Nebenkosten am billigsten.
+- `m1:26:s2` · derin · dinleme · listen_and_respond — gr:a1-04:t4 «sehr, ziemlich, zu ve nicht»
+ - Duyduğunu yaz. DE: Der Balkon ist nicht sehr groß. → Der Balkon ist nicht sehr groß.
+- `m1:27:s5` · derin · yazma · tr_de — cd:m1:27 «Evimin ve eşyaların yerini in, an, auf, neben ile söylerim.»; gr:a1-11:t2 «Nerede? neben, vor, hinter, zwischen»
+ - TR: Eczane süpermarketin yanında. → Die Apotheke ist neben dem Supermarkt.
+- `m1:27:s6` · derin · yazma · tr_de — cd:m1:27 «Evimin ve eşyaların yerini in, an, auf, neben ile söylerim.»; gr:a1-11:t2 «Nerede? neben, vor, hinter, zwischen»
+ - TR: Bisiklet evin önünde. → Das Fahrrad ist vor dem Haus.
+- `m1:27:s7` · derin · yazma · tr_de — cd:m1:27 «Evimin ve eşyaların yerini in, an, auf, neben ile söylerim.»; gr:a1-11:t1 «Nerede? in, an, auf»
+ - TR: Fincan dolapta. → Die Tasse ist im Schrank.
+- `m1:27:s9` · derin · konusma · guided_response — cd:m1:27 «Evimin ve eşyaların yerini in, an, auf, neben ile söylerim.»; gr:a1-11:t1 «Nerede? in, an, auf»
+ - Ioana ehliyetini soruyor. Sandalyenin üstünde duruyor. DE: Wo ist mein Führerschein? → Er liegt auf dem Stuhl.
+- `m1:27:s10` · derin · konusma · guided_response — cd:m1:27 «Evimin ve eşyaların yerini in, an, auf, neben ile söylerim.»; gr:a1-11:t2 «Nerede? neben, vor, hinter, zwischen»
+ - Yeni komşu süpermarketi soruyor. İstasyonun arkasında. DE: Wo ist der Supermarkt? → Er ist hinter dem Bahnhof.
+- `m1:27:s11` · derin · konusma · guided_response — cd:m1:27 «Evimin ve eşyaların yerini in, an, auf, neben ile söylerim.»; gr:a1-11:t1 «Nerede? in, an, auf»
+ - Yeni bir komşu nerede oturduğunu soruyor. İkinci kattasın. DE: Wo wohnen Sie? → Ich wohne hier im zweiten Stock.
+- `m1:28:t08` · derin · yazma · order — cd:m1:27 «Evimin ve eşyaların yerini in, an, auf, neben ile söylerim.»; gr:a1-11:t1 «Nerede? in, an, auf»
+ - TR: Ehliyet dolapta duruyor. DE: Der / Führerschein / liegt / im / Schrank → Der Führerschein liegt im Schrank.
+- `m1:h04:g1` · derin · konusma · durum — cd:m1:27 «Evimin ve eşyaların yerini in, an, auf, neben ile söylerim.»; gr:a1-11:t1 «Nerede? in, an, auf»
+ - Bir kafede yeni biriyle tanıştın. Nerede oturduğunu ve buraya uzak olup olmadığını soruyor. Sen Brunnengasse'de, ikinci katta oturuyorsun. DE: Und wo wohnen Sie? Ist das weit von hier? → Ich wohne in der Brunnengasse, im zweiten Stock. Es ist nicht weit.
+- `m1:27:s1` · derin · dinleme · listen_and_respond — gr:a1-11:t1 «Nerede? in, an, auf»
+ - Duyduğunu yaz. DE: Der Ausweis liegt auf dem Schrank. → Der Ausweis liegt auf dem Schrank.
+- `m1:27:s2` · derin · dinleme · listen_and_respond — gr:a1-11:t2 «Nerede? neben, vor, hinter, zwischen»
+ - Duyduğunu yaz. DE: Die Kinder spielen hinter dem Haus. → Die Kinder spielen hinter dem Haus.
+- `m1:28:s9` · derin · konusma · guided_response — cd:m1:28 «Komşuma evimi ve nerede oturduğumu anlatırım.»
+ - İlk gün sahnesi. Brandl Hanım kim olduğunu soruyor. Adını, katını söyle ve memnun olduğunu belirt. DE: Wer sind Sie denn? → Ich bin {name}, aus dem zweiten Stock. Freut mich!
+- `m1:28:s10` · derin · konusma · guided_response — cd:m1:27 «Evimin ve eşyaların yerini in, an, auf, neben ile söylerim.»; gr:a1-11:t2 «Nerede? neben, vor, hinter, zwischen»
+ - Pichler Bey bisikletini soruyor. Evin arkasında. DE: Wo ist Ihr Fahrrad? → Es ist hinter dem Haus.
+- `m1:28:s11` · derin · konusma · guided_response — cd:m1:28 «Komşuma evimi ve nerede oturduğumu anlatırım.»; gr:a1-11:t1 «Nerede? in, an, auf»; gr:a1-04:t3 «Eşya nasıl? groß, klein ve renkler»
+ - Haftanın sınavı. Merdivende Brandl Hanım. Kim olduğunu, nerede oturduğunu ve evini anlat. DE: Grüß Gott! Sind Sie neu hier? → Ja! Ich bin {name} und wohne im zweiten Stock. Die Küche ist klein, aber hell.
+- `m1:28:t09` · derin · konusma · guided_response — cd:m1:28 «Komşuma evimi ve nerede oturduğumu anlatırım.»; gr:a1-11:t1 «Nerede? in, an, auf»
+ - Yeni bir komşu kendini tanıtıyor. Memnun olduğunu söyle, adını ve katını söyle. DE: Hallo! Ich bin neu hier. Und Sie? → Freut mich! Ich bin {name}, ich wohne im zweiten Stock.
+- `m1:28:s5` · derin · yazma · tr_de — cd:m1:28 «Komşuma evimi ve nerede oturduğumu anlatırım.»; gr:a1-11:t2 «Nerede? neben, vor, hinter, zwischen»
+ - TR: Pichler Bey, Brandl Hanım'ın yanında oturuyor. → Herr Pichler wohnt neben Frau Brandl.
+- `tespit:a1:m012` **YENİ** · derin · dil · tr_de — gr:a1-04:t2 «Eşyalar için er, sie, es»
+ - TR: Fincan nerede? – O dolapta. → Wo ist die Tasse? – Sie ist im Schrank.
+- `tespit:a1:m013` **YENİ** · derin · dil · tr_de — gr:a1-04:t2 «Eşyalar için er, sie, es»
+ - TR: Ehliyet nerede? – O ceketin içinde. → Wo ist der Führerschein? – Er ist in der Jacke.
+- `tespit:a1:m014` **YENİ** · derin · dil · tr_de — gr:a1-04:t2 «Eşyalar için er, sie, es»; gr:a1-04:t4 «sehr, ziemlich, zu ve nicht»
+ - TR: Kanepe mi? O fazla büyük. → Das Sofa? Es ist zu groß.
+- `tespit:a1:m015` **YENİ** · derin · dil · tr_de — gr:a1-13:t1 «Hangi ve bu: welcher ve dieser»; gr:a1-13:t2 «Karşılaştırma: billiger als, so teuer wie»
+ - TR: Hangi ceket daha ucuz? → Welche Jacke ist billiger?
+- `m1:25:s3` · derin · dinleme · listen_and_respond — gr:a1-13:t1 «Hangi ve bu: welcher ve dieser»; gr:a1-13:t2 «Karşılaştırma: billiger als, so teuer wie»
+ - Duyduğunu yaz. DE: Dieser Stuhl ist schöner als der da. → Dieser Stuhl ist schöner als der da.
+- `m1:28:s3` · derin · dinleme · listen_and_respond — gr:a1-13:t1 «Hangi ve bu: welcher ve dieser»; gr:a1-13:t2 «Karşılaştırma: billiger als, so teuer wie»
+ - Duyduğunu yaz. DE: Welche Jacke ist billiger? → Welche Jacke ist billiger?
+
+## 5. hafta
+
+- `m1:h05:g2` · tarama · konusma · durum — cd:m1:31 «Birine mesleğini sorar, kendi işimi söylerim.»
+ - Bürgerbüro'da Frau Schneider bir formu dolduruyor ve mesleğini soruyor. Bir firmada, büroda çalışıyorsun. DE: Und Ihr Beruf, bitte? → Ich arbeite in einer Firma, im Büro.
+- `m1:h05:g4` · tarama · konusma · durum — cd:m1:34 «Bir yere nasıl gidildiğini sorar, basit bir tarifi anlarım.»
+ - Gardasın. Bir adam sana eczanenin yolunu soruyor. Dümdüz, sonra ikinci trafik ışığında sola. DE: Entschuldigung, wie komme ich zur Apotheke? → Gehen Sie geradeaus und an der zweiten Ampel links.
+- `m1:h05:g5` · tarama · konusma · durum — cd:m1:35 «Günümü saat saat anlatırım.»
+ - Apartman merdiveni. Frau Brandl yarınki planını soruyor. Öğleden önce alışveriş, öğleden sonra otobüsle bir iş arkadaşına gidiyorsun. DE: Na, was machen Sie denn morgen? → Am Vormittag kaufe ich ein. Am Nachmittag fahre ich mit dem Bus zu einer Kollegin.
+- `m1:29:s5` · derin · yazma · tr_de — cd:m1:29 «Sabah kaçta kalktığımı, işin kaçta başladığını söylerim.»; gr:a1-05:t4 «İki parçalı fiiller: aufstehen, Ich stehe um sieben auf»
+ - TR: Saat altı buçukta kalkıyorum. → Ich stehe um halb sieben auf.
+- `m1:29:s9` · derin · konusma · guided_response — cd:m1:29 «Sabah kaçta kalktığımı, işin kaçta başladığını söylerim.»
+ - Herr Wimmer kaçta kalktığını soruyor. Beşte kalkıyorsun. DE: Wann stehen Sie auf? → Ich stehe um fünf Uhr auf.
+- `m1:29:s10` · derin · konusma · listen_and_respond — cd:m1:29 «Sabah kaçta kalktığımı, işin kaçta başladığını söylerim.»
+ - İş yarın yedide başlıyor. Cevap ver. DE: Wann fängt die Arbeit morgen an? → Die Arbeit fängt morgen um sieben an.
+- `m1:29:s11` · derin · konusma · guided_response — cd:m1:29 «Sabah kaçta kalktığımı, işin kaçta başladığını söylerim.»; gr:a1-05:t4 «İki parçalı fiiller: aufstehen, Ich stehe um sieben auf»
+ - Tobi molada soruyor. Altıda kalkıyorsun, iş yedide başlıyor. DE: Wann stehst du auf? Und wann fängt die Arbeit an? → Ich stehe um sechs auf. Die Arbeit fängt um sieben an.
+- `m1:35:t01` · derin · konusma · listen_and_respond — cd:m1:29 «Sabah kaçta kalktığımı, işin kaçta başladığını söylerim.»
+ - Komşun soruyor. Yarın saat yedide kalkıyorsun. DE: Um wie viel Uhr stehen Sie morgen auf? → Ich stehe um sieben Uhr auf.
+- `m1:35:t02` · derin · yazma · order — cd:m1:29 «Sabah kaçta kalktığımı, işin kaçta başladığını söylerim.»; gr:a1-05:t4 «İki parçalı fiiller: aufstehen, Ich stehe um sieben auf»
+ - TR: Yarın saat altıda kalkıyorum. DE: um sechs / auf / morgen / Ich / stehe → Ich stehe morgen um sechs auf.
+- `m1:h05:g1` · derin · konusma · durum — cd:m1:29 «Sabah kaçta kalktığımı, işin kaçta başladığını söylerim.»
+ - Spor salonundasın. Basti yarın kaçta kalktığını soruyor. Yarın altıda kalkıyorsun. DE: Und morgen? Wann musst du aufstehen? → Morgen muss ich um sechs aufstehen.
+- `m1:29:s8` · derin · dil · tr_de — gr:a1-05:t4 «İki parçalı fiiller: aufstehen, Ich stehe um sieben auf»
+ - TR: Muayenehaneyi saat sekizde arıyorum. → Ich rufe die Praxis um acht an.
+- `m1:29:s1` · derin · dinleme · listen_and_respond — gr:a1-05:t4 «İki parçalı fiiller: aufstehen, Ich stehe um sieben auf»
+ - Duyduğunu yaz. DE: Ich stehe am Montag um halb sechs auf. → Ich stehe am Montag um halb sechs auf.
+- `m1:30:s5` · derin · yazma · tr_de — cd:m1:30 «Haftamın planını gün gün söylerim.»
+ - TR: Pazartesi günü çalışıyorum. → Am Montag arbeite ich.
+- `m1:30:s6` · derin · yazma · tr_de — cd:m1:30 «Haftamın planını gün gün söylerim.»
+ - TR: Cumartesi alışveriş yapıyorum. → Am Samstag kaufe ich ein.
+- `m1:30:s7` · derin · yazma · tr_de — cd:m1:30 «Haftamın planını gün gün söylerim.»; gr:a1-05:t4 «İki parçalı fiiller: aufstehen, Ich stehe um sieben auf»
+ - TR: Akşam formu dolduruyorum. → Am Abend fülle ich das Formular aus.
+- `m1:30:s8` · derin · dil · tr_de — gr:a1-05:t4 «İki parçalı fiiller: aufstehen, Ich stehe um sieben auf»
+ - TR: Yarın amirimi arıyorum. → Morgen rufe ich meinen Vorgesetzten an.
+- `m1:30:s9` · derin · konusma · guided_response — cd:m1:30 «Haftamın planını gün gün söylerim.»
+ - Tobi soruyor. Sen de pazar günü Münih'e gidiyorsun. DE: Was machst du am Sonntag? → Am Sonntag fahre ich auch nach München.
+- `m1:30:s10` · derin · konusma · listen_and_respond — cd:m1:30 «Haftamın planını gün gün söylerim.»
+ - Herr Wimmer soruyor. Çarşamba yedide başlıyorsun. DE: Wann arbeiten Sie am Mittwoch? → Am Mittwoch fange ich um sieben an.
+- `m1:30:s11` · derin · konusma · guided_response — cd:m1:30 «Haftamın planını gün gün söylerim.»; gr:a1-05:t5 «Cümleye zamanla başlamak: fiil yine ikinci yerde»
+ - Herr Wimmer haftanı soruyor. Pazartesi çalışıyorsun, salı resmî daireye gidiyorsun, cuma alışveriş yapıyorsun. DE: Und wie ist Ihre Woche? → Am Montag arbeite ich. Am Dienstag gehe ich zum Amt. Am Freitag kaufe ich ein.
+- `m1:h05:g6` · derin · konusma · durum — cd:m1:30 «Haftamın planını gün gün söylerim.»; gr:a1-05:t5 «Cümleye zamanla başlamak: fiil yine ikinci yerde»
+ - Kuaförde Luka randevu için haftanı soruyor. Pazartesi ve salı çalışıyorsun, perşembe boşsun. DE: Und wann haben Sie diese Woche Zeit? → Am Montag und am Dienstag arbeite ich. Am Donnerstag habe ich Zeit.
+- `m1:35:t06` · derin · dil · transform — gr:a1-05:t5 «Cümleye zamanla başlamak: fiil yine ikinci yerde»
+ -  → Am Samstag fahre ich mit dem Bus zu Derya.
+- `m1:30:s1` · derin · dinleme · listen_and_respond — gr:a1-05:t5 «Cümleye zamanla başlamak: fiil yine ikinci yerde»
+ - Duyduğunu yaz. DE: Am Dienstag gehe ich mit dem Pass zum Rathaus. → Am Dienstag gehe ich mit dem Pass zum Rathaus.
+- `m1:31:s5` · derin · yazma · tr_de — cd:m1:31 «Birine mesleğini sorar, kendi işimi söylerim.»
+ - TR: Mesleğiniz ne? → Was sind Sie von Beruf?
+- `m1:31:s6` · derin · yazma · tr_de — cd:m1:31 «Birine mesleğini sorar, kendi işimi söylerim.»; gr:a1-08:t1 «Meslekler: der Lehrer, die Lehrerin»; gr:a1-08:t2 «Meslek söylemek: Ich bin Lehrerin»
+ - TR: O doktor. (bir kadın için) → Sie ist Ärztin.
+- `m1:31:s8` · derin · yazma · tr_de — cd:m1:31 «Birine mesleğini sorar, kendi işimi söylerim.»; gr:a1-08:t2 «Meslek söylemek: Ich bin Lehrerin»
+ - TR: Erkek kardeşim aşçı olarak çalışıyor. → Mein Bruder arbeitet als Koch.
+- `m1:31:s9` · derin · konusma · guided_response — gr:a1-08:t1 «Meslekler: der Lehrer, die Lehrerin»
+ - Tobi, Derya'nın kız kardeşini soruyor. Kız kardeşi hemşire ve gece çalışıyor. DE: Was macht die Schwester von Derya? → Sie ist Krankenpflegerin. Sie arbeitet in der Nacht.
+- `m1:31:s11` · derin · konusma · guided_response — cd:m1:31 «Birine mesleğini sorar, kendi işimi söylerim.»
+ - Kantinde yeni biri kendini tanıtıyor. Memnun olduğunu söyle, mesleğini sor, sen de firmada çalıştığını söyle. DE: Hallo! Ich bin neu hier. → Freut mich! Was sind Sie von Beruf? Ich arbeite hier in der Firma.
+- `m1:35:t04` · derin · konusma · listen_and_respond — cd:m1:31 «Birine mesleğini sorar, kendi işimi söylerim.»
+ - Tobi soruyor. Herr Pichler apartman görevlisi. DE: Was ist Herr Pichler von Beruf? → Er ist Hausmeister.
+- `m1:31:s1` · derin · dinleme · listen_and_respond — gr:a1-08:t1 «Meslekler: der Lehrer, die Lehrerin»; gr:a1-08:t2 «Meslek söylemek: Ich bin Lehrerin»
+ - Duyduğunu yaz. DE: Meine Schwester ist Polizistin. → Meine Schwester ist Polizistin.
+- `m1:31:s4` · derin · dinleme · listen_and_respond — gr:a1-08:t1 «Meslekler: der Lehrer, die Lehrerin»
+ - Duyduğunu yaz. DE: Tobi ist Verkäufer, nicht Chef. → Tobi ist Verkäufer, nicht Chef.
+- `m1:35:s2` · derin · dinleme · listen_and_respond — gr:a1-08:t2 «Meslek söylemek: Ich bin Lehrerin»
+ - Duyduğunu yaz. DE: Mein Bruder ist Techniker von Beruf. → Mein Bruder ist Techniker von Beruf.
+- `m1:32:s5` · derin · yazma · tr_de — cd:m1:32 «Neyi sevdiğimi, neyi daha çok sevdiğimi söylerim.»
+ - TR: Et yemeyi sevmem. → Ich esse nicht gern Fleisch.
+- `m1:32:s6` · derin · yazma · tr_de — cd:m1:32 «Neyi sevdiğimi, neyi daha çok sevdiğimi söylerim.»; gr:a1-06:t3 «Sevdiğini söylemek: gern, nicht gern, lieber»
+ - TR: Peyniri daha çok severim. → Ich esse lieber Käse.
+- `m1:32:s7` · derin · yazma · tr_de — cd:m1:32 «Neyi sevdiğimi, neyi daha çok sevdiğimi söylerim.»; gr:a1-06:t3 «Sevdiğini söylemek: gern, nicht gern, lieber»
+ - TR: Süt içmeyi severim ama Tobi sevmez. → Ich trinke gern Milch, aber Tobi nicht.
+- `m1:32:s9` · derin · konusma · guided_response — cd:m1:32 «Neyi sevdiğimi, neyi daha çok sevdiğimi söylerim.»; gr:a1-06:t3 «Sevdiğini söylemek: gern, nicht gern, lieber»
+ - Tobi soruyor. Sosis yemeyi seviyorsun. DE: Isst du gern Bratwurst? → Ja, ich esse gern Bratwurst.
+- `m1:32:s11` · derin · konusma · guided_response — cd:m1:32 «Neyi sevdiğimi, neyi daha çok sevdiğimi söylerim.»; gr:a1-06:t3 «Sevdiğini söylemek: gern, nicht gern, lieber»
+ - Derya soruyor. Neyi severek yersin, neyi daha çok seversin? İki kısa cümle söyle. DE: Was isst du gern? Und was isst du lieber? → Ich esse gern Käse. Ich esse lieber Gemüse.
+- `m1:h05:g7` · derin · konusma · durum — cd:m1:32 «Neyi sevdiğimi, neyi daha çok sevdiğimi söylerim.»; gr:a1-06:t3 «Sevdiğini söylemek: gern, nicht gern, lieber»
+ - Spor salonunda Basti seni bir şey içmeye çağırıyor. Süt içmeyi seversin. Peynirle sosis arasında sosisi daha çok seversin. DE: Trinkst du gern Milch? Und was isst du lieber, Käse oder Bratwurst? → Ja, ich trinke gern Milch. Ich esse lieber Bratwurst.
+- `m1:35:s6` · derin · yazma · tr_de — cd:m1:32 «Neyi sevdiğimi, neyi daha çok sevdiğimi söylerim.»; gr:a1-06:t3 «Sevdiğini söylemek: gern, nicht gern, lieber»
+ - TR: Et yemeyi sevmem, sebzeyi daha çok severim. → Ich esse nicht gern Fleisch, ich esse lieber Gemüse.
+- `m1:33:s5` · derin · yazma · tr_de — cd:m1:33 «Birini davet eder, daveti kabul eder ya da kibarca reddederim. Doğum gününü kutlarım.»; gr:a1-14:t4 «Davet etmek, kabul etmek, kibarca hayır demek»
+ - TR: Cumartesi vaktin var mı? → Hast du am Samstag Zeit?
+- `m1:33:s6` · derin · yazma · tr_de — cd:m1:33 «Birini davet eder, daveti kabul eder ya da kibarca reddederim. Doğum gününü kutlarım.»; gr:a1-14:t4 «Davet etmek, kabul etmek, kibarca hayır demek»
+ - TR: Davet için teşekkürler! → Danke für die Einladung!
+- `m1:33:s7` · derin · yazma · tr_de — cd:m1:33 «Birini davet eder, daveti kabul eder ya da kibarca reddederim. Doğum gününü kutlarım.»; gr:a1-14:t4 «Davet etmek, kabul etmek, kibarca hayır demek»
+ - TR: Maalesef gelemiyorum, çalışmam lazım. → Leider kann ich nicht kommen, ich muss arbeiten.
+- `m1:33:s9` · derin · konusma · guided_response — cd:m1:33 «Birini davet eder, daveti kabul eder ya da kibarca reddederim. Doğum gününü kutlarım.»; gr:a1-14:t4 «Davet etmek, kabul etmek, kibarca hayır demek»
+ - Tobi seni pazar günü çağırıyor. Pazar gelemiyorsun. Kibarca hayır de. DE: Kommst du am Sonntag mit? → Danke, aber am Sonntag kann ich leider nicht.
+- `m1:33:s11` · derin · konusma · guided_response — cd:m1:33 «Birini davet eder, daveti kabul eder ya da kibarca reddederim. Doğum gününü kutlarım.»; gr:a1-14:t4 «Davet etmek, kabul etmek, kibarca hayır demek»
+ - Tobi'yi cumartesi kutlamana çağır. Günü söyle ve gelmek isteyip istemediğini sor. DE: Ja? Was ist los? → Ich feiere am Samstag. Hast du Lust?
+- `m1:35:t05` · derin · konusma · guided_response — cd:m1:33 «Birini davet eder, daveti kabul eder ya da kibarca reddederim. Doğum gününü kutlarım.»; gr:a1-14:t4 «Davet etmek, kabul etmek, kibarca hayır demek»
+ - Derya seni cumartesi kutlamasına çağırıyor. O gün çalışıyorsun. Kibarca hayır de. DE: Wir feiern am Samstag Geburtstag. Hast du Zeit? → Danke für die Einladung! Aber am Samstag muss ich leider arbeiten.
+- `m1:h05:g3` · derin · konusma · durum — cd:m1:33 «Birini davet eder, daveti kabul eder ya da kibarca reddederim. Doğum gününü kutlarım.»; gr:a1-14:t4 «Davet etmek, kabul etmek, kibarca hayır demek»
+ - Kuafördesin. Luka seni cumartesi bir kutlamaya çağırıyor. Cumartesi olmuyor. Teşekkür et ve pazar gününü öner. DE: Wir feiern am Samstag. Kommen Sie auch? → Danke, Luka! Aber am Samstag kann ich leider nicht. Geht Sonntag?
+- `m1:33:s8` · derin · yazma · tr_de — cd:m1:33 «Birini davet eder, daveti kabul eder ya da kibarca reddederim. Doğum gününü kutlarım.»; gr:a1-14:t5 «Tebrik ve iyi dilek cümleleri»
+ - TR: Doğum günün kutlu olsun Tobi! → Alles Gute zum Geburtstag, Tobi!
+- `m1:33:s10` · derin · konusma · listen_and_respond — cd:m1:33 «Birini davet eder, daveti kabul eder ya da kibarca reddederim. Doğum gününü kutlarım.»; gr:a1-14:t5 «Tebrik ve iyi dilek cümleleri»
+ - Bir iş arkadaşın bugün doğum günü olduğunu söylüyor. Onu kutla. DE: Ich habe heute Geburtstag! → Herzlichen Glückwunsch!
+- `m1:35:t09` · derin · dil · tr_de — gr:a1-14:t5 «Tebrik ve iyi dilek cümleleri»
+ - TR: Doğum günün kutlu olsun! → Alles Gute zum Geburtstag!
+- `m1:33:s3` · derin · dinleme · listen_and_respond — gr:a1-14:t5 «Tebrik ve iyi dilek cümleleri»
+ - Duyduğunu yaz. DE: Herzlichen Glückwunsch und viel Glück! → Herzlichen Glückwunsch und viel Glück!
+- `m1:35:s7` · derin · yazma · tr_de — cd:m1:33 «Birini davet eder, daveti kabul eder ya da kibarca reddederim. Doğum gününü kutlarım.»; gr:a1-14:t4 «Davet etmek, kabul etmek, kibarca hayır demek»
+ - TR: Davet için teşekkürler, seve seve gelirim! → Danke für die Einladung, ich komme gern!
+- `m1:34:s5` · derin · yazma · tr_de — cd:m1:34 «Bir yere nasıl gidildiğini sorar, basit bir tarifi anlarım.»; gr:a1-11:t4 «Yol sormak ve yol tarif etmek»
+ - TR: Affedersiniz, belediyeye nasıl giderim? → Entschuldigung, wie komme ich zum Rathaus?
+- `m1:34:s6` · derin · dil · tr_de — gr:a1-11:t3 «Neyle gidiyorsun? mit dem Bus, mit der S-Bahn»
+ - TR: Ben yürüyerek gidiyorum, Tobi arabayla gidiyor. → Ich gehe zu Fuß, Tobi fährt mit dem Auto.
+- `m1:34:s7` · derin · yazma · tr_de — cd:m1:34 «Bir yere nasıl gidildiğini sorar, basit bir tarifi anlarım.»; gr:a1-11:t4 «Yol sormak ve yol tarif etmek»
+ - TR: Kavşakta sağa dönün. → Biegen Sie an der Kreuzung rechts ab.
+- `m1:34:s9` · derin · konusma · guided_response — cd:m1:34 «Bir yere nasıl gidildiğini sorar, basit bir tarifi anlarım.»; gr:a1-11:t4 «Yol sormak ve yol tarif etmek»
+ - Bir oğlan gara nasıl gidildiğini soruyor. Dümdüz gitmesini, sonra sola dönmesini söyle. DE: Wie komme ich zum Bahnhof? → Geradeaus und dann links.
+- `m1:34:s11` · derin · konusma · guided_response — cd:m1:34 «Bir yere nasıl gidildiğini sorar, basit bir tarifi anlarım.»; gr:a1-11:t4 «Yol sormak ve yol tarif etmek»
+ - Sokaktasın. Birine gara nasıl gidildiğini sor, sonra uzak olup olmadığını sor. DE: Ja, bitte? → Entschuldigung, wie komme ich zum Bahnhof? Ist es weit?
+- `m1:34:s3` · derin · dinleme · listen_and_respond — gr:a1-11:t3 «Neyle gidiyorsun? mit dem Bus, mit der S-Bahn»
+ - Duyduğunu yaz. DE: Ich fahre heute mit der U-Bahn. → Ich fahre heute mit der U-Bahn.
+- `m1:35:t08` · derin · yazma · order — cd:m1:34 «Bir yere nasıl gidildiğini sorar, basit bir tarifi anlarım.»; gr:a1-11:t4 «Yol sormak ve yol tarif etmek»; gr:a1-11:t5 «Birinci, ikinci, üçüncü: die erste Straße»
+ - TR: İkinci trafik ışığında sağa dönün. DE: rechts / ab / der / An / Ampel / zweiten / biegen / Sie → An der zweiten Ampel biegen Sie rechts ab.
+- `m1:35:t11` · derin · konusma · listen_and_respond — cd:m1:34 «Bir yere nasıl gidildiğini sorar, basit bir tarifi anlarım.»; gr:a1-11:t4 «Yol sormak ve yol tarif etmek»; gr:a1-11:t5 «Birinci, ikinci, üçüncü: die erste Straße»
+ - Biri durağı soruyor. Dümdüz gidip ilk trafik ışığında sağa dönecek. DE: Entschuldigung, wie komme ich zur Haltestelle? → Geradeaus und an der ersten Ampel rechts.
+- `m1:35:s8` · derin · yazma · tr_de — cd:m1:34 «Bir yere nasıl gidildiğini sorar, basit bir tarifi anlarım.»; gr:a1-11:t5 «Birinci, ikinci, üçüncü: die erste Straße»; gr:a1-11:t4 «Yol sormak ve yol tarif etmek»
+ - TR: İlk kavşakta sağa, sonra dümdüz. → An der ersten Kreuzung rechts, dann geradeaus.
+- `m1:35:s9` · derin · konusma · listen_and_respond — cd:m1:35 «Günümü saat saat anlatırım.»; gr:a1-11:t3 «Neyle gidiyorsun? mit dem Bus, mit der S-Bahn»
+ - Tobi soruyor. Yarın öğleden sonra otobüsle Derya'ya gidiyorsun. DE: Was machst du morgen? → Am Nachmittag fahre ich mit dem Bus zu Derya.
+- `m1:35:s11` · derin · konusma · guided_response — cd:m1:35 «Günümü saat saat anlatırım.»; gr:a1-05:t4 «İki parçalı fiiller: aufstehen, Ich stehe um sieben auf»; gr:a1-05:t5 «Cümleye zamanla başlamak: fiil yine ikinci yerde»; gr:a1-11:t3 «Neyle gidiyorsun? mit dem Bus, mit der S-Bahn»
+ - Herr Wimmer yarınki planını soruyor. Üç kısa cümleyle anlat. Dokuzda kalk, öğleden önce alışveriş yap, öğleden sonra otobüsle git. DE: Und Sie? Was machen Sie morgen? → Ich stehe um neun Uhr auf. Am Vormittag kaufe ich ein. Am Nachmittag fahre ich mit dem Bus zu Frau Aksoy.
+- `m1:35:s5` · derin · yazma · tr_de — cd:m1:35 «Günümü saat saat anlatırım.»; gr:a1-05:t4 «İki parçalı fiiller: aufstehen, Ich stehe um sieben auf»
+ - TR: Pazartesi saat altıda kalkıyorum. → Am Montag stehe ich um sechs Uhr auf.
+- `m1:35:s1` · derin · dinleme · listen_and_respond — gr:a1-05:t4 «İki parçalı fiiller: aufstehen, Ich stehe um sieben auf»
+ - Duyduğunu yaz. DE: Am Samstag stehe ich spät auf. → Am Samstag stehe ich spät auf.
+- `m1:30:s3` · derin · dinleme · listen_and_respond — gr:a1-05:t5 «Cümleye zamanla başlamak: fiil yine ikinci yerde»
+ - Duyduğunu yaz. DE: Am Freitag fahre ich zur Tankstelle. → Am Freitag fahre ich zur Tankstelle.
+
+## 6. hafta
+
+- `m1:h06:g1` · tarama · konusma · durum — cd:m1:36 «Dün ne yaptığımı söylerim: **Ich habe einen Film gesehen.**»
+ - Kuaförde Luka hafta sonunu soruyor. Cumartesi kâğıt oynadın, pazar Almanca çalıştın. DE: Und, was haben Sie am Wochenende gemacht? → Am Samstag habe ich Karten gespielt. Am Sonntag habe ich Deutsch gelernt.
+- `m1:h06:g5` · tarama · konusma · durum — cd:m1:40 «Uzun bir kelimeyi parçalarından anlarım. Havayı da söylerim.»
+ - Bürgerbüro'da sıra bekliyorsun. Frau Schneider dışarıdaki havayı soruyor. Yağmur yağıyor, hava sadece beş derece. DE: Regnet es noch draußen? → Ja, es regnet noch. Es sind nur fünf Grad.
+- `m1:h06:g7` · tarama · konusma · durum — cd:m1:42 «Dün ne yaptığımı kısa cümlelerle anlatırım.»
+ - Pazartesi spor salonunda Basti hafta sonunu soruyor. Cumartesi otobüsle şehre gittin, bir ceket aldın. Pazar evde kaldın. DE: Und dein Wochenende? → Am Samstag bin ich mit dem Bus in die Stadt gefahren. Ich habe eine Jacke gekauft. Am Sonntag bin ich zu Hause geblieben.
+- `m1:36:s6` · derin · yazma · tr_de — cd:m1:36 «Dün ne yaptığımı söylerim: **Ich habe einen Film gesehen.**»; gr:a1-07:t2 «Dün ne yaptın? Ich habe gekocht»; gr:a1-07:t4 «Fiilin iki parçası cümleyi sarar»
+ - TR: Pazar günü bir film izledim. → Am Sonntag habe ich einen Film gesehen.
+- `m1:36:s8` · derin · yazma · tr_de — cd:m1:36 «Dün ne yaptığımı söylerim: **Ich habe einen Film gesehen.**»; gr:a1-07:t2 «Dün ne yaptın? Ich habe gekocht»
+ - TR: Bir dilim pasta yedim. → Ich habe ein Stück Kuchen gegessen.
+- `m1:36:s9` · derin · konusma · guided_response — cd:m1:36 «Dün ne yaptığımı söylerim: **Ich habe einen Film gesehen.**»; gr:a1-07:t2 «Dün ne yaptın? Ich habe gekocht»
+ - Derya hafta sonunu soruyor. Cumartesi kâğıt oynadın. Söyle. DE: Wie war das Wochenende? → Gut! Am Samstag habe ich Karten gespielt.
+- `m1:36:s11` · derin · konusma · guided_response — cd:m1:36 «Dün ne yaptığımı söylerim: **Ich habe einen Film gesehen.**»; gr:a1-07:t2 «Dün ne yaptın? Ich habe gekocht»
+ - Tobi pazartesi soruyor. Hafta sonu yaptığın iki şeyi söyle. DE: Und, was hast du so gemacht? → Am Samstag war ich bei Derya. Am Sonntag habe ich einen Film gesehen.
+- `m1:36:s5` · derin · dil · tr_de — gr:a1-07:t2 «Dün ne yaptın? Ich habe gekocht»
+ - TR: Cumartesi ne yaptın? → Was hast du am Samstag gemacht?
+- `m1:36:s7` · derin · yazma · tr_de — cd:m1:36 «Dün ne yaptığımı söylerim: **Ich habe einen Film gesehen.**»; gr:a1-08:t3 «Nasıldı, ne vardı? Ich war, ich hatte»
+ - TR: Pazar günü evdeydim. → Am Sonntag war ich zu Hause.
+- `m1:36:s4` · derin · dinleme · listen_and_respond — gr:a1-07:t2 «Dün ne yaptın? Ich habe gekocht»
+ - Duyduğunu yaz. DE: Ich habe am Wochenende viel gelernt. → Ich habe am Wochenende viel gelernt.
+- `m1:37:s5` · derin · yazma · tr_de — cd:m1:37 «Sık fiilleri geçmişe çevirip kısa cümle kurarım.»; gr:a1-07:t3 «Fiilin geçmiş biçimi: kaufen, gekauft»
+ - TR: Bir kitap aldım. → Ich habe ein Buch gekauft.
+- `m1:37:s6` · derin · yazma · tr_de — cd:m1:37 «Sık fiilleri geçmişe çevirip kısa cümle kurarım.»; gr:a1-07:t3 «Fiilin geçmiş biçimi: kaufen, gekauft»
+ - TR: Kartla ödedim. → Ich habe mit Karte bezahlt.
+- `m1:37:s7` · derin · yazma · tr_de — cd:m1:37 «Sık fiilleri geçmişe çevirip kısa cümle kurarım.»; gr:a1-07:t3 «Fiilin geçmiş biçimi: kaufen, gekauft»; gr:a1-07:t4 «Fiilin iki parçası cümleyi sarar»
+ - TR: Dün Tobi'yi aradım. → Ich habe gestern Tobi angerufen.
+- `m1:37:s8` · derin · yazma · tr_de — cd:m1:37 «Sık fiilleri geçmişe çevirip kısa cümle kurarım.»; gr:a1-07:t3 «Fiilin geçmiş biçimi: kaufen, gekauft»
+ - TR: Kazağı denedim. → Ich habe den Pullover anprobiert.
+- `m1:37:s10` · derin · konusma · listen_and_respond — cd:m1:37 «Sık fiilleri geçmişe çevirip kısa cümle kurarım.»
+ - Ioana soruyor. Cumartesi bir etek aldın. DE: Was hast du am Samstag gekauft? → Ich habe einen Rock gekauft.
+- `m1:37:s11` · derin · konusma · guided_response — cd:m1:37 «Sık fiilleri geçmişe çevirip kısa cümle kurarım.»; gr:a1-07:t3 «Fiilin geçmiş biçimi: kaufen, gekauft»
+ - Kursta öğretmen soruyor. İki şey söyle: bir şey aldın, bir şey okudun. DE: Und Sie? Was haben Sie am Wochenende gemacht? → Ich habe ein Buch gekauft und gelesen.
+- `m1:42:t02` · derin · dil · order — gr:a1-07:t3 «Fiilin geçmiş biçimi: kaufen, gekauft»; gr:a1-07:t4 «Fiilin iki parçası cümleyi sarar»
+ - TR: Cumartesi bir etek aldım. DE: gekauft / einen Rock / habe / Ich / am Samstag → Ich habe am Samstag einen Rock gekauft.
+- `m1:h06:g2` · derin · konusma · durum — cd:m1:37 «Sık fiilleri geçmişe çevirip kısa cümle kurarım.»; gr:a1-07:t3 «Fiilin geçmiş biçimi: kaufen, gekauft»
+ - Muayenehanede karnın ağrıyor. Frau Huber dün ne yediğini, ne içtiğini soruyor. Et yedin, çok kahve içtin. DE: Was haben Sie gestern gegessen und getrunken? → Ich habe Fleisch gegessen und viel Kaffee getrunken.
+- `m1:38:s5` · derin · yazma · tr_de — cd:m1:38 «Nereye ve neyle gittiğimi geçmişte söylerim.»; gr:a2-01:t1 «Gitmek ve gelmek geçmişte: Ich bin gefahren»; dn:kelime-ailesi-1 «İki kelimeden bir kelime: Haus + Arzt»
+ - TR: Tramvayla gittim. → Ich bin mit der Straßenbahn gefahren.
+- `m1:38:s6` · derin · yazma · tr_de — cd:m1:38 «Nereye ve neyle gittiğimi geçmişte söylerim.»; gr:a2-01:t1 «Gitmek ve gelmek geçmişte: Ich bin gefahren»; gr:a1-07:t4 «Fiilin iki parçası cümleyi sarar»
+ - TR: Garda aktarma yaptım. → Ich bin am Bahnhof umgestiegen.
+- `m1:38:s7` · derin · dil · tr_de — gr:a2-01:t1 «Gitmek ve gelmek geçmişte: Ich bin gefahren»
+ - TR: Evde kaldım. → Ich bin zu Hause geblieben.
+- `m1:38:s8` · derin · dil · tr_de — gr:a2-01:t1 «Gitmek ve gelmek geçmişte: Ich bin gefahren»
+ - TR: Sola döndük. → Wir sind links abgebogen.
+- `m1:38:s10` · derin · konusma · listen_and_respond — cd:m1:38 «Nereye ve neyle gittiğimi geçmişte söylerim.»
+ - Tobi soruyor. Bisikletle geldin. DE: Wie bist du zur Arbeit gekommen? → Ich bin mit dem Fahrrad gekommen.
+- `m1:38:s11` · derin · konusma · guided_response — cd:m1:38 «Nereye ve neyle gittiğimi geçmişte söylerim.»; gr:a2-01:t1 «Gitmek ve gelmek geçmişte: Ich bin gefahren»; gr:a1-07:t4 «Fiilin iki parçası cümleyi sarar»
+ - Derya hafta sonunu soruyor. Nereye ve neyle gittiğini söyle. DE: Was hast du am Wochenende gemacht? → Ich bin mit dem Bus in die Stadt gefahren.
+- `m1:42:t05` · derin · yazma · transform — cd:m1:38 «Nereye ve neyle gittiğimi geçmişte söylerim.»; gr:a2-01:t1 «Gitmek ve gelmek geçmişte: Ich bin gefahren»; gr:a1-07:t4 «Fiilin iki parçası cümleyi sarar»
+ -  → Wir sind mit dem Bus zum Bahnhof gefahren.
+- `m1:h06:g3` · derin · konusma · durum — cd:m1:38 «Nereye ve neyle gittiğimi geçmişte söylerim.»
+ - Spor salonunda Basti buraya neyle geldiğini soruyor. Bisikletle geldin. DE: Bist du mit dem Auto gekommen? → Nein, ich bin mit dem Fahrrad gekommen.
+- `m1:42:s10` · derin · konusma · listen_and_respond — cd:m1:38 «Nereye ve neyle gittiğimi geçmişte söylerim.»
+ - Tobi soruyor. Otobüsle gittin. DE: Wie bist du zu Derya gefahren? → Ich bin mit dem Bus zu Derya gefahren.
+- `m1:38:s4` · derin · dinleme · listen_and_respond — gr:a2-01:t1 «Gitmek ve gelmek geçmişte: Ich bin gefahren»
+ - Duyduğunu yaz. DE: Am Abend bin ich nach Hause gegangen. → Am Abend bin ich nach Hause gegangen.
+- `m1:39:s5` · derin · yazma · tr_de — cd:m1:39 «Nasıldım, neyim vardı, söylerim. Bir yılı da söylerim.»; gr:a1-08:t3 «Nasıldı, ne vardı? Ich war, ich hatte»
+ - TR: Dün çok yorgundum. → Gestern war ich sehr müde.
+- `m1:39:s6` · derin · yazma · tr_de — cd:m1:39 «Nasıldım, neyim vardı, söylerim. Bir yılı da söylerim.»; gr:a1-08:t3 «Nasıldı, ne vardı? Ich war, ich hatte»
+ - TR: Hafta sonu hiç vaktim yoktu. → Am Wochenende hatte ich keine Zeit.
+- `m1:39:s9` · derin · konusma · guided_response — cd:m1:39 «Nasıldım, neyim vardı, söylerim. Bir yılı da söylerim.»; gr:a1-08:t3 «Nasıldı, ne vardı? Ich war, ich hatte»
+ - Tobi soruyor: Pazartesi neden yorgundun? Komşular çok gürültülüydü. DE: Warum warst du am Montag so müde? → Die Nachbarn waren so laut!
+- `m1:39:s11` · derin · konusma · guided_response — cd:m1:39 «Nasıldım, neyim vardı, söylerim. Bir yılı da söylerim.»; gr:a1-08:t3 «Nasıldı, ne vardı? Ich war, ich hatte»
+ - Frau Brandl soruyor: hafta sonun nasıldı? İki şey söyle: ne bozuktu, neyin yoktu. DE: Und wie war Ihr Wochenende? → Nicht so gut. Die Heizung war kaputt und ich hatte kein Wasser.
+- `m1:h06:g4` · derin · konusma · durum — cd:m1:39 «Nasıldım, neyim vardı, söylerim. Bir yılı da söylerim.»; gr:a1-08:t3 «Nasıldı, ne vardı? Ich war, ich hatte»
+ - Merdivende Frau Brandl haftanı soruyor. Pazartesi çok işin vardı, salı biraz hastaydın. DE: Wie war Ihre Woche? → Am Montag hatte ich viel Arbeit. Am Dienstag war ich ein bisschen krank.
+- `m1:39:s8` · derin · dil · tr_de — gr:a1-14:t3 «Yıllar nasıl söylenir: 1998, 2026»; gr:a1-08:t3 «Nasıldı, ne vardı? Ich war, ich hatte»
+ - TR: 1960'ta okul yeniydi. → 1960 war die Schule neu.
+- `m1:42:t08` · derin · dil · order — gr:a1-08:t3 «Nasıldı, ne vardı? Ich war, ich hatte»
+ - TR: 1965 yılında okul yeniydi. DE: neu / Im Jahr 1965 / die Schule / war → Im Jahr 1965 war die Schule neu.
+- `m1:42:t12` · derin · dil · tr_de — gr:a1-08:t3 «Nasıldı, ne vardı? Ich war, ich hatte»
+ - TR: Eskiden burada bir okul vardı. → Früher war hier eine Schule.
+- `m1:40:s5` · derin · yazma · tr_de — cd:m1:40 «Uzun bir kelimeyi parçalarından anlarım. Havayı da söylerim.»; gr:a1-06:t4 «Hava nasıl? Es regnet. Es ist kalt.»
+ - TR: Bugün hava çok sıcak. → Heute ist es sehr heiß.
+- `m1:40:s6` · derin · yazma · tr_de — cd:m1:40 «Uzun bir kelimeyi parçalarından anlarım. Havayı da söylerim.»; gr:a1-06:t4 «Hava nasıl? Es regnet. Es ist kalt.»
+ - TR: Hava yirmi derece. → Es sind zwanzig Grad.
+- `m1:40:s9` · derin · konusma · guided_response — cd:m1:40 «Uzun bir kelimeyi parçalarından anlarım. Havayı da söylerim.»; gr:a1-06:t4 «Hava nasıl? Es regnet. Es ist kalt.»
+ - Ioana soruyor. Wendlfing'de bugün yağmur yağıyor. DE: Und wie ist das Wetter bei dir? → Heute regnet es.
+- `m1:40:s11` · derin · konusma · guided_response — cd:m1:40 «Uzun bir kelimeyi parçalarından anlarım. Havayı da söylerim.»; gr:a1-06:t4 «Hava nasıl? Es regnet. Es ist kalt.»
+ - Tobi soruyor: bugün hava nasıl, hafta sonu nasıl? İki cümle söyle. DE: Wie ist das Wetter heute? Und am Wochenende? → Heute ist es warm, aber am Wochenende regnet es.
+- `m1:40:s1` · derin · dinleme · listen_and_respond — gr:a1-06:t4 «Hava nasıl? Es regnet. Es ist kalt.»
+ - Duyduğunu yaz. DE: Heute regnet es in Wendlfing. → Heute regnet es in Wendlfing.
+- `m1:40:s3` · derin · dinleme · listen_and_respond — gr:a1-06:t4 «Hava nasıl? Es regnet. Es ist kalt.»
+ - Duyduğunu yaz. DE: Im Sommer ist es oft heiß. → Im Sommer ist es oft heiß.
+- `m1:40:s2` · derin · dinleme · listen_and_respond — dn:kelime-ailesi-1 «İki kelimeden bir kelime: Haus + Arzt»
+ - Duyduğunu yaz. DE: Die Versichertenkarte ist im Auto. → Die Versichertenkarte ist im Auto.
+- `m1:41:s5` · derin · dil · tr_de — gr:a1-08:t4 «Ne zamandan beri? seit, vor, für»
+ - TR: Altı haftadır Wendlfing'de oturuyorum. → Ich wohne seit sechs Wochen in Wendlfing.
+- `m1:41:s6` · derin · dil · tr_de — gr:a1-08:t4 «Ne zamandan beri? seit, vor, für»
+ - TR: İki gün önce doktordaydım. → Vor zwei Tagen war ich beim Doktor.
+- `m1:41:s10` · derin · konusma · listen_and_respond — gr:a1-08:t4 «Ne zamandan beri? seit, vor, für»
+ - Ioana soruyor. Pazar gününden beri soğuk almışsın. DE: Seit wann bist du erkältet? → Seit Sonntag.
+- `m1:42:t07` · derin · konusma · guided_response — cd:m1:41 «Dinlediğim kısa bir hikâyeyi üç cümleyle yeniden anlatırım.»; dn:yeniden-anlatma «Dinlediğini kendi sözlerinle anlatmak»; gr:a1-08:t4 «Ne zamandan beri? seit, vor, für»
+ - Derya Tobi'yi soruyor. Üç gündür soğuk almış, dün doktordaydı. DE: Was hat Tobi denn? → Er ist seit drei Tagen erkältet. Gestern war er beim Doktor.
+- `m1:42:t09` · derin · konusma · listen_and_respond — gr:a1-08:t4 «Ne zamandan beri? seit, vor, für»
+ - Bürgerbüro'da Frau Schneider soruyor. Altı haftadır buradasın. DE: Seit wann wohnen Sie in Wendlfing? → Seit sechs Wochen.
+- `m1:41:s11` · derin · konusma · guided_response — cd:m1:41 «Dinlediğim kısa bir hikâyeyi üç cümleyle yeniden anlatırım.»; dn:yeniden-anlatma «Dinlediğini kendi sözlerinle anlatmak»
+ - Tobi'nin mesajını dinledin. Derya'ya üç cümleyle anlat: Tobi hasta, cuma doktordaydı, perşembe dönüyor. DE: Was ist denn mit Tobi? → Tobi ist krank. Er war am Freitag beim Doktor. Am Donnerstag kommt er wieder.
+- `m1:h06:g6` · derin · konusma · durum — cd:m1:41 «Dinlediğim kısa bir hikâyeyi üç cümleyle yeniden anlatırım.»; dn:yeniden-anlatma «Dinlediğini kendi sözlerinle anlatmak»
+ - Ioana sesli mesajında anlattı: dün otobüs gelmedi, kursa yürüyerek gitti, bir saat sürdü. Tobi soruyor, ona üç cümleyle anlat. DE: Und Ioana? Was war los? → Gestern ist der Bus nicht gekommen. Ioana ist zu Fuß zum Kurs gegangen. Das hat eine Stunde gedauert.
+- `m1:42:s7` · derin · dil · tr_de — gr:a1-08:t4 «Ne zamandan beri? seit, vor, für»; gr:a1-08:t3 «Nasıldı, ne vardı? Ich war, ich hatte»
+ - TR: Bir hafta önce Tobi hastaydı. → Vor einer Woche war Tobi krank.
+- `m1:41:s1` · derin · dinleme · listen_and_respond — gr:a1-08:t4 «Ne zamandan beri? seit, vor, für»
+ - Duyduğunu yaz. DE: Ich bin seit einer Woche erkältet. → Ich bin seit einer Woche erkältet.
+- `m1:42:s5` · derin · yazma · tr_de — cd:m1:42 «Dün ne yaptığımı kısa cümlelerle anlatırım.»; gr:a1-08:t3 «Nasıldı, ne vardı? Ich war, ich hatte»
+ - TR: Cumartesi Luka'daydım. → Am Samstag war ich bei Luka.
+- `m1:42:s6` · derin · yazma · tr_de — cd:m1:42 «Dün ne yaptığımı kısa cümlelerle anlatırım.»; gr:a2-01:t1 «Gitmek ve gelmek geçmişte: Ich bin gefahren»
+ - TR: Pazar günü evde kaldık. → Am Sonntag sind wir zu Hause geblieben.
+- `m1:42:s9` · derin · konusma · guided_response — cd:m1:42 «Dün ne yaptığımı kısa cümlelerle anlatırım.»; gr:a1-07:t2 «Dün ne yaptın? Ich habe gekocht»
+ - Derya cumartesini soruyor. Bir arkadaşınla film izledin, çok komikti. DE: Und was hast du am Samstag so gemacht? → Ich habe mit einer Freundin einen Film gesehen. Er war sehr lustig.
+- `m1:42:s11` · derin · konusma · guided_response — cd:m1:42 «Dün ne yaptığımı kısa cümlelerle anlatırım.»; gr:a2-01:t1 «Gitmek ve gelmek geçmişte: Ich bin gefahren»; gr:a1-07:t3 «Fiilin geçmiş biçimi: kaufen, gekauft»
+ - Pazartesi Tobi soruyor. Hafta sonunu üç cümleyle anlat: nerede, nasıl, ne yaptın? DE: Und, wie war dein Wochenende? → Am Samstag war ich in der Stadt. Ich bin mit dem Bus gefahren. Ich habe einen Rock gekauft.
+- `m1:42:t01` · derin · konusma · listen_and_respond — cd:m1:42 «Dün ne yaptığımı kısa cümlelerle anlatırım.»
+ - Tobi soruyor. Cumartesi Derya'nın evindeydin. DE: Wo warst du am Samstag? → Am Samstag war ich bei Derya.
+- `tespit:a1:m004` **YENİ** · derin · dil · tr_de — dn:kelime-ailesi-1 «İki kelimeden bir kelime: Haus + Arzt»
+ - TR: Aile hekimim bugün burada değil. → Mein Hausarzt ist heute nicht da.
+- `tespit:a1:m005` **YENİ** · derin · dil · tr_de — dn:kelime-ailesi-1 «İki kelimeden bir kelime: Haus + Arzt»
+ - TR: Çamaşır makinesi bozuk. → Die Waschmaschine ist kaputt.
+- `tespit:a1:m006` **YENİ** · derin · dinleme · listen_and_respond — gr:a1-14:t3 «Yıllar nasıl söylenir: 1998, 2026»
+ - Komşun okulu anlatıyor. Duyduğun yılı rakamla yaz. DE: Im Jahr neunzehnhundertachtzig war die Schule neu. → 1980
+- `tespit:a1:m007` **YENİ** · derin · dinleme · listen_and_respond — gr:a1-14:t3 «Yıllar nasıl söylenir: 1998, 2026»
+ - Yeni bir komşu ne zamandan beri Wendlfing'de oturduğunu söylüyor. Ne zamandan beri? Yılı rakamla yaz. DE: Ich wohne seit zweitausendzweiundzwanzig in Wendlfing. → 2022
+
+## 7. hafta
+
+- `m1:h07:g2` · tarama · konusma · durum — cd:m1:43 «Doktora neremin ağrıdığını ve ne zamandan beri ağrıdığını söylerim.»
+ - Kuaförde koltuktasın. Birden başın dönüyor. Luka aynada yüzünü görüp soruyor. Başının döndüğünü söyle ve su iste. DE: Alles gut? Du bist ganz weiß! → Mir ist schwindelig. Hast du Wasser?
+- `m1:h07:g7` · tarama · konusma · durum — cd:m1:47 «Bir şeyi beğendiğimi ya da bana uymadığını söylerim.»
+ - Fırına giriyorsun. Gerti Stadler dükkânı yeni boyatmış: her yer kırmızı. Gururla soruyor. Kırmızı hoşuna gidiyor, bunu söyle. DE: Schauen Sie, alles ist jetzt rot! Wie gefällt Ihnen das? → Rot gefällt mir gut, Frau Stadler!
+- `m1:h07:g8` · tarama · konusma · durum — cd:m1:49 «Doktora ne zamandan beri neremin ağrıdığını anlatır, talimatı tekrar ederim.»
+ - Cumartesi. Dr. Weber'in muayenehanesi kapalı, sen komşu kasabadaki hafta sonu nöbetçi muayenehanesindesin. Perşembeden beri karnın ağrıyor. Doktor reçeteyi veriyor, ilacı nasıl alacağını söylüyor ve dosyaya yazmak için bir şey daha soruyor. Ne zamandan beri ağrıdığını söyle, talimatı da tekrar ederek doğrula. DE: So, hier ist das Rezept: dreimal am Tag eine Tablette vor dem Essen. Und seit wann tut der Bauch weh? → Seit Donnerstag. Ich soll dreimal am Tag vor dem Essen eine Tablette nehmen, richtig?
+- `m1:43:s5` · derin · yazma · tr_de — cd:m1:43 «Doktora neremin ağrıdığını ve ne zamandan beri ağrıdığını söylerim.»; gr:a1-10:t1 «Ağrıyı söylemek: **Ich habe Kopfschmerzen** ve **Mir tut der Kopf weh**»
+ - TR: Karnım ağrıyor. → Mir tut der Bauch weh.
+- `m1:43:s6` · derin · yazma · tr_de — cd:m1:43 «Doktora neremin ağrıdığını ve ne zamandan beri ağrıdığını söylerim.»; gr:a1-08:t4 «Ne zamandan beri? seit, vor, für»
+ - TR: İki gündür başım dönüyor. → Mir ist seit zwei Tagen schwindelig.
+- `m1:43:s11` · derin · konusma · guided_response — cd:m1:43 «Doktora neremin ağrıdığını ve ne zamandan beri ağrıdığını söylerim.»; gr:a1-10:t1 «Ağrıyı söylemek: **Ich habe Kopfschmerzen** ve **Mir tut der Kopf weh**»
+ - Dr. Weber soruyor: Neyiniz var? Pazartesiden beri boğazın ağrıyor. DE: Guten Tag. Was fehlt Ihnen heute? → Mir tut seit Montag der Hals weh.
+- `m1:49:t01` · derin · konusma · listen_and_respond — cd:m1:43 «Doktora neremin ağrıdığını ve ne zamandan beri ağrıdığını söylerim.»; gr:a1-10:t1 «Ağrıyı söylemek: **Ich habe Kopfschmerzen** ve **Mir tut der Kopf weh**»
+ - Doktordasın. İki gündür iki bacağın da ağrıyor. Söyle. DE: Guten Morgen! Was fehlt Ihnen heute? → Mir tun seit zwei Tagen die Beine weh.
+- `m1:h07:g1` · derin · konusma · durum — cd:m1:43 «Doktora neremin ağrıdığını ve ne zamandan beri ağrıdığını söylerim.»; gr:a1-10:t1 «Ağrıyı söylemek: **Ich habe Kopfschmerzen** ve **Mir tut der Kopf weh**»
+ - İş yerindesin. Dünden beri sırtın ağrıyor. Şefin Wimmer Bey yüzüne bakıp soruyor. Ne olduğunu ve ne zamandan beri olduğunu söyle. DE: Alles in Ordnung? Sie sind heute so müde. → Nein, mir tut seit gestern der Rücken weh.
+- `m1:43:s3` · derin · dinleme · listen_and_respond — gr:a1-10:t1 «Ağrıyı söylemek: **Ich habe Kopfschmerzen** ve **Mir tut der Kopf weh**»
+ - Duyduğunu yaz. DE: Mein Rücken tut seit Freitag weh. → Mein Rücken tut seit Freitag weh.
+- `m1:44:s5` · derin · yazma · tr_de — cd:m1:44 «Bir yerde neyin yasak, neyin gerekmediğini anlar, kibarca isterim.»
+ - TR: Bekleme odasında yemek yemek yasak. → Im Wartezimmer darf man nicht essen.
+- `m1:44:s6` · derin · yazma · tr_de — cd:m1:44 «Bir yerde neyin yasak, neyin gerekmediğini anlar, kibarca isterim.»; gr:a1-09:t2 «Kurallar: **man muss**, **man darf nicht**, **man muss nicht**»
+ - TR: Kilo vermeniz gerekmiyor. → Sie müssen nicht abnehmen.
+- `m1:44:s11` · derin · konusma · guided_response — cd:m1:44 «Bir yerde neyin yasak, neyin gerekmediğini anlar, kibarca isterim.»
+ - Bekleme odasındasın. Huber Hanım'a telefonla konuşup konuşamayacağını sor. DE: Bitte nehmen Sie Platz. → Darf ich hier telefonieren?
+- `m1:h07:g6` · derin · konusma · durum — cd:m1:44 «Bir yerde neyin yasak, neyin gerekmediğini anlar, kibarca isterim.»
+ - Tren istasyonunun bekleme salonundasın. Elinde bir kahve ve yiyecek var, ama duvardaki tabelayı anlamadın. Bir görevli yanına geliyor. Burada yemenin serbest olup olmadığını ya da dışarıda mı yemen gerektiğini kibarca sor. DE: Guten Tag! Kann ich Ihnen helfen? → Ja, bitte. Darf man hier essen?
+- `m1:44:s3` · derin · dinleme · listen_and_respond — gr:a1-09:t2 «Kurallar: **man muss**, **man darf nicht**, **man muss nicht**»
+ - Duyduğunu yaz. DE: Hier muss man nicht lange warten. → Hier muss man nicht lange warten.
+- `m1:44:s7` · derin · yazma · tr_de — cd:m1:44 «Bir yerde neyin yasak, neyin gerekmediğini anlar, kibarca isterim.»; gr:a1-09:t3 «İstemek: **wollen** mi, **möchten** mi?»
+ - TR: Bir kahve sipariş etmek istiyorum. → Ich möchte einen Kaffee bestellen.
+- `m1:44:s9` · derin · konusma · guided_response — cd:m1:44 «Bir yerde neyin yasak, neyin gerekmediğini anlar, kibarca isterim.»
+ - Kafede garson soruyor. Kibarca bir su iste. DE: Was möchten Sie? → Ich möchte ein Wasser, bitte.
+- `m1:49:t06` · derin · dil · transform — gr:a1-09:t3 «İstemek: **wollen** mi, **möchten** mi?»
+ -  → Ich möchte eine Salbe für den Rücken.
+- `m1:45:s6` · derin · yazma · tr_de — cd:m1:45 «Doktorun ya da eczacının talimatını anlar, tekrar eder, nasıl kullanacağımı sorarım.»; gr:a1-10:t4 «**sollen**: başkasının isteğini aktarmak»
+ - TR: Tableti günde iki kez almam gerekiyor, doktor öyle söyledi. → Ich soll die Tablette zweimal am Tag nehmen.
+- `m1:45:s9` · derin · konusma · guided_response — cd:m1:45 «Doktorun ya da eczacının talimatını anlar, tekrar eder, nasıl kullanacağımı sorarım.»; gr:a1-10:t4 «**sollen**: başkasının isteğini aktarmak»
+ - Eczacı talimat veriyor. **Ich soll …** ile tekrar et. DE: Nehmen Sie die Tabletten am Morgen und am Abend. → Ich soll die Tabletten am Morgen und am Abend nehmen.
+- `m1:45:s11` · derin · konusma · guided_response — cd:m1:45 «Doktorun ya da eczacının talimatını anlar, tekrar eder, nasıl kullanacağımı sorarım.»
+ - Eczanedesin. Eczacı damlayı veriyor. Ne sıklıkla kullanacağını sor. DE: Hier sind die Tropfen. → Danke. Wie oft soll ich die Tropfen nehmen?
+- `m1:49:t04` · derin · konusma · listen_and_respond — cd:m1:45 «Doktorun ya da eczacının talimatını anlar, tekrar eder, nasıl kullanacağımı sorarım.»; gr:a1-10:t4 «**sollen**: başkasının isteğini aktarmak»
+ - Doktorun talimatını doğru anladığını göstermek için **Ich soll …** ile tekrar et. DE: Bleiben Sie bitte zwei Tage im Bett. → Ich soll zwei Tage im Bett bleiben.
+- `m1:49:t10` · derin · dil · order — gr:a1-09:t4 «Resmî rica ve talimat: **Warten Sie bitte hier**»
+ - TR: Akşam iki damla alın. DE: Abend / Sie / am / Nehmen / Tropfen / zwei → Nehmen Sie am Abend zwei Tropfen.
+- `m1:h07:g3` · derin · konusma · durum — cd:m1:45 «Doktorun ya da eczacının talimatını anlar, tekrar eder, nasıl kullanacağımı sorarım.»
+ - Başka bir şehirdesin, gözün kaşınıyor. Bir eczaneden göz damlası aldın. Eczacı nasıl kullanacağını söylüyor. Doğru anladığını göstermek için tekrar et. DE: So, hier sind die Tropfen für die Augen. Nehmen Sie am Morgen und am Abend zwei Tropfen. → Also am Morgen und am Abend zwei Tropfen?
+- `m1:h07:g4` · derin · konusma · durum — cd:m1:48 «Hasta bir arkadaşa öğüt veririm.»; gr:a1-09:t4 «Resmî rica ve talimat: **Warten Sie bitte hier**»
+ - Apartmanın merdiveninde Pichler Bey öksürüyor. Pazartesiden beri öksürdüğünü söylüyor. Ona kibarca (Sie ile) bir öğüt ver. DE: Ach, ich habe seit Montag Husten. → Gehen Sie zum Arzt, Herr Pichler!
+- `m1:46:s8` · derin · dil · tr_de — gr:a1-09:t5 «Form doldurmak: **Vorname**, **Geburtsdatum**, **Adresse**»
+ - TR: Lütfen formu doldurun. → Füllen Sie bitte das Formular aus.
+- `m1:45:s4` · derin · dinleme · listen_and_respond — gr:a1-09:t4 «Resmî rica ve talimat: **Warten Sie bitte hier**»
+ - Duyduğunu yaz. DE: Bitte kommen Sie morgen pünktlich. → Bitte kommen Sie morgen pünktlich.
+- `m1:46:s6` · derin · yazma · tr_de — cd:m1:46 «Muayenehanede formu doldurur, sorulara cevap veririm, başkasının bilgisini de söylerim.»; gr:a1-10:t2 «Onun, bizim, sizin: **sein**, **ihr**, **unser**, **euer**»
+ - TR: Onun (erkeğin) adresi Brunnengasse 7. → Seine Adresse ist Brunnengasse sieben.
+- `m1:46:s10` · derin · konusma · guided_response — cd:m1:46 «Muayenehanede formu doldurur, sorulara cevap veririm, başkasının bilgisini de söylerim.»
+ - Huber Hanım Brandl Hanım'ın sigorta kartını soruyor. Çantasında olduğunu söyle. DE: Wo ist die Versichertenkarte von Frau Brandl? → Ihre Karte ist in ihrer Tasche.
+- `m1:46:s11` · derin · konusma · guided_response — cd:m1:46 «Muayenehanede formu doldurur, sorulara cevap veririm, başkasının bilgisini de söylerim.»; gr:a1-09:t5 «Form doldurmak: **Vorname**, **Geburtsdatum**, **Adresse**»
+ - Huber Hanım formu dolduruyor. Brandl Hanım'ın adını ve doğum tarihini söyle: Rosa, 2 Mayıs. DE: Wie ist ihr Vorname? Und ihr Geburtsdatum? → Ihr Vorname ist Rosa. Ihr Geburtsdatum ist der zweite Mai.
+- `m1:46:s5` · derin · yazma · tr_de — cd:m1:46 «Muayenehanede formu doldurur, sorulara cevap veririm, başkasının bilgisini de söylerim.»; gr:a1-09:t5 «Form doldurmak: **Vorname**, **Geburtsdatum**, **Adresse**»
+ - TR: Evli misiniz? → Sind Sie verheiratet?
+- `m1:h07:g5` · derin · konusma · durum — cd:m1:46 «Muayenehanede formu doldurur, sorulara cevap veririm, başkasının bilgisini de söylerim.»; gr:a1-09:t5 «Form doldurmak: **Vorname**, **Geburtsdatum**, **Adresse**»
+ - Belediyedeki vatandaş bürosundasın. Schneider Hanım bir formu dolduruyor ve adresini soruyor. Oturduğun apartmanın adresini söyle. DE: Wie ist Ihre Adresse? → Meine Adresse ist Brunnengasse sieben.
+- `m1:49:t07` · derin · konusma · listen_and_respond — cd:m1:46 «Muayenehanede formu doldurur, sorulara cevap veririm, başkasının bilgisini de söylerim.»; gr:a1-09:t5 «Form doldurmak: **Vorname**, **Geburtsdatum**, **Adresse**»
+ - Pichler Bey'in formunu dolduruyorsun. O Wendlfing'de doğdu. Söyle. DE: Wo ist Herr Pichler geboren? → Er ist in Wendlfing geboren.
+- `m1:46:s9` · derin · konusma · guided_response — cd:m1:46 «Muayenehanede formu doldurur, sorulara cevap veririm, başkasının bilgisini de söylerim.»
+ - Huber Hanım Brandl Hanım'ın nerede büyüdüğünü soruyor. Wendlfing'de büyüdüğünü söyle. DE: Wo ist Frau Brandl aufgewachsen? → Sie ist in Wendlfing aufgewachsen.
+- `m1:49:s8` · derin · dil · tr_de — gr:a1-10:t2 «Onun, bizim, sizin: **sein**, **ihr**, **unser**, **euer**»; gr:a1-14:t1 «Beni, seni, onu: **mich**, **dich**, **ihn**»; gr:a1-10:t3 «Arkadaşa ve çocuğa öğüt: **Trink viel Wasser!**»
+ - TR: Onu (erkek) ara, treni tünelde! → Ruf ihn an, sein Zug ist im Tunnel!
+- `m1:46:s2` · derin · dinleme · listen_and_respond — gr:a1-10:t2 «Onun, bizim, sizin: **sein**, **ihr**, **unser**, **euer**»
+ - Duyduğunu yaz. DE: Unser Sohn macht eine Ausbildung. → Unser Sohn macht eine Ausbildung.
+- `m1:46:s4` · derin · dinleme · listen_and_respond — gr:a1-10:t2 «Onun, bizim, sizin: **sein**, **ihr**, **unser**, **euer**»
+ - Duyduğunu yaz. DE: Wie ist seine Telefonnummer? → Wie ist seine Telefonnummer?
+- `m1:47:s5` · derin · yazma · tr_de — cd:m1:47 «Bir şeyi beğendiğimi ya da bana uymadığını söylerim.»; gr:a1-13:t4 «Bana, sana, ona: **mir**, **dir**, **ihm**, **ihr**»; gr:a1-13:t5 «Beğenmek, uymak, yakışmak: **gefallen**, **passen**, **stehen**»
+ - TR: Göl hoşuma gidiyor, deniz değil. → Der See gefällt mir, das Meer nicht.
+- `m1:47:s6` · derin · yazma · tr_de — cd:m1:47 «Bir şeyi beğendiğimi ya da bana uymadığını söylerim.»; gr:a1-13:t4 «Bana, sana, ona: **mir**, **dir**, **ihm**, **ihr**»; gr:a1-13:t5 «Beğenmek, uymak, yakışmak: **gefallen**, **passen**, **stehen**»
+ - TR: Pantolon sana yakışıyor. → Die Hose steht dir gut.
+- `m1:47:s7` · derin · yazma · tr_de — cd:m1:47 «Bir şeyi beğendiğimi ya da bana uymadığını söylerim.»; gr:a1-13:t5 «Beğenmek, uymak, yakışmak: **gefallen**, **passen**, **stehen**»
+ - TR: Palto bana olmuyor. Çok küçük. → Der Mantel passt mir nicht. Er ist zu klein.
+- `m1:47:s8` · derin · dil · tr_de — gr:a1-13:t4 «Bana, sana, ona: **mir**, **dir**, **ihm**, **ihr**»; gr:a1-13:t5 «Beğenmek, uymak, yakışmak: **gefallen**, **passen**, **stehen**»
+ - TR: Otel onun (erkek) hoşuna gitmiyor. → Das Hotel gefällt ihm nicht.
+- `m1:47:s9` · derin · konusma · guided_response — cd:m1:47 «Bir şeyi beğendiğimi ya da bana uymadığını söylerim.»; gr:a1-13:t5 «Beğenmek, uymak, yakışmak: **gefallen**, **passen**, **stehen**»
+ - Ioana yeni kazağını gösteriyor ve soruyor. Yakıştığını söyle. DE: Steht mir der Pullover? → Ja, er steht dir gut!
+- `m1:47:s10` · derin · konusma · guided_response — cd:m1:47 «Bir şeyi beğendiğimi ya da bana uymadığını söylerim.»; gr:a1-13:t5 «Beğenmek, uymak, yakışmak: **gefallen**, **passen**, **stehen**»
+ - Huber Hanım bekleme odasındaki resmi soruyor. Beğendiğini söyle. DE: Wie gefällt Ihnen das Bild? → Es gefällt mir gut.
+- `m1:47:s11` · derin · konusma · guided_response — cd:m1:47 «Bir şeyi beğendiğimi ya da bana uymadığını söylerim.»; gr:a1-13:t5 «Beğenmek, uymak, yakışmak: **gefallen**, **passen**, **stehen**»
+ - Ioana'nın yeni dairesindesin. Daireyi beğendiğini ve mutfağı da sevdiğini söyle. DE: Na, wie gefällt dir die Wohnung? → Sie gefällt mir gut! Die Küche ist schön.
+- `m1:49:t05` · derin · yazma · tr_de — cd:m1:47 «Bir şeyi beğendiğimi ya da bana uymadığını söylerim.»; gr:a1-13:t4 «Bana, sana, ona: **mir**, **dir**, **ihm**, **ihr**»; gr:a1-13:t5 «Beğenmek, uymak, yakışmak: **gefallen**, **passen**, **stehen**»
+ - TR: Bu ceket sana yakışıyor. → Die Jacke steht dir gut.
+- `m1:49:t12` · derin · konusma · guided_response — cd:m1:47 «Bir şeyi beğendiğimi ya da bana uymadığını söylerim.»; gr:a1-13:t5 «Beğenmek, uymak, yakışmak: **gefallen**, **passen**, **stehen**»
+ - Ioana yeni odasını gösteriyor. Beğendiğini söyle. DE: Gefällt dir mein Zimmer? → Ja, dein Zimmer gefällt mir.
+- `m1:47:s3` · derin · dinleme · listen_and_respond — gr:a1-13:t5 «Beğenmek, uymak, yakışmak: **gefallen**, **passen**, **stehen**»
+ - Duyduğunu yaz. DE: Der Rock passt mir nicht. → Der Rock passt mir nicht.
+- `m1:48:s5` · derin · yazma · tr_de — cd:m1:48 «Hasta bir arkadaşa öğüt veririm.»; gr:a1-10:t3 «Arkadaşa ve çocuğa öğüt: **Trink viel Wasser!**»
+ - TR: Yatakta kal ve bol uyu! → Bleib im Bett und schlaf viel!
+- `m1:48:s6` · derin · dil · tr_de — gr:a1-14:t1 «Beni, seni, onu: **mich**, **dich**, **ihn**»
+ - TR: Seni özlüyoruz. → Wir vermissen dich.
+- `m1:48:s7` · derin · dil · tr_de — gr:a1-14:t1 «Beni, seni, onu: **mich**, **dich**, **ihn**»; gr:a1-14:t2 «İçin ve -sız: **für** ve **ohne**»; gr:a1-10:t3 «Arkadaşa ve çocuğa öğüt: **Trink viel Wasser!**»
+ - TR: Bensiz gitme! → Geh nicht ohne mich!
+- `m1:48:s9` · derin · konusma · guided_response — cd:m1:48 «Hasta bir arkadaşa öğüt veririm.»; gr:a1-10:t3 «Arkadaşa ve çocuğa öğüt: **Trink viel Wasser!**»
+ - Tobi telefonda başının çok ağrıdığını söylüyor. Ona iki öğüt ver. DE: Mein Kopf tut so weh! → Nimm eine Tablette und schlaf viel!
+- `m1:48:s11` · derin · konusma · guided_response — cd:m1:48 «Hasta bir arkadaşa öğüt veririm.»; gr:a1-10:t3 «Arkadaşa ve çocuğa öğüt: **Trink viel Wasser!**»; gr:a1-14:t2 «İçin ve -sız: **für** ve **ohne**»; gr:a1-14:t1 «Beni, seni, onu: **mich**, **dich**, **ihn**»
+ - Tobi gripli, seni arıyor. Ona öğüt ver ve onun için yemek yapacağını söyle. DE: Ich bin krank und kann nicht kochen. → Bleib im Bett! Ich koche für dich.
+- `m1:49:t09` · derin · konusma · guided_response — cd:m1:48 «Hasta bir arkadaşa öğüt veririm.»; gr:a1-10:t3 «Arkadaşa ve çocuğa öğüt: **Trink viel Wasser!**»
+ - Tobi'nin boğazı ağrıyor. Ona iki öğüt ver. DE: Mein Hals tut so weh. → Geh zum Arzt und trink viel Wasser!
+- `m1:49:t03` · derin · dil · order — gr:a1-14:t1 «Beni, seni, onu: **mich**, **dich**, **ihn**»; gr:a1-14:t2 «İçin ve -sız: **für** ve **ohne**»
+ - TR: Sensiz gitmiyorum. DE: nicht / ohne / Ich / dich / gehe → Ich gehe nicht ohne dich.
+- `m1:49:t11` · derin · konusma · listen_and_respond — gr:a1-14:t1 «Beni, seni, onu: **mich**, **dich**, **ihn**»
+ - Derya soruyor. Evet de ve onu bu akşam arayacağını söyle. DE: Kannst du mich heute Abend anrufen? → Ja, ich rufe dich heute Abend an.
+- `m1:49:s7` · derin · dil · tr_de — gr:a1-14:t1 «Beni, seni, onu: **mich**, **dich**, **ihn**»; gr:a1-10:t3 «Arkadaşa ve çocuğa öğüt: **Trink viel Wasser!**»
+ - TR: Saat ondan sonra varıyorum. Beni bekleme! → Ich komme nach zehn an. Warte nicht auf mich!
+- `m1:48:s2` · derin · dinleme · listen_and_respond — gr:a1-14:t2 «İçin ve -sız: **für** ve **ohne**»; gr:a1-14:t1 «Beni, seni, onu: **mich**, **dich**, **ihn**»
+ - Duyduğunu yaz. DE: Das Geschenk ist für ihn. → Das Geschenk ist für ihn.
+- `m1:48:s3` · derin · dinleme · listen_and_respond — gr:a1-14:t2 «İçin ve -sız: **für** ve **ohne**»; gr:a1-14:t1 «Beni, seni, onu: **mich**, **dich**, **ihn**»
+ - Duyduğunu yaz. DE: Wir treffen uns ohne dich. → Wir treffen uns ohne dich.
+- `m1:49:s5` · derin · yazma · tr_de — cd:m1:49 «Doktora ne zamandan beri neremin ağrıdığını anlatır, talimatı tekrar ederim.»; gr:a1-10:t1 «Ağrıyı söylemek: **Ich habe Kopfschmerzen** ve **Mir tut der Kopf weh**»
+ - TR: Dünden beri boğazım ağrıyor. → Mir tut seit gestern der Hals weh.
+- `m1:49:s11` · derin · konusma · guided_response — cd:m1:49 «Doktora ne zamandan beri neremin ağrıdığını anlatır, talimatı tekrar ederim.»; gr:a1-10:t1 «Ağrıyı söylemek: **Ich habe Kopfschmerzen** ve **Mir tut der Kopf weh**»
+ - Dr. Weber soruyor. Sırtın pazartesiden beri ağrıyor, ateşin yok. İkisini de söyle. DE: Was fehlt Ihnen? Haben Sie Fieber? → Mir tut seit Montag der Rücken weh, aber ich habe kein Fieber.
+- `m1:49:s10` · derin · konusma · listen_and_respond — cd:m1:49 «Doktora ne zamandan beri neremin ağrıdığını anlatır, talimatı tekrar ederim.»; gr:a1-10:t4 «**sollen**: başkasının isteğini aktarmak»
+ - Doktorun talimatını doğru anladığını göstermek için **Ich soll …** ile tekrar et. DE: Nehmen Sie die Tabletten am Abend, nach dem Essen. → Ich soll die Tabletten am Abend nehmen, nach dem Essen.
+- `m1:49:s6` · derin · yazma · tr_de — cd:m1:49 «Doktora ne zamandan beri neremin ağrıdığını anlatır, talimatı tekrar ederim.»
+ - TR: Doktor bira içmemem gerektiğini söylüyor. → Der Arzt sagt, ich soll kein Bier trinken.
+- `tespit:a1:m016` **YENİ** · derin · dil · tr_de — gr:a1-09:t2 «Kurallar: **man muss**, **man darf nicht**, **man muss nicht**»
+ - TR: Burada telefonla konuşmak yasak. **man** ile yaz. → Hier darf man nicht telefonieren.
+- `tespit:a1:m017` **YENİ** · derin · dil · tr_de — gr:a1-09:t2 «Kurallar: **man muss**, **man darf nicht**, **man muss nicht**»
+ - TR: Beklemeniz gerekmiyor. → Sie müssen nicht warten.
+- `m1:46:s7` · derin · dil · tr_de — gr:a1-09:t3 «İstemek: **wollen** mi, **möchten** mi?»
+ - TR: Bir hesap açmak istiyorum. → Ich möchte ein Konto eröffnen.
+- `m1:48:s8` · derin · dil · tr_de — gr:a1-09:t3 «İstemek: **wollen** mi, **möchten** mi?»; gr:a1-10:t2 «Onun, bizim, sizin: **sein**, **ihr**, **unser**, **euer**»
+ - TR: Onun (erkek) kız arkadaşıyla tanışmak istiyorum. → Ich möchte seine Freundin kennenlernen.
+
+## 8. hafta
+
+- `m1:h08:g5` · tarama · konusma · durum — cd:m1:53 «Hafta sonumu anlatır, bir şey iptal olduysa ya da kötü gittiyse söylerim.»
+ - Pazartesi akşamı dil kursundasın. Öğretmen herkese hafta sonunu soruyor. Cumartesi bir geziye gidecektin ama gezi iptal oldu, sen de evde kaldın. Bunu anlat. DE: Und Sie? Was haben Sie am Wochenende gemacht? → Der Ausflug ist ausgefallen. Ich war zu Hause.
+- `m1:h08:g6` · tarama · konusma · durum — cd:m1:54 «Eczanede eksik bir ilacı ayırtır, ilacı ne zaman içeceğimi sorarım.»
+ - İstasyonun yanındaki bir eczanedesin. Öksürüğün için tablet istedin ama bitmiş. Eczacı tabletlerin yarın geleceğini söylüyor. Tabletleri senin için ayırtmasını iste ve onları ne zaman içmen gerektiğini sor. DE: Die Tabletten gegen Husten haben wir leider nicht mehr. Morgen kommen sie wieder. → Können Sie sie für mich reservieren? Wann soll ich sie nehmen?
+- `m1:50:s9` · derin · konusma · guided_response — cd:m1:50 «Telefonda randevu saati değişince yeni saati sorar ve doğrularım.»
+ - Satıcı halıyı sabah sekizde getirmek istiyor. Senin için çok erken. Söyle ve dokuz buçuğu sor. DE: Wir bringen den Teppich um acht Uhr. → Acht Uhr ist zu früh. Geht halb zehn?
+- `m1:50:s10` · derin · konusma · guided_response — cd:m1:50 «Telefonda randevu saati değişince yeni saati sorar ve doğrularım.»
+ - Sekreter yeni saati söyledi ama tam duymadın. Tekrar etmesini rica et. DE: Dann Montag um halb fünf, geht das? → Entschuldigung, können Sie das bitte wiederholen?
+- `m1:50:s11` · derin · konusma · guided_response — cd:m1:50 «Telefonda randevu saati değişince yeni saati sorar ve doğrularım.»
+ - Muayenehaneyi arıyorsun. Selam ver, adını söyle ve perşembe randevun için aradığını belirt. DE: Praxis Dr. Weber, was kann ich für Sie tun? → Hallo, hier ist {name}. Es geht um den Termin am Donnerstag.
+- `m1:54:t01` · derin · konusma · listen_and_respond — cd:m1:50 «Telefonda randevu saati değişince yeni saati sorar ve doğrularım.»
+ - Sekreter randevunu değiştiriyor. Yeni saati tekrar ederek doğrula ve kabul et. DE: Hier ist die Praxis Dr. Weber. Ihr Termin am Mittwoch geht leider nicht. Geht Freitag um halb elf? → Freitag um halb elf? Ja, das geht.
+- `m1:54:t12` · derin · konusma · guided_response — cd:m1:50 «Telefonda randevu saati değişince yeni saati sorar ve doğrularım.»
+ - Cuma günkü randevun için muayenehaneyi arıyorsun. Telefonu sekreter açıyor. Kendini tanıt ve konuyu söyle. DE: Praxis Dr. Weber, Huber, guten Tag! → Guten Tag, hier ist {name}. Es geht um meinen Termin am Freitag.
+- `m1:50:s6` · derin · yazma · tr_de — cd:m1:50 «Telefonda randevu saati değişince yeni saati sorar ve doğrularım.»
+ - TR: Cuma sekizi çeyrek geçe olmuyor. → Freitag um Viertel nach acht geht nicht.
+- `m1:51:s9` · derin · konusma · guided_response — cd:m1:51 «İstediğim şey bitmişse başka bir şey seçer, fiyatı sorup doğrularım.»
+ - Pazarda elma kalmamış. O zaman muz al. DE: Äpfel habe ich leider nicht mehr. → Dann nehme ich Bananen.
+- `m1:51:s10` · derin · konusma · guided_response — cd:m1:51 «İstediğim şey bitmişse başka bir şey seçer, fiyatı sorup doğrularım.»
+ - Fiyatı tam duymadın: altı mı, on altı mı? Sor. DE: Das macht sechs Euro zehn. → Sechs oder sechzehn?
+- `m1:51:s11` · derin · konusma · guided_response — cd:m1:51 «İstediğim şey bitmişse başka bir şey seçer, fiyatı sorup doğrularım.»
+ - Pazar tezgâhındasın. Peynirin fiyatını sor ve yarım kilo iste. DE: Guten Tag! Was möchten Sie? → Was kostet der Käse? Ein halbes Kilo, bitte.
+- `m1:54:t03` · derin · yazma · tr_de — cd:m1:51 «İstediğim şey bitmişse başka bir şey seçer, fiyatı sorup doğrularım.»
+ - TR: O zaman yarım kilo elma alayım. → Dann nehme ich ein halbes Kilo Äpfel.
+- `m1:52:s9` · derin · konusma · guided_response — cd:m1:52 «Mahallede hafta sonu planımı anlatır, nakit param yoksa çözüm sorarım.»
+ - Kuaförde ödeme sırası. Luka sadece nakit alıyor, sende yok. Yarın ödeyip ödeyemeyeceğini sor. DE: Bei mir nur Bargeld, bitte. → Ich habe kein Bargeld. Kann ich morgen zahlen?
+- `m1:52:s10` · derin · konusma · guided_response — cd:m1:52 «Mahallede hafta sonu planımı anlatır, nakit param yoksa çözüm sorarım.»
+ - Komşun hafta sonu planını soruyor. Pazar doğa yürüyüşüne gidiyorsun. DE: Was haben Sie am Wochenende vor? → Am Sonntag gehe ich wandern.
+- `m1:52:s5` · derin · yazma · tr_de — cd:m1:52 «Mahallede hafta sonu planımı anlatır, nakit param yoksa çözüm sorarım.»
+ - TR: Yanımda nakit yok. → Ich habe kein Bargeld.
+- `m1:54:t04` · derin · konusma · listen_and_respond — cd:m1:52 «Mahallede hafta sonu planımı anlatır, nakit param yoksa çözüm sorarım.»
+ - Basti soruyor. Cumartesi Ioana ile doğa yürüyüşüne gideceksin. Söyle. DE: Und du? Was hast du am Samstag vor? → Ich gehe am Samstag mit Ioana wandern.
+- `m1:54:t05` · derin · yazma · order — cd:m1:52 «Mahallede hafta sonu planımı anlatır, nakit param yoksa çözüm sorarım.»
+ - TR: Cuma günü nakit para çekeceğim. DE: Freitag / hole / Bargeld / Ich / am → Ich hole am Freitag Bargeld.
+- `m1:54:t11` · derin · konusma · listen_and_respond — cd:m1:52 «Mahallede hafta sonu planımı anlatır, nakit param yoksa çözüm sorarım.»
+ - Fırında ödeme yapacaksın. Sende yalnızca kart var. Hemen gidip nakit çekeceğini söyle. DE: Hier geht leider nur Bargeld. → Ich habe nur eine Karte. Ich hole schnell Bargeld.
+- `m1:53:s5` · derin · yazma · tr_de — cd:m1:53 «Hafta sonumu anlatır, bir şey iptal olduysa ya da kötü gittiyse söylerim.»
+ - TR: Dün gece müzik fazla yüksekti. → Gestern Nacht war die Musik zu laut.
+- `m1:53:s6` · derin · yazma · tr_de — cd:m1:53 «Hafta sonumu anlatır, bir şey iptal olduysa ya da kötü gittiyse söylerim.»
+ - TR: Otobüs iptal oldu. → Der Bus ist ausgefallen.
+- `m1:53:s9` · derin · konusma · guided_response — cd:m1:53 «Hafta sonumu anlatır, bir şey iptal olduysa ya da kötü gittiyse söylerim.»
+ - Herr Pichler gürültüden şikâyet ediyor. Cumartesi evde değildin. Söyle. DE: Am Samstag war es bei Ihnen zu laut! → Am Samstag war ich nicht zu Hause.
+- `m1:53:s11` · derin · konusma · guided_response — cd:m1:53 «Hafta sonumu anlatır, bir şey iptal olduysa ya da kötü gittiyse söylerim.»
+ - Pazartesi işte yeni iş arkadaşın hafta sonunu soruyor. Pazar göldeydin ama tren iptal oldu. DE: Und, wie war dein Wochenende? → Am Sonntag war ich am See. Aber der Zug ist ausgefallen.
+- `m1:54:t06` · derin · konusma · guided_response — cd:m1:53 «Hafta sonumu anlatır, bir şey iptal olduysa ya da kötü gittiyse söylerim.»
+ - Pazartesi Tobi soruyor. Pazar günkü antrenman iptal oldu, sen de Ioana ile göle gittin. Anlat. DE: Und, wie war dein Sonntag? → Das Training ist ausgefallen. Ich war mit Ioana am See.
+- `m1:53:s8` · derin · yazma · tr_de — cd:m1:53 «Hafta sonumu anlatır, bir şey iptal olduysa ya da kötü gittiyse söylerim.»
+ - TR: Hafta sonu evdeydim. → Am Wochenende war ich zu Hause.
+- `m1:54:s8` · derin · yazma · tr_de — cd:m1:54 «Eczanede eksik bir ilacı ayırtır, ilacı ne zaman içeceğimi sorarım.»
+ - TR: Tabletleri ne zaman almalıyım? → Wann muss ich die Tabletten nehmen?
+- `m1:54:s9` · derin · konusma · guided_response — cd:m1:54 «Eczanede eksik bir ilacı ayırtır, ilacı ne zaman içeceğimi sorarım.»
+ - Eczacı merhemin olmadığını söylüyor. Sipariş edip edemeyeceğini sor. DE: Die Salbe haben wir leider nicht. → Können Sie die Salbe bestellen?
+- `m1:54:s11` · derin · konusma · guided_response — cd:m1:54 «Eczanede eksik bir ilacı ayırtır, ilacı ne zaman içeceğimi sorarım.»
+ - Eczanedesin. Frau Brandl'ın reçetesini ver ve tabletleri iste. DE: Guten Tag! Bitte schön? → Hier ist das Rezept für Frau Brandl. Die Tabletten, bitte.
+- `m1:54:t09` · derin · konusma · listen_and_respond — cd:m1:54 «Eczanede eksik bir ilacı ayırtır, ilacı ne zaman içeceğimi sorarım.»
+ - Eczacı damlaların yarın geleceğini söylüyor. Damlaları senin için ayırtmasını kibarca iste. DE: Die Tropfen sind leider nicht da. Morgen kommen sie. → Können Sie die Tropfen für mich reservieren?
+- `m1:54:t10` · derin · yazma · order — cd:m1:54 «Eczanede eksik bir ilacı ayırtır, ilacı ne zaman içeceğimi sorarım.»
+ - TR: Damlaları ne zaman almalıyım? DE: soll / Wann / nehmen / ich / Tropfen / die → Wann soll ich die Tropfen nehmen?
+- `m1:h08:g4` · derin · konusma · durum — cd:m1:49 «Doktora ne zamandan beri neremin ağrıdığını anlatır, talimatı tekrar ederim.»; gr:a1-10:t1 «Ağrıyı söylemek: **Ich habe Kopfschmerzen** ve **Mir tut der Kopf weh**»
+ - Spor salonundasın. Antrenmanı yarıda bırakıp oturdun. Basti yanına gelip ne olduğunu soruyor. Sırtının ağrıdığını söyle. DE: Alles okay? Was ist los? → Ich habe Schmerzen im Rücken.

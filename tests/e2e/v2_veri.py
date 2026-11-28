@@ -6,7 +6,7 @@
   python3 tests/e2e/v2_veri.py [--browser webkit] [--device "iPhone 15"]
 """
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, ERR
+from common import sekme_kok, serve, launch, new_page, login_onboard, check, finish, shot, arg, ERR
 
 PORT = 4194
 
@@ -44,7 +44,7 @@ def main():
         pg.click("[data-test=eb-retry]"); pg.wait_for_selector("[data-test=error-boundary]"); pg.wait_for_timeout(500)
         check(pg.locator("[data-test=error-boundary]").count() == 1, "'Tekrar dene': hata sürüyorsa ekran yeniden geliyor (döngü yok)")
         # sekme çubuğuyla çıkış
-        pg.click("[data-tab=ben]"); pg.click("[data-test=ayarlar-ac]"); pg.wait_for_selector("[data-test=persist]")
+        sekme_kok(pg, "ben"); pg.click("[data-test=ayarlar-ac]"); pg.wait_for_selector("[data-test=persist]")
         check(pg.locator("[data-test=error-boundary]").count() == 0, "sekme çubuğuyla başka ekrana geçiliyor")
         pg.goto(base + "#/__crash"); pg.wait_for_selector("[data-test=error-boundary]")
         pg.click("[data-test=eb-home]"); pg.wait_for_selector("[data-test=next-activity]")
