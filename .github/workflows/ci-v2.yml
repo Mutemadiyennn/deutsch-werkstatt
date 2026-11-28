@@ -23,8 +23,8 @@ jobs:
         run: npm run content:validate
       - name: "Dikiş denetçisi (PM-090 md. 2.1): günler ↔ a1-kesin.json tablosu ve omurga, 0 ihlal"
         run: node --experimental-strip-types --no-warnings content/tools/dikis-kos.ts
-      - name: "Hafta kapısı (PM-087 B.1): 2. hafta ve sonrası, öğretilmeden istenen 0, hafta sonu testi ≥ %80, görülmemiş durum"
-        run: node --experimental-strip-types --no-warnings content/tools/hafta-kapisi-kos.ts --hepsi
+      - name: "Hafta kapısı (PM-087 B.1): 2. hafta ve sonrası, öğretilmeden istenen 0, hafta sonu testi ≥ %80, görülmemiş durum; konuşma payı ≥ policy eşiği (bayrak kapalıyken uyarı)"
+        run: node --experimental-transform-types --no-warnings content/tools/hafta-kapisi-kos.ts --hepsi
       - name: Raf doldurma hattı birim testleri (ağsız; D-112)
         run: python3 -m pip install --quiet --break-system-packages pillow 2>/dev/null || python3 -m pip install --quiet pillow; python3 scripts/raf/test_doldur.py
       - name: Gizli anahtar taraması (Firebase web yapılandırması hariç)
