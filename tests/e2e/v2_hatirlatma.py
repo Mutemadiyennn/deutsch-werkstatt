@@ -12,7 +12,7 @@ Kabuk, sayfaya önceden yerleştirilen sahte bir LocalNotifications eklentisiyle
   python3 tests/e2e/v2_hatirlatma.py [--browser webkit] [--device "iPhone 15"] [--shots /tmp/shots]
 """
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, no_overflow
+from common import sekme_kok, serve, launch, new_page, login_onboard, check, finish, shot, no_overflow
 
 PORT = 4252
 SAHTE = """window.__ln = []; window.Capacitor = { Plugins: { LocalNotifications: {
@@ -29,7 +29,7 @@ def bekle_kur(pg, n):
 
 def duzen(pg, base):
     pg.goto(base + "#/today"); pg.wait_for_selector("[data-tab=today][aria-current=page]")
-    pg.click("[data-tab=ben]"); pg.wait_for_selector("[data-test=ben]")
+    sekme_kok(pg, "ben"); pg.wait_for_selector("[data-test=ben]")
     pg.goto(base + "#/ben/duzen"); pg.wait_for_selector("[data-test=panel-language]")
 
 def main():

@@ -353,3 +353,20 @@ describe("komut satırı", () => {
     expect(r.status).toBe(0);
   }, 30000);
 });
+
+describe("bağımsız Kurs haftası (PM-143 md. 1): yalnız A1 ve kendi haftası", () => {
+  it("bagimsizHaftalar yalnız `bagimsiz: true` haftaları alır", async () => {
+    const { bagimsizHaftalar } = await import("./dikis.ts");
+    expect([...bagimsizHaftalar({ haftalar: [{ no: 9 }, { no: 10, bagimsiz: true }, { no: 11, bagimsiz: "evet" }] })]).toEqual([10]);
+    expect(bagimsizHaftalar({}).size).toBe(0);
+  });
+  it("oncekiSayilir: bağımsız haftada önceki A2 günü sayılmaz, A1 ve kendi haftası sayılır; bağımsız olmayan hafta değişmez", async () => {
+    const { oncekiSayilir } = await import("./dikis.ts");
+    const bag = new Set([10]);
+    expect(oncekiSayilir(bag, 10, 56)).toBe(true);
+    expect(oncekiSayilir(bag, 10, 57)).toBe(false);
+    expect(oncekiSayilir(bag, 10, 63)).toBe(false);
+    expect(oncekiSayilir(bag, 10, 64)).toBe(true);
+    expect(oncekiSayilir(bag, 11, 60)).toBe(true);
+  });
+});

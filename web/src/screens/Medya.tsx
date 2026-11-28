@@ -5,6 +5,7 @@
  * (e) metin + kelimeye dokununca kart ve "bankaya ekle", (f) gölge konuşma, (g) "Sen ne derdin?".
  * Kaldığı yer cihazda saklanır (yarıda bırakılıp sürdürülebilir). Uzun kayıt hiçbir zaman baştan sona yazdırılmaz.
  */
+import { akisaDonus } from "../services/gezinme.ts";
 import { gorevSay } from "../services/gorev.ts";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Gun, bilinmeyenler, kumeDizini, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
@@ -165,8 +166,9 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
       {m.eylem && !p.eylem ? <EylemSoru m={m} onDone={(ok) => setP({ ...p, eylem: true, dogru: p.dogru + (ok ? 1 : 0), toplam: p.toplam + 1 })} />
         : <section class="card stack" data-test="medya-bitti"><h2>Bitti</h2>
             <p>{p.toplam} soruda {p.dogru} doğru. {m.bolumler.length > 1 ? `${m.bolumler.length} bölümün hepsini çalıştın.` : ""}</p>
-            <div class="row"><a class="btn primary grow" href="#/today" data-test="medya-sonraki">Sıradaki adım</a>
-              <a class="btn grow" href={geri} data-test="medya-geri">Güne dön</a>
+            <div class="row"><a class="btn primary grow" href={akisaDonus("#/today")} data-test="medya-sonraki">Sıradaki adım</a>
+              {/* akıştan açıldıysa "Sıradaki adım" akışa döner; Köy'ün gün listesine atlanmaz (PM-133 md. 6) */}
+              {!akisaDonus("") && <a class="btn grow" href={geri} data-test="medya-geri">Güne dön</a>}
               <button class="btn grow" data-test="medya-bastan" onClick={() => setP({ ...BASLANGIC, ilkBitti: true })}>Baştan çalış</button></div>
           </section>}
     </div>

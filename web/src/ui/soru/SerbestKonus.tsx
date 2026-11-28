@@ -6,7 +6,9 @@
  */
 import { useEffect, useRef, useState } from "preact/hooks";
 import { ERROR_TR, type AiOutput, type SerbestKonus } from "@dw/shared";
-import { degerlendir, gizle, maskesiz, ornekCoz, type ProfilDegerleri } from "../../core/serbestKonus.ts";
+import { bosYuvalar, degerlendir, gizle, maskesiz, ornekCoz, type ProfilDegerleri } from "../../core/serbestKonus.ts";
+import { YuvaAlani } from "../hakkimda.tsx";
+import type { Hakkimda } from "../../core/persona.ts";
 import { ai, aiState, SOFT_WAIT_MS } from "../../services/ai.ts";
 import { ApiError } from "../../services/api.ts";
 import { speak, sttAvailable } from "../../services/speech.ts";
@@ -16,7 +18,12 @@ import { ActionBar, ListenButton, MicButton } from "../kit.tsx";
 
 type Rapor = AiOutput<"feedback_tr">;
 
-export function SerbestKonusAdimi({ k, profil, onBitti }: { k: SerbestKonus; profil: ProfilDegerleri; onBitti: (sesli: boolean) => void }) {
+export function SerbestKonusAdimi({ k, profil: profil0, onBitti, onProfil }: { k: SerbestKonus; profil: ProfilDegerleri; onBitti: (sesli: boolean) => void;
+  /** karar 2: görevin kullandığı boş alan cevaptan SONRA sorulur (önce sorulursa Almanca çerçeve ipucu olurdu; inceleme #286 P1-1) */ onProfil?: (v: Hakkimda) => Promise<void> }) {
+  const [profil, setProfil] = useState(profil0);
+  const [sor] = useState(() => bosYuvalar(k, profil0));
+  const [taslakP, setTaslakP] = useState<Hakkimda>({});
+  const [kaydedildi, setKaydedildi] = useState<boolean | null>(null);
   const { api } = useApp();
   const mik = sttAvailable();
   const [parcalar, setParcalar] = useState<string[]>([]);
@@ -153,6 +160,17 @@ export function SerbestKonusAdimi({ k, profil, onBitti }: { k: SerbestKonus; pro
           <ListenButton text={ornek.replace(/…/g, "")} small slowToggle={false} />
         </div>
       </section>
+      {sor.length > 0 && onProfil && (
+        <details class="card" data-test="serbest-profil">
+          <summary class="small"><b>Örnek cevap senin bilgilerinle gelsin mi?</b> <span class="muted">(isteğe bağlı, yalnız bu telefonda)</span></summary>
+          <div class="stack" style={{ gap: 12, marginTop: 10 }}>
+            {sor.map((y) => <YuvaAlani y={y} deger={taslakP[y] ?? ""} degis={(x) => setTaslakP({ ...taslakP, [y]: x })} />)}
+            <button class="btn" data-test="serbest-profil-kaydet" onClick={() => { const v = { ...profil, ...taslakP }; setProfil(v); void onProfil(taslakP).then(() => setKaydedildi(true), () => { setProfil(profil); setKaydedildi(false); }); }}>Kaydet</button>
+            {kaydedildi === true && <p class="tiny muted" style={{ margin: 0 }} data-test="serbest-profil-tamam">Kaydedildi. Yalnız bu telefonda.</p>}
+            {kaydedildi === false && <p class="tiny" style={{ margin: 0 }} data-test="serbest-profil-hata">Kaydedilemedi; tekrar dene.</p>}
+          </div>
+        </details>
+      )}
       <ActionBar>
         <div class="row" style={{ gap: 8, flexWrap: "nowrap", width: "100%" }}>
           <button class="btn" style={{ flex: 1 }} data-test="serbest-yeniden" onClick={yeniden}>Bir daha dene</button>
