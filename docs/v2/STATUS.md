@@ -11,9 +11,10 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 - **GitHub Actions bu depoda GitHub tarafından kapalı** (16:53 UTC'den beri). Kabul **KAPI oturumunda** (PM 7047288255): temiz worktree, `ci-v2.yml` sırası, WebKit üç cihaz; PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI". Ortak betik `scripts/kapi.sh` (dal `kapi/betik`). Yayın ve medya hatları durdu; kod PR'ları KAPI sırasıyla birleşir.
 - **Hedef ekranlar:** `design/TARGET3c` (kalıp, yapboz + K10, söyle, gün sonu sınaması, Yol, Bahçe boş hâli; TASARIM "Hedef 3c").
 
-## Hat V (ANA-V): serbest sesli konuşma (PM-148 [ANA-V]; 2026-11-27)
-- Dal `ana-v/serbest-konus` (md. 1): `serbest_konus` adım türü (şema, FORMAT.md, doğrulayıcı, hafta kapısı, planlayıcı gün sonu başı, ekran, çevrimdışı hedef listesi + `feedback_tr`, konuşma kaydı `konusma:<tarih>`). Bayrak `policy.serbest_konus.acik` **kapalı** (PM-135 ek 14); e2e `v2_serbest.py` iki bayrakla.
-- **Açık:** md. 2 (profil alanları, "Kendim hakkında"), md. 3 ("Bugün N kez konuştun", konuşma payı), md. 4 (A1 tamam kapısı) yığınlı PR'larda.
+## Hat G (ANA-G): gezinme kuralı (PM-133, PM-142 md. 3, PM-144 md. 1.2; 2026-11-27)
+- Dal `v2/gezinme-donus`. Kural TASARIM TS-1.1; döküm `docs/v2/qa/gezinme.md`. `core/donus.ts` (giriş yığını, birim testli) + `services/gezinme.ts`; bütün `ProgressHeader`/`TopBar` geri hedefi, akışın X'i ve "Sıradaki adım" giriş noktasından. Tam ekran akışta sol düğme X (aynı akışın üst adımında ‹). Akış X'i artık Köy'ün gün listesine değil girdiği ekrana; akıştan açılan durak akışa döner. Alt sekme son konumunu açar, etkin sekmeye ikinci dokunuş köke.
+- Sınama: gezgin `donus_savlari` (DN-2). Takip: kenardan kaydırma kabukta kapalı (ANA-K), eski kuşak ekran akışın ilerleme çubuğunu taşımıyor (ANA-T "tek yol").
+- #267 (`plan-not` PM finali) main'de (`8b6a6c7`); #275 tabanı main.
 
 ## Hat K (ANA-K): Kabuk 1.6 (PM-128, PM-142 md. 2.1; 2026-11-27)
 - Dal `ana-k/kabuk-1.6`, PR #271 (yalnız `ios-build.yml`): `server.url` ve "Tekrar dene" doğrudan `/v2/`; Capacitor `^8`, konuşma tanıma 7.0.1 sabit; derlemede kabuk adresi + izin anahtarı denetimi.

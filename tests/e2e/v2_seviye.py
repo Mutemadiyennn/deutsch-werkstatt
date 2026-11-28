@@ -9,7 +9,8 @@ A1 seviye tespiti ekranları (PM-115 PR 2b; hedef ekran PM-120 md. 4). e2e fikst
   C) ilk kurulumda gün kilidi (tespit bitmeden gün açılmaz) → hepsi "Bilmiyorum" ("Şimdilik bırak" → Bugün → Sürdür)
      → "A1'i baştan" → A1'e baştan başla → 1. gün
   D) kurulumdan gelen öğrenci bir cevaptan sonra Ayarlar'da elle "Baştan (A1)" → kilit kalkar, Bugün 1. gün
-python3 tests/e2e/v2_seviye.py [--browser webkit] [--device "iPhone 15"] [--scheme dark] [--shots DIR]
+python3 tests/e2e/v2_seviye.py [--browser webkit] [--device "iPhone 15"] [--scheme dark] [--shots DIR] [--yol A]
+Gerçek havuz (PM-147 md. 2): DW_E2E_TESPIT=gercek ile derlenen paket → E2E_DIST=web/dist-e2e-gercek python3 v2_seviye.py --yol A
 """
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
@@ -156,6 +157,8 @@ def main():
         pg.click("[data-test=elle-baslangic]"); pg.wait_for_selector("[data-test=baslangic-simdi]")
         check("A2'den (9. hafta)" in pg.inner_text("[data-test=baslangic-simdi]"), "dipte sessiz elle değiştirme: 'Şu an: A2'den (9. hafta)'")
         b.close()
+        if arg("--yol") == "A":  # PM-147 md. 2: gerçek havuzla (E2E_DIST=web/dist-e2e-gercek) yalnız A yolu; B/C fikstür sayılarına bağlı
+            srv.shutdown(); finish()
 
         # ---------- B) iki haftada zayıf ----------
         print("B) 3. ve 5. hafta zayıf → derin bakış yalnız orada → tamamlama planı")

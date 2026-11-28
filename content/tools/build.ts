@@ -80,14 +80,24 @@ try {
   }
 } catch (e) { console.error(String(e)); process.exit(1); }
 
-// PM-115 PR 2: A1 seviye tespiti paketi (havuz dosyası varsa; e2e paketinde içerikte yoksa fikstür havuzu). Hatalı havuz
+// PM-115 PR 2: A1 seviye tespiti paketi (havuz dosyası varsa; e2e paketinde kaynak sırası aşağıda, PM-147 md. 2). Hatalı havuz
 // pakete girmez (doğrulayıcı zaten durdurur). Gün dosyası olmayan günün kartları kesin tablodan gelir (tablo paketi #231 zinciriyle).
 const tespitAdlar = new Map<string, string>([...c.grammar.map((g) => [g.id, g.h_tr] as [string, string]), ...c.dn.flatMap((x) => x.data).map((d) => [d.id, d.h_tr] as [string, string]), ...c.temel.map((t) => [t.data.id, t.data.title_tr] as [string, string])]);
 if (existsSync(join(ROOT, "content/v2/assess/a1-seviye-tespiti.json")) && !tespitPaketi(join(ROOT, "content/v2"), tespitAdlar)) {
   console.error("seviye tespiti havuzu hatalı: npm run content:validate"); process.exit(1);
 }
-const tespitPkt = tespitPaketi(join(ROOT, "content/v2"), tespitAdlar)
-  ?? (process.env.DW_E2E_FIXTURES === "1" ? tespitPaketi(join(ROOT, "content/tools/fixtures/tespit-e2e"), tespitAdlar) : null); // 8 haftalık e2e fikstürü (PM-115 PR 2b)
+// PM-147 md. 2: e2e paketinde fikstür havuzu ÖNCELİKLİ (v2_seviye'nin B/C yolları fikstür sayılarına bağlı; KAPI-İŞ 7222688448);
+// DW_E2E_TESPIT=gercek ile gerçek havuz (ci-v2.yml'de ayrı paket, yalnız A yolu). Yayın paketi her zaman gerçek havuz.
+const tespitGercek = () => tespitPaketi(join(ROOT, "content/v2"), tespitAdlar);
+const tespitFikstur = () => tespitPaketi(join(ROOT, "content/tools/fixtures/tespit-e2e"), tespitAdlar); // 8 haftalık e2e fikstürü (PM-115 PR 2b)
+const tespitE2e = process.env.DW_E2E_FIXTURES === "1";
+const [tespitPkt, tespitKaynak] = ((): [ReturnType<typeof tespitPaketi>, string] => {
+  const sira = tespitE2e && process.env.DW_E2E_TESPIT !== "gercek" ? [[tespitFikstur, "fikstür havuzu"], [tespitGercek, "gerçek havuz"]] as const
+    : tespitE2e ? [[tespitGercek, "gerçek havuz"], [tespitFikstur, "fikstür havuzu"]] as const : [[tespitGercek, "gerçek havuz"]] as const;
+  for (const [f, ad] of sira) { const p = f(); if (p) return [p, ad]; }
+  return [null, "havuz yok"];
+})();
+if (tespitE2e) console.log(`seviye tespiti (e2e): ${tespitKaynak}${process.env.DW_E2E_TESPIT === "gercek" && tespitKaynak !== "gerçek havuz" ? " (DW_E2E_TESPIT=gercek ama içerikte havuz yok)" : ""}`);
 for (const h of tespitPkt?.haftalar ?? []) for (const d of h.dil_noktasi) if (!d.ad_tr) console.log(`uyarı: seviye tespiti: ${d.id} dil noktasının adı yok (grammar.json / dn-HH.json / temel)`);
 // PM-092 md. 1: haftaların dil noktaları (dn-HH.json) tek dosyada; uygulama dil noktası durağını ve kume tablosunu buradan kurar
 const dnNotlar = c.dn.flatMap((x) => x.data);

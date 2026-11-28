@@ -3,6 +3,7 @@
  * kendi mesajın → zorunlu kelime ve kalıp kontrolü (yapay zekâsız, çevrimdışı; PM-054.5) → örnek cevap → kontrol listesi.
  * Bitiş cihazda `m1:okuma:<gün>`; adım XP'si bir kez.
  */
+import { akisaDonus } from "../services/gezinme.ts";
 import { cumleKaydet } from "../services/kullanim.ts";
 import { useEffect, useState } from "preact/hooks";
 import type { Drill, Lexeme } from "@dw/shared";
@@ -94,7 +95,7 @@ export function OkumaEkrani({ day }: { day: number }) {
           <h2>{o.tur === "yazma" ? "Mesajın hazır" : "Okuma bitti"}</h2>
           {o.sorular.length > 0 && <p>{o.sorular.length} soruda {dogru} doğru.</p>}
           {yazmaVar && kontrol && <p class="small">{kontrol.tamam ? "Gereken kelimeleri ve kalıpları kullandın." : kontrol.eksik.length ? "Bir dahaki sefere gereken kelimelerin hepsini kullanmayı dene." : "Kelimeleri kullandın; bir dahaki sefere onları öğrendiğin kalıplarla kur."}</p>}
-          <div class="row"><a class="btn primary grow" href="#/today" data-test="okuma-sonraki">Sıradaki adım</a>
+          <div class="row"><a class="btn primary grow" href={akisaDonus("#/today")} data-test="okuma-sonraki">Sıradaki adım</a>
             <button class="btn grow" onClick={() => { setDogru(0); setYazi(""); setKontrol(null); setOnce(true); git({ a: "metin" }); }}>Baştan</button></div>
         </section>
       )}
